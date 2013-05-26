@@ -237,6 +237,14 @@ public class NewsDetailActivity extends FragmentActivity {
 				    Toast.makeText(NewsDetailActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
 				}				
 				break;
+
+            case R.id.action_ShareItem:
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(Intent.EXTRA_SUBJECT, rssFiles.get(currentPosition).getTitle());
+                share.putExtra(Intent.EXTRA_TEXT, rssFiles.get(currentPosition).getLink());
+                startActivity(Intent.createChooser(share, "Share Item"));
+                break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

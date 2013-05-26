@@ -2,7 +2,7 @@
 
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: C:\\Users\\David\\Documents\\GitHub\\ownCloud-News-Reader-Android-App\\src\\com\\android\\vending\\billing\\IInAppBillingService.aidl
+ * Original file: C:\\Users\\David\\Documents\\GitHub\\News-Android-App\\src\\com\\android\\vending\\billing\\IInAppBillingService.aidl
  */
 package com.android.vending.billing;
 /**

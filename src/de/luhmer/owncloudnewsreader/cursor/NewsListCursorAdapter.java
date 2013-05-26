@@ -4,6 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,19 +18,27 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.URLSpanNoUnderline;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.GoogleReaderApi.GoogleReaderMethods;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class NewsListCursorAdapter extends CursorAdapter {
 	DatabaseConnection dbConn;
 	IReader _Reader;
+    SimpleDateFormat simpleDateFormat;
+    final int LengthBody = 500;
 
 	@SuppressWarnings("deprecation")
 	public NewsListCursorAdapter(Context context, Cursor c) {
-		super(context, c);		
+		super(context, c);
+
+        simpleDateFormat = new SimpleDateFormat("EEE, d. MMM HH:mm:ss");
 
         _Reader = new OwnCloud_Reader();
 		dbConn = new DatabaseConnection(context);
@@ -38,8 +50,22 @@ public class NewsListCursorAdapter extends CursorAdapter {
         final String idItem = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
 
         TextView textViewSummary = (TextView) view.findViewById(R.id.summary);
-        textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE)))); 
-               
+        textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))));
+
+        TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
+        long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
+        textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
+
+        TextView textViewItemBody = (TextView) view.findViewById(R.id.body);
+        String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
+        if(body.length() > LengthBody)
+            body = body.substring(0, LengthBody);
+
+        SpannableString bodyString = new SpannableString(Html.fromHtml(body));
+        ForegroundColorSpan fcs = new ForegroundColorSpan(context.getResources().getColor(android.R.color.secondary_text_dark));
+        bodyString.setSpan(fcs, 0, bodyString.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        textViewItemBody.setText(bodyString);
+
         TextView textViewTitle = (TextView) view.findViewById(R.id.tv_subscription);
         textViewTitle.setText(dbConn.getTitleOfSubscriptionByID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
         textViewSummary.setTag(cursor.getString(0));
@@ -141,5 +167,4 @@ public class NewsListCursorAdapter extends CursorAdapter {
 			Log.d("FINISHED PERFORM TAG STARRED ", "" + task_result);			
 		}
 	};
-
 }

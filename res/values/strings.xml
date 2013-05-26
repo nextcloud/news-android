@@ -27,6 +27,7 @@
     <string name="action_starred">Starred</string>
     <string name="action_openInBrowser">Open in Browser</string>
     <string name="action_sendSourceCode">Send item to Developer</string>
+    <string name="action_Share">Share</string>
     
     
 </resources>

@@ -25,4 +25,10 @@
         android:showAsAction="never"        
         android:title="@string/action_sendSourceCode"/>
 
+    <item
+        android:id="@+id/action_ShareItem"
+        android:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="@string/action_Share" />
+
 </menu>
