@@ -8,13 +8,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.preference.RingtonePreference;
+import android.preference.*;
 import android.text.TextUtils;
 
 import java.util.List;
@@ -41,7 +35,7 @@ public class SettingsActivity extends PreferenceActivity {
 	public static final String EDT_USERNAME_STRING = "edt_username";
 	public static final String EDT_PASSWORD_STRING = "edt_password";
 	public static final String EDT_OWNCLOUDROOTPATH_STRING = "edt_owncloudRootPath";
-	
+    public static final String CB_ALLOWALLSSLCERTIFICATES_STRING = "cb_AllowAllSSLCertificates";
 	
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -88,7 +82,8 @@ public class SettingsActivity extends PreferenceActivity {
 		bindPreferenceSummaryToValue(findPreference(EDT_USERNAME_STRING));
 		bindPreferenceSummaryToValue(findPreference(EDT_PASSWORD_STRING));
 		bindPreferenceSummaryToValue(findPreference(EDT_OWNCLOUDROOTPATH_STRING));
-		
+
+        bindPreferenceBooleanToValue(findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
 		
 		//bindPreferenceSummaryToValue(findPreference("example_list"));
 		//bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));//TODO comment this out
@@ -186,6 +181,15 @@ public class SettingsActivity extends PreferenceActivity {
 		}
 	};
 
+    private static Preference.OnPreferenceChangeListener sBindPreferenceBooleanToValueListener = new Preference.OnPreferenceChangeListener() {
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+            CheckBoxPreference cbPreference = ((CheckBoxPreference) preference);
+            cbPreference.setChecked((Boolean)newValue);
+            return true;
+        }
+    };
+
 	/**
 	 * Binds a preference's summary to its value. More specifically, when the
 	 * preference's value is changed, its summary (line of text below the
@@ -208,6 +212,18 @@ public class SettingsActivity extends PreferenceActivity {
 						""));
 	}
 
+    private static void bindPreferenceBooleanToValue(Preference preference) {
+        // Set the listener to watch for value changes.
+        preference.setOnPreferenceChangeListener(sBindPreferenceBooleanToValueListener);
+
+        // Trigger the listener immediately with the preference's
+        // current value.
+        sBindPreferenceBooleanToValueListener.onPreferenceChange(
+                preference,
+                PreferenceManager.getDefaultSharedPreferences(
+                        preference.getContext()).getBoolean(preference.getKey(), false));
+    }
+
 	/**
 	 * This fragment shows general preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
@@ -227,6 +243,8 @@ public class SettingsActivity extends PreferenceActivity {
 			bindPreferenceSummaryToValue(findPreference(EDT_PASSWORD_STRING));
 			bindPreferenceSummaryToValue(findPreference(EDT_OWNCLOUDROOTPATH_STRING));
 			//bindPreferenceSummaryToValue(findPreference("example_list"));
+
+            bindPreferenceBooleanToValue(findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
 		}
 	}
 

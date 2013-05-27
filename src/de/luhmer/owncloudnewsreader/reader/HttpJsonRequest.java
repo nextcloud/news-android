@@ -8,9 +8,16 @@ import java.net.HttpURLConnection;
 import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.List;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.helper.SSLHttpClient;
 import de.luhmer.owncloudnewsreader.util.Base64;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -24,26 +31,40 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
+import javax.net.ssl.*;
+
 public class HttpJsonRequest {
 	private static final String TAG = "HttpJsonRequest";
 
 	
-	public static JSONObject PerformJsonRequest(String url, List<NameValuePair> nameValuePairs, String username, String password) throws Exception
+	public static JSONObject PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, String username, String password, Context context) throws Exception
 	{
-        // http://androidarabia.net/quran4android/phpserver/connecttoserver.php
+        if(nameValuePairs != null)
+        {
+            urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8");
+            /*
+            JSONObject jObj = new JSONObject();
 
-        // Log.i(getClass().getSimpleName(), "send  task - start");
-        //HttpParams httpParams = new BasicHttpParams();
-        //HttpConnectionParams.setConnectionTimeout(httpParams, TIMEOUT_MILLISEC);
-        //HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
-        //
-        //HttpParams p = new BasicHttpParams();
-        // p.setParameter("name", pvo.getName());
-        //p.setParameter("user", "1");
+            for (NameValuePair nameValuePair : nameValuePairs) {
+                jObj.put(nameValuePair.getName(), nameValuePair.getValue());
+            }*/
+
+            //request.setEntity(new ByteArrayEntity(jObj.toString().getBytes("UTF8")));
+
+            //httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+        }
+
+        URL url = new URL(urlString);
 
         // Instantiate an HttpClient
         //HttpClient httpclient = new DefaultHttpClient(p);
-        DefaultHttpClient httpClient = new DefaultHttpClient();
+        DefaultHttpClient httpClient = null;
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false) && url.getProtocol().toLowerCase().equals("https"))
+            httpClient = new SSLHttpClient(context);
+        else
+            httpClient = new DefaultHttpClient();
+
         if(username != null && password != null)
             httpClient.getCredentialsProvider().setCredentials(new AuthScope(null, -1), new UsernamePasswordCredentials(username,password));
 
@@ -60,22 +81,7 @@ public class HttpJsonRequest {
         httpClient.setParams(params);*/
 
         // Instantiate a GET HTTP method
-
-        if(nameValuePairs != null)
-        {
-            url += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8");
-            /*
-            JSONObject jObj = new JSONObject();
-
-            for (NameValuePair nameValuePair : nameValuePairs) {
-                jObj.put(nameValuePair.getName(), nameValuePair.getValue());
-            }*/
-
-            //request.setEntity(new ByteArrayEntity(jObj.toString().getBytes("UTF8")));
-
-            //httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-        }
-        HttpGet request = new HttpGet(url);
+        HttpGet request = new HttpGet(url.toString());
 
         ResponseHandler<String> responseHandler = new BasicResponseHandler();
         String responseBody = httpClient.execute(request, responseHandler);
@@ -134,7 +140,7 @@ public class HttpJsonRequest {
 	*/
 
 
-	public static int performTagChangeRequest(String url, String username, String password) throws Exception
+	public static int performTagChangeRequest(String url, String username, String password, Context context) throws Exception
 	{
         //url = "http://192.168.10.126/owncloud/ocs/v1.php/apps/news/items/3787/read";
 
@@ -142,12 +148,24 @@ public class HttpJsonRequest {
         String authStringEnc = Base64.encode(authString.getBytes());
 
         URL urlConn = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) urlConn.openConnection();
-        connection.setRequestProperty("Authorization", "Basic " + authStringEnc);
-        connection.setRequestMethod("PUT");
 
-        /*
-        InputStreamReader in = new InputStreamReader((InputStream) connection.getContent());
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
+        HttpURLConnection httpConnection = null;
+        if (urlConn.getProtocol().toLowerCase().equals("https") && sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false)) {
+            trustAllHosts();
+            HttpsURLConnection https = (HttpsURLConnection) urlConn.openConnection();
+            https.setHostnameVerifier(DO_NOT_VERIFY);
+            httpConnection = https;
+        } else {
+            httpConnection = (HttpURLConnection) urlConn.openConnection();
+        }
+
+        httpConnection.setRequestProperty("Authorization", "Basic " + authStringEnc);
+        httpConnection.setRequestMethod("PUT");
+
+
+        InputStreamReader in = new InputStreamReader((InputStream) httpConnection.getContent());
         BufferedReader buff = new BufferedReader(in);
         String text = "";
         String line;
@@ -157,8 +175,48 @@ public class HttpJsonRequest {
                 text += line + "\n";
         } while (line != null);
         Log.d(TAG, text);
-        */
 
-        return connection.getResponseCode();
+
+        return httpConnection.getResponseCode();
 	}
+
+
+
+
+    // always verify the host - dont check for certificate
+    final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier() {
+        public boolean verify(String hostname, SSLSession session) {
+            return true;
+        }
+    };
+
+    /**
+     * Trust every server - dont check for any certificate
+     */
+    private static void trustAllHosts() {
+        // Create a trust manager that does not validate certificate chains
+        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                return new java.security.cert.X509Certificate[] {};
+            }
+
+            public void checkClientTrusted(X509Certificate[] chain,
+                                           String authType) throws CertificateException {
+            }
+
+            public void checkServerTrusted(X509Certificate[] chain,
+                                           String authType) throws CertificateException {
+            }
+        } };
+
+        // Install the all-trusting trust manager
+        try {
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection
+                    .setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

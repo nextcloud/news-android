@@ -51,7 +51,7 @@ public class OwnCloudReaderMethods {
 		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
 		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
 
-        JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(oc_root_path + OwnCloudConstants.FEED_PATH + OwnCloudConstants.JSON_FORMAT, nVPairs, username, password);
+        JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(oc_root_path + OwnCloudConstants.FEED_PATH + OwnCloudConstants.JSON_FORMAT, nVPairs, username, password, act);
 
         jsonObj = jsonObj.optJSONObject("ocs");
         jsonObj = jsonObj.optJSONObject("data");
@@ -94,7 +94,7 @@ public class OwnCloudReaderMethods {
 		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
 		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
 		
-		JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(oc_root_path + OwnCloudConstants.FOLDER_PATH + OwnCloudConstants.JSON_FORMAT, null, username, password);
+		JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(oc_root_path + OwnCloudConstants.FOLDER_PATH + OwnCloudConstants.JSON_FORMAT, null, username, password, act);
 
         jsonObj = jsonObj.optJSONObject("ocs");
         jsonObj = jsonObj.optJSONObject("data");
@@ -118,7 +118,7 @@ public class OwnCloudReaderMethods {
 		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
 		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
 		
-		JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(oc_root_path + OwnCloudConstants.SUBSCRIPTION_PATH + OwnCloudConstants.JSON_FORMAT, null, username, password);
+		JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(oc_root_path + OwnCloudConstants.SUBSCRIPTION_PATH + OwnCloudConstants.JSON_FORMAT, null, username, password, act);
 
         jsonObj = jsonObj.optJSONObject("ocs");
         jsonObj = jsonObj.optJSONObject("data");
@@ -171,7 +171,7 @@ public class OwnCloudReaderMethods {
         }
         try
         {
-		    int result = HttpJsonRequest.performTagChangeRequest(url, username, password);
+		    int result = HttpJsonRequest.performTagChangeRequest(url, username, password, context);
 		    if(result != -1 || result != 405)
     			return true;
     		else

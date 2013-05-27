@@ -37,6 +37,10 @@
         android:title="@string/pref_title_owncloudRootPath"
         android:inputType="textUri" />
 
+    <CheckBoxPreference
+        android:key="cb_AllowAllSSLCertificates"
+        android:title="@string/pref_title_AllowAllSSLCertificates" />
+
     <!--
          NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it.
