@@ -1,4 +1,4 @@
-ownCloud-News-Reader-Android-App
+ownCloud News Reader Android App
 ================================
 
 The ownCloud News Reader Android App is under AGPLv3 License terms.
