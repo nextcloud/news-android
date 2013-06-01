@@ -12,7 +12,7 @@
     <string name="pref_title_username">Username</string>
     <string name="pref_default_username">admin</string>
     
-    <string name="pref_title_password">Passwort</string>
+    <string name="pref_title_password">Password</string>
 
     <string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>
     <string name="pref_title_owncloudRootPath">ownCloud root address</string>
