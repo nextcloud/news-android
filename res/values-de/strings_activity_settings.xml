@@ -16,7 +16,8 @@
     
     <string name="pref_title_owncloudRootPath">ownCloud root address</string>
     <string name="pref_default_owncloudRootPath">http://1.2.3.4/owncloud</string>
-    
+    <string name="pref_title_AutoSyncOnStart">Automatische Synchronisation beim starten</string>
+    <string name="pref_title_ShowOnlyUnread">Nur ungelesene Artikel anzeigen</string>
     
     
     <!-- <string name="pref_title_add_friends_to_messages">Add friends to messages</string>

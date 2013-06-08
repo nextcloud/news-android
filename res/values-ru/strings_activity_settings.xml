@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="pref_title_AutoSyncOnStart">автоматической синхронизации c начала программы</string>    
+    
+</resources>

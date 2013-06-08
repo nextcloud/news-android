@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader.reader;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
@@ -14,7 +16,7 @@ public interface IReader {
 	public void Start_AsyncTask_GetFeeds(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener, FeedItemTags.TAGS tag);
 	public void Start_AsyncTask_GetFolder(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener);
 	public void Start_AsyncTask_GetSubFolder(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener);	
-	public void Start_AsyncTask_PerformTagActionForSingleItem(final int task_id, final Context context, final OnAsyncTaskCompletedListener listener, String itemId, FeedItemTags.TAGS tag);
+	public void Start_AsyncTask_PerformTagActionForSingleItem(final int task_id, final Context context, final OnAsyncTaskCompletedListener listener, List<String> itemIds, FeedItemTags.TAGS tag);
 	public void Start_AsyncTask_Authenticate(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener);
 	
 	public abstract void onAsyncTaskCompleted(final int task_id, final Object task_result);

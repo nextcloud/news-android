@@ -59,8 +59,7 @@ public class OwnCloudReaderMethods {
 
         if(jsonArr != null)
         {
-            for (int i = 0; i
-                    < jsonArr.length(); i++) {
+            for (int i = 0; i < jsonArr.length(); i++) {
                 JSONObject e = jsonArr.optJSONObject(i);
 
                 Date date = new Date(e.optLong("pubDate") * 1000);
@@ -93,6 +92,9 @@ public class OwnCloudReaderMethods {
 		String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
 		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
 		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+		
+		if(oc_root_path.endsWith("/"))
+			oc_root_path = oc_root_path.substring(0, oc_root_path.length() - 1);
 		
 		JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(oc_root_path + OwnCloudConstants.FOLDER_PATH + OwnCloudConstants.JSON_FORMAT, null, username, password, act);
 
@@ -136,43 +138,61 @@ public class OwnCloudReaderMethods {
 		return subscriptionTags;
 	}
 	
-	public static boolean PerformTagExecution(String itemID, FeedItemTags.TAGS tag, Context context)
+	public static boolean PerformTagExecution(List<String> itemIds, FeedItemTags.TAGS tag, Context context)
 	{
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
 		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
 		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-		
+
+
+        List<NameValuePair> nameValuePairs = null;
+
 		String url = oc_root_path + OwnCloudConstants.FEED_PATH + "/";
 		if(tag.equals(TAGS.MARK_ITEM_AS_READ))
-			url += itemID + "/read";
+        {
+			/*
+            String jsonIds = buildIdsToJSONArray(itemIds);
+            if(jsonIds != null)
+            {
+                nameValuePairs = new ArrayList<NameValuePair>();
+                nameValuePairs.add(new BasicNameValuePair("itemIds", jsonIds));
+            }
+            url += "readMultiple";*/
+			url += itemIds.get(0) + "/read";
+        }
 		else if(tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
-			url += itemID + "/unread";
+			url += itemIds.get(0) + "/unread";//TODO HERE...
         else
         {
             DatabaseConnection dbConn = new DatabaseConnection(context);
-            Cursor cursor = dbConn.getFeedByID(dbConn.getRowIdOfFeedByItemID(itemID));
+            Cursor cursor = dbConn.getFeedByID(dbConn.getRowIdOfFeedByItemID(itemIds.get(0)));//TODO HERE...
             //Cursor cursor = dbConn.getFeedByID itemID);
             cursor.moveToFirst();
 
-            String subscription_id = dbConn.getSubscriptionIdByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
+            String idSubscription = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID));
+            String guidHash = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUIDHASH));
+            
+            cursor.close();
+            
+            String subscription_id = dbConn.getSubscriptionIdByRowID(idSubscription);
             url += subscription_id;
 
-            String guidHash = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUIDHASH));
+            
             url += "/" + guidHash;
 
             if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
                 url += "/star";
             else if(tag.equals(TAGS.MARK_ITEM_AS_UNSTARRED))
                 url += "/unstar";
-
-            cursor.close();
+            
             dbConn.closeDatabase();
         }
         try
         {
-		    int result = HttpJsonRequest.performTagChangeRequest(url, username, password, context);
-		    if(result != -1 || result != 405)
+		    int result = HttpJsonRequest.performTagChangeRequest(url, username, password, context, nameValuePairs);
+		    //if(result != -1 || result != 405)
+		    if(result == 200)
     			return true;
     		else
     			return false;
@@ -183,4 +203,30 @@ public class OwnCloudReaderMethods {
             return false;
         }
 	}
+
+    private static String buildIdsToJSONArray(List<String> ids)
+    {
+        try
+        {
+            JSONArray jArr = new JSONArray();
+            for(String id : ids)
+                jArr.put(id);
+
+            /*
+            JSONObject jObj2 = new JSONObject();
+            jObj2.put("ids", jArr);*/
+            
+            JSONObject jObj = new JSONObject();
+            jObj.put("itemIds", jArr);
+            //jObj.put("itemIds", jObj2);
+            
+            
+            return jObj.toString();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ownCloud RSS лента новостей</string>
+    <string name="action_settings">параметр</string>
+    <string name="title_activity_news_detail">статьядетальактивность</string>
+    <string name="title_activity_subscription">абонементактивность</string>
+    <string name="title_newsreader_list">RSS лента новостей</string>
+    <string name="title_newsreader_detail">RSS лента новостей деталь</string>
+
+    
+    <string name="empty_view_header">информация</string>
+    <string name="empty_view_content">Нет статьи</string>
+    
+    <string name="allUnreadFeeds">все непрочитанные статьи</string>
+    <string name="starredFeeds">помечены статьи</string>
+    <!-- <string name="non_sorted_articles">нераспределенные статьи</string> -->
+    
+    <string name="menu_update">актуализировать</string>
+    
+    
+    <!-- EMAIL -->
+    <string name="email_sourceCode">исходный код RSS лента новостей - Сообщить об ошибке</string>
+    <string name="email_sendMail">посылать электронная почта.</string>
+    
+    <!-- Action Bar Items -->
+    <string name="action_starred">Отметить звездочкой</string>
+    <string name="action_openInBrowser">Откройте Интернет-браузер</string>
+    <string name="action_sendSourceCode">Написать RSS лента новостей разработчику</string>
+    
+    
+</resources>

@@ -1,14 +1,20 @@
 package de.luhmer.owncloudnewsreader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 
@@ -30,11 +36,14 @@ public class NewsReaderDetailFragment extends ListFragment {
 	String idFolder;
 	String titel;
 	
+	ArrayList<Integer> databaseIdsOfItems;
+	
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
 	public NewsReaderDetailFragment() {
+		databaseIdsOfItems = new ArrayList<Integer>();
 	}
 
 	@Override
@@ -65,10 +74,38 @@ public class NewsReaderDetailFragment extends ListFragment {
 		dbConn = new DatabaseConnection(getActivity());
 				
 		//lvAdapter = new Subscription_ListViewAdapter(this);
+		UpdateCursor();
+	}
+	
+	@Override
+	public void onDestroy() {
+		if(lvAdapter != null)
+			lvAdapter.CloseDatabaseConnection();
+		if(dbConn != null)
+			dbConn.closeDatabase();
+		super.onDestroy();
+	}
+
+	public void UpdateCursor()
+	{
 		try
 		{
-			lvAdapter = new NewsListCursorAdapter(getActivity(), getRightCusor());
-			setListAdapter(lvAdapter);
+			Cursor cursor = getRightCusor(idFolder);
+			
+			databaseIdsOfItems.clear();
+			if(cursor != null)
+				while(cursor.moveToNext())
+					databaseIdsOfItems.add(cursor.getInt(0));
+			
+			
+			if(lvAdapter == null)
+			{			
+				lvAdapter = new NewsListCursorAdapter(getActivity(), cursor);
+				setListAdapter(lvAdapter);
+			}
+			else
+				lvAdapter.changeCursor(cursor);
+			
 		}
 		catch(Exception ex)
 		{
@@ -76,12 +113,25 @@ public class NewsReaderDetailFragment extends ListFragment {
 		}
 	}
 
-    public Cursor getRightCusor()
+    public Cursor getRightCusor(String ID_FOLDER)
     {
+    	SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+    	boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
+    	boolean onlyStarredItems = false;
+    	if(ID_FOLDER != null)
+    		if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+    			onlyStarredItems = true;
+    		
         if(idSubscription != null)
-            return dbConn.getAllFeedsForSubscription(idSubscription);
+        {
+            return dbConn.getAllItemsForFeed(idSubscription, onlyUnreadItems, onlyStarredItems);
+        }
         else if(idFolder != null)
-            return dbConn.getAllFeedsForFolder(idFolder);
+        {
+        	if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+        		onlyUnreadItems = false;
+            return dbConn.getAllItemsForFolder(idFolder, onlyUnreadItems);
+        }
         return null;
     }
 
@@ -97,10 +147,15 @@ public class NewsReaderDetailFragment extends ListFragment {
 	public void onListItemClick(ListView l, View v, int position, long id) {
 				
 		Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);
-		if(idSubscription != null)
-			intentNewsDetailAct.putExtra(NewsReaderDetailActivity.SUBSCRIPTION_ID, Long.valueOf(idSubscription));
-		else if(idFolder != null)
-			intentNewsDetailAct.putExtra(NewsReaderDetailActivity.FOLDER_ID, Long.valueOf(idFolder));
+		//if(idSubscription != null)
+		//	intentNewsDetailAct.putExtra(NewsReaderDetailActivity.SUBSCRIPTION_ID, Long.valueOf(idSubscription));
+		//else if(idFolder != null)
+		//	intentNewsDetailAct.putExtra(NewsReaderDetailActivity.FOLDER_ID, Long.valueOf(idFolder));		
+		
+		//intentNewsDetailAct.putIntegerArrayListExtra(NewsDetailActivity.DATABASE_IDS_OF_ITEMS, databaseIdsOfItems);
+		//Integer[] databaseIdsOfItemsArray = databaseIdsOfItems.toArray(new Integer[databaseIdsOfItems.size()]);
+		intentNewsDetailAct.putIntegerArrayListExtra(NewsDetailActivity.DATABASE_IDS_OF_ITEMS, databaseIdsOfItems);
+		
 		intentNewsDetailAct.putExtra(NewsReaderDetailActivity.ITEM_ID, position);
 		intentNewsDetailAct.putExtra(NewsReaderDetailActivity.TITEL, titel);
 		startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);

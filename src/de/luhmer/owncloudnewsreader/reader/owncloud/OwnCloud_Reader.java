@@ -42,9 +42,9 @@ public class OwnCloud_Reader implements IReader {
 	@Override
 	public void Start_AsyncTask_PerformTagActionForSingleItem(int task_id,
 			Context context, OnAsyncTaskCompletedListener listener,
-			String itemId, FeedItemTags.TAGS tag) {
+			List<String> itemIds, FeedItemTags.TAGS tag) {
 		isSyncRunning = true;
-		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_PerformTagAction(task_id, context, new OnAsyncTaskCompletedListener[] { listener, AsyncTask_finished } ).execute(itemId, tag));
+		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_PerformTagAction(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute(itemIds, tag));
 	}
 	
 	@Override

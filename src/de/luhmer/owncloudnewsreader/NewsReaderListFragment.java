@@ -1,11 +1,16 @@
 package de.luhmer.owncloudnewsreader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.conn.HttpHostConnectException;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -19,22 +24,20 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.actionbarsherlock.app.SherlockFragment;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
+
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
-import de.luhmer.owncloudnewsreader.data.RssFile;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.interfaces.AsyncUpdateFinished;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
-import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.GoogleReaderApi.AsyncTask_GetFeeds;
-import de.luhmer.owncloudnewsreader.reader.GoogleReaderApi.AsyncTask_GetGReaderTags;
-import de.luhmer.owncloudnewsreader.reader.GoogleReaderApi.AsyncTask_GetSubReaderTags;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
-import org.apache.http.client.HttpResponseException;
-import org.apache.http.conn.HttpHostConnectException;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
@@ -45,7 +48,7 @@ import org.apache.http.conn.HttpHostConnectException;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class NewsReaderListFragment extends Fragment implements OnCreateContextMenuListener /*, 
+public class NewsReaderListFragment extends SherlockFragment implements OnCreateContextMenuListener /*, 
 																ExpandableListView.OnChildClickListener,
 																ExpandableListView.OnGroupCollapseListener,
 																ExpandableListView.OnGroupExpandListener*/ {
@@ -80,8 +83,8 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		public void onChildItemClicked(String idSubscription);
-		public void onTopItemClicked(String idSubscription);
+		public void onChildItemClicked(String idSubscription, String optional_folder_id);
+		public void onTopItemClicked(String idSubscription, boolean isFolder, String optional_folder_id);
 	}
 
 	/**
@@ -90,17 +93,19 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	 */
 	private static Callbacks sExpListCallbacks = new Callbacks() {
 		@Override
-		public void onChildItemClicked(String idSubscription) {			
+		public void onChildItemClicked(String idSubscription, String optional_folder_id) {			
 		}
 
 		@Override
-		public void onTopItemClicked(String idSubscription) {			
+		public void onTopItemClicked(String idSubscription, boolean isFolder, String optional_folder_id) {			
 		}
 	};
 
 	DatabaseConnection dbConn;
+	//SubscriptionExpandableListAdapter lvAdapter;
 	SubscriptionExpandableListAdapter lvAdapter;
-	ExpandableListView eListView;
+	//ExpandableListView eListView;
+	PullToRefreshExpandableListView eListView;	
 	public static IReader _Reader = null;  //AsyncTask_GetGReaderTags asyncTask_GetUnreadFeeds = null;
 	
 	public static String username;
@@ -123,6 +128,25 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		try
 		{
 			dbConn = new DatabaseConnection(getActivity());
+			
+			
+			//Update Database Stuff first
+			try {
+				PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+				
+				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+				if(mPrefs.getInt("LAST_APP_VERSION", 0) < pInfo.versionCode)
+				{	
+					dbConn.resetDatabase();
+					SharedPreferences.Editor editor = mPrefs.edit();
+					editor.putInt("LAST_APP_VERSION", pInfo.versionCode);
+					editor.commit();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
 			//dbConn.resetDatabase();
 			
 			username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
@@ -135,6 +159,11 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 			
 			if(_Reader == null)
 				_Reader = new OwnCloud_Reader();
+			
+			
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
+				((NewsReaderListActivity) getActivity()).startSync();
 			
 			//_Reader.Start_AsyncTask_GetFeeds(2, getActivity(), null);
 			
@@ -156,15 +185,53 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	public void StartSync()
 	{
 		if (!_Reader.isSyncRunning())
-			_Reader.Start_AsyncTask_GetFolder(0,  getActivity(), onAsyncTask_GetTopReaderTags);
+        {
+            HashMap<String, String> ids = new HashMap<String, String>();
+
+            //ids.put("1000", "3840");
+            //ids.put("1001", "1001");
+
+            List<String> idsRemote = new ArrayList<String>();
+            idsRemote.addAll(ids.values());
+            _Reader.Start_AsyncTask_PerformTagActionForSingleItem(-1, getActivity(), onAsyncTask_PerformTagExecute, idsRemote, TAGS.MARK_ITEM_AS_READ);
+            
+            if(eListView != null)
+            {
+            	eListView.setRefreshing(true);
+            	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
+            }
+			//_Reader.Start_AsyncTask_GetFolder(0,  getActivity(), onAsyncTask_GetTopReaderTags);
+        }
 		else
-	    	_Reader.attachToRunningTask(0, getActivity(), onAsyncTask_GetTopReaderTags);
+	    	//_Reader.attachToRunningTask(0, getActivity(), onAsyncTask_GetTopReaderTags);
+            _Reader.attachToRunningTask(-1, getActivity(), onAsyncTask_PerformTagExecute);
+		
+		UpdateSyncButtonLayout();
 	}
+
+    OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
+        @Override
+        public void onAsyncTaskCompleted(int task_id, Object task_result) {
+            if(task_result != null)//task result is null if there was an error
+            {	
+            	if((Boolean) task_result)
+            	{
+            		dbConn.resetDatabase();
+            		
+            		_Reader.Start_AsyncTask_GetFolder(1,  getActivity(), onAsyncTask_GetTopReaderTags);
+            		if(eListView != null)
+            			eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));            		
+            	}
+            	UpdateSyncButtonLayout();            	
+            }
+            else
+            	UpdateSyncButtonLayout();
+        }
+    };
 	
 	OnAsyncTaskCompletedListener onAsyncTask_GetTopReaderTags = new OnAsyncTaskCompletedListener() {
 
 		
-		@SuppressWarnings("unchecked")
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			Log.d(TAG, "onAsyncTask_GetTopReaderTags started: " + task_id);
@@ -187,7 +254,11 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 UpdateSyncButtonLayout();
             }
             else
+            {
                 _Reader.Start_AsyncTask_GetSubFolder(1, getActivity(), onAsyncTask_GetSubReaderTags);
+                if(eListView != null)
+                	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFeeds));
+            }
 
             lvAdapter.notifyDataSetChanged();
             Log.d(TAG, "onAsyncTask_GetTopReaderTags Finished");
@@ -201,7 +272,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	
 	OnAsyncTaskCompletedListener onAsyncTask_GetSubReaderTags = new OnAsyncTaskCompletedListener() {
 		
-		@SuppressWarnings("unchecked")
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 
@@ -214,8 +284,13 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
             }
             else
             {
+            	//dbConn.resetRssItemsDatabase();
+            	
                 _Reader.Start_AsyncTask_GetFeeds(2, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_UNREAD);//Recieve all unread Items
                 _Reader.Start_AsyncTask_GetFeeds(2, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_STARRED);//Recieve all starred Items
+                
+                if(eListView != null)
+                	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateItems));
             }
 
 
@@ -231,7 +306,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	
 	OnAsyncTaskCompletedListener onAsyncTask_GetFeeds = new OnAsyncTaskCompletedListener() {
 		
-		@SuppressWarnings("unchecked")
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 
@@ -244,8 +318,13 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 			Log.d(TAG, "onAsyncTask_GetFeeds Finished");
 
+			if(eListView != null)
+            	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
+			
             UpdateSyncButtonLayout();
 
+            lvAdapter.ReloadAdapter();
+            
             NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
             nlActivity.UpdateItemList();
 
@@ -261,9 +340,25 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		try
 		{	
 			V = inflater.inflate(R.layout.expandable_list_layout, container, false);			
-			eListView = (ExpandableListView) V.findViewById(R.id.expandableListView);
+			//eListView = (ExpandableListView) V.findViewById(R.id.expandableListView);
+			eListView = (PullToRefreshExpandableListView) V.findViewById(R.id.expandableListView);
+		
+			
+			//eListView.setGroupIndicator(getResources().getDrawable(R.drawable.expandable_group_indicator));
+			eListView.setGroupIndicator(null);
+			
+			//eListView.demo();
+        	eListView.setShowIndicator(false);
+			
+			eListView.setOnRefreshListener(new OnRefreshListener<ExpandableListView>() {
+			    @Override
+			    public void onRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
+			        StartSync();
+			    }
+			});
+			
 			eListView.setOnChildClickListener(onChildClickListener);
-			eListView.setSmoothScrollbarEnabled(true);			
+			//eListView.setSmoothScrollbarEnabled(true);			
 			
 			View empty = inflater.inflate(R.layout.subscription_list_item_empty, null, false);
 			getActivity().addContentView(empty, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));			
@@ -280,7 +375,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 					return true;
 				}
 			});*/
-			eListView.setAdapter(lvAdapter);
+			eListView.setExpandableAdapter(lvAdapter);
 			
 		}
 		catch(Exception ex)
@@ -329,8 +424,8 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	ExpListTextClicked expListTextClickedListener = new ExpListTextClicked() {
 		
 		@Override
-		public void onTextClicked(String idSubscription, Context context) {
-			mCallbacks.onTopItemClicked(idSubscription);
+		public void onTextClicked(String idSubscription, Context context, boolean isFolder, String optional_folder_id) {
+			mCallbacks.onTopItemClicked(idSubscription, isFolder, optional_folder_id);
 		}
 	};
 	
@@ -362,7 +457,13 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 				int groupPosition, int childPosition, long id) {
 			
 			long idItem = lvAdapter.getChildId(groupPosition, childPosition);
-			mCallbacks.onChildItemClicked(String.valueOf(idItem));
+			
+			String optional_id_folder = null;
+			FolderSubscribtionItem groupItem = (FolderSubscribtionItem) lvAdapter.getGroup(groupPosition);
+			if(groupItem != null)
+				optional_id_folder = String.valueOf(groupItem.id_database);
+			
+			mCallbacks.onChildItemClicked(String.valueOf(idItem), optional_id_folder);
 			
 			return false;
 		}
@@ -376,26 +477,27 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		// When setting CHOICE_MODE_SINGLE, ListView will automatically
 		// give items the 'activated' state when touched.
 		
-		//getListView().setChoiceMode(
-		eListView.setChoiceMode(activateOnItemClick ? ListView.CHOICE_MODE_SINGLE	: ListView.CHOICE_MODE_NONE);
+		
+		//eListView.setChoiceMode(activateOnItemClick ? ListView.CHOICE_MODE_SINGLE	: ListView.CHOICE_MODE_NONE);//TODO comment this in
 	}
 
-	private void setActivatedPosition(int position) {
+	private void setActivatedPosition(int position) {/*//TODO comment this in
 		if (position == ListView.INVALID_POSITION) {
 			//getListView().setItemChecked(mActivatedPosition, false);
 			eListView.setItemChecked(mActivatedPosition, false);
 		} else {
 			eListView.setItemChecked(position, true);
 			//getListView().setItemChecked(position, true);
-		}
-
+		}*/
+		
 		mActivatedPosition = position;
 	}
 		
 
     public void UpdateSyncButtonLayout()
     {
-        ((NewsReaderListActivity) getActivity()).UpdateButtonSync();
+    	if(getActivity() != null)
+    		((NewsReaderListActivity) getActivity()).UpdateButtonSyncLayout();
     }
 
     /*

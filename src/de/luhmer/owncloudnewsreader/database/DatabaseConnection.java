@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.ListView.Subscription_ListViewAdapter;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -39,24 +43,64 @@ public class DatabaseConnection {
     public static final String RSS_ITEM_GUID = "guid";
     public static final String RSS_ITEM_GUIDHASH = "guidHash";
     
+    public static final String RSS_ITEM_READ_TEMP = "read_temp";
+    public static final String RSS_ITEM_STARRED_TEMP = "starred_temp";
+	
+	
+    public static final boolean DATABASE_DEBUG_MODE = false; //(false && Constants.DEBUG_MODE) ? true: false;
+    
+
     public DatabaseConnection(Context aContext) {         
         openHelper = new DatabaseHelper(aContext);
         openDatabase();   
     }
-	
+
+    /*
 	public Cursor getAllData(String TABLE_NAME) {		 
         String buildSQL = "SELECT rowid as _id, * FROM " + TABLE_NAME; 
         Log.d("DB_HELPER", "getAllData SQL: " + buildSQL); 
         return database.rawQuery(buildSQL, null);
     }
-	
-	public Cursor getAllTopSubscriptions() {
+	*/
+
+	public Cursor getAllTopSubscriptions(boolean onlyUnread) {
 		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NULL"; 
-		String buildSQL = "SELECT rowid as _id, * FROM " + FOLDER_TABLE;
-        Log.d("DB_HELPER", "getAllTopData SQL: " + buildSQL); 
+		String buildSQL = "SELECT f.rowid as _id, * FROM " + FOLDER_TABLE + " f ";
+        if(onlyUnread)
+        {
+            buildSQL += " JOIN " + SUBSCRIPTION_TABLE + " sc ON f.rowid = sc." + SUBSCRIPTION_FOLDER_ID +
+                        " JOIN " + RSS_ITEM_TABLE + " rss ON sc.rowid = rss." + RSS_ITEM_SUBSCRIPTION_ID +
+                        " WHERE " + RSS_ITEM_READ_TEMP + " != 1" + 
+                        " GROUP BY f.rowid " +
+                        " HAVING COUNT(*) > 0";
+        }
+
+        if(DATABASE_DEBUG_MODE)
+        	Log.d("DB_HELPER", "getAllTopSubscriptions SQL: " + buildSQL);
         return database.rawQuery(buildSQL, null);
 	}
 	
+	public Cursor getAllTopSubscriptionsWithoutFolder(boolean onlyUnread) {
+		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NULL"; 
+		String buildSQL = "SELECT sc.rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " sc ";
+		
+		if(onlyUnread)
+		{
+			buildSQL += " JOIN " + RSS_ITEM_TABLE + " rss ON sc.rowid = rss." + RSS_ITEM_SUBSCRIPTION_ID +
+						" WHERE " + SUBSCRIPTION_FOLDER_ID + " IS NULL" +
+						" AND " + RSS_ITEM_READ_TEMP + " != 1" +
+                        " GROUP BY sc.rowid " +
+                        " HAVING COUNT(*) > 0";
+        }
+		else
+			buildSQL += " WHERE " + SUBSCRIPTION_FOLDER_ID + " IS NULL";
+
+        if(DATABASE_DEBUG_MODE)
+        	Log.d("DB_HELPER", "getAllTopSubscriptions SQL: " + buildSQL);
+        return database.rawQuery(buildSQL, null);
+	}
+
+    /*
 	public Cursor getAllTopSubscriptionsWithUnreadFeeds() {
 		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NULL"; 
 		String buildSQL = "SELECT f.rowid as _id, * FROM " + FOLDER_TABLE + " f "+
@@ -66,24 +110,44 @@ public class DatabaseConnection {
 							" HAVING COUNT(*) > 0";
         Log.d("DB_HELPER", "getAllTopData SQL: " + buildSQL); 
         return database.rawQuery(buildSQL, null);
-	}
-	
+	}*/
+
+
 	public Cursor getAllSubSubscriptions() {
 		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NOT NULL"; 
 		String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE;
-        Log.d("DB_HELPER", "getAllSubData SQL: " + buildSQL); 
+
+		if(DATABASE_DEBUG_MODE)
+        	Log.d("DB_HELPER", "getAllSubSubscriptions SQL: " + buildSQL); 
         return database.rawQuery(buildSQL, null);
 	}
 	
-	public String getCountUnreadFeedsForSubscription(String ID_SUBSCRIPTION) {
+	public Cursor getSubSubscriptionsByID(String ID_FEED_DB) {//Feeds		 
+		String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE rowid = '" + ID_FEED_DB + "'";
+
+		if(DATABASE_DEBUG_MODE)
+        	Log.d("DB_HELPER", "getSubSubscriptionsByID SQL: " + buildSQL); 
+        return database.rawQuery(buildSQL, null);
+	}
+	
+	public String getCountItemsForSubscription(String ID_SUBSCRIPTION, boolean onlyUnread, boolean execludeStarredItems) {
 		
 		String buildSQL = "SELECT COUNT(*) " + 
 	 			" FROM " + RSS_ITEM_TABLE +  
-				" WHERE read != 1" +
+				//" WHERE read != 1" +
+				" WHERE " + RSS_ITEM_READ_TEMP +" != 1 AND " + RSS_ITEM_STARRED + " != 1" +
 					" AND subscription_id_subscription IN " + 
 					"(SELECT rowid " + 
 					"FROM subscription " +					
 					"WHERE rowid = " + ID_SUBSCRIPTION + ");";
+		
+		
+		
+		if(!onlyUnread)
+			buildSQL = buildSQL.replace("read_temp != 1 AND", "");
+		
+		if(!execludeStarredItems)
+			buildSQL = buildSQL.replace(RSS_ITEM_STARRED + " != 1 AND", RSS_ITEM_STARRED_TEMP + " = 1 AND");
 		
 		String result = "0";
 		Cursor cursor = database.rawQuery(buildSQL, null);
@@ -99,13 +163,26 @@ public class DatabaseConnection {
 	
 	public Boolean isFeedUnreadStarred(String FEED_ID, Boolean checkUnread) {
 		String buildSQL;
+		/*
 		if(checkUnread)
 			buildSQL = "SELECT read "; 
 		else//Wenn nicht checkRead auf true steht, soll geprueft werden ob das Feed Markiert ist.
 			buildSQL = "SELECT starred ";
+			*/
+
+		if(checkUnread)
+			buildSQL = "SELECT read_temp "; 
+		else//Wenn nicht checkRead auf true steht, soll geprueft werden ob das Feed Markiert ist.
+			buildSQL = "SELECT starred_temp ";
+
 		buildSQL += " FROM " + RSS_ITEM_TABLE +  
 					" WHERE rowid = " + FEED_ID;
 		
+		return checkSqlForBoolean(buildSQL);
+    }
+	
+	private Boolean checkSqlForBoolean(String buildSQL)
+	{
 		Boolean result = false;
 		Cursor cursor = database.rawQuery(buildSQL, null);
         if (cursor != null)
@@ -119,42 +196,57 @@ public class DatabaseConnection {
         	}
         }
         cursor.close();
-        
+
         return result;
-    }
-	
+	}
+
 	public void updateIsReadOfFeed(String FEED_ID, Boolean isRead) {
 		ContentValues args = new ContentValues();
-	    //args.put(RSS_ITEM_READ, isRead);	    
-		args.put(RSS_ITEM_READ, isRead);
+		//args.put(RSS_ITEM_READ, isRead);
+		args.put(RSS_ITEM_READ_TEMP, isRead);
 		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { FEED_ID });
-		Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);
+		
+		if(DATABASE_DEBUG_MODE)
+			Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);
     }
 	
 	public void updateIsStarredOfFeed(String FEED_ID, Boolean isStarred) {
+		
+		if(isStarred)//Wenn ein Feed markiert ist muss es auch als gelesen markiert werden.
+			updateIsReadOfFeed(FEED_ID, true);
+		
+		
 		ContentValues args = new ContentValues();
-	    //args.put(RSS_ITEM_READ, isRead);	    
-		args.put(RSS_ITEM_STARRED, isStarred);
+		//args.put(RSS_ITEM_STARRED, isStarred);
+		args.put(RSS_ITEM_STARRED_TEMP, isStarred);
 		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { FEED_ID });
-		Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);
+		
+		if(DATABASE_DEBUG_MODE)
+			Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);
     }
 	
 	private String getAllFeedsSelectStatement()
 	{
 		return "SELECT rowid as _id, " + RSS_ITEM_TITLE + ", " + RSS_ITEM_RSSITEM_ID + ", " + RSS_ITEM_LINK + ", " + RSS_ITEM_BODY + ", " + RSS_ITEM_READ + ", " + RSS_ITEM_SUBSCRIPTION_ID + ", "
-					+ RSS_ITEM_PUBDATE + ", " + RSS_ITEM_STARRED + ", " + RSS_ITEM_GUIDHASH + ", " + RSS_ITEM_GUID;
+					+ RSS_ITEM_PUBDATE + ", " + RSS_ITEM_STARRED + ", " + RSS_ITEM_GUIDHASH + ", " + RSS_ITEM_GUID + ", " + RSS_ITEM_STARRED_TEMP + ", " + RSS_ITEM_READ_TEMP;
 	}
 	
-	public Cursor getAllFeedsForSubscription(String ID_SUBSCRIPTION) {
+	public Cursor getAllItemsForFeed(String ID_SUBSCRIPTION, boolean onlyUnread, boolean onlyStarredItems) {
 		
 		String buildSQL =  getAllFeedsSelectStatement() +
 	 			" FROM " + RSS_ITEM_TABLE +  
 				" WHERE subscription_id_subscription IN " + 
 					"(SELECT rowid " + 
 					"FROM subscription " +					
-					"WHERE rowid = " + ID_SUBSCRIPTION + ");";
+					"WHERE rowid = " + ID_SUBSCRIPTION + ")";
 		
-        Log.d("DB_HELPER", "getAllFeedData SQL: " + buildSQL); 
+		if(onlyUnread && !onlyStarredItems)
+			buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
+		else if(onlyStarredItems)
+			buildSQL += " AND " + RSS_ITEM_STARRED_TEMP + " = 1";
+		
+		if(DATABASE_DEBUG_MODE)
+			Log.d("DB_HELPER", "getAllItemsForFeed SQL: " + buildSQL); 
         return database.rawQuery(buildSQL, null);
     }
 	
@@ -162,8 +254,9 @@ public class DatabaseConnection {
 		String buildSQL = getAllFeedsSelectStatement() + 
 	 			" FROM " + RSS_ITEM_TABLE +  
 				" WHERE rowid = " + ID_FEED;
-							
-        Log.d("DB_HELPER", "getFeedByID SQL: " + buildSQL); 
+		
+		if(DATABASE_DEBUG_MODE)
+			Log.d("DB_HELPER", "getFeedByID SQL: " + buildSQL); 
         return database.rawQuery(buildSQL, null);
     }
 
@@ -185,17 +278,20 @@ public class DatabaseConnection {
         return result;
     }
 	
-	public String getCountUnreadFeedsForFolder(String ID_FOLDER) {		
+    /*
+	public String getCountUnreadFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {		//TODO optimize this here !!!!
 		String buildSQL = "SELECT COUNT(*) " +  
 	 			" FROM " + RSS_ITEM_TABLE + 
-	 			" WHERE read != 1 ";
-		if(!ID_FOLDER.equals("-10"))
+	 			" WHERE " + RSS_ITEM_READ_TEMP + " != 1 ";
+		if(!ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
 				buildSQL += " AND subscription_id_subscription IN " + 
 					"(SELECT sc.rowid " + 
 					"FROM subscription sc " +
 					"JOIN folder f ON sc." + SUBSCRIPTION_FOLDER_ID + " = f.rowid " +
-					"WHERE f.rowid = " + ID_FOLDER + ");";
+					"WHERE f.rowid = " + ID_FOLDER + ")";
 		
+		if(onlyUnread)
+			buildSQL += " AND ";
 		String result = "0";		
 		Cursor cursor = database.rawQuery(buildSQL, null);
         if (cursor != null)
@@ -206,23 +302,42 @@ public class DatabaseConnection {
         cursor.close();
         
         return result;
-    }
+    }*/
 	
-	public String getCountFeedsForFolder(String ID_FOLDER) {		
+	public int getCountFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {
+		
+		Cursor cursor = getAllItemsForFolder(ID_FOLDER, onlyUnread);
+		int count = cursor.getCount();
+		cursor.close();
+		
+		return count;
+		
+		
+	}
+	/*
+	public String getCountFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {		
 		String buildSQL = "SELECT COUNT(*) " +  
 	 			" FROM " + RSS_ITEM_TABLE;
-		if(!(ID_FOLDER.equals("-10") || ID_FOLDER.equals("-11")))  
+		
+		if(!(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS)))  
+		{
 				buildSQL += " WHERE subscription_id_subscription IN " + 
 					"(SELECT sc.rowid " + 
 					"FROM subscription sc " +
 					"JOIN folder f ON sc." + SUBSCRIPTION_FOLDER_ID + " = f.rowid " +
-					"WHERE f.rowid = " + ID_FOLDER + ");";
+					"WHERE f.rowid = " + ID_FOLDER + ") ";
+				
+				if(onlyUnread)
+					buildSQL += " AND read_temp != 1";
+		}
+		else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))//UNREAD
+			buildSQL += " WHERE starred != 1 and read_temp != 1";
+		else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))//STARRED
+			buildSQL += " WHERE starred_temp = 1";
+		//	buildSQL += " WHERE starred = 1";
 		
-		//if(ID_FOLDER.equals("-10"))//UNREAD
-		//	buildSQL += " WHERE starred != 1 and read != 1";
-		else if(ID_FOLDER.equals("-11"))//STARRED
-			buildSQL += " WHERE starred = 1";
 			
+		
 		String result = "0";		
 		Cursor cursor = database.rawQuery(buildSQL, null);
         if (cursor != null)
@@ -233,35 +348,70 @@ public class DatabaseConnection {
         cursor.close();
         
         return result;
-    }
+    }*/
 	
-	public Cursor getAllFeedsForFolder(String ID_FOLDER) {
+	public Cursor getAllItemsForFolder(String ID_FOLDER, boolean onlyUnread) {
 		String buildSQL = getAllFeedsSelectStatement() + 
 	 			" FROM " + RSS_ITEM_TABLE;
 	 	
-	 	if(!(ID_FOLDER.equals("-10") || ID_FOLDER.equals("-11")))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+	 	if(!(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS)))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+	 	{
 			buildSQL += " WHERE subscription_id_subscription IN " + 
 					"(SELECT sc.rowid " + 
 					"FROM subscription sc " +
 					"JOIN folder f ON sc." + SUBSCRIPTION_FOLDER_ID + " = f.rowid " +
-					"WHERE f.rowid = " + ID_FOLDER + ");";
-		
-	 	//else if(ID_FOLDER.equals("-10"))
-	 	//	buildSQL += " WHERE starred != 1 and read != 1";
-	 	else if(ID_FOLDER.equals("-11"))
-	 		buildSQL += " WHERE starred = 1";
+					"WHERE f.rowid = " + ID_FOLDER + ")";
+			
+			if(onlyUnread)
+				buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	}
+	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) && onlyUnread)//only unRead should only be null when testing the size of items
+	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " != 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+	 		buildSQL += " WHERE " + RSS_ITEM_STARRED + " != 1";
+	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) && onlyUnread)
+	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1";
+	 			
 	 	
-        Log.d("DB_HELPER", "getAllFeedData SQL: " + buildSQL); 
+	 	buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " desc";
+
+	 	//	buildSQL += " WHERE starred = 1";
+	 	
+	 	if(DATABASE_DEBUG_MODE)
+	 		Log.d("DB_HELPER", "getAllFeedData SQL: " + buildSQL); 
         return database.rawQuery(buildSQL, null);
     }	
 	
-	public Cursor getAllSub_SubscriptionForSubscription(String ID_SUBSCRIPTION) {		 
+	public Cursor getAllSubscriptionForFolder(String ID_FOLDER, boolean onlyUnread) {
         //String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE " + SUBSCRIPTION_SUBSCRIPTION_ID + "=" + ID_SUBSCRIPTION; 
-		String buildSQL = "SELECT sc.rowid as _id, * " + 
+		String buildSQL = "SELECT sc.rowid as _id, sc.* " + 
 							"FROM " + SUBSCRIPTION_TABLE + " sc " +
-							"JOIN folder f ON sc.folder_idfolder = f.rowid " +
-							"WHERE f.rowid = " + ID_SUBSCRIPTION;
-        Log.d("DB_HELPER", "getAllData SQL: " + buildSQL); 
+							"LEFT OUTER JOIN folder f ON sc.folder_idfolder = f.rowid ";
+		
+		if(ID_FOLDER.equals("-11"))//Starred
+        {
+        	buildSQL += " JOIN " + RSS_ITEM_TABLE + " rss ON sc.rowid = rss." + RSS_ITEM_SUBSCRIPTION_ID +
+                    " WHERE rss." + RSS_ITEM_STARRED_TEMP + " = 1" +
+                    " GROUP BY sc.rowid " +
+                    " HAVING COUNT(*) > 0";
+        }
+		else if(onlyUnread || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) /*ID_SUBSCRIPTION.matches("-10|-11")*/)
+        {
+            buildSQL += " JOIN " + RSS_ITEM_TABLE + " rss ON sc.rowid = rss." + RSS_ITEM_SUBSCRIPTION_ID +
+                        " WHERE f.rowid = " + ID_FOLDER  + " AND rss." + RSS_ITEM_READ_TEMP + " != 1" +
+                        " GROUP BY sc.rowid " +
+                        " HAVING COUNT(*) > 0";
+            
+            if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+            	buildSQL = buildSQL.replace("f.rowid = " + ID_FOLDER + " AND", "");//Remove to ID stuff because i want the result of all feeds where are unread items in
+        } 
+        else
+            buildSQL += "WHERE f.rowid = " + ID_FOLDER;
+        
+		if(DATABASE_DEBUG_MODE)
+			Log.d("DB_HELPER", "getAllSub_SubscriptionForSubscription SQL: " + buildSQL);
         return database.rawQuery(buildSQL, null);
     }	
 	
@@ -271,13 +421,6 @@ public class DatabaseConnection {
         contentValues.put(FOLDER_LABEL_ID, label_path);  
         database.insert(FOLDER_TABLE, null, contentValues);     
     }
-	
-	/*
-	public void insertNewSubscription (String headerText) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(SUBSCRIPTION_HEADERTEXT, headerText);        
-        database.insert(SUBSCRIPTION_TABLE, null, contentValues);     
-    }*/
 	
 	public void insertNewSub_Subscription (String headerText, String ID_FOLDER, String subscription_id, String FAVICON_URL) {
         ContentValues contentValues = new ContentValues();
@@ -300,6 +443,10 @@ public class DatabaseConnection {
         contentValues.put(RSS_ITEM_STARRED, isStarred);
         contentValues.put(RSS_ITEM_GUID, guid);
         contentValues.put(RSS_ITEM_GUIDHASH, guidHash);
+
+        contentValues.put(RSS_ITEM_READ_TEMP, isRead);
+		contentValues.put(RSS_ITEM_STARRED_TEMP, isStarred);
+
         database.insert(RSS_ITEM_TABLE, null, contentValues);
     }
 	
@@ -355,10 +502,16 @@ public class DatabaseConnection {
 		
 		String buildSQL = "SELECT " + SUBSCRIPTION_ID + " FROM " + SUBSCRIPTION_TABLE + " WHERE rowid = '" + ID + "'";
         Cursor cursor = database.rawQuery(buildSQL, null);
-        if (cursor != null)
+        try
         {
-        	if(cursor.moveToFirst())
-        		return cursor.getString(0);
+	        if (cursor != null)
+	        {
+	        	if(cursor.moveToFirst())
+	        		return cursor.getString(0);
+	        }
+        } finally {
+        	if (cursor != null)	        
+        		cursor.close();
         }
         
         return null;
@@ -380,8 +533,25 @@ public class DatabaseConnection {
         return result;
     }
 	
-	public String getTitleOfSubscriptionByID (String SubscriptionID) {
+	public String getTitleOfSubscriptionByRowID (String SubscriptionID) {
 		String buildSQL = "SELECT " + SUBSCRIPTION_HEADERTEXT + " FROM " + SUBSCRIPTION_TABLE + " WHERE rowid = '" + SubscriptionID + "'";
+		
+		String result = null;
+        Cursor cursor = database.rawQuery(buildSQL, null);
+        if (cursor != null)
+        {
+            if(cursor.moveToFirst())
+            	result = cursor.getString(0);
+        }
+        cursor.close();
+        
+        return result;
+    }
+	
+	public String getTitleOfSubscriptionByFeedItemID (String SubscriptionID) {
+		String buildSQL = "SELECT " + SUBSCRIPTION_HEADERTEXT + " FROM " + SUBSCRIPTION_TABLE + " sc " +
+							"JOIN " + RSS_ITEM_TABLE + " rss ON sc.rowid = rss." + RSS_ITEM_SUBSCRIPTION_ID + " " +
+							"WHERE rss.rowid = '" + SubscriptionID + "'";
 		
 		String result = null;
         Cursor cursor = database.rawQuery(buildSQL, null);
@@ -434,9 +604,10 @@ public class DatabaseConnection {
         	return false;
 	}
 	
-	public void resetRssItemsDatabase()
+	public int resetRssItemsDatabase()
 	{			
-        database.delete(RSS_ITEM_TABLE, null, null);
+        int result = database.delete(RSS_ITEM_TABLE, null, null);
+        return result;
 	}
 	
 	public void resetDatabase()

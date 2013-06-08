@@ -21,7 +21,7 @@ public class InsertIntoDatabase {
         DatabaseConnection dbConn = new DatabaseConnection(activity);
 
         //List<String[]> tags = (List<String[]>) task_result;
-        List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllTopSubscriptions(), 1);
+        List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllTopSubscriptions(true), 1);
 
         if(tags != null)
         {
@@ -109,34 +109,38 @@ public class InsertIntoDatabase {
         DatabaseConnection dbConn = new DatabaseConnection(activity);
 
         if(files != null)
-        {
-            Boolean skipReset = false;
-            if(files.size() > 0)
-            {
-                if(files.get(0).getStarred())
-                    skipReset = true;
-                if(!skipReset)
-                    dbConn.resetRssItemsDatabase();
-            }
+        {   
+            //if(files.size() > 0)
+            //    if(!(files.get(0).getStarred() && files.get(0).getRead()))                    
+            //        dbConn.resetRssItemsDatabase();
 
             for (RssFile rssFile : files) {
-                String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
-                //String IdSubscription = dbConn.getIdSubscriptionByStreamID(rssFile.getFeedID());
-                if(FeedId_Db != null)
-                {
-                    rssFile.setFeedID_Db(FeedId_Db);
-                    //if(!dbConn.doesRssItemAlreadyExsists(rssFile.getFeedID()))
-                    dbConn.insertNewFeed(rssFile.getTitle(),
-                            rssFile.getLink(),
-                            rssFile.getDescription(),
-                            rssFile.getRead(),
-                            String.valueOf(rssFile.getFeedID_Db()),
-                            rssFile.getItem_Id(),
-                            rssFile.getDate(),
-                            rssFile.getStarred(),
-                            rssFile.getGuid(),
-                            rssFile.getGuidHash());
-                }
+            	Boolean isFeedAlreadyInDatabase = dbConn.doesRssItemAlreadyExsists(rssFile.getItem_Id());
+            	
+            	if(!isFeedAlreadyInDatabase)
+            	{
+	                String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
+	                //String IdSubscription = dbConn.getIdSubscriptionByStreamID(rssFile.getFeedID());
+	                if(FeedId_Db != null)
+	                {
+	                    rssFile.setFeedID_Db(FeedId_Db);
+	                    //if(!dbConn.doesRssItemAlreadyExsists(rssFile.getFeedID()))
+	                    dbConn.insertNewFeed(rssFile.getTitle(),
+	                            rssFile.getLink(),
+	                            rssFile.getDescription(),
+	                            rssFile.getRead(),
+	                            String.valueOf(rssFile.getFeedID_Db()),
+	                            rssFile.getItem_Id(),
+	                            rssFile.getDate(),
+	                            rssFile.getStarred(),
+	                            rssFile.getGuid(),
+	                            rssFile.getGuidHash());
+	                }
+            	}
+            	else
+            	{
+            		Log.d(TAG, "Item Already in Database !!");
+            	}
             }
         }
 

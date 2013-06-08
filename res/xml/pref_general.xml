@@ -41,6 +41,14 @@
         android:key="cb_AllowAllSSLCertificates"
         android:title="@string/pref_title_AllowAllSSLCertificates" />
 
+    <CheckBoxPreference
+        android:key="cb_AutoSyncOnStart"
+        android:title="@string/pref_title_AutoSyncOnStart" />
+    
+    <CheckBoxPreference
+        android:key="cb_ShowOnlyUnread"
+        android:title="@string/pref_title_ShowOnlyUnread" />
+
     <!--
          NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it.

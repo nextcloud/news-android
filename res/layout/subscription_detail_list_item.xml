@@ -73,6 +73,7 @@
                 android:ellipsize="end"
                 android:lines="4"
                 android:text="Hi"
+                android:textColor="#858585"
                 android:textSize="14sp"
                 android:autoLink="none" />
             <!-- android:gravity="center_vertical" -->
@@ -83,25 +84,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_gravity="right" >
+                android:layout_gravity="right"
+                android:gravity="center_horizontal|center_vertical" >
 
             <CheckBox
                 android:id="@+id/cb_lv_item_starred"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"                
                 android:clickable="false"
                 android:focusable="false"
                 android:button="@drawable/checkbox_background_empty"
                 android:background="@drawable/checkbox_background" />
+            <!-- android:layout_width="40dp"
+                android:layout_height="40dp" -->
 
             <CheckBox
                 android:id="@+id/cb_lv_item_read"
                 android:layout_marginLeft="3dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_height="wrap_content"                
                 android:clickable="false"
                 android:focusable="false" />
             </LinearLayout>

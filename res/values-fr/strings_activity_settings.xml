@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="pref_title_AutoSyncOnStart">synchroniser automatiquement avec le démarrage du programme</string>    
+    
+</resources>

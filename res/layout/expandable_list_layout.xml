@@ -1,13 +1,39 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+	
     <!-- android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" -->
     
+    <!-- 
     <ExpandableListView android:id="@+id/expandableListView"
                android:layout_width="match_parent"
                android:layout_height="match_parent"/>
 
-</RelativeLayout>
+    -->
+    
+    <!--
+	  The PullToRefreshListView replaces a standard ListView widget.
+	  The ID CAN NOT be @+id/android:list
+	-->
+	<!-- 
+	<com.handmark.pulltorefresh.library.PullToRefreshScrollView
+	    android:id="@+id/PullToRefreshScrollView"
+	    android:layout_height="500dp"
+	    android:layout_width="match_parent"
+	    android:background="@android:color/holo_blue_bright" >
+	    -->
+	 
+	    
+	    	<!-- <ExpandableListView -->
+	    	<com.handmark.pulltorefresh.library.PullToRefreshExpandableListView
+	    	    android:id="@+id/expandableListView"
+	    	    android:layout_width="match_parent"
+	    	    android:layout_height="match_parent" />
+	  
+	    	
+	<!--  </com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
+    
+</LinearLayout>

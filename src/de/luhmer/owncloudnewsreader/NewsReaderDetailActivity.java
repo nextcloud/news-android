@@ -1,11 +1,15 @@
 package de.luhmer.owncloudnewsreader;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
+
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
 
 /**
  * An activity representing a single NewsReader detail screen. This activity is
@@ -16,12 +20,13 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing more than
  * a {@link NewsReaderDetailFragment}.
  */
-public class NewsReaderDetailActivity extends FragmentActivity {
+public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 
 	public static final String FOLDER_ID = "FOLDER_ID";
 	public static final String SUBSCRIPTION_ID = "SUBSCRIPTION_ID";
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
+	
 	
 	String titel;
 	
@@ -34,7 +39,8 @@ public class NewsReaderDetailActivity extends FragmentActivity {
 		setContentView(R.layout.activity_newsreader_detail);
 
 		// Show the Up button in the action bar.
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		//getActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// savedInstanceState is non-null when there is fragment state
 		// saved from previous configurations of this activity
@@ -54,10 +60,12 @@ public class NewsReaderDetailActivity extends FragmentActivity {
 			if(intent.hasExtra(SUBSCRIPTION_ID))
 				idSubscription = intent.getExtras().getString(SUBSCRIPTION_ID);
 			if(intent.hasExtra(FOLDER_ID))
-				idFolder = intent.getExtras().getString(FOLDER_ID);
+				idFolder = intent.getExtras().getString(FOLDER_ID);			
 			if(intent.hasExtra(TITEL))
 				titel = intent.getExtras().getString(TITEL);
-			getActionBar().setTitle(titel);
+			
+			//getActionBar().setTitle(titel);
+			getSupportActionBar().setTitle(titel);
 			
 			
 			
@@ -71,7 +79,7 @@ public class NewsReaderDetailActivity extends FragmentActivity {
 			
 			if(idSubscription != null)
 				arguments.putString(SUBSCRIPTION_ID, idSubscription);
-			else
+			if(idFolder != null)
 				arguments.putString(FOLDER_ID, idFolder);
 			
 			arguments.putString(TITEL, titel);
@@ -79,7 +87,7 @@ public class NewsReaderDetailActivity extends FragmentActivity {
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.newsreader_detail_container, fragment).commit();
-		}		
+		}
 	}
 /*
 	@Override
@@ -105,7 +113,11 @@ public class NewsReaderDetailActivity extends FragmentActivity {
     public static void UpdateListViewAndScrollToPos(FragmentActivity act, int pos)
     {
         ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).lvAdapter.notifyDataSetChanged();
-        ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().smoothScrollToPosition(pos);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)
+        	((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().smoothScrollToPosition(pos);
+        else
+        	((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().setSelection(pos);
+        
     }
 
 	@Override

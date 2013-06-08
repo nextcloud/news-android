@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -41,12 +43,15 @@ public class AsyncTask_PerformTagAction extends AsyncTask<Object, Void, Boolean>
 	
 	@Override
 	protected Boolean doInBackground(Object... params) {
-		String itemId = (String) params[0];
+		List<String> itemIds = (List<String>) params[0];
 		TAGS tag = (TAGS) params[1];
 		
 		try {
 			//String authKey = AuthenticationManager.getGoogleAuthKey(username, password);
-			return OwnCloudReaderMethods.PerformTagExecution(itemId, tag, context);				
+			if(itemIds.size() > 0)
+				return OwnCloudReaderMethods.PerformTagExecution(itemIds, tag, context);
+			else
+				return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

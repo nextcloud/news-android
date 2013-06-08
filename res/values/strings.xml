@@ -30,4 +30,13 @@
     <string name="action_Share">Share</string>
     
     
+    
+    
+    
+    <string name="pull_to_refresh_updateTags">Synchronizing tags</string>
+    <string name="pull_to_refresh_updateFolder">Synchronizing folder</string>
+    <string name="pull_to_refresh_updateFeeds">Synchronizing feeds</string>
+    <string name="pull_to_refresh_updateItems">Synchronizing items</string>
+    
+    
 </resources>

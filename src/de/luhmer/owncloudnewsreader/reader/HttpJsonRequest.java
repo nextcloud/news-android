@@ -12,6 +12,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -24,11 +25,16 @@ import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
 import javax.net.ssl.*;
@@ -38,7 +44,7 @@ public class HttpJsonRequest {
 
 	
 	public static JSONObject PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, String username, String password, Context context) throws Exception
-	{
+	{	
         if(nameValuePairs != null)
         {
             urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8");
@@ -140,10 +146,11 @@ public class HttpJsonRequest {
 	*/
 
 
-	public static int performTagChangeRequest(String url, String username, String password, Context context) throws Exception
+	@SuppressLint("DefaultLocale")
+	public static int performTagChangeRequest(String urlString, String username, String password, Context context, List<NameValuePair> nameValuePairs) throws Exception
 	{
         //url = "http://192.168.10.126/owncloud/ocs/v1.php/apps/news/items/3787/read";
-
+/*
         String authString = username + ":" + password;
         String authStringEnc = Base64.encode(authString.getBytes());
 
@@ -164,6 +171,10 @@ public class HttpJsonRequest {
         httpConnection.setRequestProperty("Authorization", "Basic " + authStringEnc);
         httpConnection.setRequestMethod("PUT");
 
+        if(nameValuePairs != null)
+        {
+            httpConnection.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+        }
 
         InputStreamReader in = new InputStreamReader((InputStream) httpConnection.getContent());
         BufferedReader buff = new BufferedReader(in);
@@ -178,6 +189,40 @@ public class HttpJsonRequest {
 
 
         return httpConnection.getResponseCode();
+        */
+
+
+        URL url = new URL(urlString);
+        DefaultHttpClient httpClient;
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false) && url.getProtocol().toLowerCase().equals("https"))
+            httpClient = new SSLHttpClient(context);
+        else
+            httpClient = new DefaultHttpClient();
+
+        if(username != null && password != null)
+            httpClient.getCredentialsProvider().setCredentials(new AuthScope(null, -1), new UsernamePasswordCredentials(username,password));
+
+        /*
+        HttpParams params = new BasicHttpParams();
+        if(nameValuePairs != null)
+	        for (NameValuePair nameValuePair : nameValuePairs)
+	            params.setParameter(nameValuePair.getName(), nameValuePair.getValue());        
+        httpClient.setParams(params);
+        */
+        
+        HttpPut request = new HttpPut(url.toString());
+        if(nameValuePairs != null)
+        	request.setEntity(new UrlEncodedFormEntity(nameValuePairs, HTTP.UTF_8));
+        
+        HttpResponse response = httpClient.execute(request);
+        //ResponseHandler<String> responseHandler = new BasicResponseHandler();
+        //String responseBody = httpClient.execute(request, responseHandler);
+        
+        //Thread.sleep(5000);
+        
+        return response.getStatusLine().getStatusCode();
+        //return 200;
 	}
 
 

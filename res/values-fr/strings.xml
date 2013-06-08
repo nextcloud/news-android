@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ownCloud Lecteur RSS</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="title_activity_news_detail">ArticleDétailActivité</string>
+    <string name="title_activity_subscription">AbonnementActivité</string>
+    <string name="title_newsreader_list">Lecteur RSS</string>
+    <string name="title_newsreader_detail">Lecteur RSS Detail</string>
+
+    
+    <string name="empty_view_header">Information</string>
+    <string name="empty_view_content">Il n\'y a pas des articles</string>
+    
+    <string name="allUnreadFeeds">Tous les articles non lus</string>
+    <string name="starredFeeds">Articles marquée</string>
+    <!-- <string name="non_sorted_articles">Articles pas assigné</string> -->
+    
+    <string name="menu_update">Actualiser</string>
+    
+    
+    <!-- EMAIL -->
+    <string name="email_sourceCode">Code du source du Fil RSS - Rapport d’erreur</string>
+    <string name="email_sendMail">Envoyer par e-mail.</string>
+    
+    <!-- Action Bar Items -->
+    <string name="action_starred">Marqueé d\'un Astérisque</string>
+    <string name="action_openInBrowser">Ouvrir avec navigateur</string>
+    <string name="action_sendSourceCode">Envoyer Fil RSS à le programmeur</string>
+    
+    
+</resources>

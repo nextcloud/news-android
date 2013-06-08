@@ -36,7 +36,10 @@ public class SettingsActivity extends PreferenceActivity {
 	public static final String EDT_PASSWORD_STRING = "edt_password";
 	public static final String EDT_OWNCLOUDROOTPATH_STRING = "edt_owncloudRootPath";
     public static final String CB_ALLOWALLSSLCERTIFICATES_STRING = "cb_AllowAllSSLCertificates";
-	
+    public static final String CB_SYNCONSTARTUP_STRING = "cb_AutoSyncOnStart";
+    public static final String CB_SHOWONLYUNREAD_STRING = "cb_ShowOnlyUnread";
+    
+    
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
@@ -84,6 +87,8 @@ public class SettingsActivity extends PreferenceActivity {
 		bindPreferenceSummaryToValue(findPreference(EDT_OWNCLOUDROOTPATH_STRING));
 
         bindPreferenceBooleanToValue(findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
+        bindPreferenceBooleanToValue(findPreference(CB_SYNCONSTARTUP_STRING));
+        bindPreferenceBooleanToValue(findPreference(CB_SHOWONLYUNREAD_STRING));
 		
 		//bindPreferenceSummaryToValue(findPreference("example_list"));
 		//bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));//TODO comment this out
@@ -245,6 +250,8 @@ public class SettingsActivity extends PreferenceActivity {
 			//bindPreferenceSummaryToValue(findPreference("example_list"));
 
             bindPreferenceBooleanToValue(findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
+            bindPreferenceBooleanToValue(findPreference(CB_SYNCONSTARTUP_STRING));
+            bindPreferenceBooleanToValue(findPreference(CB_SHOWONLYUNREAD_STRING));
 		}
 	}
 

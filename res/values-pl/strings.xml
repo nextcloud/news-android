@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ownCloud News Reader</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
+    <string name="title_activity_subscription">SubscriptionActivity</string>
+    <string name="title_newsreader_list">Aktualności</string>
+    <string name="title_newsreader_detail">Sczegóły Aktualności</string>
+
+    
+    <string name="empty_view_header">Informacja</string>
+    <string name="empty_view_content">Brak nowych</string>
+    
+    <string name="allUnreadFeeds">Wszystkie nieprzeczytane</string>
+    <string name="starredFeeds">Oznaczone Gwiazdką</string>
+    <!-- <string name="non_sorted_articles">Nicht zugeordnete Artikel</string> -->
+    
+    <string name="menu_update">Odśwież</string>
+    
+    
+    <!-- EMAIL -->
+    <string name="email_sourceCode">Kod źródłowy - raport</string>
+    <string name="email_sendMail">Wyślij EMail</string>
+    
+    <!-- Action Bar Items -->
+    <string name="action_starred">Gwiazdka</string>
+    <string name="action_openInBrowser">Otwórz w przeglądarce</string>
+    <string name="action_sendSourceCode">Wyślij zgłoszenie do developera</string>
+    <string name="action_Share">Udostępnij</string>
+    
+    
+</resources>

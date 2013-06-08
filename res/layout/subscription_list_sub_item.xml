@@ -6,17 +6,26 @@
     android:orientation="horizontal" >
 
     <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/iVFavicon"/>
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/iVFavicon"/>
     <TextView
         android:id="@+id/summary"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
         android:singleLine="true"
+        android:layout_weight="1"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_unreadCount"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|right"
+        android:singleLine="true"
+        android:layout_marginRight="20dp" />
 
 </LinearLayout>

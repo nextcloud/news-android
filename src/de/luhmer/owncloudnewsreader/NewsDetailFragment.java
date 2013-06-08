@@ -1,10 +1,15 @@
 package de.luhmer.owncloudnewsreader;
 
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.actionbarsherlock.app.SherlockFragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,8 +24,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import de.luhmer.owncloudnewsreader.data.RssFile;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 
-public class NewsDetailFragment extends Fragment {	
+public class NewsDetailFragment extends SherlockFragment {	
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
 
 	public static final String TAG = "NewsDetailFragment";
@@ -99,47 +105,65 @@ public class NewsDetailFragment extends Fragment {
         if(Constants.DEBUG_MODE)
 			Log.d(TAG, "AsyncTask_Started");
 				
-		RssFile rssFile = ((NewsDetailActivity)getActivity()).rssFiles.get(section_number - 1);
+        NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+        
+		//RssFile rssFile = ((NewsDetailActivity)getActivity()).rssFiles.get(section_number - 1);
+        int idItem = ndActivity.databaseItemIds.get(section_number -1);
+        Cursor cursor = ndActivity.dbConn.getFeedByID(String.valueOf(idItem));
+        cursor.moveToFirst();
         
 		try {
 	        String htmlData = web_template;
 			
 	        String divHeader = "<div id=\"header\">";
 	        StringBuilder sb = new StringBuilder(htmlData);
-	        htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), rssFile.getTitle().trim()).toString();
+	        //htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), rssFile.getTitle().trim()).toString();
+	        String title = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE));
+	        htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), title.trim()).toString();
 	        
 	        
 	        //String divSubscription = "<div id=\"subscription\">";
 	        //htmlData = sb.insert(htmlData.indexOf(divSubscription) + divSubscription.length(), rssFile.getStreamID().trim()).toString();
 	        
-	        if(rssFile.getDate() != null)
+	        Date date = new Date(cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE)));
+	        if(date != null)
 	        {
 	        	String divDate = "<div id=\"datetime\">";
 	        	SimpleDateFormat formater = new SimpleDateFormat();
-	        	String date = formater.format(rssFile.getDate());
-	        	htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), date).toString();
+	        	String dateString = formater.format(date);
+	        	htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), dateString).toString();
 	        }
 	        
-	        String subscription = ((NewsDetailActivity) getActivity()).dbConn.getTitleOfSubscriptionByID(String.valueOf(rssFile.getFeedID_Db()));
+	        
+	        //String subscription = ((NewsDetailActivity) getActivity()).dbConn.getTitleOfSubscriptionByRowID(String.valueOf(rssFile.getFeedID_Db()));
+	        String subscription = ndActivity.dbConn.getTitleOfSubscriptionByFeedItemID(String.valueOf(idItem));
 	        String divSubscription = "<div id=\"subscription\">";
 	        int pos = htmlData.indexOf(divSubscription) + divSubscription.length();
 	        pos = htmlData.indexOf("/>", pos) + 2;//Wegen des Favicon <img /> 
 	        htmlData = sb.insert(pos, subscription.trim()).toString();
 	        		
 	        String divContent = "<div id=\"content\">";
-	        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), rssFile.getDescription().trim()).toString();
+	        String description = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
+	        //htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), rssFile.getDescription().trim()).toString();
+	        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), description.trim()).toString();
 	        
-	        Uri uri = Uri.parse(rssFile.getLink());
+	        String link = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK)); 
+	        //Uri uri = Uri.parse(rssFile.getLink());
+	        Uri uri = Uri.parse(link);
 	        String domainName = uri.getHost();
 	        String searchString = "http://s2.googleusercontent.com/s2/favicons?domain=";
 	        htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length(), domainName).toString();
 	        	        	        
 	        
 	        //htmlData = htmlData.replace("<img ", imgWidth);
-	        webview.loadData(htmlData, "text/html; charset=UTF-8", null);        
+	        htmlData = URLEncoder.encode(htmlData).replaceAll("\\+"," ");
+	        
+	        webview.loadData(htmlData, "text/html; charset=UTF-8", "UTF-8");        
 	        //webview.loadData(htmlData, "text/html; charset=UTF-8", null);
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			cursor.close();
 		}
 		
 		if(Constants.DEBUG_MODE)
