@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Leitor de notícias do ownCloud</string>
+  <string name="action_settings">Configurações</string>
+  <string name="title_activity_news_detail">Detalhes da notícia</string>
+  <string name="title_activity_subscription">Ativar subscrição</string>
+  <string name="title_newsreader_list">Leitor de notícias</string>
+  <string name="title_newsreader_detail">Detalhes do leitor de notícias</string>
+  <string name="empty_view_header">Informações</string>
+  <string name="empty_view_content">Este local está vazio</string>
+  <string name="allUnreadFeeds">Todos itens não lidos</string>
+  <string name="starredFeeds">Itens vistos</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Atualizar</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Código-fonte do item - Reportar erros</string>
+  <string name="email_sendMail">Enviar e-mail</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">Vistos</string>
+  <string name="action_openInBrowser">Abrir no navegador</string>
+  <string name="action_sendSourceCode">Enviar item ao desenvolvedor</string>
+  <string name="action_Share">Compartilhar</string>
+</resources>

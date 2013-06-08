@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_settings">Nastavitve</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Osveži</string>
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_starred">Z zvezdico</string>
+  <string name="action_Share">Souporaba</string>
+</resources>

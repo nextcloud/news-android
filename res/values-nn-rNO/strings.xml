@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_settings">Innstillingar</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Oppfrisk</string>
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_Share">Del</string>
+</resources>

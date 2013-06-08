@@ -1,32 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-
-    <string name="app_name">ownCloud News Reader</string>
-    <string name="action_settings">Einstellungen</string>
-    <string name="title_activity_news_detail">NewsDetailActivity</string>
-    <string name="title_activity_subscription">SubscriptionActivity</string>
-    <string name="title_newsreader_list">NewsReader</string>
-    <string name="title_newsreader_detail">NewsReader Detail</string>
-
-    
-    <string name="empty_view_header">Information</string>
-    <string name="empty_view_content">No items here</string>
-    
-    <string name="allUnreadFeeds">Alle Ungelesenen Artikel</string>
-    <string name="starredFeeds">Markierte Artikel</string>
-    <!-- <string name="non_sorted_articles">Nicht zugeordnete Artikel</string> -->
-    
-    <string name="menu_update">Aktualisieren</string>
-    
-    
-    <!-- EMAIL -->
-    <string name="email_sourceCode">Quelltext von Feed - Bugreport</string>
-    <string name="email_sendMail">Email Senden</string>
-    
-    <!-- Action Bar Items -->
-    <string name="action_starred">Starred</string>
-    <string name="action_openInBrowser">In Browser öffnen</string>
-    <string name="action_sendSourceCode">Feed an Entwickler senden</string>
-    
-    
+  <string name="app_name">ownCloud Newsreader</string>
+  <string name="action_settings">Einstellungen</string>
+  <string name="title_activity_subscription">Abonnementsaktivität</string>
+  <string name="title_newsreader_list">Newsreader</string>
+  <string name="title_newsreader_detail">Newsreader-Detail</string>
+  <string name="empty_view_header">Information</string>
+  <string name="empty_view_content">Hier gibt es keine Notizen</string>
+  <string name="allUnreadFeeds">Alle ungelesenen Notizen</string>
+  <string name="starredFeeds">Favorisierte Notizen</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Aktualisieren</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Quelltext der Notiz - Bugreport</string>
+  <string name="email_sendMail">E-Mail senden</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">Favorisiert</string>
+  <string name="action_openInBrowser">Im Browser öffnen...</string>
+  <string name="action_sendSourceCode">Notiz an Entwickler senden</string>
+  <string name="action_Share">Teilen</string>
 </resources>

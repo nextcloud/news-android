@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">ownCloud News Reader</string>
+  <string name="action_settings">Inställningar</string>
+  <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
+  <string name="title_activity_subscription">PrenumerationAktivitet</string>
+  <string name="title_newsreader_list">NewsReader</string>
+  <string name="title_newsreader_detail">Nyhetsläsare Detalj</string>
+  <string name="empty_view_header">Information</string>
+  <string name="empty_view_content">Inga objekt här</string>
+  <string name="allUnreadFeeds">Alla olästa objekt</string>
+  <string name="starredFeeds">Stjärnmärkta objekt</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Uppdatera</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Källkod av objekt - Buggrapport</string>
+  <string name="email_sendMail">Skicka e-post</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">Stjärnmärkt</string>
+  <string name="action_openInBrowser">Öppna i webbläsaren</string>
+  <string name="action_sendSourceCode">Skicka objekt till utvecklaren</string>
+  <string name="action_Share">Dela</string>
+</resources>

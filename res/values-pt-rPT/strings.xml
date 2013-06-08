@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_settings">Configurações</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Actualizar</string>
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_starred">Marcado</string>
+  <string name="action_Share">Partilhar</string>
+</resources>

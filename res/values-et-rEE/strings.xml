@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">ownCloud Uudiste Lugeja</string>
+  <string name="action_settings">Seaded</string>
+  <string name="title_newsreader_list">UudisteLugeja</string>
+  <string name="empty_view_header">Info</string>
+  <string name="empty_view_content">Siin pole üksusi</string>
+  <string name="allUnreadFeeds">Kõik lugemata üksused</string>
+  <string name="starredFeeds">Tähitud üksused</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Värskenda</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Lähtekoodi üksus - vearaport</string>
+  <string name="email_sendMail">Saada e-mail</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">Tärniga märgitud</string>
+  <string name="action_openInBrowser">Ava veebilehitsejas</string>
+  <string name="action_sendSourceCode">Saada üksus arendajale</string>
+  <string name="action_Share">Jaga</string>
+</resources>

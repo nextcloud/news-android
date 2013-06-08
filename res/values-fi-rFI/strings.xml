@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">ownCloud-uutislukija</string>
+  <string name="action_settings">Asetukset</string>
+  <string name="empty_view_content">Ei kohteita</string>
+  <string name="allUnreadFeeds">Kaikki lukemattomat kohteet</string>
+  <string name="starredFeeds">Tähdellä varustetut</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Päivitä</string>
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_starred">Varustettu tähdellä</string>
+  <string name="action_openInBrowser">Avaa selaimessa</string>
+  <string name="action_Share">Jaa</string>
+</resources>

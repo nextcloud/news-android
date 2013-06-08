@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Čtečka zpráv ownCloud</string>
+  <string name="action_settings">Nastavení</string>
+  <string name="empty_view_header">Informace</string>
+  <string name="empty_view_content">Žádné položky</string>
+  <string name="allUnreadFeeds">Všechny nepřečtené položky</string>
+  <string name="starredFeeds">Položky s hvězdičkou</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Obnovit</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Zdrojový kód položky - Chybová zpráva</string>
+  <string name="email_sendMail">Odeslat e-mail</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">S hvězdičkou</string>
+  <string name="action_openInBrowser">Otevřít v prohlížeči</string>
+  <string name="action_sendSourceCode">Odeslat položku vývojáři</string>
+  <string name="action_Share">Sdílet</string>
+</resources>

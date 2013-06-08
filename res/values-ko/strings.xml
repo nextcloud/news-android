@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_settings">설정</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">새로 고침</string>
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_starred">별표</string>
+  <string name="action_Share">공유</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">ownCloud haber okuyucu</string>
+  <string name="action_settings">Ayarlar</string>
+  <string name="title_activity_news_detail">HaberDetayAktivitesi</string>
+  <string name="title_activity_subscription">ÜyelikAktivitesi</string>
+  <string name="title_newsreader_list">HaberOkuyucusu</string>
+  <string name="title_newsreader_detail">Haber  Okuyucusu Detay</string>
+  <string name="empty_view_header">Bilgi</string>
+  <string name="empty_view_content">Burada öğe yok</string>
+  <string name="allUnreadFeeds">Tüm okunmamış öğeler</string>
+  <string name="starredFeeds">Yıldızlı öğeler</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Yenile</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Öğenin kaynak kodu - Hata bildirimi</string>
+  <string name="email_sendMail">E-posta Gönder</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">Yıldızlı</string>
+  <string name="action_openInBrowser">Tarayıcıda aç</string>
+  <string name="action_sendSourceCode">öğeyi Geliştiriciye gönder</string>
+  <string name="action_Share">Paylaş</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">ownCloud Nieuws Lezer</string>
+  <string name="action_settings">Instellingen</string>
+  <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
+  <string name="title_activity_subscription">AbonnementActiviteit</string>
+  <string name="title_newsreader_list">NieuwsLezer</string>
+  <string name="title_newsreader_detail">NieuwsLezer Details</string>
+  <string name="empty_view_header">Informatie</string>
+  <string name="empty_view_content">Geen items hier</string>
+  <string name="allUnreadFeeds">Alle ongelezen items</string>
+  <string name="starredFeeds">Gemarkeerde items</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Vernieuwen</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Sourceode van het item - Bug melding</string>
+  <string name="email_sendMail">Email versturen</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">Gemarkeerd</string>
+  <string name="action_openInBrowser">Openen in Browser</string>
+  <string name="action_sendSourceCode">Verzend item naar ontwikkelaar</string>
+  <string name="action_Share">Delen</string>
+</resources>

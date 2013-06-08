@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_settings">Setelan</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_starred">dibintangi</string>
+  <string name="action_Share">Bagikan</string>
+</resources>

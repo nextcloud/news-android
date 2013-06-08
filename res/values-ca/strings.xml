@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Lector de notícies d\'ownCloud</string>
+  <string name="action_settings">Arranjament</string>
+  <string name="title_activity_news_detail">DetallActivitatNotícies</string>
+  <string name="title_activity_subscription">ActivitatSubscripció</string>
+  <string name="title_newsreader_list">LectorNotícies</string>
+  <string name="title_newsreader_detail">Detall de LectorNotícies</string>
+  <string name="empty_view_header">Informació</string>
+  <string name="empty_view_content">Cap element</string>
+  <string name="allUnreadFeeds">Tots els elements no llegits</string>
+  <string name="starredFeeds">Elements amb estrelles</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Refresca</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Codi font de l\'element - Informe d\'errades</string>
+  <string name="email_sendMail">Envia correu electrónic</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">Estrellat</string>
+  <string name="action_openInBrowser">Obre al navegador</string>
+  <string name="action_sendSourceCode">Envia element al desenvolupador</string>
+  <string name="action_Share">Comparteix</string>
+</resources>

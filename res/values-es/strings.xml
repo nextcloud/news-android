@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Lector de Noticias onwCloud</string>
+  <string name="action_settings">Ajustes</string>
+  <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
+  <string name="title_activity_subscription">ActividadSuscripción</string>
+  <string name="title_newsreader_list">LectorNoticias</string>
+  <string name="title_newsreader_detail">Detalle LectorNoticias</string>
+  <string name="empty_view_header">Información</string>
+  <string name="empty_view_content">No hay artículos aquí</string>
+  <string name="allUnreadFeeds">Todos los artículos sin leer</string>
+  <string name="starredFeeds">Artículos destacados</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Actualizar</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Código Fuente del artículo - ReporteFallo</string>
+  <string name="email_sendMail">Enviar EMail</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">Destacado</string>
+  <string name="action_openInBrowser">Abrir en Navegador</string>
+  <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
+  <string name="action_Share">Compartir</string>
+</resources>

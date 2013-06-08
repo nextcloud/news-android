@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_settings">Cài đặt</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Làm mới</string>
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_starred">Starred</string>
+  <string name="action_Share">Chia sẻ</string>
+</resources>

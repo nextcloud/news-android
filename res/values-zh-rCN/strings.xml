@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">ownCloud新闻读者</string>
+  <string name="action_settings">设置</string>
+  <string name="title_activity_news_detail">新闻详细活动</string>
+  <string name="title_activity_subscription">订阅活动</string>
+  <string name="title_newsreader_list">新闻读者</string>
+  <string name="title_newsreader_detail">新闻读者详情</string>
+  <string name="empty_view_header">信息</string>
+  <string name="empty_view_content">无内容</string>
+  <string name="allUnreadFeeds">未读内容</string>
+  <string name="starredFeeds">标星内容</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">刷新</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">源代码-错误报告</string>
+  <string name="email_sendMail">发送邮件</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">已加星标</string>
+  <string name="action_openInBrowser">在浏览器中打开</string>
+  <string name="action_sendSourceCode">给开发者发消息</string>
+  <string name="action_Share">共享</string>
+</resources>

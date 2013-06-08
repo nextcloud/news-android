@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_settings">Ρυθμίσεις</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Ανανέωση </string>
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_starred">Με αστέρι</string>
+  <string name="action_Share">Διαμοιρασμός</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_settings">تنظیمات</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">بازنمایی</string>
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_starred">ستاره دار</string>
+  <string name="action_Share">اشتراک‌گذاری</string>
+</resources>

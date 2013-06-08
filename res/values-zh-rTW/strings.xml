@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_settings">設定</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">重新整理</string>
+  <!--EMAIL-->
+  <!--Action Bar Items-->
+  <string name="action_starred">星號</string>
+  <string name="action_Share">分享</string>
+</resources>

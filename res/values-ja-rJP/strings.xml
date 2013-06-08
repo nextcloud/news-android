@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">ownCloud ニュースリーダー</string>
+  <string name="action_settings">設定</string>
+  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="title_activity_subscription">SubscriptionActivity</string>
+  <string name="title_newsreader_list">ニュースリーダー</string>
+  <string name="title_newsreader_detail">ニュースリーダーの詳細</string>
+  <string name="empty_view_header">情報</string>
+  <string name="empty_view_content">ここにアイテムなし</string>
+  <string name="allUnreadFeeds">すべての未読アイテム</string>
+  <string name="starredFeeds">共有アイテム</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">同期</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">アイテムのソースコード - バグ報告</string>
+  <string name="email_sendMail">メールを送る</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">共有</string>
+  <string name="action_openInBrowser">ブラウザーで開く</string>
+  <string name="action_sendSourceCode">開発者にアイテムを送る</string>
+  <string name="action_Share">共有</string>
+</resources>
