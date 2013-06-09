@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
+import java.util.List;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -8,10 +10,15 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.*;
+import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
+import android.preference.RingtonePreference;
 import android.text.TextUtils;
-
-import java.util.List;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -39,6 +46,8 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String CB_SYNCONSTARTUP_STRING = "cb_AutoSyncOnStart";
     public static final String CB_SHOWONLYUNREAD_STRING = "cb_ShowOnlyUnread";
     
+    public static final String SP_APP_THEME = "sp_app_theme";
+    public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
     
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -64,8 +73,13 @@ public class SettingsActivity extends PreferenceActivity {
 		// Add 'general' preferences.
 		addPreferencesFromResource(R.xml.pref_general);
 
-        /*//TODO comment this out
+		PreferenceCategory header = new PreferenceCategory(this);
+		header.setTitle(R.string.pref_header_display);
+		getPreferenceScreen().addPreference(header);
+		addPreferencesFromResource(R.xml.pref_display);
 
+		
+		/*
 		// Add 'notifications' preferences, and a corresponding header.
 		PreferenceCategory fakeHeader = new PreferenceCategory(this);
 		fakeHeader.setTitle(R.string.pref_header_notifications);
@@ -82,13 +96,9 @@ public class SettingsActivity extends PreferenceActivity {
 		// Bind the summaries of EditText/List/Dialog/Ringtone preferences to
 		// their values. When their values change, their summaries are updated
 		// to reflect the new value, per the Android Design guidelines.
-		bindPreferenceSummaryToValue(findPreference(EDT_USERNAME_STRING));
-		bindPreferenceSummaryToValue(findPreference(EDT_PASSWORD_STRING));
-		bindPreferenceSummaryToValue(findPreference(EDT_OWNCLOUDROOTPATH_STRING));
 
-        bindPreferenceBooleanToValue(findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
-        bindPreferenceBooleanToValue(findPreference(CB_SYNCONSTARTUP_STRING));
-        bindPreferenceBooleanToValue(findPreference(CB_SHOWONLYUNREAD_STRING));
+		bindGeneralPreferences(null, this);
+		bindDisplayPreferences(null, this);
 		
 		//bindPreferenceSummaryToValue(findPreference("example_list"));
 		//bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));//TODO comment this out
@@ -244,16 +254,12 @@ public class SettingsActivity extends PreferenceActivity {
 			// to their values. When their values change, their summaries are
 			// updated to reflect the new value, per the Android Design
 			// guidelines.
-			bindPreferenceSummaryToValue(findPreference(EDT_USERNAME_STRING));
-			bindPreferenceSummaryToValue(findPreference(EDT_PASSWORD_STRING));
-			bindPreferenceSummaryToValue(findPreference(EDT_OWNCLOUDROOTPATH_STRING));
-			//bindPreferenceSummaryToValue(findPreference("example_list"));
-
-            bindPreferenceBooleanToValue(findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
-            bindPreferenceBooleanToValue(findPreference(CB_SYNCONSTARTUP_STRING));
-            bindPreferenceBooleanToValue(findPreference(CB_SHOWONLYUNREAD_STRING));
+			
+			
+			bindGeneralPreferences(this, null);
 		}
 	}
+	
 
 	/**
 	 * This fragment shows notification preferences only. It is used when the
@@ -291,6 +297,71 @@ public class SettingsActivity extends PreferenceActivity {
 			// updated to reflect the new value, per the Android Design
 			// guidelines.
 			bindPreferenceSummaryToValue(findPreference("sync_frequency"));
+		}
+	}
+	
+	
+	/**
+	 * This fragment shows data and sync preferences only. It is used when the
+	 * activity is showing a two-pane settings UI.
+	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public static class DisplayPreferenceFragment extends PreferenceFragment {
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			addPreferencesFromResource(R.xml.pref_display);
+
+			// Bind the summaries of EditText/List/Dialog/Ringtone preferences
+			// to their values. When their values change, their summaries are
+			// updated to reflect the new value, per the Android Design
+			// guidelines.
+			bindDisplayPreferences(this, null);
+		}
+	}
+	
+	
+	
+	@SuppressWarnings("deprecation")
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	private static void bindDisplayPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
+	{
+		if(prefFrag != null)
+		{
+			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_APP_THEME));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FEED_LIST_LAYOUT));
+		}
+		else
+		{
+			bindPreferenceSummaryToValue(prefAct.findPreference(SP_APP_THEME));
+			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FEED_LIST_LAYOUT));
+		}
+	}
+	
+	
+	@SuppressWarnings("deprecation")
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	private static void bindGeneralPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
+	{
+		if(prefFrag != null)
+		{		
+			bindPreferenceSummaryToValue(prefFrag.findPreference(EDT_USERNAME_STRING));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(EDT_PASSWORD_STRING));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(EDT_OWNCLOUDROOTPATH_STRING));
+	
+	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
+	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SYNCONSTARTUP_STRING));
+	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOWONLYUNREAD_STRING));
+		}
+		else
+		{
+			bindPreferenceSummaryToValue(prefAct.findPreference(EDT_USERNAME_STRING));
+			bindPreferenceSummaryToValue(prefAct.findPreference(EDT_PASSWORD_STRING));
+			bindPreferenceSummaryToValue(prefAct.findPreference(EDT_OWNCLOUDROOTPATH_STRING));
+	
+	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
+	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SYNCONSTARTUP_STRING));
+	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOWONLYUNREAD_STRING));
 		}
 	}
 }

@@ -3,6 +3,8 @@ package de.luhmer.owncloudnewsreader;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -33,7 +35,8 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setTheme(android.R.style.Theme_Holo);
+		
+		ThemeChooser.chooseTheme(this);
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader_detail);
@@ -110,7 +113,8 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 		//}
 	}
 
-    public static void UpdateListViewAndScrollToPos(FragmentActivity act, int pos)
+    @TargetApi(Build.VERSION_CODES.FROYO)
+	public static void UpdateListViewAndScrollToPos(FragmentActivity act, int pos)
     {
         ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).lvAdapter.notifyDataSetChanged();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)

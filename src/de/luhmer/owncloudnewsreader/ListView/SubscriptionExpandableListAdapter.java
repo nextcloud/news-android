@@ -30,8 +30,9 @@ import de.luhmer.owncloudnewsreader.data.ConcreteSubscribtionItem;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.BitmapDownloaderTask;
-import de.luhmer.owncloudnewsreader.helper.DownloadImagesFromWeb;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 
 public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter {
@@ -310,7 +311,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        } 
 	        else {
 	        	viewHolder.imgView.setVisibility( View.VISIBLE );
-	        	viewHolder.imgView.setImageResource( isExpanded ? R.drawable.ic_find_previous_holo_dark : R.drawable.ic_find_next_holo_dark);
+	        	if(ThemeChooser.isDarkTheme(mContext))
+	        		viewHolder.imgView.setImageResource( isExpanded ? R.drawable.ic_find_previous_holo_dark : R.drawable.ic_find_next_holo_dark);
+	        	else
+	        		viewHolder.imgView.setImageResource( isExpanded ? R.drawable.ic_find_previous_holo_light : R.drawable.ic_find_next_holo_light);
 	        }
 	        
         }
@@ -333,7 +337,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		    		if(favIcon != null)
 		    			imgView.setImageDrawable(favIcon);
 		    		else
-		    			new FavIconHandler.GetImageFromWebAsyncTask(favIconURL, mContext, imgView).execute((Void)null);
+		    			FavIconHandler.GetImageAsync(imgView, favIconURL, mContext);
+		    			//new FavIconHandler.GetImageFromWebAsyncTask(favIconURL, mContext, imgView).execute((Void)null);
 				}
 	    	}
 			else

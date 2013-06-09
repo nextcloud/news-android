@@ -40,6 +40,7 @@ public class NewsDetailFragment extends SherlockFragment {
 	public NewsDetailFragment() {		
 	}
 		
+	@SuppressWarnings("deprecation")
 	@SuppressLint({ "SimpleDateFormat", "SetJavaScriptEnabled" })
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

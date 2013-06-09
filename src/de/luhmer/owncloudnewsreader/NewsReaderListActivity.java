@@ -13,6 +13,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.util.IabHelper;
 import de.luhmer.owncloudnewsreader.util.IabResult;
@@ -47,7 +48,9 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setTheme(android.R.style.Theme_Holo);
+		
+		ThemeChooser.chooseTheme(this);
+		
 		//setTheme(R.style.Theme_Sherlock);
 				
 		super.onCreate(savedInstanceState);
@@ -103,6 +106,8 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 	
 	@Override
 	protected void onResume() {
+		ThemeChooser.chooseTheme(this);
+		
 		NewsReaderListFragment nlf = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.newsreader_list));
 		if(nlf != null)
 			nlf.lvAdapter.notifyDataSetChanged();

@@ -163,7 +163,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			
 			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
-				((NewsReaderListActivity) getActivity()).startSync();
+				StartSync();
+				//((NewsReaderListActivity) getActivity()).startSync();
 			
 			//_Reader.Start_AsyncTask_GetFeeds(2, getActivity(), null);
 			
@@ -216,7 +217,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             {	
             	if((Boolean) task_result)
             	{
-            		dbConn.resetDatabase();
+            		//dbConn.resetDatabase();
             		
             		_Reader.Start_AsyncTask_GetFolder(1,  getActivity(), onAsyncTask_GetTopReaderTags);
             		if(eListView != null)

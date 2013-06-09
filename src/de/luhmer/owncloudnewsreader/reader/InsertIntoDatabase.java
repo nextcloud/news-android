@@ -92,7 +92,10 @@ public class InsertIntoDatabase {
                     }
                 }
                 if(!found)
-                    dbConn.removeTopSubscriptionItemByTag(tag);
+                {
+                	int result = dbConn.removeTopSubscriptionItemByTag(tag);
+                    Log.d(TAG, "Remove Subscription: " + result);
+                }
             }
 
             //lvAdapter.notifyDataSetChanged();
@@ -117,30 +120,29 @@ public class InsertIntoDatabase {
             for (RssFile rssFile : files) {
             	Boolean isFeedAlreadyInDatabase = dbConn.doesRssItemAlreadyExsists(rssFile.getItem_Id());
             	
-            	if(!isFeedAlreadyInDatabase)
+            	if(isFeedAlreadyInDatabase)
             	{
-	                String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
-	                //String IdSubscription = dbConn.getIdSubscriptionByStreamID(rssFile.getFeedID());
-	                if(FeedId_Db != null)
-	                {
-	                    rssFile.setFeedID_Db(FeedId_Db);
-	                    //if(!dbConn.doesRssItemAlreadyExsists(rssFile.getFeedID()))
-	                    dbConn.insertNewFeed(rssFile.getTitle(),
-	                            rssFile.getLink(),
-	                            rssFile.getDescription(),
-	                            rssFile.getRead(),
-	                            String.valueOf(rssFile.getFeedID_Db()),
-	                            rssFile.getItem_Id(),
-	                            rssFile.getDate(),
-	                            rssFile.getStarred(),
-	                            rssFile.getGuid(),
-	                            rssFile.getGuidHash());
-	                }
+            		int result = dbConn.removeItemByItemId(rssFile.getItem_Id());
+            		Log.d(TAG, "Delete Item: " + result);
             	}
-            	else
-            	{
-            		Log.d(TAG, "Item Already in Database !!");
-            	}
+            	
+                String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
+                //String IdSubscription = dbConn.getIdSubscriptionByStreamID(rssFile.getFeedID());
+                if(FeedId_Db != null)
+                {
+                    rssFile.setFeedID_Db(FeedId_Db);
+                    //if(!dbConn.doesRssItemAlreadyExsists(rssFile.getFeedID()))
+                    dbConn.insertNewFeed(rssFile.getTitle(),
+                            rssFile.getLink(),
+                            rssFile.getDescription(),
+                            rssFile.getRead(),
+                            String.valueOf(rssFile.getFeedID_Db()),
+                            rssFile.getItem_Id(),
+                            rssFile.getDate(),
+                            rssFile.getStarred(),
+                            rssFile.getGuid(),
+                            rssFile.getGuidHash());
+                }
             }
         }
 

@@ -6,6 +6,8 @@ import java.lang.ref.WeakReference;
 import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
+import java.util.HashMap;
+import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,15 +15,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.SparseArray;
 import android.widget.ImageView;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageFromWebAsyncTask;
 
 public class FavIconHandler {
 	public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context)
 	{
 		try
 		{	
-			File favIconFile = getFullPathOfCacheFile(URL_TO_PAGE, context);						
+			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, context);						
 			if(favIconFile.isFile())			
 				return Drawable.createFromPath(favIconFile.getPath());
 		}
@@ -32,90 +36,49 @@ public class FavIconHandler {
 		return null;
 	}
 	
-	public static class GetImageFromWebAsyncTask extends AsyncTask<Void, Void, Void>
-	{
-		private URL WEB_URL_TO_FILE;
-		private Context context;
-		//private ImageView imgView;
-		private WeakReference<ImageView> imageViewReference;
+	static SparseArray<FavIconCache> imageViewReferences = new SparseArray<FavIconCache>();
+	
+	public static void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context)
+	{	
+		WeakReference<ImageView> imageViewReference = new WeakReference<ImageView>(imageView);
+		FavIconCache favIconCache = new FavIconCache();
+		favIconCache.context = context;
+		favIconCache.WEB_URL_TO_FILE = WEB_URL_TO_FILE;
+		favIconCache.imageViewReference = imageViewReference;
 		
-		public GetImageFromWebAsyncTask(String WEB_URL_TO_FILE, Context context, ImageView imageView) {
-			try
-			{
-				this.WEB_URL_TO_FILE = new URL(WEB_URL_TO_FILE);
-			}
-			catch(Exception ex)
-			{
-				ex.printStackTrace();
-			}
-			this.context = context;
-			this.imageViewReference = new WeakReference<ImageView>(imageView);
-		}
+		int key = 0;
+		if(imageViewReferences.size() > 0)
+			key = imageViewReferences.keyAt(imageViewReferences.size() -1) + 1;
+		imageViewReferences.append(key, favIconCache);
 		
-		@Override
-		protected void onPostExecute(Void result) {
-	        if (imageViewReference != null) {
-	            ImageView imageView = imageViewReference.get();
-	            if (imageView != null) {
-	                imageView.setImageDrawable(GetFavIconFromCache(WEB_URL_TO_FILE.toString(), context));
-	            }
-	        }
-			//imgView.setImageDrawable(GetFavIconFromCache(WEB_URL_TO_FILE.toString(), context));
-			super.onPostExecute(result);
-		}
+		GetImageFromWebAsyncTask getImageAsync = new GetImageFromWebAsyncTask(WEB_URL_TO_FILE, context, imgDownloadFinished, key/*, imageView*/);
+		getImageAsync.execute((Void)null);
+	}
+	
+	static ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
-		protected Void doInBackground(Void... params) {
-			try
+		public void DownloadFinished(int AsynkTaskId, String fileCachePath) {
+			//WeakReference<ImageView> imageViewRef = imageViewReferences.get(AsynkTaskId);			
+			FavIconCache favIconCache = imageViewReferences.get(AsynkTaskId);
+			WeakReference<ImageView> imageViewRef = favIconCache.imageViewReference;
+			
+			if(imageViewRef != null)
 			{	
-				File dir = new File(getPathFavIcons(context));
-				dir.mkdirs();
-				File cacheFile = getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), context);				
-				//cacheFile.createNewFile();
-				FileOutputStream fOut = new FileOutputStream(cacheFile);
-				Bitmap mBitmap = BitmapFactory.decodeStream(WEB_URL_TO_FILE.openStream());
-				mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-				fOut.close();
+	            ImageView imageView = imageViewRef.get();
+	            if (imageView != null) {
+	                imageView.setImageDrawable(FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context));
+	            }
 			}
-			catch(Exception ex)
-			{
-				ex.printStackTrace();
-			}
-		    return null;
+			
+			imageViewReferences.remove(AsynkTaskId);			
 		}
-	}
+	};
 	
-	
-	public static File getFullPathOfCacheFile(String WEB_URL_TO_FILE, Context context) throws Exception
+	static class FavIconCache
 	{
-		URL url = new URL(WEB_URL_TO_FILE);
-		
-		MessageDigest m = MessageDigest.getInstance("MD5");
-		m.reset();
-		m.update(url.toString().getBytes());
-		byte[] digest = m.digest();
-		BigInteger bigInt = new BigInteger(1,digest);
-		String hashtext = bigInt.toString(16);
-		
-		String fileEnding = url.getFile().substring(url.getFile().lastIndexOf("."));
-		fileEnding = fileEnding.replaceAll("\\?(.*)", "");
-		
-		return new File(getPathFavIcons(context) + "/" + hashtext  + fileEnding);
-	}
-	
-	
-	
-	public static String getPathFavIcons(Context context)
-	{
-		return getPath(context) + "/favIcons";
-	}
-	
-	public static String getPath(Context context) {
-		String url = Environment.getExternalStorageDirectory().getAbsolutePath();
-		if (android.os.Build.DEVICE.contains("Samsung") || android.os.Build.MANUFACTURER.contains("Samsung")) {
-			url = url + "/external_sd";
-		}
-		url = url + "/" + context.getString(R.string.app_name);
-		return url;
+		public WeakReference<ImageView> imageViewReference;
+		public String WEB_URL_TO_FILE;
+		public Context context;
 	}
 }

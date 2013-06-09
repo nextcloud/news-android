@@ -575,6 +575,11 @@ public class DatabaseConnection {
 		return database.delete(FOLDER_TABLE, FOLDER_LABEL + " = ?", new String[] { FolderLabel });	
 	}
 	
+	public int removeItemByItemId(String idRssItem)
+	{
+		return database.delete(RSS_ITEM_TABLE, RSS_ITEM_RSSITEM_ID + " = ?", new String[] { idRssItem });	
+	}
+	
 	public /*String[]*/ List<String> convertCursorToStringArray(Cursor cursor, int column_id)
 	{
 	    List<String> items = new ArrayList<String>();	    		
@@ -594,7 +599,7 @@ public class DatabaseConnection {
 	
 	public Boolean doesRssItemAlreadyExsists(String idRssItem)//idRssItem = id aus dem Google Reader Stream
 	{
-		String buildSQL = "SELECT " + RSS_ITEM_TITLE + " FROM " + RSS_ITEM_TABLE + " WHERE rssitem_id = '" + idRssItem + "'";		
+		String buildSQL = "SELECT " + RSS_ITEM_TITLE + " FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_RSSITEM_ID + " = '" + idRssItem + "'";		
         Cursor cursor = database.rawQuery(buildSQL, null);
         int count = cursor.getCount();
         cursor.close();

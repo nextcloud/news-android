@@ -1,0 +1,37 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--
+         NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it.
+    -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_display_apptheme"
+        android:entryValues="@array/pref_display_apptheme_values"
+        android:key="sp_app_theme"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_app_theme" />
+    
+    
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_display_feed_list_layout"
+        android:entryValues="@array/pref_display_feed_list_layout_values"
+        android:key="sp_feed_list_layout"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_feed_list_layout" />
+    
+    <!--
+         This preference simply launches an intent when selected. Use this UI sparingly, per
+         design guidelines.
+    -->
+    <!--
+    <Preference android:title="@string/pref_title_system_sync_settings" >
+        <intent android:action="android.settings.SYNC_SETTINGS" />
+    </Preference>
+    -->
+</PreferenceScreen>

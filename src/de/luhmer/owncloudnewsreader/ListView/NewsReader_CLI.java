@@ -24,7 +24,7 @@ public class NewsReader_CLI implements NewsReader_Row {
 		ViewHolder holder;		
         View view;
         if (convertView == null) {  
-            ViewGroup viewGroup = (ViewGroup)inflater.inflate(R.layout.subscription_detail_list_item, null);            
+            ViewGroup viewGroup = (ViewGroup)inflater.inflate(R.layout.subscription_detail_list_item_extended, null);            
             TextView tv = (TextView)viewGroup.findViewById(R.id.summary);
             TextView tv2 = (TextView)viewGroup.findViewById(R.id.tv_subscription);
             holder = new ViewHolder(tv, tv2); 

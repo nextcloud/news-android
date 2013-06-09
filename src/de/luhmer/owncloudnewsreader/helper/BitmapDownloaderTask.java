@@ -31,7 +31,7 @@ public class BitmapDownloaderTask extends AsyncTask<String, Void, Drawable> {
     protected Drawable doInBackground(String... params) {
         // params comes from the execute() call: params[0] is the url.
         //return downloadBitmap(params[0]);
-        return DownloadImagesFromWeb.LoadImageFromWebOperations(params[0]);
+        return ImageHandler.LoadImageFromWebOperations(params[0]);
     }
 
     @Override

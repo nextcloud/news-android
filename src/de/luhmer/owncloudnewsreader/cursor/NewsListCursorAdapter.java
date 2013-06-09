@@ -7,7 +7,9 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.CursorAdapter;
 import android.text.Html;
 import android.text.Spannable;
@@ -17,13 +19,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.IReader;
@@ -37,6 +39,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
     final int LengthBody = 300;
     ForegroundColorSpan bodyForegroundColor;
 
+    int selectedDesign = 0;
+    
 	@SuppressLint("SimpleDateFormat")
 	@SuppressWarnings("deprecation")
 	public NewsListCursorAdapter(Context context, Cursor c) {
@@ -47,6 +51,9 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
         _Reader = new OwnCloud_Reader();
 		dbConn = new DatabaseConnection(context);
+		
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+		selectedDesign = Integer.valueOf(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"));
 	}
 
 	@Override
@@ -54,20 +61,18 @@ public class NewsListCursorAdapter extends CursorAdapter {
         final String idItemDb = cursor.getString(0);
         final String idItem = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
         
-        TextView textViewSummary = (TextView) view.findViewById(R.id.summary);
-        textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString());
-
-        TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
-        long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
-        textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
-
-        TextView textViewItemBody = (TextView) view.findViewById(R.id.body);
-        String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));        
-        textViewItemBody.setText(getBodyText(body));
-
-        TextView textViewTitle = (TextView) view.findViewById(R.id.tv_subscription);        
-        textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
-        textViewSummary.setTag(cursor.getString(0));
+        switch (selectedDesign) {
+			case 0:
+				setSimpleLayout(view, cursor);
+				break;
+				
+			case 1:
+				setExtendedLayout(view, cursor);				
+				break;
+	
+			default:
+				break;
+	    }
         
         CheckBox cb = (CheckBox) view.findViewById(R.id.cb_lv_item_starred);
         cb.setOnCheckedChangeListener(null);
@@ -140,6 +145,38 @@ public class NewsListCursorAdapter extends CursorAdapter {
         //((CheckBox) view.findViewById(R.id.cb_lv_item_starred)).setButtonDrawable(R.drawable.btn_rating_star_off_normal_holo_light);
 	}
 	
+	public void setSimpleLayout(View view, Cursor cursor)
+	{
+		TextView textViewSummary = (TextView) view.findViewById(R.id.summary);
+        textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString());
+
+        TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
+        long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
+        textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
+
+        TextView textViewTitle = (TextView) view.findViewById(R.id.tv_subscription);        
+        textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
+        textViewSummary.setTag(cursor.getString(0));
+	}
+	
+	public void setExtendedLayout(View view, Cursor cursor)
+	{
+		TextView textViewSummary = (TextView) view.findViewById(R.id.summary);
+        textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString());
+
+        TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
+        long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
+        textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
+
+        TextView textViewItemBody = (TextView) view.findViewById(R.id.body);
+        String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));        
+        textViewItemBody.setText(getBodyText(body));
+
+        TextView textViewTitle = (TextView) view.findViewById(R.id.tv_subscription);        
+        textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
+        textViewSummary.setTag(cursor.getString(0));
+	}
+	
 	
 	/*
 	class ItemHolder {
@@ -200,9 +237,23 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	public View newView(Context arg0, Cursor cursor, ViewGroup parent) {
 		// when the view will be created for first time,
         // we need to tell the adapters, how each item will look
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View retView = inflater.inflate(R.layout.subscription_detail_list_item, parent, false);
-        retView.setTag(cursor.getString(0));
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());        
+        View retView = null;
+        
+        switch (selectedDesign) {
+			case 0:
+				retView = inflater.inflate(R.layout.subscription_detail_list_item_simple, parent, false);
+				break;
+			case 1:
+				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended, parent, false);				
+				break;
+				
+			default:
+				break;
+        }
+        
+        if(retView != null)
+        	retView.setTag(cursor.getString(0));
         
         //Log.d("NewsListCursor", "NEW VIEW..");
         
