@@ -20,4 +20,8 @@
   <string name="action_openInBrowser">Obre al navegador</string>
   <string name="action_sendSourceCode">Envia element al desenvolupador</string>
   <string name="action_Share">Comparteix</string>
+  <string name="pull_to_refresh_updateTags">Sincronitzant etiquetes</string>
+  <string name="pull_to_refresh_updateFolder">Sincronitzant carpetes</string>
+  <string name="pull_to_refresh_updateFeeds">Sincronitzant fonts</string>
+  <string name="pull_to_refresh_updateItems">Sincronitzant elements</string>
 </resources>

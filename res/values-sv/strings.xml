@@ -20,4 +20,8 @@
   <string name="action_openInBrowser">Öppna i webbläsaren</string>
   <string name="action_sendSourceCode">Skicka objekt till utvecklaren</string>
   <string name="action_Share">Dela</string>
+  <string name="pull_to_refresh_updateTags">Synkroniserar taggar</string>
+  <string name="pull_to_refresh_updateFolder">Synkroniserar mapp</string>
+  <string name="pull_to_refresh_updateFeeds">Synkroniserar feeds</string>
+  <string name="pull_to_refresh_updateItems">Synkroniserar objekt</string>
 </resources>
