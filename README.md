@@ -9,5 +9,5 @@ Bugs and enhancements can be reported under: https://github.com/owncloud/News-An
 Language
 ==================================
 Is your language not supported yet ?
-Add language on:
+You can add your language easily on:
 https://www.transifex.com/projects/p/owncloud/resource/android-news/
