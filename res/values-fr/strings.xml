@@ -20,4 +20,8 @@
   <string name="action_openInBrowser">Ouvert dans le navigateur</string>
   <string name="action_sendSourceCode">Envoyer un article au développeur</string>
   <string name="action_Share">Partager</string>
+  <string name="pull_to_refresh_updateTags">synchronisant les marqueurs</string>
+  <string name="pull_to_refresh_updateFolder">synchronisant les dossiers</string>
+  <string name="pull_to_refresh_updateFeeds">synchronisant les besoins</string>
+  <string name="pull_to_refresh_updateItems">synchronisant les articles</string>
 </resources>

@@ -20,4 +20,8 @@
   <string name="action_openInBrowser">ブラウザーで開く</string>
   <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
+  <string name="pull_to_refresh_updateTags">タグを同期中</string>
+  <string name="pull_to_refresh_updateFolder">フォルダを同期中</string>
+  <string name="pull_to_refresh_updateFeeds">フィードを同期中</string>
+  <string name="pull_to_refresh_updateItems">アイテムを同期中</string>
 </resources>

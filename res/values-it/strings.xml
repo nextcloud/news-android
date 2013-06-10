@@ -20,4 +20,8 @@
   <string name="action_openInBrowser">Apri nel browser</string>
   <string name="action_sendSourceCode">Invia elemento allo sviluppatore</string>
   <string name="action_Share">Condividi</string>
+  <string name="pull_to_refresh_updateTags">Sincronizzazione tag</string>
+  <string name="pull_to_refresh_updateFolder">Sincronizzazione cartella</string>
+  <string name="pull_to_refresh_updateFeeds">Sincronizzazione fonti</string>
+  <string name="pull_to_refresh_updateItems">Sincronizzazione elementi</string>
 </resources>
