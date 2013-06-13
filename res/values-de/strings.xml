@@ -19,4 +19,6 @@
   <string name="action_openInBrowser">Im Browser öffnen...</string>
   <string name="action_sendSourceCode">Notiz an Entwickler senden</string>
   <string name="action_Share">Teilen</string>
+  <string name="pull_to_refresh_updateFolder">Ordner synchronisieren</string>
+  <string name="pull_to_refresh_updateItems">Notiz synchronisieren</string>
 </resources>
