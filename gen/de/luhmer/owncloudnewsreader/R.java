@@ -1348,27 +1348,29 @@ Action Bar Items
         /**  Action Bar Items 
 EMAIL
 Action Bar Items
-Action Bar Items
-Action Bar Items
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 EMAIL
 Action Bar Items
 Action Bar Items
 Action Bar Items
 EMAIL
 Action Bar Items
+Action Bar Items
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+Action Bar Items
 EMAIL
 Action Bar Items
 Action Bar Items
 EMAIL
 Action Bar Items
-Action Bar Items
 EMAIL
 Action Bar Items
 EMAIL
 Action Bar Items
-EMAIL
 Action Bar Items
- Action Bar Items 
 Action Bar Items
 Action Bar Items
 EMAIL
@@ -1397,11 +1399,11 @@ Action Bar Items
 Action Bar Items
  Action Bar Items 
 Action Bar Items
-EMAIL
 Action Bar Items
 EMAIL
 Action Bar Items
- Action Bar Items 
+EMAIL
+Action Bar Items
 EMAIL
 Action Bar Items
 EMAIL
@@ -1430,6 +1432,7 @@ Action Bar Items
         public static final int allUnreadFeeds=0x7f08001b;
         public static final int app_name=0x7f080013;
         /** EMAIL
+EMAIL
          */
         public static final int email_sendMail=0x7f080020;
         /**  EMAIL 
@@ -1439,14 +1442,14 @@ EMAIL
 EMAIL
 EMAIL
 EMAIL
- EMAIL 
 EMAIL
 EMAIL
 EMAIL
 EMAIL
- EMAIL 
 EMAIL
  EMAIL 
+EMAIL
+EMAIL
 EMAIL
 EMAIL
 EMAIL
@@ -1484,7 +1487,7 @@ EMAIL
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
- <string name="non_sorted_articles">Articles pas assigné</string> 
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
@@ -1505,7 +1508,7 @@ EMAIL
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
- <string name="non_sorted_articles">нераспределенные статьи</string> 
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
 <string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
