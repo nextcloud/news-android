@@ -15,18 +15,15 @@ public final class R {
         public static final int slide_out_to_top=0x7f040003;
     }
     public static final class array {
+        public static final int pref_data_sync_max_items=0x7f0d0004;
+        /**  Max INT size 
+         */
+        public static final int pref_data_sync_max_items_values=0x7f0d0005;
         public static final int pref_display_apptheme=0x7f0d0000;
         public static final int pref_display_apptheme_values=0x7f0d0001;
         public static final int pref_display_feed_list_layout=0x7f0d0002;
         public static final int pref_display_feed_list_layout_values=0x7f0d0003;
-        /**  <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array> 
- <string name="pref_title_add_friends_to_messages">Dodaj znajomych do wiadomości</string>
+        /**  <string name="pref_title_add_friends_to_messages">Dodaj znajomych do wiadomości</string>
 
     <string-array name="pref_example_list_titles">
         <item>Zawsze</item>
@@ -35,8 +32,8 @@ public final class R {
     </string-array> 
          */
         public static final int pref_example_list_values=0x7f0d0006;
-        public static final int pref_sync_frequency_titles=0x7f0d0004;
-        public static final int pref_sync_frequency_values=0x7f0d0005;
+        public static final int pref_sync_frequency_titles=0x7f0d0007;
+        public static final int pref_sync_frequency_values=0x7f0d0008;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1142,53 +1139,62 @@ containing a value of this type.
         public static final int abs__textButton=0x7f06001f;
         public static final int abs__title=0x7f060027;
         public static final int abs__up=0x7f060017;
-        public static final int action_ShareItem=0x7f060055;
-        public static final int action_openInBrowser=0x7f060053;
-        public static final int action_sendSourceCode=0x7f060054;
-        public static final int action_settings=0x7f060056;
-        public static final int action_starred=0x7f060052;
-        public static final int body=0x7f06004b;
+        public static final int action_ShareItem=0x7f06005c;
+        public static final int action_login=0x7f06005e;
+        public static final int action_openInBrowser=0x7f06005a;
+        public static final int action_sendSourceCode=0x7f06005b;
+        public static final int action_settings=0x7f06005d;
+        public static final int action_starred=0x7f060059;
+        public static final int body=0x7f060052;
         public static final int both=0x7f060003;
-        public static final int cb_lv_item_read=0x7f06004d;
-        public static final int cb_lv_item_starred=0x7f06004c;
+        public static final int btn_cancel=0x7f060046;
+        public static final int btn_signin=0x7f060047;
+        public static final int cb_AllowAllSSLCertificates=0x7f060045;
+        public static final int cb_lv_item_read=0x7f060054;
+        public static final int cb_lv_item_starred=0x7f060053;
         public static final int disableHome=0x7f060015;
         public static final int disabled=0x7f060000;
         public static final int edit_query=0x7f060032;
-        public static final int expandableListView=0x7f060041;
-        public static final int fl_inner=0x7f060043;
+        public static final int edt_owncloudRootPath=0x7f060044;
+        public static final int expandableListView=0x7f060048;
+        public static final int fl_inner=0x7f06004a;
         public static final int flip=0x7f060008;
         public static final int gridview=0x7f060009;
         public static final int homeAsUp=0x7f060012;
-        public static final int iVFavicon=0x7f060050;
-        public static final int img_View_expandable_indicator=0x7f06004e;
+        public static final int iVFavicon=0x7f060057;
+        public static final int img_View_expandable_indicator=0x7f060055;
         public static final int listMode=0x7f06000e;
+        public static final int login_form=0x7f060041;
         public static final int manualOnly=0x7f060004;
-        public static final int menu_update=0x7f060057;
+        public static final int menu_markAllAsRead=0x7f060060;
+        public static final int menu_update=0x7f06005f;
         public static final int newsreader_detail_container=0x7f06003f;
         public static final int newsreader_list=0x7f060040;
         public static final int normal=0x7f06000d;
         public static final int pager=0x7f06003e;
-        public static final int progressbar_webview=0x7f060042;
+        public static final int password=0x7f060043;
+        public static final int progressbar_webview=0x7f060049;
         public static final int pullDownFromTop=0x7f060005;
         public static final int pullFromEnd=0x7f060002;
         public static final int pullFromStart=0x7f060001;
         public static final int pullUpFromBottom=0x7f060006;
-        public static final int pull_to_refresh_image=0x7f060044;
-        public static final int pull_to_refresh_progress=0x7f060045;
-        public static final int pull_to_refresh_sub_text=0x7f060047;
-        public static final int pull_to_refresh_text=0x7f060046;
+        public static final int pull_to_refresh_image=0x7f06004b;
+        public static final int pull_to_refresh_progress=0x7f06004c;
+        public static final int pull_to_refresh_sub_text=0x7f06004e;
+        public static final int pull_to_refresh_text=0x7f06004d;
         public static final int rotate=0x7f060007;
         public static final int scrollview=0x7f06000b;
         public static final int showCustom=0x7f060014;
         public static final int showHome=0x7f060011;
         public static final int showTitle=0x7f060013;
-        public static final int summary=0x7f06004a;
-        public static final int tV_feedsCount=0x7f06004f;
+        public static final int summary=0x7f060051;
+        public static final int tV_feedsCount=0x7f060056;
         public static final int tabMode=0x7f06000f;
-        public static final int tv_item_date=0x7f060049;
-        public static final int tv_subscription=0x7f060048;
-        public static final int tv_unreadCount=0x7f060051;
+        public static final int tv_item_date=0x7f060050;
+        public static final int tv_subscription=0x7f06004f;
+        public static final int tv_unreadCount=0x7f060058;
         public static final int useLogo=0x7f060010;
+        public static final int username=0x7f060042;
         public static final int webview=0x7f06000a;
         public static final int wrap_content=0x7f06000c;
     }
@@ -1236,24 +1242,26 @@ containing a value of this type.
          */
         public static final int activity_newsreader_list=0x7f030017;
         public static final int activity_newsreader_twopane=0x7f030018;
-        public static final int expandable_list_layout=0x7f030019;
-        public static final int fragment_news_detail=0x7f03001a;
-        public static final int fragment_newsreader_detail=0x7f03001b;
-        public static final int inderterminate_progress=0x7f03001c;
-        public static final int pull_to_refresh_header_horizontal=0x7f03001d;
-        public static final int pull_to_refresh_header_vertical=0x7f03001e;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001f;
-        public static final int sherlock_spinner_item=0x7f030020;
-        public static final int subscription_detail_list_item_extended=0x7f030021;
-        public static final int subscription_detail_list_item_simple=0x7f030022;
-        public static final int subscription_list_item=0x7f030023;
-        public static final int subscription_list_item_empty=0x7f030024;
-        public static final int subscription_list_sub_item=0x7f030025;
+        public static final int dialog_signin=0x7f030019;
+        public static final int expandable_list_layout=0x7f03001a;
+        public static final int fragment_news_detail=0x7f03001b;
+        public static final int fragment_newsreader_detail=0x7f03001c;
+        public static final int inderterminate_progress=0x7f03001d;
+        public static final int pull_to_refresh_header_horizontal=0x7f03001e;
+        public static final int pull_to_refresh_header_vertical=0x7f03001f;
+        public static final int sherlock_spinner_dropdown_item=0x7f030020;
+        public static final int sherlock_spinner_item=0x7f030021;
+        public static final int subscription_detail_list_item_extended=0x7f030022;
+        public static final int subscription_detail_list_item_simple=0x7f030023;
+        public static final int subscription_list_item=0x7f030024;
+        public static final int subscription_list_item_empty=0x7f030025;
+        public static final int subscription_list_sub_item=0x7f030026;
     }
     public static final class menu {
-        public static final int news_detail=0x7f0e0000;
-        public static final int news_reader=0x7f0e0001;
-        public static final int subscription=0x7f0e0002;
+        public static final int login=0x7f0e0000;
+        public static final int news_detail=0x7f0e0001;
+        public static final int news_reader=0x7f0e0002;
+        public static final int subscription=0x7f0e0003;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1295,75 +1303,290 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f08000d;
-        public static final int action_Share=0x7f080023;
-        public static final int action_openInBrowser=0x7f080021;
-        public static final int action_sendSourceCode=0x7f080022;
-        public static final int action_settings=0x7f080014;
-        /**  Action Bar Items 
- Action Bar Items 
- Action Bar Items 
- Action Bar Items 
- Action Bar Items 
+        /** EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+EMAIL
+Action Bar Items
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+EMAIL
+Action Bar Items
          */
-        public static final int action_starred=0x7f080020;
+        public static final int action_Share=0x7f080024;
+        public static final int action_login=0x7f080025;
+        public static final int action_openInBrowser=0x7f080022;
+        public static final int action_sendSourceCode=0x7f080023;
+        public static final int action_settings=0x7f080014;
+        /**  <string name="pref_default_username">admin</string> 
+         */
+        public static final int action_sign_in_short=0x7f080029;
+        /**  Action Bar Items 
+EMAIL
+Action Bar Items
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+ Action Bar Items 
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+EMAIL
+Action Bar Items
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+EMAIL
+Action Bar Items
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+Action Bar Items
+ Action Bar Items 
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+ Action Bar Items 
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+EMAIL
+Action Bar Items
+Action Bar Items
+EMAIL
+Action Bar Items
+         */
+        public static final int action_starred=0x7f080021;
         public static final int allUnreadFeeds=0x7f08001b;
         public static final int app_name=0x7f080013;
-        public static final int email_sendMail=0x7f08001f;
-        /**  EMAIL 
- EMAIL 
- EMAIL 
- EMAIL 
- EMAIL 
+        /** EMAIL
          */
-        public static final int email_sourceCode=0x7f08001e;
+        public static final int email_sendMail=0x7f080020;
+        /**  EMAIL 
+EMAIL
+EMAIL
+EMAIL
+EMAIL
+EMAIL
+EMAIL
+ EMAIL 
+EMAIL
+EMAIL
+EMAIL
+EMAIL
+ EMAIL 
+EMAIL
+ EMAIL 
+EMAIL
+EMAIL
+EMAIL
+         */
+        public static final int email_sourceCode=0x7f08001f;
         public static final int empty_view_content=0x7f08001a;
         public static final int empty_view_header=0x7f080019;
+        public static final int error_field_required=0x7f08002c;
+        public static final int error_incorrect_password=0x7f08002b;
+        public static final int error_invalid_url=0x7f08002d;
+        public static final int login_dialog_text_not_compatible=0x7f08003c;
+        public static final int login_dialog_text_security_warning=0x7f08003e;
+        public static final int login_dialog_text_something_went_wrong=0x7f08003b;
+        /**  Login Dialog 
+         */
+        public static final int login_dialog_title_error=0x7f08003a;
+        public static final int login_dialog_title_security_warning=0x7f08003d;
+        public static final int login_progress_signing_in=0x7f08002a;
+        public static final int menu_markAllAsRead=0x7f08001e;
         /**  <string name="non_sorted_articles">Nicht zugeordnete Artikel</string> 
- <string name="non_sorted_articles">Nicht zugeordnete Artikel</string> 
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
  <string name="non_sorted_articles">Articles pas assigné</string> 
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
  <string name="non_sorted_articles">Nicht zugeordnete Artikel</string> 
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
  <string name="non_sorted_articles">нераспределенные статьи</string> 
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
+<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>
          */
         public static final int menu_update=0x7f08001d;
-        public static final int pref_default_owncloudRootPath=0x7f080031;
-        public static final int pref_default_username=0x7f08002d;
-        public static final int pref_description_social_recommendations=0x7f08002b;
-        /**  Example settings for Data & Sync 
- Example settings for Data & Sync 
+        /**  <string name="pref_title_owncloudRootPath">ownCloud root address</string> 
+         */
+        public static final int pref_default_owncloudRootPath=0x7f080028;
+        public static final int pref_default_username=0x7f080044;
+        public static final int pref_description_social_recommendations=0x7f080043;
+        /**  Data & Sync 
  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f080037;
+        public static final int pref_header_data_sync=0x7f08003f;
         /**  Settings for Display 
+ 
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+    
+ Display Settings 
          */
-        public static final int pref_header_display=0x7f080034;
-        /**  Strings related to Settings 
- Example General settings 
+        public static final int pref_header_display=0x7f080037;
+        /**  General settings 
  Strings related to Settings 
  Example General settings 
- Strings related to Settings 
- Example General settings 
          */
-        public static final int pref_header_general=0x7f080029;
+        public static final int pref_header_general=0x7f080033;
         /**  Example settings for Notifications 
- Example settings for Notifications 
- Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f080039;
-        public static final int pref_ringtone_silent=0x7f08003c;
-        public static final int pref_title_AllowAllSSLCertificates=0x7f08002f;
-        public static final int pref_title_AutoSyncOnStart=0x7f080032;
-        public static final int pref_title_ShowOnlyUnread=0x7f080033;
-        public static final int pref_title_app_theme=0x7f080035;
-        public static final int pref_title_feed_list_layout=0x7f080036;
-        public static final int pref_title_new_message_notifications=0x7f08003a;
-        public static final int pref_title_owncloudRootPath=0x7f080030;
-        public static final int pref_title_password=0x7f08002e;
-        public static final int pref_title_ringtone=0x7f08003b;
-        public static final int pref_title_social_recommendations=0x7f08002a;
-        public static final int pref_title_sync_frequency=0x7f080038;
-        public static final int pref_title_system_sync_settings=0x7f08003e;
-        public static final int pref_title_username=0x7f08002c;
-        public static final int pref_title_vibrate=0x7f08003d;
+        public static final int pref_header_notifications=0x7f080048;
+        public static final int pref_ringtone_silent=0x7f08004b;
+        public static final int pref_title_AllowAllSSLCertificates=0x7f080036;
+        /**  
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>
+    
+         */
+        public static final int pref_title_AutoSyncOnStart=0x7f080034;
+        public static final int pref_title_ShowOnlyUnread=0x7f080035;
+        public static final int pref_title_app_theme=0x7f080038;
+        public static final int pref_title_clearCache=0x7f080041;
+        public static final int pref_title_data_sync_max_items=0x7f080040;
+        public static final int pref_title_feed_list_layout=0x7f080039;
+        public static final int pref_title_new_message_notifications=0x7f080049;
+        public static final int pref_title_owncloudRootPath=0x7f080045;
+        public static final int pref_title_password=0x7f080027;
+        public static final int pref_title_ringtone=0x7f08004a;
+        public static final int pref_title_social_recommendations=0x7f080042;
+        public static final int pref_title_sync_frequency=0x7f080046;
+        public static final int pref_title_system_sync_settings=0x7f080047;
+        /**  Strings related to login 
+         */
+        public static final int pref_title_username=0x7f080026;
+        public static final int pref_title_vibrate=0x7f08004c;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -1373,13 +1596,15 @@ containing a value of this type.
         public static final int pull_to_refresh_pull_label=0x7f080000;
         public static final int pull_to_refresh_refreshing_label=0x7f080002;
         public static final int pull_to_refresh_release_label=0x7f080001;
-        public static final int pull_to_refresh_updateFeeds=0x7f080026;
-        public static final int pull_to_refresh_updateFolder=0x7f080025;
-        public static final int pull_to_refresh_updateItems=0x7f080027;
-        public static final int pull_to_refresh_updateTags=0x7f080024;
+        public static final int pull_to_refresh_updateFeeds=0x7f080030;
+        public static final int pull_to_refresh_updateFolder=0x7f08002f;
+        public static final int pull_to_refresh_updateItems=0x7f080031;
+        public static final int pull_to_refresh_updateTags=0x7f08002e;
         public static final int starredFeeds=0x7f08001c;
         public static final int title_activity_news_detail=0x7f080015;
-        public static final int title_activity_settings=0x7f080028;
+        /**  Strings related to Settings 
+         */
+        public static final int title_activity_settings=0x7f080032;
         public static final int title_activity_subscription=0x7f080016;
         public static final int title_newsreader_detail=0x7f080018;
         public static final int title_newsreader_list=0x7f080017;
@@ -1388,16 +1613,16 @@ containing a value of this type.
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
- 
-    <style name="AppBaseTheme" parent="android:Theme.Light"> 
+     <style name="AppBaseTheme" parent="android:Theme.Light"> 
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
-        
- 
-    </style> 
+
+    
+     </style> 
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
@@ -1415,6 +1640,16 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0c005a;
+        /**  
+    <style name="LoginFormContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+	
+         */
+        public static final int LoginDialogEditTextStyle=0x7f0c005b;
+        public static final int LoginFormContainer=0x7f0c005c;
         public static final int Sherlock___TextAppearance_Small=0x7f0c0046;
         public static final int Sherlock___Theme=0x7f0c0051;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0c0053;

@@ -20,4 +20,8 @@
   <string name="action_openInBrowser">Openen in Browser</string>
   <string name="action_sendSourceCode">Verzend item naar ontwikkelaar</string>
   <string name="action_Share">Delen</string>
+  <string name="pull_to_refresh_updateTags">Synchroniseren tags</string>
+  <string name="pull_to_refresh_updateFolder">Synchroniseren map</string>
+  <string name="pull_to_refresh_updateFeeds">Synchroniseren feeds</string>
+  <string name="pull_to_refresh_updateItems">Synchroniseren onderwerpen</string>
 </resources>

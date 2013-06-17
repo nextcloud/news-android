@@ -12,4 +12,8 @@
   <string name="action_starred">Varustettu tähdellä</string>
   <string name="action_openInBrowser">Avaa selaimessa</string>
   <string name="action_Share">Jaa</string>
+  <string name="pull_to_refresh_updateTags">Synkronoidaan tunnisteita</string>
+  <string name="pull_to_refresh_updateFolder">Synkronoidaan kansiota</string>
+  <string name="pull_to_refresh_updateFeeds">Synkronoidaan syötteitä</string>
+  <string name="pull_to_refresh_updateItems">Synkronoidaan kohteita</string>
 </resources>

@@ -1,32 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-
-    <string name="app_name">ownCloud Lecteur RSS</string>
-    <string name="action_settings">Paramètres</string>
-    <string name="title_activity_news_detail">ArticleDétailActivité</string>
-    <string name="title_activity_subscription">AbonnementActivité</string>
-    <string name="title_newsreader_list">Lecteur RSS</string>
-    <string name="title_newsreader_detail">Lecteur RSS Detail</string>
-
-    
-    <string name="empty_view_header">Information</string>
-    <string name="empty_view_content">Il n\'y a pas des articles</string>
-    
-    <string name="allUnreadFeeds">Tous les articles non lus</string>
-    <string name="starredFeeds">Articles marquée</string>
-    <!-- <string name="non_sorted_articles">Articles pas assigné</string> -->
-    
-    <string name="menu_update">Actualiser</string>
-    
-    
-    <!-- EMAIL -->
-    <string name="email_sourceCode">Code du source du Fil RSS - Rapport d’erreur</string>
-    <string name="email_sendMail">Envoyer par e-mail.</string>
-    
-    <!-- Action Bar Items -->
-    <string name="action_starred">Marqueé d\'un Astérisque</string>
-    <string name="action_openInBrowser">Ouvrir avec navigateur</string>
-    <string name="action_sendSourceCode">Envoyer Fil RSS à le programmeur</string>
-    
-    
+  <string name="app_name">lecteur d\'actualités ownCloud</string>
+  <string name="action_settings">Paramètres</string>
+  <string name="title_activity_news_detail">Nouvelle activité de détails</string>
+  <string name="title_activity_subscription">Activité de souscription</string>
+  <string name="title_newsreader_list">Nouveau lecteur</string>
+  <string name="title_newsreader_detail">Nouveau lecteur de détails</string>
+  <string name="empty_view_header">Information</string>
+  <string name="empty_view_content">Pas d\'articles ici</string>
+  <string name="allUnreadFeeds">Tous les articles non lus</string>
+  <string name="starredFeeds">Articles favoris</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">rafraichir</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Code source de l\'article - rapport des bugs</string>
+  <string name="email_sendMail">Envoyer un courriel</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">favoris</string>
+  <string name="action_openInBrowser">Ouvert dans le navigateur</string>
+  <string name="action_sendSourceCode">Envoyer un article au développeur</string>
+  <string name="action_Share">Partager</string>
+  <string name="pull_to_refresh_updateTags">synchronisant les marqueurs</string>
+  <string name="pull_to_refresh_updateFolder">synchronisant les dossiers</string>
+  <string name="pull_to_refresh_updateFeeds">synchronisant les besoins</string>
+  <string name="pull_to_refresh_updateItems">synchronisant les articles</string>
 </resources>

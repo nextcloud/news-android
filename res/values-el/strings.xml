@@ -1,10 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Ανάγνωση Ειδήσεων ownCloud</string>
   <string name="action_settings">Ρυθμίσεις</string>
+  <string name="empty_view_header">Πληροφορίες</string>
+  <string name="starredFeeds">Επισημασμένα αντικείμενα</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Ανανέωση </string>
   <!--EMAIL-->
+  <string name="email_sendMail">Αποστολή Αλληλογραφίας</string>
   <!--Action Bar Items-->
   <string name="action_starred">Με αστέρι</string>
+  <string name="action_openInBrowser">Άνοιγμα στον Περιηγητή</string>
+  <string name="action_sendSourceCode">Αποστολή αντικειμένου στον Προγραμματιστή</string>
   <string name="action_Share">Διαμοιρασμός</string>
+  <string name="pull_to_refresh_updateTags">Συγχρονισμός ετικετών</string>
+  <string name="pull_to_refresh_updateFolder">Συγχρονισμός φακέλου</string>
+  <string name="pull_to_refresh_updateFeeds">Συγχρονισμός ροών</string>
+  <string name="pull_to_refresh_updateItems">Συγχρονισμός αντικειμένων</string>
 </resources>

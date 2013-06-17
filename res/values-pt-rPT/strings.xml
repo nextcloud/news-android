@@ -1,10 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Leitor de notícias do OwnCloud</string>
   <string name="action_settings">Configurações</string>
+  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="title_activity_subscription">SubscriptionActivity</string>
+  <string name="title_newsreader_list">NewsReader</string>
+  <string name="title_newsreader_detail">NewsReader Detail</string>
+  <string name="empty_view_header">Informação</string>
+  <string name="empty_view_content">Não itens</string>
+  <string name="allUnreadFeeds">Todos os itens não lidos</string>
+  <string name="starredFeeds">Itens destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Código-Fonte do item: Reportar bug</string>
+  <string name="email_sendMail">Enviar E-mail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Marcado</string>
+  <string name="action_openInBrowser">Abrir no browser</string>
+  <string name="action_sendSourceCode">Enviar item ao Programador</string>
   <string name="action_Share">Partilhar</string>
+  <string name="pull_to_refresh_updateTags">Tags de sincronização</string>
+  <string name="pull_to_refresh_updateFolder">Pasta a sincronizar</string>
+  <string name="pull_to_refresh_updateFeeds">Feeds a sincronizar</string>
+  <string name="pull_to_refresh_updateItems">Itens a sincronizar</string>
 </resources>
