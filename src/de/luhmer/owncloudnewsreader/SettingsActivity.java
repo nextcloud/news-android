@@ -1,24 +1,32 @@
 package de.luhmer.owncloudnewsreader;
 
+import java.io.File;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -42,6 +50,8 @@ public class SettingsActivity extends PreferenceActivity {
 	public static final String EDT_USERNAME_STRING = "edt_username";
 	public static final String EDT_PASSWORD_STRING = "edt_password";
 	public static final String EDT_OWNCLOUDROOTPATH_STRING = "edt_owncloudRootPath";
+	public static final String EDT_CLEAR_CACHE = "edt_clearCache";	
+	
     public static final String CB_ALLOWALLSSLCERTIFICATES_STRING = "cb_AllowAllSSLCertificates";
     public static final String CB_SYNCONSTARTUP_STRING = "cb_AutoSyncOnStart";
     public static final String CB_SHOWONLYUNREAD_STRING = "cb_ShowOnlyUnread";
@@ -49,10 +59,21 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
     
+    static //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
+    
+    
+    //public static final String SP_MAX_ITEMS_SYNC = "sync_max_items";
+    
+    EditTextPreference clearCachePref;
+    static Activity _mActivity;
+    
+    
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-
+		
+		_mActivity = this;
+		
 		setupSimplePreferencesScreen();
 	}
 
@@ -65,8 +86,8 @@ public class SettingsActivity extends PreferenceActivity {
 	private void setupSimplePreferencesScreen() {
 		if (!isSimplePreferences(this)) {
 			return;
-		}
-
+		}		
+		
 		// In the simplified UI, fragments are not used at all and we instead
 		// use the older PreferenceActivity APIs.
 
@@ -77,6 +98,13 @@ public class SettingsActivity extends PreferenceActivity {
 		header.setTitle(R.string.pref_header_display);
 		getPreferenceScreen().addPreference(header);
 		addPreferencesFromResource(R.xml.pref_display);
+		
+		
+		header = new PreferenceCategory(this);
+		header.setTitle(R.string.pref_header_data_sync);
+		getPreferenceScreen().addPreference(header);
+		addPreferencesFromResource(R.xml.pref_data_sync);
+		
 
 		
 		/*
@@ -99,6 +127,7 @@ public class SettingsActivity extends PreferenceActivity {
 
 		bindGeneralPreferences(null, this);
 		bindDisplayPreferences(null, this);
+		bindDataSyncPreferences(null, this);
 		
 		//bindPreferenceSummaryToValue(findPreference("example_list"));
 		//bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));//TODO comment this out
@@ -185,16 +214,31 @@ public class SettingsActivity extends PreferenceActivity {
 				}
 
 			} else {
+				String key = preference.getKey();
 				// For all other preferences, set the summary to the value's
 				// simple string representation.
-				if(!preference.getKey().equals("edt_password"))
-					preference.setSummary(stringValue);
-				else
+				if(key.equals(EDT_PASSWORD_STRING))
 					preference.setSummary(null);
+				else
+					preference.setSummary(stringValue);
 			}
 			return true;
 		}
 	};
+	
+	/*
+	private static void ShowInfoDialog(String text)
+	{
+		// Use the Builder class for convenient dialog construction
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        builder.setMessage(text)
+        	.setTitle("Security warning")
+        	.setPositiveButton("Ok", null);
+        
+        // Create the AlertDialog object and return it
+        builder.create().show();
+	}*/
+	
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceBooleanToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -277,7 +321,7 @@ public class SettingsActivity extends PreferenceActivity {
 			// to their values. When their values change, their summaries are
 			// updated to reflect the new value, per the Android Design
 			// guidelines.
-			bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
+			//bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
 		}
 	}
 
@@ -296,7 +340,7 @@ public class SettingsActivity extends PreferenceActivity {
 			// to their values. When their values change, their summaries are
 			// updated to reflect the new value, per the Android Design
 			// guidelines.
-			bindPreferenceSummaryToValue(findPreference("sync_frequency"));
+			bindDataSyncPreferences(this, null);
 		}
 	}
 	
@@ -341,27 +385,114 @@ public class SettingsActivity extends PreferenceActivity {
 	
 	@SuppressWarnings("deprecation")
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private static void bindGeneralPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
+	private static void bindGeneralPreferences(PreferenceFragment prefFrag, final PreferenceActivity prefAct)
 	{
 		if(prefFrag != null)
-		{		
+		{
+			/*
 			bindPreferenceSummaryToValue(prefFrag.findPreference(EDT_USERNAME_STRING));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(EDT_PASSWORD_STRING));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(EDT_OWNCLOUDROOTPATH_STRING));
-	
-	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
+			 */
+	        //bindPreferenceBooleanToValue(prefFrag.findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SYNCONSTARTUP_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOWONLYUNREAD_STRING));
 		}
 		else
 		{
+			/*
 			bindPreferenceSummaryToValue(prefAct.findPreference(EDT_USERNAME_STRING));
 			bindPreferenceSummaryToValue(prefAct.findPreference(EDT_PASSWORD_STRING));
 			bindPreferenceSummaryToValue(prefAct.findPreference(EDT_OWNCLOUDROOTPATH_STRING));
-	
-	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
+			*/
+	        //bindPreferenceBooleanToValue(prefAct.findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SYNCONSTARTUP_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOWONLYUNREAD_STRING));
 		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	private static void bindDataSyncPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
+	{
+		if(prefFrag != null)
+		{		
+			//bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_ITEMS_SYNC));
+			clearCachePref = (EditTextPreference) prefFrag.findPreference(EDT_CLEAR_CACHE);
+		}
+		else
+		{
+			//bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_ITEMS_SYNC));
+			clearCachePref = (EditTextPreference) prefAct.findPreference(EDT_CLEAR_CACHE);
+			
+		}
+		
+		//clearCache.setText("")		
+		new GetCacheSizeAsync().execute((Void)null);
+		clearCachePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				
+				((EditTextPreference) preference).getDialog().dismiss();
+				
+				DatabaseConnection dbConn = new DatabaseConnection(_mActivity);
+				dbConn.resetDatabase();
+				dbConn.closeDatabase();
+				
+				ImageHandler.clearCache(_mActivity);				
+				LoginDialogFragment.ShowAlertDialog("Information" , "Cache is cleared!", _mActivity);
+				new GetCacheSizeAsync().execute((Void)null);
+				return false;
+			}
+		});
+	}
+	
+	
+	public static class GetCacheSizeAsync extends AsyncTask<Void, Void, Void> {
+
+		String mSize = "0MB";
+		String mCount = "0 Files";
+		int count = 0;
+		long size = 0;
+		DecimalFormat dcmFormat = new DecimalFormat("#.##");
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			try
+			{
+				getFolderSize(new File(ImageHandler.getPath(_mActivity)));
+				mSize = dcmFormat.format(size / 1024d / 1024d) + "MB";
+				mCount = String.valueOf(count) + " Files";
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			if(clearCachePref != null)
+				clearCachePref.setSummary(mCount + " - " + mSize);
+			super.onPostExecute(result);
+		};
+		
+		public long getFolderSize(File dir) {
+			if(dir.isDirectory())
+			{
+				for (File file : dir.listFiles()) {
+				    if (file.isFile()) {
+				        //System.out.println(file.getName() + " " + file.length());
+				        size += file.length();
+				        count++;
+				    }
+				    else
+				        size += getFolderSize(file);
+				}
+			}
+			return size;
+		}		
 	}
 }

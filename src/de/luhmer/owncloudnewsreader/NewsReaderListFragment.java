@@ -1,7 +1,5 @@
 package de.luhmer.owncloudnewsreader;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.client.HttpResponseException;
@@ -13,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -161,9 +158,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 				_Reader = new OwnCloud_Reader();
 			
 			
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
-				StartSync();
 				//((NewsReaderListActivity) getActivity()).startSync();
 			
 			//_Reader.Start_AsyncTask_GetFeeds(2, getActivity(), null);
@@ -187,20 +181,29 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	{
 		if (!_Reader.isSyncRunning())
         {
-            HashMap<String, String> ids = new HashMap<String, String>();
-
-            //ids.put("1000", "3840");
-            //ids.put("1001", "1001");
-
-            List<String> idsRemote = new ArrayList<String>();
-            idsRemote.addAll(ids.values());
-            _Reader.Start_AsyncTask_PerformTagActionForSingleItem(-1, getActivity(), onAsyncTask_PerformTagExecute, idsRemote, TAGS.MARK_ITEM_AS_READ);
+			DatabaseConnection dbConn = new DatabaseConnection(getActivity());
+			try {
+				//Mark as READ
+				List<String> item_ids = dbConn.getAllNewReadItems();
+				_Reader.Start_AsyncTask_PerformTagAction(-4, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_READ);
+				
+				//Mark as UNREAD
+				item_ids = dbConn.getAllNewUnreadItems();
+				_Reader.Start_AsyncTask_PerformTagAction(-3, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_UNREAD);
+				
+				//Mark as STARRED
+				item_ids = dbConn.getAllNewStarredItems();
+				_Reader.Start_AsyncTask_PerformTagAction(-2, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_STARRED);
+				
+				//Mark as UNSTARRED
+				item_ids = dbConn.getAllNewUnstarredItems();
+				_Reader.Start_AsyncTask_PerformTagAction(-1, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_UNSTARRED);
+			} finally {
+				dbConn.closeDatabase();
+			}
             
-            if(eListView != null)
-            {
-            	eListView.setRefreshing(true);
-            	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
-            }
+			if(eListView != null)
+				eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
 			//_Reader.Start_AsyncTask_GetFolder(0,  getActivity(), onAsyncTask_GetTopReaderTags);
         }
 		else
@@ -219,9 +222,14 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             	{
             		//dbConn.resetDatabase();
             		
-            		_Reader.Start_AsyncTask_GetFolder(1,  getActivity(), onAsyncTask_GetTopReaderTags);
-            		if(eListView != null)
-            			eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));            		
+            		if(task_id == -1)
+            		{
+            			_Reader.Start_AsyncTask_GetFolder(1,  getActivity(), onAsyncTask_GetTopReaderTags);
+            			if(eListView != null)
+                			eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));   
+            		}
+            		else
+            			_Reader.setSyncRunning(true);
             	}
             	UpdateSyncButtonLayout();            	
             }
@@ -288,7 +296,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             	//dbConn.resetRssItemsDatabase();
             	
                 _Reader.Start_AsyncTask_GetFeeds(2, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_UNREAD);//Recieve all unread Items
-                _Reader.Start_AsyncTask_GetFeeds(2, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_STARRED);//Recieve all starred Items
+                //_Reader.Start_AsyncTask_GetFeeds(3, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_STARRED);//Recieve all starred Items
                 
                 if(eListView != null)
                 	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateItems));
@@ -377,6 +385,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 				}
 			});*/
 			eListView.setExpandableAdapter(lvAdapter);
+			
+			
+			//Start auto sync if enabled
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
+				StartSync();
 			
 		}
 		catch(Exception ex)

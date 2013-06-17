@@ -12,6 +12,7 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class OwnCloud_Reader implements IReader {
 	boolean isSyncRunning = false;
+
 	SparseArray<AsyncTask_Reader> AsyncTasksRunning;
 	
 	public OwnCloud_Reader() {
@@ -21,29 +22,29 @@ public class OwnCloud_Reader implements IReader {
 	@Override
 	public void Start_AsyncTask_GetFeeds(int task_id,
 			Activity context, OnAsyncTaskCompletedListener listener, FeedItemTags.TAGS tag) {
-		isSyncRunning = true;
+		setSyncRunning(true);
 		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetFeeds(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute(tag));
 	}
 
 	@Override
 	public void Start_AsyncTask_GetFolder(int task_id,
 			Activity context, OnAsyncTaskCompletedListener listener) {
-		isSyncRunning = true;
+		setSyncRunning(true);
 		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetFolderTags(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute());
 	}
 
 	@Override
 	public void Start_AsyncTask_GetSubFolder(int task_id,
 			Activity context, OnAsyncTaskCompletedListener listener) {
-		isSyncRunning = true;
+		setSyncRunning(true);
 		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetSubFolderTags(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute());
 	}
 
 	@Override
-	public void Start_AsyncTask_PerformTagActionForSingleItem(int task_id,
+	public void Start_AsyncTask_PerformTagAction(int task_id,
 			Context context, OnAsyncTaskCompletedListener listener,
 			List<String> itemIds, FeedItemTags.TAGS tag) {
-		isSyncRunning = true;
+		setSyncRunning(true);
 		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_PerformTagAction(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute(itemIds, tag));
 	}
 	
@@ -64,12 +65,17 @@ public class OwnCloud_Reader implements IReader {
 	public boolean isSyncRunning() {
 		return isSyncRunning;
 	}
+	
+	@Override
+	public void setSyncRunning(boolean isSyncRunning) {
+		this.isSyncRunning = isSyncRunning;
+	}
 
 	OnAsyncTaskCompletedListener AsyncTask_finished = new OnAsyncTaskCompletedListener() {
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			isSyncRunning = false;
+			setSyncRunning(false);
 			AsyncTasksRunning.remove(task_id);
 		}
 	};

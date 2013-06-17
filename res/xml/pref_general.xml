@@ -9,6 +9,14 @@
 	-->
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    
+    <!-- 
+    <de.luhmer.owncloudnewsreader.preference.SigninPreference
+        android:key="sPref_signInDialog"
+		android:title="Sign In" />
+    -->
+    
+    <!-- 
     <EditTextPreference
         android:key="edt_username"
         android:capitalize="words"
@@ -37,10 +45,15 @@
         android:title="@string/pref_title_owncloudRootPath"
         android:inputType="textUri" />
 
+    -->
+    
+    <!-- 
     <CheckBoxPreference
         android:key="cb_AllowAllSSLCertificates"
         android:title="@string/pref_title_AllowAllSSLCertificates" />
 
+    -->
+    
     <CheckBoxPreference
         android:key="cb_AutoSyncOnStart"
         android:title="@string/pref_title_AutoSyncOnStart" />

@@ -24,4 +24,22 @@
         <intent android:action="android.settings.SYNC_SETTINGS" />
     </Preference>
     -->
+    
+    <!-- 
+    <ListPreference
+        android:defaultValue="100"
+        android:entries="@array/pref_data_sync_max_items"
+        android:entryValues="@array/pref_data_sync_max_items_values"
+        android:key="sync_max_items"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_data_sync_max_items" />
+    -->
+    
+    <EditTextPreference
+        android:key="edt_clearCache"                
+        android:maxLines="1"
+        android:singleLine="true"
+        android:title="@string/pref_title_clearCache" />
+    
 </PreferenceScreen>

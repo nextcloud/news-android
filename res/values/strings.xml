@@ -18,6 +18,9 @@
     
     <string name="menu_update">Refresh</string>
     
+    <string name="menu_markAllAsRead">Mark all as read</string>
+    
+    
     
     <!-- EMAIL -->
     <string name="email_sourceCode">Sourcecode of item - Bugreport</string>
@@ -28,6 +31,24 @@
     <string name="action_openInBrowser">Open in Browser</string>
     <string name="action_sendSourceCode">Send item to Developer</string>
     <string name="action_Share">Share</string>
+    <string name="action_login">Login</string>
+    
+    
+    
+    
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Username</string>
+    <string name="pref_title_password">Password</string>
+    <!-- <string name="pref_title_owncloudRootPath">ownCloud root address</string> -->
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <!-- <string name="pref_default_username">admin</string> -->
+    
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="login_progress_signing_in">Signing in&#8230;</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_url">This url is incorrect</string>
+    
     
     
     
@@ -38,5 +59,119 @@
     <string name="pull_to_refresh_updateFeeds">Synchronizing feeds</string>
     <string name="pull_to_refresh_updateItems">Synchronizing items</string>
     
+    
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+    <!-- 
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>
+    -->
+    
+    
+    
+    
+    <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
+    <string name="pref_title_ShowOnlyUnread">Show only unread articles</string>
+    <string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>
+    
+    
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Display</string>
+    <string name="pref_title_app_theme">App theme (requires restart to apply)</string>
+    <string name="pref_title_feed_list_layout">Feed list layout</string>
+    
+    <string-array name="pref_display_apptheme">
+        <item>Dark</item>
+        <item>Light</item>        
+    </string-array>
+    <string-array name="pref_display_apptheme_values">
+        <item>0</item>
+        <item>1</item>        
+    </string-array>
+    
+    <string-array name="pref_display_feed_list_layout">
+        <item>Simple</item>
+        <item>Extended</item>        
+    </string-array>
+    <string-array name="pref_display_feed_list_layout_values">
+        <item>0</item>
+        <item>1</item>        
+    </string-array>
+    
+    
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Error</string>
+    <string name="login_dialog_text_something_went_wrong">Something went wrong :(</string>
+    <string name="login_dialog_text_not_compatible">This App version is not compatibel with you ownCloud News App. Please update the appframework!</string>    
+    
+    <string name="login_dialog_title_security_warning">Security Warning</string>
+    <string name="login_dialog_text_security_warning">You\'re not using https. It\'s possible to get your password by Man in the Middle attacks. So it\'s strongly recommend to use https!</string>
+    
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="pref_title_data_sync_max_items">Max number of items to sync</string>
+    <string name="pref_title_clearCache">Clear cache</string>
+    
+    
+    
+    <string-array name="pref_data_sync_max_items">
+        <item>200 Items</item>        
+        <item>400 Items</item>                
+        <item>600 Items</item>        
+        <item>800 Items</item>        
+        <item>1000 Items</item>
+        <item>All Items</item>
+    </string-array>
+    <string-array name="pref_data_sync_max_items_values">
+        <item>200</item>
+        <item>400</item>
+        <item>600</item>
+        <item>800</item>
+        <item>1000</item>
+        <item>2147483647</item><!-- Max INT size -->
+    </string-array>
+    
+    <!-- 
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+    -->
+
+    <!-- Display Settings -->
+    <string name="pref_header_display">Display Settings</string>
+    
+    
+    <!-- 
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+ 	-->
+ 	
+    <!-- Example settings for Notifications -->
+    <!-- 
+    <string name="pref_header_notifications">Notifications</string>
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+    <string name="pref_title_vibrate">Vibrate</string>
+    -->
     
 </resources>

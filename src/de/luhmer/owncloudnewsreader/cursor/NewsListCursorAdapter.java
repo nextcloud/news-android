@@ -102,14 +102,14 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 if(isChecked)
                 	UpdateIsReadCheckBox(buttonView, idItemDb);
                 
-                //TODO THIS IS IMPORTANT CODE !
+                /*
                 List<String> idItems = new ArrayList<String>();
                 idItems.add(idItem);                
                 if(isChecked)
-				    _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_STARRED);
+				    _Reader.Start_AsyncTask_PerformTagAction(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_STARRED);
                 else
-                    _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_UNSTARRED);
-                        //.MarkItemAsStarred(isChecked, getCursorForCurrentRow(buttonView), dbConn, context, asyncTaskCompletedPerformTagRead);
+                    _Reader.Start_AsyncTask_PerformTagAction(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_UNSTARRED);
+                */
                         
 			}
 		});
@@ -129,6 +129,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
                 dbConn.updateIsReadOfFeed(idItemDb, isChecked);
 
+                /*
                 //TODO THIS IS IMPORTANT CODE !
                 List<String> idItems = new ArrayList<String>();
                 idItems.add(idItem);
@@ -136,7 +137,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
                     _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_READ);
                 else
                     _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_UNREAD);
-                
+                */
 			}
 		});
         

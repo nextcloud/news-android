@@ -4,7 +4,8 @@ import android.content.Context;
 import android.util.SparseArray;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageFromWebAsyncTask;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageAsyncTask;
 
 public class DownloadItemsToCache {
 	SparseArray<String> URLs;
@@ -22,7 +23,7 @@ public class DownloadItemsToCache {
 			key = URLs.keyAt(URLs.size() -1) + 1;
 		URLs.append(key, URL_TO_IMAGE);
 		
-		 GetImageFromWebAsyncTask getImageAsync = new GetImageFromWebAsyncTask(URL_TO_IMAGE, context, imgDownloadFinished, key);
+		 GetImageAsyncTask getImageAsync = new GetImageAsyncTask(URL_TO_IMAGE, imgDownloadFinished, key, ImageHandler.getPathImageCache(context));
 		 getImageAsync.execute((Void)null);
 	}	
 	

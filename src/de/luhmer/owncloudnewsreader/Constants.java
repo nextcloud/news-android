@@ -9,6 +9,8 @@ public class Constants {
     public static final String _TAG_LABEL_UNREAD = "stream/contents/user/-/state/com.google/reading-list?n=1000&r=n&xt=user/-/state/com.google/read";
     public static final String _TAG_LABEL_STARRED = "stream/contents/user/-/state/com.google/starred?n=20";
     
+    public static final String LAST_SYNC = "LAST_SYNC";
+    
     
     private static final String _P_KEY_PART1 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNmCsMj6M4zkjpKRG8MG5+yIAyqSQE2etVkZsc3s";
     private static final String _P_KEY_PART2 = "V5zLoQ/NUOVC0fS2tj8IWk6UYqQGk9rmVold3sDGiTCvWGFecjwel3qxzz23hKLlemrv2+0WPrZ5KOqiaCEMi";

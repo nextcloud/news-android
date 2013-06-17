@@ -18,8 +18,9 @@ public class RssFile {
 	private Date date;
     private String guid;
     private String guidHash;
+    private String lastModified;
 	
-	public RssFile(long DB_Id, String Item_Id, String Title, String Link, String Description, Boolean Read, String FeedID_Db, String FeedID, List<String> Categories, /*String StreamID, */Date date, Boolean Starred, String guid, String guidHash) {
+	public RssFile(long DB_Id, String Item_Id, String Title, String Link, String Description, Boolean Read, String FeedID_Db, String FeedID, List<String> Categories, /*String StreamID, */Date date, Boolean Starred, String guid, String guidHash, String lastModified) {
 		this.setDB_Id(DB_Id);
 		this.setTitle(Title);
 		this.setLink(Link);
@@ -33,6 +34,7 @@ public class RssFile {
         this.setGuidHash(guidHash);
         this.setItem_Id(Item_Id);
         this.setFeedID_Db(FeedID_Db);
+        this.setLastModified(lastModified);
 	}
 
 	public String getTitle() {
@@ -139,4 +141,12 @@ public class RssFile {
     public void setItem_Id(String item_Id) {
         Item_Id = item_Id;
     }
+
+	public String getLastModified() {
+		return lastModified;
+	}
+
+	public void setLastModified(String lastModified) {
+		this.lastModified = lastModified;
+	}
 }

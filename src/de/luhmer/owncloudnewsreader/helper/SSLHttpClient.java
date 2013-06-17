@@ -65,7 +65,9 @@ public class SSLHttpClient extends DefaultHttpClient {
             }
 
             MySSLSocketFactory sslfactory =  new MySSLSocketFactory(trusted);
-            sslfactory.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+            sslfactory.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
+            //sslfactory.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+            
             return sslfactory;
         } catch (Exception e) {
             throw new AssertionError(e);

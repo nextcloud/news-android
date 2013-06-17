@@ -1,34 +1,29 @@
 package de.luhmer.owncloudnewsreader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Toast;
-import de.luhmer.owncloudnewsreader.data.RssFile;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
-import de.luhmer.owncloudnewsreader.reader.IReader;
-import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.reader.IReader;
+import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 public class NewsDetailActivity extends SherlockFragmentActivity {	
 	
@@ -172,7 +167,9 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 	private void PageChanged(int position)
 	{
-		currentPosition = position;
+		StopVideoOnCurrentPage();		
+		currentPosition = position;		
+		ResumeVideoPlayersOnCurrentPage();
 		
 		UpdateActionBarIcons();
 		
@@ -181,15 +178,14 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 		if(!dbConn.isFeedUnreadStarred(idFeed, true))
 		{			
-			Cursor cur = dbConn.getFeedByID(idFeed);
-			cur.moveToFirst();
-			
 			dbConn.updateIsReadOfFeed(idFeed, true);
-			
+		
+			//Cursor cur = dbConn.getArticleByID(idFeed);
+			//cur.moveToFirst();
 			//GoogleReaderMethods.MarkItemAsRead(true, cur, dbConn, getApplicationContext(), asyncTaskCompletedPerformTagRead);
 
 
-			//TODO THIS IS IMPORTANT CODE !!!
+			/*
 			List<String> idItems = new ArrayList<String>();
 			idItems.add(cur.getString(cur.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
 			_Reader.Start_AsyncTask_PerformTagActionForSingleItem(5,
@@ -200,9 +196,25 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			
 
 			cur.close();
+			*/
 			//dbConn.closeDatabase();
 			Log.d("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + idFeed);
 		}
+	}
+	
+	private void ResumeVideoPlayersOnCurrentPage()
+	{
+		NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+		if(fragment != null)  // could be null if not instantiated yet
+			fragment.ResumeVideoPlayers();
+		
+	}
+	
+	private void StopVideoOnCurrentPage()
+	{
+		NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+		if(fragment != null)  // could be null if not instantiated yet
+			fragment.StopVideoPlayers();
 	}
 
 	public void UpdateActionBarIcons()
@@ -253,7 +265,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Cursor cursor = dbConn.getFeedByID(String.valueOf(databaseItemIds.get(currentPosition)));
+		Cursor cursor = dbConn.getArticleByID(String.valueOf(databaseItemIds.get(currentPosition)));
 		
 		switch (item.getItemId()) {
 			case android.R.id.home:
@@ -272,18 +284,18 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				
 				UpdateActionBarIcons();
                 
-                //TODO THIS IS IMPORTANT CODE !!!
 				List<String> idItems = new ArrayList<String>();
 				cursor.moveToFirst();
 				idItems.add(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
 				cursor.close();
 				
+				/*
                 if(!curState)
                     _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, this, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_STARRED);
                 else
                     _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, this, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_UNSTARRED);
 				
-                
+                */
                 /*
 				Cursor cur = dbConn.getFeedByID(idFeed);
 				cur.moveToFirst();
@@ -359,7 +371,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	}
 
 
-	
+	/*
 	OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagRead = new OnAsyncTaskCompletedListener() {
 		
 		@Override
@@ -379,6 +391,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			Log.d("FINISHED PERFORM TAG STARRED ", "" + task_result);			
 		}
 	};
+	*/
 
 	@Override
 	public void finish() {

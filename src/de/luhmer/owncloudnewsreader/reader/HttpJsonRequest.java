@@ -30,6 +30,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
@@ -72,7 +73,7 @@ public class HttpJsonRequest {
             httpClient = new DefaultHttpClient();
 
         if(username != null && password != null)
-            httpClient.getCredentialsProvider().setCredentials(new AuthScope(null, -1), new UsernamePasswordCredentials(username,password));
+            httpClient.getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), new UsernamePasswordCredentials(username,password));
 
         //HttpGet request = new HttpGet(url);
         //HttpPost request = new HttpPost(url);
@@ -91,9 +92,10 @@ public class HttpJsonRequest {
 
         ResponseHandler<String> responseHandler = new BasicResponseHandler();
         String responseBody = httpClient.execute(request, responseHandler);
-        // Parse
         JSONObject json = new JSONObject(responseBody);
         return json;
+        //HttpResponse response = httpClient.execute(request);
+        //return null;
 
         // Log.i(getClass().getSimpleName(), "send  task - end");
 
@@ -147,7 +149,7 @@ public class HttpJsonRequest {
 
 
 	@SuppressLint("DefaultLocale")
-	public static int performTagChangeRequest(String urlString, String username, String password, Context context, List<NameValuePair> nameValuePairs) throws Exception
+	public static int performTagChangeRequest(String urlString, String username, String password, Context context, String content) throws Exception
 	{
         //url = "http://192.168.10.126/owncloud/ocs/v1.php/apps/news/items/3787/read";
 /*
@@ -212,8 +214,11 @@ public class HttpJsonRequest {
         */
         
         HttpPut request = new HttpPut(url.toString());
-        if(nameValuePairs != null)
-        	request.setEntity(new UrlEncodedFormEntity(nameValuePairs, HTTP.UTF_8));
+        //if(nameValuePairs != null)
+        //	request.setEntity(new UrlEncodedFormEntity(nameValuePairs, HTTP.UTF_8));
+        request.setEntity(new StringEntity(content));
+        request.addHeader("Accept", "application/json");
+        
         
         HttpResponse response = httpClient.execute(request);
         //ResponseHandler<String> responseHandler = new BasicResponseHandler();

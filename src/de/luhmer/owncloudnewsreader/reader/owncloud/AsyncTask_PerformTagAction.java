@@ -41,6 +41,7 @@ public class AsyncTask_PerformTagAction extends AsyncTask<Object, Void, Boolean>
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected Boolean doInBackground(Object... params) {
 		List<String> itemIds = (List<String>) params[0];

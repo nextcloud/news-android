@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
+import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -15,8 +14,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
-import de.luhmer.owncloudnewsreader.util.IabHelper;
-import de.luhmer.owncloudnewsreader.util.IabResult;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -43,6 +40,7 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 	 */
 	private boolean mTwoPane;
 	MenuItem menuItemUpdater;
+	MenuItem menuItemMarkAllAsRead;
 	//IabHelper mHelper;
 	static final String TAG = "NewsReaderListActivity";
 	
@@ -71,7 +69,7 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 					.findFragmentById(R.id.newsreader_list))
 					.setActivateOnItemClick(true);
 		}
-
+		
         /*
 		((NewsReaderListFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.newsreader_list)).setUpdateFinishedListener(updateFinished);
@@ -95,11 +93,14 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
         	});
         */
 
-		/*
+		//Init config --> if nothing is configured start the login dialog.
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
-			startSync();
-		*/
+        if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
+        	StartLoginFragment();
+        
+		//if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
+		//	startSync();
+		
 	}
 
 	
@@ -116,7 +117,8 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 
 	@Override
 	public void onDestroy() {
-	   super.onDestroy();
+		//this.unregisterReceiver()
+		super.onDestroy();
 	   /*
 	   try
 	   {
@@ -147,6 +149,9 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 	
 	private void StartDetailFragment(String id, Boolean folder, String optional_folder_id)
 	{
+		if(menuItemMarkAllAsRead != null)
+			menuItemMarkAllAsRead.setEnabled(true);
+		
 		DatabaseConnection dbConn = new DatabaseConnection(getApplicationContext());
 		
 		Intent detailIntent = new Intent(this, NewsReaderDetailActivity.class);
@@ -219,13 +224,19 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
         if(menuItemUpdater != null)
         {
             IReader _Reader = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.newsreader_list))._Reader;
-            if(_Reader.isSyncRunning())            
+            PullToRefreshExpandableListView pullToRefreshView = (PullToRefreshExpandableListView) findViewById(R.id.expandableListView);
+            if(_Reader.isSyncRunning())   
+            {
                 menuItemUpdater.setActionView(R.layout.inderterminate_progress);
+                if(pullToRefreshView != null)
+                	pullToRefreshView.setRefreshing(true);
+                
+            }
             else
             {
-                menuItemUpdater.setActionView(null);            
-                PullToRefreshExpandableListView pullToRefreshView = (PullToRefreshExpandableListView) findViewById(R.id.expandableListView);
-                pullToRefreshView.onRefreshComplete();
+                menuItemUpdater.setActionView(null);
+                if(pullToRefreshView != null)
+                	pullToRefreshView.onRefreshComplete();
             }
         }
     }
@@ -238,11 +249,19 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 		getSupportMenuInflater().inflate(R.menu.news_reader, menu);		
 		menuItemUpdater = menu.findItem(R.id.menu_update);
 
+		menuItemMarkAllAsRead = menu.findItem(R.id.menu_markAllAsRead);
+		menuItemMarkAllAsRead.setEnabled(false);
+		if(!mTwoPane)//On Smartphones disable this...
+		{
+			menuItemMarkAllAsRead.setVisible(false);
+			menuItemMarkAllAsRead = null;
+		}
+		
         UpdateButtonSyncLayout();
 
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -251,9 +270,28 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 			    //intent.putExtra(EXTRA_MESSAGE, message);
 			    startActivityForResult(intent, RESULT_SETTINGS);
 				return true;
+				
 			case R.id.menu_update:
 				//menuItemUpdater = item.setActionView(R.layout.inderterminate_progress);
 				startSync();
+				break;
+				
+			case R.id.action_login:
+				StartLoginFragment();
+				break;
+				
+			case R.id.menu_markAllAsRead:
+				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
+				if(ndf != null)
+				{
+					DatabaseConnection dbConn = new DatabaseConnection(this);
+					try {
+						dbConn.markAllItemsAsRead(ndf.getDatabaseIdsOfItems());
+					} finally {
+						dbConn.closeDatabase();
+					}
+					ndf.UpdateCursor();
+				}
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -278,6 +316,12 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
     }
 
 
+    private void StartLoginFragment()
+    {
+    	SherlockDialogFragment dialog = new LoginDialogFragment();
+        dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
+    }
+    
     /*
 	AsyncUpdateFinished updateFinished = new AsyncUpdateFinished() {
 		

@@ -5,7 +5,7 @@ package de.luhmer.owncloudnewsreader.data;
  */
 public abstract class AbstractItem {
     public long id_database;
-
+    
     AbstractItem(long id_database)
     {
         this.id_database = id_database;

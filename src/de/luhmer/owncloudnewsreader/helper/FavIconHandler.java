@@ -1,33 +1,41 @@
 package de.luhmer.owncloudnewsreader.helper;
 
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
-import java.math.BigInteger;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.util.HashMap;
-import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Environment;
 import android.util.SparseArray;
 import android.widget.ImageView;
-import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageFromWebAsyncTask;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageAsyncTask;
 
 public class FavIconHandler {
 	public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context)
 	{
 		try
 		{	
-			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, context);						
-			if(favIconFile.isFile())			
+			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, ImageHandler.getPathFavIcons(context));						
+			if(favIconFile.isFile())
+			{
+				/*
+				InputStream fs = new FileInputStream(favIconFile);
+				BufferedInputStream is = new BufferedInputStream(fs, 32*1024);				
+				Bitmap bitmap = GetScaledImage(is, 50, 50);
+				if(bitmap != null)
+					return new BitmapDrawable(context.getResources(), bitmap);
+				else
+					return null;
+				*/
 				return Drawable.createFromPath(favIconFile.getPath());
+			}
 		}
 		catch(Exception ex)
 		{
@@ -35,6 +43,40 @@ public class FavIconHandler {
 		}
 		return null;
 	}
+	
+	/*
+	private static Bitmap GetScaledImage(BufferedInputStream is, int minimumDesiredBitmapWidth, int minimumDesiredBitmapHeight)
+	{
+		try {
+	        final Options decodeBitmapOptions = new Options();
+	        // For further memory savings, you may want to consider using this option
+	        // decodeBitmapOptions.inPreferredConfig = Config.RGB_565; // Uses 2-bytes instead of default 4 per pixel
+
+	        if(minimumDesiredBitmapWidth > 0 && minimumDesiredBitmapHeight > 0 ) {
+	            final Options decodeBoundsOptions = new Options();
+	            decodeBoundsOptions.inJustDecodeBounds = true;
+	            is.mark(32*1024); // 32k is probably overkill, but 8k is insufficient for some jpgs
+	            BitmapFactory.decodeStream(is,null,decodeBoundsOptions);
+	            is.reset();
+
+	            final int originalWidth = decodeBoundsOptions.outWidth;
+	            final int originalHeight = decodeBoundsOptions.outHeight;
+
+	            // inSampleSize prefers multiples of 2, but we prefer to prioritize memory savings
+	            decodeBitmapOptions.inSampleSize= Math.max(1,Math.min(originalWidth / minimumDesiredBitmapWidth, originalHeight / minimumDesiredBitmapHeight));
+	        }
+	        
+	        return BitmapFactory.decodeStream(is,null,decodeBitmapOptions);
+
+	    } catch( IOException e ) {
+	        throw new RuntimeException(e); // this shouldn't happen
+	    } finally {
+	        try {
+	            is.close();
+	        } catch( IOException ignored ) {}
+	    }
+	}*/
+	
 	
 	static SparseArray<FavIconCache> imageViewReferences = new SparseArray<FavIconCache>();
 	
@@ -51,8 +93,13 @@ public class FavIconHandler {
 			key = imageViewReferences.keyAt(imageViewReferences.size() -1) + 1;
 		imageViewReferences.append(key, favIconCache);
 		
-		GetImageFromWebAsyncTask getImageAsync = new GetImageFromWebAsyncTask(WEB_URL_TO_FILE, context, imgDownloadFinished, key/*, imageView*/);
-		getImageAsync.execute((Void)null);
+		
+		imageView.setImageDrawable(null);
+		GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, ImageHandler.getPathFavIcons(context)/*, imageView*/);
+		giAsync.scaleImage = true;
+		giAsync.dstHeight = 2*32;
+		giAsync.dstWidth = 2*32;
+		giAsync.execute((Void)null);
 	}
 	
 	static ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {

@@ -6,10 +6,11 @@
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
     
+    
     <header
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$DisplayPreferenceFragment"
         android:title="@string/pref_header_display" />
-    
+   
     
     <!--
     <header

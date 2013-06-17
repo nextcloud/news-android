@@ -1,19 +1,19 @@
 package de.luhmer.owncloudnewsreader;
 
+import java.io.File;
 import java.io.InputStream;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.actionbarsherlock.app.SherlockFragment;
+import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +23,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import de.luhmer.owncloudnewsreader.data.RssFile;
+
+import com.actionbarsherlock.app.SherlockFragment;
+
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
 public class NewsDetailFragment extends SherlockFragment {	
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
@@ -37,23 +40,71 @@ public class NewsDetailFragment extends SherlockFragment {
 	private WebView webview;	
 	private ProgressBar progressbar_webview;
 	
-	public NewsDetailFragment() {		
-	}
+	public NewsDetailFragment() {
+		//setRetainInstance(true);
 		
-	@SuppressWarnings("deprecation")
+	}
+	
+	/*
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		webview.saveState(outState);
+	}*/
+	
+	
+	@Override
+	public void onPause() {		
+		super.onPause();
+		
+		StopVideoPlayers();
+	}
+	
+	public void StopVideoPlayers()
+	{
+		try {
+			/*
+	        Class.forName("android.webkit.WebView")
+	                .getMethod("onPause", (Class[]) null)
+	                            .invoke(webview, (Object[]) null);
+	        */
+			if(webview != null)
+				webview.onPause();	 
+	    } catch(Exception ex) {
+	    	ex.printStackTrace();
+	    }
+	}
+	
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public void ResumeVideoPlayers()
+	{
+		try {
+			/*
+	        Class.forName("android.webkit.WebView")
+	                .getMethod("onResume", (Class[]) null)
+	                            .invoke(webview, (Object[]) null);
+	 */
+			if(webview != null)
+				webview.onResume();
+	    } catch(Exception ex) {
+	    	ex.printStackTrace();
+	    }
+	}
+	
+		
 	@SuppressLint({ "SimpleDateFormat", "SetJavaScriptEnabled" })
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
-		init_webTemplate();		
-		
-		
+		init_webTemplate();
 		
 		View rootView = inflater.inflate(R.layout.fragment_news_detail, container, false);
 		
 		int section_number = (Integer) getArguments().get(ARG_SECTION_NUMBER);
 		
 		webview = (WebView) rootView.findViewById(R.id.webview);
+		//if (savedInstanceState != null)
+		//	webview.restoreState(savedInstanceState);
+		
 		//webview.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
 		if(background_color != Integer.MIN_VALUE)
 			webview.setBackgroundColor(background_color);		
@@ -64,7 +115,8 @@ public class NewsDetailFragment extends SherlockFragment {
 		
         WebSettings webSettings = webview.getSettings();        
         //webSettings.setPluginState(WebSettings.PluginState.ON);        
-        webSettings.setJavaScriptEnabled(true);        
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAllowFileAccess(true);
         //webSettings.setPluginsEnabled(true);
         //webSettings.setDomStorageEnabled(true);        
         webview.setWebChromeClient(new WebChromeClient() {        	
@@ -99,21 +151,46 @@ public class NewsDetailFragment extends SherlockFragment {
         
         //registerForContextMenu(webview);
         
+        /*
         if(Constants.DEBUG_MODE)
 			Log.d(TAG, "AsyncTask_Starting..");
         //new LoadPageContentAsync().execute(section_number);
         
         if(Constants.DEBUG_MODE)
 			Log.d(TAG, "AsyncTask_Started");
-				
+		*/	
         NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
         
 		//RssFile rssFile = ((NewsDetailActivity)getActivity()).rssFiles.get(section_number - 1);
         int idItem = ndActivity.databaseItemIds.get(section_number -1);
-        Cursor cursor = ndActivity.dbConn.getFeedByID(String.valueOf(idItem));
+        
+        Cursor cursor = ndActivity.dbConn.getArticleByID(String.valueOf(idItem));
         cursor.moveToFirst();
         
+        String favIconUrl = "";
+        
 		try {
+			Cursor favIconCursor = ndActivity.dbConn.getFeedByDbID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
+	        try
+	        {	
+	        	favIconCursor.moveToFirst();
+	        	if(favIconCursor.getCount() > 0)
+	        	{
+	        		favIconUrl = favIconCursor.getString(favIconCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));
+	        		if(favIconUrl.trim() != "")
+	        		{
+	        			File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, ImageHandler.getPathFavIcons(getActivity()));
+	        			if(file.isFile())
+	        				favIconUrl = "file://" + file.getAbsolutePath().toString();
+	        		}
+	        	}
+	        } catch(Exception ex) {
+	        	ex.printStackTrace();
+	        } finally {
+	        	favIconCursor.close();
+	        }
+			
+			
 	        String htmlData = web_template;
 			
 	        String divHeader = "<div id=\"header\">";
@@ -146,31 +223,60 @@ public class NewsDetailFragment extends SherlockFragment {
 	        String divContent = "<div id=\"content\">";
 	        String description = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
 	        //htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), rssFile.getDescription().trim()).toString();
-	        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), description.trim()).toString();
+	        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), getDescriptionWithCachedImages(description, this.getActivity()).trim()).toString();
 	        
-	        String link = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK)); 
+	        //String link = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK)); 
 	        //Uri uri = Uri.parse(rssFile.getLink());
-	        Uri uri = Uri.parse(link);
-	        String domainName = uri.getHost();
-	        String searchString = "http://s2.googleusercontent.com/s2/favicons?domain=";
-	        htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length(), domainName).toString();
-	        	        	        
+	        //Uri uri = Uri.parse(link);
+	        //String domainName = uri.getHost();
+	        //String searchString = "http://s2.googleusercontent.com/s2/favicons?domain=";
+	        //htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length(), domainName).toString();
+	        	
+	        String searchString = "<img id=\"imgFavicon\" src=";
+	        htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length() + 1, favIconUrl).toString();
 	        
-	        //htmlData = htmlData.replace("<img ", imgWidth);
-	        htmlData = URLEncoder.encode(htmlData).replaceAll("\\+"," ");
 	        
-	        webview.loadData(htmlData, "text/html; charset=UTF-8", "UTF-8");        
-	        //webview.loadData(htmlData, "text/html; charset=UTF-8", null);
+	        
+	        
+	        
+	        
+	        //htmlData = URLEncoder.encode(htmlData).replaceAll("\\+"," ");
+	        
+	        webview.loadDataWithBaseURL("", htmlData, "text/html", "UTF-8", "");
+	        //webview.loadData(htmlData, "text/html; charset=UTF-8", "UTF-8");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			cursor.close();
 		}
 		
-		if(Constants.DEBUG_MODE)
-			Log.d(TAG, "AsyncTask_Finished");
+		//if(Constants.DEBUG_MODE)
+		//	Log.d(TAG, "AsyncTask_Finished");
         
 		return rootView;
+	}
+	
+	
+	private String getDescriptionWithCachedImages(String text, Context context)
+	{
+		List<String> links = ImageHandler.getImageLinksFromText(text);
+		
+		for(String link : links)
+		{
+			link = link.trim();
+			try
+			{
+				File file = ImageHandler.getFullPathOfCacheFile(link, ImageHandler.getPathImageCache(getActivity()));
+				if(file.isFile())
+					text = text.replace(link, "file://" + file.getAbsolutePath().toString());
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+		}
+		
+		return text;
 	}
 	
 	/*

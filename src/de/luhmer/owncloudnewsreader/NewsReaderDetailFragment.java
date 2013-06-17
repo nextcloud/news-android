@@ -163,4 +163,8 @@ public class NewsReaderDetailFragment extends ListFragment {
 		super.onListItemClick(l, v, position, id);
 	}
 
+	public ArrayList<Integer> getDatabaseIdsOfItems() {
+		return databaseIdsOfItems;
+	}
+
 }

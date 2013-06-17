@@ -37,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 											+ "guidHash TEXT, "
 											+ "read_temp BOOL, "
   											+ "starred_temp BOOL, "
+  											+ "lastModified DATETIME NULL, "
 											+ "subscription_id_subscription INTEGER, FOREIGN KEY (subscription_id_subscription) REFERENCES subscription(rowid));");		
 
 

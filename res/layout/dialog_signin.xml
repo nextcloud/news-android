@@ -1,0 +1,119 @@
+<!-- 
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".LoginActivity" >
+-->
+    <!-- Login progress --> <!-- 
+
+    <LinearLayout
+        android:id="@+id/login_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/login_status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/login_progress_signing_in"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+-->
+    <!-- Login form -->
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    	xmlns:tools="http://schemas.android.com/tools"
+    	tools:context=".LoginActivity"
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+		    android:orientation="vertical"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+		    <!-- 
+		    <ImageView
+		        android:layout_width="match_parent"
+		        android:layout_height="64dp"
+		        android:scaleType="center"
+		        android:background="#FFFFBB33"
+		        android:contentDescription="@string/app_name" />
+		    -->
+		    		    
+		    <EditText
+		        android:id="@+id/username"
+		        android:inputType="textEmailAddress"
+		        style="@style/LoginDialogEditTextStyle"
+		        android:hint="@string/pref_title_username" />
+		    
+		    <EditText
+		        android:id="@+id/password"
+		        android:inputType="textPassword"
+		        style="@style/LoginDialogEditTextStyle"
+		        android:fontFamily="sans-serif"
+		        android:hint="@string/pref_title_password"/>
+
+		    <EditText
+		        android:id="@+id/edt_owncloudRootPath"
+		        android:fontFamily="sans-serif"
+		        android:hint="@string/pref_default_owncloudRootPath"
+		        android:inputType="textUri"
+		        android:maxLines="1"
+		        android:selectAllOnFocus="true"
+		        android:singleLine="true"
+		        android:title="@string/pref_title_owncloudRootPath"
+		        style="@style/LoginDialogEditTextStyle" />
+		    
+		    <CheckBox
+		        android:id="@+id/cb_AllowAllSSLCertificates"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/pref_title_AllowAllSSLCertificates" />
+		    
+		    <!-- 
+		    <Button
+		        android:id="@+id/btn_signin"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="bottom"
+		        android:text="Button" />
+			 -->
+
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" >
+
+		        <Button
+		            android:id="@+id/btn_cancel"
+		            android:layout_width="0dip"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1.0"
+		            android:text="@android:string/cancel" />
+
+		        <Button
+		            android:id="@+id/btn_signin"
+		            android:layout_width="0dip"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1.0"
+		            android:text="@string/action_sign_in_short" />
+		    </LinearLayout>
+
+		</LinearLayout>
+    </ScrollView>
+<!-- 
+</merge>
+
+ -->

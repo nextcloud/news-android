@@ -20,44 +20,53 @@ public class InsertIntoDatabase {
     {
         DatabaseConnection dbConn = new DatabaseConnection(activity);
 
+        
         //List<String[]> tags = (List<String[]>) task_result;
         List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllTopSubscriptions(true), 1);
 
-        if(tags != null)
+        dbConn.getDatabase().beginTransaction();
+        try
         {
-            List<String> tagsToAdd = new ArrayList<String>();
-            for(String[] t : tags)
-            {
-                String label = t[0];
-                String label_path = t[1];
-                if(!tagsAvailable.contains(label))
-                {
-                    tagsToAdd.add(label);
-                    dbConn.insertNewFolder(label, label_path);
-                }
-            }
-
-            List<String> tagsToRemove = new ArrayList<String>();
-
-
-            List<String> newLabelList = new ArrayList<String>();
-            for(String[] subTag : tags)
-                newLabelList.add(subTag[0]);
-
-            for(String tag : tagsAvailable)
-            {
-                if(!newLabelList.contains(tag))
-                {
-                    tagsToRemove.add(tag);
-                    int result = dbConn.removeFolderByFolderLabel(tag);
-                    Log.d(TAG, "Result delete: " + result);
-                }
-            }
-
-            Log.d("ADD", ""+ tagsToAdd.size());
-            Log.d("REMOVE", ""+ tagsToRemove.size());
+	        if(tags != null)
+	        {
+	            List<String> tagsToAdd = new ArrayList<String>();
+	            for(String[] t : tags)
+	            {
+	                String label = t[0];
+	                String label_path = t[1];
+	                if(!tagsAvailable.contains(label))
+	                {
+	                    tagsToAdd.add(label);
+	                    dbConn.insertNewFolder(label, label_path);
+	                }
+	            }
+	
+	            List<String> tagsToRemove = new ArrayList<String>();
+	
+	
+	            List<String> newLabelList = new ArrayList<String>();
+	            for(String[] subTag : tags)
+	                newLabelList.add(subTag[0]);
+	
+	            for(String tag : tagsAvailable)
+	            {
+	                if(!newLabelList.contains(tag))
+	                {
+	                    tagsToRemove.add(tag);
+	                    int result = dbConn.removeFolderByFolderLabel(tag);
+	                    Log.d(TAG, "Result delete: " + result);
+	                }
+	            }
+	            
+	            Log.d("ADD", ""+ tagsToAdd.size());
+	            Log.d("REMOVE", ""+ tagsToRemove.size());
+	        }
+	        dbConn.getDatabase().setTransactionSuccessful();
+        } finally {        	
+            dbConn.getDatabase().endTransaction();
         }
 
+        
         dbConn.closeDatabase();
     }
 
@@ -67,42 +76,48 @@ public class InsertIntoDatabase {
 
         List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllSubSubscriptions(), 1);
 
-        if(tags != null)
+        dbConn.getDatabase().beginTransaction();
+        try
         {
-            for(ConcreteSubscribtionItem tag : tags)
-            {
-                if(!tagsAvailable.contains(tag.header))
-                {
-                    String folderID_db = dbConn.getIdOfFolderByLabelPath(String.valueOf(tag.folder_id));
-                    dbConn.insertNewSub_Subscription(tag.header, folderID_db, tag.subscription_id, tag.favIcon);
-                }
-            }
-
-            //tags.clear();
-
-            for(String tag : tagsAvailable)
-            {
-                boolean found = false;
-                for(int i = 0; i < tags.size(); i++)
-                {
-                    if(tags.get(i).header.contains(tag))
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-                if(!found)
-                {
-                	int result = dbConn.removeTopSubscriptionItemByTag(tag);
-                    Log.d(TAG, "Remove Subscription: " + result);
-                }
-            }
-
-            //lvAdapter.notifyDataSetChanged();
-
-            //lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn);
-        }
-
+	        if(tags != null)
+	        {
+	            for(ConcreteSubscribtionItem tag : tags)
+	            {
+	                if(!tagsAvailable.contains(tag.header))
+	                {
+	                    String folderID_db = dbConn.getIdOfFolderByLabelPath(String.valueOf(tag.folder_id));
+	                    dbConn.insertNewFeed(tag.header, folderID_db, tag.subscription_id, tag.favIcon);
+	                }
+	            }
+	
+	            //tags.clear();
+	
+	            for(String tag : tagsAvailable)
+	            {
+	                boolean found = false;
+	                for(int i = 0; i < tags.size(); i++)
+	                {
+	                    if(tags.get(i).header.contains(tag))
+	                    {
+	                        found = true;
+	                        break;
+	                    }
+	                }
+	                if(!found)
+	                {
+	                	int result = dbConn.removeTopSubscriptionItemByTag(tag);
+	                    Log.d(TAG, "Remove Subscription: " + result);
+	                }
+	            }
+	
+	            //lvAdapter.notifyDataSetChanged();
+	
+	            //lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn);	            
+	        }
+	        dbConn.getDatabase().setTransactionSuccessful();
+	    } finally {        	
+	        dbConn.getDatabase().endTransaction();
+	    }
         dbConn.closeDatabase();
     }
 
@@ -111,41 +126,53 @@ public class InsertIntoDatabase {
     {
         DatabaseConnection dbConn = new DatabaseConnection(activity);
 
-        if(files != null)
-        {   
-            //if(files.size() > 0)
-            //    if(!(files.get(0).getStarred() && files.get(0).getRead()))                    
-            //        dbConn.resetRssItemsDatabase();
-
-            for (RssFile rssFile : files) {
-            	Boolean isFeedAlreadyInDatabase = dbConn.doesRssItemAlreadyExsists(rssFile.getItem_Id());
-            	
-            	if(isFeedAlreadyInDatabase)
-            	{
-            		int result = dbConn.removeItemByItemId(rssFile.getItem_Id());
-            		Log.d(TAG, "Delete Item: " + result);
-            	}
-            	
-                String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
-                //String IdSubscription = dbConn.getIdSubscriptionByStreamID(rssFile.getFeedID());
-                if(FeedId_Db != null)
-                {
-                    rssFile.setFeedID_Db(FeedId_Db);
-                    //if(!dbConn.doesRssItemAlreadyExsists(rssFile.getFeedID()))
-                    dbConn.insertNewFeed(rssFile.getTitle(),
-                            rssFile.getLink(),
-                            rssFile.getDescription(),
-                            rssFile.getRead(),
-                            String.valueOf(rssFile.getFeedID_Db()),
-                            rssFile.getItem_Id(),
-                            rssFile.getDate(),
-                            rssFile.getStarred(),
-                            rssFile.getGuid(),
-                            rssFile.getGuidHash());
-                }
-            }
-        }
+        dbConn.getDatabase().beginTransaction();
+        try
+        {
+	        if(files != null)
+	        {  
+	            for (RssFile rssFile : files) 
+	            	InsertSingleFeedItemIntoDatabase(rssFile, dbConn);
+	        }
+	        dbConn.getDatabase().setTransactionSuccessful();
+	    } finally {        	
+	        dbConn.getDatabase().endTransaction();
+	    }
 
         dbConn.closeDatabase();
+    }
+    
+    public static void InsertSingleFeedItemIntoDatabase(RssFile rssFile, DatabaseConnection dbConn)
+    {
+        if(rssFile != null)
+        {  
+        	Boolean isFeedAlreadyInDatabase = dbConn.doesRssItemAlreadyExsists(rssFile.getItem_Id());
+        	
+        	if(isFeedAlreadyInDatabase)
+        	{
+        		int result = dbConn.removeItemByItemId(rssFile.getItem_Id());
+        		Log.d(TAG, "Delete Item: " + result);
+        	}
+        	
+            String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
+            //String IdSubscription = dbConn.getIdSubscriptionByStreamID(rssFile.getFeedID());
+            if(FeedId_Db != null)
+            {
+                rssFile.setFeedID_Db(FeedId_Db);
+                //if(!dbConn.doesRssItemAlreadyExsists(rssFile.getFeedID()))
+                dbConn.insertNewItem(rssFile.getTitle(),
+                        rssFile.getLink(),
+                        rssFile.getDescription(),
+                        rssFile.getRead(),
+                        String.valueOf(rssFile.getFeedID_Db()),
+                        rssFile.getItem_Id(),
+                        rssFile.getDate(),
+                        rssFile.getStarred(),
+                        rssFile.getGuid(),
+                        rssFile.getGuidHash(),
+                        rssFile.getLastModified());
+                
+            }
+        }
     }
 }
