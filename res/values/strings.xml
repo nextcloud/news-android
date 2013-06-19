@@ -106,7 +106,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_something_went_wrong">Something went wrong :(</string>
-    <string name="login_dialog_text_not_compatible">This App version is not compatibel with you ownCloud News App. Please update the appframework!</string>    
+    <string name="login_dialog_text_not_compatible">This App version is not compatibel with you ownCloud News App. Please update the news app and the appframework.</string>    
     
     <string name="login_dialog_title_security_warning">Security Warning</string>
     <string name="login_dialog_text_security_warning">You\'re not using https. It\'s possible to get your password by Man in the Middle attacks. So it\'s strongly recommend to use https!</string>

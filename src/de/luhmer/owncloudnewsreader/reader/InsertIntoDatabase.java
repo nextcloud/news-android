@@ -1,14 +1,13 @@
 package de.luhmer.owncloudnewsreader.reader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.util.Log;
 import de.luhmer.owncloudnewsreader.data.ConcreteSubscribtionItem;
-import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.data.RssFile;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by David on 24.05.13.
@@ -24,7 +23,7 @@ public class InsertIntoDatabase {
         //List<String[]> tags = (List<String[]>) task_result;
         List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllTopSubscriptions(true), 1);
 
-        dbConn.getDatabase().beginTransaction();
+        //dbConn.getDatabase().beginTransaction();
         try
         {
 	        if(tags != null)
@@ -61,9 +60,9 @@ public class InsertIntoDatabase {
 	            Log.d("ADD", ""+ tagsToAdd.size());
 	            Log.d("REMOVE", ""+ tagsToRemove.size());
 	        }
-	        dbConn.getDatabase().setTransactionSuccessful();
+	        //dbConn.getDatabase().setTransactionSuccessful();
         } finally {        	
-            dbConn.getDatabase().endTransaction();
+            //dbConn.getDatabase().endTransaction();
         }
 
         
@@ -76,7 +75,7 @@ public class InsertIntoDatabase {
 
         List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllSubSubscriptions(), 1);
 
-        dbConn.getDatabase().beginTransaction();
+        //dbConn.getDatabase().beginTransaction();
         try
         {
 	        if(tags != null)
@@ -114,9 +113,9 @@ public class InsertIntoDatabase {
 	
 	            //lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn);	            
 	        }
-	        dbConn.getDatabase().setTransactionSuccessful();
+	        //dbConn.getDatabase().setTransactionSuccessful();
 	    } finally {        	
-	        dbConn.getDatabase().endTransaction();
+	        //dbConn.getDatabase().endTransaction();
 	    }
         dbConn.closeDatabase();
     }
@@ -126,7 +125,7 @@ public class InsertIntoDatabase {
     {
         DatabaseConnection dbConn = new DatabaseConnection(activity);
 
-        dbConn.getDatabase().beginTransaction();
+        //dbConn.getDatabase().beginTransaction();
         try
         {
 	        if(files != null)
@@ -134,9 +133,9 @@ public class InsertIntoDatabase {
 	            for (RssFile rssFile : files) 
 	            	InsertSingleFeedItemIntoDatabase(rssFile, dbConn);
 	        }
-	        dbConn.getDatabase().setTransactionSuccessful();
+	        //dbConn.getDatabase().setTransactionSuccessful();
 	    } finally {        	
-	        dbConn.getDatabase().endTransaction();
+	        //dbConn.getDatabase().endTransaction();
 	    }
 
         dbConn.closeDatabase();

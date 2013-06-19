@@ -1,25 +1,12 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
-import android.sax.StartElementListener;
-import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.data.RssFile;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
-import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.GoogleReaderApi.GoogleReaderMethods;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 
 public class AsyncTask_GetFeeds extends AsyncTask<Object, Void, Exception> implements AsyncTask_Reader {
@@ -56,7 +43,7 @@ public class AsyncTask_GetFeeds extends AsyncTask<Object, Void, Exception> imple
 	
 	@Override
 	protected Exception doInBackground(Object... params) {
-		FeedItemTags.TAGS tag = (TAGS) params[0];
+		//FeedItemTags.TAGS tag = (TAGS) params[0];
 		/*
 		String username = (String) params[0];
 		String password = (String) params[1];

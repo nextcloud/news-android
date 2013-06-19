@@ -23,7 +23,7 @@ import de.luhmer.owncloudnewsreader.R;
  * Created by David on 24.05.13.
  */
 public class ImageHandler {
-    private static final String TAG = "DownloadImagesFromWeb";
+    //private static final String TAG = "DownloadImagesFromWeb";
 
     public static Drawable LoadImageFromWebOperations(String url) {
         try {
