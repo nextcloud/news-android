@@ -1,10 +1,60 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">ownCloud Hírolvasó</string>
   <string name="action_settings">Beállítások</string>
+  <string name="title_newsreader_list">Hírolvasó</string>
+  <string name="empty_view_header">Információ</string>
+  <string name="empty_view_content">Itt nincs semmi</string>
+  <string name="allUnreadFeeds">Az összes olvasatlan</string>
+  <string name="starredFeeds">Csillagozottak</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Frissítés</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Forráskód - Hibajelentés</string>
+  <string name="email_sendMail">Email küldése</string>
   <!--Action Bar Items-->
   <string name="action_starred">Csillagozott</string>
+  <string name="action_openInBrowser">Megnyitás böngészőben</string>
+  <string name="action_sendSourceCode">Küldjük el a fejlesztőnek</string>
   <string name="action_Share">Megosztás</string>
+  <!--Strings related to login-->
+  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <!--<string name="pref_default_username">admin</string>-->
+  <string name="pull_to_refresh_updateTags">Címkék szinkronizálása</string>
+  <string name="pull_to_refresh_updateFolder">Mappa szinkronizálása</string>
+  <string name="pull_to_refresh_updateFeeds">Hírcsatornák szinkronizálása</string>
+  <string name="pull_to_refresh_updateItems">Tartalom szinkronizálása</string>
+  <!--Strings related to Settings-->
+  <!--General settings-->
+  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <!--Settings for Display-->
+  <!--Login Dialog-->
+  <!--Data & Sync-->
+  <!--Max INT size-->
+  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
+
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>-->
+  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <!--Example settings for Notifications-->
+  <!--<string name="pref_header_notifications">Notifications</string>
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+    <string name="pref_title_vibrate">Vibrate</string>-->
 </resources>
