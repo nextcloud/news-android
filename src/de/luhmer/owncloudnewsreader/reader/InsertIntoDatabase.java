@@ -21,7 +21,7 @@ public class InsertIntoDatabase {
 
         
         //List<String[]> tags = (List<String[]>) task_result;
-        List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllTopSubscriptions(true), 1);
+        List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllTopSubscriptions(false), 1);
 
         //dbConn.getDatabase().beginTransaction();
         try

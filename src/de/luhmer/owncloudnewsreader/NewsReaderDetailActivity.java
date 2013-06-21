@@ -1,9 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
-import java.util.List;
-
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;

@@ -144,6 +144,14 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			}
 			
 			
+			/*
+			String val = String.valueOf(dbConn.getLongValueBySQL("SELECT COUNT(*) FROM " + 
+										DatabaseConnection.RSS_ITEM_TABLE +
+										" WHERE " + DatabaseConnection.RSS_ITEM_STARRED_TEMP + " != " + DatabaseConnection.RSS_ITEM_STARRED
+										));			
+			Toast.makeText(getActivity(), val, Toast.LENGTH_LONG).show();
+			*/
+			
 			//dbConn.resetDatabase();
 			
 			username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");

@@ -22,6 +22,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
@@ -52,21 +53,14 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		ThemeChooser.chooseTheme(this);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
-
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);		
-		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
 		_Reader = new OwnCloud_Reader();
-
 		dbConn = new DatabaseConnection(this);
-		
 		Intent intent = getIntent();
 		
 		//long subsciption_id = -1;
@@ -88,6 +82,14 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		if(intent.hasExtra(DATABASE_IDS_OF_ITEMS))
 			databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
 		
+		
+		// Create the adapter that will return a fragment for each of the three
+		// primary sections of the app.
+		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+		// Set up the ViewPager with the sections adapter.
+		mViewPager = (ViewPager) findViewById(R.id.pager);		
+		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
 			
 		//rssFiles = new ArrayList<RssFile>();
@@ -423,8 +425,10 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			return fragment;
 		}
 		
+		
 		@Override
 		public int getCount() {
+			//return 2;
 			return databaseItemIds.size();
 			//return rssFiles.size();
 		}

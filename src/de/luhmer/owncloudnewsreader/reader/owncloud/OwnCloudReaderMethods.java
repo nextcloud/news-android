@@ -205,7 +205,7 @@ public class OwnCloudReaderMethods {
             JSONObject e = jsonArr.optJSONObject(i);
             String faviconLink = e.optString("faviconLink");
             if(faviconLink != null)
-                if(faviconLink.equals("null"))
+                if(faviconLink.equals("null") || faviconLink.trim().equals(""))
                     faviconLink = null;
             subscriptionTags.add(new ConcreteSubscribtionItem(e.optString("title"), e.optString("folderId"), e.optString("id"), faviconLink, -1));
         }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -206,7 +205,7 @@ public class DatabaseConnection {
 
 	public Cursor getAllTopSubscriptions(boolean onlyUnread) {
 		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NULL"; 
-		String buildSQL = "SELECT f.rowid as _id, * FROM " + FOLDER_TABLE + " f ";
+		String buildSQL = "SELECT DISTINCT(f.rowid) as _id, * FROM " + FOLDER_TABLE + " f ";
         if(onlyUnread)
         {
             buildSQL += " JOIN " + SUBSCRIPTION_TABLE + " sc ON f.rowid = sc." + SUBSCRIPTION_FOLDER_ID +
@@ -223,7 +222,7 @@ public class DatabaseConnection {
 	
 	public Cursor getAllTopSubscriptionsWithoutFolder(boolean onlyUnread) {
 		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NULL"; 
-		String buildSQL = "SELECT sc.rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " sc ";
+		String buildSQL = "SELECT DISTINCT(sc.rowid) as _id, * FROM " + SUBSCRIPTION_TABLE + " sc ";
 		
 		if(onlyUnread)
 		{
@@ -256,7 +255,7 @@ public class DatabaseConnection {
 
 	public Cursor getAllSubSubscriptions() {
 		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NOT NULL"; 
-		String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE;
+		String buildSQL = "SELECT DISTINCT(rowid) as _id, * FROM " + SUBSCRIPTION_TABLE;
 
 		if(DATABASE_DEBUG_MODE)
         	Log.d("DB_HELPER", "getAllSubSubscriptions SQL: " + buildSQL); 
@@ -367,7 +366,7 @@ public class DatabaseConnection {
 	
 	private String getAllFeedsSelectStatement()
 	{
-		return "SELECT rowid as _id, " + RSS_ITEM_TITLE + ", " + RSS_ITEM_RSSITEM_ID + ", " + RSS_ITEM_LINK + ", " + RSS_ITEM_BODY + ", " + RSS_ITEM_READ + ", " + RSS_ITEM_SUBSCRIPTION_ID + ", "
+		return "SELECT DISTINCT(rowid) as _id, " + RSS_ITEM_TITLE + ", " + RSS_ITEM_RSSITEM_ID + ", " + RSS_ITEM_LINK + ", " + RSS_ITEM_BODY + ", " + RSS_ITEM_READ + ", " + RSS_ITEM_SUBSCRIPTION_ID + ", "
 					+ RSS_ITEM_PUBDATE + ", " + RSS_ITEM_STARRED + ", " + RSS_ITEM_GUIDHASH + ", " + RSS_ITEM_GUID + ", " + RSS_ITEM_STARRED_TEMP + ", " + RSS_ITEM_READ_TEMP;
 	}
 	
@@ -384,7 +383,9 @@ public class DatabaseConnection {
 			buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
 		else if(onlyStarredItems)
 			buildSQL += " AND " + RSS_ITEM_STARRED_TEMP + " = 1";
-		
+
+        buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " desc";
+
 		if(DATABASE_DEBUG_MODE)
 			Log.d("DB_HELPER", "getAllItemsForFeed SQL: " + buildSQL); 
         return database.rawQuery(buildSQL, null);
@@ -682,7 +683,7 @@ public class DatabaseConnection {
         return result;
     }
 	
-	private long getLongValueBySQL(String buildSQL)
+	public long getLongValueBySQL(String buildSQL)
     {
     	long result = -1;
         

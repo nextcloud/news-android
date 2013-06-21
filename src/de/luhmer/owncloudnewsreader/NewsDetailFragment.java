@@ -14,7 +14,6 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +27,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 public class NewsDetailFragment extends SherlockFragment {	
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
@@ -177,12 +177,14 @@ public class NewsDetailFragment extends SherlockFragment {
 	        	if(favIconCursor.getCount() > 0)
 	        	{
 	        		favIconUrl = favIconCursor.getString(favIconCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));
-	        		if(favIconUrl.trim() != "")
+	        		if(favIconUrl != null)
 	        		{
 	        			File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, ImageHandler.getPathFavIcons(getActivity()));
 	        			if(file.isFile())
 	        				favIconUrl = "file://" + file.getAbsolutePath().toString();
 	        		}
+	        		else
+	        			favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
 	        	}
 	        } catch(Exception ex) {
 	        	ex.printStackTrace();
@@ -197,6 +199,8 @@ public class NewsDetailFragment extends SherlockFragment {
 	        StringBuilder sb = new StringBuilder(htmlData);
 	        //htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), rssFile.getTitle().trim()).toString();
 	        String title = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE));
+	        String linkToFeed = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
+	        title = "<a href=\"" + linkToFeed + "\">" + title + "</a>";
 	        htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), title.trim()).toString();
 	        
 	        

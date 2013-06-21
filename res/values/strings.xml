@@ -106,10 +106,10 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_something_went_wrong">Something went wrong :(</string>
-    <string name="login_dialog_text_not_compatible">This App version is not compatibel with you ownCloud News App. Please update the news app and the appframework.</string>    
+    <string name="login_dialog_text_not_compatible">This App version is not compatible with you ownCloud News App. Please update the news app and the appframework.</string>    
     
     <string name="login_dialog_title_security_warning">Security Warning</string>
-    <string name="login_dialog_text_security_warning">You\'re not using https. It\'s possible to get your password by Man in the Middle attacks. So it\'s strongly recommend to use https!</string>
+    <string name="login_dialog_text_security_warning">You\'re not using https. An attacker could intercept your traffic and gain access to some sensitive data (e.g. your password). So it\'s strongly recommend to use https!</string>
     
 
     <!-- Data & Sync -->
@@ -157,10 +157,6 @@
     </string-array>
     -->
 
-    <!-- Display Settings -->
-    <string name="pref_header_display">Display Settings</string>
-    
-    
     <!-- 
     <string name="pref_title_system_sync_settings">System sync settings</string>
  	-->

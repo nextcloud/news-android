@@ -20,7 +20,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="module" module-name="actionbarsherlock" exported="" />
+    <orderEntry type="library" name="android-support-v4" level="project" />
   </component>
 </module>
 

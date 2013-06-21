@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -27,6 +28,7 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -68,6 +70,14 @@ public class SettingsActivity extends PreferenceActivity {
     static Activity _mActivity;
     
     
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		
+		ThemeChooser.chooseTheme(this);
+		
+		super.onCreate(savedInstanceState);
+	}
+
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
@@ -144,6 +154,7 @@ public class SettingsActivity extends PreferenceActivity {
 	 * Helper method to determine if the device has an extra-large screen. For
 	 * example, 10" tablets are extra-large.
 	 */
+	@SuppressLint("InlinedApi")
 	private static boolean isXLargeTablet(Context context) {
 		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
 	}

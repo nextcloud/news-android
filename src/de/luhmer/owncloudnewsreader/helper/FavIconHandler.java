@@ -8,13 +8,16 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.util.SparseArray;
 import android.widget.ImageView;
+import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageAsyncTask;
 
 public class FavIconHandler {
@@ -42,6 +45,15 @@ public class FavIconHandler {
 			ex.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static int getResourceIdForRightDefaultFeedIcon(Context context)
+	{
+		if(ThemeChooser.isDarkTheme(context))
+			return R.drawable.default_feed_icon_light;
+		else
+			return R.drawable.default_feed_icon_dark;
+		
 	}
 	
 	/*

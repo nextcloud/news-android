@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -349,10 +348,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		    		//new FavIconHandler.GetImageFromWebAsyncTask(favIconURL, mContext, imgView).execute((Void)null);
 				}
 				else
-					imgView.setImageDrawable(null);
+					imgView.setImageResource(FavIconHandler.getResourceIdForRightDefaultFeedIcon(mContext));
 	    	}
 			else
-				imgView.setImageDrawable(null);
+				imgView.setImageResource(FavIconHandler.getResourceIdForRightDefaultFeedIcon(mContext));
 		}
 		catch(Exception ex)
 		{
