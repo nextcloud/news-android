@@ -15,8 +15,9 @@ https://www.transifex.com/projects/p/owncloud/resource/android-news/
 
 FAQ:
 ==================================
-My app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen)
-- Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3.
+The app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen)
+- Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3 (via Google Play or GitHub <a href="https://github.com/owncloud/News-Android-App/commits/master/OwncloudNewsReader.apk">Choose version</a>).  
+
 
 
 
