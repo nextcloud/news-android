@@ -17,6 +17,10 @@
         android:icon="@drawable/ic_menu_refresh"        
         android:showAsAction="always" />
     
+    <item android:id="@+id/menu_StartImageCaching"
+        android:title="@string/menu_StartImageCaching"
+        android:showAsAction="never" />
+    
     <item
         android:id="@+id/menu_markAllAsRead"
         android:showAsAction="never"

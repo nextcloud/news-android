@@ -2,13 +2,8 @@ package de.luhmer.owncloudnewsreader.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageAsyncTask;
 import android.annotation.TargetApi;
 import android.app.IntentService;
 import android.app.Notification;
@@ -17,30 +12,44 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
+import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageAsyncTask;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class DownloadImagesService extends IntentService {
 
-	private static final int NOTIFICATION_ID = 1;
+	public static final String LAST_ITEM_ID = "LAST_ITEM_ID";
+	private static Random random;
+	
+	private int NOTIFICATION_ID = 1;
 	private NotificationManager notificationManager;
 	private NotificationCompat.Builder NotificationDownloadImages;
 	private int count;
 	private int maxCount;
-	public static final String LAST_ITEM_ID = "LAST_ITEM_ID";
+	
 	
 	public DownloadImagesService() {
-		super(null);
-		count = 0;
-		maxCount = 0;
+		super(null);	
+		initService();
 	}
 	
 	public DownloadImagesService(String name) {
 		super(name);
+		initService();
+	}
+	
+	private void initService()
+	{
 		count = 0;
 		maxCount = 0;
+		if(random == null)
+			random = new Random();
+		NOTIFICATION_ID = random.nextInt();
 	}
 
 	@Override
@@ -60,10 +69,9 @@ public class DownloadImagesService extends IntentService {
 		super.onDestroy();
 	}
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		String lastId = intent.getStringExtra(LAST_ITEM_ID);
+		String lastId = String.valueOf(intent.getLongExtra(LAST_ITEM_ID, 0));
 		DatabaseConnection dbConn = new DatabaseConnection(this);
 		Cursor cursor = dbConn.getAllItemsWithIdHigher(lastId);
 		List<String> links = new ArrayList<String>();
@@ -97,7 +105,8 @@ public class DownloadImagesService extends IntentService {
 		Notification notify = NotificationDownloadImages.build();
 		
 		//Hide the notification after its selected
-		notify.flags |= Notification.FLAG_AUTO_CANCEL;
+		//notify.flags |= Notification.FLAG_AUTO_CANCEL;
+		notify.flags |= Notification.FLAG_NO_CLEAR;
 		
 		if(maxCount > 0)		
 			notificationManager.notify(NOTIFICATION_ID, notify); 
@@ -108,7 +117,6 @@ public class DownloadImagesService extends IntentService {
 	
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 		
-		@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 		@Override
 		public void DownloadFinished(int AsynkTaskId, String fileCachePath) {
 			count++;

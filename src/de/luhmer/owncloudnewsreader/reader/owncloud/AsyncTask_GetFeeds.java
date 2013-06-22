@@ -14,7 +14,7 @@ public class AsyncTask_GetFeeds extends AsyncTask<Object, Void, Exception> imple
     private Activity context;
     private int task_id;
     private OnAsyncTaskCompletedListener[] listener;
-    private String highestItemIdBeforeSync; 
+    private long highestItemIdBeforeSync; 
     
     public AsyncTask_GetFeeds(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener) {
           super();
@@ -64,7 +64,7 @@ public class AsyncTask_GetFeeds extends AsyncTask<Object, Void, Exception> imple
         	int requestCount = 0;
         	int maxSyncSize = Integer.parseInt(OwnCloudReaderMethods.maxSizePerSync);
         	
-        	highestItemIdBeforeSync = String.valueOf(dbConn.getHighestItemId());
+        	highestItemIdBeforeSync = dbConn.getHighestItemId();
         	
         	if(lastModified == 0)
         	{

@@ -418,16 +418,13 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 				editor.commit();
 				
 				LoginDialogFragment.this.getDialog().cancel();
+			} else if((versionCode > 0) || (versionCode == -1 && exception_message.equals("Value <!DOCTYPE of type java.lang.String cannot be converted to JSONObject"))) {
+				ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_not_compatible), getActivity());
 			} else if(versionCode == -1) {
 				ShowAlertDialog(getString(R.string.login_dialog_title_error), exception_message, getActivity());				
 				//mPasswordView.setError(getString(R.string.error_incorrect_password));
 				//mPasswordView.requestFocus();
-			}else if(versionCode > 0) {
-				ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_not_compatible), getActivity());				
-				//mPasswordView.setError(getString(R.string.error_incorrect_password));
-				//mPasswordView.requestFocus();
-			}
-			else if(versionCode == 0){
+			} else if(versionCode == 0){
 				ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_something_went_wrong), getActivity());
 			}	
 		}

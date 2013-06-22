@@ -184,6 +184,12 @@ public class DatabaseConnection {
     	return getLongValueBySQL(buildSQL);
     }
     
+    public long getLowestItemIdUnread()
+    {
+    	String buildSQL = "SELECT MIN(" + RSS_ITEM_RSSITEM_ID + ") FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_READ_TEMP + " != 1";
+    	return getLongValueBySQL(buildSQL);
+    }
+    
     public long getHighestItemId()
     {
     	String buildSQL = "SELECT MAX(" + RSS_ITEM_RSSITEM_ID + ") FROM " + RSS_ITEM_TABLE;

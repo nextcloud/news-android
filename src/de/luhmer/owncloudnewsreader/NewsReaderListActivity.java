@@ -14,6 +14,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
+import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -292,6 +293,18 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 					}
 					ndf.UpdateCursor();
 				}
+				break;
+				
+			case R.id.menu_StartImageCaching:
+				DatabaseConnection dbConn = new DatabaseConnection(this);
+		    	try {
+		    		long highestItemId = dbConn.getLowestItemIdUnread();
+		    		Intent service = new Intent(this, DownloadImagesService.class);
+		        	service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
+		    		startService(service);
+		    	} finally {
+		    		dbConn.closeDatabase();
+		    	}
 				break;
 		}
 		return super.onOptionsItemSelected(item);
