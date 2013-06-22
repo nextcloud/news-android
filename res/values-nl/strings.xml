@@ -20,7 +20,10 @@
   <string name="action_openInBrowser">Openen in Browser</string>
   <string name="action_sendSourceCode">Verzend item naar ontwikkelaar</string>
   <string name="action_Share">Delen</string>
+  <string name="action_login">Login</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Gebruikersnaam</string>
+  <string name="pref_title_password">Wachtwoord</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <string name="pull_to_refresh_updateTags">Synchroniseren tags</string>
@@ -28,11 +31,15 @@
   <string name="pull_to_refresh_updateFeeds">Synchroniseren feeds</string>
   <string name="pull_to_refresh_updateItems">Synchroniseren onderwerpen</string>
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Instellingen</string>
   <!--General settings-->
+  <string name="pref_header_general">Algemeen</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Fout</string>
+  <string name="login_dialog_title_security_warning">Beveiligingswaarschuwing</string>
   <!--Data & Sync-->
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

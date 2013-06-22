@@ -6,15 +6,21 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Споделяне</string>
+  <string name="action_login">Вход</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Потребител</string>
+  <string name="pref_title_password">Парола</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Настройки</string>
   <!--General settings-->
+  <string name="pref_header_general">Общи</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Грешка</string>
   <!--Data & Sync-->
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

@@ -7,15 +7,21 @@
   <!--Action Bar Items-->
   <string name="action_starred">يۇلتۇزلۇق</string>
   <string name="action_Share">ھەمبەھىر</string>
+  <string name="action_login">تىزىمغا كىرىڭ</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">ئىشلەتكۈچى ئاتى</string>
+  <string name="pref_title_password">ئىم</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">تەڭشەكلەر</string>
   <!--General settings-->
+  <string name="pref_header_general">ئادەتتىكى</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">خاتالىق</string>
   <!--Data & Sync-->
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

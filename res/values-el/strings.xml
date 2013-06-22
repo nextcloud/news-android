@@ -13,7 +13,10 @@
   <string name="action_openInBrowser">Άνοιγμα στον Περιηγητή</string>
   <string name="action_sendSourceCode">Αποστολή αντικειμένου στον Προγραμματιστή</string>
   <string name="action_Share">Διαμοιρασμός</string>
+  <string name="action_login">Σύνδεση</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Όνομα χρήστη</string>
+  <string name="pref_title_password">Συνθηματικό</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <string name="pull_to_refresh_updateTags">Συγχρονισμός ετικετών</string>
@@ -21,11 +24,15 @@
   <string name="pull_to_refresh_updateFeeds">Συγχρονισμός ροών</string>
   <string name="pull_to_refresh_updateItems">Συγχρονισμός αντικειμένων</string>
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Ρυθμίσεις</string>
   <!--General settings-->
+  <string name="pref_header_general">Γενικά</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Σφάλμα</string>
+  <string name="login_dialog_title_security_warning">Προειδοποίηση Ασφαλείας</string>
   <!--Data & Sync-->
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

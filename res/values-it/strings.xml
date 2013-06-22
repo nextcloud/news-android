@@ -12,6 +12,7 @@
   <string name="starredFeeds">Elementi preferiti</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aggiorna</string>
+  <string name="menu_markAllAsRead">Marca tutti come letti</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Codice sorgente dell\'elemento - Segnalazione bug</string>
   <string name="email_sendMail">Invia email</string>
@@ -20,20 +21,76 @@
   <string name="action_openInBrowser">Apri nel browser</string>
   <string name="action_sendSourceCode">Invia elemento allo sviluppatore</string>
   <string name="action_Share">Condividi</string>
+  <string name="action_login">Accesso</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Nome utente</string>
+  <string name="pref_title_password">Password</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Accedi</string>
+  <string name="login_progress_signing_in">Accesso in corso...</string>
+  <string name="error_incorrect_password">La password non è corretta</string>
+  <string name="error_field_required">Questo campo è obbligatorio</string>
+  <string name="error_invalid_url">Questo URL non è corretto</string>
   <string name="pull_to_refresh_updateTags">Sincronizzazione tag</string>
   <string name="pull_to_refresh_updateFolder">Sincronizzazione cartella</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizzazione fonti</string>
   <string name="pull_to_refresh_updateItems">Sincronizzazione elementi</string>
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Impostazioni</string>
   <!--General settings-->
+  <string name="pref_header_general">Generale</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Sincronizza all\'avvio</string>
+  <string name="pref_title_ShowOnlyUnread">Mostra solo gli articoli non letti</string>
+  <string name="pref_title_AllowAllSSLCertificates">Permetti tutti i certificati SSL</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Schermo</string>
+  <string name="pref_title_app_theme">Tema applicazione (richiede il riavvio)</string>
+  <string name="pref_title_feed_list_layout">Struttura elenco fonti</string>
+  <string-array name="pref_display_apptheme">
+    <item>Scuro</item>
+    <item>Chiaro</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Semplice</item>
+    <item>Esteso</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Errore</string>
+  <string name="login_dialog_text_something_went_wrong">Qualcosa non ha funzionato :(</string>
+  <string name="login_dialog_title_security_warning">Avviso di sicurezza</string>
+  <string name="login_dialog_text_security_warning">Non stai usando https. Un malintenzionato potrebbe intercettare il tuo traffico e ottenere accesso a dati sensibili (ad esempio la tua password). Per questo motivo è vivamente consigliato l\'utilizzo di https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Dati e sincronizzazione</string>
+  <string name="pref_title_data_sync_max_items">Numero massimo di elementi da sincronizzare</string>
+  <string name="pref_title_clearCache">Svuota la cache</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 elementi</item>
+    <item>400 elementi</item>
+    <item>600 elementi</item>
+    <item>800 elementi</item>
+    <item>1000 elementi</item>
+    <item>Tutti gli elementi</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

@@ -12,6 +12,7 @@
   <string name="starredFeeds">Elementos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
+  <string name="menu_markAllAsRead">Marcar todo como lido</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código fonte do elemento - Informe de fallos</string>
   <string name="email_sendMail">Enviar correo</string>
@@ -20,20 +21,70 @@
   <string name="action_openInBrowser">Abrir no navegador</string>
   <string name="action_sendSourceCode">Enviar o elemento ao desenvolvedor</string>
   <string name="action_Share">Compartir</string>
+  <string name="action_login">Acceso</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Nome de usuario</string>
+  <string name="pref_title_password">Contrasinal</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="error_incorrect_password">Este contrasinal é incorrecto</string>
+  <string name="error_field_required">Este campo é obrigatorio</string>
+  <string name="error_invalid_url">Este URL é incorrecto</string>
   <string name="pull_to_refresh_updateTags">Sincronizando as etiquetas</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando o cartafol</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando as fontes</string>
   <string name="pull_to_refresh_updateItems">Sincronizando os elementos</string>
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Axustes</string>
   <!--General settings-->
+  <string name="pref_header_general">Xeral</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
+  <string name="pref_title_ShowOnlyUnread">Amosar só os artigos non lidos</string>
+  <string name="pref_title_AllowAllSSLCertificates">Permitir todos os certificados SSL</string>
   <!--Settings for Display-->
+  <string-array name="pref_display_apptheme">
+    <item>Escuro</item>
+    <item>Claro</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Único</item>
+    <item>Estendido</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Erro</string>
+  <string name="login_dialog_text_something_went_wrong">Algo foi mal :(</string>
+  <string name="login_dialog_title_security_warning">Aviso de seguranza</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Datos e sincronización</string>
+  <string name="pref_title_data_sync_max_items">Número máximo de elementos que sincronizar</string>
+  <string name="pref_title_clearCache">Limpar a caché</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 elementos</item>
+    <item>400 elementos</item>
+    <item>600 elementos</item>
+    <item>800 elementos</item>
+    <item>1000 elementos</item>
+    <item>Todos os elementos</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

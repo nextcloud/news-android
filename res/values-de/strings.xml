@@ -19,17 +19,24 @@
   <string name="action_openInBrowser">Im Browser öffnen...</string>
   <string name="action_sendSourceCode">Notiz an Entwickler senden</string>
   <string name="action_Share">Teilen</string>
+  <string name="action_login">Anmelden</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Benutzername</string>
+  <string name="pref_title_password">Passwort</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <string name="pull_to_refresh_updateFolder">Ordner synchronisieren</string>
   <string name="pull_to_refresh_updateItems">Notiz synchronisieren</string>
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Einstellungen</string>
   <!--General settings-->
+  <string name="pref_header_general">Allgemein</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Fehler</string>
+  <string name="login_dialog_title_security_warning">Sicherheitswarnung</string>
   <!--Data & Sync-->
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

@@ -20,7 +20,10 @@
   <string name="action_openInBrowser">Ava veebilehitsejas</string>
   <string name="action_sendSourceCode">Saada üksus arendajale</string>
   <string name="action_Share">Jaga</string>
+  <string name="action_login">Logi sisse</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Kasutajanimi</string>
+  <string name="pref_title_password">Parool</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <string name="pull_to_refresh_updateTags">Sünkroniseerin silte</string>
@@ -28,11 +31,15 @@
   <string name="pull_to_refresh_updateFeeds">Sünkroniseerin vooge</string>
   <string name="pull_to_refresh_updateItems">Sünkroniseerin üksusi</string>
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Seaded</string>
   <!--General settings-->
+  <string name="pref_header_general">Üldine</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Viga</string>
+  <string name="login_dialog_title_security_warning">Turvahoiatus</string>
   <!--Data & Sync-->
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

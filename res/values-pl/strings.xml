@@ -20,7 +20,10 @@
   <string name="action_openInBrowser">Otwórz w przeglądarce</string>
   <string name="action_sendSourceCode">Wyślij element do autora</string>
   <string name="action_Share">Udostępnij</string>
+  <string name="action_login">Zaloguj</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Nazwa użytkownika</string>
+  <string name="pref_title_password">Hasło</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <string name="pull_to_refresh_updateTags">Synchronizowanie tagów</string>
@@ -28,11 +31,15 @@
   <string name="pull_to_refresh_updateFeeds">Synchronizowanie kanałów</string>
   <string name="pull_to_refresh_updateItems">Synchronizowanie elementów</string>
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Ustawienia</string>
   <!--General settings-->
+  <string name="pref_header_general">Ogólne</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Błąd</string>
+  <string name="login_dialog_title_security_warning">Ostrzeżenie o zabezpieczeniach</string>
   <!--Data & Sync-->
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

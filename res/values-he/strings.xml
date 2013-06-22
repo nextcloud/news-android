@@ -15,15 +15,22 @@
   <string name="action_openInBrowser">פתיחה בדפדפן</string>
   <string name="action_sendSourceCode">שליחת הפריט למתכנת</string>
   <string name="action_Share">שיתוף</string>
+  <string name="action_login">התחברות</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">שם משתמש</string>
+  <string name="pref_title_password">סיסמא</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">הגדרות</string>
   <!--General settings-->
+  <string name="pref_header_general">כללי</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">שגיאה</string>
+  <string name="login_dialog_title_security_warning">אזהרת אבטחה</string>
   <!--Data & Sync-->
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

@@ -12,6 +12,7 @@
   <string name="starredFeeds">共有アイテム</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">同期</string>
+  <string name="menu_markAllAsRead">すべて既読にする</string>
   <!--EMAIL-->
   <string name="email_sourceCode">アイテムのソースコード - バグ報告</string>
   <string name="email_sendMail">メールを送る</string>
@@ -20,20 +21,76 @@
   <string name="action_openInBrowser">ブラウザーで開く</string>
   <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
+  <string name="action_login">ログイン</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">ユーザー名</string>
+  <string name="pref_title_password">パスワード</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">ログイン</string>
+  <string name="login_progress_signing_in">ログイン中...</string>
+  <string name="error_incorrect_password">このパスワードは間違っています</string>
+  <string name="error_field_required">このフィールドは必須です</string>
+  <string name="error_invalid_url">このURLは不正確です</string>
   <string name="pull_to_refresh_updateTags">タグを同期中</string>
   <string name="pull_to_refresh_updateFolder">フォルダを同期中</string>
   <string name="pull_to_refresh_updateFeeds">フィードを同期中</string>
   <string name="pull_to_refresh_updateItems">アイテムを同期中</string>
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">設定</string>
   <!--General settings-->
+  <string name="pref_header_general">一般</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
+  <string name="pref_title_ShowOnlyUnread">未読の記事のみ表示</string>
+  <string name="pref_title_AllowAllSSLCertificates">全てのSSL証明書を許可</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">表示</string>
+  <string name="pref_title_app_theme">アプリのテーマ (適用するには再起動する必要があります)</string>
+  <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
+  <string-array name="pref_display_apptheme">
+    <item>ダーク</item>
+    <item>ライト</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>単純</item>
+    <item>拡張</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">エラー</string>
+  <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
+  <string name="login_dialog_title_security_warning">セキュリティ警告</string>
+  <string name="login_dialog_text_security_warning">httpsを使用していません。攻撃者があなたのトラフィックに干渉し、一部の機密データ(例えば、パスワード)にアクセスする恐れがあります。ですので、httpsの使用が強く推奨されます！</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">データと同期</string>
+  <string name="pref_title_data_sync_max_items">同期するアイテムの最大数</string>
+  <string name="pref_title_clearCache">キャッシュをクリア</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200個</item>
+    <item>400個</item>
+    <item>600個</item>
+    <item>800 個</item>
+    <item>1000個</item>
+    <item>全アイテム</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
