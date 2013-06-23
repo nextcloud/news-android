@@ -69,6 +69,7 @@
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Errore</string>
   <string name="login_dialog_text_something_went_wrong">Qualcosa non ha funzionato :(</string>
+  <string name="login_dialog_text_not_compatible">Questa versione dell\'applicazione non è compatibile con la tua versione di ownCloud News. Aggiorna l\'applicazione e l\'appframework.</string>
   <string name="login_dialog_title_security_warning">Avviso di sicurezza</string>
   <string name="login_dialog_text_security_warning">Non stai usando https. Un malintenzionato potrebbe intercettare il tuo traffico e ottenere accesso a dati sensibili (ad esempio la tua password). Per questo motivo è vivamente consigliato l\'utilizzo di https!</string>
   <!--Data & Sync-->
