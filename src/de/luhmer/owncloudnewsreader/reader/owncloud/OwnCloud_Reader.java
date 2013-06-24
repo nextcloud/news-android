@@ -20,24 +20,31 @@ public class OwnCloud_Reader implements IReader {
 	}
 	
 	@Override
-	public void Start_AsyncTask_GetFeeds(int task_id,
+	public void Start_AsyncTask_GetItems(int task_id,
 			Activity context, OnAsyncTaskCompletedListener listener, FeedItemTags.TAGS tag) {
 		setSyncRunning(true);
-		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetFeeds(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute(tag));
+		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetItems(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute(tag));
 	}
 
+	@Override
+	public void Start_AsyncTask_GetOldItems(int task_id,
+			Activity context, OnAsyncTaskCompletedListener listener, String feed_id, String folder_id) {
+		setSyncRunning(true);
+		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetOldItems(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, feed_id, folder_id).execute());
+	}
+	
 	@Override
 	public void Start_AsyncTask_GetFolder(int task_id,
 			Activity context, OnAsyncTaskCompletedListener listener) {
 		setSyncRunning(true);
 		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetFolderTags(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute());
 	}
-
+	
 	@Override
-	public void Start_AsyncTask_GetSubFolder(int task_id,
+	public void Start_AsyncTask_GetFeeds(int task_id,
 			Activity context, OnAsyncTaskCompletedListener listener) {
 		setSyncRunning(true);
-		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetSubFolderTags(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute());
+		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetFeeds(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener } ).execute());
 	}
 
 	@Override

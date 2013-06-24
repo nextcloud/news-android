@@ -3,6 +3,8 @@ package de.luhmer.owncloudnewsreader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.actionbarsherlock.app.SherlockDialogFragment;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,8 +21,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-
-import com.actionbarsherlock.app.SherlockDialogFragment;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;

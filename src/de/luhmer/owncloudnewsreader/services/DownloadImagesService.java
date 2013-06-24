@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import android.annotation.TargetApi;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -12,7 +11,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
@@ -105,8 +103,8 @@ public class DownloadImagesService extends IntentService {
 		Notification notify = NotificationDownloadImages.build();
 		
 		//Hide the notification after its selected
-		//notify.flags |= Notification.FLAG_AUTO_CANCEL;
-		notify.flags |= Notification.FLAG_NO_CLEAR;
+		notify.flags |= Notification.FLAG_AUTO_CANCEL;
+		//notify.flags |= Notification.FLAG_NO_CLEAR;
 		
 		if(maxCount > 0)		
 			notificationManager.notify(NOTIFICATION_ID, notify); 

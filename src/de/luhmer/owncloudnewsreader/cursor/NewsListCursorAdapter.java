@@ -1,9 +1,7 @@
 package de.luhmer.owncloudnewsreader.cursor;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,19 +13,21 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -59,7 +59,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View view, final Context context, Cursor cursor) {
         final String idItemDb = cursor.getString(0);
-        final String idItem = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
+        //final String idItem = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
         
         switch (selectedDesign) {
 			case 0:
@@ -142,7 +142,6 @@ public class NewsListCursorAdapter extends CursorAdapter {
 		});
         
         //Log.d("NewsListCursor", "BIND VIEW..");
-        
         //((CheckBox) view.findViewById(R.id.cb_lv_item_starred)).setButtonDrawable(R.drawable.btn_rating_star_off_normal_holo_light);
 	}
 	
@@ -256,6 +255,10 @@ public class NewsListCursorAdapter extends CursorAdapter {
         if(retView != null)
         	retView.setTag(cursor.getString(0));
         
+        
+        
+       
+        //retView.getLocationOnScreen(location);        
         //Log.d("NewsListCursor", "NEW VIEW..");
         
         return retView;

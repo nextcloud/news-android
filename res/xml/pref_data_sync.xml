@@ -42,4 +42,8 @@
         android:singleLine="true"
         android:title="@string/pref_title_clearCache" />
     
+    <CheckBoxPreference
+        android:key="cb_cacheImagesOffline"
+        android:title="@string/pref_title_CacheImagesOffline" />
+    
 </PreferenceScreen>

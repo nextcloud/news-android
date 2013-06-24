@@ -2,7 +2,7 @@
     <head>
         <style type="text/css">
 		
-			body {				
+			body#darkTheme {
 				/* font-family:		'Segoe UI', 'Segoe UI Light', 'Droid Sans', sans-serif ;  */
 			 	font-family:		'Roboto', 'Segoe UI', 'Segoe UI Light'; 
 				font-size:			18px;
@@ -11,6 +11,14 @@
 				color:				#EEE;
 				/*background-color:	#E6E6E6;
 				color:				#2C2E2F;*/
+			}
+			
+			body#lightTheme {
+			 	font-family:		'Roboto', 'Segoe UI', 'Segoe UI Light'; 
+				font-size:			18px;
+				font-weight:    	normal;
+				background-color:	#E1E1E1;
+				color:				#333;
 			}
 		
 			body, blockquote, img, iframe, video, div, table, tbody, tr, td, pre, code, blockquote, p, em, b {
@@ -95,17 +103,24 @@
 			#imgFavicon {
 				margin-left:-3px;
 				vertical-align:middle;
+				margin-bottom:2px;
 				width:16px !important;
 				height:16px !important;
 			}
 					
-			a:link, a:active, a:hover {
-				color: #DADADA;
+			body#lightTheme a:link, a:active, a:hover {
+				color: #555 !important;	
 				/*color: #2C2E2F;*/
 			}
-			a:visited {
-				color: #AEAEAE;
-				/*color: #0033FF; */
+			body#lightTheme a:visited {
+				color: #000 !important;
+			}
+			
+			body#darkTheme a:link, a:active, a:hover {
+				color: #DADADA !important;
+			}
+			body#darkTheme a:visited {
+				color: #AEAEAE !important;
 			}
 			/*
 			a:active {
@@ -117,14 +132,13 @@
         </style>
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     </head>
-    <body>
-    
+    <body id="lightTheme">
         <div id="header">
         </div>
         
         <div id="header_small_text">        
-	        <div id="subscription">
-            	<img id="imgFavicon" src="" />
+            <div id="subscription">            
+                <img id="imgFavicon" src="" />
             </div>
              
             <div id="datetime">
@@ -134,8 +148,7 @@
         <div id="zierleiste">
         </div>
         
-        <div id="content">		
+        <div id="content">
         </div>
-    
     </body>
 </html>

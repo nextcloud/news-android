@@ -1,13 +1,10 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.os.AsyncTask;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.GoogleReaderApi.GoogleReaderMethods;
 
 public class AsyncTask_GetFolderTags extends AsyncTask<Object, Void, Exception> implements AsyncTask_Reader {
 

@@ -11,6 +11,7 @@
     
     <string name="empty_view_header">Information</string>
     <string name="empty_view_content">No items here</string>
+    <string name="toast_GettingMoreItems">Started downloading more items.. Please wait.</string>
     
     <string name="allUnreadFeeds">All unread items</string>
     <string name="starredFeeds">Starred items</string>
@@ -20,6 +21,7 @@
     
     <string name="menu_markAllAsRead">Mark all as read</string>
     <string name="menu_StartImageCaching">Start Image offline caching</string>
+    <string name="menu_downloadMoreItems">Download more items</string>
     
     
     
@@ -39,7 +41,7 @@
     
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>
-    <string name="pref_title_password">Password</string>
+    <string name="pref_title_password">Secret Code</string>
     <!-- <string name="pref_title_owncloudRootPath">ownCloud root address</string> -->
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
     <!-- <string name="pref_default_username">admin</string> -->
@@ -78,6 +80,8 @@
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
     <string name="pref_title_ShowOnlyUnread">Show only unread articles</string>
     <string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigate with Volume Buttons through articles</string>
+    
     
     
     <!-- Settings for Display -->
@@ -117,6 +121,7 @@
     <string name="pref_header_data_sync">Data &amp; sync</string>
     <string name="pref_title_data_sync_max_items">Max number of items to sync</string>
     <string name="pref_title_clearCache">Clear cache</string>
+    <string name="pref_title_CacheImagesOffline">Cache images offline</string>
     
     
     

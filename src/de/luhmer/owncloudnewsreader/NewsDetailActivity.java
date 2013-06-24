@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Toast;
@@ -95,46 +99,6 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		//rssFiles = new ArrayList<RssFile>();
 		try
 		{
-			/*
-			Cursor cursor = null;
-			if(subsciption_id != -1)
-				cursor = dbConn.getAllFeedsForSubscription(String.valueOf(subsciption_id));
-			else if(folder_id != -1)
-				cursor = dbConn.getAllFeedsForFolder(String.valueOf(folder_id));
-			
-			if(cursor != null) {
-				while(cursor.moveToNext())
-				{
-					long idDB = cursor.getLong(0);
-					String title = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE));
-					String link = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
-					String description = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
-					//String readString = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_READ));
-					String readString = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_READ_TEMP));
-					//String starredString = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_STARRED));
-					String starredString = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_STARRED_TEMP));
-                    String id_item = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
-					//long sub_id = Long.parseLong(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
-                    String sub_id = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID));
-					String guid = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUID));
-                    String guidHash = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUIDHASH));
-
-					Date timestamp = null;					
-					try { timestamp = new Date(Long.parseLong(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE)))); }
-					catch(Exception ex) { ex.printStackTrace(); }
-					
-					Boolean read = false;
-					Boolean starred = false;
-					if(readString.equals("1"))
-						read = true;
-					if(starredString.equals("1"))
-						starred = true;
-					
-					List<String> categories = new ArrayList<String>();
-					rssFiles.add(new RssFile(idDB, id_item, title, link, description, read, sub_id, null, categories, timestamp, starred, guid, guidHash));
-				}
-			}
-			 */
             mViewPager.setCurrentItem(item_id, true);
             PageChanged(item_id);
 		}
@@ -166,6 +130,71 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			dbConn.closeDatabase();
 		super.onDestroy();
 	}
+	
+	
+	@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if(mPrefs.getBoolean(SettingsActivity.CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING, false))
+		{
+	        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN))
+	        {
+	        	if(currentPosition < databaseItemIds.size() -1)
+	        	{
+	        		mViewPager.setCurrentItem(currentPosition + 1, true);
+	        		return true;
+	        	}
+	        }
+	        
+	        else if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP))
+	        {
+	        	if(currentPosition > 0)
+	        	{
+	        		mViewPager.setCurrentItem(currentPosition - 1, true);
+	        		return true;
+	        	}
+	        }
+		}
+		if(keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			NewsDetailFragment ndf = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+			if(ndf.webview != null)
+			{
+				if(ndf.webview.canGoBack())
+				{						
+					ndf.webview.goBack();
+					if(!ndf.webview.canGoBack())//RssItem
+						ndf.LoadRssItemInWebView();
+						
+					return true;
+				}
+			}
+			
+			/*
+			View vGroup = mViewPager.getChildAt(currentPosition);
+	
+			if(vGroup != null)
+			{
+				WebView webView = (WebView) vGroup.findViewById(R.id.webview); 
+				if(webView != null)
+				{
+					if(webView.canGoBack())
+					{						
+						webView.goBack();
+						if(!webView.canGoBack())//RssItem
+						{
+							NewsDetailFragment ndf = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+							ndf.LoadRssItemInWebView(this);
+						}
+							
+						return true;
+					}
+				}
+			}*/
+		}
+        
+		return super.onKeyDown(keyCode, event);
+    }
 
 	private void PageChanged(int position)
 	{
@@ -242,28 +271,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
         UpdateActionBarIcons();
 
 		return true;
-	}
-	
-	
-	@Override
-	public void onBackPressed() {
-		View vGroup = mViewPager.getChildAt(currentPosition);
-		
-		if(vGroup != null)
-		{
-			WebView webView = (WebView) vGroup.findViewById(R.id.webview); 
-			if(webView != null)
-			{
-				if(webView.canGoBack())
-				{
-					webView.goBack();
-					return;
-				}
-			}
-		}
-		super.onBackPressed();
-	}
-	
+	}	
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -408,6 +416,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	 * one of the sections/tabs/pages.
 	 */
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	//public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+	 
 
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
@@ -420,7 +430,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			// below) with the page number as its lone argument.
 			Fragment fragment = new NewsDetailFragment();
 			Bundle args = new Bundle();
-			args.putInt(NewsDetailFragment.ARG_SECTION_NUMBER, position + 1);			
+			args.putInt(NewsDetailFragment.ARG_SECTION_NUMBER, position + 1);
 			fragment.setArguments(args);
 			return fragment;
 		}

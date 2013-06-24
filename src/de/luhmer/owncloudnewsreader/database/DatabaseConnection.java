@@ -184,6 +184,21 @@ public class DatabaseConnection {
     	return getLongValueBySQL(buildSQL);
     }
     
+    public long getLowestItemIdByFeed(String id_feed)
+    {
+    	String buildSQL = "SELECT MIN(" + RSS_ITEM_RSSITEM_ID + ") FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_SUBSCRIPTION_ID + " = " + id_feed;    	
+    	return getLongValueBySQL(buildSQL);
+    }
+    
+    public long getLowestItemIdByFolder(String id_folder)
+    {
+    	String buildSQL = "SELECT MIN(" + RSS_ITEM_RSSITEM_ID + ") " + 
+    			"FROM " + RSS_ITEM_TABLE + " rss " +
+    			"JOIN " + SUBSCRIPTION_TABLE + " sc ON rss." + RSS_ITEM_SUBSCRIPTION_ID + " = sc.rowid " + 
+    			"WHERE " + SUBSCRIPTION_FOLDER_ID + " = " + id_folder;    	
+    	return getLongValueBySQL(buildSQL);
+    }
+    
     public long getLowestItemIdUnread()
     {
     	String buildSQL = "SELECT MIN(" + RSS_ITEM_RSSITEM_ID + ") FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_READ_TEMP + " != 1";

@@ -52,6 +52,9 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String CB_ALLOWALLSSLCERTIFICATES_STRING = "cb_AllowAllSSLCertificates";
     public static final String CB_SYNCONSTARTUP_STRING = "cb_AutoSyncOnStart";
     public static final String CB_SHOWONLYUNREAD_STRING = "cb_ShowOnlyUnread";
+    public static final String CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING = "cb_NavigateWithVolumeButtons";
+    public static final String CB_CACHE_IMAGES_OFFLINE_STRING = "cb_cacheImagesOffline";
+    
     
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
@@ -403,6 +406,7 @@ public class SettingsActivity extends PreferenceActivity {
 	        //bindPreferenceBooleanToValue(prefFrag.findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SYNCONSTARTUP_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOWONLYUNREAD_STRING));
+	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
 		}
 		else
 		{
@@ -414,6 +418,7 @@ public class SettingsActivity extends PreferenceActivity {
 	        //bindPreferenceBooleanToValue(prefAct.findPreference(CB_ALLOWALLSSLCERTIFICATES_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SYNCONSTARTUP_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOWONLYUNREAD_STRING));
+	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
 		}
 	}
 	
@@ -425,11 +430,14 @@ public class SettingsActivity extends PreferenceActivity {
 		{		
 			//bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefFrag.findPreference(EDT_CLEAR_CACHE);
+			bindPreferenceBooleanToValue(prefFrag.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));
+			
 		}
 		else
 		{
 			//bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefAct.findPreference(EDT_CLEAR_CACHE);
+			bindPreferenceBooleanToValue(prefAct.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));
 			
 		}
 		

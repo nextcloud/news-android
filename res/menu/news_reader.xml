@@ -26,4 +26,9 @@
         android:showAsAction="never"
         android:title="@string/menu_markAllAsRead"/>
     
+    <item
+        android:id="@+id/menu_downloadMoreItems"
+        android:showAsAction="never"
+        android:title="@string/menu_downloadMoreItems"/>
+    
 </menu>

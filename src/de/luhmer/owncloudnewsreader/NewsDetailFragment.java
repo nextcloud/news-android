@@ -37,13 +37,14 @@ public class NewsDetailFragment extends SherlockFragment {
 	public static String web_template;
 	public static int background_color = Integer.MIN_VALUE;
 	
-	private WebView webview;	
+	public WebView webview;
 	private ProgressBar progressbar_webview;
+	private int section_number;
 	
-	public NewsDetailFragment() {
+	public NewsDetailFragment() {		
 		//setRetainInstance(true);
-		
 	}
+	
 	
 	/*
 	@Override
@@ -54,8 +55,7 @@ public class NewsDetailFragment extends SherlockFragment {
 	
 	@Override
 	public void onPause() {		
-		super.onPause();
-		
+		super.onPause();		
 		StopVideoPlayers();
 	}
 	
@@ -89,80 +89,121 @@ public class NewsDetailFragment extends SherlockFragment {
 	    	ex.printStackTrace();
 	    }
 	}
-	
-		
-	@SuppressLint({ "SimpleDateFormat", "SetJavaScriptEnabled" })
+			
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		
-		init_webTemplate();
-		
 		View rootView = inflater.inflate(R.layout.fragment_news_detail, container, false);
 		
-		int section_number = (Integer) getArguments().get(ARG_SECTION_NUMBER);
+		section_number = (Integer) getArguments().get(ARG_SECTION_NUMBER);
 		
 		webview = (WebView) rootView.findViewById(R.id.webview);
 		//if (savedInstanceState != null)
 		//	webview.restoreState(savedInstanceState);
 		
 		//webview.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
-		if(background_color != Integer.MIN_VALUE)
-			webview.setBackgroundColor(background_color);		
 		
 		progressbar_webview = (ProgressBar) rootView.findViewById(R.id.progressbar_webview);
 		//getActivity().getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		
 		
-        WebSettings webSettings = webview.getSettings();        
-        //webSettings.setPluginState(WebSettings.PluginState.ON);        
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setAllowFileAccess(true);
-        //webSettings.setPluginsEnabled(true);
-        //webSettings.setDomStorageEnabled(true);        
-        webview.setWebChromeClient(new WebChromeClient() {        	
-        	public void onProgressChanged(WebView view, int progress) 
-        	{
-        		if(progress < 100 && progressbar_webview.getVisibility() == ProgressBar.GONE){
-    				progressbar_webview.setVisibility(ProgressBar.VISIBLE);                       
-        		}
-        		progressbar_webview.setProgress(progress);
-        		if(progress == 100) {
-        			progressbar_webview.setVisibility(ProgressBar.GONE);                       
-        		}
-        	}
-        });
-        
+		
         //webSettings.setLoadWithOverviewMode(true);
         //webSettings.setUseWideViewPort(true);
         
         //webview.addJavascriptInterface(new JavaScriptInterfaceStundenplan(this, this), "StundenplanTermineAndroid");
         
+        /*
         webview.setWebViewClient(new WebViewClient() {
         	public void onPageFinished(WebView view, String url) {        		
         		//if(menuItemUpdater != null)
         		//	menuItemUpdater.setActionView(null);
             }
         	
+        	
             public boolean shouldOverrideUrlLoading(WebView view, String url){            	
             	view.loadUrl(url);
             	return false;// then it is not handled by default action
            }
+            
         });
+        */
+        LoadRssItemInWebView();
         
-        //registerForContextMenu(webview);
+        //registerForContextMenu(webview);        
         
-        /*
-        if(Constants.DEBUG_MODE)
-			Log.d(TAG, "AsyncTask_Starting..");
-        //new LoadPageContentAsync().execute(section_number);
-        
-        if(Constants.DEBUG_MODE)
-			Log.d(TAG, "AsyncTask_Started");
-		*/	
-        NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
-        
+		return rootView;
+	}
+	
+	public void LoadRssItemInWebView()
+	{	
+		NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+		
+		if(background_color != Integer.MIN_VALUE && ThemeChooser.isDarkTheme(ndActivity))
+		{
+			webview.setBackgroundColor(background_color);
+			ndActivity.mViewPager.setBackgroundColor(background_color);
+		}
+		
+		//webview.clearView();
+		//webview.clearCache(false);
+		init_webView();
+		//webview.loadUrl("about:blank");
+		webview.loadDataWithBaseURL("", getHtmlPage(ndActivity), "text/html", "UTF-8", "");
+	}
+	
+	@SuppressLint("SetJavaScriptEnabled")
+	private void init_webView()
+	{
+		WebSettings webSettings = webview.getSettings();        
+	    //webSettings.setPluginState(WebSettings.PluginState.ON);        
+	    webSettings.setJavaScriptEnabled(true);
+	    webSettings.setAllowFileAccess(true);
+	    //webSettings.setPluginsEnabled(true);
+	    //webSettings.setDomStorageEnabled(true);
+	    
+	    webSettings.setJavaScriptCanOpenWindowsAutomatically(
+                false);
+	    webSettings.setSupportMultipleWindows(false);
+	    webSettings.setSupportZoom(false);
+	    //webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
+	    //webSettings.setSavePassword(false);
+	    //webview.setVerticalScrollBarEnabled(false);
+	    //webview.setHorizontalScrollBarEnabled(false);
+        webSettings.setAppCacheEnabled(true);
+        //webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        //webSettings.setAppCacheMaxSize(200);
+        //webSettings.setDatabaseEnabled(true);
+        //webview.clearCache(true);
+
+	    
+	    
+	    webview.setWebChromeClient(new WebChromeClient() {        	
+	    	public void onProgressChanged(WebView view, int progress) 
+	    	{
+	    		if(progress < 100 && progressbar_webview.getVisibility() == ProgressBar.GONE){
+					progressbar_webview.setVisibility(ProgressBar.VISIBLE);                       
+	    		}
+	    		progressbar_webview.setProgress(progress);
+	    		if(progress == 100) {
+	    			progressbar_webview.setVisibility(ProgressBar.GONE);                       
+	    		}
+	    	}
+	    });
+	    
+	    webview.setWebViewClient(new WebViewClient() {
+	    	
+	    });
+	}
+	
+	
+	@SuppressLint("SimpleDateFormat")
+	private String getHtmlPage(NewsDetailActivity ndActivity)
+	{
+		init_webTemplate(ndActivity);
+		String htmlData = web_template;
+		
 		//RssFile rssFile = ((NewsDetailActivity)getActivity()).rssFiles.get(section_number - 1);
-        int idItem = ndActivity.databaseItemIds.get(section_number -1);
+        int idItem = ndActivity.databaseItemIds.get(section_number - 1);
         
         Cursor cursor = ndActivity.dbConn.getArticleByID(String.valueOf(idItem));
         cursor.moveToFirst();
@@ -192,8 +233,6 @@ public class NewsDetailFragment extends SherlockFragment {
 	        	favIconCursor.close();
 	        }
 			
-			
-	        String htmlData = web_template;
 			
 	        String divHeader = "<div id=\"header\">";
 	        StringBuilder sb = new StringBuilder(htmlData);
@@ -241,12 +280,9 @@ public class NewsDetailFragment extends SherlockFragment {
 	        
 	        
 	        
-	        
-	        
-	        
 	        //htmlData = URLEncoder.encode(htmlData).replaceAll("\\+"," ");
 	        
-	        webview.loadDataWithBaseURL("", htmlData, "text/html", "UTF-8", "");
+	        //webview.loadDataWithBaseURL("", htmlData, "text/html", "UTF-8", "");
 	        //webview.loadData(htmlData, "text/html; charset=UTF-8", "UTF-8");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -254,10 +290,7 @@ public class NewsDetailFragment extends SherlockFragment {
 			cursor.close();
 		}
 		
-		//if(Constants.DEBUG_MODE)
-		//	Log.d(TAG, "AsyncTask_Finished");
-        
-		return rootView;
+		return htmlData;
 	}
 	
 	
@@ -314,69 +347,6 @@ public class NewsDetailFragment extends SherlockFragment {
 	    }
 	}*/
 	
-	/*
-	private class LoadPageContentAsync extends AsyncTask<Integer, Void, String> {
-
-		@SuppressLint("SimpleDateFormat")
-		@Override
-		protected String doInBackground(Integer... params) {
-			if(Constants.DEBUG_MODE)
-				Log.d(TAG, "AsyncTask_Started");
-			
-			int section_number = params[0];
-			
-			RssFile rssFile = ((NewsDetailActivity)getActivity()).rssFiles.get(section_number - 1);
-	        
-			try {
-		        String htmlData = web_template;
-				
-		        String divHeader = "<div id=\"header\">";
-		        StringBuilder sb = new StringBuilder(htmlData);
-		        htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), rssFile.getTitle().trim()).toString();
-		        
-		        
-		        //String divSubscription = "<div id=\"subscription\">";
-		        //htmlData = sb.insert(htmlData.indexOf(divSubscription) + divSubscription.length(), rssFile.getStreamID().trim()).toString();
-		        
-		        if(rssFile.getDate() != null)
-		        {
-		        	String divDate = "<div id=\"datetime\">";
-		        	SimpleDateFormat formater = new SimpleDateFormat();
-		        	String date = formater.format(rssFile.getDate());
-		        	htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), date).toString();
-		        }
-		        
-		        String subscription = ((NewsDetailActivity) getActivity()).dbConn.getTitleOfSubscriptionByID(String.valueOf(rssFile.getSubscription_ID()));
-		        String divSubscription = "<div id=\"subscription\">";
-		        int pos = htmlData.indexOf(divSubscription) + divSubscription.length();
-		        pos = htmlData.indexOf("/>", pos) + 2;//Wegen des Favicon <img /> 
-		        htmlData = sb.insert(pos, subscription.trim()).toString();
-		        		
-		        String divContent = "<div id=\"content\">";
-		        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), rssFile.getDescription().trim()).toString();
-		        
-		        Uri uri = Uri.parse(rssFile.getLink());
-		        String domainName = uri.getHost();
-		        String searchString = "http://s2.googleusercontent.com/s2/favicons?domain=";
-		        htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length(), domainName).toString();
-		        	        	        
-		        
-		        //htmlData = htmlData.replace("<img ", imgWidth);
-		        return htmlData;        
-		        //webview.loadData(htmlData, "text/html; charset=UTF-8", null);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		protected void onPostExecute(String htmlData) {
-			webview.loadData(htmlData, "text/html; charset=UTF-8", null);
-			
-			if(Constants.DEBUG_MODE)
-				Log.d(TAG, "AsyncTask_Finished");			
-		}		
-	}*/
 	
 	
 	
@@ -389,10 +359,7 @@ public class NewsDetailFragment extends SherlockFragment {
 	
 	
 	
-	
-	
-	
-	private void init_webTemplate()
+	private void init_webTemplate(NewsDetailActivity ndActivity)
 	{
 		if(web_template == null)
 		{
@@ -417,10 +384,10 @@ public class NewsDetailFragment extends SherlockFragment {
 						background_color = Color.parseColor(convertHexColorFrom3To6Characters(background_color_string));
 					else if(background_color_string.matches("^#.{6}$"))
 						background_color = Color.parseColor(background_color_string);
-					
-					 ((NewsDetailActivity) getActivity()).mViewPager.setBackgroundColor(background_color);
 				}
 		        
+		        if(ThemeChooser.isDarkTheme(ndActivity))
+		        	web_template = web_template.replace("<body id=\"lightTheme\">", "<body id=\"darkTheme\">");
 		        
 		        /*
 		        DisplayMetrics displaymetrics = new DisplayMetrics();

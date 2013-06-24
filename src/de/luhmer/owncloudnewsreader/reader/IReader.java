@@ -13,9 +13,11 @@ public interface IReader {
 	public SparseArray<AsyncTask_Reader> getRunningAsyncTasks();
 	public void attachToRunningTask(int task_id, Activity activity, OnAsyncTaskCompletedListener listener);
 	
-	public void Start_AsyncTask_GetFeeds(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener, FeedItemTags.TAGS tag);
+	public void Start_AsyncTask_GetItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener, FeedItemTags.TAGS tag);
+	public void Start_AsyncTask_GetOldItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener, String feed_id, String folder_id);
+	
 	public void Start_AsyncTask_GetFolder(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener);
-	public void Start_AsyncTask_GetSubFolder(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener);	
+	public void Start_AsyncTask_GetFeeds(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener);	
 	public void Start_AsyncTask_PerformTagAction(final int task_id, final Context context, final OnAsyncTaskCompletedListener listener, List<String> itemIds, FeedItemTags.TAGS tag);
 	public void Start_AsyncTask_Authenticate(final int task_id, final Activity context, final OnAsyncTaskCompletedListener listener);
 	

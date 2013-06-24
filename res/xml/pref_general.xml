@@ -61,6 +61,10 @@
     <CheckBoxPreference
         android:key="cb_ShowOnlyUnread"
         android:title="@string/pref_title_ShowOnlyUnread" />
+    
+    <CheckBoxPreference
+        android:key="cb_NavigateWithVolumeButtons"
+        android:title="@string/pref_title_NavigateWithVolumeButtons" />
 
     <!--
          NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to

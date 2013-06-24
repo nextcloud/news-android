@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListFragment;
 
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
@@ -73,7 +74,9 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		}
 		
 		dbConn = new DatabaseConnection(getActivity());
-				
+			
+		((SherlockFragmentActivity) getActivity()).getSupportActionBar().setTitle(titel);
+		
 		//lvAdapter = new Subscription_ListViewAdapter(this);
 		UpdateCursor();
 	}

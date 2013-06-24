@@ -40,7 +40,7 @@ public class OwnCloudReaderMethods {
 			nVPairs.add(new BasicNameValuePair("type", "2"));
 			nVPairs.add(new BasicNameValuePair("id", "0"));
 		}
-		else if(tag.equals(TAGS.ALL_UNREAD))
+		else if(tag.equals(TAGS.ALL))
 		{			
 			nVPairs.add(new BasicNameValuePair("type", "3"));
 			nVPairs.add(new BasicNameValuePair("id", "0"));
@@ -66,7 +66,8 @@ public class OwnCloudReaderMethods {
 		//return rssFiles;
 	}
 	
-	public static int GetItems(TAGS tag, Activity act, String offset, boolean getRead) throws Exception
+	//"type": 1, // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
+	public static int GetItems(TAGS tag, Activity act, String offset, boolean getRead, String id, String type) throws Exception
 	{	
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(act);		
 		//ArrayList<RssFile> rssFiles = new ArrayList<RssFile>();
@@ -75,13 +76,13 @@ public class OwnCloudReaderMethods {
 		nVPairs.add(new BasicNameValuePair("batchSize", maxSizePerSync));
 		if(tag.equals(TAGS.ALL_STARRED))
 		{
-			nVPairs.add(new BasicNameValuePair("type", "2"));
-			nVPairs.add(new BasicNameValuePair("id", "0"));
+			nVPairs.add(new BasicNameValuePair("type", type));
+			nVPairs.add(new BasicNameValuePair("id", id));
 		}
-		else if(tag.equals(TAGS.ALL_UNREAD))
+		else if(tag.equals(TAGS.ALL))
 		{			
-			nVPairs.add(new BasicNameValuePair("type", "3"));
-			nVPairs.add(new BasicNameValuePair("id", "0"));
+			nVPairs.add(new BasicNameValuePair("type", type));
+			nVPairs.add(new BasicNameValuePair("id", id));
 		}
 		nVPairs.add(new BasicNameValuePair("offset", offset));
 		if(getRead)

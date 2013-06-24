@@ -11,7 +11,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.MenuUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 /**
@@ -29,11 +29,14 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 	public static final String SUBSCRIPTION_ID = "SUBSCRIPTION_ID";
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
+	protected static final String TAG = "NewsReaderDetailActivity";
 	
 	
 	String titel;
+	private String idFeed = null;
+	String idFolder = null;
 	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -59,17 +62,15 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 			
 			Intent intent = getIntent();
 			titel = "Name Missing";
-			String idSubscription = null;
-			String idFolder = null;
+			
 			if(intent.hasExtra(SUBSCRIPTION_ID))
-				idSubscription = intent.getExtras().getString(SUBSCRIPTION_ID);
+				idFeed = intent.getExtras().getString(SUBSCRIPTION_ID);
 			if(intent.hasExtra(FOLDER_ID))
 				idFolder = intent.getExtras().getString(FOLDER_ID);			
 			if(intent.hasExtra(TITEL))
 				titel = intent.getExtras().getString(TITEL);
 			
-			//getActionBar().setTitle(titel);
-			getSupportActionBar().setTitle(titel);
+			//getSupportActionBar().setTitle(titel);
 			
 			
 			
@@ -81,8 +82,8 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 					getIntent().getStringExtra(
 							NewsReaderDetailFragment.ARG_ITEM_ID));			
 			
-			if(idSubscription != null)
-				arguments.putString(SUBSCRIPTION_ID, idSubscription);
+			if(getIdFeed() != null)
+				arguments.putString(SUBSCRIPTION_ID, getIdFeed());
 			if(idFolder != null)
 				arguments.putString(FOLDER_ID, idFolder);
 			
@@ -97,7 +98,10 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getSupportMenuInflater().inflate(R.menu.subscription, menu);
+		//getSupportMenuInflater().inflate(R.menu.subscription, menu);
+		
+		MenuUtils.onCreateOptionsMenu(menu, getSupportMenuInflater(), true, this);
+		
 		return true;
 	}
 	
@@ -113,6 +117,7 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 			}
 		//}
 	}
+	
 
     @TargetApi(Build.VERSION_CODES.FROYO)
 	public static void UpdateListViewAndScrollToPos(FragmentActivity act, int pos)
@@ -127,34 +132,37 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				// This ID represents the Home or Up button. In the case of this
-				// activity, the Up button is shown. Use NavUtils to allow users
-				// to navigate up one level in the application structure. For
-				// more details, see the Navigation pattern on Android Design:
-				//
-				// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-				//
-				NavUtils.navigateUpTo(this, new Intent(this,
-						NewsReaderListActivity.class));
-				return true;
-			case R.id.menu_markAllAsRead:
-				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
-				if(ndf != null)
-				{
-					DatabaseConnection dbConn = new DatabaseConnection(this);
-					try {
-						dbConn.markAllItemsAsRead(ndf.getDatabaseIdsOfItems());
-					} finally {
-						dbConn.closeDatabase();
-					}
-					ndf.UpdateCursor();
-				}
-				break;
+		boolean handled = MenuUtils.onOptionsItemSelected(item, this);
+		if(!handled)
+		{
+			switch (item.getItemId()) {
+				case android.R.id.home:
+					// This ID represents the Home or Up button. In the case of this
+					// activity, the Up button is shown. Use NavUtils to allow users
+					// to navigate up one level in the application structure. For
+					// more details, see the Navigation pattern on Android Design:
+					//
+					// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+					//
+					NavUtils.navigateUpTo(this, new Intent(this,
+							NewsReaderListActivity.class));
+					return true;
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	/**
+	 * @return the idFeed
+	 */
+	public String getIdFeed() {
+		return idFeed;
+	}
 	
-	
+	/**
+	 * @return the idFolder
+	 */
+	public String getIdFolder() {
+		return idFolder;
+	}
 }

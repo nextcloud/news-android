@@ -12,6 +12,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.MenuUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -40,8 +41,6 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 	 * device.
 	 */
 	private boolean mTwoPane;
-	MenuItem menuItemUpdater;
-	MenuItem menuItemMarkAllAsRead;
 	//IabHelper mHelper;
 	static final String TAG = "NewsReaderListActivity";
 	
@@ -150,8 +149,10 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 	
 	private void StartDetailFragment(String id, Boolean folder, String optional_folder_id)
 	{
-		if(menuItemMarkAllAsRead != null)
-			menuItemMarkAllAsRead.setEnabled(true);
+		if(MenuUtils.menuItemMarkAllAsRead != null)
+			MenuUtils.menuItemMarkAllAsRead.setEnabled(true);
+		if(MenuUtils.menuItemDownloadMoreItems != null)
+			MenuUtils.menuItemDownloadMoreItems.setEnabled(true);
 		
 		DatabaseConnection dbConn = new DatabaseConnection(getApplicationContext());
 		
@@ -222,20 +223,20 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
     @SuppressWarnings("static-access")
 	public void UpdateButtonSyncLayout()
     {
-        if(menuItemUpdater != null)
+        if(MenuUtils.menuItemUpdater != null)
         {
             IReader _Reader = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.newsreader_list))._Reader;
             PullToRefreshExpandableListView pullToRefreshView = (PullToRefreshExpandableListView) findViewById(R.id.expandableListView);
             if(_Reader.isSyncRunning())   
             {
-                menuItemUpdater.setActionView(R.layout.inderterminate_progress);
+            	MenuUtils.menuItemUpdater.setActionView(R.layout.inderterminate_progress);
                 if(pullToRefreshView != null)
                 	pullToRefreshView.setRefreshing(true);
                 
             }
             else
             {
-                menuItemUpdater.setActionView(null);
+            	MenuUtils.menuItemUpdater.setActionView(null);
                 if(pullToRefreshView != null)
                 	pullToRefreshView.onRefreshComplete();
             }
@@ -247,16 +248,9 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		//getMenuInflater().inflate(R.menu.news_reader, menu);
-		getSupportMenuInflater().inflate(R.menu.news_reader, menu);		
-		menuItemUpdater = menu.findItem(R.id.menu_update);
-
-		menuItemMarkAllAsRead = menu.findItem(R.id.menu_markAllAsRead);
-		menuItemMarkAllAsRead.setEnabled(false);
-		if(!mTwoPane)//On Smartphones disable this...
-		{
-			menuItemMarkAllAsRead.setVisible(false);
-			menuItemMarkAllAsRead = null;
-		}
+		//getSupportMenuInflater().inflate(R.menu.news_reader, menu);
+		
+		MenuUtils.onCreateOptionsMenu(menu, getSupportMenuInflater(), mTwoPane, this);
 		
         UpdateButtonSyncLayout();
 
@@ -265,47 +259,37 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.action_settings:
-				Intent intent = new Intent(this, SettingsActivity.class);		    
-			    //intent.putExtra(EXTRA_MESSAGE, message);
-			    startActivityForResult(intent, RESULT_SETTINGS);
-				return true;
-				
-			case R.id.menu_update:
-				//menuItemUpdater = item.setActionView(R.layout.inderterminate_progress);
-				startSync();
-				break;
-				
-			case R.id.action_login:
-				StartLoginFragment();
-				break;
-				
-			case R.id.menu_markAllAsRead:
-				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
-				if(ndf != null)
-				{
+		boolean handled = MenuUtils.onOptionsItemSelected(item, this);
+		if(!handled)
+		{		
+			switch (item.getItemId()) {
+				case R.id.action_settings:
+					Intent intent = new Intent(this, SettingsActivity.class);		    
+				    //intent.putExtra(EXTRA_MESSAGE, message);
+				    startActivityForResult(intent, RESULT_SETTINGS);
+					return true;
+					
+				case R.id.menu_update:
+					//menuItemUpdater = item.setActionView(R.layout.inderterminate_progress);
+					startSync();
+					break;
+					
+				case R.id.action_login:
+					StartLoginFragment();
+					break;				
+					
+				case R.id.menu_StartImageCaching:
 					DatabaseConnection dbConn = new DatabaseConnection(this);
-					try {
-						dbConn.markAllItemsAsRead(ndf.getDatabaseIdsOfItems());
-					} finally {
-						dbConn.closeDatabase();
-					}
-					ndf.UpdateCursor();
-				}
-				break;
-				
-			case R.id.menu_StartImageCaching:
-				DatabaseConnection dbConn = new DatabaseConnection(this);
-		    	try {
-		    		long highestItemId = dbConn.getLowestItemIdUnread();
-		    		Intent service = new Intent(this, DownloadImagesService.class);
-		        	service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
-		    		startService(service);
-		    	} finally {
-		    		dbConn.closeDatabase();
-		    	}
-				break;
+			    	try {
+			    		long highestItemId = dbConn.getLowestItemIdUnread();
+			    		Intent service = new Intent(this, DownloadImagesService.class);
+			        	service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
+			    		startService(service);
+			    	} finally {
+			    		dbConn.closeDatabase();
+			    	}
+					break;
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}

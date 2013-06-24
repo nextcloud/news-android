@@ -8,7 +8,6 @@ import org.apache.http.conn.HttpHostConnectException;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -126,7 +125,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		{
 			dbConn = new DatabaseConnection(getActivity());
 			
-			
+			/*
 			//Update Database Stuff first
 			try {
 				PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
@@ -142,6 +141,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			*/
 			
 			
 			/*
@@ -272,7 +273,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             }
             else
             {
-                _Reader.Start_AsyncTask_GetSubFolder(1, getActivity(), onAsyncTask_GetSubReaderTags);
+                _Reader.Start_AsyncTask_GetFeeds(1, getActivity(), onAsyncTask_GetSubReaderTags);
                 if(eListView != null)
                 	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFeeds));
             }
@@ -303,7 +304,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             {
             	//dbConn.resetRssItemsDatabase();
             	
-                _Reader.Start_AsyncTask_GetFeeds(2, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_UNREAD);//Recieve all unread Items
+                _Reader.Start_AsyncTask_GetItems(2, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL);//Recieve all unread Items
                 //_Reader.Start_AsyncTask_GetFeeds(3, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_STARRED);//Recieve all starred Items
                 
                 if(eListView != null)
