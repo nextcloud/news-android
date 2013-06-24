@@ -23,7 +23,6 @@
   <string name="action_login">Connexion</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilisateur</string>
-  <string name="pref_title_password">Mot de passe</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <string name="pull_to_refresh_updateTags">synchronisant les marqueurs</string>

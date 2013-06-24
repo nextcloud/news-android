@@ -1,29 +1,76 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Abonflulegilo de ownCloud</string>
   <string name="action_settings">Agordo</string>
+  <string name="title_newsreader_list">Abonflulegilo</string>
+  <string name="title_newsreader_detail">Detaloj de Abonflulegilo</string>
+  <string name="empty_view_header">Informo</string>
+  <string name="empty_view_content">Neniu ero estas ĉi tie</string>
+  <string name="allUnreadFeeds">Ĉiuj nelegitaj eroj</string>
+  <string name="starredFeeds">Markitaj eroj</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Refreŝigi</string>
+  <string name="menu_markAllAsRead">Marki ĉion kiel legita</string>
   <!--EMAIL-->
+  <string name="email_sendMail">Sendi retpoŝton</string>
   <!--Action Bar Items-->
   <string name="action_starred">Markita</string>
+  <string name="action_openInBrowser">Malfermi en TTT-legilo</string>
+  <string name="action_sendSourceCode">Sendi eron al ellaboranto</string>
   <string name="action_Share">Kunhavigi</string>
   <string name="action_login">Ensaluti</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uzantonomo</string>
-  <string name="pref_title_password">Pasvorto</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Ensaluti</string>
+  <string name="login_progress_signing_in">Ensalutante...</string>
+  <string name="error_incorrect_password">Ĉi tiu pasvorto malĝustas</string>
+  <string name="error_field_required">Ĉi tiu kampo nepras</string>
+  <string name="error_invalid_url">Ĉi tiu URL malĝustas</string>
+  <string name="pull_to_refresh_updateTags">Sinkroniĝas etikedoj</string>
+  <string name="pull_to_refresh_updateFolder">Sinkroniĝas dosierujo</string>
+  <string name="pull_to_refresh_updateFeeds">Sinkroniĝas fluoj</string>
+  <string name="pull_to_refresh_updateItems">Sinkroniĝas eroj</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Agordo</string>
   <!--General settings-->
   <string name="pref_header_general">Ĝenerala</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_ShowOnlyUnread">Montri nur nelegitajn artikolojn</string>
   <!--Settings for Display-->
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Eraro</string>
   <string name="login_dialog_title_security_warning">Sekureca averto</string>
   <!--Data & Sync-->
+  <string name="pref_title_data_sync_max_items">Maksimuma kiamo de eroj sinkroniĝotaj</string>
+  <string name="pref_title_clearCache">Forviŝi la kaŝmemoron</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 eroj</item>
+    <item>400 eroj</item>
+    <item>600 eroj</item>
+    <item>800 eroj</item>
+    <item>1000 eroj</item>
+    <item>Ĉiuj eroj</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

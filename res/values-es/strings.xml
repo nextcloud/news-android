@@ -23,7 +23,6 @@
   <string name="action_login">Iniciar sesión</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
-  <string name="pref_title_password">Contraseña</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <string name="pull_to_refresh_updateTags">Sincronizando etiquetas</string>

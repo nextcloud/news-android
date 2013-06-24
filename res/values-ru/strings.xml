@@ -11,7 +11,6 @@
   <string name="action_login">Логин</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
-  <string name="pref_title_password">Пароль</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Strings related to Settings-->

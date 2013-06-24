@@ -9,7 +9,6 @@
   <string name="action_login">تسجيل الدخول</string>
   <!--Strings related to login-->
   <string name="pref_title_username">إسم المستخدم</string>
-  <string name="pref_title_password">كلمة المرور</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Strings related to Settings-->
