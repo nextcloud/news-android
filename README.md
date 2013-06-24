@@ -24,6 +24,14 @@ The app shows an empty Toast when trying to sync or sign-in (little dark box at 
 
 Updates
 ==================================
+0.3.6
+---------------------
+- Option to scroll through articles with Volume rockers <a href="https://github.com/owncloud/News-Android-App/issues/61">#61 (Use volume rocker to browse through articles)</a>
+- Option to download old items for feed/folder <a href="https://github.com/owncloud/News-Android-App/issues/63">#63 (Allow dowloading old items)</a>
+- Light Theme for item view <a href="https://github.com/owncloud/News-Android-App/issues/59">#59 (White Theme doesn't apply to articles)</a>
+- Image offline caching function asks now if you want to download if you're not connected with wifi
+- Item detail optimizations
+
 0.3.5
 ---------------------
 - Fixed issue <a href="https://github.com/owncloud/News-Android-App/issues/52">#52 (Folders visible multiple times)</a>  
