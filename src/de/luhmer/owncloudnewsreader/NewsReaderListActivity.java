@@ -72,7 +72,7 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 		}
 		
 		
-		DatabaseUtils.CopyDatabaseToSdCard(this);
+		//DatabaseUtils.CopyDatabaseToSdCard(this);
 		
         /*
 		((NewsReaderListFragment) getSupportFragmentManager()
