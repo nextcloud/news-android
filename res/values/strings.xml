@@ -55,6 +55,10 @@
     
     
     
+    <!-- Toast Messages -->
+    <string name="toast_downloaded_x_items">Downloaded X old items</string>
+    <string name="toast_no_more_downloads_available">No more old items available for download</string>
+    
     
     
     <string name="pull_to_refresh_updateTags">Synchronizing tags</string>
@@ -80,7 +84,7 @@
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
     <string name="pref_title_ShowOnlyUnread">Show only unread articles</string>
     <string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>
-    <string name="pref_title_NavigateWithVolumeButtons">Navigate with Volume Buttons through articles</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
     
     
     

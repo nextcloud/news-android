@@ -97,7 +97,7 @@ public class MenuUtils {
 		IReader _Reader = new OwnCloud_Reader();
 		_Reader.Start_AsyncTask_GetOldItems(0, activity, onAsyncTaskComplete, nda.getIdFeed(), nda.getIdFolder());
 		
-		Toast.makeText(activity, activity.getString(R.string.toast_GettingMoreItems), Toast.LENGTH_LONG).show();
+		Toast.makeText(activity, activity.getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 	}
 	
 	static OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {

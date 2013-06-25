@@ -2,6 +2,8 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.widget.Toast;
+import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
@@ -14,6 +16,7 @@ public class AsyncTask_GetOldItems extends AsyncTask<Object, Void, Exception> im
     private OnAsyncTaskCompletedListener[] listener;
     public String feed_id;
     public String folder_id;
+    private int downloadedItemsCount = 0;
     
     public AsyncTask_GetOldItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener, String feed_id, String folder_id) {
           super();
@@ -65,7 +68,10 @@ public class AsyncTask_GetOldItems extends AsyncTask<Object, Void, Exception> im
         		type = "1";
         	}
         	
-        	OwnCloudReaderMethods.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id, type);
+        	
+        	downloadedItemsCount = OwnCloudReaderMethods.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id, type);
+        	
+        	
         	//do {    
         	//requestCount = OwnCloudReaderMethods.GetItems(TAGS.ALL, context, String.valueOf(offset), true, feed_id);
         	//	if(requestCount > 0)
@@ -86,6 +92,14 @@ public class AsyncTask_GetOldItems extends AsyncTask<Object, Void, Exception> im
     		if(listenerInstance != null)
     			listenerInstance.onAsyncTaskCompleted(task_id, ex);
 		}
+    	
+    	if(downloadedItemsCount == 0)
+    		Toast.makeText(context, context.getString(R.string.toast_no_more_downloads_available), Toast.LENGTH_LONG).show();
+    	else
+    	{
+    		String text = context.getString(R.string.toast_downloaded_x_items).replace("X", String.valueOf(downloadedItemsCount));
+    		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    	}
     	
     	/*
     	DatabaseConnection dbConn = new DatabaseConnection(context);

@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME="OwncloudNewsReader.db";	
+	public static final String DATABASE_NAME = "OwncloudNewsReader.db";	
 	
 	public DatabaseHelper(Context context) {		
-		super(context, DATABASE_NAME, null, 1);
+		super(context, DATABASE_NAME, null, 2);
 	}
 	
 	@Override
@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 											+ "body TEXT, "
 											+ "read BOOL, "
 											+ "starred BOOL, "
-											+ "rssitem_id TEXT NOT NULL, "
+											+ "rssitem_id INT NOT NULL, "
 											+ "pubdate DATETIME NULL, "
 											+ "author TEXT, "
 											+ "guid TEXT, "
