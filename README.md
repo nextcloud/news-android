@@ -19,7 +19,9 @@ The app shows an empty Toast when trying to sync or sign-in (little dark box at 
 - Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3 (via Google Play or GitHub <a href="https://github.com/owncloud/News-Android-App/commits/master/OwncloudNewsReader.apk">Choose version</a>).  
 
 
-
+Roadmap
+==================================
+My ToDo List is available on: http://www.strikeapp.com/#z6679l3t
 
 
 Updates
