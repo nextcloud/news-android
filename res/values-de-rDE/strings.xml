@@ -12,6 +12,7 @@
   <string name="starredFeeds">Markierte Elemente</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aktualisieren</string>
+  <string name="menu_markAllAsRead">Alles als gelesen kennzeichnen</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Quelltext des Elements - Fehlerbericht</string>
   <string name="email_sendMail">E-Mail senden</string>
@@ -24,7 +25,14 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Einloggen</string>
+  <string name="login_progress_signing_in">Logge ein...</string>
+  <string name="error_incorrect_password">Dieses Passwort ist falsch.</string>
+  <string name="error_field_required">Dies ist ein notwendiges Feld.</string>
+  <string name="error_invalid_url">Diese URL ist falsch.</string>
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Synchronisiere Schlagwörter</string>
   <string name="pull_to_refresh_updateFolder">Synchronisiere Ordner</string>
   <string name="pull_to_refresh_updateFeeds">Synchronisiere Feeds</string>
@@ -35,11 +43,18 @@
   <string name="pref_header_general">Allgemein</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Beim Start synchronisieren</string>
+  <string name="pref_title_ShowOnlyUnread">Nur ungelesene Artikel anzeigen</string>
+  <string name="pref_title_AllowAllSSLCertificates">Alle SSL-Zertifikate erlauben</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Anzeige</string>
+  <string name="pref_title_app_theme">App-Theme (benötigt einen Neustart zur Übernahme)</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fehler</string>
+  <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
   <string name="login_dialog_title_security_warning">Sicherheitshinweis</string>
   <!--Data & Sync-->
+  <string name="pref_title_clearCache">Den Cache löschen</string>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

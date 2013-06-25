@@ -32,6 +32,7 @@
   <string name="error_incorrect_password">To hasło jest niepoprawne</string>
   <string name="error_field_required">Ten element jest wymagany</string>
   <string name="error_invalid_url">Ten adres jest niepoprawny</string>
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Synchronizowanie tagów</string>
   <string name="pull_to_refresh_updateFolder">Synchronizowanie folder</string>
   <string name="pull_to_refresh_updateFeeds">Synchronizowanie kanałów</string>

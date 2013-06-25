@@ -4,11 +4,13 @@
   <string name="action_settings">Asetukset</string>
   <string name="title_newsreader_list">Uutislukija</string>
   <string name="empty_view_content">Ei kohteita</string>
+  <string name="toast_GettingMoreItems">Lisäkohteiden lataus aloitettu, odota hetki...</string>
   <string name="allUnreadFeeds">Kaikki lukemattomat kohteet</string>
   <string name="starredFeeds">Tähdellä varustetut</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Päivitä</string>
   <string name="menu_markAllAsRead">Merkitse kaikki luetuiksi</string>
+  <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Varustettu tähdellä</string>
@@ -17,6 +19,7 @@
   <string name="action_login">Kirjaudu</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
+  <string name="pref_title_password">Salainen koodi</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -25,6 +28,7 @@
   <string name="error_incorrect_password">Salasana on väärin</string>
   <string name="error_field_required">Tämä kenttä vaaditaan</string>
   <string name="error_invalid_url">Osoite on virheellinen</string>
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Synkronoidaan tunnisteita</string>
   <string name="pull_to_refresh_updateFolder">Synkronoidaan kansiota</string>
   <string name="pull_to_refresh_updateFeeds">Synkronoidaan syötteitä</string>

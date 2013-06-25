@@ -18,6 +18,7 @@
   <string name="pref_title_username">Όνομα χρήστη</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Συγχρονισμός ετικετών</string>
   <string name="pull_to_refresh_updateFolder">Συγχρονισμός φακέλου</string>
   <string name="pull_to_refresh_updateFeeds">Συγχρονισμός ροών</string>

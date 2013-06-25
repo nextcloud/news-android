@@ -12,6 +12,7 @@
   <string name="pref_title_username">사용자 이름</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">설정</string>
   <!--General settings-->

@@ -1,28 +1,99 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">ownCloud berri rakurlea</string>
   <string name="action_settings">Ezarpenak</string>
+  <string name="title_newsreader_list">BerriIrakurlea</string>
+  <string name="title_newsreader_detail">BerriIrakurle xehetasuna</string>
+  <string name="empty_view_header">Informazioa</string>
+  <string name="empty_view_content">Ez dago elementurik hemen</string>
+  <string name="toast_GettingMoreItems">Elementu gehiago deskargatzen... Itxoin mesedez</string>
+  <string name="allUnreadFeeds">Irakurri gabeko elementu guztiak</string>
+  <string name="starredFeeds">Izardun elementuak</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Birkargatu</string>
+  <string name="menu_markAllAsRead">Markatu guztiak irakurria gisa</string>
+  <string name="menu_StartImageCaching">Sarez kanpoko irudi cachea abiarazi</string>
+  <string name="menu_downloadMoreItems">Deskargatu elementu gehiago</string>
   <!--EMAIL-->
+  <string name="email_sendMail">Bidali eposta</string>
   <!--Action Bar Items-->
-  <string name="action_starred">Izardunak</string>
-  <string name="action_Share">Elkarbanatu</string>
-  <string name="action_login">Saioa hasi</string>
+  <string name="action_starred">Izarduna</string>
+  <string name="action_openInBrowser">Ireki nabigatzailean</string>
+  <string name="action_sendSourceCode">Bidali elementu agaratzaileari</string>
+  <string name="action_Share">Partekatu</string>
+  <string name="action_login">Saio hasiera</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Erabiltzaile izena</string>
+  <string name="pref_title_password">Kode sekretua</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Izena eman</string>
+  <string name="login_progress_signing_in">Izena ematen...</string>
+  <string name="error_incorrect_password">Pasahitza okerra da</string>
+  <string name="error_field_required">Eremu hau beharrezkoa da</string>
+  <string name="error_invalid_url">URL-a baliogabea da</string>
+  <!--Toast Messages-->
+  <string name="pull_to_refresh_updateTags">Etiketak sinkronizatzen</string>
+  <string name="pull_to_refresh_updateFolder">Karpeta sinkronizatzen</string>
+  <string name="pull_to_refresh_updateFeeds">Jarioak sinkronizatzen</string>
+  <string name="pull_to_refresh_updateItems">Elementuak sinkronizatzen</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ezarpenak</string>
   <!--General settings-->
   <string name="pref_header_general">Orokorra</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Sinkronizatu abioan</string>
+  <string name="pref_title_ShowOnlyUnread">Erakutsi irakurri gabeko artikuluak bakarrik</string>
+  <string name="pref_title_AllowAllSSLCertificates">Onartu SSL ziurtagiri guztiak</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Bistaratzea</string>
+  <string name="pref_title_app_theme">App gaia (ezartzeko berrabiaraztea beharrezkoa)</string>
+  <string name="pref_title_feed_list_layout">Eremu zerrenda ingurunea</string>
+  <string-array name="pref_display_apptheme">
+    <item>Iluna</item>
+    <item>Argia</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Soila</item>
+    <item>Hedatua</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Errorea</string>
+  <string name="login_dialog_text_something_went_wrong">Zerbait oker joan da :(</string>
+  <string name="login_dialog_text_not_compatible">Aplikazio hau ez da zure ownCloud berri aplikazioaren bateragarria. Eguneratu berri aplikazioa.</string>
   <string name="login_dialog_title_security_warning">Segurtasun abisua</string>
+  <string name="login_dialog_text_security_warning">Ez zaude https erabiltzen. Edozein erasotzailek zure trafikoa eskuratu eta datu sentsibleei sarrera eduki dezake (adib. pasahitza). Beraz https erabiltzea gomendatzen da!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Data &amp; sink</string>
+  <string name="pref_title_data_sync_max_items">Sinkronizatzeko elementu kopuru muga</string>
+  <string name="pref_title_clearCache">Garbitu cachea</string>
+  <string name="pref_title_CacheImagesOffline">Irudiak sare-kanporako cacheatu</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 elementu</item>
+    <item>400 elementu</item>
+    <item>600 elementu</item>
+    <item>800 elementu</item>
+    <item>1000 elementu</item>
+    <item>Elementu guztiak</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

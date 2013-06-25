@@ -12,6 +12,7 @@
   <string name="pref_title_username">Ім\'я користувача</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Налаштування</string>
   <!--General settings-->

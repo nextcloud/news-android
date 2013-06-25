@@ -12,6 +12,7 @@
   <string name="pref_title_username">მომხმარებლის სახელი</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">პარამეტრები</string>
   <!--General settings-->

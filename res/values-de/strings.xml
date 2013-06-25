@@ -24,6 +24,7 @@
   <string name="pref_title_username">Benutzername</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateFolder">Ordner synchronisieren</string>
   <string name="pull_to_refresh_updateItems">Notiz synchronisieren</string>
   <!--Strings related to Settings-->

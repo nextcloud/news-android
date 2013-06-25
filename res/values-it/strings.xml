@@ -32,6 +32,7 @@
   <string name="error_incorrect_password">La password non è corretta</string>
   <string name="error_field_required">Questo campo è obbligatorio</string>
   <string name="error_invalid_url">Questo URL non è corretto</string>
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Sincronizzazione tag</string>
   <string name="pull_to_refresh_updateFolder">Sincronizzazione cartella</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizzazione fonti</string>

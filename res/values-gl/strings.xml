@@ -30,6 +30,7 @@
   <string name="error_incorrect_password">Este contrasinal é incorrecto</string>
   <string name="error_field_required">Este campo é obrigatorio</string>
   <string name="error_invalid_url">Este URL é incorrecto</string>
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Sincronizando as etiquetas</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando o cartafol</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando as fontes</string>

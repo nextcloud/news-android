@@ -29,6 +29,7 @@
   <string name="error_incorrect_password">Ĉi tiu pasvorto malĝustas</string>
   <string name="error_field_required">Ĉi tiu kampo nepras</string>
   <string name="error_invalid_url">Ĉi tiu URL malĝustas</string>
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Sinkroniĝas etikedoj</string>
   <string name="pull_to_refresh_updateFolder">Sinkroniĝas dosierujo</string>
   <string name="pull_to_refresh_updateFeeds">Sinkroniĝas fluoj</string>

@@ -12,6 +12,7 @@
   <string name="starredFeeds">Itens vistos</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Atualizar</string>
+  <string name="menu_markAllAsRead">Marcar todos como lidos</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-fonte do item - Reportar erros</string>
   <string name="email_sendMail">Enviar e-mail</string>
@@ -24,7 +25,9 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Sincronizando marcadores</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>

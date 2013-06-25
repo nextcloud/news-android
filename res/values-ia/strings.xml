@@ -9,6 +9,7 @@
   <string name="pref_title_username">Nomine de usator</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Configurationes</string>
   <!--General settings-->

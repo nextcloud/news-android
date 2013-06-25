@@ -1,28 +1,102 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Lector de Noticias onwCloud</string>
   <string name="action_settings">Configuración</string>
+  <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
+  <string name="title_activity_subscription">ActividadSuscripción</string>
+  <string name="title_newsreader_list">LectorNoticias</string>
+  <string name="title_newsreader_detail">Detalle LectorNoticias</string>
+  <string name="empty_view_header">Información</string>
+  <string name="empty_view_content">No hay artículos aquí</string>
+  <string name="toast_GettingMoreItems">Comenzó la descarga de más artículos.. Esperá.</string>
+  <string name="allUnreadFeeds">Todos los artículos sin leer</string>
+  <string name="starredFeeds">Artículos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Recargar</string>
+  <string name="menu_markAllAsRead">Marcar todos como leídos</string>
+  <string name="menu_StartImageCaching">Comenzar caché de imágines fuera de línea</string>
+  <string name="menu_downloadMoreItems">Descargar más artículos</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Código Fuente del artículo - ReportáError</string>
+  <string name="email_sendMail">Mandar EMail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favoritos</string>
+  <string name="action_openInBrowser">Abrir en Navegador</string>
+  <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Entrar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
+  <string name="pref_title_password">Clave secreta</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Entrar</string>
+  <string name="login_progress_signing_in">Entrando...</string>
+  <string name="error_incorrect_password">Esta contraseña es incorrecta</string>
+  <string name="error_field_required">Este campo es requerido</string>
+  <string name="error_invalid_url">Esta URL es incorrecta</string>
+  <!--Toast Messages-->
+  <string name="pull_to_refresh_updateTags">Sincronizando etiquetas</string>
+  <string name="pull_to_refresh_updateFolder">Sincronizando archivos</string>
+  <string name="pull_to_refresh_updateFeeds">Sincronizando fuentes</string>
+  <string name="pull_to_refresh_updateItems">Sincronizando articulos</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Configuración</string>
   <!--General settings-->
   <string name="pref_header_general">General</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Sincronizar al comenzar</string>
+  <string name="pref_title_ShowOnlyUnread">Mostrar solamente artículos no leídos</string>
+  <string name="pref_title_AllowAllSSLCertificates">Permitir todos los Certificados SSL</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Mostrar</string>
+  <string name="pref_title_app_theme">Tema de la App (necesita reiniciar para que los cambios sean aplicados)</string>
+  <string name="pref_title_feed_list_layout">Presentación de la lista de orígenes</string>
+  <string-array name="pref_display_apptheme">
+    <item>Oscuro</item>
+    <item>Claro</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simple</item>
+    <item>Extendido</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
+  <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
+  <string name="login_dialog_text_not_compatible">La versión de esta App no es compatible con tu App de ownCloud News. Actualizá la News App y sus depencencias.</string>
   <string name="login_dialog_title_security_warning">Advertencia de seguridad</string>
+  <string name="login_dialog_text_security_warning">No estás usando https. Un atacante podría interceptar tu tráfico y obtener acceso a datos importantes (p. ej. tu contraseña). ¡Te recomendamos que usés https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Sincronización de datos</string>
+  <string name="pref_title_data_sync_max_items">Máximo número de artículos a sincronizar</string>
+  <string name="pref_title_clearCache">Limpiar caché</string>
+  <string name="pref_title_CacheImagesOffline">Hacer caché de imágenes fuera de línea</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 artículos</item>
+    <item>400 artículos</item>
+    <item>600 artículos</item>
+    <item>800 artículos</item>
+    <item>1000 artículos</item>
+    <item>Todos los artículos</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

@@ -8,10 +8,14 @@
   <string name="title_newsreader_detail">Detalle LectorNoticias</string>
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">No hay artículos aquí</string>
+  <string name="toast_GettingMoreItems">Descarga de artículos iniciada.. Por favor espere.</string>
   <string name="allUnreadFeeds">Todos los artículos sin leer</string>
   <string name="starredFeeds">Artículos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
+  <string name="menu_markAllAsRead">Marcar todo como lectura</string>
+  <string name="menu_StartImageCaching">Comenzar obtención de imagen fuera de linea</string>
+  <string name="menu_downloadMoreItems">Descargar más artículos</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código Fuente del artículo - ReporteFallo</string>
   <string name="email_sendMail">Enviar EMail</string>
@@ -23,8 +27,16 @@
   <string name="action_login">Iniciar sesión</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
+  <string name="pref_title_password">Código Secreto</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Registrarse</string>
+  <string name="login_progress_signing_in">Registrando...</string>
+  <string name="error_incorrect_password">La contraseña es incorrecta</string>
+  <string name="error_field_required">El campo es necesario</string>
+  <string name="error_invalid_url">Esta url es incorrecta</string>
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Sincronizando etiquetas</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando archivos</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando fuentes</string>
@@ -35,11 +47,55 @@
   <string name="pref_header_general">General</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Sincronizar en el inicio</string>
+  <string name="pref_title_ShowOnlyUnread">Mostrar sólo artículos no leidos</string>
+  <string name="pref_title_AllowAllSSLCertificates">Permitir todos los Certificados SSL</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Mostrar</string>
+  <string name="pref_title_app_theme">Tema App (requiere reiniciar para aplicar)</string>
+  <string name="pref_title_feed_list_layout">Alimentar lista de disposición</string>
+  <string-array name="pref_display_apptheme">
+    <item>Oscuro</item>
+    <item>Brillante</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simple</item>
+    <item>Extendido</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
+  <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
+  <string name="login_dialog_text_not_compatible">Esta versión de App no es compatible con su App de Noticias ownCloud. Por favor actualice la app de Noticias y el appframework.</string>
   <string name="login_dialog_title_security_warning">Advertencia de seguridad</string>
+  <string name="login_dialog_text_security_warning">No está usando https. Un atacante podría interceptar su tráfico y obtener acceso a algún dato sensible (ej. su contraseña). Así que es muy recomendable utilizar https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Dato &amp; sincronizado</string>
+  <string name="pref_title_data_sync_max_items">Número máximo de artículos a sincronizar</string>
+  <string name="pref_title_clearCache">Vaciar caché</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 Artículos</item>
+    <item>400 Artículos</item>
+    <item>600 Artículos</item>
+    <item>800 Artículos</item>
+    <item>1000 Artículos</item>
+    <item>Todos los Artículos</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

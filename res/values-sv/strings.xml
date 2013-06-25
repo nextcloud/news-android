@@ -25,6 +25,7 @@
   <string name="pref_title_username">Användarnamn</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Synkroniserar taggar</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserar mapp</string>
   <string name="pull_to_refresh_updateFeeds">Synkroniserar feeds</string>

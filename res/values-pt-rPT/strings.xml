@@ -25,6 +25,7 @@
   <string name="pref_title_username">Nome de utilizador</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">Tags de sincronização</string>
   <string name="pull_to_refresh_updateFolder">Pasta a sincronizar</string>
   <string name="pull_to_refresh_updateFeeds">Feeds a sincronizar</string>

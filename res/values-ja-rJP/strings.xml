@@ -8,12 +8,14 @@
   <string name="title_newsreader_detail">ニュースリーダーの詳細</string>
   <string name="empty_view_header">情報</string>
   <string name="empty_view_content">ここにアイテムなし</string>
+  <string name="toast_GettingMoreItems">さらにアイテムをダウンロード開始... お待ちください。</string>
   <string name="allUnreadFeeds">すべての未読アイテム</string>
   <string name="starredFeeds">共有アイテム</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">同期</string>
   <string name="menu_markAllAsRead">すべて既読にする</string>
   <string name="menu_StartImageCaching">画像のオフラインキャッチングを開始</string>
+  <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
   <!--EMAIL-->
   <string name="email_sourceCode">アイテムのソースコード - バグ報告</string>
   <string name="email_sendMail">メールを送る</string>
@@ -25,6 +27,7 @@
   <string name="action_login">ログイン</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
+  <string name="pref_title_password">シークレットコード</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -33,6 +36,7 @@
   <string name="error_incorrect_password">このパスワードは間違っています</string>
   <string name="error_field_required">このフィールドは必須です</string>
   <string name="error_invalid_url">このURLは不正確です</string>
+  <!--Toast Messages-->
   <string name="pull_to_refresh_updateTags">タグを同期中</string>
   <string name="pull_to_refresh_updateFolder">フォルダを同期中</string>
   <string name="pull_to_refresh_updateFeeds">フィードを同期中</string>
@@ -76,6 +80,7 @@
   <string name="pref_header_data_sync">データと同期</string>
   <string name="pref_title_data_sync_max_items">同期するアイテムの最大数</string>
   <string name="pref_title_clearCache">キャッシュをクリア</string>
+  <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
   <string-array name="pref_data_sync_max_items">
     <item>200個</item>
     <item>400個</item>
