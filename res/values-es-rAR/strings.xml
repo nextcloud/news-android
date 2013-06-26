@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Lector de Noticias onwCloud</string>
+  <string name="app_name">Lector de Noticias ownCloud</string>
   <string name="action_settings">Configuración</string>
   <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
   <string name="title_activity_subscription">ActividadSuscripción</string>
@@ -24,7 +24,7 @@
   <string name="action_openInBrowser">Abrir en Navegador</string>
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
-  <string name="action_login">Entrar</string>
+  <string name="action_login">Ingresar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Clave secreta</string>
@@ -37,10 +37,12 @@
   <string name="error_field_required">Este campo es requerido</string>
   <string name="error_invalid_url">Esta URL es incorrecta</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Se descargaron X artículos antiguos</string>
+  <string name="toast_no_more_downloads_available">No hay más artículos disponibles para su descarga</string>
   <string name="pull_to_refresh_updateTags">Sincronizando etiquetas</string>
-  <string name="pull_to_refresh_updateFolder">Sincronizando archivos</string>
+  <string name="pull_to_refresh_updateFolder">Sincronizando carpeta</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando fuentes</string>
-  <string name="pull_to_refresh_updateItems">Sincronizando articulos</string>
+  <string name="pull_to_refresh_updateItems">Sincronizando artículos</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Configuración</string>
   <!--General settings-->
@@ -50,6 +52,7 @@
   <string name="pref_title_AutoSyncOnStart">Sincronizar al comenzar</string>
   <string name="pref_title_ShowOnlyUnread">Mostrar solamente artículos no leídos</string>
   <string name="pref_title_AllowAllSSLCertificates">Permitir todos los Certificados SSL</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema de la App (necesita reiniciar para que los cambios sean aplicados)</string>

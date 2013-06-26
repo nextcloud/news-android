@@ -37,6 +37,8 @@
   <string name="error_field_required">El campo es necesario</string>
   <string name="error_invalid_url">Esta url es incorrecta</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">X elementos antiguos descargados</string>
+  <string name="toast_no_more_downloads_available">No hay más elementos antiguos disponibles para descargar</string>
   <string name="pull_to_refresh_updateTags">Sincronizando etiquetas</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando archivos</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando fuentes</string>
@@ -50,6 +52,7 @@
   <string name="pref_title_AutoSyncOnStart">Sincronizar en el inicio</string>
   <string name="pref_title_ShowOnlyUnread">Mostrar sólo artículos no leidos</string>
   <string name="pref_title_AllowAllSSLCertificates">Permitir todos los Certificados SSL</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema App (requiere reiniciar para aplicar)</string>
@@ -80,6 +83,7 @@
   <string name="pref_header_data_sync">Dato &amp; sincronizado</string>
   <string name="pref_title_data_sync_max_items">Número máximo de artículos a sincronizar</string>
   <string name="pref_title_clearCache">Vaciar caché</string>
+  <string name="pref_title_CacheImagesOffline">Cachear imágenes fuera de línea</string>
   <string-array name="pref_data_sync_max_items">
     <item>200 Artículos</item>
     <item>400 Artículos</item>

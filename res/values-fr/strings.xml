@@ -8,22 +8,26 @@
   <string name="title_newsreader_detail">Nouveau lecteur de détails</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Pas d\'articles ici</string>
+  <string name="toast_GettingMoreItems">Téléchargement d\'articles supplémentaire en cours... Veuillez patienter.</string>
   <string name="allUnreadFeeds">Tous les articles non lus</string>
   <string name="starredFeeds">Articles favoris</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">rafraichir</string>
   <string name="menu_markAllAsRead">Marquez tous comme lu</string>
+  <string name="menu_StartImageCaching">Démarrer la mise en cache hors-ligne des images</string>
+  <string name="menu_downloadMoreItems">Télécharger des articles supplémentaires</string>
   <!--EMAIL-->
-  <string name="email_sourceCode">Code source de l\'article - rapport des bugs</string>
+  <string name="email_sourceCode">Code source de l\'article - rapport de bug</string>
   <string name="email_sendMail">Envoyer un courriel</string>
   <!--Action Bar Items-->
   <string name="action_starred">favoris</string>
   <string name="action_openInBrowser">Ouvert dans le navigateur</string>
-  <string name="action_sendSourceCode">Envoyer un article au développeur</string>
+  <string name="action_sendSourceCode">Envoyer l\'article au développeur</string>
   <string name="action_Share">Partager</string>
   <string name="action_login">Connexion</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilisateur</string>
+  <string name="pref_title_password">Code secret</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -33,25 +37,69 @@
   <string name="error_field_required">Ce champs est requis</string>
   <string name="error_invalid_url">Cet URL est incorrect</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Anciens articles téléchargés</string>
+  <string name="toast_no_more_downloads_available">Aucun anciens articles disponibles au téléchargement</string>
   <string name="pull_to_refresh_updateTags">synchronisant les marqueurs</string>
   <string name="pull_to_refresh_updateFolder">synchronisant les dossiers</string>
   <string name="pull_to_refresh_updateFeeds">synchronisant les besoins</string>
-  <string name="pull_to_refresh_updateItems">synchronisant les articles</string>
+  <string name="pull_to_refresh_updateItems">Synchronisation des articles en cours</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Paramètres</string>
   <!--General settings-->
   <string name="pref_header_general">Généraux</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Synchronisation au démarrage</string>
   <string name="pref_title_ShowOnlyUnread">Montrer seulement les artiles non lus</string>
   <string name="pref_title_AllowAllSSLCertificates">Autoriser tous les certificats SSL</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Naviguer avec les boutons de volume</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Afficher</string>
   <string name="pref_title_app_theme">Thème </string>
+  <string name="pref_title_feed_list_layout">Disposition de la liste des feeds</string>
+  <string-array name="pref_display_apptheme">
+    <item>Sombre</item>
+    <item>Clair</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simple</item>
+    <item>Etendu</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erreur</string>
+  <string name="login_dialog_text_something_went_wrong">Quelque chose s\'est mal passé :-(</string>
+  <string name="login_dialog_text_not_compatible">La version de cette application n\'est pas compatible avec votre application News de ownCloud. Veuillez mettre à jour l\'application news et le framework d\'applications.</string>
   <string name="login_dialog_title_security_warning">Avertissement de sécurité</string>
+  <string name="login_dialog_text_security_warning">Vous n\'utilisez pas https. Une personne malveillante pourrait intercepter votre trafic et obtenir des données sensibles (ex. votre mot de passe). Il est fortement recommandé d\'utiliser https !</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Données &amp; synchrnisation</string>
+  <string name="pref_title_data_sync_max_items">Nombre maximum d\'articles à synchroniser</string>
+  <string name="pref_title_clearCache">Vider le cache</string>
+  <string name="pref_title_CacheImagesOffline">Mise en cache hors-ligne des images</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 articles</item>
+    <item>400 articles</item>
+    <item>600 articles</item>
+    <item>800 articles</item>
+    <item>1000 articles</item>
+    <item>Tous les articles</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

@@ -8,11 +8,13 @@
   <string name="title_newsreader_detail">Detalle do lector de novas</string>
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Non hai elementos aquí</string>
+  <string name="toast_GettingMoreItems">Iniciouse a descarga de máis elementos... agarde.</string>
   <string name="allUnreadFeeds">Todos os elementos sen ler</string>
   <string name="starredFeeds">Elementos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
   <string name="menu_markAllAsRead">Marcar todo como lido</string>
+  <string name="menu_downloadMoreItems">Descargar máis elementos</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código fonte do elemento - Informe de fallos</string>
   <string name="email_sendMail">Enviar correo</string>
@@ -24,13 +26,18 @@
   <string name="action_login">Acceso</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de usuario</string>
+  <string name="pref_title_password">Código secreto</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Rexistrarse</string>
+  <string name="login_progress_signing_in">Rexistrándose en...</string>
   <string name="error_incorrect_password">Este contrasinal é incorrecto</string>
   <string name="error_field_required">Este campo é obrigatorio</string>
   <string name="error_invalid_url">Este URL é incorrecto</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Descargados X elementos antigos</string>
+  <string name="toast_no_more_downloads_available">Non hai máis elementos antigos dispoñíbeis para descarga</string>
   <string name="pull_to_refresh_updateTags">Sincronizando as etiquetas</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando o cartafol</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando as fontes</string>
@@ -44,7 +51,9 @@
   <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
   <string name="pref_title_ShowOnlyUnread">Amosar só os artigos non lidos</string>
   <string name="pref_title_AllowAllSSLCertificates">Permitir todos os certificados SSL</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Navegar cos botóns de volume</string>
   <!--Settings for Display-->
+  <string name="pref_title_app_theme">Tema de aplicativo (require reiniciar para aplicar)</string>
   <string-array name="pref_display_apptheme">
     <item>Escuro</item>
     <item>Claro</item>

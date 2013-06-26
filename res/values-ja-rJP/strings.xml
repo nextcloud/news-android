@@ -37,6 +37,8 @@
   <string name="error_field_required">このフィールドは必須です</string>
   <string name="error_invalid_url">このURLは不正確です</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">ダウンロードされた古いXアイテム</string>
+  <string name="toast_no_more_downloads_available">これ以上ダウンロードできる古いアイテムはありません</string>
   <string name="pull_to_refresh_updateTags">タグを同期中</string>
   <string name="pull_to_refresh_updateFolder">フォルダを同期中</string>
   <string name="pull_to_refresh_updateFeeds">フィードを同期中</string>
@@ -50,6 +52,7 @@
   <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
   <string name="pref_title_ShowOnlyUnread">未読の記事のみ表示</string>
   <string name="pref_title_AllowAllSSLCertificates">全てのSSL証明書を許可</string>
+  <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
   <!--Settings for Display-->
   <string name="pref_header_display">表示</string>
   <string name="pref_title_app_theme">アプリのテーマ (適用するには再起動する必要があります)</string>
