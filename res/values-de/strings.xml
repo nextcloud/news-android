@@ -19,7 +19,6 @@
   <string name="action_openInBrowser">Im Browser öffnen...</string>
   <string name="action_sendSourceCode">Notiz an Entwickler senden</string>
   <string name="action_Share">Teilen</string>
-  <string name="action_login">Anmelden</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

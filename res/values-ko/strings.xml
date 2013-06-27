@@ -7,7 +7,6 @@
   <!--Action Bar Items-->
   <string name="action_starred">별표</string>
   <string name="action_Share">공유</string>
-  <string name="action_login">로그인</string>
   <!--Strings related to login-->
   <string name="pref_title_username">사용자 이름</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

@@ -7,7 +7,6 @@
   <!--Action Bar Items-->
   <string name="action_starred">يۇلتۇزلۇق</string>
   <string name="action_Share">ھەمبەھىر</string>
-  <string name="action_login">تىزىمغا كىرىڭ</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ئىشلەتكۈچى ئاتى</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

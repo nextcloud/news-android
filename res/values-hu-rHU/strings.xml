@@ -17,7 +17,6 @@
   <string name="action_openInBrowser">Megnyitás böngészőben</string>
   <string name="action_sendSourceCode">Küldjük el a fejlesztőnek</string>
   <string name="action_Share">Megosztás</string>
-  <string name="action_login">Bejelentkezés</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Felhasználónév</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

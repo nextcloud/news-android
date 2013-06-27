@@ -23,7 +23,6 @@
   <string name="action_openInBrowser">Abrir no navegador</string>
   <string name="action_sendSourceCode">Enviar o elemento ao desenvolvedor</string>
   <string name="action_Share">Compartir</string>
-  <string name="action_login">Acceso</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de usuario</string>
   <string name="pref_title_password">Código secreto</string>
@@ -59,14 +58,6 @@
     <item>Claro</item>
   </string-array>
   <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Único</item>
-    <item>Estendido</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
   </string-array>

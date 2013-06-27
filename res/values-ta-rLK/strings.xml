@@ -6,7 +6,6 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">பகிர்வு</string>
-  <string name="action_login">புகுபதிகை</string>
   <!--Strings related to login-->
   <string name="pref_title_username">பயனாளர் பெயர்</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

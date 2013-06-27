@@ -24,7 +24,6 @@
   <string name="action_openInBrowser">ブラウザーで開く</string>
   <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
-  <string name="action_login">ログイン</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">シークレットコード</string>
@@ -62,14 +61,6 @@
     <item>ライト</item>
   </string-array>
   <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>単純</item>
-    <item>拡張</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
   </string-array>

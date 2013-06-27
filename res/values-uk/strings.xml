@@ -7,7 +7,6 @@
   <!--Action Bar Items-->
   <string name="action_starred">Помічені зірочкою</string>
   <string name="action_Share">Поділитися</string>
-  <string name="action_login">Логін</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Ім\'я користувача</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

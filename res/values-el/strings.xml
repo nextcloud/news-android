@@ -13,7 +13,6 @@
   <string name="action_openInBrowser">Άνοιγμα στον Περιηγητή</string>
   <string name="action_sendSourceCode">Αποστολή αντικειμένου στον Προγραμματιστή</string>
   <string name="action_Share">Διαμοιρασμός</string>
-  <string name="action_login">Σύνδεση</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

@@ -20,7 +20,6 @@
   <string name="action_openInBrowser">Abrir no browser</string>
   <string name="action_sendSourceCode">Enviar item ao Programador</string>
   <string name="action_Share">Partilhar</string>
-  <string name="action_login">Login</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

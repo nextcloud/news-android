@@ -24,7 +24,6 @@
   <string name="action_openInBrowser">Abrir en Navegador</string>
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
-  <string name="action_login">Iniciar sesión</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Código Secreto</string>
@@ -62,14 +61,6 @@
     <item>Brillante</item>
   </string-array>
   <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Simple</item>
-    <item>Extendido</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
   </string-array>

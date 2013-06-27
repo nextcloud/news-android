@@ -7,7 +7,6 @@
   <!--Action Bar Items-->
   <string name="action_starred">ติดดาวแล้ว</string>
   <string name="action_Share">แชร์</string>
-  <string name="action_login">เข้าสู่ระบบ</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

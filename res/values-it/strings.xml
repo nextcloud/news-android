@@ -21,7 +21,6 @@
   <string name="action_openInBrowser">Apri nel browser</string>
   <string name="action_sendSourceCode">Invia elemento allo sviluppatore</string>
   <string name="action_Share">Condividi</string>
-  <string name="action_login">Accesso</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome utente</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
@@ -55,14 +54,6 @@
     <item>Chiaro</item>
   </string-array>
   <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Semplice</item>
-    <item>Esteso</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
   </string-array>

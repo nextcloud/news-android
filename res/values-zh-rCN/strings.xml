@@ -20,7 +20,6 @@
   <string name="action_openInBrowser">在浏览器中打开</string>
   <string name="action_sendSourceCode">给开发者发消息</string>
   <string name="action_Share">共享</string>
-  <string name="action_login">登录</string>
   <!--Strings related to login-->
   <string name="pref_title_username">用户名</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

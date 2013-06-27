@@ -6,7 +6,6 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Dalintis</string>
-  <string name="action_login">Prisijungti</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Prisijungimo vardas</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

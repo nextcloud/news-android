@@ -17,7 +17,6 @@
   <string name="action_openInBrowser">Otvoriť v prehliadači</string>
   <string name="action_sendSourceCode">Odoslať položku vývojárovi</string>
   <string name="action_Share">Zdieľať</string>
-  <string name="action_login">Prihlásenie</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Meno používateľa</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

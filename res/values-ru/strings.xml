@@ -8,7 +8,6 @@
   <!--Action Bar Items-->
   <string name="action_starred">Отмеченный</string>
   <string name="action_Share">Открыть доступ</string>
-  <string name="action_login">Логин</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

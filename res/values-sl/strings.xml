@@ -7,7 +7,6 @@
   <!--Action Bar Items-->
   <string name="action_starred">Z zvezdico</string>
   <string name="action_Share">Souporaba</string>
-  <string name="action_login">Prijava</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uporabniško ime</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

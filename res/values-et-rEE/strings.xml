@@ -20,7 +20,6 @@
   <string name="action_openInBrowser">Ava veebilehitsejas</string>
   <string name="action_sendSourceCode">Saada üksus arendajale</string>
   <string name="action_Share">Jaga</string>
-  <string name="action_login">Logi sisse</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
