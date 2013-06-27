@@ -8,7 +8,6 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -148,7 +147,8 @@ public class NewsDetailFragment extends SherlockFragment {
 		//webview.clearCache(false);
 		init_webView();
 		//webview.loadUrl("about:blank");
-		webview.loadDataWithBaseURL("", getHtmlPage(ndActivity), "text/html", "UTF-8", "");
+		int idItem = ndActivity.databaseItemIds.get(section_number - 1);
+		webview.loadDataWithBaseURL("", getHtmlPage(ndActivity, ndActivity.dbConn, idItem), "text/html", "UTF-8", "");
 	}
 	
 	@SuppressLint("SetJavaScriptEnabled")
@@ -197,21 +197,21 @@ public class NewsDetailFragment extends SherlockFragment {
 	
 	
 	@SuppressLint("SimpleDateFormat")
-	private String getHtmlPage(NewsDetailActivity ndActivity)
+	public static String getHtmlPage(Context context, DatabaseConnection dbConn, int idItem)
 	{
-		init_webTemplate(ndActivity);
+		init_webTemplate(context);
 		String htmlData = web_template;
 		
 		//RssFile rssFile = ((NewsDetailActivity)getActivity()).rssFiles.get(section_number - 1);
-        int idItem = ndActivity.databaseItemIds.get(section_number - 1);
+        //int idItem = ndActivity.databaseItemIds.get(section_number - 1);
         
-        Cursor cursor = ndActivity.dbConn.getArticleByID(String.valueOf(idItem));
+        Cursor cursor = dbConn.getArticleByID(String.valueOf(idItem));
         cursor.moveToFirst();
         
         String favIconUrl = "";
         
 		try {
-			Cursor favIconCursor = ndActivity.dbConn.getFeedByDbID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
+			Cursor favIconCursor = dbConn.getFeedByDbID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
 	        try
 	        {	
 	        	favIconCursor.moveToFirst();
@@ -220,7 +220,7 @@ public class NewsDetailFragment extends SherlockFragment {
 	        		favIconUrl = favIconCursor.getString(favIconCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));
 	        		if(favIconUrl != null)
 	        		{
-	        			File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, ImageHandler.getPathFavIcons(getActivity()));
+	        			File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, ImageHandler.getPathFavIcons(context));
 	        			if(file.isFile())
 	        				favIconUrl = "file://" + file.getAbsolutePath().toString();
 	        		}
@@ -257,7 +257,7 @@ public class NewsDetailFragment extends SherlockFragment {
 	        
 	        
 	        //String subscription = ((NewsDetailActivity) getActivity()).dbConn.getTitleOfSubscriptionByRowID(String.valueOf(rssFile.getFeedID_Db()));
-	        String subscription = ndActivity.dbConn.getTitleOfSubscriptionByFeedItemID(String.valueOf(idItem));
+	        String subscription = dbConn.getTitleOfSubscriptionByFeedItemID(String.valueOf(idItem));
 	        String divSubscription = "<div id=\"subscription\">";
 	        int pos = htmlData.indexOf(divSubscription) + divSubscription.length();
 	        pos = htmlData.indexOf("/>", pos) + 2;//Wegen des Favicon <img /> 
@@ -266,7 +266,7 @@ public class NewsDetailFragment extends SherlockFragment {
 	        String divContent = "<div id=\"content\">";
 	        String description = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
 	        //htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), rssFile.getDescription().trim()).toString();
-	        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), getDescriptionWithCachedImages(description, this.getActivity()).trim()).toString();
+	        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), getDescriptionWithCachedImages(description, context).trim()).toString();
 	        
 	        //String link = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK)); 
 	        //Uri uri = Uri.parse(rssFile.getLink());
@@ -294,7 +294,7 @@ public class NewsDetailFragment extends SherlockFragment {
 	}
 	
 	
-	private String getDescriptionWithCachedImages(String text, Context context)
+	private static String getDescriptionWithCachedImages(String text, Context context)
 	{
 		List<String> links = ImageHandler.getImageLinksFromText(text);
 		
@@ -303,7 +303,7 @@ public class NewsDetailFragment extends SherlockFragment {
 			link = link.trim();
 			try
 			{
-				File file = ImageHandler.getFullPathOfCacheFile(link, ImageHandler.getPathImageCache(getActivity()));
+				File file = ImageHandler.getFullPathOfCacheFile(link, ImageHandler.getPathImageCache(context));
 				if(file.isFile())
 					text = text.replace(link, "file://" + file.getAbsolutePath().toString());
 			}
@@ -359,14 +359,14 @@ public class NewsDetailFragment extends SherlockFragment {
 	
 	
 	
-	private void init_webTemplate(NewsDetailActivity ndActivity)
+	private static void init_webTemplate(Context context)
 	{
 		if(web_template == null)
 		{
 			InputStream input = null;
 			try {
-				Activity act = getActivity();
-				input = act.getAssets().open("web_template.html");
+				//Activity act = getActivity();
+				input = context.getAssets().open("web_template.html");
 		        int size = input.available();
 		        byte[] buffer = new byte[size];
 		        input.read(buffer);
@@ -386,7 +386,7 @@ public class NewsDetailFragment extends SherlockFragment {
 						background_color = Color.parseColor(background_color_string);
 				}
 		        
-		        if(ThemeChooser.isDarkTheme(ndActivity))
+		        if(ThemeChooser.isDarkTheme(context))
 		        	web_template = web_template.replace("<body id=\"lightTheme\">", "<body id=\"darkTheme\">");
 		        
 		        /*
@@ -401,7 +401,7 @@ public class NewsDetailFragment extends SherlockFragment {
 		}
 	}
 	
-	private String SearchString(String data, String startString, String endString)
+	private static String SearchString(String data, String startString, String endString)
 	{
 		int start = data.indexOf(startString) + startString.length();
 		int end = data.indexOf(endString, start);
@@ -411,7 +411,7 @@ public class NewsDetailFragment extends SherlockFragment {
 		return data;
 	}
 	
-	private String convertHexColorFrom3To6Characters(String color)
+	private static String convertHexColorFrom3To6Characters(String color)
 	{
 		for(int i = 1; i < 6; i += 2)
 			color = color.substring(0, i) + color.charAt(i) + color.substring(i);

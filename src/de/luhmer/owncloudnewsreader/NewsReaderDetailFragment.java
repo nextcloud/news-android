@@ -11,6 +11,8 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -37,6 +39,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	String idSubscription;
 	String idFolder;
 	String titel;
+	int lastItemPosition;
 	
 	ArrayList<Integer> databaseIdsOfItems;
 	
@@ -77,10 +80,65 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 			
 		((SherlockFragmentActivity) getActivity()).getSupportActionBar().setTitle(titel);
 		
+		//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+				
 		//lvAdapter = new Subscription_ListViewAdapter(this);
 		UpdateCursor();
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.ListFragment#onViewCreated(android.view.View, android.os.Bundle)
+	 */
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false))
+		{		
+			getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
+	            public void onScrollStateChanged(AbsListView view, int scrollState) { }
+	
+	            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+	                for (int i = firstVisibleItem; i < firstVisibleItem + visibleItemCount; i++) {
+	                	
+	                	if(lastItemPosition < firstVisibleItem)
+	                	{
+	                		lastItemPosition = firstVisibleItem;
+	                		
+	                		CheckBox cb = (CheckBox) view.findViewById(R.id.cb_lv_item_read);
+	                		if(!cb.isChecked())
+	                			cb.setChecked(true);
+	                		
+	                		//dbConn.
+	                	}
+	                	
+	                    //Cursor cursor = (Cursor)view.getItemAtPosition(i);
+	                    //long id = cursor.getLong(cursor.getColumnIndex(AlertsContract._ID));
+	                    //String type = cursor.getString(cursor.getColumnIndex(AlertsContract.TYPE));
+	                    //Log.d("VIEWED", "This is viewed "+ type + " id: " + id);
+	                    //Log.d("VIEWED", "This is viewed "+ firstVisibleItem + " id: ");
+	
+	                    // here I can get the id and mark the item read
+	                }
+	            }
+	        });
+		}
+		
+		super.onViewCreated(view, savedInstanceState);
+	}
+	
+	
+
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.Fragment#onResume()
+	 */
+	@Override
+	public void onResume() {
+		lastItemPosition = -1;
+		super.onResume();
+	}
+
 	@Override
 	public void onDestroy() {
 		if(lvAdapter != null)

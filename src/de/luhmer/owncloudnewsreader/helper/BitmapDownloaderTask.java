@@ -1,25 +1,28 @@
 package de.luhmer.owncloudnewsreader.helper;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.http.AndroidHttpClient;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.ImageView;
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
+import android.annotation.TargetApi;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.net.http.AndroidHttpClient;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.util.Log;
+import android.widget.ImageView;
 
 /**
  * Created by David on 24.05.13.
  */
 public class BitmapDownloaderTask extends AsyncTask<String, Void, Drawable> {
-    private String url;
+    //private String url;
     private final WeakReference<ImageView> imageViewReference;
 
     public BitmapDownloaderTask(ImageView imageView) {
@@ -51,7 +54,8 @@ public class BitmapDownloaderTask extends AsyncTask<String, Void, Drawable> {
     }
 
 
-    static Bitmap downloadBitmap(String url) {
+    @TargetApi(Build.VERSION_CODES.FROYO)
+	static Bitmap downloadBitmap(String url) {
         final AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
         final HttpGet getRequest = new HttpGet(url);
 

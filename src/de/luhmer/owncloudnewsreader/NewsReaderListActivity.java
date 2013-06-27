@@ -12,7 +12,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.MenuUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
@@ -317,7 +316,7 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
     }
 
 
-    private void StartLoginFragment()
+    public void StartLoginFragment()
     {
     	SherlockDialogFragment dialog = new LoginDialogFragment();
         dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");

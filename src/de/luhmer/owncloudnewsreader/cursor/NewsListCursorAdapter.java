@@ -4,32 +4,31 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.CursorAdapter;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.IReader;
-import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 public class NewsListCursorAdapter extends CursorAdapter {
@@ -68,6 +67,10 @@ public class NewsListCursorAdapter extends CursorAdapter {
 				
 			case 1:
 				setExtendedLayout(view, cursor);				
+				break;
+				
+			case 2:
+				setExtendedLayoutWebView(view, cursor);				
 				break;
 	
 			default:
@@ -177,6 +180,34 @@ public class NewsListCursorAdapter extends CursorAdapter {
         textViewSummary.setTag(cursor.getString(0));
 	}
 	
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public void setExtendedLayoutWebView(View view, Cursor cursor)
+	{
+		
+		/*
+		TextView textViewSummary = (TextView) view.findViewById(R.id.summary);
+        textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString());
+
+        TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
+        long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
+        textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
+		 */
+				
+        WebView webViewContent = (WebView) view.findViewById(R.id.webView_body);
+        webViewContent.setClickable(false);
+        webViewContent.setFocusable(false);
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+        //	webViewContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        
+        webViewContent.loadDataWithBaseURL("", NewsDetailFragment.getHtmlPage(mContext, dbConn , cursor.getInt(0)), "text/html", "UTF-8", "");
+
+        /*
+        TextView textViewTitle = (TextView) view.findViewById(R.id.tv_subscription);        
+        textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
+        textViewSummary.setTag(cursor.getString(0));
+        */
+	}
+	
 	
 	/*
 	class ItemHolder {
@@ -248,6 +279,10 @@ public class NewsListCursorAdapter extends CursorAdapter {
 				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended, parent, false);				
 				break;
 				
+			case 2:
+				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended_webview, parent, false);				
+				break;
+				
 			default:
 				break;
         }
@@ -264,7 +299,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
         return retView;
 	}
 
-    
+    /*
 	OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagRead = new OnAsyncTaskCompletedListener() {
 		
 		@Override
@@ -279,5 +314,5 @@ public class NewsListCursorAdapter extends CursorAdapter {
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			Log.d("FINISHED PERFORM TAG STARRED ", "" + task_result);			
 		}
-	};
+	};*/
 }

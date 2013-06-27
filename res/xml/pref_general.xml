@@ -65,6 +65,10 @@
     <CheckBoxPreference
         android:key="cb_NavigateWithVolumeButtons"
         android:title="@string/pref_title_NavigateWithVolumeButtons" />
+    
+    <CheckBoxPreference
+        android:key="cb_MarkAsReadWhileScrolling"
+        android:title="@string/pref_title_MarkAsReadWhileScrolling" />
 
     <!--
          NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to

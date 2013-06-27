@@ -54,6 +54,8 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String CB_SHOWONLYUNREAD_STRING = "cb_ShowOnlyUnread";
     public static final String CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING = "cb_NavigateWithVolumeButtons";
     public static final String CB_CACHE_IMAGES_OFFLINE_STRING = "cb_cacheImagesOffline";
+    public static final String CB_MARK_AS_READ_WHILE_SCROLLING_STRING = "cb_MarkAsReadWhileScrolling";
+    
     
     
     public static final String SP_APP_THEME = "sp_app_theme";
@@ -407,6 +409,7 @@ public class SettingsActivity extends PreferenceActivity {
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SYNCONSTARTUP_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOWONLYUNREAD_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
+	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
 		}
 		else
 		{
@@ -419,6 +422,7 @@ public class SettingsActivity extends PreferenceActivity {
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SYNCONSTARTUP_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOWONLYUNREAD_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
+	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
 		}
 	}
 	

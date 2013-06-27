@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <!--
+    android:background="@drawable/checkbox_background"
+        android:button="@drawable/checkbox" 
+     -->
+
+	<View
+	    android:layout_width="fill_parent"
+    	android:layout_height="2dp"
+    	android:background="#ff0099cc"/>
+    	<!--  android:background="#ff00ddff"/> -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/listview_row_margin_left"
+        android:layout_marginRight="@dimen/listview_row_margin_right"
+        android:gravity="right" >
+
+        <TextView
+            android:id="@+id/tv_clickHereToOpen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:textSize="15sp"  
+            android:layout_weight="1"      
+            android:text="@string/tv_clickHereToOpenItem" />
+        
+        <CheckBox
+            android:id="@+id/cb_lv_item_starred"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"            
+            android:background="@drawable/checkbox_background"
+            android:button="@drawable/checkbox_background_empty"            
+            android:clickable="false"
+            android:focusable="false" />
+
+        <CheckBox
+            android:id="@+id/cb_lv_item_read"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:clickable="false"
+            android:focusable="false" />
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/webView_body"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:focusable="false"
+        android:clickable="false" />
+</LinearLayout>

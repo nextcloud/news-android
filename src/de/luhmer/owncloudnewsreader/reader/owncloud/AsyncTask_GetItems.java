@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.NetworkConnection;
@@ -156,9 +157,9 @@ public class AsyncTask_GetItems extends AsyncTask<Object, Void, Exception> imple
     	SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
     	if(mPrefs.getBoolean(SettingsActivity.CB_CACHE_IMAGES_OFFLINE_STRING, false))
     	{        		
-    		if(!NetworkConnection.isWLANConnected(context))
+    		if(!NetworkConnection.isWLANConnected(context) && NetworkConnection.isNetworkAvailable(context))
     			ShowDownloadImageWithoutWifiQuestion();
-    		else    		
+    		else if(NetworkConnection.isNetworkAvailable(context)) 		
     			StartDownloadingImages();
     	}
     	
@@ -184,12 +185,12 @@ public class AsyncTask_GetItems extends AsyncTask<Object, Void, Exception> imple
     	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
  
 		// set title
-		alertDialogBuilder.setTitle("Your Title");
+		alertDialogBuilder.setTitle(context.getString(R.string.no_wifi_available));
  
 			// set dialog message
 		alertDialogBuilder
-			.setMessage("Click yes to exit!")
-			.setCancelable(false)
+			.setMessage(context.getString(R.string.do_you_want_to_download_without_wifi))
+			.setCancelable(true)
 			.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
 					StartDownloadingImages();

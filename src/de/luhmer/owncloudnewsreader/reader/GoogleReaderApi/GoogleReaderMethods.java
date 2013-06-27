@@ -2,7 +2,6 @@ package de.luhmer.owncloudnewsreader.reader.GoogleReaderApi;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -73,6 +72,7 @@ public class GoogleReaderMethods {
 		return _TAGTITLE_ARRAYLIST;
 	}
 	
+	@SuppressWarnings("unused")
 	public static ArrayList<FolderSubscribtionItem> getSubList(String _USERNAME, String _PASSWORD) throws UnsupportedEncodingException, IOException {
 		ArrayList<FolderSubscribtionItem> _SUBTITLE_ARRAYLIST = new ArrayList<FolderSubscribtionItem>();
 	 
@@ -89,11 +89,11 @@ public class GoogleReaderMethods {
 		Node childTemp = element.childNodes().get(0);
 		List<Node> childs = childTemp.childNodes();		
 				
-		for (Node node : childs) {			
+		for (Node node : childs) {
 			Elements links = ((Element) node).select("string");
-			String idFeed = null;
-			String feedName = null;
-			String parentSubscriptionName = null;
+			String idFeed = null;			
+			String feedName;
+			String parentSubscriptionName;
 			
 			for (Element link : links) {				
 				String tagAttrib = link.attr("name");
@@ -111,6 +111,7 @@ public class GoogleReaderMethods {
 			
 			//_SUBTITLE_ARRAYLIST.add(new FolderSubscribtionItem(feedName, -1, idFeed, parentSubscriptionName));//TODO implements this again... ? Update FolderSubscribtionItem
 		}
+		
 	 
 		//String[] _SUBTITLE_ARRAY = new String[_SUBTITLE_ARRAYLIST.size()];
 		//_SUBTITLE_ARRAYLIST.toArray(_SUBTITLE_ARRAY);
@@ -159,6 +160,7 @@ public class GoogleReaderMethods {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	public static ArrayList<RssFile> getFeeds(String _USERNAME, String _PASSWORD, String _TAG_LABEL) {
 		Log.d("mygr","METHOD: getUnreadFeeds()");
 		

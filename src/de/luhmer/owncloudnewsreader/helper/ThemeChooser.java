@@ -22,14 +22,16 @@ public class ThemeChooser {
 			//if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 			//	act.setTheme(android.R.style.Theme_Holo);
 			//else
-				act.setTheme(R.style.Sherlock___Theme);
+				//act.setTheme(R.style.Sherlock___Theme);
+			act.setTheme(R.style.Theme_Sherlock);
 		}
 		else if(value.equals("1"))
 		{
 			//if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 			//	act.setTheme(android.R.style.Theme_Holo_Light_DarkActionBar);
 			//else
-				act.setTheme(R.style.Sherlock___Theme_DarkActionBar);
+				//act.setTheme(R.style.Sherlock___Theme_DarkActionBar);
+			act.setTheme(R.style.Theme_Sherlock_Light_DarkActionBar);
 		}
 	}
 	

@@ -518,12 +518,13 @@ public class DatabaseConnection {
 			if(onlyUnread)
 				buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
 	 	}
-	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) && onlyUnread)//only unRead should only be null when testing the size of items
-	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " != 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) && onlyUnread)//only unRead should only be null when testing the size of items
 	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
-	 		buildSQL += " WHERE " + RSS_ITEM_STARRED + " != 1";
-	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) && onlyUnread)
-	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " != 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED + " != 1";
+	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) && onlyUnread)
+	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
 	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
 	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1";
 	 			

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import de.luhmer.owncloudnewsreader.database.DatabaseHelper;
 

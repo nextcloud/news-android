@@ -188,36 +188,44 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	
 	public void StartSync()
 	{
-		if (!_Reader.isSyncRunning())
-        {
-			DatabaseConnection dbConn = new DatabaseConnection(getActivity());
-			try {
-				//Mark as READ
-				List<String> item_ids = dbConn.getAllNewReadItems();
-				_Reader.Start_AsyncTask_PerformTagAction(-4, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_READ);
-				
-				//Mark as UNREAD
-				item_ids = dbConn.getAllNewUnreadItems();
-				_Reader.Start_AsyncTask_PerformTagAction(-3, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_UNREAD);
-				
-				//Mark as STARRED
-				item_ids = dbConn.getAllNewStarredItems();
-				_Reader.Start_AsyncTask_PerformTagAction(-2, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_STARRED);
-				
-				//Mark as UNSTARRED
-				item_ids = dbConn.getAllNewUnstarredItems();
-				_Reader.Start_AsyncTask_PerformTagAction(-1, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_UNSTARRED);
-			} finally {
-				dbConn.closeDatabase();
-			}
-            
-			if(eListView != null)
-				eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
-			//_Reader.Start_AsyncTask_GetFolder(0,  getActivity(), onAsyncTask_GetTopReaderTags);
-        }
-		else
-	    	//_Reader.attachToRunningTask(0, getActivity(), onAsyncTask_GetTopReaderTags);
-            _Reader.attachToRunningTask(-1, getActivity(), onAsyncTask_PerformTagExecute);
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
+		{
+			NewsReaderListActivity nla = (NewsReaderListActivity) getActivity();
+			nla.StartLoginFragment();
+			
+		} else {
+			if (!_Reader.isSyncRunning())
+	        {
+				DatabaseConnection dbConn = new DatabaseConnection(getActivity());
+				try {
+					//Mark as READ
+					List<String> item_ids = dbConn.getAllNewReadItems();
+					_Reader.Start_AsyncTask_PerformTagAction(-4, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_READ);
+					
+					//Mark as UNREAD
+					item_ids = dbConn.getAllNewUnreadItems();
+					_Reader.Start_AsyncTask_PerformTagAction(-3, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_UNREAD);
+					
+					//Mark as STARRED
+					item_ids = dbConn.getAllNewStarredItems();
+					_Reader.Start_AsyncTask_PerformTagAction(-2, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_STARRED);
+					
+					//Mark as UNSTARRED
+					item_ids = dbConn.getAllNewUnstarredItems();
+					_Reader.Start_AsyncTask_PerformTagAction(-1, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_UNSTARRED);
+				} finally {
+					dbConn.closeDatabase();
+				}
+	            
+				if(eListView != null)
+					eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
+				//_Reader.Start_AsyncTask_GetFolder(0,  getActivity(), onAsyncTask_GetTopReaderTags);
+	        }
+			else
+		    	//_Reader.attachToRunningTask(0, getActivity(), onAsyncTask_GetTopReaderTags);
+	            _Reader.attachToRunningTask(-1, getActivity(), onAsyncTask_PerformTagExecute);
+		}
 		
 		UpdateSyncButtonLayout();
 	}
