@@ -8,11 +8,17 @@
   <string name="title_newsreader_detail">Szczegóły Aktualności</string>
   <string name="empty_view_header">informacje</string>
   <string name="empty_view_content">Nic tu nie ma</string>
+  <string name="toast_GettingMoreItems">Rozpoczęto pobieranie elementów. Proszę czekać.</string>
+  <string name="tv_clickHereToOpenItem">Kliknij tutaj aby otworzyć element</string>
+  <string name="no_wifi_available">Brak połączenia WIFI</string>
+  <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
   <string name="allUnreadFeeds">Wszystkie nieprzeczytane</string>
   <string name="starredFeeds">Oznaczone Gwiazdką</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Odśwież</string>
   <string name="menu_markAllAsRead">Oznacz wszysto jako przeczytane</string>
+  <string name="menu_StartImageCaching">Rozpocznij buforowanie obrazów w trybie offline</string>
+  <string name="menu_downloadMoreItems">Pobierz więcej elementów</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Kodu źródłowego elementu - raport błędu</string>
   <string name="email_sendMail">Wyślij Email</string>
@@ -21,8 +27,10 @@
   <string name="action_openInBrowser">Otwórz w przeglądarce</string>
   <string name="action_sendSourceCode">Wyślij element do autora</string>
   <string name="action_Share">Udostępnij</string>
+  <string name="action_login">Ustawienia serwera</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nazwa użytkownika</string>
+  <string name="pref_title_password">Tajny kod</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -32,6 +40,8 @@
   <string name="error_field_required">Ten element jest wymagany</string>
   <string name="error_invalid_url">Ten adres jest niepoprawny</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Pobierz X starych elementów</string>
+  <string name="toast_no_more_downloads_available">Nie ma więcej  starych elementów do porbrania</string>
   <string name="pull_to_refresh_updateTags">Synchronizowanie tagów</string>
   <string name="pull_to_refresh_updateFolder">Synchronizowanie folder</string>
   <string name="pull_to_refresh_updateFeeds">Synchronizowanie kanałów</string>
@@ -45,6 +55,8 @@
   <string name="pref_title_AutoSyncOnStart">Synchronizuj na starcie</string>
   <string name="pref_title_ShowOnlyUnread">Pokaż tylko nieprzeczytane artykuły</string>
   <string name="pref_title_AllowAllSSLCertificates">Potwierdź wszystkie certyfikaty SSL</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Wygląd</string>
   <string name="pref_title_app_theme">Szablon aplikacji (wymagany restart aplikacji)</string>
@@ -57,12 +69,43 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Prosty</item>
+    <item>Rozszerzony</item>
+    <item>Rozszerzone z widoku sieci Web</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Błąd</string>
   <string name="login_dialog_text_something_went_wrong">Coś poszło nie tak :(</string>
+  <string name="login_dialog_text_not_compatible">Ta wersja aplikacji nie jest zgodny z twoją aplikacją wiadomości na ownCloud. Zaktualizuj aplikacje news i appframework.</string>
   <string name="login_dialog_title_security_warning">Ostrzeżenie o zabezpieczeniach</string>
+  <string name="login_dialog_text_security_warning">Nie używaszpołączenia https. Osoba atakująca może przechwytywać ruch i uzyskać dostęp do niektórych poufnych danych (np. hasła). Zdecydowanie polecamy używać https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Data &amp; synchronizacja</string>
+  <string name="pref_title_data_sync_max_items">Maksymalna ilość elementów do synchronizacji</string>
   <string name="pref_title_clearCache">Czyść pamięć podręczną</string>
+  <string name="pref_title_CacheImagesOffline">Zapisuj obrazy offline</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 Elementów</item>
+    <item>400 Elementów</item>
+    <item>600 Elementów</item>
+    <item>800 Elementów</item>
+    <item>1000 Elementów</item>
+    <item>Wszystkie</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

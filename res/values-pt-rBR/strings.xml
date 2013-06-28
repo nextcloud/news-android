@@ -8,11 +8,17 @@
   <string name="title_newsreader_detail">Detalhes do leitor de notícias</string>
   <string name="empty_view_header">Informações</string>
   <string name="empty_view_content">Este local está vazio</string>
+  <string name="toast_GettingMoreItems">Download de mais itens já iniciado.. Por favor, aguarde.</string>
+  <string name="tv_clickHereToOpenItem">Clique aqui para abrir um item</string>
+  <string name="no_wifi_available">Nenhum WiFi conectado</string>
+  <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
   <string name="allUnreadFeeds">Todos itens não lidos</string>
   <string name="starredFeeds">Itens vistos</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Atualizar</string>
   <string name="menu_markAllAsRead">Marcar todos como lidos</string>
+  <string name="menu_StartImageCaching">Iniciar armazenamento de imagens offline</string>
+  <string name="menu_downloadMoreItems">Fazer download de mais itens</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-fonte do item - Reportar erros</string>
   <string name="email_sendMail">Enviar e-mail</string>
@@ -21,12 +27,21 @@
   <string name="action_openInBrowser">Abrir no navegador</string>
   <string name="action_sendSourceCode">Enviar item ao desenvolvedor</string>
   <string name="action_Share">Compartilhar</string>
+  <string name="action_login">Configurações do servidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
+  <string name="pref_title_password">Código Secreto</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Login</string>
+  <string name="login_progress_signing_in">Fazendo login...</string>
+  <string name="error_incorrect_password">A senha está incorreta</string>
+  <string name="error_field_required">Este campo é obrigatório</string>
+  <string name="error_invalid_url">A URL está incorreta</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Foram baixados X itens antigos</string>
+  <string name="toast_no_more_downloads_available">Não há mais itens antigos disponíveis para download</string>
   <string name="pull_to_refresh_updateTags">Sincronizando marcadores</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
@@ -37,11 +52,60 @@
   <string name="pref_header_general">Geral</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>
+  <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos não lidos</string>
+  <string name="pref_title_AllowAllSSLCertificates">Permitir todos os certificados SSL</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Display</string>
+  <string name="pref_title_app_theme">Tema do aplicativo (é preciso reiniciar o aplicativo para as mudanças terem efeito)</string>
+  <string name="pref_title_feed_list_layout">Layout da lista de feeds</string>
+  <string-array name="pref_display_apptheme">
+    <item>Escuro</item>
+    <item>Claro</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simples</item>
+    <item>Estendido</item>
+    <item>Estendido com modo Web</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erro</string>
+  <string name="login_dialog_text_something_went_wrong">Algo deu errado :(</string>
+  <string name="login_dialog_text_not_compatible">Esta versão do aplicativo não é compatível com o seu aplicativo ownCloud News. Por favor atualize o aplicativo e o seu framework.</string>
   <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
+  <string name="login_dialog_text_security_warning">Você não está usando https. Sua conexão poderá ser interceptada e alguém poderá ter acesso a dados secretos (ex.: sua senha). Então, é fortemente recomendado usar https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Dados &amp; sincronização</string>
+  <string name="pref_title_data_sync_max_items">Número máximo de itens a serem sincronizados</string>
+  <string name="pref_title_clearCache">Limpar cache</string>
+  <string name="pref_title_CacheImagesOffline">Armazenar imagens offline</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 itens</item>
+    <item>400 itens</item>
+    <item>600 itens</item>
+    <item>800 itens</item>
+    <item>1000 itens</item>
+    <item>Todos os itens</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

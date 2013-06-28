@@ -4,15 +4,20 @@
   <string name="empty_view_header">Информация</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Обновить</string>
+  <string name="menu_markAllAsRead">Пометить всё как прочитанное</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Отмеченный</string>
+  <string name="action_openInBrowser">Открыть в браузере</string>
   <string name="action_Share">Открыть доступ</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
+  <string name="pull_to_refresh_updateFolder">Синхронизируется папка</string>
+  <string name="pull_to_refresh_updateFeeds">Синхронизируются ленты</string>
+  <string name="pull_to_refresh_updateItems">Синхронизируется содержимое</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Конфигурация</string>
   <!--General settings-->
@@ -22,8 +27,10 @@
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Ошибка</string>
+  <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
   <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
   <!--Data & Sync-->
+  <string name="pref_title_clearCache">Очистить кэш</string>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
