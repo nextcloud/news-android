@@ -9,6 +9,9 @@
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">No hay artículos aquí</string>
   <string name="toast_GettingMoreItems">Descarga de artículos iniciada.. Por favor espere.</string>
+  <string name="tv_clickHereToOpenItem">Click aquí para abrir artículo</string>
+  <string name="no_wifi_available">No se ha conectado a WiFi</string>
+  <string name="do_you_want_to_download_without_wifi">Desea descargar las imágenes sin conexión WiFi</string>
   <string name="allUnreadFeeds">Todos los artículos sin leer</string>
   <string name="starredFeeds">Artículos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -24,6 +27,7 @@
   <string name="action_openInBrowser">Abrir en Navegador</string>
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
+  <string name="action_login">Ajustes del Servidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Código Secreto</string>
@@ -52,6 +56,7 @@
   <string name="pref_title_ShowOnlyUnread">Mostrar sólo artículos no leidos</string>
   <string name="pref_title_AllowAllSSLCertificates">Permitir todos los Certificados SSL</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído mientras se desplaza</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema App (requiere reiniciar para aplicar)</string>
@@ -63,6 +68,16 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simple</item>
+    <item>Extendido</item>
+    <item>Extendido con Vistaweb</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
