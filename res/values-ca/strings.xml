@@ -8,10 +8,17 @@
   <string name="title_newsreader_detail">Detall de LectorNotícies</string>
   <string name="empty_view_header">Informació</string>
   <string name="empty_view_content">Cap element</string>
+  <string name="toast_GettingMoreItems">S\'han començat a baixar nous elements... Espereu.</string>
+  <string name="tv_clickHereToOpenItem">Feu clic aquí per obrir l\'element</string>
+  <string name="no_wifi_available">Sense connexió WiFi</string>
+  <string name="do_you_want_to_download_without_wifi">Voleu baixar les imatges sense una connexió WiFi</string>
   <string name="allUnreadFeeds">Tots els elements no llegits</string>
   <string name="starredFeeds">Elements amb estrelles</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Refresca</string>
+  <string name="menu_markAllAsRead">Marca-ho tot com a llegit</string>
+  <string name="menu_StartImageCaching">Inicia la compressió d\'imatges fora de línia</string>
+  <string name="menu_downloadMoreItems">Baixa més elements</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Codi font de l\'element - Informe d\'errades</string>
   <string name="email_sendMail">Envia correu electrónic</string>
@@ -20,11 +27,21 @@
   <string name="action_openInBrowser">Obre al navegador</string>
   <string name="action_sendSourceCode">Envia element al desenvolupador</string>
   <string name="action_Share">Comparteix</string>
+  <string name="action_login">Arranjament del sevidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'usuari</string>
+  <string name="pref_title_password">Codi secret</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Inicia la sessió</string>
+  <string name="login_progress_signing_in">Iniciant la sessió...</string>
+  <string name="error_incorrect_password">La contrasenya és incorrecta</string>
+  <string name="error_field_required">Es requereix aquest camp</string>
+  <string name="error_invalid_url">La URL és incorrecta</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">S\'han baixat X elements antics</string>
+  <string name="toast_no_more_downloads_available">No hi ha més elements antics disponibles per a baixar</string>
   <string name="pull_to_refresh_updateTags">Sincronitzant etiquetes</string>
   <string name="pull_to_refresh_updateFolder">Sincronitzant carpetes</string>
   <string name="pull_to_refresh_updateFeeds">Sincronitzant fonts</string>
@@ -35,11 +52,60 @@
   <string name="pref_header_general">General</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Sincronitza en inicialitzar</string>
+  <string name="pref_title_ShowOnlyUnread">Mostra només articles sense llegir</string>
+  <string name="pref_title_AllowAllSSLCertificates">Permet tots els certificats SSL</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Navega amb els botons del volum</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Pantalla</string>
+  <string name="pref_title_app_theme">Tema de l\'aplicació (requereix reiniciar-la)</string>
+  <string name="pref_title_feed_list_layout">Format de llista de fonts</string>
+  <string-array name="pref_display_apptheme">
+    <item>Fosc</item>
+    <item>Clar</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simple</item>
+    <item>Extès</item>
+    <item>Estès amb vista web</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
+  <string name="login_dialog_text_something_went_wrong">Alguna cosa ha fallat :(</string>
+  <string name="login_dialog_text_not_compatible">Aquesta versió de l\'aplicació no és compatible amb l\'aplicació News de ownCloud. Actualitzeu l\'aplicació News i la appframework.</string>
   <string name="login_dialog_title_security_warning">Avís de seguretat</string>
+  <string name="login_dialog_text_security_warning">No esteu usant https. Un atacant podria interceptar el transit i guanyar accés a dades sensibles (Per exemple la vostra contrasenya). Es recomana usar https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Sincronització &amp; de dades </string>
+  <string name="pref_title_data_sync_max_items">Nombre màxim d\'elements a sincronitzar</string>
+  <string name="pref_title_clearCache">Esborra la memòria de cau</string>
+  <string name="pref_title_CacheImagesOffline">Comprimeix imatges fora de línia</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 elements</item>
+    <item>400 elements</item>
+    <item>600 elements</item>
+    <item>800 elements</item>
+    <item>1000 elements</item>
+    <item>Tots</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

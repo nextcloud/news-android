@@ -17,6 +17,7 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aggiorna</string>
   <string name="menu_markAllAsRead">Marca tutti come letti</string>
+  <string name="menu_StartImageCaching">Inizia a memorizzare nella cache le immagini</string>
   <string name="menu_downloadMoreItems">Scarica altri elementi</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Codice sorgente dell\'elemento - Segnalazione bug</string>
@@ -55,6 +56,7 @@
   <string name="pref_title_ShowOnlyUnread">Mostra solo gli articoli non letti</string>
   <string name="pref_title_AllowAllSSLCertificates">Permetti tutti i certificati SSL</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviga con i pulsanti del volume</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Segna come letto durante lo scorrimento</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Schermo</string>
   <string name="pref_title_app_theme">Tema applicazione (richiede il riavvio)</string>
@@ -87,6 +89,7 @@
   <string name="pref_header_data_sync">Dati e sincronizzazione</string>
   <string name="pref_title_data_sync_max_items">Numero massimo di elementi da sincronizzare</string>
   <string name="pref_title_clearCache">Svuota la cache</string>
+  <string name="pref_title_CacheImagesOffline">Memorizza le immagini nella cache </string>
   <string-array name="pref_data_sync_max_items">
     <item>200 elementi</item>
     <item>400 elementi</item>

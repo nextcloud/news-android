@@ -1,28 +1,101 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Bralnik novic ownCloud</string>
   <string name="action_settings">Nastavitve</string>
+  <string name="title_newsreader_list">Bralnik novic</string>
+  <string name="title_newsreader_detail">Podrobnosti bralnika novic</string>
+  <string name="empty_view_header">Informacije</string>
+  <string name="empty_view_content">Ni vsebine</string>
+  <string name="toast_GettingMoreItems">Prenos vsebine se je pričel... Počakajte trenutek.</string>
+  <string name="tv_clickHereToOpenItem">Kliknite tukaj za odpiranje dokumenta</string>
+  <string name="no_wifi_available">Ni WiFi-povezave</string>
+  <string name="do_you_want_to_download_without_wifi">Želite prenesti slike brez WiFi-povezave</string>
+  <string name="allUnreadFeeds">Vse neprebrane postavke</string>
+  <string name="starredFeeds">Označene postavke</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Osveži</string>
+  <string name="menu_markAllAsRead">Označi vse kot prebrano</string>
+  <string name="menu_StartImageCaching">Prični s shranjevanjem slik v predpomnilnik</string>
+  <string name="menu_downloadMoreItems">Prenesi več vsebine</string>
   <!--EMAIL-->
+  <string name="email_sendMail">Pošlji e-sporočilo</string>
   <!--Action Bar Items-->
   <string name="action_starred">Z zvezdico</string>
+  <string name="action_openInBrowser">Odpri v brskalniku</string>
+  <string name="action_sendSourceCode">Pošlji razvijalcu</string>
   <string name="action_Share">Souporaba</string>
+  <string name="action_login">Nastavitve strežnika</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uporabniško ime</string>
+  <string name="pref_title_password">Skrito geslo</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Prijava</string>
+  <string name="login_progress_signing_in">Prijava v storitev...</string>
+  <string name="error_incorrect_password">Geslo je neveljavno</string>
+  <string name="error_field_required">To polje je obvezno</string>
+  <string name="error_invalid_url">Internetni naslov ni veljaven</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Prenesli X starih dokumentov</string>
+  <string name="toast_no_more_downloads_available">Za prenos ni na voljo nobenih starih dokumentov</string>
+  <string name="pull_to_refresh_updateTags">Usklajevanje oznak</string>
+  <string name="pull_to_refresh_updateFolder">Usklajevanje mape</string>
+  <string name="pull_to_refresh_updateFeeds">Usklajevanje virov</string>
+  <string name="pull_to_refresh_updateItems">Usklajevanje postavk</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavitve</string>
   <!--General settings-->
   <string name="pref_header_general">Splošno</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Usklajevanje ob zagonu</string>
+  <string name="pref_title_ShowOnlyUnread">Prikaži samo neprebrane prispevke</string>
+  <string name="pref_title_AllowAllSSLCertificates">Dovoli vsa digitalna potrdila SSL</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Med pomikanjem zaslona označi kot prebrano</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Prikaz</string>
+  <string name="pref_title_app_theme">Tema aplikacije (za uporabo nove teme potreben ponovni zagon)</string>
+  <string name="pref_title_feed_list_layout">Prikaz seznama virov</string>
+  <string-array name="pref_display_apptheme">
+    <item>Temen</item>
+    <item>Svetel</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Napaka</string>
+  <string name="login_dialog_text_something_went_wrong">Prišlo je do napake :(</string>
+  <string name="login_dialog_text_not_compatible">Različica aplikacije ne ustreza različici novičarske aplikacije ownClouda. Posodobite novičarsko aplikacijo in ogrodje.</string>
   <string name="login_dialog_title_security_warning">Varnostno opozorilo</string>
+  <string name="login_dialog_text_security_warning">Ne uporabljate varne povezave https. Napadalec lahko prestreže vaš promet in pridobi dostop do občutljivih podatkov (npr. vašega gesla). Priporočamo uporabo protokola https.</string>
   <!--Data & Sync-->
+  <string name="pref_title_data_sync_max_items">Največje število podatkov za usklajevanje</string>
+  <string name="pref_title_clearCache">Pobriši predpomnilnik</string>
+  <string name="pref_title_CacheImagesOffline">Shrani slike v predpomnilnik, bo povezava prekinjena</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 dokumentov</item>
+    <item>400 dokumentov</item>
+    <item>600 dokumentov</item>
+    <item>800 dokumentov</item>
+    <item>1000 dokumentov</item>
+    <item>Vsi dokumenti</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

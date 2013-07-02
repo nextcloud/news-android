@@ -9,6 +9,9 @@
   <string name="empty_view_header">情報</string>
   <string name="empty_view_content">ここにアイテムなし</string>
   <string name="toast_GettingMoreItems">さらにアイテムをダウンロード開始... お待ちください。</string>
+  <string name="tv_clickHereToOpenItem">項目を開くにはここをクリック</string>
+  <string name="no_wifi_available">WiFi接続がありません</string>
+  <string name="do_you_want_to_download_without_wifi">WiFi接続が無い場合に画像をダウンロードしますか？</string>
   <string name="allUnreadFeeds">すべての未読アイテム</string>
   <string name="starredFeeds">共有アイテム</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -24,6 +27,7 @@
   <string name="action_openInBrowser">ブラウザーで開く</string>
   <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
+  <string name="action_login">サーバ設定</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">シークレットコード</string>
@@ -52,6 +56,7 @@
   <string name="pref_title_ShowOnlyUnread">未読の記事のみ表示</string>
   <string name="pref_title_AllowAllSSLCertificates">全てのSSL証明書を許可</string>
   <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
   <!--Settings for Display-->
   <string name="pref_header_display">表示</string>
   <string name="pref_title_app_theme">アプリのテーマ (適用するには再起動する必要があります)</string>
@@ -63,6 +68,16 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>シンプル</item>
+    <item>拡張</item>
+    <item>Webview で拡張</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">エラー</string>
