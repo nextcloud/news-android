@@ -26,6 +26,12 @@ My ToDo List is available on: http://www.strikeapp.com/#z6679l3t
 
 Updates
 ==================================
+0.3.8 (in development)
+---------------------
+Fixed Issue when trying to download more items in "all unread" and "starred items" view.
+Added option to set up the maximum cache size.
+Fixed app crash on tablets (could crash somtimes since v.0.3.7 when trying to download more items).
+
 0.3.7
 ---------------------
 - Option to mark articles as read while scrolling <a href="https://github.com/owncloud/News-Android-App/issues/14">#14 ("mark as read" on scroll)</a>
