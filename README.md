@@ -28,9 +28,12 @@ Updates
 ==================================
 0.3.8 (in development)
 ---------------------
-Fixed Issue when trying to download more items in "all unread" and "starred items" view.
-Added option to set up the maximum cache size.
-Fixed app crash on tablets (could crash somtimes since v.0.3.7 when trying to download more items).
+- Fixed Issue when trying to download more items in "all unread" and "starred items" view.
+- Added option to set up the maximum cache size.
+- Fixed app crash on tablets (could crash somtimes since v.0.3.7 when trying to download more items).
+- Fixed Issue <a href="https://github.com/owncloud/News-Android-App/issues/78">#78 (The cache should be cleared in the background)</a>
+- Improved feature <a href="https://github.com/owncloud/News-Android-App/issues/84">#84 (Buttons to toggle the folders are hard to hit and not descriptive)</a>
+- Improved feature <a href="https://github.com/owncloud/News-Android-App/issues/76">#76 (There should me more spacing between feeds and folders)</a>
 
 0.3.7
 ---------------------
