@@ -8,10 +8,17 @@
   <string name="title_newsreader_detail">Nyhetsläsare Detalj</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Inga objekt här</string>
+  <string name="toast_GettingMoreItems">Började ladda ner fler objekt.. Var god vänta.</string>
+  <string name="tv_clickHereToOpenItem">Klicka här för att öppna objekt</string>
+  <string name="no_wifi_available">Ingen WIFI ansluten</string>
+  <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>
   <string name="allUnreadFeeds">Alla olästa objekt</string>
   <string name="starredFeeds">Stjärnmärkta objekt</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Uppdatera</string>
+  <string name="menu_markAllAsRead">Markera alla som lästa</string>
+  <string name="menu_StartImageCaching">Startbild offline caching</string>
+  <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Källkod av objekt - Buggrapport</string>
   <string name="email_sendMail">Skicka e-post</string>
@@ -20,11 +27,21 @@
   <string name="action_openInBrowser">Öppna i webbläsaren</string>
   <string name="action_sendSourceCode">Skicka objekt till utvecklaren</string>
   <string name="action_Share">Dela</string>
+  <string name="action_login">Serverinställningar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Användarnamn</string>
+  <string name="pref_title_password">Hemlig kod</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Logga in</string>
+  <string name="login_progress_signing_in">Logga in...</string>
+  <string name="error_incorrect_password">Felaktigt lösenord</string>
+  <string name="error_field_required">Detta fält obligatoriskt</string>
+  <string name="error_invalid_url">Felaktig URL</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Laddade ner X gamla objekt</string>
+  <string name="toast_no_more_downloads_available">Inga fler gamla objekt tillgängliga för nerladdning</string>
   <string name="pull_to_refresh_updateTags">Synkroniserar taggar</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserar mapp</string>
   <string name="pull_to_refresh_updateFeeds">Synkroniserar feeds</string>
@@ -35,11 +52,60 @@
   <string name="pref_header_general">Allmänt</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
+  <string name="pref_title_ShowOnlyUnread">Visa endast olästa artiklar</string>
+  <string name="pref_title_AllowAllSSLCertificates">Tillåt alla SSL-certifikat</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Visa</string>
+  <string name="pref_title_app_theme">Tema (kräver omstart för att aktiveras)</string>
+  <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
+  <string-array name="pref_display_apptheme">
+    <item>Mörk</item>
+    <item>Ljus</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Enkel</item>
+    <item>Utökad</item>
+    <item>Utökad med Webbvy</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fel</string>
+  <string name="login_dialog_text_something_went_wrong">Något gick fel :(</string>
+  <string name="login_dialog_text_not_compatible">Denna version är inte kompatibel med din ownCloud nyhetsapp. Vänligen uppdatera nyhetsappen och dess beroenden.</string>
   <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
+  <string name="login_dialog_text_security_warning">Du använder inte https. En angripare kan fånga din trafik och få tillgång till känsliga uppgifter (t.ex. ditt lösenord). Så det är starkt rekommenderat att använda https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Data &amp; synk</string>
+  <string name="pref_title_data_sync_max_items">Max antal objekt att synka</string>
+  <string name="pref_title_clearCache">Rensa cache</string>
+  <string name="pref_title_CacheImagesOffline">Cacha bilder offline</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 objekt</item>
+    <item>400 objekt</item>
+    <item>600 objekt</item>
+    <item>800 objekt</item>
+    <item>1000 objekt</item>
+    <item>Alla objekt</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
