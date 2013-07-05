@@ -8,10 +8,17 @@
   <string name="title_newsreader_detail">Uudistelugeja Üksikasjad</string>
   <string name="empty_view_header">Info</string>
   <string name="empty_view_content">Siin pole üksusi</string>
+  <string name="toast_GettingMoreItems">Alustatud täiendavate üksuste allalaadimist. Palun oota.</string>
+  <string name="tv_clickHereToOpenItem">Kliki siia üksuse avamiseks</string>
+  <string name="no_wifi_available">WiFi pole ühendatud</string>
+  <string name="do_you_want_to_download_without_wifi">Kas soovid pildid alla laadida WiFi ühendust kasutamata</string>
   <string name="allUnreadFeeds">Kõik lugemata üksused</string>
   <string name="starredFeeds">Tähitud üksused</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Värskenda</string>
+  <string name="menu_markAllAsRead">Märgi loetuks</string>
+  <string name="menu_StartImageCaching">Alusta pildi võrguta puhverdust</string>
+  <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Lähtekoodi üksus - vearaport</string>
   <string name="email_sendMail">Saada e-mail</string>
@@ -20,11 +27,21 @@
   <string name="action_openInBrowser">Ava veebilehitsejas</string>
   <string name="action_sendSourceCode">Saada üksus arendajale</string>
   <string name="action_Share">Jaga</string>
+  <string name="action_login">Serveri seaded</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
+  <string name="pref_title_password">Salakood</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Logi sisse</string>
+  <string name="login_progress_signing_in">Sisselogimine...</string>
+  <string name="error_incorrect_password">Parool on vale</string>
+  <string name="error_field_required">See väli on kohustuslik</string>
+  <string name="error_invalid_url">UR pole korrektne</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Alla laaditud X vana üksust</string>
+  <string name="toast_no_more_downloads_available">Alla laadimiseks pole enam vanu üksusi</string>
   <string name="pull_to_refresh_updateTags">Sünkroniseerin silte</string>
   <string name="pull_to_refresh_updateFolder">Sünkroniseerin kataloogi</string>
   <string name="pull_to_refresh_updateFeeds">Sünkroniseerin vooge</string>
@@ -35,11 +52,60 @@
   <string name="pref_header_general">Üldine</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
+  <string name="pref_title_ShowOnlyUnread">Näita ainult lugemata artikleid</string>
+  <string name="pref_title_AllowAllSSLCertificates">Luba kõik SSL-sertifikaadid</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Navigeeri häälevaljuse nuppudega</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Märgi kerides loetuks</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Vaade</string>
+  <string name="pref_title_app_theme">Rakenduse teema (vajab restarti)</string>
+  <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>
+  <string-array name="pref_display_apptheme">
+    <item>Hele</item>
+    <item>Tume</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Lihtne</item>
+    <item>Laiendatud</item>
+    <item>Laiendatud ja veebivaatega</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Viga</string>
+  <string name="login_dialog_text_something_went_wrong">Midagi läks valesti :(</string>
+  <string name="login_dialog_text_not_compatible">See App versioon pole ühilduv sinu ownCloud News App-iga. Palun uuenda oma uudiste app-i ning app-i raamistikku.</string>
   <string name="login_dialog_title_security_warning">Turvahoiatus</string>
+  <string name="login_dialog_text_security_warning">Sa ei kasuta https-i. Ründaja võib jälgida sinu liiklust ning saavutada ligipääsu tundlikele andmetele (näiteks sinu parooli). Seega on tungivalt soovitatav https kasutamine!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Andmed &amp; sync</string>
+  <string name="pref_title_data_sync_max_items">Maksimaalne sünkroniseeritavate üksuste arv</string>
+  <string name="pref_title_clearCache">Tühenda puhver</string>
+  <string name="pref_title_CacheImagesOffline">Puhverda pildid võrguta seisu</string>
+  <string-array name="pref_data_sync_max_items">
+    <item>200 üksust</item>
+    <item>400 üksust</item>
+    <item>600 üksust</item>
+    <item>800 üksust</item>
+    <item>1000 üksust</item>
+    <item>Kõik</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_items_values">
+    <item>200</item>
+    <item>400</item>
+    <item>600</item>
+    <item>800</item>
+    <item>1000</item>
+    <item>2147483647</item>
+  </string-array>
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
