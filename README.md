@@ -15,6 +15,11 @@ https://github.com/owncloud/news
 Appframework:
 https://github.com/owncloud/appframework
 
+After this, join the following Google Group:
+https://groups.google.com/d/forum/owncloud-news-android-app
+there you can find a link to Google Play for registering as beta tester of the app.
+
+
 
 Language
 ==================================
