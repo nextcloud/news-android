@@ -17,6 +17,7 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">त्रुटि</string>
   <!--Data & Sync-->
   <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

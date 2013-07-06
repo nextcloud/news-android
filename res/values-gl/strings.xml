@@ -9,11 +9,15 @@
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Non hai elementos aquí</string>
   <string name="toast_GettingMoreItems">Iniciouse a descarga de máis elementos... agarde.</string>
+  <string name="tv_clickHereToOpenItem">Prema aquí para abrir o elemento</string>
+  <string name="no_wifi_available">Non está conectado á WiFi</string>
+  <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi</string>
   <string name="allUnreadFeeds">Todos os elementos sen ler</string>
   <string name="starredFeeds">Elementos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
   <string name="menu_markAllAsRead">Marcar todo como lido</string>
+  <string name="menu_StartImageCaching">Iniciar o gardado da imaxe na caché sen conexión</string>
   <string name="menu_downloadMoreItems">Descargar máis elementos</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código fonte do elemento - Informe de fallos</string>
@@ -23,6 +27,7 @@
   <string name="action_openInBrowser">Abrir no navegador</string>
   <string name="action_sendSourceCode">Enviar o elemento ao desenvolvedor</string>
   <string name="action_Share">Compartir</string>
+  <string name="action_login">Axustes do servidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de usuario</string>
   <string name="pref_title_password">Código secreto</string>
@@ -51,8 +56,11 @@
   <string name="pref_title_ShowOnlyUnread">Amosar só os artigos non lidos</string>
   <string name="pref_title_AllowAllSSLCertificates">Permitir todos os certificados SSL</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar cos botóns de volume</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido mentres se despraza</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Presentar</string>
   <string name="pref_title_app_theme">Tema de aplicativo (require reiniciar para aplicar)</string>
+  <string name="pref_title_feed_list_layout">Deseño da lista de novas</string>
   <string-array name="pref_display_apptheme">
     <item>Escuro</item>
     <item>Claro</item>
@@ -61,14 +69,27 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Único</item>
+    <item>Estendido</item>
+    <item>Estendido con vista web</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erro</string>
   <string name="login_dialog_text_something_went_wrong">Algo foi mal :(</string>
+  <string name="login_dialog_text_not_compatible">Esta versión do aplicativo non é compatíbel co seu aplicativo de novas para ownCloud. Actualice o aplicativo de novas e o marco de traballo do aplicativo.</string>
   <string name="login_dialog_title_security_warning">Aviso de seguranza</string>
+  <string name="login_dialog_text_security_warning">Non está a empregar https. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal). Polo que recomendámoslle que empregue https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Datos e sincronización</string>
   <string name="pref_title_data_sync_max_items">Número máximo de elementos que sincronizar</string>
   <string name="pref_title_clearCache">Limpar a caché</string>
+  <string name="pref_title_CacheImagesOffline">Gardar a imaxe na caché sen conexión</string>
   <string-array name="pref_data_sync_max_items">
     <item>200 elementos</item>
     <item>400 elementos</item>
