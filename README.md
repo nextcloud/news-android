@@ -6,6 +6,16 @@ Status: Beta
 
 Bugs and enhancements can be reported under: https://github.com/owncloud/News-Android-App/issues
 
+
+How to use the Beta App via Google Play ?
+==================================
+Please update your News App and Appframework to the latest version which is only available on GitHub.
+ownCloud News App:
+https://github.com/owncloud/news
+Appframework:
+https://github.com/owncloud/appframework
+
+
 Language
 ==================================
 Is your language not supported yet ?
