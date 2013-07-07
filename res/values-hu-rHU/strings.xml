@@ -22,7 +22,6 @@
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
-  <string name="pull_to_refresh_updateTags">Címkék szinkronizálása</string>
   <string name="pull_to_refresh_updateFolder">Mappa szinkronizálása</string>
   <string name="pull_to_refresh_updateFeeds">Hírcsatornák szinkronizálása</string>
   <string name="pull_to_refresh_updateItems">Tartalom szinkronizálása</string>
@@ -37,7 +36,6 @@
   <string name="login_dialog_title_error">Hiba</string>
   <string name="login_dialog_title_security_warning">Biztonsági figyelmeztetés</string>
   <!--Data & Sync-->
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

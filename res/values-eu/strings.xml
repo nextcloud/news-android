@@ -33,7 +33,6 @@
   <string name="error_field_required">Eremu hau beharrezkoa da</string>
   <string name="error_invalid_url">URL-a baliogabea da</string>
   <!--Toast Messages-->
-  <string name="pull_to_refresh_updateTags">Etiketak sinkronizatzen</string>
   <string name="pull_to_refresh_updateFolder">Karpeta sinkronizatzen</string>
   <string name="pull_to_refresh_updateFeeds">Jarioak sinkronizatzen</string>
   <string name="pull_to_refresh_updateItems">Elementuak sinkronizatzen</string>
@@ -69,23 +68,6 @@
   <string name="pref_title_data_sync_max_items">Sinkronizatzeko elementu kopuru muga</string>
   <string name="pref_title_clearCache">Garbitu cachea</string>
   <string name="pref_title_CacheImagesOffline">Irudiak sare-kanporako cacheatu</string>
-  <string-array name="pref_data_sync_max_items">
-    <item>200 elementu</item>
-    <item>400 elementu</item>
-    <item>600 elementu</item>
-    <item>800 elementu</item>
-    <item>1000 elementu</item>
-    <item>Elementu guztiak</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_items_values">
-    <item>200</item>
-    <item>400</item>
-    <item>600</item>
-    <item>800</item>
-    <item>1000</item>
-    <item>2147483647</item>
-  </string-array>
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

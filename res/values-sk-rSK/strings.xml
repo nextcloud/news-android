@@ -33,7 +33,6 @@
   <string name="login_dialog_title_error">Chyba</string>
   <string name="login_dialog_title_security_warning">Bezpečnostné varovanie</string>
   <!--Data & Sync-->
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

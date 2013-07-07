@@ -42,7 +42,6 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Foram baixados X itens antigos</string>
   <string name="toast_no_more_downloads_available">Não há mais itens antigos disponíveis para download</string>
-  <string name="pull_to_refresh_updateTags">Sincronizando marcadores</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
   <string name="pull_to_refresh_updateItems">Sincronizando itens</string>
@@ -90,23 +89,6 @@
   <string name="pref_title_data_sync_max_items">Número máximo de itens a serem sincronizados</string>
   <string name="pref_title_clearCache">Limpar cache</string>
   <string name="pref_title_CacheImagesOffline">Armazenar imagens offline</string>
-  <string-array name="pref_data_sync_max_items">
-    <item>200 itens</item>
-    <item>400 itens</item>
-    <item>600 itens</item>
-    <item>800 itens</item>
-    <item>1000 itens</item>
-    <item>Todos os itens</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_items_values">
-    <item>200</item>
-    <item>400</item>
-    <item>600</item>
-    <item>800</item>
-    <item>1000</item>
-    <item>2147483647</item>
-  </string-array>
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

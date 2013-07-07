@@ -23,7 +23,6 @@
   <string name="login_dialog_title_error">সমস্যা</string>
   <string name="login_dialog_title_security_warning">নিরাপত্তাজনিত সতর্কতা</string>
   <!--Data & Sync-->
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

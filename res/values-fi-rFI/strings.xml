@@ -28,7 +28,6 @@
   <string name="error_field_required">Tämä kenttä vaaditaan</string>
   <string name="error_invalid_url">Osoite on virheellinen</string>
   <!--Toast Messages-->
-  <string name="pull_to_refresh_updateTags">Synkronoidaan tunnisteita</string>
   <string name="pull_to_refresh_updateFolder">Synkronoidaan kansiota</string>
   <string name="pull_to_refresh_updateFeeds">Synkronoidaan syötteitä</string>
   <string name="pull_to_refresh_updateItems">Synkronoidaan kohteita</string>
@@ -60,23 +59,6 @@
   <string name="pref_header_data_sync">Data &amp; synkronointi</string>
   <string name="pref_title_data_sync_max_items">Synkronoitavien kohteiden enimmäismäärä</string>
   <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
-  <string-array name="pref_data_sync_max_items">
-    <item>200 kohdetta</item>
-    <item>400 kohdetta</item>
-    <item>600 kohdetta</item>
-    <item>800 kohdetta</item>
-    <item>1000 kohdetta</item>
-    <item>Kaikki kohteet</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_items_values">
-    <item>200</item>
-    <item>400</item>
-    <item>600</item>
-    <item>800</item>
-    <item>1000</item>
-    <item>2147483647</item>
-  </string-array>
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

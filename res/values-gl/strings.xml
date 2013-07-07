@@ -42,7 +42,6 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Descargados X elementos antigos</string>
   <string name="toast_no_more_downloads_available">Non hai máis elementos antigos dispoñíbeis para descarga</string>
-  <string name="pull_to_refresh_updateTags">Sincronizando as etiquetas</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando o cartafol</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando as fontes</string>
   <string name="pull_to_refresh_updateItems">Sincronizando os elementos</string>
@@ -90,23 +89,6 @@
   <string name="pref_title_data_sync_max_items">Número máximo de elementos que sincronizar</string>
   <string name="pref_title_clearCache">Limpar a caché</string>
   <string name="pref_title_CacheImagesOffline">Gardar a imaxe na caché sen conexión</string>
-  <string-array name="pref_data_sync_max_items">
-    <item>200 elementos</item>
-    <item>400 elementos</item>
-    <item>600 elementos</item>
-    <item>800 elementos</item>
-    <item>1000 elementos</item>
-    <item>Todos os elementos</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_items_values">
-    <item>200</item>
-    <item>400</item>
-    <item>600</item>
-    <item>800</item>
-    <item>1000</item>
-    <item>2147483647</item>
-  </string-array>
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

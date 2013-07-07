@@ -17,7 +17,6 @@
   <!--Settings for Display-->
   <!--Login Dialog-->
   <!--Data & Sync-->
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

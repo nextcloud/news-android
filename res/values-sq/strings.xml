@@ -20,7 +20,6 @@
   <string name="login_dialog_title_error">Veprim i gabuar</string>
   <string name="login_dialog_title_security_warning">Paralajmërim sigurie</string>
   <!--Data & Sync-->
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

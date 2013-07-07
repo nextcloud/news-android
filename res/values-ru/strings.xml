@@ -31,7 +31,6 @@
   <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
   <!--Data & Sync-->
   <string name="pref_title_clearCache">Очистить кэш</string>
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

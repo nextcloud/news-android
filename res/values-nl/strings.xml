@@ -42,7 +42,6 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">X oude objecten gedownload</string>
   <string name="toast_no_more_downloads_available">Er zijn niet meer oude objecten te downloaden</string>
-  <string name="pull_to_refresh_updateTags">Synchroniseren tags</string>
   <string name="pull_to_refresh_updateFolder">Synchroniseren map</string>
   <string name="pull_to_refresh_updateFeeds">Synchroniseren feeds</string>
   <string name="pull_to_refresh_updateItems">Synchroniseren onderwerpen</string>
@@ -90,23 +89,6 @@
   <string name="pref_title_data_sync_max_items">Max aantal te synchroniseren objecten</string>
   <string name="pref_title_clearCache">Leegmaken cache</string>
   <string name="pref_title_CacheImagesOffline">Afbeeldingen offline cachen</string>
-  <string-array name="pref_data_sync_max_items">
-    <item>200 artikelen</item>
-    <item>400 artikelen</item>
-    <item>600 artikelen</item>
-    <item>800 artikelen</item>
-    <item>1000 artikelen</item>
-    <item>Alle artikelen</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_items_values">
-    <item>200</item>
-    <item>400</item>
-    <item>600</item>
-    <item>800</item>
-    <item>1000</item>
-    <item>2147483647</item>
-  </string-array>
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

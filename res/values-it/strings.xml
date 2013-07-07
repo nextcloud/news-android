@@ -42,7 +42,6 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Scaricati X vecchi elementi</string>
   <string name="toast_no_more_downloads_available">Non ci sono altri vecchi elementi da scaricare</string>
-  <string name="pull_to_refresh_updateTags">Sincronizzazione tag</string>
   <string name="pull_to_refresh_updateFolder">Sincronizzazione cartella</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizzazione fonti</string>
   <string name="pull_to_refresh_updateItems">Sincronizzazione elementi</string>
@@ -90,23 +89,6 @@
   <string name="pref_title_data_sync_max_items">Numero massimo di elementi da sincronizzare</string>
   <string name="pref_title_clearCache">Svuota la cache</string>
   <string name="pref_title_CacheImagesOffline">Memorizza le immagini nella cache </string>
-  <string-array name="pref_data_sync_max_items">
-    <item>200 elementi</item>
-    <item>400 elementi</item>
-    <item>600 elementi</item>
-    <item>800 elementi</item>
-    <item>1000 elementi</item>
-    <item>Tutti gli elementi</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_items_values">
-    <item>200</item>
-    <item>400</item>
-    <item>600</item>
-    <item>800</item>
-    <item>1000</item>
-    <item>2147483647</item>
-  </string-array>
-  <!--Max INT size-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
