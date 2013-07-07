@@ -18,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.async_tasks.FillTextForTextViewAsyncTask;
+import de.luhmer.owncloudnewsreader.async_tasks.IGetTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.data.AbstractItem;
 import de.luhmer.owncloudnewsreader.data.ConcreteSubscribtionItem;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
@@ -72,15 +74,28 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         itemsCursor.close();
     }
     
+    /*
     private String getUnreadTextFolder(String id_db_folder, boolean onlyUnread)
     {
-    	return dbConn.getCountFeedsForFolder(id_db_folder, onlyUnread) + "/" + dbConn.getCountFeedsForFolder(id_db_folder, !onlyUnread);
+    	//return dbConn.getCountFeedsForFolder(id_db_folder, onlyUnread) + "/" + dbConn.getCountFeedsForFolder(id_db_folder, !onlyUnread);
+    	return convertCountIntToString(dbConn.getCountFeedsForFolder(id_db_folder, onlyUnread));
     }
     
     private String getUnreadTextItems(String id_db_item, boolean onlyUnread, boolean execludeStarredItems)
     {
-    	return dbConn.getCountItemsForSubscription(id_db_item, onlyUnread, execludeStarredItems) + "/" + dbConn.getCountItemsForSubscription(id_db_item, !onlyUnread, execludeStarredItems);
-    }
+    	//return dbConn.getCountItemsForSubscription(id_db_item, onlyUnread, execludeStarredItems) + "/" + dbConn.getCountItemsForSubscription(id_db_item, !onlyUnread, execludeStarredItems);
+    	return convertCountIntToString(dbConn.getCountItemsForSubscription(id_db_item, onlyUnread, execludeStarredItems));
+    }*/
+    
+    /*
+    private String convertCountIntToString(int value)
+    {
+    	if(value > 0)
+    		return String.valueOf(value);
+    	else
+    		return "";
+    	
+    }*/
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -141,10 +156,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        boolean execludeStarredItems = (item.folder_id.equals(ALL_STARRED_ITEMS)) ? false : true;
 	        
 	        TextView tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount);
-	        String unread = dbConn.getCountItemsForSubscription(String.valueOf(item.id_database), true, execludeStarredItems);
-	        String total = dbConn.getCountItemsForSubscription(String.valueOf(item.id_database), false, execludeStarredItems);
-	        tV_UnreadCount.setText(unread + "/" + total);
-	
+	        //String unread = dbConn.getCountItemsForSubscription(String.valueOf(item.id_database), true, execludeStarredItems);
+	        //String total = dbConn.getCountItemsForSubscription(String.valueOf(item.id_database), false, execludeStarredItems);
+	        //tV_UnreadCount.setText(unread + "/" + total);
+	        //tV_UnreadCount.setText(getUnreadTextItems(String.valueOf(item.id_database), false, execludeStarredItems));
+	        tV_UnreadCount.setText("");
+	        SetUnreadCountForFeed(tV_UnreadCount, String.valueOf(item.id_database), execludeStarredItems);	
 	        
 	        ImageView imgView = (ImageView) view.findViewById(R.id.iVFavicon);
 	        GetFavIconForFeed(item.favIcon, imgView);
@@ -155,7 +172,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        textTV.setText("Sorry, something went wrong here :(");
 	        
 	        TextView tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount);	        
-	        tV_UnreadCount.setText("0/0");
+	        tV_UnreadCount.setText("0");
 	        
 	        ImageView imgView = (ImageView) view.findViewById(R.id.iVFavicon);
 	        imgView.setImageDrawable(null);
@@ -278,20 +295,23 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	                
 	        viewHolder.txt_UnreadCount.setText(unreadCountText);
         }*/
-        String unreadCountText = null;
+        
         boolean skipGetUnread = false;
         if(group.idFolder != null)
         {
         	if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
         	{	
-            	unreadCountText = getUnreadTextItems(String.valueOf(group.id_database), true, true);
+            	//unreadCountText = getUnreadTextItems(String.valueOf(group.id_database), true, true);
+            	SetUnreadCountForFeed(viewHolder.txt_UnreadCount, String.valueOf(group.id_database), true);        		
             	skipGetUnread = true;
         	}
         }
         if(!skipGetUnread)
-        	unreadCountText = getUnreadTextFolder(String.valueOf(group.id_database), true);        
+        	SetUnreadCountForFolder(viewHolder.txt_UnreadCount, String.valueOf(group.id_database), true);
+        	//unreadCountText = getUnreadTextFolder(String.valueOf(group.id_database), true);
+      
                 
-        viewHolder.txt_UnreadCount.setText(unreadCountText);
+        viewHolder.txt_UnreadCount.setText("");      
         
         
         //viewHolder.txt_UnreadCount.setText(group.unreadCount);
@@ -314,8 +334,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        }
         }
         else
-        {        
-	        if (getChildrenCount( groupPosition ) == 0 ) {
+        { 
+        	if(String.valueOf(group.id_database).equals(ALL_STARRED_ITEMS))
+        	{
+        		viewHolder.imgView.setVisibility( View.VISIBLE );
+        		viewHolder.imgView.setImageResource(R.drawable.star);
+        	} else if (getChildrenCount( groupPosition ) == 0 ) {
 	        	viewHolder.imgView.setVisibility( View.INVISIBLE );
 	        	//viewHolder.imgView.setImageDrawable(null);
 	        } 
@@ -334,6 +358,18 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         return view;
 	}
 	
+	
+	private void SetUnreadCountForFeed(TextView textView, String idDatabase, boolean execludeStarredItems)
+	{
+		IGetTextForTextViewAsyncTask iGetter = new UnreadFeedCount(mContext, idDatabase, execludeStarredItems);
+		new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
+	}
+	
+	private void SetUnreadCountForFolder(TextView textView, String idDatabase, boolean execludeStarredItems)
+	{
+		IGetTextForTextViewAsyncTask iGetter = new UnreadFolderCount(mContext, idDatabase);
+		new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
+	}
 	
 	private void GetFavIconForFeed(String favIconURL, ImageView imgView)
 	{

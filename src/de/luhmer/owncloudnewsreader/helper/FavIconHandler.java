@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.util.SparseArray;
 import android.widget.ImageView;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageAsyncTask;
+import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 
 public class FavIconHandler {
 	public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context)
@@ -97,7 +97,7 @@ public class FavIconHandler {
 		
 		
 		imageView.setImageDrawable(null);
-		GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, ImageHandler.getPathFavIcons(context)/*, imageView*/);
+		GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, ImageHandler.getPathFavIcons(context), context/*, imageView*/);
 		giAsync.scaleImage = true;
 		giAsync.dstHeight = 2*32;
 		giAsync.dstWidth = 2*32;

@@ -21,6 +21,10 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.MenuItem;
+
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -36,7 +40,7 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends SherlockPreferenceActivity {
 	/**
 	 * Determines whether to always show the simplified settings UI, where
 	 * settings are presented in a single list. When false, settings are shown
@@ -60,6 +64,9 @@ public class SettingsActivity extends PreferenceActivity {
     
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
+    public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
+    
+    
     
     static //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
     
@@ -76,6 +83,8 @@ public class SettingsActivity extends PreferenceActivity {
 		ThemeChooser.chooseTheme(this);
 		
 		super.onCreate(savedInstanceState);
+				
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
@@ -140,8 +149,23 @@ public class SettingsActivity extends PreferenceActivity {
 		bindDataSyncPreferences(null, this);
 		
 		//bindPreferenceSummaryToValue(findPreference("example_list"));
-		//bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));//TODO comment this out
-		//bindPreferenceSummaryToValue(findPreference("sync_frequency"));//TODO comment this out
+		//bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
+		//bindPreferenceSummaryToValue(findPreference("sync_frequency"));
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.actionbarsherlock.app.SherlockPreferenceActivity#onOptionsItemSelected(com.actionbarsherlock.view.MenuItem)
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				finish();
+				//NavUtils.navigateUpTo(this, new Intent(this,
+				//		NewsReaderListActivity.class));
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	/** {@inheritDoc} */
@@ -392,8 +416,7 @@ public class SettingsActivity extends PreferenceActivity {
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FEED_LIST_LAYOUT));
 		}
 	}
-	
-	
+		
 	@SuppressWarnings("deprecation")
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindGeneralPreferences(PreferenceFragment prefFrag, final PreferenceActivity prefAct)
@@ -435,17 +458,20 @@ public class SettingsActivity extends PreferenceActivity {
 			//bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefFrag.findPreference(EDT_CLEAR_CACHE);
 			bindPreferenceBooleanToValue(prefFrag.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));
-			
+			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_CACHE_SIZE));
 		}
 		else
 		{
 			//bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefAct.findPreference(EDT_CLEAR_CACHE);
 			bindPreferenceBooleanToValue(prefAct.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));
+			bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_CACHE_SIZE));
 			
 		}
 		
-		//clearCache.setText("")		
+		//clearCache.setText("")
+		clearCachePref.setSummary(_mActivity.getString(R.string.calculating_cache_size));
+		
 		new GetCacheSizeAsync().execute((Void)null);
 		clearCachePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			
@@ -501,16 +527,17 @@ public class SettingsActivity extends PreferenceActivity {
 			if(dir.isDirectory())
 			{
 				for (File file : dir.listFiles()) {
+					//File file = new File(fileS);
 				    if (file.isFile()) {
 				        //System.out.println(file.getName() + " " + file.length());
 				        size += file.length();
 				        count++;
 				    }
 				    else
-				        size += getFolderSize(file);
+				        getFolderSize(file);
 				}
 			}
 			return size;
-		}		
+		}
 	}
 }

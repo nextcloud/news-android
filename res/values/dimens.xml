@@ -9,4 +9,6 @@
     <dimen name="listview_row_margin_top">5dp</dimen>
     <dimen name="listview_row_margin_bottom">5dp</dimen>
 
+    <dimen name="exp_listview_row_height">50dp</dimen>
+    
 </resources>

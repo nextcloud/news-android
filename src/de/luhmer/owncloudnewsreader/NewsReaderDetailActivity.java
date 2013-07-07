@@ -7,11 +7,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-import de.luhmer.owncloudnewsreader.helper.MenuUtils;
+import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 /**
@@ -23,7 +22,7 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
  * This activity is mostly just a 'shell' activity containing nothing more than
  * a {@link NewsReaderDetailFragment}.
  */
-public class NewsReaderDetailActivity extends SherlockFragmentActivity {
+public class NewsReaderDetailActivity extends MenuUtilsSherlockFragmentActivity {
 
 	public static final String FOLDER_ID = "FOLDER_ID";
 	public static final String SUBSCRIPTION_ID = "SUBSCRIPTION_ID";
@@ -33,8 +32,6 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 	
 	
 	String titel;
-	private String idFeed = null;
-	String idFolder = null;
 	
 
 	@Override
@@ -63,6 +60,9 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 			Intent intent = getIntent();
 			titel = "Name Missing";
 			
+			String idFeed = null;
+			String idFolder = null;
+			
 			if(intent.hasExtra(SUBSCRIPTION_ID))
 				idFeed = intent.getExtras().getString(SUBSCRIPTION_ID);
 			if(intent.hasExtra(FOLDER_ID))
@@ -82,8 +82,8 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 					getIntent().getStringExtra(
 							NewsReaderDetailFragment.ARG_ITEM_ID));			
 			
-			if(getIdFeed() != null)
-				arguments.putString(SUBSCRIPTION_ID, getIdFeed());
+			if(idFeed != null)
+				arguments.putString(SUBSCRIPTION_ID, idFeed);
 			if(idFolder != null)
 				arguments.putString(FOLDER_ID, idFolder);
 			
@@ -100,7 +100,7 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		//getSupportMenuInflater().inflate(R.menu.subscription, menu);
 		
-		MenuUtils.onCreateOptionsMenu(menu, getSupportMenuInflater(), true, this);
+		super.onCreateOptionsMenu(menu, getSupportMenuInflater(), true, this);
 		
 		return true;
 	}
@@ -132,7 +132,7 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		boolean handled = MenuUtils.onOptionsItemSelected(item, this);
+		boolean handled = super.onOptionsItemSelected(item, this);
 		if(!handled)
 		{
 			switch (item.getItemId()) {
@@ -150,19 +150,5 @@ public class NewsReaderDetailActivity extends SherlockFragmentActivity {
 			}
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	/**
-	 * @return the idFeed
-	 */
-	public String getIdFeed() {
-		return idFeed;
-	}
-	
-	/**
-	 * @return the idFolder
-	 */
-	public String getIdFolder() {
-		return idFolder;
 	}
 }

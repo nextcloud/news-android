@@ -58,6 +58,32 @@ public class DatabaseConnection {
     	return database;
     }
     
+    
+    public void clearDatabaseOverSize()
+	{
+		//If i have 9023 rows in the database, when i run that query it should delete 8023 rows and leave me with 1000
+		//database.execSQL("DELETE FROM " + RSS_ITEM_TABLE + " WHERE " +  + "ORDER BY rowid DESC LIMIT 1000 *
+		
+		//Let's say it said 1005 - you need to delete 5 rows.
+		//DELETE FROM table ORDER BY dateRegistered ASC LIMIT 5
+    	
+    	
+    	int max = 1000;
+    	int total = (int) getLongValueBySQL("SELECT COUNT(*) FROM rss_item");
+    	int unread = (int) getLongValueBySQL("SELECT COUNT(*) FROM rss_item WHERE read_temp != 1");
+    	int read = total - unread;
+
+    	if(total > max)
+    	{
+    		int overSize = total - max;
+    		//Soll verhindern, dass ungelesene Artikel gelöscht werden
+    		if(overSize > read)
+    			overSize = read;    		
+     		database.execSQL("DELETE FROM rss_item WHERE read_temp = 1 AND rowid IN (SELECT rowid FROM rss_item WHERE read_temp = 1 ORDER BY rowid asc LIMIT " + overSize + ")");
+    		/* SELECT * FROM rss_item WHERE read_temp = 1 ORDER BY rowid asc LIMIT 3; */
+    	}
+	}
+    
     public void markAllItemsAsRead(List<Integer> itemIds)
 	{
 		if(itemIds != null)
@@ -199,6 +225,12 @@ public class DatabaseConnection {
     	return getLongValueBySQL(buildSQL);
     }
     
+    public long getLowestItemIdStarred()
+    {
+    	String buildSQL = "SELECT MIN(" + RSS_ITEM_RSSITEM_ID + ") FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_STARRED_TEMP + " == 1";
+    	return getLongValueBySQL(buildSQL);
+    }
+    
     public long getLowestItemIdUnread()
     {
     	String buildSQL = "SELECT MIN(" + RSS_ITEM_RSSITEM_ID + ") FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_READ_TEMP + " != 1";
@@ -299,7 +331,7 @@ public class DatabaseConnection {
         return database.rawQuery(buildSQL, null);
 	}
 	
-	public String getCountItemsForSubscription(String ID_SUBSCRIPTION, boolean onlyUnread, boolean execludeStarredItems) {
+	public int getCountItemsForSubscription(String ID_SUBSCRIPTION, boolean onlyUnread, boolean execludeStarredItems) {
 		
 		String buildSQL = "SELECT COUNT(*) " + 
 	 			" FROM " + RSS_ITEM_TABLE +  
@@ -318,7 +350,7 @@ public class DatabaseConnection {
 		if(!execludeStarredItems)
 			buildSQL = buildSQL.replace(RSS_ITEM_STARRED + " != 1 AND", RSS_ITEM_STARRED_TEMP + " = 1 AND");
 		
-		return getStringValueBySQL(buildSQL);
+		return (int)getLongValueBySQL(buildSQL);
     }
 	
 	public Boolean isFeedUnreadStarred(String FEED_ID, Boolean checkUnread) {
@@ -576,6 +608,13 @@ public class DatabaseConnection {
         database.insert(FOLDER_TABLE, null, contentValues);     
     }
 	
+	/*
+	public int updateFolder (String label, String label_path) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FOLDER_LABEL, label);
+        return database.update(FOLDER_TABLE, contentValues, FOLDER_LABEL_ID + "=?", new String[] { label_path });     
+    }*/
+	
 	public void insertNewFeed (String headerText, String ID_FOLDER, String subscription_id, String FAVICON_URL) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SUBSCRIPTION_HEADERTEXT, headerText);
@@ -583,6 +622,14 @@ public class DatabaseConnection {
         contentValues.put(SUBSCRIPTION_ID , subscription_id);
         contentValues.put(SUBSCRIPTION_FAVICON_URL, FAVICON_URL);
         database.insert(SUBSCRIPTION_TABLE, null, contentValues);        
+    }
+	
+	public int updateFeed (String headerText, String ID_FOLDER, String subscription_id, String FAVICON_URL) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SUBSCRIPTION_HEADERTEXT, headerText);
+        contentValues.put(SUBSCRIPTION_FOLDER_ID, ID_FOLDER);
+        contentValues.put(SUBSCRIPTION_FAVICON_URL, FAVICON_URL);
+        return database.update(SUBSCRIPTION_TABLE, contentValues, SUBSCRIPTION_ID  + "= ?", new String[] { subscription_id });        
     }
 	
 	public void insertNewItem (String Titel, String link, String description, Boolean isRead, String ID_SUBSCRIPTION, String ID_RSSITEM, Date timestamp, Boolean isStarred, String guid, String guidHash, String lastModified) {

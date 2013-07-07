@@ -1,11 +1,11 @@
-package de.luhmer.owncloudnewsreader;
+package de.luhmer.owncloudnewsreader.async_tasks;
 
 import java.util.List;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageAsyncTask;
 
 public class AsyncTask_DownloadImages extends AsyncTask<Void, Void, Void>{
 	String text;
@@ -23,7 +23,7 @@ public class AsyncTask_DownloadImages extends AsyncTask<Void, Void, Void>{
 			List<String> links = ImageHandler.getImageLinksFromText(text);
 		    
 		    for(String link : links)	
-		    	new GetImageAsyncTask(link, null, 999, ImageHandler.getPathImageCache(context)).execute();
+		    	new GetImageAsyncTask(link, null, 999, ImageHandler.getPathImageCache(context), context).execute();
 		}
 		return null;
 	}

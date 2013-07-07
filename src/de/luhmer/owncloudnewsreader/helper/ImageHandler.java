@@ -1,7 +1,6 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.net.URL;
@@ -12,10 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Environment;
 import de.luhmer.owncloudnewsreader.R;
 
@@ -24,7 +20,9 @@ import de.luhmer.owncloudnewsreader.R;
  */
 public class ImageHandler {
     //private static final String TAG = "DownloadImagesFromWeb";
-
+	
+	
+	
     public static Drawable LoadImageFromWebOperations(String url) {
         try {
             InputStream is = (InputStream) new URL(url).getContent();
@@ -39,74 +37,29 @@ public class ImageHandler {
     
     
     
-    
-    public static class GetImageAsyncTask extends AsyncTask<Void, Void, String>
-	{
-		private URL WEB_URL_TO_FILE;
-		private ImageDownloadFinished imageDownloadFinished;
-		private int AsynkTaskId;
-		private String rootPath;
-		
-		public boolean scaleImage = false;
-		public int dstHeight; // height in pixels
-		public int dstWidth; // width in pixels		
-		
-		//private ImageView imgView;
-		//private WeakReference<ImageView> imageViewReference;
-		
-		public GetImageAsyncTask(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, int AsynkTaskId, String rootPath/*, ImageView imageView*/) {
-			try
-			{
-				this.WEB_URL_TO_FILE = new URL(WEB_URL_TO_FILE);
-			}
-			catch(Exception ex)
-			{
-				ex.printStackTrace();
-			}
-			imageDownloadFinished = imgDownloadFinished;
-			this.AsynkTaskId = AsynkTaskId;
-			this.rootPath = rootPath;
-			//this.imageViewReference = new WeakReference<ImageView>(imageView);
-		}
-		
-		@Override
-		protected void onPostExecute(String result) {
-			if(imageDownloadFinished != null)
-				imageDownloadFinished.DownloadFinished(AsynkTaskId, result);
-			//imgView.setImageDrawable(GetFavIconFromCache(WEB_URL_TO_FILE.toString(), context));
-			super.onPostExecute(result);
-		}
-
-		@Override
-		protected String doInBackground(Void... params) {
-			try
-			{
-				File cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);						
-				if(!cacheFile.isFile())
-				{
-					File dir = new File(rootPath);
-					dir.mkdirs();
-					cacheFile = getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);				
-					//cacheFile.createNewFile();
-					FileOutputStream fOut = new FileOutputStream(cacheFile);
-					Bitmap mBitmap = BitmapFactory.decodeStream(WEB_URL_TO_FILE.openStream());
-					
-					if(scaleImage)
-						mBitmap = Bitmap.createScaledBitmap(mBitmap, dstWidth, dstHeight, true);
-					
-					mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-					fOut.close();
-				}
-				return cacheFile.getPath();
-			}
-			catch(Exception ex)
-			{
-				ex.printStackTrace();
-			}
-		    return null;
-		}
+    public static List<File> getFilesFromDir(File dir) {
+    	List<File> files = new ArrayList<File>();
+		if(dir.isDirectory())
+			for (File file : dir.listFiles()) 
+			    if (file.isFile())
+			        files.add(file);
+		return files;
 	}
     
+    public static long getFolderSize(File dir) {
+    	long size = 0;
+		if(dir.isDirectory())
+		{
+			for (File file : dir.listFiles()) {
+			    if (file.isFile()) {
+			        size += file.length();
+			    }
+			    else
+			        size += getFolderSize(file);
+			}
+		}
+		return size;
+	}
     
     public static File getFullPathOfCacheFile(String WEB_URL_TO_FILE, String rootPath) throws Exception
 	{
@@ -208,6 +161,10 @@ public class ImageHandler {
 		// The directory is now empty so delete it
 		return dir.delete();
 	}
+	
+	
+
+
 	
 
     /*

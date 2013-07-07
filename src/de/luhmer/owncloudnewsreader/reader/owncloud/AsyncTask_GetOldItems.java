@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
@@ -63,9 +64,16 @@ public class AsyncTask_GetOldItems extends AsyncTask<Object, Void, Exception> im
         	}
         	else if(folder_id != null)
         	{
-        		offset = dbConn.getLowestItemIdByFolder(folder_id);
-        		id = dbConn.getIdOfFolderByLabelPath(folder_id);
-        		type = "1";
+        		if(folder_id.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+        		{
+        			offset = dbConn.getLowestItemIdStarred();
+        			id = "0";
+        			type = "2";        			
+        		} else {
+        			offset = dbConn.getLowestItemIdByFolder(folder_id);
+        			id = dbConn.getIdOfFolderByLabelPath(folder_id);
+        			type = "1";
+        		}
         	}
         	
         	

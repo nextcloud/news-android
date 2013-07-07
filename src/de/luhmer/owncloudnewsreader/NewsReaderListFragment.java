@@ -155,6 +155,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			
 			//dbConn.resetDatabase();
 			
+			//dbConn.clearDatabaseOverSize();
+			
 			username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
 			password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
 			
@@ -243,12 +245,13 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             		{
             			_Reader.Start_AsyncTask_GetFolder(1,  getActivity(), onAsyncTask_GetTopReaderTags);
             			if(eListView != null)
-                			eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));   
+                			eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));
             		}
             		else
             			_Reader.setSyncRunning(true);
             	}
-            	UpdateSyncButtonLayout();            	
+            	else
+            		UpdateSyncButtonLayout();
             }
             else
             	UpdateSyncButtonLayout();

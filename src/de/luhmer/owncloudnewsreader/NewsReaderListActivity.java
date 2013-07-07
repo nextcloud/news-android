@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.helper.MenuUtils;
+import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -33,7 +32,7 @@ import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
  * {@link NewsReaderListFragment.Callbacks} interface to listen for item
  * selections.
  */
-public class NewsReaderListActivity extends SherlockFragmentActivity implements
+public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity implements
 		 NewsReaderListFragment.Callbacks {
 
 	/**
@@ -149,13 +148,13 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 	public void onChildItemClicked(String idSubscription, String optional_folder_id) {
 		StartDetailFragment(idSubscription, false, optional_folder_id);
 	}
-	
+		
 	private void StartDetailFragment(String id, Boolean folder, String optional_folder_id)
 	{
-		if(MenuUtils.menuItemMarkAllAsRead != null)
-			MenuUtils.menuItemMarkAllAsRead.setEnabled(true);
-		if(MenuUtils.menuItemDownloadMoreItems != null)
-			MenuUtils.menuItemDownloadMoreItems.setEnabled(true);
+		if(super.getMenuItemMarkAllAsRead() != null)
+			super.getMenuItemMarkAllAsRead().setEnabled(true);
+		if(super.getMenuItemDownloadMoreItems() != null)
+			super.getMenuItemDownloadMoreItems().setEnabled(true);
 		
 		DatabaseConnection dbConn = new DatabaseConnection(getApplicationContext());
 		
@@ -226,20 +225,20 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
     @SuppressWarnings("static-access")
 	public void UpdateButtonSyncLayout()
     {
-        if(MenuUtils.menuItemUpdater != null)
+        if(super.getMenuItemUpdater() != null)
         {
             IReader _Reader = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.newsreader_list))._Reader;
             PullToRefreshExpandableListView pullToRefreshView = (PullToRefreshExpandableListView) findViewById(R.id.expandableListView);
             if(_Reader.isSyncRunning())   
             {
-            	MenuUtils.menuItemUpdater.setActionView(R.layout.inderterminate_progress);
+            	super.getMenuItemUpdater().setActionView(R.layout.inderterminate_progress);
                 if(pullToRefreshView != null)
                 	pullToRefreshView.setRefreshing(true);
                 
             }
             else
             {
-            	MenuUtils.menuItemUpdater.setActionView(null);
+            	super.getMenuItemUpdater().setActionView(null);
                 if(pullToRefreshView != null)
                 	pullToRefreshView.onRefreshComplete();
             }
@@ -253,7 +252,7 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 		//getMenuInflater().inflate(R.menu.news_reader, menu);
 		//getSupportMenuInflater().inflate(R.menu.news_reader, menu);
 		
-		MenuUtils.onCreateOptionsMenu(menu, getSupportMenuInflater(), mTwoPane, this);
+		super.onCreateOptionsMenu(menu, getSupportMenuInflater(), mTwoPane, this);
 		
         UpdateButtonSyncLayout();
 
@@ -262,7 +261,7 @@ public class NewsReaderListActivity extends SherlockFragmentActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		boolean handled = MenuUtils.onOptionsItemSelected(item, this);
+		boolean handled = super.onOptionsItemSelected(item, this);
 		if(!handled)
 		{		
 			switch (item.getItemId()) {

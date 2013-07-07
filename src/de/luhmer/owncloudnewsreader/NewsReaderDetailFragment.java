@@ -21,6 +21,7 @@ import com.actionbarsherlock.app.SherlockListFragment;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -34,10 +35,26 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	 */
 	public static final String ARG_ITEM_ID = "item_id";
 
+	protected static final String TAG = "NewsReaderDetailFragment";
+
 	DatabaseConnection dbConn;
 	NewsListCursorAdapter lvAdapter;
-	String idSubscription;
+	String idFeed;
+	/**
+	 * @return the idFeed
+	 */
+	public String getIdFeed() {
+		return idFeed;
+	}
+
 	String idFolder;
+	/**
+	 * @return the idFolder
+	 */
+	public String getIdFolder() {
+		return idFolder;
+	}
+
 	String titel;
 	int lastItemPosition;
 	
@@ -67,7 +84,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		}*/
 		
 		if (getArguments().containsKey(NewsReaderDetailActivity.SUBSCRIPTION_ID)) {
-			idSubscription = getArguments().getString(NewsReaderDetailActivity.SUBSCRIPTION_ID);
+			idFeed = getArguments().getString(NewsReaderDetailActivity.SUBSCRIPTION_ID);
 		}
 		if (getArguments().containsKey(NewsReaderDetailActivity.TITEL)) {
 			titel = getArguments().getString(NewsReaderDetailActivity.TITEL);
@@ -80,10 +97,26 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 			
 		((SherlockFragmentActivity) getActivity()).getSupportActionBar().setTitle(titel);
 		
+		UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
+		
 		//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 				
 		//lvAdapter = new Subscription_ListViewAdapter(this);
 		UpdateCursor();
+	}
+	
+	@SuppressWarnings("static-access")
+	public void UpdateMenuItemsState()
+	{
+		MenuUtilsSherlockFragmentActivity mActivity = ((MenuUtilsSherlockFragmentActivity) getActivity());
+		
+		if(mActivity.getMenuItemDownloadMoreItems() != null)
+		{
+			if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+				mActivity.getMenuItemDownloadMoreItems().setEnabled(false);
+			else
+				mActivity.getMenuItemDownloadMoreItems().setEnabled(true);
+		}
 	}
 	
 	
@@ -97,8 +130,30 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false))
 		{		
 			getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
-	            public void onScrollStateChanged(AbsListView view, int scrollState) { }
+				
+	            public void onScrollStateChanged(AbsListView view, int scrollState) {
+	            	/*
+	            	Log.d(TAG, "LOL" + scrollState);
+	            	if(AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL == scrollState)
+	            	{
+	            		
+	            	}*/
+	            }
 	
+	            
+	            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+	            	CheckBox cb = getCheckBoxAtPosition(0, view);
+        			ChangeCheckBoxState(cb, true);
+        			
+	            	if((firstVisibleItem + visibleItemCount) == totalItemCount) {
+	            		for (int i = firstVisibleItem + 1; i < firstVisibleItem + visibleItemCount; i++) {
+	            			cb = getCheckBoxAtPosition(i - firstVisibleItem, view);
+	            			ChangeCheckBoxState(cb, true);
+	            		}
+	            	}	            	
+	            }
+	            
+	            /*
 	            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 	                for (int i = firstVisibleItem; i < firstVisibleItem + visibleItemCount; i++) {
 	                	
@@ -121,13 +176,31 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	
 	                    // here I can get the id and mark the item read
 	                }
-	            }
+	            }*/
+	            
+	            
 	        });
 		}
 		
 		super.onViewCreated(view, savedInstanceState);
 	}
 	
+	private void ChangeCheckBoxState(CheckBox cb, boolean state)
+	{
+		if(cb != null)
+			if(cb.isChecked() != state)
+				cb.setChecked(state);
+	}
+	
+	private CheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
+	{
+		ListView lv = (ListView) viewLV;
+		View view = (View) lv.getChildAt(pos);
+		if(view != null)
+			return (CheckBox) view.findViewById(R.id.cb_lv_item_read);
+		else
+			return null;
+	}
 	
 
 	/* (non-Javadoc)
@@ -184,10 +257,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
     		if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
     			onlyStarredItems = true;
     		
-        if(idSubscription != null)
-        {
-            return dbConn.getAllItemsForFeed(idSubscription, onlyUnreadItems, onlyStarredItems);
-        }
+        if(idFeed != null)
+            return dbConn.getAllItemsForFeed(idFeed, onlyUnreadItems, onlyStarredItems);
         else if(idFolder != null)
         {
         	if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))

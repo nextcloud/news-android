@@ -86,6 +86,10 @@ public class InsertIntoDatabase {
 	                {
 	                    String folderID_db = dbConn.getIdOfFolderByLabelPath(String.valueOf(tag.folder_id));
 	                    dbConn.insertNewFeed(tag.header, folderID_db, tag.subscription_id, tag.favIcon);
+	                } else {
+	                	String folderID_db = dbConn.getIdOfFolderByLabelPath(String.valueOf(tag.folder_id));
+	                    int result = dbConn.updateFeed(tag.header, folderID_db, tag.subscription_id, tag.favIcon);
+	                    Log.d(TAG, "Affected Rows: " + result);
 	                }
 	            }
 	
@@ -170,7 +174,8 @@ public class InsertIntoDatabase {
                         rssFile.getGuid(),
                         rssFile.getGuidHash(),
                         rssFile.getLastModified());
-                
+
+                dbConn.clearDatabaseOverSize();
             }
         }
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.luhmer.owncloudnewsreader"
-    android:versionCode="20"
-    android:versionName="0.3.7" >
+    android:versionCode="21"
+    android:versionName="0.3.8" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -30,7 +30,8 @@
         <activity
             android:name="de.luhmer.owncloudnewsreader.NewsReaderDetailActivity"
             android:label="@string/title_newsreader_detail"
-            android:parentActivityName=".NewsReaderListActivity" >
+            android:parentActivityName=".NewsReaderListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"  >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".NewsReaderListActivity" />

@@ -14,10 +14,10 @@ import android.database.Cursor;
 import android.support.v4.app.NotificationCompat;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler.GetImageAsyncTask;
 
 public class DownloadImagesService extends IntentService {
 
@@ -110,7 +110,7 @@ public class DownloadImagesService extends IntentService {
 			notificationManager.notify(NOTIFICATION_ID, notify); 
 		
 		for(String link : links)	
-	    	new GetImageAsyncTask(link, imgDownloadFinished, 999, ImageHandler.getPathImageCache(this)).execute();
+	    	new GetImageAsyncTask(link, imgDownloadFinished, 999, ImageHandler.getPathImageCache(this), this).execute();
 	}
 	
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
