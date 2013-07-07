@@ -55,6 +55,9 @@ Updates
 - Fixed Issue <a href="https://github.com/owncloud/News-Android-App/issues/78">#78 (The cache should be cleared in the background)</a>
 - Improved feature <a href="https://github.com/owncloud/News-Android-App/issues/84">#84 (Buttons to toggle the folders are hard to hit and not descriptive)</a>
 - Improved feature <a href="https://github.com/owncloud/News-Android-App/issues/76">#76 (There should me more spacing between feeds and folders)</a>
+- Speed optimizations in the Folder/Feed Overview
+- About/Changelog added
+
 
 0.3.7
 ---------------------
