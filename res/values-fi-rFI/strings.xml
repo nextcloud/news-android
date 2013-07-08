@@ -5,10 +5,12 @@
   <string name="title_newsreader_list">Uutislukija</string>
   <string name="empty_view_content">Ei kohteita</string>
   <string name="toast_GettingMoreItems">Lisäkohteiden lataus aloitettu, odota hetki...</string>
+  <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
   <string name="allUnreadFeeds">Kaikki lukemattomat kohteet</string>
   <string name="starredFeeds">Tähdellä varustetut</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Päivitä</string>
+  <string name="menu_About_Changelog">Tietoja / muutosloki</string>
   <string name="menu_markAllAsRead">Merkitse kaikki luetuiksi</string>
   <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
   <!--EMAIL-->
@@ -16,6 +18,7 @@
   <string name="action_starred">Varustettu tähdellä</string>
   <string name="action_openInBrowser">Avaa selaimessa</string>
   <string name="action_Share">Jaa</string>
+  <string name="action_login">Palvelinasetukset</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salainen koodi</string>
@@ -37,9 +40,11 @@
   <string name="pref_header_general">Yleiset</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Lasketaan välimuistin kokoa... Odota hetki.</string>
   <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
   <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>
   <string name="pref_title_AllowAllSSLCertificates">Salli kaikki SSL-varmenteet</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
   <!--Settings for Display-->
   <string name="pref_title_app_theme">Sovelluksen teema (muutos vaatii uudelleenkäynnistyksen)</string>
   <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
@@ -51,6 +56,11 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Virhe</string>
   <string name="login_dialog_text_something_went_wrong">Jokin meni pieleen :(</string>
@@ -59,6 +69,25 @@
   <string name="pref_header_data_sync">Data &amp; synkronointi</string>
   <string name="pref_title_data_sync_max_items">Synkronoitavien kohteiden enimmäismäärä</string>
   <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
+  <string name="pref_title_Max_Cache_Size">Välimuistin enimmäiskoko</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 Mt</item>
+    <item>500 Mt</item>
+    <item>750 Mt</item>
+    <item>1 Gt</item>
+    <item>2 Gt</item>
+    <item>5 Gt</item>
+    <item>10 Gt</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

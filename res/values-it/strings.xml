@@ -16,6 +16,7 @@
   <string name="starredFeeds">Elementi preferiti</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aggiorna</string>
+  <string name="menu_About_Changelog">Informazioni / Novità</string>
   <string name="menu_markAllAsRead">Marca tutti come letti</string>
   <string name="menu_StartImageCaching">Inizia a memorizzare nella cache le immagini</string>
   <string name="menu_downloadMoreItems">Scarica altri elementi</string>
@@ -42,6 +43,7 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Scaricati X vecchi elementi</string>
   <string name="toast_no_more_downloads_available">Non ci sono altri vecchi elementi da scaricare</string>
+  <string name="pull_to_refresh_updateTags">Sincronizzazione degli stati degli elementi</string>
   <string name="pull_to_refresh_updateFolder">Sincronizzazione cartella</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizzazione fonti</string>
   <string name="pull_to_refresh_updateItems">Sincronizzazione elementi</string>
@@ -51,6 +53,7 @@
   <string name="pref_header_general">Generale</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Calcolo delle dimensioni della cache in corso... Attendere.</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizza all\'avvio</string>
   <string name="pref_title_ShowOnlyUnread">Mostra solo gli articoli non letti</string>
   <string name="pref_title_AllowAllSSLCertificates">Permetti tutti i certificati SSL</string>
@@ -89,6 +92,25 @@
   <string name="pref_title_data_sync_max_items">Numero massimo di elementi da sincronizzare</string>
   <string name="pref_title_clearCache">Svuota la cache</string>
   <string name="pref_title_CacheImagesOffline">Memorizza le immagini nella cache </string>
+  <string name="pref_title_Max_Cache_Size">Dimensione massima della cache</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

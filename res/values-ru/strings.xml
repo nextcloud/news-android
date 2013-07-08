@@ -1,20 +1,49 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Чтения новостей через ownCloud</string>
   <string name="action_settings">Конфигурация</string>
+  <string name="title_activity_news_detail">Последние новости</string>
+  <string name="title_activity_subscription">Активные подписки</string>
+  <string name="title_newsreader_list">Чтение новостей</string>
+  <string name="title_newsreader_detail">Чтение новостей подробнее</string>
   <string name="empty_view_header">Информация</string>
+  <string name="empty_view_content">Ничего нет</string>
+  <string name="toast_GettingMoreItems">Начата загрузка. .. Пожалуйста, подождите.</string>
+  <string name="tv_clickHereToOpenItem">Нажмите здесь, чтобы открыть элемент</string>
+  <string name="no_wifi_available">Нет соеденения с Wi-Fi</string>
+  <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединение</string>
+  <string name="allUnreadFeeds">Все непрочитанные</string>
+  <string name="starredFeeds">Помеченные элементы</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Обновить</string>
+  <string name="menu_About_Changelog">Изменени</string>
   <string name="menu_markAllAsRead">Пометить всё как прочитанное</string>
+  <string name="menu_StartImageCaching">Загрузка изображений для автономного кэширования</string>
+  <string name="menu_downloadMoreItems">Загрузить еще</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Исходный код элемента - Отчет об ошибке</string>
+  <string name="email_sendMail">Отправить сообщение</string>
   <!--Action Bar Items-->
   <string name="action_starred">Отмеченный</string>
   <string name="action_openInBrowser">Открыть в браузере</string>
+  <string name="action_sendSourceCode">Отправить сообщение разработчикам</string>
   <string name="action_Share">Открыть доступ</string>
+  <string name="action_login">Параметры сервера</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
+  <string name="pref_title_password">Секретный код</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Войти</string>
+  <string name="login_progress_signing_in">Авторизация...</string>
+  <string name="error_incorrect_password">Это неверный пароль</string>
+  <string name="error_field_required">Это поле обязательно для заполнения</string>
+  <string name="error_invalid_url">Неверный адрес</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Скачать Х старых элементов</string>
+  <string name="toast_no_more_downloads_available">Нет больше старых элементов, доступных для загрузки</string>
+  <string name="pull_to_refresh_updateTags">Синхронизация элементов</string>
   <string name="pull_to_refresh_updateFolder">Синхронизируется папка</string>
   <string name="pull_to_refresh_updateFeeds">Синхронизируются ленты</string>
   <string name="pull_to_refresh_updateItems">Синхронизируется содержимое</string>
@@ -24,13 +53,64 @@
   <string name="pref_header_general">Главные</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Расчет размера кэша... Пожалуйста, подождите.</string>
+  <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>
+  <string name="pref_title_ShowOnlyUnread">Показать только непрочитанные статьи</string>
+  <string name="pref_title_AllowAllSSLCertificates">Разрешить все SSL-сертификаты</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавишь регулировки громкости</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Показать</string>
+  <string name="pref_title_app_theme">Применить тему (требуется перезапуск, чтобы настройки вступили в силу)</string>
+  <string name="pref_title_feed_list_layout">Список лент для макета</string>
+  <string-array name="pref_display_apptheme">
+    <item>Темная</item>
+    <item>Светлая</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Простая</item>
+    <item>Расширенная</item>
+    <item>Расширенная с Webview</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Ошибка</string>
   <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
+  <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением Чтения новостей через ownCloud. Пожалуйста, обновите приложение новости и framework для приложений.</string>
   <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
+  <string name="login_dialog_text_security_warning">Вы не используете HTTPS. Злоумышленники могут перехватить трафик и получить доступ к некоторым конфиденциальным данным (например, пароль). Мы настоятельно рекомендуем использовать HTTPS!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Данные и синхронизация</string>
+  <string name="pref_title_data_sync_max_items">Максимальное число элементов для синхронизации</string>
   <string name="pref_title_clearCache">Очистить кэш</string>
+  <string name="pref_title_CacheImagesOffline">Автономныйкэш изображений</string>
+  <string name="pref_title_Max_Cache_Size">Максимальный размер кэша</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 МБ</item>
+    <item>500 МБ</item>
+    <item>750 МБ</item>
+    <item>1 ГБ</item>
+    <item>2 ГБ</item>
+    <item>5 ГБ</item>
+    <item>10 ГБ</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
