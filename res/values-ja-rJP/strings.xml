@@ -42,6 +42,7 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">ダウンロードされた古いXアイテム</string>
   <string name="toast_no_more_downloads_available">これ以上ダウンロードできる古いアイテムはありません</string>
+  <string name="pull_to_refresh_updateTags">アイテムの状態を同期中</string>
   <string name="pull_to_refresh_updateFolder">フォルダを同期中</string>
   <string name="pull_to_refresh_updateFeeds">フィードを同期中</string>
   <string name="pull_to_refresh_updateItems">アイテムを同期中</string>
@@ -51,6 +52,7 @@
   <string name="pref_header_general">一般</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">キャッシュサイズを計算中.. しばらくお待ち下さい。</string>
   <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
   <string name="pref_title_ShowOnlyUnread">未読の記事のみ表示</string>
   <string name="pref_title_AllowAllSSLCertificates">全てのSSL証明書を許可</string>
@@ -89,6 +91,25 @@
   <string name="pref_title_data_sync_max_items">同期するアイテムの最大数</string>
   <string name="pref_title_clearCache">キャッシュをクリア</string>
   <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
+  <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
