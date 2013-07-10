@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Lector de Noticias onwCloud</string>
+  <string name="app_name">Lector de Noticias ownCloud</string>
   <string name="action_settings">Ajustes</string>
   <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
   <string name="title_activity_subscription">ActividadSuscripción</string>
@@ -16,6 +16,7 @@
   <string name="starredFeeds">Artículos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
+  <string name="menu_About_Changelog">Acerca / Actualizaciones</string>
   <string name="menu_markAllAsRead">Marcar todo como lectura</string>
   <string name="menu_StartImageCaching">Comenzar obtención de imagen fuera de linea</string>
   <string name="menu_downloadMoreItems">Descargar más artículos</string>
@@ -42,6 +43,7 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">X elementos antiguos descargados</string>
   <string name="toast_no_more_downloads_available">No hay más elementos antiguos disponibles para descargar</string>
+  <string name="pull_to_refresh_updateTags">Sincronizando estado de elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando archivos</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando fuentes</string>
   <string name="pull_to_refresh_updateItems">Sincronizando articulos</string>
@@ -51,6 +53,7 @@
   <string name="pref_header_general">General</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Calculando tamaño de cache... Por favor espere.</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar en el inicio</string>
   <string name="pref_title_ShowOnlyUnread">Mostrar sólo artículos no leidos</string>
   <string name="pref_title_AllowAllSSLCertificates">Permitir todos los Certificados SSL</string>
@@ -86,9 +89,28 @@
   <string name="login_dialog_text_security_warning">No está usando https. Un atacante podría interceptar su tráfico y obtener acceso a algún dato sensible (ej. su contraseña). Así que es muy recomendable utilizar https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Dato &amp; sincronizado</string>
-  <string name="pref_title_data_sync_max_items">Número máximo de artículos a sincronizar</string>
+  <string name="pref_title_data_sync_max_items">Número máximo de elementos a sincronizar</string>
   <string name="pref_title_clearCache">Vaciar caché</string>
   <string name="pref_title_CacheImagesOffline">Cachear imágenes fuera de línea</string>
+  <string name="pref_title_Max_Cache_Size">Tamaño máximo de caché</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

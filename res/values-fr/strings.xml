@@ -16,6 +16,7 @@
   <string name="starredFeeds">Articles favoris</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">rafraichir</string>
+  <string name="menu_About_Changelog">A propos / Journal des modifications</string>
   <string name="menu_markAllAsRead">Marquez tous comme lu</string>
   <string name="menu_StartImageCaching">Démarrer la mise en cache hors-ligne des images</string>
   <string name="menu_downloadMoreItems">Télécharger des articles supplémentaires</string>
@@ -42,6 +43,7 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Anciens articles téléchargés</string>
   <string name="toast_no_more_downloads_available">Aucun anciens articles disponibles au téléchargement</string>
+  <string name="pull_to_refresh_updateTags">États de la synchronisation des articles</string>
   <string name="pull_to_refresh_updateFolder">synchronisant les dossiers</string>
   <string name="pull_to_refresh_updateFeeds">synchronisant les besoins</string>
   <string name="pull_to_refresh_updateItems">Synchronisation des articles en cours</string>
@@ -51,6 +53,7 @@
   <string name="pref_header_general">Généraux</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Calcul de la taille du cache en cours... Veuillez patienter.</string>
   <string name="pref_title_AutoSyncOnStart">Synchronisation au démarrage</string>
   <string name="pref_title_ShowOnlyUnread">Montrer seulement les artiles non lus</string>
   <string name="pref_title_AllowAllSSLCertificates">Autoriser tous les certificats SSL</string>
@@ -89,6 +92,25 @@
   <string name="pref_title_data_sync_max_items">Nombre maximum d\'articles à synchroniser</string>
   <string name="pref_title_clearCache">Vider le cache</string>
   <string name="pref_title_CacheImagesOffline">Mise en cache hors-ligne des images</string>
+  <string name="pref_title_Max_Cache_Size">Taille maximale du cache</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
