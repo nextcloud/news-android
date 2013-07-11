@@ -9,10 +9,14 @@
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">No hay artículos aquí</string>
   <string name="toast_GettingMoreItems">Comenzó la descarga de más artículos.. Esperá.</string>
+  <string name="tv_clickHereToOpenItem">Hacé click acá para abrir el artículo</string>
+  <string name="no_wifi_available">No estás conectado a WiFi</string>
+  <string name="do_you_want_to_download_without_wifi">Querés bajar las imágenes sin conexión WiFi</string>
   <string name="allUnreadFeeds">Todos los artículos sin leer</string>
   <string name="starredFeeds">Artículos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Recargar</string>
+  <string name="menu_About_Changelog">Acerca de / Actualizaciones</string>
   <string name="menu_markAllAsRead">Marcar todos como leídos</string>
   <string name="menu_StartImageCaching">Comenzar caché de imágines fuera de línea</string>
   <string name="menu_downloadMoreItems">Descargar más artículos</string>
@@ -24,6 +28,7 @@
   <string name="action_openInBrowser">Abrir en Navegador</string>
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
+  <string name="action_login">Ajustes del servidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Clave secreta</string>
@@ -38,6 +43,7 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Se descargaron X artículos antiguos</string>
   <string name="toast_no_more_downloads_available">No hay más artículos disponibles para su descarga</string>
+  <string name="pull_to_refresh_updateTags">Sincronizando estado de elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando carpeta</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando fuentes</string>
   <string name="pull_to_refresh_updateItems">Sincronizando artículos</string>
@@ -47,10 +53,12 @@
   <string name="pref_header_general">General</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Calculando el tamaño de la caché... Por favor, esperá.</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar al comenzar</string>
   <string name="pref_title_ShowOnlyUnread">Mostrar solamente artículos no leídos</string>
   <string name="pref_title_AllowAllSSLCertificates">Permitir todos los Certificados SSL</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído al desplazar</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema de la App (necesita reiniciar para que los cambios sean aplicados)</string>
@@ -63,6 +71,16 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simple</item>
+    <item>Extendido</item>
+    <item>Extendido con Vistaweb</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
   <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
@@ -74,6 +92,25 @@
   <string name="pref_title_data_sync_max_items">Máximo número de artículos a sincronizar</string>
   <string name="pref_title_clearCache">Limpiar caché</string>
   <string name="pref_title_CacheImagesOffline">Hacer caché de imágenes fuera de línea</string>
+  <string name="pref_title_Max_Cache_Size">Tamaño máximo de la caché</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

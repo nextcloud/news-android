@@ -16,6 +16,7 @@
   <string name="starredFeeds">共有アイテム</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">同期</string>
+  <string name="menu_About_Changelog">ownCloudについて / 変更点</string>
   <string name="menu_markAllAsRead">すべて既読にする</string>
   <string name="menu_StartImageCaching">画像のオフラインキャッチングを開始</string>
   <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>

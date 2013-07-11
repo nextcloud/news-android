@@ -2,15 +2,24 @@
 <resources>
   <string name="app_name">ownCloud Newsreader</string>
   <string name="action_settings">Einstellungen</string>
+  <string name="title_activity_news_detail">Newsdetailaktivität</string>
   <string name="title_activity_subscription">Abonnementsaktivität</string>
   <string name="title_newsreader_list">Newsreader</string>
   <string name="title_newsreader_detail">Newsreader-Detail</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Hier gibt es keine Notizen</string>
+  <string name="toast_GettingMoreItems">Weitere Elemente werden heruntergeladen. Bitte warten.</string>
+  <string name="tv_clickHereToOpenItem">HIer drücken um das Element zu öffnen</string>
+  <string name="no_wifi_available">Kein WLAN verbunden</string>
+  <string name="do_you_want_to_download_without_wifi">Möchten Sie die Bilder ohne WLAN-Verbindung herunterladen</string>
   <string name="allUnreadFeeds">Alle ungelesenen Notizen</string>
   <string name="starredFeeds">Favorisierte Notizen</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aktualisieren</string>
+  <string name="menu_About_Changelog">Über / Changelog</string>
+  <string name="menu_markAllAsRead">Alle als gelesen markieren</string>
+  <string name="menu_StartImageCaching">Starte Offline-Bild-Zwischenspeicherung</string>
+  <string name="menu_downloadMoreItems">Weitere Elemente herunterladen</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Quelltext der Notiz - Bugreport</string>
   <string name="email_sendMail">E-Mail senden</string>
@@ -19,12 +28,24 @@
   <string name="action_openInBrowser">Im Browser öffnen...</string>
   <string name="action_sendSourceCode">Notiz an Entwickler senden</string>
   <string name="action_Share">Teilen</string>
+  <string name="action_login">Servereinstellungen</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
+  <string name="pref_title_password">Geheimcode</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Anmelden</string>
+  <string name="login_progress_signing_in">Anmelden...</string>
+  <string name="error_incorrect_password">Dieses Passwort ist falsch</string>
+  <string name="error_field_required">Dies ist ein Pflichtfeld</string>
+  <string name="error_invalid_url">Diese URL ist falsch</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">X alte Elemente heruntergeladen</string>
+  <string name="toast_no_more_downloads_available">Keine weiteren älteren Elemente zu Download verfügbar</string>
+  <string name="pull_to_refresh_updateTags">Synchronisiere Elementzustände</string>
   <string name="pull_to_refresh_updateFolder">Ordner synchronisieren</string>
+  <string name="pull_to_refresh_updateFeeds">Synchronisiere Feeds</string>
   <string name="pull_to_refresh_updateItems">Notiz synchronisieren</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Einstellungen</string>
@@ -32,11 +53,64 @@
   <string name="pref_header_general">Allgemein</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Berechne Cache-Größe.. Bitte warten.</string>
+  <string name="pref_title_AutoSyncOnStart">Beim Starten synchronisieren</string>
+  <string name="pref_title_ShowOnlyUnread">Zeige nur ungelesene Artikel</string>
+  <string name="pref_title_AllowAllSSLCertificates">Erlaube alle SSL-Zertifikate</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärke-Knöpfen navigieren</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Während dem Scrollen als gelesen markieren</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Bildschirm</string>
+  <string name="pref_title_app_theme">App-Theme (Neustart notwendig)</string>
+  <string name="pref_title_feed_list_layout">Feed-Listen-Layout</string>
+  <string-array name="pref_display_apptheme">
+    <item>Dunkel</item>
+    <item>Hell</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Einfach</item>
+    <item>Erweitert</item>
+    <item>Erweitert mit Webansicht</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fehler</string>
+  <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
+  <string name="login_dialog_text_not_compatible">Die App-Version ist unkompatibel zu deiner ownCloud News App. Bitte aktualisiere die News App und das AppFramework.</string>
   <string name="login_dialog_title_security_warning">Sicherheitswarnung</string>
+  <string name="login_dialog_text_security_warning">Sie benutzen kein HTTPS. Ein Angreifer könnte Ihre Verbindung abhören und Zugriff auf sensible Daten (z.B. Ihr Passwort) erhalten. Deshalb wird dringend empfohlen, HTTPS zu benutzen!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
+  <string name="pref_title_data_sync_max_items">Maximal zu synchronisierende Elemente</string>
+  <string name="pref_title_clearCache">Cache löschen</string>
+  <string name="pref_title_CacheImagesOffline">Bilder offline zwischenspeichern</string>
+  <string name="pref_title_Max_Cache_Size">Maximale Cache-Größe</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
