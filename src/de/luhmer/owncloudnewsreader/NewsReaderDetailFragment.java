@@ -3,11 +3,14 @@ package de.luhmer.owncloudnewsreader;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +40,18 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 
 	protected static final String TAG = "NewsReaderDetailFragment";
 
-	DatabaseConnection dbConn;
-	NewsListCursorAdapter lvAdapter;
+	private DatabaseConnection dbConn;
+	
+	private boolean DialogShowedToMarkLastItemsAsRead = false; 
+	
+	private NewsListCursorAdapter lvAdapter;
+	/**
+	 * @return the lvAdapter
+	 */
+	public NewsListCursorAdapter getLvAdapter() {
+		return lvAdapter;
+	}
+
 	String idFeed;
 	/**
 	 * @return the idFeed
@@ -132,8 +145,9 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 			getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
 				
 	            public void onScrollStateChanged(AbsListView view, int scrollState) {
+	            	
+	            	//Log.d(TAG, "Scroll: " + scrollState);
 	            	/*
-	            	Log.d(TAG, "LOL" + scrollState);
 	            	if(AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL == scrollState)
 	            	{
 	            		
@@ -141,15 +155,49 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	            }
 	
 	            
-	            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+	            public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
 	            	CheckBox cb = getCheckBoxAtPosition(0, view);
-        			ChangeCheckBoxState(cb, true);
+	            	NewsListCursorAdapter.ChangeCheckBoxState(cb, true, getActivity());
         			
-	            	if((firstVisibleItem + visibleItemCount) == totalItemCount) {
+	            	if(((firstVisibleItem + visibleItemCount) == totalItemCount) && !DialogShowedToMarkLastItemsAsRead ){
+	            		
+	            		DialogShowedToMarkLastItemsAsRead = true;
+	            		
+	            		boolean needQuestion = false;
 	            		for (int i = firstVisibleItem + 1; i < firstVisibleItem + visibleItemCount; i++) {
 	            			cb = getCheckBoxAtPosition(i - firstVisibleItem, view);
-	            			ChangeCheckBoxState(cb, true);
+	            			if(!cb.isChecked())
+	            			{
+	            				needQuestion = true;
+	            				break;
+	            			}
 	            		}
+	            		
+	            		if(needQuestion)
+	            			new AlertDialog.Builder(getActivity())
+        						.setTitle("Alle als gelesen markieren ?")
+        						.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+									
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										for (int i = firstVisibleItem + 1; i < firstVisibleItem + visibleItemCount; i++) {
+					            			CheckBox cb = getCheckBoxAtPosition(i - firstVisibleItem, view);
+					            			NewsListCursorAdapter.ChangeCheckBoxState(cb, true, getActivity());
+					            		}
+									}
+								})
+								.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,int id) {
+										// if this button is clicked, just close
+										// the dialog box and do nothing
+										dialog.cancel();
+									}
+								})
+								.create()
+								.show();
+										
+										
+	            						
 	            	}	            	
 	            }
 	            
@@ -185,12 +233,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		super.onViewCreated(view, savedInstanceState);
 	}
 	
-	private void ChangeCheckBoxState(CheckBox cb, boolean state)
-	{
-		if(cb != null)
-			if(cb.isChecked() != state)
-				cb.setChecked(state);
-	}
+	
 	
 	private CheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
 	{

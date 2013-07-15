@@ -24,7 +24,11 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
+import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
@@ -87,7 +91,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
         	cb.setButtonDrawable(R.drawable.btn_rating_star_on_normal_holo_light);
         else
         	cb.setButtonDrawable(R.drawable.btn_rating_star_off_normal_holo_light);
-        */
+        */        
+        
         cb.setClickable(true);        
         cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
@@ -131,7 +136,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 //GoogleReaderMethods.MarkItemAsRead(isChecked, getCursorForCurrentRow(buttonView), dbConn, context, asyncTaskCompletedPerformTagStarred);
 
                 dbConn.updateIsReadOfFeed(idItemDb, isChecked);
-
+                UpdateListCursor(mContext);
                 /*
                 //TODO THIS IS IMPORTANT CODE !
                 List<String> idItems = new ArrayList<String>();
@@ -230,8 +235,32 @@ public class NewsListCursorAdapter extends CursorAdapter {
 		LinearLayout lLayout = (LinearLayout) view.getParent();
 		Boolean isChecked = dbConn.isFeedUnreadStarred(idItemDb, true);
         CheckBox cbRead = (CheckBox) lLayout.findViewById(R.id.cb_lv_item_read);
+        //ChangeCheckBoxState(cbRead, isChecked, mContext);
         cbRead.setChecked(isChecked);
 	}
+	
+	public static void ChangeCheckBoxState(CheckBox cb, boolean state, Context context)
+	{
+		if(cb != null)
+		{
+			if(cb.isChecked() != state)
+			{
+				cb.setChecked(state);
+				
+				UpdateListCursor(context);
+			}
+		}
+	}
+	
+	public static void UpdateListCursor(Context context)//TODO make this better
+	{
+		SherlockFragmentActivity sfa = (SherlockFragmentActivity) context;
+		
+		//if tablet view is enabled --> update the listview 
+		if(sfa instanceof NewsReaderListActivity)
+			((NewsReaderListActivity) sfa).updateAdapter();
+	}
+	
 
     private String getBodyText(String body)
     {

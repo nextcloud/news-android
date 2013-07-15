@@ -5,7 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.util.Log;
-import de.luhmer.owncloudnewsreader.data.ConcreteSubscribtionItem;
+import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.data.RssFile;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 
@@ -15,11 +15,10 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 public class InsertIntoDatabase {
     private static final String TAG = "InsertIntoDatabase";
 
-    public static void InsertFoldersIntoDatabase(List<String[]> tags, Activity activity)
+    public static void InsertFoldersIntoDatabase(List<String[]> tags, DatabaseConnection dbConn)
     {
-        DatabaseConnection dbConn = new DatabaseConnection(activity);
-
-        
+        //DatabaseConnection dbConn = new DatabaseConnection(activity);
+    	
         //List<String[]> tags = (List<String[]>) task_result;
         List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllTopSubscriptions(false), 1);
 
@@ -66,12 +65,12 @@ public class InsertIntoDatabase {
         }
 
         
-        dbConn.closeDatabase();
+        //dbConn.closeDatabase();
     }
 
-    public static void InsertSubscriptionsIntoDatabase(ArrayList<ConcreteSubscribtionItem> tags, Activity activity)
+    public static void InsertSubscriptionsIntoDatabase(ArrayList<ConcreteFeedItem> tags, DatabaseConnection dbConn)
     {
-        DatabaseConnection dbConn = new DatabaseConnection(activity);
+        //DatabaseConnection dbConn = new DatabaseConnection(activity);
 
         List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllSubSubscriptions(), 1);
 
@@ -80,7 +79,7 @@ public class InsertIntoDatabase {
         {
 	        if(tags != null)
 	        {
-	            for(ConcreteSubscribtionItem tag : tags)
+	            for(ConcreteFeedItem tag : tags)
 	            {
 	                if(!tagsAvailable.contains(tag.header))
 	                {
@@ -121,7 +120,7 @@ public class InsertIntoDatabase {
 	    } finally {        	
 	        //dbConn.getDatabase().endTransaction();
 	    }
-        dbConn.closeDatabase();
+        //dbConn.closeDatabase();
     }
 
 

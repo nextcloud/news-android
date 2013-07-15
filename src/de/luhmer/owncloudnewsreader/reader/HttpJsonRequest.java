@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader.reader;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
@@ -25,28 +27,65 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.SSLHttpClient;
+import de.luhmer.owncloudnewsreader.util.Base64;
 
 public class HttpJsonRequest {
 	//private static final String TAG = "HttpJsonRequest";
 
+	public static InputStream PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, final String username, final String password, Context context) throws Exception
+	{	
+		if(nameValuePairs != null)
+            urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8"); 
+		
+		URL url = new URL(urlString);
+		
+		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        	
+        	
+    	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+    	/*
+        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false) && url.getProtocol().toLowerCase().equals("https"))
+            httpClient = new SSLHttpClient(context);
+        else
+            httpClient = new DefaultHttpClient();
+        */
+    	
+    		//urlConnection.setDefaultSSLSocketFactory(new MySSLSocketFactory()); getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), new UsernamePasswordCredentials(username,password));
+
+    	if(username != null && password != null)
+    		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encode((username + ":" + password).getBytes()));        		
+    	/*	
+    	Authenticator.setDefault(new Authenticator(){
+    			protected PasswordAuthentication getPasswordAuthentication() {
+    				return new PasswordAuthentication(username, password.toCharArray());
+    			}});*/
+    	
+        urlConnection.setDoOutput(false);
+        urlConnection.setDoInput(true);
+        urlConnection.setRequestMethod("GET");
+        //urlConnection.setFollowRedirects(true); 
+        urlConnection.setUseCaches(false);  
+        urlConnection.setConnectTimeout(10000);  
+        urlConnection.setReadTimeout(120000);//2min  
+        urlConnection.setRequestProperty("Content-Type","application/json");   
+        
+        //urlConnection.setRequestProperty("Host", "de.luhmer.ownCloudNewsReader");
+        urlConnection.connect();  
+        
+        int HttpResult = urlConnection.getResponseCode();  
+        if(HttpResult == HttpURLConnection.HTTP_OK) {
+        	return urlConnection.getInputStream();
+        } else {  
+           throw new Exception(urlConnection.getResponseMessage());  
+        }
+	}
+	
 	
 	@SuppressLint("DefaultLocale")
-	public static JSONObject PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, String username, String password, Context context) throws Exception
+	public static JSONObject PerformJsonRequest_old(String urlString, List<NameValuePair> nameValuePairs, String username, String password, Context context) throws Exception
 	{	
         if(nameValuePairs != null)
-        {
             urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8");
-            /*
-            JSONObject jObj = new JSONObject();
-
-            for (NameValuePair nameValuePair : nameValuePairs) {
-                jObj.put(nameValuePair.getName(), nameValuePair.getValue());
-            }*/
-
-            //request.setEntity(new ByteArrayEntity(jObj.toString().getBytes("UTF8")));
-
-            //httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-        }
 
         URL url = new URL(urlString);
 
@@ -85,55 +124,9 @@ public class HttpJsonRequest {
         //return null;
 
         // Log.i(getClass().getSimpleName(), "send  task - end");
-
-
-        /*
-        URLConnection conn = null;
-        InputStream inputStream = null;
-        URL urlInstance = new URL(url);
-        conn = urlInstance.openConnection();
-        HttpURLConnection httpConn = (HttpURLConnection) conn;
-        httpConn.setRequestMethod("GET");
-        httpConn.connect();
-        if (httpConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            inputStream = httpConn.getInputStream();
-
-            BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder total = new StringBuilder();
-            String line;
-            while ((line = r.readLine()) != null) {
-                total.append(line);
-            }
-
-            return new JSONObject(total.toString());
-        }
-        else
-            Log.d(TAG, "Response Code: " + httpConn.getResponseCode());
-        */
 	}
 	
-	/*
-	public static int performTagChangeRequest(String url)
-	{
-		try
-		{
-			URLConnection conn = null;
-	        //InputStream inputStream = null;
-	        URL urlInstance = new URL(url);
-	        conn = urlInstance.openConnection();
-	        HttpURLConnection httpConn = (HttpURLConnection) conn;
-	        httpConn.setRequestMethod("GET");
-	        httpConn.connect();
-	        return httpConn.getResponseCode();
-        }
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		return -1;
-	}
-	*/
-
+	
 
 	@SuppressLint("DefaultLocale")
 	public static int performTagChangeRequest(String urlString, String username, String password, Context context, String content) throws Exception

@@ -1,9 +1,15 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud.apiv1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
+import android.content.Context;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudConstants;
+import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 
 public class APIv1 extends API {
 
@@ -46,7 +52,17 @@ public class APIv1 extends API {
 	}
 
 	@Override
-	public void markSingleItemAsReadApiv1() {
+	public boolean PerformTagExecution(List<String> itemIds, TAGS tag,
+			Context context, API api) {
 		
+		List<Boolean> succeeded = new ArrayList<Boolean>();
+		for(String item : itemIds) {
+			succeeded.add(OwnCloudReaderMethods.PerformTagExecutionAPIv1(item, tag, context, api));
+		}
+		
+		if(succeeded.contains(false))
+			return false;
+		else
+			return true;
 	}
 }

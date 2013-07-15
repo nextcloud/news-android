@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 
 public class DatabaseConnection {	
@@ -68,7 +69,7 @@ public class DatabaseConnection {
 		//DELETE FROM table ORDER BY dateRegistered ASC LIMIT 5
     	
     	
-    	int max = 1000;
+    	int max = Constants.maxItemsCount;
     	int total = (int) getLongValueBySQL("SELECT COUNT(*) FROM rss_item");
     	int unread = (int) getLongValueBySQL("SELECT COUNT(*) FROM rss_item WHERE read_temp != 1");
     	int read = total - unread;

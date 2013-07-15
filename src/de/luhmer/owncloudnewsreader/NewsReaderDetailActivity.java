@@ -122,7 +122,7 @@ public class NewsReaderDetailActivity extends MenuUtilsSherlockFragmentActivity 
     @TargetApi(Build.VERSION_CODES.FROYO)
 	public static void UpdateListViewAndScrollToPos(FragmentActivity act, int pos)
     {
-        ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).lvAdapter.notifyDataSetChanged();
+        ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getLvAdapter().notifyDataSetChanged();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)
         	((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().smoothScrollToPosition(pos);
         else

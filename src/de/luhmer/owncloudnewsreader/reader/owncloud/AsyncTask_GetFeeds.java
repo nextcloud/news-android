@@ -1,60 +1,26 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
-import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
+import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
-public class AsyncTask_GetFeeds extends AsyncTask<Object, Void, Exception> implements AsyncTask_Reader {
-		
-    private Activity context;
-    private int task_id;
-    private OnAsyncTaskCompletedListener[] listener;
+public class AsyncTask_GetFeeds extends AsyncTask_Reader {
 
     public AsyncTask_GetFeeds(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener) {
-          super();
-
-          this.context = context;
-          this.task_id = task_id;
-          this.listener = listener;
+    	super(task_id, context, listener);
     }
-
-    //Activity meldet sich zurueck nach OrientationChange
-    public void attach(final Activity context, final OnAsyncTaskCompletedListener[] listener) {
-        this.context = context;
-        this.listener = listener;
-    }
-
-    //Activity meldet sich ab
-    public void detach() {
-        if (context != null) {
-            context = null;
-        }
-
-        if (listener != null) {
-            listener = null;
-        }
-    }
-
 
     @Override
     protected Exception doInBackground(Object... params) {
+    	API api = new APIv2(context);
+    	
         try {
-            InsertIntoDatabase.InsertSubscriptionsIntoDatabase(OwnCloudReaderMethods.GetSubscriptionTags(context), context);
+        	api.GetFeeds(context, api);
+            //OwnCloudReaderMethods.GetFeeds(context, api);
         } catch (Exception ex) {
             return ex;
         }
         return null;
-    }
-
-    @Override
-    protected void onPostExecute(Exception ex) {
-        for (OnAsyncTaskCompletedListener listenerInstance : listener) {
-            if(listenerInstance != null)
-                listenerInstance.onAsyncTaskCompleted(task_id, ex);
-        }
-
-        detach();
     }
 }

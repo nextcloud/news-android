@@ -3,43 +3,17 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.AsyncTask;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
+import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
-public class AsyncTask_PerformTagAction extends AsyncTask<Object, Void, Boolean> implements AsyncTask_Reader {
+public class AsyncTask_PerformTagAction extends AsyncTask_Reader {
 	
-	private Context context;
-	private int task_id;
-	private OnAsyncTaskCompletedListener[] listener;
-	
-	public AsyncTask_PerformTagAction(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener) {
-		  super();
-		  
-		  this.context = context;
-		  this.task_id = task_id;
-		  this.listener = listener;
-	}
-		  
-	//Activity meldet sich zurueck nach OrientationChange
-	public void attach(final Activity context, final OnAsyncTaskCompletedListener[] listener) {
-		this.context = context;
-		this.listener = listener;	
-	}
-		  
-	//Activity meldet sich ab
-	public void detach() {		
-		if (context != null) {
-			context = null;
-		}
-		 
-		if (listener != null) {
-			listener = null;
-		}
-	}
-	
+	public AsyncTask_PerformTagAction(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener) {
+		super(task_id, context, listener);
+	}	
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -49,8 +23,10 @@ public class AsyncTask_PerformTagAction extends AsyncTask<Object, Void, Boolean>
 		
 		try {
 			//String authKey = AuthenticationManager.getGoogleAuthKey(username, password);
+			API api = new APIv2(context);
+			
 			if(itemIds.size() > 0)
-				return OwnCloudReaderMethods.PerformTagExecution(itemIds, tag, context);
+				return api.PerformTagExecution(itemIds, tag, context, api);
 			else
 				return true;
 		} catch (Exception e) {
@@ -60,7 +36,7 @@ public class AsyncTask_PerformTagAction extends AsyncTask<Object, Void, Boolean>
 	}
 	
     @Override
-    protected void onPostExecute(Boolean values) {    	
+    protected void onPostExecute(Object values) {    	
     	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
     			listenerInstance.onAsyncTaskCompleted(task_id, values);	
