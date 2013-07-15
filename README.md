@@ -1,24 +1,19 @@
 ownCloud News Reader - Android App
 ==================================
-The ownCloud News Reader Android App is under AGPLv3 License terms.
-
-Status: Beta
-
+The ownCloud News Reader Android App is under AGPLv3 License terms.  
+Status: Beta  
 Bugs and enhancements can be reported under: https://github.com/owncloud/News-Android-App/issues
 
 
 How to use the Beta App via Google Play ?
 ==================================
-Please update your News App and Appframework to the latest version which is only available on GitHub.
-
+Please update your News App and Appframework to the latest version which is only available on GitHub.  
 
 ownCloud News App:
-https://github.com/owncloud/news
-
+https://github.com/owncloud/news  
 
 Appframework:
 https://github.com/owncloud/appframework
-
 
 
 After this, join the following Google Group:
@@ -26,17 +21,16 @@ https://groups.google.com/d/forum/owncloud-news-android-app
 there you can find a link to Google Play for registering as beta tester of the app.
 
 
-
 Language
 ==================================
-Is your language not supported yet ?
-You can add your language easily on:
+Is your language not supported yet ?  
+You can add your language easily on:  
 https://www.transifex.com/projects/p/owncloud/resource/android-news/
 
 
 FAQ:
 ==================================
-The app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen)
+The app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen)  
 - Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3 (via Google Play or GitHub <a href="https://github.com/owncloud/News-Android-App/commits/master/OwncloudNewsReader.apk">Choose version</a>).  
 
 
@@ -45,9 +39,47 @@ Roadmap
 My ToDo List is available on: http://www.strikeapp.com/#z6679l3t
 
 
+How to compile the App
+==================================
+Requirements:  
+-----------------------
+>1) Eclipse + ADT Plugin + Android SDK installed  
+>2) Git installed (you can do the following stuff without git but I'm not going to show how).  
+
+Download and install:  
+-----------------------
+>1) Open cmd/terminal  
+>2) Navigate to your workspace   
+>3) Then type in:  
+><pre>
+git clone https://github.com/JakeWharton/ActionBarSherlock.git
+git clone https://github.com/David-Development/Android-PullToRefresh.git
+git clone https://github.com/owncloud/News-Android-App.git
+></pre>
+
+>Go to Eclipse and do the following:  
+>--> File --> Import --> Android Project from Exsisting Source --> [...]/ActionBarSherlock/actionbarsherlock  
+>--> File --> Import --> Android Project from Exsisting Source --> [...]/Android-PullToRefresh/library  
+>--> File --> Import --> Android Project from Exsisting Source --> [...]/News-Android-App  
+
+
+>Then make a right click on the News-Android-App Project and select "Properties". Select the tab "Android". In this Window you should see the Project Build Target at the top and Libarys at the buttom of the window. Two of them are maybe marked with a read cross. So remove them and add the ActionBarSherlock and the Android PullToRefresh Libary  
+
+
+>If you get this error message:  
+>"Found 2 versions of android-support-v4.jar in the dependency list, but not all the versions are identical (check is based on SHA-1 only at  this time)." try to copy the [...]/News-Android-App/libs/android-support-v4.jar file to [...]/ActionBarSherlock/actionbarsherlock/android-support-v4.jar  
+
+>That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
+
+
 Updates
 ==================================
-0.3.8 (in development)
+0.3.9 (in development)
+---------------------
+- Support for APIv1 and APIv2. (That means the app on Google Play will be updated, too!)
+- Small fixes
+
+0.3.8
 ---------------------
 - Fixed Issue when trying to download more items in "all unread" and "starred items" view.
 - Added option to set up the maximum cache size.
