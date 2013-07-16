@@ -59,8 +59,13 @@ public class HttpJsonRequest {
 		//String[] pins                 = new String[] {"f30012bbc18c231ac1a44b788e410ce754182513"};
 		//HttpsURLConnection connection = PinningHelper.getPinnedHttpsURLConnection(context, pins, url);
 
+		//TODO Implement the SSL Socket stuff here..
+		//http://nelenkov.blogspot.de/2011/12/using-custom-certificate-trust-store-on.html
+		//http://stackoverflow.com/questions/5947162/https-and-self-signed-certificate-issue
+        //http://hc.apache.org/httpcomponents-client-ga/tutorial/html/connmgmt.html#d4e537
+		//http://stackoverflow.com/questions/859111/how-do-i-accept-a-self-signed-certificate-with-a-java-httpsurlconnection
+		//http://developer.android.com/training/articles/security-ssl.html
 		
-        	
     	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
         if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false) && url.getProtocol().toLowerCase(Locale.ENGLISH).equals("https")) {
         	//urlConnection.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
