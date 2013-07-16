@@ -4,9 +4,13 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 
 import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -16,6 +20,8 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -26,12 +32,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.helper.MyTrustManager;
 import de.luhmer.owncloudnewsreader.helper.SSLHttpClient;
+import de.luhmer.owncloudnewsreader.helper.SSLHttpClient.MySSLSocketFactory;
 import de.luhmer.owncloudnewsreader.util.Base64;
 
 public class HttpJsonRequest {
 	//private static final String TAG = "HttpJsonRequest";
 
+	@SuppressLint("DefaultLocale")
 	public static InputStream PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, final String username, final String password, Context context) throws Exception
 	{	
 		if(nameValuePairs != null)
@@ -39,8 +48,8 @@ public class HttpJsonRequest {
 		
 		URL url = new URL(urlString);
 		
-		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        	
+		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+		
 		// Define an array of pins.  One of these must be present
 		// in the certificate chain you receive.  A pin is a hex-encoded
 		// hash of a X.509 certificate's SubjectPublicKeyInfo. A pin can
@@ -52,15 +61,24 @@ public class HttpJsonRequest {
 
 		
         	
-    	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-    	/*
-        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false) && url.getProtocol().toLowerCase().equals("https"))
-            httpClient = new SSLHttpClient(context);
-        else
-            httpClient = new DefaultHttpClient();
-        */
-    	
-    		//urlConnection.setDefaultSSLSocketFactory(new MySSLSocketFactory()); getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), new UsernamePasswordCredentials(username,password));
+    	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
+        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false) && url.getProtocol().toLowerCase(Locale.ENGLISH).equals("https")) {
+        	//urlConnection.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
+
+        	//CustomSSLSocketFactory sslCtx = new CustomSSLSocketFactory(CustomSSLSocketFactory.getTruststore());
+        	//urlConnection.setSSLSocketFactory(sslCtx.getSocketFactory());
+        	
+        	/*
+        	MyTrustManager myTrustManager = new MyTrustManager();
+        	TrustManager[] tms = new TrustManager[] { myTrustManager };
+        	SSLContext sslCtx = SSLContext.getInstance("TLS");
+        	sslCtx.init(null,  tms,  null);
+        	  */      	
+        	//MySSLSocketFactory sslSocketFactory = new MySSLSocketFactory();
+        	//		sslCtx, new BrowserCompatHostnameVerifier());
+        	//schemeRegistry.register(new Scheme("https", sslSocketFactory, 443));
+        	//urlConnection.setSSLSocketFactory(MySSLSocketFactory.getSocketFactory());
+        }
 
     	if(username != null && password != null)
     		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encode((username + ":" + password).getBytes()));        		
@@ -85,7 +103,7 @@ public class HttpJsonRequest {
         }
 	}
 	
-	
+	/*
 	@SuppressLint("DefaultLocale")
 	public static JSONObject PerformJsonRequest_old(String urlString, List<NameValuePair> nameValuePairs, String username, String password, Context context) throws Exception
 	{	
@@ -110,15 +128,8 @@ public class HttpJsonRequest {
         //HttpPost request = new HttpPost(url);
         //httpClient.setParams(params)
 
-        /*
-        HttpParams params = new BasicHttpParams();
-        for (NameValuePair nameValuePair : nameValuePairs) {
-            params.setIntParameter(nameValuePair.getName(), Integer.parseInt(nameValuePair.getValue()));
-        }
 
-        httpClient.setParams(params);*/
-
-        // Instantiate a GET HTTP method
+        // Instantiate a GET HTTP method  
         HttpGet request = new HttpGet(url.toString());
 
         ResponseHandler<String> responseHandler = new BasicResponseHandler();
@@ -130,7 +141,7 @@ public class HttpJsonRequest {
 
         // Log.i(getClass().getSimpleName(), "send  task - end");
 	}
-	
+	*/
 	
 
 	@SuppressLint("DefaultLocale")
@@ -217,13 +228,6 @@ public class HttpJsonRequest {
 
 
 
-
-    // always verify the host - dont check for certificate
-    final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier() {
-        public boolean verify(String hostname, SSLSession session) {
-            return true;
-        }
-    };
 
     /**
      * Trust every server - dont check for any certificate

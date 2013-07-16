@@ -77,7 +77,7 @@ public class DatabaseConnection {
     	if(total > max)
     	{
     		int overSize = total - max;
-    		//Soll verhindern, dass ungelesene Artikel gelöscht werden
+    		//Soll verhindern, dass ungelesene Artikel gelï¿½scht werden
     		if(overSize > read)
     			overSize = read;    		
      		database.execSQL("DELETE FROM rss_item WHERE read_temp = 1 AND rowid IN (SELECT rowid FROM rss_item WHERE read_temp = 1 ORDER BY rowid asc LIMIT " + overSize + ")");
@@ -87,9 +87,41 @@ public class DatabaseConnection {
     
     public void markAllItemsAsRead(List<Integer> itemIds)
 	{
+		List<String> items = new ArrayList<String>();
+		for(Integer itemId : itemIds)
+			items.add(String.valueOf(itemId));
+		markAllItemsAsReadUnread(items, true);
+	}
+    
+    public void markAllItemsAsReadUnread(List<String> itemIds, boolean markAsRead)
+	{
 		if(itemIds != null)
-			for(Integer idItem : itemIds)
-				updateIsReadOfFeed(String.valueOf(idItem), true);
+			for(String idItem : itemIds)
+				updateIsReadOfFeed(idItem, markAsRead);
+	}
+    
+    /**
+     * Changes the read unread state of the item. This is NOT the temp value!!!
+     * @param itemIds
+     * @param markAsRead
+     */
+    public void change_readUnreadStateOfItem(List<String> itemIds, boolean markAsRead)
+	{
+		if(itemIds != null)
+			for(String idItem : itemIds)
+				updateIsReadOfFeedNotTemp(idItem, markAsRead);
+	}
+    
+    /**
+     * Changes the starred unstarred state of the item. This is NOT the temp value!!!
+     * @param itemIds
+     * @param markAsStarred
+     */
+    public void change_starrUnstarrStateOfItem(List<String> itemIds, boolean markAsStarred)
+	{
+		if(itemIds != null)
+			for(String idItem : itemIds)
+				updateIsStarredOfFeedNotTemp(idItem, markAsStarred);
 	}
     
     public int getCountOfAllItems(boolean execludeStarred)
@@ -397,6 +429,26 @@ public class DatabaseConnection {
 		ContentValues args = new ContentValues();
 		//args.put(RSS_ITEM_READ, isRead);
 		args.put(RSS_ITEM_READ_TEMP, isRead);
+		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { FEED_ID });
+		
+		if(DATABASE_DEBUG_MODE)
+			Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);
+    }
+	
+	public void updateIsReadOfFeedNotTemp(String FEED_ID, Boolean isRead) {
+		ContentValues args = new ContentValues();
+		//args.put(RSS_ITEM_READ, isRead);
+		args.put(RSS_ITEM_READ, isRead);
+		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { FEED_ID });
+		
+		if(DATABASE_DEBUG_MODE)
+			Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);
+    }
+	
+	public void updateIsStarredOfFeedNotTemp(String FEED_ID, Boolean isStarred) {
+		ContentValues args = new ContentValues();
+		//args.put(RSS_ITEM_READ, isRead);
+		args.put(RSS_ITEM_STARRED, isStarred);
 		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { FEED_ID });
 		
 		if(DATABASE_DEBUG_MODE)

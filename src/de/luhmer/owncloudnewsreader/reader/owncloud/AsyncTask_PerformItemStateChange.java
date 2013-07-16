@@ -28,26 +28,34 @@ public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 			try {
 				//Mark as READ
 				List<String> itemIds = dbConn.getAllNewReadItems();
-				succeeded.add(api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_READ, context, api));
+				boolean result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_READ, context, api);
+				if(result)
+					dbConn.change_readUnreadStateOfItem(itemIds, true);
+				succeeded.add(result);
 				
 				//Mark as UNREAD
 				itemIds = dbConn.getAllNewUnreadItems();
-				succeeded.add(api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNREAD, context, api));
+				result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNREAD, context, api);
+				if(result)
+					dbConn.change_readUnreadStateOfItem(itemIds, false);
+				succeeded.add(result);
 				
 				//Mark as STARRED
 				itemIds = dbConn.getAllNewStarredItems();
-				succeeded.add(api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_STARRED, context, api));
+				result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_STARRED, context, api);
+				if(result)
+					dbConn.change_starrUnstarrStateOfItem(itemIds, true);
+				succeeded.add(result);
 				
 				//Mark as UNSTARRED
 				itemIds = dbConn.getAllNewUnstarredItems();
-				succeeded.add(api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNSTARRED, context, api));
+				result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNSTARRED, context, api);
+				if(result)
+					dbConn.change_starrUnstarrStateOfItem(itemIds, false);
+				succeeded.add(result);
 			} finally {
 				dbConn.closeDatabase();
 			}
-			//if(itemIds.size() > 0)
-			//	return api.PerformTagExecution(itemIds, tag, context, api);
-			//else
-			//	return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			succeeded.add(false);
