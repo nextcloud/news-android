@@ -8,19 +8,20 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public class AsyncTask_GetOldItems extends AsyncTask_Reader {
 	
     public String feed_id;
     public String folder_id;
     private int downloadedItemsCount = 0;
+    private API api;
     
-    public AsyncTask_GetOldItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener, String feed_id, String folder_id) {
+    public AsyncTask_GetOldItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener, String feed_id, String folder_id, API api) {
     	super(task_id, context, listener);
     	
         this.feed_id = feed_id;
         this.folder_id = folder_id;
+        this.api = api;
     }
     
 	@Override
@@ -53,7 +54,6 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         		}
         	}
         	
-        	API api = new APIv2(context);
         	downloadedItemsCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id, type, api);
         	//downloadedItemsCount = OwnCloudReaderMethods.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id, type, api);
         	

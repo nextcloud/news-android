@@ -2,7 +2,6 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -13,8 +12,8 @@ import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 public abstract class API {
 	protected SharedPreferences mPrefs;
 	
-	public API(Activity act) {
-		mPrefs = PreferenceManager.getDefaultSharedPreferences(act);
+	public API(Context cont) {
+		mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
 	}
 	
 	protected abstract String getItemUrl();
@@ -24,8 +23,6 @@ public abstract class API {
 	
 	protected abstract String getTagBaseUrl();
 	
-	//public abstract void markSingleItemAsReadApiv1();
-	
 	public String getUsername() {
 		return mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
 	}
@@ -34,25 +31,21 @@ public abstract class API {
 		return mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
 	}
 	
-	public int GetFeeds(Activity act, API api) throws Exception {
-		return OwnCloudReaderMethods.GetFeeds(act, api);
+	public int GetFeeds(Context cont, API api) throws Exception {
+		return OwnCloudReaderMethods.GetFeeds(cont, api);
 	}
 		
-	public int GetFolderTags(Activity act, API api) throws Exception {
-		return OwnCloudReaderMethods.GetFolderTags(act, api);
+	public int GetFolderTags(Context cont, API api) throws Exception {
+		return OwnCloudReaderMethods.GetFolderTags(cont, api);
 	}
 	
-	public int GetItems(TAGS tag, Activity act, String offset, boolean getRead, String id, String type, API api) throws Exception {
-		return OwnCloudReaderMethods.GetItems(tag, act, offset, getRead, id, type, api);
+	public int GetItems(TAGS tag, Context cont, String offset, boolean getRead, String id, String type, API api) throws Exception {
+		return OwnCloudReaderMethods.GetItems(tag, cont, offset, getRead, id, type, api);
 	}
 	
-	public int GetUpdatedItems(TAGS tag, Activity act, long lastSync, API api) throws Exception {
-		return OwnCloudReaderMethods.GetUpdatedItems(tag, act, lastSync, api);
+	public int GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception {
+		return OwnCloudReaderMethods.GetUpdatedItems(tag, cont, lastSync, api);
 	}
 	
 	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api);
-	/*
-	public boolean PerformTagExecution(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api) {
-		return OwnCloudReaderMethods.PerformTagExecution(itemIds, tag, context, api);
-	}*/
 }

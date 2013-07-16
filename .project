@@ -3,6 +3,8 @@
 	<name>OwncloudNewsReader</name>
 	<comment></comment>
 	<projects>
+		<project>ActionBarSherlock</project>
+		<project>Android-PullToRefresh</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

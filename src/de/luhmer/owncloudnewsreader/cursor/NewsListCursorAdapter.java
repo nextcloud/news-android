@@ -32,6 +32,7 @@ import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
@@ -42,6 +43,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
     final int LengthBody = 300;
     ForegroundColorSpan bodyForegroundColor;
 
+    PostDelayHandler pDelayHandler;
+    
     int selectedDesign = 0;
     
 	@SuppressLint("SimpleDateFormat")
@@ -49,6 +52,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	public NewsListCursorAdapter(Context context, Cursor c) {
 		super(context, c);
 
+		pDelayHandler = new PostDelayHandler(context);
+		
         simpleDateFormat = new SimpleDateFormat("EEE, d. MMM HH:mm:ss");
         bodyForegroundColor = new ForegroundColorSpan(context.getResources().getColor(android.R.color.secondary_text_dark));
 
@@ -110,6 +115,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 if(isChecked)
                 	UpdateIsReadCheckBox(buttonView, idItemDb);
                 
+                pDelayHandler.DelayTimer();
+                
                 /*
                 List<String> idItems = new ArrayList<String>();
                 idItems.add(idItem);                
@@ -137,6 +144,9 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
                 dbConn.updateIsReadOfFeed(idItemDb, isChecked);
                 UpdateListCursor(mContext);
+                
+                pDelayHandler.DelayTimer();
+                
                 /*
                 //TODO THIS IS IMPORTANT CODE !
                 List<String> idItems = new ArrayList<String>();

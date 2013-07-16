@@ -34,6 +34,7 @@ import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
+import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudConstants;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
@@ -163,7 +164,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			if (!_Reader.isSyncRunning())
 	        {
 				OwnCloud_Reader ocReader = (OwnCloud_Reader) _Reader;
-				ocReader.Start_AsyncTask_GetVersion(-10, getActivity(), onAsyncTask_GetVersionFinished, username, password);
+				ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, getActivity(), onAsyncTask_GetVersionFinished, username, password);
 	        }
 			else
 	            _Reader.attachToRunningTask(-10, getActivity(), onAsyncTask_GetVersionFinished);
@@ -193,32 +194,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 					api = new APIv1(getActivity());
 				}				
 				
-				((OwnCloud_Reader) _Reader).setApi(api);				
+				((OwnCloud_Reader) _Reader).setApi(api);
 				
-				DatabaseConnection dbConn = new DatabaseConnection(getActivity());
-				try {
-					//Mark as READ
-					List<String> item_ids = dbConn.getAllNewReadItems();
-					_Reader.Start_AsyncTask_PerformTagAction(-4, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_READ);
-					
-					//Mark as UNREAD
-					item_ids = dbConn.getAllNewUnreadItems();
-					_Reader.Start_AsyncTask_PerformTagAction(-3, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_UNREAD);
-					
-					//Mark as STARRED
-					item_ids = dbConn.getAllNewStarredItems();
-					_Reader.Start_AsyncTask_PerformTagAction(-2, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_STARRED);
-					
-					//Mark as UNSTARRED
-					item_ids = dbConn.getAllNewUnstarredItems();
-					_Reader.Start_AsyncTask_PerformTagAction(-1, getActivity(), onAsyncTask_PerformTagExecute, item_ids, TAGS.MARK_ITEM_AS_UNSTARRED);
-				} finally {
-					dbConn.closeDatabase();
-				}
-	            
+				_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  getActivity(), onAsyncTask_PerformTagExecute);
+											
 				if(eListView != null)
 					eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
-				//_Reader.Start_AsyncTask_GetFolder(0,  getActivity(), onAsyncTask_GetTopReaderTags);
 			}
 			UpdateSyncButtonLayout();
 		}
@@ -234,9 +215,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             	{
             		//dbConn.resetDatabase();
             		
-            		if(task_id == -1)
+            		if(task_id == Constants.TaskID_PerformStateChange)
             		{
-            			_Reader.Start_AsyncTask_GetFolder(1,  getActivity(), onAsyncTask_GetFolder);
+            			_Reader.Start_AsyncTask_GetFolder(Constants.TaskID_GetFolder,  getActivity(), onAsyncTask_GetFolder);
             			if(eListView != null)
                 			eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));
             		}
@@ -257,8 +238,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			Log.d(TAG, "onAsyncTask_GetTopReaderTags started: " + task_id);
-
+			
             if(task_result != null)
             {
                 if(task_result instanceof HttpHostConnectException)
@@ -278,13 +258,14 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             }
             else
             {
-                _Reader.Start_AsyncTask_GetFeeds(1, getActivity(), onAsyncTask_GetFeed);
+                _Reader.Start_AsyncTask_GetFeeds(Constants.TaskID_GetFeeds, getActivity(), onAsyncTask_GetFeed);
                 if(eListView != null)
                 	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFeeds));
             }
 
             lvAdapter.notifyDataSetChanged();
-            Log.d(TAG, "onAsyncTask_GetTopReaderTags Finished");
+            
+            Log.d(TAG, "onAsyncTask_GetFolder Finished");
 		}
 	};
 
@@ -297,9 +278,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-
-			Log.d(TAG, "onAsyncTask_GetSubReaderTags Finished");
-
             if(task_result != null)
             {
                 ShowToastLong(((Exception)task_result).getLocalizedMessage());
@@ -309,7 +287,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             {
             	//dbConn.resetRssItemsDatabase();
             	
-                _Reader.Start_AsyncTask_GetItems(2, getActivity(), onAsyncTask_GetItems, TAGS.ALL);//Recieve all unread Items
+                _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, getActivity(), onAsyncTask_GetItems, TAGS.ALL);//Recieve all unread Items
                 //_Reader.Start_AsyncTask_GetFeeds(3, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_STARRED);//Recieve all starred Items
                 
                 if(eListView != null)
@@ -319,6 +297,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 
 
             lvAdapter.ReloadAdapter();
+            
+            Log.d(TAG, "onAsyncTask_GetFeed Finished");
             //lvAdapter.notifyDataSetChanged();
             //eListView.setAdapter(new SubscriptionExpandableListAdapter(getActivity(), dbConn));
 			
@@ -336,10 +316,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
                 ShowToastLong(((Exception)task_result).getLocalizedMessage());
 
             lvAdapter.notifyDataSetChanged();
-            //Activity act = getActivity();
-            //lvAdapter = new SubscriptionExpandableListAdapter(act, dbConn);
-
-			Log.d(TAG, "onAsyncTask_GetFeeds Finished");
 
 			if(eListView != null)
             	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
@@ -351,6 +327,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
             nlActivity.UpdateItemList();
 
+            
+            Log.d(TAG, "onAsyncTask_GetItems Finished");
 			//fireUpdateFinishedClicked();
 		}
 	};

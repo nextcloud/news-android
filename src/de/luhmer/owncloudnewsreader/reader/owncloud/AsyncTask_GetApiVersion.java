@@ -1,6 +1,6 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
@@ -12,7 +12,7 @@ public class AsyncTask_GetApiVersion extends AsyncTask_Reader {
     private String username;
     private String password;
     
-    public AsyncTask_GetApiVersion(final int task_id, final Activity context, String username, String password, final OnAsyncTaskCompletedListener[] listener) {
+    public AsyncTask_GetApiVersion(final int task_id, final Context context, String username, String password, final OnAsyncTaskCompletedListener[] listener) {
           super(task_id, context, listener);
 
           this.username = username;

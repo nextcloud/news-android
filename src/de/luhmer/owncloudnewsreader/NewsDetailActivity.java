@@ -23,6 +23,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -45,6 +46,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	public ViewPager mViewPager;
 	private int currentPosition;
 	
+	PostDelayHandler pDelayHandler;
+	
 	MenuItem menuItem_Starred;
 	MenuItem menuItem_Read;
 	
@@ -62,6 +65,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
+		
+		pDelayHandler = new PostDelayHandler(this);
 		
 		_Reader = new OwnCloud_Reader();
 		dbConn = new DatabaseConnection(this);
@@ -209,6 +214,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		{			
 			markItemAsReadUnread(idFeed, true);	
 			
+			pDelayHandler.DelayTimer();
+			
 			//Cursor cur = dbConn.getArticleByID(idFeed);
 			//cur.moveToFirst();
 			//GoogleReaderMethods.MarkItemAsRead(true, cur, dbConn, getApplicationContext(), asyncTaskCompletedPerformTagRead);
@@ -300,6 +307,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				dbConn.updateIsStarredOfFeed(idItem_Db, !curState);
 				
 				UpdateActionBarIcons();
+				
+				pDelayHandler.DelayTimer();
                 
 				List<String> idItems = new ArrayList<String>();
 				cursor.moveToFirst();
@@ -393,6 +402,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 					markItemAsReadUnread(id, !menuItem_Read.isChecked());
 					cursor.close();
 				}            	
+            	
+            	pDelayHandler.DelayTimer();
             	
             	break;
 		}

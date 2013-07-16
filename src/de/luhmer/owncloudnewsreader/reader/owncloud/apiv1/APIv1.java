@@ -3,7 +3,6 @@ package de.luhmer.owncloudnewsreader.reader.owncloud.apiv1;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
@@ -13,8 +12,8 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 
 public class APIv1 extends API {
 
-	public APIv1(Activity act) {
-		super(act);
+	public APIv1(Context cont) {
+		super(cont);
 	}
 
 	@Override

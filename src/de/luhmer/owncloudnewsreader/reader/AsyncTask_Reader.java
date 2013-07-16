@@ -1,14 +1,15 @@
 package de.luhmer.owncloudnewsreader.reader;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 
 public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Object> {
-	protected Activity context;
+	protected Context context;
 	protected int task_id;
 	protected OnAsyncTaskCompletedListener[] listener;
 	
-	public AsyncTask_Reader(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener) {
+	public AsyncTask_Reader(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener) {
 		this.context = context;
 		this.task_id = task_id;
 		this.listener = listener;

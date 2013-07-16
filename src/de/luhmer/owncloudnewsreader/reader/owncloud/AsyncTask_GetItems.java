@@ -14,14 +14,15 @@ import de.luhmer.owncloudnewsreader.helper.NetworkConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 
 public class AsyncTask_GetItems extends AsyncTask_Reader {
-    private long highestItemIdBeforeSync; 
+    private long highestItemIdBeforeSync;
+    private API api;
     
-    public AsyncTask_GetItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener) {
+    public AsyncTask_GetItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener, API api) {
     	super(task_id, context, listener);
+    	this.api = api;
     }
 	
 	@Override
@@ -42,9 +43,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         	int maxItemsInDatabase = Constants.maxItemsCount;
         	
         	highestItemIdBeforeSync = dbConn.getHighestItemId();
-        	
-        	API api = new APIv2(context);
-        	
+        	        	
         	if(lastModified == 0)
         	{	
 	        	do {    

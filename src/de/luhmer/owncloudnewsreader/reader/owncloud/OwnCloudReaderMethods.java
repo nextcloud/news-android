@@ -14,7 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -28,7 +27,7 @@ import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 public class OwnCloudReaderMethods {
 	public static String maxSizePerSync = "200";
 	
-	public static int GetUpdatedItems(TAGS tag, Activity act, long lastSync, API api) throws Exception
+	public static int GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception
 	{
 		List<NameValuePair> nVPairs = new ArrayList<NameValuePair>();
 		//nVPairs.add(new BasicNameValuePair("batchSize", maxSizePerSync));
@@ -45,9 +44,9 @@ public class OwnCloudReaderMethods {
 		nVPairs.add(new BasicNameValuePair("lastModified", String.valueOf(lastSync)));
 				
 		
-    	InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUpdatedUrl(), nVPairs, api.getUsername(), api.getPassword(), act);
+    	InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUpdatedUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
     	
-		DatabaseConnection dbConn = new DatabaseConnection(act);
+		DatabaseConnection dbConn = new DatabaseConnection(cont);
         try
         {
         	return readJsonStream(is, new InsertItemIntoDatabase(dbConn));
@@ -58,7 +57,7 @@ public class OwnCloudReaderMethods {
 	}
 	
 	//"type": 1, // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
-	public static int GetItems(TAGS tag, Activity act, String offset, boolean getRead, String id, String type, API api) throws Exception
+	public static int GetItems(TAGS tag, Context cont, String offset, boolean getRead, String id, String type, API api) throws Exception
 	{
 		List<NameValuePair> nVPairs = new ArrayList<NameValuePair>();
 		nVPairs.add(new BasicNameValuePair("batchSize", maxSizePerSync));
@@ -79,9 +78,9 @@ public class OwnCloudReaderMethods {
 			nVPairs.add(new BasicNameValuePair("getRead", "false"));
 		
 		
-		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUrl(), nVPairs, api.getUsername(), api.getPassword(), act);
+		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
 		
-		DatabaseConnection dbConn = new DatabaseConnection(act);
+		DatabaseConnection dbConn = new DatabaseConnection(cont);
         try
         {
         	return readJsonStream(is, new InsertItemIntoDatabase(dbConn));
@@ -92,10 +91,10 @@ public class OwnCloudReaderMethods {
 	}
 	
 	
-	public static int GetFolderTags(Activity act, API api) throws Exception
+	public static int GetFolderTags(Context cont, API api) throws Exception
 	{	
-		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getFolderUrl(), null, api.getUsername(), api.getPassword(), act);
-		DatabaseConnection dbConn = new DatabaseConnection(act);
+		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getFolderUrl(), null, api.getUsername(), api.getPassword(), cont);
+		DatabaseConnection dbConn = new DatabaseConnection(cont);
 		int result = 0;
 		try
         {
@@ -110,11 +109,11 @@ public class OwnCloudReaderMethods {
 		return result;
 	}
 	
-	public static int GetFeeds(Activity act, API api) throws Exception
+	public static int GetFeeds(Context cont, API api) throws Exception
 	{
-		InputStream inputStream = HttpJsonRequest.PerformJsonRequest(api.getFeedUrl() , null, api.getUsername(), api.getPassword(), act);
+		InputStream inputStream = HttpJsonRequest.PerformJsonRequest(api.getFeedUrl() , null, api.getUsername(), api.getPassword(), cont);
 
-		DatabaseConnection dbConn = new DatabaseConnection(act);
+		DatabaseConnection dbConn = new DatabaseConnection(cont);
 		int result = 0;
 		try {
 			InsertFeedIntoDatabase ifid = new InsertFeedIntoDatabase(dbConn);
@@ -322,7 +321,7 @@ public class OwnCloudReaderMethods {
 	}
 
 	
-	public static String GetVersionNumber(Activity act, String username, String password, String oc_root_path) throws Exception
+	public static String GetVersionNumber(Context cont, String username, String password, String oc_root_path) throws Exception
 	{	
 		if(oc_root_path.endsWith("/"))
 			oc_root_path = oc_root_path.substring(0, oc_root_path.length() - 1);
@@ -330,7 +329,7 @@ public class OwnCloudReaderMethods {
 		//Try APIv2
 		try {
 			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv2 + OwnCloudConstants.VERSION_PATH;
-			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, act);
+			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);
 			try {
 				GetVersion gv = new GetVersion();
 				readJsonStreamSimple(is, gv);
@@ -340,7 +339,7 @@ public class OwnCloudReaderMethods {
 			}
 		} catch(Exception ex) {	//TODO GET HERE THE RIGHT EXCEPTION		
 			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH;
-			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, act);
+			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);
 			try {
 				GetVersion gv = new GetVersion();
 				readJsonStreamSimple(is, gv);

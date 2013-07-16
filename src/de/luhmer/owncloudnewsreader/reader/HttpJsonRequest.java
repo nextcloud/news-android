@@ -41,6 +41,16 @@ public class HttpJsonRequest {
 		
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         	
+		// Define an array of pins.  One of these must be present
+		// in the certificate chain you receive.  A pin is a hex-encoded
+		// hash of a X.509 certificate's SubjectPublicKeyInfo. A pin can
+		// be generated using the provided pin.py script:
+		// python ./tools/pin.py certificate_file.pem
+		
+		//String[] pins                 = new String[] {"f30012bbc18c231ac1a44b788e410ce754182513"};
+		//HttpsURLConnection connection = PinningHelper.getPinnedHttpsURLConnection(context, pins, url);
+
+		
         	
     	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
     	/*
@@ -54,12 +64,7 @@ public class HttpJsonRequest {
 
     	if(username != null && password != null)
     		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encode((username + ":" + password).getBytes()));        		
-    	/*	
-    	Authenticator.setDefault(new Authenticator(){
-    			protected PasswordAuthentication getPasswordAuthentication() {
-    				return new PasswordAuthentication(username, password.toCharArray());
-    			}});*/
-    	
+
         urlConnection.setDoOutput(false);
         urlConnection.setDoInput(true);
         urlConnection.setRequestMethod("GET");
