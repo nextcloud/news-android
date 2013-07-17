@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.helper.CustomHostnameVerifier;
 import de.luhmer.owncloudnewsreader.helper.SSLHttpClient;
 import de.luhmer.owncloudnewsreader.util.Base64;
 
@@ -37,8 +36,21 @@ public class HttpJsonRequest {
 		
 		URL url = new URL(urlString);
 		
-		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-		urlConnection.setHostnameVerifier(new CustomHostnameVerifier());
+		HttpURLConnection urlConnection = null;
+		
+		if(url.getProtocol().toLowerCase(Locale.ENGLISH).equals("http"))
+			urlConnection = (HttpURLConnection) url.openConnection();
+		else	
+		{
+			HttpsURLConnection sslConnection = (HttpsURLConnection) url.openConnection();
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
+	        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false))
+	        {
+	        	//TODO SSL Certificate stuff needs to be implemented here..
+	        }
+			urlConnection = sslConnection;
+		}
+		//urlConnection.setHostnameVerifier(new CustomHostnameVerifier());
 		//HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		
 		// Define an array of pins.  One of these must be present
