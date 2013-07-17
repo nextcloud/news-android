@@ -20,6 +20,10 @@ public class SyncItemStateService extends IntentService {
 
 	IReader _Reader = new OwnCloud_Reader();
 	
+	public SyncItemStateService() {
+		super(null);
+	}	
+	
 	public SyncItemStateService(String name) {
 		super(name);
 	}	

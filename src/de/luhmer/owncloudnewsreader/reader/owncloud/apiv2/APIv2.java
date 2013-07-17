@@ -52,6 +52,9 @@ public class APIv2 extends API {
 	@Override
 	public boolean PerformTagExecution(List<String> itemIds, TAGS tag,
 			Context context, API api) {
-		return OwnCloudReaderMethods.PerformTagExecutionAPIv2(itemIds, tag, context, api);
+		if(itemIds.size() > 0)
+			return OwnCloudReaderMethods.PerformTagExecutionAPIv2(itemIds, tag, context, api);
+		else
+			return true;
 	}
 }

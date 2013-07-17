@@ -110,7 +110,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 					buttonView.setButtonDrawable(R.drawable.btn_rating_star_off_normal_holo_light);
 				*/
 
-                dbConn.updateIsStarredOfFeed(idItemDb, isChecked);
+                dbConn.updateIsStarredOfItem(idItemDb, isChecked);
 
                 if(isChecked)
                 	UpdateIsReadCheckBox(buttonView, idItemDb);
@@ -142,7 +142,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {								
                 //GoogleReaderMethods.MarkItemAsRead(isChecked, getCursorForCurrentRow(buttonView), dbConn, context, asyncTaskCompletedPerformTagStarred);
 
-                dbConn.updateIsReadOfFeed(idItemDb, isChecked);
+                dbConn.updateIsReadOfItem(idItemDb, isChecked);
                 UpdateListCursor(mContext);
                 
                 pDelayHandler.DelayTimer();

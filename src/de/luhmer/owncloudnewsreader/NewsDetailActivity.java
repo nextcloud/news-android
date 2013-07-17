@@ -304,7 +304,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 				//rssFiles.get(currentPosition).setStarred(!curState);
 
-				dbConn.updateIsStarredOfFeed(idItem_Db, !curState);
+				dbConn.updateIsStarredOfItem(idItem_Db, !curState);
 				
 				UpdateActionBarIcons();
 				
@@ -412,7 +412,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	
 	
 	private void markItemAsReadUnread(String item_id, boolean read) {
-		dbConn.updateIsReadOfFeed(item_id, read);
+		dbConn.updateIsReadOfItem(item_id, read);
 		UpdateActionBarIcons();
 	}
 

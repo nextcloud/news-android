@@ -46,7 +46,7 @@ public class DatabaseConnection {
     public static final String RSS_ITEM_STARRED_TEMP = "starred_temp";
 	
 	
-    public static final boolean DATABASE_DEBUG_MODE = false; //(false && Constants.DEBUG_MODE) ? true: false;
+    public static final boolean DATABASE_DEBUG_MODE = true; //(false && Constants.DEBUG_MODE) ? true: false;
     
 
     public DatabaseConnection(Context aContext) {         
@@ -97,7 +97,7 @@ public class DatabaseConnection {
 	{
 		if(itemIds != null)
 			for(String idItem : itemIds)
-				updateIsReadOfFeed(idItem, markAsRead);
+				updateIsReadOfItem(idItem, markAsRead);
 	}
     
     /**
@@ -109,7 +109,7 @@ public class DatabaseConnection {
 	{
 		if(itemIds != null)
 			for(String idItem : itemIds)
-				updateIsReadOfFeedNotTemp(idItem, markAsRead);
+				updateIsReadOfItemNotTemp(idItem, markAsRead);
 	}
     
     /**
@@ -425,21 +425,21 @@ public class DatabaseConnection {
         return result;
 	}
 
-	public void updateIsReadOfFeed(String FEED_ID, Boolean isRead) {
+	public void updateIsReadOfItem(String ITEM_ID, Boolean isRead) {
 		ContentValues args = new ContentValues();
 		//args.put(RSS_ITEM_READ, isRead);
 		args.put(RSS_ITEM_READ_TEMP, isRead);
-		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { FEED_ID });
+		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { ITEM_ID });
 		
 		if(DATABASE_DEBUG_MODE)
 			Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);
     }
 	
-	public void updateIsReadOfFeedNotTemp(String FEED_ID, Boolean isRead) {
+	public void updateIsReadOfItemNotTemp(String ITEM_ID, Boolean isRead) {
 		ContentValues args = new ContentValues();
 		//args.put(RSS_ITEM_READ, isRead);
 		args.put(RSS_ITEM_READ, isRead);
-		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { FEED_ID });
+		int result = database.update(RSS_ITEM_TABLE, args, RSS_ITEM_RSSITEM_ID + "=?", new String[] { ITEM_ID });
 		
 		if(DATABASE_DEBUG_MODE)
 			Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);
@@ -449,22 +449,22 @@ public class DatabaseConnection {
 		ContentValues args = new ContentValues();
 		//args.put(RSS_ITEM_READ, isRead);
 		args.put(RSS_ITEM_STARRED, isStarred);
-		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { FEED_ID });
+		int result = database.update(RSS_ITEM_TABLE, args, RSS_ITEM_RSSITEM_ID + "=?", new String[] { FEED_ID });
 		
 		if(DATABASE_DEBUG_MODE)
 			Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);
     }
 	
-	public void updateIsStarredOfFeed(String FEED_ID, Boolean isStarred) {
+	public void updateIsStarredOfItem(String ITEM_ID, Boolean isStarred) {
 		
 		if(isStarred)//Wenn ein Feed markiert ist muss es auch als gelesen markiert werden.
-			updateIsReadOfFeed(FEED_ID, true);
+			updateIsReadOfItem(ITEM_ID, true);
 		
 		
 		ContentValues args = new ContentValues();
 		//args.put(RSS_ITEM_STARRED, isStarred);
 		args.put(RSS_ITEM_STARRED_TEMP, isStarred);
-		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { FEED_ID });
+		int result = database.update(RSS_ITEM_TABLE, args, "rowid=?", new String[] { ITEM_ID });
 		
 		if(DATABASE_DEBUG_MODE)
 			Log.d("RESULT UPDATE DATABASE", "RESULT: " + result);

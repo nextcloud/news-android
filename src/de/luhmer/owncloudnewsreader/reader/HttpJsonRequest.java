@@ -6,35 +6,21 @@ import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.helper.MyTrustManager;
 import de.luhmer.owncloudnewsreader.helper.SSLHttpClient;
-import de.luhmer.owncloudnewsreader.helper.SSLHttpClient.MySSLSocketFactory;
 import de.luhmer.owncloudnewsreader.util.Base64;
 
 public class HttpJsonRequest {
@@ -48,7 +34,8 @@ public class HttpJsonRequest {
 		
 		URL url = new URL(urlString);
 		
-		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+		//HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		
 		// Define an array of pins.  One of these must be present
 		// in the certificate chain you receive.  A pin is a hex-encoded

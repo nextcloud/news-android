@@ -349,7 +349,7 @@ public class GoogleReaderMethods {
 			nameValuePairs.add(new BasicNameValuePair("r", GoogleReaderConstants._STATE_STARRED));		
 		ExecuteTagsReadStarred(nameValuePairs, context, asyncTaskCompletedPerformTagStarred);
 		Log.d("CHECKBOX", "STARRED CHANGED: " + isStarred);
-		dbConn.updateIsStarredOfFeed(cursor.getString(0), isStarred);
+		dbConn.updateIsStarredOfItem(cursor.getString(0), isStarred);
 	}	
 	
 	public static void MarkItemAsRead(Boolean isRead, Cursor cursor, DatabaseConnection dbConn, Context context, OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagRead)
@@ -362,7 +362,7 @@ public class GoogleReaderMethods {
 		ExecuteTagsReadStarred(nameValuePairs, context, asyncTaskCompletedPerformTagRead);
 		
 		Log.d("CHECKBOX", "STATUS CHANGED: " + isRead);
-		dbConn.updateIsReadOfFeed(cursor.getString(0), isRead);
+		dbConn.updateIsReadOfItem(cursor.getString(0), isRead);
 	}
 	
 	private static List<NameValuePair> getStarredReadNameValuePairs(DatabaseConnection dbConn, Cursor cursor)

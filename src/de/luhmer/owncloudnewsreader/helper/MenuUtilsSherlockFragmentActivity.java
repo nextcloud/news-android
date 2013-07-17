@@ -27,10 +27,7 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity {
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.FragmentActivity#onResume()
-	 */
-	
+		
 	protected static final String TAG = "MenuUtils";
 
 	static FragmentActivity activity;
@@ -173,6 +170,7 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 					.setMessage(text)
 					.setPositiveButton(activity.getString(android.R.string.ok), new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int id) {
+							
 						}
 					  })
 					.create()
