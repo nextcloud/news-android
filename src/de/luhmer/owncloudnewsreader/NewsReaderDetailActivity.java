@@ -1,8 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
@@ -119,13 +117,13 @@ public class NewsReaderDetailActivity extends MenuUtilsSherlockFragmentActivity 
 	}
 	
 
-    @TargetApi(Build.VERSION_CODES.FROYO)
+    //@TargetApi(Build.VERSION_CODES.FROYO)
 	public static void UpdateListViewAndScrollToPos(FragmentActivity act, int pos)
     {
         ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getLvAdapter().notifyDataSetChanged();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)
-        	((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().smoothScrollToPosition(pos);
-        else
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)
+        	//((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().smoothScrollToPosition(pos);
+        //else
         	((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().setSelection(pos);
         
     }

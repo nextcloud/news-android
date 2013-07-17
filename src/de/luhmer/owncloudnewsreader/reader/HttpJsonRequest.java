@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthScope;
@@ -20,6 +22,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.helper.CustomHostnameVerifier;
 import de.luhmer.owncloudnewsreader.helper.SSLHttpClient;
 import de.luhmer.owncloudnewsreader.util.Base64;
 
@@ -34,24 +37,29 @@ public class HttpJsonRequest {
 		
 		URL url = new URL(urlString);
 		
-		//HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+		urlConnection.setHostnameVerifier(new CustomHostnameVerifier());
+		//HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		
 		// Define an array of pins.  One of these must be present
 		// in the certificate chain you receive.  A pin is a hex-encoded
 		// hash of a X.509 certificate's SubjectPublicKeyInfo. A pin can
 		// be generated using the provided pin.py script:
 		// python ./tools/pin.py certificate_file.pem
+
 		
 		//String[] pins                 = new String[] {"f30012bbc18c231ac1a44b788e410ce754182513"};
-		//HttpsURLConnection connection = PinningHelper.getPinnedHttpsURLConnection(context, pins, url);
-
+		//HttpsURLConnection urlConnection = PinningHelper.getPinnedHttpsURLConnection(context, pins, url);
+				
+		
 		//TODO Implement the SSL Socket stuff here..
 		//http://nelenkov.blogspot.de/2011/12/using-custom-certificate-trust-store-on.html
 		//http://stackoverflow.com/questions/5947162/https-and-self-signed-certificate-issue
         //http://hc.apache.org/httpcomponents-client-ga/tutorial/html/connmgmt.html#d4e537
 		//http://stackoverflow.com/questions/859111/how-do-i-accept-a-self-signed-certificate-with-a-java-httpsurlconnection
 		//http://developer.android.com/training/articles/security-ssl.html
+		
+		
 		
     	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
         if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false) && url.getProtocol().toLowerCase(Locale.ENGLISH).equals("https")) {

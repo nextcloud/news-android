@@ -7,7 +7,7 @@ import de.luhmer.owncloudnewsreader.services.SyncItemStateService;
 
 public class PostDelayHandler {
 	Handler handlerTimer;
-	private final int delayTime = 30000; 
+	private final int delayTime = 5 * 60000;//60 000 = 1min 
 	Context context;
 	private static boolean isDelayed = false;
 	
