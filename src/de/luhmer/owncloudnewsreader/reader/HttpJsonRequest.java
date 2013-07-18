@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -14,6 +16,7 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -22,6 +25,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.helper.CustomTrustManager;
 import de.luhmer.owncloudnewsreader.helper.SSLHttpClient;
 import de.luhmer.owncloudnewsreader.util.Base64;
 
@@ -37,21 +41,27 @@ public class HttpJsonRequest {
 		URL url = new URL(urlString);
 		
 		HttpURLConnection urlConnection = null;
+		//HttpsURLConnection urlConnection = null;
 		
 		if(url.getProtocol().toLowerCase(Locale.ENGLISH).equals("http"))
 			urlConnection = (HttpURLConnection) url.openConnection();
 		else	
-		{
-			HttpsURLConnection sslConnection = (HttpsURLConnection) url.openConnection();
+		{	
 			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
 	        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false))
-	        {
-	        	//TODO SSL Certificate stuff needs to be implemented here..
+	        {	        	
+	        	TrustManager[] trustAllCerts = new TrustManager[] { new CustomTrustManager() };
+	    		SSLContext sc = SSLContext.getInstance("SSL");
+	    		sc.init(null, trustAllCerts, new java.security.SecureRandom());
+	    		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+	        	
+	    		// Install the all-trusting host verifier
+	    		//HttpsURLConnection.setDefaultHostnameVerifier(new CustomHostnameVerifier());
+	    		HttpsURLConnection.setDefaultHostnameVerifier(new StrictHostnameVerifier());	    		
 	        }
+	        HttpsURLConnection sslConnection = (HttpsURLConnection) url.openConnection();
 			urlConnection = sslConnection;
 		}
-		//urlConnection.setHostnameVerifier(new CustomHostnameVerifier());
-		//HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		
 		// Define an array of pins.  One of these must be present
 		// in the certificate chain you receive.  A pin is a hex-encoded
@@ -64,34 +74,13 @@ public class HttpJsonRequest {
 		//HttpsURLConnection urlConnection = PinningHelper.getPinnedHttpsURLConnection(context, pins, url);
 				
 		
-		//TODO Implement the SSL Socket stuff here..
+		
 		//http://nelenkov.blogspot.de/2011/12/using-custom-certificate-trust-store-on.html
 		//http://stackoverflow.com/questions/5947162/https-and-self-signed-certificate-issue
         //http://hc.apache.org/httpcomponents-client-ga/tutorial/html/connmgmt.html#d4e537
 		//http://stackoverflow.com/questions/859111/how-do-i-accept-a-self-signed-certificate-with-a-java-httpsurlconnection
 		//http://developer.android.com/training/articles/security-ssl.html
 		
-		
-		
-    	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
-        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false) && url.getProtocol().toLowerCase(Locale.ENGLISH).equals("https")) {
-        	//urlConnection.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
-
-        	//CustomSSLSocketFactory sslCtx = new CustomSSLSocketFactory(CustomSSLSocketFactory.getTruststore());
-        	//urlConnection.setSSLSocketFactory(sslCtx.getSocketFactory());
-        	
-        	/*
-        	MyTrustManager myTrustManager = new MyTrustManager();
-        	TrustManager[] tms = new TrustManager[] { myTrustManager };
-        	SSLContext sslCtx = SSLContext.getInstance("TLS");
-        	sslCtx.init(null,  tms,  null);
-        	  */      	
-        	//MySSLSocketFactory sslSocketFactory = new MySSLSocketFactory();
-        	//		sslCtx, new BrowserCompatHostnameVerifier());
-        	//schemeRegistry.register(new Scheme("https", sslSocketFactory, 443));
-        	//urlConnection.setSSLSocketFactory(MySSLSocketFactory.getSocketFactory());
-        }
-
     	if(username != null && password != null)
     		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encode((username + ":" + password).getBytes()));        		
 
