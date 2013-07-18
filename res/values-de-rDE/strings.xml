@@ -10,7 +10,7 @@
   <string name="empty_view_content">Keine Artikel vorhanden</string>
   <string name="toast_GettingMoreItems">Starte mit dem Herunterladen weiterer Objekte... Bitte warten.</string>
   <string name="tv_clickHereToOpenItem">Hier klicken, um Objekt zu öffnen.</string>
-  <string name="no_wifi_available">Keine W-LAN-Verbindung</string>
+  <string name="no_wifi_available">Keine WLAN-Verbindung</string>
   <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne W-LAN-Verbindung herunterladen</string>
   <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
   <string name="starredFeeds">Markierte Elemente</string>
@@ -25,7 +25,7 @@
   <string name="email_sendMail">E-Mail senden</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favoriten</string>
-  <string name="action_openInBrowser">Im Browser öffnen...</string>
+  <string name="action_openInBrowser">Im Browser öffnen</string>
   <string name="action_sendSourceCode">Senden Artikel an Entwickler</string>
   <string name="action_Share">Teilen</string>
   <string name="action_login">Servereinstellungen</string>
@@ -38,7 +38,7 @@
   <string name="action_sign_in_short">Einloggen</string>
   <string name="login_progress_signing_in">Logge ein...</string>
   <string name="error_incorrect_password">Dieses Passwort ist falsch.</string>
-  <string name="error_field_required">Dies ist ein notwendiges Feld.</string>
+  <string name="error_field_required">Dieses Feld ist erforderlich.</string>
   <string name="error_invalid_url">Diese URL ist falsch.</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Lade X alte Objekte herunter</string>
@@ -85,7 +85,7 @@
   <string name="login_dialog_title_error">Fehler</string>
   <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
   <string name="login_dialog_text_not_compatible">Diese App-Version ist nicht mit Ihrer OwnCloud-News-App kompatibel. Bitte aktualisieren Sie die News-App und das Appframework.</string>
-  <string name="login_dialog_title_security_warning">Sicherheitshinweis</string>
+  <string name="login_dialog_title_security_warning">Sicherheitswarnung</string>
   <string name="login_dialog_text_security_warning">Sie nutzen kein https. Ein Angreifer könnte Ihren Datenverkehr mitschneiden und dadurch Zugang zu sensiblen Daten (z.B. Ihrem Passwort) erhalten. Wir empfehlen dringend die Nutzung von https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
