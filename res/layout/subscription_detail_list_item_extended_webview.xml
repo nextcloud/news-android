@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/com.devspark.robototextview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -23,16 +24,17 @@
         android:layout_marginRight="@dimen/listview_row_margin_right"
         android:gravity="right" >
 
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/tv_clickHereToOpen"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|left"
             android:textSize="15sp"  
             android:layout_weight="1"      
-            android:text="@string/tv_clickHereToOpenItem" />
+            android:text="@string/tv_clickHereToOpenItem" 
+            app:typeface="@style/RobotoFontStyle" />
         
-        <CheckBox
+        <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/cb_lv_item_starred"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,16 +42,18 @@
             android:background="@drawable/checkbox_background"
             android:button="@drawable/checkbox_background_empty"            
             android:clickable="false"
-            android:focusable="false" />
+            android:focusable="false"
+            app:typeface="@style/RobotoFontStyle" />
 
-        <CheckBox
+        <com.devspark.robototextview.widget.RobotoCheckBox
             android:id="@+id/cb_lv_item_read"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"
             android:clickable="false"
-            android:focusable="false" />
+            android:focusable="false" 
+            app:typeface="@style/RobotoFontStyle" />
     </LinearLayout>
 
     <WebView

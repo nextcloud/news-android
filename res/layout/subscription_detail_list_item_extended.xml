@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/com.devspark.robototextview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -17,7 +18,7 @@
         android:layout_marginTop="@dimen/listview_row_margin_top"
         android:orientation="horizontal" >
 
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/tv_subscription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -27,9 +28,10 @@
             android:singleLine="true"
             android:text="Hi"
             android:layout_weight="1"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            app:typeface="@style/RobotoFontStyle" />
 
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/tv_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +40,8 @@
             android:layout_gravity="right"
             android:text="Hi"
             android:singleLine="true"
-            android:textSize="13sp" />
+            android:textSize="13sp" 
+            app:typeface="@style/RobotoFontStyle" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,11 +53,12 @@
         android:orientation="horizontal" >
 
         <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1" >
-            <TextView
+            
+			<com.devspark.robototextview.widget.RobotoTextView
                 android:id="@+id/summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,9 +67,10 @@
                 android:lines="2"
                 android:textSize="16sp"
                 android:text="Hi"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:typeface="@style/RobotoFontStyle" />
 
-            <TextView
+            <com.devspark.robototextview.widget.RobotoTextView
                 android:id="@+id/body"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
@@ -75,7 +80,8 @@
                 android:text="Hi"
                 android:textColor="#858585"
                 android:textSize="14sp"
-                android:autoLink="none" />
+                android:autoLink="none"
+                app:typeface="@style/RobotoFontStyle" />
             <!-- android:gravity="center_vertical" -->
         </LinearLayout>
 
@@ -87,25 +93,27 @@
                 android:layout_gravity="right"
                 android:gravity="center_horizontal|center_vertical" >
 
-            <CheckBox
+            <com.devspark.robototextview.widget.RobotoCheckBox
                 android:id="@+id/cb_lv_item_starred"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"                
                 android:clickable="false"
                 android:focusable="false"
                 android:button="@drawable/checkbox_background_empty"
-                android:background="@drawable/checkbox_background" />
+                android:background="@drawable/checkbox_background" 
+                app:typeface="@style/RobotoFontStyle" />
             <!-- android:layout_width="40dp"
                 android:layout_height="40dp" -->
 
-            <CheckBox
+            <com.devspark.robototextview.widget.RobotoCheckBox
                 android:id="@+id/cb_lv_item_read"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"                
                 android:clickable="false"
-                android:focusable="false" />
+                android:focusable="false" 
+                app:typeface="@style/RobotoFontStyle" />
             </LinearLayout>
     </LinearLayout>
 </LinearLayout>

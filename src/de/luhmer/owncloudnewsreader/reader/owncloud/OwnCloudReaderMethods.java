@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.auth.AuthenticationException;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -337,6 +338,9 @@ public class OwnCloudReaderMethods {
 			} finally {
 				is.close();
 			}
+		} 
+		catch(AuthenticationException ex) {
+			throw ex;
 		} catch(Exception ex) {	//TODO GET HERE THE RIGHT EXCEPTION		
 			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH;
 			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);

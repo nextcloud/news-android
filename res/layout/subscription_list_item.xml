@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/com.devspark.robototextview"
     android:layout_width="fill_parent"
     android:layout_height="@dimen/exp_listview_row_height"
     android:orientation="horizontal" >
@@ -22,19 +22,19 @@
        	android:textSize="20sp"
        	android:textStyle="bold"
        	android:layout_weight="1"        
-       	android:textIsSelectable="false"
-		app:typeface="roboto_thin" />
-		 
+       	android:textIsSelectable="false"       	
+		app:typeface="@style/RobotoFontStyle" />
+    <!--app:typeface="roboto_thin" -->
+    		 
     
-    <!-- android:paddingLeft="40dp" -->
-
-    <TextView
+    <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/tV_feedsCount"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical|right"        
         android:singleLine="true"
         android:textIsSelectable="false"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        app:typeface="@style/RobotoFontStyle" />
 
 </LinearLayout>

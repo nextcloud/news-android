@@ -13,6 +13,7 @@ import javax.net.ssl.TrustManager;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.AuthenticationException;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -33,7 +34,7 @@ public class HttpJsonRequest {
 	//private static final String TAG = "HttpJsonRequest";
 
 	@SuppressLint("DefaultLocale")
-	public static InputStream PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, final String username, final String password, Context context) throws Exception
+	public static InputStream PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, final String username, final String password, Context context) throws AuthenticationException, Exception
 	{	
 		if(nameValuePairs != null)
             urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8"); 
@@ -100,7 +101,10 @@ public class HttpJsonRequest {
         if(HttpResult == HttpURLConnection.HTTP_OK) {
         	return urlConnection.getInputStream();
         } else {  
-           throw new Exception(urlConnection.getResponseMessage());  
+        	if(urlConnection.getResponseMessage().equals("Unauthorized"))
+        		throw new AuthenticationException(urlConnection.getResponseMessage());
+        	else
+        		throw new Exception(urlConnection.getResponseMessage());  
         }
 	}
 	
