@@ -12,6 +12,7 @@
   <string name="starredFeeds">Itens destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
+  <string name="menu_markAllAsRead">Marcar todos como lidos</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-Fonte do item: Reportar bug</string>
   <string name="email_sendMail">Enviar E-mail</string>
@@ -22,8 +23,13 @@
   <string name="action_Share">Partilhar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
+  <string name="pref_title_password">Código secreto</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="error_incorrect_password">Esta password está incorrecta</string>
+  <string name="error_field_required">O campo é obrigatório</string>
+  <string name="error_invalid_url">O endereço está incorrecto</string>
   <!--Toast Messages-->
   <string name="pull_to_refresh_updateFolder">Pasta a sincronizar</string>
   <string name="pull_to_refresh_updateFeeds">Feeds a sincronizar</string>
@@ -37,6 +43,7 @@
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erro</string>
+  <string name="login_dialog_text_something_went_wrong">Algo correu mal :(</string>
   <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
