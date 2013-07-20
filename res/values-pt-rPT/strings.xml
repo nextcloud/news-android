@@ -8,11 +8,15 @@
   <string name="title_newsreader_detail">NewsReader Detail</string>
   <string name="empty_view_header">Informação</string>
   <string name="empty_view_content">Não itens</string>
+  <string name="tv_clickHereToOpenItem">Clique aqui para abrir o item</string>
+  <string name="no_wifi_available">Sem ligação WiFi</string>
+  <string name="do_you_want_to_download_without_wifi">Deseja efetuar o descarregamento das imagens sem uma ligação WIFI</string>
   <string name="allUnreadFeeds">Todos os itens não lidos</string>
   <string name="starredFeeds">Itens destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
   <string name="menu_markAllAsRead">Marcar todos como lidos</string>
+  <string name="menu_downloadMoreItems">Descarregar mais itens</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-Fonte do item: Reportar bug</string>
   <string name="email_sendMail">Enviar E-mail</string>
@@ -21,12 +25,15 @@
   <string name="action_openInBrowser">Abrir no browser</string>
   <string name="action_sendSourceCode">Enviar item ao Programador</string>
   <string name="action_Share">Partilhar</string>
+  <string name="action_login">Configurações do servidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Código secreto</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Entrar</string>
+  <string name="login_progress_signing_in">A entrar...</string>
   <string name="error_incorrect_password">Esta password está incorrecta</string>
   <string name="error_field_required">O campo é obrigatório</string>
   <string name="error_invalid_url">O endereço está incorrecto</string>
@@ -40,12 +47,57 @@
   <string name="pref_header_general">Geral</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="pref_title_AutoSyncOnStart">Sincronizar no carregamento...</string>
+  <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos por ler</string>
+  <string name="pref_title_AllowAllSSLCertificates">Permitir todos os certificados SSL</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Navegue usando os botões de volume</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Mostrar</string>
+  <string name="pref_title_app_theme">Tema da aplicação (deve reiniciar para aplicar)</string>
+  <string-array name="pref_display_apptheme">
+    <item>Escuro</item>
+    <item>Claro</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simples</item>
+    <item>Extendido</item>
+    <item>Extendido com vista Web</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erro</string>
   <string name="login_dialog_text_something_went_wrong">Algo correu mal :(</string>
   <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Dados &amp; sincronização</string>
+  <string name="pref_title_data_sync_max_items">Maximo numero de itens para sincronizar</string>
+  <string name="pref_title_clearCache">Limpar dados temporários</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
