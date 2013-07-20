@@ -19,6 +19,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
@@ -26,6 +27,7 @@ import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 
 public class OwnCloudReaderMethods {
+	private static final String TAG = "OwnCloudReaderMethods";
 	public static String maxSizePerSync = "200";
 	
 	public static int GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception
@@ -181,13 +183,32 @@ public class OwnCloudReaderMethods {
     }
 
 	private static JSONObject getJSONObjectFromReader(JsonReader jsonReader) {
-		JSONObject jObj = new JSONObject();
+		JSONObject jObj = new JSONObject();		
 		try {
 			while(jsonReader.hasNext()) {
-				try {					
-					jObj.put(jsonReader.nextName(), jsonReader.nextString());
+				JsonToken token;
+				String name;
+				try {
+					name = jsonReader.nextName();
+					token = jsonReader.peek();
+					
+					//Log.d(TAG, token.toString());
+					
+					switch(token) {
+						case NUMBER:
+							jObj.put(name, jsonReader.nextLong());
+							break;
+						case NULL:
+							jsonReader.skipValue();
+							break;
+						case BOOLEAN:
+							jObj.put(name, jsonReader.nextBoolean());
+							break;							
+						default:
+							jObj.put(name, jsonReader.nextString());
+					}
 				} catch(Exception ex) {					
-					//ex.printStackTrace();
+					ex.printStackTrace();
 					jsonReader.skipValue();
 				}
 			}

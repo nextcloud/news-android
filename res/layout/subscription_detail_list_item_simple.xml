@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout
-    	xmlns:android="http://schemas.android.com/apk/res/android"
-    	xmlns:app="http://schemas.android.com/apk/com.devspark.robototextview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+   	xmlns:android="http://schemas.android.com/apk/res/android"    	
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal" >
         
     <com.devspark.robototextview.widget.RobotoCheckBox
 		android:id="@+id/cb_lv_item_starred"
@@ -47,8 +46,8 @@
 	            android:singleLine="true"
 	            android:text="Hi"
 	            android:layout_weight="1"
-	            android:textSize="13sp"
-	            app:typeface="@style/RobotoFontStyle" />
+	            android:textSize="14sp"
+	            style="@style/RobotoFontStyle" />
 	
 	        <com.devspark.robototextview.widget.RobotoTextView
 	            android:id="@+id/tv_item_date"
@@ -59,8 +58,8 @@
 	            android:layout_gravity="right"
 	            android:text="Hi"
 	            android:singleLine="true"
-	            android:textSize="13sp"
-	            app:typeface="@style/RobotoFontStyle" />
+	            android:textSize="14sp"
+	            style="@style/RobotoFontStyle" />
 	    </LinearLayout>
 	
 	    <com.devspark.robototextview.widget.RobotoTextView
@@ -70,21 +69,22 @@
 	        android:ellipsize="end"
 	        android:gravity="center_vertical"
 	        android:lines="2"
-	        android:textSize="16sp"
+	        android:textSize="17sp"
 	        android:text="hidsaf afdal fjdkas f fsadfdas fds asöjkdafdssö fjkök"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
-	        app:typeface="@style/RobotoFontStyle" />
+	        style="@style/RobotoFontStyle" />
 	    
 	</LinearLayout>
 
-	<CheckBox
+	<com.devspark.robototextview.widget.RobotoCheckBox
 	    android:id="@+id/cb_lv_item_read"
 	    android:layout_width="wrap_content"
 	    android:layout_height="match_parent"
 	    android:layout_marginRight="@dimen/listview_row_margin_right"
 	    android:clickable="false"
 	    android:focusable="false"
-	    android:gravity="center_vertical|center_horizontal" />
+	    android:gravity="center_vertical|center_horizontal" 
+	    style="@style/RobotoFontStyle" />
 
 </LinearLayout>

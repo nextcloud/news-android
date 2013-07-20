@@ -10,16 +10,15 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.devspark.robototextview.widget.RobotoCheckBox;
 
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
@@ -84,17 +83,6 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		/*
-		if (getArguments().containsKey(ARG_ITEM_ID)) {
-			// Load the dummy content specified by the fragment
-			// arguments. In a real-world scenario, use a Loader
-			// to load content from a content provider.
-			
-			mItem = DummyContent.ITEM_MAP.get(getArguments().getString(
-					ARG_ITEM_ID));
-					
-		}*/
 		
 		if (getArguments().containsKey(NewsReaderDetailActivity.SUBSCRIPTION_ID)) {
 			idFeed = getArguments().getString(NewsReaderDetailActivity.SUBSCRIPTION_ID);
@@ -113,8 +101,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
 		
 		//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-				
-		//lvAdapter = new Subscription_ListViewAdapter(this);
+		
 		UpdateCursor();
 	}
 	
@@ -156,7 +143,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	
 	            
 	            public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
-	            	CheckBox cb = getCheckBoxAtPosition(0, view);
+	            	RobotoCheckBox cb = getCheckBoxAtPosition(0, view);
 	            	NewsListCursorAdapter.ChangeCheckBoxState(cb, true, getActivity());
         			
 	            	if(((firstVisibleItem + visibleItemCount) == totalItemCount) && !DialogShowedToMarkLastItemsAsRead ){
@@ -181,7 +168,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 									@Override
 									public void onClick(DialogInterface dialog, int which) {
 										for (int i = firstVisibleItem + 1; i < firstVisibleItem + visibleItemCount; i++) {
-					            			CheckBox cb = getCheckBoxAtPosition(i - firstVisibleItem, view);
+											RobotoCheckBox cb = getCheckBoxAtPosition(i - firstVisibleItem, view);
 					            			NewsListCursorAdapter.ChangeCheckBoxState(cb, true, getActivity());
 					            		}
 									}
@@ -235,20 +222,16 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	
 	
 	
-	private CheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
+	private RobotoCheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
 	{
 		ListView lv = (ListView) viewLV;
 		View view = (View) lv.getChildAt(pos);
 		if(view != null)
-			return (CheckBox) view.findViewById(R.id.cb_lv_item_read);
+			return (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_read);
 		else
 			return null;
 	}
 	
-
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.Fragment#onResume()
-	 */
 	@Override
 	public void onResume() {
 		lastItemPosition = -1;
@@ -322,14 +305,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 				
-		Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);
-		//if(idSubscription != null)
-		//	intentNewsDetailAct.putExtra(NewsReaderDetailActivity.SUBSCRIPTION_ID, Long.valueOf(idSubscription));
-		//else if(idFolder != null)
-		//	intentNewsDetailAct.putExtra(NewsReaderDetailActivity.FOLDER_ID, Long.valueOf(idFolder));		
-		
-		//intentNewsDetailAct.putIntegerArrayListExtra(NewsDetailActivity.DATABASE_IDS_OF_ITEMS, databaseIdsOfItems);
-		//Integer[] databaseIdsOfItemsArray = databaseIdsOfItems.toArray(new Integer[databaseIdsOfItems.size()]);
+		Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);		
 		intentNewsDetailAct.putIntegerArrayListExtra(NewsDetailActivity.DATABASE_IDS_OF_ITEMS, databaseIdsOfItems);
 		
 		intentNewsDetailAct.putExtra(NewsReaderDetailActivity.ITEM_ID, position);
@@ -342,5 +318,4 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	public ArrayList<Integer> getDatabaseIdsOfItems() {
 		return databaseIdsOfItems;
 	}
-
 }

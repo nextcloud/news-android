@@ -174,7 +174,7 @@ public class InsertIntoDatabase {
                         rssFile.getGuidHash(),
                         rssFile.getLastModified());
 
-                dbConn.clearDatabaseOverSize();
+                //dbConn.clearDatabaseOverSize();
             }
         }
     }

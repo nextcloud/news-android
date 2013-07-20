@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/com.devspark.robototextview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -32,9 +31,9 @@
             android:textSize="15sp"  
             android:layout_weight="1"      
             android:text="@string/tv_clickHereToOpenItem" 
-            app:typeface="@style/RobotoFontStyle" />
+            style="@style/RobotoFontStyle" />
         
-        <com.devspark.robototextview.widget.RobotoTextView
+        <com.devspark.robototextview.widget.RobotoCheckBox
             android:id="@+id/cb_lv_item_starred"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +42,7 @@
             android:button="@drawable/checkbox_background_empty"            
             android:clickable="false"
             android:focusable="false"
-            app:typeface="@style/RobotoFontStyle" />
+            style="@style/RobotoFontStyle" />
 
         <com.devspark.robototextview.widget.RobotoCheckBox
             android:id="@+id/cb_lv_item_read"
@@ -53,7 +52,7 @@
             android:layout_gravity="center_vertical"
             android:clickable="false"
             android:focusable="false" 
-            app:typeface="@style/RobotoFontStyle" />
+            style="@style/RobotoFontStyle" />
     </LinearLayout>
 
     <WebView
@@ -62,4 +61,5 @@
         android:layout_height="500dp"
         android:focusable="false"
         android:clickable="false" />
+    
 </LinearLayout>

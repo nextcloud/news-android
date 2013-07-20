@@ -46,15 +46,17 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         	        	
         	if(lastModified == 0)
         	{	
+        		
 	        	do {    
 	        		requestCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), false, "0", "3", api);
 	        		if(requestCount > 0)
 	        			offset = dbConn.getLowestItemId(false);
 	        		totalCount += requestCount;	        		
-	        	} while(requestCount == maxSyncSize /* && totalCount < maxItemsInDatabase */);
+	        	} while(requestCount == maxSyncSize);
+	        	
 	        	
 	        	do {  
-	        		offset = dbConn.getLowestItemId(true);
+	        		offset = dbConn.getLowestItemId(true);	        			        		
 	        		requestCount = api.GetItems(TAGS.ALL_STARRED, context, String.valueOf(offset), true, "0", "2", api);
 	        		if(requestCount > 0)
 	        			offset = dbConn.getLowestItemId(true);
@@ -67,6 +69,9 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         		//OwnCloudReaderMethods.GetUpdatedItems(TAGS.ALL, context, lastModified, api);
         		
         	}
+        	
+        	dbConn.clearDatabaseOverSize();
+        	
         } catch (Exception ex) {
             return ex;
         } finally {

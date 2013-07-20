@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/com.devspark.robototextview"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    
     android:layout_width="fill_parent"
     android:layout_height="@dimen/exp_listview_row_height"
     android:orientation="horizontal" >
@@ -23,7 +22,7 @@
        	android:textStyle="bold"
        	android:layout_weight="1"        
        	android:textIsSelectable="false"       	
-		app:typeface="@style/RobotoFontStyle" />
+		style="@style/RobotoFontStyle" />/
     <!--app:typeface="roboto_thin" -->
     		 
     
@@ -35,6 +34,6 @@
         android:singleLine="true"
         android:textIsSelectable="false"
         android:layout_marginRight="20dp"
-        app:typeface="@style/RobotoFontStyle" />
+        style="@style/RobotoFontStyle" />
 
 </LinearLayout>

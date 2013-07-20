@@ -21,14 +21,15 @@
         android:singleLine="true"
         android:layout_weight="1"
         android:textSize="20sp"
-        app:typeface="@style/RobotoFontStyle" />
+        style="@style/RobotoFontStyle" />
 
-    <TextView
+    <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/tv_unreadCount"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical|right"
         android:singleLine="true"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp" 
+    	style="@style/RobotoFontStyle" />
 
 </LinearLayout>

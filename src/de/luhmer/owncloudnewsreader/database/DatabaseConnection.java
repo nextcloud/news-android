@@ -46,7 +46,7 @@ public class DatabaseConnection {
     public static final String RSS_ITEM_STARRED_TEMP = "starred_temp";
 	
 	
-    public static final boolean DATABASE_DEBUG_MODE = true; //(false && Constants.DEBUG_MODE) ? true: false;
+    public static final boolean DATABASE_DEBUG_MODE = false; //(false && Constants.DEBUG_MODE) ? true: false;
     
 
     public DatabaseConnection(Context aContext) {         
