@@ -79,7 +79,7 @@ Updates
 - Support for APIv1 and APIv2. (That means the app on Google Play will be updated, too!)
 - Small fixes
 - Improved memory usage while synchronizing
-- Auto sync of item state every 30 seconds
+- Auto sync of item state every 5 minutes
 - Changed font style to Roboto Light
 
 0.3.8
