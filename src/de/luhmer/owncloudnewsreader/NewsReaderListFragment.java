@@ -28,6 +28,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.IReader;
@@ -161,6 +162,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		} else {
 			if (!_Reader.isSyncRunning())
 	        {
+				new PostDelayHandler(getActivity()).stopRunningPostDelayHandler();//Stop pending sync handler
+				
 				OwnCloud_Reader ocReader = (OwnCloud_Reader) _Reader;
 				ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, getActivity(), onAsyncTask_GetVersionFinished, username, password);
 	        }

@@ -25,9 +25,11 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
+import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
+import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public class OwnCloudReaderMethods {
-	private static final String TAG = "OwnCloudReaderMethods";
+	//private static final String TAG = "OwnCloudReaderMethods";
 	public static String maxSizePerSync = "200";
 	
 	public static int GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception
@@ -51,12 +53,16 @@ public class OwnCloudReaderMethods {
     	
 		DatabaseConnection dbConn = new DatabaseConnection(cont);
         try
-        {
-        	return readJsonStream(is, new InsertItemIntoDatabase(dbConn));
+        {	
+        	if(api instanceof APIv1)
+    			return readJsonStreamV1(is, new InsertItemIntoDatabase(dbConn));
+        	else if(api instanceof APIv2)
+        		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn));
         } finally {        	
         	dbConn.closeDatabase();
         	is.close();
         }
+        return 0;
 	}
 	
 	//"type": 1, // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
@@ -86,11 +92,15 @@ public class OwnCloudReaderMethods {
 		DatabaseConnection dbConn = new DatabaseConnection(cont);
         try
         {
-        	return readJsonStream(is, new InsertItemIntoDatabase(dbConn));
+        	if(api instanceof APIv1)
+    			return readJsonStreamV1(is, new InsertItemIntoDatabase(dbConn));
+        	else if(api instanceof APIv2)
+        		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn));
         } finally {        	
         	dbConn.closeDatabase();
         	is.close();
         }
+        return 0;
 	}
 	
 	
@@ -102,7 +112,12 @@ public class OwnCloudReaderMethods {
 		try
         {
 			InsertFolderIntoDatabase ifid = new InsertFolderIntoDatabase(dbConn);
-			result = readJsonStream(is, ifid);
+			
+			if(api instanceof APIv1)
+				result = readJsonStreamV1(is, ifid);
+        	else if(api instanceof APIv2)
+        		result = readJsonStreamV2(is, ifid);
+			
 			ifid.WriteAllToDatabaseNow();
         } finally {        	
         	dbConn.closeDatabase();
@@ -120,7 +135,12 @@ public class OwnCloudReaderMethods {
 		int result = 0;
 		try {
 			InsertFeedIntoDatabase ifid = new InsertFeedIntoDatabase(dbConn);
-			result = readJsonStream(inputStream, ifid);
+			
+			if(api instanceof APIv1)
+				result = readJsonStreamV1(inputStream, ifid);
+        	else if(api instanceof APIv2)
+        		result = readJsonStreamV2(inputStream, ifid);
+			
 			ifid.WriteAllToDatabaseNow();
 		} finally {
 			dbConn.closeDatabase();
@@ -137,23 +157,64 @@ public class OwnCloudReaderMethods {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	public static int readJsonStream(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
+	public static int readJsonStreamV2(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
 		int count = 0;
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         reader.beginObject();
         reader.nextName();
         reader.beginArray();
         while (reader.hasNext()) {
-        	reader.beginObject();
+        	//reader.beginObject();
         	
         	JSONObject e = getJSONObjectFromReader(reader);
         	
         	iJoBj.performAction(e);        	
     		
-    		reader.endObject();
+    		//reader.endObject();
     		count++;
         }
-        reader.endArray();        
+        //reader.endArray();
+        //reader.endObject();
+        reader.close();
+        
+        return count;
+    }
+	
+	/**
+	 * can parse json like {"items":[{"id":6782}]}
+	 * @param in
+	 * @param iJoBj
+	 * @return
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public static int readJsonStreamV1(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
+		int count = 0;
+        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
+        reader.beginObject();//{
+        reader.nextName();//"ocs"
+        reader.beginObject();//{
+        reader.nextName();//meta
+        
+        getJSONObjectFromReader(reader);//skip status etc.
+        
+        reader.nextName();//data
+        reader.beginObject();//{
+        reader.nextName();//folders etc..
+        
+        reader.beginArray();
+        while (reader.hasNext()) {
+        	//reader.beginObject();
+        	
+        	JSONObject e = getJSONObjectFromReader(reader);
+        	
+        	iJoBj.performAction(e);        	
+    		
+    		//reader.endObject();
+    		count++;
+        }
+        //reader.endArray();
+        //reader.endObject();
         reader.close();
         
         return count;
@@ -170,21 +231,30 @@ public class OwnCloudReaderMethods {
 	private static int readJsonStreamSimple(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
 		int count = 0;
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
-        reader.beginObject();
-        	
+        //reader.setLenient(true);
+        
+        //JsonToken token = reader.peek();
+        //while(token.equals(JsonToken.STRING))
+        //	reader.skipValue();
+                	
         JSONObject e = getJSONObjectFromReader(reader);
-        	
         iJoBj.performAction(e);        	
-    	
-        reader.endObject();        
+    	        
         reader.close();
         
         return count;
     }
 
-	private static JSONObject getJSONObjectFromReader(JsonReader jsonReader) {
-		JSONObject jObj = new JSONObject();		
+	private static JSONObject getJSONObjectFromReader(JsonReader jsonReader) {		
+		JSONObject jObj = new JSONObject();
+		JsonToken tokenInstance = null; 
 		try {
+			tokenInstance = jsonReader.peek();
+			if(tokenInstance == JsonToken.BEGIN_OBJECT)
+				jsonReader.beginObject();
+			else if (tokenInstance == JsonToken.BEGIN_ARRAY)
+				jsonReader.beginArray();
+			
 			while(jsonReader.hasNext()) {
 				JsonToken token;
 				String name;
@@ -193,8 +263,8 @@ public class OwnCloudReaderMethods {
 					token = jsonReader.peek();
 					
 					//Log.d(TAG, token.toString());
-					
-					switch(token) {
+										
+					switch(token) {	
 						case NUMBER:
 							jObj.put(name, jsonReader.nextLong());
 							break;
@@ -203,7 +273,12 @@ public class OwnCloudReaderMethods {
 							break;
 						case BOOLEAN:
 							jObj.put(name, jsonReader.nextBoolean());
-							break;							
+							break;	
+						case BEGIN_OBJECT:
+							//jsonReader.beginObject();
+							jObj.put(name, getJSONObjectFromReader(jsonReader));
+							//jsonReader.endObject();
+							break;
 						default:
 							jObj.put(name, jsonReader.nextString());
 					}
@@ -212,6 +287,12 @@ public class OwnCloudReaderMethods {
 					jsonReader.skipValue();
 				}
 			}
+			
+			if(tokenInstance == JsonToken.BEGIN_OBJECT)
+				jsonReader.endObject();
+			else if (tokenInstance == JsonToken.BEGIN_ARRAY)
+				jsonReader.endArray();
+			
 			return jObj;
 		} catch (Exception e) {			
 			e.printStackTrace();
@@ -353,7 +434,7 @@ public class OwnCloudReaderMethods {
 			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv2 + OwnCloudConstants.VERSION_PATH;
 			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);
 			try {
-				GetVersion gv = new GetVersion();
+				GetVersion_v2 gv = new GetVersion_v2();
 				readJsonStreamSimple(is, gv);
 				return gv.getVersion();
 			} finally {
@@ -363,10 +444,10 @@ public class OwnCloudReaderMethods {
 		catch(AuthenticationException ex) {
 			throw ex;
 		} catch(Exception ex) {	//TODO GET HERE THE RIGHT EXCEPTION		
-			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH;
+			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH + OwnCloudConstants.JSON_FORMAT;
 			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);
 			try {
-				GetVersion gv = new GetVersion();
+				GetVersion_v1 gv = new GetVersion_v1();
 				readJsonStreamSimple(is, gv);
 				return gv.getVersion();
 			} finally {
