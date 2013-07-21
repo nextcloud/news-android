@@ -3,6 +3,8 @@ package de.luhmer.owncloudnewsreader;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -12,11 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.devspark.robototextview.widget.RobotoCheckBox;
 
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
@@ -37,8 +39,18 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 
 	protected static final String TAG = "NewsReaderDetailFragment";
 
-	DatabaseConnection dbConn;
-	NewsListCursorAdapter lvAdapter;
+	private DatabaseConnection dbConn;
+	
+	private boolean DialogShowedToMarkLastItemsAsRead = false; 
+	
+	private NewsListCursorAdapter lvAdapter;
+	/**
+	 * @return the lvAdapter
+	 */
+	public NewsListCursorAdapter getLvAdapter() {
+		return lvAdapter;
+	}
+
 	String idFeed;
 	/**
 	 * @return the idFeed
@@ -71,17 +83,6 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		/*
-		if (getArguments().containsKey(ARG_ITEM_ID)) {
-			// Load the dummy content specified by the fragment
-			// arguments. In a real-world scenario, use a Loader
-			// to load content from a content provider.
-			
-			mItem = DummyContent.ITEM_MAP.get(getArguments().getString(
-					ARG_ITEM_ID));
-					
-		}*/
 		
 		if (getArguments().containsKey(NewsReaderDetailActivity.SUBSCRIPTION_ID)) {
 			idFeed = getArguments().getString(NewsReaderDetailActivity.SUBSCRIPTION_ID);
@@ -100,8 +101,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
 		
 		//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-				
-		//lvAdapter = new Subscription_ListViewAdapter(this);
+		
 		UpdateCursor();
 	}
 	
@@ -132,8 +132,9 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 			getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
 				
 	            public void onScrollStateChanged(AbsListView view, int scrollState) {
+	            	
+	            	//Log.d(TAG, "Scroll: " + scrollState);
 	            	/*
-	            	Log.d(TAG, "LOL" + scrollState);
 	            	if(AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL == scrollState)
 	            	{
 	            		
@@ -141,15 +142,49 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	            }
 	
 	            
-	            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-	            	CheckBox cb = getCheckBoxAtPosition(0, view);
-        			ChangeCheckBoxState(cb, true);
+	            public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
+	            	RobotoCheckBox cb = getCheckBoxAtPosition(0, view);
+	            	NewsListCursorAdapter.ChangeCheckBoxState(cb, true, getActivity());
         			
-	            	if((firstVisibleItem + visibleItemCount) == totalItemCount) {
+	            	if(((firstVisibleItem + visibleItemCount) == totalItemCount) && !DialogShowedToMarkLastItemsAsRead ){
+	            		
+	            		DialogShowedToMarkLastItemsAsRead = true;
+	            		
+	            		boolean needQuestion = false;
 	            		for (int i = firstVisibleItem + 1; i < firstVisibleItem + visibleItemCount; i++) {
 	            			cb = getCheckBoxAtPosition(i - firstVisibleItem, view);
-	            			ChangeCheckBoxState(cb, true);
+	            			if(!cb.isChecked())
+	            			{
+	            				needQuestion = true;
+	            				break;
+	            			}
 	            		}
+	            		
+	            		if(needQuestion)
+	            			new AlertDialog.Builder(getActivity())
+        						.setTitle("Alle als gelesen markieren ?")
+        						.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+									
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										for (int i = firstVisibleItem + 1; i < firstVisibleItem + visibleItemCount; i++) {
+											RobotoCheckBox cb = getCheckBoxAtPosition(i - firstVisibleItem, view);
+					            			NewsListCursorAdapter.ChangeCheckBoxState(cb, true, getActivity());
+					            		}
+									}
+								})
+								.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,int id) {
+										// if this button is clicked, just close
+										// the dialog box and do nothing
+										dialog.cancel();
+									}
+								})
+								.create()
+								.show();
+										
+										
+	            						
 	            	}	            	
 	            }
 	            
@@ -185,27 +220,18 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		super.onViewCreated(view, savedInstanceState);
 	}
 	
-	private void ChangeCheckBoxState(CheckBox cb, boolean state)
-	{
-		if(cb != null)
-			if(cb.isChecked() != state)
-				cb.setChecked(state);
-	}
 	
-	private CheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
+	
+	private RobotoCheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
 	{
 		ListView lv = (ListView) viewLV;
 		View view = (View) lv.getChildAt(pos);
 		if(view != null)
-			return (CheckBox) view.findViewById(R.id.cb_lv_item_read);
+			return (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_read);
 		else
 			return null;
 	}
 	
-
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.Fragment#onResume()
-	 */
 	@Override
 	public void onResume() {
 		lastItemPosition = -1;
@@ -279,14 +305,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 				
-		Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);
-		//if(idSubscription != null)
-		//	intentNewsDetailAct.putExtra(NewsReaderDetailActivity.SUBSCRIPTION_ID, Long.valueOf(idSubscription));
-		//else if(idFolder != null)
-		//	intentNewsDetailAct.putExtra(NewsReaderDetailActivity.FOLDER_ID, Long.valueOf(idFolder));		
-		
-		//intentNewsDetailAct.putIntegerArrayListExtra(NewsDetailActivity.DATABASE_IDS_OF_ITEMS, databaseIdsOfItems);
-		//Integer[] databaseIdsOfItemsArray = databaseIdsOfItems.toArray(new Integer[databaseIdsOfItems.size()]);
+		Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);		
 		intentNewsDetailAct.putIntegerArrayListExtra(NewsDetailActivity.DATABASE_IDS_OF_ITEMS, databaseIdsOfItems);
 		
 		intentNewsDetailAct.putExtra(NewsReaderDetailActivity.ITEM_ID, position);
@@ -299,5 +318,4 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	public ArrayList<Integer> getDatabaseIdsOfItems() {
 		return databaseIdsOfItems;
 	}
-
 }

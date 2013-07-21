@@ -19,15 +19,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.devspark.robototextview.widget.RobotoCheckBox;
+
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
+import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
@@ -38,6 +43,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
     final int LengthBody = 300;
     ForegroundColorSpan bodyForegroundColor;
 
+    PostDelayHandler pDelayHandler;
+    
     int selectedDesign = 0;
     
 	@SuppressLint("SimpleDateFormat")
@@ -45,6 +52,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	public NewsListCursorAdapter(Context context, Cursor c) {
 		super(context, c);
 
+		pDelayHandler = new PostDelayHandler(context);
+		
         simpleDateFormat = new SimpleDateFormat("EEE, d. MMM HH:mm:ss");
         bodyForegroundColor = new ForegroundColorSpan(context.getResources().getColor(android.R.color.secondary_text_dark));
 
@@ -58,7 +67,6 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View view, final Context context, Cursor cursor) {
         final String idItemDb = cursor.getString(0);
-        //final String idItem = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
         
         switch (selectedDesign) {
 			case 0:
@@ -77,48 +85,28 @@ public class NewsListCursorAdapter extends CursorAdapter {
 				break;
 	    }
         
-        CheckBox cb = (CheckBox) view.findViewById(R.id.cb_lv_item_starred);
+        RobotoCheckBox cb = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_starred);
         cb.setOnCheckedChangeListener(null);
 
         Boolean isStarred = dbConn.isFeedUnreadStarred(cursor.getString(0), false);//false => starred will be checked
         //Log.d("ISSTARRED", "" + isStarred + " - Cursor: " + cursor.getString(0));
-        cb.setChecked(isStarred);/*        
-        if(isStarred)
-        	cb.setButtonDrawable(R.drawable.btn_rating_star_on_normal_holo_light);
-        else
-        	cb.setButtonDrawable(R.drawable.btn_rating_star_off_normal_holo_light);
-        */
+        cb.setChecked(isStarred);
         cb.setClickable(true);        
         cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-								/*
-				if(isChecked)
-					buttonView.setButtonDrawable(R.drawable.btn_rating_star_on_normal_holo_light);
-				else
-					buttonView.setButtonDrawable(R.drawable.btn_rating_star_off_normal_holo_light);
-				*/
-
-                dbConn.updateIsStarredOfFeed(idItemDb, isChecked);
+                dbConn.updateIsStarredOfItem(idItemDb, isChecked);
 
                 if(isChecked)
                 	UpdateIsReadCheckBox(buttonView, idItemDb);
                 
-                /*
-                List<String> idItems = new ArrayList<String>();
-                idItems.add(idItem);                
-                if(isChecked)
-				    _Reader.Start_AsyncTask_PerformTagAction(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_STARRED);
-                else
-                    _Reader.Start_AsyncTask_PerformTagAction(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_UNSTARRED);
-                */
-                        
+                pDelayHandler.DelayTimer();
 			}
 		});
         
         
-        CheckBox cbRead = (CheckBox) view.findViewById(R.id.cb_lv_item_read);
+        RobotoCheckBox cbRead = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_read);
         cbRead.setOnCheckedChangeListener(null);
         Boolean isChecked = dbConn.isFeedUnreadStarred(cursor.getString(0), true);
         //Log.d("ISREAD", "" + isChecked + " - Cursor: " + cursor.getString(0));
@@ -127,25 +115,13 @@ public class NewsListCursorAdapter extends CursorAdapter {
         cbRead.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {								
-                //GoogleReaderMethods.MarkItemAsRead(isChecked, getCursorForCurrentRow(buttonView), dbConn, context, asyncTaskCompletedPerformTagStarred);
-
-                dbConn.updateIsReadOfFeed(idItemDb, isChecked);
-
-                /*
-                //TODO THIS IS IMPORTANT CODE !
-                List<String> idItems = new ArrayList<String>();
-                idItems.add(idItem);
-                if(isChecked)
-                    _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_READ);
-                else
-                    _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, context, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_UNREAD);
-                */
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                dbConn.updateIsReadOfItem(idItemDb, isChecked);
+                UpdateListCursor(mContext);
+                
+                pDelayHandler.DelayTimer();
 			}
-		});
-        
-        //Log.d("NewsListCursor", "BIND VIEW..");
-        //((CheckBox) view.findViewById(R.id.cb_lv_item_starred)).setButtonDrawable(R.drawable.btn_rating_star_off_normal_holo_light);
+		});        
 	}
 	
 	public void setSimpleLayout(View view, Cursor cursor)
@@ -182,17 +158,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void setExtendedLayoutWebView(View view, Cursor cursor)
-	{
-		
-		/*
-		TextView textViewSummary = (TextView) view.findViewById(R.id.summary);
-        textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString());
-
-        TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
-        long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
-        textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
-		 */
-				
+	{						
         WebView webViewContent = (WebView) view.findViewById(R.id.webView_body);
         webViewContent.setClickable(false);
         webViewContent.setFocusable(false);
@@ -200,25 +166,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
         //	webViewContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         
         webViewContent.loadDataWithBaseURL("", NewsDetailFragment.getHtmlPage(mContext, dbConn , cursor.getInt(0)), "text/html", "UTF-8", "");
-
-        /*
-        TextView textViewTitle = (TextView) view.findViewById(R.id.tv_subscription);        
-        textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
-        textViewSummary.setTag(cursor.getString(0));
-        */
 	}
-	
-	
-	/*
-	class ItemHolder {
-		TextView txt_feed;
-		TextView txt_item_date;
-		TextView txt_summary;
-		TextView txt_body;
-		CheckBox cb_starred;
-		CheckBox cb_read;
-	}*/
-		
+				
 	public void CloseDatabaseConnection()
 	{
 		if(dbConn != null)
@@ -229,9 +178,32 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	{
 		LinearLayout lLayout = (LinearLayout) view.getParent();
 		Boolean isChecked = dbConn.isFeedUnreadStarred(idItemDb, true);
-        CheckBox cbRead = (CheckBox) lLayout.findViewById(R.id.cb_lv_item_read);
+		RobotoCheckBox cbRead = (RobotoCheckBox) lLayout.findViewById(R.id.cb_lv_item_read);    
         cbRead.setChecked(isChecked);
 	}
+	
+	public static void ChangeCheckBoxState(RobotoCheckBox cb, boolean state, Context context)
+	{
+		if(cb != null)
+		{
+			if(cb.isChecked() != state)
+			{
+				cb.setChecked(state);
+				
+				UpdateListCursor(context);
+			}
+		}
+	}
+	
+	public static void UpdateListCursor(Context context)//TODO make this better
+	{
+		SherlockFragmentActivity sfa = (SherlockFragmentActivity) context;
+		
+		//if tablet view is enabled --> update the listview 
+		if(sfa instanceof NewsReaderListActivity)
+			((NewsReaderListActivity) sfa).updateAdapter();
+	}
+	
 
     private String getBodyText(String body)
     {
@@ -251,18 +223,6 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
         return bodyString;
     }
-
-    /*
-	private Cursor getCursorForCurrentRow(CompoundButton buttonView)
-	{
-		TextView tv = (TextView) ((ViewGroup)((ViewGroup) buttonView.getParent()).getChildAt(1)).getChildAt(1);
-		String id_DB_Feed = (String) tv.getTag();
-		//String id_DB_Feed = (String) ((View)buttonView.getParent()).getTag();
-		
-		Cursor cur = dbConn.getFeedByID(id_DB_Feed);
-		cur.moveToFirst();
-		return cur;
-	}*/
 
 	@Override
 	public View newView(Context arg0, Cursor cursor, ViewGroup parent) {
@@ -290,29 +250,6 @@ public class NewsListCursorAdapter extends CursorAdapter {
         if(retView != null)
         	retView.setTag(cursor.getString(0));
         
-        
-        
-       
-        //retView.getLocationOnScreen(location);        
-        //Log.d("NewsListCursor", "NEW VIEW..");
-        
         return retView;
 	}
-
-    /*
-	OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagRead = new OnAsyncTaskCompletedListener() {
-		
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			Log.d("FINISHED PERFORM TAG READ ", "" + task_result);			
-		}
-	};
-	
-	OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagStarred = new OnAsyncTaskCompletedListener() {
-		
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			Log.d("FINISHED PERFORM TAG STARRED ", "" + task_result);			
-		}
-	};*/
 }

@@ -1,5 +1,9 @@
 package de.luhmer.owncloudnewsreader.helper;
 
+import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,17 +14,20 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
+import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.VersionInfoDialogFragment;
+import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity {
+		
 	protected static final String TAG = "MenuUtils";
 
 	static FragmentActivity activity;
@@ -56,6 +63,14 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 	}
 
 	
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	@Override
+	protected void onResume() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			invalidateOptionsMenu();	  
+		}
+		super.onResume();
+	}
 	
 	
 	public static void onCreateOptionsMenu(Menu menu, MenuInflater inflater, boolean mTwoPane, FragmentActivity act) {
@@ -126,6 +141,10 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 					}
 					ndf.UpdateCursor();
 					
+					//If tablet view is enabled update the listview as well
+					if(activity instanceof NewsReaderListActivity)
+						((NewsReaderListActivity) activity).updateAdapter();
+					
 				}
 				return true;
 				
@@ -139,10 +158,32 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 	private static void DownloadMoreItems()
 	{
 		NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
-		IReader _Reader = new OwnCloud_Reader();
-		_Reader.Start_AsyncTask_GetOldItems(0, activity, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
 		
-		Toast.makeText(activity, activity.getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
+		DatabaseConnection dbConn = new DatabaseConnection(activity);
+		int count = dbConn.getCountFeedsForFolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true);
+		if(count > Constants.maxItemsCount)
+		{
+			String text = activity.getString(R.string.max_items_count_reached);
+			text = text.replace("XX", "" + Constants.maxItemsCount);
+			new AlertDialog.Builder(activity)
+					.setTitle(activity.getString(R.string.empty_view_header))
+					.setMessage(text)
+					.setPositiveButton(activity.getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							
+						}
+					  })
+					.create()
+					.show();
+			//Toast.makeText(activity, text, Toast.LENGTH_LONG).show();
+		}
+		else
+		{		
+			IReader _Reader = new OwnCloud_Reader();
+			_Reader.Start_AsyncTask_GetOldItems(0, activity, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());		
+			
+			Toast.makeText(activity, activity.getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 	static OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {

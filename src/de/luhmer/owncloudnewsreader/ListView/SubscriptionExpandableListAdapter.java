@@ -21,7 +21,7 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.FillTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.async_tasks.IGetTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.data.AbstractItem;
-import de.luhmer.owncloudnewsreader.data.ConcreteSubscribtionItem;
+import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
@@ -36,7 +36,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     ExpListTextClicked eListTextClickHandler;
     
     private ArrayList<FolderSubscribtionItem> mCategoriesArrayList;
-    private SparseArray<SparseArray<ConcreteSubscribtionItem>> mItemsArrayList;
+    private SparseArray<SparseArray<ConcreteFeedItem>> mItemsArrayList;
 	private boolean showOnlyUnread = false;
 
 	public static final String ALL_UNREAD_ITEMS = "-10";
@@ -104,7 +104,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         //Check if we are not in our current group now, or the current cached items are wrong - MUST BE RECACHED
         //if(mItemsArrayList.isEmpty() /*|| ((ConcreteSubscribtionItem)mItemsArrayList.get(0)).parent_id != parent_id */){
 		if(mItemsArrayList.indexOfKey(groupPosition) < 0 /*|| (mItemsArrayList.get(groupPosition).size() <= childPosition)*/ /*|| ((ConcreteSubscribtionItem)mItemsArrayList.get(0)).parent_id != parent_id */){
-			mItemsArrayList.append(groupPosition, new SparseArray<ConcreteSubscribtionItem>());
+			mItemsArrayList.append(groupPosition, new SparseArray<ConcreteFeedItem>());
             Cursor itemsCursor = dbConn.getAllSubscriptionForFolder(String.valueOf(parent_id), showOnlyUnread);
             itemsCursor.requery();
             //mItemsArrayList.clear();  
@@ -115,7 +115,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                     String name = itemsCursor.getString(1);
                     String subscription_id = itemsCursor.getString(2);
                     String urlFavicon = itemsCursor.getString(itemsCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));
-                    ConcreteSubscribtionItem newItem = new ConcreteSubscribtionItem(name, String.valueOf(parent_id), subscription_id, urlFavicon, id_database);
+                    ConcreteFeedItem newItem = new ConcreteFeedItem(name, String.valueOf(parent_id), subscription_id, urlFavicon, id_database);
                     mItemsArrayList.get(groupPosition).put(childPosTemp, newItem);
                     childPosTemp++;
                 } while (itemsCursor.moveToNext());
@@ -126,7 +126,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 	@Override
 	public long getChildId(int groupPosition, int childPosition) {
-		return ((ConcreteSubscribtionItem)(getChild(groupPosition, childPosition))).id_database;
+		return ((ConcreteFeedItem)(getChild(groupPosition, childPosition))).id_database;
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		LinearLayout view;
 		
-        ConcreteSubscribtionItem item = (ConcreteSubscribtionItem)getChild(groupPosition, childPosition);
+        ConcreteFeedItem item = (ConcreteFeedItem)getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             view = new LinearLayout(mContext);
@@ -156,11 +156,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        boolean execludeStarredItems = (item.folder_id.equals(ALL_STARRED_ITEMS)) ? false : true;
 	        
 	        TextView tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount);
-	        //String unread = dbConn.getCountItemsForSubscription(String.valueOf(item.id_database), true, execludeStarredItems);
-	        //String total = dbConn.getCountItemsForSubscription(String.valueOf(item.id_database), false, execludeStarredItems);
-	        //tV_UnreadCount.setText(unread + "/" + total);
-	        //tV_UnreadCount.setText(getUnreadTextItems(String.valueOf(item.id_database), false, execludeStarredItems));
-	        tV_UnreadCount.setText("");
+	        if(tV_UnreadCount.getTag() == null)//TODO Work on this here... 
+	        	tV_UnreadCount.setText("");
 	        SetUnreadCountForFeed(tV_UnreadCount, String.valueOf(item.id_database), execludeStarredItems);	
 	        
 	        ImageView imgView = (ImageView) view.findViewById(R.id.iVFavicon);
@@ -435,7 +432,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         AddEverythingInCursorFeedsToSubscriptions(dbConn.getAllTopSubscriptionsWithoutFolder(showOnlyUnread));
 
         //AddEverythingInCursorToSubscriptions(dbConn.getAllTopSubscriptionsWithUnreadFeeds());
-        mItemsArrayList = new SparseArray<SparseArray<ConcreteSubscribtionItem>>();
+        mItemsArrayList = new SparseArray<SparseArray<ConcreteFeedItem>>();
 
         this.notifyDataSetChanged();
     }

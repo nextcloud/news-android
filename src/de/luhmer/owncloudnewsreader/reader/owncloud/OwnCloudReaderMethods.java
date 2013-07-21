@@ -1,40 +1,41 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.auth.AuthenticationException;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.preference.PreferenceManager;
-import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.data.ConcreteSubscribtionItem;
-import de.luhmer.owncloudnewsreader.data.RssFile;
+
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
+
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
-import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
+import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
+import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public class OwnCloudReaderMethods {
+	//private static final String TAG = "OwnCloudReaderMethods";
 	public static String maxSizePerSync = "200";
 	
-	public static int GetUpdatedItems(TAGS tag, Activity act, long lastSync) throws Exception
-	{	
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(act);		
-		//ArrayList<RssFile> rssFiles = new ArrayList<RssFile>();
-		
+	public static int GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception
+	{
 		List<NameValuePair> nVPairs = new ArrayList<NameValuePair>();
-		nVPairs.add(new BasicNameValuePair("batchSize", maxSizePerSync));
+		//nVPairs.add(new BasicNameValuePair("batchSize", maxSizePerSync));
 		if(tag.equals(TAGS.ALL_STARRED))
 		{
 			nVPairs.add(new BasicNameValuePair("type", "2"));
@@ -47,31 +48,26 @@ public class OwnCloudReaderMethods {
 		}
 		nVPairs.add(new BasicNameValuePair("lastModified", String.valueOf(lastSync)));
 				
-		String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
-		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-
 		
-		String requestURL = oc_root_path + OwnCloudConstants.FEED_PATH_UPDATED_ITEMS + OwnCloudConstants.JSON_FORMAT;		
-			
-        JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(requestURL, nVPairs, username, password, act);
-
-        DatabaseConnection dbConn = new DatabaseConnection(act);
+    	InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUpdatedUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
+    	
+		DatabaseConnection dbConn = new DatabaseConnection(cont);
         try
-        {
-        	return parseItems(jsonObj, dbConn, act);
-        } finally {
+        {	
+        	if(api instanceof APIv1)
+    			return readJsonStreamV1(is, new InsertItemIntoDatabase(dbConn));
+        	else if(api instanceof APIv2)
+        		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn));
+        } finally {        	
         	dbConn.closeDatabase();
+        	is.close();
         }
-		//return rssFiles;
+        return 0;
 	}
 	
 	//"type": 1, // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
-	public static int GetItems(TAGS tag, Activity act, String offset, boolean getRead, String id, String type) throws Exception
-	{	
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(act);		
-		//ArrayList<RssFile> rssFiles = new ArrayList<RssFile>();
-		
+	public static int GetItems(TAGS tag, Context cont, String offset, boolean getRead, String id, String type, API api) throws Exception
+	{
 		List<NameValuePair> nVPairs = new ArrayList<NameValuePair>();
 		nVPairs.add(new BasicNameValuePair("batchSize", maxSizePerSync));
 		if(tag.equals(TAGS.ALL_STARRED))
@@ -91,162 +87,236 @@ public class OwnCloudReaderMethods {
 			nVPairs.add(new BasicNameValuePair("getRead", "false"));
 		
 		
-		String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
-		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-
-		String requestURL = oc_root_path + OwnCloudConstants.FEED_PATH + OwnCloudConstants.JSON_FORMAT;
-			
-        JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(requestURL, nVPairs, username, password, act);
-
-        DatabaseConnection dbConn = new DatabaseConnection(act);
+		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
+		
+		DatabaseConnection dbConn = new DatabaseConnection(cont);
         try
         {
-        	return parseItems(jsonObj, dbConn, act);
-        } finally {
+        	if(api instanceof APIv1)
+    			return readJsonStreamV1(is, new InsertItemIntoDatabase(dbConn));
+        	else if(api instanceof APIv2)
+        		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn));
+        } finally {        	
         	dbConn.closeDatabase();
+        	is.close();
         }
-		//return rssFiles;
+        return 0;
 	}
 	
-	private static int parseItems(JSONObject jsonObj, DatabaseConnection dbConn, Context context)
-	{
-		//ArrayList<RssFile> rssFiles = new ArrayList<RssFile>();
-		int count = 0;
-		
-		//jsonObj = jsonObj.optJSONObject("ocs");
-        //jsonObj = jsonObj.optJSONObject("data");
-        JSONArray jsonArr = jsonObj.optJSONArray("items");
-
-        if(jsonArr != null)
+	
+	public static int GetFolderTags(Context cont, API api) throws Exception
+	{	
+		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getFolderUrl(), null, api.getUsername(), api.getPassword(), cont);
+		DatabaseConnection dbConn = new DatabaseConnection(cont);
+		int result = 0;
+		try
         {
-            for (int i = 0; i < jsonArr.length(); i++) {
-                JSONObject e = jsonArr.optJSONObject(i);
-                
-                //rssFiles.add(parseItem(e));
-                
-                RssFile rssFile = parseItem(e);
-                InsertIntoDatabase.InsertSingleFeedItemIntoDatabase(rssFile, dbConn);
-                
-                //new AsyncTask_DownloadImages(rssFile.getDescription(), context).execute();
-                
-                count++;
-            }
+			InsertFolderIntoDatabase ifid = new InsertFolderIntoDatabase(dbConn);
+			
+			if(api instanceof APIv1)
+				result = readJsonStreamV1(is, ifid);
+        	else if(api instanceof APIv2)
+        		result = readJsonStreamV2(is, ifid);
+			
+			ifid.WriteAllToDatabaseNow();
+        } finally {        	
+        	dbConn.closeDatabase();
+        	is.close();        	
         }
+		
+		return result;
+	}
+	
+	public static int GetFeeds(Context cont, API api) throws Exception
+	{
+		InputStream inputStream = HttpJsonRequest.PerformJsonRequest(api.getFeedUrl() , null, api.getUsername(), api.getPassword(), cont);
+
+		DatabaseConnection dbConn = new DatabaseConnection(cont);
+		int result = 0;
+		try {
+			InsertFeedIntoDatabase ifid = new InsertFeedIntoDatabase(dbConn);
+			
+			if(api instanceof APIv1)
+				result = readJsonStreamV1(inputStream, ifid);
+        	else if(api instanceof APIv2)
+        		result = readJsonStreamV2(inputStream, ifid);
+			
+			ifid.WriteAllToDatabaseNow();
+		} finally {
+			dbConn.closeDatabase();
+			inputStream.close();
+		}
+		return result;
+	}
+	
+	/**
+	 * can parse json like {"items":[{"id":6782}]}
+	 * @param in
+	 * @param iJoBj
+	 * @return
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public static int readJsonStreamV2(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
+		int count = 0;
+        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
+        reader.beginObject();
+        reader.nextName();
+        reader.beginArray();
+        while (reader.hasNext()) {
+        	//reader.beginObject();
+        	
+        	JSONObject e = getJSONObjectFromReader(reader);
+        	
+        	iJoBj.performAction(e);        	
+    		
+    		//reader.endObject();
+    		count++;
+        }
+        //reader.endArray();
+        //reader.endObject();
+        reader.close();
         
         return count;
-        //return rssFiles;
-	}
+    }
 	
-	private static RssFile parseItem(JSONObject e)
-	{
-		Date date = new Date(e.optLong("pubDate") * 1000);
-
-        String content = e.optString("body");
-        content = content.replaceAll("<img[^>]*feedsportal.com.*>", "");
-        content = content.replaceAll("<img[^>]*statisches.auslieferung.commindo-media-ressourcen.de.*>", "");
-        content = content.replaceAll("<img[^>]*auslieferung.commindo-media-ressourcen.de.*>", "");
-        content = content.replaceAll("<img[^>]*rss.buysellads.com.*>", "");
-
-        return new RssFile(0, e.optString("id"),
-                                e.optString("title"),
-                                e.optString("url"), content,
-                                !e.optBoolean("unread"), null,
-                                e.optString("feedId"), null,
-                                date, e.optBoolean("starred"),
-                                e.optString("guid"), e.optString("guidHash"),
-                                e.optString("lastModified"));
-	}
-	
-	
-	public static ArrayList<String[]> GetFolderTags(Activity act) throws Exception
-	{	
-		ArrayList<String[]> folderTags = null;
-		
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(act);
-		String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
-		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-		
-		if(oc_root_path.endsWith("/"))
-			oc_root_path = oc_root_path.substring(0, oc_root_path.length() - 1);
-		
-		String requestUrl = oc_root_path + OwnCloudConstants.FOLDER_PATH + OwnCloudConstants.JSON_FORMAT;
-		JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, act);
-
-        //jsonObj = jsonObj.optJSONObject("ocs");
-        //jsonObj = jsonObj.optJSONObject("data");
-        JSONArray jsonArr = jsonObj.optJSONArray("folders");
-
-        folderTags = new ArrayList<String[]>();
-        for (int i = 0; i < jsonArr.length(); i++) {
-            JSONObject e = jsonArr.optJSONObject(i);
-            folderTags.add(new String[] { e.optString("name"), e.optString("id") });
+	/**
+	 * can parse json like {"items":[{"id":6782}]}
+	 * @param in
+	 * @param iJoBj
+	 * @return
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public static int readJsonStreamV1(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
+		int count = 0;
+        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
+        reader.beginObject();//{
+        reader.nextName();//"ocs"
+        reader.beginObject();//{
+        reader.nextName();//meta
+        
+        getJSONObjectFromReader(reader);//skip status etc.
+        
+        reader.nextName();//data
+        reader.beginObject();//{
+        reader.nextName();//folders etc..
+        
+        reader.beginArray();
+        while (reader.hasNext()) {
+        	//reader.beginObject();
+        	
+        	JSONObject e = getJSONObjectFromReader(reader);
+        	
+        	iJoBj.performAction(e);        	
+    		
+    		//reader.endObject();
+    		count++;
         }
-		
-		return folderTags;
-	}
+        //reader.endArray();
+        //reader.endObject();
+        reader.close();
+        
+        return count;
+    }
 	
-	public static ArrayList<ConcreteSubscribtionItem> GetSubscriptionTags(Activity act) throws Exception
-	{	
-		ArrayList<ConcreteSubscribtionItem> subscriptionTags = new ArrayList<ConcreteSubscribtionItem>();
-		
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(act);
-		String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
-		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-		
-		JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(oc_root_path + OwnCloudConstants.SUBSCRIPTION_PATH + OwnCloudConstants.JSON_FORMAT, null, username, password, act);
+	/**
+	 * can read json like {"version":"1.101"}
+	 * @param in
+	 * @param iJoBj
+	 * @return
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	private static int readJsonStreamSimple(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
+		int count = 0;
+        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
+        //reader.setLenient(true);
+        
+        //JsonToken token = reader.peek();
+        //while(token.equals(JsonToken.STRING))
+        //	reader.skipValue();
+                	
+        JSONObject e = getJSONObjectFromReader(reader);
+        iJoBj.performAction(e);        	
+    	        
+        reader.close();
+        
+        return count;
+    }
 
-        //jsonObj = jsonObj.optJSONObject("ocs");
-        //jsonObj = jsonObj.optJSONObject("data");
-        JSONArray jsonArr = jsonObj.optJSONArray("feeds");
-
-        for (int i = 0; i < jsonArr.length(); i++) {
-            JSONObject e = jsonArr.optJSONObject(i);
-            String faviconLink = e.optString("faviconLink");
-            if(faviconLink != null)
-                if(faviconLink.equals("null") || faviconLink.trim().equals(""))
-                    faviconLink = null;
-            subscriptionTags.add(new ConcreteSubscribtionItem(e.optString("title"), e.optString("folderId"), e.optString("id"), faviconLink, -1));
-        }
-
-		return subscriptionTags;
+	private static JSONObject getJSONObjectFromReader(JsonReader jsonReader) {		
+		JSONObject jObj = new JSONObject();
+		JsonToken tokenInstance = null; 
+		try {
+			tokenInstance = jsonReader.peek();
+			if(tokenInstance == JsonToken.BEGIN_OBJECT)
+				jsonReader.beginObject();
+			else if (tokenInstance == JsonToken.BEGIN_ARRAY)
+				jsonReader.beginArray();
+			
+			while(jsonReader.hasNext()) {
+				JsonToken token;
+				String name;
+				try {
+					name = jsonReader.nextName();
+					token = jsonReader.peek();
+					
+					//Log.d(TAG, token.toString());
+										
+					switch(token) {	
+						case NUMBER:
+							jObj.put(name, jsonReader.nextLong());
+							break;
+						case NULL:
+							jsonReader.skipValue();
+							break;
+						case BOOLEAN:
+							jObj.put(name, jsonReader.nextBoolean());
+							break;	
+						case BEGIN_OBJECT:
+							//jsonReader.beginObject();
+							jObj.put(name, getJSONObjectFromReader(jsonReader));
+							//jsonReader.endObject();
+							break;
+						default:
+							jObj.put(name, jsonReader.nextString());
+					}
+				} catch(Exception ex) {					
+					ex.printStackTrace();
+					jsonReader.skipValue();
+				}
+			}
+			
+			if(tokenInstance == JsonToken.BEGIN_OBJECT)
+				jsonReader.endObject();
+			else if (tokenInstance == JsonToken.BEGIN_ARRAY)
+				jsonReader.endArray();
+			
+			return jObj;
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+		return null;
 	}
+
 	
-	public static boolean PerformTagExecution(List<String> itemIds, FeedItemTags.TAGS tag, Context context)
-	{
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
-		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-
-
-        //List<NameValuePair> nameValuePairs = null;        
+	
+	public static boolean PerformTagExecutionAPIv2(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api)
+	{	        
         String jsonIds = null;
         
         
-		String url = oc_root_path + OwnCloudConstants.FEED_PATH + "/";
+		String url = api.getTagBaseUrl(); 
 		if(tag.equals(TAGS.MARK_ITEM_AS_READ) || tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
         {
 			jsonIds = buildIdsToJSONArray(itemIds);
-			/*
-	        if(jsonIds != null)
-	        {
-	            nameValuePairs = new ArrayList<NameValuePair>();
-	            nameValuePairs.add(new BasicNameValuePair("itemIds", jsonIds));
-	        }*/
-			//url += itemIds.get(0) + "/read";
 	        
 	        if(tag.equals(TAGS.MARK_ITEM_AS_READ))
 	        	url += "read/multiple";
 	        else
 	        	url += "unread/multiple";
-        }
-		//else if(tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
-		//	url += itemIds.get(0) + "/unread";//TODO HERE...
-        else
-        {
+        } else {
             DatabaseConnection dbConn = new DatabaseConnection(context);
             
             HashMap<String, String> items = new HashMap<String, String>();
@@ -294,8 +364,53 @@ public class OwnCloudReaderMethods {
         }
         try
         {
-		    int result = HttpJsonRequest.performTagChangeRequest(url, username, password, context, jsonIds);
+		    int result = HttpJsonRequest.performTagChangeRequest(url, api.getUsername(), api.getPassword(), context, jsonIds);
 		    //if(result != -1 || result != 405)
+		    if(result == 200)
+    			return true;
+    		else
+    			return false;
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+	}
+	
+	public static boolean PerformTagExecutionAPIv1(String itemId, FeedItemTags.TAGS tag, Context context, API api)
+	{
+		String url = api.getTagBaseUrl(); 
+		if(tag.equals(TAGS.MARK_ITEM_AS_READ) || tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
+        {
+			if(tag.equals(TAGS.MARK_ITEM_AS_READ))
+				url += itemId + "/read";
+			else
+				url += itemId + "/unread";
+        } else {
+            DatabaseConnection dbConn = new DatabaseConnection(context);           
+                        
+            Cursor cursor = dbConn.getArticleByID(dbConn.getRowIdOfFeedByItemID(itemId));            
+            cursor.moveToFirst();
+
+            String idSubscription = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID));
+            String guidHash = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUIDHASH));            
+            cursor.close();
+            
+            String subscription_id = dbConn.getSubscriptionIdByRowID(idSubscription);
+            url += subscription_id;
+            
+            dbConn.closeDatabase();
+            
+            url += "/" + guidHash;
+            if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
+                url += "/star";
+            else if(tag.equals(TAGS.MARK_ITEM_AS_UNSTARRED))
+                url += "/unstar";
+        }
+        try
+        {
+		    int result = HttpJsonRequest.performTagChangeRequest(url, api.getUsername(), api.getPassword(), context, null);		    
 		    if(result == 200)
     			return true;
     		else
@@ -309,16 +424,38 @@ public class OwnCloudReaderMethods {
 	}
 
 	
-	public static String GetVersionNumber(Activity act, String username, String password, String oc_root_path) throws Exception
+	public static String GetVersionNumber(Context cont, String username, String password, String oc_root_path) throws Exception
 	{	
 		if(oc_root_path.endsWith("/"))
 			oc_root_path = oc_root_path.substring(0, oc_root_path.length() - 1);
 		
-		String requestUrl = oc_root_path + OwnCloudConstants.VERSION_PATH;
-		JSONObject jsonObj = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, act);
-
-		return jsonObj.optString("version");
+		//Try APIv2
+		try {
+			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv2 + OwnCloudConstants.VERSION_PATH;
+			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);
+			try {
+				GetVersion_v2 gv = new GetVersion_v2();
+				readJsonStreamSimple(is, gv);
+				return gv.getVersion();
+			} finally {
+				is.close();
+			}
+		} 
+		catch(AuthenticationException ex) {
+			throw ex;
+		} catch(Exception ex) {	//TODO GET HERE THE RIGHT EXCEPTION		
+			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH + OwnCloudConstants.JSON_FORMAT;
+			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);
+			try {
+				GetVersion_v1 gv = new GetVersion_v1();
+				readJsonStreamSimple(is, gv);
+				return gv.getVersion();
+			} finally {
+				is.close();
+			}
+		}
 	}
+	
 	
 	
     private static String buildIdsToJSONArray(List<String> ids)
@@ -354,7 +491,6 @@ public class OwnCloudReaderMethods {
             	jOb.put("guidHash", entry.getKey());
             	jArr.put(jOb);
             }
-
             
             JSONObject jObj = new JSONObject();
             jObj.put("items", jArr);

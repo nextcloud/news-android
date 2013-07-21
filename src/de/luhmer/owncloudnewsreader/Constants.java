@@ -11,6 +11,15 @@ public class Constants {
     
     public static final String LAST_SYNC = "LAST_SYNC";
     
+    public static final int maxItemsCount = 1000;
+    
+    
+    public static final int TaskID_GetVersion = -10;
+    public static final int TaskID_GetFolder = 1;
+    public static final int TaskID_GetFeeds = 2;
+    public static final int TaskID_GetItems = 3;
+    public static final int TaskID_PerformStateChange = -1;
+    
     
     private static final String _P_KEY_PART1 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNmCsMj6M4zkjpKRG8MG5+yIAyqSQE2etVkZsc3s";
     private static final String _P_KEY_PART2 = "V5zLoQ/NUOVC0fS2tj8IWk6UYqQGk9rmVold3sDGiTCvWGFecjwel3qxzz23hKLlemrv2+0WPrZ5KOqiaCEMi";

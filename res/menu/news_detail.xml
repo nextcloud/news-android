@@ -16,6 +16,12 @@
     <!-- android:icon="@drawable/btn_rating_star_off_normal_holo_light" -->
     
     <item
+        android:id="@+id/action_read"
+        android:showAsAction="never"        
+        android:checkable="true"
+        android:title="@string/action_read" />
+    
+    <item
         android:id="@+id/action_openInBrowser"
         android:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_menu_set_as"

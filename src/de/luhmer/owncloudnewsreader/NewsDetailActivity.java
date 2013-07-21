@@ -23,6 +23,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -44,7 +45,12 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	 */
 	public ViewPager mViewPager;
 	private int currentPosition;
+	
+	PostDelayHandler pDelayHandler;
+	
 	MenuItem menuItem_Starred;
+	MenuItem menuItem_Read;
+	
     IReader _Reader;
     ArrayList<Integer> databaseItemIds;
     DatabaseConnection dbConn;
@@ -59,6 +65,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
+		
+		pDelayHandler = new PostDelayHandler(this);
 		
 		_Reader = new OwnCloud_Reader();
 		dbConn = new DatabaseConnection(this);
@@ -198,16 +206,16 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		StopVideoOnCurrentPage();		
 		currentPosition = position;		
 		ResumeVideoPlayersOnCurrentPage();
-		
-		UpdateActionBarIcons();
-		
+				
 		//String idFeed = String.valueOf(rssFiles.get(position).getDB_Id());
 		String idFeed = String.valueOf(databaseItemIds.get(currentPosition));
 		
 		if(!dbConn.isFeedUnreadStarred(idFeed, true))
 		{			
-			dbConn.updateIsReadOfFeed(idFeed, true);
-		
+			markItemAsReadUnread(idFeed, true);	
+			
+			pDelayHandler.DelayTimer();
+			
 			//Cursor cur = dbConn.getArticleByID(idFeed);
 			//cur.moveToFirst();
 			//GoogleReaderMethods.MarkItemAsRead(true, cur, dbConn, getApplicationContext(), asyncTaskCompletedPerformTagRead);
@@ -228,6 +236,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			//dbConn.closeDatabase();
 			Log.d("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + idFeed);
 		}
+		else //Only in else because the function markItemAsReas updates the ActionBar items as well
+			UpdateActionBarIcons();
 	}
 	
 	private void ResumeVideoPlayersOnCurrentPage()
@@ -247,7 +257,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 	public void UpdateActionBarIcons()
 	{
-		boolean isStarred = dbConn.isFeedUnreadStarred(String.valueOf(databaseItemIds.get(currentPosition)) , false);
+		boolean isStarred = dbConn.isFeedUnreadStarred(String.valueOf(databaseItemIds.get(currentPosition)), false);
+		boolean isRead = dbConn.isFeedUnreadStarred(String.valueOf(databaseItemIds.get(currentPosition)), true);
 		
 		//if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
 		if(isStarred && menuItem_Starred != null)
@@ -256,6 +267,11 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		else if(menuItem_Starred != null)
 			menuItem_Starred.setIcon(android.R.drawable.star_off);
 			//menuItem_Starred.setIcon(R.drawable.btn_rating_star_off_normal_holo_light);
+		
+		if(isRead && menuItem_Read != null)
+			menuItem_Read.setChecked(true);
+		else if(menuItem_Read != null)
+			menuItem_Read.setChecked(false);
 	}
 	
 	@Override
@@ -265,6 +281,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		getSupportMenuInflater().inflate(R.menu.news_detail, menu);
 		
 		menuItem_Starred = menu.findItem(R.id.action_starred);
+		menuItem_Read = menu.findItem(R.id.action_read);
         UpdateActionBarIcons();
 
 		return true;
@@ -287,9 +304,11 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 				//rssFiles.get(currentPosition).setStarred(!curState);
 
-				dbConn.updateIsStarredOfFeed(idItem_Db, !curState);
+				dbConn.updateIsStarredOfItem(idItem_Db, !curState);
 				
 				UpdateActionBarIcons();
+				
+				pDelayHandler.DelayTimer();
                 
 				List<String> idItems = new ArrayList<String>();
 				cursor.moveToFirst();
@@ -373,8 +392,28 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
                 
                 startActivity(Intent.createChooser(share, "Share Item"));
                 break;
+                
+            case R.id.action_read:
+            	
+            	if(cursor != null)
+				{
+					cursor.moveToFirst();
+					String id = cursor.getString(0);
+					markItemAsReadUnread(id, !menuItem_Read.isChecked());
+					cursor.close();
+				}            	
+            	
+            	pDelayHandler.DelayTimer();
+            	
+            	break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	
+	private void markItemAsReadUnread(String item_id, boolean read) {
+		dbConn.updateIsReadOfItem(item_id, read);
+		UpdateActionBarIcons();
 	}
 
 
