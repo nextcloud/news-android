@@ -74,7 +74,7 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.3.9 (in development)
+0.3.9
 ---------------------
 - Support for APIv1 and APIv2. (That means the app on Google Play will be updated, too!)
 - Small fixes
@@ -128,3 +128,26 @@ Updates
 - Light or dark app Theme
 - Implemented <a href="https://github.com/owncloud/News-Android-App/issues/29">#29 Mark all Article in one Column as readed</a>
 - A lot of other new stuff and fixes
+
+0.3.3
+---------------------
+- Dark/Light App Theme   
+- Feed List Design Simple/Extended   
+- many new languages have been added   
+
+0.3.2
+---------------------
+- Fixed app crash when leaving item detail view.   
+
+0.3.1
+---------------------
+- Polish language support added (thank you for translating Cyryl)   
+- App crash fixed when no item header text is available   
+- Go back in the item view if you press the home button   
+- Added Up Button in detail view as fix for GitHub Issue #13    
+- Other small fixes    
+
+0.3.0
+---------------------
+- Android 2.2+ Support added    
+- small bugfixes    
