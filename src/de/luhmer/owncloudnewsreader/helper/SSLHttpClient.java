@@ -1,10 +1,12 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
+
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
@@ -12,6 +14,7 @@ import org.apache.http.impl.conn.SingleClientConnManager;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -60,7 +63,6 @@ public class SSLHttpClient extends DefaultHttpClient {
             KeyStore trusted = KeyStore.getInstance("BKS");
             try {
                 trusted.load(null, null);
-
             } finally {
             }
 
@@ -95,7 +97,7 @@ public class SSLHttpClient extends DefaultHttpClient {
             sslContext.init(null, new TrustManager[] { tm }, null);
         }
 
-        @Override
+		@Override
         public Socket createSocket(Socket socket, String host, int port, boolean autoClose) throws IOException, UnknownHostException {
             return sslContext.getSocketFactory().createSocket(socket, host, port, autoClose);
         }

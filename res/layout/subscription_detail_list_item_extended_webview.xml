@@ -23,16 +23,17 @@
         android:layout_marginRight="@dimen/listview_row_margin_right"
         android:gravity="right" >
 
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/tv_clickHereToOpen"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|left"
             android:textSize="15sp"  
             android:layout_weight="1"      
-            android:text="@string/tv_clickHereToOpenItem" />
+            android:text="@string/tv_clickHereToOpenItem" 
+            style="@style/RobotoFontStyle" />
         
-        <CheckBox
+        <com.devspark.robototextview.widget.RobotoCheckBox
             android:id="@+id/cb_lv_item_starred"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,16 +41,18 @@
             android:background="@drawable/checkbox_background"
             android:button="@drawable/checkbox_background_empty"            
             android:clickable="false"
-            android:focusable="false" />
+            android:focusable="false"
+            style="@style/RobotoFontStyle" />
 
-        <CheckBox
+        <com.devspark.robototextview.widget.RobotoCheckBox
             android:id="@+id/cb_lv_item_read"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"
             android:clickable="false"
-            android:focusable="false" />
+            android:focusable="false" 
+            style="@style/RobotoFontStyle" />
     </LinearLayout>
 
     <WebView
@@ -58,4 +61,5 @@
         android:layout_height="500dp"
         android:focusable="false"
         android:clickable="false" />
+    
 </LinearLayout>

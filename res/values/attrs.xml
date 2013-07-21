@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RobotoTextView">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoAutoCompleteTextView">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoButton">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoCheckBox">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoCheckedTextView">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoChronometer">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoCompoundButton">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoDigitalClock">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoEditText">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoExtractEditText">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoMultiAutoCompleteTextView">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoRadioButton">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoSwitch">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoTextClock">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="RobotoToggleButton">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <!-- Changing the attribute must be reflected in the com.devspark.robototextview.RobotoTypefaceManager -->
+    <attr name="typeface" format="enum">
+        <enum name="roboto_thin" value="0"/>
+        <enum name="roboto_thin_italic" value="1"/>
+        <enum name="roboto_light" value="2"/>
+        <enum name="roboto_light_italic" value="3"/>
+        <enum name="roboto_regular" value="4"/>
+        <enum name="roboto_italic" value="5"/>
+        <enum name="roboto_medium" value="6"/>
+        <enum name="roboto_medium_italic" value="7"/>
+        <enum name="roboto_bold" value="8"/>
+        <enum name="roboto_bold_italic" value="9"/>
+        <enum name="roboto_black" value="10"/>
+        <enum name="roboto_black_italic" value="11"/>
+        <enum name="roboto_condensed" value="12"/>
+        <enum name="roboto_condensed_italic" value="13"/>
+        <enum name="roboto_condensed_bold" value="14"/>
+        <enum name="roboto_condensed_bold_italic" value="15"/>
+        <enum name="robotoslab_thin" value="16"/>
+        <enum name="robotoslab_light" value="17"/>
+        <enum name="robotoslab_regular" value="18"/>
+        <enum name="robotoslab_bold" value="19"/>
+    </attr>
+
+</resources>

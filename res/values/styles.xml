@@ -31,7 +31,11 @@
     </style>
 	-->
 	
-	<style name="LoginDialogEditTextStyle">
+	<style name="RobotoFontStyle">
+        <item name="typeface">roboto_light</item>
+    </style>
+	
+	<style name="LoginDialogEditTextStyle" parent="@style/RobotoFontStyle" >
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginLeft">4dp</item>
         <item name="android:layout_marginRight">4dp</item>
@@ -39,5 +43,7 @@
         
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        
+        RobotoFontStyle
     </style>
 </resources>

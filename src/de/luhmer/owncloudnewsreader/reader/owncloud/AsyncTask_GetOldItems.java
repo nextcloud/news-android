@@ -1,7 +1,6 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.widget.Toast;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
@@ -10,42 +9,21 @@ import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
-public class AsyncTask_GetOldItems extends AsyncTask<Object, Void, Exception> implements AsyncTask_Reader {
-		
-    private Activity context;
-    private int task_id;
-    private OnAsyncTaskCompletedListener[] listener;
+public class AsyncTask_GetOldItems extends AsyncTask_Reader {
+	
     public String feed_id;
     public String folder_id;
     private int downloadedItemsCount = 0;
+    private API api;
     
-    public AsyncTask_GetOldItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener, String feed_id, String folder_id) {
-          super();
-
-          this.context = context;
-          this.task_id = task_id;
-          this.listener = listener;
-          this.feed_id = feed_id;
-          this.folder_id = folder_id;
+    public AsyncTask_GetOldItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener, String feed_id, String folder_id, API api) {
+    	super(task_id, context, listener);
+    	
+        this.feed_id = feed_id;
+        this.folder_id = folder_id;
+        this.api = api;
     }
-
-    //Activity meldet sich zurueck nach OrientationChange
-	public void attach(final Activity context, final OnAsyncTaskCompletedListener[] listener) {
-		this.context = context;
-		this.listener = listener;	
-	}
-		  
-	//Activity meldet sich ab
-	public void detach() {		
-		if (context != null) {
-			context = null;
-		}
-		 
-		if (listener != null) {
-			listener = null;
-		}
-	}
-	
+    
 	@Override
 	protected Exception doInBackground(Object... params) {
 		DatabaseConnection dbConn = new DatabaseConnection(context);
@@ -76,8 +54,8 @@ public class AsyncTask_GetOldItems extends AsyncTask<Object, Void, Exception> im
         		}
         	}
         	
-        	
-        	downloadedItemsCount = OwnCloudReaderMethods.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id, type);
+        	downloadedItemsCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id, type, api);
+        	//downloadedItemsCount = OwnCloudReaderMethods.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id, type, api);
         	
         	
         	//do {    
@@ -95,7 +73,7 @@ public class AsyncTask_GetOldItems extends AsyncTask<Object, Void, Exception> im
 	}
 	
     @Override
-    protected void onPostExecute(Exception ex) {
+    protected void onPostExecute(Object ex) {
     	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
     			listenerInstance.onAsyncTaskCompleted(task_id, ex);

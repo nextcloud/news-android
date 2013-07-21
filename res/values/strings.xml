@@ -17,6 +17,8 @@
     <string name="no_wifi_available">No WiFi connected</string>
     <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a WiFi connection</string>
     
+    <string name="max_items_count_reached">You\'ve reached the maxiumum size of XX items</string>
+    
     
     
     <string name="allUnreadFeeds">All unread items</string>
@@ -39,6 +41,7 @@
     
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
+    <string name="action_read">Read</string>
     <string name="action_openInBrowser">Open in Browser</string>
     <string name="action_sendSourceCode">Send item to Developer</string>
     <string name="action_Share">Share</string>

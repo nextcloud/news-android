@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
@@ -105,15 +106,25 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		
 	}
 
-	
+	public void updateAdapter() {
+		NewsReaderListFragment nlf = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.newsreader_list));
+		if(nlf != null)
+		{				
+			// Block children layout for now
+			PullToRefreshExpandableListView ptrel = ((PullToRefreshExpandableListView)nlf.eListView);
+			BlockingExpandableListView bView = ((BlockingExpandableListView) ptrel.getRefreshableView());
+			bView.setBlockLayoutChildren(true);
+			nlf.lvAdapter.notifyDataSetChanged();
+			bView.setBlockLayoutChildren(false);
+		}
+	}
 	
 	@Override
 	protected void onResume() {
 		ThemeChooser.chooseTheme(this);
 		
-		NewsReaderListFragment nlf = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.newsreader_list));
-		if(nlf != null)
-			nlf.lvAdapter.notifyDataSetChanged();
+		updateAdapter();
+		
 		super.onResume();
 	}
 
@@ -320,13 +331,4 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
     	SherlockDialogFragment dialog = new LoginDialogFragment();
         dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
     }
-    
-    /*
-	AsyncUpdateFinished updateFinished = new AsyncUpdateFinished() {
-		
-		@Override
-		public void FinishedUpdate() {
-			menuItemUpdater.setActionView(null);
-		}
-	};*/
 }
