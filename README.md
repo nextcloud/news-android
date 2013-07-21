@@ -74,7 +74,7 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.3.9 (in development)
+0.3.9
 ---------------------
 - Support for APIv1 and APIv2. (That means the app on Google Play will be updated, too!)
 - Small fixes
