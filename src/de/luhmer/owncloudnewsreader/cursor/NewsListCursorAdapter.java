@@ -3,11 +3,14 @@ package de.luhmer.owncloudnewsreader.cursor;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.R;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.CursorAdapter;
@@ -15,6 +18,7 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +28,12 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.devspark.robototextview.RobotoTypefaceManager;
 import com.devspark.robototextview.widget.RobotoCheckBox;
+import com.devspark.robototextview.widget.RobotoTextView;
 
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
@@ -65,7 +69,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	}
 
 	@Override
-	public void bindView(View view, final Context context, Cursor cursor) {
+	public void bindView(final View view, final Context context, Cursor cursor) {
         final String idItemDb = cursor.getString(0);
         
         switch (selectedDesign) {
@@ -120,8 +124,23 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 UpdateListCursor(mContext);
                 
                 pDelayHandler.DelayTimer();
+                
+                RobotoTextView textView = (RobotoTextView) view.findViewById(R.id.summary);
+                if(textView != null)
+                {
+                	textView.setTypeface(getRobotoTypeFace(mContext));
+                }
 			}
 		});        
+	}
+	
+	private Typeface getRobotoTypeFace(Context context) {
+		AttributeSet attrs = null;
+		TypedArray values = context.obtainStyledAttributes(attrs, R.styleable.RobotoTextView, 0, 0);
+        int typefaceValue = values.getInt(R.styleable.RobotoTextView_typeface, 0);
+        values.recycle();
+        
+        return RobotoTypefaceManager.obtaintTypeface(context, values.getInt(R.styleable.RobotoTextView_typeface, 0));
 	}
 	
 	public void setSimpleLayout(View view, Cursor cursor)
