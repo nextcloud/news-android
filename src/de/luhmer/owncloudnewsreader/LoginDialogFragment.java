@@ -365,7 +365,7 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 		String username;
 		String password;
 		String oc_root_path;
-		String exception_message;
+		String exception_message = "";
 		
 		public UserLoginTask(String username, String password, String oc_root_path) {
 			this.username = username;
