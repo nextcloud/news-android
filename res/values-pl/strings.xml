@@ -24,6 +24,7 @@
   <string name="email_sendMail">Wyślij Email</string>
   <!--Action Bar Items-->
   <string name="action_starred">Oznaczone</string>
+  <string name="action_read">Odczyt</string>
   <string name="action_openInBrowser">Otwórz w przeglądarce</string>
   <string name="action_sendSourceCode">Wyślij element do autora</string>
   <string name="action_Share">Udostępnij</string>

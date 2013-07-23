@@ -15,6 +15,7 @@
   <string name="email_sendMail">Sendi retpoŝton</string>
   <!--Action Bar Items-->
   <string name="action_starred">Markita</string>
+  <string name="action_read">Legi</string>
   <string name="action_openInBrowser">Malfermi en TTT-legilo</string>
   <string name="action_sendSourceCode">Sendi eron al ellaboranto</string>
   <string name="action_Share">Kunhavigi</string>

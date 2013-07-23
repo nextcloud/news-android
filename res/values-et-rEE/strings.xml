@@ -12,6 +12,7 @@
   <string name="tv_clickHereToOpenItem">Kliki siia üksuse avamiseks</string>
   <string name="no_wifi_available">WiFi pole ühendatud</string>
   <string name="do_you_want_to_download_without_wifi">Kas soovid pildid alla laadida WiFi ühendust kasutamata</string>
+  <string name="max_items_count_reached">Oled jõudnud XX üksuste maksimaalse suuruseni</string>
   <string name="allUnreadFeeds">Kõik lugemata üksused</string>
   <string name="starredFeeds">Tähitud üksused</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -25,6 +26,7 @@
   <string name="email_sendMail">Saada e-mail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Tärniga märgitud</string>
+  <string name="action_read">Lugemine</string>
   <string name="action_openInBrowser">Ava veebilehitsejas</string>
   <string name="action_sendSourceCode">Saada üksus arendajale</string>
   <string name="action_Share">Jaga</string>

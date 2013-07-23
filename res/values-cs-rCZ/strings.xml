@@ -13,6 +13,7 @@
   <string name="email_sendMail">Odeslat e-mail</string>
   <!--Action Bar Items-->
   <string name="action_starred">S hvězdičkou</string>
+  <string name="action_read">Číst</string>
   <string name="action_openInBrowser">Otevřít v prohlížeči</string>
   <string name="action_sendSourceCode">Odeslat položku vývojáři</string>
   <string name="action_Share">Sdílet</string>

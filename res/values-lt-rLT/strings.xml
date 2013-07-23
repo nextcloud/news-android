@@ -5,6 +5,7 @@
   <string name="menu_update">Atnaujinti</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_read">Skaityti</string>
   <string name="action_Share">Dalintis</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Prisijungimo vardas</string>

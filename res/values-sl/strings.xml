@@ -24,6 +24,7 @@
   <string name="email_sendMail">Pošlji e-sporočilo</string>
   <!--Action Bar Items-->
   <string name="action_starred">Z zvezdico</string>
+  <string name="action_read">Branje</string>
   <string name="action_openInBrowser">Odpri v brskalniku</string>
   <string name="action_sendSourceCode">Pošlji razvijalcu</string>
   <string name="action_Share">Souporaba</string>

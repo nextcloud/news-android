@@ -12,6 +12,7 @@
   <string name="tv_clickHereToOpenItem">Feu clic aquí per obrir l\'element</string>
   <string name="no_wifi_available">Sense connexió WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Voleu baixar les imatges sense una connexió WiFi</string>
+  <string name="max_items_count_reached">Heu assolit la mida màxima de XX elements</string>
   <string name="allUnreadFeeds">Tots els elements no llegits</string>
   <string name="starredFeeds">Elements amb estrelles</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -25,6 +26,7 @@
   <string name="email_sendMail">Envia correu electrónic</string>
   <!--Action Bar Items-->
   <string name="action_starred">Estrellat</string>
+  <string name="action_read">Llegeix</string>
   <string name="action_openInBrowser">Obre al navegador</string>
   <string name="action_sendSourceCode">Envia element al desenvolupador</string>
   <string name="action_Share">Comparteix</string>

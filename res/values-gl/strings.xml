@@ -12,6 +12,7 @@
   <string name="tv_clickHereToOpenItem">Prema aquí para abrir o elemento</string>
   <string name="no_wifi_available">Non está conectado á WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi</string>
+  <string name="max_items_count_reached">Acadou o tamaño máximo de XX elementos</string>
   <string name="allUnreadFeeds">Todos os elementos sen ler</string>
   <string name="starredFeeds">Elementos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -25,6 +26,7 @@
   <string name="email_sendMail">Enviar correo</string>
   <!--Action Bar Items-->
   <string name="action_starred">Destacado</string>
+  <string name="action_read">Ler</string>
   <string name="action_openInBrowser">Abrir no navegador</string>
   <string name="action_sendSourceCode">Enviar o elemento ao desenvolvedor</string>
   <string name="action_Share">Compartir</string>

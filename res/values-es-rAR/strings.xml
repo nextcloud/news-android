@@ -12,6 +12,7 @@
   <string name="tv_clickHereToOpenItem">Hacé click acá para abrir el artículo</string>
   <string name="no_wifi_available">No estás conectado a WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Querés bajar las imágenes sin conexión WiFi</string>
+  <string name="max_items_count_reached">Alcanzaste el número máximo XX de elementos</string>
   <string name="allUnreadFeeds">Todos los artículos sin leer</string>
   <string name="starredFeeds">Artículos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -25,6 +26,7 @@
   <string name="email_sendMail">Mandar EMail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favoritos</string>
+  <string name="action_read">Leer</string>
   <string name="action_openInBrowser">Abrir en Navegador</string>
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>

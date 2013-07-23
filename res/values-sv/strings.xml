@@ -12,6 +12,7 @@
   <string name="tv_clickHereToOpenItem">Klicka här för att öppna objekt</string>
   <string name="no_wifi_available">Ingen WIFI ansluten</string>
   <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>
+  <string name="max_items_count_reached">Du har nått storleksgränsen för XX.</string>
   <string name="allUnreadFeeds">Alla olästa objekt</string>
   <string name="starredFeeds">Stjärnmärkta objekt</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -25,6 +26,7 @@
   <string name="email_sendMail">Skicka e-post</string>
   <!--Action Bar Items-->
   <string name="action_starred">Stjärnmärkt</string>
+  <string name="action_read">Läsa</string>
   <string name="action_openInBrowser">Öppna i webbläsaren</string>
   <string name="action_sendSourceCode">Skicka objekt till utvecklaren</string>
   <string name="action_Share">Dela</string>

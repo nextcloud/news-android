@@ -25,6 +25,7 @@
   <string name="email_sendMail">Envoyer un courriel</string>
   <!--Action Bar Items-->
   <string name="action_starred">favoris</string>
+  <string name="action_read">Lecture</string>
   <string name="action_openInBrowser">Ouvert dans le navigateur</string>
   <string name="action_sendSourceCode">Envoyer l\'article au développeur</string>
   <string name="action_Share">Partager</string>

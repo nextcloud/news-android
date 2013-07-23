@@ -16,6 +16,7 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Varustettu tähdellä</string>
+  <string name="action_read">Luku</string>
   <string name="action_openInBrowser">Avaa selaimessa</string>
   <string name="action_Share">Jaa</string>
   <string name="action_login">Palvelinasetukset</string>
@@ -31,6 +32,8 @@
   <string name="error_field_required">Tämä kenttä vaaditaan</string>
   <string name="error_invalid_url">Osoite on virheellinen</string>
   <!--Toast Messages-->
+  <string name="toast_no_more_downloads_available">Ei enempää vanhempia kohteita ladattavaksi</string>
+  <string name="pull_to_refresh_updateTags">Synkronoidaan kohteiden tiloja</string>
   <string name="pull_to_refresh_updateFolder">Synkronoidaan kansiota</string>
   <string name="pull_to_refresh_updateFeeds">Synkronoidaan syötteitä</string>
   <string name="pull_to_refresh_updateItems">Synkronoidaan kohteita</string>

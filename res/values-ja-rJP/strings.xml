@@ -25,6 +25,7 @@
   <string name="email_sendMail">メールを送る</string>
   <!--Action Bar Items-->
   <string name="action_starred">共有</string>
+  <string name="action_read">読込</string>
   <string name="action_openInBrowser">ブラウザーで開く</string>
   <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
