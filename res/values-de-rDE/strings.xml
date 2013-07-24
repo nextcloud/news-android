@@ -12,6 +12,7 @@
   <string name="tv_clickHereToOpenItem">Hier klicken, um Objekt zu öffnen.</string>
   <string name="no_wifi_available">Keine WLAN-Verbindung</string>
   <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne W-LAN-Verbindung herunterladen</string>
+  <string name="max_items_count_reached">Sie haben die maximale Größe von XX Titeln erreicht</string>
   <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
   <string name="starredFeeds">Markierte Elemente</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -25,6 +26,7 @@
   <string name="email_sendMail">E-Mail senden</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favoriten</string>
+  <string name="action_read">Lesen</string>
   <string name="action_openInBrowser">Im Browser öffnen</string>
   <string name="action_sendSourceCode">Senden Artikel an Entwickler</string>
   <string name="action_Share">Teilen</string>

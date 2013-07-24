@@ -12,7 +12,7 @@
   <string name="tv_clickHereToOpenItem">HIer drücken um das Element zu öffnen</string>
   <string name="no_wifi_available">Kein WLAN verbunden</string>
   <string name="do_you_want_to_download_without_wifi">Möchten Sie die Bilder ohne WLAN-Verbindung herunterladen</string>
-  <string name="max_items_count_reached">Sie haben die maximale Größe von XX Titeln erreicht</string>
+  <string name="max_items_count_reached">Du hast die maximale Größe von XX Titeln erreicht</string>
   <string name="allUnreadFeeds">Alle ungelesenen Notizen</string>
   <string name="starredFeeds">Favorisierte Notizen</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
