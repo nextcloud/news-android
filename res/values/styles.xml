@@ -32,8 +32,14 @@
 	-->
 	
 	<style name="RobotoFontStyle">
-        <item name="typeface">roboto_light</item>
+        <item name="typeface">robotoslab_regular</item>
+        <!-- https://github.com/johnkil/Android-RobotoTextView#usage -->
     </style>
+    
+	<style name="RobotoFontStyleBold">
+        <item name="typeface">robotoslab_bold</item>
+    </style>
+	
 	
 	<style name="LoginDialogEditTextStyle" parent="@style/RobotoFontStyle" >
         <item name="android:layout_marginTop">4dp</item>
