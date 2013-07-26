@@ -368,7 +368,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			eListView.setOnChildClickListener(onChildClickListener);
 			//eListView.setSmoothScrollbarEnabled(true);			
 			
-			View empty = inflater.inflate(R.layout.subscription_list_item_empty, null, false);
+			View empty = inflater.inflate(R.layout.subscription_detail_list_item_empty, null, false);
 			getActivity().addContentView(empty, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));			
 			eListView.setEmptyView(empty);
 			/*

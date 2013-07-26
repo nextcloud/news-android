@@ -385,12 +385,13 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 				}
 				
 			} catch (Exception e) {
-				exception_message = e.getLocalizedMessage();
+				if(e.getLocalizedMessage() != null)
+					exception_message = e.getLocalizedMessage();
+				else if(e instanceof NullPointerException)
+					exception_message = getString(R.string.login_dialog_text_something_went_wrong);
+				
 				return -1;
 			}
-			
-			//if(version_info > 1101)
-			//	Sho
 				
 			return 0;
 		}

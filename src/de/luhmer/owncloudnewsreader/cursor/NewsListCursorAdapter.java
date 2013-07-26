@@ -7,9 +7,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.database.Cursor;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.CursorAdapter;
@@ -17,7 +15,6 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.devspark.robototextview.RobotoTypefaceManager;
 import com.devspark.robototextview.widget.RobotoCheckBox;
 import com.devspark.robototextview.widget.RobotoTextView;
 
@@ -129,19 +125,13 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 RobotoTextView textView = (RobotoTextView) view.findViewById(R.id.summary);
                 if(textView != null)
                 {
-                	textView.setTypeface(getRobotoTypeFace(mContext));
+                	if(isChecked)
+                		textView.setTextAppearance(mContext, R.style.RobotoFontStyle);
+                	else
+                		textView.setTextAppearance(mContext, R.style.RobotoFontStyleBold);                		
                 }
 			}
 		});        
-	}
-	
-	private Typeface getRobotoTypeFace(Context context) {
-		AttributeSet attrs = null;
-		TypedArray values = context.obtainStyledAttributes(attrs, R.styleable.RobotoTextView, 0, 0);
-        int typefaceValue = values.getInt(R.styleable.RobotoTextView_typeface, 0);
-        values.recycle();
-        
-        return RobotoTypefaceManager.obtaintTypeface(context, values.getInt(R.styleable.RobotoTextView_typeface, 0));
 	}
 	
 	public void setSimpleLayout(View view, Cursor cursor)

@@ -166,7 +166,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         else
         {
         	TextView textTV = (TextView) view.findViewById(R.id.summary);
-	        textTV.setText("Sorry, something went wrong here :(");
+	        textTV.setText(mContext.getString(R.string.login_dialog_text_something_went_wrong));
 	        
 	        TextView tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount);	        
 	        tV_UnreadCount.setText("0");
