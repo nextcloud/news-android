@@ -74,6 +74,13 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
+0.4.0 (in development)
+---------------------
+- Fixed app crash when image cache is enabled and the dialog appear which asks the user if download via roaming is allowed.
+- Fixed app crash reports.
+- Fixed Issue <a href="https://github.com/owncloud/News-Android-App/issues/96">#96 (Can't sync feeds - using a bad URL)</a>
+- Changed font to Roboto Slab (including Bold style for unread Articles)
+
 0.3.9
 ---------------------
 - Support for APIv1 and APIv2. (That means the app on Google Play will be updated, too!)
