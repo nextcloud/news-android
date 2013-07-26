@@ -3,7 +3,6 @@ package de.luhmer.owncloudnewsreader.reader.owncloud.apiv2;
 import java.util.List;
 
 import android.content.Context;
-import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudConstants;
@@ -38,15 +37,6 @@ public class APIv2 extends API {
 	@Override
 	public String getTagBaseUrl() {
 		return getOcRootPath() + OwnCloudConstants.ROOT_PATH_APIv2 + OwnCloudConstants.FEED_PATH + "/";
-	}
-
-	private String getOcRootPath() {
-		String oc_root_path = super.mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-		
-		if(oc_root_path.endsWith("/"))
-			oc_root_path = oc_root_path.substring(0, oc_root_path.length() - 1);
-		
-		return oc_root_path;
 	}
 
 	@Override

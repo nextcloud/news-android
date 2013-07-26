@@ -1,6 +1,7 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 
 public abstract class API {
 	protected SharedPreferences mPrefs;
+	Pattern RemoveAllDoubleSlashes = Pattern.compile("[^:](\\/\\/)");
 	
 	public API(Context cont) {
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
@@ -19,9 +21,24 @@ public abstract class API {
 	protected abstract String getItemUrl();
 	protected abstract String getItemUpdatedUrl();
 	protected abstract String getFeedUrl();
-	protected abstract String getFolderUrl();
+	protected abstract String getFolderUrl();	
 	
 	protected abstract String getTagBaseUrl();
+	
+	/**
+	 * 
+	 * @return http(s)://url_to_server/
+	 */
+	protected String getOcRootPath() {
+		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+		oc_root_path = RemoveAllDoubleSlashes.matcher(oc_root_path).replaceAll("/");
+		
+		if(!oc_root_path.endsWith("/"))
+			oc_root_path += "/";
+		
+		return oc_root_path;
+	}
+	
 	
 	public String getUsername() {
 		return mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
