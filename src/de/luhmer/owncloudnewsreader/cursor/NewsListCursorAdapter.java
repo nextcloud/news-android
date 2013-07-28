@@ -128,7 +128,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 	if(isChecked)
                 		textView.setTextAppearance(mContext, R.style.RobotoFontStyle);
                 	else
-                		textView.setTextAppearance(mContext, R.style.RobotoFontStyleBold);                		
+                		textView.setTextAppearance(mContext, R.style.RobotoFontStyleBold);
+                	textView.invalidate();
                 }
 			}
 		});        

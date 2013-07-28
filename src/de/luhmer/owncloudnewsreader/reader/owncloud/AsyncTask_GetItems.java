@@ -2,6 +2,7 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -93,14 +94,14 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     		if(!NetworkConnection.isWLANConnected(context) && NetworkConnection.isNetworkAvailable(context))
     			ShowDownloadImageWithoutWifiQuestion();
     		else if(NetworkConnection.isNetworkAvailable(context)) 		
-    			StartDownloadingImages();
+    			StartDownloadingImages(context);
     	}
     	
     	
 		detach();
     }
     
-    private void StartDownloadingImages()
+    private void StartDownloadingImages(Context context)
     {
     	DatabaseConnection dbConn = new DatabaseConnection(context);
     	try {
@@ -115,18 +116,24 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     
     private void ShowDownloadImageWithoutWifiQuestion()
     {
+    	final Context contextDownloadImage = this.context;
+    	
     	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
  
 		// set title
-		alertDialogBuilder.setTitle(context.getString(R.string.no_wifi_available));
+		alertDialogBuilder.setTitle(contextDownloadImage.getString(R.string.no_wifi_available));
  
 			// set dialog message
 		alertDialogBuilder
-			.setMessage(context.getString(R.string.do_you_want_to_download_without_wifi))
+			.setMessage(contextDownloadImage.getString(R.string.do_you_want_to_download_without_wifi))
 			.setCancelable(true)
-			.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+			.setPositiveButton(contextDownloadImage.getString(android.R.string.yes) ,new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
-					StartDownloadingImages();
+					StartDownloadingImages(contextDownloadImage);
+				}
+			})
+			.setNegativeButton(contextDownloadImage.getString(android.R.string.no) ,new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {					
 				}
 			}); 
 						

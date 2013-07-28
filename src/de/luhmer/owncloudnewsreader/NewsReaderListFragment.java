@@ -149,7 +149,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		}
 	}
 	
-	
+	private boolean isTwoPaneMode() {
+		return ((NewsReaderListActivity) getActivity()).ismTwoPane();
+	}
 	
 	public void StartSync()
 	{
@@ -178,7 +180,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			if(isAdded()) {
+			if(isTwoPaneMode() || isAdded()) {
 				if(!(task_result instanceof Exception))
 				{	
 					API api = null;
@@ -211,7 +213,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
     OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
         @Override
         public void onAsyncTaskCompleted(int task_id, Object task_result) {
-        	if(isAdded()) {
+        	if(isTwoPaneMode() || isAdded()) {
 	            if(task_result != null)//task result is null if there was an error
 	            {	
 	            	if((Boolean) task_result)
@@ -242,7 +244,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			if(isAdded()) {
+			if(isTwoPaneMode() || isAdded()) {
 	            if(task_result != null)
 	            {
 	                if(task_result instanceof HttpHostConnectException)
@@ -283,7 +285,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			if(isAdded()) {
+			if(isTwoPaneMode() || isAdded()) {
 	            if(task_result != null)
 	            {
 	                ShowToastLong(((Exception)task_result).getLocalizedMessage());
@@ -318,7 +320,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {			
-			if(isAdded()) {
+			if(isTwoPaneMode() || isAdded()) {
 	            if(task_result != null)
 	                ShowToastLong(((Exception)task_result).getLocalizedMessage());
 	
@@ -346,7 +348,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View V = null;
-		if(isAdded()) {
+		if(isTwoPaneMode() || isAdded()) {
 			V = inflater.inflate(R.layout.expandable_list_layout, container, false);			
 			//eListView = (ExpandableListView) V.findViewById(R.id.expandableListView);
 			eListView = (PullToRefreshExpandableListView) V.findViewById(R.id.expandableListView);

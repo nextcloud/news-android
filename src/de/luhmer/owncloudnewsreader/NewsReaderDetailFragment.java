@@ -258,7 +258,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 			
 			if(lvAdapter == null)
 			{			
-				lvAdapter = new NewsListCursorAdapter(getActivity(), cursor);				
+				lvAdapter = new NewsListCursorAdapter(getActivity(), cursor);
+				//setEmptyListView();
 				setListAdapter(lvAdapter);
 			}
 			else
@@ -298,13 +299,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		View rootView = inflater.inflate(R.layout.fragment_newsreader_detail, container, false);
 		return rootView;
 	}
-	
-	@Override
-	public void onStart() {
-		setEmptyListView();
-		super.onStart();
-	}
 
+	/*
 	private void setEmptyListView() {
 		LayoutInflater inflator=getActivity().getLayoutInflater();
         View emptyView=inflator.inflate(R.layout.subscription_detail_list_item_empty, (ViewGroup)getView());
@@ -313,6 +309,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
         if(lv != null)
         	lv.setEmptyView(emptyView);
 	}
+	*/
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
