@@ -12,6 +12,7 @@
   <string name="tv_clickHereToOpenItem">Klik hier om te openen</string>
   <string name="no_wifi_available">Geen wifi verbinding</string>
   <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
+  <string name="max_items_count_reached">U heeft de maximum grootte van XX items bereikt</string>
   <string name="allUnreadFeeds">Alle ongelezen items</string>
   <string name="starredFeeds">Gemarkeerde items</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -25,6 +26,7 @@
   <string name="email_sendMail">Email versturen</string>
   <!--Action Bar Items-->
   <string name="action_starred">Gemarkeerd</string>
+  <string name="action_read">Lees</string>
   <string name="action_openInBrowser">Openen in Browser</string>
   <string name="action_sendSourceCode">Verzend item naar ontwikkelaar</string>
   <string name="action_Share">Delen</string>
