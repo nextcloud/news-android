@@ -27,8 +27,7 @@
             android:singleLine="true"
             android:text="Hi"
             android:layout_weight="1"
-            android:textSize="14sp"
-            style="@style/RobotoFontStyle" />
+            android:textSize="14sp" />
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/tv_item_date"
@@ -39,8 +38,7 @@
             android:layout_gravity="right"
             android:text="Hi"
             android:singleLine="true"
-            android:textSize="14sp" 
-            style="@style/RobotoFontStyle" />
+            android:textSize="14sp"  />
     </LinearLayout>
 
     <LinearLayout
@@ -66,8 +64,7 @@
                 android:lines="2"
                 android:textSize="17sp"
                 android:text="Hi"
-                android:textStyle="bold"
-                style="@style/RobotoFontStyle" />
+                android:textStyle="bold" />
 
             <com.devspark.robototextview.widget.RobotoTextView
                 android:id="@+id/body"
@@ -79,8 +76,7 @@
                 android:text="Hi"
                 android:textColor="#858585"
                 android:textSize="14sp"
-                android:autoLink="none"
-                style="@style/RobotoFontStyle" />
+                android:autoLink="none" />
             <!-- android:gravity="center_vertical" -->
         </LinearLayout>
 
@@ -99,8 +95,7 @@
                 android:clickable="false"
                 android:focusable="false"
                 android:button="@drawable/checkbox_background_empty"
-                android:background="@drawable/checkbox_background" 
-                style="@style/RobotoFontStyle" />
+                android:background="@drawable/checkbox_background" />
             <!-- android:layout_width="40dp"
                 android:layout_height="40dp" -->
 
@@ -111,8 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"                
                 android:clickable="false"
-                android:focusable="false" 
-                style="@style/RobotoFontStyle" />
+                android:focusable="false"  />
             </LinearLayout>
     </LinearLayout>
 </LinearLayout>

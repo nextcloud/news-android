@@ -25,6 +25,7 @@ import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 
@@ -143,6 +144,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             vi.inflate(R.layout.subscription_list_sub_item, view, true);  
             if(item != null)
             	view.setTag(item.id_database);
+            
+            FontHelper fHelper = new FontHelper(mContext);
+            fHelper.setFontForAllChildren(view, fHelper.getFont());
         } else {
             view = (LinearLayout) convertView;
         }
@@ -221,6 +225,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             String inflater = Context.LAYOUT_INFLATER_SERVICE;
             LayoutInflater vi = (LayoutInflater) mContext.getSystemService(inflater);
             vi.inflate(R.layout.subscription_list_item, view, true);
+            
+            FontHelper fHelper = new FontHelper(mContext);
+            fHelper.setFontForAllChildren(view, fHelper.getFont());
             
             ImageView indicatorImage = (ImageView) view.findViewById(R.id.img_View_expandable_indicator);
             TextView txt_Summary = (TextView) view.findViewById(R.id.summary);

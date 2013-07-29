@@ -23,6 +23,7 @@ import com.devspark.robototextview.widget.RobotoCheckBox;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 
 /**
@@ -231,6 +232,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	
 	@Override
 	public void onResume() {
+		//setEmptyListView();
+		
 		lastItemPosition = -1;
 		super.onResume();
 	}
@@ -300,16 +303,19 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		return rootView;
 	}
 
-	/*
+	
 	private void setEmptyListView() {
 		LayoutInflater inflator=getActivity().getLayoutInflater();
-        View emptyView=inflator.inflate(R.layout.subscription_detail_list_item_empty, (ViewGroup)getView());
+        View emptyView = inflator.inflate(R.layout.subscription_detail_list_item_empty, (ViewGroup)getView());
+        
+        FontHelper fHelper = new FontHelper(getActivity());
+        fHelper.setFontForAllChildren(emptyView, fHelper.getFont());
         
         ListView lv = getListView();
         if(lv != null)
         	lv.setEmptyView(emptyView);
 	}
-	*/
+	
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {

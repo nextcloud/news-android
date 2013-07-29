@@ -22,8 +22,7 @@
         android:gravity="center_vertical"
         android:singleLine="true"
         android:text="@string/empty_view_header"
-        android:textSize="15sp"
-        style="@style/RobotoFontStyle" />
+        android:textSize="15sp" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/summary"
@@ -35,7 +34,6 @@
         android:lines="1"
         android:text="@string/empty_view_content"
         android:textSize="18sp"
-        android:textStyle="bold"
-        style="@style/RobotoFontStyle" />
+        android:textStyle="bold" />
 
 </LinearLayout>

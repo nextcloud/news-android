@@ -7,7 +7,10 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -27,6 +30,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 /**
@@ -65,8 +69,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
-    
-    
+    public static final String SP_FONT = "sp_font";    
     
     static //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
     
@@ -78,8 +81,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     
     
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		
+	protected void onCreate(Bundle savedInstanceState) {		
 		ThemeChooser.chooseTheme(this);
 		
 		super.onCreate(savedInstanceState);
@@ -95,7 +97,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		
 		setupSimplePreferencesScreen();
 	}
-
+	
 	/**
 	 * Shows the simplified settings UI if the device configuration if the
 	 * device configuration dictates that a simplified, single-pane UI should be
@@ -224,7 +226,6 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 				preference
 						.setSummary(index >= 0 ? listPreference.getEntries()[index]
 								: null);
-
 			} /*else if (preference instanceof RingtonePreference) {
 				// For ringtone preferences, look up the correct display value
 				// using RingtoneManager.
@@ -409,11 +410,13 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		{
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_APP_THEME));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FEED_LIST_LAYOUT));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FONT));
 		}
 		else
 		{
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_APP_THEME));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FEED_LIST_LAYOUT));
+			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FONT));
 		}
 	}
 		
@@ -481,17 +484,54 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 				((EditTextPreference) preference).getDialog().dismiss();
 				
 				DatabaseConnection dbConn = new DatabaseConnection(_mActivity);
-				dbConn.resetDatabase();
-				dbConn.closeDatabase();
+				boolean resetDatabase = true;
+				if(dbConn.getAllNewReadItems().size() > 0)
+					resetDatabase = false;
+				else if(dbConn.getAllNewUnreadItems().size() > 0)
+					resetDatabase = false;
+				else if(dbConn.getAllNewStarredItems().size() > 0)
+					resetDatabase = false;
+				else if(dbConn.getAllNewUnstarredItems().size() > 0)
+					resetDatabase = false;
 				
-				ImageHandler.clearCache(_mActivity);				
-				LoginDialogFragment.ShowAlertDialog("Information" , "Cache is cleared!", _mActivity);
-				new GetCacheSizeAsync().execute((Void)null);
+				if(resetDatabase) {				
+					ResetDatabase();
+				} else {
+					new AlertDialog.Builder(_mActivity)
+						.setTitle(_mActivity.getString(R.string.warning))
+						.setMessage(_mActivity.getString(R.string.reset_cache_unsaved_changes))
+						.setPositiveButton(_mActivity.getString(android.R.string.ok), new OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								PostDelayHandler pDelayHandler = new PostDelayHandler(_mActivity);
+								pDelayHandler.stopRunningPostDelayHandler();
+								
+								ResetDatabase();
+							}
+						})
+						.setNegativeButton(_mActivity.getString(android.R.string.no), null)
+						.create()
+						.show();
+				}
+					
+				dbConn.closeDatabase();
 				return false;
 			}
 		});
 	}
 	
+	private static void ResetDatabase() {
+		DatabaseConnection dbConn = new DatabaseConnection(_mActivity);
+		try {
+			dbConn.resetDatabase();
+			ImageHandler.clearCache(_mActivity);				
+			LoginDialogFragment.ShowAlertDialog("Information" , "Cache is cleared!", _mActivity);
+			new GetCacheSizeAsync().execute((Void)null);
+		} finally {
+			dbConn.closeDatabase();
+		}
+	}
 	
 	public static class GetCacheSizeAsync extends AsyncTask<Void, Void, Void> {
 
