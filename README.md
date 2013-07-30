@@ -4,11 +4,20 @@ The ownCloud News Reader Android App is under AGPLv3 License terms.
 Status: Beta  
 Bugs and enhancements can be reported under: https://github.com/owncloud/News-Android-App/issues
 
-
-<a href="https://play.google.com/store/apps/details?id=de.danoeh.antennapod" alt="Download from Google Play">
+<p>
+<a href="https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader" alt="Download from Google Play">
   <img src="http://www.android.com/images/brand/android_app_on_play_large.png">
 </a>
-[ownCloud News App on fdroid.org](https://f-droid.org/repository/browse/?fdfilter=ownCloud%20News&fdid=de.luhmer.owncloudnewsreader)
+
+<a href="https://f-droid.org/repository/browse/?fdfilter=ownCloud%20News&fdid=de.luhmer.owncloudnewsreader" alt="ownCloud News App on fdroid.org">
+  <img src="https://f-droid.org/wiki/images/fdroid-135.png" width="80" height="80" >
+</a>
+</p>
+
+
+Donate
+==================================
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=david-dev&url=https://github.com/owncloud/News-Android-App&title=News-Android-App&language=JAVA&tags=github&category=software)
 
 
 How to use the Beta App via Google Play ?
@@ -76,11 +85,6 @@ git clone https://github.com/owncloud/News-Android-App.git
 >"Found 2 versions of android-support-v4.jar in the dependency list, but not all the versions are identical (check is based on SHA-1 only at  this time)." try to copy the [...]/News-Android-App/libs/android-support-v4.jar file to [...]/ActionBarSherlock/actionbarsherlock/android-support-v4.jar  
 
 >That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
-
-
-Donate
-==================================
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=david-dev&url=https://github.com/owncloud/News-Android-App&title=News-Android-App&language=JAVA&tags=github&category=software)
 
 
 Updates
