@@ -438,6 +438,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOWONLYUNREAD_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
+	        bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SORT_ORDER));
 		}
 		else
 		{
@@ -451,6 +452,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOWONLYUNREAD_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
+	        bindPreferenceSummaryToValue(prefAct.findPreference(SP_SORT_ORDER));
 		}
 	}
 	

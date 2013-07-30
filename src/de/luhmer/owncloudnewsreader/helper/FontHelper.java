@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.devspark.robototextview.RobotoTypefaceManager;
 import com.devspark.robototextview.widget.RobotoButton;
 import com.devspark.robototextview.widget.RobotoCheckBox;
+import com.devspark.robototextview.widget.RobotoEditText;
 import com.devspark.robototextview.widget.RobotoTextView;
 
 import de.luhmer.owncloudnewsreader.SettingsActivity;
@@ -47,6 +48,8 @@ public class FontHelper {
 			((RobotoButton)view).setTypeface(typeface);
 		else if(view instanceof RobotoCheckBox)
 			((RobotoCheckBox)view).setTypeface(typeface);
+		else if(view instanceof RobotoEditText)
+			((RobotoEditText)view).setTypeface(typeface);
 	}
 	
 	public Typeface getFont() {
