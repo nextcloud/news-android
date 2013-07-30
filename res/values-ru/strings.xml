@@ -25,6 +25,7 @@
   <string name="email_sendMail">Отправить сообщение</string>
   <!--Action Bar Items-->
   <string name="action_starred">Отмеченный</string>
+  <string name="action_read">Читать</string>
   <string name="action_openInBrowser">Открыть в браузере</string>
   <string name="action_sendSourceCode">Отправить сообщение разработчикам</string>
   <string name="action_Share">Открыть доступ</string>
