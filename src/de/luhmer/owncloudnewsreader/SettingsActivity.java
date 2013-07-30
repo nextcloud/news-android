@@ -70,6 +70,8 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
     public static final String SP_FONT = "sp_font";    
+    public static final String SP_SORT_ORDER = "sp_sort_order";
+    
     
     static //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
     

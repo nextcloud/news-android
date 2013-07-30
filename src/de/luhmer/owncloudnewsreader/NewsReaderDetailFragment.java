@@ -23,7 +23,7 @@ import com.devspark.robototextview.widget.RobotoCheckBox;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.helper.FontHelper;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 
 /**
@@ -283,14 +283,20 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
     	if(ID_FOLDER != null)
     		if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
     			onlyStarredItems = true;
+    	
+    	SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
+    	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "desc");
+    	if(sortDirection.equals(SORT_DIRECTION.desc.toString()))
+    		sDirection = SORT_DIRECTION.desc;
     		
+    	
         if(idFeed != null)
-            return dbConn.getAllItemsForFeed(idFeed, onlyUnreadItems, onlyStarredItems);
+            return dbConn.getAllItemsForFeed(idFeed, onlyUnreadItems, onlyStarredItems, sDirection);
         else if(idFolder != null)
         {
         	if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
         		onlyUnreadItems = false;
-            return dbConn.getAllItemsForFolder(idFolder, onlyUnreadItems);
+            return dbConn.getAllItemsForFolder(idFolder, onlyUnreadItems, sDirection);
         }
         return null;
     }
@@ -303,7 +309,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		return rootView;
 	}
 
-	
+	/*
 	private void setEmptyListView() {
 		LayoutInflater inflator=getActivity().getLayoutInflater();
         View emptyView = inflator.inflate(R.layout.subscription_detail_list_item_empty, (ViewGroup)getView());
@@ -315,7 +321,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
         if(lv != null)
         	lv.setEmptyView(emptyView);
 	}
-	
+	*/
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {

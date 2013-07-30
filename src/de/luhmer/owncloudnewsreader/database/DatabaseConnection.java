@@ -45,6 +45,8 @@ public class DatabaseConnection {
     public static final String RSS_ITEM_READ_TEMP = "read_temp";
     public static final String RSS_ITEM_STARRED_TEMP = "starred_temp";
 	
+    public enum SORT_DIRECTION { asc, desc };
+    
 	
     public static final boolean DATABASE_DEBUG_MODE = false; //(false && Constants.DEBUG_MODE) ? true: false;
     
@@ -476,7 +478,7 @@ public class DatabaseConnection {
 					+ RSS_ITEM_PUBDATE + ", " + RSS_ITEM_STARRED + ", " + RSS_ITEM_GUIDHASH + ", " + RSS_ITEM_GUID + ", " + RSS_ITEM_STARRED_TEMP + ", " + RSS_ITEM_READ_TEMP;
 	}
 	
-	public Cursor getAllItemsForFeed(String ID_SUBSCRIPTION, boolean onlyUnread, boolean onlyStarredItems) {
+	public Cursor getAllItemsForFeed(String ID_SUBSCRIPTION, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection) {
 		
 		String buildSQL =  getAllFeedsSelectStatement() +
 	 			" FROM " + RSS_ITEM_TABLE +  
@@ -490,7 +492,7 @@ public class DatabaseConnection {
 		else if(onlyStarredItems)
 			buildSQL += " AND " + RSS_ITEM_STARRED_TEMP + " = 1";
 
-        buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " desc";
+        buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " " + sortDirection.toString();        
 
 		if(DATABASE_DEBUG_MODE)
 			Log.d("DB_HELPER", "getAllItemsForFeed SQL: " + buildSQL); 
@@ -544,7 +546,7 @@ public class DatabaseConnection {
 	
 	public int getCountFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {
 		
-		Cursor cursor = getAllItemsForFolder(ID_FOLDER, onlyUnread);
+		Cursor cursor = getAllItemsForFolder(ID_FOLDER, onlyUnread, SORT_DIRECTION.desc);
 		int count = cursor.getCount();
 		cursor.close();
 		
@@ -588,7 +590,7 @@ public class DatabaseConnection {
         return result;
     }*/
 	
-	public Cursor getAllItemsForFolder(String ID_FOLDER, boolean onlyUnread) {
+	public Cursor getAllItemsForFolder(String ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
 		String buildSQL = getAllFeedsSelectStatement() + 
 	 			" FROM " + RSS_ITEM_TABLE;
 	 	
@@ -614,7 +616,7 @@ public class DatabaseConnection {
 	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1";
 	 			
 	 	
-	 	buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " desc";
+	 	buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " " + sortDirection.toString();
 
 	 	//	buildSQL += " WHERE starred = 1";
 	 	
