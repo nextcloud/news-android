@@ -3,12 +3,15 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
+import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
+import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public abstract class API {
 	protected SharedPreferences mPrefs;
@@ -16,6 +19,22 @@ public abstract class API {
 	
 	public API(Context cont) {
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
+	}
+	
+	public static API GetRightApiForVersion(String appVersion, Activity activity) {
+		API api = null;
+		int versionCode = 0;
+		if(appVersion != null)
+		{
+			appVersion = appVersion.replace(".", "");
+			versionCode = Integer.parseInt(appVersion);
+		}
+		if (versionCode >= 1101) {
+			api = new APIv2(activity);
+		} else {
+			api = new APIv1(activity);
+		}
+		return api;
 	}
 	
 	protected abstract String getItemUrl();

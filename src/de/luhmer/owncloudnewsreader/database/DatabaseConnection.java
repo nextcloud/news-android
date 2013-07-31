@@ -594,7 +594,7 @@ public class DatabaseConnection {
 		String buildSQL = getAllFeedsSelectStatement() + 
 	 			" FROM " + RSS_ITEM_TABLE;
 	 	
-	 	if(!(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS)))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+	 	if(!(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_ITEMS)))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
 	 	{
 			buildSQL += " WHERE subscription_id_subscription IN " + 
 					"(SELECT sc.rowid " + 

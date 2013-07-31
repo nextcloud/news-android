@@ -81,4 +81,50 @@ public class FontHelper {
 			put(RobotoTypefaceManager.ROBOTOSLAB_BOLD, RobotoTypefaceManager.ROBOTOSLAB_BOLD);
 		}
 	};
+	
+	public String getFontName() {
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		int typefaceValue = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FONT, "2"));
+		
+		String typeFaceName = "";
+		switch (typefaceValue) {
+        case RobotoTypefaceManager.ROBOTO_THIN:
+        	typeFaceName = "ROBOTO_THIN";
+            break;
+        case RobotoTypefaceManager.ROBOTO_LIGHT:
+        	typeFaceName = "ROBOTO_LIGHT";
+            break;
+        case RobotoTypefaceManager.ROBOTO_REGULAR:
+        	typeFaceName = "ROBOTO_REGULAR";
+            break;
+        case RobotoTypefaceManager.ROBOTO_MEDIUM:
+        	typeFaceName = "ROBOTO_MEDIUM";
+            break;
+        case RobotoTypefaceManager.ROBOTO_BOLD:
+        	typeFaceName = "ROBOTO_BOLD";
+            break;
+        case RobotoTypefaceManager.ROBOTO_BLACK:
+        	typeFaceName = "ROBOTO_BLACK";
+            break;
+        case RobotoTypefaceManager.ROBOTO_CONDENSED:
+        	typeFaceName = "ROBOTO_CONDENSED";
+            break;
+        case RobotoTypefaceManager.ROBOTO_CONDENSED_BOLD:
+        	typeFaceName = "ROBOTO_CONDENSED_BOLD";
+            break;
+        case RobotoTypefaceManager.ROBOTOSLAB_THIN:
+        	typeFaceName = "ROBOTOSLAB_THIN";
+            break;
+        case RobotoTypefaceManager.ROBOTOSLAB_LIGHT:
+        	typeFaceName = "ROBOTOSLAB_LIGHT";
+            break;
+        case RobotoTypefaceManager.ROBOTOSLAB_REGULAR:
+        	typeFaceName = "ROBOTOSLAB_REGULAR";
+            break;
+        case RobotoTypefaceManager.ROBOTOSLAB_BOLD:
+        	typeFaceName = "ROBOTOSLAB_BOLD";
+            break;
+		}
+		return typeFaceName;
+	}
 }

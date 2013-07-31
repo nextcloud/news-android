@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
+import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity {
@@ -40,6 +42,8 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 	private static MenuItem menuItemUpdater;
 	private static MenuItem menuItemMarkAllAsRead;
 	private static MenuItem menuItemDownloadMoreItems;
+	
+	static IReader _Reader;
 	
 	/**
 	 * @return the menuItemUpdater
@@ -156,12 +160,10 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 	}
 	
 	private static void DownloadMoreItems()
-	{
-		NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
-		
+	{	
 		DatabaseConnection dbConn = new DatabaseConnection(activity);
-		int count = dbConn.getCountFeedsForFolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true);
-		if(count > Constants.maxItemsCount)
+		int count = dbConn.getCountFeedsForFolder(SubscriptionExpandableListAdapter.ALL_ITEMS, false);
+		if(count >= Constants.maxItemsCount)
 		{
 			String text = activity.getString(R.string.max_items_count_reached);
 			text = text.replace("XX", "" + Constants.maxItemsCount);
@@ -179,12 +181,30 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 		}
 		else
 		{		
-			IReader _Reader = new OwnCloud_Reader();
-			_Reader.Start_AsyncTask_GetOldItems(0, activity, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());		
+			String username = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext()).getString("edt_username", "");			
+			String password = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext()).getString("edt_password", "");
+			
+			_Reader = new OwnCloud_Reader();
+			((OwnCloud_Reader)_Reader).Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, activity, onAsyncTaskGetVersionFinished, username, password);		
 			
 			Toast.makeText(activity, activity.getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 		}
 	}
+	
+	static OnAsyncTaskCompletedListener onAsyncTaskGetVersionFinished = new OnAsyncTaskCompletedListener() {
+		
+		@Override
+		public void onAsyncTaskCompleted(int task_id, Object task_result) {
+			if(_Reader != null) {
+				String appVersion = task_result.toString();					
+				API api = API.GetRightApiForVersion(appVersion, activity);
+				((OwnCloud_Reader) _Reader).setApi(api);
+				
+				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
+				_Reader.Start_AsyncTask_GetOldItems(Constants.TaskID_GetItems, activity, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
+			}
+		}
+	};
 	
 	static OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {
 		@Override

@@ -39,9 +39,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private ArrayList<FolderSubscribtionItem> mCategoriesArrayList;
     private SparseArray<SparseArray<ConcreteFeedItem>> mItemsArrayList;
 	private boolean showOnlyUnread = false;
-
+	
 	public static final String ALL_UNREAD_ITEMS = "-10";
 	public static final String ALL_STARRED_ITEMS = "-11";
+	public static final String ALL_ITEMS = "-12";
 	public static final String ITEMS_WITHOUT_FOLDER = "-22";
 	
 

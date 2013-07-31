@@ -182,21 +182,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			if(isTwoPaneMode() || isAdded()) {
 				if(!(task_result instanceof Exception))
-				{	
-					API api = null;
-					String appVersion = task_result.toString();
-					int versionCode = 0;
-					if(appVersion != null)
-					{
-						appVersion = appVersion.replace(".", "");
-						versionCode = Integer.parseInt(appVersion);
-					}
-					if (versionCode >= 1101) {
-						api = new APIv2(getActivity());
-					} else {
-						api = new APIv1(getActivity());
-					}				
-					
+				{						
+					String appVersion = task_result.toString();					
+					API api = API.GetRightApiForVersion(appVersion, getActivity());
 					((OwnCloud_Reader) _Reader).setApi(api);
 					
 					_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  getActivity(), onAsyncTask_PerformTagExecute);
