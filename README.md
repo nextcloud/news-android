@@ -89,7 +89,12 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.4.0 (in development)
+0.4.1 (in development)
+---------------------
+- Font settings are also applied to the item detail view now
+- Fix issue that the Button "Download more items" was not working
+
+0.4.0
 ---------------------
 - Fixed app crash when image cache is enabled and the dialog appear which asks the user if download via roaming is allowed.
 - Fixed app crash reports.
