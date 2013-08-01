@@ -12,10 +12,12 @@
   <string name="tv_clickHereToOpenItem">Kliknij tutaj aby otworzyć element</string>
   <string name="no_wifi_available">Brak połączenia WIFI</string>
   <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
+  <string name="max_items_count_reached">Został osiągnięty maksymalny rozmiar XX elementów</string>
   <string name="allUnreadFeeds">Wszystkie nieprzeczytane</string>
   <string name="starredFeeds">Oznaczone Gwiazdką</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Odśwież</string>
+  <string name="menu_About_Changelog">O programie / Zmiany</string>
   <string name="menu_markAllAsRead">Oznacz wszysto jako przeczytane</string>
   <string name="menu_StartImageCaching">Rozpocznij buforowanie obrazów w trybie offline</string>
   <string name="menu_downloadMoreItems">Pobierz więcej elementów</string>
@@ -31,7 +33,7 @@
   <string name="action_login">Ustawienia serwera</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nazwa użytkownika</string>
-  <string name="pref_title_password">Tajny kod</string>
+  <string name="pref_title_password">Hasło</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -43,6 +45,7 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Pobierz X starych elementów</string>
   <string name="toast_no_more_downloads_available">Nie ma więcej  starych elementów do porbrania</string>
+  <string name="pull_to_refresh_updateTags">Synchronizowanie elementów stanów</string>
   <string name="pull_to_refresh_updateFolder">Synchronizowanie folder</string>
   <string name="pull_to_refresh_updateFeeds">Synchronizowanie kanałów</string>
   <string name="pull_to_refresh_updateItems">Synchronizowanie elementów</string>
@@ -52,6 +55,7 @@
   <string name="pref_header_general">Ogólne</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Obliczam rozmiar pamięci podręcznej... Proszę czekać.</string>
   <string name="pref_title_AutoSyncOnStart">Synchronizuj na starcie</string>
   <string name="pref_title_ShowOnlyUnread">Pokaż tylko nieprzeczytane artykuły</string>
   <string name="pref_title_AllowAllSSLCertificates">Potwierdź wszystkie certyfikaty SSL</string>
@@ -90,6 +94,25 @@
   <string name="pref_title_data_sync_max_items">Maksymalna ilość elementów do synchronizacji</string>
   <string name="pref_title_clearCache">Czyść pamięć podręczną</string>
   <string name="pref_title_CacheImagesOffline">Zapisuj obrazy offline</string>
+  <string name="pref_title_Max_Cache_Size">Maksymalny rozmiar pamięci podręcznej</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
