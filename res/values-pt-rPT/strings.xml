@@ -16,6 +16,7 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
   <string name="menu_markAllAsRead">Marcar todos como lidos</string>
+  <string name="menu_StartImageCaching">Iniciar cache offline das imagens</string>
   <string name="menu_downloadMoreItems">Descarregar mais itens</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-Fonte do item: Reportar bug</string>
