@@ -89,7 +89,14 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.4.1 (in development)
+0.4.3 (in development)
+---------------------
+
+0.4.2
+---------------------
+- critical bug fix that sync was broken <a href="https://github.com/owncloud/News-Android-App/issues/102">#102 (0.4.1 doesn't sync anymore)</a>
+
+0.4.1
 ---------------------
 - Font settings are also applied to the item detail view now
 - Fix issue that the Button "Download more items" was not working
