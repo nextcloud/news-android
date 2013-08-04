@@ -15,7 +15,7 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public abstract class API {
 	protected SharedPreferences mPrefs;
-	Pattern RemoveAllDoubleSlashes = Pattern.compile("[^:](\\/\\/)");
+	static final Pattern RemoveAllDoubleSlashes = Pattern.compile("[^:](\\/\\/)");
 	
 	public API(Context cont) {
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
@@ -46,14 +46,16 @@ public abstract class API {
 	
 	/**
 	 * 
-	 * @return http(s)://url_to_server/
+	 * @return http(s)://url_to_server
 	 */
 	protected String getOcRootPath() {
 		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
 		oc_root_path = RemoveAllDoubleSlashes.matcher(oc_root_path).replaceAll("/");
 		
-		if(!oc_root_path.endsWith("/"))
-			oc_root_path += "/";
+		//if(!oc_root_path.endsWith("/"))
+		//	oc_root_path += "/";
+		//while(oc_root_path.endsWith("/"))
+		//	oc_root_path += oc_root_path.substring(0, oc_root_path.length() - 2);
 		
 		return oc_root_path;
 	}
@@ -81,6 +83,10 @@ public abstract class API {
 	
 	public int GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception {
 		return OwnCloudReaderMethods.GetUpdatedItems(tag, cont, lastSync, api);
+	}
+	
+	public static String validateURL(String url) {
+		return RemoveAllDoubleSlashes.matcher(url).replaceAll("/");		
 	}
 	
 	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api);

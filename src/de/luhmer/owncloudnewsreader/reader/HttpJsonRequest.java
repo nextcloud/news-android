@@ -25,18 +25,20 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.CustomTrustManager;
+import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.util.Base64;
 
 public class HttpJsonRequest {
 	//private static final String TAG = "HttpJsonRequest";
 
+	//@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@SuppressLint("DefaultLocale")
 	public static InputStream PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, final String username, final String password, Context context) throws AuthenticationException, Exception
 	{	
 		if(nameValuePairs != null)
             urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8"); 
 		
-		URL url = new URL(urlString);
+		URL url = new URL(API.validateURL(urlString));
 		
 		HttpURLConnection urlConnection = getUrlConnection(url, context, username, password);
 		//HttpsURLConnection urlConnection = null;
@@ -69,6 +71,12 @@ public class HttpJsonRequest {
         urlConnection.setReadTimeout(120000);//2min  
         urlConnection.setRequestProperty("Content-Type","application/json");
         
+        
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
+        //	CookieHandler.setDefault(new CookieManager());
+        
+        
+        //urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-GB; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 (.NET CLR 3.5.30729)");
         //urlConnection.setRequestProperty("Host", "de.luhmer.ownCloudNewsReader");
         urlConnection.connect();  
         
@@ -117,7 +125,7 @@ public class HttpJsonRequest {
 	@SuppressLint("DefaultLocale")
 	public static int performTagChangeRequest(String urlString, String username, String password, Context context, String content) throws Exception
 	{
-		URL url = new URL(urlString);
+		URL url = new URL(API.validateURL(urlString));
 		HttpURLConnection urlConnection = getUrlConnection(url, context, username, password);
 		urlConnection.setDoOutput(true);
 		urlConnection.setRequestMethod("PUT");
