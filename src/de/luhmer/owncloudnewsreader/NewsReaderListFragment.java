@@ -35,8 +35,6 @@ import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
@@ -150,7 +148,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	}
 	
 	private boolean isTwoPaneMode() {
-		return ((NewsReaderListActivity) getActivity()).ismTwoPane();
+		if(getActivity() != null)
+			return ((NewsReaderListActivity) getActivity()).ismTwoPane();
+		return false;
 	}
 	
 	public void StartSync()
@@ -322,7 +322,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	            lvAdapter.ReloadAdapter();
 	            
 	            NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
-	            nlActivity.UpdateItemList();
+	            if(nlActivity != null)
+	            	nlActivity.UpdateItemList();
 	
 	            
 	            Log.d(TAG, "onAsyncTask_GetItems Finished");
