@@ -1,36 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">ownCloud新聞閱讀器</string>
-  <string name="action_settings">設定</string>
-  <string name="empty_view_header">資訊</string>
-  <string name="empty_view_content">無任何項目。</string>
-  <string name="allUnreadFeeds">所有未閱讀項目。</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
-  <string name="menu_update">重新整理</string>
-  <string name="menu_markAllAsRead">全部標示已閱讀</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
-  <string name="action_starred">星號</string>
-  <string name="action_openInBrowser">開啟瀏覽器</string>
-  <string name="action_Share">分享</string>
   <!--Strings related to login-->
-  <string name="pref_title_username">使用者名稱：</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
-  <string name="title_activity_settings">設定</string>
   <!--General settings-->
-  <string name="pref_header_general">一般</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="calculating_cache_size">計算快取容量中...請稍候。</string>
   <!--Settings for Display-->
   <!--Login Dialog-->
-  <string name="login_dialog_title_error">錯誤</string>
-  <string name="login_dialog_title_security_warning">安全性警告</string>
   <!--Data & Sync-->
-  <string name="pref_title_Max_Cache_Size">最大快取容量</string>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
