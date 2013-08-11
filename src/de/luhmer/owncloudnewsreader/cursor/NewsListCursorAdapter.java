@@ -26,12 +26,14 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.devspark.robototextview.widget.RobotoCheckBox;
+import com.devspark.robototextview.widget.RobotoTextView;
 
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -65,7 +67,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	}
 
 	@Override
-	public void bindView(View view, final Context context, Cursor cursor) {
+	public void bindView(final View view, final Context context, Cursor cursor) {
         final String idItemDb = cursor.getString(0);
         
         switch (selectedDesign) {
@@ -84,6 +86,9 @@ public class NewsListCursorAdapter extends CursorAdapter {
 			default:
 				break;
 	    }
+        
+        FontHelper fHelper = new FontHelper(context);
+        fHelper.setFontForAllChildren(view, fHelper.getFont());
         
         RobotoCheckBox cb = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_starred);
         cb.setOnCheckedChangeListener(null);
@@ -111,6 +116,12 @@ public class NewsListCursorAdapter extends CursorAdapter {
         Boolean isChecked = dbConn.isFeedUnreadStarred(cursor.getString(0), true);
         //Log.d("ISREAD", "" + isChecked + " - Cursor: " + cursor.getString(0));
         cbRead.setChecked(isChecked);
+        if(!isChecked) {
+        	RobotoTextView textView = (RobotoTextView) view.findViewById(R.id.summary);
+        	fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
+        }
+        	
+        
         cbRead.setClickable(true);
         cbRead.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
@@ -120,6 +131,20 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 UpdateListCursor(mContext);
                 
                 pDelayHandler.DelayTimer();
+                
+                RobotoTextView textView = (RobotoTextView) view.findViewById(R.id.summary);
+                if(textView != null)
+                {
+                	FontHelper fHelper = new FontHelper(context);
+                	if(isChecked)
+                		fHelper.setFontStyleForSingleView(textView, fHelper.getFont());
+                		//textView.setTextAppearance(mContext, R.style.RobotoFontStyle);
+                	else
+                		fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
+                		//textView.setTextAppearance(mContext, R.style.RobotoFontStyleBold);
+                		
+                	textView.invalidate();
+                }
 			}
 		});        
 	}

@@ -39,8 +39,7 @@
 	        android:id="@+id/cb_AllowAllSSLCertificates"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:text="@string/pref_title_AllowAllSSLCertificates"
-	        style="@style/RobotoFontStyle" />
+	        android:text="@string/pref_title_AllowAllSSLCertificates" />
 	
 	    <LinearLayout
 	        android:layout_width="match_parent"
@@ -51,16 +50,14 @@
 	            android:layout_width="0dip"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1.0"
-	            android:text="@android:string/cancel" 
-	            style="@style/RobotoFontStyle" />
+	            android:text="@android:string/cancel" />
 	
 	        <com.devspark.robototextview.widget.RobotoButton
 	            android:id="@+id/btn_signin"
 	            android:layout_width="0dip"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1.0"
-	            android:text="@string/action_sign_in_short" 
-	            style="@style/RobotoFontStyle" />
+	            android:text="@string/action_sign_in_short" />
 	    </LinearLayout>
 	
 	</LinearLayout>	

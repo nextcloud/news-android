@@ -21,8 +21,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 
 /**
@@ -75,6 +75,9 @@ public class LoginDialogFragment extends SherlockDialogFragment {
                }
            })*/
            .setTitle(getString(R.string.action_sign_in_short));  
+        
+        FontHelper fHelper = new FontHelper(getActivity());
+        fHelper.setFontForAllChildren(view, fHelper.getFont());
         
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
@@ -385,12 +388,13 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 				}
 				
 			} catch (Exception e) {
-				exception_message = e.getLocalizedMessage();
+				if(e.getLocalizedMessage() != null)
+					exception_message = e.getLocalizedMessage();
+				else if(e instanceof NullPointerException)
+					exception_message = getString(R.string.login_dialog_text_something_went_wrong);
+				
 				return -1;
 			}
-			
-			//if(version_info > 1101)
-			//	Sho
 				
 			return 0;
 		}

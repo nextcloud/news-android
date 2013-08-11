@@ -21,8 +21,7 @@
        	android:textSize="20sp"
        	android:textStyle="bold"
        	android:layout_weight="1"        
-       	android:textIsSelectable="false"       	
-		style="@style/RobotoFontStyle" />/
+       	android:textIsSelectable="false"  />
     <!--app:typeface="roboto_thin" -->
     		 
     
@@ -33,7 +32,6 @@
         android:gravity="center_vertical|right"        
         android:singleLine="true"
         android:textIsSelectable="false"
-        android:layout_marginRight="20dp"
-        style="@style/RobotoFontStyle" />
+        android:layout_marginRight="20dp" />
 
 </LinearLayout>

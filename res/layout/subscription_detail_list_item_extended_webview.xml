@@ -30,8 +30,7 @@
             android:layout_gravity="center_vertical|left"
             android:textSize="15sp"  
             android:layout_weight="1"      
-            android:text="@string/tv_clickHereToOpenItem" 
-            style="@style/RobotoFontStyle" />
+            android:text="@string/tv_clickHereToOpenItem" />
         
         <com.devspark.robototextview.widget.RobotoCheckBox
             android:id="@+id/cb_lv_item_starred"
@@ -41,8 +40,7 @@
             android:background="@drawable/checkbox_background"
             android:button="@drawable/checkbox_background_empty"            
             android:clickable="false"
-            android:focusable="false"
-            style="@style/RobotoFontStyle" />
+            android:focusable="false" />
 
         <com.devspark.robototextview.widget.RobotoCheckBox
             android:id="@+id/cb_lv_item_read"
@@ -51,8 +49,7 @@
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"
             android:clickable="false"
-            android:focusable="false" 
-            style="@style/RobotoFontStyle" />
+            android:focusable="false" />
     </LinearLayout>
 
     <WebView

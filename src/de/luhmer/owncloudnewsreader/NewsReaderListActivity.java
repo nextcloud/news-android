@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.view.Menu;
@@ -41,6 +42,13 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	 * device.
 	 */
 	private boolean mTwoPane;
+	/**
+	 * @return the mTwoPane
+	 */
+	public boolean ismTwoPane() {
+		return mTwoPane;
+	}
+
 	//IabHelper mHelper;
 	static final String TAG = "NewsReaderListActivity";
 	
@@ -113,9 +121,20 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			// Block children layout for now
 			PullToRefreshExpandableListView ptrel = ((PullToRefreshExpandableListView)nlf.eListView);
 			BlockingExpandableListView bView = ((BlockingExpandableListView) ptrel.getRefreshableView());
+			
+			int firstVisPos = bView.getFirstVisiblePosition();
+			View firstVisView = bView.getChildAt(0);
+			int top = firstVisView != null ? firstVisView.getTop() : 0;
+			
+			// Number of items added before the first visible item 
+			int itemsAddedBeforeFirstVisible = 0;
+			
 			bView.setBlockLayoutChildren(true);
 			nlf.lvAdapter.notifyDataSetChanged();
 			bView.setBlockLayoutChildren(false);
+			
+			// Call setSelectionFromTop to change the ListView position
+			bView.setSelectionFromTop(firstVisPos + itemsAddedBeforeFirstVisible, top);
 		}
 	}
 	

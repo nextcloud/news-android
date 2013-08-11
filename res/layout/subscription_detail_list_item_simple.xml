@@ -46,8 +46,7 @@
 	            android:singleLine="true"
 	            android:text="Hi"
 	            android:layout_weight="1"
-	            android:textSize="14sp"
-	            style="@style/RobotoFontStyle" />
+	            android:textSize="14sp" />
 	
 	        <com.devspark.robototextview.widget.RobotoTextView
 	            android:id="@+id/tv_item_date"
@@ -58,8 +57,7 @@
 	            android:layout_gravity="right"
 	            android:text="Hi"
 	            android:singleLine="true"
-	            android:textSize="14sp"
-	            style="@style/RobotoFontStyle" />
+	            android:textSize="14sp" />
 	    </LinearLayout>
 	
 	    <com.devspark.robototextview.widget.RobotoTextView
@@ -72,8 +70,7 @@
 	        android:textSize="17sp"
 	        android:text="hidsaf afdal fjdkas f fsadfdas fds asöjkdafdssö fjkök"
 	        android:layout_weight="1"
-	        android:textStyle="bold"
-	        style="@style/RobotoFontStyle" />
+	        android:textStyle="bold" />
 	    
 	</LinearLayout>
 
@@ -84,7 +81,6 @@
 	    android:layout_marginRight="@dimen/listview_row_margin_right"
 	    android:clickable="false"
 	    android:focusable="false"
-	    android:gravity="center_vertical|center_horizontal" 
-	    style="@style/RobotoFontStyle" />
+	    android:gravity="center_vertical|center_horizontal" />
 
 </LinearLayout>
