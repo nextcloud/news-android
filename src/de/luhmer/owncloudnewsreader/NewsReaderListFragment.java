@@ -148,7 +148,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	}
 	
 	private boolean isTwoPaneMode() {
-		return ((NewsReaderListActivity) getActivity()).ismTwoPane();
+		if(getActivity() != null)
+			return ((NewsReaderListActivity) getActivity()).ismTwoPane();
+		return false;
 	}
 	
 	public void StartSync()
@@ -319,7 +321,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	            lvAdapter.ReloadAdapter();
 	            
 	            NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
-	            nlActivity.UpdateItemList();
+	            if(nlActivity != null)
+	            	nlActivity.UpdateItemList();
 	
 	            
 	            Log.d(TAG, "onAsyncTask_GetItems Finished");
