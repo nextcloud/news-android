@@ -35,8 +35,6 @@ import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
@@ -149,7 +147,11 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		}
 	}
 	
-	
+	private boolean isTwoPaneMode() {
+		if(getActivity() != null)
+			return ((NewsReaderListActivity) getActivity()).ismTwoPane();
+		return false;
+	}
 	
 	public void StartSync()
 	{
@@ -174,35 +176,47 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		UpdateSyncButtonLayout();
 	}
 	
+	
+	
+	private void HandleExceptionMessages(Exception ex) {
+		if(ex instanceof HttpHostConnectException)
+            ShowToastLong("Cannot connect to the Host !");
+        else if(ex instanceof HttpResponseException)
+        {
+            HttpResponseException responseException = (HttpResponseException) ex;
+            //if(responseException.getStatusCode() == 401)
+            //    ShowToastLong("Authentication failed");
+            //else
+            ShowToastLong(responseException.getLocalizedMessage());
+        }
+        else
+            ShowToastLong(ex.getLocalizedMessage());
+		
+		UpdateSyncButtonLayout();
+	}
+	
+	
 	OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			
-			if(!(task_result instanceof Exception))
-			{	
-				API api = null;
-				String appVersion = task_result.toString();
-				int versionCode = 0;
-				if(appVersion != null)
-				{
-					appVersion = appVersion.replace(".", "");
-					versionCode = Integer.parseInt(appVersion);
+			if(isTwoPaneMode() || isAdded()) {
+				if(!(task_result instanceof Exception))
+				{						
+					String appVersion = task_result.toString();					
+					API api = API.GetRightApiForVersion(appVersion, getActivity());
+					((OwnCloud_Reader) _Reader).setApi(api);
+					
+					_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  getActivity(), onAsyncTask_PerformTagExecute);
+												
+					if(eListView != null)
+						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
 				}
-				if (versionCode >= 1101) {
-					api = new APIv2(getActivity());
-				} else {
-					api = new APIv1(getActivity());
-				}				
+				else 
+					HandleExceptionMessages((Exception) task_result);
 				
-				((OwnCloud_Reader) _Reader).setApi(api);
-				
-				_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  getActivity(), onAsyncTask_PerformTagExecute);
-											
-				if(eListView != null)
-					eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
+				UpdateSyncButtonLayout();
 			}
-			UpdateSyncButtonLayout();
 		}
 	};
 
@@ -210,63 +224,46 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
     OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
         @Override
         public void onAsyncTaskCompleted(int task_id, Object task_result) {
-            if(task_result != null)//task result is null if there was an error
-            {	
-            	if((Boolean) task_result)
-            	{
-            		//dbConn.resetDatabase();
-            		
-            		if(task_id == Constants.TaskID_PerformStateChange)
-            		{
-            			_Reader.Start_AsyncTask_GetFolder(Constants.TaskID_GetFolder,  getActivity(), onAsyncTask_GetFolder);
-            			if(eListView != null)
-                			eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));
-            		}
-            		else
-            			_Reader.setSyncRunning(true);
-            	}
-            	else
-            		UpdateSyncButtonLayout();
-            }
-            else
-            	UpdateSyncButtonLayout();
+        	if(isTwoPaneMode() || isAdded()) {
+	            if(task_result != null)//task result is null if there was an error
+	            {	
+	            	if((Boolean) task_result)
+	            	{
+	            		if(task_id == Constants.TaskID_PerformStateChange)
+	            		{
+	            			_Reader.Start_AsyncTask_GetFolder(Constants.TaskID_GetFolder,  getActivity(), onAsyncTask_GetFolder);
+	            			if(eListView != null)
+	                			eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));
+	            		}
+	            		else
+	            			_Reader.setSyncRunning(true);
+	            	}
+	            	else
+	            		UpdateSyncButtonLayout();
+	            }
+	            else
+	            	UpdateSyncButtonLayout();
+        	}
         }
     };
 	
     
 	OnAsyncTaskCompletedListener onAsyncTask_GetFolder = new OnAsyncTaskCompletedListener() {
-
-		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			
-            if(task_result != null)
-            {
-                if(task_result instanceof HttpHostConnectException)
-                    ShowToastLong("Cannot connect to the Host !");
-                else if(task_result instanceof HttpResponseException)
-                {
-                    HttpResponseException responseException = (HttpResponseException) task_result;
-                    //if(responseException.getStatusCode() == 401)
-                    //    ShowToastLong("Authentication failed");
-                    //else
-                    ShowToastLong(responseException.getLocalizedMessage());
-                }
-                else
-                    ShowToastLong(((Exception)task_result).getLocalizedMessage());
-
-                UpdateSyncButtonLayout();
-            }
-            else
-            {
-                _Reader.Start_AsyncTask_GetFeeds(Constants.TaskID_GetFeeds, getActivity(), onAsyncTask_GetFeed);
-                if(eListView != null)
-                	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFeeds));
-            }
-
-            lvAdapter.notifyDataSetChanged();
-            
-            Log.d(TAG, "onAsyncTask_GetFolder Finished");
+			if(isTwoPaneMode() || isAdded()) {
+	            if(task_result != null)
+	            	HandleExceptionMessages((Exception) task_result);
+	            else {
+	                _Reader.Start_AsyncTask_GetFeeds(Constants.TaskID_GetFeeds, getActivity(), onAsyncTask_GetFeed);
+	                if(eListView != null)
+	                	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFeeds));
+	            }
+	
+	            lvAdapter.notifyDataSetChanged();
+	            
+	            Log.d(TAG, "onAsyncTask_GetFolder Finished");
+			}
 		}
 	};
 
@@ -279,58 +276,58 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-            if(task_result != null)
-            {
-                ShowToastLong(((Exception)task_result).getLocalizedMessage());
-                UpdateSyncButtonLayout();
-            }
-            else
-            {
-            	//dbConn.resetRssItemsDatabase();
-            	
-                _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, getActivity(), onAsyncTask_GetItems, TAGS.ALL);//Recieve all unread Items
-                //_Reader.Start_AsyncTask_GetFeeds(3, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_STARRED);//Recieve all starred Items
-                
-                if(eListView != null)
-                	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateItems));
-            }
-
-
-
-            lvAdapter.ReloadAdapter();
-            
-            Log.d(TAG, "onAsyncTask_GetFeed Finished");
-            //lvAdapter.notifyDataSetChanged();
-            //eListView.setAdapter(new SubscriptionExpandableListAdapter(getActivity(), dbConn));
-			
-			//new AsyncTask_GetFeeds(0,  getActivity(), onAsyncTask_GetFeeds).execute(username, password, Constants._TAG_LABEL_UNREAD);			
-			//new AsyncTask_GetFeeds(0,  getActivity(), onAsyncTask_GetFeeds).execute(username, password, Constants._TAG_LABEL_STARRED);
+			if(isTwoPaneMode() || isAdded()) {
+				if(task_result != null)
+	            	HandleExceptionMessages((Exception) task_result);
+				else {
+	            	//dbConn.resetRssItemsDatabase();
+	            	
+	                _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, getActivity(), onAsyncTask_GetItems, TAGS.ALL);//Recieve all unread Items
+	                //_Reader.Start_AsyncTask_GetFeeds(3, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_STARRED);//Recieve all starred Items
+	                
+	                if(eListView != null)
+	                	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateItems));
+	            }
+	
+	
+	
+	            lvAdapter.ReloadAdapter();
+	            
+	            Log.d(TAG, "onAsyncTask_GetFeed Finished");
+	            //lvAdapter.notifyDataSetChanged();
+	            //eListView.setAdapter(new SubscriptionExpandableListAdapter(getActivity(), dbConn));
+				
+				//new AsyncTask_GetFeeds(0,  getActivity(), onAsyncTask_GetFeeds).execute(username, password, Constants._TAG_LABEL_UNREAD);			
+				//new AsyncTask_GetFeeds(0,  getActivity(), onAsyncTask_GetFeeds).execute(username, password, Constants._TAG_LABEL_STARRED);
+			}
 		}
 	};
 	
 	OnAsyncTaskCompletedListener onAsyncTask_GetItems = new OnAsyncTaskCompletedListener() {
 		
 		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-
-            if(task_result != null)
-                ShowToastLong(((Exception)task_result).getLocalizedMessage());
-
-            lvAdapter.notifyDataSetChanged();
-
-			if(eListView != null)
-            	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
-			
-            UpdateSyncButtonLayout();
-
-            lvAdapter.ReloadAdapter();
-            
-            NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
-            nlActivity.UpdateItemList();
-
-            
-            Log.d(TAG, "onAsyncTask_GetItems Finished");
-			//fireUpdateFinishedClicked();
+		public void onAsyncTaskCompleted(int task_id, Object task_result) {			
+			if(isTwoPaneMode() || isAdded()) {
+				if(task_result != null)
+	            	HandleExceptionMessages((Exception) task_result);
+	
+	            lvAdapter.notifyDataSetChanged();
+	
+				if(eListView != null)
+	            	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
+				
+	            UpdateSyncButtonLayout();
+	
+	            lvAdapter.ReloadAdapter();
+	            
+	            NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
+	            if(nlActivity != null)
+	            	nlActivity.UpdateItemList();
+	
+	            
+	            Log.d(TAG, "onAsyncTask_GetItems Finished");
+				//fireUpdateFinishedClicked();
+			}
 		}
 	};
 	
@@ -339,8 +336,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View V = null;
-		try
-		{	
+		if(isTwoPaneMode() || isAdded()) {
 			V = inflater.inflate(R.layout.expandable_list_layout, container, false);			
 			//eListView = (ExpandableListView) V.findViewById(R.id.expandableListView);
 			eListView = (PullToRefreshExpandableListView) V.findViewById(R.id.expandableListView);
@@ -362,7 +358,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			eListView.setOnChildClickListener(onChildClickListener);
 			//eListView.setSmoothScrollbarEnabled(true);			
 			
-			View empty = inflater.inflate(R.layout.subscription_list_item_empty, null, false);
+			View empty = inflater.inflate(R.layout.subscription_detail_list_item_empty, null, false);
 			getActivity().addContentView(empty, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));			
 			eListView.setEmptyView(empty);
 			/*
@@ -384,11 +380,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
 				StartSync();
-			
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
 		}
 		
 		return V;
@@ -526,44 +517,3 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			asyncUpdateFinished.FinishedUpdate();
 	}*/
 }
-
-
-/*
-			dbConn.insertNewSubscription("Ungelesene Artikel");
-			dbConn.insertNewSubscription("Markierte Artikel");			
-			dbConn.insertNewSubscription("Android");
-			dbConn.insertNewSubscription("Apple");
-			dbConn.insertNewSubscription("Bugtracker");
-			dbConn.insertNewSubscription("Development");
-			dbConn.insertNewSubscription("Linux");
-			dbConn.insertNewSubscription("Software");
-			dbConn.insertNewSubscription("Owncloud");
-			dbConn.insertNewSubscription("Other");
-			
-			dbConn.insertNewSub_Subscription("4droid", dbConn.getIdOfSubscription("Android"));
-			dbConn.insertNewSub_Subscription("GIGA Rss Feed", dbConn.getIdOfSubscription("Android"));
-			
-			dbConn.insertNewSub_Subscription("macnews.de", dbConn.getIdOfSubscription("Apple"));
-			dbConn.insertNewSub_Subscription("MACNOTES.DE", dbConn.getIdOfSubscription("Apple"));
-			
-			dbConn.insertNewSub_Subscription("FS Bugtracker", dbConn.getIdOfSubscription("Bugtracker"));
-			
-			dbConn.insertNewSub_Subscription("Code 2 Learn", dbConn.getIdOfSubscription("Development"));
-			dbConn.insertNewSub_Subscription("Coding Horror", dbConn.getIdOfSubscription("Development"));
-			
-			dbConn.insertNewSub_Subscription("Canoncial", dbConn.getIdOfSubscription("Linux"));
-			
-			dbConn.insertNewSub_Subscription("iTek Zone", dbConn.getIdOfSubscription("Software"));
-			
-			dbConn.insertNewSub_Subscription("CNET", dbConn.getIdOfSubscription("Other"));
-			
-			dbConn.insertNewSub_Subscription("ownCloud.org", dbConn.getIdOfSubscription("Owncloud"));			
-			
-			dbConn.insertNewFeed("Samsung Game Pad pops up on Galaxy S4 site, outs Note 3?",
-									"http://news.cnet.com/8301-17938_105-57574766-1/samsung-game-pad-pops-up-on-galaxy-s4-site-outs-note-3/?part\u003drss\u0026subj\u003dnews\u0026tag\u003d2547-1_3-0-20",
-									"The gaming controller works with devices up to 6.3 inches, perhaps suggesting Samsung is planning a bigger phablet, or should we be calling it a \"tabone?\"",
-									"0",
-									dbConn.getIdOfSubscription("CNET"));
-			
-			*/
-

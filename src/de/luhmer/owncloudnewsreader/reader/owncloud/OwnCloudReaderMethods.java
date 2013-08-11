@@ -425,10 +425,7 @@ public class OwnCloudReaderMethods {
 
 	
 	public static String GetVersionNumber(Context cont, String username, String password, String oc_root_path) throws Exception
-	{	
-		if(oc_root_path.endsWith("/"))
-			oc_root_path = oc_root_path.substring(0, oc_root_path.length() - 1);
-		
+	{
 		//Try APIv2
 		try {
 			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv2 + OwnCloudConstants.VERSION_PATH;

@@ -85,6 +85,18 @@
 
     <!-- General settings -->
     <string name="pref_header_general">General</string>
+    <string name="pref_title_general_sort_order">Sort Order</string>
+    
+    <string-array name="pref_general_sort_order">
+    	<item>New -> Old</item>
+    	<item>Old -> New</item>
+    </string-array>
+    <string-array name="pref_general_sort_order_values">
+        <item>desc</item>
+        <item>asc</item>
+	</string-array>
+    
+    
     <!-- 
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>
@@ -92,7 +104,8 @@
     
     
     <string name="calculating_cache_size">Calculating cache size.. Please wait.</string>
-    
+    <string name="reset_cache_unsaved_changes">There are unsynchronized changes. Would you like to reset the cache anyway?</string>
+    <string name="warning">Warning</string>
     
     
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
@@ -107,6 +120,8 @@
     <string name="pref_header_display">Display</string>
     <string name="pref_title_app_theme">App theme (requires restart to apply)</string>
     <string name="pref_title_feed_list_layout">Feed list layout</string>
+    <string name="pref_display_font_layout">Font (requires restart to apply)</string>
+    
     
     <string-array name="pref_display_apptheme">
         <item>Dark</item>
@@ -128,6 +143,36 @@
         <item>2</item>        
     </string-array>
     
+    <string-array name="pref_display_font">
+        <item>Roboto Thin</item>
+        <item>Roboto Light</item>
+        <item>Roboto Regular</item>
+        <item>Roboto Medium</item>
+        <item>Roboto Bold</item>
+        <item>Roboto Black</item>
+        <item>Roboto Condensed</item>
+        <item>Roboto Condensed Bold</item>
+        <item>Roboto Slab Thin</item>
+        <item>Roboto Slab Light</item>
+        <item>Roboto Slab Regular</item>
+        <item>Roboto Slab Bold</item>
+	</string-array>
+	<string-array name="pref_display_font_values">
+        <item>0</item>
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+        <item>12</item>
+        <item>14</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+	</string-array>
+	
+	
     
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
@@ -164,8 +209,10 @@
         <item>2000</item>
         <item>5000</item>
         <item>10000</item>
-        
     </string-array>
+    
+    
+    
     
     <!-- 
     <string name="pref_title_sync_frequency">Sync frequency</string>

@@ -11,8 +11,6 @@
         android:entries="@array/pref_display_apptheme"
         android:entryValues="@array/pref_display_apptheme_values"
         android:key="sp_app_theme"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
         android:title="@string/pref_title_app_theme" />
     
     
@@ -21,9 +19,15 @@
         android:entries="@array/pref_display_feed_list_layout"
         android:entryValues="@array/pref_display_feed_list_layout_values"
         android:key="sp_feed_list_layout"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
         android:title="@string/pref_title_feed_list_layout" />
+    
+    
+    <ListPreference
+        android:defaultValue="2"
+        android:entries="@array/pref_display_font"
+        android:entryValues="@array/pref_display_font_values"
+        android:key="sp_font"
+        android:title="@string/pref_display_font_layout" />
     
     <!--
          This preference simply launches an intent when selected. Use this UI sparingly, per

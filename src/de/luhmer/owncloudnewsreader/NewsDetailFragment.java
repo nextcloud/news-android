@@ -9,10 +9,13 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +28,7 @@ import android.widget.ProgressBar;
 import com.actionbarsherlock.app.SherlockFragment;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
@@ -388,6 +392,11 @@ public class NewsDetailFragment extends SherlockFragment {
 		        
 		        if(ThemeChooser.isDarkTheme(context))
 		        	web_template = web_template.replace("<body id=\"lightTheme\">", "<body id=\"darkTheme\">");
+		        
+
+	        	FontHelper fHelper = new FontHelper(context);
+	        	
+	        	web_template = web_template.replace("ROBOTO_FONT_STYLE", fHelper.getFontName());
 		        
 		        /*
 		        DisplayMetrics displaymetrics = new DisplayMetrics();

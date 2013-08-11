@@ -70,6 +70,13 @@
         android:key="cb_MarkAsReadWhileScrolling"
         android:title="@string/pref_title_MarkAsReadWhileScrolling" />
 
+    <ListPreference
+        android:defaultValue="desc"
+        android:entries="@array/pref_general_sort_order"
+        android:entryValues="@array/pref_general_sort_order_values"
+        android:key="sp_sort_order"
+        android:title="@string/pref_title_general_sort_order" />
+    
     <!--
          NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it.
