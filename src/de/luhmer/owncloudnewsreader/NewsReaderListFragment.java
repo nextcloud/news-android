@@ -35,8 +35,6 @@ import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
@@ -176,6 +174,26 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		UpdateSyncButtonLayout();
 	}
 	
+	
+	
+	private void HandleExceptionMessages(Exception ex) {
+		if(ex instanceof HttpHostConnectException)
+            ShowToastLong("Cannot connect to the Host !");
+        else if(ex instanceof HttpResponseException)
+        {
+            HttpResponseException responseException = (HttpResponseException) ex;
+            //if(responseException.getStatusCode() == 401)
+            //    ShowToastLong("Authentication failed");
+            //else
+            ShowToastLong(responseException.getLocalizedMessage());
+        }
+        else
+            ShowToastLong(ex.getLocalizedMessage());
+		
+		UpdateSyncButtonLayout();
+	}
+	
+	
 	OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
 		
 		@Override
@@ -192,6 +210,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 					if(eListView != null)
 						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
 				}
+				else 
+					HandleExceptionMessages((Exception) task_result);
+				
 				UpdateSyncButtonLayout();
 			}
 		}
@@ -206,8 +227,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	            {	
 	            	if((Boolean) task_result)
 	            	{
-	            		//dbConn.resetDatabase();
-	            		
 	            		if(task_id == Constants.TaskID_PerformStateChange)
 	            		{
 	            			_Reader.Start_AsyncTask_GetFolder(Constants.TaskID_GetFolder,  getActivity(), onAsyncTask_GetFolder);
@@ -228,30 +247,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	
     
 	OnAsyncTaskCompletedListener onAsyncTask_GetFolder = new OnAsyncTaskCompletedListener() {
-
-		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			if(isTwoPaneMode() || isAdded()) {
 	            if(task_result != null)
-	            {
-	                if(task_result instanceof HttpHostConnectException)
-	                    ShowToastLong("Cannot connect to the Host !");
-	                else if(task_result instanceof HttpResponseException)
-	                {
-	                    HttpResponseException responseException = (HttpResponseException) task_result;
-	                    //if(responseException.getStatusCode() == 401)
-	                    //    ShowToastLong("Authentication failed");
-	                    //else
-	                    ShowToastLong(responseException.getLocalizedMessage());
-	                }
-	                else
-	                    ShowToastLong(((Exception)task_result).getLocalizedMessage());
-	
-	                UpdateSyncButtonLayout();
-	            }
-	            else
-	            {
+	            	HandleExceptionMessages((Exception) task_result);
+	            else {
 	                _Reader.Start_AsyncTask_GetFeeds(Constants.TaskID_GetFeeds, getActivity(), onAsyncTask_GetFeed);
 	                if(eListView != null)
 	                	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFeeds));
@@ -274,13 +275,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			if(isTwoPaneMode() || isAdded()) {
-	            if(task_result != null)
-	            {
-	                ShowToastLong(((Exception)task_result).getLocalizedMessage());
-	                UpdateSyncButtonLayout();
-	            }
-	            else
-	            {
+				if(task_result != null)
+	            	HandleExceptionMessages((Exception) task_result);
+				else {
 	            	//dbConn.resetRssItemsDatabase();
 	            	
 	                _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, getActivity(), onAsyncTask_GetItems, TAGS.ALL);//Recieve all unread Items
@@ -309,8 +306,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {			
 			if(isTwoPaneMode() || isAdded()) {
-	            if(task_result != null)
-	                ShowToastLong(((Exception)task_result).getLocalizedMessage());
+				if(task_result != null)
+	            	HandleExceptionMessages((Exception) task_result);
 	
 	            lvAdapter.notifyDataSetChanged();
 	

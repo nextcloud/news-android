@@ -15,7 +15,9 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public abstract class API {
 	protected SharedPreferences mPrefs;
-	static final Pattern RemoveAllDoubleSlashes = Pattern.compile("[^:](\\/\\/)");
+	//static final Pattern RemoveAllDoubleSlashes = Pattern.compile("[^:](\\/\\/)");
+	static final Pattern RemoveAllDoubleSlashes = Pattern.compile("(?<!:)\\/\\/");
+	
 	
 	public API(Context cont) {
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
