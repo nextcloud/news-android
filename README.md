@@ -89,8 +89,15 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.4.3 (in development)
+0.4.4 (in development)
 ---------------------
+
+0.4.3
+---------------------
+- Fixed issue <a href="https://github.com/owncloud/News-Android-App/issues/104">#104 (0.4.2 does not sync)</a>
+- Fix issue that sometimes Exeptions are not shown
+- Update F-Droid (merge dev with master)
+- Update Language Support from master branch
 
 0.4.2
 ---------------------
