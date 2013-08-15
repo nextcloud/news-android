@@ -156,6 +156,11 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	public void StartSync()
 	{
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		
+		//Update username and password again.. (might have been changed by the login dialog)
+		username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
+		password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
+		
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
 		{
 			NewsReaderListActivity nla = (NewsReaderListActivity) getActivity();
