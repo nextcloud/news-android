@@ -2,6 +2,7 @@
 <resources>
   <string name="app_name">ownCloud News Reader</string>
   <string name="action_settings">Indstillinger</string>
+  <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">AbonnementAktivitet</string>
   <string name="title_newsreader_list">NewsReader</string>
   <string name="title_newsreader_detail">NewsReader Oplysninger</string>
@@ -18,14 +19,16 @@
   <string name="menu_update">Opdater</string>
   <string name="menu_About_Changelog">Om / Ændringslog</string>
   <string name="menu_markAllAsRead">Marker alle som læst</string>
-  <string name="menu_StartImageCaching">Start offline cache af billieder</string>
+  <string name="menu_StartImageCaching">Start offline cache af billeder</string>
   <string name="menu_downloadMoreItems">Hent flere artikler</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Artiklens kildekode - Fejlrapport</string>
   <string name="email_sendMail">Send e-mail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Markéret</string>
   <string name="action_read">Læst</string>
   <string name="action_openInBrowser">Åben i browser</string>
+  <string name="action_sendSourceCode">Send artikel til udvikler</string>
   <string name="action_Share">Del</string>
   <string name="action_login">Server Indstillinger</string>
   <!--Strings related to login-->
