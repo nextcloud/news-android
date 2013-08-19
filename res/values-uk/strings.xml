@@ -18,6 +18,7 @@
   <string name="pref_header_general">Загалом</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">Попередження</string>
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Помилка</string>

@@ -56,6 +56,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Konfiguriere Cachegrösse... Bitte warten.</string>
+  <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Start synchronisieren</string>
   <string name="pref_title_ShowOnlyUnread">Nur ungelesene Artikel anzeigen</string>
   <string name="pref_title_AllowAllSSLCertificates">Alle SSL-Zertifikate erlauben</string>

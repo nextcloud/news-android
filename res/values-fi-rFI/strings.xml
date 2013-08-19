@@ -41,9 +41,19 @@
   <string name="title_activity_settings">Asetukset</string>
   <!--General settings-->
   <string name="pref_header_general">Yleiset</string>
+  <string name="pref_title_general_sort_order">Lajittelujärjestys</string>
+  <string-array name="pref_general_sort_order">
+    <item>Uusi -&gt; vanha</item>
+    <item>Vanha -&gt; uusi</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values">
+    <item>laskeva</item>
+    <item>nouseva</item>
+  </string-array>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Lasketaan välimuistin kokoa... Odota hetki.</string>
+  <string name="warning">Varoitus</string>
   <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
   <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>
   <string name="pref_title_AllowAllSSLCertificates">Salli kaikki SSL-varmenteet</string>
@@ -51,6 +61,7 @@
   <!--Settings for Display-->
   <string name="pref_title_app_theme">Sovelluksen teema (muutos vaatii uudelleenkäynnistyksen)</string>
   <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
+  <string name="pref_display_font_layout">Kirjasin (vaatii uudelleenkäynnistyksen tullakseen voimaan)</string>
   <string-array name="pref_display_apptheme">
     <item>Tumma</item>
     <item>Vaalea</item>
@@ -63,6 +74,20 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Virhe</string>

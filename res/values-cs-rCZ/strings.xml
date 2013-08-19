@@ -10,9 +10,9 @@
   <string name="empty_view_content">Žádné položky</string>
   <string name="toast_GettingMoreItems">Bylo zahájeno stahování dalších položek... Prosím čekejte.</string>
   <string name="tv_clickHereToOpenItem">Klikněte zde pro otevření položky</string>
-  <string name="no_wifi_available">WiFi není připojeno</string>
-  <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití WiFi připojení</string>
-  <string name="max_items_count_reached">Dosáhli jste maximálního velikosti XX položek</string>
+  <string name="no_wifi_available">Wi-Fi není připojeno</string>
+  <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
+  <string name="max_items_count_reached">Dosáhli jste maximální velikosti XX položek</string>
   <string name="allUnreadFeeds">Všechny nepřečtené položky</string>
   <string name="starredFeeds">Položky s hvězdičkou</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -46,17 +46,28 @@
   <string name="toast_downloaded_x_items">Staženo X starých položek</string>
   <string name="toast_no_more_downloads_available">Žádné další staré položky nejsou k dispozici ke stažení</string>
   <string name="pull_to_refresh_updateTags">Synchronizuji stav položek</string>
-  <string name="pull_to_refresh_updateFolder">Synchronizuji adresář</string>
+  <string name="pull_to_refresh_updateFolder">Synchronizuji složku</string>
   <string name="pull_to_refresh_updateFeeds">Synchronizuji kanály</string>
   <string name="pull_to_refresh_updateItems">Synchronizuji položky</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavení</string>
   <!--General settings-->
   <string name="pref_header_general">Hlavní</string>
+  <string name="pref_title_general_sort_order">Řazení</string>
+  <string-array name="pref_general_sort_order">
+    <item>Nové -&gt; Staré</item>
+    <item>Staré -&gt; Nové</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values">
+    <item>sestupně</item>
+    <item>vzestupně</item>
+  </string-array>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Počítám velikost mezipaměti... Počkejte prosím.</string>
-  <string name="pref_title_AutoSyncOnStart">Synchronizovat při startu</string>
+  <string name="reset_cache_unsaved_changes">Existují nesesynchronizované změny. Přejete si přesto vyprázdnit mezipaměť?</string>
+  <string name="warning">Varování</string>
+  <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>
   <string name="pref_title_ShowOnlyUnread">Zobrazit pouze nepřečtené články</string>
   <string name="pref_title_AllowAllSSLCertificates">Povolit všechny SSL certifikáty</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigace pomocí tlačítek hlasitosti</string>
@@ -65,6 +76,7 @@
   <string name="pref_header_display">Zobrazení</string>
   <string name="pref_title_app_theme">Vzhled aplikace (změna vyžaduje restart)</string>
   <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
+  <string name="pref_display_font_layout">Font (změna se projeví po restartu)</string>
   <string-array name="pref_display_apptheme">
     <item>Tmavý</item>
     <item>Světlý</item>
@@ -82,6 +94,34 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Chyba</string>

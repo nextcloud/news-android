@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">ownCloud新闻读者</string>
+  <string name="app_name">ownCloud新闻阅读器</string>
   <string name="action_settings">设置</string>
   <string name="title_activity_news_detail">新闻详细活动</string>
   <string name="title_activity_subscription">订阅活动</string>
@@ -31,6 +31,7 @@
   <string name="pref_header_general">常规</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">警告</string>
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">错误</string>

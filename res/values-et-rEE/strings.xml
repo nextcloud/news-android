@@ -56,6 +56,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Arvutan puhvri suurust... Palun oota.</string>
+  <string name="warning">Hoiatus</string>
   <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
   <string name="pref_title_ShowOnlyUnread">Näita ainult lugemata artikleid</string>
   <string name="pref_title_AllowAllSSLCertificates">Luba kõik SSL-sertifikaadid</string>

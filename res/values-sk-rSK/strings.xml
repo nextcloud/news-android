@@ -28,6 +28,7 @@
   <string name="pref_header_general">Všeobecné</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">Varovanie</string>
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Chyba</string>

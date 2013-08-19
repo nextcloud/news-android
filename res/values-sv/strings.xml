@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">ownCloud News Reader</string>
+  <string name="app_name">ownCloud Nyhetsläsare</string>
   <string name="action_settings">Inställningar</string>
   <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
   <string name="title_activity_subscription">PrenumerationAktivitet</string>
@@ -53,9 +53,20 @@
   <string name="title_activity_settings">Inställningar</string>
   <!--General settings-->
   <string name="pref_header_general">Allmänt</string>
+  <string name="pref_title_general_sort_order">Sorteringsordning</string>
+  <string-array name="pref_general_sort_order">
+    <item>Nyare -&gt; Äldre</item>
+    <item>Äldre -&gt; Nyare</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values">
+    <item>fallande</item>
+    <item>stigande</item>
+  </string-array>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Beräknar cachestorlek.. Var god Vänta.\n\n</string>
+  <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
+  <string name="warning">Varning</string>
   <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
   <string name="pref_title_ShowOnlyUnread">Visa endast olästa artiklar</string>
   <string name="pref_title_AllowAllSSLCertificates">Tillåt alla SSL-certifikat</string>
@@ -65,6 +76,7 @@
   <string name="pref_header_display">Visa</string>
   <string name="pref_title_app_theme">Tema (kräver omstart för att aktiveras)</string>
   <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
+  <string name="pref_display_font_layout">Font (omstart krävs för att ändringarna ska börja gälla)</string>
   <string-array name="pref_display_apptheme">
     <item>Mörk</item>
     <item>Ljus</item>
@@ -82,6 +94,34 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fel</string>

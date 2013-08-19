@@ -3,26 +3,33 @@
   <string name="app_name">Ανάγνωση Ειδήσεων ownCloud</string>
   <string name="action_settings">Ρυθμίσεις</string>
   <string name="empty_view_header">Πληροφορίες</string>
+  <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε.</string>
+  <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
   <string name="allUnreadFeeds">Όλα τα μη ανεγνωσμένα</string>
   <string name="starredFeeds">Επισημασμένα αντικείμενα</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Ανανέωση </string>
+  <string name="menu_About_Changelog">Περί / Αλλαγές</string>
   <string name="menu_markAllAsRead">Σημείωση όλων ως ανεγνωσμένων</string>
   <string name="menu_downloadMoreItems">Λήψη περισσότερων αντικειμένων</string>
   <!--EMAIL-->
   <string name="email_sendMail">Αποστολή Αλληλογραφίας</string>
   <!--Action Bar Items-->
   <string name="action_starred">Με αστέρι</string>
+  <string name="action_read">Ανάγνωση</string>
   <string name="action_openInBrowser">Άνοιγμα στον Περιηγητή</string>
   <string name="action_sendSourceCode">Αποστολή αντικειμένου στον Προγραμματιστή</string>
   <string name="action_Share">Διαμοιρασμός</string>
   <string name="action_login">Ρυθμίσεις Διακομιστή</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
+  <string name="pref_title_password">Μυστικός Κωδικός</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Είσοδος</string>
+  <string name="login_progress_signing_in">Είσοδος...</string>
   <string name="error_incorrect_password">Εσφαλμένο συνθηματικό</string>
   <string name="error_invalid_url">Αυτός ο σύνδεσμος είναι εσφαλμένος</string>
   <!--Toast Messages-->
@@ -33,11 +40,18 @@
   <string name="title_activity_settings">Ρυθμίσεις</string>
   <!--General settings-->
   <string name="pref_header_general">Γενικά</string>
+  <string name="pref_title_general_sort_order">Σειρά ταξινόμησης</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">Προειδοποίηση</string>
   <string name="pref_title_AutoSyncOnStart">Συγχρονισμός κατά την έναρξη</string>
+  <string name="pref_title_ShowOnlyUnread">Εμφάνιση μόνο μη αναγνωσμένων άρθρων</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Εμφάνιση</string>
+  <string name="pref_title_app_theme">Θέμα εφαρμογής (απαιτεί επανεκκίνηση για εφαρμογή)</string>
+  <string name="pref_display_font_layout">Γραμματοσειρά (απαιτεί επανεκκίνηση για εφαρμογή)</string>
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
@@ -47,6 +61,34 @@
     <item>1</item>
     <item>2</item>
   </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Σφάλμα</string>
   <string name="login_dialog_text_something_went_wrong">Κάτι πήγε στραβά :(</string>
@@ -54,6 +96,24 @@
   <!--Data & Sync-->
   <string name="pref_title_data_sync_max_items">Μέγιστος αριθμός αντικειμένων για συγχρονισμό</string>
   <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

@@ -54,6 +54,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">محاسبه اندازه حافظه پنهان.. لطفا صبر کنید.</string>
+  <string name="warning">اخطار</string>
   <string name="pref_title_AutoSyncOnStart">همگام سازی در هنگام راه اندازی</string>
   <string name="pref_title_ShowOnlyUnread">فقط نمایش مقالات خوانده نشده</string>
   <string name="pref_title_AllowAllSSLCertificates">اجازه همه گواهی های SSL </string>

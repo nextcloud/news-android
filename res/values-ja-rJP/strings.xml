@@ -53,9 +53,20 @@
   <string name="title_activity_settings">設定</string>
   <!--General settings-->
   <string name="pref_header_general">一般</string>
+  <string name="pref_title_general_sort_order">ソート順</string>
+  <string-array name="pref_general_sort_order">
+    <item>新 -&gt; 旧</item>
+    <item>旧 -&gt; 新</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values">
+    <item>降順</item>
+    <item>昇順</item>
+  </string-array>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">キャッシュサイズを計算中.. しばらくお待ち下さい。</string>
+  <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
+  <string name="warning">警告</string>
   <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
   <string name="pref_title_ShowOnlyUnread">未読の記事のみ表示</string>
   <string name="pref_title_AllowAllSSLCertificates">全てのSSL証明書を許可</string>
@@ -65,6 +76,7 @@
   <string name="pref_header_display">表示</string>
   <string name="pref_title_app_theme">アプリのテーマ (適用するには再起動する必要があります)</string>
   <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
+  <string name="pref_display_font_layout">フォント (適用するには再起動する必要があります)</string>
   <string-array name="pref_display_apptheme">
     <item>ダーク</item>
     <item>ライト</item>
@@ -82,6 +94,34 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">エラー</string>

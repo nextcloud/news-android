@@ -52,6 +52,7 @@
   <string name="pref_header_general">Splošno</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">Opozorilo</string>
   <string name="pref_title_AutoSyncOnStart">Usklajevanje ob zagonu</string>
   <string name="pref_title_ShowOnlyUnread">Prikaži samo neprebrane prispevke</string>
   <string name="pref_title_AllowAllSSLCertificates">Dovoli vsa digitalna potrdila SSL</string>

@@ -39,6 +39,7 @@
   <string name="pref_header_general">Ĝenerala</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">Averto</string>
   <string name="pref_title_ShowOnlyUnread">Montri nur nelegitajn artikolojn</string>
   <!--Settings for Display-->
   <string-array name="pref_display_apptheme_values">

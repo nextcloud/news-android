@@ -53,9 +53,20 @@
   <string name="title_activity_settings">Einstellungen</string>
   <!--General settings-->
   <string name="pref_header_general">Allgemein</string>
+  <string name="pref_title_general_sort_order">Sortierreihenfolge</string>
+  <string-array name="pref_general_sort_order">
+    <item>Neu -&gt; Alt</item>
+    <item>Alt -&gt; Neu</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values">
+    <item>abst.</item>
+    <item>aufst.</item>
+  </string-array>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Berechne Cache-Größe.. Bitte warten.</string>
+  <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchtest du auch den Cache zurücksetzen?</string>
+  <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Starten synchronisieren</string>
   <string name="pref_title_ShowOnlyUnread">Zeige nur ungelesene Artikel</string>
   <string name="pref_title_AllowAllSSLCertificates">Erlaube alle SSL-Zertifikate</string>
@@ -65,6 +76,7 @@
   <string name="pref_header_display">Bildschirm</string>
   <string name="pref_title_app_theme">App-Theme (Neustart notwendig)</string>
   <string name="pref_title_feed_list_layout">Feed-Listen-Layout</string>
+  <string name="pref_display_font_layout">Schriftart (benötigt einen Neustart zur Übernahme)</string>
   <string-array name="pref_display_apptheme">
     <item>Dunkel</item>
     <item>Hell</item>
@@ -82,6 +94,34 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fehler</string>
