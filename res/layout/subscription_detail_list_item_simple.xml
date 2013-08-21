@@ -4,8 +4,15 @@
    	xmlns:android="http://schemas.android.com/apk/res/android"    	
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:orientation="horizontal" >
-        
+       android:orientation="horizontal"
+       android:background="@drawable/row_divider_line" >
+       
+    <View
+        android:id="@+id/color_line_feed"
+        android:layout_width="@dimen/color_bar_of_feeds"
+        android:layout_height="fill_parent"
+        android:background="@color/abs__background_holo_dark"/>
+    
     <com.devspark.robototextview.widget.RobotoCheckBox
 		android:id="@+id/cb_lv_item_starred"
 		android:layout_width="wrap_content"
@@ -82,5 +89,5 @@
 	    android:clickable="false"
 	    android:focusable="false"
 	    android:gravity="center_vertical|center_horizontal" />
-
+	
 </LinearLayout>

@@ -39,21 +39,25 @@ import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 public class NewsListCursorAdapter extends CursorAdapter {
+	//private static final String TAG = "NewsListCursorAdapter";
 	DatabaseConnection dbConn;
 	IReader _Reader;
     SimpleDateFormat simpleDateFormat;
     final int LengthBody = 300;
     ForegroundColorSpan bodyForegroundColor;
-
+    IOnStayUnread onStayUnread;
+    
     PostDelayHandler pDelayHandler;
     
     int selectedDesign = 0;
     
 	@SuppressLint("SimpleDateFormat")
 	@SuppressWarnings("deprecation")
-	public NewsListCursorAdapter(Context context, Cursor c) {
+	public NewsListCursorAdapter(Context context, Cursor c, IOnStayUnread onStayUnread) {
 		super(context, c);
 
+		this.onStayUnread = onStayUnread;
+		
 		pDelayHandler = new PostDelayHandler(context);
 		
         simpleDateFormat = new SimpleDateFormat("EEE, d. MMM HH:mm:ss");
@@ -139,14 +143,22 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 	if(isChecked)
                 		fHelper.setFontStyleForSingleView(textView, fHelper.getFont());
                 		//textView.setTextAppearance(mContext, R.style.RobotoFontStyle);
-                	else
+                	else {
                 		fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
+                		onStayUnread.stayUnread((RobotoCheckBox)buttonView);
+                	}
                 		//textView.setTextAppearance(mContext, R.style.RobotoFontStyleBold);
                 		
                 	textView.invalidate();
                 }
 			}
-		});        
+		});
+        
+        
+        String colorString = dbConn.getAvgColourOfFeedByDbId(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
+        View viewColor = view.findViewById(R.id.color_line_feed);
+        if(colorString != null)
+        	viewColor.setBackgroundColor(Integer.parseInt(colorString));
 	}
 	
 	public void setSimpleLayout(View view, Cursor cursor)
@@ -250,7 +262,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
     }
 
 	@Override
-	public View newView(Context arg0, Cursor cursor, ViewGroup parent) {
+	public View newView(Context cont, Cursor cursor, ViewGroup parent) {
 		// when the view will be created for first time,
         // we need to tell the adapters, how each item will look
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());        
@@ -271,6 +283,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 			default:
 				break;
         }
+        
         
         if(retView != null)
         	retView.setTag(cursor.getString(0));

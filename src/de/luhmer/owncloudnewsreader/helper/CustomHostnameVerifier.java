@@ -2,6 +2,7 @@ package de.luhmer.owncloudnewsreader.helper;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
 import javax.security.cert.X509Certificate;
 
@@ -17,6 +18,15 @@ public class CustomHostnameVerifier implements HostnameVerifier  {
 	@Override
 	public boolean verify(String hostname, SSLSession session) {
 		Log.d(TAG, session.getCipherSuite().toString());
+		try {
+			if(hostname.equals(session.getPeerCertificates()[0]))
+			{
+				return true;
+			}
+		} catch (SSLPeerUnverifiedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 }

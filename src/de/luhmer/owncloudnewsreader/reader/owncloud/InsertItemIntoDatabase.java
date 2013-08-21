@@ -33,7 +33,8 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
                                 e.optString("feedId"), null,
                                 date, e.optBoolean("starred"),
                                 e.optString("guid"), e.optString("guidHash"),
-                                e.optString("lastModified"));
+                                e.optString("lastModified"),
+                                e.optString("author"));
 	}
 
 	@Override

@@ -26,7 +26,6 @@ import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 
 public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter {
@@ -166,7 +165,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        SetUnreadCountForFeed(tV_UnreadCount, String.valueOf(item.id_database), execludeStarredItems);	
 	        
 	        ImageView imgView = (ImageView) view.findViewById(R.id.iVFavicon);
-	        GetFavIconForFeed(item.favIcon, imgView);
+	        GetFavIconForFeed(item.favIcon, imgView, String.valueOf(item.id_database));
         }
         else
         {
@@ -320,7 +319,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         
         
         //viewHolder.txt_UnreadCount.setText(group.unreadCount);
-        
+        viewHolder.imgView.setRotation(0);
         if(group.idFolder != null)
         {
 	        if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
@@ -330,16 +329,18 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        	{
 	        		if(cursor.getCount() > 0)
 	        		{
+	        			viewHolder.imgView.setImageDrawable(null);
+	        			
 			        	cursor.moveToFirst();
 			        	String favIconURL = cursor.getString(cursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));			        	
-			        	GetFavIconForFeed(favIconURL, viewHolder.imgView);
+			        	GetFavIconForFeed(favIconURL, viewHolder.imgView, String.valueOf(group.id_database));
 	        		}
 	        	}
 	        	cursor.close();
 	        }
         }
         else
-        { 
+        {
         	if(String.valueOf(group.id_database).equals(ALL_STARRED_ITEMS))
         	{
         		viewHolder.imgView.setVisibility( View.VISIBLE );
@@ -350,12 +351,15 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        } 
 	        else {
 	        	viewHolder.imgView.setVisibility( View.VISIBLE );
-	        	if(ThemeChooser.isDarkTheme(mContext))
-	        		viewHolder.imgView.setImageResource( isExpanded ? R.drawable.ic_find_previous_holo_dark : R.drawable.ic_find_next_holo_dark);
-	        	else
-	        		viewHolder.imgView.setImageResource( isExpanded ? R.drawable.ic_find_previous_holo_light : R.drawable.ic_find_next_holo_light);
+	        	//if(ThemeChooser.isDarkTheme(mContext))
+	        	//	viewHolder.imgView.setImageResource(isExpanded ? R.drawable.ic_find_previous_holo_dark : R.drawable.ic_find_next_holo_dark);
+	        	//else
+	        		//viewHolder.imgView.setImageResource(isExpanded ? R.drawable.ic_find_previous_holo_light : R.drawable.ic_find_next_holo_light);
+	        	viewHolder.imgView.setImageResource(R.drawable.ic_find_next_holo_dark);
+	        	
+	        	if(isExpanded)
+	        		viewHolder.imgView.setRotation(-90);
 	        }
-	        
         }
         
         //view.setTag(group.id_database);
@@ -376,16 +380,15 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
 	}
 	
-	private void GetFavIconForFeed(String favIconURL, ImageView imgView)
+	private void GetFavIconForFeed(String favIconURL, ImageView imgView, String feedID)
 	{
 		try
 		{
 			if(favIconURL != null)
 	    	{
-				
 				if(favIconURL.trim().length() > 0)
 				{	
-		    		FavIconHandler.GetImageAsync(imgView, favIconURL, mContext);
+		    		new FavIconHandler().GetImageAsync(imgView, favIconURL, mContext, feedID);
 		    		//new FavIconHandler.GetImageFromWebAsyncTask(favIconURL, mContext, imgView).execute((Void)null);
 				}
 				else

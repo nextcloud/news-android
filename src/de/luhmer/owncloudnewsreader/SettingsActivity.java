@@ -529,7 +529,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		DatabaseConnection dbConn = new DatabaseConnection(_mActivity);
 		try {
 			dbConn.resetDatabase();
-			ImageHandler.clearCache(_mActivity);				
+			ImageHandler.clearCache(_mActivity);
 			LoginDialogFragment.ShowAlertDialog("Information" , "Cache is cleared!", _mActivity);
 			new GetCacheSizeAsync().execute((Void)null);
 		} finally {

@@ -17,7 +17,7 @@
     
     <item
         android:id="@+id/action_read"
-        android:showAsAction="never"        
+        android:showAsAction="always"        
         android:checkable="true"
         android:title="@string/action_read" />
     
@@ -27,11 +27,13 @@
         android:icon="@android:drawable/ic_menu_set_as"
         android:title="@string/action_openInBrowser"/>
     
+    <!-- 
     <item
         android:id="@+id/action_sendSourceCode"
         android:showAsAction="never"        
         android:title="@string/action_sendSourceCode"/>
-
+	-->
+    
     <item
         android:id="@+id/action_ShareItem"
         android:showAsAction="ifRoom"

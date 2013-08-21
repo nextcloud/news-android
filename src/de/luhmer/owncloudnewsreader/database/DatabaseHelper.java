@@ -7,8 +7,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String DATABASE_NAME = "OwncloudNewsReader.db";	
 	
+	private static DatabaseHelper instance;
+
+    public static synchronized DatabaseHelper getHelper(Context context)
+    {
+        if (instance == null)
+            instance = new DatabaseHelper(context);
+
+        return instance;
+    }
+	
 	public DatabaseHelper(Context context) {		
-		super(context, DATABASE_NAME, null, 2);
+		super(context, DATABASE_NAME, null, 3);
 	}
 	
 	@Override
@@ -22,7 +32,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE subscription(header_text TEXT NOT NULL, "
 											+ "subscription_id TEXT NOT NULL, "
 											+ "favicon_url TEXT, " 
-											+ "link TEXT, " 
+											+ "link TEXT, "
+											+ "avg_colour TEXT, "
 											+ "folder_idfolder INTEGER, FOREIGN KEY (folder_idfolder) REFERENCES folder(rowid)"
 											+ ");");
 		db.execSQL("CREATE TABLE rss_item (title TEXT NOT NULL, "

@@ -148,8 +148,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	}
 	
 	private boolean isTwoPaneMode() {
-		if(getActivity() != null)
-			return ((NewsReaderListActivity) getActivity()).ismTwoPane();
+		//TODO dfjksfd
+		//if(getActivity() != null)
+		//	return ((NewsReaderListActivity) getActivity()).ismTwoPane();
 		return false;
 	}
 	

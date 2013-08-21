@@ -11,6 +11,9 @@ public class RssFile {
 	private String Description;
 	private Boolean Read;
 	private Boolean Starred;
+	private String Author;
+	
+
 	//private String StreamID;
 	private String FeedID;
     private String FeedID_Db;
@@ -20,7 +23,7 @@ public class RssFile {
     private String guidHash;
     private String lastModified;
 	
-	public RssFile(long DB_Id, String Item_Id, String Title, String Link, String Description, Boolean Read, String FeedID_Db, String FeedID, List<String> Categories, /*String StreamID, */Date date, Boolean Starred, String guid, String guidHash, String lastModified) {
+	public RssFile(long DB_Id, String Item_Id, String Title, String Link, String Description, Boolean Read, String FeedID_Db, String FeedID, List<String> Categories, /*String StreamID, */Date date, Boolean Starred, String guid, String guidHash, String lastModified, String author) {
 		this.setDB_Id(DB_Id);
 		this.setTitle(Title);
 		this.setLink(Link);
@@ -35,6 +38,7 @@ public class RssFile {
         this.setItem_Id(Item_Id);
         this.setFeedID_Db(FeedID_Db);
         this.setLastModified(lastModified);
+        this.setAuthor(author);
 	}
 
 	public String getTitle() {
@@ -148,5 +152,19 @@ public class RssFile {
 
 	public void setLastModified(String lastModified) {
 		this.lastModified = lastModified;
+	}
+	
+	/**
+	 * @return the author
+	 */
+	public String getAuthor() {
+		return Author;
+	}
+
+	/**
+	 * @param author the author to set
+	 */
+	public void setAuthor(String author) {
+		Author = author;
 	}
 }

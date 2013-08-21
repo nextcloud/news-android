@@ -18,6 +18,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
+import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -110,7 +111,8 @@ public class HttpJsonRequest {
 	    		//HttpsURLConnection.setDefaultHostnameVerifier(new CustomHostnameVerifier());
 	    		
 	    		//HttpsURLConnection.setDefaultHostnameVerifier(new StrictHostnameVerifier());	    		
-	    		HttpsURLConnection.setDefaultHostnameVerifier(new AllowAllHostnameVerifier());
+	    		//HttpsURLConnection.setDefaultHostnameVerifier(new AllowAllHostnameVerifier());
+	    		HttpsURLConnection.setDefaultHostnameVerifier(new BrowserCompatHostnameVerifier());
 	        }
 	        urlConnection = (HttpURLConnection) url.openConnection();
 		}

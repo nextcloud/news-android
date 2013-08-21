@@ -1,4 +1,34 @@
 <html>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+	<script type="text/javascript">
+ 
+ 
+		window.onload = function ()
+		{
+			var images = document.getElementsByTagName('img');
+			
+			for (var i = 1; i < images.length; i++) {// i = 1 because of the feed image which has no caption
+				if(images[i].getAttribute('title') != "") {
+					(function (image) {
+						var timer;
+						image.addEventListener('mouseup', function() {
+							console.log("clear");
+							clearTimeout(timer);
+						});
+						
+						image.addEventListener('mousedown', function () {
+							timer = window.setTimeout(function() { 
+								alert(image.getAttribute('title')); 
+							}, 500);
+						});
+					})(images[i]);
+				}
+			}
+
+			
+		}
+	</script>
+
     <head>
         <style type="text/css">
 			@font-face {
@@ -209,6 +239,6 @@
         </div>
         
         <div id="content">
-        </div>
+		</div>
     </body>
 </html>

@@ -3,8 +3,6 @@ package de.luhmer.owncloudnewsreader;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -21,17 +19,19 @@ import com.actionbarsherlock.app.SherlockListFragment;
 import com.devspark.robototextview.widget.RobotoCheckBox;
 
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
+import de.luhmer.owncloudnewsreader.helper.NewsListCursorAdapterHolder;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
  * either contained in a {@link NewsReaderListActivity} in two-pane mode (on
  * tablets) or a {@link NewsReaderDetailActivity} on handsets.
  */
-public class NewsReaderDetailFragment extends SherlockListFragment {
+public class NewsReaderDetailFragment extends SherlockListFragment implements IOnStayUnread {
 	/**
 	 * The fragment argument representing the item ID that this fragment
 	 * represents.
@@ -42,14 +42,16 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 
 	private DatabaseConnection dbConn;
 	
-	private boolean DialogShowedToMarkLastItemsAsRead = false; 
+	//private boolean DialogShowedToMarkLastItemsAsRead = false; 
 	
-	private NewsListCursorAdapter lvAdapter;
+	//private static NewsListCursorAdapter lvAdapter;
+	private NewsListCursorAdapterHolder lvAdapterHolder;
+	
 	/**
-	 * @return the lvAdapter
+	 * @return the lvAdapterHolder
 	 */
-	public NewsListCursorAdapter getLvAdapter() {
-		return lvAdapter;
+	public NewsListCursorAdapterHolder getLvAdapterHolder() {
+		return lvAdapterHolder;
 	}
 
 	String idFeed;
@@ -71,39 +73,49 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	String titel;
 	int lastItemPosition;
 	
-	ArrayList<Integer> databaseIdsOfItems;
+	//private static ArrayList<Integer> databaseIdsOfItems;
+	ArrayList<RobotoCheckBox> stayUnreadCheckboxes;
 	
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
 	public NewsReaderDetailFragment() {
-		databaseIdsOfItems = new ArrayList<Integer>();
+		//databaseIdsOfItems = new ArrayList<Integer>();
+		stayUnreadCheckboxes = new ArrayList<RobotoCheckBox>();
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		if (getArguments().containsKey(NewsReaderDetailActivity.SUBSCRIPTION_ID)) {
-			idFeed = getArguments().getString(NewsReaderDetailActivity.SUBSCRIPTION_ID);
-		}
-		if (getArguments().containsKey(NewsReaderDetailActivity.TITEL)) {
-			titel = getArguments().getString(NewsReaderDetailActivity.TITEL);
-		}
-		if (getArguments().containsKey(NewsReaderDetailActivity.FOLDER_ID)) {
-			idFolder = getArguments().getString(NewsReaderDetailActivity.FOLDER_ID);
-		}
+		setRetainInstance(true);
+				
 		
-		dbConn = new DatabaseConnection(getActivity());
+		if(getArguments() != null) {
+			if (getArguments().containsKey(NewsReaderListActivity.SUBSCRIPTION_ID)) {
+				idFeed = getArguments().getString(NewsReaderListActivity.SUBSCRIPTION_ID);
+			}
+			if (getArguments().containsKey(NewsReaderListActivity.TITEL)) {
+				titel = getArguments().getString(NewsReaderListActivity.TITEL);
+			}
+			if (getArguments().containsKey(NewsReaderListActivity.FOLDER_ID)) {
+				idFolder = getArguments().getString(NewsReaderListActivity.FOLDER_ID);
+			}
 			
-		((SherlockFragmentActivity) getActivity()).getSupportActionBar().setTitle(titel);
-		
-		UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
-		
-		//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-		
-		UpdateCursor();
+			dbConn = new DatabaseConnection(getActivity());
+				
+			((SherlockFragmentActivity) getActivity()).getSupportActionBar().setTitle(titel);
+			
+			UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
+			
+			//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+			
+			//lvAdapter = null;
+			lvAdapterHolder.setLvAdapter(null);
+			
+			UpdateCursor();
+		}
 	}
 	
 	@SuppressWarnings("static-access")
@@ -113,10 +125,13 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		
 		if(mActivity.getMenuItemDownloadMoreItems() != null)
 		{
-			if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+			if(idFolder != null) {
+				if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+					mActivity.getMenuItemDownloadMoreItems().setEnabled(false);
+				else
+					mActivity.getMenuItemDownloadMoreItems().setEnabled(true);
+			} else
 				mActivity.getMenuItemDownloadMoreItems().setEnabled(false);
-			else
-				mActivity.getMenuItemDownloadMoreItems().setEnabled(true);
 		}
 	}
 	
@@ -133,85 +148,23 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 			getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
 				
 	            public void onScrollStateChanged(AbsListView view, int scrollState) {
-	            	
-	            	//Log.d(TAG, "Scroll: " + scrollState);
-	            	/*
-	            	if(AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL == scrollState)
-	            	{
-	            		
-	            	}*/
+	            
 	            }
 	
-	            
+	            RobotoCheckBox lastViewedArticleCheckbox = null;
 	            public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
+	            	
+	            	if(lastViewedArticleCheckbox == null)
+	            		lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view); 
+	            		            	
 	            	RobotoCheckBox cb = getCheckBoxAtPosition(0, view);
-	            	NewsListCursorAdapter.ChangeCheckBoxState(cb, true, getActivity());
-        			
-	            	if(((firstVisibleItem + visibleItemCount) == totalItemCount) && !DialogShowedToMarkLastItemsAsRead ){
+	            	if(lastViewedArticleCheckbox != cb) {
+	            		if(!stayUnreadCheckboxes.contains(lastViewedArticleCheckbox));
+	            			NewsListCursorAdapter.ChangeCheckBoxState(lastViewedArticleCheckbox, true, getActivity());
 	            		
-	            		DialogShowedToMarkLastItemsAsRead = true;
-	            		
-	            		boolean needQuestion = false;
-	            		for (int i = firstVisibleItem + 1; i < firstVisibleItem + visibleItemCount; i++) {
-	            			cb = getCheckBoxAtPosition(i - firstVisibleItem, view);
-	            			if(!cb.isChecked())
-	            			{
-	            				needQuestion = true;
-	            				break;
-	            			}
-	            		}
-	            		
-	            		if(needQuestion)
-	            			new AlertDialog.Builder(getActivity())
-        						.setTitle("Alle als gelesen markieren ?")
-        						.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-									
-									@Override
-									public void onClick(DialogInterface dialog, int which) {
-										for (int i = firstVisibleItem + 1; i < firstVisibleItem + visibleItemCount; i++) {
-											RobotoCheckBox cb = getCheckBoxAtPosition(i - firstVisibleItem, view);
-					            			NewsListCursorAdapter.ChangeCheckBoxState(cb, true, getActivity());
-					            		}
-									}
-								})
-								.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,int id) {
-										// if this button is clicked, just close
-										// the dialog box and do nothing
-										dialog.cancel();
-									}
-								})
-								.create()
-								.show();
-	            	}	            	
+	            		lastViewedArticleCheckbox = cb;
+	            	}
 	            }
-	            
-	            /*
-	            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-	                for (int i = firstVisibleItem; i < firstVisibleItem + visibleItemCount; i++) {
-	                	
-	                	if(lastItemPosition < firstVisibleItem)
-	                	{
-	                		lastItemPosition = firstVisibleItem;
-	                		
-	                		CheckBox cb = (CheckBox) view.findViewById(R.id.cb_lv_item_read);
-	                		if(!cb.isChecked())
-	                			cb.setChecked(true);
-	                		
-	                		//dbConn.
-	                	}
-	                	
-	                    //Cursor cursor = (Cursor)view.getItemAtPosition(i);
-	                    //long id = cursor.getLong(cursor.getColumnIndex(AlertsContract._ID));
-	                    //String type = cursor.getString(cursor.getColumnIndex(AlertsContract.TYPE));
-	                    //Log.d("VIEWED", "This is viewed "+ type + " id: " + id);
-	                    //Log.d("VIEWED", "This is viewed "+ firstVisibleItem + " id: ");
-	
-	                    // here I can get the id and mark the item read
-	                }
-	            }*/
-	            
-	            
 	        });
 		}
 		
@@ -240,8 +193,10 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 
 	@Override
 	public void onDestroy() {
-		if(lvAdapter != null)
-			lvAdapter.CloseDatabaseConnection();
+		if(lvAdapterHolder.getLvAdapter() != null)
+			lvAdapterHolder.getLvAdapter().CloseDatabaseConnection();
+		//if(lvAdapter != null)
+		//	lvAdapter.CloseDatabaseConnection();
 		if(dbConn != null)
 			dbConn.closeDatabase();
 		super.onDestroy();
@@ -253,21 +208,31 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 		{
 			Cursor cursor = getRightCusor(idFolder);
 			
+			/*
 			databaseIdsOfItems.clear();
 			if(cursor != null)
 				while(cursor.moveToNext())
 					databaseIdsOfItems.add(cursor.getInt(0));
+			*/
 			
+			if(lvAdapterHolder.getLvAdapter() == null)
+			{			
+				lvAdapterHolder.setLvAdapter(new NewsListCursorAdapter(getActivity(), cursor, this));
+				setListAdapter(lvAdapterHolder.getLvAdapter());
+			}
+			else
+				lvAdapterHolder.getLvAdapter().changeCursor(cursor);
 			
+			/*
 			if(lvAdapter == null)
 			{			
-				lvAdapter = new NewsListCursorAdapter(getActivity(), cursor);
+				lvAdapter = new NewsListCursorAdapter(getActivity(), cursor, this);
 				//setEmptyListView();
 				setListAdapter(lvAdapter);
 			}
 			else
 				lvAdapter.changeCursor(cursor);
-			
+				*/
 		}
 		catch(Exception ex)
 		{
@@ -300,8 +265,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
         }
         return null;
     }
-
-
+    
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -323,20 +287,27 @@ public class NewsReaderDetailFragment extends SherlockListFragment {
 	}
 	*/
 	
+	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 				
 		Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);		
-		intentNewsDetailAct.putIntegerArrayListExtra(NewsDetailActivity.DATABASE_IDS_OF_ITEMS, databaseIdsOfItems);
+		//intentNewsDetailAct.putIntegerArrayListExtra(NewsDetailActivity.DATABASE_IDS_OF_ITEMS, databaseIdsOfItems);
 		
-		intentNewsDetailAct.putExtra(NewsReaderDetailActivity.ITEM_ID, position);
-		intentNewsDetailAct.putExtra(NewsReaderDetailActivity.TITEL, titel);
+		intentNewsDetailAct.putExtra(NewsReaderListActivity.ITEM_ID, position);
+		intentNewsDetailAct.putExtra(NewsReaderListActivity.TITEL, titel);
 		startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
 		
 		super.onListItemClick(l, v, position, id);
 	}
 
-	public ArrayList<Integer> getDatabaseIdsOfItems() {
+	/*
+	public static ArrayList<Integer> getDatabaseIdsOfItems() {
 		return databaseIdsOfItems;
+	}*/
+
+	@Override
+	public void stayUnread(RobotoCheckBox cb) {
+		stayUnreadCheckboxes.add(cb);
 	}
 }

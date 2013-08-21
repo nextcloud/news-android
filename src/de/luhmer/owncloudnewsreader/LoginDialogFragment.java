@@ -56,6 +56,9 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+		
+		setRetainInstance(true);
+		
         // Build the dialog and set up the button click handlers
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();

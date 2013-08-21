@@ -1,8 +1,12 @@
 package de.luhmer.owncloudnewsreader.helper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
@@ -16,7 +20,6 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.NewsReaderDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
@@ -82,6 +85,7 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 
 		activity = act;
 		
+		
 		menuItemSettings = menu.findItem(R.id.action_settings);
 		menuItemLogin = menu.findItem(R.id.action_login);
 		menuItemStartImageCaching = menu.findItem(R.id.menu_StartImageCaching);
@@ -93,38 +97,21 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 		
 		menuItemMarkAllAsRead.setEnabled(false);
 		menuItemDownloadMoreItems.setEnabled(false);		
-		
-		if(!mTwoPane && act instanceof NewsReaderListActivity)//On Smartphones disable this...
-		{
-			menuItemMarkAllAsRead.setVisible(false);
-			menuItemDownloadMoreItems.setVisible(false);
-			
-			menuItemDownloadMoreItems = null;
-			menuItemMarkAllAsRead = null;			
-		} else if(act instanceof NewsReaderDetailActivity) {
-			menuItemLogin.setVisible(false);
-			menuItemSettings.setVisible(false);
-			menuItemStartImageCaching.setVisible(false);
-			menuItemUpdater.setVisible(false);
-			
-			menuItemMarkAllAsRead.setEnabled(true);
-			menuItemDownloadMoreItems.setEnabled(true);
-		}
-		
-		NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
+				
+		NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame));
 		if(ndf != null)
-			ndf.UpdateMenuItemsState();//Is called on Smartphones
+			ndf.UpdateMenuItemsState();
 	}
 
 	public static boolean onOptionsItemSelected(MenuItem item, FragmentActivity activity) {
-		switch (item.getItemId()) {
+		switch (item.getItemId()) {				
 			case R.id.menu_About_Changelog:
 				SherlockDialogFragment dialog = new VersionInfoDialogFragment();
 		        dialog.show(activity.getSupportFragmentManager(), "VersionChangelogDialogFragment");
 				return true;
 		
 			case R.id.menu_markAllAsRead:
-				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
+				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame));
 				if(ndf != null)
 				{
 					/*
@@ -139,7 +126,17 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 					
 					DatabaseConnection dbConn = new DatabaseConnection(activity);
 					try {
-						dbConn.markAllItemsAsRead(ndf.getDatabaseIdsOfItems());
+						//dbConn.markAllItemsAsRead(ndf.getDatabaseIdsOfItems());
+						List<Integer> items = new ArrayList<Integer>();
+						
+						NewsListCursorAdapterHolder ncla = ((NewsListCursorAdapterHolder)activity.getApplication());
+						Cursor cursor = ncla.getLvAdapter().getCursor();
+						cursor.moveToFirst();
+						do {
+							items.add(Integer.parseInt(cursor.getString(0)));
+						} while (cursor.moveToNext());
+						dbConn.markAllItemsAsRead(items);
+						
 					} finally {
 						dbConn.closeDatabase();
 					}
@@ -200,7 +197,7 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 				API api = API.GetRightApiForVersion(appVersion, activity);
 				((OwnCloud_Reader) _Reader).setApi(api);
 				
-				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
+				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame));
 				_Reader.Start_AsyncTask_GetOldItems(Constants.TaskID_GetItems, activity, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
 			}
 		}
@@ -209,7 +206,7 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 	static OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {			
-			NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container));
+			NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame));
 			if(ndf != null)
 				ndf.UpdateCursor();
 			

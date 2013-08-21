@@ -4,19 +4,22 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.SparseArray;
 import android.widget.ImageView;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 
-public class FavIconHandler {
-	public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context)
+public class FavIconHandler {	
+	public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context, String feedID)
 	{
 		try
 		{	
 			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, ImageHandler.getPathFavIcons(context));						
-			if(favIconFile.isFile())
+			if(favIconFile.isFile() && favIconFile.length() > 0)
 			{
 				/*
 				InputStream fs = new FileInputStream(favIconFile);
@@ -27,6 +30,20 @@ public class FavIconHandler {
 				else
 					return null;
 				*/
+				
+				if(feedID != null) {
+                	DatabaseConnection dbConn = new DatabaseConnection(context);
+                	try {
+                		if(dbConn.getAvgColourOfFeedByDbId(feedID) == null) {
+	                		Bitmap bitmap = BitmapFactory.decodeFile(favIconFile.getAbsolutePath());
+	                		String avg = ColourCalculator.ColourHexFromBitmap(bitmap);
+	                		dbConn.setAvgColourOfFeedByDbId(feedID, avg);
+                		}
+                	} finally {
+                		dbConn.closeDatabase();
+                	}
+                }
+				
 				return Drawable.createFromPath(favIconFile.getPath());
 			}
 		}
@@ -81,9 +98,12 @@ public class FavIconHandler {
 	
 	
 	static SparseArray<FavIconCache> imageViewReferences = new SparseArray<FavIconCache>();
+	String feedID;
 	
-	public static void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context)
+	public void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context, String feedID)
 	{	
+		this.feedID = feedID;
+		
 		WeakReference<ImageView> imageViewReference = new WeakReference<ImageView>(imageView);
 		FavIconCache favIconCache = new FavIconCache();
 		favIconCache.context = context;
@@ -101,10 +121,11 @@ public class FavIconHandler {
 		giAsync.scaleImage = true;
 		giAsync.dstHeight = 2*32;
 		giAsync.dstWidth = 2*32;
+		giAsync.feedID = feedID;
 		giAsync.execute((Void)null);
 	}
 	
-	static ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
+	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
 		public void DownloadFinished(int AsynkTaskId, String fileCachePath) {
@@ -116,7 +137,7 @@ public class FavIconHandler {
 			{	
 	            ImageView imageView = imageViewRef.get();
 	            if (imageView != null) {
-	                imageView.setImageDrawable(FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context));
+	                imageView.setImageDrawable(FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context, feedID));
 	            }
 			}
 			

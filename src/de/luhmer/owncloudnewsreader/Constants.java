@@ -2,6 +2,7 @@ package de.luhmer.owncloudnewsreader;
 
 public class Constants {
 	public static final Boolean DEBUG_MODE = true;
+	public static final Boolean debugModeWidget = true;
 	
 	public static final String UPDATE_SERVER_HOSTNAME = "https://ourhomework.de/N43Z5W5T6721903JS98SFD7";    
     public static final String FILENAME = "OwncloudNewsReader.apk";

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/listview_row_margin_left"
+    android:paddingRight="@dimen/listview_row_margin_right"
+    android:orientation="horizontal"
+    android:background="@drawable/row_divider_line"
+    android:baselineAligned="false" >
+
+    
+    <LinearLayout
+        android:id="@+id/color_line_feed"
+	    android:layout_width="4dip"
+	    android:layout_height="match_parent"
+	    android:orientation="horizontal" />
+    
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="5dp"
+    	android:layout_marginBottom="5dp"
+        android:orientation="vertical" >
+    
+         <TextView
+	        android:id="@+id/feed_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_vertical"
+	        android:singleLine="true"
+	        android:textIsSelectable="true"
+	        android:text="dsjkafd"
+	        android:ellipsize="end"
+	        android:textStyle="bold"
+	        android:textSize="18sp" />
+        
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:orientation="horizontal" >
+	
+	        <TextView
+	            android:id="@+id/feed_author_source"
+	            android:layout_width="0dip"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:gravity="center_vertical"
+	            android:singleLine="true"
+	            android:textIsSelectable="true"
+	            android:text="cdskfjds"
+	            android:textSize="16sp" />
+	
+	        <TextView
+	            android:id="@+id/feed_datetime"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center_vertical|right"
+	            android:singleLine="true"
+	            android:textIsSelectable="true"
+	            android:text="dsjkfldsjalf"
+	            android:textSize="16sp" />
+
+	    </LinearLayout>   
+    </LinearLayout>
+<!-- 
+    <CheckBox
+        android:id="@+id/cb_lv_item_read"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+ -->
+</LinearLayout>

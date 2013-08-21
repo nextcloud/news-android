@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
+import android.renderscript.Font.Style;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;

@@ -30,11 +30,15 @@
         <activity
             android:name="de.luhmer.owncloudnewsreader.NewsReaderDetailActivity"
             android:label="@string/title_newsreader_detail"
-            android:parentActivityName=".NewsReaderListActivity"
+            
             android:configChanges="keyboardHidden|orientation|screenSize"  >
+            <!-- 
+            android:parentActivityName=".NewsReaderListActivity"
+            
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".NewsReaderListActivity" />
+            -->
         </activity>
         <activity
             android:name="de.luhmer.owncloudnewsreader.NewsDetailActivity"
@@ -50,6 +54,29 @@
             android:name="de.luhmer.owncloudnewsreader.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        
+        
+        
+        <!--
+		**********************************************************************
+		* Widget Provider Receiver
+		**********************************************************************
+        -->
+        <receiver android:name="de.luhmer.owncloudnewsreader.widget.WidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+        
+        <service
+            android:name="de.luhmer.owncloudnewsreader.widget.WidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        
     </application>
 
 </manifest>
