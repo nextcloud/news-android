@@ -36,6 +36,13 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	 */
 	private UserLoginTask mAuthTask = null;
 
+	/*
+	private String mUsernameString = "mUsernameString";
+	private String mPasswordString = "mPasswordString";
+	private String mOc_root_pathString = "mOc_root_pathString";
+	private String mCbAllowAllSSLString = "mCbAllowAllSSLString";
+	*/
+	
 	// Values for email and password at the time of the login attempt.
 	private String mUsername;
 	private String mPassword;
@@ -57,7 +64,7 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 		
-		setRetainInstance(true);
+		//setRetainInstance(true);
 		
         // Build the dialog and set up the button click handlers
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -87,6 +94,16 @@ public class LoginDialogFragment extends SherlockDialogFragment {
         mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
         mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
         mCbAllowAllSSL = mPrefs.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false);
+        
+        
+        /*
+        if(savedInstanceState != null && mUsername == null){
+        	mUsername = savedInstanceState.getString(mUsernameString);
+        	mPassword = savedInstanceState.getString(mPasswordString);
+        	mOc_root_path = savedInstanceState.getString(mOc_root_pathString);
+        	mCbAllowAllSSL = savedInstanceState.getBoolean(mCbAllowAllSSLString);
+        }
+        */
         
     	// Set up the login form.
  		//mUsername = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -143,6 +160,16 @@ public class LoginDialogFragment extends SherlockDialogFragment {
         return pDialog;
 	}
 	
+	/*
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		savedInstanceState.putString(mUsernameString, mUsernameView.getText().toString());
+		savedInstanceState.putString(mPasswordString, mPasswordView.getText().toString());
+		savedInstanceState.putString(mOc_root_pathString, mOc_root_path_View.getText().toString());
+		savedInstanceState.putBoolean(mCbAllowAllSSLString, mCbAllowAllSSLView.isChecked());
+		
+		super.onSaveInstanceState(savedInstanceState);
+	}*/
 	
 	/*
 	@Override
@@ -240,6 +267,9 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}*/
+
+
+	
 
 	/**
 	 * Attempts to sign in or register the account specified by the login form.

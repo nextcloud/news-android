@@ -13,17 +13,13 @@ import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.LinearLayout;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -160,7 +156,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		//	getSupportActionBar().setHomeButtonEnabled(true);
 		//}
         
-        onTopItemClicked(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
+        //onTopItemClicked(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
     }
 
     @Override
@@ -463,9 +459,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 
     public void StartLoginFragment()
-    {
-    	SherlockDialogFragment dialog = new LoginDialogFragment();
-        dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
+    {    	
+	   	SherlockDialogFragment dialog = new LoginDialogFragment();
+	    dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
     }
     
     /*
@@ -484,10 +480,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	
 
     //@TargetApi(Build.VERSION_CODES.FROYO)
-	@SuppressWarnings("static-access")
 	public static void UpdateListViewAndScrollToPos(FragmentActivity act, int pos)
     {
-        ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).getLvAdapterHolder().getLvAdapter().notifyDataSetChanged();
+        ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).getLvAdapter().notifyDataSetChanged();
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)
         	//((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().smoothScrollToPosition(pos);
         //else

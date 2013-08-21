@@ -1,12 +1,8 @@
 package de.luhmer.owncloudnewsreader.helper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
@@ -126,17 +122,19 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 					
 					DatabaseConnection dbConn = new DatabaseConnection(activity);
 					try {
+						/*
 						//dbConn.markAllItemsAsRead(ndf.getDatabaseIdsOfItems());
 						List<Integer> items = new ArrayList<Integer>();
 						
-						NewsListCursorAdapterHolder ncla = ((NewsListCursorAdapterHolder)activity.getApplication());
+						
 						Cursor cursor = ncla.getLvAdapter().getCursor();
 						cursor.moveToFirst();
 						do {
 							items.add(Integer.parseInt(cursor.getString(0)));
 						} while (cursor.moveToNext());
 						dbConn.markAllItemsAsRead(items);
-						
+						*/
+						dbConn.markAllItemsAsReadForCurrentView();						
 					} finally {
 						dbConn.closeDatabase();
 					}
@@ -181,10 +179,12 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 			String username = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext()).getString("edt_username", "");			
 			String password = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext()).getString("edt_password", "");
 			
-			_Reader = new OwnCloud_Reader();
-			((OwnCloud_Reader)_Reader).Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, activity, onAsyncTaskGetVersionFinished, username, password);		
+			if(username != null) {
+				_Reader = new OwnCloud_Reader();
+				((OwnCloud_Reader)_Reader).Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, activity, onAsyncTaskGetVersionFinished, username, password);		
 			
-			Toast.makeText(activity, activity.getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
+				Toast.makeText(activity, activity.getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
+			}	
 		}
 	}
 	

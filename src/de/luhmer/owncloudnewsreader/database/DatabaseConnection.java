@@ -46,6 +46,11 @@ public class DatabaseConnection {
     public static final String RSS_ITEM_READ_TEMP = "read_temp";
     public static final String RSS_ITEM_STARRED_TEMP = "starred_temp";
 	
+    
+    public static final String RSS_CURRENT_VIEW_TABLE = "rss_current_view";
+    public static final String RSS_CURRENT_VIEW_RSS_ITEM_ID = "rss_current_view_rss_item_id";
+    
+    
     public enum SORT_DIRECTION { asc, desc };
     
 	
@@ -95,6 +100,13 @@ public class DatabaseConnection {
 		for(Integer itemId : itemIds)
 			items.add(String.valueOf(itemId));
 		markAllItemsAsReadUnread(items, true);
+	}
+    
+    public void markAllItemsAsReadForCurrentView()
+	{
+    	String sql = "UPDATE " + RSS_ITEM_TABLE + " SET " + RSS_ITEM_READ_TEMP + " = 1 WHERE " + RSS_ITEM_RSSITEM_ID +
+    			" IN (SELECT " + RSS_CURRENT_VIEW_RSS_ITEM_ID + " FROM " + RSS_CURRENT_VIEW_TABLE + ")";  
+		database.execSQL(sql);
 	}
     
     public void markAllItemsAsReadUnread(List<String> itemIds, boolean markAsRead)
@@ -491,6 +503,7 @@ public class DatabaseConnection {
 					+ RSS_ITEM_PUBDATE + ", " + RSS_ITEM_STARRED + ", " + RSS_ITEM_GUIDHASH + ", " + RSS_ITEM_GUID + ", " + RSS_ITEM_STARRED_TEMP + ", " + RSS_ITEM_READ_TEMP + ", " + RSS_ITEM_AUTHOR;
 	}
 	
+	@Deprecated
 	public Cursor getAllItemsForFeed(String ID_SUBSCRIPTION, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection) {
 		
 		String buildSQL =  getAllFeedsSelectStatement() +
@@ -512,6 +525,25 @@ public class DatabaseConnection {
         return database.rawQuery(buildSQL, null);
     }
 	
+	public String getAllItemsIdsForFeedSQL(String ID_SUBSCRIPTION, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection) {
+		
+		String buildSQL =  "SELECT " + RSS_ITEM_RSSITEM_ID +
+	 			" FROM " + RSS_ITEM_TABLE +  
+				" WHERE subscription_id_subscription IN " + 
+					"(SELECT rowid " + 
+					"FROM subscription " +					
+					"WHERE rowid = " + ID_SUBSCRIPTION + ")";
+		
+		if(onlyUnread && !onlyStarredItems)
+			buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
+		else if(onlyStarredItems)
+			buildSQL += " AND " + RSS_ITEM_STARRED_TEMP + " = 1";
+
+        buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " " + sortDirection.toString();        
+
+		return buildSQL;
+    }
+	
 	public Cursor getArticleByID(String ID_FEED) {				
 		String buildSQL = getAllFeedsSelectStatement() + 
 	 			" FROM " + RSS_ITEM_TABLE +  
@@ -531,6 +563,23 @@ public class DatabaseConnection {
         return getStringValueBySQL(buildSQL);
     }
 	
+    public void insertIntoRssCurrentViewTable(String SQL_SELECT) {
+    	SQL_SELECT = "INSERT INTO " + RSS_CURRENT_VIEW_TABLE + 
+				" (" + RSS_CURRENT_VIEW_RSS_ITEM_ID + ") " + SQL_SELECT;
+    	openHelper.createRssCurrentViewTable(database);
+    	database.execSQL(SQL_SELECT);
+    }
+    
+    public Cursor getCurrentSelectedRssItems() {
+    	
+    	String query1 = getAllFeedsSelectStatement() + " FROM " + RSS_ITEM_TABLE;
+    	String query2 = "SELECT " + RSS_CURRENT_VIEW_RSS_ITEM_ID + " FROM " + RSS_CURRENT_VIEW_TABLE;
+    	
+    	String query = query1 + " WHERE " + RSS_ITEM_RSSITEM_ID + " IN (" + query2 + ")";
+    	
+    	return database.rawQuery(query, null);
+    }
+    
     /*
 	public String getCountUnreadFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {		//TODO optimize this here !!!!
 		String buildSQL = "SELECT COUNT(*) " +  
@@ -557,9 +606,8 @@ public class DatabaseConnection {
         return result;
     }*/
 	
-	public int getCountFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {
-		
-		Cursor cursor = getAllItemsForFolder(ID_FOLDER, onlyUnread, SORT_DIRECTION.desc);
+	public int getCountFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {		
+		Cursor cursor = database.rawQuery(getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, SORT_DIRECTION.desc), null);
 		int count = cursor.getCount();
 		cursor.close();
 		
@@ -603,6 +651,7 @@ public class DatabaseConnection {
         return result;
     }*/
 	
+	@Deprecated
 	public Cursor getAllItemsForFolder(String ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
 		String buildSQL = getAllFeedsSelectStatement() + 
 	 			" FROM " + RSS_ITEM_TABLE;
@@ -636,6 +685,41 @@ public class DatabaseConnection {
 	 	if(DATABASE_DEBUG_MODE)
 	 		Log.d("DB_HELPER", "getAllFeedData SQL: " + buildSQL); 
         return database.rawQuery(buildSQL, null);
+    }
+	
+	public String getAllItemsIdsForFolderSQL(String ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
+		String buildSQL = "SELECT " + RSS_ITEM_RSSITEM_ID +
+	 			" FROM " + RSS_ITEM_TABLE;
+	 	
+	 	if(!(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_ITEMS)))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+	 	{
+			buildSQL += " WHERE subscription_id_subscription IN " + 
+					"(SELECT sc.rowid " + 
+					"FROM subscription sc " +
+					"JOIN folder f ON sc." + SUBSCRIPTION_FOLDER_ID + " = f.rowid " +
+					"WHERE f.rowid = " + ID_FOLDER + ")";
+			
+			if(onlyUnread)
+				buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	}
+	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) && onlyUnread)//only unRead should only be null when testing the size of items
+	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " != 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED + " != 1";
+	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) && onlyUnread)
+	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1";
+	 			
+	 	
+	 	buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " " + sortDirection.toString();
+
+	 	//	buildSQL += " WHERE starred = 1";
+	 	
+	 	if(DATABASE_DEBUG_MODE)
+	 		Log.d("DB_HELPER", "getAllFeedData SQL: " + buildSQL); 
+        return buildSQL;
     }	
 	
 	public Cursor getAllSubscriptionForFolder(String ID_FOLDER, boolean onlyUnread) {

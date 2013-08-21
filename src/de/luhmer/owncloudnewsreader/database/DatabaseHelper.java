@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 	
 	public DatabaseHelper(Context context) {		
-		super(context, DATABASE_NAME, null, 3);
+		super(context, DATABASE_NAME, null, 4);
 	}
 	
 	@Override
@@ -51,6 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
   											+ "lastModified DATETIME NULL, "
 											+ "subscription_id_subscription INTEGER, FOREIGN KEY (subscription_id_subscription) REFERENCES subscription(rowid));");		
 
+		createRssCurrentViewTable(db);
 
 		/*
 		
@@ -61,6 +62,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		*/
 	}
 	
+	public void createRssCurrentViewTable(SQLiteDatabase db) {
+		 db.execSQL("DROP TABLE IF EXISTS " + DatabaseConnection.RSS_CURRENT_VIEW_TABLE);
+		 db.execSQL("CREATE TABLE " + DatabaseConnection.RSS_CURRENT_VIEW_TABLE
+					+ " (" + DatabaseConnection.RSS_CURRENT_VIEW_RSS_ITEM_ID + " INT NOT NULL,"
+					+ " FOREIGN KEY (" + DatabaseConnection.RSS_CURRENT_VIEW_RSS_ITEM_ID + ") REFERENCES rss_item(rssitem_id))");
+	}
 	
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

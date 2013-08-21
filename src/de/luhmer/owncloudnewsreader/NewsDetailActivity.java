@@ -3,7 +3,6 @@ package de.luhmer.owncloudnewsreader;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -22,9 +21,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.helper.NewsListCursorAdapterHolder;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
@@ -57,6 +54,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
     //ArrayList<Integer> databaseItemIds;
     DatabaseConnection dbConn;
 	//public List<RssFile> rssFiles;
+    Cursor cursor;
     
     public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
     
@@ -129,6 +127,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			public void onPageScrollStateChanged(int arg0) {
 			}
 		});
+		
+		cursor = dbConn.getCurrentSelectedRssItems();
 	}
 	
 	@Override
@@ -137,17 +137,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			dbConn.closeDatabase();
 		super.onDestroy();
 	}
-	
-	@Override
-	protected void onResume() {
-		if(((NewsListCursorAdapterHolder) getApplication()).getLvAdapter() == null) {
-			finish();
-		}
-			
-		super.onResume();
-	}
-	
-	
+		
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -155,7 +145,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		{
 	        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN))
 	        {
-	        	if(currentPosition < ((NewsListCursorAdapterHolder) getApplication()).getLvAdapter().getCursor().getCount() -1)
+	        	if(currentPosition < cursor.getCount() -1)
 	        	{
 	        		mViewPager.setCurrentItem(currentPosition + 1, true);
 	        		return true;
@@ -219,7 +209,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		ResumeVideoPlayersOnCurrentPage();
 				
 		//String idFeed = String.valueOf(rssFiles.get(position).getDB_Id());
-		String idFeed = getIdCurrentFeed(currentPosition, getApplication());
+		String idFeed = getIdCurrentFeed(currentPosition);
 		
 		if(!dbConn.isFeedUnreadStarred(idFeed, true))
 		{			
@@ -251,9 +241,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			UpdateActionBarIcons();
 	}
 	
-	public static String getIdCurrentFeed(int position, Application app) {
-		NewsListCursorAdapter nlca = ((NewsListCursorAdapterHolder) app).getLvAdapter();
-		Cursor cursor = nlca.getCursor();
+	public String getIdCurrentFeed(int position) {
 		cursor.moveToPosition(position);
 		String idFeed = String.valueOf(cursor.getString(0));
 		return idFeed;
@@ -276,7 +264,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 	public void UpdateActionBarIcons()
 	{
-		String idFeed = getIdCurrentFeed(currentPosition, getApplication());
+		String idFeed = getIdCurrentFeed(currentPosition);
 		boolean isStarred = dbConn.isFeedUnreadStarred(idFeed, false);
 		boolean isRead = dbConn.isFeedUnreadStarred(idFeed, true);
 		
@@ -309,7 +297,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		String idFeed = getIdCurrentFeed(currentPosition, getApplication());
+		String idFeed = getIdCurrentFeed(currentPosition);
 		Cursor cursor = dbConn.getArticleByID(idFeed);
 		
 		switch (item.getItemId()) {
@@ -319,7 +307,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 			case R.id.action_starred:				
 				//String idItem_Db = String.valueOf(rssFiles.get(currentPosition).getDB_Id());
-				String idItem_Db = getIdCurrentFeed(currentPosition, getApplication());
+				String idItem_Db = getIdCurrentFeed(currentPosition);
                 //String idItem = String.valueOf(rssFiles.get(currentPosition).getItem_Id());
 				Boolean curState = dbConn.isFeedUnreadStarred(idItem_Db, false);
 
@@ -497,10 +485,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 		@Override
 		public int getCount() {
-			NewsListCursorAdapter nlca = ((NewsListCursorAdapterHolder) getApplication()).getLvAdapter();
-			if(nlca != null)
-				return nlca.getCursor().getCount();
-			return 0;
+			return cursor.getCount();			
 		}
 
 		@Override

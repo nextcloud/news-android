@@ -24,7 +24,6 @@ import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
-import de.luhmer.owncloudnewsreader.helper.NewsListCursorAdapterHolder;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -44,14 +43,10 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	
 	//private boolean DialogShowedToMarkLastItemsAsRead = false; 
 	
-	//private static NewsListCursorAdapter lvAdapter;
-	private NewsListCursorAdapterHolder lvAdapterHolder;
+	private NewsListCursorAdapter lvAdapter;
 	
-	/**
-	 * @return the lvAdapterHolder
-	 */
-	public NewsListCursorAdapterHolder getLvAdapterHolder() {
-		return lvAdapterHolder;
+	public NewsListCursorAdapter getLvAdapter() {
+		return lvAdapter;
 	}
 
 	String idFeed;
@@ -111,8 +106,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			
 			//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 			
-			//lvAdapter = null;
-			lvAdapterHolder.setLvAdapter(null);
+			lvAdapter = null;
 			
 			UpdateCursor();
 		}
@@ -193,8 +187,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 	@Override
 	public void onDestroy() {
-		if(lvAdapterHolder.getLvAdapter() != null)
-			lvAdapterHolder.getLvAdapter().CloseDatabaseConnection();
+		if(lvAdapter != null)
+			lvAdapter.CloseDatabaseConnection();
 		//if(lvAdapter != null)
 		//	lvAdapter.CloseDatabaseConnection();
 		if(dbConn != null)
@@ -215,13 +209,13 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 					databaseIdsOfItems.add(cursor.getInt(0));
 			*/
 			
-			if(lvAdapterHolder.getLvAdapter() == null)
+			if(lvAdapter == null)
 			{			
-				lvAdapterHolder.setLvAdapter(new NewsListCursorAdapter(getActivity(), cursor, this));
-				setListAdapter(lvAdapterHolder.getLvAdapter());
+				lvAdapter  = new NewsListCursorAdapter(getActivity(), cursor, this);
+				setListAdapter(lvAdapter);
 			}
 			else
-				lvAdapterHolder.getLvAdapter().changeCursor(cursor);
+				lvAdapter.changeCursor(cursor);
 			
 			/*
 			if(lvAdapter == null)
@@ -255,6 +249,22 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
     		sDirection = SORT_DIRECTION.desc;
     		
     	
+    	String sqlSelectStatement = null;
+    	if(idFeed != null)
+    		sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sDirection);
+        else if(idFolder != null)
+        {
+        	if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+        		onlyUnreadItems = false;
+        	sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sDirection);
+        }
+    	if(sqlSelectStatement != null) {    		
+    		dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
+    	}
+    	
+    	
+    	return dbConn.getCurrentSelectedRssItems();
+    	/*
         if(idFeed != null)
             return dbConn.getAllItemsForFeed(idFeed, onlyUnreadItems, onlyStarredItems, sDirection);
         else if(idFolder != null)
@@ -264,6 +274,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
             return dbConn.getAllItemsForFolder(idFolder, onlyUnreadItems, sDirection);
         }
         return null;
+        */
     }
     
 	@Override
