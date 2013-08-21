@@ -276,10 +276,16 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			menuItem_Starred.setIcon(android.R.drawable.star_off);
 			//menuItem_Starred.setIcon(R.drawable.btn_rating_star_off_normal_holo_light);
 		
-		if(isRead && menuItem_Read != null)
+		
+		
+		if(isRead && menuItem_Read != null) {
+			menuItem_Read.setIcon(android.R.drawable.checkbox_on_background);
 			menuItem_Read.setChecked(true);
-		else if(menuItem_Read != null)
+		}
+		else if(menuItem_Read != null) {
+			menuItem_Read.setIcon(android.R.drawable.checkbox_off_background);
 			menuItem_Read.setChecked(false);
+		}
 	}
 	
 	@Override
@@ -413,6 +419,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 					markItemAsReadUnread(id, !menuItem_Read.isChecked());
 					cursor.close();
 				}            	
+            	
+            	UpdateActionBarIcons();
             	
             	pDelayHandler.DelayTimer();
             	
