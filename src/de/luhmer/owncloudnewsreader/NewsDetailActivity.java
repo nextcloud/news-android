@@ -92,6 +92,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
 		
 		
+		cursor = dbConn.getCurrentSelectedRssItems();
+		
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -127,8 +129,6 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			public void onPageScrollStateChanged(int arg0) {
 			}
 		});
-		
-		cursor = dbConn.getCurrentSelectedRssItems();
 	}
 	
 	@Override
@@ -279,11 +279,11 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 		
 		if(isRead && menuItem_Read != null) {
-			menuItem_Read.setIcon(android.R.drawable.checkbox_on_background);
+			menuItem_Read.setIcon(R.drawable.btn_check_on_holo_dark);
 			menuItem_Read.setChecked(true);
 		}
 		else if(menuItem_Read != null) {
-			menuItem_Read.setIcon(android.R.drawable.checkbox_off_background);
+			menuItem_Read.setIcon(R.drawable.btn_check_off_holo_dark);
 			menuItem_Read.setChecked(false);
 		}
 	}
