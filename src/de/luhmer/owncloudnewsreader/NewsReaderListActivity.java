@@ -454,6 +454,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         else if(requestCode == RESULT_SETTINGS)
         {
         	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).lvAdapter.ReloadAdapter();
+        	((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCursor();
         }
     }
 

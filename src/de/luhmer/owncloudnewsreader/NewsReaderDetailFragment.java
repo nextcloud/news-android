@@ -86,6 +86,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		
 		setRetainInstance(true);
 				
+		dbConn = new DatabaseConnection(getActivity());
 		
 		if(getArguments() != null) {
 			if (getArguments().containsKey(NewsReaderListActivity.SUBSCRIPTION_ID)) {
@@ -97,8 +98,6 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			if (getArguments().containsKey(NewsReaderListActivity.FOLDER_ID)) {
 				idFolder = getArguments().getString(NewsReaderListActivity.FOLDER_ID);
 			}
-			
-			dbConn = new DatabaseConnection(getActivity());
 				
 			((SherlockFragmentActivity) getActivity()).getSupportActionBar().setTitle(titel);
 			
@@ -191,8 +190,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			lvAdapter.CloseDatabaseConnection();
 		//if(lvAdapter != null)
 		//	lvAdapter.CloseDatabaseConnection();
-		if(dbConn != null)
-			dbConn.closeDatabase();
+		//if(dbConn != null)
+		//	dbConn.closeDatabase();
 		super.onDestroy();
 	}
 
@@ -202,13 +201,6 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		{
 			Cursor cursor = getRightCusor(idFolder);
 			
-			/*
-			databaseIdsOfItems.clear();
-			if(cursor != null)
-				while(cursor.moveToNext())
-					databaseIdsOfItems.add(cursor.getInt(0));
-			*/
-			
 			if(lvAdapter == null)
 			{			
 				lvAdapter  = new NewsListCursorAdapter(getActivity(), cursor, this);
@@ -216,17 +208,6 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			}
 			else
 				lvAdapter.changeCursor(cursor);
-			
-			/*
-			if(lvAdapter == null)
-			{			
-				lvAdapter = new NewsListCursorAdapter(getActivity(), cursor, this);
-				//setEmptyListView();
-				setListAdapter(lvAdapter);
-			}
-			else
-				lvAdapter.changeCursor(cursor);
-				*/
 		}
 		catch(Exception ex)
 		{
@@ -263,7 +244,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
     	}
     	
     	
-    	return dbConn.getCurrentSelectedRssItems();
+    	return dbConn.getCurrentSelectedRssItems(sDirection);
     	/*
         if(idFeed != null)
             return dbConn.getAllItemsForFeed(idFeed, onlyUnreadItems, onlyStarredItems, sDirection);

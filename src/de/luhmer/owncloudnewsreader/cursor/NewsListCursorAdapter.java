@@ -1,8 +1,5 @@
 package de.luhmer.owncloudnewsreader.cursor;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -14,6 +11,7 @@ import android.support.v4.widget.CursorAdapter;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +40,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	//private static final String TAG = "NewsListCursorAdapter";
 	DatabaseConnection dbConn;
 	IReader _Reader;
-    SimpleDateFormat simpleDateFormat;
+    //SimpleDateFormat simpleDateFormat;
     final int LengthBody = 300;
     ForegroundColorSpan bodyForegroundColor;
     IOnStayUnread onStayUnread;
@@ -60,7 +58,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 		
 		pDelayHandler = new PostDelayHandler(context);
 		
-        simpleDateFormat = new SimpleDateFormat("EEE, d. MMM HH:mm:ss");
+        //simpleDateFormat = new SimpleDateFormat("EEE, d. MMM HH:mm:ss");
         bodyForegroundColor = new ForegroundColorSpan(context.getResources().getColor(android.R.color.secondary_text_dark));
 
         _Reader = new OwnCloud_Reader();
@@ -168,8 +166,10 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
         TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
         long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
-        textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
-
+        //textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
+        String dateString = (String) DateUtils.getRelativeTimeSpanString(pubDate);
+        textViewItemDate.setText(dateString);
+        
         TextView textViewTitle = (TextView) view.findViewById(R.id.tv_subscription);        
         textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
         textViewSummary.setTag(cursor.getString(0));
@@ -182,7 +182,9 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
         TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
         long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
-        textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
+        //textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
+        String dateString = (String) DateUtils.getRelativeTimeSpanString(pubDate);
+        textViewItemDate.setText(dateString);
 
         TextView textViewItemBody = (TextView) view.findViewById(R.id.body);
         String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));        

@@ -22,6 +22,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
@@ -91,8 +92,12 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		//if(intent.hasExtra(DATABASE_IDS_OF_ITEMS))
 		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
 		
-		
-		cursor = dbConn.getCurrentSelectedRssItems();
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
+    	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "desc");
+    	if(sortDirection.equals(SORT_DIRECTION.desc.toString()))
+    		sDirection = SORT_DIRECTION.desc;
+		cursor = dbConn.getCurrentSelectedRssItems(sDirection);
 		
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.

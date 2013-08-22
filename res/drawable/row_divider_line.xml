@@ -2,6 +2,7 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     
+    <!-- 
     <item>
         <shape>
             <solid android:color="@android:color/darker_gray" />
@@ -14,7 +15,7 @@
             <size android:height="1dp" />
         </shape>
     </item>
-    
+    -->
     
     <!-- 
     <item android:top="1dp">
@@ -22,6 +23,6 @@
 			<stroke android:width="1dp" android:color="@color/abs__background_holo_dark"></stroke>    
 		</shape>
 	</item>
-	-->
+	--> 
 </layer-list>
 

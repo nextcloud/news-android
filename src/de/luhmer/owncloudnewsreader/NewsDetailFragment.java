@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -253,8 +254,9 @@ public class NewsDetailFragment extends SherlockFragment {
 	        if(date != null)
 	        {
 	        	String divDate = "<div id=\"datetime\">";
-	        	SimpleDateFormat formater = new SimpleDateFormat();
-	        	String dateString = formater.format(date);
+	        	//SimpleDateFormat formater = new SimpleDateFormat();
+	        	//String dateString = formater.format(date);
+	        	String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
 	        	htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), dateString).toString();
 	        }
 	        

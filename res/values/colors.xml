@@ -2,4 +2,5 @@
 <resources>
     <color name="slider_listview_background_color">#525252</color>
     <color name="slider_listview_text_color">#F0F0F0</color>    
+    <color name="divider_row_color">#292929</color>
 </resources>

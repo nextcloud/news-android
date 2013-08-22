@@ -570,12 +570,14 @@ public class DatabaseConnection {
     	database.execSQL(SQL_SELECT);
     }
     
-    public Cursor getCurrentSelectedRssItems() {
+    public Cursor getCurrentSelectedRssItems(SORT_DIRECTION sortDirection) {
     	
     	String query1 = getAllFeedsSelectStatement() + " FROM " + RSS_ITEM_TABLE;
     	String query2 = "SELECT " + RSS_CURRENT_VIEW_RSS_ITEM_ID + " FROM " + RSS_CURRENT_VIEW_TABLE;
     	
     	String query = query1 + " WHERE " + RSS_ITEM_RSSITEM_ID + " IN (" + query2 + ")";
+    	//query += " ORDER BY " + RSS_ITEM_PUBDATE + " " + 
+    	query += " ORDER BY " + RSS_ITEM_PUBDATE + " " + sortDirection.toString();
     	
     	return database.rawQuery(query, null);
     }
