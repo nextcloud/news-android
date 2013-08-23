@@ -111,7 +111,10 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         
        
         mSlidingLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane);
+        
         mSlidingLayout.setParallaxDistance(280);        
+        mSlidingLayout.setSliderFadeColor(getResources().getColor(android.R.color.transparent));
+        
         mSlidingLayout.setPanelSlideListener(new PanelSlideListener() {
 			
 			@Override
@@ -130,6 +133,11 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			public void onPanelClosed(View arg0) {
 				getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 				getSupportActionBar().setHomeButtonEnabled(false);
+				
+				if(startDetailFHolder != null) {
+					startDetailFHolder.StartDetailFragment();
+					startDetailFHolder = null;
+				}
 			}
 		});
         mSlidingLayout.openPane();
@@ -248,6 +256,23 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	   }*/
 	}
 
+	private StartDetailFragmentHolder startDetailFHolder = null;
+	
+	private class StartDetailFragmentHolder {
+		String idSubscription;
+		boolean isFolder;
+		String optional_folder_id;
+		
+		public StartDetailFragmentHolder(String idSubscription, boolean isFolder, String optional_folder_id) {
+			this.idSubscription = idSubscription;
+			this.isFolder = isFolder;
+			this.optional_folder_id = optional_folder_id;
+		}
+		
+		public void StartDetailFragment() {
+			NewsReaderListActivity.this.StartDetailFragment(idSubscription, isFolder, optional_folder_id);
+		}
+	}
 
 	/**
 	 * Callback method from {@link NewsReaderListFragment.Callbacks} indicating
@@ -258,8 +283,10 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		//if(!shouldDrawerStayOpen())
 		//	drawerLayout.closeDrawer(Gravity.LEFT);
 		if(!shouldDrawerStayOpen())
-			mSlidingLayout.closePane();
-		StartDetailFragment(idSubscription, isFolder, optional_folder_id);		
+			mSlidingLayout.closePane();		
+		
+		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, isFolder, optional_folder_id);	
+		//StartDetailFragment(idSubscription, isFolder, optional_folder_id);		
 	}
 
 	@Override
@@ -268,7 +295,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		//	drawerLayout.closeDrawer(Gravity.LEFT);
 		if(!shouldDrawerStayOpen())
 			mSlidingLayout.closePane();
-		StartDetailFragment(idSubscription, false, optional_folder_id);
+		
+		//StartDetailFragment(idSubscription, false, optional_folder_id);
+		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, false, optional_folder_id);
 	}
 		
 	private void StartDetailFragment(String id, Boolean folder, String optional_folder_id)

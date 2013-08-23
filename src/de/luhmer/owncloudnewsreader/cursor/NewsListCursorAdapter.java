@@ -277,13 +277,9 @@ public class NewsListCursorAdapter extends CursorAdapter {
 			case 1:
 				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended, parent, false);				
 				break;
-				
 			case 2:
 				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended_webview, parent, false);				
-				break;
-				
-			default:
-				break;
+				break;	
         }
         
         

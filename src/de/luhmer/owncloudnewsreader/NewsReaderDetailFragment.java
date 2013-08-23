@@ -3,11 +3,15 @@ package de.luhmer.owncloudnewsreader;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +25,7 @@ import com.devspark.robototextview.widget.RobotoCheckBox;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
+import de.luhmer.owncloudnewsreader.cursor.SimpleCursorLoader;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
@@ -39,7 +44,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 	protected static final String TAG = "NewsReaderDetailFragment";
 
-	private DatabaseConnection dbConn;
+	//private DatabaseConnection dbConn;
 	
 	//private boolean DialogShowedToMarkLastItemsAsRead = false; 
 	
@@ -86,7 +91,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		
 		setRetainInstance(true);
 				
-		dbConn = new DatabaseConnection(getActivity());
+		//dbConn = new DatabaseConnection(getActivity());
 		
 		if(getArguments() != null) {
 			if (getArguments().containsKey(NewsReaderListActivity.SUBSCRIPTION_ID)) {
@@ -105,8 +110,11 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			
 			//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 			
-			lvAdapter = null;
+			//lvAdapter = null;
+			lvAdapter  = new NewsListCursorAdapter(getActivity(), null, this);
+			setListAdapter(lvAdapter);
 			
+			getActivity().getSupportLoaderManager().destroyLoader(0);
 			UpdateCursor();
 		}
 	}
@@ -198,16 +206,28 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	public void UpdateCursor()
 	{
 		try
-		{
-			Cursor cursor = getRightCusor(idFolder);
+		{	
+			LoaderManager loader = getActivity().getSupportLoaderManager();
+			loader.initLoader(0, null, new LoaderCallbacks<Cursor>() {
+
+				@Override
+				public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+					return new NewsDetailCursorLoader(getActivity(), idFolder, idFeed);
+				}
+
+				@Override
+				public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+					((NewsListCursorAdapter) getListAdapter()).swapCursor(cursor);		
+					//((NewsListCursorAdapter) getListAdapter()).changeCursor(cursor);
+				}
+
+				@Override
+				public void onLoaderReset(Loader<Cursor> loader) {
+					((NewsListCursorAdapter) getListAdapter()).swapCursor(null);
+				}
+			});
 			
-			if(lvAdapter == null)
-			{			
-				lvAdapter  = new NewsListCursorAdapter(getActivity(), cursor, this);
-				setListAdapter(lvAdapter);
-			}
-			else
-				lvAdapter.changeCursor(cursor);
+			
 		}
 		catch(Exception ex)
 		{
@@ -215,13 +235,13 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		}
 	}
 
-    public Cursor getRightCusor(String ID_FOLDER)
+    public static Cursor getRightCusor(Context context, String idFolder, String idFeed)
     {
-    	SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+    	SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
     	boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
     	boolean onlyStarredItems = false;
-    	if(ID_FOLDER != null)
-    		if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+    	if(idFolder != null)
+    		if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
     			onlyStarredItems = true;
     	
     	SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
@@ -229,7 +249,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
     	if(sortDirection.equals(SORT_DIRECTION.desc.toString()))
     		sDirection = SORT_DIRECTION.desc;
     		
-    	
+    	DatabaseConnection dbConn = new DatabaseConnection(context);
     	String sqlSelectStatement = null;
     	if(idFeed != null)
     		sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sDirection);
@@ -279,6 +299,21 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	}
 	*/
 	
+	public static class NewsDetailCursorLoader extends SimpleCursorLoader {
+		String idFolder;
+		String idFeed;
+		
+	    public NewsDetailCursorLoader(Context context, String idFolder, String idFeed) {
+	        super(context);	        
+	        this.idFolder = idFolder;
+	        this.idFeed = idFeed;
+	    }
+
+	    @Override 
+	    public Cursor loadInBackground() {
+	        return getRightCusor(getContext(), idFolder, idFeed);
+	    }
+	}
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
