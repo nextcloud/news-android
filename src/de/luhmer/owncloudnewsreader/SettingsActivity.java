@@ -57,7 +57,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	public static final String EDT_OWNCLOUDROOTPATH_STRING = "edt_owncloudRootPath";
 	public static final String EDT_CLEAR_CACHE = "edt_clearCache";	
 	
-    public static final String CB_ALLOWALLSSLCERTIFICATES_STRING = "cb_AllowAllSSLCertificates";
+    public static final String CB_DISABLE_HOSTNAME_VERIFICATION_STRING = "cb_DisableHostnameVerification";
     public static final String CB_SYNCONSTARTUP_STRING = "cb_AutoSyncOnStart";
     public static final String CB_SHOWONLYUNREAD_STRING = "cb_ShowOnlyUnread";
     public static final String CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING = "cb_NavigateWithVolumeButtons";
