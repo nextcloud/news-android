@@ -89,7 +89,13 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.4.4 (in development)
+0.4.5 (in development)
+---------------------
+- Fixed critical app crash after sync finished
+- Improved security for self signed certificates. Special thanks to Dominik Schürmann (@dschuermann)
+- Small bug fixes
+
+0.4.4 (unpublished)
 ---------------------
 - Fixed Security issue - thank you for the hint @davivel <a href="https://github.com/owncloud/News-Android-App/issues/47">#47 (can't connect to my ownCloud)</a>
 - Fixed issue - <a href="https://github.com/owncloud/News-Android-App/issues/105">#105 (Androids back button does not hide empty feeds)</a>
