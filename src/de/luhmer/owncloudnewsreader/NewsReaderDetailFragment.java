@@ -1,3 +1,24 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader;
 
 import java.util.ArrayList;
@@ -48,11 +69,12 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	
 	//private boolean DialogShowedToMarkLastItemsAsRead = false; 
 	
+	/*
 	private NewsListCursorAdapter lvAdapter;
 	
 	public NewsListCursorAdapter getLvAdapter() {
 		return lvAdapter;
-	}
+	}*/
 
 	String idFeed;
 	/**
@@ -89,7 +111,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setRetainInstance(true);
+		//setRetainInstance(true);
 				
 		//dbConn = new DatabaseConnection(getActivity());
 		
@@ -111,7 +133,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 			
 			//lvAdapter = null;
-			lvAdapter  = new NewsListCursorAdapter(getActivity(), null, this);
+			NewsListCursorAdapter lvAdapter  = new NewsListCursorAdapter(getActivity(), null, this);
 			setListAdapter(lvAdapter);
 			
 			getActivity().getSupportLoaderManager().destroyLoader(0);
@@ -194,8 +216,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 	@Override
 	public void onDestroy() {
-		if(lvAdapter != null)
-			lvAdapter.CloseDatabaseConnection();
+		//if(lvAdapter != null)
+		//	lvAdapter.CloseDatabaseConnection();
 		//if(lvAdapter != null)
 		//	lvAdapter.CloseDatabaseConnection();
 		//if(dbConn != null)
@@ -217,13 +239,17 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 				@Override
 				public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-					((NewsListCursorAdapter) getListAdapter()).swapCursor(cursor);		
+					NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
+					if(nca != null)
+						nca.swapCursor(cursor);
 					//((NewsListCursorAdapter) getListAdapter()).changeCursor(cursor);
 				}
 
 				@Override
 				public void onLoaderReset(Loader<Cursor> loader) {
-					((NewsListCursorAdapter) getListAdapter()).swapCursor(null);
+					NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
+					if(nca != null)
+						((NewsListCursorAdapter) getListAdapter()).swapCursor(null);
 				}
 			});
 			
@@ -233,6 +259,13 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		{
 			ex.printStackTrace();
 		}
+	}
+	
+	public void notifyDataSetChangedOnAdapter()
+	{
+		NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
+		if(nca != null)
+			((NewsListCursorAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
     public static Cursor getRightCusor(Context context, String idFolder, String idFeed)

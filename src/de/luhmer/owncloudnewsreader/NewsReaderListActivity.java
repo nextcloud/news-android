@@ -1,3 +1,24 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.TargetApi;
@@ -20,6 +41,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
+import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -154,16 +176,14 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         //if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
 		//	startSync();
 		
-        if(shouldDrawerStayOpen()) {
-        	//LinearLayout ll_expListView = (LinearLayout) findViewById(R.id.expandableListView_LinearLayoutWrapper);
-        	//ll_expListView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
-        }
+        /*
+		if(!shouldDrawerStayOpen()) {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			getSupportActionBar().setHomeButtonEnabled(true);
+		}*/
         
-		//if(!shouldDrawerStayOpen()) {
-		//	getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		//	getSupportActionBar().setHomeButtonEnabled(true);
-		//}
-        
+        startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
+        startDetailFHolder.StartDetailFragment();
         //onTopItemClicked(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
     }
 
@@ -224,7 +244,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		super.onResume();
 	}
 
-	private boolean shouldDrawerStayOpen() {
+	public boolean shouldDrawerStayOpen() {
 		if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			DisplayMetrics dm = new DisplayMetrics();
 			getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -285,7 +305,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		if(!shouldDrawerStayOpen())
 			mSlidingLayout.closePane();		
 		
-		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, isFolder, optional_folder_id);	
+		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, isFolder, optional_folder_id);
 		//StartDetailFragment(idSubscription, isFolder, optional_folder_id);		
 	}
 
@@ -512,7 +532,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
     //@TargetApi(Build.VERSION_CODES.FROYO)
 	public static void UpdateListViewAndScrollToPos(FragmentActivity act, int pos)
     {
-        ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).getLvAdapter().notifyDataSetChanged();
+        ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).notifyDataSetChangedOnAdapter();
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)
         	//((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().smoothScrollToPosition(pos);
         //else

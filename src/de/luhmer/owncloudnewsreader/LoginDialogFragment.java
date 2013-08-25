@@ -1,3 +1,24 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader;
 
 import java.net.MalformedURLException;
@@ -47,13 +68,15 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	private String mUsername;
 	private String mPassword;
 	private String mOc_root_path;
-	private boolean mCbAllowAllSSL;
+	//private boolean mCbAllowAllSSL;
+	private boolean mCbDisableHostnameVerification;
 	
 	// UI references.
 	private EditText mUsernameView;
 	private EditText mPasswordView;
 	private EditText mOc_root_path_View;
-	private CheckBox mCbAllowAllSSLView;
+	//private CheckBox mCbAllowAllSSLView;
+	private CheckBox mCbDisableHostnameVerificationView;
 	
 	//private View mLoginFormView;
 	//private View mLoginStatusView;	
@@ -93,7 +116,8 @@ public class LoginDialogFragment extends SherlockDialogFragment {
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
         mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
         mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-        mCbAllowAllSSL = mPrefs.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false);
+        //mCbAllowAllSSL = mPrefs.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false);
+        mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
         
         
         /*
@@ -116,14 +140,14 @@ public class LoginDialogFragment extends SherlockDialogFragment {
  		mOc_root_path_View = (EditText) view.findViewById(R.id.edt_owncloudRootPath);
  		mOc_root_path_View.setText(mOc_root_path);
  		
- 		mCbAllowAllSSLView = (CheckBox) view.findViewById(R.id.cb_AllowAllSSLCertificates);
- 		mCbAllowAllSSLView.setChecked(mCbAllowAllSSL);
- 		mCbAllowAllSSLView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+ 		mCbDisableHostnameVerificationView = (CheckBox) view.findViewById(R.id.cb_AllowAllSSLCertificates);
+ 		mCbDisableHostnameVerificationView.setChecked(mCbDisableHostnameVerification);
+ 		mCbDisableHostnameVerificationView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 				mPrefs.edit()
-					.putBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, isChecked)
+					.putBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, isChecked)
 					.commit();
 			}
 		});

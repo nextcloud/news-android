@@ -112,9 +112,18 @@
     
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
     <string name="pref_title_ShowOnlyUnread">Show only unread articles</string>
-    <string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>
+    <!--  <string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string> -->
+    <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification (Pay extra attention to the certificate validation dialog!)</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Mark as read while scrolling</string>
+    
+    
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Accept Unknown Certificate?</string>
+    <string name="mtm_decision_always">Always</string>
+    <string name="mtm_decision_once">Once</string>
+    <string name="mtm_decision_abort">Abort</string>
+    <string name="mtm_notification">Certificate Verification</string>
     
     
     
