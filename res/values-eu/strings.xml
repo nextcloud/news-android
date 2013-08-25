@@ -7,6 +7,10 @@
   <string name="empty_view_header">Informazioa</string>
   <string name="empty_view_content">Ez dago elementurik hemen</string>
   <string name="toast_GettingMoreItems">Elementu gehiago deskargatzen... Itxoin mesedez</string>
+  <string name="tv_clickHereToOpenItem">Klikatu hemen elementua irekitzeko</string>
+  <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
+  <string name="do_you_want_to_download_without_wifi">Irudiak WiFi konexioa gabe deskargatu nahi dituzu</string>
+  <string name="max_items_count_reached">XX elementu kopuru maximora iritsi zara</string>
   <string name="allUnreadFeeds">Irakurri gabeko elementu guztiak</string>
   <string name="starredFeeds">Izardun elementuak</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -18,9 +22,11 @@
   <string name="email_sendMail">Bidali eposta</string>
   <!--Action Bar Items-->
   <string name="action_starred">Izarduna</string>
+  <string name="action_read">Irakurri</string>
   <string name="action_openInBrowser">Ireki nabigatzailean</string>
   <string name="action_sendSourceCode">Bidali elementu agaratzaileari</string>
   <string name="action_Share">Partekatu</string>
+  <string name="action_login">Zerbitzariaren ezarpenak</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Erabiltzaile izena</string>
   <string name="pref_title_password">Kode sekretua</string>
@@ -33,6 +39,8 @@
   <string name="error_field_required">Eremu hau beharrezkoa da</string>
   <string name="error_invalid_url">URL-a baliogabea da</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Deskargatutako X elementu zaharrak</string>
+  <string name="toast_no_more_downloads_available">Ez dago deskargatzeko elementu gehiagorik</string>
   <string name="pull_to_refresh_updateFolder">Karpeta sinkronizatzen</string>
   <string name="pull_to_refresh_updateFeeds">Jarioak sinkronizatzen</string>
   <string name="pull_to_refresh_updateItems">Elementuak sinkronizatzen</string>
@@ -40,12 +48,18 @@
   <string name="title_activity_settings">Ezarpenak</string>
   <!--General settings-->
   <string name="pref_header_general">Orokorra</string>
+  <string-array name="pref_general_sort_order_values">
+    <item>behera</item>
+    <item>gora</item>
+  </string-array>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Cachearen tamaina kalkulatzen. Mesedez itxoin.</string>
   <string name="warning">Abisua</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronizatu abioan</string>
   <string name="pref_title_ShowOnlyUnread">Erakutsi irakurri gabeko artikuluak bakarrik</string>
   <string name="pref_title_AllowAllSSLCertificates">Onartu SSL ziurtagiri guztiak</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Mugitu bolumen botoiekin</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Bistaratzea</string>
   <string name="pref_title_app_theme">App gaia (ezartzeko berrabiaraztea beharrezkoa)</string>
@@ -58,6 +72,25 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Errorea</string>
   <string name="login_dialog_text_something_went_wrong">Zerbait oker joan da :(</string>
@@ -69,6 +102,25 @@
   <string name="pref_title_data_sync_max_items">Sinkronizatzeko elementu kopuru muga</string>
   <string name="pref_title_clearCache">Garbitu cachea</string>
   <string name="pref_title_CacheImagesOffline">Irudiak sare-kanporako cacheatu</string>
+  <string name="pref_title_Max_Cache_Size">Cache tamaina maximoa</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
