@@ -30,12 +30,13 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.BlockingExpandableListView;
@@ -119,17 +120,18 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		//Init config --> if nothing is configured start the login dialog.
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
-        	StartLoginFragment();
+        	StartLoginFragment(NewsReaderListActivity.this);
         
-        /*
-        NewsReaderListFragment nrlFrag = new NewsReaderListFragment();
-        
+                
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                       .replace(R.id.left_drawer, nrlFrag)
-                       .commit();
-        */
+        				.replace(R.id.left_drawer, new NewsReaderListFragment())
+                   		.commit();
+        
+        fragmentManager.beginTransaction()
+        				.replace(R.id.content_frame, new NewsReaderDetailFragment())
+    					.commit();
         
        
         mSlidingLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane);
@@ -469,7 +471,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 					break;
 					
 				case R.id.action_login:
-					StartLoginFragment();
+					StartLoginFragment(NewsReaderListActivity.this);
 					break;				
 					
 				case R.id.menu_StartImageCaching:
@@ -508,10 +510,11 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
     }
 
 
-    public void StartLoginFragment()
+    public static void StartLoginFragment(SherlockFragmentActivity activity)
     {    	
-	   	SherlockDialogFragment dialog = new LoginDialogFragment();
-	    dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
+	   	LoginDialogFragment dialog = new LoginDialogFragment();
+	   	dialog.setmActivity(activity);
+	    dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
     }
     
     /*

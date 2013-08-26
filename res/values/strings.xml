@@ -113,7 +113,7 @@
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
     <string name="pref_title_ShowOnlyUnread">Show only unread articles</string>
     <!--  <string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string> -->
-    <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification (Pay extra attention to the certificate validation dialog!)</string>
+    <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Mark as read while scrolling</string>
     

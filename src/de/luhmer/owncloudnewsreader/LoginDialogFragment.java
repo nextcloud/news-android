@@ -24,8 +24,8 @@ package de.luhmer.owncloudnewsreader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
-
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -42,6 +42,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+
+import com.actionbarsherlock.app.SherlockDialogFragment;
+
+import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
+import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
@@ -57,12 +62,7 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	 */
 	private UserLoginTask mAuthTask = null;
 
-	/*
-	private String mUsernameString = "mUsernameString";
-	private String mPasswordString = "mPasswordString";
-	private String mOc_root_pathString = "mOc_root_pathString";
-	private String mCbAllowAllSSLString = "mCbAllowAllSSLString";
-	*/
+	private Activity mActivity;
 	
 	// Values for email and password at the time of the login attempt.
 	private String mUsername;
@@ -83,6 +83,14 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	//private TextView mLoginStatusMessageView;
 
 	ProgressDialog mDialogLogin;
+	
+	public LoginDialogFragment() {
+		
+	}
+	
+	public void setmActivity(Activity mActivity) {
+		this.mActivity = mActivity;
+	}	
 	
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -168,8 +176,10 @@ public class LoginDialogFragment extends SherlockDialogFragment {
  		view.findViewById(R.id.btn_cancel).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
-					public void onClick(View view) {
+					public void onClick(View view) {						
 						LoginDialogFragment.this.getDialog().cancel();
+						if(mActivity instanceof AuthenticatorActivity)
+							mActivity.finish();
 					}
 				});
  		
@@ -483,7 +493,22 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 				editor.putString(SettingsActivity.EDT_USERNAME_STRING, username);
 				editor.commit();
 				
+				AccountManager mAccountManager = AccountManager.get(mActivity);
+				
+				//Remove all accounts first
+				Account[] accounts = mAccountManager.getAccounts();
+			    for (int index = 0; index < accounts.length; index++) {
+			    if (accounts[index].type.intern() == AccountGeneral.ACCOUNT_TYPE)
+			    	mAccountManager.removeAccount(accounts[index], null, null);
+			    }
+				
+			    //Then add the new account
+				Account account = new Account(mUsername, AccountGeneral.ACCOUNT_TYPE);
+				mAccountManager.addAccountExplicitly(account, mPassword, null);
+								
 				LoginDialogFragment.this.getDialog().cancel();
+				if(mActivity instanceof AuthenticatorActivity)
+					mActivity.finish();
 			}
 		}
 

@@ -25,9 +25,14 @@ import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +46,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -56,6 +62,8 @@ import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
+import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
+import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncServiceCallback;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
@@ -71,6 +79,39 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 																ExpandableListView.OnGroupCollapseListener,
 																ExpandableListView.OnGroupExpandListener*/ {
 
+	IOwnCloudSyncService _ownCloadSyncService;	
+	private IOwnCloudSyncServiceCallback callback = new IOwnCloudSyncServiceCallback.Stub() {
+
+		@Override
+		public void startedSyncOfItemStates() throws RemoteException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void startedSyncOfFolders() throws RemoteException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void startedSyncOfFeeds() throws RemoteException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void startedSyncOfItems() throws RemoteException {
+			// TODO Auto-generated method stub
+			
+		}
+	};
+	
+	/*
+	public IOwnCloudSyncServiceCallback getCallback() {
+		return callback;
+	}*/
+	
 	
 	
 	/**
@@ -161,6 +202,32 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			
 			if(_Reader == null)
 				_Reader = new OwnCloud_Reader();
+			
+			
+			Intent serviceIntent = new Intent(getActivity(), IOwnCloudSyncService.class);	        
+	        getActivity().bindService(serviceIntent, new ServiceConnection() {
+	        	
+	        	public void onServiceConnected(ComponentName name, IBinder binder) {        	
+	        		_ownCloadSyncService = IOwnCloudSyncService.Stub.asInterface(binder);
+	        		try {
+	        			_ownCloadSyncService.registerCallback(callback);
+	        		}
+	        		catch (Exception e) {
+	        			e.printStackTrace();
+	        		}
+	        	}
+	        	
+	        	public void onServiceDisconnected(ComponentName name) {
+	        		try {
+	        			_ownCloadSyncService.unregisterCallback(callback);
+	        		}
+	        		catch (Exception e) { 
+	        			e.printStackTrace();
+	        		}
+	        	}
+					//_SocketIoService = ((SocketIoService.MyBinder) service).getService();
+				
+			}, Context.BIND_AUTO_CREATE);
 		}
 		catch(Exception ex)
 		{
@@ -184,11 +251,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
 		
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
-		{
-			NewsReaderListActivity nla = (NewsReaderListActivity) getActivity();
-			nla.StartLoginFragment();
-			
-		} else {
+			NewsReaderListActivity.StartLoginFragment((SherlockFragmentActivity) getActivity());
+		else {
 			if (!_Reader.isSyncRunning())
 	        {
 				new PostDelayHandler(getActivity()).stopRunningPostDelayHandler();//Stop pending sync handler

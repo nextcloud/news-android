@@ -33,16 +33,15 @@
     android:layout_height="match_parent">
     
     
-    <fragment
-        android:name="de.luhmer.owncloudnewsreader.NewsReaderListFragment"
+    <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderListFragment" -->
+    <FrameLayout        
         android:id="@+id/left_drawer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start" />
     
-    
-    <fragment
-        android:name="de.luhmer.owncloudnewsreader.NewsReaderDetailFragment"
+    <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderDetailFragment" -->
+    <FrameLayout        
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

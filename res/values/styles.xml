@@ -29,6 +29,16 @@
 	    <item name="android:background">?android:attr/listDivider</item>
 	</style>
     
+    <style name="Theme.Transparent" parent="@style/Theme.Sherlock">
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowIsFloating">true</item>
+		<item name="android:backgroundDimEnabled">false</item>
+  	</style>
+    
+    
     <!-- 
     <style name="LoginFormContainer">
         <item name="android:layout_width">match_parent</item>
