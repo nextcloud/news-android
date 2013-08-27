@@ -53,9 +53,19 @@
   <string name="title_activity_settings">Configurações</string>
   <!--General settings-->
   <string name="pref_header_general">Geral</string>
+  <string name="pref_title_general_sort_order">Classificar Ordenação</string>
+  <string-array name="pref_general_sort_order">
+    <item>Novo -&gt; Antigo</item>
+    <item>Antigo -&gt; Novo</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values">
+    <item>descendente</item>
+    <item>ascendente</item>
+  </string-array>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Calculando o tamanho do cache .. Por favor, aguarde.</string>
+  <string name="reset_cache_unsaved_changes">Há alterações não sincronizadas. Gostaria de redefinir o cache de qualquer maneira?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>
   <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos não lidos</string>
@@ -66,6 +76,7 @@
   <string name="pref_header_display">Display</string>
   <string name="pref_title_app_theme">Tema do aplicativo (é preciso reiniciar o aplicativo para as mudanças terem efeito)</string>
   <string name="pref_title_feed_list_layout">Layout da lista de feeds</string>
+  <string name="pref_display_font_layout">Fonte (requer reinicialização para aplicar)</string>
   <string-array name="pref_display_apptheme">
     <item>Escuro</item>
     <item>Claro</item>
@@ -83,6 +94,34 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Fraco</item>
+    <item>Roboto Leve</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Médio</item>
+    <item>Roboto Negrito</item>
+    <item>Roboto Preto</item>
+    <item>Roboto Condençado</item>
+    <item>Roboto Negrito Condençado</item>
+    <item>Roboto Fina</item>
+    <item>Roboto Leve</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Negrito</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erro</string>

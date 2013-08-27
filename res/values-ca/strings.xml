@@ -53,9 +53,19 @@
   <string name="title_activity_settings">Arranjament</string>
   <!--General settings-->
   <string name="pref_header_general">General</string>
+  <string name="pref_title_general_sort_order">Ordena</string>
+  <string-array name="pref_general_sort_order">
+    <item>Nou -&gt; Antic</item>
+    <item>Antic -&gt; Nou</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values">
+    <item>desc</item>
+    <item>asc</item>
+  </string-array>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Calculant la mida de la memòria de cau... Espereu.</string>
+  <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu eliminar la memòria de cau igualment?</string>
   <string name="warning">Avís</string>
   <string name="pref_title_AutoSyncOnStart">Sincronitza en inicialitzar</string>
   <string name="pref_title_ShowOnlyUnread">Mostra només articles sense llegir</string>
@@ -66,6 +76,7 @@
   <string name="pref_header_display">Pantalla</string>
   <string name="pref_title_app_theme">Tema de l\'aplicació (requereix reiniciar-la)</string>
   <string name="pref_title_feed_list_layout">Format de llista de fonts</string>
+  <string name="pref_display_font_layout">Lletra (requereix reiniciar l\'aplicació per aplicar-la)</string>
   <string-array name="pref_display_apptheme">
     <item>Fosc</item>
     <item>Clar</item>
@@ -83,6 +94,34 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto prima</item>
+    <item>Roboto lleugera</item>
+    <item>Roboto regular</item>
+    <item>Roboto mitjana</item>
+    <item>Roboto negreta</item>
+    <item>Roboto negre</item>
+    <item>Roboto condensada</item>
+    <item>Roboto negreta condensada</item>
+    <item>Roboto llosa prima</item>
+    <item>Roboto llosa lleugera</item>
+    <item>Roboto llosa regular</item>
+    <item>Roboto llosa negreta</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
