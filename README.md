@@ -92,8 +92,14 @@ Updates
 0.4.5 (in development)
 ---------------------
 - Fixed critical app crash after sync finished
-- Improved security for self signed certificates. Special thanks to Dominik Schürmann (@dschuermann)
+- Improved security for self signed certificates. Special thanks to Dominik Schürmann (@dschuermann) <a href="https://github.com/owncloud/News-Android-App/issues/130">#130 (Implement MemorizingTrustManager to prevent MitM attacks)</a>
 - Small bug fixes
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/128">#128 (»Mark all as read« is sometimes disabled)</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/125">#125 (Feed list entries flash when unread count changes)</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/129">#129 (Line height needs to be increased for better readability)</a>
+
+
+
 
 0.4.4 (unpublished)
 ---------------------
