@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="authorities">de.luhmer.owncloudnewsreader.services.provider</string>
+	<string name="authorities">de.luhmer.owncloudnewsreader</string>
     <string name="auto_sync_string">Auto sync</string>
 	
+    
     <string name="app_name">ownCloud News Reader</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>

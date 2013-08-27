@@ -66,6 +66,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	public static final String ALL_STARRED_ITEMS = "-11";
 	public static final String ALL_ITEMS = "-12";
 	public static final String ITEMS_WITHOUT_FOLDER = "-22";
+	//private static final String TAG = "SubscriptionExpandableListAdapter";
 	
 
     public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnection dbConn)
@@ -156,12 +157,13 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	@Override
 	public View getChildView(int groupPosition, int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
-		LinearLayout view;
-		
-        ConcreteFeedItem item = (ConcreteFeedItem)getChild(groupPosition, childPosition);
+		LinearLayout view;		
+		ChildHolder viewHolder;
+		ConcreteFeedItem item = (ConcreteFeedItem)getChild(groupPosition, childPosition);
 
-        if (convertView == null) {
-            view = new LinearLayout(mContext);
+		
+		if (convertView == null) {   
+			view = new LinearLayout(mContext);
             String inflater = Context.LAYOUT_INFLATER_SERVICE;
             LayoutInflater vi = (LayoutInflater) mContext.getSystemService(inflater);
             vi.inflate(R.layout.subscription_list_sub_item, view, true);  
@@ -170,41 +172,45 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             
             FontHelper fHelper = new FontHelper(mContext);
             fHelper.setFontForAllChildren(view, fHelper.getFont());
+            
+            viewHolder = new ChildHolder();
+            viewHolder.tV_HeaderText = (TextView) view.findViewById(R.id.summary);
+            viewHolder.tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount); 
+            viewHolder.imgView_FavIcon = (ImageView) view.findViewById(R.id.iVFavicon);
+            
+            view.setTag(viewHolder);            
+            convertView = view;
+            
         } else {
             view = (LinearLayout) convertView;
+        	viewHolder = (ChildHolder) convertView.getTag();
         }
-
+		
         if(item != null)
-        {
-	        TextView textTV = (TextView) view.findViewById(R.id.summary);
+        {    
 	        String headerText = (item.header != null) ? item.header : "";        		
-	        textTV.setText(headerText);
+	        viewHolder.tV_HeaderText.setText(headerText);
 	
-	        boolean execludeStarredItems = (item.folder_id.equals(ALL_STARRED_ITEMS)) ? false : true;
-	        
-	        TextView tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount);
-	        if(tV_UnreadCount.getTag() == null)//TODO Work on this here... 
-	        	tV_UnreadCount.setText("");
-	        SetUnreadCountForFeed(tV_UnreadCount, String.valueOf(item.id_database), execludeStarredItems);	
-	        
-	        ImageView imgView = (ImageView) view.findViewById(R.id.iVFavicon);
-	        GetFavIconForFeed(item.favIcon, imgView, String.valueOf(item.id_database));
+	        boolean execludeStarredItems = (item.folder_id.equals(ALL_STARRED_ITEMS)) ? false : true;	        
+	        SetUnreadCountForFeed(viewHolder.tV_UnreadCount, String.valueOf(item.id_database), execludeStarredItems);	        
+	        GetFavIconForFeed(item.favIcon, viewHolder.imgView_FavIcon, String.valueOf(item.id_database));
         }
         else
-        {
-        	TextView textTV = (TextView) view.findViewById(R.id.summary);
-	        textTV.setText(mContext.getString(R.string.login_dialog_text_something_went_wrong));
-	        
-	        TextView tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount);	        
-	        tV_UnreadCount.setText("0");
-	        
-	        ImageView imgView = (ImageView) view.findViewById(R.id.iVFavicon);
-	        imgView.setImageDrawable(null);
+        {        	
+	        viewHolder.tV_HeaderText.setText(mContext.getString(R.string.login_dialog_text_something_went_wrong));
+	        viewHolder.tV_UnreadCount.setText("0");	        
+	        viewHolder.imgView_FavIcon.setImageDrawable(null);
         }
 
         return view;        
 	}
 
+	static class ChildHolder {
+	    public TextView tV_HeaderText;
+	    public TextView tV_UnreadCount;
+	    public ImageView imgView_FavIcon;
+	  }
+	
 	@Override
 	public int getChildrenCount(int groupPosition) {
 		int count;

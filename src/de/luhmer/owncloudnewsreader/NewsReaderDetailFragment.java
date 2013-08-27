@@ -141,20 +141,18 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		}
 	}
 	
-	@SuppressWarnings("static-access")
+	
 	public void UpdateMenuItemsState()
-	{
-		MenuUtilsSherlockFragmentActivity mActivity = ((MenuUtilsSherlockFragmentActivity) getActivity());
-		
-		if(mActivity.getMenuItemDownloadMoreItems() != null)
+	{	
+		if(MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems() != null)
 		{
 			if(idFolder != null) {
 				if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
-					mActivity.getMenuItemDownloadMoreItems().setEnabled(false);
+					MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
 				else
-					mActivity.getMenuItemDownloadMoreItems().setEnabled(true);
+					MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(true);
 			} else
-				mActivity.getMenuItemDownloadMoreItems().setEnabled(false);
+				MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
 		}
 	}
 	

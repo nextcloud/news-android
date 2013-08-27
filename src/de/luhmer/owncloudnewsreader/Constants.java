@@ -19,6 +19,13 @@ public class Constants {
     public static final int TaskID_GetItems = 3;
     public static final int TaskID_PerformStateChange = -1;
     
+    public enum SYNC_TYPES { SYNC_TYPE__ITEM_STATES,
+    						SYNC_TYPE__FOLDER,    						
+    						SYNC_TYPE__FEEDS,
+    						SYNC_TYPE__ITEMS,
+    						SYNC_TYPE__GET_API};
+    
+    
     /*
     private static final String _P_KEY_PART1 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNmCsMj6M4zkjpKRG8MG5+yIAyqSQE2etVkZsc3s";
     private static final String _P_KEY_PART2 = "V5zLoQ/NUOVC0fS2tj8IWk6UYqQGk9rmVold3sDGiTCvWGFecjwel3qxzz23hKLlemrv2+0WPrZ5KOqiaCEMi";

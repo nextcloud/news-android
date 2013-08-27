@@ -56,6 +56,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
+import de.luhmer.owncloudnewsreader.Constants.SYNC_TYPES;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
@@ -85,116 +86,81 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	private IOwnCloudSyncServiceCallback callback = new IOwnCloudSyncServiceCallback.Stub() {
 
 		@Override
-		public void startedSyncOfItemStates() throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateSyncButtonLayout();
-					if (eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
-				}
-			});
-		}
-
-		@Override
-		public void finishedSyncOfItemStates() throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateSyncButtonLayout();
-					if (eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
-				}
-			});
-
-		}
-
-		@Override
-		public void startedSyncOfFolders() throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateSyncButtonLayout();
-					if (eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));
-				}
-			});
-		}
-
-		@Override
-		public void finishedSyncOfFolders() throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateSyncButtonLayout();
-					if (eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
-					lvAdapter.notifyDataSetChanged();
-				}
-			});
-		}
-
-		@Override
-		public void startedSyncOfFeeds() throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateSyncButtonLayout();
-					if (eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFeeds));
-				}
-			});
-		}
-
-		@Override
-		public void finishedSyncOfFeeds() throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateSyncButtonLayout();
-					if (eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
-
-					lvAdapter.ReloadAdapter();
-				}
-			});
-		}
-
-		@Override
-		public void startedSyncOfItems() throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateSyncButtonLayout();
-					if (eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateItems));
-				}
-			});
-		}
-
-		@Override
-		public void finishedSyncOfItems() throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateSyncButtonLayout();
-					if (eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(
-								null);
-					// lvAdapter.notifyDataSetChanged();
-					lvAdapter.ReloadAdapter();
-
-					// Update the detail view
-					NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
-					if (nlActivity != null)
-						nlActivity.UpdateItemList();
-				}
-			});
-		}
-
-		@Override
 		public void throwException(AidlException ex) throws RemoteException {
 			HandleExceptionMessages(ex.getmException());
+		}
+
+		@Override
+		public void startedSync(String sync_type) throws RemoteException {
+			SYNC_TYPES st = SYNC_TYPES.valueOf(sync_type);
+			String LastUpdatedLabelTextTemp = null;
+			
+			switch(st) {
+				case SYNC_TYPE__GET_API:					
+					break;			
+				case SYNC_TYPE__ITEM_STATES:
+					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateTags);
+					break;
+				case SYNC_TYPE__FOLDER:
+					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateFolder);
+					break;
+				case SYNC_TYPE__FEEDS:
+					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateFeeds);
+					break;
+				case SYNC_TYPE__ITEMS:	
+					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateItems);
+					break;				
+			}
+			
+			final String LastUpdatedLabelText = LastUpdatedLabelTextTemp;
+			
+			Handler refresh = new Handler(Looper.getMainLooper());
+			refresh.post(new Runnable() {
+				public void run() {
+					UpdateSyncButtonLayout();
+					if (eListView != null)
+						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(LastUpdatedLabelText);
+				}
+			});
+			
+		}
+
+		@Override
+		public void finishedSync(String sync_type) throws RemoteException {
+			Handler refresh = new Handler(Looper.getMainLooper());
+			refresh.post(new Runnable() {
+				public void run() {
+					UpdateSyncButtonLayout();
+					if (eListView != null)
+						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
+				}
+			});
+			
+			SYNC_TYPES st = SYNC_TYPES.valueOf(sync_type);
+			
+			switch(st) {
+				case SYNC_TYPE__GET_API:
+					break;				
+				case SYNC_TYPE__ITEM_STATES:
+					break;
+				case SYNC_TYPE__FOLDER:
+					break;
+				case SYNC_TYPE__FEEDS:
+					break;
+				case SYNC_TYPE__ITEMS:
+					
+					refresh = new Handler(Looper.getMainLooper());
+					refresh.post(new Runnable() {
+						public void run() {					
+							lvAdapter.ReloadAdapter();
+							NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
+							if (nlActivity != null)
+								nlActivity.UpdateItemList();
+						}
+					});
+					
+					break;				
+			}
 		}
 
 	};
@@ -262,6 +228,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	public static String username;
 	public static String password;
 	//AsyncUpdateFinished asyncUpdateFinished;
+	ServiceConnection mConnection = null;
 	
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -274,7 +241,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//setRetainInstance(true);
+		setRetainInstance(true);
 		
 		try
 		{
@@ -294,31 +261,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			
 			//if(_Reader == null)
 			//	_Reader = new OwnCloud_Reader();
-			
-			
-			Intent serviceIntent = new Intent(getActivity(), OwnCloudSyncService.class);	        
-	        getActivity().bindService(serviceIntent, new ServiceConnection() {
-	        	
-	        	public void onServiceConnected(ComponentName name, IBinder binder) {        	
-	        		_ownCloadSyncService = IOwnCloudSyncService.Stub.asInterface(binder);
-	        		try {
-	        			_ownCloadSyncService.registerCallback(callback);
-	        		}
-	        		catch (Exception e) {
-	        			e.printStackTrace();
-	        		}
-	        	}
-	        	
-	        	public void onServiceDisconnected(ComponentName name) {
-	        		try {
-	        			_ownCloadSyncService.unregisterCallback(callback);
-	        		}
-	        		catch (Exception e) { 
-	        			e.printStackTrace();
-	        		}
-	        	}
-				
-			}, Context.BIND_AUTO_CREATE);
 		}
 		catch(Exception ex)
 		{
@@ -326,6 +268,58 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		}
 	}
 	
+	
+	
+	@Override
+	public void onStart() {
+		Intent serviceIntent = new Intent(getActivity(), OwnCloudSyncService.class);
+		mConnection = generateServiceConnection();
+        getActivity().bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+		super.onStart();
+	}
+
+	@Override
+	public void onStop() {
+		if(_ownCloadSyncService != null) {
+			try {
+				_ownCloadSyncService.unregisterCallback(callback);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+		getActivity().unbindService(mConnection);
+		mConnection = null;
+		super.onStop();
+	}
+
+	
+	private ServiceConnection generateServiceConnection() {
+		return new ServiceConnection() {
+	    	
+	    	@Override
+	    	public void onServiceConnected(ComponentName name, IBinder binder) {        	
+	    		_ownCloadSyncService = IOwnCloudSyncService.Stub.asInterface(binder);
+	    		try {
+	    			_ownCloadSyncService.registerCallback(callback);
+	    		}
+	    		catch (Exception e) {
+	    			e.printStackTrace();
+	    		}
+	    	}
+	    	
+	    	@Override
+	    	public void onServiceDisconnected(ComponentName name) {
+	    		try {
+	    			_ownCloadSyncService.unregisterCallback(callback);
+	    		}
+	    		catch (Exception e) { 
+	    			e.printStackTrace();
+	    		}
+	    	}	
+		};
+    }
+	
+
 	public void StartSync()
 	{
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());

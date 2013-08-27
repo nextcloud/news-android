@@ -21,17 +21,19 @@
 
 package de.luhmer.owncloudnewsreader.async_tasks;
 
+import java.lang.ref.WeakReference;
+
 import android.os.AsyncTask;
 import android.widget.TextView;
 
 public class FillTextForTextViewAsyncTask extends AsyncTask<Void, Void, String> {
 	IGetTextForTextViewAsyncTask iGetter;
-	TextView textView;
+	WeakReference<TextView> textView;
 	
 	public FillTextForTextViewAsyncTask(TextView textView, IGetTextForTextViewAsyncTask iGetter)
 	{
 		this.iGetter = iGetter;
-		this.textView = textView; 
+		this.textView = new WeakReference<TextView>(textView); 
 	}
 	
 	@Override
@@ -46,7 +48,8 @@ public class FillTextForTextViewAsyncTask extends AsyncTask<Void, Void, String> 
 	protected void onPostExecute(String result) {
 		if(result != null)
 			if(!result.equals("0"))
-				textView.setText(result);
+				if(textView.get() != null)
+					textView.get().setText(result);
 		super.onPostExecute(result);
 	}
 }

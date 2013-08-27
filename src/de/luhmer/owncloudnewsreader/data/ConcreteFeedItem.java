@@ -28,7 +28,7 @@ public class ConcreteFeedItem {
     public String favIcon;
     public String header;
 	public long id_database;
-
+		
 	public ConcreteFeedItem(String header, String folder_id, String subscription_id, String favIcon, long id_database/*, String parent_title*/) {
 
         this.header = header;

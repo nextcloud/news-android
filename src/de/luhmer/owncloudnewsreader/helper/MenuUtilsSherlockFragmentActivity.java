@@ -60,7 +60,6 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 	
 	
 	private static MenuItem menuItemUpdater;
-	private static MenuItem menuItemMarkAllAsRead;
 	private static MenuItem menuItemDownloadMoreItems;
 	
 	static IReader _Reader;
@@ -72,12 +71,6 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 		return menuItemUpdater;
 	}
 
-	/**
-	 * @return the menuItemMarkAllAsRead
-	 */
-	public static MenuItem getMenuItemMarkAllAsRead() {
-		return menuItemMarkAllAsRead;
-	}
 
 	/**
 	 * @return the menuItemDownloadMoreItems
@@ -99,20 +92,18 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 	
 	public static void onCreateOptionsMenu(Menu menu, MenuInflater inflater, boolean mTwoPane, FragmentActivity act) {
 		inflater.inflate(R.menu.news_reader, menu);
-
 		activity = act;
-		
 		
 		menuItemSettings = menu.findItem(R.id.action_settings);
 		menuItemLogin = menu.findItem(R.id.action_login);
 		menuItemStartImageCaching = menu.findItem(R.id.menu_StartImageCaching);
 		
 		menuItemUpdater = menu.findItem(R.id.menu_update);
-		menuItemMarkAllAsRead = menu.findItem(R.id.menu_markAllAsRead);
+		//menuItemMarkAllAsRead = menu.findItem(R.id.menu_markAllAsRead);
 		menuItemDownloadMoreItems = menu.findItem(R.id.menu_downloadMoreItems);
 		
 		
-		menuItemMarkAllAsRead.setEnabled(false);
+		//menuItemMarkAllAsRead.setEnabled(false);
 		menuItemDownloadMoreItems.setEnabled(false);		
 				
 		NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame));

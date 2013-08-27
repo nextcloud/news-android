@@ -21,6 +21,8 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -45,6 +47,7 @@ import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -93,6 +96,27 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 				
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
+		
+		
+		AccountManager mAccountManager = AccountManager.get(this);
+		
+		boolean isAccountThere = false;
+		//Remove all accounts first
+		Account[] accounts = mAccountManager.getAccounts();
+	    for (int index = 0; index < accounts.length; index++) {
+	    if (accounts[index].type.intern() == AccountGeneral.ACCOUNT_TYPE)
+	    	//mAccountManager.removeAccount(accounts[index], null, null);
+	    	isAccountThere = true;
+	    }
+		
+	    if(!isAccountThere) {
+		    //Then add the new account
+			Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
+			mAccountManager.addAccountExplicitly(account, "", null);
+			
+			ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
+	    }
+		
 		
 		//DatabaseUtils.CopyDatabaseToSdCard(this);
 		
@@ -145,8 +169,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			
 			@Override
 			public void onPanelSlide(View arg0, float arg1) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
@@ -188,6 +210,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         
         startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
         startDetailFHolder.StartDetailFragment();
+        startDetailFHolder = null;
         //onTopItemClicked(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
     }
 
@@ -325,9 +348,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	}
 		
 	private void StartDetailFragment(String id, Boolean folder, String optional_folder_id)
-	{
-		if(super.getMenuItemMarkAllAsRead() != null)
-			super.getMenuItemMarkAllAsRead().setEnabled(true);
+	{		
 		if(super.getMenuItemDownloadMoreItems() != null)
 			super.getMenuItemDownloadMoreItems().setEnabled(true);
 		

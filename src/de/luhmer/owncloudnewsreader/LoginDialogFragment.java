@@ -475,11 +475,14 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 			mDialogLogin.dismiss();
 			
 			if(versionCode == -1 && exception_message.equals("Value <!DOCTYPE of type java.lang.String cannot be converted to JSONObject")) {
-				ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_not_compatible), getActivity());
+				if(isAdded())
+					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_not_compatible), getActivity());
 			} else if(versionCode == -1) {
-				ShowAlertDialog(getString(R.string.login_dialog_title_error), exception_message, getActivity());
+				if(isAdded())
+					ShowAlertDialog(getString(R.string.login_dialog_title_error), exception_message, getActivity());
 			} else if(versionCode == 0){
-				ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_something_went_wrong), getActivity());
+				if(isAdded())
+					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_something_went_wrong), getActivity());
 			} else {
 				//Reset Database
 				DatabaseConnection dbConn = new DatabaseConnection(getActivity());
@@ -523,7 +526,7 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	}
 	
 	public static void ShowAlertDialog(String title, String text, Activity activity)
-	{
+	{		
 		AlertDialog.Builder aDialog = new AlertDialog.Builder(activity);
 		aDialog.setTitle(title);
 		aDialog.setMessage(text);

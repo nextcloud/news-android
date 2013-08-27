@@ -33,8 +33,8 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.Constants.SYNC_TYPES;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.authentication.OwnCloudSyncAdapter;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.IReader;
@@ -45,8 +45,8 @@ import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService.Stub;
 
 public class OwnCloudSyncService extends Service {
 	
-	protected static final String TAG = "OwnCloudSyncService";
-
+	protected static final String TAG = "OwnCloudSyncService";	
+	
 	private RemoteCallbackList<IOwnCloudSyncServiceCallback> callbacks = new RemoteCallbackList<IOwnCloudSyncServiceCallback>();
 
 	private Stub mBinder = new IOwnCloudSyncService.Stub() {
@@ -61,11 +61,15 @@ public class OwnCloudSyncService extends Service {
 
 		@Override
 		public void startSync() throws RemoteException {
-			OwnCloud_Reader ocReader = (OwnCloud_Reader) _Reader;
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
-			String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-			String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-			ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished, username, password);
+			if(!isSyncRunning()) {
+				OwnCloud_Reader ocReader = (OwnCloud_Reader) _Reader;
+				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
+				String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
+				String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
+				ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished, username, password);
+			
+				startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);				
+			}
 		}
 
 		@Override
@@ -77,27 +81,10 @@ public class OwnCloudSyncService extends Service {
 	
 	IReader _Reader = new OwnCloud_Reader();
 	
-	// Storage for an instance of the sync adapter
-    private static OwnCloudSyncAdapter sSyncAdapter = null;
-    // Object to use as a thread-safe lock
-    private static final Object sSyncAdapterLock = new Object();
-	
-	
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		
-		/*
-         * Create the sync adapter as a singleton.
-         * Set the sync adapter as syncable
-         * Disallow parallel syncs
-         */
-        synchronized (sSyncAdapterLock) {
-            if (sSyncAdapter == null) {
-                sSyncAdapter = new OwnCloudSyncAdapter(getApplicationContext(), true);
-            }
-        }
-		
+				
 		Log.d(TAG, "onCreate() called");
 	}
 
@@ -115,15 +102,7 @@ public class OwnCloudSyncService extends Service {
 				
 				_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
 			
-				List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
-				for(IOwnCloudSyncServiceCallback icb : callbackList) {
-					try {
-						icb.startedSyncOfItemStates();
-					} catch (RemoteException e) {						
-						e.printStackTrace();
-					}
-				}
-				callbacks.finishBroadcast();
+				startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
 			}
 			else 				
 				ThrowException((Exception) task_result);
@@ -137,16 +116,7 @@ public class OwnCloudSyncService extends Service {
         	
             if(task_result != null)//task result is null if there was an error
             {	
-            	List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
-            	
-            	//Started
-				for(IOwnCloudSyncServiceCallback icb : callbackList) {
-					try {
-						icb.finishedSyncOfItemStates();
-					} catch (RemoteException e) {						
-						e.printStackTrace();
-					}
-				}
+            	finishedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
             	
             	if((Boolean) task_result)
             	{	
@@ -154,19 +124,11 @@ public class OwnCloudSyncService extends Service {
             			_Reader.Start_AsyncTask_GetFolder(Constants.TaskID_GetFolder,  OwnCloudSyncService.this, onAsyncTask_GetFolder);
             			
             			
-            			//Started
-        				for(IOwnCloudSyncServiceCallback icb : callbackList) {
-        					try {
-        						icb.startedSyncOfFolders();
-        					} catch (RemoteException e) {						
-        						e.printStackTrace();
-        					}
-        				}
+            			startedSync(SYNC_TYPES.SYNC_TYPE__FOLDER);
             		}
             		else
             			_Reader.setSyncRunning(true);
             	}
-            	callbacks.finishBroadcast();
             }
         }
     };
@@ -176,31 +138,14 @@ public class OwnCloudSyncService extends Service {
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			
-			List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
-			for(IOwnCloudSyncServiceCallback icb : callbackList) {
-				try {
-					icb.finishedSyncOfFolders();
-				} catch (RemoteException e) {						
-					e.printStackTrace();
-				}
-			}
-			callbacks.finishBroadcast();
-			
+			finishedSync(SYNC_TYPES.SYNC_TYPE__FOLDER);
 			
 			if(task_result != null)
 				ThrowException((Exception) task_result);
 			else {
                 _Reader.Start_AsyncTask_GetFeeds(Constants.TaskID_GetFeeds, OwnCloudSyncService.this, onAsyncTask_GetFeed);
-                  
-                callbackList = getCallBackItemsAndBeginBroadcast();
-				for(IOwnCloudSyncServiceCallback icb : callbackList) {
-					try {
-						icb.startedSyncOfFeeds();
-					} catch (RemoteException e) {						
-						e.printStackTrace();
-					}
-				}
-				callbacks.finishBroadcast();
+                
+                startedSync(SYNC_TYPES.SYNC_TYPE__FEEDS);
             }
 
             Log.d(TAG, "onAsyncTask_GetFolder Finished");
@@ -213,31 +158,14 @@ public class OwnCloudSyncService extends Service {
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			
-			List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
-			for(IOwnCloudSyncServiceCallback icb : callbackList) {
-				try {
-					icb.finishedSyncOfFeeds();
-				} catch (RemoteException e) {						
-					e.printStackTrace();
-				}
-			}
-			callbacks.finishBroadcast();
+			finishedSync(SYNC_TYPES.SYNC_TYPE__FEEDS);
 			
 			if(task_result != null)
 				ThrowException((Exception) task_result);
 			else {
                 _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, OwnCloudSyncService.this, onAsyncTask_GetItems, TAGS.ALL);//Recieve all unread Items
-
                 
-                callbackList = getCallBackItemsAndBeginBroadcast();
-    			for(IOwnCloudSyncServiceCallback icb : callbackList) {
-    				try {
-    					icb.startedSyncOfItems();
-    				} catch (RemoteException e) {						
-    					e.printStackTrace();
-    				}
-    			}
-    			callbacks.finishBroadcast();
+                startedSync(SYNC_TYPES.SYNC_TYPE__ITEMS);
             }
 
             Log.d(TAG, "onAsyncTask_GetFeed Finished");
@@ -248,15 +176,13 @@ public class OwnCloudSyncService extends Service {
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
-			for(IOwnCloudSyncServiceCallback icb : callbackList) {
-				try {
-					icb.finishedSyncOfItems();
-				} catch (RemoteException e) {						
-					e.printStackTrace();
-				}
+			try {
+				Thread.sleep(20000);
+			} catch (InterruptedException e) {				
+				e.printStackTrace();
 			}
-			callbacks.finishBroadcast();
+			
+			finishedSync(SYNC_TYPES.SYNC_TYPE__ITEMS);
 			
 			if(task_result != null)
             	ThrowException((Exception) task_result);
@@ -273,6 +199,32 @@ public class OwnCloudSyncService extends Service {
 			try {
 				icb.throwException(new AidlException(ex));
 			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+		callbacks.finishBroadcast();
+	}
+	
+	private void startedSync(SYNC_TYPES sync_type) {
+		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
+		for(IOwnCloudSyncServiceCallback icb : callbackList) {
+			try {
+				icb.startedSync(sync_type.toString());
+				//icb.finishedSyncOfItems();
+			} catch (RemoteException e) {						
+				e.printStackTrace();
+			}
+		}
+		callbacks.finishBroadcast();
+	}
+	
+	private void finishedSync(SYNC_TYPES sync_type) {
+		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
+		for(IOwnCloudSyncServiceCallback icb : callbackList) {
+			try {
+				icb.finishedSync(sync_type.toString());
+				//icb.finishedSyncOfItems();
+			} catch (RemoteException e) {						
 				e.printStackTrace();
 			}
 		}

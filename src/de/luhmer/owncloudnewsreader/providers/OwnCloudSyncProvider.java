@@ -1,4 +1,4 @@
-package de.luhmer.owncloudnewsreader.services;
+package de.luhmer.owncloudnewsreader.providers;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
