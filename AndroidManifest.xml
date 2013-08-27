@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
@@ -66,24 +67,19 @@
 		**********************************************************************
         -->
         
-        <activity
-            android:name="de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/Theme.Transparent" >
-        </activity>
-
-        <service android:name="de.luhmer.owncloudnewsreader.services.OwnCloudAuthenticatorService">
+        <service
+            android:name="de.luhmer.owncloudnewsreader.services.OwnCloudAuthenticatorService"
+            android:exported="true" >
 		    <intent-filter>
 		        <action android:name="android.accounts.AccountAuthenticator" />
 		    </intent-filter>
 		    <meta-data android:name="android.accounts.AccountAuthenticator"
 		               android:resource="@xml/authenticator" />
 		</service>
-        
+		
         <service
-        	android:name="de.luhmer.owncloudnewsreader.services.OwnCloudSyncService"
-        	android:exported="true"
-        	android:process=":sync" >
+            android:name="de.luhmer.owncloudnewsreader.services.OwnCloudSyncService"
+        	android:exported="true" >
    			<intent-filter>
        			<action android:name="android.content.SyncAdapter" />
     		</intent-filter>
@@ -91,6 +87,26 @@
 	            android:name="android.content.SyncAdapter"
             	android:resource="@xml/syncadapter" />
 		</service>
+        
+        <provider
+	        android:name="de.luhmer.owncloudnewsreader.services.OwnCloudSyncProvider"
+	        android:authorities="de.luhmer.owncloudnewsreader.services.provider"
+	        android:enabled="true"
+	        android:exported="false"	
+	        android:label="@string/auto_sync_string"        
+	        android:syncable="true">            
+        </provider>
+        
+        
+        <activity
+            android:name="de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.Transparent" >
+        </activity>
+
+        
+        
+        
         
         <!--
 		**********************************************************************

@@ -4,7 +4,7 @@ public class AccountGeneral {
 	/**
 	 * Account type id
 	 */
-	public static final String ACCOUNT_TYPE = "de.luhmer.owncloudnewsreader.authentication";
+	public static final String ACCOUNT_TYPE = "de.luhmer.owncloudnewsreader";
 
 	/**
 	 * Account name

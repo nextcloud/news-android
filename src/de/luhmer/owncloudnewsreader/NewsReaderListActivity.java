@@ -22,11 +22,13 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.TargetApi;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
@@ -46,8 +48,8 @@ import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
+import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -402,26 +404,32 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).StartSync();		
     }
 
-    @SuppressWarnings("static-access")
 	public void UpdateButtonSyncLayout()
     {
         if(super.getMenuItemUpdater() != null)
         {
-            IReader _Reader = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer))._Reader;
-            PullToRefreshExpandableListView pullToRefreshView = (PullToRefreshExpandableListView) findViewById(R.id.expandableListView);
-            if(_Reader.isSyncRunning())   
-            {
-            	super.getMenuItemUpdater().setActionView(R.layout.inderterminate_progress);
-                if(pullToRefreshView != null)
-                	pullToRefreshView.setRefreshing(true);
+            //IReader _Reader = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer))._Reader;        	
+            try {
+            	IOwnCloudSyncService _Reader = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer))._ownCloadSyncService;            	
+                PullToRefreshExpandableListView pullToRefreshView = (PullToRefreshExpandableListView) findViewById(R.id.expandableListView);
                 
-            }
-            else
-            {
-            	super.getMenuItemUpdater().setActionView(null);
-                if(pullToRefreshView != null)
-                	pullToRefreshView.onRefreshComplete();
-            }
+                if(_Reader != null) {
+					if(_Reader.isSyncRunning())   
+					{
+						super.getMenuItemUpdater().setActionView(R.layout.inderterminate_progress);
+					    if(pullToRefreshView != null)
+					    	pullToRefreshView.setRefreshing(true);
+					}
+					else
+					{
+						super.getMenuItemUpdater().setActionView(null);
+					    if(pullToRefreshView != null)
+					    	pullToRefreshView.onRefreshComplete();
+					}
+                }
+			} catch (RemoteException e) {				
+				e.printStackTrace();
+			}
         }
     }
 	

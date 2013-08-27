@@ -30,6 +30,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
@@ -505,7 +506,9 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 			    //Then add the new account
 				Account account = new Account(mUsername, AccountGeneral.ACCOUNT_TYPE);
 				mAccountManager.addAccountExplicitly(account, mPassword, null);
-								
+				
+				ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
+				
 				LoginDialogFragment.this.getDialog().cancel();
 				if(mActivity instanceof AuthenticatorActivity)
 					mActivity.finish();

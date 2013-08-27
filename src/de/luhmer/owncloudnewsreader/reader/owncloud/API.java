@@ -24,7 +24,6 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -44,7 +43,7 @@ public abstract class API {
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
 	}
 	
-	public static API GetRightApiForVersion(String appVersion, Activity activity) {
+	public static API GetRightApiForVersion(String appVersion, Context context) {
 		API api = null;
 		int versionCode = 0;
 		if(appVersion != null)
@@ -53,9 +52,9 @@ public abstract class API {
 			versionCode = Integer.parseInt(appVersion);
 		}
 		if (versionCode >= 1101) {
-			api = new APIv2(activity);
+			api = new APIv2(context);
 		} else {
-			api = new APIv1(activity);
+			api = new APIv1(context);
 		}
 		return api;
 	}

@@ -6,9 +6,21 @@ import android.content.Intent;
 import android.os.IBinder;
 
 public class OwnCloudAuthenticatorService extends Service {
+	
+	// Instance field that stores the authenticator object
+    private OwnCloudAccountAuthenticator mAuthenticator;
+    
+    @Override
+    public void onCreate() {
+        // Create a new authenticator object
+        mAuthenticator = new OwnCloudAccountAuthenticator(this);
+    }
+    /*
+     * When the system binds to this Service to make the RPC call
+     * return the authenticator's IBinder.
+     */
     @Override
     public IBinder onBind(Intent intent) {
-        OwnCloudAccountAuthenticator authenticator = new OwnCloudAccountAuthenticator(this);
-        return authenticator.getIBinder();
+        return mAuthenticator.getIBinder();
     }
 }

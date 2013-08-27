@@ -11,4 +11,6 @@ interface IOwnCloudSyncService {
     
     void registerCallback(IOwnCloudSyncServiceCallback callback);
     void unregisterCallback(IOwnCloudSyncServiceCallback callback);
+    void startSync();
+    boolean isSyncRunning();
 }

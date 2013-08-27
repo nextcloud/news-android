@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -42,7 +41,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     private long highestItemIdBeforeSync;
     private API api;
     
-    public AsyncTask_GetItems(final int task_id, final Activity context, final OnAsyncTaskCompletedListener[] listener, API api) {
+    public AsyncTask_GetItems(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
     	super(task_id, context, listener);
     	this.api = api;
     }
