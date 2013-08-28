@@ -22,6 +22,7 @@
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">خاتالىق</string>
+  <string name="login_dialog_title_security_warning">بىخەتەرلىك ئاگاھلاندۇرۇش</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
