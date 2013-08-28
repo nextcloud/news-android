@@ -32,11 +32,13 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.NotificationCompat;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
@@ -131,13 +133,13 @@ public class DownloadImagesService extends IntentService {
 			notificationManager.notify(NOTIFICATION_ID, notify); 
 		
 		for(String link : links)	
-	    	new GetImageAsyncTask(link, imgDownloadFinished, 999, ImageHandler.getPathImageCache(this), this).execute();
+	    	new GetImageAsyncTask(link, imgDownloadFinished, 999, ImageHandler.getPathImageCache(this), this, null).execute();
 	}
 	
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 		
 		@Override
-		public void DownloadFinished(int AsynkTaskId, String fileCachePath) {
+		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
 			count++;
             // Sets the progress indicator to a max value, the
             // current completion percentage, and "determinate"

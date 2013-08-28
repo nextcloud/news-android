@@ -39,6 +39,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
@@ -149,10 +150,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 					break;
 				case SYNC_TYPE__ITEMS:
 					
+					Log.d(TAG, "finished sync");
 					refresh = new Handler(Looper.getMainLooper());
 					refresh.post(new Runnable() {
-						public void run() {					
+						public void run() {							
 							lvAdapter.ReloadAdapter();
+							
 							NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
 							if (nlActivity != null)
 								nlActivity.UpdateItemList();

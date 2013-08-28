@@ -39,9 +39,13 @@ import org.apache.http.util.ByteArrayBuffer;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
@@ -57,6 +61,8 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	private String rootPath;
 	private Context cont;
 	
+	private BitmapDrawableLruCache lruCache;
+	
 	public String feedID = null;
 	public boolean scaleImage = false;
 	public int dstHeight; // height in pixels
@@ -65,7 +71,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	//private ImageView imgView;
 	//private WeakReference<ImageView> imageViewReference;
 	
-	public GetImageAsyncTask(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, int AsynkTaskId, String rootPath, Context cont/*, ImageView imageView*/) {
+	public GetImageAsyncTask(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, int AsynkTaskId, String rootPath, Context cont/*, ImageView imageView*/, BitmapDrawableLruCache lruCache) {
 		try
 		{
 			this.WEB_URL_TO_FILE = new URL(WEB_URL_TO_FILE);
@@ -74,6 +80,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 		{
 			ex.printStackTrace();
 		}
+		this.lruCache = lruCache;
 		this.cont = cont;
 		imageDownloadFinished = imgDownloadFinished;
 		this.AsynkTaskId = AsynkTaskId;
@@ -84,7 +91,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	@Override
 	protected void onPostExecute(String result) {
 		if(imageDownloadFinished != null)
-			imageDownloadFinished.DownloadFinished(AsynkTaskId, result);
+			imageDownloadFinished.DownloadFinished(AsynkTaskId, result, lruCache);
 		//imgView.setImageDrawable(GetFavIconFromCache(WEB_URL_TO_FILE.toString(), context));
 		super.onPostExecute(result);
 	}
@@ -125,6 +132,12 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
                         baf.append((byte) current);
                 }
 
+                if(lruCache != null) {
+                	if(lruCache.get(feedID) == null) {
+                		Bitmap bmp = BitmapFactory.decodeByteArray(baf.toByteArray(), 0, baf.length());
+                		lruCache.put(feedID, new BitmapDrawable(bmp));
+                	}
+                }
                 /* Convert the Bytes read to a String. */
                 FileOutputStream fos = new FileOutputStream(cacheFile);
                 fos.write(baf.toByteArray());

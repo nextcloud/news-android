@@ -27,6 +27,7 @@ import java.lang.ref.WeakReference;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.SparseArray;
 import android.widget.ImageView;
@@ -34,7 +35,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 
-public class FavIconHandler {	
+public class FavIconHandler {
 	public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context, String feedID)
 	{
 		try
@@ -121,35 +122,46 @@ public class FavIconHandler {
 	static SparseArray<FavIconCache> imageViewReferences = new SparseArray<FavIconCache>();
 	String feedID;
 	
-	public void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context, String feedID)
+	public void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context, String feedID, BitmapDrawableLruCache lruCache)
 	{	
 		this.feedID = feedID;
 		
-		WeakReference<ImageView> imageViewReference = new WeakReference<ImageView>(imageView);
-		FavIconCache favIconCache = new FavIconCache();
-		favIconCache.context = context;
-		favIconCache.WEB_URL_TO_FILE = WEB_URL_TO_FILE;
-		favIconCache.imageViewReference = imageViewReference;
-		
-		int key = 0;
-		if(imageViewReferences.size() > 0)
-			key = imageViewReferences.keyAt(imageViewReferences.size() -1) + 1;
-		imageViewReferences.append(key, favIconCache);
-		
-		
-		imageView.setImageDrawable(null);
-		GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, ImageHandler.getPathFavIcons(context), context/*, imageView*/);
-		giAsync.scaleImage = true;
-		giAsync.dstHeight = 2*32;
-		giAsync.dstWidth = 2*32;
-		giAsync.feedID = feedID;
-		giAsync.execute((Void)null);
+		boolean setImageAlready = false;
+		if(lruCache != null) {
+			if(lruCache.get(feedID) != null) {
+				if (imageView != null) {
+	                imageView.setImageDrawable(lruCache.get(feedID));
+	                setImageAlready = true;
+	            }
+			}
+		}
+		if(!setImageAlready) {
+			WeakReference<ImageView> imageViewReference = new WeakReference<ImageView>(imageView);
+			FavIconCache favIconCache = new FavIconCache();
+			favIconCache.context = context;
+			favIconCache.WEB_URL_TO_FILE = WEB_URL_TO_FILE;
+			favIconCache.imageViewReference = imageViewReference;
+			
+			int key = 0;
+			if(imageViewReferences.size() > 0)
+				key = imageViewReferences.keyAt(imageViewReferences.size() -1) + 1;
+			imageViewReferences.append(key, favIconCache);
+			
+			
+			imageView.setImageDrawable(null);
+			GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, ImageHandler.getPathFavIcons(context), context/*, imageView*/, lruCache);
+			giAsync.scaleImage = true;
+			giAsync.dstHeight = 2*32;
+			giAsync.dstWidth = 2*32;
+			giAsync.feedID = feedID;
+			giAsync.execute((Void)null);
+		}
 	}
 	
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
-		public void DownloadFinished(int AsynkTaskId, String fileCachePath) {
+		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
 			//WeakReference<ImageView> imageViewRef = imageViewReferences.get(AsynkTaskId);			
 			FavIconCache favIconCache = imageViewReferences.get(AsynkTaskId);
 			WeakReference<ImageView> imageViewRef = favIconCache.imageViewReference;
@@ -158,7 +170,10 @@ public class FavIconHandler {
 			{	
 	            ImageView imageView = imageViewRef.get();
 	            if (imageView != null) {
-	                imageView.setImageDrawable(FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context, feedID));
+	            	BitmapDrawable bd = (BitmapDrawable) FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context, feedID);
+	            	if(lruCache != null)
+	            		lruCache.put(feedID, bd);
+	                imageView.setImageDrawable(bd);
 	            }
 			}
 			

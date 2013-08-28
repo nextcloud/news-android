@@ -176,12 +176,6 @@ public class OwnCloudSyncService extends Service {
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			try {
-				Thread.sleep(20000);
-			} catch (InterruptedException e) {				
-				e.printStackTrace();
-			}
-			
 			finishedSync(SYNC_TYPES.SYNC_TYPE__ITEMS);
 			
 			if(task_result != null)

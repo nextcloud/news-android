@@ -47,12 +47,15 @@ import de.luhmer.owncloudnewsreader.data.AbstractItem;
 import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 
 public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter {
 
+	BitmapDrawableLruCache favIconCache;
+	
 	private Context mContext;
     private DatabaseConnection dbConn;
 
@@ -74,6 +77,11 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     	this.mContext = mContext;
     	this.dbConn = dbConn;
 
+    	int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+    	//Use 1/8 of the available memory for this memory cache
+    	int cachSize = maxMemory / 8;
+    	favIconCache = new BitmapDrawableLruCache(cachSize);
+    	
     	ReloadAdapter();
     }
     
@@ -418,7 +426,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	    	{
 				if(favIconURL.trim().length() > 0)
 				{	
-		    		new FavIconHandler().GetImageAsync(imgView, favIconURL, mContext, feedID);
+		    		new FavIconHandler().GetImageAsync(imgView, favIconURL, mContext, feedID, favIconCache);
 		    		//new FavIconHandler.GetImageFromWebAsyncTask(favIconURL, mContext, imgView).execute((Void)null);
 				}
 				else

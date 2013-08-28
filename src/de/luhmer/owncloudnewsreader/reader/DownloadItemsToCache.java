@@ -24,7 +24,7 @@ package de.luhmer.owncloudnewsreader.reader;
 import android.content.Context;
 import android.util.SparseArray;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
@@ -44,23 +44,15 @@ public class DownloadItemsToCache {
 			key = URLs.keyAt(URLs.size() -1) + 1;
 		URLs.append(key, URL_TO_IMAGE);
 		
-		 GetImageAsyncTask getImageAsync = new GetImageAsyncTask(URL_TO_IMAGE, imgDownloadFinished, key, ImageHandler.getPathImageCache(context), context);
+		 GetImageAsyncTask getImageAsync = new GetImageAsyncTask(URL_TO_IMAGE, imgDownloadFinished, key, ImageHandler.getPathImageCache(context), context, null);
 		 getImageAsync.execute((Void)null);
 	}	
 	
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
-		public void DownloadFinished(int AsynkTaskId, String fileCachePath) {
-			
-			DatabaseConnection dbConn = new DatabaseConnection(context);
-			try
-			{
-				
-				
-			} finally {
-				dbConn.closeDatabase();
-			}			
+		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
+						
 		}		
 	};
 }
