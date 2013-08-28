@@ -342,12 +342,14 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			         * Request the sync for the default account, authority, and
 			         * manual sync settings
 			         */
+					Bundle accBundle = new Bundle();
+					accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 					AccountManager mAccountManager = AccountManager.get(getActivity());
-					Account[] accounts = mAccountManager.getAccounts();
-					Bundle settingsBundle = new Bundle();
+					Account[] accounts = mAccountManager.getAccounts();					
 					for(Account acc : accounts)
 						if(acc.type.equals(AccountGeneral.ACCOUNT_TYPE))					
-							ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, settingsBundle);
+							ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
+					//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
 				}
 			} catch (RemoteException e) {
 				e.printStackTrace();

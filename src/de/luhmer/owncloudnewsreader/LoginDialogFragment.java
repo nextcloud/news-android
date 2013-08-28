@@ -24,13 +24,10 @@ package de.luhmer.owncloudnewsreader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
@@ -46,7 +43,6 @@ import android.widget.EditText;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 
-import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
@@ -497,6 +493,7 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 				editor.putString(SettingsActivity.EDT_USERNAME_STRING, username);
 				editor.commit();
 				
+				/*
 				AccountManager mAccountManager = AccountManager.get(mActivity);
 				
 				//Remove all accounts first
@@ -511,6 +508,7 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 				mAccountManager.addAccountExplicitly(account, mPassword, null);
 				
 				ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
+				*/
 				
 				LoginDialogFragment.this.getDialog().cancel();
 				if(mActivity instanceof AuthenticatorActivity)

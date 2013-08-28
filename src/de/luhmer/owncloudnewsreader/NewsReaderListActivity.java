@@ -104,17 +104,18 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		//Remove all accounts first
 		Account[] accounts = mAccountManager.getAccounts();
 	    for (int index = 0; index < accounts.length; index++) {
-	    if (accounts[index].type.intern() == AccountGeneral.ACCOUNT_TYPE)
-	    	//mAccountManager.removeAccount(accounts[index], null, null);
-	    	isAccountThere = true;
+	    	if (accounts[index].type.intern() == AccountGeneral.ACCOUNT_TYPE) {
+	    		//mAccountManager.removeAccount(accounts[index], null, null);
+	    		isAccountThere = true;
+	    	}
 	    }
 		
 	    if(!isAccountThere) {
-		    //Then add the new account
-			Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
-			mAccountManager.addAccountExplicitly(account, "", null);
-			
-			ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
+		    //Then add the new account	    	
+	    	Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
+	    	mAccountManager.addAccountExplicitly(account, "", new Bundle());
+	    	//ContentResolver.setSyncAutomatically(account, getString(R.string.authorities), true);
+			//ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
 	    }
 		
 		
