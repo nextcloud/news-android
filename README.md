@@ -89,7 +89,15 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.4.6 (in development)
+0.4.8 (in development)
+---------------------
+
+0.4.7 (beta)
+---------------------
+- fixed app crash when sync on startup is enabled
+- faster favIcon pre-caching
+
+0.4.6
 ---------------------
 - Fixed app freeze when sync is finished
 - Small improvements
