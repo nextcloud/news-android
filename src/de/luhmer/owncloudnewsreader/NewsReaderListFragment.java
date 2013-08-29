@@ -304,6 +304,11 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	    		_ownCloadSyncService = IOwnCloudSyncService.Stub.asInterface(binder);
 	    		try {
 	    			_ownCloadSyncService.registerCallback(callback);
+	    			
+	    			//Start auto sync if enabled
+	    			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+	    			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
+	    				StartSync();
 	    		}
 	    		catch (Exception e) {
 	    			e.printStackTrace();
@@ -327,8 +332,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	{
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		//Update username and password again.. (might have been changed by the login dialog)
-		username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
-		password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
+		//username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
+		//password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
 		
 		
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
@@ -432,11 +437,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		});*/
 		eListView.setExpandableAdapter(lvAdapter);
 		
-		
-		//Start auto sync if enabled
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
-			StartSync();
 		
 		return V;
 		//return super.onCreateView(inflater, container, savedInstanceState);

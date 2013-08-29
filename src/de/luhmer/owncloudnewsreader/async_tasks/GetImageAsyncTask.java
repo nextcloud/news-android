@@ -96,6 +96,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 		super.onPostExecute(result);
 	}
 
+	@SuppressWarnings("deprecation")
 	@SuppressLint("NewApi")
 	@Override
 	protected String doInBackground(Void... params) {
@@ -135,7 +136,8 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
                 if(lruCache != null) {
                 	if(lruCache.get(feedID) == null) {
                 		Bitmap bmp = BitmapFactory.decodeByteArray(baf.toByteArray(), 0, baf.length());
-                		lruCache.put(feedID, new BitmapDrawable(bmp));
+                		if(feedID != null && bmp != null)
+                			lruCache.put(feedID, new BitmapDrawable(bmp));
                 	}
                 }
                 /* Convert the Bytes read to a String. */

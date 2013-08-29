@@ -54,7 +54,7 @@ import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 
 public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter {
 
-	BitmapDrawableLruCache favIconCache;
+	BitmapDrawableLruCache favIconCache = null;
 	
 	private Context mContext;
     private DatabaseConnection dbConn;

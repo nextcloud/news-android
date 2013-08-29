@@ -65,7 +65,7 @@ public class OwnCloudSyncService extends Service {
 				OwnCloud_Reader ocReader = (OwnCloud_Reader) _Reader;
 				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
 				String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-				String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
+				String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");				
 				ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished, username, password);
 			
 				startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);				
@@ -83,8 +83,7 @@ public class OwnCloudSyncService extends Service {
 	
 	@Override
 	public void onCreate() {
-		super.onCreate();
-				
+		super.onCreate();				
 		Log.d(TAG, "onCreate() called");
 	}
 

@@ -171,7 +171,7 @@ public class FavIconHandler {
 	            ImageView imageView = imageViewRef.get();
 	            if (imageView != null) {
 	            	BitmapDrawable bd = (BitmapDrawable) FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context, feedID);
-	            	if(lruCache != null)
+	            	if(lruCache != null && feedID != null && bd != null)	            		
 	            		lruCache.put(feedID, bd);
 	                imageView.setImageDrawable(bd);
 	            }
