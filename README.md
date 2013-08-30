@@ -70,15 +70,17 @@ Download and install:
 git clone https://github.com/JakeWharton/ActionBarSherlock.git
 git clone https://github.com/David-Development/Android-PullToRefresh.git
 git clone https://github.com/owncloud/News-Android-App.git
+git clone https://github.com/dschuermann/MemorizingTrustManager.git
 ></pre>
 
 >Go to Eclipse and do the following:  
 >--> File --> Import --> Android Project from Exsisting Source --> [...]/ActionBarSherlock/actionbarsherlock  
 >--> File --> Import --> Android Project from Exsisting Source --> [...]/Android-PullToRefresh/library  
+>--> File --> Import --> Android Project from Exsisting Source --> [...]/MemorizingTrustManager  
 >--> File --> Import --> Android Project from Exsisting Source --> [...]/News-Android-App  
 
 
->Then make a right click on the News-Android-App Project and select "Properties". Select the tab "Android". In this Window you should see the Project Build Target at the top and Libarys at the buttom of the window. Two of them are maybe marked with a read cross. So remove them and add the ActionBarSherlock and the Android PullToRefresh Libary  
+>Then make a right click on the News-Android-App Project and select "Properties". Select the tab "Android". In this Window you should see the Project Build Target at the top and Libarys at the buttom of the window. Two of them are maybe marked with a read cross. So remove them and add the ActionBarSherlock, Android PullToRefresh, and MemorizingTrustManager Libaries.  
 
 
 >If you get this error message:  

@@ -46,7 +46,7 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	private EditText mUsernameView;
 	private EditText mPasswordView;
 	private EditText mOc_root_path_View;
-	private CheckBox mCbAllowAllSSLView;
+	private CheckBox mCbDisableHostnameVerificationView;
 	
 	//private View mLoginFormView;
 	//private View mLoginStatusView;	
@@ -83,7 +83,7 @@ public class LoginDialogFragment extends SherlockDialogFragment {
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
         mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
         mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-        mCbAllowAllSSL = mPrefs.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false);
+        mCbAllowAllSSL = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
         
     	// Set up the login form.
  		//mUsername = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -96,14 +96,14 @@ public class LoginDialogFragment extends SherlockDialogFragment {
  		mOc_root_path_View = (EditText) view.findViewById(R.id.edt_owncloudRootPath);
  		mOc_root_path_View.setText(mOc_root_path);
  		
- 		mCbAllowAllSSLView = (CheckBox) view.findViewById(R.id.cb_AllowAllSSLCertificates);
- 		mCbAllowAllSSLView.setChecked(mCbAllowAllSSL);
- 		mCbAllowAllSSLView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+ 		mCbDisableHostnameVerificationView = (CheckBox) view.findViewById(R.id.cb_DisableHostnameVerification);
+ 		mCbDisableHostnameVerificationView.setChecked(mCbAllowAllSSL);
+ 		mCbDisableHostnameVerificationView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 				mPrefs.edit()
-					.putBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, isChecked)
+					.putBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, isChecked)
 					.commit();
 			}
 		});

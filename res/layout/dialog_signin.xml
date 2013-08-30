@@ -36,10 +36,10 @@
 	        style="@style/LoginDialogEditTextStyle" />
 	    
 	    <com.devspark.robototextview.widget.RobotoCheckBox
-	        android:id="@+id/cb_AllowAllSSLCertificates"
+	        android:id="@+id/cb_DisableHostnameVerification"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:text="@string/pref_title_AllowAllSSLCertificates" />
+	        android:text="@string/pref_title_DisableHostnameVerification" />
 	
 	    <LinearLayout
 	        android:layout_width="match_parent"

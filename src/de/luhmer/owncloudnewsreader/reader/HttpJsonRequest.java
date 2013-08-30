@@ -5,14 +5,13 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.Locale;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthenticationException;
@@ -23,8 +22,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import de.duenndns.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.helper.CustomTrustManager;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.util.Base64;
 
@@ -93,32 +92,39 @@ public class HttpJsonRequest {
 	
 	
 	private static HttpURLConnection getUrlConnection(URL url, Context context, String username, String password) throws IOException, KeyManagementException, NoSuchAlgorithmException {
-		HttpURLConnection urlConnection = null; 
-		if(url.getProtocol().toLowerCase(Locale.ENGLISH).equals("http"))
-			urlConnection = (HttpURLConnection) url.openConnection();
-		else	
-		{	
+		URLConnection urlConnection = url.openConnection();
+
+		// If https is used, use MemorizingTrustManager for certificate verification
+		if (urlConnection instanceof HttpsURLConnection) {
+			HttpsURLConnection httpsURLConnection = (HttpsURLConnection) urlConnection;
+			
+			// set location of the keystore
+			MemorizingTrustManager.setKeyStoreFile("private", "sslkeys.bks");
+
+			// register MemorizingTrustManager for HTTPS
+			SSLContext sc = SSLContext.getInstance("TLS");
+			sc.init(null, MemorizingTrustManager.getInstanceList(context),
+					new java.security.SecureRandom());
+			httpsURLConnection.setSSLSocketFactory(sc.getSocketFactory());
+
+			// disable redirects to reduce possible confusion
+			//httpsURLConnection.setFollowRedirects(false);
+			
+			// disable hostname verification, when preference is set
+			// (this still shows a certification dialog, which requires user interaction!)
 			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
-	        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false))
-	        {	        	
-	        	TrustManager[] trustAllCerts = new TrustManager[] { new CustomTrustManager() };
-	    		SSLContext sc = SSLContext.getInstance("SSL");
-	    		sc.init(null, trustAllCerts, new java.security.SecureRandom());
-	    		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-	        	
-	    		// Install the all-trusting host verifier
-	    		//HttpsURLConnection.setDefaultHostnameVerifier(new CustomHostnameVerifier());
-	    		
-	    		//HttpsURLConnection.setDefaultHostnameVerifier(new StrictHostnameVerifier());	    		
-	    		HttpsURLConnection.setDefaultHostnameVerifier(new AllowAllHostnameVerifier());
+	        if(sp.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false))
+	        {
+	        	httpsURLConnection.setHostnameVerifier(new AllowAllHostnameVerifier());
+	        } else {
+	        	httpsURLConnection.setHostnameVerifier(HttpsURLConnection.getDefaultHostnameVerifier());
 	        }
-	        urlConnection = (HttpURLConnection) url.openConnection();
 		}
 		
 		if(username != null && password != null)
     		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encode((username + ":" + password).getBytes()));
 		
-		return urlConnection;
+		return (HttpURLConnection) urlConnection;
 	}
 	
 

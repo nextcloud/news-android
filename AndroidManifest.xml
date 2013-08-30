@@ -50,6 +50,11 @@
             android:name="de.luhmer.owncloudnewsreader.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        
+        <activity
+            android:name="de.duenndns.ssl.MemorizingActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>
