@@ -14,6 +14,7 @@
   <string name="menu_markAllAsRead">Merkitse kaikki luetuiksi</string>
   <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
   <!--EMAIL-->
+  <string name="email_sendMail">Lähetä EMail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Varustettu tähdellä</string>
   <string name="action_read">Luku</string>
@@ -59,6 +60,7 @@
   <string name="pref_title_AllowAllSSLCertificates">Salli kaikki SSL-varmenteet</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Näyttö</string>
   <string name="pref_title_app_theme">Sovelluksen teema (muutos vaatii uudelleenkäynnistyksen)</string>
   <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
   <string name="pref_display_font_layout">Kirjasin (vaatii uudelleenkäynnistyksen tullakseen voimaan)</string>
@@ -93,6 +95,7 @@
   <string name="login_dialog_title_error">Virhe</string>
   <string name="login_dialog_text_something_went_wrong">Jokin meni pieleen :(</string>
   <string name="login_dialog_title_security_warning">Turvallisuusvaroitus</string>
+  <string name="login_dialog_text_security_warning">Yhteytesi ei ole salattu. Hyökkääjä voi siepata yhteyden ja saada tärkeää tietoa (esim. salasanasi). Suosittelemme ehdottomasti käyttämään https-yhteyttä!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; synkronointi</string>
   <string name="pref_title_data_sync_max_items">Synkronoitavien kohteiden enimmäismäärä</string>
