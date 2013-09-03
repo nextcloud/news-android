@@ -1,21 +1,39 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader;
 
 import java.io.File;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -151,8 +169,10 @@ public class NewsDetailFragment extends SherlockFragment {
 		//webview.clearCache(false);
 		init_webView();
 		//webview.loadUrl("about:blank");
-		int idItem = ndActivity.databaseItemIds.get(section_number - 1);
-		webview.loadDataWithBaseURL("", getHtmlPage(ndActivity, ndActivity.dbConn, idItem), "text/html", "UTF-8", "");
+		//int idItem = ndActivity.databaseItemIds.get(section_number - 1);
+		NewsDetailActivity nrda = ((NewsDetailActivity)getActivity());
+		String idItem = nrda.getIdCurrentFeed(section_number - 1);
+		webview.loadDataWithBaseURL("", getHtmlPage(ndActivity, ndActivity.dbConn, Integer.parseInt(idItem)), "text/html", "UTF-8", "");
 	}
 	
 	@SuppressLint("SetJavaScriptEnabled")
@@ -254,19 +274,30 @@ public class NewsDetailFragment extends SherlockFragment {
 	        if(date != null)
 	        {
 	        	String divDate = "<div id=\"datetime\">";
-	        	SimpleDateFormat formater = new SimpleDateFormat();
-	        	String dateString = formater.format(date);
+	        	//SimpleDateFormat formater = new SimpleDateFormat();
+	        	//String dateString = formater.format(date);
+	        	String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
 	        	htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), dateString).toString();
 	        }
 	        
 	        
 	        //String subscription = ((NewsDetailActivity) getActivity()).dbConn.getTitleOfSubscriptionByRowID(String.valueOf(rssFile.getFeedID_Db()));
-	        String subscription = dbConn.getTitleOfSubscriptionByFeedItemID(String.valueOf(idItem));
+	        //String subscription = dbConn.getTitleOfSubscriptionByDBItemID(String.valueOf(idItem));
+	        Cursor cursorFeed = dbConn.getFeedByDbID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
+	        cursorFeed.moveToFirst();
+	        String subscription = cursorFeed.getString(cursorFeed.getColumnIndex(DatabaseConnection.SUBSCRIPTION_HEADERTEXT)).trim();
+	        cursorFeed.close();
+	        
+	        String authorOfArticle = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_AUTHOR));
+	        if(authorOfArticle != null)
+	        	if(!authorOfArticle.trim().equals(""))
+	        		subscription += " - " + authorOfArticle.trim();
+	        
 	        String divSubscription = "<div id=\"subscription\">";
 	        int pos = htmlData.indexOf(divSubscription) + divSubscription.length();
 	        pos = htmlData.indexOf("/>", pos) + 2;//Wegen des Favicon <img /> 
 	        htmlData = sb.insert(pos, subscription.trim()).toString();
-	        		
+	        
 	        String divContent = "<div id=\"content\">";
 	        String description = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
 	        //htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), rssFile.getDescription().trim()).toString();
@@ -281,8 +312,6 @@ public class NewsDetailFragment extends SherlockFragment {
 	        	
 	        String searchString = "<img id=\"imgFavicon\" src=";
 	        htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length() + 1, favIconUrl).toString();
-	        
-	        
 	        
 	        //htmlData = URLEncoder.encode(htmlData).replaceAll("\\+"," ");
 	        

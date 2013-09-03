@@ -1,3 +1,24 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader.database;
 
 import java.util.ArrayList;
@@ -27,6 +48,7 @@ public class DatabaseConnection {
     public static final String SUBSCRIPTION_ID = "subscription_id";
     public static final String SUBSCRIPTION_FAVICON_URL = "favicon_url";
     public static final String SUBSCRIPTION_LINK = "link";
+    public static final String SUBSCRIPTION_AVG_COLOUR = "avg_colour";    
     
     public static final String RSS_ITEM_TABLE = "rss_item";
     public static final String RSS_ITEM_SUBSCRIPTION_ID = "subscription_id_subscription";    
@@ -45,6 +67,11 @@ public class DatabaseConnection {
     public static final String RSS_ITEM_READ_TEMP = "read_temp";
     public static final String RSS_ITEM_STARRED_TEMP = "starred_temp";
 	
+    
+    public static final String RSS_CURRENT_VIEW_TABLE = "rss_current_view";
+    public static final String RSS_CURRENT_VIEW_RSS_ITEM_ID = "rss_current_view_rss_item_id";
+    
+    
     public enum SORT_DIRECTION { asc, desc };
     
 	
@@ -52,8 +79,9 @@ public class DatabaseConnection {
     
 
     public DatabaseConnection(Context aContext) {         
-        openHelper = new DatabaseHelper(aContext);
-        openDatabase();   
+        //openHelper = new DatabaseHelper(aContext);
+    	openHelper = DatabaseHelper.getHelper(aContext);
+        openDatabase();
     }
 
     public SQLiteDatabase getDatabase()
@@ -93,6 +121,13 @@ public class DatabaseConnection {
 		for(Integer itemId : itemIds)
 			items.add(String.valueOf(itemId));
 		markAllItemsAsReadUnread(items, true);
+	}
+    
+    public void markAllItemsAsReadForCurrentView()
+	{
+    	String sql = "UPDATE " + RSS_ITEM_TABLE + " SET " + RSS_ITEM_READ_TEMP + " = 1 WHERE " + RSS_ITEM_RSSITEM_ID +
+    			" IN (SELECT " + RSS_CURRENT_VIEW_RSS_ITEM_ID + " FROM " + RSS_CURRENT_VIEW_TABLE + ")";  
+		database.execSQL(sql);
 	}
     
     public void markAllItemsAsReadUnread(List<String> itemIds, boolean markAsRead)
@@ -340,7 +375,18 @@ public class DatabaseConnection {
         return database.rawQuery(buildSQL, null);
 	}*/
 
-
+	
+	public String getAvgColourOfFeedByDbId(String feedId) {
+		String buildSQL = "SELECT " + SUBSCRIPTION_AVG_COLOUR + " FROM " + SUBSCRIPTION_TABLE + " WHERE rowid = " + feedId;
+		return getStringValueBySQL(buildSQL);
+	}
+	
+	public int setAvgColourOfFeedByDbId(String feedId, String colour) {
+		ContentValues args = new ContentValues();
+		args.put(SUBSCRIPTION_AVG_COLOUR, colour);
+		return database.update(SUBSCRIPTION_TABLE, args, "rowid=?", new String[] { feedId });
+	}
+	
 	public Cursor getAllSubSubscriptions() {
 		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NOT NULL"; 
 		String buildSQL = "SELECT DISTINCT(rowid) as _id, * FROM " + SUBSCRIPTION_TABLE;
@@ -475,9 +521,10 @@ public class DatabaseConnection {
 	private String getAllFeedsSelectStatement()
 	{
 		return "SELECT DISTINCT(rowid) as _id, " + RSS_ITEM_TITLE + ", " + RSS_ITEM_RSSITEM_ID + ", " + RSS_ITEM_LINK + ", " + RSS_ITEM_BODY + ", " + RSS_ITEM_READ + ", " + RSS_ITEM_SUBSCRIPTION_ID + ", "
-					+ RSS_ITEM_PUBDATE + ", " + RSS_ITEM_STARRED + ", " + RSS_ITEM_GUIDHASH + ", " + RSS_ITEM_GUID + ", " + RSS_ITEM_STARRED_TEMP + ", " + RSS_ITEM_READ_TEMP;
+					+ RSS_ITEM_PUBDATE + ", " + RSS_ITEM_STARRED + ", " + RSS_ITEM_GUIDHASH + ", " + RSS_ITEM_GUID + ", " + RSS_ITEM_STARRED_TEMP + ", " + RSS_ITEM_READ_TEMP + ", " + RSS_ITEM_AUTHOR;
 	}
 	
+	@Deprecated
 	public Cursor getAllItemsForFeed(String ID_SUBSCRIPTION, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection) {
 		
 		String buildSQL =  getAllFeedsSelectStatement() +
@@ -499,6 +546,25 @@ public class DatabaseConnection {
         return database.rawQuery(buildSQL, null);
     }
 	
+	public String getAllItemsIdsForFeedSQL(String ID_SUBSCRIPTION, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection) {
+		
+		String buildSQL =  "SELECT " + RSS_ITEM_RSSITEM_ID +
+	 			" FROM " + RSS_ITEM_TABLE +  
+				" WHERE subscription_id_subscription IN " + 
+					"(SELECT rowid " + 
+					"FROM subscription " +					
+					"WHERE rowid = " + ID_SUBSCRIPTION + ")";
+		
+		if(onlyUnread && !onlyStarredItems)
+			buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
+		else if(onlyStarredItems)
+			buildSQL += " AND " + RSS_ITEM_STARRED_TEMP + " = 1";
+
+        buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " " + sortDirection.toString();        
+
+		return buildSQL;
+    }
+	
 	public Cursor getArticleByID(String ID_FEED) {				
 		String buildSQL = getAllFeedsSelectStatement() + 
 	 			" FROM " + RSS_ITEM_TABLE +  
@@ -518,6 +584,25 @@ public class DatabaseConnection {
         return getStringValueBySQL(buildSQL);
     }
 	
+    public void insertIntoRssCurrentViewTable(String SQL_SELECT) {
+    	SQL_SELECT = "INSERT INTO " + RSS_CURRENT_VIEW_TABLE + 
+				" (" + RSS_CURRENT_VIEW_RSS_ITEM_ID + ") " + SQL_SELECT;
+    	openHelper.createRssCurrentViewTable(database);
+    	database.execSQL(SQL_SELECT);
+    }
+    
+    public Cursor getCurrentSelectedRssItems(SORT_DIRECTION sortDirection) {
+    	
+    	String query1 = getAllFeedsSelectStatement() + " FROM " + RSS_ITEM_TABLE;
+    	String query2 = "SELECT " + RSS_CURRENT_VIEW_RSS_ITEM_ID + " FROM " + RSS_CURRENT_VIEW_TABLE;
+    	
+    	String query = query1 + " WHERE " + RSS_ITEM_RSSITEM_ID + " IN (" + query2 + ")";
+    	//query += " ORDER BY " + RSS_ITEM_PUBDATE + " " + 
+    	query += " ORDER BY " + RSS_ITEM_PUBDATE + " " + sortDirection.toString();
+    	
+    	return database.rawQuery(query, null);
+    }
+    
     /*
 	public String getCountUnreadFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {		//TODO optimize this here !!!!
 		String buildSQL = "SELECT COUNT(*) " +  
@@ -544,9 +629,8 @@ public class DatabaseConnection {
         return result;
     }*/
 	
-	public int getCountFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {
-		
-		Cursor cursor = getAllItemsForFolder(ID_FOLDER, onlyUnread, SORT_DIRECTION.desc);
+	public int getCountFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {		
+		Cursor cursor = database.rawQuery(getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, SORT_DIRECTION.desc), null);
 		int count = cursor.getCount();
 		cursor.close();
 		
@@ -590,6 +674,7 @@ public class DatabaseConnection {
         return result;
     }*/
 	
+	@Deprecated
 	public Cursor getAllItemsForFolder(String ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
 		String buildSQL = getAllFeedsSelectStatement() + 
 	 			" FROM " + RSS_ITEM_TABLE;
@@ -623,6 +708,41 @@ public class DatabaseConnection {
 	 	if(DATABASE_DEBUG_MODE)
 	 		Log.d("DB_HELPER", "getAllFeedData SQL: " + buildSQL); 
         return database.rawQuery(buildSQL, null);
+    }
+	
+	public String getAllItemsIdsForFolderSQL(String ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
+		String buildSQL = "SELECT " + RSS_ITEM_RSSITEM_ID +
+	 			" FROM " + RSS_ITEM_TABLE;
+	 	
+	 	if(!(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_ITEMS)))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+	 	{
+			buildSQL += " WHERE subscription_id_subscription IN " + 
+					"(SELECT sc.rowid " + 
+					"FROM subscription sc " +
+					"JOIN folder f ON sc." + SUBSCRIPTION_FOLDER_ID + " = f.rowid " +
+					"WHERE f.rowid = " + ID_FOLDER + ")";
+			
+			if(onlyUnread)
+				buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	}
+	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) && onlyUnread)//only unRead should only be null when testing the size of items
+	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " != 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED + " != 1";
+	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) && onlyUnread)
+	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1";
+	 			
+	 	
+	 	buildSQL += " ORDER BY " + RSS_ITEM_PUBDATE + " " + sortDirection.toString();
+
+	 	//	buildSQL += " WHERE starred = 1";
+	 	
+	 	if(DATABASE_DEBUG_MODE)
+	 		Log.d("DB_HELPER", "getAllFeedData SQL: " + buildSQL); 
+        return buildSQL;
     }	
 	
 	public Cursor getAllSubscriptionForFolder(String ID_FOLDER, boolean onlyUnread) {
@@ -687,7 +807,7 @@ public class DatabaseConnection {
         return database.update(SUBSCRIPTION_TABLE, contentValues, SUBSCRIPTION_ID  + "= ?", new String[] { subscription_id });        
     }
 	
-	public void insertNewItem (String Titel, String link, String description, Boolean isRead, String ID_SUBSCRIPTION, String ID_RSSITEM, Date timestamp, Boolean isStarred, String guid, String guidHash, String lastModified) {
+	public void insertNewItem (String Titel, String link, String description, Boolean isRead, String ID_SUBSCRIPTION, String ID_RSSITEM, Date timestamp, Boolean isStarred, String guid, String guidHash, String lastModified, String author) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(RSS_ITEM_TITLE, Titel);
         contentValues.put(RSS_ITEM_LINK, link);
@@ -700,6 +820,7 @@ public class DatabaseConnection {
         contentValues.put(RSS_ITEM_GUID, guid);
         contentValues.put(RSS_ITEM_GUIDHASH, guidHash);
         contentValues.put(RSS_ITEM_LAST_MODIFIED, lastModified);
+        contentValues.put(RSS_ITEM_AUTHOR, author);
 
         contentValues.put(RSS_ITEM_READ_TEMP, isRead);
 		contentValues.put(RSS_ITEM_STARRED_TEMP, isStarred);
@@ -744,10 +865,10 @@ public class DatabaseConnection {
 		return getStringValueBySQL(buildSQL);
     }
 	
-	public String getTitleOfSubscriptionByFeedItemID (String SubscriptionID) {
+	public String getTitleOfSubscriptionByRSSItemID (String RssItemID) {
 		String buildSQL = "SELECT " + SUBSCRIPTION_HEADERTEXT + " FROM " + SUBSCRIPTION_TABLE + " sc " +
 							"JOIN " + RSS_ITEM_TABLE + " rss ON sc.rowid = rss." + RSS_ITEM_SUBSCRIPTION_ID + " " +
-							"WHERE rss.rowid = '" + SubscriptionID + "'";
+							"WHERE rss.rowid = '" + RssItemID + "'";
 		return getStringValueBySQL(buildSQL);
     }
 	
@@ -851,11 +972,12 @@ public class DatabaseConnection {
 	
 	public void openDatabase()
     {
-    	database = openHelper.getWritableDatabase();
+		if(database == null)
+			database = openHelper.getWritableDatabase();
     }
 	
 	public void closeDatabase()
 	{
-		database.close();
+		//database.close();
 	}
 }

@@ -3,8 +3,9 @@
     android:id="@android:id/list"
     style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"        
-    tools:context=".NewsReaderDetailFragment" />
+    android:layout_height="match_parent" 
+    android:divider="@null"
+	android:dividerHeight="0dp" />
 
 	<!-- android:textIsSelectable="true" -->
     <!-- android:padding="16dp" -->

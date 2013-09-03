@@ -1,22 +1,47 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader.helper;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.SparseArray;
 import android.widget.ImageView;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 
 public class FavIconHandler {
-	public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context)
+	public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context, String feedID)
 	{
 		try
 		{	
 			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, ImageHandler.getPathFavIcons(context));						
-			if(favIconFile.isFile())
+			if(favIconFile.isFile() && favIconFile.length() > 0)
 			{
 				/*
 				InputStream fs = new FileInputStream(favIconFile);
@@ -27,6 +52,20 @@ public class FavIconHandler {
 				else
 					return null;
 				*/
+				
+				if(feedID != null) {
+                	DatabaseConnection dbConn = new DatabaseConnection(context);
+                	try {
+                		if(dbConn.getAvgColourOfFeedByDbId(feedID) == null) {
+	                		Bitmap bitmap = BitmapFactory.decodeFile(favIconFile.getAbsolutePath());
+	                		String avg = ColourCalculator.ColourHexFromBitmap(bitmap);
+	                		dbConn.setAvgColourOfFeedByDbId(feedID, avg);
+                		}
+                	} finally {
+                		dbConn.closeDatabase();
+                	}
+                }
+				
 				return Drawable.createFromPath(favIconFile.getPath());
 			}
 		}
@@ -81,33 +120,48 @@ public class FavIconHandler {
 	
 	
 	static SparseArray<FavIconCache> imageViewReferences = new SparseArray<FavIconCache>();
+	String feedID;
 	
-	public static void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context)
+	public void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context, String feedID, BitmapDrawableLruCache lruCache)
 	{	
-		WeakReference<ImageView> imageViewReference = new WeakReference<ImageView>(imageView);
-		FavIconCache favIconCache = new FavIconCache();
-		favIconCache.context = context;
-		favIconCache.WEB_URL_TO_FILE = WEB_URL_TO_FILE;
-		favIconCache.imageViewReference = imageViewReference;
+		this.feedID = feedID;
 		
-		int key = 0;
-		if(imageViewReferences.size() > 0)
-			key = imageViewReferences.keyAt(imageViewReferences.size() -1) + 1;
-		imageViewReferences.append(key, favIconCache);
-		
-		
-		imageView.setImageDrawable(null);
-		GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, ImageHandler.getPathFavIcons(context), context/*, imageView*/);
-		giAsync.scaleImage = true;
-		giAsync.dstHeight = 2*32;
-		giAsync.dstWidth = 2*32;
-		giAsync.execute((Void)null);
+		boolean setImageAlready = false;
+		if(lruCache != null) {
+			if(lruCache.get(feedID) != null) {
+				if (imageView != null) {
+	                imageView.setImageDrawable(lruCache.get(feedID));
+	                setImageAlready = true;
+	            }
+			}
+		}
+		if(!setImageAlready) {
+			WeakReference<ImageView> imageViewReference = new WeakReference<ImageView>(imageView);
+			FavIconCache favIconCache = new FavIconCache();
+			favIconCache.context = context;
+			favIconCache.WEB_URL_TO_FILE = WEB_URL_TO_FILE;
+			favIconCache.imageViewReference = imageViewReference;
+			
+			int key = 0;
+			if(imageViewReferences.size() > 0)
+				key = imageViewReferences.keyAt(imageViewReferences.size() -1) + 1;
+			imageViewReferences.append(key, favIconCache);
+			
+			
+			imageView.setImageDrawable(null);
+			GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, ImageHandler.getPathFavIcons(context), context/*, imageView*/, lruCache);
+			giAsync.scaleImage = true;
+			giAsync.dstHeight = 2*32;
+			giAsync.dstWidth = 2*32;
+			giAsync.feedID = feedID;
+			giAsync.execute((Void)null);
+		}
 	}
 	
-	static ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
+	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
-		public void DownloadFinished(int AsynkTaskId, String fileCachePath) {
+		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
 			//WeakReference<ImageView> imageViewRef = imageViewReferences.get(AsynkTaskId);			
 			FavIconCache favIconCache = imageViewReferences.get(AsynkTaskId);
 			WeakReference<ImageView> imageViewRef = favIconCache.imageViewReference;
@@ -116,7 +170,10 @@ public class FavIconHandler {
 			{	
 	            ImageView imageView = imageViewRef.get();
 	            if (imageView != null) {
-	                imageView.setImageDrawable(FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context));
+	            	BitmapDrawable bd = (BitmapDrawable) FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context, feedID);
+	            	if(lruCache != null && feedID != null && bd != null)	            		
+	            		lruCache.put(feedID, bd);
+	                imageView.setImageDrawable(bd);
 	            }
 			}
 			

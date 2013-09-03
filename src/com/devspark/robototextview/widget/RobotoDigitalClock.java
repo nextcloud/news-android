@@ -15,6 +15,7 @@ import de.luhmer.owncloudnewsreader.R;
  *
  * @author e.shishkin
  */
+@SuppressWarnings("deprecation")
 public class RobotoDigitalClock extends DigitalClock {
 
     /**

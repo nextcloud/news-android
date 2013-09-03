@@ -1,12 +1,43 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader;
 
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Looper;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,21 +51,23 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
+import de.luhmer.owncloudnewsreader.Constants.SYNC_TYPES;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
-import de.luhmer.owncloudnewsreader.reader.IReader;
-import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.owncloud.API;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
+import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
+import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncServiceCallback;
+import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
@@ -50,6 +83,96 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 																ExpandableListView.OnGroupCollapseListener,
 																ExpandableListView.OnGroupExpandListener*/ {
 
+	IOwnCloudSyncService _ownCloadSyncService;	
+	private IOwnCloudSyncServiceCallback callback = new IOwnCloudSyncServiceCallback.Stub() {
+
+		@Override
+		public void throwException(AidlException ex) throws RemoteException {
+			HandleExceptionMessages(ex.getmException());
+		}
+
+		@Override
+		public void startedSync(String sync_type) throws RemoteException {
+			SYNC_TYPES st = SYNC_TYPES.valueOf(sync_type);
+			String LastUpdatedLabelTextTemp = null;
+			
+			switch(st) {
+				case SYNC_TYPE__GET_API:					
+					break;			
+				case SYNC_TYPE__ITEM_STATES:
+					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateTags);
+					break;
+				case SYNC_TYPE__FOLDER:
+					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateFolder);
+					break;
+				case SYNC_TYPE__FEEDS:
+					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateFeeds);
+					break;
+				case SYNC_TYPE__ITEMS:	
+					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateItems);
+					break;				
+			}
+			
+			final String LastUpdatedLabelText = LastUpdatedLabelTextTemp;
+			
+			Handler refresh = new Handler(Looper.getMainLooper());
+			refresh.post(new Runnable() {
+				public void run() {
+					UpdateSyncButtonLayout();
+					if (eListView != null)
+						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(LastUpdatedLabelText);
+				}
+			});
+			
+		}
+
+		@Override
+		public void finishedSync(String sync_type) throws RemoteException {
+			Handler refresh = new Handler(Looper.getMainLooper());
+			refresh.post(new Runnable() {
+				public void run() {
+					UpdateSyncButtonLayout();
+					if (eListView != null)
+						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
+				}
+			});
+			
+			SYNC_TYPES st = SYNC_TYPES.valueOf(sync_type);
+			
+			switch(st) {
+				case SYNC_TYPE__GET_API:
+					break;				
+				case SYNC_TYPE__ITEM_STATES:
+					break;
+				case SYNC_TYPE__FOLDER:
+					break;
+				case SYNC_TYPE__FEEDS:
+					break;
+				case SYNC_TYPE__ITEMS:
+					
+					Log.d(TAG, "finished sync");
+					refresh = new Handler(Looper.getMainLooper());
+					refresh.post(new Runnable() {
+						public void run() {							
+							lvAdapter.ReloadAdapter();
+							
+							NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
+							if (nlActivity != null)
+								nlActivity.UpdateItemList();
+						}
+					});
+					
+					break;				
+			}
+		}
+
+	};
+	
+	/*
+	public IOwnCloudSyncServiceCallback getCallback() {
+		return callback;
+	}*/
+	
 	
 	
 	/**
@@ -103,11 +226,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	SubscriptionExpandableListAdapter lvAdapter;
 	//ExpandableListView eListView;
 	PullToRefreshExpandableListView eListView;
-	public static IReader _Reader = null;  //AsyncTask_GetGReaderTags asyncTask_GetUnreadFeeds = null;
+	//public static IReader _Reader = null;  //AsyncTask_GetGReaderTags asyncTask_GetUnreadFeeds = null;
 	
 	public static String username;
 	public static String password;
 	//AsyncUpdateFinished asyncUpdateFinished;
+	ServiceConnection mConnection = null;
 	
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -138,8 +262,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn);
 			lvAdapter.setHandlerListener(expListTextClickedListener);
 			
-			if(_Reader == null)
-				_Reader = new OwnCloud_Reader();
+			//if(_Reader == null)
+			//	_Reader = new OwnCloud_Reader();
 		}
 		catch(Exception ex)
 		{
@@ -147,35 +271,99 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		}
 	}
 	
-	private boolean isTwoPaneMode() {
-		if(getActivity() != null)
-			return ((NewsReaderListActivity) getActivity()).ismTwoPane();
-		return false;
-	}
 	
+	
+	@Override
+	public void onStart() {
+		Intent serviceIntent = new Intent(getActivity(), OwnCloudSyncService.class);
+		mConnection = generateServiceConnection();
+        getActivity().bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+		super.onStart();
+	}
+
+	@Override
+	public void onStop() {
+		if(_ownCloadSyncService != null) {
+			try {
+				_ownCloadSyncService.unregisterCallback(callback);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+		getActivity().unbindService(mConnection);
+		mConnection = null;
+		super.onStop();
+	}
+
+	
+	private ServiceConnection generateServiceConnection() {
+		return new ServiceConnection() {
+	    	
+	    	@Override
+	    	public void onServiceConnected(ComponentName name, IBinder binder) {        	
+	    		_ownCloadSyncService = IOwnCloudSyncService.Stub.asInterface(binder);
+	    		try {
+	    			_ownCloadSyncService.registerCallback(callback);
+	    			
+	    			//Start auto sync if enabled
+	    			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+	    			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
+	    				StartSync();
+	    		}
+	    		catch (Exception e) {
+	    			e.printStackTrace();
+	    		}
+	    	}
+	    	
+	    	@Override
+	    	public void onServiceDisconnected(ComponentName name) {
+	    		try {
+	    			_ownCloadSyncService.unregisterCallback(callback);
+	    		}
+	    		catch (Exception e) { 
+	    			e.printStackTrace();
+	    		}
+	    	}	
+		};
+    }
+	
+
 	public void StartSync()
 	{
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		
 		//Update username and password again.. (might have been changed by the login dialog)
-		username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
-		password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
+		//username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
+		//password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
+		
 		
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
-		{
-			NewsReaderListActivity nla = (NewsReaderListActivity) getActivity();
-			nla.StartLoginFragment();
-			
-		} else {
-			if (!_Reader.isSyncRunning())
-	        {
-				new PostDelayHandler(getActivity()).stopRunningPostDelayHandler();//Stop pending sync handler
-				
-				OwnCloud_Reader ocReader = (OwnCloud_Reader) _Reader;
-				ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, getActivity(), onAsyncTask_GetVersionFinished, username, password);
-	        }
-			else
-	            _Reader.attachToRunningTask(-10, getActivity(), onAsyncTask_GetVersionFinished);
+			NewsReaderListActivity.StartLoginFragment((SherlockFragmentActivity) getActivity());
+		else {
+			try {
+				if (!_ownCloadSyncService.isSyncRunning())
+				{					
+					new PostDelayHandler(getActivity()).stopRunningPostDelayHandler();//Stop pending sync handler
+					
+					//_ownCloadSyncService.startSync();
+					 
+					/*
+			         * Request the sync for the default account, authority, and
+			         * manual sync settings
+			         */
+					Bundle accBundle = new Bundle();
+					accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+					AccountManager mAccountManager = AccountManager.get(getActivity());
+					Account[] accounts = mAccountManager.getAccounts();					
+					for(Account acc : accounts)
+						if(acc.type.equals(AccountGeneral.ACCOUNT_TYPE))					
+							ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
+					//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
+				}
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			//else
+	            //_Reader.attachToRunningTask(-10, getActivity(), onAsyncTask_GetVersionFinished);
 		}
 		
 		UpdateSyncButtonLayout();
@@ -200,192 +388,55 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		UpdateSyncButtonLayout();
 	}
 	
-	
-	OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
 		
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			if(isTwoPaneMode() || isAdded()) {
-				if(!(task_result instanceof Exception))
-				{						
-					String appVersion = task_result.toString();					
-					API api = API.GetRightApiForVersion(appVersion, getActivity());
-					((OwnCloud_Reader) _Reader).setApi(api);
-					
-					_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  getActivity(), onAsyncTask_PerformTagExecute);
-												
-					if(eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateTags));
-				}
-				else 
-					HandleExceptionMessages((Exception) task_result);
-				
-				UpdateSyncButtonLayout();
-			}
-		}
-	};
-
-	//Sync state of items e.g. read/unread/starred/unstarred
-    OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
-        @Override
-        public void onAsyncTaskCompleted(int task_id, Object task_result) {
-        	if(isTwoPaneMode() || isAdded()) {
-	            if(task_result != null)//task result is null if there was an error
-	            {	
-	            	if((Boolean) task_result)
-	            	{
-	            		if(task_id == Constants.TaskID_PerformStateChange)
-	            		{
-	            			_Reader.Start_AsyncTask_GetFolder(Constants.TaskID_GetFolder,  getActivity(), onAsyncTask_GetFolder);
-	            			if(eListView != null)
-	                			eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFolder));
-	            		}
-	            		else
-	            			_Reader.setSyncRunning(true);
-	            	}
-	            	else
-	            		UpdateSyncButtonLayout();
-	            }
-	            else
-	            	UpdateSyncButtonLayout();
-        	}
-        }
-    };
-	
-    
-	OnAsyncTaskCompletedListener onAsyncTask_GetFolder = new OnAsyncTaskCompletedListener() {
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			if(isTwoPaneMode() || isAdded()) {
-	            if(task_result != null)
-	            	HandleExceptionMessages((Exception) task_result);
-	            else {
-	                _Reader.Start_AsyncTask_GetFeeds(Constants.TaskID_GetFeeds, getActivity(), onAsyncTask_GetFeed);
-	                if(eListView != null)
-	                	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateFeeds));
-	            }
-	
-	            lvAdapter.notifyDataSetChanged();
-	            
-	            Log.d(TAG, "onAsyncTask_GetFolder Finished");
-			}
-		}
-	};
 
     public void ShowToastLong(String message)
     {
         Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
-	
-	OnAsyncTaskCompletedListener onAsyncTask_GetFeed = new OnAsyncTaskCompletedListener() {
-		
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			if(isTwoPaneMode() || isAdded()) {
-				if(task_result != null)
-	            	HandleExceptionMessages((Exception) task_result);
-				else {
-	            	//dbConn.resetRssItemsDatabase();
-	            	
-	                _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, getActivity(), onAsyncTask_GetItems, TAGS.ALL);//Recieve all unread Items
-	                //_Reader.Start_AsyncTask_GetFeeds(3, getActivity(), onAsyncTask_GetFeeds, TAGS.ALL_STARRED);//Recieve all starred Items
-	                
-	                if(eListView != null)
-	                	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(getString(R.string.pull_to_refresh_updateItems));
-	            }
-	
-	
-	
-	            lvAdapter.ReloadAdapter();
-	            
-	            Log.d(TAG, "onAsyncTask_GetFeed Finished");
-	            //lvAdapter.notifyDataSetChanged();
-	            //eListView.setAdapter(new SubscriptionExpandableListAdapter(getActivity(), dbConn));
-				
-				//new AsyncTask_GetFeeds(0,  getActivity(), onAsyncTask_GetFeeds).execute(username, password, Constants._TAG_LABEL_UNREAD);			
-				//new AsyncTask_GetFeeds(0,  getActivity(), onAsyncTask_GetFeeds).execute(username, password, Constants._TAG_LABEL_STARRED);
-			}
-		}
-	};
-	
-	OnAsyncTaskCompletedListener onAsyncTask_GetItems = new OnAsyncTaskCompletedListener() {
-		
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {			
-			if(isTwoPaneMode() || isAdded()) {
-				if(task_result != null)
-	            	HandleExceptionMessages((Exception) task_result);
-	
-	            lvAdapter.notifyDataSetChanged();
-	
-				if(eListView != null)
-	            	eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
-				
-	            UpdateSyncButtonLayout();
-	
-	            lvAdapter.ReloadAdapter();
-	            
-	            NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
-	            if(nlActivity != null)
-	            	nlActivity.UpdateItemList();
-	
-	            
-	            Log.d(TAG, "onAsyncTask_GetItems Finished");
-				//fireUpdateFinishedClicked();
-			}
-		}
-	};
-	
+    
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View V = null;
-		if(isTwoPaneMode() || isAdded()) {
-			V = inflater.inflate(R.layout.expandable_list_layout, container, false);			
-			//eListView = (ExpandableListView) V.findViewById(R.id.expandableListView);
-			eListView = (PullToRefreshExpandableListView) V.findViewById(R.id.expandableListView);
+		View V = inflater.inflate(R.layout.expandable_list_layout, container, false);			
+		//eListView = (ExpandableListView) V.findViewById(R.id.expandableListView);
+		eListView = (PullToRefreshExpandableListView) V.findViewById(R.id.expandableListView);
+	
 		
+		//eListView.setGroupIndicator(getResources().getDrawable(R.drawable.expandable_group_indicator));
+		eListView.setGroupIndicator(null);
+		
+		//eListView.demo();
+    	eListView.setShowIndicator(false);
+    	
+		eListView.setOnRefreshListener(new OnRefreshListener<BlockingExpandableListView>() {
+		    @Override
+		    public void onRefresh(PullToRefreshBase<BlockingExpandableListView> refreshView) {
+		        StartSync();
+		    }
+		});
+		
+		eListView.setOnChildClickListener(onChildClickListener);
+		//eListView.setSmoothScrollbarEnabled(true);			
+		
+		View empty = inflater.inflate(R.layout.subscription_detail_list_item_empty, null, false);
+		getActivity().addContentView(empty, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));			
+		eListView.setEmptyView(empty);
+		/*
+		eListView.setClickable(true);
+		eListView.setOnGroupClickListener(new OnGroupClickListener() {
 			
-			//eListView.setGroupIndicator(getResources().getDrawable(R.drawable.expandable_group_indicator));
-			eListView.setGroupIndicator(null);
-			
-			//eListView.demo();
-        	eListView.setShowIndicator(false);
-        	
-			eListView.setOnRefreshListener(new OnRefreshListener<BlockingExpandableListView>() {
-			    @Override
-			    public void onRefresh(PullToRefreshBase<BlockingExpandableListView> refreshView) {
-			        StartSync();
-			    }
-			});
-			
-			eListView.setOnChildClickListener(onChildClickListener);
-			//eListView.setSmoothScrollbarEnabled(true);			
-			
-			View empty = inflater.inflate(R.layout.subscription_detail_list_item_empty, null, false);
-			getActivity().addContentView(empty, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));			
-			eListView.setEmptyView(empty);
-			/*
-			eListView.setClickable(true);
-			eListView.setOnGroupClickListener(new OnGroupClickListener() {
-				
-				@Override
-				public boolean onGroupClick(ExpandableListView parent, View v,
-						int groupPosition, long id) {
-					Log.d("hi", String.valueOf(groupPosition));
-					//return false;
-					return true;
-				}
-			});*/
-			eListView.setExpandableAdapter(lvAdapter);
-			
-			
-			//Start auto sync if enabled
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
-				StartSync();
-		}
+			@Override
+			public boolean onGroupClick(ExpandableListView parent, View v,
+					int groupPosition, long id) {
+				Log.d("hi", String.valueOf(groupPosition));
+				//return false;
+				return true;
+			}
+		});*/
+		eListView.setExpandableAdapter(lvAdapter);
+		
 		
 		return V;
 		//return super.onCreateView(inflater, container, savedInstanceState);
