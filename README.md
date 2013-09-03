@@ -89,8 +89,12 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.4.8 (in development)
+0.4.9 (in development)
+
+0.4.8
 ---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/140">#140 Open in browser and Share with controls always act on original article
+- Update Language support
 
 0.4.7 (beta)
 ---------------------
