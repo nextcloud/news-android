@@ -417,21 +417,32 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
             case R.id.action_ShareItem:
             	
             	String title = "";
-            	String linkToItem = "";
+            	//String content = "";
+            	String content = "";
 				if(cursor != null)
 				{
 					cursor.moveToFirst();
 					title = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE));
-					linkToItem = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));					
+					content = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));					
 					cursor.close();
 				}
-            	
+				
+				NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+				if(fragment != null) { // could be null if not instantiated yet
+					if(!fragment.webview.getUrl().equals("about:blank")) {
+						content = fragment.webview.getUrl();
+						title = fragment.webview.getTitle();
+					}
+				}
+            					
+				content += "<br/><br/>Send via <a href=\"https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader\">ownCloud News Reader</a>";
+				            	
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
                 //share.putExtra(Intent.EXTRA_SUBJECT, rssFiles.get(currentPosition).getTitle());
                 //share.putExtra(Intent.EXTRA_TEXT, rssFiles.get(currentPosition).getLink());
                 share.putExtra(Intent.EXTRA_SUBJECT, title);
-                share.putExtra(Intent.EXTRA_TEXT, linkToItem);
+                share.putExtra(Intent.EXTRA_TEXT, content);
                 
                 startActivity(Intent.createChooser(share, "Share Item"));
                 break;

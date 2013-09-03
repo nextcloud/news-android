@@ -469,6 +469,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		return true;
 	}
 
+	private static final int RESULT_SETTINGS = 15642;
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		boolean handled = super.onOptionsItemSelected(item, this);
@@ -518,8 +519,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	private static final int RESULT_SETTINGS = 15642;
 
 
     @Override
