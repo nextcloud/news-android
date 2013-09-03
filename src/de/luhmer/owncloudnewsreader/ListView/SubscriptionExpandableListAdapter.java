@@ -1,11 +1,34 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader.ListView;
 
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -24,13 +47,15 @@ import de.luhmer.owncloudnewsreader.data.AbstractItem;
 import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 
 public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter {
 
+	BitmapDrawableLruCache favIconCache = null;
+	
 	private Context mContext;
     private DatabaseConnection dbConn;
 
@@ -44,6 +69,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	public static final String ALL_STARRED_ITEMS = "-11";
 	public static final String ALL_ITEMS = "-12";
 	public static final String ITEMS_WITHOUT_FOLDER = "-22";
+	//private static final String TAG = "SubscriptionExpandableListAdapter";
 	
 
     public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnection dbConn)
@@ -51,6 +77,11 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     	this.mContext = mContext;
     	this.dbConn = dbConn;
 
+    	int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+    	//Use 1/8 of the available memory for this memory cache
+    	int cachSize = maxMemory / 8;
+    	favIconCache = new BitmapDrawableLruCache(cachSize);
+    	
     	ReloadAdapter();
     }
     
@@ -134,12 +165,13 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	@Override
 	public View getChildView(int groupPosition, int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
-		LinearLayout view;
-		
-        ConcreteFeedItem item = (ConcreteFeedItem)getChild(groupPosition, childPosition);
+		LinearLayout view;		
+		ChildHolder viewHolder;
+		ConcreteFeedItem item = (ConcreteFeedItem)getChild(groupPosition, childPosition);
 
-        if (convertView == null) {
-            view = new LinearLayout(mContext);
+		
+		if (convertView == null) {   
+			view = new LinearLayout(mContext);
             String inflater = Context.LAYOUT_INFLATER_SERVICE;
             LayoutInflater vi = (LayoutInflater) mContext.getSystemService(inflater);
             vi.inflate(R.layout.subscription_list_sub_item, view, true);  
@@ -148,41 +180,45 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             
             FontHelper fHelper = new FontHelper(mContext);
             fHelper.setFontForAllChildren(view, fHelper.getFont());
+            
+            viewHolder = new ChildHolder();
+            viewHolder.tV_HeaderText = (TextView) view.findViewById(R.id.summary);
+            viewHolder.tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount); 
+            viewHolder.imgView_FavIcon = (ImageView) view.findViewById(R.id.iVFavicon);
+            
+            view.setTag(viewHolder);            
+            convertView = view;
+            
         } else {
             view = (LinearLayout) convertView;
+        	viewHolder = (ChildHolder) convertView.getTag();
         }
-
+		
         if(item != null)
-        {
-	        TextView textTV = (TextView) view.findViewById(R.id.summary);
+        {    
 	        String headerText = (item.header != null) ? item.header : "";        		
-	        textTV.setText(headerText);
+	        viewHolder.tV_HeaderText.setText(headerText);
 	
-	        boolean execludeStarredItems = (item.folder_id.equals(ALL_STARRED_ITEMS)) ? false : true;
-	        
-	        TextView tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount);
-	        if(tV_UnreadCount.getTag() == null)//TODO Work on this here... 
-	        	tV_UnreadCount.setText("");
-	        SetUnreadCountForFeed(tV_UnreadCount, String.valueOf(item.id_database), execludeStarredItems);	
-	        
-	        ImageView imgView = (ImageView) view.findViewById(R.id.iVFavicon);
-	        GetFavIconForFeed(item.favIcon, imgView);
+	        boolean execludeStarredItems = (item.folder_id.equals(ALL_STARRED_ITEMS)) ? false : true;	        
+	        SetUnreadCountForFeed(viewHolder.tV_UnreadCount, String.valueOf(item.id_database), execludeStarredItems);	        
+	        GetFavIconForFeed(item.favIcon, viewHolder.imgView_FavIcon, String.valueOf(item.id_database));
         }
         else
-        {
-        	TextView textTV = (TextView) view.findViewById(R.id.summary);
-	        textTV.setText(mContext.getString(R.string.login_dialog_text_something_went_wrong));
-	        
-	        TextView tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount);	        
-	        tV_UnreadCount.setText("0");
-	        
-	        ImageView imgView = (ImageView) view.findViewById(R.id.iVFavicon);
-	        imgView.setImageDrawable(null);
+        {        	
+	        viewHolder.tV_HeaderText.setText(mContext.getString(R.string.login_dialog_text_something_went_wrong));
+	        viewHolder.tV_UnreadCount.setText("0");	        
+	        viewHolder.imgView_FavIcon.setImageDrawable(null);
         }
 
         return view;        
 	}
 
+	static class ChildHolder {
+	    public TextView tV_HeaderText;
+	    public TextView tV_UnreadCount;
+	    public ImageView imgView_FavIcon;
+	  }
+	
 	@Override
 	public int getChildrenCount(int groupPosition) {
 		int count;
@@ -211,6 +247,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		return ((AbstractItem)getGroup(groupPosition)).id_database;
 	}
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("CutPasteId")
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,
@@ -320,7 +357,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         
         
         //viewHolder.txt_UnreadCount.setText(group.unreadCount);
-        
+        viewHolder.imgView.setRotation(0);//TODO setRotation is only available in api > 11
         if(group.idFolder != null)
         {
 	        if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
@@ -330,16 +367,18 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        	{
 	        		if(cursor.getCount() > 0)
 	        		{
+	        			viewHolder.imgView.setImageDrawable(null);
+	        			
 			        	cursor.moveToFirst();
 			        	String favIconURL = cursor.getString(cursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));			        	
-			        	GetFavIconForFeed(favIconURL, viewHolder.imgView);
+			        	GetFavIconForFeed(favIconURL, viewHolder.imgView, String.valueOf(group.id_database));
 	        		}
 	        	}
 	        	cursor.close();
 	        }
         }
         else
-        { 
+        {
         	if(String.valueOf(group.id_database).equals(ALL_STARRED_ITEMS))
         	{
         		viewHolder.imgView.setVisibility( View.VISIBLE );
@@ -350,12 +389,15 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        } 
 	        else {
 	        	viewHolder.imgView.setVisibility( View.VISIBLE );
-	        	if(ThemeChooser.isDarkTheme(mContext))
-	        		viewHolder.imgView.setImageResource( isExpanded ? R.drawable.ic_find_previous_holo_dark : R.drawable.ic_find_next_holo_dark);
-	        	else
-	        		viewHolder.imgView.setImageResource( isExpanded ? R.drawable.ic_find_previous_holo_light : R.drawable.ic_find_next_holo_light);
+	        	//if(ThemeChooser.isDarkTheme(mContext))
+	        	//	viewHolder.imgView.setImageResource(isExpanded ? R.drawable.ic_find_previous_holo_dark : R.drawable.ic_find_next_holo_dark);
+	        	//else
+	        		//viewHolder.imgView.setImageResource(isExpanded ? R.drawable.ic_find_previous_holo_light : R.drawable.ic_find_next_holo_light);
+	        	viewHolder.imgView.setImageResource(R.drawable.ic_find_next_holo_dark);
+	        	
+	        	if(isExpanded)
+	        		viewHolder.imgView.setRotation(-90);
 	        }
-	        
         }
         
         //view.setTag(group.id_database);
@@ -376,16 +418,15 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
 	}
 	
-	private void GetFavIconForFeed(String favIconURL, ImageView imgView)
+	private void GetFavIconForFeed(String favIconURL, ImageView imgView, String feedID)
 	{
 		try
 		{
 			if(favIconURL != null)
 	    	{
-				
 				if(favIconURL.trim().length() > 0)
 				{	
-		    		FavIconHandler.GetImageAsync(imgView, favIconURL, mContext);
+		    		new FavIconHandler().GetImageAsync(imgView, favIconURL, mContext, feedID, favIconCache);
 		    		//new FavIconHandler.GetImageFromWebAsyncTask(favIconURL, mContext, imgView).execute((Void)null);
 				}
 				else

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="@dimen/exp_listview_row_height"
-    android:layout_marginLeft="30dp"
+    android:layout_marginLeft="50dp"
     android:orientation="horizontal" >
 
     <ImageView
@@ -20,7 +20,8 @@
         android:gravity="center_vertical"
         android:singleLine="true"
         android:layout_weight="1"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/slider_listview_text_color" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/tv_unreadCount"
@@ -28,6 +29,7 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical|right"
         android:singleLine="true"
-        android:layout_marginRight="20dp" />
-
+        android:layout_marginRight="20dp"
+        android:textColor="@color/slider_listview_text_color" />
+    
 </LinearLayout>

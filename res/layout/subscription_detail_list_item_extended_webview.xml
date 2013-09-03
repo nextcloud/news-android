@@ -9,27 +9,28 @@
         android:button="@drawable/checkbox" 
      -->
 
-	<View
-	    android:layout_width="fill_parent"
-    	android:layout_height="2dp"
-    	android:background="#ff0099cc"/>
-    	<!--  android:background="#ff00ddff"/> -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/listview_row_margin_left"
         android:layout_marginRight="@dimen/listview_row_margin_right"
         android:gravity="right" >
 
+        <View
+	        android:id="@+id/color_line_feed"
+	        android:layout_width="@dimen/color_bar_of_feeds"
+	        android:layout_height="fill_parent"
+	        android:background="@color/abs__background_holo_dark"/>
+        
         <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/tv_clickHereToOpen"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|left"
             android:textSize="15sp"  
-            android:layout_weight="1"      
+            android:layout_weight="1"
+			android:layout_marginLeft="@dimen/listview_row_margin_left"     
             android:text="@string/tv_clickHereToOpenItem" />
         
         <com.devspark.robototextview.widget.RobotoCheckBox

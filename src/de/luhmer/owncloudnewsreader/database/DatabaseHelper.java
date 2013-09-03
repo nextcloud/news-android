@@ -1,3 +1,24 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader.database;
 
 import android.content.Context;
@@ -7,8 +28,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String DATABASE_NAME = "OwncloudNewsReader.db";	
 	
+	private static DatabaseHelper instance;
+
+    public static synchronized DatabaseHelper getHelper(Context context)
+    {
+        if (instance == null)
+            instance = new DatabaseHelper(context);
+
+        return instance;
+    }
+	
 	public DatabaseHelper(Context context) {		
-		super(context, DATABASE_NAME, null, 2);
+		super(context, DATABASE_NAME, null, 4);
 	}
 	
 	@Override
@@ -22,7 +53,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE subscription(header_text TEXT NOT NULL, "
 											+ "subscription_id TEXT NOT NULL, "
 											+ "favicon_url TEXT, " 
-											+ "link TEXT, " 
+											+ "link TEXT, "
+											+ "avg_colour TEXT, "
 											+ "folder_idfolder INTEGER, FOREIGN KEY (folder_idfolder) REFERENCES folder(rowid)"
 											+ ");");
 		db.execSQL("CREATE TABLE rss_item (title TEXT NOT NULL, "
@@ -40,6 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
   											+ "lastModified DATETIME NULL, "
 											+ "subscription_id_subscription INTEGER, FOREIGN KEY (subscription_id_subscription) REFERENCES subscription(rowid));");		
 
+		createRssCurrentViewTable(db);
 
 		/*
 		
@@ -50,6 +83,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		*/
 	}
 	
+	public void createRssCurrentViewTable(SQLiteDatabase db) {
+		 db.execSQL("DROP TABLE IF EXISTS " + DatabaseConnection.RSS_CURRENT_VIEW_TABLE);
+		 db.execSQL("CREATE TABLE " + DatabaseConnection.RSS_CURRENT_VIEW_TABLE
+					+ " (" + DatabaseConnection.RSS_CURRENT_VIEW_RSS_ITEM_ID + " INT NOT NULL,"
+					+ " FOREIGN KEY (" + DatabaseConnection.RSS_CURRENT_VIEW_RSS_ITEM_ID + ") REFERENCES rss_item(rssitem_id))");
+	}
 	
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

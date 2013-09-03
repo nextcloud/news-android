@@ -1,3 +1,24 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader.reader;
 
 import java.io.IOException;
@@ -5,14 +26,13 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.Locale;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthenticationException;
@@ -24,8 +44,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.helper.CustomTrustManager;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
+import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.util.Base64;
 
 public class HttpJsonRequest {
@@ -93,6 +113,41 @@ public class HttpJsonRequest {
 	
 	
 	private static HttpURLConnection getUrlConnection(URL url, Context context, String username, String password) throws IOException, KeyManagementException, NoSuchAlgorithmException {
+		URLConnection urlConnection = url.openConnection();
+
+		// If https is used, use MemorizingTrustManager for certificate verification
+		if (urlConnection instanceof HttpsURLConnection) {
+			HttpsURLConnection httpsURLConnection = (HttpsURLConnection) urlConnection;
+
+			// set location of the keystore
+			MemorizingTrustManager.setKeyStoreFile("private", "sslkeys.bks");
+
+			// register MemorizingTrustManager for HTTPS
+			SSLContext sc = SSLContext.getInstance("TLS");
+			sc.init(null, MemorizingTrustManager.getInstanceList(context),
+					new java.security.SecureRandom());
+			httpsURLConnection.setSSLSocketFactory(sc.getSocketFactory());
+
+			// disable redirects to reduce possible confusion
+			//httpsURLConnection.setFollowRedirects(false);
+
+			// disable hostname verification, when preference is set
+			// (this still shows a certification dialog, which requires user interaction!)
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
+	        if(sp.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false))
+	        	httpsURLConnection.setHostnameVerifier(new AllowAllHostnameVerifier());
+	        else
+	        	httpsURLConnection.setHostnameVerifier(HttpsURLConnection.getDefaultHostnameVerifier());
+		}
+
+		if(username != null && password != null)
+    		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encode((username + ":" + password).getBytes()));
+
+		return (HttpURLConnection) urlConnection;
+	}
+	
+	/*
+	private static HttpURLConnection getUrlConnection(URL url, Context context, String username, String password) throws IOException, KeyManagementException, NoSuchAlgorithmException {
 		HttpURLConnection urlConnection = null; 
 		if(url.getProtocol().toLowerCase(Locale.ENGLISH).equals("http"))
 			urlConnection = (HttpURLConnection) url.openConnection();
@@ -110,7 +165,8 @@ public class HttpJsonRequest {
 	    		//HttpsURLConnection.setDefaultHostnameVerifier(new CustomHostnameVerifier());
 	    		
 	    		//HttpsURLConnection.setDefaultHostnameVerifier(new StrictHostnameVerifier());	    		
-	    		HttpsURLConnection.setDefaultHostnameVerifier(new AllowAllHostnameVerifier());
+	    		//HttpsURLConnection.setDefaultHostnameVerifier(new AllowAllHostnameVerifier());
+	    		HttpsURLConnection.setDefaultHostnameVerifier(new BrowserCompatHostnameVerifier());
 	        }
 	        urlConnection = (HttpURLConnection) url.openConnection();
 		}
@@ -120,6 +176,7 @@ public class HttpJsonRequest {
 		
 		return urlConnection;
 	}
+	*/
 	
 
 	@SuppressLint("DefaultLocale")

@@ -1,3 +1,24 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader;
 
 import java.util.ArrayList;
@@ -16,13 +37,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
@@ -52,9 +73,10 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	MenuItem menuItem_Read;
 	
     IReader _Reader;
-    ArrayList<Integer> databaseItemIds;
+    //ArrayList<Integer> databaseItemIds;
     DatabaseConnection dbConn;
 	//public List<RssFile> rssFiles;
+    Cursor cursor;
     
     public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
     
@@ -80,17 +102,23 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		//	subsciption_id = intent.getExtras().getLong(NewsReaderDetailActivity.SUBSCRIPTION_ID);
 		//if(intent.hasExtra(NewsReaderDetailActivity.FOLDER_ID))
 		//	folder_id = intent.getExtras().getLong(NewsReaderDetailActivity.FOLDER_ID);		
-		if(intent.hasExtra(NewsReaderDetailActivity.ITEM_ID))
-			item_id = intent.getExtras().getInt(NewsReaderDetailActivity.ITEM_ID);
-		if(intent.hasExtra(NewsReaderDetailActivity.TITEL))
-			getSupportActionBar().setTitle(intent.getExtras().getString(NewsReaderDetailActivity.TITEL));
+		if(intent.hasExtra(NewsReaderListActivity.ITEM_ID))
+			item_id = intent.getExtras().getInt(NewsReaderListActivity.ITEM_ID);
+		if(intent.hasExtra(NewsReaderListActivity.TITEL))
+			getSupportActionBar().setTitle(intent.getExtras().getString(NewsReaderListActivity.TITEL));
 			//getActionBar().setTitle(intent.getExtras().getString(NewsReaderDetailActivity.TITEL));		
 		
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		if(intent.hasExtra(DATABASE_IDS_OF_ITEMS))
-			databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
+		//if(intent.hasExtra(DATABASE_IDS_OF_ITEMS))
+		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
 		
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
+    	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "desc");
+    	if(sortDirection.equals(SORT_DIRECTION.desc.toString()))
+    		sDirection = SORT_DIRECTION.desc;
+		cursor = dbConn.getCurrentSelectedRssItems(sDirection);
 		
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
@@ -135,8 +163,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			dbConn.closeDatabase();
 		super.onDestroy();
 	}
-	
-	
+		
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -144,7 +171,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		{
 	        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN))
 	        {
-	        	if(currentPosition < databaseItemIds.size() -1)
+	        	if(currentPosition < cursor.getCount() -1)
 	        	{
 	        		mViewPager.setCurrentItem(currentPosition + 1, true);
 	        		return true;
@@ -208,7 +235,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		ResumeVideoPlayersOnCurrentPage();
 				
 		//String idFeed = String.valueOf(rssFiles.get(position).getDB_Id());
-		String idFeed = String.valueOf(databaseItemIds.get(currentPosition));
+		String idFeed = getIdCurrentFeed(currentPosition);
 		
 		if(!dbConn.isFeedUnreadStarred(idFeed, true))
 		{			
@@ -240,6 +267,12 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			UpdateActionBarIcons();
 	}
 	
+	public String getIdCurrentFeed(int position) {
+		cursor.moveToPosition(position);
+		String idFeed = String.valueOf(cursor.getString(0));
+		return idFeed;
+	}
+	
 	private void ResumeVideoPlayersOnCurrentPage()
 	{
 		NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
@@ -257,8 +290,9 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 	public void UpdateActionBarIcons()
 	{
-		boolean isStarred = dbConn.isFeedUnreadStarred(String.valueOf(databaseItemIds.get(currentPosition)), false);
-		boolean isRead = dbConn.isFeedUnreadStarred(String.valueOf(databaseItemIds.get(currentPosition)), true);
+		String idFeed = getIdCurrentFeed(currentPosition);
+		boolean isStarred = dbConn.isFeedUnreadStarred(idFeed, false);
+		boolean isRead = dbConn.isFeedUnreadStarred(idFeed, true);
 		
 		//if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
 		if(isStarred && menuItem_Starred != null)
@@ -268,10 +302,16 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			menuItem_Starred.setIcon(android.R.drawable.star_off);
 			//menuItem_Starred.setIcon(R.drawable.btn_rating_star_off_normal_holo_light);
 		
-		if(isRead && menuItem_Read != null)
+		
+		
+		if(isRead && menuItem_Read != null) {
+			menuItem_Read.setIcon(R.drawable.btn_check_on_holo_dark);
 			menuItem_Read.setChecked(true);
-		else if(menuItem_Read != null)
+		}
+		else if(menuItem_Read != null) {
+			menuItem_Read.setIcon(R.drawable.btn_check_off_holo_dark);
 			menuItem_Read.setChecked(false);
+		}
 	}
 	
 	@Override
@@ -289,7 +329,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Cursor cursor = dbConn.getArticleByID(String.valueOf(databaseItemIds.get(currentPosition)));
+		String idFeed = getIdCurrentFeed(currentPosition);
+		Cursor cursor = dbConn.getArticleByID(idFeed);
 		
 		switch (item.getItemId()) {
 			case android.R.id.home:
@@ -298,7 +339,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 			case R.id.action_starred:				
 				//String idItem_Db = String.valueOf(rssFiles.get(currentPosition).getDB_Id());
-				String idItem_Db = String.valueOf(databaseItemIds.get(currentPosition));
+				String idItem_Db = getIdCurrentFeed(currentPosition);
                 //String idItem = String.valueOf(rssFiles.get(currentPosition).getItem_Id());
 				Boolean curState = dbConn.isFeedUnreadStarred(idItem_Db, false);
 
@@ -348,6 +389,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				}
 				break;
 			
+		
+			/*
 			case R.id.action_sendSourceCode:
 				String description = "";
 				if(cursor != null)
@@ -370,25 +413,36 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				    Toast.makeText(NewsDetailActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
 				}				
 				break;
-
+			 */
             case R.id.action_ShareItem:
             	
             	String title = "";
-            	String linkToItem = "";
+            	//String content = "";
+            	String content = "";
 				if(cursor != null)
 				{
 					cursor.moveToFirst();
 					title = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE));
-					linkToItem = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));					
+					content = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));					
 					cursor.close();
 				}
-            	
+				
+				NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+				if(fragment != null) { // could be null if not instantiated yet
+					if(!fragment.webview.getUrl().equals("about:blank")) {
+						content = fragment.webview.getUrl();
+						title = fragment.webview.getTitle();
+					}
+				}
+            					
+				content += "<br/><br/>Send via <a href=\"https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader\">ownCloud News Reader</a>";
+				            	
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
                 //share.putExtra(Intent.EXTRA_SUBJECT, rssFiles.get(currentPosition).getTitle());
                 //share.putExtra(Intent.EXTRA_TEXT, rssFiles.get(currentPosition).getLink());
                 share.putExtra(Intent.EXTRA_SUBJECT, title);
-                share.putExtra(Intent.EXTRA_TEXT, linkToItem);
+                share.putExtra(Intent.EXTRA_TEXT, content);
                 
                 startActivity(Intent.createChooser(share, "Share Item"));
                 break;
@@ -402,6 +456,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 					markItemAsReadUnread(id, !menuItem_Read.isChecked());
 					cursor.close();
 				}            	
+            	
+            	UpdateActionBarIcons();
             	
             	pDelayHandler.DelayTimer();
             	
@@ -474,9 +530,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 		@Override
 		public int getCount() {
-			//return 2;
-			return databaseItemIds.size();
-			//return rssFiles.size();
+			return cursor.getCount();			
 		}
 
 		@Override

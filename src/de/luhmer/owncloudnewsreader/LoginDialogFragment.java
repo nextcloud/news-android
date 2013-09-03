@@ -1,9 +1,28 @@
+/**
+* Android ownCloud News
+*
+* @author David Luhmer
+* @copyright 2013 David Luhmer david-dev@live.de
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+* License as published by the Free Software Foundation; either
+* version 3 of the License, or any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+*
+* You should have received a copy of the GNU Affero General Public
+* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package de.luhmer.owncloudnewsreader;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import com.actionbarsherlock.app.SherlockDialogFragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,6 +40,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+
+import com.actionbarsherlock.app.SherlockDialogFragment;
+
+import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
@@ -36,17 +59,21 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	 */
 	private UserLoginTask mAuthTask = null;
 
+	private Activity mActivity;
+	
 	// Values for email and password at the time of the login attempt.
 	private String mUsername;
 	private String mPassword;
 	private String mOc_root_path;
-	private boolean mCbAllowAllSSL;
+	//private boolean mCbAllowAllSSL;
+	private boolean mCbDisableHostnameVerification;
 	
 	// UI references.
 	private EditText mUsernameView;
 	private EditText mPasswordView;
 	private EditText mOc_root_path_View;
-	private CheckBox mCbAllowAllSSLView;
+	//private CheckBox mCbAllowAllSSLView;
+	private CheckBox mCbDisableHostnameVerificationView;
 	
 	//private View mLoginFormView;
 	//private View mLoginStatusView;	
@@ -54,8 +81,19 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 
 	ProgressDialog mDialogLogin;
 	
+	public LoginDialogFragment() {
+		
+	}
+	
+	public void setmActivity(Activity mActivity) {
+		this.mActivity = mActivity;
+	}	
+	
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+		
+		//setRetainInstance(true);
+		
         // Build the dialog and set up the button click handlers
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -83,7 +121,18 @@ public class LoginDialogFragment extends SherlockDialogFragment {
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
         mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
         mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-        mCbAllowAllSSL = mPrefs.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false);
+        //mCbAllowAllSSL = mPrefs.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false);
+        mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
+        
+        
+        /*
+        if(savedInstanceState != null && mUsername == null){
+        	mUsername = savedInstanceState.getString(mUsernameString);
+        	mPassword = savedInstanceState.getString(mPasswordString);
+        	mOc_root_path = savedInstanceState.getString(mOc_root_pathString);
+        	mCbAllowAllSSL = savedInstanceState.getBoolean(mCbAllowAllSSLString);
+        }
+        */
         
     	// Set up the login form.
  		//mUsername = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -96,14 +145,14 @@ public class LoginDialogFragment extends SherlockDialogFragment {
  		mOc_root_path_View = (EditText) view.findViewById(R.id.edt_owncloudRootPath);
  		mOc_root_path_View.setText(mOc_root_path);
  		
- 		mCbAllowAllSSLView = (CheckBox) view.findViewById(R.id.cb_AllowAllSSLCertificates);
- 		mCbAllowAllSSLView.setChecked(mCbAllowAllSSL);
- 		mCbAllowAllSSLView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+ 		mCbDisableHostnameVerificationView = (CheckBox) view.findViewById(R.id.cb_AllowAllSSLCertificates);
+ 		mCbDisableHostnameVerificationView.setChecked(mCbDisableHostnameVerification);
+ 		mCbDisableHostnameVerificationView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 				mPrefs.edit()
-					.putBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, isChecked)
+					.putBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, isChecked)
 					.commit();
 			}
 		});
@@ -124,8 +173,10 @@ public class LoginDialogFragment extends SherlockDialogFragment {
  		view.findViewById(R.id.btn_cancel).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
-					public void onClick(View view) {
+					public void onClick(View view) {						
 						LoginDialogFragment.this.getDialog().cancel();
+						if(mActivity instanceof AuthenticatorActivity)
+							mActivity.finish();
 					}
 				});
  		
@@ -140,6 +191,16 @@ public class LoginDialogFragment extends SherlockDialogFragment {
         return pDialog;
 	}
 	
+	/*
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		savedInstanceState.putString(mUsernameString, mUsernameView.getText().toString());
+		savedInstanceState.putString(mPasswordString, mPasswordView.getText().toString());
+		savedInstanceState.putString(mOc_root_pathString, mOc_root_path_View.getText().toString());
+		savedInstanceState.putBoolean(mCbAllowAllSSLString, mCbAllowAllSSLView.isChecked());
+		
+		super.onSaveInstanceState(savedInstanceState);
+	}*/
 	
 	/*
 	@Override
@@ -237,6 +298,9 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}*/
+
+
+	
 
 	/**
 	 * Attempts to sign in or register the account specified by the login form.
@@ -407,11 +471,14 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 			mDialogLogin.dismiss();
 			
 			if(versionCode == -1 && exception_message.equals("Value <!DOCTYPE of type java.lang.String cannot be converted to JSONObject")) {
-				ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_not_compatible), getActivity());
+				if(isAdded())
+					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_not_compatible), getActivity());
 			} else if(versionCode == -1) {
-				ShowAlertDialog(getString(R.string.login_dialog_title_error), exception_message, getActivity());
+				if(isAdded())
+					ShowAlertDialog(getString(R.string.login_dialog_title_error), exception_message, getActivity());
 			} else if(versionCode == 0){
-				ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_something_went_wrong), getActivity());
+				if(isAdded())
+					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_something_went_wrong), getActivity());
 			} else {
 				//Reset Database
 				DatabaseConnection dbConn = new DatabaseConnection(getActivity());
@@ -426,7 +493,26 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 				editor.putString(SettingsActivity.EDT_USERNAME_STRING, username);
 				editor.commit();
 				
+				/*
+				AccountManager mAccountManager = AccountManager.get(mActivity);
+				
+				//Remove all accounts first
+				Account[] accounts = mAccountManager.getAccounts();
+			    for (int index = 0; index < accounts.length; index++) {
+			    if (accounts[index].type.intern() == AccountGeneral.ACCOUNT_TYPE)
+			    	mAccountManager.removeAccount(accounts[index], null, null);
+			    }
+				
+			    //Then add the new account
+				Account account = new Account(mUsername, AccountGeneral.ACCOUNT_TYPE);
+				mAccountManager.addAccountExplicitly(account, mPassword, null);
+				
+				ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
+				*/
+				
 				LoginDialogFragment.this.getDialog().cancel();
+				if(mActivity instanceof AuthenticatorActivity)
+					mActivity.finish();
 			}
 		}
 
@@ -438,7 +524,7 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	}
 	
 	public static void ShowAlertDialog(String title, String text, Activity activity)
-	{
+	{		
 		AlertDialog.Builder aDialog = new AlertDialog.Builder(activity);
 		aDialog.setTitle(title);
 		aDialog.setMessage(text);

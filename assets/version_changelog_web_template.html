@@ -1,8 +1,10 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
     	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    
-	    <script>
+	    <script type="text/javascript" >
 			var url = "https://api.github.com/repos/owncloud/News-Android-App/contents/README.md?callback=jsonCallback";
 			var regex = /((.|\s)*?)(?=Updates)/;
 			
@@ -17,7 +19,7 @@
 					dataType: 'jsonp',
 					success: function(json) {
 						var content = decodeFromBase64(json.data.content);
-						handleResult(content);
+						handleResult(decode_utf8(content));
 					},
 					error: function(e) {
 					   //console.log(e.message);
@@ -27,6 +29,10 @@
 				
 			})(jQuery);
 			
+			function decode_utf8(s) {
+				return decodeURIComponent(escape(s));
+			}
+
 			function handleResult(content)
 			{
 				//var Ausdruck = /(?<=Updates\n==================================)((.|\s)*)/;						
@@ -59,25 +65,10 @@
 				width:		auto !important;
 				height:		auto !important;
 				max-width:	100% !important;
-				
-				
 			}
-			
-			pre, code, blockquote, p, em, b {
-				white-space:	-moz-pre-wrap	!important;
-				white-space:	-pre-wrap		!important;
-				white-space:	-o-pre-wrap		!important;
-				white-space:	pre-wrap		!important;
-				word-wrap: 		break-word		!important;
-			}
-			
+
 			body {
-				word-wrap: 		break-word !important;
-			}
-			
-			#content table {
-				width:100% !important;
-				table-layout:fixed; 
+				white-space:nowrap !important;
 			}
 						
 			.header {
@@ -110,7 +101,7 @@
 				color: #000 !important;
 			}
         </style>
-        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
     </head>
     <body id="lightTheme">
         <div class="header">
