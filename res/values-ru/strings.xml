@@ -18,7 +18,6 @@
   <string name="menu_update">Обновить</string>
   <string name="menu_About_Changelog">Изменени</string>
   <string name="menu_markAllAsRead">Пометить всё как прочитанное</string>
-  <string name="menu_StartImageCaching">Загрузка изображений для автономного кэширования</string>
   <string name="menu_downloadMoreItems">Загрузить еще</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Исходный код элемента - Отчет об ошибке</string>
@@ -32,7 +31,6 @@
   <string name="action_login">Параметры сервера</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
-  <string name="pref_title_password">Секретный код</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -43,7 +41,6 @@
   <string name="error_invalid_url">Неверный адрес</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Скачать Х старых элементов</string>
-  <string name="toast_no_more_downloads_available">Нет больше старых элементов, доступных для загрузки</string>
   <string name="pull_to_refresh_updateTags">Синхронизация элементов</string>
   <string name="pull_to_refresh_updateFolder">Синхронизируется папка</string>
   <string name="pull_to_refresh_updateFeeds">Синхронизируются ленты</string>
@@ -58,9 +55,10 @@
   <string name="warning">Предупреждение</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>
   <string name="pref_title_ShowOnlyUnread">Показать только непрочитанные статьи</string>
-  <string name="pref_title_AllowAllSSLCertificates">Разрешить все SSL-сертификаты</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавишь регулировки громкости</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">Показать</string>
   <string name="pref_title_app_theme">Применить тему (требуется перезапуск, чтобы настройки вступили в силу)</string>
@@ -91,7 +89,7 @@
   <string name="login_dialog_text_security_warning">Вы не используете HTTPS. Злоумышленники могут перехватить трафик и получить доступ к некоторым конфиденциальным данным (например, пароль). Мы настоятельно рекомендуем использовать HTTPS!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Данные и синхронизация</string>
-  <string name="pref_title_data_sync_max_items">Максимальное число элементов для синхронизации</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Очистить кэш</string>
   <string name="pref_title_CacheImagesOffline">Автономныйкэш изображений</string>
   <string name="pref_title_Max_Cache_Size">Максимальный размер кэша</string>

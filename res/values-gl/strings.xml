@@ -19,7 +19,6 @@
   <string name="menu_update">Actualizar</string>
   <string name="menu_About_Changelog">Sobre / Rexistro de cambios</string>
   <string name="menu_markAllAsRead">Marcar todo como lido</string>
-  <string name="menu_StartImageCaching">Iniciar o gardado da imaxe na caché sen conexión</string>
   <string name="menu_downloadMoreItems">Descargar máis elementos</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código fonte do elemento - Informe de fallos</string>
@@ -33,7 +32,6 @@
   <string name="action_login">Axustes do servidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de usuario</string>
-  <string name="pref_title_password">Código secreto</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -44,7 +42,6 @@
   <string name="error_invalid_url">Este URL é incorrecto</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Descargados X elementos antigos</string>
-  <string name="toast_no_more_downloads_available">Non hai máis elementos antigos dispoñíbeis para descarga</string>
   <string name="pull_to_refresh_updateTags">Sincronizando o estado dos elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando o cartafol</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando as fontes</string>
@@ -69,9 +66,10 @@
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
   <string name="pref_title_ShowOnlyUnread">Amosar só os artigos non lidos</string>
-  <string name="pref_title_AllowAllSSLCertificates">Permitir todos os certificados SSL</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Navegar cos botóns de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido mentres se despraza</string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">Presentar</string>
   <string name="pref_title_app_theme">Tema de aplicativo (require reiniciar para aplicar)</string>
@@ -131,7 +129,7 @@
   <string name="login_dialog_text_security_warning">Non está a empregar https. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal). Polo que recomendámoslle que empregue https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Datos e sincronización</string>
-  <string name="pref_title_data_sync_max_items">Número máximo de elementos que sincronizar</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Limpar a caché</string>
   <string name="pref_title_CacheImagesOffline">Gardar a imaxe na caché sen conexión</string>
   <string name="pref_title_Max_Cache_Size">Tamaño máximo da caché</string>

@@ -41,6 +41,8 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="warning">Averto</string>
   <string name="pref_title_ShowOnlyUnread">Montri nur nelegitajn artikolojn</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
@@ -50,7 +52,7 @@
   <string name="login_dialog_title_error">Eraro</string>
   <string name="login_dialog_title_security_warning">Sekureca averto</string>
   <!--Data & Sync-->
-  <string name="pref_title_data_sync_max_items">Maksimuma kiamo de eroj sinkroniĝotaj</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Forviŝi la kaŝmemoron</string>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

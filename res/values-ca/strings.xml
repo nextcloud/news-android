@@ -19,7 +19,6 @@
   <string name="menu_update">Refresca</string>
   <string name="menu_About_Changelog">Quant a / Registre de canvis</string>
   <string name="menu_markAllAsRead">Marca-ho tot com a llegit</string>
-  <string name="menu_StartImageCaching">Inicia la compressió d\'imatges fora de línia</string>
   <string name="menu_downloadMoreItems">Baixa més elements</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Codi font de l\'element - Informe d\'errades</string>
@@ -33,7 +32,6 @@
   <string name="action_login">Arranjament del sevidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'usuari</string>
-  <string name="pref_title_password">Codi secret</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -44,7 +42,6 @@
   <string name="error_invalid_url">La URL és incorrecta</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">S\'han baixat X elements antics</string>
-  <string name="toast_no_more_downloads_available">No hi ha més elements antics disponibles per a baixar</string>
   <string name="pull_to_refresh_updateTags">Estat de sincronització de serveis</string>
   <string name="pull_to_refresh_updateFolder">Sincronitzant carpetes</string>
   <string name="pull_to_refresh_updateFeeds">Sincronitzant fonts</string>
@@ -69,9 +66,10 @@
   <string name="warning">Avís</string>
   <string name="pref_title_AutoSyncOnStart">Sincronitza en inicialitzar</string>
   <string name="pref_title_ShowOnlyUnread">Mostra només articles sense llegir</string>
-  <string name="pref_title_AllowAllSSLCertificates">Permet tots els certificats SSL</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Navega amb els botons del volum</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">Pantalla</string>
   <string name="pref_title_app_theme">Tema de l\'aplicació (requereix reiniciar-la)</string>
@@ -131,7 +129,7 @@
   <string name="login_dialog_text_security_warning">No esteu usant https. Un atacant podria interceptar el transit i guanyar accés a dades sensibles (Per exemple la vostra contrasenya). Es recomana usar https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Sincronització &amp; de dades </string>
-  <string name="pref_title_data_sync_max_items">Nombre màxim d\'elements a sincronitzar</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Esborra la memòria de cau</string>
   <string name="pref_title_CacheImagesOffline">Comprimeix imatges fora de línia</string>
   <string name="pref_title_Max_Cache_Size">Memòria de cau màxima</string>

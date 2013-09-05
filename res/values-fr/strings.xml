@@ -12,13 +12,13 @@
   <string name="tv_clickHereToOpenItem">Cliquez ici pour ouvrir l\'article</string>
   <string name="no_wifi_available">Non connecté au WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Voulez vous télécharger les images sans connexion WiFi</string>
+  <string name="max_items_count_reached">Vous avez atteint la taille maximum de XX items</string>
   <string name="allUnreadFeeds">Tous les articles non lus</string>
   <string name="starredFeeds">Articles favoris</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">rafraichir</string>
   <string name="menu_About_Changelog">A propos / Journal des modifications</string>
   <string name="menu_markAllAsRead">Marquez tous comme lu</string>
-  <string name="menu_StartImageCaching">Démarrer la mise en cache hors-ligne des images</string>
   <string name="menu_downloadMoreItems">Télécharger des articles supplémentaires</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Code source de l\'article - rapport de bug</string>
@@ -32,7 +32,6 @@
   <string name="action_login">Paramètres du Serveur</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilisateur</string>
-  <string name="pref_title_password">Code secret</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -43,7 +42,6 @@
   <string name="error_invalid_url">Cet URL est incorrect</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Anciens articles téléchargés</string>
-  <string name="toast_no_more_downloads_available">Aucun anciens articles disponibles au téléchargement</string>
   <string name="pull_to_refresh_updateTags">États de la synchronisation des articles</string>
   <string name="pull_to_refresh_updateFolder">synchronisant les dossiers</string>
   <string name="pull_to_refresh_updateFeeds">synchronisant les besoins</string>
@@ -52,19 +50,31 @@
   <string name="title_activity_settings">Paramètres</string>
   <!--General settings-->
   <string name="pref_header_general">Généraux</string>
+  <string name="pref_title_general_sort_order">Ordre de tri</string>
+  <string-array name="pref_general_sort_order">
+    <item>Nouveau -&gt; Ancien</item>
+    <item>Ancien -&gt; Nouveau</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values">
+    <item>décroissant</item>
+    <item>croissant</item>
+  </string-array>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Calcul de la taille du cache en cours... Veuillez patienter.</string>
+  <string name="reset_cache_unsaved_changes">Certaines modifications ne sont pas encore synchronisées. Voulez-vous cependant réinitialiser le cache ?</string>
   <string name="warning">Attention</string>
   <string name="pref_title_AutoSyncOnStart">Synchronisation au démarrage</string>
   <string name="pref_title_ShowOnlyUnread">Montrer seulement les artiles non lus</string>
-  <string name="pref_title_AllowAllSSLCertificates">Autoriser tous les certificats SSL</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Naviguer avec les boutons de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu tout en défilant</string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">Afficher</string>
   <string name="pref_title_app_theme">Thème </string>
   <string name="pref_title_feed_list_layout">Disposition de la liste des feeds</string>
+  <string name="pref_display_font_layout">Police (nécessite un redémarrage)</string>
   <string-array name="pref_display_apptheme">
     <item>Sombre</item>
     <item>Clair</item>
@@ -83,6 +93,34 @@
     <item>1</item>
     <item>2</item>
   </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erreur</string>
   <string name="login_dialog_text_something_went_wrong">Quelque chose s\'est mal passé :-(</string>
@@ -91,7 +129,7 @@
   <string name="login_dialog_text_security_warning">Vous n\'utilisez pas https. Une personne malveillante pourrait intercepter votre trafic et obtenir des données sensibles (ex. votre mot de passe). Il est fortement recommandé d\'utiliser https !</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Données &amp; synchrnisation</string>
-  <string name="pref_title_data_sync_max_items">Nombre maximum d\'articles à synchroniser</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Vider le cache</string>
   <string name="pref_title_CacheImagesOffline">Mise en cache hors-ligne des images</string>
   <string name="pref_title_Max_Cache_Size">Taille maximale du cache</string>

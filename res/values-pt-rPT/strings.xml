@@ -16,7 +16,6 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
   <string name="menu_markAllAsRead">Marcar todos como lidos</string>
-  <string name="menu_StartImageCaching">Iniciar cache offline das imagens</string>
   <string name="menu_downloadMoreItems">Descarregar mais itens</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-Fonte do item: Reportar bug</string>
@@ -29,7 +28,6 @@
   <string name="action_login">Configurações do servidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
-  <string name="pref_title_password">Código secreto</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -51,8 +49,9 @@
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar no carregamento...</string>
   <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos por ler</string>
-  <string name="pref_title_AllowAllSSLCertificates">Permitir todos os certificados SSL</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Navegue usando os botões de volume</string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema da aplicação (deve reiniciar para aplicar)</string>
@@ -80,7 +79,7 @@
   <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Dados &amp; sincronização</string>
-  <string name="pref_title_data_sync_max_items">Maximo numero de itens para sincronizar</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Limpar dados temporários</string>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>

@@ -26,11 +26,14 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">計算快取容量中...請稍候。</string>
   <string name="warning">警告</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">錯誤</string>
   <string name="login_dialog_title_security_warning">安全性警告</string>
   <!--Data & Sync-->
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_Max_Cache_Size">最大快取容量</string>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

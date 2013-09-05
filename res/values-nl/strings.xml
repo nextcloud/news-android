@@ -19,7 +19,6 @@
   <string name="menu_update">Vernieuwen</string>
   <string name="menu_About_Changelog">Over / Wijzigingen</string>
   <string name="menu_markAllAsRead">Alles als gelezen markeren</string>
-  <string name="menu_StartImageCaching">Start met het cachen van afbeeldingen offline</string>
   <string name="menu_downloadMoreItems">Download meer objecten</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Sourceode van het item - Bug melding</string>
@@ -33,7 +32,6 @@
   <string name="action_login">Server instellingen</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
-  <string name="pref_title_password">Geheime code</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -44,7 +42,6 @@
   <string name="error_invalid_url">De URL is ongeldig</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">X oude objecten gedownload</string>
-  <string name="toast_no_more_downloads_available">Er zijn niet meer oude objecten te downloaden</string>
   <string name="pull_to_refresh_updateTags">Synchroniseren onderwerp statussen</string>
   <string name="pull_to_refresh_updateFolder">Synchroniseren map</string>
   <string name="pull_to_refresh_updateFeeds">Synchroniseren feeds</string>
@@ -69,9 +66,10 @@
   <string name="warning">Waarschuwing</string>
   <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>
   <string name="pref_title_ShowOnlyUnread">Toon alleen ongelezen artikelen</string>
-  <string name="pref_title_AllowAllSSLCertificates">Alle SSL certificaten toestaan</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Navigeren met volumeknoppen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">Weergeven</string>
   <string name="pref_title_app_theme">App thema (vereist herstarten)</string>
@@ -131,7 +129,7 @@
   <string name="login_dialog_text_security_warning">U gebruikt geen https. Een aanvaller zou het niet versleutelde verkeer kunnen onderscheppen en toegang krijgen tot gevoelige gegevens (bijv. uw wachtwoord). We adviseren om https te gebruiken!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; synch</string>
-  <string name="pref_title_data_sync_max_items">Max aantal te synchroniseren objecten</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Leegmaken cache</string>
   <string name="pref_title_CacheImagesOffline">Afbeeldingen offline cachen</string>
   <string name="pref_title_Max_Cache_Size">Max cache grootte</string>

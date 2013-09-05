@@ -19,7 +19,6 @@
   <string name="menu_update">Aktualisieren</string>
   <string name="menu_About_Changelog">Über / Änderungen</string>
   <string name="menu_markAllAsRead">Alles als gelesen kennzeichnen</string>
-  <string name="menu_StartImageCaching">Starte das Zwischenspeichern von Bildern für den Offlinemodus</string>
   <string name="menu_downloadMoreItems">Weitere Objekte herunterladen.</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Quelltext des Elements - Fehlerbericht</string>
@@ -33,7 +32,6 @@
   <string name="action_login">Servereinstellungen</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
-  <string name="pref_title_password">Geheimer Code</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -44,7 +42,6 @@
   <string name="error_invalid_url">Diese URL ist falsch.</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Lade X alte Objekte herunter</string>
-  <string name="toast_no_more_downloads_available">Es gibt keine weiteren alten Objekte zum herunterladen.</string>
   <string name="pull_to_refresh_updateTags">Synchronisiere Eintragsstatus</string>
   <string name="pull_to_refresh_updateFolder">Synchronisiere Ordner</string>
   <string name="pull_to_refresh_updateFeeds">Synchronisiere Feeds</string>
@@ -69,9 +66,10 @@
   <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Start synchronisieren</string>
   <string name="pref_title_ShowOnlyUnread">Nur ungelesene Artikel anzeigen</string>
-  <string name="pref_title_AllowAllSSLCertificates">Alle SSL-Zertifikate erlauben</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Navigiere mit den Volumenknüpfen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Während des Scrollens als gelesen markieren</string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">Anzeige</string>
   <string name="pref_title_app_theme">App-Theme (benötigt einen Neustart zur Übernahme)</string>
@@ -131,7 +129,7 @@
   <string name="login_dialog_text_security_warning">Sie nutzen kein https. Ein Angreifer könnte Ihren Datenverkehr mitschneiden und dadurch Zugang zu sensiblen Daten (z.B. Ihrem Passwort) erhalten. Wir empfehlen dringend die Nutzung von https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
-  <string name="pref_title_data_sync_max_items">Maximale Anzahl an Objekten zur Synchronisation</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Den Cache löschen</string>
   <string name="pref_title_CacheImagesOffline">Bilder Offline zwischenspeichern</string>
   <string name="pref_title_Max_Cache_Size">Maximale Cachegrösse</string>

@@ -19,11 +19,14 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="warning">გაფრთხილება</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">შეცდომა</string>
   <string name="login_dialog_title_security_warning">უსაფრთხოების გაფრთხილება</string>
   <!--Data & Sync-->
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

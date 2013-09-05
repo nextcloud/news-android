@@ -17,7 +17,6 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Osveži</string>
   <string name="menu_markAllAsRead">Označi vse kot prebrano</string>
-  <string name="menu_StartImageCaching">Prični s shranjevanjem slik v predpomnilnik</string>
   <string name="menu_downloadMoreItems">Prenesi več vsebine</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Pregled izvorne kode - Prijavi napako</string>
@@ -31,7 +30,6 @@
   <string name="action_login">Nastavitve strežnika</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uporabniško ime</string>
-  <string name="pref_title_password">Skrito geslo</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -42,7 +40,6 @@
   <string name="error_invalid_url">Internetni naslov ni veljaven</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Prenesli X starih dokumentov</string>
-  <string name="toast_no_more_downloads_available">Za prenos ni na voljo nobenih starih dokumentov</string>
   <string name="pull_to_refresh_updateFolder">Usklajevanje mape</string>
   <string name="pull_to_refresh_updateFeeds">Usklajevanje virov</string>
   <string name="pull_to_refresh_updateItems">Usklajevanje postavk</string>
@@ -55,9 +52,10 @@
   <string name="warning">Opozorilo</string>
   <string name="pref_title_AutoSyncOnStart">Usklajevanje ob zagonu</string>
   <string name="pref_title_ShowOnlyUnread">Prikaži samo neprebrane prispevke</string>
-  <string name="pref_title_AllowAllSSLCertificates">Dovoli vsa digitalna potrdila SSL</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Pomikanje po zaslonu z uporabo gumbov za glasnost</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Med pomikanjem zaslona označi kot prebrano</string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">Prikaz</string>
   <string name="pref_title_app_theme">Tema aplikacije (za uporabo nove teme potreben ponovni zagon)</string>
@@ -87,7 +85,7 @@
   <string name="login_dialog_title_security_warning">Varnostno opozorilo</string>
   <string name="login_dialog_text_security_warning">Ne uporabljate varne povezave https. Napadalec lahko prestreže vaš promet in pridobi dostop do občutljivih podatkov (npr. vašega gesla). Priporočamo uporabo protokola https.</string>
   <!--Data & Sync-->
-  <string name="pref_title_data_sync_max_items">Največje število podatkov za usklajevanje</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Pobriši predpomnilnik</string>
   <string name="pref_title_CacheImagesOffline">Shrani slike v predpomnilnik, bo povezava prekinjena</string>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
