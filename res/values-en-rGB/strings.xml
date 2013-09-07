@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Auto sync</string>
   <string name="app_name">ownCloud News Reader</string>
   <string name="action_settings">Settings</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
@@ -13,12 +15,14 @@
   <string name="no_wifi_available">No WiFi connection</string>
   <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a WiFi connection</string>
   <string name="max_items_count_reached">You\'ve reached the maximum size of XX items</string>
+  <string name="widget_header">ownCloud News</string>
   <string name="allUnreadFeeds">All unread items</string>
   <string name="starredFeeds">Starred items</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Refresh</string>
   <string name="menu_About_Changelog">About / Changelog</string>
   <string name="menu_markAllAsRead">Mark all as read</string>
+  <string name="menu_StartImageCaching">Download images</string>
   <string name="menu_downloadMoreItems">Download more items</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Sourcecode of item - Bugreport</string>
@@ -32,6 +36,7 @@
   <string name="action_login">Server Settings</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Username</string>
+  <string name="pref_title_password">Password</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -42,6 +47,7 @@
   <string name="error_invalid_url">This URL is incorrect</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Downloaded X old items</string>
+  <string name="toast_no_more_downloads_available">No further items available</string>
   <string name="pull_to_refresh_updateTags">Synchronising items states</string>
   <string name="pull_to_refresh_updateFolder">Synchronising folder</string>
   <string name="pull_to_refresh_updateFeeds">Synchronising feeds</string>
@@ -67,9 +73,15 @@
   <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
   <string name="pref_title_ShowOnlyUnread">Show only unread articles</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Mark as read whilst scrolling</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Accept Unknown Certificate?</string>
+  <string name="mtm_decision_always">Always</string>
+  <string name="mtm_decision_once">Once</string>
+  <string name="mtm_decision_abort">Abort</string>
+  <string name="mtm_notification">Certificate Verification</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Display</string>
   <string name="pref_title_app_theme">App theme (requires restart to apply)</string>

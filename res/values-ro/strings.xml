@@ -9,6 +9,7 @@
   <string name="action_Share">Partajează</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nume utilizator</string>
+  <string name="pref_title_password">Parolă</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->

@@ -4,8 +4,6 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <!--Strings related to login-->
-  <string name="pref_title_username">သုံးစွဲသူအမည်</string>
-  <string name="pref_title_password">စကားဝှက်</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
@@ -17,7 +15,6 @@
   <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
-  <string name="login_dialog_title_security_warning">လုံခြုံရေးသတိပေးချက်</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

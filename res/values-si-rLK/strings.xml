@@ -9,6 +9,7 @@
   <string name="action_Share">බෙදා හදා ගන්න</string>
   <!--Strings related to login-->
   <string name="pref_title_username">පරිශීලක නම</string>
+  <string name="pref_title_password">මුර පදය</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->

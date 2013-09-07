@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Automatyczna synchronizacja</string>
   <string name="app_name">ownCloud News Reader</string>
   <string name="action_settings">Ustawienia</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
@@ -13,12 +15,14 @@
   <string name="no_wifi_available">Brak połączenia WIFI</string>
   <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
   <string name="max_items_count_reached">Został osiągnięty maksymalny rozmiar XX elementów</string>
+  <string name="widget_header">ownCloud News</string>
   <string name="allUnreadFeeds">Wszystkie nieprzeczytane</string>
   <string name="starredFeeds">Oznaczone Gwiazdką</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Odśwież</string>
   <string name="menu_About_Changelog">O programie / Zmiany</string>
   <string name="menu_markAllAsRead">Oznacz wszysto jako przeczytane</string>
+  <string name="menu_StartImageCaching">Pobierz obrazki</string>
   <string name="menu_downloadMoreItems">Pobierz więcej elementów</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Kodu źródłowego elementu - raport błędu</string>
@@ -32,6 +36,7 @@
   <string name="action_login">Ustawienia serwera</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nazwa użytkownika</string>
+  <string name="pref_title_password">Hasło</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -42,6 +47,7 @@
   <string name="error_invalid_url">Ten adres jest niepoprawny</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Pobierz X starych elementów</string>
+  <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych elementów</string>
   <string name="pull_to_refresh_updateTags">Synchronizowanie elementów stanów</string>
   <string name="pull_to_refresh_updateFolder">Synchronizowanie folder</string>
   <string name="pull_to_refresh_updateFeeds">Synchronizowanie kanałów</string>
@@ -67,9 +73,15 @@
   <string name="pref_title_AutoSyncOnStart">Synchronizuj na starcie</string>
   <string name="pref_title_ShowOnlyUnread">Pokaż tylko nieprzeczytane artykuły</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Wyłącz weryfikację nazwy hosta</string>
   <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Akceptować nieznane certyfikaty?</string>
+  <string name="mtm_decision_always">Zawsze</string>
+  <string name="mtm_decision_once">Raz</string>
+  <string name="mtm_decision_abort">Anuluj</string>
+  <string name="mtm_notification">Certyfikat weryfikacji</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Wygląd</string>
   <string name="pref_title_app_theme">Szablon aplikacji (wymagany restart aplikacji)</string>

@@ -31,6 +31,7 @@
   <string name="action_login">Параметры сервера</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
+  <string name="pref_title_password">Пароль</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->

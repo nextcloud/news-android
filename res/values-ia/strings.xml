@@ -7,6 +7,7 @@
   <string name="action_Share">Compartir</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nomine de usator</string>
+  <string name="pref_title_password">Contrasigno</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->

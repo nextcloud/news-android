@@ -8,6 +8,7 @@
   <string name="action_Share">பகிர்வு</string>
   <!--Strings related to login-->
   <string name="pref_title_username">பயனாளர் பெயர்</string>
+  <string name="pref_title_password">கடவுச்சொல்</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
