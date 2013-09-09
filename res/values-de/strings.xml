@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Automatisch synchronisieren</string>
   <string name="app_name">ownCloud Newsreader</string>
   <string name="action_settings">Einstellungen</string>
   <string name="title_activity_news_detail">Newsdetailaktivität</string>
@@ -13,12 +15,14 @@
   <string name="no_wifi_available">Kein WLAN verbunden</string>
   <string name="do_you_want_to_download_without_wifi">Möchten Sie die Bilder ohne WLAN-Verbindung herunterladen</string>
   <string name="max_items_count_reached">Du hast die maximale Größe von XX Titeln erreicht</string>
+  <string name="widget_header">ownCloud-News</string>
   <string name="allUnreadFeeds">Alle ungelesenen Notizen</string>
   <string name="starredFeeds">Favorisierte Notizen</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aktualisieren</string>
   <string name="menu_About_Changelog">Über / Changelog</string>
   <string name="menu_markAllAsRead">Alle als gelesen markieren</string>
+  <string name="menu_StartImageCaching">Lade Bilder herunter</string>
   <string name="menu_downloadMoreItems">Weitere Elemente herunterladen</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Quelltext der Notiz - Bugreport</string>
@@ -43,6 +47,7 @@
   <string name="error_invalid_url">Diese URL ist falsch</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">X alte Elemente heruntergeladen</string>
+  <string name="toast_no_more_downloads_available">Keine weiteren Elemente verfügbar</string>
   <string name="pull_to_refresh_updateTags">Synchronisiere Elementzustände</string>
   <string name="pull_to_refresh_updateFolder">Ordner synchronisieren</string>
   <string name="pull_to_refresh_updateFeeds">Synchronisiere Feeds</string>
@@ -68,9 +73,15 @@
   <string name="pref_title_AutoSyncOnStart">Beim Starten synchronisieren</string>
   <string name="pref_title_ShowOnlyUnread">Zeige nur ungelesene Artikel</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Hostnamen-Nachweis deaktivieren</string>
   <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärke-Knöpfen navigieren</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Während dem Scrollen als gelesen markieren</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Unbekanntes Zertifikat akzeptieren?</string>
+  <string name="mtm_decision_always">Immer</string>
+  <string name="mtm_decision_once">Einmal</string>
+  <string name="mtm_decision_abort">Abbrechen</string>
+  <string name="mtm_notification">Zertifikatsnachweis</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Bildschirm</string>
   <string name="pref_title_app_theme">App-Theme (Neustart notwendig)</string>
