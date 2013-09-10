@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Auto sincronização</string>
   <string name="app_name">Leitor de notícias do ownCloud</string>
   <string name="action_settings">Configurações</string>
   <string name="title_activity_news_detail">Detalhes da notícia</string>
@@ -13,12 +15,14 @@
   <string name="no_wifi_available">Nenhum WiFi conectado</string>
   <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
   <string name="max_items_count_reached">Você atingiu o tamanho maxiumum de XX itens</string>
+  <string name="widget_header">Notícias ownCloud</string>
   <string name="allUnreadFeeds">Todos itens não lidos</string>
   <string name="starredFeeds">Itens vistos</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Atualizar</string>
   <string name="menu_About_Changelog">Sobre / Log de mudanças</string>
   <string name="menu_markAllAsRead">Marcar todos como lidos</string>
+  <string name="menu_StartImageCaching">Baixar imagens</string>
   <string name="menu_downloadMoreItems">Fazer download de mais itens</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-fonte do item - Reportar erros</string>
@@ -43,6 +47,7 @@
   <string name="error_invalid_url">A URL está incorreta</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Foram baixados X itens antigos</string>
+  <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
   <string name="pull_to_refresh_updateTags">Sincronizando estados dos itens</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
@@ -68,9 +73,15 @@
   <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>
   <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos não lidos</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Desabilitar Verificação de Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Aceita Certificado Desconhecido?</string>
+  <string name="mtm_decision_always">Sempre</string>
+  <string name="mtm_decision_once">Uma vez</string>
+  <string name="mtm_decision_abort">Abortar</string>
+  <string name="mtm_notification">Verificação de Certificado</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Display</string>
   <string name="pref_title_app_theme">Tema do aplicativo (é preciso reiniciar o aplicativo para as mudanças terem efeito)</string>

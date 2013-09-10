@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Sincronitza automàticament</string>
   <string name="app_name">Lector de notícies d\'ownCloud</string>
   <string name="action_settings">Arranjament</string>
   <string name="title_activity_news_detail">DetallActivitatNotícies</string>
@@ -13,12 +15,14 @@
   <string name="no_wifi_available">Sense connexió WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Voleu baixar les imatges sense una connexió WiFi</string>
   <string name="max_items_count_reached">Heu assolit la mida màxima de XX elements</string>
+  <string name="widget_header">Notícies ownCloud</string>
   <string name="allUnreadFeeds">Tots els elements no llegits</string>
   <string name="starredFeeds">Elements amb estrelles</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Refresca</string>
   <string name="menu_About_Changelog">Quant a / Registre de canvis</string>
   <string name="menu_markAllAsRead">Marca-ho tot com a llegit</string>
+  <string name="menu_StartImageCaching">Baixa imatges</string>
   <string name="menu_downloadMoreItems">Baixa més elements</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Codi font de l\'element - Informe d\'errades</string>
@@ -43,6 +47,7 @@
   <string name="error_invalid_url">La URL és incorrecta</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">S\'han baixat X elements antics</string>
+  <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
   <string name="pull_to_refresh_updateTags">Estat de sincronització de serveis</string>
   <string name="pull_to_refresh_updateFolder">Sincronitzant carpetes</string>
   <string name="pull_to_refresh_updateFeeds">Sincronitzant fonts</string>
@@ -68,9 +73,15 @@
   <string name="pref_title_AutoSyncOnStart">Sincronitza en inicialitzar</string>
   <string name="pref_title_ShowOnlyUnread">Mostra només articles sense llegir</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Desactiva la verificació del nom del servidor</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navega amb els botons del volum</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Accepta certificats de desconeguts?</string>
+  <string name="mtm_decision_always">Sempre</string>
+  <string name="mtm_decision_once">Una vegada</string>
+  <string name="mtm_decision_abort">Cancel·la</string>
+  <string name="mtm_notification">Verificació del certificat</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Pantalla</string>
   <string name="pref_title_app_theme">Tema de l\'aplicació (requereix reiniciar-la)</string>
