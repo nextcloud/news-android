@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Auto sünk</string>
   <string name="app_name">ownCloud Uudiste Lugeja</string>
   <string name="action_settings">Seaded</string>
   <string name="title_activity_news_detail">UudisteÜksikasjadeTegevused</string>
@@ -13,12 +15,14 @@
   <string name="no_wifi_available">WiFi pole ühendatud</string>
   <string name="do_you_want_to_download_without_wifi">Kas soovid pildid alla laadida WiFi ühendust kasutamata</string>
   <string name="max_items_count_reached">Oled jõudnud XX üksuste maksimaalse suuruseni</string>
+  <string name="widget_header">ownCloud Uudised</string>
   <string name="allUnreadFeeds">Kõik lugemata üksused</string>
   <string name="starredFeeds">Tähitud üksused</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Värskenda</string>
   <string name="menu_About_Changelog">Teave / Muudatused</string>
   <string name="menu_markAllAsRead">Märgi loetuks</string>
+  <string name="menu_StartImageCaching">Laadi pildid alla</string>
   <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Lähtekoodi üksus - vearaport</string>
@@ -43,6 +47,7 @@
   <string name="error_invalid_url">UR pole korrektne</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Alla laaditud X vana üksust</string>
+  <string name="toast_no_more_downloads_available">Rohkem üksusi pole saadaval</string>
   <string name="pull_to_refresh_updateTags">Sünkroniseerin üksuste seisu</string>
   <string name="pull_to_refresh_updateFolder">Sünkroniseerin kataloogi</string>
   <string name="pull_to_refresh_updateFeeds">Sünkroniseerin vooge</string>
@@ -68,9 +73,15 @@
   <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
   <string name="pref_title_ShowOnlyUnread">Näita ainult lugemata artikleid</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Keela serveri nime kontroll</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigeeri häälevaljuse nuppudega</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Märgi kerides loetuks</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Nõustu tundmatu sertifikaadiga?</string>
+  <string name="mtm_decision_always">Alati</string>
+  <string name="mtm_decision_once">Üks kord</string>
+  <string name="mtm_decision_abort">Katkesta</string>
+  <string name="mtm_notification">Sertifikaadi kontroll</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Vaade</string>
   <string name="pref_title_app_theme">Rakenduse teema (vajab restarti)</string>
