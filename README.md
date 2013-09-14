@@ -22,18 +22,9 @@ Donate
 
 How to use the Beta App via Google Play ?
 ==================================
-Please update your News App and Appframework to the latest version which is only available on GitHub.  
-
-ownCloud News App:
-https://github.com/owncloud/news  
-
-Appframework:
-https://github.com/owncloud/appframework
-
-
-After this, join the following Google Group:
+Join the following Google Group:
 https://groups.google.com/d/forum/owncloud-news-android-app
-there you can find a link to Google Play for registering as beta tester of the app.
+there you can find a link (after I accepted you in the group) to Google Play for registering as beta tester of the app.
 
 
 Language
@@ -89,7 +80,22 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.4.9 (in development)
+0.5.0 (in development)
+---------------------
+
+0.4.9 (beta)
+---------------------
+- Update German Language support
+- Readded full support of Android 2.2+ (was broken since 0.4.4)
+- Improvement - In Landscape Mode on Tablets (7inch+) the Feed/Folder pane is always visible.
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/77">#77 There should be icons for folders and special categories
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/139">#139 Article list jumps after having article opened
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/137">#137 Back button shouldn't close app when app displays a specific feed or folder
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/151">#151 Reload slide pane when open event is triggered
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/136">#136 Fix that the translated app name is used as the folder name
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/134">#134 Sidebar - "Loading ..." font color should be brighter
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/133">#133 Refreshing after adding server data results in unauthorized
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/57">#57 Background synchronization
 
 0.4.8
 ---------------------
