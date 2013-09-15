@@ -96,6 +96,7 @@ Updates
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/134">#134 Sidebar - "Loading ..." font color should be brighter
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/133">#133 Refreshing after adding server data results in unauthorized
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/57">#57 Background synchronization
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/152">#152 Changing sorting direction
 
 0.4.8
 ---------------------
