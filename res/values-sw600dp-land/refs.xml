@@ -8,7 +8,7 @@
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     -->
     
-    <!-- 
-    <item name="activity_newsreader_list" type="layout">@layout/activity_newsreader_twopane</item>
- 	-->
+    
+    <item name="activity_newsreader" type="layout">@layout/activity_newsreader_twopane</item>
+ 	<bool name="two_pane">true</bool>
 </resources>

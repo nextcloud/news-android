@@ -115,8 +115,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
-    	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "desc");
-    	if(sortDirection.equals(SORT_DIRECTION.desc.toString()))
+    	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
+    	if(sortDirection.equals("1"))
     		sDirection = SORT_DIRECTION.desc;
 		cursor = dbConn.getCurrentSelectedRssItems(sDirection);
 		

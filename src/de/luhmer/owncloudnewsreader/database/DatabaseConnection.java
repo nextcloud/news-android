@@ -89,6 +89,9 @@ public class DatabaseConnection {
     	return database;
     }
     
+    public DatabaseHelper getHelper() {
+    	return openHelper;
+    }
     
     public void clearDatabaseOverSize()
 	{

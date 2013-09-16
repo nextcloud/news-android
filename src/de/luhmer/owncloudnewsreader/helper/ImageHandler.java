@@ -34,7 +34,6 @@ import java.util.regex.Pattern;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
-import de.luhmer.owncloudnewsreader.R;
 
 public class ImageHandler {
     //private static final String TAG = "DownloadImagesFromWeb";
@@ -126,7 +125,8 @@ public class ImageHandler {
 			if (android.os.Build.DEVICE.contains("Samsung") || android.os.Build.MANUFACTURER.contains("Samsung")) {
 				url = url + "/external_sd";
 			}
-			url = url + "/" + context.getString(R.string.app_name);
+			//url = url + "/" + context.getString(R.string.app_name);
+			url = url + "/ownCloud News Reader";			
 		}
 		else
 			url = context.getCacheDir().getAbsolutePath(); //Environment.getDownloadCacheDirectory().getAbsolutePath();		

@@ -79,15 +79,28 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 	//private View mLoginStatusView;	
 	//private TextView mLoginStatusMessageView;
 
-	ProgressDialog mDialogLogin;
+	ProgressDialog mDialogLogin;	
 	
+	public interface LoginSuccessfullListener {
+		void LoginSucceeded();	
+	}
+	LoginSuccessfullListener listener;
+		
+
 	public LoginDialogFragment() {
 		
 	}
 	
 	public void setmActivity(Activity mActivity) {
 		this.mActivity = mActivity;
-	}	
+	}
+	
+	/**
+	 * @param listener the listener to set
+	 */
+	public void setListener(LoginSuccessfullListener listener) {
+		this.listener = listener;
+	}
 	
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -509,6 +522,9 @@ public class LoginDialogFragment extends SherlockDialogFragment {
 				
 				ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
 				*/
+				
+				if(listener != null)
+					listener.LoginSucceeded();
 				
 				LoginDialogFragment.this.getDialog().cancel();
 				if(mActivity instanceof AuthenticatorActivity)

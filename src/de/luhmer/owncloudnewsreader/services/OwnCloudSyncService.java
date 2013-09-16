@@ -62,13 +62,12 @@ public class OwnCloudSyncService extends Service {
 		@Override
 		public void startSync() throws RemoteException {
 			if(!isSyncRunning()) {
+				startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
 				OwnCloud_Reader ocReader = (OwnCloud_Reader) _Reader;
 				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
 				String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-				String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");				
-				ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished, username, password);
-			
-				startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);				
+				String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
+				ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished, username, password);								
 			}
 		}
 
@@ -79,11 +78,13 @@ public class OwnCloudSyncService extends Service {
 	};
 	
 	
-	IReader _Reader = new OwnCloud_Reader();
+	static IReader _Reader;
 	
 	@Override
 	public void onCreate() {
-		super.onCreate();				
+		super.onCreate();
+		if(_Reader == null)
+			_Reader = new OwnCloud_Reader();
 		Log.d(TAG, "onCreate() called");
 	}
 
@@ -93,8 +94,10 @@ public class OwnCloudSyncService extends Service {
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			
+			finishedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
+			
 			if(!(task_result instanceof Exception))
-			{						
+			{	
 				String appVersion = task_result.toString();					
 				API api = API.GetRightApiForVersion(appVersion, OwnCloudSyncService.this);
 				((OwnCloud_Reader) _Reader).setApi(api);
@@ -113,10 +116,10 @@ public class OwnCloudSyncService extends Service {
         @Override
         public void onAsyncTaskCompleted(int task_id, Object task_result) {
         	
+        	finishedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
+        	
             if(task_result != null)//task result is null if there was an error
             {	
-            	finishedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
-            	
             	if((Boolean) task_result)
             	{	
             		if(task_id == Constants.TaskID_PerformStateChange) {

@@ -26,7 +26,6 @@ import android.accounts.AccountManager;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -36,7 +35,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
-import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -45,6 +43,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
+import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
@@ -95,7 +94,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 				
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
-		
+				
 		
 		AccountManager mAccountManager = AccountManager.get(this);
 		
@@ -155,9 +154,11 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         				.replace(R.id.left_drawer, new NewsReaderListFragment())
                    		.commit();
         
+        /*
         fragmentManager.beginTransaction()
         				.replace(R.id.content_frame, new NewsReaderDetailFragment())
     					.commit();
+        */
         
        
         mSlidingLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane);
@@ -173,6 +174,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			
 			@Override
 			public void onPanelOpened(View arg0) {
+				updateAdapter();
 				getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 				getSupportActionBar().setHomeButtonEnabled(true);
 			}
@@ -182,10 +184,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 				getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 				getSupportActionBar().setHomeButtonEnabled(false);
 				
-				if(startDetailFHolder != null) {
-					startDetailFHolder.StartDetailFragment();
-					startDetailFHolder = null;
-				}
+				StartDetailFragmentNow();
 			}
 		});
         mSlidingLayout.openPane();
@@ -208,12 +207,80 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			getSupportActionBar().setHomeButtonEnabled(true);
 		}*/
         
-        startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
-        startDetailFHolder.StartDetailFragment();
-        startDetailFHolder = null;
+        if(savedInstanceState == null)//When the app starts (no orientation change)
+        {
+        	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
+        	StartDetailFragmentNow();
+        }
+        
         //onTopItemClicked(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
     }
 
+	private static final String FIRST_VISIBLE_DETAIL_ITEM_STRING = "FIRST_VISIBLE_DETAIL_ITEM_STRING";
+	private static final String FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING = "FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING";
+	private static final String ID_FEED_STRING = "ID_FEED_STRING";
+	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
+	private static final String OPTIONAL_FOLDER_ID ="OPTIONAL_FOLDER_ID";
+	
+	/* (non-Javadoc)
+	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
+	 */
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		
+		NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
+		if(ndf != null) {
+			View v = ndf.getListView().getChildAt(0);
+			int top = (v == null) ? 0 : v.getTop();
+			
+			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_STRING, ndf.getListView().getFirstVisiblePosition());			
+			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING, top);			
+			outState.putString(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());			
+			outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null ? true : false);
+			outState.putString(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFolder() : ndf.getIdFeed());			
+		}
+		
+		super.onSaveInstanceState(outState);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onRestoreInstanceState(android.os.Bundle)
+	 */
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {		
+		if(savedInstanceState != null) {
+			if(savedInstanceState.containsKey(FIRST_VISIBLE_DETAIL_ITEM_STRING) &&
+					savedInstanceState.containsKey(ID_FEED_STRING) &&
+					savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
+					savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
+				
+				
+				startDetailFHolder = new StartDetailFragmentHolder(savedInstanceState.getString(OPTIONAL_FOLDER_ID),
+																	savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
+																	savedInstanceState.getString(ID_FEED_STRING));				
+	        	
+	        	NewsReaderDetailFragment ndf = StartDetailFragmentNow();
+	        	if(ndf != null) {
+	        		ndf.setActivatedPosition(savedInstanceState.getInt(FIRST_VISIBLE_DETAIL_ITEM_STRING));
+	        		ndf.setMarginFromTop(savedInstanceState.getInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING));
+	        	}
+			}
+		}
+		super.onRestoreInstanceState(savedInstanceState);
+	}
+
+
+
+
+	private NewsReaderDetailFragment StartDetailFragmentNow() {
+		NewsReaderDetailFragment nrdf = null;
+		if(startDetailFHolder != null) {
+			nrdf = startDetailFHolder.StartDetailFragment();
+			startDetailFHolder = null;
+		}
+		return nrdf;
+	}
+	
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -272,6 +339,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	}
 
 	public boolean shouldDrawerStayOpen() {
+		if(getResources().getBoolean(R.bool.two_pane))
+			return true;
+		/*
 		if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			DisplayMetrics dm = new DisplayMetrics();
 			getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -282,7 +352,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			if(screenInches >= 6) {
 				return true;
 			}
-		}
+		}*/
 		return false;
 	}
 	
@@ -316,8 +386,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			this.optional_folder_id = optional_folder_id;
 		}
 		
-		public void StartDetailFragment() {
-			NewsReaderListActivity.this.StartDetailFragment(idSubscription, isFolder, optional_folder_id);
+		public NewsReaderDetailFragment StartDetailFragment() {
+			return NewsReaderListActivity.this.StartDetailFragment(idSubscription, isFolder, optional_folder_id);
 		}
 	}
 
@@ -333,6 +403,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			mSlidingLayout.closePane();		
 		
 		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, isFolder, optional_folder_id);
+		
+		if(shouldDrawerStayOpen())
+			StartDetailFragmentNow();
 		//StartDetailFragment(idSubscription, isFolder, optional_folder_id);		
 	}
 
@@ -345,9 +418,11 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		
 		//StartDetailFragment(idSubscription, false, optional_folder_id);
 		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, false, optional_folder_id);
+		if(shouldDrawerStayOpen())
+			StartDetailFragmentNow();
 	}
 		
-	private void StartDetailFragment(String id, Boolean folder, String optional_folder_id)
+	private NewsReaderDetailFragment StartDetailFragment(String id, Boolean folder, String optional_folder_id)
 	{		
 		if(super.getMenuItemDownloadMoreItems() != null)
 			super.getMenuItemDownloadMoreItems().setEnabled(true);
@@ -408,6 +483,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		}
 		*/
 		dbConn.closeDatabase();
+		
+		return fragment;
 	}
 
 
@@ -468,6 +545,15 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 		return true;
 	}
+	
+	@Override
+	public void onBackPressed() {
+		if(mSlidingLayout.isOpen())
+			super.onBackPressed();
+			//mSlidingLayout.closePane();
+		else
+			mSlidingLayout.openPane();
+	}
 
 	private static final int RESULT_SETTINGS = 15642;
 	@Override
@@ -478,16 +564,10 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		{		
 			switch (item.getItemId()) {
 			
-			case android.R.id.home:
-				if(mSlidingLayout.isOpen())
-					mSlidingLayout.closePane();
-				else
-					mSlidingLayout.openPane();
-				//if (drawerLayout.isDrawerOpen(Gravity.LEFT))
-	            //	drawerLayout.closeDrawer(Gravity.LEFT);
-	            //else
-	            //	drawerLayout.openDrawer(Gravity.LEFT);
-				break;
+				case android.R.id.home:
+					if(mSlidingLayout.isOpen())
+						mSlidingLayout.closePane();					
+					return true;
 			
 				case R.id.action_settings:
 					Intent intent = new Intent(this, SettingsActivity.class);		    
@@ -538,11 +618,18 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
     }
 
 
-    public static void StartLoginFragment(SherlockFragmentActivity activity)
+    public static void StartLoginFragment(final SherlockFragmentActivity activity)
     {    	
 	   	LoginDialogFragment dialog = new LoginDialogFragment();
-	   	dialog.setmActivity(activity);
-	    dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
+	   	dialog.setmActivity(activity);	
+	   	dialog.setListener(new LoginSuccessfullListener() {
+			
+			@Override
+			public void LoginSucceeded() {
+				((NewsReaderListActivity) activity).startSync();
+			}
+		});
+	    dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");	    
     }
     
     /*
@@ -567,7 +654,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)
         	//((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().smoothScrollToPosition(pos);
         //else
-        	((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).getListView().setSelection(pos);
         
+        //Is not used any longer
+        //((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).getListView().setSelection(pos);
     }
 }

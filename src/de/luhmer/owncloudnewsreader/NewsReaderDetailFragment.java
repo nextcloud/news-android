@@ -93,7 +93,19 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	}
 
 	String titel;
-	int lastItemPosition;
+	
+	/**
+	 * @return the titel
+	 */
+	public String getTitel() {
+		return titel;
+	}
+
+	/**
+	 * The current activated item position. Only used on tablets.
+	 */
+	private int mActivatedPosition = ListView.INVALID_POSITION;
+	private int marginFromTop = ListView.INVALID_POSITION;
 	
 	//private static ArrayList<Integer> databaseIdsOfItems;
 	ArrayList<RobotoCheckBox> stayUnreadCheckboxes;
@@ -101,12 +113,20 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
-	 */
+	 */	
 	public NewsReaderDetailFragment() {
 		//databaseIdsOfItems = new ArrayList<Integer>();
 		stayUnreadCheckboxes = new ArrayList<RobotoCheckBox>();
 	}
-
+	
+	public void setActivatedPosition(int position) {
+		mActivatedPosition = position;
+	}
+	public void setMarginFromTop(int margin) {
+		marginFromTop = margin;
+	}
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -141,7 +161,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		}
 	}
 	
-	
+
 	public void UpdateMenuItemsState()
 	{	
 		if(MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems() != null)
@@ -203,14 +223,6 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		else
 			return null;
 	}
-	
-	@Override
-	public void onResume() {
-		//setEmptyListView();
-		
-		lastItemPosition = -1;
-		super.onResume();
-	}
 
 	@Override
 	public void onDestroy() {
@@ -240,6 +252,23 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 					NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
 					if(nca != null)
 						nca.swapCursor(cursor);
+					
+					if(cursor.getCount() <= 0) {
+						getListView().setVisibility(View.GONE);
+						getActivity().findViewById(R.id.tv_no_items_available).setVisibility(View.VISIBLE);
+					} else {
+						getListView().setVisibility(View.VISIBLE);
+						getActivity().findViewById(R.id.tv_no_items_available).setVisibility(View.GONE);
+					}
+						
+					try {
+						if(mActivatedPosition != ListView.INVALID_POSITION && marginFromTop != ListView.INVALID_POSITION)
+							getListView().setSelectionFromTop(mActivatedPosition, marginFromTop);
+						else if(mActivatedPosition != ListView.INVALID_POSITION)
+							getListView().setSelection(mActivatedPosition);
+					} catch(Exception ex) {
+						ex.printStackTrace();
+					}
 					//((NewsListCursorAdapter) getListAdapter()).changeCursor(cursor);
 				}
 
@@ -276,8 +305,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
     			onlyStarredItems = true;
     	
     	SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
-    	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "desc");
-    	if(sortDirection.equals(SORT_DIRECTION.desc.toString()))
+    	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
+    	if(sortDirection.equals("1"))
     		sDirection = SORT_DIRECTION.desc;
     		
     	DatabaseConnection dbConn = new DatabaseConnection(context);

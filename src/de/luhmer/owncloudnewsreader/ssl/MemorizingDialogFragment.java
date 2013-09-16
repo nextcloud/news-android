@@ -71,7 +71,7 @@ public class MemorizingDialogFragment extends SherlockDialogFragment
 		new AlertDialog.Builder(getActivity()).setTitle(R.string.mtm_accept_cert)
 			.setMessage(cert)
 			.setPositiveButton(R.string.mtm_decision_always, this)
-			.setNeutralButton(R.string.mtm_decision_once, this)
+			//.setNeutralButton(R.string.mtm_decision_once, this)
 			.setNegativeButton(R.string.mtm_decision_abort, this)
 			.setOnCancelListener(this)
 			.create().show();

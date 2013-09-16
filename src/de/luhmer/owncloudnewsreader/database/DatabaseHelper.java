@@ -29,8 +29,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String DATABASE_NAME = "OwncloudNewsReader.db";	
 	
 	private static DatabaseHelper instance;
+	//private Context context;
+	private boolean shouldResetDatabase = false;
+	
+    /**
+	 * @return the shouldResetDatabase
+	 */
+	public boolean isShouldResetDatabase() {
+		return shouldResetDatabase;
+	}
 
-    public static synchronized DatabaseHelper getHelper(Context context)
+	public static synchronized DatabaseHelper getHelper(Context context)
     {
         if (instance == null)
             instance = new DatabaseHelper(context);
@@ -38,8 +47,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return instance;
     }
 	
-	public DatabaseHelper(Context context) {		
+	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, 4);
+		//this.context = context;
 	}
 	
 	@Override
@@ -84,16 +94,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	public void createRssCurrentViewTable(SQLiteDatabase db) {
-		 db.execSQL("DROP TABLE IF EXISTS " + DatabaseConnection.RSS_CURRENT_VIEW_TABLE);
-		 db.execSQL("CREATE TABLE " + DatabaseConnection.RSS_CURRENT_VIEW_TABLE
-					+ " (" + DatabaseConnection.RSS_CURRENT_VIEW_RSS_ITEM_ID + " INT NOT NULL,"
-					+ " FOREIGN KEY (" + DatabaseConnection.RSS_CURRENT_VIEW_RSS_ITEM_ID + ") REFERENCES rss_item(rssitem_id))");
+		db.beginTransaction();
+		try {
+			db.execSQL("DROP TABLE IF EXISTS " + DatabaseConnection.RSS_CURRENT_VIEW_TABLE);
+			db.execSQL("CREATE TABLE " + DatabaseConnection.RSS_CURRENT_VIEW_TABLE
+						+ " (" + DatabaseConnection.RSS_CURRENT_VIEW_RSS_ITEM_ID + " INT NOT NULL,"
+						+ " FOREIGN KEY (" + DatabaseConnection.RSS_CURRENT_VIEW_RSS_ITEM_ID + ") REFERENCES rss_item(rssitem_id))");
+			db.setTransactionSuccessful();
+		} finally {
+			db.endTransaction();
+		}
+		//db.endTransaction();
 	}
 	
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		android.util.Log.w("Constants", "Upgrading database, which will destroy all old data");
-		resetDatabase(db);
+		
+		//shouldResetDatabase = true;
+		resetDatabase(db);		
 	}
 	
 	public void resetDatabase(SQLiteDatabase db)

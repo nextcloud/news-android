@@ -508,42 +508,46 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 				
 				((EditTextPreference) preference).getDialog().dismiss();
 				
-				DatabaseConnection dbConn = new DatabaseConnection(_mActivity);
-				boolean resetDatabase = true;
-				if(dbConn.getAllNewReadItems().size() > 0)
-					resetDatabase = false;
-				else if(dbConn.getAllNewUnreadItems().size() > 0)
-					resetDatabase = false;
-				else if(dbConn.getAllNewStarredItems().size() > 0)
-					resetDatabase = false;
-				else if(dbConn.getAllNewUnstarredItems().size() > 0)
-					resetDatabase = false;
-				
-				if(resetDatabase) {				
-					ResetDatabase();
-				} else {
-					new AlertDialog.Builder(_mActivity)
-						.setTitle(_mActivity.getString(R.string.warning))
-						.setMessage(_mActivity.getString(R.string.reset_cache_unsaved_changes))
-						.setPositiveButton(_mActivity.getString(android.R.string.ok), new OnClickListener() {
-							
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								PostDelayHandler pDelayHandler = new PostDelayHandler(_mActivity);
-								pDelayHandler.stopRunningPostDelayHandler();
-								
-								ResetDatabase();
-							}
-						})
-						.setNegativeButton(_mActivity.getString(android.R.string.no), null)
-						.create()
-						.show();
-				}
-					
-				dbConn.closeDatabase();
+				CheckForUnsycedChangesInDatabase(_mActivity);
 				return false;
 			}
 		});
+	}
+	
+	public static void CheckForUnsycedChangesInDatabase(final Context context) {
+		DatabaseConnection dbConn = new DatabaseConnection(context);
+		boolean resetDatabase = true;
+		if(dbConn.getAllNewReadItems().size() > 0)
+			resetDatabase = false;
+		else if(dbConn.getAllNewUnreadItems().size() > 0)
+			resetDatabase = false;
+		else if(dbConn.getAllNewStarredItems().size() > 0)
+			resetDatabase = false;
+		else if(dbConn.getAllNewUnstarredItems().size() > 0)
+			resetDatabase = false;
+		
+		if(resetDatabase) {				
+			ResetDatabase();
+		} else {
+			new AlertDialog.Builder(context)
+				.setTitle(context.getString(R.string.warning))
+				.setMessage(context.getString(R.string.reset_cache_unsaved_changes))
+				.setPositiveButton(context.getString(android.R.string.ok), new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						PostDelayHandler pDelayHandler = new PostDelayHandler(context);
+						pDelayHandler.stopRunningPostDelayHandler();
+						
+						ResetDatabase();
+					}
+				})
+				.setNegativeButton(context.getString(android.R.string.no), null)
+				.create()
+				.show();
+		}
+			
+		dbConn.closeDatabase();
 	}
 	
 	private static void ResetDatabase() {

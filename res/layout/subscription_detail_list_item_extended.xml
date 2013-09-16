@@ -23,7 +23,7 @@
     	
 	    
 	    <LinearLayout
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
 	        android:layout_marginLeft="@dimen/listview_row_margin_left"
 	        android:layout_marginRight="@dimen/listview_row_margin_right"
@@ -38,7 +38,7 @@
 	            android:gravity="center_vertical"
 	            android:layout_gravity="left"
 	            android:singleLine="true"
-	            android:text="Hdfsai"
+	            android:text="Hdfsa"
 	            android:layout_weight="1"
 	            android:textSize="14sp" />
 	
@@ -46,10 +46,9 @@
 	            android:id="@+id/tv_item_date"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:ellipsize="end"
 	            android:gravity="center_vertical"
 	            android:layout_gravity="right"
-	            android:text="Hifasfdas"
+	            android:text="21.09.2013"
 	            android:singleLine="true"
 	            android:textSize="14sp"  />
 	    </LinearLayout>

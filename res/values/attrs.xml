@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <bool name="two_pane">false</bool>
+    
+    
     <declare-styleable name="RobotoTextView">
         <attr name="typeface"/>
     </declare-styleable>
@@ -59,7 +62,8 @@
     <declare-styleable name="RobotoToggleButton">
         <attr name="typeface"/>
     </declare-styleable>
-
+    
+    
     <!-- Changing the attribute must be reflected in the com.devspark.robototextview.RobotoTypefaceManager -->
     <attr name="typeface" format="enum">
         <enum name="roboto_thin" value="0"/>

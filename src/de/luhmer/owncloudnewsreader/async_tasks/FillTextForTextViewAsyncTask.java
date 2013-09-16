@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader.async_tasks;
 import java.lang.ref.WeakReference;
 
 import android.os.AsyncTask;
+import android.os.Process;
 import android.widget.TextView;
 
 public class FillTextForTextViewAsyncTask extends AsyncTask<Void, Void, String> {
@@ -36,8 +37,10 @@ public class FillTextForTextViewAsyncTask extends AsyncTask<Void, Void, String> 
 		this.textView = new WeakReference<TextView>(textView); 
 	}
 	
+	//http://stackoverflow.com/a/14217816
 	@Override
 	protected String doInBackground(Void... params) {
+		Process.setThreadPriority(9);		
 		return iGetter.getText();
 	}
 	

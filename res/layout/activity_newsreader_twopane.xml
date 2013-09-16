@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SlidingPaneLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sliding_pane"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    
+    <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderListFragment" -->
+    <FrameLayout        
+        android:id="@+id/left_drawer"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start" />
+    
+    <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderDetailFragment" -->
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+		
+</android.support.v4.widget.SlidingPaneLayout>

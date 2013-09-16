@@ -22,9 +22,7 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.annotation.TargetApi;
-import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.util.LruCache;
 

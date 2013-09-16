@@ -421,7 +421,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 				ni.putExtra(DECISION_INTENT_CERT, certMessage);
 				
 				SherlockDialogFragment dialog = new MemorizingDialogFragment(ni);
-				try {					
+				try {
 					dialog.show(((FragmentActivity) getUI()).getSupportFragmentManager(), "NoticeDialogFragment");
 				} catch(Exception ex) {
 					Log.e(TAG, "startActivity: " + ex);

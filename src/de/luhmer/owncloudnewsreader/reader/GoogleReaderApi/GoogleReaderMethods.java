@@ -49,7 +49,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.data.RssFile;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
@@ -400,10 +399,12 @@ public class GoogleReaderMethods {
 	
 	private static void ExecuteTagsReadStarred(List<NameValuePair> nameValuePairs, Context context, OnAsyncTaskCompletedListener asyncTaskCompleted)
 	{
-		AsyncTask_PerformTagAction apt = new AsyncTask_PerformTagAction(0, context, asyncTaskCompleted);
-		apt.execute(NewsReaderListFragment.username,
+		//AsyncTask_PerformTagAction apt = new AsyncTask_PerformTagAction(0, context, asyncTaskCompleted);
+		//TODO this is needed
+		/*apt.execute(NewsReaderListFragment.username,
 					NewsReaderListFragment.password,
 					nameValuePairs);
+					*/
 	}
 	
 	/*

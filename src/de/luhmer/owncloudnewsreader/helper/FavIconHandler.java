@@ -23,12 +23,14 @@ package de.luhmer.owncloudnewsreader.helper;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
-
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.util.SparseArray;
 import android.widget.ImageView;
 import de.luhmer.owncloudnewsreader.R;
@@ -122,6 +124,7 @@ public class FavIconHandler {
 	static SparseArray<FavIconCache> imageViewReferences = new SparseArray<FavIconCache>();
 	String feedID;
 	
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context, String feedID, BitmapDrawableLruCache lruCache)
 	{	
 		this.feedID = feedID;
@@ -154,7 +157,13 @@ public class FavIconHandler {
 			giAsync.dstHeight = 2*32;
 			giAsync.dstWidth = 2*32;
 			giAsync.feedID = feedID;
-			giAsync.execute((Void)null);
+			//giAsync.execute((Void)null);
+
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+				// Execute in parallel
+				giAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void)null));
+			else
+				giAsync.execute((Void)null);
 		}
 	}
 	

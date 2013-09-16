@@ -28,6 +28,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.SparseArray;
@@ -357,7 +358,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         
         
         //viewHolder.txt_UnreadCount.setText(group.unreadCount);
-        viewHolder.imgView.setRotation(0);//TODO setRotation is only available in api > 11
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+        	viewHolder.imgView.setRotation(0);
+        
         if(group.idFolder != null)
         {
 	        if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
@@ -382,7 +385,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         	if(String.valueOf(group.id_database).equals(ALL_STARRED_ITEMS))
         	{
         		viewHolder.imgView.setVisibility( View.VISIBLE );
-        		viewHolder.imgView.setImageResource(R.drawable.star);
+        		//viewHolder.imgView.setImageResource(R.drawable.star);
+        		viewHolder.imgView.setImageResource(R.drawable.btn_rating_star_off_normal_holo_light);
         	} else if (getChildrenCount( groupPosition ) == 0 ) {
 	        	viewHolder.imgView.setVisibility( View.INVISIBLE );
 	        	//viewHolder.imgView.setImageDrawable(null);
@@ -396,7 +400,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        	viewHolder.imgView.setImageResource(R.drawable.ic_find_next_holo_dark);
 	        	
 	        	if(isExpanded)
-	        		viewHolder.imgView.setRotation(-90);
+	        	{
+	        		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+	        			viewHolder.imgView.setRotation(-90);
+	        		else
+	        			viewHolder.imgView.setImageResource(R.drawable.ic_find_previous_holo_dark);
+	        	}
 	        }
         }
         
@@ -406,16 +415,28 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	}
 	
 	
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)//TODO check this
 	private void SetUnreadCountForFeed(TextView textView, String idDatabase, boolean execludeStarredItems)
 	{
 		IGetTextForTextViewAsyncTask iGetter = new UnreadFeedCount(mContext, idDatabase, execludeStarredItems);
-		new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+			// Execute in parallel
+			new FillTextForTextViewAsyncTask(textView, iGetter).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));
+		else
+			new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
 	}
-	
+		
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void SetUnreadCountForFolder(TextView textView, String idDatabase, boolean execludeStarredItems)
 	{
 		IGetTextForTextViewAsyncTask iGetter = new UnreadFolderCount(mContext, idDatabase);
-		new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
+				
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+			// Execute in parallel
+			new FillTextForTextViewAsyncTask(textView, iGetter).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));
+		else
+			new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
+			
 	}
 	
 	private void GetFavIconForFeed(String favIconURL, ImageView imgView, String feedID)

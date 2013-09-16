@@ -44,7 +44,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ListView;
@@ -179,7 +178,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	 * The serialization (saved instance state) Bundle key representing the
 	 * activated item position. Only used on tablets.
 	 */
-	private static final String STATE_ACTIVATED_POSITION = "activated_position";
+	//private static final String STATE_ACTIVATED_POSITION = "activated_position";
 
 	protected static final String TAG = "NewsReaderListFragment";
 
@@ -192,7 +191,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	/**
 	 * The current activated item position. Only used on tablets.
 	 */
-	private int mActivatedPosition = ListView.INVALID_POSITION;
+	//private static int mActivatedPosition = ListView.INVALID_POSITION;
 
 	/**
 	 * A callback interface that all activities containing this fragment must
@@ -228,8 +227,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	PullToRefreshExpandableListView eListView;
 	//public static IReader _Reader = null;  //AsyncTask_GetGReaderTags asyncTask_GetUnreadFeeds = null;
 	
-	public static String username;
-	public static String password;
+	//public static String username;
+	//public static String password;
 	//AsyncUpdateFinished asyncUpdateFinished;
 	ServiceConnection mConnection = null;
 	
@@ -239,23 +238,25 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	 */
 	public NewsReaderListFragment() {
 	}
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setRetainInstance(true);
+		//setRetainInstance(true);
 		
 		try
 		{
 			dbConn = new DatabaseConnection(getActivity());
 			
+			//SettingsActivity.CheckForUnsycedChangesInDatabase(context);
+			
 			//dbConn.resetDatabase();
 			
 			//dbConn.clearDatabaseOverSize();
 			
-			username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
-			password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
+			//username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
+			//password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
 			
 			//dbConn.resetRssItemsDatabase();
 			
@@ -294,8 +295,34 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		mConnection = null;
 		super.onStop();
 	}
-
 	
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.Fragment#onResume()
+	 */
+	/*	
+	@Override
+	public void onResume() {
+		try {
+			if(mActivatedPosition != ListView.INVALID_POSITION)
+				geteListView().getRefreshableView().setSelection(mActivatedPosition);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		super.onResume();
+	}
+	*/
+	
+	
+
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.Fragment#onPause()
+	 */
+	@Override
+	public void onPause() {
+		//mActivatedPosition = geteListView().getRefreshableView().getFirstVisiblePosition();
+		super.onPause();
+	}
+
 	private ServiceConnection generateServiceConnection() {
 		return new ServiceConnection() {
 	    	
@@ -309,6 +336,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	    			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 	    			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
 	    				StartSync();
+	    			
+	    			if(getActivity() instanceof NewsReaderListActivity)
+	    				((NewsReaderListActivity) getActivity()).UpdateButtonSyncLayout();
 	    		}
 	    		catch (Exception e) {
 	    			e.printStackTrace();
@@ -420,11 +450,15 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		eListView.setOnChildClickListener(onChildClickListener);
 		//eListView.setSmoothScrollbarEnabled(true);			
 		
+		/*
 		View empty = inflater.inflate(R.layout.subscription_detail_list_item_empty, null, false);
 		getActivity().addContentView(empty, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));			
 		eListView.setEmptyView(empty);
-		/*
+		*/		 
+		
 		eListView.setClickable(true);
+		//eListView.getLoadingLayoutProxy().setTextTypeface(new FontHelper(getActivity()).getFont());
+		/*
 		eListView.setOnGroupClickListener(new OnGroupClickListener() {
 			
 			@Override
@@ -442,18 +476,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		//return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-
-		
-		// Restore the previously serialized activated item position.
-		if (savedInstanceState != null
-				&& savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
-			setActivatedPosition(savedInstanceState
-					.getInt(STATE_ACTIVATED_POSITION));
-		}
-	}
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -495,15 +517,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		
 		//mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
 	}*/
-
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		if (mActivatedPosition != ListView.INVALID_POSITION) {
-			// Serialize and persist the activated item position.
-			outState.putInt(STATE_ACTIVATED_POSITION, mActivatedPosition);
-		}
-	}
+	
 	
 	OnChildClickListener onChildClickListener = new OnChildClickListener() {
 		
@@ -533,20 +547,23 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		// give items the 'activated' state when touched.
 		
 		
-		//eListView.setChoiceMode(activateOnItemClick ? ListView.CHOICE_MODE_SINGLE	: ListView.CHOICE_MODE_NONE);//TODO comment this in
+		eListView.getRefreshableView().setChoiceMode(activateOnItemClick ? ListView.CHOICE_MODE_SINGLE	: ListView.CHOICE_MODE_NONE);
 	}
 
-	private void setActivatedPosition(int position) {/*//TODO comment this in
+	/*
+	private void setActivatedPosition(int position) {
 		if (position == ListView.INVALID_POSITION) {
 			//getListView().setItemChecked(mActivatedPosition, false);
-			eListView.setItemChecked(mActivatedPosition, false);
+			eListView.getRefreshableView().setSelection(mActivatedPosition);
 		} else {
-			eListView.setItemChecked(position, true);
+			eListView.getRefreshableView().setSelection(position);
+			//eListView.setItemChecked(position, true);
 			//getListView().setItemChecked(position, true);
-		}*/
+		}
 		
 		mActivatedPosition = position;
 	}
+	*/
 		
 
     public void UpdateSyncButtonLayout()

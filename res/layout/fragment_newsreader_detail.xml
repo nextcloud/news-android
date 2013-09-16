@@ -1,11 +1,26 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@android:id/list"
-    style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:divider="@null"
-	android:dividerHeight="0dp" />
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/tv_no_items_available"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/empty_view_content"
+        android:visibility="gone"
+        android:textSize="18sp" />
+
+    <ListView 	    
+	    android:id="@android:id/list"
+	    style="?android:attr/textAppearanceLarge"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent" 
+	    android:divider="@null"
+		android:dividerHeight="0dp" />
 
 	<!-- android:textIsSelectable="true" -->
     <!-- android:padding="16dp" -->
+    
+</FrameLayout>
