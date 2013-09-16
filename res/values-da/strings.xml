@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="authorities">de.luhmer.owncloudnewsreader</string>
   <string name="auto_sync_string">Automatisk synkronisering </string>
   <string name="app_name">ownCloud News Reader</string>
   <string name="action_settings">Indstillinger</string>
@@ -61,10 +60,10 @@
     <item>Ny -&gt; Gammel</item>
     <item>Gammel -&gt; Ny</item>
   </string-array>
-  <string-array name="pref_general_sort_order_values">
-    <item>aft</item>
-    <item>voks</item>
-  </string-array>
+  <!--<string-array name="pref_general_sort_order_values">
+        <item>desc</item>
+        <item>asc</item>
+	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Udregner cach størrelse... Vent venligst.</string>

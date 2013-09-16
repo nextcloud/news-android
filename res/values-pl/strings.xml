@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="authorities">de.luhmer.owncloudnewsreader</string>
   <string name="auto_sync_string">Automatyczna synchronizacja</string>
   <string name="app_name">ownCloud News Reader</string>
   <string name="action_settings">Ustawienia</string>
@@ -61,10 +60,10 @@
     <item>Nowe -&gt; Stare</item>
     <item>Stare -&gt; Nowe</item>
   </string-array>
-  <string-array name="pref_general_sort_order_values">
-    <item>kolejno</item>
-    <item>odwrotnie</item>
-  </string-array>
+  <!--<string-array name="pref_general_sort_order_values">
+        <item>desc</item>
+        <item>asc</item>
+	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Obliczam rozmiar pamięci podręcznej... Proszę czekać.</string>

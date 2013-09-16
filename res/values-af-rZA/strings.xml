@@ -13,6 +13,10 @@
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Instellings</string>
   <!--General settings-->
+  <!--<string-array name="pref_general_sort_order_values">
+        <item>desc</item>
+        <item>asc</item>
+	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->

@@ -49,10 +49,10 @@
     <item>Uusi -&gt; vanha</item>
     <item>Vanha -&gt; uusi</item>
   </string-array>
-  <string-array name="pref_general_sort_order_values">
-    <item>laskeva</item>
-    <item>nouseva</item>
-  </string-array>
+  <!--<string-array name="pref_general_sort_order_values">
+        <item>desc</item>
+        <item>asc</item>
+	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Lasketaan välimuistin kokoa... Odota hetki.</string>
