@@ -92,7 +92,7 @@
 		        
         <provider
 	        android:name=".providers.OwnCloudSyncProvider"
-	        android:authorities="@string/authorities"
+	        android:authorities="de.luhmer.owncloudnewsreader"
 	        android:label="@string/auto_sync_string"        
 	        android:syncable="true">            
         </provider>
@@ -105,9 +105,6 @@
             <!-- android:theme="@style/Theme.Transparent" > --><!-- 
         </activity>
  		-->
-        
-        
-        
         
         <!--
 		**********************************************************************
@@ -130,5 +127,4 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
         
     </application>
-
 </manifest>
