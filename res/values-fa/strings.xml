@@ -18,7 +18,6 @@
   <string name="menu_update">بازنمایی</string>
   <string name="menu_About_Changelog">درباره / تغییرات</string>
   <string name="menu_markAllAsRead">علامت همه به عنوان خوانده شده</string>
-  <string name="menu_StartImageCaching">شروع کشینگ تصاویر</string>
   <string name="menu_downloadMoreItems">دانلود آیتم های بیشتر</string>
   <!--EMAIL-->
   <string name="email_sourceCode">کد منبع از آیتم - گزارش اشکالات</string>
@@ -31,7 +30,7 @@
   <string name="action_login">تنظیمات سرور</string>
   <!--Strings related to login-->
   <string name="pref_title_username">نام کاربری</string>
-  <string name="pref_title_password">کد مخفی</string>
+  <string name="pref_title_password">گذرواژه</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -42,7 +41,6 @@
   <string name="error_invalid_url">این آدرس url  نادرست است.</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">X آیتم های دانلود شده قدیمی</string>
-  <string name="toast_no_more_downloads_available">آیتم های قدیمی زیادی برای دانلود در دسترس نیست.</string>
   <string name="pull_to_refresh_updateTags">همگام سازی حالت های آیتم ها</string>
   <string name="pull_to_refresh_updateFolder">همگام سازی پوشه </string>
   <string name="pull_to_refresh_updateFeeds">همگام سازی خوراک خوان ها</string>
@@ -57,9 +55,10 @@
   <string name="warning">اخطار</string>
   <string name="pref_title_AutoSyncOnStart">همگام سازی در هنگام راه اندازی</string>
   <string name="pref_title_ShowOnlyUnread">فقط نمایش مقالات خوانده نشده</string>
-  <string name="pref_title_AllowAllSSLCertificates">اجازه همه گواهی های SSL </string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">کنترل با دکمه های درجه صدا</string>
   <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری در حال پیمایش به عنوان خوانده شده </string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">نمایشی</string>
   <string name="pref_title_app_theme">قالب برنامه ( نیاز به راه اندازی مجدد برای به کار بردن )</string>
@@ -90,7 +89,7 @@
   <string name="login_dialog_text_security_warning">شما از https استفاده نمی کنید. یک مهاجم می تواند ترافیک شما را رهگیری و به برخی از اطلاعات حساس دسترسی پیدا کند(به عنوان مثال، رمزعبور شما). پس شه شدت توصیه می شود که از https استفاده کنید.</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">داده ها و همگام سازی</string>
-  <string name="pref_title_data_sync_max_items">بیشترین تعداد آیتم ها برای همگام سازی</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">پاک کردن حافظه موقتی</string>
   <string name="pref_title_CacheImagesOffline">تصاویر را کش کن</string>
   <string name="pref_title_Max_Cache_Size">حداکثر اندازه حافظه پنهان</string>

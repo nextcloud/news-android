@@ -24,7 +24,7 @@
   <string name="action_login">Ρυθμίσεις Διακομιστή</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
-  <string name="pref_title_password">Μυστικός Κωδικός</string>
+  <string name="pref_title_password">Συνθηματικό</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -46,8 +46,10 @@
   <string name="warning">Προειδοποίηση</string>
   <string name="pref_title_AutoSyncOnStart">Συγχρονισμός κατά την έναρξη</string>
   <string name="pref_title_ShowOnlyUnread">Εμφάνιση μόνο μη αναγνωσμένων άρθρων</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <string name="pref_header_display">Εμφάνιση</string>
   <string name="pref_title_app_theme">Θέμα εφαρμογής (απαιτεί επανεκκίνηση για εφαρμογή)</string>
@@ -94,7 +96,7 @@
   <string name="login_dialog_text_something_went_wrong">Κάτι πήγε στραβά :(</string>
   <string name="login_dialog_title_security_warning">Προειδοποίηση Ασφαλείας</string>
   <!--Data & Sync-->
-  <string name="pref_title_data_sync_max_items">Μέγιστος αριθμός αντικειμένων για συγχρονισμό</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>

@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Automatická synchronizace</string>
   <string name="app_name">Čtečka zpráv ownCloud</string>
   <string name="action_settings">Nastavení</string>
   <string name="title_activity_news_detail">Podrobná aktivita zpráv</string>
@@ -13,13 +15,14 @@
   <string name="no_wifi_available">Wi-Fi není připojeno</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
   <string name="max_items_count_reached">Dosáhli jste maximální velikosti XX položek</string>
+  <string name="widget_header">ownCloud Novinky</string>
   <string name="allUnreadFeeds">Všechny nepřečtené položky</string>
   <string name="starredFeeds">Položky s hvězdičkou</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Obnovit</string>
   <string name="menu_About_Changelog">O aplikaci / Seznam změn</string>
   <string name="menu_markAllAsRead">Označit vše jako přečtené</string>
-  <string name="menu_StartImageCaching">Zapnout ukládání obrázků do offline mezipaměti</string>
+  <string name="menu_StartImageCaching">Stáhnout obrázky</string>
   <string name="menu_downloadMoreItems">Stáhnout další položky</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Zdrojový kód položky - Chybová zpráva</string>
@@ -33,7 +36,7 @@
   <string name="action_login">Nastavení serveru</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uživatelské jméno</string>
-  <string name="pref_title_password">Bezpečnostní kód</string>
+  <string name="pref_title_password">Heslo</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -44,7 +47,7 @@
   <string name="error_invalid_url">Tato URL je nesprávná</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Staženo X starých položek</string>
-  <string name="toast_no_more_downloads_available">Žádné další staré položky nejsou k dispozici ke stažení</string>
+  <string name="toast_no_more_downloads_available">K dispozici nejsou žádné další položky</string>
   <string name="pull_to_refresh_updateTags">Synchronizuji stav položek</string>
   <string name="pull_to_refresh_updateFolder">Synchronizuji složku</string>
   <string name="pull_to_refresh_updateFeeds">Synchronizuji kanály</string>
@@ -69,9 +72,16 @@
   <string name="warning">Varování</string>
   <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>
   <string name="pref_title_ShowOnlyUnread">Zobrazit pouze nepřečtené články</string>
-  <string name="pref_title_AllowAllSSLCertificates">Povolit všechny SSL certifikáty</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Vypnout ověřování názvu hostitele</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigace pomocí tlačítek hlasitosti</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Označit jako přečtené při rolování stránky</string>
+  <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>
+  <string name="mtm_decision_always">Vždy</string>
+  <string name="mtm_decision_once">Jednou</string>
+  <string name="mtm_decision_abort">Přerušit</string>
+  <string name="mtm_notification">Ověření certifikátu</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Zobrazení</string>
   <string name="pref_title_app_theme">Vzhled aplikace (změna vyžaduje restart)</string>
@@ -131,7 +141,7 @@
   <string name="login_dialog_text_security_warning">Nepoužíváte HTTPS. Útočník může zachytit vaši komunikaci a získat přístup k některým citlivým datům (např. vaše heslo). Důrazně doporučujeme používat HTTPS.</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; synchronizace</string>
-  <string name="pref_title_data_sync_max_items">Maximální počet položek k synchronizaci</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Vyprázdnit mezipaměť</string>
   <string name="pref_title_CacheImagesOffline">Ukládat obrázky do offline mezipaměti</string>
   <string name="pref_title_Max_Cache_Size">Maximální velikost mezipaměti</string>

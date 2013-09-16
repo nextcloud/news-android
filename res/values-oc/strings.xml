@@ -8,6 +8,7 @@
   <string name="action_Share">Parteja</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Non d\'usancièr</string>
+  <string name="pref_title_password">Senhal</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
@@ -17,11 +18,14 @@
   <string name="pref_header_general">General</string>
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
   <string name="login_dialog_title_security_warning">Avertiment de securitat</string>
   <!--Data & Sync-->
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

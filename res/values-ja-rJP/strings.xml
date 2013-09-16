@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">自動同期</string>
   <string name="app_name">ownCloud ニュースリーダー</string>
   <string name="action_settings">設定</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
@@ -13,13 +15,14 @@
   <string name="no_wifi_available">WiFi接続がありません</string>
   <string name="do_you_want_to_download_without_wifi">WiFi接続が無い場合に画像をダウンロードしますか？</string>
   <string name="max_items_count_reached">アイテム数の上限に達しました。</string>
+  <string name="widget_header">ownCloudニュース</string>
   <string name="allUnreadFeeds">すべての未読アイテム</string>
   <string name="starredFeeds">共有アイテム</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">同期</string>
   <string name="menu_About_Changelog">ownCloudについて / 変更点</string>
   <string name="menu_markAllAsRead">すべて既読にする</string>
-  <string name="menu_StartImageCaching">画像のオフラインキャッチングを開始</string>
+  <string name="menu_StartImageCaching">画像をダウンロード</string>
   <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
   <!--EMAIL-->
   <string name="email_sourceCode">アイテムのソースコード - バグ報告</string>
@@ -33,7 +36,7 @@
   <string name="action_login">サーバ設定</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
-  <string name="pref_title_password">シークレットコード</string>
+  <string name="pref_title_password">パスワード</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -44,7 +47,7 @@
   <string name="error_invalid_url">このURLは不正確です</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">ダウンロードされた古いXアイテム</string>
-  <string name="toast_no_more_downloads_available">これ以上ダウンロードできる古いアイテムはありません</string>
+  <string name="toast_no_more_downloads_available">これ以上利用できるアイテムがありません</string>
   <string name="pull_to_refresh_updateTags">アイテムの状態を同期中</string>
   <string name="pull_to_refresh_updateFolder">フォルダを同期中</string>
   <string name="pull_to_refresh_updateFeeds">フィードを同期中</string>
@@ -69,9 +72,16 @@
   <string name="warning">警告</string>
   <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
   <string name="pref_title_ShowOnlyUnread">未読の記事のみ表示</string>
-  <string name="pref_title_AllowAllSSLCertificates">全てのSSL証明書を許可</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">ホスト名の検証を無効化</string>
   <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
   <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
+  <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
+  <string name="mtm_decision_always">常に</string>
+  <string name="mtm_decision_once">一度だけ</string>
+  <string name="mtm_decision_abort">中止</string>
+  <string name="mtm_notification">証明書の検証</string>
   <!--Settings for Display-->
   <string name="pref_header_display">表示</string>
   <string name="pref_title_app_theme">アプリのテーマ (適用するには再起動する必要があります)</string>
@@ -131,7 +141,7 @@
   <string name="login_dialog_text_security_warning">httpsを使用していません。攻撃者があなたのトラフィックに干渉し、一部の機密データ(例えば、パスワード)にアクセスする恐れがあります。ですので、httpsの使用が強く推奨されます！</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">データと同期</string>
-  <string name="pref_title_data_sync_max_items">同期するアイテムの最大数</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">キャッシュをクリア</string>
   <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
   <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>

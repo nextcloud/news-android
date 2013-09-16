@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Automatisch synchronisieren</string>
   <string name="app_name">ownCloud News Reader</string>
   <string name="action_settings">Einstellungen</string>
   <string name="title_activity_news_detail">NewsDetailAktivität</string>
@@ -13,13 +15,14 @@
   <string name="no_wifi_available">Keine WLAN-Verbindung</string>
   <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne W-LAN-Verbindung herunterladen</string>
   <string name="max_items_count_reached">Sie haben die maximale Anzahl von XX Artikeln erreicht</string>
+  <string name="widget_header">ownCloud-News</string>
   <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
   <string name="starredFeeds">Favorisierte Artikel</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aktualisieren</string>
   <string name="menu_About_Changelog">Über / Änderungen</string>
   <string name="menu_markAllAsRead">Alles als gelesen kennzeichnen</string>
-  <string name="menu_StartImageCaching">Bilder herunterladen</string>
+  <string name="menu_StartImageCaching">Lade Bilder herunter</string>
   <string name="menu_downloadMoreItems">Weitere Artikel herunterladen.</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Quelltext des Elements - Fehlerbericht</string>
@@ -44,7 +47,7 @@
   <string name="error_invalid_url">Diese URL ist falsch.</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">X alte Artikel heruntergeladen</string>
-  <string name="toast_no_more_downloads_available">Keine weiteren Artikel verfügbar</string>
+  <string name="toast_no_more_downloads_available">Keine weiteren Elemente verfügbar</string>
   <string name="pull_to_refresh_updateTags">Synchronisiere Artikelstatus</string>
   <string name="pull_to_refresh_updateFolder">Synchronisiere Ordner</string>
   <string name="pull_to_refresh_updateFeeds">Synchronisiere Feeds</string>
@@ -69,9 +72,16 @@
   <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Start synchronisieren</string>
   <string name="pref_title_ShowOnlyUnread">Nur ungelesene Artikel anzeigen</string>
-  <string name="pref_title_AllowAllSSLCertificates">Alle SSL-Zertifikate erlauben</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Hostnamen-Nachweis deaktivieren</string>
   <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärketasten navigieren</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Während des Scrollens als gelesen markieren</string>
+  <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Unbekanntes Zertifikat akzeptieren?</string>
+  <string name="mtm_decision_always">Immer</string>
+  <string name="mtm_decision_once">Einmal</string>
+  <string name="mtm_decision_abort">Abbrechen</string>
+  <string name="mtm_notification">Zertifikatsnachweis</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Anzeige</string>
   <string name="pref_title_app_theme">App-Theme (benötigt einen Neustart zur Übernahme)</string>
@@ -131,7 +141,7 @@
   <string name="login_dialog_text_security_warning">Sie nutzen kein https. Ein Angreifer könnte Ihren Datenverkehr mitschneiden und dadurch Zugang zu sensiblen Daten (z.B. Ihrem Passwort) erhalten. Wir empfehlen dringend die Nutzung von https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
-  <string name="pref_title_data_sync_max_items">Maximale Anzahl an Objekten zur Synchronisation</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Cache leeren</string>
   <string name="pref_title_CacheImagesOffline">Bilder Offline zwischenspeichern</string>
   <string name="pref_title_Max_Cache_Size">Maximale Cachegröße</string>

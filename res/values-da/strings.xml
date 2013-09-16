@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Automatisk synkronisering </string>
   <string name="app_name">ownCloud News Reader</string>
   <string name="action_settings">Indstillinger</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
@@ -13,13 +15,14 @@
   <string name="no_wifi_available">Ingen WiFi forbindelse</string>
   <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder unden brug af WiFi forbincelse</string>
   <string name="max_items_count_reached">Du har nået den maksimale størrelse af XX artikler</string>
+  <string name="widget_header">ownCloud News</string>
   <string name="allUnreadFeeds">Alle ulæste artikler</string>
   <string name="starredFeeds">Markerede artikler</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Opdater</string>
   <string name="menu_About_Changelog">Om / Ændringslog</string>
   <string name="menu_markAllAsRead">Marker alle som læst</string>
-  <string name="menu_StartImageCaching">Start offline cache af billeder</string>
+  <string name="menu_StartImageCaching">Hent billeder</string>
   <string name="menu_downloadMoreItems">Hent flere artikler</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Artiklens kildekode - Fejlrapport</string>
@@ -33,7 +36,7 @@
   <string name="action_login">Server Indstillinger</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brugernavn</string>
-  <string name="pref_title_password">Hemmelig kode</string>
+  <string name="pref_title_password">Kodeord</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -44,7 +47,7 @@
   <string name="error_invalid_url">Dette url er ukorrekt</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Hent X gamle artikler</string>
-  <string name="toast_no_more_downloads_available">Der er ikke flere gamle artikler der kan hentes</string>
+  <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelig</string>
   <string name="pull_to_refresh_updateTags">Synkronisere artikel oplysninger</string>
   <string name="pull_to_refresh_updateFolder">Synkronisere mappe</string>
   <string name="pull_to_refresh_updateFeeds">synkronisere feeds</string>
@@ -69,9 +72,16 @@
   <string name="warning">Advarsel</string>
   <string name="pref_title_AutoSyncOnStart">Synkroniser ved opstart</string>
   <string name="pref_title_ShowOnlyUnread">Vis kun ulæste artikler</string>
-  <string name="pref_title_AllowAllSSLCertificates">Tillad alle SSL Certifikater</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Deaktiver Værtsnavn Verificering</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviger med lydknapper</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marker som læst når der rulles</string>
+  <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Accepter Ukendt Certifikat? </string>
+  <string name="mtm_decision_always">Altid</string>
+  <string name="mtm_decision_once">En gang</string>
+  <string name="mtm_decision_abort">Afbryd</string>
+  <string name="mtm_notification">Certifikat Verificering</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Skærm</string>
   <string name="pref_title_app_theme">App tema (kræver genstart)</string>
@@ -131,7 +141,7 @@
   <string name="login_dialog_text_security_warning">Du benytter ikke https. En ondsindet person kan opsnappe din traffik og få adgang til følsom data (f.eks. dit kodeord). Derfor er det stærkt anbefalet at bruge https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; sync</string>
-  <string name="pref_title_data_sync_max_items">Max antal artikler der skal synkroniseres</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Ryd cache</string>
   <string name="pref_title_CacheImagesOffline">Cache billeder offline</string>
   <string name="pref_title_Max_Cache_Size">Max Cache Størrelse</string>

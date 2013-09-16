@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="authorities">de.luhmer.owncloudnewsreader</string>
+  <string name="auto_sync_string">Auto sincronização</string>
   <string name="app_name">Leitor de notícias do ownCloud</string>
   <string name="action_settings">Configurações</string>
   <string name="title_activity_news_detail">Detalhes da notícia</string>
@@ -13,13 +15,14 @@
   <string name="no_wifi_available">Nenhum WiFi conectado</string>
   <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
   <string name="max_items_count_reached">Você atingiu o tamanho maxiumum de XX itens</string>
+  <string name="widget_header">Notícias ownCloud</string>
   <string name="allUnreadFeeds">Todos itens não lidos</string>
   <string name="starredFeeds">Itens vistos</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Atualizar</string>
   <string name="menu_About_Changelog">Sobre / Log de mudanças</string>
   <string name="menu_markAllAsRead">Marcar todos como lidos</string>
-  <string name="menu_StartImageCaching">Iniciar armazenamento de imagens offline</string>
+  <string name="menu_StartImageCaching">Baixar imagens</string>
   <string name="menu_downloadMoreItems">Fazer download de mais itens</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-fonte do item - Reportar erros</string>
@@ -33,7 +36,7 @@
   <string name="action_login">Configurações do servidor</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
-  <string name="pref_title_password">Código Secreto</string>
+  <string name="pref_title_password">Senha</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -44,7 +47,7 @@
   <string name="error_invalid_url">A URL está incorreta</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Foram baixados X itens antigos</string>
-  <string name="toast_no_more_downloads_available">Não há mais itens antigos disponíveis para download</string>
+  <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
   <string name="pull_to_refresh_updateTags">Sincronizando estados dos itens</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
@@ -69,9 +72,16 @@
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>
   <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos não lidos</string>
-  <string name="pref_title_AllowAllSSLCertificates">Permitir todos os certificados SSL</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Desabilitar Verificação de Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
+  <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Aceita Certificado Desconhecido?</string>
+  <string name="mtm_decision_always">Sempre</string>
+  <string name="mtm_decision_once">Uma vez</string>
+  <string name="mtm_decision_abort">Abortar</string>
+  <string name="mtm_notification">Verificação de Certificado</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Display</string>
   <string name="pref_title_app_theme">Tema do aplicativo (é preciso reiniciar o aplicativo para as mudanças terem efeito)</string>
@@ -131,7 +141,7 @@
   <string name="login_dialog_text_security_warning">Você não está usando https. Sua conexão poderá ser interceptada e alguém poderá ter acesso a dados secretos (ex.: sua senha). Então, é fortemente recomendado usar https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Dados &amp; sincronização</string>
-  <string name="pref_title_data_sync_max_items">Número máximo de itens a serem sincronizados</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Limpar cache</string>
   <string name="pref_title_CacheImagesOffline">Armazenar imagens offline</string>
   <string name="pref_title_Max_Cache_Size">Tamanho Máximo do Cache</string>

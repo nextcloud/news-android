@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Automaattinen synkronointi</string>
   <string name="app_name">ownCloud-uutislukija</string>
   <string name="action_settings">Asetukset</string>
   <string name="title_newsreader_list">Uutislukija</string>
@@ -12,6 +13,7 @@
   <string name="menu_update">Päivitä</string>
   <string name="menu_About_Changelog">Tietoja / muutosloki</string>
   <string name="menu_markAllAsRead">Merkitse kaikki luetuiksi</string>
+  <string name="menu_StartImageCaching">Lataa kuvat</string>
   <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
   <!--EMAIL-->
   <string name="email_sendMail">Lähetä EMail</string>
@@ -23,7 +25,7 @@
   <string name="action_login">Palvelinasetukset</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
-  <string name="pref_title_password">Salainen koodi</string>
+  <string name="pref_title_password">Salasana</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
@@ -33,7 +35,7 @@
   <string name="error_field_required">Tämä kenttä vaaditaan</string>
   <string name="error_invalid_url">Osoite on virheellinen</string>
   <!--Toast Messages-->
-  <string name="toast_no_more_downloads_available">Ei enempää vanhempia kohteita ladattavaksi</string>
+  <string name="toast_no_more_downloads_available">Ei enempää kohteita saatavilla</string>
   <string name="pull_to_refresh_updateTags">Synkronoidaan kohteiden tiloja</string>
   <string name="pull_to_refresh_updateFolder">Synkronoidaan kansiota</string>
   <string name="pull_to_refresh_updateFeeds">Synkronoidaan syötteitä</string>
@@ -57,8 +59,14 @@
   <string name="warning">Varoitus</string>
   <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
   <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>
-  <string name="pref_title_AllowAllSSLCertificates">Salli kaikki SSL-varmenteet</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
+  <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
+  <string name="mtm_decision_always">Aina</string>
+  <string name="mtm_decision_once">Vain kerran</string>
+  <string name="mtm_decision_abort">Keskeytä</string>
+  <string name="mtm_notification">Varmennevahvistus</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Näyttö</string>
   <string name="pref_title_app_theme">Sovelluksen teema (muutos vaatii uudelleenkäynnistyksen)</string>
@@ -98,7 +106,7 @@
   <string name="login_dialog_text_security_warning">Yhteytesi ei ole salattu. Hyökkääjä voi siepata yhteyden ja saada tärkeää tietoa (esim. salasanasi). Suosittelemme ehdottomasti käyttämään https-yhteyttä!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; synkronointi</string>
-  <string name="pref_title_data_sync_max_items">Synkronoitavien kohteiden enimmäismäärä</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
   <string name="pref_title_Max_Cache_Size">Välimuistin enimmäiskoko</string>
   <string-array name="pref_data_sync_max_cache_size">
