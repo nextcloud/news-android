@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="authorities">de.luhmer.owncloudnewsreader (Lecteur de nouvelles ownCloud pour Android)</string>
   <string name="auto_sync_string">Auto synchronisation</string>
   <string name="app_name">lecteur d\'actualités ownCloud</string>
   <string name="action_settings">Paramètres</string>
@@ -61,10 +60,10 @@
     <item>Nouveau -&gt; Ancien</item>
     <item>Ancien -&gt; Nouveau</item>
   </string-array>
-  <string-array name="pref_general_sort_order_values">
-    <item>décroissant</item>
-    <item>croissant</item>
-  </string-array>
+  <!--<string-array name="pref_general_sort_order_values">
+        <item>desc</item>
+        <item>asc</item>
+	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Calcul de la taille du cache en cours... Veuillez patienter.</string>

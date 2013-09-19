@@ -6,6 +6,7 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Помічені зірочкою</string>
+  <string name="action_openInBrowser">Відкрити у переглядачі</string>
   <string name="action_Share">Поділитися</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Ім\'я користувача</string>
@@ -17,6 +18,10 @@
   <string name="title_activity_settings">Налаштування</string>
   <!--General settings-->
   <string name="pref_header_general">Загалом</string>
+  <!--<string-array name="pref_general_sort_order_values">
+        <item>desc</item>
+        <item>asc</item>
+	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="warning">Попередження</string>

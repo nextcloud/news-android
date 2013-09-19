@@ -1,31 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">設定</string>
+  <string name="action_settings">ਸੈਟਿੰਗ</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
-  <string name="action_Share">分享</string>
+  <string name="action_Share">ਸਾਂਝਾ ਕਰੋ</string>
   <!--Strings related to login-->
-  <string name="pref_title_username">用戶名稱</string>
-  <string name="pref_title_password">密碼</string>
+  <string name="pref_title_username">ਯੂਜ਼ਰ-ਨਾਂ</string>
+  <string name="pref_title_password">ਪਾਸਵਰ</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
-  <string name="title_activity_settings">設定</string>
+  <string name="title_activity_settings">ਸੈਟਿੰਗ</string>
   <!--General settings-->
-  <string name="pref_header_general">一般</string>
+  <string name="pref_header_general">ਆਮ</string>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">ਚੇਤਾਵਨੀ</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
-  <string name="login_dialog_title_error">錯誤</string>
+  <string name="login_dialog_title_error">ਗਲਤੀ</string>
+  <string name="login_dialog_title_security_warning">ਸੁਰੱਖਿਆ ਚੇਤਾਵਨੀ</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
