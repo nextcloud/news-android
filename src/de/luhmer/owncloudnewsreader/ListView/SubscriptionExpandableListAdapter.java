@@ -268,14 +268,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             FontHelper fHelper = new FontHelper(mContext);
             fHelper.setFontForAllChildren(view, fHelper.getFont());
             
-            ImageView indicatorImage = (ImageView) view.findViewById(R.id.img_View_expandable_indicator);
-            TextView txt_Summary = (TextView) view.findViewById(R.id.summary);
-            TextView textFeedCount = (TextView) view.findViewById(R.id.tV_feedsCount);
-            
             viewHolder = new GroupHolder();
-            viewHolder.imgView = indicatorImage;
-            viewHolder.txt_Summary = txt_Summary;
-            viewHolder.txt_UnreadCount = textFeedCount;
+            viewHolder.imgView = (ImageView) view.findViewById(R.id.img_View_expandable_indicator);
+            viewHolder.txt_Summary = (TextView) view.findViewById(R.id.summary);
+            viewHolder.txt_UnreadCount = (TextView) view.findViewById(R.id.tV_feedsCount);
                          
             viewHolder.txt_Summary.setClickable(true);
             
