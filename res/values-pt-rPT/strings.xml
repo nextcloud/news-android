@@ -16,6 +16,7 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
   <string name="menu_markAllAsRead">Marcar todos como lidos</string>
+  <string name="menu_StartImageCaching">Descarregar as imagens</string>
   <string name="menu_downloadMoreItems">Descarregar mais itens</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-Fonte do item: Reportar bug</string>
@@ -57,6 +58,10 @@
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Navegue usando os botões de volume</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">Sempre</string>
+  <string name="mtm_decision_once">Uma vez</string>
+  <string name="mtm_decision_abort">Abortar</string>
+  <string name="mtm_notification">Verificação do certificado</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema da aplicação (deve reiniciar para aplicar)</string>
