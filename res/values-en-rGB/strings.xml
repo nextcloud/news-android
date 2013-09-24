@@ -47,7 +47,7 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Downloaded X old items</string>
   <string name="toast_no_more_downloads_available">No further items available</string>
-  <string name="pull_to_refresh_updateTags">Synchronising items states</string>
+  <string name="pull_to_refresh_updateTags">Synchronising item states</string>
   <string name="pull_to_refresh_updateFolder">Synchronising folder</string>
   <string name="pull_to_refresh_updateFeeds">Synchronising feeds</string>
   <string name="pull_to_refresh_updateItems">Synchronising items</string>
@@ -141,7 +141,7 @@
   <string name="login_dialog_text_something_went_wrong">Something went wrong :(</string>
   <string name="login_dialog_text_not_compatible">This App version is not compatible with your ownCloud News App. Please update the news app and the appframework.</string>
   <string name="login_dialog_title_security_warning">Security Warning</string>
-  <string name="login_dialog_text_security_warning">You\'re not using https. An attacker could intercept your traffic and gain access to some sensitive data (e.g. your password). So it\'s strongly recommend to use https!</string>
+  <string name="login_dialog_text_security_warning">You\'re not using https. An attacker could intercept your traffic and gain access to some sensitive data (e.g. your password). So it\'s strongly recommend that you use https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; sync</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
