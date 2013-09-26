@@ -43,6 +43,8 @@ import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
+import org.codechimp.apprater.AppRater;
+
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
@@ -54,12 +56,7 @@ import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
- * presentations for handset and tablet-size devices. On handsets, the activity
- * presents a list of items, which when touched, lead to a
- * {@link NewsReaderDetailActivity} representing item details. On tablets, the
- * activity presents the list of items and item details side-by-side using two
- * vertical panes.
- * <p>
+ * presentations for handset and tablet-size devices.
  * The activity makes heavy use of fragments. The list of items is a
  * {@link NewsReaderListFragment} and the item details (if present) is a
  * {@link NewsReaderDetailFragment}.
@@ -212,7 +209,10 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
         	StartDetailFragmentNow();
         }
-        
+
+        AppRater.app_launched(this);
+        //AppRater.rateNow(this);
+
         //onTopItemClicked(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
     }
 
@@ -539,7 +539,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		//getSupportMenuInflater().inflate(R.menu.news_reader, menu);
 		
 		
-		super.onCreateOptionsMenu(menu, getSupportMenuInflater(), true, this);
+		super.onCreateOptionsMenu(menu, getSupportMenuInflater(), this);
 		
         UpdateButtonSyncLayout();
 

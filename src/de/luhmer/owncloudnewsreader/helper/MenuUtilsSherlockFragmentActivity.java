@@ -22,8 +22,6 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.annotation.TargetApi;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
@@ -41,7 +39,6 @@ import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.VersionInfoDialogFragment;
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
@@ -90,7 +87,7 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 	}
 	
 	
-	public static void onCreateOptionsMenu(Menu menu, MenuInflater inflater, boolean mTwoPane, FragmentActivity act) {
+	public static void onCreateOptionsMenu(Menu menu, MenuInflater inflater, FragmentActivity act) {
 		inflater.inflate(R.menu.news_reader, menu);
 		activity = act;
 		
@@ -167,7 +164,8 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 	}
 	
 	private static void DownloadMoreItems()
-	{	
+	{
+        /*
 		DatabaseConnection dbConn = new DatabaseConnection(activity);
 		int count = dbConn.getCountFeedsForFolder(SubscriptionExpandableListAdapter.ALL_ITEMS, false);
 		if(count >= Constants.maxItemsCount)
@@ -187,8 +185,8 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 			//Toast.makeText(activity, text, Toast.LENGTH_LONG).show();
 		}
 		else
-		{		
-			String username = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext()).getString("edt_username", "");			
+		{*/
+			String username = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext()).getString("edt_username", "");
 			String password = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext()).getString("edt_password", "");
 			
 			if(username != null) {
@@ -197,7 +195,7 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 			
 				Toast.makeText(activity, activity.getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 			}	
-		}
+		//}
 	}
 	
 	static OnAsyncTaskCompletedListener onAsyncTaskGetVersionFinished = new OnAsyncTaskCompletedListener() {

@@ -3,20 +3,21 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.4'
+        classpath 'com.android.tools.build:gradle:0.5.+'
     }
 }
 apply plugin: 'android'
 
 dependencies {
+	compile files('libs/android-support-v4.jar')
 }
 
 android {
     compileSdkVersion 17
-    buildToolsVersion "17"
+    buildToolsVersion "17.0.0"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 7
         targetSdkVersion 17
     }
     sourceSets {
@@ -30,6 +31,6 @@ android {
             assets.srcDirs = ['assets']
         }
 
-        instrumentTest.setRoot('tests')
+        //instrumentTest.setRoot('tests')
     }
 }

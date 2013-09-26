@@ -21,9 +21,6 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import org.apache.http.client.HttpResponseException;
-import org.apache.http.conn.HttpHostConnectException;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -37,6 +34,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -55,6 +53,12 @@ import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
+import com.michaelflisar.messagebar.MessageBar;
+import com.michaelflisar.messagebar.messages.BaseMessage;
+import com.michaelflisar.messagebar.messages.TextMessage;
+
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.conn.HttpHostConnectException;
 
 import de.luhmer.owncloudnewsreader.Constants.SYNC_TYPES;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
@@ -148,20 +152,23 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 				case SYNC_TYPE__FEEDS:
 					break;
 				case SYNC_TYPE__ITEMS:
-					
+
 					Log.d(TAG, "finished sync");
 					refresh = new Handler(Looper.getMainLooper());
 					refresh.post(new Runnable() {
-						public void run() {							
-							lvAdapter.ReloadAdapter();
-							
-							NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
-							if (nlActivity != null)
-								nlActivity.UpdateItemList();
+						public void run() {
+                        lvAdapter.ReloadAdapter();
+                        NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
+						if (nlActivity != null)
+							nlActivity.UpdateItemList();
+
+                        MessageBar messageBar = new MessageBar(getActivity(), true);
+                        TextMessage textMessage = new TextMessage("New Messages available", "Reload", R.drawable.ic_menu_refresh);
+                        textMessage.setClickListener(mListener);
+                        messageBar.show(textMessage);
 						}
 					});
-					
-					break;				
+					break;
 			}
 		}
 
@@ -231,7 +238,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	//public static String password;
 	//AsyncUpdateFinished asyncUpdateFinished;
 	ServiceConnection mConnection = null;
-	
+
+    private BaseMessage.OnMessageClickListener mListener = null;
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
@@ -265,6 +274,24 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			
 			//if(_Reader == null)
 			//	_Reader = new OwnCloud_Reader();
+
+            mListener = new BaseMessage.OnMessageClickListener()
+            {
+                @Override
+                public void onButton2Click(Parcelable data)
+                {
+                }
+
+                @Override
+                public void onButton1Click(Parcelable data)
+                {
+                    //Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
+                    NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.content_frame));
+                    if(ndf != null)
+                        ndf.UpdateCursor();
+                }
+            };
+
 		}
 		catch(Exception ex)
 		{
