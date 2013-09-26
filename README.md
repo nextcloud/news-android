@@ -82,25 +82,30 @@ Updates
 ==================================
 0.5.0 (in development)
 ---------------------
+- Improvement - New Changelog Design
+- Improvement - Darker Sidebar
+- Improvement - AppRater Plugin added
+- Improvement - Dialog for reloading the article list after a sync has finished
+
 
 0.4.9 (beta)
 ---------------------
 - Update German Language support
 - Readded full support of Android 2.2+ (was broken since 0.4.4)
 - Improvement - In Landscape Mode on Tablets (7inch+) the Feed/Folder pane is always visible.
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/77">#77 There should be icons for folders and special categories
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/139">#139 Article list jumps after having article opened
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/137">#137 Back button shouldn't close app when app displays a specific feed or folder
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/151">#151 Reload slide pane when open event is triggered
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/136">#136 Fix that the translated app name is used as the folder name
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/134">#134 Sidebar - "Loading ..." font color should be brighter
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/133">#133 Refreshing after adding server data results in unauthorized
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/57">#57 Background synchronization
-- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/152">#152 Changing sorting direction
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/77">#77 There should be icons for folders and special categories</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/139">#139 Article list jumps after having article opened</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/137">#137 Back button shouldn't close app when app displays a specific feed or folder</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/151">#151 Reload slide pane when open event is triggered</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/136">#136 Fix that the translated app name is used as the folder name</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/134">#134 Sidebar - "Loading ..." font color should be brighter</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/133">#133 Refreshing after adding server data results in unauthorized</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/57">#57 Background synchronization</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/152">#152 Changing sorting direction</a>
 
 0.4.8
 ---------------------
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/140">#140 Open in browser and Share with controls always act on original article
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/140">#140 Open in browser and Share with controls always act on original article</a>
 - Update Language support
 
 0.4.7 (beta)

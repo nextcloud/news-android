@@ -25,6 +25,7 @@
   <string name="warning">Åtvaring</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_abort">Avbryt</string>
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Feil</string>
