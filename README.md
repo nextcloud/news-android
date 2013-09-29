@@ -82,13 +82,17 @@ Updates
 ==================================
 0.5.0 (in development)
 ---------------------
+
+0.4.10 (beta)
+---------------------
 - Improvement - New Changelog Design
-- Improvement - Darker Sidebar
 - Improvement - AppRater Plugin added
-- Improvement - Dialog for reloading the article list after a sync has finished
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/155">#155 Feed view isn't refreshed on sync</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/153">#153 Sidebar should be darker</a>
+- Bug fixes
 
 
-0.4.9 (beta)
+0.4.9
 ---------------------
 - Update German Language support
 - Readded full support of Android 2.2+ (was broken since 0.4.4)

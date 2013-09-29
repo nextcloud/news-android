@@ -110,10 +110,10 @@ public class DatabaseConnection {
     	if(total > max)
     	{
     		int overSize = total - max;
-    		//Soll verhindern, dass ungelesene Artikel gel�scht werden
+    		//Soll verhindern, dass ungelesene Artikel gelöscht werden
     		if(overSize > read)
     			overSize = read;    		
-     		database.execSQL("DELETE FROM rss_item WHERE read_temp = 1 AND rowid IN (SELECT rowid FROM rss_item WHERE read_temp = 1 ORDER BY rowid asc LIMIT " + overSize + ")");
+     		database.execSQL("DELETE FROM rss_item WHERE rowid IN (SELECT rowid FROM rss_item WHERE read_temp = 1 AND starred_temp != 1 ORDER BY rowid asc LIMIT " + overSize + ")");
     		/* SELECT * FROM rss_item WHERE read_temp = 1 ORDER BY rowid asc LIMIT 3; */
     	}
 	}

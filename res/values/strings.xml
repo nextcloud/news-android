@@ -23,7 +23,8 @@
     
     <string name="widget_header">ownCloud News</string>
     
-    
+    <string name="message_bar_new_articles_available">New items available</string>
+    <string name="message_bar_reload">Reload</string>
     
     <string name="allUnreadFeeds">All unread items</string>
     <string name="starredFeeds">Starred items</string>

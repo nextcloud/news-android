@@ -206,7 +206,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         
         if(savedInstanceState == null)//When the app starts (no orientation change)
         {
-        	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
+        	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null, true);
         	StartDetailFragmentNow();
         }
 
@@ -233,11 +233,11 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			View v = ndf.getListView().getChildAt(0);
 			int top = (v == null) ? 0 : v.getTop();
 			
-			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_STRING, ndf.getListView().getFirstVisiblePosition());			
-			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING, top);			
-			outState.putString(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());			
+			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_STRING, ndf.getListView().getFirstVisiblePosition());
+			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING, top);
+			outState.putString(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
 			outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null ? true : false);
-			outState.putString(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFolder() : ndf.getIdFeed());			
+			outState.putString(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFolder() : ndf.getIdFeed());
 		}
 		
 		super.onSaveInstanceState(outState);
@@ -257,7 +257,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 				
 				startDetailFHolder = new StartDetailFragmentHolder(savedInstanceState.getString(OPTIONAL_FOLDER_ID),
 																	savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
-																	savedInstanceState.getString(ID_FEED_STRING));				
+																	savedInstanceState.getString(ID_FEED_STRING),
+                                                                    false);
 	        	
 	        	NewsReaderDetailFragment ndf = StartDetailFragmentNow();
 	        	if(ndf != null) {
@@ -379,15 +380,17 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		String idSubscription;
 		boolean isFolder;
 		String optional_folder_id;
+        boolean updateListView;
 		
-		public StartDetailFragmentHolder(String idSubscription, boolean isFolder, String optional_folder_id) {
+		public StartDetailFragmentHolder(String idSubscription, boolean isFolder, String optional_folder_id, boolean updateListView) {
 			this.idSubscription = idSubscription;
 			this.isFolder = isFolder;
 			this.optional_folder_id = optional_folder_id;
+            this.updateListView = updateListView;
 		}
 		
 		public NewsReaderDetailFragment StartDetailFragment() {
-			return NewsReaderListActivity.this.StartDetailFragment(idSubscription, isFolder, optional_folder_id);
+			return NewsReaderListActivity.this.StartDetailFragment(idSubscription, isFolder, optional_folder_id, updateListView);
 		}
 	}
 
@@ -402,7 +405,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		if(!shouldDrawerStayOpen())
 			mSlidingLayout.closePane();		
 		
-		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, isFolder, optional_folder_id);
+		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, isFolder, optional_folder_id, true);
 		
 		if(shouldDrawerStayOpen())
 			StartDetailFragmentNow();
@@ -417,12 +420,12 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			mSlidingLayout.closePane();
 		
 		//StartDetailFragment(idSubscription, false, optional_folder_id);
-		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, false, optional_folder_id);
+		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, false, optional_folder_id, true);
 		if(shouldDrawerStayOpen())
 			StartDetailFragmentNow();
 	}
 		
-	private NewsReaderDetailFragment StartDetailFragment(String id, Boolean folder, String optional_folder_id)
+	private NewsReaderDetailFragment StartDetailFragment(String id, Boolean folder, String optional_folder_id, boolean UpdateListView)
 	{		
 		if(super.getMenuItemDownloadMoreItems() != null)
 			super.getMenuItemDownloadMoreItems().setEnabled(true);
@@ -452,7 +455,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		
 		Bundle arguments = intent.getExtras();
 		
-		NewsReaderDetailFragment fragment = new NewsReaderDetailFragment();			
+		NewsReaderDetailFragment fragment = new NewsReaderDetailFragment();
+        fragment.setUpdateListViewOnStartUp(UpdateListView);
+
 		fragment.setArguments(arguments);
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, fragment)

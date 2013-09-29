@@ -37,6 +37,7 @@ import android.os.Looper;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.support.v4.app.LoaderManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.app.SherlockListFragment;
 import com.handmark.pulltorefresh.library.BlockingExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -81,7 +83,7 @@ import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class NewsReaderListFragment extends SherlockFragment implements OnCreateContextMenuListener /*, 
+public class NewsReaderListFragment extends SherlockFragment implements OnCreateContextMenuListener/*
 																ExpandableListView.OnChildClickListener,
 																ExpandableListView.OnGroupCollapseListener,
 																ExpandableListView.OnGroupExpandListener*/ {
@@ -163,7 +165,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 							nlActivity.UpdateItemList();
 
                         MessageBar messageBar = new MessageBar(getActivity(), true);
-                        TextMessage textMessage = new TextMessage("New Messages available", "Reload", R.drawable.ic_menu_refresh);
+                        TextMessage textMessage = new TextMessage(getString(R.string.message_bar_new_articles_available), getString(R.string.message_bar_reload), R.drawable.ic_menu_refresh);
                         textMessage.setClickListener(mListener);
                         messageBar.show(textMessage);
 						}
@@ -286,9 +288,18 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
                 public void onButton1Click(Parcelable data)
                 {
                     //Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
+
                     NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.content_frame));
-                    if(ndf != null)
-                        ndf.UpdateCursor();
+                    if(ndf != null) {
+                        try {
+                            ndf.UpdateCurrentRssView(getActivity());
+                            ndf.getLoaderManager().restartLoader(0, null, ndf.loaderCallbacks);
+                            ndf.setActivatedPosition(0);
+                            ndf.setMarginFromTop(0);
+                        } catch(Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
             };
 

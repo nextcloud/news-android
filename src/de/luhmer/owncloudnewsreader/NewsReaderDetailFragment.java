@@ -106,7 +106,9 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	 */
 	private int mActivatedPosition = ListView.INVALID_POSITION;
 	private int marginFromTop = ListView.INVALID_POSITION;
-	
+
+    private boolean reloadCursorOnStartUp = false;
+
 	//private static ArrayList<Integer> databaseIdsOfItems;
 	ArrayList<RobotoCheckBox> stayUnreadCheckboxes;
 	
@@ -118,6 +120,10 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		//databaseIdsOfItems = new ArrayList<Integer>();
 		stayUnreadCheckboxes = new ArrayList<RobotoCheckBox>();
 	}
+
+    public void setUpdateListViewOnStartUp(boolean reloadCursorOnStartUp) {
+        this.reloadCursorOnStartUp = reloadCursorOnStartUp;
+    }
 	
 	public void setActivatedPosition(int position) {
 		mActivatedPosition = position;
@@ -157,6 +163,10 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			setListAdapter(lvAdapter);
 			
 			getActivity().getSupportLoaderManager().destroyLoader(0);
+
+            if(reloadCursorOnStartUp)
+                UpdateCurrentRssView(getActivity());
+
 			UpdateCursor();
 		}
 	}
@@ -240,54 +250,53 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		try
 		{	
 			LoaderManager loader = getActivity().getSupportLoaderManager();
-			loader.initLoader(0, null, new LoaderCallbacks<Cursor>() {
-
-				@Override
-				public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-					return new NewsDetailCursorLoader(getActivity(), idFolder, idFeed);
-				}
-
-				@Override
-				public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-					NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
-					if(nca != null)
-						nca.swapCursor(cursor);
-					
-					if(cursor.getCount() <= 0) {
-						getListView().setVisibility(View.GONE);
-						getActivity().findViewById(R.id.tv_no_items_available).setVisibility(View.VISIBLE);
-					} else {
-						getListView().setVisibility(View.VISIBLE);
-						getActivity().findViewById(R.id.tv_no_items_available).setVisibility(View.GONE);
-					}
-						
-					try {
-						if(mActivatedPosition != ListView.INVALID_POSITION && marginFromTop != ListView.INVALID_POSITION)
-							getListView().setSelectionFromTop(mActivatedPosition, marginFromTop);
-						else if(mActivatedPosition != ListView.INVALID_POSITION)
-							getListView().setSelection(mActivatedPosition);
-					} catch(Exception ex) {
-						ex.printStackTrace();
-					}
-					//((NewsListCursorAdapter) getListAdapter()).changeCursor(cursor);
-				}
-
-				@Override
-				public void onLoaderReset(Loader<Cursor> loader) {
-					NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
-					if(nca != null)
-						((NewsListCursorAdapter) getListAdapter()).swapCursor(null);
-				}
-			});
-			
-			
+			loader.initLoader(0, null, loaderCallbacks);
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
 	}
-	
+
+    public LoaderCallbacks<Cursor> loaderCallbacks = new LoaderCallbacks<Cursor>() {
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+            return new NewsDetailCursorLoader(getActivity(), idFolder, idFeed);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+            NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
+            if(nca != null)
+                nca.swapCursor(cursor);
+
+            if(cursor.getCount() <= 0) {
+                getListView().setVisibility(View.GONE);
+                getActivity().findViewById(R.id.tv_no_items_available).setVisibility(View.VISIBLE);
+            } else {
+                getListView().setVisibility(View.VISIBLE);
+                getActivity().findViewById(R.id.tv_no_items_available).setVisibility(View.GONE);
+            }
+
+            try {
+                if(mActivatedPosition != ListView.INVALID_POSITION && marginFromTop != ListView.INVALID_POSITION)
+                    getListView().setSelectionFromTop(mActivatedPosition, marginFromTop);
+                else if(mActivatedPosition != ListView.INVALID_POSITION)
+                    getListView().setSelection(mActivatedPosition);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            }
+            //((NewsListCursorAdapter) getListAdapter()).changeCursor(cursor);
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {
+            NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
+            if(nca != null)
+                ((NewsListCursorAdapter) getListAdapter()).swapCursor(null);
+        }
+    };
+
 	public void notifyDataSetChangedOnAdapter()
 	{
 		NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
@@ -295,36 +304,43 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			((NewsListCursorAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
-    public static Cursor getRightCusor(Context context, String idFolder, String idFeed)
-    {
-    	SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-    	boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
-    	boolean onlyStarredItems = false;
-    	if(idFolder != null)
-    		if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
-    			onlyStarredItems = true;
-    	
-    	SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
-    	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
-    	if(sortDirection.equals("1"))
-    		sDirection = SORT_DIRECTION.desc;
-    		
-    	DatabaseConnection dbConn = new DatabaseConnection(context);
-    	String sqlSelectStatement = null;
-    	if(idFeed != null)
-    		sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sDirection);
+    public void UpdateCurrentRssView(Context context) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
+        boolean onlyStarredItems = false;
+        if(idFolder != null)
+            if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+                onlyStarredItems = true;
+
+        DatabaseConnection dbConn = new DatabaseConnection(context);
+        String sqlSelectStatement = null;
+        if(idFeed != null)
+            sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, getSortDirection(context));
         else if(idFolder != null)
         {
-        	if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
-        		onlyUnreadItems = false;
-        	sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sDirection);
+            if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+                onlyUnreadItems = false;
+            sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, getSortDirection(context));
         }
-    	if(sqlSelectStatement != null) {    		
-    		dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
-    	}
-    	
-    	
-    	return dbConn.getCurrentSelectedRssItems(sDirection);
+        if(sqlSelectStatement != null) {
+            dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
+        }
+    }
+
+    public static SORT_DIRECTION getSortDirection(Context context) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
+        String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
+        if(sortDirection.equals("1"))
+            sDirection = SORT_DIRECTION.desc;
+
+        return sDirection;
+    }
+
+    public static Cursor getRightCusor(Context context /*, String idFolder, String idFeed */)
+    {
+        DatabaseConnection dbConn = new DatabaseConnection(context);
+    	return dbConn.getCurrentSelectedRssItems(getSortDirection(context));
     	/*
         if(idFeed != null)
             return dbConn.getAllItemsForFeed(idFeed, onlyUnreadItems, onlyStarredItems, sDirection);
@@ -371,7 +387,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 	    @Override 
 	    public Cursor loadInBackground() {
-	        return getRightCusor(getContext(), idFolder, idFeed);
+	        return getRightCusor(getContext() /*, idFolder, idFeed */);
 	    }
 	}
 	
