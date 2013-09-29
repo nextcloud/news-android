@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="action_settings">Налаштування</string>
+  <string name="empty_view_header">Інформація</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Оновити</string>
+  <string name="menu_StartImageCaching">Завантажити зображення</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Помічені зірочкою</string>
@@ -27,6 +29,8 @@
   <string name="warning">Попередження</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">Завжди</string>
+  <string name="mtm_decision_once">Один раз</string>
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Помилка</string>

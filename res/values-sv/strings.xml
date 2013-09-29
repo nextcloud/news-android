@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Automatisk synkning</string>
   <string name="app_name">ownCloud Nyhetsläsare</string>
   <string name="action_settings">Inställningar</string>
   <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
   <string name="title_activity_subscription">PrenumerationAktivitet</string>
-  <string name="title_newsreader_list">NewsReader</string>
+  <string name="title_newsreader_list">Nyhetsläsare</string>
   <string name="title_newsreader_detail">Nyhetsläsare Detalj</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Inga objekt här</string>
@@ -13,12 +14,14 @@
   <string name="no_wifi_available">Ingen WIFI ansluten</string>
   <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>
   <string name="max_items_count_reached">Du har nått storleksgränsen för XX.</string>
+  <string name="widget_header">ownCloud nyheter</string>
   <string name="allUnreadFeeds">Alla olästa objekt</string>
   <string name="starredFeeds">Stjärnmärkta objekt</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Uppdatera</string>
   <string name="menu_About_Changelog">Om / Ändringslogg</string>
   <string name="menu_markAllAsRead">Markera alla som lästa</string>
+  <string name="menu_StartImageCaching">Ladda ner bilder</string>
   <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Källkod av objekt - Buggrapport</string>
@@ -43,6 +46,7 @@
   <string name="error_invalid_url">Felaktig URL</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Laddade ner X gamla objekt</string>
+  <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
   <string name="pull_to_refresh_updateTags">Synkroniseringsstatus</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserar mapp</string>
   <string name="pull_to_refresh_updateFeeds">Synkroniserar feeds</string>
@@ -56,6 +60,10 @@
     <item>Nyare -&gt; Äldre</item>
     <item>Äldre -&gt; Nyare</item>
   </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
@@ -68,9 +76,15 @@
   <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
   <string name="pref_title_ShowOnlyUnread">Visa endast olästa artiklar</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
+  <string name="mtm_decision_always">Alltid</string>
+  <string name="mtm_decision_once">En gång</string>
+  <string name="mtm_decision_abort">Avbryt</string>
+  <string name="mtm_notification">Verifikation av certifikat</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Visa</string>
   <string name="pref_title_app_theme">Tema (kräver omstart för att aktiveras)</string>
