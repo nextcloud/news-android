@@ -83,14 +83,17 @@ Updates
 0.5.0 (in development)
 ---------------------
 
-0.4.10 (beta)
+0.4.11 (beta)
+---------------------
+- Critical Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/158">#158 0.4.10 instantly crashes when opening</a>
+
+0.4.10 (unpublished)
 ---------------------
 - Improvement - New Changelog Design
 - Improvement - AppRater Plugin added
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/155">#155 Feed view isn't refreshed on sync</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/153">#153 Sidebar should be darker</a>
 - Bug fixes
-
 
 0.4.9
 ---------------------
@@ -112,7 +115,7 @@ Updates
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/140">#140 Open in browser and Share with controls always act on original article</a>
 - Update Language support
 
-0.4.7 (beta)
+0.4.7
 ---------------------
 - fixed app crash when sync on startup is enabled
 - faster favIcon pre-caching
@@ -198,7 +201,6 @@ Updates
 - Improved feature <a href="https://github.com/owncloud/News-Android-App/issues/76">#76 (There should me more spacing between feeds and folders)</a>
 - Speed optimizations in the Folder/Feed Overview
 - About/Changelog added
-
 
 0.3.7
 ---------------------
