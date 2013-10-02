@@ -331,7 +331,14 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		String idFeed = getIdCurrentFeed(currentPosition);
 		Cursor cursor = dbConn.getArticleByID(idFeed);
-		
+
+        String currentUrl = "";
+        if(cursor != null)
+        {
+            cursor.moveToFirst();
+            currentUrl = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
+        }
+
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				super.onBackPressed();
@@ -372,19 +379,11 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			
 			case R.id.action_openInBrowser:
 				//String link = rssFiles.get(currentPosition).getLink();
-				String link = "";
-				
-				if(cursor != null)
-				{
-					cursor.moveToFirst();
-					link = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
-					cursor.close();
-				}
-				
+
 				//if(!link.isEmpty())
-				if(link.trim().length() > 0)
+				if(currentUrl.trim().length() > 0)
 				{
-					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
 					startActivity(browserIntent);
 				}
 				break;
@@ -415,18 +414,13 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				break;
 			 */
             case R.id.action_ShareItem:
-            	
+
             	String title = "";
-            	//String content = "";
-            	String content = "";
-				if(cursor != null)
-				{
-					cursor.moveToFirst();
-					title = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE));
-					content = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));					
-					cursor.close();
-				}
-				
+            	String content = currentUrl;
+
+                if(cursor != null)
+				    title = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE));
+
 				NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 				if(fragment != null) { // could be null if not instantiated yet
 					if(!fragment.webview.getUrl().equals("about:blank")) {
@@ -434,8 +428,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 						title = fragment.webview.getTitle();
 					}
 				}
-            					
-				content += "<br/><br/>Send via <a href=\"https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader\">ownCloud News Reader</a>";
+
+				//content += "<br/><br/>Send via <a href=\"https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader\">ownCloud News Reader</a>";
 				            	
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
@@ -463,6 +457,10 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
             	
             	break;
 		}
+
+        if(cursor != null)
+            cursor.close();
+
 		return super.onOptionsItemSelected(item);
 	}
 	
@@ -530,7 +528,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 		@Override
 		public int getCount() {
-			return cursor.getCount();			
+			return cursor.getCount();
 		}
 
 		@Override
