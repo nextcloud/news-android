@@ -15,6 +15,8 @@
   <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
   <string name="max_items_count_reached">Został osiągnięty maksymalny rozmiar XX elementów</string>
   <string name="widget_header">ownCloud News</string>
+  <string name="message_bar_new_articles_available">Nowe elementy są dostępne</string>
+  <string name="message_bar_reload">Przeładuj</string>
   <string name="allUnreadFeeds">Wszystkie nieprzeczytane</string>
   <string name="starredFeeds">Oznaczone Gwiazdką</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

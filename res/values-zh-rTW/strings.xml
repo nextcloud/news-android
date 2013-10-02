@@ -4,6 +4,7 @@
   <string name="action_settings">設定</string>
   <string name="empty_view_header">資訊</string>
   <string name="empty_view_content">無任何項目。</string>
+  <string name="message_bar_reload">重新載入</string>
   <string name="allUnreadFeeds">所有未閱讀項目。</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">重新整理</string>

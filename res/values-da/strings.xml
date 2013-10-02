@@ -15,6 +15,8 @@
   <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder unden brug af WiFi forbincelse</string>
   <string name="max_items_count_reached">Du har nået den maksimale størrelse af XX artikler</string>
   <string name="widget_header">ownCloud News</string>
+  <string name="message_bar_new_articles_available">Nye artikler tilgængelig</string>
+  <string name="message_bar_reload">Genindlæs</string>
   <string name="allUnreadFeeds">Alle ulæste artikler</string>
   <string name="starredFeeds">Markerede artikler</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

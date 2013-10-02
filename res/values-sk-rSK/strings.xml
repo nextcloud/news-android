@@ -5,6 +5,7 @@
   <string name="title_newsreader_list">Čítačka noviniek</string>
   <string name="empty_view_header">Informácie</string>
   <string name="empty_view_content">Žiadne položky</string>
+  <string name="message_bar_reload">Znovu načítať</string>
   <string name="allUnreadFeeds">Všetky neprečítané položky</string>
   <string name="starredFeeds">Položky s hviezdičkou</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

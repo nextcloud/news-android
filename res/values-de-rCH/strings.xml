@@ -13,6 +13,7 @@
   <string name="no_wifi_available">Keine WLAN-Verbindung</string>
   <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne W-LAN-Verbindung herunterladen</string>
   <string name="max_items_count_reached">Sie haben die maximale Grösse von XX Titeln erreicht</string>
+  <string name="message_bar_reload">Aktualisieren</string>
   <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
   <string name="starredFeeds">Markierte Elemente</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

@@ -6,6 +6,7 @@
   <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε.</string>
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
+  <string name="message_bar_reload">Επαναφόρτωση</string>
   <string name="allUnreadFeeds">Όλα τα μη ανεγνωσμένα</string>
   <string name="starredFeeds">Επισημασμένα αντικείμενα</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -54,6 +55,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_abort">Ματαίωση</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Εμφάνιση</string>
   <string name="pref_title_app_theme">Θέμα εφαρμογής (απαιτεί επανεκκίνηση για εφαρμογή)</string>

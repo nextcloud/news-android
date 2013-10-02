@@ -8,6 +8,7 @@
   <string name="title_newsreader_detail">新闻读者详情</string>
   <string name="empty_view_header">信息</string>
   <string name="empty_view_content">无内容</string>
+  <string name="message_bar_reload">刷新</string>
   <string name="allUnreadFeeds">未读内容</string>
   <string name="starredFeeds">标星内容</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

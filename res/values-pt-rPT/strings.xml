@@ -11,6 +11,7 @@
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir o item</string>
   <string name="no_wifi_available">Sem ligação WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Deseja efetuar o descarregamento das imagens sem uma ligação WIFI</string>
+  <string name="message_bar_reload">Recarregar</string>
   <string name="allUnreadFeeds">Todos os itens não lidos</string>
   <string name="starredFeeds">Itens destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

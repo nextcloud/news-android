@@ -12,6 +12,7 @@
   <string name="tv_clickHereToOpenItem">Kliknite tukaj za odpiranje dokumenta</string>
   <string name="no_wifi_available">Ni WiFi-povezave</string>
   <string name="do_you_want_to_download_without_wifi">Želite prenesti slike brez WiFi-povezave</string>
+  <string name="message_bar_reload">Ponovno naloži</string>
   <string name="allUnreadFeeds">Vse neprebrane postavke</string>
   <string name="starredFeeds">Označene postavke</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
