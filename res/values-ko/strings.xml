@@ -1,37 +1,107 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">자동 동기화</string>
+  <string name="app_name">Owncloud 뉴스 리더</string>
   <string name="action_settings">설정</string>
+  <string name="title_newsreader_list">뉴스리더</string>
+  <string name="empty_view_header">정보</string>
+  <string name="empty_view_content">아무것도 없습니다</string>
+  <string name="tv_clickHereToOpenItem">여길 클릭하여 여세요</string>
+  <string name="no_wifi_available">WiFi 연결이 없습니다</string>
+  <string name="do_you_want_to_download_without_wifi">WiFi 연결이 되지 않은 상태에서 그림을 받길 원하신가요</string>
+  <string name="widget_header">Onwcloud 뉴스</string>
+  <string name="message_bar_reload">다시 불러오기</string>
+  <string name="allUnreadFeeds">전체 읽지 않은 뉴스</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">새로 고침</string>
+  <string name="menu_About_Changelog">대하여 / 변경사항</string>
+  <string name="menu_StartImageCaching">그림 다운로드</string>
   <!--EMAIL-->
+  <string name="email_sendMail">이메일 보내기</string>
   <!--Action Bar Items-->
   <string name="action_starred">별표</string>
+  <string name="action_read">읽기</string>
+  <string name="action_openInBrowser">브라우저 열기</string>
+  <string name="action_sendSourceCode">개발자에게 보내기</string>
   <string name="action_Share">공유</string>
+  <string name="action_login">서버 설정</string>
   <!--Strings related to login-->
   <string name="pref_title_username">사용자 이름</string>
   <string name="pref_title_password">암호</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">가입하기</string>
+  <string name="login_progress_signing_in">가입 중...</string>
+  <string name="error_incorrect_password">비밀번호가 잘못되었습니다</string>
+  <string name="error_field_required">이 항목은 필수사항입니다</string>
+  <string name="error_invalid_url">URL이 </string>
   <!--Toast Messages-->
+  <string name="pull_to_refresh_updateFolder">폴더 동기화</string>
+  <string name="pull_to_refresh_updateFeeds">피드 동기화</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">설정</string>
   <!--General settings-->
   <string name="pref_header_general">일반</string>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">캐시 크기를 계산중입니다... 잠시만 기다려주세요</string>
   <string name="warning">경고</string>
+  <string name="pref_title_AutoSyncOnStart">시작시 동기화</string>
+  <string name="pref_title_ShowOnlyUnread">읽지 않은 항목만 보기</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">호스트이름 확인 금지</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">알려지지 않은 인증서를 허용하시겠습니까?</string>
+  <string name="mtm_decision_always">항상</string>
+  <string name="mtm_decision_once">한번</string>
+  <string name="mtm_decision_abort">대하여</string>
+  <string name="mtm_notification">인증서 확인</string>
   <!--Settings for Display-->
+  <string name="pref_title_app_theme">앱 테마 (재시작 하셔야 적용됩니다)</string>
+  <string name="pref_display_font_layout">글꼴 (재시작 하셔야 적용됩니다)</string>
+  <string-array name="pref_display_apptheme">
+    <item>Dark</item>
+    <item>Light</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">오류</string>
   <string name="login_dialog_title_security_warning">보안 경고</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string name="pref_title_clearCache">캐시 비우기</string>
+  <string name="pref_title_CacheImagesOffline">캐시 이미지 오프라인</string>
+  <string name="pref_title_Max_Cache_Size">최대 캐시 크기</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
