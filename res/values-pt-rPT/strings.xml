@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Sincronização automatica</string>
   <string name="app_name">Leitor de notícias do OwnCloud</string>
   <string name="action_settings">Configurações</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
@@ -11,11 +12,14 @@
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir o item</string>
   <string name="no_wifi_available">Sem ligação WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Deseja efetuar o descarregamento das imagens sem uma ligação WIFI</string>
+  <string name="widget_header">Notícias ownCloud</string>
+  <string name="message_bar_new_articles_available">Novos itens disponíveis</string>
   <string name="message_bar_reload">Recarregar</string>
   <string name="allUnreadFeeds">Todos os itens não lidos</string>
   <string name="starredFeeds">Itens destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
+  <string name="menu_About_Changelog">Acerca / Alterações</string>
   <string name="menu_markAllAsRead">Marcar todos como lidos</string>
   <string name="menu_StartImageCaching">Descarregar as imagens</string>
   <string name="menu_downloadMoreItems">Descarregar mais itens</string>
@@ -24,6 +28,7 @@
   <string name="email_sendMail">Enviar E-mail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Marcado</string>
+  <string name="action_read">Lido</string>
   <string name="action_openInBrowser">Abrir no browser</string>
   <string name="action_sendSourceCode">Enviar item ao Programador</string>
   <string name="action_Share">Partilhar</string>
@@ -40,6 +45,7 @@
   <string name="error_field_required">O campo é obrigatório</string>
   <string name="error_invalid_url">O endereço está incorrecto</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Descarregado X itens antigos</string>
   <string name="pull_to_refresh_updateFolder">Pasta a sincronizar</string>
   <string name="pull_to_refresh_updateFeeds">Feeds a sincronizar</string>
   <string name="pull_to_refresh_updateItems">Itens a sincronizar</string>
@@ -47,6 +53,11 @@
   <string name="title_activity_settings">Configurações</string>
   <!--General settings-->
   <string name="pref_header_general">Geral</string>
+  <string name="pref_title_general_sort_order">Ordem da ordenação</string>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
@@ -58,7 +69,9 @@
   <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos por ler</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Navegue usando os botões de volume</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto rolar com o rato</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Aceitar certificados desconhecidos?</string>
   <string name="mtm_decision_always">Sempre</string>
   <string name="mtm_decision_once">Uma vez</string>
   <string name="mtm_decision_abort">Abortar</string>
