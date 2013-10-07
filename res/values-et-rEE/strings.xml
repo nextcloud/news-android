@@ -6,7 +6,7 @@
   <string name="title_activity_news_detail">UudisteÜksikasjadeTegevused</string>
   <string name="title_activity_subscription">TellimusteTegevused</string>
   <string name="title_newsreader_list">UudisteLugeja</string>
-  <string name="title_newsreader_detail">Uudistelugeja Üksikasjad</string>
+  <string name="title_newsreader_detail">Uudistelugeja üksikasjad</string>
   <string name="empty_view_header">Info</string>
   <string name="empty_view_content">Siin pole üksusi</string>
   <string name="toast_GettingMoreItems">Alustatud täiendavate üksuste allalaadimist. Palun oota.</string>
@@ -18,7 +18,7 @@
   <string name="message_bar_new_articles_available">Sadaval on uusi kirjeid</string>
   <string name="message_bar_reload">Lae uuesti</string>
   <string name="allUnreadFeeds">Kõik lugemata üksused</string>
-  <string name="starredFeeds">Tähitud üksused</string>
+  <string name="starredFeeds">Tärniga märgitud üksused</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Värskenda</string>
   <string name="menu_About_Changelog">Teave / Muudatused</string>
@@ -51,8 +51,8 @@
   <string name="toast_no_more_downloads_available">Rohkem üksusi pole saadaval</string>
   <string name="pull_to_refresh_updateTags">Sünkroniseerin üksuste seisu</string>
   <string name="pull_to_refresh_updateFolder">Sünkroniseerin kataloogi</string>
-  <string name="pull_to_refresh_updateFeeds">Sünkroniseerin vooge</string>
-  <string name="pull_to_refresh_updateItems">Sünkroniseerin üksusi</string>
+  <string name="pull_to_refresh_updateFeeds">Voogude sünkroniseerimine</string>
+  <string name="pull_to_refresh_updateItems">Kirjete sünkroniseerimine</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Seaded</string>
   <!--General settings-->
@@ -73,7 +73,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Arvutan puhvri suurust... Palun oota.</string>
-  <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri lähtestada sellele vaatamata?</string>
+  <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
   <string name="warning">Hoiatus</string>
   <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
   <string name="pref_title_ShowOnlyUnread">Näita ainult lugemata artikleid</string>
