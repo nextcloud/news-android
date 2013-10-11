@@ -15,6 +15,7 @@
   <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a WiFi connection</string>
   <string name="max_items_count_reached">You\'ve reached the maximum size of XX items</string>
   <string name="widget_header">ownCloud News</string>
+  <string name="message_bar_new_articles_available">New items available</string>
   <string name="message_bar_reload">Reload</string>
   <string name="allUnreadFeeds">All unread items</string>
   <string name="starredFeeds">Starred items</string>
