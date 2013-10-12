@@ -164,10 +164,14 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 						if (nlActivity != null)
 							nlActivity.UpdateItemList();
 
-                        MessageBar messageBar = new MessageBar(getActivity(), true);
-                        TextMessage textMessage = new TextMessage(getString(R.string.message_bar_new_articles_available), getString(R.string.message_bar_reload), R.drawable.ic_menu_refresh);
-                        textMessage.setClickListener(mListener);
-                        messageBar.show(textMessage);
+                        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                        int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
+                        if(newItemsCount > 0) {
+                            MessageBar messageBar = new MessageBar(getActivity(), true);
+                            TextMessage textMessage = new TextMessage(getString(R.string.message_bar_new_articles_available), getString(R.string.message_bar_reload), R.drawable.ic_menu_refresh);
+                            textMessage.setClickListener(mListener);
+                            messageBar.show(textMessage);
+                        }
 						}
 					});
 					break;
@@ -382,7 +386,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	    			e.printStackTrace();
 	    		}
 	    	}
-	    	
+
 	    	@Override
 	    	public void onServiceDisconnected(ComponentName name) {
 	    		try {
@@ -421,9 +425,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 					Bundle accBundle = new Bundle();
 					accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 					AccountManager mAccountManager = AccountManager.get(getActivity());
-					Account[] accounts = mAccountManager.getAccounts();					
+					Account[] accounts = mAccountManager.getAccounts();
 					for(Account acc : accounts)
-						if(acc.type.equals(AccountGeneral.ACCOUNT_TYPE))					
+						if(acc.type.equals(AccountGeneral.ACCOUNT_TYPE))
 							ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
 					//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
 				}

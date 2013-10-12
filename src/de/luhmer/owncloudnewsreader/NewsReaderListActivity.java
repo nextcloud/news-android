@@ -45,8 +45,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 
 import org.codechimp.apprater.AppRater;
 
-import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
@@ -115,6 +115,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		
 		
 		//DatabaseUtils.CopyDatabaseToSdCard(this);
+
 		
         /*
 		((NewsReaderListFragment) getSupportFragmentManager()
@@ -210,7 +211,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         	StartDetailFragmentNow();
         }
 
-        AppRater.app_launched(this);
+        //AppRater.app_launched(this);
         //AppRater.rateNow(this);
 
         //onTopItemClicked(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);

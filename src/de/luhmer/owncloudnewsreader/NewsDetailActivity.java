@@ -423,7 +423,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 				NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 				if(fragment != null) { // could be null if not instantiated yet
-					if(!fragment.webview.getUrl().equals("about:blank")) {
+					if(!fragment.webview.getUrl().equals("about:blank") && !fragment.webview.getUrl().trim().equals("")) {
 						content = fragment.webview.getUrl();
 						title = fragment.webview.getTitle();
 					}

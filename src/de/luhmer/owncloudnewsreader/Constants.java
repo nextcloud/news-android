@@ -24,7 +24,9 @@ public class Constants {
     						SYNC_TYPE__FEEDS,
     						SYNC_TYPE__ITEMS,
     						SYNC_TYPE__GET_API};
-    
+
+
+    public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
     
     /*
     private static final String _P_KEY_PART1 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNmCsMj6M4zkjpKRG8MG5+yIAyqSQE2etVkZsc3s";

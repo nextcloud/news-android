@@ -54,30 +54,33 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         	//SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         	//int maxItemsInDatabase = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_ITEMS_SYNC, "200"));
         	        	
-        	long lastModified = dbConn.getLastModfied();
-        	
+        	long lastModified = dbConn.getLastModified();
+            dbConn.clearDatabaseOverSize();
+
         	//List<RssFile> files;
         	long offset = dbConn.getLowestItemId(false);
-        	int totalCount = 0;
+
         	int requestCount = 0;
         	int maxSyncSize = Integer.parseInt(OwnCloudReaderMethods.maxSizePerSync);
-        	int maxItemsInDatabase = Constants.maxItemsCount;
-        	
+
         	highestItemIdBeforeSync = dbConn.getHighestItemId();
-        	        	
+            int totalCount = 0;
+
+
         	if(lastModified == 0)
-        	{	
-        		
+        	{
+                int maxItemsInDatabase = Constants.maxItemsCount;
+
 	        	do {    
 	        		requestCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), false, "0", "3", api);
 	        		if(requestCount > 0)
 	        			offset = dbConn.getLowestItemId(false);
-	        		totalCount += requestCount;	        		
+	        		totalCount += requestCount;
 	        	} while(requestCount == maxSyncSize);
 	        	
 	        	
 	        	do {  
-	        		offset = dbConn.getLowestItemId(true);	        			        		
+	        		offset = dbConn.getLowestItemId(true);
 	        		requestCount = api.GetItems(TAGS.ALL_STARRED, context, String.valueOf(offset), true, "0", "2", api);
 	        		if(requestCount > 0)
 	        			offset = dbConn.getLowestItemId(true);
@@ -85,14 +88,13 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 	        	} while(requestCount == maxSyncSize && totalCount < maxItemsInDatabase);
         	}
         	else
-        	{	
-        		api.GetUpdatedItems(TAGS.ALL, context, lastModified, api);
+        	{
+                totalCount = api.GetUpdatedItems(TAGS.ALL, context, lastModified + 1, api);
         		//OwnCloudReaderMethods.GetUpdatedItems(TAGS.ALL, context, lastModified, api);
-        		
         	}
-        	
-        	dbConn.clearDatabaseOverSize();
-        	
+
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, totalCount).commit();
         } catch (Exception ex) {
             return ex;
         } finally {

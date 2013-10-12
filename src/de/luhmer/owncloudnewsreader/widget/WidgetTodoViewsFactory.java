@@ -86,47 +86,52 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
     	//RemoteViews rv = new RemoteViews(context.getPackageName(), android.R.layout.simple_list_item_2);
     	RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
     	cursor.moveToPosition(position);
-    	
-    	//Cursor feedCursor = dbConn.getFeedByFeedID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
-    	Cursor feedCursor = dbConn.getFeedByDbID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
-    	feedCursor.moveToFirst();
-    	String header = feedCursor.getString(feedCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_HEADERTEXT)).trim();
-    	String colorString = dbConn.getAvgColourOfFeedByDbId(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
-    	feedCursor.close();
-    	
-    	String authorOfArticle = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_AUTHOR));
-    	header += authorOfArticle == null ? "" : " - " + authorOfArticle.trim();
-    	String title = Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString().trim();
-    	String id = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
-    	//rv.setTextViewText(android.R.id.text1, header);
-    	//rv.setTextViewText(android.R.id.text2, title);
-    	
-    	Date date = new Date(cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE)));
-    	String dateString = "";
-        if(date != null)
-        {	
-        	SimpleDateFormat formater = new SimpleDateFormat();
-        	dateString = formater.format(date);
+
+        try
+        {
+            //Cursor feedCursor = dbConn.getFeedByFeedID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
+            Cursor feedCursor = dbConn.getFeedByDbID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
+            feedCursor.moveToFirst();
+            String header = feedCursor.getString(feedCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_HEADERTEXT)).trim();
+            String colorString = dbConn.getAvgColourOfFeedByDbId(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
+            feedCursor.close();
+
+            String authorOfArticle = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_AUTHOR));
+            header += authorOfArticle == null ? "" : " - " + authorOfArticle.trim();
+            String title = Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString().trim();
+            String id = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
+            //rv.setTextViewText(android.R.id.text1, header);
+            //rv.setTextViewText(android.R.id.text2, title);
+
+            Date date = new Date(cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE)));
+            String dateString = "";
+            if(date != null)
+            {
+                SimpleDateFormat formater = new SimpleDateFormat();
+                dateString = formater.format(date);
+            }
+
+            rv.setTextViewText(R.id.feed_datetime, dateString);
+            rv.setTextViewText(R.id.feed_author_source, header);
+            rv.setTextViewText(R.id.feed_title, title);
+
+
+            //View viewColor = view.findViewById(R.id.color_line_feed);
+            if(colorString != null)
+                rv.setInt(R.id.color_line_feed, "setBackgroundColor", Integer.parseInt(colorString));
+                //rv.set(R.id.color_line_feed, Integer.parseInt(colorString));
+
+
+            //Get a fresh new intent
+            Intent ei = new Intent();
+            //Load it with whatever extra you want
+            ei.putExtra(WidgetProvider.UID_TODO, id);
+            //Set it on the list remote view
+            rv.setOnClickFillInIntent(android.R.id.text1, ei);
+        } catch(Exception ex) {
+            Log.d(TAG, ex.getLocalizedMessage());
         }
-        
-        rv.setTextViewText(R.id.feed_datetime, dateString);        
-    	rv.setTextViewText(R.id.feed_author_source, header);
-    	rv.setTextViewText(R.id.feed_title, title);
-    	
-    	    	
-        //View viewColor = view.findViewById(R.id.color_line_feed);
-        if(colorString != null)
-        	rv.setInt(R.id.color_line_feed, "setBackgroundColor", Integer.parseInt(colorString));
-        	//rv.set(R.id.color_line_feed, Integer.parseInt(colorString));
-    	
-    	
-    	//Get a fresh new intent
-    	Intent ei = new Intent();
-    	//Load it with whatever extra you want
-    	ei.putExtra(WidgetProvider.UID_TODO, id);
-    	//Set it on the list remote view
-    	rv.setOnClickFillInIntent(android.R.id.text1, ei);
-    	    	
+
         // Return the RemoteViews object.
         return rv;
     }	

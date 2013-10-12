@@ -113,7 +113,7 @@ public class DatabaseConnection {
     		//Soll verhindern, dass ungelesene Artikel gelöscht werden
     		if(overSize > read)
     			overSize = read;    		
-     		database.execSQL("DELETE FROM rss_item WHERE rowid IN (SELECT rowid FROM rss_item WHERE read_temp = 1 AND starred_temp != 1 ORDER BY rowid asc LIMIT " + overSize + ")");
+     		database.execSQL("DELETE FROM rss_item WHERE rowid IN (SELECT rowid FROM rss_item WHERE read_temp = 1 AND starred_temp != 1 ORDER BY rssitem_id asc LIMIT " + overSize + ")");
     		/* SELECT * FROM rss_item WHERE read_temp = 1 ORDER BY rowid asc LIMIT 3; */
     	}
 	}
@@ -187,7 +187,7 @@ public class DatabaseConnection {
         return result;
     }
     
-    public long getLastModfied()
+    public long getLastModified()
     {
     	String buildSQL = "SELECT MAX(" + RSS_ITEM_LAST_MODIFIED + ") FROM " + RSS_ITEM_TABLE;
         long result = 0;
@@ -828,7 +828,8 @@ public class DatabaseConnection {
         contentValues.put(RSS_ITEM_READ_TEMP, isRead);
 		contentValues.put(RSS_ITEM_STARRED_TEMP, isStarred);
 
-        database.insert(RSS_ITEM_TABLE, null, contentValues);
+        long result = database.insert(RSS_ITEM_TABLE, null, contentValues);
+        Log.d("DatabaseConnection", "Inserted Rows: " + result);
     }
 	
 	public String getIdOfFolder (String FolderName) {
