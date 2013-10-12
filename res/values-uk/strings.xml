@@ -2,6 +2,7 @@
 <resources>
   <string name="action_settings">Налаштування</string>
   <string name="empty_view_header">Інформація</string>
+  <string name="message_bar_reload">Перезавантажити</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Оновити</string>
   <string name="menu_StartImageCaching">Завантажити зображення</string>

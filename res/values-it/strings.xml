@@ -15,6 +15,8 @@
   <string name="do_you_want_to_download_without_wifi">Vuoi scaricare le immagini senza una connessione WiFi</string>
   <string name="max_items_count_reached">Hai raggiunto il limite massimo di XX elementi</string>
   <string name="widget_header">Notizie di ownCloud</string>
+  <string name="message_bar_new_articles_available">Nuovi elementi disponibili</string>
+  <string name="message_bar_reload">Ricarica</string>
   <string name="allUnreadFeeds">Tutti gli elementi non letti</string>
   <string name="starredFeeds">Elementi preferiti</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

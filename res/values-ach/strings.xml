@@ -1,36 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">تەڭشەكلەر</string>
-  <string name="message_bar_reload">قايتا يۈكلە</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
-  <string name="menu_update">يېڭىلا</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
-  <string name="action_starred">يۇلتۇزلۇق</string>
-  <string name="action_Share">ھەمبەھىر</string>
   <!--Strings related to login-->
-  <string name="pref_title_username">ئىشلەتكۈچى ئاتى</string>
-  <string name="pref_title_password">ئىم</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
-  <string name="title_activity_settings">تەڭشەكلەر</string>
   <!--General settings-->
-  <string name="pref_header_general">ئادەتتىكى</string>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="warning">ئاگاھلاندۇرۇش</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
-  <string name="login_dialog_title_error">خاتالىق</string>
-  <string name="login_dialog_title_security_warning">بىخەتەرلىك ئاگاھلاندۇرۇش</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

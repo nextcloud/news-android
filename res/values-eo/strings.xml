@@ -6,6 +6,7 @@
   <string name="title_newsreader_detail">Detaloj de Abonflulegilo</string>
   <string name="empty_view_header">Informo</string>
   <string name="empty_view_content">Neniu ero estas ĉi tie</string>
+  <string name="message_bar_reload">Reŝargi</string>
   <string name="allUnreadFeeds">Ĉiuj nelegitaj eroj</string>
   <string name="starredFeeds">Markitaj eroj</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

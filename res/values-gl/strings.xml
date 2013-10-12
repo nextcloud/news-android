@@ -15,6 +15,8 @@
   <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi</string>
   <string name="max_items_count_reached">Acadou o tamaño máximo de XX elementos</string>
   <string name="widget_header">Novas do </string>
+  <string name="message_bar_new_articles_available">Novos elementos dispoñíbeis</string>
+  <string name="message_bar_reload">Volver cargar</string>
   <string name="allUnreadFeeds">Todos os elementos sen ler</string>
   <string name="starredFeeds">Elementos destacados</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

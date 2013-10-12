@@ -15,6 +15,8 @@
   <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
   <string name="max_items_count_reached">Você atingiu o tamanho maxiumum de XX itens</string>
   <string name="widget_header">Notícias ownCloud</string>
+  <string name="message_bar_new_articles_available">Novos itens disponíveis</string>
+  <string name="message_bar_reload">Recarregar</string>
   <string name="allUnreadFeeds">Todos itens não lidos</string>
   <string name="starredFeeds">Itens vistos</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->

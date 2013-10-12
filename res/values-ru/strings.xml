@@ -15,6 +15,8 @@
   <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединение</string>
   <string name="max_items_count_reached">Вы достигли максимального количества - XX штук.</string>
   <string name="widget_header">Новости ownCloud</string>
+  <string name="message_bar_new_articles_available">Доступны новые элементы</string>
+  <string name="message_bar_reload">Обновить</string>
   <string name="allUnreadFeeds">Все непрочитанные</string>
   <string name="starredFeeds">Помеченные элементы</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
