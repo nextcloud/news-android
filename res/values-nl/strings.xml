@@ -15,6 +15,7 @@
   <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
   <string name="max_items_count_reached">U heeft de maximum grootte van XX items bereikt</string>
   <string name="widget_header">ownCloud nieuws</string>
+  <string name="message_bar_new_articles_available">Nieuwe berichten aanwezig</string>
   <string name="message_bar_reload">Herladen</string>
   <string name="allUnreadFeeds">Alle ongelezen items</string>
   <string name="starredFeeds">Gemarkeerde items</string>
