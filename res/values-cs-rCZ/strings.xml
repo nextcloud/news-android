@@ -15,6 +15,7 @@
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
   <string name="max_items_count_reached">Dosáhli jste maximální velikosti XX položek</string>
   <string name="widget_header">ownCloud Novinky</string>
+  <string name="message_bar_new_articles_available">Jsou k dispozici nové položky</string>
   <string name="message_bar_reload">Obnovit</string>
   <string name="allUnreadFeeds">Všechny nepřečtené položky</string>
   <string name="starredFeeds">Položky s hvězdičkou</string>
