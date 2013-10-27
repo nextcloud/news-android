@@ -1,20 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">Parametra</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
-  <string name="action_Share">Nda</string>
   <!--Strings related to login-->
-  <string name="pref_title_username">Përdoruesi</string>
-  <string name="pref_title_password">Kodi</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
-  <string name="title_activity_settings">Parametra</string>
   <!--General settings-->
-  <string name="pref_header_general">Përgjithshme</string>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
@@ -25,8 +19,6 @@
   <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
-  <string name="login_dialog_title_error">Veprim i gabuar</string>
-  <string name="login_dialog_title_security_warning">Paralajmërim sigurie</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

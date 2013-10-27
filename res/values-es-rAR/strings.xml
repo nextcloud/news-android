@@ -15,6 +15,7 @@
   <string name="do_you_want_to_download_without_wifi">Querés bajar las imágenes sin conexión WiFi</string>
   <string name="max_items_count_reached">Alcanzaste el número máximo XX de elementos</string>
   <string name="widget_header">Noticias de ownCloud</string>
+  <string name="message_bar_new_articles_available">Nuevos elementos disponibles</string>
   <string name="message_bar_reload">Recargar</string>
   <string name="allUnreadFeeds">Todos los artículos sin leer</string>
   <string name="starredFeeds">Artículos destacados</string>
@@ -60,6 +61,10 @@
   <string-array name="pref_general_sort_order">
     <item>Nuevo -&gt; Antiguo</item>
     <item>Antiguo -&gt; Nuevo</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
   </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>

@@ -51,6 +51,10 @@
     <item>Uusi -&gt; vanha</item>
     <item>Vanha -&gt; uusi</item>
   </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
