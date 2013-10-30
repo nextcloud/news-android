@@ -22,12 +22,21 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
+import android.test.RenamingDelegatingContext;
+
 import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.DownloadImagesActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
@@ -55,7 +64,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         	//int maxItemsInDatabase = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_ITEMS_SYNC, "200"));
         	        	
         	long lastModified = dbConn.getLastModified();
-            dbConn.clearDatabaseOverSize();
+            //dbConn.clearDatabaseOverSize();
 
         	//List<RssFile> files;
         	long offset = dbConn.getLowestItemId(false);
@@ -64,21 +73,23 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         	int maxSyncSize = Integer.parseInt(OwnCloudReaderMethods.maxSizePerSync);
 
         	highestItemIdBeforeSync = dbConn.getHighestItemId();
-            int totalCount = 0;
 
+
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         	if(lastModified == 0)
         	{
                 int maxItemsInDatabase = Constants.maxItemsCount;
-
+                int totalCount = 0;
 	        	do {    
 	        		requestCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), false, "0", "3", api);
 	        		if(requestCount > 0)
 	        			offset = dbConn.getLowestItemId(false);
 	        		totalCount += requestCount;
 	        	} while(requestCount == maxSyncSize);
-	        	
-	        	
+
+                mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, totalCount).commit();
+
 	        	do {  
 	        		offset = dbConn.getLowestItemId(true);
 	        		requestCount = api.GetItems(TAGS.ALL_STARRED, context, String.valueOf(offset), true, "0", "2", api);
@@ -89,12 +100,11 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         	}
         	else
         	{
-                totalCount = api.GetUpdatedItems(TAGS.ALL, context, lastModified + 1, api);
+                int[] result = api.GetUpdatedItems(TAGS.ALL, context, lastModified + 1, api);
+                mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, result[1]).commit();
+
         		//OwnCloudReaderMethods.GetUpdatedItems(TAGS.ALL, context, lastModified, api);
         	}
-
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, totalCount).commit();
         } catch (Exception ex) {
             return ex;
         } finally {
@@ -116,14 +126,14 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     		if(!NetworkConnection.isWLANConnected(context) && NetworkConnection.isNetworkAvailable(context))
     			ShowDownloadImageWithoutWifiQuestion();
     		else if(NetworkConnection.isNetworkAvailable(context)) 		
-    			StartDownloadingImages(context);
+    			StartDownloadingImages(context, highestItemIdBeforeSync);
     	}
     	
     	
 		detach();
     }
     
-    private void StartDownloadingImages(Context context)
+    public static void StartDownloadingImages(Context context, long highestItemIdBeforeSync)
     {
     	DatabaseConnection dbConn = new DatabaseConnection(context);
     	try {
@@ -138,8 +148,31 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     
     private void ShowDownloadImageWithoutWifiQuestion()
     {
-    	final Context contextDownloadImage = this.context;
-    	
+        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher);
+
+        Intent intent = new Intent(context, DownloadImagesActivity.class);
+        intent.putExtra("highestItemIdBeforeSync", highestItemIdBeforeSync);
+        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
+
+        Notification notification = new NotificationCompat.Builder(context)
+                .setContentTitle(context.getString(R.string.no_wifi_available))
+                .setContentText(context.getString(R.string.do_you_want_to_download_without_wifi))
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setLargeIcon(bm)
+                .setContentIntent(pIntent)
+                .setAutoCancel(true)
+                .build();
+
+
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        // hide the notification after its selected
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        notificationManager.notify(0, notification);
+
+       //final Context contextDownloadImage = this.context;
+
+        /*
     	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
  
 		// set title
@@ -161,6 +194,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 						
 		AlertDialog alertDialog = alertDialogBuilder.create();
  
-		alertDialog.show();		
+		alertDialog.show();
+		*/
     }
 }

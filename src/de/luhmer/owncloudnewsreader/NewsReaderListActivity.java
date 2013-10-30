@@ -48,6 +48,7 @@ import org.codechimp.apprater.AppRater;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
+import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -498,7 +499,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
     {
         NewsReaderDetailFragment nrD = (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
         if(nrD != null)
-            nrD.UpdateCursor();
+            ((NewsListCursorAdapter)nrD.getListAdapter()).notifyDataSetChanged();
+            //nrD.UpdateCursor();
     }
 
 

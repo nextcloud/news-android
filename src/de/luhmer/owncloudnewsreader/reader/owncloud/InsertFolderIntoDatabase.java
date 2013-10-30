@@ -43,8 +43,9 @@ public class InsertFolderIntoDatabase implements IHandleJsonObject{
 	}
 
 	@Override
-	public void performAction(JSONObject jObj) {		
+	public boolean performAction(JSONObject jObj) {
 		folders.add(parseFolder(jObj));
+        return true;
 	}
 	
 	public void WriteAllToDatabaseNow() {

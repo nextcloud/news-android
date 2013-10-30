@@ -91,7 +91,7 @@ public abstract class API {
 		return mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
 	}
 	
-	public int GetFeeds(Context cont, API api) throws Exception {
+	public int[] GetFeeds(Context cont, API api) throws Exception {
 		return OwnCloudReaderMethods.GetFeeds(cont, api);
 	}
 		
@@ -103,7 +103,7 @@ public abstract class API {
 		return OwnCloudReaderMethods.GetItems(tag, cont, offset, getRead, id, type, api);
 	}
 	
-	public int GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception {
+	public int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception {
 		return OwnCloudReaderMethods.GetUpdatedItems(tag, cont, lastSync, api);
 	}
 	

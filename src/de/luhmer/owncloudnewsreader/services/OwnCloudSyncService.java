@@ -24,7 +24,9 @@ package de.luhmer.owncloudnewsreader.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.ActivityManager;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
@@ -34,8 +36,10 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.Constants.SYNC_TYPES;
+import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
+import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
@@ -182,7 +186,24 @@ public class OwnCloudSyncService extends Service {
 			
 			if(task_result != null)
             	ThrowException((Exception) task_result);
-                        
+            else
+            {
+                ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+                List<ActivityManager.RunningTaskInfo> runningTaskInfo = am.getRunningTasks(1);
+
+                ComponentName componentInfo = runningTaskInfo.get(0).topActivity;
+                if(!componentInfo.getPackageName().equals("de.luhmer.owncloudnewsreader")) {
+                    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
+                    int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
+                    if(newItemsCount > 0) {
+                        String tickerText = getString(R.string.notification_new_items_ticker).replace("X", String.valueOf(newItemsCount));
+                        String contentText = getString(R.string.notification_new_items_text).replace("X", String.valueOf(newItemsCount));
+                        String title = getString(R.string.app_name);
+                        NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
+                    }
+                }
+            }
+
             Log.d(TAG, "onAsyncTask_GetItems Finished");
 			//fireUpdateFinishedClicked();
 			

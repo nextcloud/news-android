@@ -28,8 +28,9 @@ public class GetVersion_v2 implements IHandleJsonObject {
 	String version;
 	
 	@Override
-	public void performAction(JSONObject jObj) {		
+	public boolean performAction(JSONObject jObj) {
 		this.version = jObj.optString("version");
+        return true;
 	}
 
 	/**

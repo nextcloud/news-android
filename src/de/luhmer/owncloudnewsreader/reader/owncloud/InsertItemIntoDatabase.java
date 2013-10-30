@@ -59,8 +59,8 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
 	}
 
 	@Override
-	public void performAction(JSONObject jObj) {		
+	public boolean performAction(JSONObject jObj) {
 		RssFile rssFile = parseItem(jObj);
-        InsertIntoDatabase.InsertSingleFeedItemIntoDatabase(rssFile, dbConn);
+        return InsertIntoDatabase.InsertSingleFeedItemIntoDatabase(rssFile, dbConn);
 	}
 }

@@ -277,7 +277,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	{
 		NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 		if(fragment != null)  // could be null if not instantiated yet
-			fragment.ResumeVideoPlayers();
+			fragment.ResumCurrentPage();
 		
 	}
 	
@@ -285,7 +285,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	{
 		NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 		if(fragment != null)  // could be null if not instantiated yet
-			fragment.StopVideoPlayers();
+			fragment.PauseCurrentPage();
 	}
 
 	public void UpdateActionBarIcons()

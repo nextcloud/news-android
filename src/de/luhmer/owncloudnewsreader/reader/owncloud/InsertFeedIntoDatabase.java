@@ -49,9 +49,10 @@ public class InsertFeedIntoDatabase implements IHandleJsonObject{
 	}
 
 	@Override
-	public void performAction(JSONObject jObj) {		
+	public boolean performAction(JSONObject jObj) {
 		ConcreteFeedItem rssFeed = parseFeed(jObj);
 		feeds.add(rssFeed);
+        return true;
 	}
 	
 	public void WriteAllToDatabaseNow() {

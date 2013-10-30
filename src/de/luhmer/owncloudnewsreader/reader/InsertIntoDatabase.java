@@ -165,17 +165,20 @@ public class InsertIntoDatabase {
         dbConn.closeDatabase();
     }
     
-    public static void InsertSingleFeedItemIntoDatabase(RssFile rssFile, DatabaseConnection dbConn)
+    public static boolean InsertSingleFeedItemIntoDatabase(RssFile rssFile, DatabaseConnection dbConn)
     {
+        boolean newItem = false;
+
         if(rssFile != null)
         {  
         	Boolean isFeedAlreadyInDatabase = dbConn.doesRssItemAlreadyExsists(rssFile.getItem_Id());
-        	
+
+            /*
         	if(isFeedAlreadyInDatabase)
         	{
         		int result = dbConn.removeItemByItemId(rssFile.getItem_Id());
         		Log.d(TAG, "Delete Item: " + result);
-        	}
+        	}*/
         	
             String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
             //String IdSubscription = dbConn.getIdSubscriptionByStreamID(rssFile.getFeedID());
@@ -194,10 +197,15 @@ public class InsertIntoDatabase {
                         rssFile.getGuid(),
                         rssFile.getGuidHash(),
                         rssFile.getLastModified(),
-                        rssFile.getAuthor());
+                        rssFile.getAuthor(),
+                        !isFeedAlreadyInDatabase);
+
 
                 //dbConn.clearDatabaseOverSize();
+
+                newItem = !rssFile.getRead();
             }
         }
+        return newItem;
     }
 }

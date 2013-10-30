@@ -80,15 +80,19 @@ git clone https://github.com/owncloud/News-Android-App.git
 
 Updates
 ==================================
-0.5.1 (in development)
+0.5.3 (in development)
 ---------------------
+
+0.5.2 (Google Play)
+---------------------
+- Improvement - Notification when background sync is enabled and new items are received
+- Improvement - Fix high CPU-Load in Detail-View
 
 0.5.0 (Google Play)
 ---------------------
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/162">#162 New items available notification pops up when there really aren't</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/160">#160 Widget font size</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/161">#161 'Send via' should be removed from sharing </a>
-
 
 0.4.11
 ---------------------

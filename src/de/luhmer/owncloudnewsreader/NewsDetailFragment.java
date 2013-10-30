@@ -62,7 +62,7 @@ public class NewsDetailFragment extends SherlockFragment {
 	private ProgressBar progressbar_webview;
 	private int section_number;
 	
-	public NewsDetailFragment() {		
+	public NewsDetailFragment() {
 		//setRetainInstance(true);
 	}
 	
@@ -72,44 +72,57 @@ public class NewsDetailFragment extends SherlockFragment {
 	public void onSaveInstanceState(Bundle outState) {
 		webview.saveState(outState);
 	}*/
-	
-	
-	@Override
-	public void onPause() {		
-		super.onPause();		
-		StopVideoPlayers();
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ResumCurrentPage();
+    }
+
+    @Override
+	public void onPause() {
+		super.onPause();
+        PauseCurrentPage();
 	}
-	
-	public void StopVideoPlayers()
-	{
-		try {
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(webview != null) {
+            webview.destroy();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    public void PauseCurrentPage()
+    {
 			/*
 	        Class.forName("android.webkit.WebView")
 	                .getMethod("onPause", (Class[]) null)
 	                            .invoke(webview, (Object[]) null);
 	        */
-			if(webview != null)
-				webview.onPause();	 
-	    } catch(Exception ex) {
-	    	ex.printStackTrace();
-	    }
-	}
-	
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public void ResumeVideoPlayers()
-	{
-		try {
+        if(webview != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
+                webview.onPause();
+            webview.pauseTimers();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    public void ResumCurrentPage()
+    {
 			/*
 	        Class.forName("android.webkit.WebView")
 	                .getMethod("onResume", (Class[]) null)
 	                            .invoke(webview, (Object[]) null);
 	 */
-			if(webview != null)
-				webview.onResume();
-	    } catch(Exception ex) {
-	    	ex.printStackTrace();
-	    }
-	}
+        if(webview != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
+                webview.onResume();
+            webview.resumeTimers();
+        }
+    }
+
 			
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

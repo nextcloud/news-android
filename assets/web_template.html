@@ -8,18 +8,29 @@
 			var images = document.getElementsByTagName('img');
 			
 			for (var i = 1; i < images.length; i++) {// i = 1 because of the feed image which has no caption
-				if(images[i].getAttribute('title') != "") {
+				if(images[i].getAttribute('title') != "" && images[i].getAttribute('title') != null) {
 					(function (image) {
 						var timer;
 						image.addEventListener('mouseup', function() {
-							console.log("clear");
 							clearTimeout(timer);
 						});
 						
-						image.addEventListener('mousedown', function () {
-							timer = window.setTimeout(function() { 
-								alert(image.getAttribute('title')); 
+						image.addEventListener('mousedown', function (e) {
+							timer = window.setTimeout(function() {
+                                e.preventDefault();
+                                alert(image.getAttribute('title'));
 							}, 500);
+						});
+
+						image.addEventListener("touchstart", function(e){
+                            timer = window.setTimeout(function() {
+                                e.preventDefault();
+                                alert(image.getAttribute('title'));
+							}, 500);
+						});
+
+                        image.addEventListener('touchend', function() {
+							clearTimeout(timer);
 						});
 					})(images[i]);
 				}

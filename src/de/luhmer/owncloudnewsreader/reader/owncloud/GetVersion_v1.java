@@ -23,13 +23,14 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import org.json.JSONObject;
 
-public class GetVersion_v1 implements IHandleJsonObject {	
+public class GetVersion_v1 implements IHandleJsonObject {
 
 	String version;
 	
 	@Override
-	public void performAction(JSONObject jObj) {		
+	public boolean performAction(JSONObject jObj) {
 		this.version = jObj.optJSONObject("ocs").optJSONObject("data").optString("version");
+        return true;
 	}
 
 	/**

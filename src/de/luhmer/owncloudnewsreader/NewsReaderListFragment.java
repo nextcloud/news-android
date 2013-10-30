@@ -168,7 +168,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
                         int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
                         if(newItemsCount > 0) {
                             MessageBar messageBar = new MessageBar(getActivity(), true);
-                            TextMessage textMessage = new TextMessage(getString(R.string.message_bar_new_articles_available), getString(R.string.message_bar_reload), R.drawable.ic_menu_refresh);
+                            TextMessage textMessage = new TextMessage( newItemsCount + " " + getString(R.string.message_bar_new_articles_available), getString(R.string.message_bar_reload), R.drawable.ic_menu_refresh);
                             textMessage.setClickListener(mListener);
                             messageBar.show(textMessage);
                         }

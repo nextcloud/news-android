@@ -810,9 +810,9 @@ public class DatabaseConnection {
         return database.update(SUBSCRIPTION_TABLE, contentValues, SUBSCRIPTION_ID  + "= ?", new String[] { subscription_id });        
     }
 	
-	public void insertNewItem (String Titel, String link, String description, Boolean isRead, String ID_SUBSCRIPTION, String ID_RSSITEM, Date timestamp, Boolean isStarred, String guid, String guidHash, String lastModified, String author) {
+	public void insertNewItem (String title, String link, String description, Boolean isRead, String ID_SUBSCRIPTION, String ID_RSSITEM, Date timestamp, Boolean isStarred, String guid, String guidHash, String lastModified, String author, boolean insertItem) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(RSS_ITEM_TITLE, Titel);
+        contentValues.put(RSS_ITEM_TITLE, title);
         contentValues.put(RSS_ITEM_LINK, link);
         contentValues.put(RSS_ITEM_BODY, description);
         contentValues.put(RSS_ITEM_READ, isRead);
@@ -828,7 +828,12 @@ public class DatabaseConnection {
         contentValues.put(RSS_ITEM_READ_TEMP, isRead);
 		contentValues.put(RSS_ITEM_STARRED_TEMP, isStarred);
 
-        long result = database.insert(RSS_ITEM_TABLE, null, contentValues);
+        long result = 0;
+        if(insertItem)
+            result = database.insert(RSS_ITEM_TABLE, null, contentValues);
+        else
+            result = database.update(RSS_ITEM_TABLE, contentValues, RSS_ITEM_RSSITEM_ID + "=?", new String[] { ID_RSSITEM });
+
         Log.d("DatabaseConnection", "Inserted Rows: " + result);
     }
 	

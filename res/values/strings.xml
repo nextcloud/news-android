@@ -53,7 +53,8 @@
     <string name="action_login">Server Settings</string>
     
        
-    
+    <string name="notification_new_items_ticker">You have X new unread items</string>
+    <string name="notification_new_items_text">X new unread items available</string>
     
     
     <!-- Strings related to login -->

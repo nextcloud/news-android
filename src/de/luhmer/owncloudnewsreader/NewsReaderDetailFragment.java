@@ -313,6 +313,9 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
                 onlyStarredItems = true;
 
         DatabaseConnection dbConn = new DatabaseConnection(context);
+
+        dbConn.clearDatabaseOverSize();
+
         String sqlSelectStatement = null;
         if(idFeed != null)
             sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, getSortDirection(context));
