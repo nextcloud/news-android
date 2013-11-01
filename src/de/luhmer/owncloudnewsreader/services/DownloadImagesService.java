@@ -21,7 +21,12 @@
 
 package de.luhmer.owncloudnewsreader.services;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -31,10 +36,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
@@ -51,10 +59,10 @@ public class DownloadImagesService extends IntentService {
 	private NotificationCompat.Builder NotificationDownloadImages;
 	private int count;
 	private int maxCount;
-	
+	//private int total_size = 0;
 	
 	public DownloadImagesService() {
-		super(null);	
+		super(null);
 		initService();
 	}
 	
@@ -128,17 +136,83 @@ public class DownloadImagesService extends IntentService {
 		notify.flags |= Notification.FLAG_AUTO_CANCEL;
 		//notify.flags |= Notification.FLAG_NO_CLEAR;
 		
-		if(maxCount > 0)		
+		if(maxCount > 0)
 			notificationManager.notify(NOTIFICATION_ID, notify); 
 		
-		for(String link : links)	
+		for(String link : links)
 	    	new GetImageAsyncTask(link, imgDownloadFinished, 999, ImageHandler.getPathImageCache(this), this, null).execute();
 	}
+
+    private void RemoveOldImages(Context context) {
+        HashMap<File, Long> files;
+        long size = ImageHandler.getFolderSize(new File(ImageHandler.getPath(context)));
+        size = (long) (size / 1024d / 1024d);
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        int max_allowed_size = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, "1000"));//Default is 1Gb --> 1000mb
+        if(size > max_allowed_size)
+        {
+            files = new HashMap<File, Long>();
+            for(File file : ImageHandler.getFilesFromDir(new File(ImageHandler.getPathImageCache(context))))
+            {
+                files.put(file, file.lastModified());
+            }
+
+            for(Object itemObj : sortHashMapByValuesD(files).entrySet())
+            {
+                File file = (File) itemObj;
+                file.delete();
+                size -= file.length();
+                if(size < max_allowed_size)
+                    break;
+            }
+        }
+    }
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static LinkedHashMap sortHashMapByValuesD(HashMap passedMap) {
+        List mapKeys = new ArrayList(passedMap.keySet());
+        List mapValues = new ArrayList(passedMap.values());
+        Collections.sort(mapValues);
+        Collections.sort(mapKeys);
+
+        LinkedHashMap sortedMap = new LinkedHashMap();
+
+        Iterator valueIt = mapValues.iterator();
+        while (valueIt.hasNext()) {
+            Object val = valueIt.next();
+            Iterator keyIt = mapKeys.iterator();
+
+            while (keyIt.hasNext()) {
+                Object key = keyIt.next();
+                String comp1 = passedMap.get(key).toString();
+                String comp2 = val.toString();
+
+                if (comp1.equals(comp2)){
+                    passedMap.remove(key);
+                    mapKeys.remove(key);
+                    sortedMap.put((String)key, (Double)val);
+                    break;
+                }
+            }
+        }
+        return sortedMap;
+    }
 	
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 		
 		@Override
 		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
+
+            if(fileCachePath != null) {
+                File file = new File(fileCachePath);
+                long size = file.length();
+                //total_size += size;
+                if(size == 0)
+                    file.delete();
+            }
+
+
 			count++;
             // Sets the progress indicator to a max value, the
             // current completion percentage, and "determinate"
@@ -148,8 +222,11 @@ public class DownloadImagesService extends IntentService {
             // Displays the progress bar for the first time.
             notificationManager.notify(NOTIFICATION_ID, NotificationDownloadImages.build());
             
-            if(maxCount == count)
+            if(maxCount == count) {
             	notificationManager.cancel(NOTIFICATION_ID);
+                if(DownloadImagesService.this != null)
+                    RemoveOldImages(DownloadImagesService.this);
+            }
 		}
 	};
 }

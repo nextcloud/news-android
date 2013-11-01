@@ -49,24 +49,26 @@ How to compile the App
 ==================================
 Requirements:  
 -----------------------
->1) Eclipse + ADT Plugin + Android SDK installed  
+>1) Eclipse + ADT Plugin + Android SDK installed or Android Studio
 >2) Git installed (you can do the following stuff without git but I'm not going to show how).  
 
 Download and install:  
 -----------------------
->1) Open cmd/terminal  
+>1) Open cmd/terminal
 >2) Navigate to your workspace   
->3) Then type in:  
+>3) Then type in:
 ><pre>
 git clone https://github.com/JakeWharton/ActionBarSherlock.git
 git clone https://github.com/David-Development/Android-PullToRefresh.git
 git clone https://github.com/owncloud/News-Android-App.git
+git clone https://github.com/gabrielemariotti/changeloglib.git
+git clone https://github.com/MichaelFlisar/MessageBar.git
 ></pre>
 
 >Go to Eclipse and do the following:  
 >--> File --> Import --> Android Project from Exsisting Source --> [...]/ActionBarSherlock/actionbarsherlock  
 >--> File --> Import --> Android Project from Exsisting Source --> [...]/Android-PullToRefresh/library  
->--> File --> Import --> Android Project from Exsisting Source --> [...]/News-Android-App  
+... for all other Dependencies the same ...
 
 
 >Then make a right click on the News-Android-App Project and select "Properties". Select the tab "Android". In this Window you should see the Project Build Target at the top and Libarys at the buttom of the window. Two of them are maybe marked with a read cross. So remove them and add the ActionBarSherlock and the Android PullToRefresh Libary  
@@ -87,6 +89,7 @@ Updates
 ---------------------
 - Improvement - Notification when background sync is enabled and new items are received
 - Improvement - Fix high CPU-Load in Detail-View
+- Improvement - Speed up image caching
 
 0.5.0 (Google Play)
 ---------------------

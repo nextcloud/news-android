@@ -26,6 +26,7 @@ import java.util.List;
 
 import android.app.ActivityManager;
 import android.app.Service;
+import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,6 +47,7 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService.Stub;
+import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 public class OwnCloudSyncService extends Service {
 	
@@ -188,19 +190,20 @@ public class OwnCloudSyncService extends Service {
             	ThrowException((Exception) task_result);
             else
             {
-                ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-                List<ActivityManager.RunningTaskInfo> runningTaskInfo = am.getRunningTasks(1);
+                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
+                int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
+                if(newItemsCount > 0) {
+                    ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+                    List<ActivityManager.RunningTaskInfo> runningTaskInfo = am.getRunningTasks(1);
 
-                ComponentName componentInfo = runningTaskInfo.get(0).topActivity;
-                if(!componentInfo.getPackageName().equals("de.luhmer.owncloudnewsreader")) {
-                    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
-                    int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
-                    if(newItemsCount > 0) {
+                    ComponentName componentInfo = runningTaskInfo.get(0).topActivity;
+                    if(!componentInfo.getPackageName().equals("de.luhmer.owncloudnewsreader")) {
                         String tickerText = getString(R.string.notification_new_items_ticker).replace("X", String.valueOf(newItemsCount));
                         String contentText = getString(R.string.notification_new_items_text).replace("X", String.valueOf(newItemsCount));
                         String title = getString(R.string.app_name);
                         NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
                     }
+                    UpdateWidget();
                 }
             }
 
@@ -209,7 +212,20 @@ public class OwnCloudSyncService extends Service {
 			
 		}
 	};
-	
+
+    private void UpdateWidget()
+    {
+        Intent intent = new Intent(this, WidgetProvider.class);
+        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
+        // since it seems the onUpdate() is only fired on that:
+
+        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,ids);
+        sendBroadcast(intent);
+    }
+
 	private void ThrowException(Exception ex) {
 		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
 		for (IOwnCloudSyncServiceCallback icb : callbackList) {

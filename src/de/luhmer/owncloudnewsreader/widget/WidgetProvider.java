@@ -51,47 +51,53 @@ public class WidgetProvider extends AppWidgetProvider {
 	    
     @Override
     public void onReceive(Context context, Intent intent) {
-    	final int appWidgetId;
-    	if(intent.hasExtra(AppWidgetManager.EXTRA_APPWIDGET_ID))
-    		appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+    	final int appWidgetId[];
+        if(intent.hasExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS))
+            appWidgetId = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+    	else if(intent.hasExtra(AppWidgetManager.EXTRA_APPWIDGET_ID))
+    		appWidgetId = new int[] { intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID) };
     	else
-    		appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+    		appWidgetId = new int[] { AppWidgetManager.INVALID_APPWIDGET_ID };
     	
     	if(Constants.debugModeWidget)
     		Log.d(TAG, "onRecieve - WidgetID: " + appWidgetId);
-    	
-    	String action = intent.getAction();
-    	if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(action)) {    		
-    		if (appWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
-    			this.onDeleted(context, new int[] { appWidgetId });
-    		}
-    	} else if (intent.getAction().equals(ACTION_WIDGET_RECEIVER)) {
-    		 
-			Intent intentRefresh = new Intent(context, WidgetProvider.class);
-			intentRefresh.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-			// Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
-			// since it seems the onUpdate() is only fired on that:							
-			intentRefresh.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,new int[] { appWidgetId });
-			context.sendBroadcast(intentRefresh);
-    		 
-    	} else if (intent.getAction().equals(ACTION_LIST_CLICK)) {
-    		try
-    		{
-	    		String uid = intent.getExtras().getString(UID_TODO);
-	    		//Intent intentToDoListAct = new Intent(context, TodoListActivity.class);
-	    		Intent intentToDoListAct = new Intent(context, NewsReaderListActivity.class);
-	    		intentToDoListAct.putExtra(UID_TODO, uid);
-	    		intentToDoListAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	    		context.startActivity(intentToDoListAct);
-	    		
-	    		if(Constants.debugModeWidget)
-	    			Log.d(TAG, "ListItem Clicked Starting Activity for Item: " + uid);
-    		}
-    		catch(Exception ex)
-    		{
-    			ex.printStackTrace();
-    		}
-    	}
+
+        String action = intent.getAction();
+        for(int i = 0; i < appWidgetId.length; i++) {
+            if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(action)) {
+                if (appWidgetId[i] != AppWidgetManager.INVALID_APPWIDGET_ID) {
+                    this.onDeleted(context, new int[] { appWidgetId[i] });
+                }
+            } /*else if (intent.getAction().equals(ACTION_WIDGET_RECEIVER)) {
+
+                Intent intentRefresh = new Intent(context, WidgetProvider.class);
+                intentRefresh.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
+                // since it seems the onUpdate() is only fired on that:
+                intentRefresh.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[] { appWidgetId[i] });
+                context.sendBroadcast(intentRefresh);
+
+            } */else if (action.equals(ACTION_LIST_CLICK)) {
+                try
+                {
+                    String uid = intent.getExtras().getString(UID_TODO);
+                    //Intent intentToDoListAct = new Intent(context, TodoListActivity.class);
+                    Intent intentToDoListAct = new Intent(context, NewsReaderListActivity.class);
+                    intentToDoListAct.putExtra(UID_TODO, uid);
+                    intentToDoListAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intentToDoListAct);
+
+                    if(Constants.debugModeWidget)
+                        Log.d(TAG, "ListItem Clicked Starting Activity for Item: " + uid);
+                }
+                catch(Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+            } /*else if(action.equals("android.appwidget.action.APPWIDGET_UPDATE") || action.equals(ACTION_WIDGET_RECEIVER)) {
+                onUpdate(context, AppWidgetManager.getInstance(context), new int[] { appWidgetId[i] });
+            }*/
+        }
     	
         super.onReceive(context, intent);
     }
@@ -150,7 +156,7 @@ public class WidgetProvider extends AppWidgetProvider {
     	
     	Intent intent = new Intent(context, WidgetService.class);
 		intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-		rv.setRemoteAdapter(appWidgetId, R.id.list_view, intent);		
+		rv.setRemoteAdapter(appWidgetId, R.id.list_view, intent);
 		
     	
         Intent onListClickIntent = new Intent(context, WidgetProvider.class);

@@ -53,11 +53,11 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 {
 	//private static final String TAG = "GetImageAsyncTask";
 
-	private static int count = 0;
+	//private static int count = 0;
 	
 	private URL WEB_URL_TO_FILE;
 	private ImageDownloadFinished imageDownloadFinished;
-	private int AsynkTaskId;
+	private int AsyncTaskId;
 	private String rootPath;
 	private Context cont;
 	
@@ -66,7 +66,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	public String feedID = null;
 	public boolean scaleImage = false;
 	public int dstHeight; // height in pixels
-	public int dstWidth; // width in pixels		
+	public int dstWidth; // width in pixels
 	
 	//private ImageView imgView;
 	//private WeakReference<ImageView> imageViewReference;
@@ -83,7 +83,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 		this.lruCache = lruCache;
 		this.cont = cont;
 		imageDownloadFinished = imgDownloadFinished;
-		this.AsynkTaskId = AsynkTaskId;
+		this.AsyncTaskId = AsynkTaskId;
 		this.rootPath = rootPath;
 		//this.imageViewReference = new WeakReference<ImageView>(imageView);
 	}
@@ -91,7 +91,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	@Override
 	protected void onPostExecute(String result) {
 		if(imageDownloadFinished != null)
-			imageDownloadFinished.DownloadFinished(AsynkTaskId, result, lruCache);
+			imageDownloadFinished.DownloadFinished(AsyncTaskId, result, lruCache);
 		//imgView.setImageDrawable(GetFavIconFromCache(WEB_URL_TO_FILE.toString(), context));
 		super.onPostExecute(result);
 	}
@@ -102,12 +102,12 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	protected String doInBackground(Void... params) {
 		try
 		{
-			File cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);						
+			File cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
 			if(!cacheFile.isFile())
 			{
 				File dir = new File(rootPath);
 				dir.mkdirs();
-				cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);				
+				cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
 				//cacheFile.createNewFile();
 				
 				
@@ -161,6 +161,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 				fOut.close();
 				*/
 
+                /*
 				count++;
 				if(count >= 25)//Check every 25 images the cache size
 				{
@@ -188,7 +189,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 								break;
 						}
 					}
-				}
+				} */
 			}
 			return cacheFile.getPath();
 		}
@@ -200,33 +201,5 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	}
 
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static LinkedHashMap sortHashMapByValuesD(HashMap passedMap) {
-		List mapKeys = new ArrayList(passedMap.keySet());
-		List mapValues = new ArrayList(passedMap.values());
-		Collections.sort(mapValues);
-		Collections.sort(mapKeys);
 
-		LinkedHashMap sortedMap = new LinkedHashMap();
-
-		Iterator valueIt = mapValues.iterator();
-		while (valueIt.hasNext()) {
-	       Object val = valueIt.next();
-			Iterator keyIt = mapKeys.iterator();
-
-			while (keyIt.hasNext()) {
-				Object key = keyIt.next();
-				String comp1 = passedMap.get(key).toString();
-				String comp2 = val.toString();
-
-				if (comp1.equals(comp2)){
-					passedMap.remove(key);
-					mapKeys.remove(key);
-					sortedMap.put((String)key, (Double)val);
-					break;
-				}
-			}
-		}
-		return sortedMap;
-	}
 }
