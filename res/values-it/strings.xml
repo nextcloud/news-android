@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Invia elemento allo sviluppatore</string>
   <string name="action_Share">Condividi</string>
   <string name="action_login">Impostazioni del server</string>
+  <string name="notification_new_items_ticker">Hai X nuovi elementi non letti</string>
+  <string name="notification_new_items_text">X nuovi elementi non letti disponibili</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome utente</string>
   <string name="pref_title_password">Password</string>

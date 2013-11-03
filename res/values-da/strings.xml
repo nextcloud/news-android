@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Send artikel til udvikler</string>
   <string name="action_Share">Del</string>
   <string name="action_login">Server Indstillinger</string>
+  <string name="notification_new_items_ticker">Du har X nye ulæste emner</string>
+  <string name="notification_new_items_text">X nye ulæste poster til rådighed</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brugernavn</string>
   <string name="pref_title_password">Kodeord</string>
