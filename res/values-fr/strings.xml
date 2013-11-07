@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Envoyer l\'article au développeur</string>
   <string name="action_Share">Partager</string>
   <string name="action_login">Paramètres du Serveur</string>
+  <string name="notification_new_items_ticker">Vous avez X nouveaux items non-lus</string>
+  <string name="notification_new_items_text">X nouveaux items non-lus disponibles</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilisateur</string>
   <string name="pref_title_password">Mot de passe</string>

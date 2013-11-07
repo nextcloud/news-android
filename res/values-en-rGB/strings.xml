@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Send item to Developer</string>
   <string name="action_Share">Share</string>
   <string name="action_login">Server Settings</string>
+  <string name="notification_new_items_ticker">You have X new unread items</string>
+  <string name="notification_new_items_text">X new unread items available</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Username</string>
   <string name="pref_title_password">Password</string>

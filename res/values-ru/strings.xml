@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Отправить сообщение разработчикам</string>
   <string name="action_Share">Открыть доступ</string>
   <string name="action_login">Параметры сервера</string>
+  <string name="notification_new_items_ticker">У вас X новых непрочитанных пунктов</string>
+  <string name="notification_new_items_text">Доступно X новых непрочитанных пунктов</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
   <string name="pref_title_password">Пароль</string>

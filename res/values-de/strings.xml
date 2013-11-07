@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Artikel an Entwickler senden</string>
   <string name="action_Share">Teilen</string>
   <string name="action_login">Servereinstellungen</string>
+  <string name="notification_new_items_ticker">Du hast X neue ungelesene Einträge</string>
+  <string name="notification_new_items_text">X neue ungelesene Einträge verfügbar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <string name="pref_title_password">Passwort</string>

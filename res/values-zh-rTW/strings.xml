@@ -3,32 +3,71 @@
   <string name="auto_sync_string">自動同步</string>
   <string name="app_name">ownCloud新聞閱讀器</string>
   <string name="action_settings">設定</string>
+  <string name="title_activity_news_detail">新聞內容活動</string>
+  <string name="title_activity_subscription">訂閱活動</string>
+  <string name="title_newsreader_list">新聞閱讀器</string>
+  <string name="title_newsreader_detail">新聞閱讀器內容</string>
   <string name="empty_view_header">資訊</string>
   <string name="empty_view_content">無任何項目。</string>
+  <string name="toast_GettingMoreItems">開始下載更多項目.. 請稍後。</string>
+  <string name="tv_clickHereToOpenItem">點這裡來開啟項目</string>
+  <string name="no_wifi_available">沒有連到無線網路</string>
+  <string name="do_you_want_to_download_without_wifi">您要在不使用無線網路連線的情形下來下載圖片</string>
+  <string name="max_items_count_reached">您已達到 XX 項目的最大空間限制</string>
+  <string name="widget_header">ownCloud 新聞</string>
+  <string name="message_bar_new_articles_available">有新的項目</string>
   <string name="message_bar_reload">重新載入</string>
   <string name="allUnreadFeeds">所有未閱讀項目。</string>
+  <string name="starredFeeds">演示項目</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">重新整理</string>
+  <string name="menu_About_Changelog">關於 / 更新日誌</string>
   <string name="menu_markAllAsRead">全部標示已閱讀</string>
+  <string name="menu_StartImageCaching">下載圖片</string>
+  <string name="menu_downloadMoreItems">下載更多項目</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">項目中的原始碼 - 錯誤回報</string>
   <string name="email_sendMail">送出電郵</string>
   <!--Action Bar Items-->
   <string name="action_starred">星號</string>
+  <string name="action_read">讀取</string>
   <string name="action_openInBrowser">開啟瀏覽器</string>
+  <string name="action_sendSourceCode">寄送項目到開發者</string>
   <string name="action_Share">分享</string>
+  <string name="action_login">伺服器設定</string>
+  <string name="notification_new_items_ticker">您有 X 新的未讀項目</string>
+  <string name="notification_new_items_text">X 新的未讀項目可用</string>
   <!--Strings related to login-->
   <string name="pref_title_username">使用者名稱：</string>
   <string name="pref_title_password">密碼</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">登入</string>
   <string name="login_progress_signing_in">登入中...</string>
+  <string name="error_incorrect_password">密碼不正確</string>
+  <string name="error_field_required">此欄位是必須的</string>
+  <string name="error_invalid_url">網址不正確</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">已下載 X 舊項目</string>
+  <string name="toast_no_more_downloads_available">沒有更多有效的項目</string>
+  <string name="pull_to_refresh_updateTags">同步項目狀態中</string>
   <string name="pull_to_refresh_updateFolder">正在同步資料夾</string>
+  <string name="pull_to_refresh_updateFeeds">同步來源</string>
+  <string name="pull_to_refresh_updateItems">同步項目中</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">設定</string>
   <!--General settings-->
   <string name="pref_header_general">一般</string>
+  <string name="pref_title_general_sort_order">排列依據</string>
+  <string-array name="pref_general_sort_order">
+    <item>新 -&gt; 舊</item>
+    <item>舊 -&gt; 新</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
@@ -36,20 +75,101 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">計算快取容量中...請稍候。</string>
+  <string name="reset_cache_unsaved_changes">這些未同步變更。您想要強制重設快取嗎?</string>
   <string name="warning">警告</string>
+  <string name="pref_title_AutoSyncOnStart">啟用時同步</string>
+  <string name="pref_title_ShowOnlyUnread">只顯示未讀的主題</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">停用主機名稱檢驗</string>
+  <string name="pref_title_NavigateWithVolumeButtons">用音量鍵瀏覽</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">當滾動時標註為已讀</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">允許未知憑證?</string>
+  <string name="mtm_decision_always">總是</string>
+  <string name="mtm_decision_once">這一次</string>
   <string name="mtm_decision_abort">中斷</string>
+  <string name="mtm_notification">憑證驗證</string>
   <!--Settings for Display-->
   <string name="pref_header_display">顯示</string>
+  <string name="pref_title_app_theme">軟體桌面 (需要重啟來套用)</string>
+  <string name="pref_title_feed_list_layout">來源列表版型</string>
   <string name="pref_display_font_layout">字型 (需要重新啟動)</string>
+  <string-array name="pref_display_apptheme">
+    <item>黑暗</item>
+    <item>光亮</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>預覽</item>
+    <item>完整</item>
+    <item>在網頁上看完整版</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">錯誤</string>
+  <string name="login_dialog_text_something_went_wrong">有些是錯的 :(</string>
+  <string name="login_dialog_text_not_compatible">此軟體版本不相容您的ownCloud 新聞軟體。請更新新聞軟體和appframework。</string>
   <string name="login_dialog_title_security_warning">安全性警告</string>
+  <string name="login_dialog_text_security_warning">您不是使用https。駭客可能攔截您的流量和存取一些敏感資料 (例如:您的密碼)。所以強烈建議使用https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">資料 &amp; 同步</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">清除快取</string>
+  <string name="pref_title_CacheImagesOffline">離線圖片快取</string>
   <string name="pref_title_Max_Cache_Size">最大快取容量</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Enviar item ao desenvolvedor</string>
   <string name="action_Share">Compartilhar</string>
   <string name="action_login">Configurações do servidor</string>
+  <string name="notification_new_items_ticker">Você tem X itens não lidos</string>
+  <string name="notification_new_items_text">X novos itens não lidos disponíveis</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>

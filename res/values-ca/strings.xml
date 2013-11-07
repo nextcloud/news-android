@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Envia element al desenvolupador</string>
   <string name="action_Share">Comparteix</string>
   <string name="action_login">Arranjament del sevidor</string>
+  <string name="notification_new_items_ticker">Teniu X elements nous sense llegir</string>
+  <string name="notification_new_items_text">X elements nous disponibles sense llegir</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'usuari</string>
   <string name="pref_title_password">Contrasenya</string>

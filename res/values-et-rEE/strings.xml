@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Saada üksus arendajale</string>
   <string name="action_Share">Jaga</string>
   <string name="action_login">Serveri seaded</string>
+  <string name="notification_new_items_ticker">Sul on X uut lugemata kirjet</string>
+  <string name="notification_new_items_text">Saadaval on X uut lugemata kirjet</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
   <string name="pref_title_password">Parool</string>
