@@ -1,18 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="action_settings">Подесувања</string>
+  <string name="empty_view_header">Информација</string>
+  <string name="empty_view_content">Тука нема ништо</string>
+  <string name="allUnreadFeeds">Сите непрочитани пораки</string>
+  <string name="starredFeeds">Обележени пораки со ѕвезда</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Освежи</string>
+  <string name="menu_markAllAsRead">Означи сѐ како прочитано</string>
   <!--EMAIL-->
+  <string name="email_sendMail">Испрати Електронска порака</string>
   <!--Action Bar Items-->
   <string name="action_starred">Со ѕвезда</string>
+  <string name="action_openInBrowser">Отворете во прелистувач</string>
+  <string name="action_sendSourceCode">Испратете го на програмерите</string>
   <string name="action_Share">Сподели</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Најава</string>
+  <string name="login_progress_signing_in">Се најавувам...</string>
+  <string name="error_incorrect_password">Лозинката не е точна</string>
+  <string name="error_field_required">Ова поле е задолжително</string>
+  <string name="error_invalid_url">Овој url линк не е исправен</string>
   <!--Toast Messages-->
+  <string name="pull_to_refresh_updateFolder">Папката се синхронизира</string>
+  <string name="pull_to_refresh_updateItems">Синхронизирање на точките</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Подесувања</string>
   <!--General settings-->
@@ -24,10 +40,13 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="warning">Предупредување</string>
+  <string name="pref_title_AutoSyncOnStart">Синхронизирај при стартување</string>
+  <string name="pref_title_ShowOnlyUnread">Прикажи само непрочитани</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <string name="mtm_decision_abort">Прекини</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Прикажи</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Грешка</string>
   <string name="login_dialog_title_security_warning">Безбедносно предупредување</string>
