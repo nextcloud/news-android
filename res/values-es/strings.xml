@@ -35,7 +35,7 @@
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Ajustes del Servidor</string>
-  <string name="notification_new_items_ticker">Tienes X artículosnuevos sin leer</string>
+  <string name="notification_new_items_ticker">Tienes X artículos nuevos sin leer</string>
   <string name="notification_new_items_text">X Artículos sin leer disponibles</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
