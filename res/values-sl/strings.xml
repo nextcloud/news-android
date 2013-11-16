@@ -1,34 +1,42 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Samodejno usklajevanje</string>
   <string name="app_name">Bralnik novic ownCloud</string>
   <string name="action_settings">Nastavitve</string>
   <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
   <string name="title_activity_subscription">Pregled naročnine</string>
   <string name="title_newsreader_list">Bralnik novic</string>
   <string name="title_newsreader_detail">Podrobnosti bralnika novic</string>
-  <string name="empty_view_header">Informacije</string>
+  <string name="empty_view_header">Podrobnosti</string>
   <string name="empty_view_content">Ni vsebine</string>
-  <string name="toast_GettingMoreItems">Prenos vsebine se je pričel... Počakajte trenutek.</string>
-  <string name="tv_clickHereToOpenItem">Kliknite tukaj za odpiranje dokumenta</string>
-  <string name="no_wifi_available">Ni WiFi-povezave</string>
-  <string name="do_you_want_to_download_without_wifi">Želite prenesti slike brez WiFi-povezave</string>
+  <string name="toast_GettingMoreItems">Prejem dodatnih predmetov je pričet ... Počakajte trenutek.</string>
+  <string name="tv_clickHereToOpenItem">Kliknite tu za odpiranje predmeta</string>
+  <string name="no_wifi_available">Ni vzpostavljene povezave WiFi</string>
+  <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike brez vzpostavljene povezave WiFi?</string>
+  <string name="max_items_count_reached">Dosežena je največja omejitev dovoljenih predmetov.</string>
+  <string name="widget_header">Novice ownCloud</string>
+  <string name="message_bar_new_articles_available">Na voljo so novi predmeti</string>
   <string name="message_bar_reload">Ponovno naloži</string>
-  <string name="allUnreadFeeds">Vse neprebrane postavke</string>
-  <string name="starredFeeds">Označene postavke</string>
+  <string name="allUnreadFeeds">Vsi neprebrani predmeti</string>
+  <string name="starredFeeds">Označeni predmeti</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Osveži</string>
+  <string name="menu_About_Changelog">O programu / Dnevnik sprememb</string>
   <string name="menu_markAllAsRead">Označi vse kot prebrano</string>
-  <string name="menu_downloadMoreItems">Prenesi več vsebine</string>
+  <string name="menu_StartImageCaching">Prejmi slike</string>
+  <string name="menu_downloadMoreItems">Prejmi več predmetov</string>
   <!--EMAIL-->
-  <string name="email_sourceCode">Pregled izvorne kode - Prijavi napako</string>
-  <string name="email_sendMail">Pošlji e-sporočilo</string>
+  <string name="email_sourceCode">Pregled izvorne kode - Prijava napake</string>
+  <string name="email_sendMail">Pošlji elektronsko sporočilo</string>
   <!--Action Bar Items-->
-  <string name="action_starred">Z zvezdico</string>
+  <string name="action_starred">Označeno</string>
   <string name="action_read">Branje</string>
   <string name="action_openInBrowser">Odpri v brskalniku</string>
-  <string name="action_sendSourceCode">Pošlji razvijalcu</string>
+  <string name="action_sendSourceCode">Pošlji predmet razvijalcem</string>
   <string name="action_Share">Souporaba</string>
   <string name="action_login">Nastavitve strežnika</string>
+  <string name="notification_new_items_ticker">Neprebranih je več prispevkov</string>
+  <string name="notification_new_items_text">Na voljo je več neprebranih predmetov</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uporabniško ime</string>
   <string name="pref_title_password">Geslo</string>
@@ -36,39 +44,59 @@
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Prijava</string>
-  <string name="login_progress_signing_in">Prijava v storitev...</string>
-  <string name="error_incorrect_password">Geslo je neveljavno</string>
-  <string name="error_field_required">To polje je obvezno</string>
-  <string name="error_invalid_url">Internetni naslov ni veljaven</string>
+  <string name="login_progress_signing_in">Prijavljanje ...</string>
+  <string name="error_incorrect_password">Geslo ni veljavno</string>
+  <string name="error_field_required">Vpis v to polje je obvezno</string>
+  <string name="error_invalid_url">Naslov URL ni veljaven</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Prenesli X starih dokumentov</string>
+  <string name="toast_downloaded_x_items">Prejetih je X starih dokumentov</string>
+  <string name="toast_no_more_downloads_available">Ni nadaljnjih predmetov</string>
+  <string name="pull_to_refresh_updateTags">Usklajevanje stanj predmetov</string>
   <string name="pull_to_refresh_updateFolder">Usklajevanje mape</string>
   <string name="pull_to_refresh_updateFeeds">Usklajevanje virov</string>
-  <string name="pull_to_refresh_updateItems">Usklajevanje postavk</string>
+  <string name="pull_to_refresh_updateItems">Usklajevanje predmetov</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavitve</string>
   <!--General settings-->
   <string name="pref_header_general">Splošno</string>
+  <string name="pref_title_general_sort_order">Način razvrščanja</string>
+  <string-array name="pref_general_sort_order">
+    <item>Novo -&gt; Staro</item>
+    <item>Staro -&gt; Novo</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Izračunavanje velikosti predpomnilnika. Počakajte ...</string>
+  <string name="reset_cache_unsaved_changes">Obstajajo neusklajene spremembe. Ali želite vseeno počistiti predpomnilnik?</string>
   <string name="warning">Opozorilo</string>
-  <string name="pref_title_AutoSyncOnStart">Usklajevanje ob zagonu</string>
-  <string name="pref_title_ShowOnlyUnread">Prikaži samo neprebrane prispevke</string>
+  <string name="pref_title_AutoSyncOnStart">Uskladi ob zagonu</string>
+  <string name="pref_title_ShowOnlyUnread">Pokaži le neprebrane prispevke</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Onemogoči overjanje imena gostitelja</string>
   <string name="pref_title_NavigateWithVolumeButtons">Pomikanje po zaslonu z uporabo gumbov za glasnost</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Med pomikanjem zaslona označi kot prebrano</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Označi kot prebrano med pomikanjem med predmeti</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
+  <string name="mtm_decision_always">Vedno</string>
+  <string name="mtm_decision_once">Enkrat</string>
+  <string name="mtm_decision_abort">Prekini</string>
+  <string name="mtm_notification">Overitev digitalnih potrdil</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Prikaz</string>
-  <string name="pref_title_app_theme">Tema aplikacije (za uporabo nove teme potreben ponovni zagon)</string>
-  <string name="pref_title_feed_list_layout">Prikaz seznama virov</string>
+  <string name="pref_title_app_theme">Tema programa (pred uporabo je treba sistem ponovno zagnati)</string>
+  <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
+  <string name="pref_display_font_layout">Pisava (pred uporabo je treba program znova zagnati)</string>
   <string-array name="pref_display_apptheme">
-    <item>Temen</item>
-    <item>Svetel</item>
+    <item>Temna</item>
+    <item>Svetla</item>
   </string-array>
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
@@ -84,16 +112,64 @@
     <item>1</item>
     <item>2</item>
   </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Napaka</string>
   <string name="login_dialog_text_something_went_wrong">Prišlo je do napake :(</string>
-  <string name="login_dialog_text_not_compatible">Različica aplikacije ne ustreza različici novičarske aplikacije ownClouda. Posodobite novičarsko aplikacijo in ogrodje.</string>
+  <string name="login_dialog_text_not_compatible">Različica programa ni skladna z različico programa za prikaz novic za ownCloud. Za pravilno delovanje je treba program posodobiti.</string>
   <string name="login_dialog_title_security_warning">Varnostno opozorilo</string>
-  <string name="login_dialog_text_security_warning">Ne uporabljate varne povezave https. Napadalec lahko prestreže vaš promet in pridobi dostop do občutljivih podatkov (npr. vašega gesla). Priporočamo uporabo protokola https.</string>
+  <string name="login_dialog_text_security_warning">Trenutno varna povezava HTTPS ni uporabljena. Spletni goljufi lahko prestrežejo prenos podatkov in si pridobijo dostop do zasebnih dokumentov in podatkov (na primer gesel). Uporaba protokola HTTPS je zato preudarna odločitev.</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Podatki in usklajevanje</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
-  <string name="pref_title_clearCache">Pobriši predpomnilnik</string>
-  <string name="pref_title_CacheImagesOffline">Shrani slike v predpomnilnik, bo povezava prekinjena</string>
+  <string name="pref_title_clearCache">Počisti predpomnilnik</string>
+  <string name="pref_title_CacheImagesOffline">Shrani slike v predpomnilnik za delo brez povezave</string>
+  <string name="pref_title_Max_Cache_Size">Največja velikost predpomnilnika</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
