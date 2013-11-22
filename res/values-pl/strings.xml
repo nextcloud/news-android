@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Wyślij element do autora</string>
   <string name="action_Share">Udostępnij</string>
   <string name="action_login">Ustawienia serwera</string>
+  <string name="notification_new_items_ticker">Masz X nowych nie przeczytanych wpisów</string>
+  <string name="notification_new_items_text">X nowych wpisów jest dostępnych</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nazwa użytkownika</string>
   <string name="pref_title_password">Hasło</string>
