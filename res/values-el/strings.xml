@@ -7,6 +7,8 @@
   <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε.</string>
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
+  <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
+  <string name="max_items_count_reached">Περάσατε το όριο μεγέθους των ΧΧ στοιχείων</string>
   <string name="widget_header">Νέα ownCloud</string>
   <string name="message_bar_new_articles_available">Διαθέσιμα νέα αντικείμενα</string>
   <string name="message_bar_reload">Επαναφόρτωση</string>
@@ -27,6 +29,8 @@
   <string name="action_sendSourceCode">Αποστολή αντικειμένου στον Προγραμματιστή</string>
   <string name="action_Share">Διαμοιρασμός</string>
   <string name="action_login">Ρυθμίσεις Διακομιστή</string>
+  <string name="notification_new_items_ticker">Έχετε Χ νέα αδιάβαστα στοιχεία</string>
+  <string name="notification_new_items_text">Χ νέα αδιάβαστα στοιχεία διαθέσιμα</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
   <string name="pref_title_password">Συνθηματικό</string>
@@ -36,8 +40,12 @@
   <string name="action_sign_in_short">Είσοδος</string>
   <string name="login_progress_signing_in">Είσοδος...</string>
   <string name="error_incorrect_password">Εσφαλμένο συνθηματικό</string>
+  <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
   <string name="error_invalid_url">Αυτός ο σύνδεσμος είναι εσφαλμένος</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Κατέβηκαν Χ παλαιά στοιχεία</string>
+  <string name="toast_no_more_downloads_available">Δεν υπάρχουν επιπλέον στοιχεία διαθέσιμα</string>
+  <string name="pull_to_refresh_updateTags">Συγχρονισμός κατάστασης στοιχείων</string>
   <string name="pull_to_refresh_updateFolder">Συγχρονισμός φακέλου</string>
   <string name="pull_to_refresh_updateFeeds">Συγχρονισμός ροών</string>
   <string name="pull_to_refresh_updateItems">Συγχρονισμός αντικειμένων</string>
@@ -56,10 +64,13 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Υπολογισμός μεγέθους στοιχείων σε εξέλιξη.. Παρακαλώ περιμένετε.</string>
+  <string name="reset_cache_unsaved_changes">Υπάρχουν αλλαγές που δεν έχουν συγχρονιστεί. Θα θέλατε να επαναφέρετε τα αποθηκευμένα στοιχεία ούτως ή άλλως;</string>
   <string name="warning">Προειδοποίηση</string>
   <string name="pref_title_AutoSyncOnStart">Συγχρονισμός κατά την έναρξη</string>
   <string name="pref_title_ShowOnlyUnread">Εμφάνιση μόνο μη αναγνωσμένων άρθρων</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Απενεργοποίηση επαλήθευσης Ονόματος Υπολογιστή</string>
   <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
   <!--MemorizingTrustManager-->
@@ -67,6 +78,7 @@
   <string name="mtm_decision_always">Πάντα</string>
   <string name="mtm_decision_once">Μια φορά</string>
   <string name="mtm_decision_abort">Ματαίωση</string>
+  <string name="mtm_notification">Επαλήθευση Πιστοποιητικού</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Εμφάνιση</string>
   <string name="pref_title_app_theme">Θέμα εφαρμογής (απαιτεί επανεκκίνηση για εφαρμογή)</string>
@@ -115,10 +127,14 @@
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Σφάλμα</string>
   <string name="login_dialog_text_something_went_wrong">Κάτι πήγε στραβά :(</string>
+  <string name="login_dialog_text_not_compatible">Αυτή η έκδοση της εφαρμογής δεν είναι συμβατή με τη δική σας εφαρμογή Ανάγνωσης Ειδήσεων του ownCloud. Παρακαλώ ενημερώστε την εφαρμογή Ανάγνωσης Ειδήσεων και την εφαρμογή Πλαίσιο Εφαρμογών.</string>
   <string name="login_dialog_title_security_warning">Προειδοποίηση Ασφαλείας</string>
+  <string name="login_dialog_text_security_warning">Δεν χρησιμοποιείτε htpps. Κάποιος εισβολέας θα μπορούσε να παρεμβληθεί στη σύνδεσή σας και να αποκτήσει πρόσβαση σε ευαίσθητα δεδομένα (π.χ. τον κωδικό σας). Επομένως προτείνεται σοβαρά η χρήση htpps!</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
+  <string name="pref_title_CacheImagesOffline">Αποθήκευση εικόνων για χρήση χωρίς σύνδεση</string>
+  <string name="pref_title_Max_Cache_Size">Μέγιστο μέγεθος στοιχείων προς αποθήκευση</string>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
