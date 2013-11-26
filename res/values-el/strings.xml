@@ -4,6 +4,7 @@
   <string name="app_name">Ανάγνωση Ειδήσεων ownCloud</string>
   <string name="action_settings">Ρυθμίσεις</string>
   <string name="empty_view_header">Πληροφορίες</string>
+  <string name="empty_view_content">Κανένα στοιχείο</string>
   <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε.</string>
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
@@ -54,6 +55,10 @@
   <!--General settings-->
   <string name="pref_header_general">Γενικά</string>
   <string name="pref_title_general_sort_order">Σειρά ταξινόμησης</string>
+  <string-array name="pref_general_sort_order">
+    <item>Νέα-&gt; Παλιά</item>
+    <item>Παλιά -&gt; Νέα</item>
+  </string-array>
   <string-array name="pref_general_sort_order_values_not_translated">
     <item>1</item>
     <item>0</item>
@@ -90,6 +95,11 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Απλή</item>
+    <item>Εκτεταμένη</item>
+    <item>Εκτεταμένη με απευθείας προβολή</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>

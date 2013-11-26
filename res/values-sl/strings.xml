@@ -113,18 +113,18 @@
     <item>2</item>
   </string-array>
   <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
+    <item>Roboto Ozka</item>
+    <item>Roboto Zožano</item>
+    <item>Roboto Običajna</item>
+    <item>Roboto Srednja</item>
+    <item>Roboto Krepka</item>
     <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
+    <item>Roboto Stisnjeno</item>
+    <item>Roboto Stisnjeno Krepko</item>
+    <item>Roboto Slab Ozka</item>
+    <item>Roboto Slab Zožano</item>
+    <item>Roboto Slab Običajna</item>
+    <item>Roboto Slab Krepka</item>
   </string-array>
   <string-array name="pref_display_font_values">
     <item>0</item>
