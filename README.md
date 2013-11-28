@@ -82,21 +82,23 @@ git clone https://github.com/MichaelFlisar/MessageBar.git
 
 Updates
 ==================================
-0.5.3 (in development)
+0.5.4 (in development)
+
+0.5.3 (Google Play)
 ---------------------
 - Update star/checkbox icons for devices with lower screen size
+- Update language support
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/176">#176 Open directly in Browser</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/179">#179 Widget items not clickable</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/183">#183 Widget items color stripe position</a>
 
-
-0.5.2 (Google Play)
+0.5.2
 ---------------------
 - Improvement - Notification when background sync is enabled and new items are received
 - Improvement - Fix high CPU-Load in Detail-View
 - Improvement - Speed up image caching
 
-0.5.0 (Google Play)
+0.5.0
 ---------------------
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/162">#162 New items available notification pops up when there really aren't</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/160">#160 Widget font size</a>
