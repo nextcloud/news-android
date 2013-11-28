@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout
-   	xmlns:android="http://schemas.android.com/apk/res/android"    	
+   	xmlns:android="http://schemas.android.com/apk/res/android"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="65dp"
        android:orientation="horizontal"
        android:background="@drawable/row_divider_line" >
        
     <View
         android:id="@+id/color_line_feed"
         android:layout_width="@dimen/color_bar_of_feeds"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:background="@color/abs__background_holo_dark"/>
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical" >
         
         
     	<LinearLayout 
     	    android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
+        	android:layout_height="match_parent"
         	android:orientation="horizontal" >
 	        
-	    
-		    <com.devspark.robototextview.widget.RobotoCheckBox
-				android:id="@+id/cb_lv_item_starred"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"                
-				android:clickable="false"
-				android:focusable="false"
-				android:layout_marginLeft="@dimen/listview_row_margin_left"
-				android:layout_gravity="center_vertical|center_horizontal"
-				android:button="@drawable/checkbox_background_empty"
-				android:background="@drawable/checkbox_background" />
-		    
+
+            <LinearLayout
+                android:id="@+id/ll_cb_starred_wrapper"
+                android:layout_width="50dp"
+                android:layout_height="match_parent">
+
+                <com.devspark.robototextview.widget.RobotoCheckBox
+                    android:id="@+id/cb_lv_item_starred"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_marginLeft="@dimen/listview_row_margin_left"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:button="@drawable/checkbox_background_empty"
+                    android:background="@drawable/checkbox_background_holo_light" />
+            </LinearLayout>
+
 			<LinearLayout
 			    android:layout_width="0dip"
 			    android:layout_height="wrap_content"
-			    android:layout_marginLeft="@dimen/listview_row_margin_left"
-		        android:layout_marginRight="@dimen/listview_row_margin_right"
 		        android:layout_marginTop="@dimen/listview_row_margin_top"
 		        android:layout_weight="1"
 			    android:orientation="vertical" >
@@ -94,12 +98,11 @@
 		
 			<com.devspark.robototextview.widget.RobotoCheckBox
 			    android:id="@+id/cb_lv_item_read"
-			    android:layout_width="wrap_content"
+			    android:layout_width="50dp"
 			    android:layout_height="match_parent"
-			    android:layout_marginRight="@dimen/listview_row_margin_right"
+                android:layout_marginLeft="@dimen/listview_row_margin_left"
 			    android:clickable="false"
-			    android:focusable="false"
-			    android:gravity="center_vertical|center_horizontal" />
+			    android:focusable="false" />
 			
 			</LinearLayout>
 		

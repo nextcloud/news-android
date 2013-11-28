@@ -411,7 +411,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	}
 	
 	
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)//TODO check this
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void SetUnreadCountForFeed(TextView textView, String idDatabase, boolean execludeStarredItems)
 	{
 		IGetTextForTextViewAsyncTask iGetter = new UnreadFeedCount(mContext, idDatabase, execludeStarredItems);

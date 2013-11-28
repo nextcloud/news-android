@@ -131,40 +131,14 @@ public class NewsDetailFragment extends SherlockFragment {
 		section_number = (Integer) getArguments().get(ARG_SECTION_NUMBER);
 		
 		webview = (WebView) rootView.findViewById(R.id.webview);
-		//if (savedInstanceState != null)
-		//	webview.restoreState(savedInstanceState);
-		
+
 		//webview.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
 		
 		progressbar_webview = (ProgressBar) rootView.findViewById(R.id.progressbar_webview);
-		//getActivity().getWindow().requestFeature(Window.FEATURE_PROGRESS);
-		
-		
-		
-        //webSettings.setLoadWithOverviewMode(true);
-        //webSettings.setUseWideViewPort(true);
-        
-        //webview.addJavascriptInterface(new JavaScriptInterfaceStundenplan(this, this), "StundenplanTermineAndroid");
-        
-        /*
-        webview.setWebViewClient(new WebViewClient() {
-        	public void onPageFinished(WebView view, String url) {        		
-        		//if(menuItemUpdater != null)
-        		//	menuItemUpdater.setActionView(null);
-            }
-        	
-        	
-            public boolean shouldOverrideUrlLoading(WebView view, String url){            	
-            	view.loadUrl(url);
-            	return false;// then it is not handled by default action
-           }
-            
-        });
-        */
+
+
         LoadRssItemInWebView();
-        
-        //registerForContextMenu(webview);        
-        
+
 		return rootView;
 	}
 	
@@ -174,15 +148,11 @@ public class NewsDetailFragment extends SherlockFragment {
 		
 		if(background_color != Integer.MIN_VALUE && ThemeChooser.isDarkTheme(ndActivity))
 		{
-			webview.setBackgroundColor(background_color);
+			//webview.setBackgroundColor(background_color);
 			ndActivity.mViewPager.setBackgroundColor(background_color);
 		}
-		
-		//webview.clearView();
-		//webview.clearCache(false);
+
 		init_webView();
-		//webview.loadUrl("about:blank");
-		//int idItem = ndActivity.databaseItemIds.get(section_number - 1);
 		NewsDetailActivity nrda = ((NewsDetailActivity)getActivity());
 		String idItem = nrda.getIdCurrentFeed(section_number - 1);
 		webview.loadDataWithBaseURL("", getHtmlPage(ndActivity, ndActivity.dbConn, Integer.parseInt(idItem)), "text/html", "UTF-8", "");

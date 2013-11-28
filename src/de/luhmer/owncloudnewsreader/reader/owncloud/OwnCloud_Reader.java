@@ -84,8 +84,7 @@ public class OwnCloud_Reader implements IReader {
 	@Override
 	public void Start_AsyncTask_Authenticate(int task_id, Activity context,
 			OnAsyncTaskCompletedListener listener) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	

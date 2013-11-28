@@ -70,6 +70,11 @@
         android:key="cb_MarkAsReadWhileScrolling"
         android:title="@string/pref_title_MarkAsReadWhileScrolling" />
 
+    <CheckBoxPreference
+        android:key="cb_openInBrowserDirectly"
+        android:title="@string/pref_title_OpenInBrowserDirectly" />
+
+
     <ListPreference
         android:defaultValue="1"
         android:entries="@array/pref_general_sort_order"

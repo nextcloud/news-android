@@ -70,10 +70,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		 NewsReaderListFragment.Callbacks {
 
 	private SlidingPaneLayout mSlidingLayout;
-	
-	//IabHelper mHelper;
+
 	static final String TAG = "NewsReaderListActivity";
-	ActionBarDrawerToggle drawerToggle;
+	//ActionBarDrawerToggle drawerToggle;
 	//DrawerLayout drawerLayout;
 	
 	public static final String FOLDER_ID = "FOLDER_ID";
@@ -113,33 +112,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	    	//ContentResolver.setSyncAutomatically(account, getString(R.string.authorities), true);
 			//ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
 	    }
-		
-		
-		//DatabaseUtils.CopyDatabaseToSdCard(this);
-
-		
-        /*
-		((NewsReaderListFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.newsreader_list)).setUpdateFinishedListener(updateFinished);
-        */
-		
-		/*
-		AppUpdater au = new AppUpdater(this, false);
-        au.UpdateApp();
-        */
-        
-		/*
-        // compute your public key and store it in base64EncodedPublicKey
-        mHelper = new IabHelper(this, Constants.getBase64EncodedPublicKey());
-        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-        	   public void onIabSetupFinished(IabResult result) {
-        	      if (!result.isSuccess()) {
-					// Oh noes, there was a problem.
-        	         Log.d(TAG, "Problem setting up In-app Billing: " + result);
-        	      }  
-        	   }
-        	});
-        */
 
 		//Init config --> if nothing is configured start the login dialog.
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -153,13 +125,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         				.replace(R.id.left_drawer, new NewsReaderListFragment())
                    		.commit();
         
-        /*
-        fragmentManager.beginTransaction()
-        				.replace(R.id.content_frame, new NewsReaderDetailFragment())
-    					.commit();
-        */
-        
-       
+
         mSlidingLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane);
         
         mSlidingLayout.setParallaxDistance(280);        
@@ -174,14 +140,15 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			@Override
 			public void onPanelOpened(View arg0) {
 				updateAdapter();
-				getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-				getSupportActionBar().setHomeButtonEnabled(true);
+
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                getSupportActionBar().setHomeButtonEnabled(false);
 			}
 			
 			@Override
 			public void onPanelClosed(View arg0) {
-				getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-				getSupportActionBar().setHomeButtonEnabled(false);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setHomeButtonEnabled(true);
 				
 				StartDetailFragmentNow();
 			}
@@ -283,20 +250,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		}
 		return nrdf;
 	}
-	
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        
-        //ThemeChooser.ChangeBackgroundOfSlider(this);
-        //TODO 
-        /*
-    	drawerLayout.openDrawer(Gravity.LEFT);
-    	
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        drawerToggle.syncState();
-        */
-    }
 
 
 	public void updateAdapter() {
@@ -327,15 +280,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	@Override
 	protected void onResume() {
 		ThemeChooser.chooseTheme(this);
-				
-		/*
-		if(shouldDrawerStayOpen()) {
-			//TODO
-			drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
-			drawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
-		}
-		*/
-		
+
 		updateAdapter();
 		
 		super.onResume();
@@ -344,36 +289,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	public boolean shouldDrawerStayOpen() {
 		if(getResources().getBoolean(R.bool.two_pane))
 			return true;
-		/*
-		if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			DisplayMetrics dm = new DisplayMetrics();
-			getWindowManager().getDefaultDisplay().getMetrics(dm);
-			double x = Math.pow(dm.widthPixels/dm.xdpi,2);
-			double y = Math.pow(dm.heightPixels/dm.ydpi,2);
-			double screenInches = Math.sqrt(x+y);
-			
-			if(screenInches >= 6) {
-				return true;
-			}
-		}*/
 		return false;
-	}
-	
-	@Override
-	public void onDestroy() {
-		//this.unregisterReceiver()
-		super.onDestroy();
-	   /*
-	   try
-	   {
-		   if (mHelper != null)
-			   mHelper.dispose();
-		   mHelper = null;
-	   }
-	   catch(Exception ex)
-	   {
-		   ex.printStackTrace();
-	   }*/
 	}
 
 	private StartDetailFragmentHolder startDetailFHolder = null;
@@ -402,22 +318,17 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	 */
 	@Override
 	public void onTopItemClicked(String idSubscription, boolean isFolder, String optional_folder_id) {
-		//if(!shouldDrawerStayOpen())
-		//	drawerLayout.closeDrawer(Gravity.LEFT);
 		if(!shouldDrawerStayOpen())
-			mSlidingLayout.closePane();		
+			mSlidingLayout.closePane();
 		
 		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, isFolder, optional_folder_id, true);
 		
 		if(shouldDrawerStayOpen())
 			StartDetailFragmentNow();
-		//StartDetailFragment(idSubscription, isFolder, optional_folder_id);		
 	}
 
 	@Override
 	public void onChildItemClicked(String idSubscription, String optional_folder_id) {
-		//if(!shouldDrawerStayOpen())
-		//	drawerLayout.closeDrawer(Gravity.LEFT);
 		if(!shouldDrawerStayOpen())
 			mSlidingLayout.closePane();
 		
@@ -464,31 +375,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, fragment)
 				.commit();
-		
-		
-		/*
-		if (mTwoPane) {
-			// In two-pane mode, show the detail view in this activity by
-			// adding or replacing the detail fragment using a
-			// fragment transaction.
-			Bundle arguments = detailIntent.getExtras();
-			
-			//arguments.putString(NewsReaderDetailFragment.ARG_ITEM_ID, id);
-			
-			//getApplicationContext().startActivity(detailIntent);
-			
-			NewsReaderDetailFragment fragment = new NewsReaderDetailFragment();			
-			fragment.setArguments(arguments);
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.newsreader_detail_container, fragment)
-					.commit();
 
-		} else {
-			// In single-pane mode, simply start the detail activity
-			// for the selected item ID.			
-			startActivity(detailIntent);
-		}
-		*/
 		dbConn.closeDatabase();
 		
 		return fragment;
@@ -573,8 +460,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			switch (item.getItemId()) {
 			
 				case android.R.id.home:
-					if(mSlidingLayout.isOpen())
-						mSlidingLayout.closePane();					
+					if(!mSlidingLayout.isOpen())
+						mSlidingLayout.openPane();
 					return true;
 			
 				case R.id.action_settings:

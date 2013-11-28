@@ -567,8 +567,20 @@ public class DatabaseConnection {
 
 		return buildSQL;
     }
-	
-	public Cursor getArticleByID(String ID_FEED) {				
+
+    /*
+    public String getUrlToArticleByRowid(String article_rowid) {
+
+        String buildSQL =  "SELECT " + RSS_ITEM_LINK +
+                " FROM " + RSS_ITEM_TABLE +
+                " WHERE rowid =?";
+
+        return getStringValueBySQL(buildSQL);
+    }
+    */
+
+
+    public Cursor getArticleByID(String ID_FEED) {
 		String buildSQL = getAllFeedsSelectStatement() + 
 	 			" FROM " + RSS_ITEM_TABLE +  
 				" WHERE rowid = " + ID_FEED;
@@ -605,32 +617,7 @@ public class DatabaseConnection {
     	
     	return database.rawQuery(query, null);
     }
-    
-    /*
-	public String getCountUnreadFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {		//TODO optimize this here !!!!
-		String buildSQL = "SELECT COUNT(*) " +  
-	 			" FROM " + RSS_ITEM_TABLE + 
-	 			" WHERE " + RSS_ITEM_READ_TEMP + " != 1 ";
-		if(!ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
-				buildSQL += " AND subscription_id_subscription IN " + 
-					"(SELECT sc.rowid " + 
-					"FROM subscription sc " +
-					"JOIN folder f ON sc." + SUBSCRIPTION_FOLDER_ID + " = f.rowid " +
-					"WHERE f.rowid = " + ID_FOLDER + ")";
-		
-		if(onlyUnread)
-			buildSQL += " AND ";
-		String result = "0";		
-		Cursor cursor = database.rawQuery(buildSQL, null);
-        if (cursor != null)
-        {
-        	if(cursor.moveToFirst())
-        		result = cursor.getString(0);
-        }
-        cursor.close();
-        
-        return result;
-    }*/
+
 	
 	public int getCountFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {		
 		Cursor cursor = database.rawQuery(getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, SORT_DIRECTION.desc), null);
@@ -641,41 +628,7 @@ public class DatabaseConnection {
 		
 		
 	}
-	/*
-	public String getCountFeedsForFolder(String ID_FOLDER, boolean onlyUnread) {		
-		String buildSQL = "SELECT COUNT(*) " +  
-	 			" FROM " + RSS_ITEM_TABLE;
-		
-		if(!(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS)))  
-		{
-				buildSQL += " WHERE subscription_id_subscription IN " + 
-					"(SELECT sc.rowid " + 
-					"FROM subscription sc " +
-					"JOIN folder f ON sc." + SUBSCRIPTION_FOLDER_ID + " = f.rowid " +
-					"WHERE f.rowid = " + ID_FOLDER + ") ";
-				
-				if(onlyUnread)
-					buildSQL += " AND read_temp != 1";
-		}
-		else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))//UNREAD
-			buildSQL += " WHERE starred != 1 and read_temp != 1";
-		else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))//STARRED
-			buildSQL += " WHERE starred_temp = 1";
-		//	buildSQL += " WHERE starred = 1";
-		
-			
-		
-		String result = "0";		
-		Cursor cursor = database.rawQuery(buildSQL, null);
-        if (cursor != null)
-        {
-        	if(cursor.moveToFirst())
-        		result = cursor.getString(0);
-        }
-        cursor.close();
-        
-        return result;
-    }*/
+
 	
 	@Deprecated
 	public Cursor getAllItemsForFolder(String ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
@@ -785,13 +738,6 @@ public class DatabaseConnection {
         contentValues.put(FOLDER_LABEL_ID, label_path);  
         database.insert(FOLDER_TABLE, null, contentValues);     
     }
-	
-	/*
-	public int updateFolder (String label, String label_path) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(FOLDER_LABEL, label);
-        return database.update(FOLDER_TABLE, contentValues, FOLDER_LABEL_ID + "=?", new String[] { label_path });     
-    }*/
 	
 	public void insertNewFeed (String headerText, String ID_FOLDER, String subscription_id, String FAVICON_URL) {
         ContentValues contentValues = new ContentValues();

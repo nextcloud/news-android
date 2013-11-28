@@ -127,7 +127,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             //Load it with whatever extra you want
             ei.putExtra(WidgetProvider.UID_TODO, id);
             //Set it on the list remote view
-            rv.setOnClickFillInIntent(android.R.id.text1, ei);
+            rv.setOnClickFillInIntent(R.id.ll_root_view_widget_row, ei);
         } catch(Exception ex) {
             Log.d(TAG, ex.getLocalizedMessage());
         }

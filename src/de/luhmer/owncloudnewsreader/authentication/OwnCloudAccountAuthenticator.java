@@ -67,7 +67,7 @@ public class OwnCloudAccountAuthenticator extends AbstractAccountAuthenticator {
             if (password != null) {
                 try {
                     Log.d("udinic", TAG + "> re-authenticating with the existing password");
-                    //TODO fdsjkfsa
+
                     /*
                     User user = sServerAuthenticate.userSignIn(account.name, password, authTokenType);
                     if (user != null) {

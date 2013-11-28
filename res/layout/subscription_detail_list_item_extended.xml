@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="150dp"
     android:orientation="horizontal" >
 
     <!--
@@ -12,19 +12,19 @@
 	<View
         android:id="@+id/color_line_feed"
         android:layout_width="@dimen/color_bar_of_feeds"
-        android:layout_height="fill_parent" 
+        android:layout_height="match_parent"
         android:background="@color/abs__background_holo_dark"/>
 
 	
 	<LinearLayout
 	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
+	    android:layout_height="match_parent"
     	android:orientation="vertical" >
     	
 	    
 	    <LinearLayout
 	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
+	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="@dimen/listview_row_margin_left"
 	        android:layout_marginRight="@dimen/listview_row_margin_right"
 	        android:layout_marginTop="@dimen/listview_row_margin_top"
@@ -33,7 +33,7 @@
 	        <com.devspark.robototextview.widget.RobotoTextView
 	            android:id="@+id/tv_subscription"
 	            android:layout_width="0dp"
-	            android:layout_height="wrap_content"
+	            android:layout_height="match_parent"
 	            android:ellipsize="end"
 	            android:gravity="center_vertical"
 	            android:layout_gravity="left"
@@ -45,7 +45,7 @@
 	        <com.devspark.robototextview.widget.RobotoTextView
 	            android:id="@+id/tv_item_date"
 	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_height="match_parent"
 	            android:gravity="center_vertical"
 	            android:layout_gravity="right"
 	            android:text="21.09.2013"
@@ -57,15 +57,15 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
 	        android:layout_marginLeft="@dimen/listview_row_margin_left"
-	        android:layout_marginRight="@dimen/listview_row_margin_right"
 	        android:layout_marginBottom="@dimen/listview_row_margin_bottom"
 	        android:orientation="horizontal" >
 	
 	        <LinearLayout
-	                android:layout_width="0dip"
-	                android:layout_height="match_parent"
-	                android:orientation="vertical"
-	                android:layout_weight="1" >
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/listview_row_margin_right"
+                android:layout_weight="1" >
 	            
 				<com.devspark.robototextview.widget.RobotoTextView
 	                android:id="@+id/summary"
@@ -75,7 +75,7 @@
 	                android:gravity="center_vertical"
 	                android:lines="2"
 	                android:textSize="17sp"
-	                android:text="Hi"
+	                android:text="Hi\nfds"
 	                android:textStyle="bold" />
 	
 	            <com.devspark.robototextview.widget.RobotoTextView
@@ -85,7 +85,7 @@
 	                android:layout_height="wrap_content"
 	                android:ellipsize="end"
 	                android:lines="4"
-	                android:text="Hi"
+	                android:text="Hi\nfsddfs\nfdsfs\nfsfdsds"
 	                android:textColor="#858585"
 	                android:textSize="14sp"
 	                android:autoLink="none" />
@@ -94,31 +94,30 @@
 	
 	
 	        <LinearLayout
-	                android:layout_width="wrap_content"
-	                android:layout_height="match_parent"
-	                android:orientation="vertical"
-	                android:layout_gravity="right"
-	                android:gravity="center_horizontal|center_vertical" >
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="right"
+                android:gravity="center_horizontal|center_vertical" >
+
+                <com.devspark.robototextview.widget.RobotoCheckBox
+                    android:id="@+id/cb_lv_item_starred"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_gravity="center_horizontal"
+                    android:button="@drawable/checkbox_background_empty"
+                    android:background="@drawable/checkbox_background_holo_light" />
 	
 	            <com.devspark.robototextview.widget.RobotoCheckBox
-	                android:id="@+id/cb_lv_item_starred"
+	                android:id="@+id/cb_lv_item_read"
+	                android:layout_marginTop="20dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"                
 	                android:clickable="false"
 	                android:focusable="false"
-	                android:button="@drawable/checkbox_background_empty"
-	                android:background="@drawable/checkbox_background" />
-	            <!-- android:layout_width="40dp"
-	                android:layout_height="40dp" -->
-	
-	            <com.devspark.robototextview.widget.RobotoCheckBox
-	                android:id="@+id/cb_lv_item_read"
-	                android:layout_marginLeft="3dp"
-	                android:layout_marginTop="10dp"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"                
-	                android:clickable="false"
-	                android:focusable="false"  />
+                    android:layout_gravity="center_horizontal" />
 	            </LinearLayout>
 		</LinearLayout>
     </LinearLayout>

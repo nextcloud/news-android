@@ -76,7 +76,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	public static final String EDT_USERNAME_STRING = "edt_username";
 	public static final String EDT_PASSWORD_STRING = "edt_password";
 	public static final String EDT_OWNCLOUDROOTPATH_STRING = "edt_owncloudRootPath";
-	public static final String EDT_CLEAR_CACHE = "edt_clearCache";	
+	public static final String EDT_CLEAR_CACHE = "edt_clearCache";
 	
     //public static final String CB_ALLOWALLSSLCERTIFICATES_STRING = "cb_AllowAllSSLCertificates";
     public static final String CB_SYNCONSTARTUP_STRING = "cb_AutoSyncOnStart";
@@ -85,6 +85,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     public static final String CB_CACHE_IMAGES_OFFLINE_STRING = "cb_cacheImagesOffline";
     public static final String CB_MARK_AS_READ_WHILE_SCROLLING_STRING = "cb_MarkAsReadWhileScrolling";
     public static final String CB_DISABLE_HOSTNAME_VERIFICATION_STRING = "cb_DisableHostnameVerification";
+    public static final String CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING = "cb_openInBrowserDirectly";
     
     
     public static final String SP_APP_THEME = "sp_app_theme";
@@ -459,6 +460,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOWONLYUNREAD_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
+            bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
 	        bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SORT_ORDER));
 		}
 		else
@@ -473,6 +475,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOWONLYUNREAD_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
+            bindPreferenceBooleanToValue(prefAct.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
 	        bindPreferenceSummaryToValue(prefAct.findPreference(SP_SORT_ORDER));
 		}
 	}

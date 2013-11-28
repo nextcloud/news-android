@@ -34,6 +34,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 
@@ -82,7 +83,7 @@ public class WidgetProvider extends AppWidgetProvider {
                 {
                     String uid = intent.getExtras().getString(UID_TODO);
                     //Intent intentToDoListAct = new Intent(context, TodoListActivity.class);
-                    Intent intentToDoListAct = new Intent(context, NewsReaderListActivity.class);
+                    Intent intentToDoListAct = new Intent(context, NewsDetailActivity.class);
                     intentToDoListAct.putExtra(UID_TODO, uid);
                     intentToDoListAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intentToDoListAct);

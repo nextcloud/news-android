@@ -27,6 +27,9 @@ import java.util.List;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -35,6 +38,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 
@@ -48,6 +52,7 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
+import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 public class NewsDetailActivity extends SherlockFragmentActivity {	
 	
@@ -101,15 +106,16 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		//if(intent.hasExtra(NewsReaderDetailActivity.SUBSCRIPTION_ID))
 		//	subsciption_id = intent.getExtras().getLong(NewsReaderDetailActivity.SUBSCRIPTION_ID);
 		//if(intent.hasExtra(NewsReaderDetailActivity.FOLDER_ID))
-		//	folder_id = intent.getExtras().getLong(NewsReaderDetailActivity.FOLDER_ID);		
+		//	folder_id = intent.getExtras().getLong(NewsReaderDetailActivity.FOLDER_ID);
 		if(intent.hasExtra(NewsReaderListActivity.ITEM_ID))
 			item_id = intent.getExtras().getInt(NewsReaderListActivity.ITEM_ID);
 		if(intent.hasExtra(NewsReaderListActivity.TITEL))
 			getSupportActionBar().setTitle(intent.getExtras().getString(NewsReaderListActivity.TITEL));
-			//getActionBar().setTitle(intent.getExtras().getString(NewsReaderDetailActivity.TITEL));		
+			//getActionBar().setTitle(intent.getExtras().getString(NewsReaderDetailActivity.TITEL));
 		
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
+
 		//if(intent.hasExtra(DATABASE_IDS_OF_ITEMS))
 		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
 		
@@ -119,17 +125,30 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
     	if(sortDirection.equals("1"))
     		sDirection = SORT_DIRECTION.desc;
 		cursor = dbConn.getCurrentSelectedRssItems(sDirection);
-		
+
+        //If the Activity gets started from the Widget, read the item id and get the selected index in the cursor.
+        if(intent.hasExtra(WidgetProvider.UID_TODO)) {
+            cursor.moveToFirst();
+            String rss_item_id = intent.getExtras().getString(WidgetProvider.UID_TODO);
+            do {
+                String current_item_id = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
+                if(rss_item_id.equals(current_item_id)) {
+                    getSupportActionBar().setTitle(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE)));
+                    break;
+                }
+                else
+                    item_id++;
+            } while(cursor.moveToNext());
+        }
+
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);		
+		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-		
-			
-		//rssFiles = new ArrayList<RssFile>();
+
 		try
 		{
             mViewPager.setCurrentItem(item_id, true);
@@ -201,28 +220,6 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 					return true;
 				}
 			}
-			
-			/*
-			View vGroup = mViewPager.getChildAt(currentPosition);
-	
-			if(vGroup != null)
-			{
-				WebView webView = (WebView) vGroup.findViewById(R.id.webview); 
-				if(webView != null)
-				{
-					if(webView.canGoBack())
-					{						
-						webView.goBack();
-						if(!webView.canGoBack())//RssItem
-						{
-							NewsDetailFragment ndf = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
-							ndf.LoadRssItemInWebView(this);
-						}
-							
-						return true;
-					}
-				}
-			}*/
 		}
         
 		return super.onKeyDown(keyCode, event);
@@ -242,25 +239,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			markItemAsReadUnread(idFeed, true);	
 			
 			pDelayHandler.DelayTimer();
-			
-			//Cursor cur = dbConn.getArticleByID(idFeed);
-			//cur.moveToFirst();
-			//GoogleReaderMethods.MarkItemAsRead(true, cur, dbConn, getApplicationContext(), asyncTaskCompletedPerformTagRead);
 
-
-			/*
-			List<String> idItems = new ArrayList<String>();
-			idItems.add(cur.getString(cur.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
-			_Reader.Start_AsyncTask_PerformTagActionForSingleItem(5,
-					this,
-					asyncTaskCompletedPerformTagRead,
-					idItems,
-					FeedItemTags.TAGS.MARK_ITEM_AS_READ);
-			
-
-			cur.close();
-			*/
-			//dbConn.closeDatabase();
 			Log.d("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + idFeed);
 		}
 		else //Only in else because the function markItemAsReas updates the ActionBar items as well
@@ -296,10 +275,10 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		
 		//if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
 		if(isStarred && menuItem_Starred != null)
-			menuItem_Starred.setIcon(android.R.drawable.star_on);
+			menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_on_normal_holo_dark));
 			//menuItem_Starred.setIcon(R.drawable.btn_rating_star_on_normal_holo_light);
 		else if(menuItem_Starred != null)
-			menuItem_Starred.setIcon(android.R.drawable.star_off);
+			menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_off_normal_holo_dark));
 			//menuItem_Starred.setIcon(R.drawable.btn_rating_star_off_normal_holo_light);
 		
 		
@@ -313,6 +292,25 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			menuItem_Read.setChecked(false);
 		}
 	}
+
+    public Drawable getSmallVersionOfActionbarIcon(int res_id) {
+        Bitmap b = ((BitmapDrawable)getResources().getDrawable(res_id)).getBitmap();
+        Bitmap bitmapResized = null;
+
+        int density = getResources().getDisplayMetrics().densityDpi;
+        if(density <= DisplayMetrics.DENSITY_LOW)
+            bitmapResized = Bitmap.createScaledBitmap(b, 32, 32, false);
+        else if(density <= DisplayMetrics.DENSITY_MEDIUM)
+            bitmapResized = Bitmap.createScaledBitmap(b, 48, 48, false);
+        else if(density <= DisplayMetrics.DENSITY_HIGH)
+            bitmapResized = Bitmap.createScaledBitmap(b, 64, 64, false);
+        else if(density <= DisplayMetrics.DENSITY_XHIGH)
+            bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false);
+        else
+            bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false);
+        //Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 32, 32, false);
+        return new BitmapDrawable(bitmapResized);
+    }
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -362,19 +360,6 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				cursor.moveToFirst();
 				idItems.add(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
 				cursor.close();
-				
-				/*
-                if(!curState)
-                    _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, this, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_STARRED);
-                else
-                    _Reader.Start_AsyncTask_PerformTagActionForSingleItem(0, this, asyncTaskCompletedPerformTagRead, idItems, FeedItemTags.TAGS.MARK_ITEM_AS_UNSTARRED);
-				
-                */
-                /*
-				Cursor cur = dbConn.getFeedByID(idFeed);
-				cur.moveToFirst();
-				GoogleReaderMethods.MarkItemAsStarred(!curState, cur, dbConn, getApplicationContext(), asyncTaskCompletedPerformTagStarred);
-				cur.close();*/
 				break;
 			
 			case R.id.action_openInBrowser:

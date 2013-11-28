@@ -84,6 +84,11 @@ Updates
 ==================================
 0.5.3 (in development)
 ---------------------
+- Update star/checkbox icons for devices with lower screen size
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/176">#176 Open directly in Browser</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/179">#179 Widget items not clickable</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/183">#183 Widget items color stripe position</a>
+
 
 0.5.2 (Google Play)
 ---------------------

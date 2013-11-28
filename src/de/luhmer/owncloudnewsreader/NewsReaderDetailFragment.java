@@ -28,6 +28,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager;
@@ -344,17 +346,6 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
     {
         DatabaseConnection dbConn = new DatabaseConnection(context);
     	return dbConn.getCurrentSelectedRssItems(getSortDirection(context));
-    	/*
-        if(idFeed != null)
-            return dbConn.getAllItemsForFeed(idFeed, onlyUnreadItems, onlyStarredItems, sDirection);
-        else if(idFolder != null)
-        {
-        	if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
-        		onlyUnreadItems = false;
-            return dbConn.getAllItemsForFolder(idFolder, onlyUnreadItems, sDirection);
-        }
-        return null;
-        */
     }
     
 	@Override
@@ -364,19 +355,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		return rootView;
 	}
 
-	/*
-	private void setEmptyListView() {
-		LayoutInflater inflator=getActivity().getLayoutInflater();
-        View emptyView = inflator.inflate(R.layout.subscription_detail_list_item_empty, (ViewGroup)getView());
-        
-        FontHelper fHelper = new FontHelper(getActivity());
-        fHelper.setFontForAllChildren(emptyView, fHelper.getFont());
-        
-        ListView lv = getListView();
-        if(lv != null)
-        	lv.setEmptyView(emptyView);
-	}
-	*/
+
 	
 	public static class NewsDetailCursorLoader extends SimpleCursorLoader {
 		String idFolder;
@@ -396,21 +375,24 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-				
-		Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);		
-		//intentNewsDetailAct.putIntegerArrayListExtra(NewsDetailActivity.DATABASE_IDS_OF_ITEMS, databaseIdsOfItems);
-		
-		intentNewsDetailAct.putExtra(NewsReaderListActivity.ITEM_ID, position);
-		intentNewsDetailAct.putExtra(NewsReaderListActivity.TITEL, titel);
-		startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
-		
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if(mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
+            Cursor c = ((SQLiteCursor) ((NewsListCursorAdapter) l.getAdapter()).getItem(position));
+            String currentUrl = c.getString(c.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
+            startActivity(browserIntent);
+        } else {
+            Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);
+
+            intentNewsDetailAct.putExtra(NewsReaderListActivity.ITEM_ID, position);
+            intentNewsDetailAct.putExtra(NewsReaderListActivity.TITEL, titel);
+            startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
+        }
 		super.onListItemClick(l, v, position, id);
 	}
 
-	/*
-	public static ArrayList<Integer> getDatabaseIdsOfItems() {
-		return databaseIdsOfItems;
-	}*/
 
 	@Override
 	public void stayUnread(RobotoCheckBox cb) {

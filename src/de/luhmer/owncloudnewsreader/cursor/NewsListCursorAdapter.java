@@ -54,6 +54,7 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
@@ -99,11 +100,11 @@ public class NewsListCursorAdapter extends CursorAdapter {
 				break;
 				
 			case 1:
-				setExtendedLayout(view, cursor);				
+				setExtendedLayout(view, cursor);
 				break;
 				
 			case 2:
-				setExtendedLayoutWebView(view, cursor);				
+				setExtendedLayoutWebView(view, cursor);
 				break;
 	
 			default:
@@ -113,14 +114,21 @@ public class NewsListCursorAdapter extends CursorAdapter {
         FontHelper fHelper = new FontHelper(context);
         fHelper.setFontForAllChildren(view, fHelper.getFont());
         
-        RobotoCheckBox cb = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_starred);
-        cb.setOnCheckedChangeListener(null);
+        RobotoCheckBox cbStarred = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_starred);
+        if(ThemeChooser.isDarkTheme(mContext))
+            cbStarred.setBackgroundResource(R.drawable.checkbox_background_holo_dark);
+        /*
+        //The default is white so we don't need to set it here again..
+        else
+            cbStarred.setBackgroundResource(R.drawable.checkbox_background_holo_light);*/
+
+        cbStarred.setOnCheckedChangeListener(null);
 
         Boolean isStarred = dbConn.isFeedUnreadStarred(cursor.getString(0), false);//false => starred will be checked
         //Log.d("ISSTARRED", "" + isStarred + " - Cursor: " + cursor.getString(0));
-        cb.setChecked(isStarred);
-        cb.setClickable(true);        
-        cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        cbStarred.setChecked(isStarred);
+        cbStarred.setClickable(true);
+        cbStarred.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -132,8 +140,18 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 pDelayHandler.DelayTimer();
 			}
 		});
-        
-        
+
+        LinearLayout ll_cb_starred_wrapper = (LinearLayout) view.findViewById(R.id.ll_cb_starred_wrapper);
+        if(ll_cb_starred_wrapper != null) {
+            ll_cb_starred_wrapper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RobotoCheckBox cbStarred = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_starred);
+                    cbStarred.setChecked(!cbStarred.isChecked());
+                }
+            });
+        }
+
         RobotoCheckBox cbRead = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_read);
         cbRead.setOnCheckedChangeListener(null);
         Boolean isChecked = dbConn.isFeedUnreadStarred(cursor.getString(0), true);
@@ -143,7 +161,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
         	RobotoTextView textView = (RobotoTextView) view.findViewById(R.id.summary);
         	fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
         }
-        	
+
         
         cbRead.setClickable(true);
         cbRead.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -238,7 +256,11 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	{
 		LinearLayout lLayout = (LinearLayout) view.getParent();
 		Boolean isChecked = dbConn.isFeedUnreadStarred(idItemDb, true);
-		RobotoCheckBox cbRead = (RobotoCheckBox) lLayout.findViewById(R.id.cb_lv_item_read);    
+		RobotoCheckBox cbRead = (RobotoCheckBox) lLayout.findViewById(R.id.cb_lv_item_read);
+        if(cbRead == null) {//In the default layout the star checkbox is nested two times.
+            lLayout = (LinearLayout) lLayout.getParent();
+            cbRead = (RobotoCheckBox) lLayout.findViewById(R.id.cb_lv_item_read);
+        }
         cbRead.setChecked(isChecked);
 	}
 	
@@ -255,7 +277,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 		}
 	}
 	
-	public static void UpdateListCursor(Context context)//TODO make this better
+	public static void UpdateListCursor(Context context)
 	{
 		SherlockFragmentActivity sfa = (SherlockFragmentActivity) context;
 		
@@ -296,10 +318,10 @@ public class NewsListCursorAdapter extends CursorAdapter {
 				retView = inflater.inflate(R.layout.subscription_detail_list_item_simple, parent, false);
 				break;
 			case 1:
-				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended, parent, false);				
+				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended, parent, false);
 				break;
 			case 2:
-				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended_webview, parent, false);				
+				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended_webview, parent, false);
 				break;	
         }
         

@@ -38,12 +38,12 @@
 	    <com.devspark.robototextview.widget.RobotoCheckBox
 	        android:id="@+id/cb_AllowAllSSLCertificates"
 	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"	        
+	        android:layout_height="wrap_content"
 	        android:text="@string/pref_title_DisableHostnameVerification" />
 	
 	    <View
 	        android:layout_width="match_parent"
-			android:layout_height="1dp"			
+			android:layout_height="1dp"
 			android:background="#383E44"
 			android:layout_marginTop="5dp"
 			android:layout_marginLeft="8dp"
@@ -56,7 +56,7 @@
            <com.devspark.robototextview.widget.RobotoButton
                android:id="@+id/btn_cancel"
                android:layout_width="0dip"
-               android:layout_height="wrap_content"
+               android:layout_height="match_parent"
                android:layout_weight="1"
                android:background="@android:color/transparent"
                android:text="@android:string/cancel" />
@@ -71,7 +71,7 @@
            <com.devspark.robototextview.widget.RobotoButton
                android:id="@+id/btn_signin"
                android:layout_width="0dip"
-               android:layout_height="wrap_content"
+               android:layout_height="match_parent"
                android:layout_weight="1"
                android:background="@android:color/transparent"
                android:text="@string/action_sign_in_short" />
