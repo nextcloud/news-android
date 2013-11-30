@@ -201,7 +201,9 @@ public class OwnCloudSyncService extends Service {
                         String tickerText = getString(R.string.notification_new_items_ticker).replace("X", String.valueOf(newItemsCount));
                         String contentText = getString(R.string.notification_new_items_text).replace("X", String.valueOf(newItemsCount));
                         String title = getString(R.string.app_name);
-                        NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
+
+                        if(mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true))//Default is true
+                            NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
                     }
                     UpdateWidget();
                 }

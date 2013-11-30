@@ -86,6 +86,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     public static final String CB_MARK_AS_READ_WHILE_SCROLLING_STRING = "cb_MarkAsReadWhileScrolling";
     public static final String CB_DISABLE_HOSTNAME_VERIFICATION_STRING = "cb_DisableHostnameVerification";
     public static final String CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING = "cb_openInBrowserDirectly";
+    public static final String CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING = "cb_showNotificationNewArticles";
     
     
     public static final String SP_APP_THEME = "sp_app_theme";
@@ -149,34 +150,16 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		header.setTitle(R.string.pref_header_data_sync);
 		getPreferenceScreen().addPreference(header);
 		addPreferencesFromResource(R.xml.pref_data_sync);
-		
 
-		
-		/*
-		// Add 'notifications' preferences, and a corresponding header.
-		PreferenceCategory fakeHeader = new PreferenceCategory(this);
-		fakeHeader.setTitle(R.string.pref_header_notifications);
-		getPreferenceScreen().addPreference(fakeHeader);
-		addPreferencesFromResource(R.xml.pref_notification);
-
-		// Add 'data and sync' preferences, and a corresponding header.
-		fakeHeader = new PreferenceCategory(this);
-		fakeHeader.setTitle(R.string.pref_header_data_sync);
-		getPreferenceScreen().addPreference(fakeHeader);
-		addPreferencesFromResource(R.xml.pref_data_sync);
-        */
-
-		// Bind the summaries of EditText/List/Dialog/Ringtone preferences to
-		// their values. When their values change, their summaries are updated
-		// to reflect the new value, per the Android Design guidelines.
+        header = new PreferenceCategory(this);
+        header.setTitle(R.string.pref_header_notifications);
+        getPreferenceScreen().addPreference(header);
+        addPreferencesFromResource(R.xml.pref_notification);
 
 		bindGeneralPreferences(null, this);
 		bindDisplayPreferences(null, this);
 		bindDataSyncPreferences(null, this);
-		
-		//bindPreferenceSummaryToValue(findPreference("example_list"));
-		//bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
-		//bindPreferenceSummaryToValue(findPreference("sync_frequency"));
+        bindNotificationPreferences(null, this);
 	}
 	
 	/* (non-Javadoc)
@@ -516,6 +499,21 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			}
 		});
 	}
+
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private static void bindNotificationPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
+    {
+        if(prefFrag != null)
+        {
+            bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING));
+        }
+        else
+        {
+            bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING));
+        }
+    }
+
 	
 	public static void CheckForUnsycedChangesInDatabase(final Context context) {
 		DatabaseConnection dbConn = new DatabaseConnection(context);

@@ -65,9 +65,8 @@ git clone https://github.com/gabrielemariotti/changeloglib.git
 git clone https://github.com/MichaelFlisar/MessageBar.git
 ></pre>
 
->Go to Eclipse and do the following:  
->--> File --> Import --> Android Project from Exsisting Source --> [...]/ActionBarSherlock/actionbarsherlock  
->--> File --> Import --> Android Project from Exsisting Source --> [...]/Android-PullToRefresh/library  
+>Go to Eclipse and import the project like in the following example:
+>--> File --> Import --> Android Project from Exsisting Source --> [...]/ActionBarSherlock/actionbarsherlock
 ... for all other Dependencies the same ...
 
 
@@ -82,9 +81,14 @@ git clone https://github.com/MichaelFlisar/MessageBar.git
 
 Updates
 ==================================
-0.5.4 (in development)
+0.5.5 (in development)
+---------------------
 
-0.5.3 (Google Play)
+0.5.4 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/184">#184 Option to disable notification</a>
+
+0.5.3 (Google Play - Beta)
 ---------------------
 - Update star/checkbox icons for devices with lower screen size
 - Update language support
