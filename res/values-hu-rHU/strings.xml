@@ -9,6 +9,7 @@
   <string name="starredFeeds">Csillagozottak</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Frissítés</string>
+  <string name="menu_About_Changelog">Névjegy / Változtatások</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Forráskód - Hibajelentés</string>
   <string name="email_sendMail">Email küldése</string>
@@ -22,6 +23,10 @@
   <string name="pref_title_password">Jelszó</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Belépés</string>
+  <string name="login_progress_signing_in">Belépés...</string>
+  <string name="error_incorrect_password">Ez a jelszó érvénytelen</string>
+  <string name="error_field_required">Ez a mező szükséges</string>
   <!--Toast Messages-->
   <string name="pull_to_refresh_updateFolder">Mappa szinkronizálása</string>
   <string name="pull_to_refresh_updateFeeds">Hírcsatornák szinkronizálása</string>
@@ -40,11 +45,43 @@
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <!--Settings for Display-->
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Hiba</string>
   <string name="login_dialog_title_security_warning">Biztonsági figyelmeztetés</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
