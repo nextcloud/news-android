@@ -1,19 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">Stillingar</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
-  <string name="action_starred">Stjörnumerkt</string>
-  <string name="action_Share">Deila</string>
   <!--Strings related to login-->
-  <string name="pref_title_username">Notendanafn</string>
-  <string name="pref_title_password">Lykilorð</string>
+  <string name="pref_title_password">Secret Code</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
-  <string name="title_activity_settings">Stillingar</string>
   <!--General settings-->
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
@@ -21,13 +16,10 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="warning">Aðvörun</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
-  <string name="login_dialog_title_error">Villa</string>
-  <string name="login_dialog_title_security_warning">Öryggis aðvörun</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

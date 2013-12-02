@@ -3,22 +3,22 @@
   <string name="auto_sync_string">Otomatik eşitle</string>
   <string name="app_name">ownCloud Haber Okuyucu</string>
   <string name="action_settings">Ayarlar</string>
-  <string name="title_activity_news_detail">HaberDetayAktivitesi</string>
-  <string name="title_activity_subscription">ÜyelikAktivitesi</string>
+  <string name="title_activity_news_detail">HaberAyrıntıEtkinliği</string>
+  <string name="title_activity_subscription">ÜyelikEtkinliği</string>
   <string name="title_newsreader_list">HaberOkuyucusu</string>
-  <string name="title_newsreader_detail">Haber  Okuyucusu Detay</string>
+  <string name="title_newsreader_detail">Haber Okuyucu Ayrıntıları</string>
   <string name="empty_view_header">Bilgi</string>
-  <string name="empty_view_content">Burada öğe yok</string>
+  <string name="empty_view_content">Burada öge yok</string>
   <string name="toast_GettingMoreItems">Daha fazla öge indirme başlatıldı... Lütfen bekleyin.</string>
   <string name="tv_clickHereToOpenItem">Ögeyi açmak için buraya tıklayın</string>
-  <string name="no_wifi_available">Kablosuz bağlı değ</string>
+  <string name="no_wifi_available">Kablosuz bağlı değil</string>
   <string name="do_you_want_to_download_without_wifi">Resimleri bir kablosuz bağlantı olmadan indirmek ister misiniz</string>
   <string name="max_items_count_reached">XX ögenin azami sayısına ulaştınız</string>
   <string name="widget_header">ownCloud Haberler</string>
   <string name="message_bar_new_articles_available">Yeni ögeler mevcut</string>
   <string name="message_bar_reload">Yeniden yükle</string>
-  <string name="allUnreadFeeds">Tüm okunmamış öğeler</string>
-  <string name="starredFeeds">Yıldızlı öğeler</string>
+  <string name="allUnreadFeeds">Tüm okunmamış ögeler</string>
+  <string name="starredFeeds">Yıldızlı ögeler</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Yenile</string>
   <string name="menu_About_Changelog">Hakkında / Değişim Günlüğü</string>
@@ -26,17 +26,17 @@
   <string name="menu_StartImageCaching">Resimleri indir</string>
   <string name="menu_downloadMoreItems">Daha fazla öge indir</string>
   <!--EMAIL-->
-  <string name="email_sourceCode">Öğenin kaynak kodu - Hata bildirimi</string>
+  <string name="email_sourceCode">Ögenin kaynak kodu - Hata bildirimi</string>
   <string name="email_sendMail">E-posta Gönder</string>
   <!--Action Bar Items-->
   <string name="action_starred">Yıldızlı</string>
   <string name="action_read">Oku</string>
-  <string name="action_openInBrowser">Tarayıcıda aç</string>
-  <string name="action_sendSourceCode">öğeyi Geliştiriciye gönder</string>
+  <string name="action_openInBrowser">Tarayıcıda Aç</string>
+  <string name="action_sendSourceCode">Ögeyi Geliştiriciye gönder</string>
   <string name="action_Share">Paylaş</string>
   <string name="action_login">Sunucu Ayarları</string>
-  <string name="notification_new_items_ticker">X adet okunmamış öğeler var</string>
-  <string name="notification_new_items_text">X yeni okunmamış öğeler var.</string>
+  <string name="notification_new_items_ticker">X adet okunmamış öge var</string>
+  <string name="notification_new_items_text">X yeni okunmamış öge var</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Kullanıcı Adı</string>
   <string name="pref_title_password">Parola</string>
@@ -44,7 +44,7 @@
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Oturum aç</string>
-  <string name="login_progress_signing_in">Oturum açılıyor..</string>
+  <string name="login_progress_signing_in">Oturum açılıyor...</string>
   <string name="error_incorrect_password">Bu parola hatalı</string>
   <string name="error_field_required">Bu alan gerekli</string>
   <string name="error_invalid_url">Bu adres geçersiz</string>
@@ -52,7 +52,7 @@
   <string name="toast_downloaded_x_items">X eski öge indirildi</string>
   <string name="toast_no_more_downloads_available">Daha fazla öge yok</string>
   <string name="pull_to_refresh_updateTags">Öge durumları eşitleniyor</string>
-  <string name="pull_to_refresh_updateFolder">Klasörler eşitleniyor</string>
+  <string name="pull_to_refresh_updateFolder">Klasör eşitleniyor</string>
   <string name="pull_to_refresh_updateFeeds">Beslemeler eşitleniyor</string>
   <string name="pull_to_refresh_updateItems">Ögeler eşitleniyor</string>
   <!--Strings related to Settings-->
@@ -83,8 +83,9 @@
   <string name="pref_title_DisableHostnameVerification">Ana Makine Doğrulamayı Devre Dışı Bırak</string>
   <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezin</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu işaretle</string>
+  <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görümü atla ve makaleyi tarayıcıda aç</string>
   <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin Mi?</string>
+  <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>
   <string name="mtm_decision_always">Her Zaman</string>
   <string name="mtm_decision_once">Sadece Bu Kez</string>
   <string name="mtm_decision_abort">İptal Et</string>
@@ -144,10 +145,10 @@
   <string name="login_dialog_title_error">Hata</string>
   <string name="login_dialog_text_something_went_wrong">Bir şeyler yanlış gitti :(</string>
   <string name="login_dialog_text_not_compatible">Bu uygulama sürümü sizin ownCloud Haber uygulamanız ile uyumlu değil. Lütfen haber uygulama ve uygulama çerçevesini güncelleyin.</string>
-  <string name="login_dialog_title_security_warning">Güvenlik Uyarisi</string>
+  <string name="login_dialog_title_security_warning">Güvenlik Uyarısı</string>
   <string name="login_dialog_text_security_warning">https kullanmıyorsunuz. Bir saldırgan trafiğinizi kesip hassas verilere erişim kazanabilir (örn. parolanız). Bu yüzden https kullanmanız şiddetle tavsiye olunur!</string>
   <!--Data & Sync-->
-  <string name="pref_header_data_sync">Veri eşitle</string>
+  <string name="pref_header_data_sync">Veri ve eşitleme</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Önbelleği temizle</string>
   <string name="pref_title_CacheImagesOffline">Resimleri çevrimdışı önbelleğe al</string>
@@ -189,9 +190,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <!--Example settings for Notifications-->
-  <!--<string name="pref_header_notifications">Notifications</string>
-    <string name="pref_title_new_message_notifications">New message notifications</string>
+  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
