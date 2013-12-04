@@ -83,6 +83,8 @@
   <string name="pref_title_DisableHostnameVerification">Disabilita la verifica del nome host</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviga con i pulsanti del volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Segna come letto durante lo scorrimento</string>
+  <string name="pref_title_OpenInBrowserDirectly">Salta i dettagli e apri l\'articolo nel browser</string>
+  <string name="pref_title_notification_new_articles_available">Mostra notifica quando un nuovo articolo è disponibile</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accettare un certificato sconosciuto?</string>
   <string name="mtm_decision_always">Sempre</string>
@@ -189,6 +191,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Notifiche</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>

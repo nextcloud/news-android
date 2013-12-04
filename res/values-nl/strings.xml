@@ -84,6 +84,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Navigeren met volumeknoppen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
   <string name="pref_title_OpenInBrowserDirectly">Stal detailoverzicht over en open het artikel in de browser.</string>
+  <string name="pref_title_notification_new_articles_available">Toon meldingen als er nieuwe artikelen zijn</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Onbekend certificaat accepteren?</string>
   <string name="mtm_decision_always">Altijd</string>
@@ -190,6 +191,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Meldingen</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>

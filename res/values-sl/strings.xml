@@ -84,6 +84,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Pomikanje po zaslonu z uporabo gumbov za glasnost</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Označi kot prebrano med pomikanjem med predmeti</string>
   <string name="pref_title_OpenInBrowserDirectly">Preskoči pregled povzetka in odpri prispevek v brskalniku</string>
+  <string name="pref_title_notification_new_articles_available">Pokaži obvestilo, ko je na voljo nov prispevek</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
   <string name="mtm_decision_always">Vedno</string>
@@ -190,6 +191,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Obvestila</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>

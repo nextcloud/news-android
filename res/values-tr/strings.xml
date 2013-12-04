@@ -84,6 +84,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezin</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu işaretle</string>
   <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görümü atla ve makaleyi tarayıcıda aç</string>
+  <string name="pref_title_notification_new_articles_available">Yeni makaleler kullanılabilir olduğunda bildirim göster</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>
   <string name="mtm_decision_always">Her Zaman</string>
@@ -190,6 +191,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Bildirimler</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
