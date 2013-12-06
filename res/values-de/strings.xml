@@ -12,8 +12,8 @@
   <string name="toast_GettingMoreItems">Lade weitere Artikel herunter... Bitte warten.</string>
   <string name="tv_clickHereToOpenItem">Hier klicken, um Artikel zu öffnen</string>
   <string name="no_wifi_available">Keine WLAN-Verbindung</string>
-  <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne W-LAN-Verbindung herunterladen</string>
-  <string name="max_items_count_reached">Sie haben die maximale Anzahl von XX Artikeln erreicht</string>
+  <string name="do_you_want_to_download_without_wifi">Willst du die Bilder ohne W-LAN-Verbindung herunterladen</string>
+  <string name="max_items_count_reached">Du hast die maximale Anzahl von XX Artikeln erreicht</string>
   <string name="widget_header">ownCloud-News</string>
   <string name="message_bar_new_articles_available">Neue Elemente verfügbar</string>
   <string name="message_bar_reload">Aktualisieren</string>
@@ -75,7 +75,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="calculating_cache_size">Berechne Cachegröße... Bitte warten.</string>
-  <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchten Sie dennoch den Cache leeren?</string>
+  <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchtest Du dennoch den Cache leeren?</string>
   <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Starten synchronisieren</string>
   <string name="pref_title_ShowOnlyUnread">Nur ungelesene Artikel anzeigen</string>
@@ -145,9 +145,9 @@
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fehler</string>
   <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
-  <string name="login_dialog_text_not_compatible">Diese App-Version ist nicht mit Ihrer ownCloud News App kompatibel. Bitte aktualisieren Sie die News App und das App Framework.</string>
+  <string name="login_dialog_text_not_compatible">Diese App-Version ist nicht mit Deiner ownCloud News App kompatibel. Bitte aktualisiere die News App und das App Framework.</string>
   <string name="login_dialog_title_security_warning">Sicherheitswarnung</string>
-  <string name="login_dialog_text_security_warning">Sie nutzen kein https. Ein Angreifer könnte Ihren Datenverkehr mitschneiden und dadurch Zugang zu sensiblen Daten (z.B. Ihrem Passwort) erhalten. Wir empfehlen dringend die Nutzung von https!</string>
+  <string name="login_dialog_text_security_warning">Du nutzt kein https. Ein Angreifer könnte Deinen Datenverkehr mitschneiden und dadurch Zugang zu sensiblen Daten (z.B. Deinem Passwort) erhalten. Wir empfehlen dringend die Nutzung von https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
