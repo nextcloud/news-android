@@ -84,7 +84,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Naviga con i pulsanti del volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Segna come letto durante lo scorrimento</string>
   <string name="pref_title_OpenInBrowserDirectly">Salta i dettagli e apri l\'articolo nel browser</string>
-  <string name="pref_title_notification_new_articles_available">Mostra notifica quando un nuovo articolo è disponibile</string>
+  <string name="pref_title_notification_new_articles_available">Mostra una notifica quando nuovi articoli sono disponibili</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accettare un certificato sconosciuto?</string>
   <string name="mtm_decision_always">Sempre</string>
