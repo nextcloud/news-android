@@ -84,6 +84,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Navigácia pomocou tlačidiel hlasitosti</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Označiť ako prečítané pri rolovaní stránky</string>
   <string name="pref_title_OpenInBrowserDirectly">Prejsť na podrobnosti a otvoriť článok v prehliadači</string>
+  <string name="pref_title_notification_new_articles_available">Zobraziť oznámenie, keď sú k dispozícii nové články</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Prijať neznámy certifikát?</string>
   <string name="mtm_decision_always">Vždy</string>
@@ -190,6 +191,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Oznámenia</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
