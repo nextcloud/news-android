@@ -1,14 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="action_settings">Configuración</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <!--Strings related to login-->
+  <string name="pref_title_username">Usuario</string>
+  <string name="pref_title_password">Clave</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Configuración</string>
   <!--General settings-->
+  <string name="pref_header_general">General</string>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
