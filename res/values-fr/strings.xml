@@ -84,6 +84,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Naviguer avec les boutons de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu tout en défilant</string>
   <string name="pref_title_OpenInBrowserDirectly">Passer la vue détaillée et ouvrir directement l\'article dans le navigateur</string>
+  <string name="pref_title_notification_new_articles_available">Afficher une notification lorsque de nouveaux articles sont disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepter les certificats non-authentifiés ?</string>
   <string name="mtm_decision_always">Toujours</string>
@@ -190,6 +191,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Notifications</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
