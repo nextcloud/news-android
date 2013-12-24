@@ -84,6 +84,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
   <string name="pref_title_OpenInBrowserDirectly">Пропустить просмотр деталей и открыть статью в браузере</string>
+  <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
   <string name="mtm_decision_always">Всегда</string>
@@ -190,6 +191,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Уведомления</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
