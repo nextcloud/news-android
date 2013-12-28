@@ -143,13 +143,17 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 getSupportActionBar().setHomeButtonEnabled(false);
+
+                getMenuItemUpdater().setVisible(false);
 			}
 			
 			@Override
 			public void onPanelClosed(View arg0) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 getSupportActionBar().setHomeButtonEnabled(true);
-				
+
+                getMenuItemUpdater().setVisible(true);
+
 				StartDetailFragmentNow();
 			}
 		});

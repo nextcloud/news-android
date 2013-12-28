@@ -8,25 +8,30 @@
 			var images = document.getElementsByTagName('img');
 			
 			for (var i = 1; i < images.length; i++) {// i = 1 because of the feed image which has no caption
-				if(images[i].getAttribute('title') != "" && images[i].getAttribute('title') != null) {
+				if(images[i].getAttribute('title') != "" &&
+				        images[i].getAttribute('title') != null &&
+				        images[i].getAttribute('title') != "null") {
 					(function (image) {
 						var timer;
 						image.addEventListener('mouseup', function() {
 							clearTimeout(timer);
 						});
-						
+
+
 						image.addEventListener('mousedown', function (e) {
 							timer = window.setTimeout(function() {
                                 e.preventDefault();
                                 alert(image.getAttribute('title'));
-							}, 500);
+                                //alert("fired - mousedown");
+							}, 1000);
 						});
 
 						image.addEventListener("touchstart", function(e){
                             timer = window.setTimeout(function() {
                                 e.preventDefault();
                                 alert(image.getAttribute('title'));
-							}, 500);
+                                //alert("fired - touchstart");
+							}, 1000);
 						});
 
                         image.addEventListener('touchend', function() {
@@ -137,6 +142,11 @@
 				white-space:	pre-wrap		!important;
 				word-wrap: 		break-word		!important;
 			}
+
+            a {
+                margin-left:    auto !important;
+                margin-right:   auto !important;
+            }
 			
 			body {
 				word-wrap: 		break-word !important;
@@ -146,16 +156,7 @@
 				width:100% !important;
 				table-layout:fixed; 
 			}
-			
-			
-			img {
-				/*
-				display: block;
-				margin-left:auto;
-				margin-right:auto;
-				*/
-			}
-						
+
 			#header {
 				font-size:		21px;
 				margin-bottom:	5px;
@@ -166,19 +167,15 @@
 			#header a:link, a:active, a:hover, a:visited {
 				color:				#DADADA !important;
 				text-decoration:	none !important;
-			}			
+			}
 			
 			#subscription, #datetime {
 				margin-bottom:3px;
 				font-size:12px;
-				
-				/* font-style:	oblique;
-				margin-right:	2px;*/
 			}
 			
 			#subscription {
 				float:left;
-				/* margin-left: -2px !important; */
 			}
 			
 			#datetime {
@@ -211,7 +208,6 @@
 					
 			body#lightTheme a:link, a:active, a:hover {
 				color: #555 !important;
-				/*color: #2C2E2F;*/
 			}
 			body#lightTheme a:visited {
 				color: #000 !important;
@@ -223,13 +219,6 @@
 			body#darkTheme a:visited {
 				color: #AEAEAE !important;
 			}
-			/*
-			a:active {
-				color: #DADADA;
-			}
-			a:hover {
-				color: #DADADA;
-			}*/
         </style>
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     </head>

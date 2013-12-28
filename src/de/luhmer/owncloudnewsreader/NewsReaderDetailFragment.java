@@ -44,6 +44,7 @@ import android.widget.ListView;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.devspark.robototextview.widget.RobotoCheckBox;
+import com.devspark.robototextview.widget.RobotoTextView;
 
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
@@ -56,7 +57,7 @@ import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
  * either contained in a {@link NewsReaderListActivity} in two-pane mode (on
- * tablets) or a {@link NewsReaderDetailActivity} on handsets.
+ * tablets) or a {@link NewsReaderListActivity} on handsets.
  */
 public class NewsReaderDetailFragment extends SherlockListFragment implements IOnStayUnread {
 	/**
@@ -378,11 +379,13 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         if(mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
-            Cursor c = ((SQLiteCursor) ((NewsListCursorAdapter) l.getAdapter()).getItem(position));
+            Cursor c = ((SQLiteCursor) l.getAdapter().getItem(position));
             String currentUrl = c.getString(c.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
 
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
             startActivity(browserIntent);
+
+            ((RobotoCheckBox) v.findViewById(R.id.cb_lv_item_read)).setChecked(true);
         } else {
             Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);
 

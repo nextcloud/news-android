@@ -101,7 +101,7 @@ public class MenuUtilsSherlockFragmentActivity extends SherlockFragmentActivity 
 		
 		
 		//menuItemMarkAllAsRead.setEnabled(false);
-		menuItemDownloadMoreItems.setEnabled(false);		
+		menuItemDownloadMoreItems.setEnabled(false);
 				
 		NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame));
 		if(ndf != null)

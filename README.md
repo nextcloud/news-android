@@ -81,8 +81,17 @@ git clone https://github.com/MichaelFlisar/MessageBar.git
 
 Updates
 ==================================
-0.5.5 (in development)
+0.5.6 (in development)
 ---------------------
+
+0.5.5 (Google Play - Beta)
+---------------------
+- Improve Changelog View
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/186">#186 Missing "clear cache" in the settings (on Tablets)</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/189">#189 Read mouse-over</a>
+- Improvement - Fix Layout problems in DetailView
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/195">#195 Mark as read when opened in browser</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/194">#194 favIcons and imgCache show up in Gallery</a>
 
 0.5.4 (Google Play)
 ---------------------

@@ -136,7 +136,6 @@ public class NewsDetailFragment extends SherlockFragment {
 		
 		progressbar_webview = (ProgressBar) rootView.findViewById(R.id.progressbar_webview);
 
-
         LoadRssItemInWebView();
 
 		return rootView;

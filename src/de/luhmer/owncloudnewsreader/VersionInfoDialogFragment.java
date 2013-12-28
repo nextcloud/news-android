@@ -35,6 +35,9 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 
+import it.gmariotti.changelibs.library.internal.ChangeLog;
+import it.gmariotti.changelibs.library.view.ChangeLogListView;
+
 /**
  * Activity which displays a login screen to the user, offering registration as
  * well.
@@ -47,13 +50,23 @@ public class VersionInfoDialogFragment extends SherlockDialogFragment {
         // Build the dialog and set up the button click handlers
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_version_info, null);
+        final View view = inflater.inflate(R.layout.dialog_version_info, null);
         builder.setView(view).setTitle(getString(R.string.menu_About_Changelog));
 
         try {
             PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
             String version = pInfo.versionName;
             ((TextView)view.findViewById(R.id.tv_androidAppVersion)).setText("You're using Version " + version);
+
+
+            ChangeLogListView clListView = (ChangeLogListView) view.findViewById(R.id.changelog_listview);
+            clListView.setCallback(new ChangeLogListView.FinishedLoadingCallback() {
+                @Override
+                public void FinishedLoading() {
+                     view.findViewById(R.id.changeLogLoadingProgressBar).setVisibility(View.GONE);
+                }
+            });
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

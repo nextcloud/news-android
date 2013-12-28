@@ -5,11 +5,18 @@
     <header
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
-    
-    
+
     <header
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$DisplayPreferenceFragment"
         android:title="@string/pref_header_display" />
+
+    <header
+        android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$NotificationPreferenceFragment"
+        android:title="@string/pref_header_notifications" />
+
+    <header
+        android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$DataSyncPreferenceFragment"
+        android:title="@string/pref_header_data_sync" />
    
     
     <!--

@@ -29,6 +29,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -233,30 +234,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 				preference
 						.setSummary(index >= 0 ? listPreference.getEntries()[index]
 								: null);
-			} /*else if (preference instanceof RingtonePreference) {
-				// For ringtone preferences, look up the correct display value
-				// using RingtoneManager.
-				if (TextUtils.isEmpty(stringValue)) {
-					// Empty values correspond to 'silent' (no ringtone).
-					preference.setSummary(R.string.pref_ringtone_silent);
-
-				} else {
-					Ringtone ringtone = RingtoneManager.getRingtone(
-							preference.getContext(), Uri.parse(stringValue));
-
-					if (ringtone == null) {
-						// Clear the summary if there was a lookup error.
-						preference.setSummary(null);
-					} else {
-						// Set the summary to reflect the new ringtone display
-						// name.
-						String name = ringtone
-								.getTitle(preference.getContext());
-						preference.setSummary(name);
-					}
-				}
-
-			} */ else {
+			} else {
 				String key = preference.getKey();
 				// For all other preferences, set the summary to the value's
 				// simple string representation.
@@ -268,20 +246,6 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			return true;
 		}
 	};
-	
-	/*
-	private static void ShowInfoDialog(String text)
-	{
-		// Use the Builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        builder.setMessage(text)
-        	.setTitle("Security warning")
-        	.setPositiveButton("Ok", null);
-        
-        // Create the AlertDialog object and return it
-        builder.create().show();
-	}*/
-	
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceBooleanToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -337,12 +301,6 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_general);
 
-			// Bind the summaries of EditText/List/Dialog/Ringtone preferences
-			// to their values. When their values change, their summaries are
-			// updated to reflect the new value, per the Android Design
-			// guidelines.
-			
-			
 			bindGeneralPreferences(this, null);
 		}
 	}
@@ -360,11 +318,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_notification);
 
-			// Bind the summaries of EditText/List/Dialog/Ringtone preferences
-			// to their values. When their values change, their summaries are
-			// updated to reflect the new value, per the Android Design
-			// guidelines.
-			//bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
+            bindNotificationPreferences(this, null);
 		}
 	}
 
@@ -379,10 +333,6 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_data_sync);
 
-			// Bind the summaries of EditText/List/Dialog/Ringtone preferences
-			// to their values. When their values change, their summaries are
-			// updated to reflect the new value, per the Android Design
-			// guidelines.
 			bindDataSyncPreferences(this, null);
 		}
 	}
@@ -399,10 +349,6 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_display);
 
-			// Bind the summaries of EditText/List/Dialog/Ringtone preferences
-			// to their values. When their values change, their summaries are
-			// updated to reflect the new value, per the Android Design
-			// guidelines.
 			bindDisplayPreferences(this, null);
 		}
 	}
@@ -493,8 +439,8 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			public boolean onPreferenceClick(Preference preference) {
 				
 				((EditTextPreference) preference).getDialog().dismiss();
-				
-				CheckForUnsycedChangesInDatabase(_mActivity);
+
+                CheckForUnsycedChangesInDatabaseAndResetDatabase(_mActivity);
 				return false;
 			}
 		});
@@ -515,7 +461,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     }
 
 	
-	public static void CheckForUnsycedChangesInDatabase(final Context context) {
+	public static void CheckForUnsycedChangesInDatabaseAndResetDatabase(final Context context) {
 		DatabaseConnection dbConn = new DatabaseConnection(context);
 		boolean resetDatabase = true;
 		if(dbConn.getAllNewReadItems().size() > 0)
@@ -527,8 +473,8 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		else if(dbConn.getAllNewUnstarredItems().size() > 0)
 			resetDatabase = false;
 		
-		if(resetDatabase) {				
-			ResetDatabase();
+		if(resetDatabase) {
+            new ResetDatabaseAsyncTask(context).execute();
 		} else {
 			new AlertDialog.Builder(context)
 				.setTitle(context.getString(R.string.warning))
@@ -540,7 +486,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 						PostDelayHandler pDelayHandler = new PostDelayHandler(context);
 						pDelayHandler.stopRunningPostDelayHandler();
 						
-						ResetDatabase();
+						new ResetDatabaseAsyncTask(context).execute();
 					}
 				})
 				.setNegativeButton(context.getString(android.R.string.no), null)
@@ -550,19 +496,52 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			
 		dbConn.closeDatabase();
 	}
-	
-	private static void ResetDatabase() {
-		DatabaseConnection dbConn = new DatabaseConnection(_mActivity);
-		try {
-			dbConn.resetDatabase();
-			ImageHandler.clearCache(_mActivity);
-			LoginDialogFragment.ShowAlertDialog("Information" , "Cache is cleared!", _mActivity);
-			new GetCacheSizeAsync().execute((Void)null);
-		} finally {
-			dbConn.closeDatabase();
-		}
-	}
-	
+
+    public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Boolean> {
+
+        ProgressDialog pd;
+        Context context;
+
+        public ResetDatabaseAsyncTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pd = new ProgressDialog(context);
+            pd.setIndeterminate(true);
+            pd.setCancelable(false);
+            pd.setTitle(context.getString(R.string.dialog_clearing_cache));
+            pd.setMessage(context.getString(R.string.dialog_clearing_cache_please_wait));
+            pd.show();
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            DatabaseConnection dbConn = new DatabaseConnection(_mActivity);
+            try {
+                dbConn.resetDatabase();
+                boolean success = ImageHandler.clearCache(_mActivity);
+                new GetCacheSizeAsync().execute((Void)null);
+                return success;
+            } finally {
+                dbConn.closeDatabase();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            pd.dismiss();
+            if(result)
+                LoginDialogFragment.ShowAlertDialog("Information" , "Cache is cleared!", _mActivity);
+            else
+                LoginDialogFragment.ShowAlertDialog("Information", context.getString(R.string.login_dialog_text_something_went_wrong), _mActivity);
+            super.onPostExecute(result);
+        };
+    }
+
 	public static class GetCacheSizeAsync extends AsyncTask<Void, Void, Void> {
 
 		String mSize = "0MB";

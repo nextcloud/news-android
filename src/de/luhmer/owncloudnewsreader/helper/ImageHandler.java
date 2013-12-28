@@ -22,7 +22,9 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -117,7 +119,7 @@ public class ImageHandler {
 	}
 	
 	public static String getPath(Context context) {
-		String url = null;		
+		String url;
 		Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
 		if(isSDPresent)
 		{
@@ -126,10 +128,10 @@ public class ImageHandler {
 				url = url + "/external_sd";
 			}
 			//url = url + "/" + context.getString(R.string.app_name);
-			url = url + "/ownCloud News Reader";			
+			url = url + "/ownCloud News Reader";
 		}
 		else
-			url = context.getCacheDir().getAbsolutePath(); //Environment.getDownloadCacheDirectory().getAbsolutePath();		
+			url = context.getCacheDir().getAbsolutePath();
 		
 		return url;
 	}
@@ -156,10 +158,28 @@ public class ImageHandler {
 	}
 
 	
-	public static void clearCache(Context context)
+	public static boolean clearCache(Context context)
 	{
-		deleteDir(new File(getPath(context)));
+        String path = getPath(context);
+		boolean result = deleteDir(new File(path));
+        createEmptyFile(path + "/.nomedia");
+        return result;
 	}
+
+    public static void createEmptyFile(String path) {
+        try {
+            File file = new File(path);
+            if(!file.exists()) {
+                new File(file.getParent()).mkdirs();
+                FileOutputStream fOut = new FileOutputStream(file, false);
+                OutputStreamWriter osw = new OutputStreamWriter(fOut);
+                osw.flush();
+                osw.close();
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 	
 	// Deletes all files and subdirectories under dir.
 	// Returns true if all deletions were successful.

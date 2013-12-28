@@ -153,6 +153,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
         }
 
         RobotoCheckBox cbRead = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_read);
+        cbRead.setTag(idItemDb);
         cbRead.setOnCheckedChangeListener(null);
         Boolean isChecked = dbConn.isFeedUnreadStarred(cursor.getString(0), true);
         //Log.d("ISREAD", "" + isChecked + " - Cursor: " + cursor.getString(0));
@@ -168,26 +169,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                dbConn.updateIsReadOfItem(idItemDb, isChecked);
-                UpdateListCursor(mContext);
-                
-                pDelayHandler.DelayTimer();
-                
-                RobotoTextView textView = (RobotoTextView) view.findViewById(R.id.summary);
-                if(textView != null)
-                {
-                	FontHelper fHelper = new FontHelper(context);
-                	if(isChecked)
-                		fHelper.setFontStyleForSingleView(textView, fHelper.getFont());
-                		//textView.setTextAppearance(mContext, R.style.RobotoFontStyle);
-                	else {
-                		fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
-                		onStayUnread.stayUnread((RobotoCheckBox)buttonView);
-                	}
-                		//textView.setTextAppearance(mContext, R.style.RobotoFontStyleBold);
-                		
-                	textView.invalidate();
-                }
+                ChangeReadStateOfItem((RobotoCheckBox) buttonView, view, isChecked, context);
 			}
 		});
         
@@ -197,7 +179,31 @@ public class NewsListCursorAdapter extends CursorAdapter {
         if(colorString != null)
         	viewColor.setBackgroundColor(Integer.parseInt(colorString));
 	}
-	
+
+    public void ChangeReadStateOfItem(RobotoCheckBox checkBox, View parentView, boolean isChecked, Context context) {
+
+        dbConn.updateIsReadOfItem(checkBox.getTag().toString(), isChecked);
+        UpdateListCursor(mContext);
+
+        pDelayHandler.DelayTimer();
+
+        RobotoTextView textView = (RobotoTextView) parentView.findViewById(R.id.summary);
+        if(textView != null)
+        {
+            FontHelper fHelper = new FontHelper(context);
+            if(isChecked)
+                fHelper.setFontStyleForSingleView(textView, fHelper.getFont());
+                //textView.setTextAppearance(mContext, R.style.RobotoFontStyle);
+            else {
+                fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
+                onStayUnread.stayUnread(checkBox);
+            }
+            //textView.setTextAppearance(mContext, R.style.RobotoFontStyleBold);
+
+            textView.invalidate();
+        }
+    }
+
 	public void setSimpleLayout(View view, Cursor cursor)
 	{
 		TextView textViewSummary = (TextView) view.findViewById(R.id.summary);

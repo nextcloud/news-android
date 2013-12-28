@@ -35,11 +35,11 @@
 
 			function handleResult(content)
 			{
-				//var Ausdruck = /(?<=Updates\n==================================)((.|\s)*)/;						
+				//var Ausdruck = /(?<=Updates\n==================================)((.|\s)*)/;
 				content = content.replace(regex, '');
 				content = content.replace("Updates\n==================================", "");
 				content = $.trim(content);
-				content = content.replace(/\n/g, "<br>");								
+				content = content.replace(/\n/g, "<br>");
 				
 				$('#changelog_text').replaceWith(content);
 			}

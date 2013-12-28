@@ -23,11 +23,19 @@
         android:minHeight="30dp"
         android:gravity="center_horizontal|center_vertical" />
 
+    <ProgressBar
+        android:id="@+id/changeLogLoadingProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:indeterminate="true" />
+
     <view xmlns:android="http://schemas.android.com/apk/res/android"
         class="it.gmariotti.changelibs.library.view.ChangeLogListView"
-        android:id="@+id/view"
+        android:id="@+id/changelog_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:autoLink="web"
         android:textIsSelectable="false" />
+
 </LinearLayout>
