@@ -35,8 +35,8 @@
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Ajustes del Servidor</string>
-  <string name="notification_new_items_ticker">Tienes X artículos nuevos sin leer</string>
-  <string name="notification_new_items_text">X Artículos sin leer disponibles</string>
+  <string name="notification_new_items_ticker">Tiene X artículos nuevos sin leer</string>
+  <string name="notification_new_items_text">X nuevos artículos sin leer disponibles</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>
@@ -74,6 +74,8 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Vaciando el caché</string>
+  <string name="dialog_clearing_cache_please_wait">Vaciando el caché... Espere.</string>
   <string name="calculating_cache_size">Calculando tamaño de cache... Por favor espere.</string>
   <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quieres vaciar la caché igualmente?</string>
   <string name="warning">Precaución</string>
@@ -83,7 +85,7 @@
   <string name="pref_title_DisableHostnameVerification">Deshabilitar verificación del hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído mientras se desplaza</string>
-  <string name="pref_title_OpenInBrowserDirectly">Salir de la vista de detalle y abrir el articulo en el explorador.</string>
+  <string name="pref_title_OpenInBrowserDirectly">Salir de la vista de detalle y abrir el artículo en el explorador.</string>
   <string name="pref_title_notification_new_articles_available">Mostrar notificación cuando nuevos artículos estén disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">¿Aceptar certificados desconocidos?</string>

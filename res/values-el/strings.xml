@@ -74,6 +74,8 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Εκκαθάριση προσωρινής μνήμης</string>
+  <string name="dialog_clearing_cache_please_wait">Εκκαθάριση προσωρινής μνήμης σε εξέλιξη.. Παρακαλώ περιμένετε.</string>
   <string name="calculating_cache_size">Υπολογισμός μεγέθους στοιχείων σε εξέλιξη.. Παρακαλώ περιμένετε.</string>
   <string name="reset_cache_unsaved_changes">Υπάρχουν αλλαγές που δεν έχουν συγχρονιστεί. Θα θέλατε να επαναφέρετε τα αποθηκευμένα στοιχεία ούτως ή άλλως;</string>
   <string name="warning">Προειδοποίηση</string>

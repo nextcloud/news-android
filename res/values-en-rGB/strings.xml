@@ -74,6 +74,8 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Clearing cache</string>
+  <string name="dialog_clearing_cache_please_wait">Clearing cache... Please wait.</string>
   <string name="calculating_cache_size">Calculating cache size... Please wait.</string>
   <string name="reset_cache_unsaved_changes">There are unsynchronised changes. Would you like to reset the cache anyway?</string>
   <string name="warning">Warning</string>

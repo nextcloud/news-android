@@ -3,46 +3,67 @@
   <string name="auto_sync_string">자동 동기화</string>
   <string name="app_name">Owncloud 뉴스 리더</string>
   <string name="action_settings">설정</string>
-  <string name="title_newsreader_list">뉴스리더</string>
+  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="title_activity_subscription">SubscriptionActivity</string>
+  <string name="title_newsreader_list">뉴스 리더</string>
+  <string name="title_newsreader_detail">뉴스 리더 자세히</string>
   <string name="empty_view_header">정보</string>
-  <string name="empty_view_content">아무것도 없습니다</string>
-  <string name="tv_clickHereToOpenItem">여길 클릭하여 여세요</string>
-  <string name="no_wifi_available">WiFi 연결이 없습니다</string>
-  <string name="do_you_want_to_download_without_wifi">WiFi 연결이 되지 않은 상태에서 그림을 받길 원하신가요</string>
-  <string name="widget_header">Onwcloud 뉴스</string>
-  <string name="message_bar_reload">다시 불러오기</string>
-  <string name="allUnreadFeeds">전체 읽지 않은 뉴스</string>
+  <string name="empty_view_content">항목 없음</string>
+  <string name="toast_GettingMoreItems">더 많은 항목 다운로드 시작 중... 잠시 기다리십시오.</string>
+  <string name="tv_clickHereToOpenItem">항목을 열려면 누르십시오</string>
+  <string name="no_wifi_available">WiFi에 연결되지 않았음</string>
+  <string name="do_you_want_to_download_without_wifi">WiFi에 연결되지 않은 상태에서 그림을 다운로드하시겠습니까</string>
+  <string name="max_items_count_reached">최대 항목 크기 XX개가 가득 찼습니다</string>
+  <string name="widget_header">ownCloud 뉴스</string>
+  <string name="message_bar_new_articles_available">새 항목 사용 가능</string>
+  <string name="message_bar_reload">새로 고침</string>
+  <string name="allUnreadFeeds">모든 읽지 않은 뉴스</string>
+  <string name="starredFeeds">별표한 뉴스</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">새로 고침</string>
-  <string name="menu_About_Changelog">대하여 / 변경사항</string>
+  <string name="menu_About_Changelog">정보 / 변경 사항</string>
+  <string name="menu_markAllAsRead">모두 읽은 것으로 표시</string>
   <string name="menu_StartImageCaching">그림 다운로드</string>
+  <string name="menu_downloadMoreItems">더 많은 항목 다운로드</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">뉴스의 원본 코드 - 버그 보고</string>
   <string name="email_sendMail">이메일 보내기</string>
   <!--Action Bar Items-->
   <string name="action_starred">별표</string>
   <string name="action_read">읽기</string>
-  <string name="action_openInBrowser">브라우저 열기</string>
-  <string name="action_sendSourceCode">개발자에게 보내기</string>
+  <string name="action_openInBrowser">브라우저에서 열기</string>
+  <string name="action_sendSourceCode">개발자에게 항목 보내기</string>
   <string name="action_Share">공유</string>
   <string name="action_login">서버 설정</string>
+  <string name="notification_new_items_ticker">X개의 읽지 않은 항목이 있습니다</string>
+  <string name="notification_new_items_text">X개의 읽지 않은 항목 사용 가능</string>
   <!--Strings related to login-->
   <string name="pref_title_username">사용자 이름</string>
   <string name="pref_title_password">암호</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
-  <string name="action_sign_in_short">가입하기</string>
-  <string name="login_progress_signing_in">가입 중...</string>
-  <string name="error_incorrect_password">비밀번호가 잘못되었습니다</string>
-  <string name="error_field_required">이 항목은 필수사항입니다</string>
-  <string name="error_invalid_url">URL이 </string>
+  <string name="action_sign_in_short">로그인</string>
+  <string name="login_progress_signing_in">로그인 중...</string>
+  <string name="error_incorrect_password">암호가 잘못되었습니다</string>
+  <string name="error_field_required">이 항목은 필수 사항입니다</string>
+  <string name="error_invalid_url">URL이 잘못되었습니다</string>
   <!--Toast Messages-->
-  <string name="pull_to_refresh_updateFolder">폴더 동기화</string>
-  <string name="pull_to_refresh_updateFeeds">피드 동기화</string>
+  <string name="toast_downloaded_x_items">X개의 오래된 항목 다운로드됨</string>
+  <string name="toast_no_more_downloads_available">더 이상 항목 없음</string>
+  <string name="pull_to_refresh_updateTags">항목 상태 동기화 중</string>
+  <string name="pull_to_refresh_updateFolder">폴더 동기화 중</string>
+  <string name="pull_to_refresh_updateFeeds">피드 동기화 중</string>
+  <string name="pull_to_refresh_updateItems">뉴스 동기화 중</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">설정</string>
   <!--General settings-->
   <string name="pref_header_general">일반</string>
+  <string name="pref_title_general_sort_order">정렬 순서</string>
+  <string-array name="pref_general_sort_order">
+    <item>새 항목 -&gt; 오래된 항목</item>
+    <item>오래된 항목 -&gt; 새 항목</item>
+  </string-array>
   <string-array name="pref_general_sort_order_values_not_translated">
     <item>1</item>
     <item>0</item>
@@ -53,36 +74,87 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="calculating_cache_size">캐시 크기를 계산중입니다... 잠시만 기다려주세요</string>
+  <string name="dialog_clearing_cache">캐시 비우는 중</string>
+  <string name="dialog_clearing_cache_please_wait">캐시를 비우고 있습니다... 잠시 기다리십시오.</string>
+  <string name="calculating_cache_size">캐시 크기 계산 중... 잠시만 기다려 주십시오.</string>
+  <string name="reset_cache_unsaved_changes">동기화되지 않은 변경 사항이 있습니다. 캐시를 초기화하시겠습니까?</string>
   <string name="warning">경고</string>
-  <string name="pref_title_AutoSyncOnStart">시작시 동기화</string>
+  <string name="pref_title_AutoSyncOnStart">시작 시 동기화</string>
   <string name="pref_title_ShowOnlyUnread">읽지 않은 항목만 보기</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
-  <string name="pref_title_DisableHostnameVerification">호스트이름 확인 금지</string>
+  <string name="pref_title_DisableHostnameVerification">호스트 이름 확인 사용 안함</string>
+  <string name="pref_title_NavigateWithVolumeButtons">음량 단추로 탐색</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">스크롤 중 읽은 것으로 표시</string>
+  <string name="pref_title_OpenInBrowserDirectly">자세히 보기를 건너뛰고 브라우저에서 글 열기</string>
+  <string name="pref_title_notification_new_articles_available">새 글이 있을 때 알림 표시</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">알려지지 않은 인증서를 허용하시겠습니까?</string>
   <string name="mtm_decision_always">항상</string>
-  <string name="mtm_decision_once">한번</string>
-  <string name="mtm_decision_abort">대하여</string>
+  <string name="mtm_decision_once">한 번만</string>
+  <string name="mtm_decision_abort">중단</string>
   <string name="mtm_notification">인증서 확인</string>
   <!--Settings for Display-->
-  <string name="pref_title_app_theme">앱 테마 (재시작 하셔야 적용됩니다)</string>
-  <string name="pref_display_font_layout">글꼴 (재시작 하셔야 적용됩니다)</string>
+  <string name="pref_header_display">표시</string>
+  <string name="pref_title_app_theme">앱 테마 (재시작 후 적용됨)</string>
+  <string name="pref_title_feed_list_layout">피드 목록 레이아웃</string>
+  <string name="pref_display_font_layout">글꼴 (재시작 후 적용됨)</string>
   <string-array name="pref_display_apptheme">
-    <item>Dark</item>
-    <item>Light</item>
+    <item>어둡게</item>
+    <item>밝게</item>
   </string-array>
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>간단히</item>
+    <item>자세히</item>
+    <item>웹 뷰가 있는 자세히</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">오류</string>
+  <string name="login_dialog_text_something_went_wrong">무언가 잘못되었습니다 :(</string>
+  <string name="login_dialog_text_not_compatible">이 앱 버전은 ownCloud 뉴스 앱과 호환되지 않습니다. 뉴스 앱과 프레임워크를 업데이트하십시오.</string>
   <string name="login_dialog_title_security_warning">보안 경고</string>
+  <string name="login_dialog_text_security_warning">HTTPS를 사용하고 있지 않습니다. 공격자가 트래픽을 감청하여 암호와 같은 민감한 데이터에 접근할 수 있습니다. HTTP 사용을 적극 권장합니다!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">데이터 및 동기화</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">캐시 비우기</string>
-  <string name="pref_title_CacheImagesOffline">캐시 이미지 오프라인</string>
+  <string name="pref_title_CacheImagesOffline">오프라인 사용을 위하여 이미지 저장</string>
   <string name="pref_title_Max_Cache_Size">최대 캐시 크기</string>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
@@ -121,6 +193,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">알림</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
