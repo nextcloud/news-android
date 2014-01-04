@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Sync otmatis</string>
   <string name="app_name">Pembaca Berita ownCloud</string>
   <string name="action_settings">Setelan</string>
   <string name="title_activity_news_detail">AktivitasRinciBerita</string>
@@ -11,6 +12,10 @@
   <string name="toast_GettingMoreItems">Memulai mengunduh beberapa item.. Silakan tunggu.</string>
   <string name="tv_clickHereToOpenItem">Klik disini untuk membuka item</string>
   <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
+  <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
+  <string name="max_items_count_reached">Anda sudah mencapai ukuran maksimal item XX</string>
+  <string name="widget_header">Berita ownCloud</string>
+  <string name="message_bar_new_articles_available">Item baru tersedia</string>
   <string name="message_bar_reload">Muat ulang</string>
   <string name="allUnreadFeeds">Semua item yang belum dibaca</string>
   <string name="starredFeeds">Item yang dibintangi</string>
@@ -18,16 +23,20 @@
   <string name="menu_update">Segarkan</string>
   <string name="menu_About_Changelog">About / Changelog</string>
   <string name="menu_markAllAsRead">Tandai semua telah dibaca</string>
+  <string name="menu_StartImageCaching">Unduh gambar</string>
   <string name="menu_downloadMoreItems">Unduh beberapa item</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Kode sumber item - Bugreport</string>
   <string name="email_sendMail">Kirim EMail</string>
   <!--Action Bar Items-->
   <string name="action_starred">dibintangi</string>
+  <string name="action_read">Baca</string>
   <string name="action_openInBrowser">Buka di Browser</string>
   <string name="action_sendSourceCode">Kirim item kepada Pengembang</string>
   <string name="action_Share">Bagikan</string>
   <string name="action_login">Pengaturan Server</string>
+  <string name="notification_new_items_ticker">Anda memiliki X item baru yang belum dibaca</string>
+  <string name="notification_new_items_text">X item baru yang belum dibaca tersedia</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Sandi</string>
@@ -41,6 +50,8 @@
   <string name="error_invalid_url">URL salah</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Item X lama terunduh</string>
+  <string name="toast_no_more_downloads_available">Tidak ada item lain yang tersedia</string>
+  <string name="pull_to_refresh_updateTags">Status Sinkronisasi Item</string>
   <string name="pull_to_refresh_updateFolder">Menyelaraskan folder</string>
   <string name="pull_to_refresh_updateFeeds">Menyelaraskan umpan</string>
   <string name="pull_to_refresh_updateItems">Menyelaraskan item</string>
@@ -48,23 +59,45 @@
   <string name="title_activity_settings">Setelan</string>
   <!--General settings-->
   <string name="pref_header_general">Umum</string>
+  <string name="pref_title_general_sort_order">Urutan</string>
+  <string-array name="pref_general_sort_order">
+    <item>Baru -&gt; Lawas</item>
+    <item>Lawas -&gt; Baru</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Membersihkan cache</string>
+  <string name="dialog_clearing_cache_please_wait">Membersihkan cache.. Silakan tunggu.</string>
+  <string name="calculating_cache_size">Menghitung ukuran cache.. Silakan tunggu.</string>
+  <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
   <string name="warning">Peringatan</string>
   <string name="pref_title_AutoSyncOnStart">Selaraskan pada saat mulai</string>
   <string name="pref_title_ShowOnlyUnread">Tampilkan hanya artikel yang belum dibaca</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Nonaktifkan Verifikasi Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigasi dengan tombol volume</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Tandai telah dibaca saat bergulir</string>
+  <string name="pref_title_OpenInBrowserDirectly">Lewati tampil rincian dan buka artikel di peramban web</string>
+  <string name="pref_title_notification_new_articles_available">Tampilkan pemberitahuan ketika artikel baru tersedia</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Terima Sertifikat yang Tak Dikenal?</string>
+  <string name="mtm_decision_always">Selalu</string>
+  <string name="mtm_decision_once">Sekali saja</string>
   <string name="mtm_decision_abort">Batal</string>
+  <string name="mtm_notification">Verifikasi Sertifikat</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Tampilkan</string>
   <string name="pref_title_app_theme">Tema Aplikasi (restart untuk menerapkan)</string>
   <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
+  <string name="pref_display_font_layout">Huruf (memerlukan restart untuk menerapkan)</string>
   <string-array name="pref_display_apptheme">
     <item>Gelap</item>
     <item>Terang</item>
@@ -73,10 +106,29 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Ringkas</item>
+    <item>Luas</item>
+    <item>Luas dengan Webview</item>
+  </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Galat</string>
@@ -85,8 +137,29 @@
   <string name="login_dialog_title_security_warning">Peringatan Keamanan</string>
   <string name="login_dialog_text_security_warning">Anda tidak menggunakan https. Peratas bisa saja mencegat lalu lintas jaringan dan mendapatkan akses ke beberapa data sensitif (misalnya kata sandi Anda). Jadi sangat disarankan menggunakan https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Data &amp; sync</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Bersihkan cache</string>
+  <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
+  <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
@@ -106,6 +179,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Pemberitahuan</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
