@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="action_settings">Налады</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
@@ -8,6 +9,7 @@
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Налады</string>
   <!--General settings-->
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
@@ -19,6 +21,7 @@
   <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Памылка</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
