@@ -14,6 +14,7 @@
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Podešavanja</string>
   <!--General settings-->
+  <string name="pref_header_general">Opšte</string>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
