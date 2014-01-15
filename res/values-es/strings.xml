@@ -74,7 +74,7 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="dialog_clearing_cache">Vaciando el caché</string>
+  <string name="dialog_clearing_cache">Vaciando el caché... Espere.</string>
   <string name="dialog_clearing_cache_please_wait">Vaciando el caché... Espere.</string>
   <string name="calculating_cache_size">Calculando tamaño de cache... Por favor espere.</string>
   <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quieres vaciar la caché igualmente?</string>
