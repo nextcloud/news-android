@@ -74,6 +74,8 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Esborrant la memòria de cau</string>
+  <string name="dialog_clearing_cache_please_wait">Esborrant la memòria de cau... Espereu</string>
   <string name="calculating_cache_size">Calculant la mida de la memòria de cau... Espereu.</string>
   <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu eliminar la memòria de cau igualment?</string>
   <string name="warning">Avís</string>
@@ -84,6 +86,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Navega amb els botons del volum</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
   <string name="pref_title_OpenInBrowserDirectly">Omet la vista de detall i obre l\'article en el navegador</string>
+  <string name="pref_title_notification_new_articles_available">Mostra notificacions quan hi hagi nous articles disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepta certificats de desconeguts?</string>
   <string name="mtm_decision_always">Sempre</string>
@@ -190,6 +193,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Notificacions</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
