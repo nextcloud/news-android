@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">NewsReader Detail</string>
   <string name="empty_view_header">Informação</string>
   <string name="empty_view_content">Não itens</string>
+  <string name="toast_GettingMoreItems">Começou a transferir mais itens... Por favor aguarde.</string>
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir o item</string>
   <string name="no_wifi_available">Sem ligação WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Deseja efetuar o descarregamento das imagens sem uma ligação WIFI</string>
@@ -46,6 +47,7 @@
   <string name="error_invalid_url">O endereço está incorrecto</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Descarregado X itens antigos</string>
+  <string name="toast_no_more_downloads_available">Não há mais itens disponíveis</string>
   <string name="pull_to_refresh_updateFolder">Pasta a sincronizar</string>
   <string name="pull_to_refresh_updateFeeds">Feeds a sincronizar</string>
   <string name="pull_to_refresh_updateItems">Itens a sincronizar</string>
