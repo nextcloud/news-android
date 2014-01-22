@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">Tự đồng b</string>
+  <string name="app_name">Tin tức ownCloud </string>
   <string name="action_settings">Cài đặt</string>
   <string name="title_activity_news_detail">Chi tiết hoạt </string>
   <string name="title_activity_subscription">Hoạt động đăng k</string>
+  <string name="title_newsreader_list">Đọc t</string>
+  <string name="title_newsreader_detail">Tin chi </string>
   <string name="empty_view_header">Thông tin</string>
   <string name="empty_view_content">Không có mục nào ở đây</string>
   <string name="toast_GettingMoreItems">Bắt đầu tải nhiều hơn.. Vui lòng ch</string>
+  <string name="tv_clickHereToOpenItem">Bấm ở đây để mở danh mục</string>
   <string name="no_wifi_available">Không có </string>
   <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải về những hình ảnh mà không c kết nối WiFi</string>
   <string name="max_items_count_reached">Bạn đã đạt đến kích thước tối đa của XX mục</string>
@@ -17,10 +21,12 @@
   <string name="starredFeeds">Những mục được đánh dấu</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Làm mới</string>
+  <string name="menu_About_Changelog">About / Changelog</string>
   <string name="menu_markAllAsRead">Đánh dấu tất cả như đã </string>
   <string name="menu_StartImageCaching">Tải hình </string>
   <string name="menu_downloadMoreItems">Tải nhiều h</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Danh mục mã nguòn - Báo b</string>
   <string name="email_sendMail">Gởi th</string>
   <!--Action Bar Items-->
   <string name="action_starred">Starred</string>
@@ -43,9 +49,12 @@
   <string name="error_field_required">Những mục cần th</string>
   <string name="error_invalid_url">URL không </string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Tải về mục cũ X</string>
   <string name="toast_no_more_downloads_available">Không có thư mục </string>
   <string name="pull_to_refresh_updateTags">Đồng bộ với vị trí của b</string>
-  <string name="pull_to_refresh_updateFolder">Đồng bộ thư m</string>
+  <string name="pull_to_refresh_updateFolder">Đồng bộ thư mục</string>
+  <string name="pull_to_refresh_updateFeeds">Đồng bộ f</string>
+  <string name="pull_to_refresh_updateItems">Đồng bộ các m</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Cài đặt</string>
   <!--General settings-->
@@ -74,6 +83,7 @@
   <string name="pref_title_ShowOnlyUnread">Hiển thị bài chưa </string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Tắt H</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Điều chỉnh m lượng</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Đánh dấu đã đọc trong khi di chuyển</string>
   <string name="pref_title_OpenInBrowserDirectly">Bỏ qua xem chi tiết và mở bài biết trong trình duyệt</string>
   <string name="pref_title_notification_new_articles_available">Hiển thị thông báo khi bài viết mới có giá trị</string>
@@ -85,6 +95,8 @@
   <string name="mtm_notification">Xác nhận C</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Hiển th</string>
+  <string name="pref_title_app_theme">Chủ đề (khởi động lại mới dùng )</string>
+  <string name="pref_title_feed_list_layout">Danh sách bố trí F</string>
   <string name="pref_display_font_layout">Font (vui lòng khởi động lại)</string>
   <string-array name="pref_display_apptheme">
     <item>Tối</item>
@@ -142,6 +154,7 @@
   <string name="pref_header_data_sync">Dữ liệu &amp; đồng bộ</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Xóa bộ nhớ </string>
+  <string name="pref_title_CacheImagesOffline">Bộ đệm hình ảnh ẩn</string>
   <string name="pref_title_Max_Cache_Size">Kích cỡ tối đa bộ </string>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
