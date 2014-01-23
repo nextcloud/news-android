@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Ajustes del servidor</string>
+  <string name="notification_new_items_ticker">Tu tienes X nuevos items sin leer</string>
+  <string name="notification_new_items_text">X nuevos items sin leer disponibles</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>
@@ -72,6 +74,8 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Borrando la caché</string>
+  <string name="dialog_clearing_cache_please_wait">Borrando la caché... Por favor espere.</string>
   <string name="calculating_cache_size">Calculando el tamaño de la caché... Por favor, esperá.</string>
   <string name="reset_cache_unsaved_changes">Hay cambios que no fueron sincronizados. ¿Querés vaciar la caché de todas formas?</string>
   <string name="warning">Atención</string>
@@ -81,6 +85,8 @@
   <string name="pref_title_DisableHostnameVerification">Deshabilitar verificación del hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído al desplazar</string>
+  <string name="pref_title_OpenInBrowserDirectly">Saltear vista detallada y abrir artículo en el explorador</string>
+  <string name="pref_title_notification_new_articles_available">Mostrar notificacion cuando nuevos artículos estén disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">¿Aceptar certificados desconocidos?</string>
   <string name="mtm_decision_always">Siempre</string>
@@ -187,6 +193,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Notificaciones</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
