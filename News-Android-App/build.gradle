@@ -1,0 +1,33 @@
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion '19.0.0'
+
+    defaultConfig {
+        minSdkVersion 7
+        targetSdkVersion 19
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    sourceSets {
+        main {
+	     aidl.srcDirs = ['src/main/java']
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:19.0.+'
+    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+    compile 'com.github.chrisbanes.actionbarpulltorefresh:extra-abs:+'
+    compile files('src/main/libs/gson-2.2.4.jar')
+    compile files('src/main/libs/jsoup-1.7.2.jar')
+    compile project(':Changeloglib:ChangeLogLibrary')
+    compile project(':MessageBar')
+}
