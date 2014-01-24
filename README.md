@@ -53,11 +53,16 @@ Download and install:
 >2) Navigate to your workspace   
 >3) Then type in:
 ><pre>
-git clone https://github.com/owncloud/News-Android-App.git
+git clone --recursive https://github.com/owncloud/News-Android-App.git
+></pre>
+
+for the dev branch:
+><pre>
+git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 ></pre>
 
 
->Open the Project and start coding!
+>Import the Project and start coding!
 
 
 >That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
