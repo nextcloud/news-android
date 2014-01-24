@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"   
+    xmlns:ptr="http://schemas.android.com/apk/res-auto" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/slider_listview_background_color" >
+	
+    <!-- android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" -->
+    
+    <!-- 
+    <ExpandableListView android:id="@+id/expandableListView"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"/>
+
+    -->
+    <uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ptr_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+	    	
+	    	<de.luhmer.owncloudnewsreader.ListView.BlockingExpandableListView
+	    	    android:id="@+id/expandableListView"
+	    	    android:layout_width="match_parent"
+	    	    android:layout_height="match_parent"/>
+	   
+	    	 
+	    	<View
+	    		android:layout_width="3dp"
+	    		android:layout_height="match_parent"
+	    		android:layout_alignParentRight="true"
+	    		android:background="@drawable/listview_shadow" />
+
+    </uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefreshLayout>
+	<!--  </com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
+    
+</RelativeLayout>

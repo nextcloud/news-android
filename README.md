@@ -40,16 +40,11 @@ The app shows an empty Toast when trying to sync or sign-in (little dark box at 
 - Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3 (via Google Play or GitHub <a href="https://github.com/owncloud/News-Android-App/commits/master/News-Android-App.apk">Choose version</a>).
 
 
-Roadmap
-==================================
-My ToDo List is available on: http://www.strikeapp.com/#z6679l3t
-
-
 How to compile the App
 ==================================
 Requirements:  
 -----------------------
->1) Eclipse + ADT Plugin + Android SDK installed or Android Studio
+>1) Android Studio
 >2) Git installed (you can do the following stuff without git but I'm not going to show how).  
 
 Download and install:  
@@ -58,31 +53,34 @@ Download and install:
 >2) Navigate to your workspace   
 >3) Then type in:
 ><pre>
-git clone https://github.com/JakeWharton/ActionBarSherlock.git
-git clone https://github.com/David-Development/Android-PullToRefresh.git
-git clone https://github.com/owncloud/News-Android-App.git
-git clone https://github.com/gabrielemariotti/changeloglib.git
-git clone https://github.com/MichaelFlisar/MessageBar.git
+git clone --recursive https://github.com/owncloud/News-Android-App.git
 ></pre>
 
->Go to Eclipse and import the project like in the following example:
->--> File --> Import --> Android Project from Exsisting Source --> [...]/ActionBarSherlock/actionbarsherlock
-... for all other Dependencies the same ...
+for the dev branch:
+><pre>
+git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
+></pre>
 
 
->Then make a right click on the News-Android-App Project and select "Properties". Select the tab "Android". In this Window you should see the Project Build Target at the top and Libarys at the buttom of the window. Two of them are maybe marked with a read cross. So remove them and add the ActionBarSherlock and the Android PullToRefresh Libary  
+>Import the Project and start coding!
 
-
->If you get this error message:  
->"Found 2 versions of android-support-v4.jar in the dependency list, but not all the versions are identical (check is based on SHA-1 only at  this time)." try to copy the [...]/News-Android-App/libs/android-support-v4.jar file to [...]/ActionBarSherlock/actionbarsherlock/android-support-v4.jar  
 
 >That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
 
 
 Updates
 ==================================
-0.5.6 (in development)
+0.5.7 (in development)
 ---------------------
+
+
+0.5.6 (Google Play - Beta)
+---------------------
+- Fixed flickering of the screen when changing Feeds (in dark Theme)
+- New Pull-To-Refresh Style
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/200">#200 Clicking article in widget makes app crash</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/196">#196 Stutter with "mark as read while scrolling" turned on</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/189">#189 Read mouse-over</a>
 
 0.5.5 (Google Play - Beta)
 ---------------------

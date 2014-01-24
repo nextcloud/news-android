@@ -1,0 +1,2 @@
+include ':News-Android-App', ':MessageBar'
+include ':Changeloglib:ChangeLogLibrary'

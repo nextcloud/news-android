@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="auto_sync_string">Automatyczna synchronizacja</string>
+  <string name="app_name">ownCloud News Reader</string>
+  <string name="action_settings">Ustawienia</string>
+  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="title_activity_subscription">SubscriptionActivity</string>
+  <string name="title_newsreader_list">Aktualności</string>
+  <string name="title_newsreader_detail">Szczegóły Aktualności</string>
+  <string name="empty_view_header">informacje</string>
+  <string name="empty_view_content">Nic tu nie ma</string>
+  <string name="toast_GettingMoreItems">Rozpoczęto pobieranie elementów. Proszę czekać.</string>
+  <string name="tv_clickHereToOpenItem">Kliknij tutaj aby otworzyć element</string>
+  <string name="no_wifi_available">Brak połączenia WIFI</string>
+  <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
+  <string name="max_items_count_reached">Został osiągnięty maksymalny rozmiar XX elementów</string>
+  <string name="widget_header">ownCloud News</string>
+  <string name="message_bar_new_articles_available">Nowe elementy są dostępne</string>
+  <string name="message_bar_reload">Przeładuj</string>
+  <string name="allUnreadFeeds">Wszystkie nieprzeczytane</string>
+  <string name="starredFeeds">Oznaczone Gwiazdką</string>
+  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Odśwież</string>
+  <string name="menu_About_Changelog">O programie / Zmiany</string>
+  <string name="menu_markAllAsRead">Oznacz wszysto jako przeczytane</string>
+  <string name="menu_StartImageCaching">Pobierz obrazki</string>
+  <string name="menu_downloadMoreItems">Pobierz więcej elementów</string>
+  <!--EMAIL-->
+  <string name="email_sourceCode">Kodu źródłowego elementu - raport błędu</string>
+  <string name="email_sendMail">Wyślij Email</string>
+  <!--Action Bar Items-->
+  <string name="action_starred">Oznaczone</string>
+  <string name="action_read">Odczyt</string>
+  <string name="action_openInBrowser">Otwórz w przeglądarce</string>
+  <string name="action_sendSourceCode">Wyślij element do autora</string>
+  <string name="action_Share">Udostępnij</string>
+  <string name="action_login">Ustawienia serwera</string>
+  <string name="notification_new_items_ticker">Masz X nowych nie przeczytanych wpisów</string>
+  <string name="notification_new_items_text">X nowych wpisów jest dostępnych</string>
+  <!--Strings related to login-->
+  <string name="pref_title_username">Nazwa użytkownika</string>
+  <string name="pref_title_password">Hasło</string>
+  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+  <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Zaloguj</string>
+  <string name="login_progress_signing_in">Loguję...</string>
+  <string name="error_incorrect_password">To hasło jest niepoprawne</string>
+  <string name="error_field_required">Ten element jest wymagany</string>
+  <string name="error_invalid_url">Ten adres jest niepoprawny</string>
+  <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Pobierz X starych elementów</string>
+  <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych elementów</string>
+  <string name="pull_to_refresh_updateTags">Synchronizowanie elementów stanów</string>
+  <string name="pull_to_refresh_updateFolder">Synchronizowanie folder</string>
+  <string name="pull_to_refresh_updateFeeds">Synchronizowanie kanałów</string>
+  <string name="pull_to_refresh_updateItems">Synchronizowanie elementów</string>
+  <!--Strings related to Settings-->
+  <string name="title_activity_settings">Ustawienia</string>
+  <!--General settings-->
+  <string name="pref_header_general">Ogólne</string>
+  <string name="pref_title_general_sort_order">Sortuj w kolejności</string>
+  <string-array name="pref_general_sort_order">
+    <item>Nowe -&gt; Stare</item>
+    <item>Stare -&gt; Nowe</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
+  <!--<string-array name="pref_general_sort_order_values">
+        <item>desc</item>
+        <item>asc</item>
+	</string-array>-->
+  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">Obliczam rozmiar pamięci podręcznej... Proszę czekać.</string>
+  <string name="reset_cache_unsaved_changes">Są niezsynchronizowane zmiany. Czy chcesz zresetować pamięć podręczną?</string>
+  <string name="warning">Ostrzeżenie</string>
+  <string name="pref_title_AutoSyncOnStart">Synchronizuj na starcie</string>
+  <string name="pref_title_ShowOnlyUnread">Pokaż tylko nieprzeczytane artykuły</string>
+  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Wyłącz weryfikację nazwy hosta</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
+  <string name="pref_title_OpenInBrowserDirectly">Pomiń widok szczegółowy i otwórz w przeglądarce</string>
+  <string name="pref_title_notification_new_articles_available">Pokaż powiadomienie, gdy pojawią się nowe artykuły</string>
+  <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Akceptować nieznane certyfikaty?</string>
+  <string name="mtm_decision_always">Zawsze</string>
+  <string name="mtm_decision_once">Raz</string>
+  <string name="mtm_decision_abort">Anuluj</string>
+  <string name="mtm_notification">Certyfikat weryfikacji</string>
+  <!--Settings for Display-->
+  <string name="pref_header_display">Wygląd</string>
+  <string name="pref_title_app_theme">Szablon aplikacji (wymagany restart aplikacji)</string>
+  <string name="pref_title_feed_list_layout">Układ listy kanałów</string>
+  <string name="pref_display_font_layout">Czcionka (wymaga restartu aplikacji)</string>
+  <string-array name="pref_display_apptheme">
+    <item>Ciemny</item>
+    <item>Jasny</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Prosty</item>
+    <item>Rozszerzony</item>
+    <item>Rozszerzone z widoku sieci Web</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
+  <!--Login Dialog-->
+  <string name="login_dialog_title_error">Błąd</string>
+  <string name="login_dialog_text_something_went_wrong">Coś poszło nie tak :(</string>
+  <string name="login_dialog_text_not_compatible">Ta wersja aplikacji nie jest zgodny z twoją aplikacją wiadomości na ownCloud. Zaktualizuj aplikacje news i appframework.</string>
+  <string name="login_dialog_title_security_warning">Ostrzeżenie o zabezpieczeniach</string>
+  <string name="login_dialog_text_security_warning">Nie używaszpołączenia https. Osoba atakująca może przechwytywać ruch i uzyskać dostęp do niektórych poufnych danych (np. hasła). Zdecydowanie polecamy używać https!</string>
+  <!--Data & Sync-->
+  <string name="pref_header_data_sync">Data &amp; synchronizacja</string>
+  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string name="pref_title_clearCache">Czyść pamięć podręczną</string>
+  <string name="pref_title_CacheImagesOffline">Zapisuj obrazy offline</string>
+  <string name="pref_title_Max_Cache_Size">Maksymalny rozmiar pamięci podręcznej</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
+  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
+
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>-->
+  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Powiadomienia</string>
+  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+    <string name="pref_title_vibrate">Vibrate</string>-->
+</resources>

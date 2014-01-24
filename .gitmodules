@@ -1,0 +1,6 @@
+[submodule "Changeloglib"]
+	path = Changeloglib
+	url = https://github.com/David-Development/changeloglib.git
+[submodule "MessageBar"]
+	path = MessageBar
+	url = https://github.com/David-Development/MessageBar.git

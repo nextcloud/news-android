@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"    
+    package="de.luhmer.owncloudnewsreader"
+    android:versionCode="41"
+    android:versionName="0.5.6" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />    
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    
+    
+    <application
+        android:debuggable="true"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="de.luhmer.owncloudnewsreader.NewsReaderListActivity"
+            android:label="@string/app_name"> <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="de.luhmer.owncloudnewsreader.NewsDetailActivity"
+            android:label="@string/title_activity_news_detail"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
+        </activity>
+
+        <service android:name="de.luhmer.owncloudnewsreader.services.DownloadImagesService" />
+        <service android:name="de.luhmer.owncloudnewsreader.services.SyncItemStateService" />
+
+        <activity
+            android:name="de.luhmer.owncloudnewsreader.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+
+        <activity android:name=".DownloadImagesActivity" />
+
+        <!--
+		**********************************************************************
+		* Sync Adapter and Service
+		**********************************************************************
+        -->
+        
+        
+        <service
+            android:name="de.luhmer.owncloudnewsreader.services.OwnCloudAuthenticatorService"
+            android:exported="true" >
+		    <intent-filter>
+		        <action android:name="android.accounts.AccountAuthenticator" />
+		    </intent-filter>
+		    <meta-data android:name="android.accounts.AccountAuthenticator"
+		               android:resource="@xml/authenticator" />
+		</service>
+		
+        <service android:name="de.luhmer.owncloudnewsreader.services.OwnCloudSyncService" />
+        
+        <service
+            android:name="de.luhmer.owncloudnewsreader.services.OwnCloudSettingsSyncService"
+        	android:exported="true" >
+   			<intent-filter>
+       			<action android:name="android.content.SyncAdapter" />
+    		</intent-filter>
+    		<meta-data
+	            android:name="android.content.SyncAdapter"
+            	android:resource="@xml/syncadapter" />
+		</service>
+		        
+        <provider
+	        android:name=".providers.OwnCloudSyncProvider"
+	        android:authorities="de.luhmer.owncloudnewsreader"
+	        android:label="@string/auto_sync_string"        
+	        android:syncable="true">            
+        </provider>
+             
+         <!-- 
+        <activity
+            android:name=".authentication.AuthenticatorActivity"
+            android:label="@string/title_activity_settings"
+            android:launchMode="singleTask" > -->
+            <!-- android:theme="@style/Theme.Transparent" > --><!-- 
+        </activity>
+ 		-->
+        
+        <!--
+		**********************************************************************
+		* Widget Provider Receiver
+		**********************************************************************
+        -->
+        <receiver android:name="de.luhmer.owncloudnewsreader.widget.WidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+        
+        <service
+            android:name="de.luhmer.owncloudnewsreader.widget.WidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        
+    </application>
+</manifest>
