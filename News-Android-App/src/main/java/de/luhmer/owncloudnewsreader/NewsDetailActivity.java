@@ -209,14 +209,14 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		if(keyCode == KeyEvent.KEYCODE_BACK)
 		{
 			NewsDetailFragment ndf = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
-			if(ndf.webview != null)
+			if(ndf != null && ndf.webview != null)
 			{
 				if(ndf.webview.canGoBack())
-				{						
+				{
 					ndf.webview.goBack();
 					if(!ndf.webview.canGoBack())//RssItem
 						ndf.LoadRssItemInWebView();
-						
+
 					return true;
 				}
 			}
@@ -227,8 +227,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 	private void PageChanged(int position)
 	{
-		StopVideoOnCurrentPage();		
-		currentPosition = position;		
+		StopVideoOnCurrentPage();
+		currentPosition = position;
 		ResumeVideoPlayersOnCurrentPage();
 				
 		//String idFeed = String.valueOf(rssFiles.get(position).getDB_Id());
@@ -245,11 +245,19 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		else //Only in else because the function markItemAsReas updates the ActionBar items as well
 			UpdateActionBarIcons();
 	}
-	
+
+    /**
+     * Returns the id of a feed. When the position is invalid, -1 is returned.
+     * @param position
+     * @return
+     */
 	public String getIdCurrentFeed(int position) {
-		cursor.moveToPosition(position);
-		String idFeed = String.valueOf(cursor.getString(0));
-		return idFeed;
+        if(position < cursor.getCount()) {
+		    cursor.moveToPosition(position);
+		    String idFeed = String.valueOf(cursor.getString(0));
+		    return idFeed;
+        }
+        return "-1";
 	}
 	
 	private void ResumeVideoPlayersOnCurrentPage()
@@ -270,27 +278,32 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	public void UpdateActionBarIcons()
 	{
 		String idFeed = getIdCurrentFeed(currentPosition);
-		boolean isStarred = dbConn.isFeedUnreadStarred(idFeed, false);
-		boolean isRead = dbConn.isFeedUnreadStarred(idFeed, true);
-		
-		//if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
-		if(isStarred && menuItem_Starred != null)
-			menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_on_normal_holo_dark));
-			//menuItem_Starred.setIcon(R.drawable.btn_rating_star_on_normal_holo_light);
-		else if(menuItem_Starred != null)
-			menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_off_normal_holo_dark));
-			//menuItem_Starred.setIcon(R.drawable.btn_rating_star_off_normal_holo_light);
-		
-		
-		
-		if(isRead && menuItem_Read != null) {
-			menuItem_Read.setIcon(R.drawable.btn_check_on_holo_dark);
-			menuItem_Read.setChecked(true);
-		}
-		else if(menuItem_Read != null) {
-			menuItem_Read.setIcon(R.drawable.btn_check_off_holo_dark);
-			menuItem_Read.setChecked(false);
-		}
+        boolean isStarred = false;
+        boolean isRead = false;
+
+        if(idFeed != "-1") {
+            isStarred = dbConn.isFeedUnreadStarred(idFeed, false);
+            isRead = dbConn.isFeedUnreadStarred(idFeed, true);
+        }
+
+        //if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
+        if(isStarred && menuItem_Starred != null)
+            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_on_normal_holo_dark));
+            //menuItem_Starred.setIcon(R.drawable.btn_rating_star_on_normal_holo_light);
+        else if(menuItem_Starred != null)
+            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_off_normal_holo_dark));
+            //menuItem_Starred.setIcon(R.drawable.btn_rating_star_off_normal_holo_light);
+
+
+
+        if(isRead && menuItem_Read != null) {
+            menuItem_Read.setIcon(R.drawable.btn_check_on_holo_dark);
+            menuItem_Read.setChecked(true);
+        }
+        else if(menuItem_Read != null) {
+            menuItem_Read.setIcon(R.drawable.btn_check_off_holo_dark);
+            menuItem_Read.setChecked(false);
+        }
 	}
 
     public Drawable getSmallVersionOfActionbarIcon(int res_id) {

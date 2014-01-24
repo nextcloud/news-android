@@ -99,7 +99,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			String LastUpdatedLabelTextTemp = null;
 			
 			switch(st) {
-				case SYNC_TYPE__GET_API:					
+				case SYNC_TYPE__GET_API:
 					break;			
 				case SYNC_TYPE__ITEM_STATES:
 					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateTags);
@@ -110,9 +110,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 				case SYNC_TYPE__FEEDS:
 					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateFeeds);
 					break;
-				case SYNC_TYPE__ITEMS:	
+				case SYNC_TYPE__ITEMS:
 					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateItems);
-					break;				
+					break;
 			}
 			
 			final String LastUpdatedLabelText = LastUpdatedLabelTextTemp;
@@ -424,7 +424,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 					new PostDelayHandler(getActivity()).stopRunningPostDelayHandler();//Stop pending sync handler
 					
 					//_ownCloadSyncService.startSync();
-					 
+
 					/*
 			         * Request the sync for the default account, authority, and
 			         * manual sync settings
@@ -437,7 +437,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 						if(acc.type.equals(AccountGeneral.ACCOUNT_TYPE))
 							ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
 					//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
-				}
+				} else {
+                    UpdateSyncButtonLayout();
+                }
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -445,7 +447,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	            //_Reader.attachToRunningTask(-10, getActivity(), onAsyncTask_GetVersionFinished);
 		}
 		
-		UpdateSyncButtonLayout();
+		//UpdateSyncButtonLayout();
 	}
 	
 	
@@ -580,37 +582,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		eListView.setChoiceMode(activateOnItemClick ? ListView.CHOICE_MODE_SINGLE : ListView.CHOICE_MODE_NONE);
 	}
 
-	/*
-	private void setActivatedPosition(int position) {
-		if (position == ListView.INVALID_POSITION) {
-			//getListView().setItemChecked(mActivatedPosition, false);
-			eListView.getRefreshableView().setSelection(mActivatedPosition);
-		} else {
-			eListView.getRefreshableView().setSelection(position);
-			//eListView.setItemChecked(position, true);
-			//getListView().setItemChecked(position, true);
-		}
-		
-		mActivatedPosition = position;
-	}
-	*/
-		
-
     public void UpdateSyncButtonLayout()
     {
     	if(getActivity() != null)
     		((NewsReaderListActivity) getActivity()).UpdateButtonSyncLayout();
     }
-
-
-    /*
-	public void setUpdateFinishedListener(AsyncUpdateFinished listener)
-	{
-		asyncUpdateFinished = listener;
-	}
-	protected void fireUpdateFinishedClicked()
-	{
-		if(asyncUpdateFinished != null)
-			asyncUpdateFinished.FinishedUpdate();
-	}*/
 }

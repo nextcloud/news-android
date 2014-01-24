@@ -183,12 +183,13 @@ public class NewsListCursorAdapter extends CursorAdapter {
     public void ChangeReadStateOfItem(RobotoCheckBox checkBox, View parentView, boolean isChecked, Context context) {
 
         dbConn.updateIsReadOfItem(checkBox.getTag().toString(), isChecked);
+
         UpdateListCursor(mContext);
 
         pDelayHandler.DelayTimer();
 
         RobotoTextView textView = (RobotoTextView) parentView.findViewById(R.id.summary);
-        if(textView != null)
+        if(textView != null && parentView.getTop() >= 0)
         {
             FontHelper fHelper = new FontHelper(context);
             if(isChecked)
@@ -272,23 +273,15 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	
 	public static void ChangeCheckBoxState(RobotoCheckBox cb, boolean state, Context context)
 	{
-		if(cb != null)
-		{
-			if(cb.isChecked() != state)
-			{
-				cb.setChecked(state);
-				
-				UpdateListCursor(context);
-			}
-		}
+		if(cb != null && cb.isChecked() != state)
+            cb.setChecked(state);
 	}
 	
 	public static void UpdateListCursor(Context context)
 	{
 		SherlockFragmentActivity sfa = (SherlockFragmentActivity) context;
-		
-		//if tablet view is enabled --> update the listview 
-		if(sfa instanceof NewsReaderListActivity)
+
+		if(sfa instanceof NewsReaderListActivity && ((NewsReaderListActivity) sfa).isSlidingPaneOpen())
 			((NewsReaderListActivity) sfa).updateAdapter();
 	}
 	

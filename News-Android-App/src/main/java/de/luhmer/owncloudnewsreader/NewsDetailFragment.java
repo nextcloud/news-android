@@ -50,7 +50,7 @@ import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
-public class NewsDetailFragment extends SherlockFragment {	
+public class NewsDetailFragment extends SherlockFragment {
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
 
 	public static final String TAG = "NewsDetailFragment";
@@ -132,7 +132,9 @@ public class NewsDetailFragment extends SherlockFragment {
 		
 		webview = (WebView) rootView.findViewById(R.id.webview);
 
-		//webview.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
+        if(ThemeChooser.isDarkTheme(getActivity())) {
+            webview.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
+        }
 		
 		progressbar_webview = (ProgressBar) rootView.findViewById(R.id.progressbar_webview);
 
@@ -191,7 +193,11 @@ public class NewsDetailFragment extends SherlockFragment {
 	    		}
 	    		progressbar_webview.setProgress(progress);
 	    		if(progress == 100) {
-	    			progressbar_webview.setVisibility(ProgressBar.GONE);                       
+	    			progressbar_webview.setVisibility(ProgressBar.GONE);
+
+                    if(ThemeChooser.isDarkTheme(getActivity())) {
+                        webview.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    }
 	    		}
 	    	}
 	    });

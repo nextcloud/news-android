@@ -12,7 +12,7 @@
         android:visibility="gone"
         android:textSize="18sp" />
 
-    <ListView 	    
+    <de.luhmer.owncloudnewsreader.ListView.BlockingListView
 	    android:id="@android:id/list"
 	    style="?android:attr/textAppearanceLarge"
 	    android:layout_width="match_parent"

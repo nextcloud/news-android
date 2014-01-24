@@ -28,6 +28,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
@@ -241,7 +244,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	}
 
 
-
+    public boolean isSlidingPaneOpen() {
+        return mSlidingLayout.isOpen();
+    }
 
 	private NewsReaderDetailFragment StartDetailFragmentNow() {
 		NewsReaderDetailFragment nrdf = null;
@@ -251,7 +256,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		}
 		return nrdf;
 	}
-
 
 	public void updateAdapter() {
 		NewsReaderListFragment nlf = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer));

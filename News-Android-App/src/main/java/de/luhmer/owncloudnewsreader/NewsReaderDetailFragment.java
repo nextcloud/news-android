@@ -45,6 +45,8 @@ import com.devspark.robototextview.widget.RobotoCheckBox;
 
 import java.util.ArrayList;
 
+import de.luhmer.owncloudnewsreader.ListView.BlockingExpandableListView;
+import de.luhmer.owncloudnewsreader.ListView.BlockingListView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
@@ -161,9 +163,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 			
 			//lvAdapter = null;
-			NewsListCursorAdapter lvAdapter  = new NewsListCursorAdapter(getActivity(), null, this);
-			setListAdapter(lvAdapter);
-			
+
 			getActivity().getSupportLoaderManager().destroyLoader(0);
 
             if(reloadCursorOnStartUp)
@@ -209,10 +209,10 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	            	
 	            	if(lastViewedArticleCheckbox == null)
 	            		lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view); 
-	            		            	
+
 	            	RobotoCheckBox cb = getCheckBoxAtPosition(0, view);
 	            	if(lastViewedArticleCheckbox != cb) {
-	            		if(!stayUnreadCheckboxes.contains(lastViewedArticleCheckbox));
+	            		if(! (lastViewedArticleCheckbox.isChecked() && stayUnreadCheckboxes.contains(lastViewedArticleCheckbox)));
 	            			NewsListCursorAdapter.ChangeCheckBoxState(lastViewedArticleCheckbox, true, getActivity());
 	            		
 	            		lastViewedArticleCheckbox = cb;
@@ -269,8 +269,19 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
             NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
-            if(nca != null)
-                nca.swapCursor(cursor);
+
+
+            // Block children layout for now
+            BlockingListView bView = ((BlockingListView) getListView());
+
+            bView.setBlockLayoutChildren(true);
+
+            if(nca == null) {
+                NewsListCursorAdapter lvAdapter  = new NewsListCursorAdapter(getActivity(), null, NewsReaderDetailFragment.this);
+                setListAdapter(lvAdapter);
+                nca = lvAdapter;
+            }
+            nca.swapCursor(cursor);
 
             if(cursor.getCount() <= 0) {
                 getListView().setVisibility(View.GONE);
@@ -288,6 +299,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
             } catch(Exception ex) {
                 ex.printStackTrace();
             }
+
+            bView.setBlockLayoutChildren(false);
             //((NewsListCursorAdapter) getListAdapter()).changeCursor(cursor);
         }
 
