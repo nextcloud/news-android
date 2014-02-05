@@ -62,7 +62,7 @@ public class FontHelper {
 	
 	private void setFontForView(View view, Typeface typeface) {
 		if(view instanceof ViewGroup)
-			setFontForAllChildren(view, typeface);			
+			setFontForAllChildren(view, typeface);
 		else if(view instanceof RobotoTextView)
 			((RobotoTextView)view).setTypeface(typeface);
 		else if(view instanceof RobotoButton)

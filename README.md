@@ -50,7 +50,7 @@ Requirements:
 Download and install:  
 -----------------------
 >1) Open cmd/terminal
->2) Navigate to your workspace   
+>2) Navigate to your workspace
 >3) Then type in:
 ><pre>
 git clone --recursive https://github.com/owncloud/News-Android-App.git
