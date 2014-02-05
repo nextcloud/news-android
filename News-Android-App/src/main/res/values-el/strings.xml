@@ -151,6 +151,7 @@
   <string name="login_dialog_title_security_warning">Προειδοποίηση Ασφαλείας</string>
   <string name="login_dialog_text_security_warning">Δεν χρησιμοποιείτε htpps. Κάποιος εισβολέας θα μπορούσε να παρεμβληθεί στη σύνδεσή σας και να αποκτήσει πρόσβαση σε ευαίσθητα δεδομένα (π.χ. τον κωδικό σας). Επομένως προτείνεται σοβαρά η χρήση htpps!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Δεδομένα &amp; συγχρονισμός</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
   <string name="pref_title_CacheImagesOffline">Αποθήκευση εικόνων για χρήση χωρίς σύνδεση</string>

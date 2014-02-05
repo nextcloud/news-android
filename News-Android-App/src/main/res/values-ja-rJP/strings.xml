@@ -34,7 +34,7 @@
   <string name="action_openInBrowser">ブラウザーで開く</string>
   <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
-  <string name="action_login">サーバ設定</string>
+  <string name="action_login">サーバー設定</string>
   <string name="notification_new_items_ticker">X 新しい未読アイテムがあります。</string>
   <string name="notification_new_items_text">X 新しい未読アイテムが利用できます</string>
   <!--Strings related to login-->
@@ -52,7 +52,7 @@
   <string name="toast_downloaded_x_items">ダウンロードされた古いXアイテム</string>
   <string name="toast_no_more_downloads_available">これ以上利用できるアイテムがありません</string>
   <string name="pull_to_refresh_updateTags">アイテムの状態を同期中</string>
-  <string name="pull_to_refresh_updateFolder">フォルダを同期中</string>
+  <string name="pull_to_refresh_updateFolder">フォルダーを同期中</string>
   <string name="pull_to_refresh_updateFeeds">フィードを同期中</string>
   <string name="pull_to_refresh_updateItems">アイテムを同期中</string>
   <!--Strings related to Settings-->
@@ -76,7 +76,7 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
   <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています。しばらくお待ちください。</string>
-  <string name="calculating_cache_size">キャッシュサイズを計算中.. しばらくお待ち下さい。</string>
+  <string name="calculating_cache_size">キャッシュサイズを計算中.. しばらくお待ちください。</string>
   <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
   <string name="warning">警告</string>
   <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
@@ -149,7 +149,7 @@
   <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
   <string name="login_dialog_text_not_compatible">このアプリのバージョンはownCloudニュースアプリと互換性がありません。ニュースアプリとappframeworkをアップデートしてください。</string>
   <string name="login_dialog_title_security_warning">セキュリティ警告</string>
-  <string name="login_dialog_text_security_warning">httpsを使用していません。攻撃者があなたのトラフィックに干渉し、一部の機密データ(例えば、パスワード)にアクセスする恐れがあります。ですので、httpsの使用が強く推奨されます！</string>
+  <string name="login_dialog_text_security_warning">httpsを使用していません。攻撃者があなたのトラフィックに干渉し、一部の機密データ(例えば、パスワード)にアクセスする恐れがあります。そのため、httpsを利用することを強くお勧めします！</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">データと同期</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->

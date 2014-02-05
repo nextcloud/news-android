@@ -3,20 +3,30 @@
   <string name="action_settings">Innstillinger</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Oppdater</string>
+  <string name="menu_About_Changelog">Om / Endringslogg</string>
+  <string name="menu_markAllAsRead">Marker alle som lest</string>
+  <string name="menu_StartImageCaching">Last ned bilder</string>
   <!--EMAIL-->
+  <string name="email_sendMail">Send e-post</string>
   <!--Action Bar Items-->
   <string name="action_starred">Merket</string>
+  <string name="action_openInBrowser">Åpne i nettleser</string>
   <string name="action_Share">Del</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brukernavn</string>
   <string name="pref_title_password">Passord</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Innstillinger</string>
   <!--General settings-->
   <string name="pref_header_general">Generelt</string>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
@@ -26,6 +36,7 @@
   <string name="warning">Advarsel</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">Alltid</string>
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Feil</string>

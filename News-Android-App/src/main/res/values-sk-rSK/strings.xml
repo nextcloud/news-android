@@ -74,6 +74,8 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
+  <string name="dialog_clearing_cache_please_wait">Čistenie medzipamäte... Počkajte prosím.</string>
   <string name="calculating_cache_size">Počítam veľkosť medzipamäte. Počkajte prosím.</string>
   <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
   <string name="warning">Varovanie</string>
