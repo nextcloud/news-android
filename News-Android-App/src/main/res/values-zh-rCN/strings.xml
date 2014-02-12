@@ -8,25 +8,43 @@
   <string name="title_newsreader_detail">新闻读者详情</string>
   <string name="empty_view_header">信息</string>
   <string name="empty_view_content">无内容</string>
+  <string name="tv_clickHereToOpenItem">点击此处打开</string>
+  <string name="no_wifi_available">没有连接到WiFi</string>
   <string name="message_bar_reload">刷新</string>
   <string name="allUnreadFeeds">未读内容</string>
   <string name="starredFeeds">标星内容</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">刷新</string>
+  <string name="menu_About_Changelog">关于/变更日志</string>
+  <string name="menu_markAllAsRead">标记所有为已读</string>
+  <string name="menu_downloadMoreItems">下载更多内容</string>
   <!--EMAIL-->
   <string name="email_sourceCode">源代码-错误报告</string>
   <string name="email_sendMail">发送邮件</string>
   <!--Action Bar Items-->
   <string name="action_starred">已加星标</string>
+  <string name="action_read">阅读</string>
   <string name="action_openInBrowser">在浏览器中打开</string>
   <string name="action_sendSourceCode">给开发者发消息</string>
   <string name="action_Share">共享</string>
+  <string name="action_login">服务器配置</string>
   <!--Strings related to login-->
   <string name="pref_title_username">用户名</string>
   <string name="pref_title_password">密码</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">登录</string>
+  <string name="login_progress_signing_in">登录中...</string>
+  <string name="error_incorrect_password">此密码是错误的</string>
+  <string name="error_field_required">这个字段是必填的</string>
+  <string name="error_invalid_url">这个网址是错误的</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">下载的 X 的老内容</string>
+  <string name="pull_to_refresh_updateTags">同步内容的状态</string>
+  <string name="pull_to_refresh_updateFolder">同步文件夹</string>
+  <string name="pull_to_refresh_updateFeeds">同步源</string>
+  <string name="pull_to_refresh_updateItems">同步条目</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">设置</string>
   <!--General settings-->
@@ -37,15 +55,58 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="calculating_cache_size">计算缓存大小...请等待</string>
   <string name="warning">警告</string>
+  <string name="pref_title_AutoSyncOnStart">启动后就同步</string>
+  <string name="pref_title_ShowOnlyUnread">仅显示未读文章</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_NavigateWithVolumeButtons">用音量键导航</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">总是</string>
+  <string name="mtm_decision_once">一次</string>
+  <string name="mtm_decision_abort">终止</string>
+  <string name="mtm_notification">校验证书</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">显示</string>
+  <string name="pref_title_app_theme">应用皮肤 (需要重启来生效)</string>
+  <string name="pref_title_feed_list_layout">源清单布局</string>
+  <string-array name="pref_display_apptheme">
+    <item>深色</item>
+    <item>浅色</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">错误</string>
+  <string name="login_dialog_text_something_went_wrong">什么地方出错了 :(</string>
   <string name="login_dialog_title_security_warning">安全警告</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">数据 &amp; 同步</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string name="pref_title_clearCache">清除缓存</string>
+  <string name="pref_title_CacheImagesOffline">离线缓存图片</string>
+  <string name="pref_title_Max_Cache_Size">最大缓存大小</string>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
