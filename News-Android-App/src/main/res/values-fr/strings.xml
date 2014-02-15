@@ -10,9 +10,9 @@
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Aucun article</string>
   <string name="toast_GettingMoreItems">Téléchargement d\'articles supplémentaires en cours... Veuillez patienter.</string>
-  <string name="tv_clickHereToOpenItem">Cliquez ici pour ouvrir l\'article</string>
-  <string name="no_wifi_available">WiFi déconnecté</string>
-  <string name="do_you_want_to_download_without_wifi">Voulez-vous télécharger les images sans connexion WiFi ?</string>
+  <string name="tv_clickHereToOpenItem">Lire</string>
+  <string name="no_wifi_available">Aucune connexion WIF</string>
+  <string name="do_you_want_to_download_without_wifi">Télécharger les images sans connexion WiFi ?</string>
   <string name="max_items_count_reached">Vous avez atteint le nombre maximum de XX articles</string>
   <string name="widget_header">Actualités ownCloud</string>
   <string name="message_bar_new_articles_available">Nouveaux articles disponibles</string>
@@ -24,14 +24,14 @@
   <string name="menu_About_Changelog">À propos / Journal des modifications</string>
   <string name="menu_markAllAsRead">Marquez tous comme lu</string>
   <string name="menu_StartImageCaching">Télécharger les images</string>
-  <string name="menu_downloadMoreItems">Télécharger des articles supplémentaires</string>
+  <string name="menu_downloadMoreItems">+ d\'articles</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Code source de l\'article - Rapport de bug</string>
   <string name="email_sendMail">Envoyer un courriel</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favori</string>
   <string name="action_read">Lu</string>
-  <string name="action_openInBrowser">Ouvrir dans le navigateur</string>
+  <string name="action_openInBrowser">Afficher dans le navigateur</string>
   <string name="action_sendSourceCode">Envoyer l\'article au développeur</string>
   <string name="action_Share">Partager</string>
   <string name="action_login">Paramètres du serveur</string>
@@ -44,7 +44,7 @@
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">S\'identifier</string>
-  <string name="login_progress_signing_in">Identification en cours…</string>
+  <string name="login_progress_signing_in">Connexion en cours…</string>
   <string name="error_incorrect_password">Le mot de passe est incorrect</string>
   <string name="error_field_required">Ce champs est requis</string>
   <string name="error_invalid_url">Cet URL est incorrect</string>
