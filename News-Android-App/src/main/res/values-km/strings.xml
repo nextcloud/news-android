@@ -4,8 +4,10 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_starred">បាន​ដាក់​ផ្កាយ</string>
   <string name="action_Share">ចែក​រំលែក</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">ឈ្មោះ​អ្នកប្រើ</string>
   <string name="pref_title_password">ពាក្យសម្ងាត់</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
@@ -26,6 +28,7 @@
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">កំហុស</string>
+  <string name="login_dialog_title_security_warning">បម្រាម​សុវត្ថិភាព</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>

@@ -35,6 +35,8 @@
   <string name="action_sendSourceCode">Nusiųstas elementas kūrėjui</string>
   <string name="action_Share">Dalintis</string>
   <string name="action_login">Serverio nustatymai</string>
+  <string name="notification_new_items_ticker">Turite neperskaitytų X elementų</string>
+  <string name="notification_new_items_text">X nauji neperskaityti elementai pasiekiami</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Prisijungimo vardas</string>
   <string name="pref_title_password">Slaptažodis</string>
@@ -72,6 +74,8 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Valoma talpykla</string>
+  <string name="dialog_clearing_cache_please_wait">Valoma talpykla. Prašome palaukti.</string>
   <string name="calculating_cache_size">Skaičiuojamas talpyklos dydis.. Prašome palaukti.</string>
   <string name="reset_cache_unsaved_changes">Yra nesinchronizuotų pakitimų. Ar vis tiek norite atstatyti talpyklą?</string>
   <string name="warning">Įspėjimas</string>
@@ -81,6 +85,8 @@
   <string name="pref_title_DisableHostnameVerification">Išjungti mazgo vardo patikrinimą</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naršyti su garso mygtukais</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Žymėti perskaitytu slenkant</string>
+  <string name="pref_title_OpenInBrowserDirectly">Praleisti informacijos peržiūrą ir atverti straipsnį naršyklėje</string>
+  <string name="pref_title_notification_new_articles_available">Rodyti pranešimus kai galimi nauji straipsniai</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Priimti nežinomą sertifikatą?</string>
   <string name="mtm_decision_always">Visada</string>
@@ -187,6 +193,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Pranešimai</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
