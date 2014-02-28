@@ -74,6 +74,8 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">正在清除快取</string>
+  <string name="dialog_clearing_cache_please_wait">正在清除快取...請稍候.</string>
   <string name="calculating_cache_size">計算快取容量中...請稍候。</string>
   <string name="reset_cache_unsaved_changes">這些未同步變更。您想要強制重設快取嗎?</string>
   <string name="warning">警告</string>
@@ -189,6 +191,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">通知</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
