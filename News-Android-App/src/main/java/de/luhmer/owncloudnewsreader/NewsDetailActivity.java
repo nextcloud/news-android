@@ -54,8 +54,8 @@ import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
-public class NewsDetailActivity extends SherlockFragmentActivity {	
-	
+public class NewsDetailActivity extends SherlockFragmentActivity {
+
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
 	 * fragments for each of the sections. We use a
@@ -71,38 +71,38 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	 */
 	public ViewPager mViewPager;
 	private int currentPosition;
-	
+
 	PostDelayHandler pDelayHandler;
-	
+
 	MenuItem menuItem_Starred;
 	MenuItem menuItem_Read;
-	
+
     IReader _Reader;
     //ArrayList<Integer> databaseItemIds;
     DatabaseConnection dbConn;
 	//public List<RssFile> rssFiles;
     Cursor cursor;
-    
+
     public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
-    
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		ThemeChooser.chooseTheme(this);
-		
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
-		
+
 		pDelayHandler = new PostDelayHandler(this);
-		
+
 		_Reader = new OwnCloud_Reader();
 		dbConn = new DatabaseConnection(this);
 		Intent intent = getIntent();
-		
+
 		//long subsciption_id = -1;
 		//long folder_id = -1;
 		int item_id = 0;
-		
+
 		//if(intent.hasExtra(NewsReaderDetailActivity.SUBSCRIPTION_ID))
 		//	subsciption_id = intent.getExtras().getLong(NewsReaderDetailActivity.SUBSCRIPTION_ID);
 		//if(intent.hasExtra(NewsReaderDetailActivity.FOLDER_ID))
@@ -112,13 +112,13 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		if(intent.hasExtra(NewsReaderListActivity.TITEL))
 			getSupportActionBar().setTitle(intent.getExtras().getString(NewsReaderListActivity.TITEL));
 			//getActionBar().setTitle(intent.getExtras().getString(NewsReaderDetailActivity.TITEL));
-		
+
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 		//if(intent.hasExtra(DATABASE_IDS_OF_ITEMS))
 		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
-		
+
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
     	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
@@ -158,31 +158,31 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		{
 			ex.printStackTrace();
 		}
-		
+
 		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
-			
+
 			@Override
 			public void onPageSelected(int pos) {
 				PageChanged(pos);
 			}
-			
+
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
 			}
-			
+
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
 			}
 		});
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		if(dbConn != null)
 			dbConn.closeDatabase();
 		super.onDestroy();
 	}
-		
+
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -196,7 +196,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	        		return true;
 	        	}
 	        }
-	        
+
 	        else if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP))
 	        {
 	        	if(currentPosition > 0)
@@ -221,7 +221,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				}
 			}
 		}
-        
+
 		return super.onKeyDown(keyCode, event);
     }
 
@@ -230,14 +230,14 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		StopVideoOnCurrentPage();
 		currentPosition = position;
 		ResumeVideoPlayersOnCurrentPage();
-				
+
 		//String idFeed = String.valueOf(rssFiles.get(position).getDB_Id());
 		String idFeed = getIdCurrentFeed(currentPosition);
-		
+
 		if(!dbConn.isFeedUnreadStarred(idFeed, true))
-		{			
-			markItemAsReadUnread(idFeed, true);	
-			
+		{
+			markItemAsReadUnread(idFeed, true);
+
 			pDelayHandler.DelayTimer();
 
 			Log.d("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + idFeed);
@@ -259,15 +259,15 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
         }
         return "-1";
 	}
-	
+
 	private void ResumeVideoPlayersOnCurrentPage()
 	{
 		NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 		if(fragment != null)  // could be null if not instantiated yet
-			fragment.ResumCurrentPage();
-		
+			fragment.ResumeCurrentPage();
+
 	}
-	
+
 	private void StopVideoOnCurrentPage()
 	{
 		NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
@@ -324,20 +324,20 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
         //Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 32, 32, false);
         return new BitmapDrawable(bitmapResized);
     }
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		//getMenuInflater().inflate(R.menu.news_detail, menu);
 		getSupportMenuInflater().inflate(R.menu.news_detail, menu);
-		
+
 		menuItem_Starred = menu.findItem(R.id.action_starred);
 		menuItem_Read = menu.findItem(R.id.action_read);
         UpdateActionBarIcons();
 
 		return true;
-	}	
-	
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		String idFeed = getIdCurrentFeed(currentPosition);
@@ -354,8 +354,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			case android.R.id.home:
 				super.onBackPressed();
 				break;
-		
-			case R.id.action_starred:				
+
+			case R.id.action_starred:
 				//String idItem_Db = String.valueOf(rssFiles.get(currentPosition).getDB_Id());
 				String idItem_Db = getIdCurrentFeed(currentPosition);
                 //String idItem = String.valueOf(rssFiles.get(currentPosition).getItem_Id());
@@ -364,17 +364,17 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				//rssFiles.get(currentPosition).setStarred(!curState);
 
 				dbConn.updateIsStarredOfItem(idItem_Db, !curState);
-				
+
 				UpdateActionBarIcons();
-				
+
 				pDelayHandler.DelayTimer();
-                
+
 				List<String> idItems = new ArrayList<String>();
 				cursor.moveToFirst();
 				idItems.add(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
 				cursor.close();
 				break;
-			
+
 			case R.id.action_openInBrowser:
 				//String link = rssFiles.get(currentPosition).getLink();
 
@@ -385,8 +385,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 					startActivity(browserIntent);
 				}
 				break;
-			
-		
+
+
 			/*
 			case R.id.action_sendSourceCode:
 				String description = "";
@@ -396,8 +396,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 					description = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
 					cursor.close();
 				}
-				
-				
+
+
 				Intent i = new Intent(Intent.ACTION_SEND);
 				i.setType("message/rfc822");
 				i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"david-dev@live.de"});
@@ -408,7 +408,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				    startActivity(Intent.createChooser(i, getString(R.string.email_sendMail)));
 				} catch (android.content.ActivityNotFoundException ex) {
 				    Toast.makeText(NewsDetailActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-				}				
+				}
 				break;
 			 */
             case R.id.action_ShareItem:
@@ -428,31 +428,31 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 				}
 
 				//content += "<br/><br/>Send via <a href=\"https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader\">ownCloud News Reader</a>";
-				            	
+
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
                 //share.putExtra(Intent.EXTRA_SUBJECT, rssFiles.get(currentPosition).getTitle());
                 //share.putExtra(Intent.EXTRA_TEXT, rssFiles.get(currentPosition).getLink());
                 share.putExtra(Intent.EXTRA_SUBJECT, title);
                 share.putExtra(Intent.EXTRA_TEXT, content);
-                
+
                 startActivity(Intent.createChooser(share, "Share Item"));
                 break;
-                
+
             case R.id.action_read:
-            	
+
             	if(cursor != null)
 				{
 					cursor.moveToFirst();
 					String id = cursor.getString(0);
 					markItemAsReadUnread(id, !menuItem_Read.isChecked());
 					cursor.close();
-				}            	
-            	
+				}
+
             	UpdateActionBarIcons();
-            	
+
             	pDelayHandler.DelayTimer();
-            	
+
             	break;
 		}
 
@@ -461,8 +461,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
+
+
 	private void markItemAsReadUnread(String item_id, boolean read) {
 		dbConn.updateIsReadOfItem(item_id, read);
 		UpdateActionBarIcons();
@@ -471,7 +471,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 	/*
 	OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagRead = new OnAsyncTaskCompletedListener() {
-		
+
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
             boolean success = (Boolean) task_result;
@@ -481,12 +481,12 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
             Log.d("FINISHED PERFORM TAG READ ", "" + task_result);
 		}
 	};
-	
+
 	OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagStarred = new OnAsyncTaskCompletedListener() {
-		
+
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			Log.d("FINISHED PERFORM TAG STARRED ", "" + task_result);			
+			Log.d("FINISHED PERFORM TAG STARRED ", "" + task_result);
 		}
 	};
 	*/
@@ -505,7 +505,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	 */
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 	//public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
-	 
+
 
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
@@ -522,8 +522,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			fragment.setArguments(args);
 			return fragment;
 		}
-		
-		
+
+
 		@Override
 		public int getCount() {
 			return cursor.getCount();

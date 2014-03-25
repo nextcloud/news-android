@@ -1,49 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="auto_sync_string">Auto sync</string>
-	
-    
     <string name="app_name">ownCloud News Reader</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_sync_interval_selector">Sync Interval Selector</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="title_activity_subscription">SubscriptionActivity</string>
     <string name="title_newsreader_list">NewsReader</string>
     <string name="title_newsreader_detail">NewsReader Detail</string>
-
-    
     <string name="empty_view_header">Information</string>
     <string name="empty_view_content">No items here</string>
     <string name="toast_GettingMoreItems">Started downloading more items.. Please wait.</string>
-    
     <string name="tv_clickHereToOpenItem">Click here to open item</string>
     <string name="no_wifi_available">No WiFi connected</string>
     <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a WiFi connection</string>
-    
     <string name="max_items_count_reached">You\'ve reached the maxiumum size of XX items</string>
-    
     <string name="widget_header">ownCloud News</string>
-    
     <string name="message_bar_new_articles_available">New items available</string>
     <string name="message_bar_reload">Reload</string>
-    
     <string name="allUnreadFeeds">All unread items</string>
     <string name="starredFeeds">Starred items</string>
     <!-- <string name="non_sorted_articles">Nicht zugeordnete Artikel</string> -->
-    
+
     <string name="menu_update">Refresh</string>
     <string name="menu_About_Changelog">About / Changelog</string>
-    
-    
     <string name="menu_markAllAsRead">Mark all as read</string>
     <string name="menu_StartImageCaching">Download images</string>
     <string name="menu_downloadMoreItems">Download more items</string>
-    
-    
-    
+
     <!-- EMAIL -->
     <string name="email_sourceCode">Sourcecode of item - Bugreport</string>
     <string name="email_sendMail">Send EMail</string>
-    
+
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
     <string name="action_read">Read</string>
@@ -51,40 +39,32 @@
     <string name="action_sendSourceCode">Send item to Developer</string>
     <string name="action_Share">Share</string>
     <string name="action_login">Server Settings</string>
-    
-       
+    <string name="action_save">Save</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_sync_settings">Sync Settings</string>
     <string name="notification_new_items_ticker">You have X new unread items</string>
     <string name="notification_new_items_text">X new unread items available</string>
-    
-    
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>
     <string name="pref_title_password">Password</string>
     <!-- <string name="pref_title_owncloudRootPath">ownCloud root address</string> -->
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
     <!-- <string name="pref_default_username">admin</string> -->
-    
+
     <string name="action_sign_in_short">Sign in</string>
-    <string name="login_progress_signing_in">Signing in&#8230;</string>
+    <string name="login_progress_signing_in">Signing in…</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_url">This url is incorrect</string>
-    
-    
-    
-    
+
     <!-- Toast Messages -->
     <string name="toast_downloaded_x_items">Downloaded X old items</string>
     <string name="toast_no_more_downloads_available">No further items available</string>
-    
-    
-    
     <string name="pull_to_refresh_updateTags">Synchronizing items states</string>
     <string name="pull_to_refresh_updateFolder">Synchronizing folder</string>
     <string name="pull_to_refresh_updateFeeds">Synchronizing feeds</string>
     <string name="pull_to_refresh_updateItems">Synchronizing items</string>
-    
-    
 
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Settings</string>
@@ -92,23 +72,24 @@
     <!-- General settings -->
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Sort Order</string>
-    
+
     <string-array name="pref_general_sort_order">
-    	<item>New -> Old</item>
-    	<item>Old -> New</item>
+        <item>New -> Old</item>
+        <item>Old -> New</item>
     </string-array>
     <string-array name="pref_general_sort_order_values_not_translated">
         <item>1</item>
         <item>0</item>
-	</string-array>
-    <!-- 
+    </string-array>
+    <!--
     <string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>
     -->
-    
-    <!-- 
+
+
+    <!--
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>
     -->
@@ -118,55 +99,46 @@
     <string name="calculating_cache_size">Calculating cache size.. Please wait.</string>
     <string name="reset_cache_unsaved_changes">There are unsynchronized changes. Would you like to reset the cache anyway?</string>
     <string name="warning">Warning</string>
-    
-    
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
     <string name="pref_title_ShowOnlyUnread">Show only unread articles</string>
-    <!--  <string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string> -->
+    <!-- <string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string> -->
     <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Mark as read while scrolling</string>
     <string name="pref_title_OpenInBrowserDirectly">Skip detail view and open article in the browser</string>
     <string name="pref_title_notification_new_articles_available">Show notification when new articles are available</string>
 
-
-    
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accept Unknown Certificate?</string>
     <string name="mtm_decision_always">Always</string>
     <string name="mtm_decision_once">Once</string>
     <string name="mtm_decision_abort">Abort</string>
     <string name="mtm_notification">Certificate Verification</string>
-    
-    
-    
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Display</string>
     <string name="pref_title_app_theme">App theme (requires restart to apply)</string>
     <string name="pref_title_feed_list_layout">Feed list layout</string>
     <string name="pref_display_font_layout">Font (requires restart to apply)</string>
-    
-    
+
     <string-array name="pref_display_apptheme">
         <item>Dark</item>
-        <item>Light</item>        
+        <item>Light</item>
     </string-array>
     <string-array name="pref_display_apptheme_values">
         <item>0</item>
-        <item>1</item>        
+        <item>1</item>
     </string-array>
-    
     <string-array name="pref_display_feed_list_layout">
         <item>Simple</item>
         <item>Extended</item>
-        <item>Extended with Webview</item>        
+        <item>Extended with Webview</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout_values">
         <item>0</item>
         <item>1</item>
-        <item>2</item>        
+        <item>2</item>
     </string-array>
-    
     <string-array name="pref_display_font">
         <item>Roboto Thin</item>
         <item>Roboto Light</item>
@@ -180,8 +152,8 @@
         <item>Roboto Slab Light</item>
         <item>Roboto Slab Regular</item>
         <item>Roboto Slab Bold</item>
-	</string-array>
-	<string-array name="pref_display_font_values">
+    </string-array>
+    <string-array name="pref_display_font_values">
         <item>0</item>
         <item>2</item>
         <item>4</item>
@@ -194,32 +166,26 @@
         <item>17</item>
         <item>18</item>
         <item>19</item>
-	</string-array>
-	
-	
-    
+    </string-array>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_something_went_wrong">Something went wrong :(</string>
-    <string name="login_dialog_text_not_compatible">This App version is not compatible with your ownCloud News App. Please update the news app and the appframework.</string>    
-    
+    <string name="login_dialog_text_not_compatible">This App version is not compatible with your ownCloud News App. Please update the news app and the appframework.</string>
     <string name="login_dialog_title_security_warning">Security Warning</string>
     <string name="login_dialog_text_security_warning">You\'re not using https. An attacker could intercept your traffic and gain access to some sensitive data (e.g. your password). So it\'s strongly recommend to use https!</string>
-    
 
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
-    <!-- <string name="pref_title_data_sync_max_items">Max number of items to sync</string>  -->
+    <!-- <string name="pref_title_data_sync_max_items">Max number of items to sync</string> -->
     <string name="pref_title_clearCache">Clear cache</string>
     <string name="pref_title_CacheImagesOffline">Cache images offline</string>
-    
-    
     <string name="pref_title_Max_Cache_Size">Max Cache Size</string>
-    
+
     <string-array name="pref_data_sync_max_cache_size">
         <item>250 MB</item>
-        <item>500 MB</item>        
-        <item>750 MB</item>        
+        <item>500 MB</item>
+        <item>750 MB</item>
         <item>1 GB</item>
         <item>2 GB</item>
         <item>5 GB</item>
@@ -234,11 +200,34 @@
         <item>5000</item>
         <item>10000</item>
     </string-array>
-    
-    
-    
-    
-    <!-- 
+
+
+    <string-array name="array_sync_interval">
+        <item>5 Minutes</item>
+        <item>15 Minutes</item>
+        <item>30 Minutes</item>
+        <item>45 Minutes</item>
+        <item>1 Hour</item>
+        <item>2 Hours</item>
+        <item>3 Hours</item>
+        <item>6 Hours</item>
+        <item>12 Hours</item>
+        <item>24 Hours</item>
+    </string-array>
+    <string-array name="array_sync_interval_values">
+        <item>5</item>
+        <item>15</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+        <item>120</item>
+        <item>180</item>
+        <item>360</item>
+        <item>720</item>
+        <item>1440</item>
+    </string-array>
+
+    <!--
     <string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
@@ -259,11 +248,8 @@
     </string-array>
     -->
 
-    <!-- 
-    <string name="pref_title_system_sync_settings">System sync settings</string>
- 	-->
- 	
 
+<!--     <string name="pref_title_system_sync_settings">System sync settings</string> -->
 
     <string name="pref_header_notifications">Notifications</string>
     <!--
@@ -272,5 +258,5 @@
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>
     -->
-    
+
 </resources>

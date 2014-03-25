@@ -1,7 +1,7 @@
 ownCloud News Reader - Android App
 ==================================
-The ownCloud News Reader Android App is under AGPLv3 License terms.  
-Status: Beta  
+The ownCloud News Reader Android App is under AGPLv3 License terms.
+Status: Beta
 Bugs and enhancements can be reported under: https://github.com/owncloud/News-Android-App/issues
 
 <p>
@@ -27,27 +27,21 @@ https://groups.google.com/d/forum/owncloud-news-android-app
 there you can find a link (after I accepted you in the group) to Google Play for registering as beta tester of the app.
 
 
-Language
-==================================
-Is your language not supported yet ?  
-You can add your language easily on:  
-https://www.transifex.com/projects/p/owncloud/resource/android-news/
-
 
 FAQ:
 ==================================
-The app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen)  
+The app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen)
 - Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3 (via Google Play or GitHub <a href="https://github.com/owncloud/News-Android-App/commits/master/News-Android-App.apk">Choose version</a>).
 
 
 How to compile the App
 ==================================
-Requirements:  
+Requirements:
 -----------------------
 >1) Android Studio
->2) Git installed (you can do the following stuff without git but I'm not going to show how).  
+>2) Git installed (you can do the following stuff without git but I'm not going to show how).
 
-Download and install:  
+Download and install:
 -----------------------
 >1) Open cmd/terminal
 >2) Navigate to your workspace
@@ -72,6 +66,9 @@ Updates
 ==================================
 0.5.7 (in development)
 ---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/213">#213 When using the dark theme websites with no background color are unreadable</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/211">#211 Links within articles</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/198">#198 enable auto sync configuration</a>
 
 
 0.5.6 (Google Play - Beta)
@@ -156,7 +153,7 @@ Updates
 ---------------------
 - Fixed app freeze when sync is finished
 - Small improvements
- 
+
 
 0.4.5 (unpublished)
 ---------------------
@@ -252,11 +249,11 @@ Updates
 
 0.3.5
 ---------------------
-- Fixed issue <a href="https://github.com/owncloud/News-Android-App/issues/52">#52 (Folders visible multiple times)</a>  
-- Fixed issue <a href="https://github.com/owncloud/News-Android-App/issues/53">#53 (New items get added at the bottom)</a>  
+- Fixed issue <a href="https://github.com/owncloud/News-Android-App/issues/52">#52 (Folders visible multiple times)</a>
+- Fixed issue <a href="https://github.com/owncloud/News-Android-App/issues/53">#53 (New items get added at the bottom)</a>
 - Added default feed favIcon
 - Theme is now also applied in the settings screen
-- Implemented <a href="https://github.com/owncloud/News-Android-App/issues/56">#56 (Click on header to open article in browser)</a>  
+- Implemented <a href="https://github.com/owncloud/News-Android-App/issues/56">#56 (Click on header to open article in browser)</a>
 
 0.3.4
 ---------------------
@@ -271,23 +268,23 @@ Updates
 
 0.3.3
 ---------------------
-- Dark/Light App Theme   
-- Feed List Design Simple/Extended   
-- many new languages have been added   
+- Dark/Light App Theme
+- Feed List Design Simple/Extended
+- many new languages have been added
 
 0.3.2
 ---------------------
-- Fixed app crash when leaving item detail view.   
+- Fixed app crash when leaving item detail view.
 
 0.3.1
 ---------------------
-- Polish language support added (thank you for translating Cyryl)   
-- App crash fixed when no item header text is available   
-- Go back in the item view if you press the home button   
-- Added Up Button in detail view as fix for GitHub Issue #13    
-- Other small fixes    
+- Polish language support added (thank you for translating Cyryl)
+- App crash fixed when no item header text is available
+- Go back in the item view if you press the home button
+- Added Up Button in detail view as fix for GitHub Issue #13
+- Other small fixes
 
 0.3.0
 ---------------------
-- Android 2.2+ Support added    
-- small bugfixes    
+- Android 2.2+ Support added
+- small bugfixes
