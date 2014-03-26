@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Samodejno usklajevanje</string>
   <string name="app_name">Bralnik novic ownCloud</string>
-  <string name="action_settings">Nastavitve</string>
   <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
   <string name="title_activity_subscription">Pregled naročnine</string>
   <string name="title_newsreader_list">Bralnik novic</string>
@@ -35,6 +34,7 @@
   <string name="action_sendSourceCode">Pošlji predmet razvijalcem</string>
   <string name="action_Share">Souporaba</string>
   <string name="action_login">Nastavitve strežnika</string>
+  <string name="action_settings">Nastavitve</string>
   <string name="notification_new_items_ticker">Neprebranih je več prispevkov</string>
   <string name="notification_new_items_text">Na voljo je več neprebranih predmetov</string>
   <!--Strings related to login-->

@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Auto sinchronizavimas</string>
   <string name="app_name">ownCloud naujienų skaitymo programa</string>
-  <string name="action_settings">Nustatymai</string>
   <string name="title_activity_news_detail">NaujienosInformacijaVeikla</string>
   <string name="title_activity_subscription">PrenumerataVeikla</string>
   <string name="title_newsreader_list">Naujienų skaitymas</string>
@@ -35,6 +34,7 @@
   <string name="action_sendSourceCode">Nusiųstas elementas kūrėjui</string>
   <string name="action_Share">Dalintis</string>
   <string name="action_login">Serverio nustatymai</string>
+  <string name="action_settings">Nustatymai</string>
   <string name="notification_new_items_ticker">Turite neperskaitytų X elementų</string>
   <string name="notification_new_items_text">X nauji neperskaityti elementai pasiekiami</string>
   <!--Strings related to login-->

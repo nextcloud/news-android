@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Automatisch synchronisieren</string>
   <string name="app_name">ownCloud Newsreader</string>
-  <string name="action_settings">Einstellungen</string>
   <string name="title_activity_news_detail">Newsdetailaktivität</string>
   <string name="title_activity_subscription">Abonnements</string>
   <string name="title_newsreader_list">Newsreader</string>
@@ -35,6 +34,7 @@
   <string name="action_sendSourceCode">Artikel an Entwickler senden</string>
   <string name="action_Share">Teilen</string>
   <string name="action_login">Servereinstellungen</string>
+  <string name="action_settings">Einstellungen</string>
   <string name="notification_new_items_ticker">Du hast X neue ungelesene Einträge</string>
   <string name="notification_new_items_text">X neue ungelesene Einträge verfügbar</string>
   <!--Strings related to login-->

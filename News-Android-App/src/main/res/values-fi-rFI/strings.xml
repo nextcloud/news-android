@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Automaattinen synkronointi</string>
   <string name="app_name">ownCloud-uutislukija</string>
-  <string name="action_settings">Asetukset</string>
   <string name="title_newsreader_list">Uutislukija</string>
   <string name="empty_view_content">Ei kohteita</string>
   <string name="toast_GettingMoreItems">Lisäkohteiden lataus aloitettu, odota hetki...</string>
@@ -25,6 +24,7 @@
   <string name="action_openInBrowser">Avaa selaimessa</string>
   <string name="action_Share">Jaa</string>
   <string name="action_login">Palvelinasetukset</string>
+  <string name="action_settings">Asetukset</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>

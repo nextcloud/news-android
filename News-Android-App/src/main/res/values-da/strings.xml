@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Automatisk synkronisering </string>
   <string name="app_name">ownCloud News Reader</string>
-  <string name="action_settings">Indstillinger</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">AbonnementAktivitet</string>
   <string name="title_newsreader_list">NewsReader</string>
@@ -35,6 +34,7 @@
   <string name="action_sendSourceCode">Send artikel til udvikler</string>
   <string name="action_Share">Del</string>
   <string name="action_login">Server Indstillinger</string>
+  <string name="action_settings">Indstillinger</string>
   <string name="notification_new_items_ticker">Du har X nye ulæste emner</string>
   <string name="notification_new_items_text">X nye ulæste poster til rådighed</string>
   <!--Strings related to login-->

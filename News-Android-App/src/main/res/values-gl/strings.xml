@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Sincronización automática</string>
   <string name="app_name">Lector de novas do ownCloud</string>
-  <string name="action_settings">Axustes</string>
   <string name="title_activity_news_detail">Detalle da actividade das novas</string>
   <string name="title_activity_subscription">Actividade da subscrición</string>
   <string name="title_newsreader_list">Lector de novas</string>
@@ -35,6 +34,7 @@
   <string name="action_sendSourceCode">Enviar o elemento ao desenvolvedor</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Axustes do servidor</string>
+  <string name="action_settings">Axustes</string>
   <string name="notification_new_items_ticker">Ten X novos elementos sen ler</string>
   <string name="notification_new_items_text">Dispón de X elementos novos sen ler</string>
   <!--Strings related to login-->

@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Auto sync</string>
   <string name="app_name">ownCloud Nieuws Lezer</string>
-  <string name="action_settings">Instellingen</string>
   <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
   <string name="title_activity_subscription">AbonnementActiviteit</string>
   <string name="title_newsreader_list">NieuwsLezer</string>
@@ -35,6 +34,7 @@
   <string name="action_sendSourceCode">Verzend item naar ontwikkelaar</string>
   <string name="action_Share">Delen</string>
   <string name="action_login">Server instellingen</string>
+  <string name="action_settings">Instellingen</string>
   <string name="notification_new_items_ticker">U hebt X nieuwe ongelezen artikelen</string>
   <string name="notification_new_items_text">X nieuwe ongelezen artikelen beschikbaar</string>
   <!--Strings related to login-->

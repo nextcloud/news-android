@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">自動同步</string>
   <string name="app_name">ownCloud新聞閱讀器</string>
-  <string name="action_settings">設定</string>
   <string name="title_activity_news_detail">新聞內容活動</string>
   <string name="title_activity_subscription">訂閱活動</string>
   <string name="title_newsreader_list">新聞閱讀器</string>
@@ -35,6 +34,7 @@
   <string name="action_sendSourceCode">寄送項目到開發者</string>
   <string name="action_Share">分享</string>
   <string name="action_login">伺服器設定</string>
+  <string name="action_settings">設定</string>
   <string name="notification_new_items_ticker">您有 X 新的未讀項目</string>
   <string name="notification_new_items_text">X 新的未讀項目可用</string>
   <!--Strings related to login-->

@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Automatisk synkning</string>
   <string name="app_name">ownCloud Nyhetsläsare</string>
-  <string name="action_settings">Inställningar</string>
   <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
   <string name="title_activity_subscription">PrenumerationAktivitet</string>
   <string name="title_newsreader_list">Nyhetsläsare</string>
@@ -35,6 +34,7 @@
   <string name="action_sendSourceCode">Skicka objekt till utvecklaren</string>
   <string name="action_Share">Dela</string>
   <string name="action_login">Serverinställningar</string>
+  <string name="action_settings">Inställningar</string>
   <string name="notification_new_items_ticker">Du har X olästa saker</string>
   <string name="notification_new_items_text">X nya olästa saker är tillgängliga</string>
   <!--Strings related to login-->

@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Αυτόματος συγχρονισμός</string>
   <string name="app_name">Ανάγνωση Ειδήσεων ownCloud</string>
-  <string name="action_settings">Ρυθμίσεις</string>
   <string name="title_activity_news_detail">Λεπτομέρειες Δραστηριότητας Ειδήσεων</string>
   <string name="title_activity_subscription">Δραστηριότητα Συνδρομών</string>
   <string name="title_newsreader_list">Ανάγνωση Ειδήσεων</string>
@@ -35,6 +34,7 @@
   <string name="action_sendSourceCode">Αποστολή αντικειμένου στον Προγραμματιστή</string>
   <string name="action_Share">Διαμοιρασμός</string>
   <string name="action_login">Ρυθμίσεις Διακομιστή</string>
+  <string name="action_settings">Ρυθμίσεις</string>
   <string name="notification_new_items_ticker">Έχετε Χ νέα αδιάβαστα στοιχεία</string>
   <string name="notification_new_items_text">Χ νέα αδιάβαστα στοιχεία διαθέσιμα</string>
   <!--Strings related to login-->
