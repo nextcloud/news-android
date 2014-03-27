@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Automatická synchronizace</string>
   <string name="app_name">Čtečka zpráv ownCloud</string>
-  <string name="action_settings">Nastavení</string>
   <string name="title_activity_news_detail">Podrobná aktivita zpráv</string>
   <string name="title_activity_subscription">Aktivita odběru</string>
   <string name="title_newsreader_list">Čtečka zpráv</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Odeslat položku vývojáři</string>
   <string name="action_Share">Sdílet</string>
   <string name="action_login">Nastavení serveru</string>
+  <string name="action_save">Uložit</string>
+  <string name="action_settings">Nastavení</string>
   <string name="notification_new_items_ticker">Máte X nových nepřečtených položek</string>
   <string name="notification_new_items_text">X nových položek k dispozici</string>
   <!--Strings related to login-->

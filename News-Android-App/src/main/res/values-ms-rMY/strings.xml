@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">Tetapan</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Refresh</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Kongsi</string>
+  <string name="action_save">Simpan</string>
+  <string name="action_settings">Tetapan</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Kata laluan</string>

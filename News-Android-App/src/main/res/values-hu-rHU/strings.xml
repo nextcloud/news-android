@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Automata szinkronizáció</string>
   <string name="app_name">ownCloud Hírolvasó</string>
-  <string name="action_settings">Beállítások</string>
   <string name="title_activity_news_detail">HírekRészletTevékenység</string>
   <string name="title_activity_subscription">ElőfizetésiTevékenység</string>
   <string name="title_newsreader_list">Hírolvasó</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Küldjük el a fejlesztőnek</string>
   <string name="action_Share">Megosztás</string>
   <string name="action_login">Szerver Beállítások</string>
+  <string name="action_save">Mentés</string>
+  <string name="action_settings">Beállítások</string>
   <string name="notification_new_items_ticker">Van X db el nem olvasott elem</string>
   <string name="notification_new_items_text">X darab új olvasatlan elem érhető el</string>
   <!--Strings related to login-->

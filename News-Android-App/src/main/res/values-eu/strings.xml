@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">ownCloud berri rakurlea</string>
-  <string name="action_settings">Ezarpenak</string>
   <string name="title_newsreader_list">BerriIrakurlea</string>
   <string name="title_newsreader_detail">BerriIrakurle xehetasuna</string>
   <string name="empty_view_header">Informazioa</string>
@@ -29,6 +28,8 @@
   <string name="action_sendSourceCode">Bidali elementu agaratzaileari</string>
   <string name="action_Share">Partekatu</string>
   <string name="action_login">Zerbitzariaren ezarpenak</string>
+  <string name="action_save">Gorde</string>
+  <string name="action_settings">Ezarpenak</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Erabiltzaile izena</string>
   <string name="pref_title_password">Pasahitza</string>

@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Tự đồng b</string>
   <string name="app_name">Tin tức ownCloud </string>
-  <string name="action_settings">Cài đặt</string>
   <string name="title_activity_news_detail">Chi tiết hoạt </string>
   <string name="title_activity_subscription">Hoạt động đăng k</string>
   <string name="title_newsreader_list">Đọc t</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Gởi tới nhà phát tr</string>
   <string name="action_Share">Chia sẻ</string>
   <string name="action_login">Cài </string>
+  <string name="action_save">Lưu</string>
+  <string name="action_settings">Cài đặt</string>
   <string name="notification_new_items_ticker">Bạn có X mục mới chưa đọc</string>
   <string name="notification_new_items_text">X mục mới chưa đọc có giá trị</string>
   <!--Strings related to login-->

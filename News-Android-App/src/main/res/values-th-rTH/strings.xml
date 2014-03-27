@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">ตั้งค่า</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">รีเฟรช</string>
   <!--EMAIL-->
@@ -8,6 +7,8 @@
   <string name="action_starred">ติดดาวแล้ว</string>
   <string name="action_read">อ่าน</string>
   <string name="action_Share">แชร์</string>
+  <string name="action_save">บันทึก</string>
+  <string name="action_settings">ตั้งค่า</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>

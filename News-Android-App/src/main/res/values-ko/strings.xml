@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">자동 동기화</string>
   <string name="app_name">Owncloud 뉴스 리더</string>
-  <string name="action_settings">설정</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">뉴스 리더</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">개발자에게 항목 보내기</string>
   <string name="action_Share">공유</string>
   <string name="action_login">서버 설정</string>
+  <string name="action_save">저장</string>
+  <string name="action_settings">설정</string>
   <string name="notification_new_items_ticker">X개의 읽지 않은 항목이 있습니다</string>
   <string name="notification_new_items_text">X개의 읽지 않은 항목 사용 가능</string>
   <!--Strings related to login-->

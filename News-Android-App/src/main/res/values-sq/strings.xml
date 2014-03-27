@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">Parametra</string>
   <string name="message_bar_reload">Ngarko</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Nda</string>
+  <string name="action_save">Ruaj</string>
+  <string name="action_settings">Parametra</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Përdoruesi</string>
   <string name="pref_title_password">Kodi</string>

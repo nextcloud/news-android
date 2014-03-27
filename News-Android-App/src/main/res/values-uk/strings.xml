@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">Налаштування</string>
   <string name="empty_view_header">Інформація</string>
   <string name="message_bar_reload">Перезавантажити</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
@@ -11,6 +10,8 @@
   <string name="action_starred">Помічені зірочкою</string>
   <string name="action_openInBrowser">Відкрити у переглядачі</string>
   <string name="action_Share">Поділитися</string>
+  <string name="action_save">Зберегти</string>
+  <string name="action_settings">Налаштування</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Ім\'я користувача</string>
   <string name="pref_title_password">Пароль</string>

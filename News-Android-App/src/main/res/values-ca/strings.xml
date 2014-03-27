@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Sincronitza automàticament</string>
   <string name="app_name">Lector de notícies d\'ownCloud</string>
-  <string name="action_settings">Arranjament</string>
   <string name="title_activity_news_detail">DetallActivitatNotícies</string>
   <string name="title_activity_subscription">ActivitatSubscripció</string>
   <string name="title_newsreader_list">LectorNotícies</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Envia element al desenvolupador</string>
   <string name="action_Share">Comparteix</string>
   <string name="action_login">Arranjament del sevidor</string>
+  <string name="action_save">Desa</string>
+  <string name="action_settings">Arranjament</string>
   <string name="notification_new_items_ticker">Teniu X elements nous sense llegir</string>
   <string name="notification_new_items_text">X elements nous disponibles sense llegir</string>
   <!--Strings related to login-->

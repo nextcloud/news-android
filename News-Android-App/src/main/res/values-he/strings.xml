@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">מציג החדשות של </string>
-  <string name="action_settings">הגדרות</string>
   <string name="empty_view_header">פרטים</string>
   <string name="empty_view_content">אין כאן פריטים</string>
   <string name="allUnreadFeeds">כל הפריטים שלא נקראו</string>
@@ -15,6 +14,8 @@
   <string name="action_openInBrowser">פתיחה בדפדפן</string>
   <string name="action_sendSourceCode">שליחת הפריט למתכנת</string>
   <string name="action_Share">שיתוף</string>
+  <string name="action_save">שמירה</string>
+  <string name="action_settings">הגדרות</string>
   <!--Strings related to login-->
   <string name="pref_title_username">שם משתמש</string>
   <string name="pref_title_password">סיסמא</string>

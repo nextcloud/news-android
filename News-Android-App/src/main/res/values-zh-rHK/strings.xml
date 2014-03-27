@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">設定</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">分享</string>
+  <string name="action_save">儲存</string>
+  <string name="action_settings">設定</string>
   <!--Strings related to login-->
   <string name="pref_title_username">用戶名稱</string>
   <string name="pref_title_password">密碼</string>

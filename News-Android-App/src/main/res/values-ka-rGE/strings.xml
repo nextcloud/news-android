@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">პარამეტრები</string>
   <string name="message_bar_reload">გადატვირთვა</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">განახლება</string>
@@ -8,6 +7,8 @@
   <!--Action Bar Items-->
   <string name="action_starred">ვარსკვლავმინიჭებული</string>
   <string name="action_Share">გაზიარება</string>
+  <string name="action_save">შენახვა</string>
+  <string name="action_settings">პარამეტრები</string>
   <!--Strings related to login-->
   <string name="pref_title_username">მომხმარებლის სახელი</string>
   <string name="pref_title_password">პაროლი</string>

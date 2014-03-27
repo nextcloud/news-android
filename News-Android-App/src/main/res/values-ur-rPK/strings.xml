@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">سیٹینگز</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_settings">سیٹینگز</string>
   <!--Strings related to login-->
   <string name="pref_title_username">یوزر نیم</string>
   <string name="pref_title_password">پاسورڈ</string>

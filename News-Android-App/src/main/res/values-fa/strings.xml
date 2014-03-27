@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">خبر خوان ownCloud</string>
-  <string name="action_settings">تنظیمات</string>
   <string name="title_activity_news_detail">فعالیت جزئیات اخبار</string>
   <string name="title_activity_subscription">فعالیت ثبت نام</string>
   <string name="title_newsreader_list">خبر خوان</string>
@@ -29,6 +28,8 @@
   <string name="action_sendSourceCode">ارسال آیتم به برنامه نویس</string>
   <string name="action_Share">اشتراک‌گذاری</string>
   <string name="action_login">تنظیمات سرور</string>
+  <string name="action_save">ذخیره</string>
+  <string name="action_settings">تنظیمات</string>
   <!--Strings related to login-->
   <string name="pref_title_username">نام کاربری</string>
   <string name="pref_title_password">گذرواژه</string>

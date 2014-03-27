@@ -2,7 +2,7 @@
 <resources>
   <string name="auto_sync_string">Auto sync</string>
   <string name="app_name">ownCloud News Reader</string>
-  <string name="action_settings">Settings</string>
+  <string name="title_activity_sync_interval_selector">Sync Interval Selector</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">NewsReader</string>
@@ -35,6 +35,9 @@
   <string name="action_sendSourceCode">Send item to Developer</string>
   <string name="action_Share">Share</string>
   <string name="action_login">Server Settings</string>
+  <string name="action_save">Save</string>
+  <string name="action_settings">Settings</string>
+  <string name="action_sync_settings">Sync Settings</string>
   <string name="notification_new_items_ticker">You have X new unread items</string>
   <string name="notification_new_items_text">X new unread items available</string>
   <!--Strings related to login-->
@@ -173,6 +176,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Minutes</item>
+    <item>15 Minutes</item>
+    <item>30 Minutes</item>
+    <item>45 Minutes</item>
+    <item>1 Hour</item>
+    <item>2 Hours</item>
+    <item>3 Hours</item>
+    <item>6 Hours</item>
+    <item>12 Hours</item>
+    <item>24 Hours</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

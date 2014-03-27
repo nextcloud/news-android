@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Autosincronizar</string>
   <string name="app_name">Lector de Noticias ownCloud</string>
-  <string name="action_settings">Ajustes</string>
   <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
   <string name="title_activity_subscription">ActividadSuscripción</string>
   <string name="title_newsreader_list">Lector de noticias</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Ajustes del Servidor</string>
+  <string name="action_save">Guardar</string>
+  <string name="action_settings">Ajustes</string>
   <string name="notification_new_items_ticker">Tiene X artículos nuevos sin leer</string>
   <string name="notification_new_items_text">X nuevos artículos sin leer disponibles</string>
   <!--Strings related to login-->

@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">مزامنة أوتوماتيكية</string>
   <string name="app_name">قارئ أخبار ownCloud</string>
-  <string name="action_settings">إعدادات</string>
   <string name="title_newsreader_list">قارئ الأخبار</string>
   <string name="empty_view_header">المعلومات</string>
   <string name="empty_view_content">لا يوجد عناصر هنا</string>
@@ -30,6 +29,8 @@
   <string name="action_openInBrowser">إفتح بالمتصفح</string>
   <string name="action_Share">شارك</string>
   <string name="action_login">إعدادات الخادم.</string>
+  <string name="action_save">حفظ</string>
+  <string name="action_settings">إعدادات</string>
   <!--Strings related to login-->
   <string name="pref_title_username">إسم المستخدم</string>
   <string name="pref_title_password">كلمة المرور</string>

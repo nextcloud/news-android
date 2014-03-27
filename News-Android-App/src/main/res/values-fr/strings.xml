@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Synchronisation auto.</string>
   <string name="app_name">ownCloud News Reader</string>
-  <string name="action_settings">Paramètres</string>
   <string name="title_activity_news_detail">Activité de détail d’article</string>
   <string name="title_activity_subscription">Activité d’inscription</string>
   <string name="title_newsreader_list">Lecteur d\'actualités</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Envoyer l\'article au développeur</string>
   <string name="action_Share">Partager</string>
   <string name="action_login">Paramètres du serveur</string>
+  <string name="action_save">Sauvegarder</string>
+  <string name="action_settings">Paramètres</string>
   <string name="notification_new_items_ticker">Vous avez X nouveaux articles non-lus</string>
   <string name="notification_new_items_text">X nouveaux articles non-lus disponibles</string>
   <!--Strings related to login-->

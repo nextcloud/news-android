@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">Einstellungen</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Freigeben</string>
+  <string name="action_save">Speichern</string>
+  <string name="action_settings">Einstellungen</string>
   <!--Strings related to login-->
   <string name="pref_title_password">Passwort</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->

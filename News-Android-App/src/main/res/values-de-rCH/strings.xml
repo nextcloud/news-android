@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">ownCloud News Reader</string>
-  <string name="action_settings">Einstellungen</string>
   <string name="title_activity_news_detail">NewsDetailAktivität</string>
   <string name="title_activity_subscription">AbonnementAktivität</string>
   <string name="title_newsreader_list">NewsReader</string>
@@ -31,6 +30,8 @@
   <string name="action_sendSourceCode">Senden Artikel an Entwickler</string>
   <string name="action_Share">Teilen</string>
   <string name="action_login">Servereinstellungen</string>
+  <string name="action_save">Speichern</string>
+  <string name="action_settings">Einstellungen</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <string name="pref_title_password">Passwort</string>

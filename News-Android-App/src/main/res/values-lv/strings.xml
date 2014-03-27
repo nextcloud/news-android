@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">Iestatījumi</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Atsvaidzināt</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Svarīgs</string>
   <string name="action_Share">Dalīties</string>
+  <string name="action_save">Saglabāt</string>
+  <string name="action_settings">Iestatījumi</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Lietotājvārds</string>
   <string name="pref_title_password">Parole</string>

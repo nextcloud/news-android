@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">自动同步</string>
   <string name="app_name">ownCloud新闻阅读器</string>
-  <string name="action_settings">设置</string>
   <string name="title_activity_news_detail">新闻详细活动</string>
   <string name="title_activity_subscription">订阅活动</string>
   <string name="title_newsreader_list">新闻读者</string>
@@ -33,6 +32,8 @@
   <string name="action_sendSourceCode">给开发者发消息</string>
   <string name="action_Share">共享</string>
   <string name="action_login">服务器配置</string>
+  <string name="action_save">保存</string>
+  <string name="action_settings">设置</string>
   <string name="notification_new_items_ticker">你有X条未读消息</string>
   <string name="notification_new_items_text">有X条未读消息</string>
   <!--Strings related to login-->

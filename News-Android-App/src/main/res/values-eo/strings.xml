@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Abonflulegilo de ownCloud</string>
-  <string name="action_settings">Agordo</string>
   <string name="title_newsreader_list">Abonflulegilo</string>
   <string name="title_newsreader_detail">Detaloj de Abonflulegilo</string>
   <string name="empty_view_header">Informo</string>
@@ -20,6 +19,8 @@
   <string name="action_openInBrowser">Malfermi en TTT-legilo</string>
   <string name="action_sendSourceCode">Sendi eron al ellaboranto</string>
   <string name="action_Share">Kunhavigi</string>
+  <string name="action_save">Konservi</string>
+  <string name="action_settings">Agordo</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uzantonomo</string>
   <string name="pref_title_password">Pasvorto</string>

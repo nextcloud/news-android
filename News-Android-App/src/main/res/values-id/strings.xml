@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Sync otmatis</string>
   <string name="app_name">Pembaca Berita ownCloud</string>
-  <string name="action_settings">Setelan</string>
   <string name="title_activity_news_detail">AktivitasRinciBerita</string>
   <string name="title_activity_subscription">AktivitasLanggan</string>
   <string name="title_newsreader_list">PembacaBerita</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Kirim item kepada Pengembang</string>
   <string name="action_Share">Bagikan</string>
   <string name="action_login">Pengaturan Server</string>
+  <string name="action_save">Simpan</string>
+  <string name="action_settings">Setelan</string>
   <string name="notification_new_items_ticker">Anda memiliki X item baru yang belum dibaca</string>
   <string name="notification_new_items_text">X item baru yang belum dibaca tersedia</string>
   <!--Strings related to login-->

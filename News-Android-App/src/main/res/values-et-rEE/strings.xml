@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Auto sünk</string>
   <string name="app_name">ownCloud Uudiste Lugeja</string>
-  <string name="action_settings">Seaded</string>
   <string name="title_activity_news_detail">UudisteÜksikasjadeTegevused</string>
   <string name="title_activity_subscription">TellimusteTegevused</string>
   <string name="title_newsreader_list">UudisteLugeja</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Saada üksus arendajale</string>
   <string name="action_Share">Jaga</string>
   <string name="action_login">Serveri seaded</string>
+  <string name="action_save">Salvesta</string>
+  <string name="action_settings">Seaded</string>
   <string name="notification_new_items_ticker">Sul on X uut lugemata kirjet</string>
   <string name="notification_new_items_text">Saadaval on X uut lugemata kirjet</string>
   <!--Strings related to login-->

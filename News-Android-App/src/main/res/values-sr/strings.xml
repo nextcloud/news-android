@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">Поставке</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Освежи</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Означено звездицом</string>
   <string name="action_Share">Дели</string>
+  <string name="action_save">Сачувај</string>
+  <string name="action_settings">Поставке</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>

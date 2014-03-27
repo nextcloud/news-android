@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">ده‌ستكاری</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">گه‌شاوه</string>
   <string name="action_Share">هاوبەشی کردن</string>
+  <string name="action_save">پاشکه‌وتکردن</string>
+  <string name="action_settings">ده‌ستكاری</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ناوی به‌کارهێنه‌ر</string>
   <string name="pref_title_password">وشەی تێپەربو</string>

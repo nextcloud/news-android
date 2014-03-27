@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">自動同期</string>
   <string name="app_name">ownCloud ニュースリーダー</string>
-  <string name="action_settings">設定</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">ニュースリーダー</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
   <string name="action_login">サーバー設定</string>
+  <string name="action_save">保存</string>
+  <string name="action_settings">設定</string>
   <string name="notification_new_items_ticker">X 新しい未読アイテムがあります。</string>
   <string name="notification_new_items_text">X 新しい未読アイテムが利用できます</string>
   <!--Strings related to login-->

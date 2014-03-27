@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Autosynk</string>
   <string name="app_name">ownClouds Nyhetsleser</string>
-  <string name="action_settings">Innstillinger</string>
   <string name="title_activity_news_detail">NyhetsDetaljAktivitet</string>
   <string name="title_activity_subscription">Abonnementsaktivitet</string>
   <string name="title_newsreader_list">Nyhetsleser</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Send element til utvikler</string>
   <string name="action_Share">Del</string>
   <string name="action_login">Serverinnstillinger</string>
+  <string name="action_save">Lagre</string>
+  <string name="action_settings">Innstillinger</string>
   <string name="notification_new_items_ticker">Du har X nye uleste elementer</string>
   <string name="notification_new_items_text">X nye uleste elementer tilgjengelig</string>
   <!--Strings related to login-->

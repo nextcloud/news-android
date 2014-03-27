@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">নিয়ামকসমূহ</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">নবোদ্যম</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">তারা চিহ্নিত</string>
   <string name="action_Share">ভাগাভাগি কর</string>
+  <string name="action_save">সংরক্ষণ</string>
+  <string name="action_settings">নিয়ামকসমূহ</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ব্যবহারকারী</string>
   <string name="pref_title_password">কূটশব্দ</string>

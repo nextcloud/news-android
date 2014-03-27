@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">Stillingar</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Stjörnumerkt</string>
   <string name="action_Share">Deila</string>
+  <string name="action_save">Vista</string>
+  <string name="action_settings">Stillingar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Notendanafn</string>
   <string name="pref_title_password">Lykilorð</string>

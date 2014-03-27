@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Авто синхронизация</string>
   <string name="app_name">Чтение новостей в ownCloud</string>
-  <string name="action_settings">Настройки</string>
   <string name="title_activity_news_detail">Последние новости</string>
   <string name="title_activity_subscription">Активные подписки</string>
   <string name="title_newsreader_list">Чтение новостей</string>
@@ -35,6 +34,8 @@
   <string name="action_sendSourceCode">Отправить сообщение разработчикам</string>
   <string name="action_Share">Открыть доступ</string>
   <string name="action_login">Параметры сервера</string>
+  <string name="action_save">Сохранить</string>
+  <string name="action_settings">Настройки</string>
   <string name="notification_new_items_ticker">У вас X новых непрочитанных пунктов</string>
   <string name="notification_new_items_text">Доступно X новых непрочитанных пунктов</string>
   <!--Strings related to login-->

@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_settings">அமைப்புகள்</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">மீள் ஏற்றுக</string>
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">பகிர்வு</string>
+  <string name="action_save">சேமிக்க </string>
+  <string name="action_settings">அமைப்புகள்</string>
   <!--Strings related to login-->
   <string name="pref_title_username">பயனாளர் பெயர்</string>
   <string name="pref_title_password">கடவுச்சொல்</string>

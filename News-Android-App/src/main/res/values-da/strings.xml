@@ -2,7 +2,7 @@
 <resources>
   <string name="auto_sync_string">Automatisk synkronisering </string>
   <string name="app_name">ownCloud News Reader</string>
-  <string name="action_settings">Indstillinger</string>
+  <string name="title_activity_sync_interval_selector">Synkroniseringsinterval</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">AbonnementAktivitet</string>
   <string name="title_newsreader_list">NewsReader</string>
@@ -35,6 +35,9 @@
   <string name="action_sendSourceCode">Send artikel til udvikler</string>
   <string name="action_Share">Del</string>
   <string name="action_login">Server Indstillinger</string>
+  <string name="action_save">Gem</string>
+  <string name="action_settings">Indstillinger</string>
+  <string name="action_sync_settings">Synkroniseringsindstillinger</string>
   <string name="notification_new_items_ticker">Du har X nye ulæste emner</string>
   <string name="notification_new_items_text">X nye ulæste poster til rådighed</string>
   <!--Strings related to login-->
@@ -173,6 +176,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Minutter</item>
+    <item>15 Minutter</item>
+    <item>30 Minutter</item>
+    <item>45 Minutter</item>
+    <item>1 Time</item>
+    <item>2 Timer</item>
+    <item>3 Timer</item>
+    <item>6 Timer</item>
+    <item>12 Timer</item>
+    <item>24 Timer</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

@@ -2,7 +2,6 @@
 <resources>
   <string name="auto_sync_string">Automaattinen synkronointi</string>
   <string name="app_name">ownCloud-uutislukija</string>
-  <string name="action_settings">Asetukset</string>
   <string name="title_newsreader_list">Uutislukija</string>
   <string name="empty_view_content">Ei kohteita</string>
   <string name="toast_GettingMoreItems">Lisäkohteiden lataus aloitettu, odota hetki...</string>
@@ -25,6 +24,8 @@
   <string name="action_openInBrowser">Avaa selaimessa</string>
   <string name="action_Share">Jaa</string>
   <string name="action_login">Palvelinasetukset</string>
+  <string name="action_save">Tallenna</string>
+  <string name="action_settings">Asetukset</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>
@@ -135,6 +136,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 minuuttia</item>
+    <item>15 minuuttia</item>
+    <item>30 minuuttia</item>
+    <item>45 minuuttia</item>
+    <item>1 tunti</item>
+    <item>2 tuntia</item>
+    <item>3 tuntia</item>
+    <item>6 tuntia</item>
+    <item>12 tuntia</item>
+    <item>24 tuntia</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
