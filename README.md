@@ -64,14 +64,18 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.5.7 (in development)
+0.5.8 (in development)
+---------------------
+
+
+0.5.7 (Google Play - Beta)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/213">#213 When using the dark theme websites with no background color are unreadable</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/211">#211 Links within articles</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/198">#198 enable auto sync configuration</a>
 
 
-0.5.6 (Google Play - Beta)
+0.5.6 (Google Play)
 ---------------------
 - Fixed flickering of the screen when changing Feeds (in dark Theme)
 - New Pull-To-Refresh Style
@@ -79,7 +83,7 @@ Updates
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/196">#196 Stutter with "mark as read while scrolling" turned on</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/189">#189 Read mouse-over</a>
 
-0.5.5 (Google Play - Beta)
+0.5.5
 ---------------------
 - Improve Changelog View
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/186">#186 Missing "clear cache" in the settings (on Tablets)</a>
@@ -88,11 +92,11 @@ Updates
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/195">#195 Mark as read when opened in browser</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/194">#194 favIcons and imgCache show up in Gallery</a>
 
-0.5.4 (Google Play)
+0.5.4
 ---------------------
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/184">#184 Option to disable notification</a>
 
-0.5.3 (Google Play - Beta)
+0.5.3
 ---------------------
 - Update star/checkbox icons for devices with lower screen size
 - Update language support
