@@ -29,6 +29,7 @@
   <string name="action_openInBrowser">إفتح بالمتصفح</string>
   <string name="action_Share">شارك</string>
   <string name="action_login">إعدادات الخادم.</string>
+  <string name="action_save">حفظ</string>
   <string name="action_settings">إعدادات</string>
   <!--Strings related to login-->
   <string name="pref_title_username">إسم المستخدم</string>

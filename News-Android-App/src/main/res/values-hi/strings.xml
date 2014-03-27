@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">मद को डिवेलपर को भेजें </string>
   <string name="action_Share">साझा करें</string>
   <string name="action_login">सर्वर सेटिंग्स </string>
+  <string name="action_save">सहेजें</string>
   <string name="action_settings">सेटिंग्स</string>
   <!--Strings related to login-->
   <string name="pref_title_username">प्रयोक्ता का नाम</string>

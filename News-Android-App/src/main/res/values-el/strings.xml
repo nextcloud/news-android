@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Αποστολή αντικειμένου στον Προγραμματιστή</string>
   <string name="action_Share">Διαμοιρασμός</string>
   <string name="action_login">Ρυθμίσεις Διακομιστή</string>
+  <string name="action_save">Αποθήκευση</string>
   <string name="action_settings">Ρυθμίσεις</string>
   <string name="notification_new_items_ticker">Έχετε Χ νέα αδιάβαστα στοιχεία</string>
   <string name="notification_new_items_text">Χ νέα αδιάβαστα στοιχεία διαθέσιμα</string>

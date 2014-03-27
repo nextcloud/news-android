@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
   <string name="action_login">サーバー設定</string>
+  <string name="action_save">保存</string>
   <string name="action_settings">設定</string>
   <string name="notification_new_items_ticker">X 新しい未読アイテムがあります。</string>
   <string name="notification_new_items_text">X 新しい未読アイテムが利用できます</string>

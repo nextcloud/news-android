@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Odeslat položku vývojáři</string>
   <string name="action_Share">Sdílet</string>
   <string name="action_login">Nastavení serveru</string>
+  <string name="action_save">Uložit</string>
   <string name="action_settings">Nastavení</string>
   <string name="notification_new_items_ticker">Máte X nových nepřečtených položek</string>
   <string name="notification_new_items_text">X nových položek k dispozici</string>

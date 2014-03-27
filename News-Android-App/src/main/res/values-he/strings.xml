@@ -14,6 +14,7 @@
   <string name="action_openInBrowser">פתיחה בדפדפן</string>
   <string name="action_sendSourceCode">שליחת הפריט למתכנת</string>
   <string name="action_Share">שיתוף</string>
+  <string name="action_save">שמירה</string>
   <string name="action_settings">הגדרות</string>
   <!--Strings related to login-->
   <string name="pref_title_username">שם משתמש</string>

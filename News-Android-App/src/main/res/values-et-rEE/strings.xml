@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Saada üksus arendajale</string>
   <string name="action_Share">Jaga</string>
   <string name="action_login">Serveri seaded</string>
+  <string name="action_save">Salvesta</string>
   <string name="action_settings">Seaded</string>
   <string name="notification_new_items_ticker">Sul on X uut lugemata kirjet</string>
   <string name="notification_new_items_text">Saadaval on X uut lugemata kirjet</string>

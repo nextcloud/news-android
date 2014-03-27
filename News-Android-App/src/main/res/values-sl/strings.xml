@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Pošlji predmet razvijalcem</string>
   <string name="action_Share">Souporaba</string>
   <string name="action_login">Nastavitve strežnika</string>
+  <string name="action_save">Shrani</string>
   <string name="action_settings">Nastavitve</string>
   <string name="notification_new_items_ticker">Neprebranih je več prispevkov</string>
   <string name="notification_new_items_text">Na voljo je več neprebranih predmetov</string>

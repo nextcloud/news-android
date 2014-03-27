@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Ögeyi Geliştiriciye gönder</string>
   <string name="action_Share">Paylaş</string>
   <string name="action_login">Sunucu Ayarları</string>
+  <string name="action_save">Kaydet</string>
   <string name="action_settings">Ayarlar</string>
   <string name="notification_new_items_ticker">X adet okunmamış öge var</string>
   <string name="notification_new_items_text">X yeni okunmamış öge var</string>

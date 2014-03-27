@@ -4,6 +4,7 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Compartir</string>
+  <string name="action_save">Salveguardar</string>
   <string name="action_settings">Configurationes</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nomine de usator</string>

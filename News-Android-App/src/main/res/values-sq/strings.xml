@@ -5,6 +5,7 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Nda</string>
+  <string name="action_save">Ruaj</string>
   <string name="action_settings">Parametra</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Përdoruesi</string>

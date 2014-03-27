@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">寄送項目到開發者</string>
   <string name="action_Share">分享</string>
   <string name="action_login">伺服器設定</string>
+  <string name="action_save">儲存</string>
   <string name="action_settings">設定</string>
   <string name="notification_new_items_ticker">您有 X 新的未讀項目</string>
   <string name="notification_new_items_text">X 新的未讀項目可用</string>

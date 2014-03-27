@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Ajustes del servidor</string>
+  <string name="action_save">Guardar</string>
   <string name="action_settings">Configuración</string>
   <string name="notification_new_items_ticker">Tu tienes X nuevos items sin leer</string>
   <string name="notification_new_items_text">X nuevos items sin leer disponibles</string>

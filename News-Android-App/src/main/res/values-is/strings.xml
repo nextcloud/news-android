@@ -5,6 +5,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Stjörnumerkt</string>
   <string name="action_Share">Deila</string>
+  <string name="action_save">Vista</string>
   <string name="action_settings">Stillingar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Notendanafn</string>

@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Send element til utvikler</string>
   <string name="action_Share">Del</string>
   <string name="action_login">Serverinnstillinger</string>
+  <string name="action_save">Lagre</string>
   <string name="action_settings">Innstillinger</string>
   <string name="notification_new_items_ticker">Du har X nye uleste elementer</string>
   <string name="notification_new_items_text">X nye uleste elementer tilgjengelig</string>

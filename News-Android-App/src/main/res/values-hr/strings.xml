@@ -5,6 +5,7 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Podijeli</string>
+  <string name="action_save">Snimi</string>
   <string name="action_settings">Postavke</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Korisničko ime</string>

@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Enviar o elemento ao desenvolvedor</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Axustes do servidor</string>
+  <string name="action_save">Gardar</string>
   <string name="action_settings">Axustes</string>
   <string name="notification_new_items_ticker">Ten X novos elementos sen ler</string>
   <string name="notification_new_items_text">Dispón de X elementos novos sen ler</string>

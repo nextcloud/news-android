@@ -19,6 +19,7 @@
   <string name="action_openInBrowser">Malfermi en TTT-legilo</string>
   <string name="action_sendSourceCode">Sendi eron al ellaboranto</string>
   <string name="action_Share">Kunhavigi</string>
+  <string name="action_save">Konservi</string>
   <string name="action_settings">Agordo</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uzantonomo</string>

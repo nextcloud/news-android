@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Skicka objekt till utvecklaren</string>
   <string name="action_Share">Dela</string>
   <string name="action_login">Serverinställningar</string>
+  <string name="action_save">Spara</string>
   <string name="action_settings">Inställningar</string>
   <string name="notification_new_items_ticker">Du har X olästa saker</string>
   <string name="notification_new_items_text">X nya olästa saker är tillgängliga</string>

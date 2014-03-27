@@ -7,6 +7,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Marcat</string>
   <string name="action_Share">Partajează</string>
+  <string name="action_save">Salvează</string>
   <string name="action_settings">Setări</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nume utilizator</string>

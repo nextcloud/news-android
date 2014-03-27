@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">개발자에게 항목 보내기</string>
   <string name="action_Share">공유</string>
   <string name="action_login">서버 설정</string>
+  <string name="action_save">저장</string>
   <string name="action_settings">설정</string>
   <string name="notification_new_items_ticker">X개의 읽지 않은 항목이 있습니다</string>
   <string name="notification_new_items_text">X개의 읽지 않은 항목 사용 가능</string>

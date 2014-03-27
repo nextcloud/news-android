@@ -34,6 +34,7 @@
   <string name="action_sendSourceCode">Küldjük el a fejlesztőnek</string>
   <string name="action_Share">Megosztás</string>
   <string name="action_login">Szerver Beállítások</string>
+  <string name="action_save">Mentés</string>
   <string name="action_settings">Beállítások</string>
   <string name="notification_new_items_ticker">Van X db el nem olvasott elem</string>
   <string name="notification_new_items_text">X darab új olvasatlan elem érhető el</string>
