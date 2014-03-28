@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Otomatik eşitle</string>
   <string name="app_name">ownCloud Haber Okuyucu</string>
+  <string name="title_activity_sync_interval_selector">Eşitleme Aralık Seçici</string>
   <string name="title_activity_news_detail">HaberAyrıntıEtkinliği</string>
   <string name="title_activity_subscription">ÜyelikEtkinliği</string>
   <string name="title_newsreader_list">HaberOkuyucusu</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Sunucu Ayarları</string>
   <string name="action_save">Kaydet</string>
   <string name="action_settings">Ayarlar</string>
+  <string name="action_sync_settings">Eşitleme Ayarları</string>
   <string name="notification_new_items_ticker">X adet okunmamış öge var</string>
   <string name="notification_new_items_text">X yeni okunmamış öge var</string>
   <!--Strings related to login-->
@@ -174,6 +176,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Dakika</item>
+    <item>15 Dakika</item>
+    <item>30 Dakika</item>
+    <item>45 Dakika</item>
+    <item>1 Saat</item>
+    <item>2 Saat</item>
+    <item>3 Saat</item>
+    <item>6 Saat</item>
+    <item>12 Saat</item>
+    <item>24 Saat</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

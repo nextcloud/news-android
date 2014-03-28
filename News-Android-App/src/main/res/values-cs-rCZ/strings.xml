@@ -36,6 +36,7 @@
   <string name="action_login">Nastavení serveru</string>
   <string name="action_save">Uložit</string>
   <string name="action_settings">Nastavení</string>
+  <string name="action_sync_settings">Nastavení synchronizace</string>
   <string name="notification_new_items_ticker">Máte X nových nepřečtených položek</string>
   <string name="notification_new_items_text">X nových položek k dispozici</string>
   <!--Strings related to login-->
@@ -174,6 +175,18 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
