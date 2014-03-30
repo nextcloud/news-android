@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Sincronizzazione automatica</string>
   <string name="app_name">Lettore di notizie di ownCloud</string>
+  <string name="title_activity_sync_interval_selector">Selettore intervallo di sincronizzazione</string>
   <string name="title_activity_news_detail">AttivitàDettagliNotizie</string>
   <string name="title_activity_subscription">AttivitàSottoscrizioni</string>
   <string name="title_newsreader_list">LettoreNotizie</string>
@@ -36,7 +37,7 @@
   <string name="action_login">Impostazioni del server</string>
   <string name="action_save">Salva</string>
   <string name="action_settings">Impostazioni</string>
-  <string name="action_sync_settings">Sincronizza Impostazioni</string>
+  <string name="action_sync_settings">Sincronizza impostazioni</string>
   <string name="notification_new_items_ticker">Hai X nuovi elementi non letti</string>
   <string name="notification_new_items_text">X nuovi elementi non letti disponibili</string>
   <!--Strings related to login-->
@@ -177,16 +178,16 @@
     <item>10000</item>
   </string-array>
   <string-array name="array_sync_interval">
-    <item>5 Minuti</item>
-    <item>15 Minuti</item>
-    <item>30 Minuti</item>
-    <item>45 Minuti</item>
-    <item>1 Ora</item>
-    <item>2 Ore</item>
-    <item>3 Ore</item>
-    <item>6 Ore</item>
-    <item>12 Ore</item>
-    <item>24 Ore</item>
+    <item>5 minuti</item>
+    <item>15 minuti</item>
+    <item>30 minuti</item>
+    <item>45 minuti</item>
+    <item>1 ora</item>
+    <item>2 ore</item>
+    <item>3 ore</item>
+    <item>6 ore</item>
+    <item>12 ore</item>
+    <item>24 ore</item>
   </string-array>
   <string-array name="array_sync_interval_values">
     <item>5</item>
