@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Auto sünk</string>
   <string name="app_name">ownCloud Uudiste Lugeja</string>
+  <string name="title_activity_sync_interval_selector">Sync sageduse valik</string>
   <string name="title_activity_news_detail">UudisteÜksikasjadeTegevused</string>
   <string name="title_activity_subscription">TellimusteTegevused</string>
   <string name="title_newsreader_list">UudisteLugeja</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Serveri seaded</string>
   <string name="action_save">Salvesta</string>
   <string name="action_settings">Seaded</string>
+  <string name="action_sync_settings">Sync seaded</string>
   <string name="notification_new_items_ticker">Sul on X uut lugemata kirjet</string>
   <string name="notification_new_items_text">Saadaval on X uut lugemata kirjet</string>
   <!--Strings related to login-->
@@ -174,6 +176,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 minutit</item>
+    <item>15 minutit</item>
+    <item>30 minutit</item>
+    <item>45 minutit</item>
+    <item>1 tund</item>
+    <item>2 tundi</item>
+    <item>3 tundi</item>
+    <item>6 tundi</item>
+    <item>12 tundi</item>
+    <item>24 tundi</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
