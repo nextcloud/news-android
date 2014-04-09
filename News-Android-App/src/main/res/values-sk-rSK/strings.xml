@@ -36,6 +36,7 @@
   <string name="action_login">Nastavenia servera</string>
   <string name="action_save">Uložiť</string>
   <string name="action_settings">Nastavenia</string>
+  <string name="action_sync_settings">Nastavenia synchronizácie</string>
   <string name="notification_new_items_ticker">Máte X nových neprečítaných položiek</string>
   <string name="notification_new_items_text">X nových neprečítaných položiek k dispozícii</string>
   <!--Strings related to login-->
