@@ -2,7 +2,7 @@
 <resources>
   <string name="auto_sync_string">Automatická synchronizace</string>
   <string name="app_name">Čtečka zpráv ownCloud</string>
-  <string name="title_activity_sync_interval_selector">Nastavení intervalu synchronizace</string>
+  <string name="title_activity_sync_interval_selector">Volba intervalu synchronizace</string>
   <string name="title_activity_news_detail">Podrobná aktivita zpráv</string>
   <string name="title_activity_subscription">Aktivita odběru</string>
   <string name="title_newsreader_list">Čtečka zpráv</string>
