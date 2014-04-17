@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Samodejno usklajevanje</string>
   <string name="app_name">Bralnik novic ownCloud</string>
+  <string name="title_activity_sync_interval_selector">Izbirnik razmika usklajevanja</string>
   <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
   <string name="title_activity_subscription">Pregled naročnine</string>
   <string name="title_newsreader_list">Bralnik novic</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Nastavitve strežnika</string>
   <string name="action_save">Shrani</string>
   <string name="action_settings">Nastavitve</string>
+  <string name="action_sync_settings">Nastavitve usklajevanja</string>
   <string name="notification_new_items_ticker">Neprebranih je več prispevkov</string>
   <string name="notification_new_items_text">Na voljo je več neprebranih predmetov</string>
   <!--Strings related to login-->
@@ -174,6 +176,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 minut</item>
+    <item>15 minut</item>
+    <item>30 minut</item>
+    <item>45 minut</item>
+    <item>1 ura</item>
+    <item>2 uri</item>
+    <item>3 ure</item>
+    <item>6 ur</item>
+    <item>12 ur</item>
+    <item>24 ur</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

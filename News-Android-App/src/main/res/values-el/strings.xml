@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Αυτόματος συγχρονισμός</string>
   <string name="app_name">Ανάγνωση Ειδήσεων ownCloud</string>
+  <string name="title_activity_sync_interval_selector">Επιλογέας διαστήματος συγχρονισμού</string>
   <string name="title_activity_news_detail">Λεπτομέρειες Δραστηριότητας Ειδήσεων</string>
   <string name="title_activity_subscription">Δραστηριότητα Συνδρομών</string>
   <string name="title_newsreader_list">Ανάγνωση Ειδήσεων</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Ρυθμίσεις Διακομιστή</string>
   <string name="action_save">Αποθήκευση</string>
   <string name="action_settings">Ρυθμίσεις</string>
+  <string name="action_sync_settings">Επιλογές συγχρονισμού</string>
   <string name="notification_new_items_ticker">Έχετε Χ νέα αδιάβαστα στοιχεία</string>
   <string name="notification_new_items_text">Χ νέα αδιάβαστα στοιχεία διαθέσιμα</string>
   <!--Strings related to login-->
@@ -174,6 +176,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Λεπτά</item>
+    <item>15 Λεπτά</item>
+    <item>30 Λεπτά</item>
+    <item>45 Λεπτά</item>
+    <item>1 Ώρα</item>
+    <item>2 Ώρες</item>
+    <item>3 Ώρες</item>
+    <item>6 Ώρες</item>
+    <item>12 Ώρες</item>
+    <item>24 Ώρες</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

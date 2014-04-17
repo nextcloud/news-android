@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Automatisk synkning</string>
   <string name="app_name">ownCloud Nyhetsläsare</string>
+  <string name="title_activity_sync_interval_selector">Synkronisera intervallväljaren</string>
   <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
   <string name="title_activity_subscription">PrenumerationAktivitet</string>
   <string name="title_newsreader_list">Nyhetsläsare</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Serverinställningar</string>
   <string name="action_save">Spara</string>
   <string name="action_settings">Inställningar</string>
+  <string name="action_sync_settings">Synk inställningar</string>
   <string name="notification_new_items_ticker">Du har X olästa saker</string>
   <string name="notification_new_items_text">X nya olästa saker är tillgängliga</string>
   <!--Strings related to login-->
@@ -75,6 +77,8 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Rensar cache</string>
+  <string name="dialog_clearing_cache_please_wait">Rensar cache.. Var god vänta.</string>
   <string name="calculating_cache_size">Beräknar cachestorlek.. Var god Vänta.\n\n</string>
   <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
   <string name="warning">Varning</string>
@@ -84,6 +88,8 @@
   <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
+  <string name="pref_title_OpenInBrowserDirectly">Skippa detalj vyn och öppna artikeln i webbläsaren</string>
+  <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
   <string name="mtm_decision_always">Alltid</string>
@@ -171,6 +177,30 @@
     <item>5000</item>
     <item>10000</item>
   </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 minuter</item>
+    <item>15 minuter</item>
+    <item>30 minuter</item>
+    <item>45 minuter</item>
+    <item>1 timme</item>
+    <item>2 timme</item>
+    <item>3 timme</item>
+    <item>6 timme</item>
+    <item>12 timme</item>
+    <item>24 timme</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
@@ -190,6 +220,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Notifieringar</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>

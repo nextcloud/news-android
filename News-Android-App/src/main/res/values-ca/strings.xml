@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Sincronitza automàticament</string>
   <string name="app_name">Lector de notícies d\'ownCloud</string>
+  <string name="title_activity_sync_interval_selector">Selector d\'interval de sincronització</string>
   <string name="title_activity_news_detail">DetallActivitatNotícies</string>
   <string name="title_activity_subscription">ActivitatSubscripció</string>
   <string name="title_newsreader_list">LectorNotícies</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Arranjament del sevidor</string>
   <string name="action_save">Desa</string>
   <string name="action_settings">Arranjament</string>
+  <string name="action_sync_settings">Arranjament de sincronització</string>
   <string name="notification_new_items_ticker">Teniu X elements nous sense llegir</string>
   <string name="notification_new_items_text">X elements nous disponibles sense llegir</string>
   <!--Strings related to login-->
@@ -174,6 +176,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 minuts</item>
+    <item>15 minuts</item>
+    <item>30 minuts</item>
+    <item>45 minuts</item>
+    <item>1 hora</item>
+    <item>2 hores</item>
+    <item>3 hores</item>
+    <item>6 hores</item>
+    <item>12 hores</item>
+    <item>24 hores</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
