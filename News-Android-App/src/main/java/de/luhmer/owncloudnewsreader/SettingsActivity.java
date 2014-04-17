@@ -78,7 +78,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	public static final String EDT_PASSWORD_STRING = "edt_password";
 	public static final String EDT_OWNCLOUDROOTPATH_STRING = "edt_owncloudRootPath";
 	public static final String EDT_CLEAR_CACHE = "edt_clearCache";
-	
+
     //public static final String CB_ALLOWALLSSLCERTIFICATES_STRING = "cb_AllowAllSSLCertificates";
     public static final String CB_SYNCONSTARTUP_STRING = "cb_AutoSyncOnStart";
     public static final String CB_SHOWONLYUNREAD_STRING = "cb_ShowOnlyUnread";
@@ -88,42 +88,42 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     public static final String CB_DISABLE_HOSTNAME_VERIFICATION_STRING = "cb_DisableHostnameVerification";
     public static final String CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING = "cb_openInBrowserDirectly";
     public static final String CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING = "cb_showNotificationNewArticles";
-    
-    
+
+
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
-    public static final String SP_FONT = "sp_font";    
+    public static final String SP_FONT = "sp_font";
     public static final String SP_SORT_ORDER = "sp_sort_order";
-    
-    
+
+
     static //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
-    
-    
+
+
     //public static final String SP_MAX_ITEMS_SYNC = "sync_max_items";
-    
+
     EditTextPreference clearCachePref;
     static Activity _mActivity;
-    
-    
+
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {		
+	protected void onCreate(Bundle savedInstanceState) {
 		ThemeChooser.chooseTheme(this);
-		
+
 		super.onCreate(savedInstanceState);
-				
+
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-		
+
 		_mActivity = this;
-		
+
 		setupSimplePreferencesScreen();
 	}
-	
+
 	/**
 	 * Shows the simplified settings UI if the device configuration if the
 	 * device configuration dictates that a simplified, single-pane UI should be
@@ -133,8 +133,8 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	private void setupSimplePreferencesScreen() {
 		if (!isSimplePreferences(this)) {
 			return;
-		}		
-		
+		}
+
 		// In the simplified UI, fragments are not used at all and we instead
 		// use the older PreferenceActivity APIs.
 
@@ -145,8 +145,8 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		header.setTitle(R.string.pref_header_display);
 		getPreferenceScreen().addPreference(header);
 		addPreferencesFromResource(R.xml.pref_display);
-		
-		
+
+
 		header = new PreferenceCategory(this);
 		header.setTitle(R.string.pref_header_data_sync);
 		getPreferenceScreen().addPreference(header);
@@ -162,7 +162,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		bindDataSyncPreferences(null, this);
         bindNotificationPreferences(null, this);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.actionbarsherlock.app.SherlockPreferenceActivity#onOptionsItemSelected(com.actionbarsherlock.view.MenuItem)
 	 */
@@ -215,6 +215,12 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		}
 	}
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
+    protected boolean isValidFragment(String fragmentName) {
+        return true;
+    }
+
 	/**
 	 * A preference value change listener that updates the preference's summary
 	 * to reflect its new value.
@@ -262,7 +268,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	 * preference title) is updated to reflect the value. The summary is also
 	 * immediately updated upon calling this method. The exact display format is
 	 * dependent on the type of preference.
-	 * 
+	 *
 	 * @see #sBindPreferenceSummaryToValueListener
 	 */
 	private static void bindPreferenceSummaryToValue(Preference preference) {
@@ -290,7 +296,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
                         preference.getContext()).getBoolean(preference.getKey(), false));
     }
 
-	/**
+    /**
 	 * This fragment shows general preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
@@ -304,7 +310,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			bindGeneralPreferences(this, null);
 		}
 	}
-	
+
 
 	/**
 	 * This fragment shows notification preferences only. It is used when the
@@ -336,8 +342,8 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			bindDataSyncPreferences(this, null);
 		}
 	}
-	
-	
+
+
 	/**
 	 * This fragment shows data and sync preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
@@ -352,9 +358,9 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			bindDisplayPreferences(this, null);
 		}
 	}
-	
-	
-	
+
+
+
 	@SuppressWarnings("deprecation")
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindDisplayPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
@@ -372,7 +378,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FONT));
 		}
 	}
-		
+
 	@SuppressWarnings("deprecation")
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindGeneralPreferences(PreferenceFragment prefFrag, final PreferenceActivity prefAct)
@@ -408,13 +414,13 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 	        bindPreferenceSummaryToValue(prefAct.findPreference(SP_SORT_ORDER));
 		}
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindDataSyncPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
 	{
 		if(prefFrag != null)
-		{		
+		{
 			//bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefFrag.findPreference(EDT_CLEAR_CACHE);
 			bindPreferenceBooleanToValue(prefFrag.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));
@@ -426,18 +432,18 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			clearCachePref = (EditTextPreference) prefAct.findPreference(EDT_CLEAR_CACHE);
 			bindPreferenceBooleanToValue(prefAct.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_CACHE_SIZE));
-			
+
 		}
-		
+
 		//clearCache.setText("")
 		clearCachePref.setSummary(_mActivity.getString(R.string.calculating_cache_size));
-		
+
 		new GetCacheSizeAsync().execute((Void)null);
 		clearCachePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-			
+
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				
+
 				((EditTextPreference) preference).getDialog().dismiss();
 
                 CheckForUnsycedChangesInDatabaseAndResetDatabase(_mActivity);
@@ -460,7 +466,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
         }
     }
 
-	
+
 	public static void CheckForUnsycedChangesInDatabaseAndResetDatabase(final Context context) {
 		DatabaseConnection dbConn = new DatabaseConnection(context);
 		boolean resetDatabase = true;
@@ -472,7 +478,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			resetDatabase = false;
 		else if(dbConn.getAllNewUnstarredItems().size() > 0)
 			resetDatabase = false;
-		
+
 		if(resetDatabase) {
             new ResetDatabaseAsyncTask(context).execute();
 		} else {
@@ -480,12 +486,12 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 				.setTitle(context.getString(R.string.warning))
 				.setMessage(context.getString(R.string.reset_cache_unsaved_changes))
 				.setPositiveButton(context.getString(android.R.string.ok), new OnClickListener() {
-					
+
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						PostDelayHandler pDelayHandler = new PostDelayHandler(context);
 						pDelayHandler.stopRunningPostDelayHandler();
-						
+
 						new ResetDatabaseAsyncTask(context).execute();
 					}
 				})
@@ -493,7 +499,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 				.create()
 				.show();
 		}
-			
+
 		dbConn.closeDatabase();
 	}
 
@@ -549,7 +555,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		int count = 0;
 		long size = 0;
 		DecimalFormat dcmFormat = new DecimalFormat("#.##");
-		
+
 		@Override
 		protected Void doInBackground(Void... params) {
 			try
@@ -571,7 +577,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 				clearCachePref.setSummary(mCount + " - " + mSize);
 			super.onPostExecute(result);
 		};
-		
+
 		public long getFolderSize(File dir) {
 			if(dir.isDirectory())
 			{

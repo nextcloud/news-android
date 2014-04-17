@@ -64,8 +64,13 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.5.8 (in development)
+0.5.9 (in development)
 ---------------------
+
+
+0.5.8 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/214">#214 Scrolling within article causes unwanted tap on links</a>
 
 
 0.5.7 (Google Play - Beta)
@@ -75,7 +80,7 @@ Updates
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/198">#198 enable auto sync configuration</a>
 
 
-0.5.6 (Google Play)
+0.5.6
 ---------------------
 - Fixed flickering of the screen when changing Feeds (in dark Theme)
 - New Pull-To-Refresh Style

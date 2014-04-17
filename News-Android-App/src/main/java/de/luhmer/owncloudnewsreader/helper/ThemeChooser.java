@@ -32,7 +32,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 
 public class ThemeChooser {
-	
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static void chooseTheme(Activity act)
 	{
@@ -42,7 +42,7 @@ public class ThemeChooser {
 			//	act.setTheme(android.R.style.Theme_Holo);
 			//else
 				//act.setTheme(R.style.Sherlock___Theme);
-			act.setTheme(R.style.Theme_Sherlock);			
+			act.setTheme(R.style.Theme_Sherlock);
 		} else {
 			//if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 			//	act.setTheme(android.R.style.Theme_Holo_Light_DarkActionBar);
@@ -51,7 +51,7 @@ public class ThemeChooser {
 			act.setTheme(R.style.Theme_Sherlock_Light_DarkActionBar);
 		}
 	}
-	
+
 	/*
 	public static void ChangeBackgroundOfSlider(Activity activity) {
 		View navigation_drawer = activity.getWindow().getDecorView().findViewById(R.id.left_drawer);
@@ -61,15 +61,15 @@ public class ThemeChooser {
 			navigation_drawer.setBackgroundColor(color.abs__background_holo_light);
 	}
 	*/
-	
+
 	public static boolean isDarkTheme(Context context)
 	{
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String value = mPrefs.getString(SettingsActivity.SP_APP_THEME, "0");
-		
+
 		if(value.equals("0"))
 			return true;
-		
+
 		return false;
 	}
 }
