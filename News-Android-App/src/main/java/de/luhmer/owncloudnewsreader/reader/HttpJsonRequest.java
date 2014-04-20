@@ -30,6 +30,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,6 +40,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -55,64 +57,64 @@ public class HttpJsonRequest {
 	//@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@SuppressLint("DefaultLocale")
 	public static InputStream PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, final String username, final String password, Context context) throws AuthenticationException, Exception
-	{	
+	{
 		if(nameValuePairs != null)
-            urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8"); 
-		
+            urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8");
+
 		URL url = new URL(API.validateURL(urlString));
-		
+
 		HttpURLConnection urlConnection = getUrlConnection(url, context, username, password);
 		//HttpsURLConnection urlConnection = null;
-		
-		
+
+
 		// Define an array of pins.  One of these must be present
 		// in the certificate chain you receive.  A pin is a hex-encoded
 		// hash of a X.509 certificate's SubjectPublicKeyInfo. A pin can
 		// be generated using the provided pin.py script:
 		// python ./tools/pin.py certificate_file.pem
 
-		
+
 		//String[] pins                 = new String[] {"f30012bbc18c231ac1a44b788e410ce754182513"};
 		//HttpsURLConnection urlConnection = PinningHelper.getPinnedHttpsURLConnection(context, pins, url);
-				
-		
-		
+
+
+
 		//http://nelenkov.blogspot.de/2011/12/using-custom-certificate-trust-store-on.html
 		//http://stackoverflow.com/questions/5947162/https-and-self-signed-certificate-issue
         //http://hc.apache.org/httpcomponents-client-ga/tutorial/html/connmgmt.html#d4e537
 		//http://stackoverflow.com/questions/859111/how-do-i-accept-a-self-signed-certificate-with-a-java-httpsurlconnection
 		//http://developer.android.com/training/articles/security-ssl.html
-		
+
         urlConnection.setDoOutput(false);
         urlConnection.setDoInput(true);
         urlConnection.setRequestMethod("GET");
-        //urlConnection.setFollowRedirects(true); 
-        urlConnection.setUseCaches(false);  
-        urlConnection.setConnectTimeout(10000);  
-        urlConnection.setReadTimeout(120000);//2min  
+        //urlConnection.setFollowRedirects(true);
+        urlConnection.setUseCaches(false);
+        urlConnection.setConnectTimeout(10000);
+        urlConnection.setReadTimeout(120000);//2min
         urlConnection.setRequestProperty("Content-Type","application/json");
-        
-        
+
+
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
         //	CookieHandler.setDefault(new CookieManager());
-        
-        
+
+
         //urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-GB; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 (.NET CLR 3.5.30729)");
         //urlConnection.setRequestProperty("Host", "de.luhmer.ownCloudNewsReader");
-        urlConnection.connect();  
-        
-        int HttpResult = urlConnection.getResponseCode();  
+        urlConnection.connect();
+
+        int HttpResult = urlConnection.getResponseCode();
         if(HttpResult == HttpURLConnection.HTTP_OK) {
         	return urlConnection.getInputStream();
-        } else {  
+        } else {
         	if(urlConnection.getResponseMessage().equals("Unauthorized"))
         		throw new AuthenticationException(urlConnection.getResponseMessage());
         	else
-        		throw new Exception(urlConnection.getResponseMessage());  
+        		throw new Exception(urlConnection.getResponseMessage());
         }
 	}
-	
-	
+
+
 	private static HttpURLConnection getUrlConnection(URL url, Context context, String username, String password) throws IOException, KeyManagementException, NoSuchAlgorithmException {
 		URLConnection urlConnection = url.openConnection();
 
@@ -134,7 +136,7 @@ public class HttpJsonRequest {
 
 			// disable hostname verification, when preference is set
 			// (this still shows a certification dialog, which requires user interaction!)
-			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 	        if(sp.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false))
 	        	httpsURLConnection.setHostnameVerifier(new AllowAllHostnameVerifier());
 	        else
@@ -146,39 +148,76 @@ public class HttpJsonRequest {
 
 		return (HttpURLConnection) urlConnection;
 	}
-	
+
 	/*
 	private static HttpURLConnection getUrlConnection(URL url, Context context, String username, String password) throws IOException, KeyManagementException, NoSuchAlgorithmException {
-		HttpURLConnection urlConnection = null; 
+		HttpURLConnection urlConnection = null;
 		if(url.getProtocol().toLowerCase(Locale.ENGLISH).equals("http"))
 			urlConnection = (HttpURLConnection) url.openConnection();
-		else	
-		{	
-			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);    	
+		else
+		{
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 	        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false))
-	        {	        	
+	        {
 	        	TrustManager[] trustAllCerts = new TrustManager[] { new CustomTrustManager() };
 	    		SSLContext sc = SSLContext.getInstance("SSL");
 	    		sc.init(null, trustAllCerts, new java.security.SecureRandom());
 	    		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-	        	
+
 	    		// Install the all-trusting host verifier
 	    		//HttpsURLConnection.setDefaultHostnameVerifier(new CustomHostnameVerifier());
-	    		
-	    		//HttpsURLConnection.setDefaultHostnameVerifier(new StrictHostnameVerifier());	    		
+
+	    		//HttpsURLConnection.setDefaultHostnameVerifier(new StrictHostnameVerifier());
 	    		//HttpsURLConnection.setDefaultHostnameVerifier(new AllowAllHostnameVerifier());
 	    		HttpsURLConnection.setDefaultHostnameVerifier(new BrowserCompatHostnameVerifier());
 	        }
 	        urlConnection = (HttpURLConnection) url.openConnection();
 		}
-		
+
 		if(username != null && password != null)
     		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encode((username + ":" + password).getBytes()));
-		
+
 		return urlConnection;
 	}
 	*/
-	
+
+    public static int performCreateFeedRequest(String urlString, String username, String password, Context context, String feedUrl, String folderId) throws Exception {
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("url", feedUrl));
+        nameValuePairs.add(new BasicNameValuePair("folderId", folderId));
+        if(nameValuePairs != null)
+            urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8");
+
+
+        URL url = new URL(API.validateURL(urlString));
+        HttpURLConnection urlConnection = getUrlConnection(url, context, username, password);
+        urlConnection.setRequestMethod("POST");
+        urlConnection.setDoOutput(false);
+        urlConnection.setDoInput(true);
+        //urlConnection.setFollowRedirects(true);
+        urlConnection.setUseCaches(false);
+        urlConnection.setConnectTimeout(10000);
+        urlConnection.setReadTimeout(120000);//2min
+        urlConnection.setRequestProperty("Content-Type","application/json");
+
+
+        urlConnection.connect();
+
+        /*
+        int HttpResult = urlConnection.getResponseCode();
+        if(HttpResult == HttpURLConnection.HTTP_OK) {
+            return urlConnection.getInputStream();
+        } else {
+            if(urlConnection.getResponseMessage().equals("Unauthorized"))
+                throw new AuthenticationException(urlConnection.getResponseMessage());
+            else
+                throw new Exception(urlConnection.getResponseMessage());
+        }
+        */
+
+        return urlConnection.getResponseCode();
+    }
+
 
 	@SuppressLint("DefaultLocale")
 	public static int performTagChangeRequest(String urlString, String username, String password, Context context, String content) throws Exception
@@ -188,15 +227,15 @@ public class HttpJsonRequest {
 		urlConnection.setDoOutput(true);
 		urlConnection.setRequestMethod("PUT");
 		urlConnection.setRequestProperty("Content-Type","application/json");
-		
+
 		if(content != null) {
 			OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
 			out.write(content);
 			out.close();
 		}
-		
+
 		return urlConnection.getResponseCode();
-		
+
 		/*
         URL url = new URL(urlString);
         DefaultHttpClient httpClient;
@@ -209,10 +248,10 @@ public class HttpJsonRequest {
         if(username != null && password != null)
             httpClient.getCredentialsProvider().setCredentials(new AuthScope(null, -1), new UsernamePasswordCredentials(username,password));
 
-        HttpPut request = new HttpPut(url.toString());     
+        HttpPut request = new HttpPut(url.toString());
         request.setEntity(new StringEntity(content));
         request.addHeader("Accept", "application/json");
-        
+
         HttpResponse response = httpClient.execute(request);
         return response.getStatusLine().getStatusCode();
         */

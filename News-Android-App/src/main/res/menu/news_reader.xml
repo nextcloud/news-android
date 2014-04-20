@@ -30,20 +30,26 @@
 
     <item
         android:id="@+id/action_sync_settings"
-        android:orderInCategory="98"
+        android:orderInCategory="99"
         android:showAsAction="never"
         android:title="@string/action_sync_settings"/>
 
     <item
         android:id="@+id/action_login"
-        android:orderInCategory="99"
+        android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_login"/>
 
     <item
+        android:id="@+id/action_add_new_feed"
+        android:orderInCategory="101"
+        android:showAsAction="never"
+        android:title="@string/action_add_new_feed"/>
+
+    <item
         android:id="@+id/menu_About_Changelog"
         android:showAsAction="never"
-        android:orderInCategory="100"
+        android:orderInCategory="102"
         android:title="@string/menu_About_Changelog"/>
 
 </menu>
