@@ -460,6 +460,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	}
 
 	private static final int RESULT_SETTINGS = 15642;
+    private static final int RESULT_ADD_NEW_FEED = 15643;
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		boolean handled = super.onOptionsItemSelected(item, this);
@@ -495,6 +497,11 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 					StartLoginFragment(NewsReaderListActivity.this);
 					break;
 
+                case R.id.action_add_new_feed:
+                    Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
+                    startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
+                    break;
+
 				case R.id.menu_StartImageCaching:
 					DatabaseConnection dbConn = new DatabaseConnection(this);
 			    	try {
@@ -521,10 +528,15 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
             ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).lvAdapter.notifyDataSetChanged();
         }
-        else if(requestCode == RESULT_SETTINGS)
+
+        if(requestCode == RESULT_SETTINGS)
         {
         	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).lvAdapter.ReloadAdapter();
         	((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCursor();
+        } else if(requestCode == RESULT_ADD_NEW_FEED) {
+            boolean val = data.getBooleanExtra(NewFeedActivity.ADD_NEW_SUCCESS, false);
+            if(val)
+                startSync();
         }
     }
 

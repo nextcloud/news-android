@@ -6,7 +6,9 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -15,85 +17,90 @@ import android.os.Build.VERSION;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.NavUtils;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
+
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.reader.GoogleReaderApi.HttpHelper;
+import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
+import de.luhmer.owncloudnewsreader.reader.owncloud.API;
+import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 
 /**
  * A login screen that offers login via email/password.
 
  */
-public class NewFeedActivity extends Activity implements LoaderCallbacks<Cursor>{
+public class NewFeedActivity extends SherlockActivity {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
+    private AddNewFeedTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
+    @InjectView(R.id.et_feed_url) EditText mFeedUrlView;
+    @InjectView(R.id.sp_folder) Spinner mFolderView;
+    @InjectView(R.id.new_feed_progress) View mProgressView;
+    @InjectView(R.id.new_feed_form) View mLoginFormView;
+    @InjectView(R.id.btn_addFeed) Button mAddFeedButton;
+
+    HashMap<String, String> folders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_new_feed);
 
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+        ButterKnife.inject(this);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        DatabaseConnection dbConn = new DatabaseConnection(this);
+
+
+        folders = dbConn.getListOfFolders();
+        folders.put("No folder", "0");
+
+        String[] folderNames = folders.keySet().toArray(new String[folders.size()]);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
+        mFolderView.setAdapter(spinnerArrayAdapter);
+
+        mAddFeedButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+
+                //Hide keyboard
+                InputMethodManager imm = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mFeedUrlView.getWindowToken(), 0);
+
+
+                attemptAddNewFeed();
             }
         });
-
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
-    }
-
-    private void populateAutoComplete() {
-        if (VERSION.SDK_INT >= 14) {
-            // Use ContactsContract.Profile (API 14+)
-            getLoaderManager().initLoader(0, null, this);
-        } else if (VERSION.SDK_INT >= 8) {
-            // Use AccountManager (API 8+)
-            new SetupEmailAutoCompleteTask().execute(null, null);
-        }
     }
 
 
@@ -102,38 +109,31 @@ public class NewFeedActivity extends Activity implements LoaderCallbacks<Cursor>
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    public void attemptLogin() {
+    public void attemptAddNewFeed() {
         if (mAuthTask != null) {
             return;
         }
 
+        String folderId = folders.get(mFolderView.getSelectedItem().toString());
+
         // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+        mFeedUrlView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String urlToFeed = mFeedUrlView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+        if (TextUtils.isEmpty(urlToFeed)) {
+            mFeedUrlView.setError(getString(R.string.error_field_required));
+            focusView = mFeedUrlView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+        } else if (!isUrlValid(urlToFeed)) {
+            //mFeedUrlView.setError(getString(R.string.error_invalid_email));//TODO this line is needed
+            focusView = mFeedUrlView;
             cancel = true;
         }
 
@@ -145,18 +145,18 @@ public class NewFeedActivity extends Activity implements LoaderCallbacks<Cursor>
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new AddNewFeedTask(urlToFeed, folderId);
             mAuthTask.execute((Void) null);
         }
     }
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+    private boolean isUrlValid(String url) {
+        try {
+            new URL(url);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -195,124 +195,49 @@ public class NewFeedActivity extends Activity implements LoaderCallbacks<Cursor>
         }
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
+    public final static String ADD_NEW_SUCCESS = "success";
 
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                                                                     .CONTENT_ITEM_TYPE},
 
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<String>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
 
-        addEmailsToAutoComplete(emails);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-    }
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }
-
-    /**
-     * Use an AsyncTask to fetch the user's email addresses on a background thread, and update
-     * the email text field with results on the main UI thread.
-     */
-    class SetupEmailAutoCompleteTask extends AsyncTask<Void, Void, List<String>> {
-
-        @Override
-        protected List<String> doInBackground(Void... voids) {
-            ArrayList<String> emailAddressCollection = new ArrayList<String>();
-
-            // Get all emails from the user's contacts and copy them to a list.
-            ContentResolver cr = getContentResolver();
-            Cursor emailCur = cr.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, null,
-                    null, null, null);
-            while (emailCur.moveToNext()) {
-                String email = emailCur.getString(emailCur.getColumnIndex(ContactsContract
-                        .CommonDataKinds.Email.DATA));
-                emailAddressCollection.add(email);
-            }
-            emailCur.close();
-
-            return emailAddressCollection;
-        }
-
-	    @Override
-	    protected void onPostExecute(List<String> emailAddressCollection) {
-	       addEmailsToAutoComplete(emailAddressCollection);
-	    }
-    }
-
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(LoginActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
-        mEmailView.setAdapter(adapter);
-    }
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class AddNewFeedTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
+        private final String mUrlToFeed;
+        private final String mFolderId;
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
+
+        AddNewFeedTask(String urlToFeed, String folderId) {
+            this.mUrlToFeed = urlToFeed;
+            this.mFolderId = folderId;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+
+            API api = new APIv2(NewFeedActivity.this);
 
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+                int status = HttpJsonRequest.performCreateFeedRequest(api.getFeedUrl(),
+                                api.getUsername(),
+                                api.getPassword(),
+                                NewFeedActivity.this,
+                                mUrlToFeed, mFolderId);
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                if(status == 200) {
+                    return true;
                 }
+
+                Log.d("NewFeedActivity", "Status: " + status);
+            } catch(Exception ex) {
+                ex.printStackTrace();
             }
 
-            // TODO: register the new account here.
-            return true;
+            return false;
         }
 
         @Override
@@ -321,10 +246,14 @@ public class NewFeedActivity extends Activity implements LoaderCallbacks<Cursor>
             showProgress(false);
 
             if (success) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("success", true);
+                setResult(RESULT_OK,returnIntent);
+
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                mFeedUrlView.setError(getString(R.string.error_incorrect_password));
+                mFeedUrlView.requestFocus();
             }
         }
 
@@ -333,6 +262,19 @@ public class NewFeedActivity extends Activity implements LoaderCallbacks<Cursor>
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                //NavUtils.navigateUpFromSameTask(this);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

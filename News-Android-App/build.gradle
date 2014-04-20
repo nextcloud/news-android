@@ -34,8 +34,13 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:19.0.+'
+    compile 'com.jakewharton:butterknife:4.0.+'
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
     compile 'com.github.chrisbanes.actionbarpulltorefresh:extra-abs:+'
+
+    // You must install or update the Google Repository through the SDK manager to use this dependency.
+    // The Google Repository (separate from the corresponding library) can be found in the Extras category.
+    // compile 'com.google.android.gms:play-services:4.2.42'
     compile files('src/main/libs/gson-2.2.4.jar')
     compile files('src/main/libs/jsoup-1.7.2.jar')
     compile project(':Changeloglib:ChangeLogLibrary')

@@ -26,6 +26,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -40,6 +41,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
@@ -57,23 +59,25 @@ import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter {
 
 	BitmapDrawableLruCache favIconCache = null;
-	
+
 	private Context mContext;
     private DatabaseConnection dbConn;
     FontHelper fHelper;
 
     ExpListTextClicked eListTextClickHandler;
-    
+
     private ArrayList<FolderSubscribtionItem> mCategoriesArrayList;
     private SparseArray<SparseArray<ConcreteFeedItem>> mItemsArrayList;
 	private boolean showOnlyUnread = false;
-	
+
 	public static final String ALL_UNREAD_ITEMS = "-10";
 	public static final String ALL_STARRED_ITEMS = "-11";
 	public static final String ALL_ITEMS = "-12";
 	public static final String ITEMS_WITHOUT_FOLDER = "-22";
 	//private static final String TAG = "SubscriptionExpandableListAdapter";
-	
+
+
+
 
     public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnection dbConn)
     {
@@ -89,7 +93,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
     	ReloadAdapter();
     }
-    
+
     private void AddEverythingInCursorFolderToSubscriptions(Cursor itemsCursor)
     {
     	while (itemsCursor.moveToNext()) {
@@ -100,7 +104,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     	}
         itemsCursor.close();
     }
-    
+
     private void AddEverythingInCursorFeedsToSubscriptions(Cursor itemsCursor)
     {
     	while (itemsCursor.moveToNext()) {
@@ -114,7 +118,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public Object getChild(int groupPosition, int childPosition) {		
+	public Object getChild(int groupPosition, int childPosition) {
 		int parent_id = (int)getGroupId(groupPosition);
         //Check if we are not in our current group now, or the current cached items are wrong - MUST BE RECACHED
         //if(mItemsArrayList.isEmpty() /*|| ((ConcreteSubscribtionItem)mItemsArrayList.get(0)).parent_id != parent_id */){
@@ -122,7 +126,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 			mItemsArrayList.append(groupPosition, new SparseArray<ConcreteFeedItem>());
             Cursor itemsCursor = dbConn.getAllSubscriptionForFolder(String.valueOf(parent_id), showOnlyUnread);
             itemsCursor.requery();
-            //mItemsArrayList.clear();  
+            //mItemsArrayList.clear();
             int childPosTemp = childPosition;
             if (itemsCursor.moveToFirst())
                 do {
@@ -134,9 +138,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                     mItemsArrayList.get(groupPosition).put(childPosTemp, newItem);
                     childPosTemp++;
                 } while (itemsCursor.moveToNext());
-            itemsCursor.close();            
-        }                
-        return mItemsArrayList.get(groupPosition).get(childPosition);		
+            itemsCursor.close();
+        }
+        return mItemsArrayList.get(groupPosition).get(childPosition);
 	}
 
 	@Override
@@ -151,34 +155,34 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		ChildHolder viewHolder;
 		ConcreteFeedItem item = (ConcreteFeedItem)getChild(groupPosition, childPosition);
 
-		
-		if (convertView == null) {   
+
+		if (convertView == null) {
 			view = new LinearLayout(mContext);
             String inflater = Context.LAYOUT_INFLATER_SERVICE;
             LayoutInflater vi = (LayoutInflater) mContext.getSystemService(inflater);
-            vi.inflate(R.layout.subscription_list_sub_item, view, true);  
+            vi.inflate(R.layout.subscription_list_sub_item, view, true);
             if(item != null)
             	view.setTag(item.id_database);
-            
+
             FontHelper fHelper = new FontHelper(mContext);
             fHelper.setFontForAllChildren(view, fHelper.getFont());
-            
+
             viewHolder = new ChildHolder();
             viewHolder.tV_HeaderText = (TextView) view.findViewById(R.id.summary);
-            viewHolder.tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount); 
+            viewHolder.tV_UnreadCount = (TextView) view.findViewById(R.id.tv_unreadCount);
             viewHolder.imgView_FavIcon = (ImageView) view.findViewById(R.id.iVFavicon);
-            
+
             view.setTag(viewHolder);
         } else {
             view = (LinearLayout) convertView;
         	viewHolder = (ChildHolder) convertView.getTag();
         }
-		
+
         if(item != null)
-        {    
+        {
 	        String headerText = (item.header != null) ? item.header : "";
 	        viewHolder.tV_HeaderText.setText(headerText);
-	
+
 	        boolean execludeStarredItems = (item.folder_id.equals(ALL_STARRED_ITEMS)) ? false : true;
 	        SetUnreadCountForFeed(viewHolder.tV_UnreadCount, String.valueOf(item.id_database), execludeStarredItems);
 	        GetFavIconForFeed(item.favIcon, viewHolder.imgView_FavIcon, String.valueOf(item.id_database));
@@ -186,7 +190,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         else
         {
 	        viewHolder.tV_HeaderText.setText(mContext.getString(R.string.login_dialog_text_something_went_wrong));
-	        viewHolder.tV_UnreadCount.setText("0");	        
+	        viewHolder.tV_UnreadCount.setText("0");
 	        viewHolder.imgView_FavIcon.setImageDrawable(null);
         }
 
@@ -198,12 +202,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	    public TextView tV_UnreadCount;
 	    public ImageView imgView_FavIcon;
 	  }
-	
+
 	@Override
 	public int getChildrenCount(int groupPosition) {
 		int count;
         if(mItemsArrayList.indexOfKey(groupPosition) < 0){
-            Cursor itemsCursor = dbConn.getAllSubscriptionForFolder(String.valueOf(getGroupId(groupPosition)), showOnlyUnread);        	
+            Cursor itemsCursor = dbConn.getAllSubscriptionForFolder(String.valueOf(getGroupId(groupPosition)), showOnlyUnread);
             count = itemsCursor.getCount();
             itemsCursor.close();
         }
@@ -234,35 +238,35 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 			View convertView, ViewGroup parent) {
 		LinearLayout view;
 		GroupHolder viewHolder;
-		
-        final FolderSubscribtionItem group = (FolderSubscribtionItem)getGroup(groupPosition);        
-                 
-        if (convertView == null) {   
+
+        final FolderSubscribtionItem group = (FolderSubscribtionItem)getGroup(groupPosition);
+
+        if (convertView == null) {
             view = new LinearLayout(mContext);
             String inflater = Context.LAYOUT_INFLATER_SERVICE;
             LayoutInflater vi = (LayoutInflater) mContext.getSystemService(inflater);
             vi.inflate(R.layout.subscription_list_item, view, true);
 
             fHelper.setFontForAllChildren(view, fHelper.getFont());
-            
+
             viewHolder = new GroupHolder();
             viewHolder.imgView = (ImageView) view.findViewById(R.id.img_View_expandable_indicator);
             viewHolder.txt_Summary = (TextView) view.findViewById(R.id.summary);
             viewHolder.txt_UnreadCount = (TextView) view.findViewById(R.id.tV_feedsCount);
-                         
+
             viewHolder.txt_Summary.setClickable(true);
-            
+
             view.setTag(viewHolder);
-            
+
         } else {
             view = (LinearLayout) convertView;
         	viewHolder = (GroupHolder) convertView.getTag();
         }
 
-        
+
         viewHolder.txt_Summary.setText(group.headerFolder);
         viewHolder.txt_Summary.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 
@@ -276,77 +280,112 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 						skipFireEvent = true;
 					}
 				}
-				
+
 				if(!skipFireEvent)
 					fireListTextClicked(val, mContext, true, group.idFolder);
 			}
 		});
 
+
+        viewHolder.txt_UnreadCount.setText("");
         boolean skipGetUnread = false;
         if(group.idFolder != null)
         {
         	if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
         	{
-            	SetUnreadCountForFeed(viewHolder.txt_UnreadCount, String.valueOf(group.id_database), true);
+                String unreadCount = unreadCountFeeds.get((int) group.id_database);
+
+                if(unreadCount != null)
+                    viewHolder.txt_UnreadCount.setText(unreadCount);
+                //else
+                    //SetUnreadCountForFeed(viewHolder.txt_UnreadCount, String.valueOf(group.id_database), true);
+
             	skipGetUnread = true;
         	}
         }
-        if(!skipGetUnread)
-        	SetUnreadCountForFolder(viewHolder.txt_UnreadCount, String.valueOf(group.id_database));
+
+        if(!skipGetUnread) {
+            String unreadCount = unreadCountFolders.get((int) group.id_database);
+
+            if(unreadCount != null)
+                viewHolder.txt_UnreadCount.setText(unreadCount);
+            else
+                SetUnreadCountForFolder(viewHolder.txt_UnreadCount, String.valueOf(group.id_database));
+        }
 
 
-        viewHolder.txt_UnreadCount.setText("");      
+
 
         //viewHolder.txt_UnreadCount.setText(group.unreadCount);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
         	viewHolder.imgView.setRotation(0);
-        
+
         if(group.idFolder != null)
         {
 	        if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
 	        {
-	        	Cursor cursor = dbConn.getFeedByDbID(String.valueOf(group.id_database));
-	        	if(cursor != null)
-	        	{
-	        		if(cursor.getCount() > 0)
-	        		{
-	        			viewHolder.imgView.setImageDrawable(null);
-	        			
-			        	cursor.moveToFirst();
-			        	String favIconURL = cursor.getString(cursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));			        	
-			        	GetFavIconForFeed(favIconURL, viewHolder.imgView, String.valueOf(group.id_database));
-	        		}
-	        	}
-	        	cursor.close();
+                String favIconURL = urlsToFavIcons.get((int) group.id_database);
+
+                viewHolder.imgView.setImageDrawable(null);
+
+                String feedID = String.valueOf(group.id_database);
+
+                if(favIconURL != null) {
+                    if(favIconCache != null && favIconCache.get(feedID) != null) {
+                        viewHolder.imgView.setImageDrawable(favIconCache.get(feedID));
+                    } else {
+                        GetFavIconForFeed(favIconURL, viewHolder.imgView, String.valueOf(group.id_database));
+                    }
+                }
 	        }
-        }
-        else
-        {
-        	if(String.valueOf(group.id_database).equals(ALL_STARRED_ITEMS))
-        	{
-        		viewHolder.imgView.setVisibility( View.VISIBLE );
-        		viewHolder.imgView.setImageResource(R.drawable.btn_rating_star_off_normal_holo_light);
+        } else {
+        	if(String.valueOf(group.id_database).equals(ALL_STARRED_ITEMS)) {
+        		viewHolder.imgView.setVisibility(View.VISIBLE);
+        		//viewHolder.imgView.setImageResource(R.drawable.btn_rating_star_off_normal_holo_light);
+                viewHolder.imgView.setImageDrawable(getBtn_rating_star_off_normal_holo_light(mContext));
         	} else if (getChildrenCount( groupPosition ) == 0 ) {
-	        	viewHolder.imgView.setVisibility( View.INVISIBLE );
-	        } 
-	        else {
-	        	viewHolder.imgView.setVisibility( View.VISIBLE );
-	        	viewHolder.imgView.setImageResource(R.drawable.ic_find_next_holo_dark);
-	        	
-	        	if(isExpanded)
-	        	{
+	        	viewHolder.imgView.setVisibility(View.INVISIBLE);
+	        } else {
+	        	viewHolder.imgView.setVisibility(View.VISIBLE);
+	        	//viewHolder.imgView.setImageResource(R.drawable.ic_find_next_holo_dark);
+                viewHolder.imgView.setImageDrawable(getIc_find_next_holo_dark(mContext));
+
+	        	if(isExpanded) {
 	        		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 	        			viewHolder.imgView.setRotation(-90);
 	        		else
-	        			viewHolder.imgView.setImageResource(R.drawable.ic_find_previous_holo_dark);
+                        viewHolder.imgView.setImageDrawable(getIc_find_previous_holo_dark(mContext));
+	        			//viewHolder.imgView.setImageResource(R.drawable.ic_find_previous_holo_dark);
 	        	}
 	        }
         }
 
         return view;
 	}
-	
-	
+
+    Drawable ic_find_next_holo_dark;
+    Drawable ic_find_previous_holo_dark;
+    Drawable btn_rating_star_off_normal_holo_light;
+
+    private Drawable getBtn_rating_star_off_normal_holo_light(Context context) {
+        if(btn_rating_star_off_normal_holo_light == null)
+            btn_rating_star_off_normal_holo_light = context.getResources().getDrawable(R.drawable.btn_rating_star_off_normal_holo_light);
+        return btn_rating_star_off_normal_holo_light;
+    }
+
+    private Drawable getIc_find_next_holo_dark(Context context) {
+        if(ic_find_next_holo_dark == null)
+            ic_find_next_holo_dark = context.getResources().getDrawable(R.drawable.ic_find_next_holo_dark);
+        return ic_find_next_holo_dark;
+    }
+
+    private Drawable getIc_find_previous_holo_dark(Context context) {
+        if(ic_find_previous_holo_dark == null)
+            ic_find_previous_holo_dark = context.getResources().getDrawable(R.drawable.ic_find_previous_holo_dark);
+        return ic_find_previous_holo_dark;
+    }
+
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void SetUnreadCountForFeed(TextView textView, String idDatabase, boolean execludeStarredItems)
 	{
@@ -357,20 +396,20 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		else
 			new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
 	}
-		
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void SetUnreadCountForFolder(TextView textView, String idDatabase)
 	{
 		IGetTextForTextViewAsyncTask iGetter = new UnreadFolderCount(mContext, idDatabase);
-				
+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 			// Execute in parallel
 			new FillTextForTextViewAsyncTask(textView, iGetter).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));
 		else
 			new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
-			
+
 	}
-	
+
 	private void GetFavIconForFeed(String favIconURL, ImageView imgView, String feedID)
 	{
 		try
@@ -390,14 +429,14 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 			ex.printStackTrace();
 		}
 	}
-	
+
 	static class GroupHolder
 	{
 		TextView txt_Summary;
 		TextView txt_UnreadCount;
 		ImageView imgView;
 	}
-	
+
 
 	@Override
 	public boolean hasStableIds() {
@@ -414,11 +453,11 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     {
     	SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
     	showOnlyUnread = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
-    	
+
         mCategoriesArrayList = new ArrayList<FolderSubscribtionItem>();
         mCategoriesArrayList.add(new FolderSubscribtionItem(mContext.getString(R.string.allUnreadFeeds), null, Long.valueOf(ALL_UNREAD_ITEMS)));
         mCategoriesArrayList.add(new FolderSubscribtionItem(mContext.getString(R.string.starredFeeds), null, Long.valueOf(ALL_STARRED_ITEMS)));
-        
+
         //mCategoriesArrayList.add(new FolderSubscribtionItem(mContext.getString(R.string.starredFeeds), -11, null, null));
 
         AddEverythingInCursorFolderToSubscriptions(dbConn.getAllTopSubscriptions(showOnlyUnread));
@@ -430,8 +469,20 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         this.notifyDataSetChanged();
     }
 
-	
-	public void setHandlerListener(ExpListTextClicked listener)
+
+    SparseArray<String> unreadCountFolders;
+    SparseArray<String> unreadCountFeeds;
+    SparseArray<String> urlsToFavIcons;
+    @Override
+    public void notifyDataSetChanged() {
+        unreadCountFolders = dbConn.getUnreadItemCountForFolder();
+        unreadCountFeeds = dbConn.getUnreadItemCountForFeed();
+        urlsToFavIcons = dbConn.getUrlsToFavIcons();
+
+        super.notifyDataSetChanged();
+    }
+
+    public void setHandlerListener(ExpListTextClicked listener)
 	{
 		eListTextClickHandler = listener;
 	}
