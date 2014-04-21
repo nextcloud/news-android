@@ -42,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
@@ -52,7 +53,7 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 public class OwnCloudReaderMethods {
 	//private static final String TAG = "OwnCloudReaderMethods";
 	public static String maxSizePerSync = "200";
-	
+
 	public static int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception
 	{
 		List<NameValuePair> nVPairs = new ArrayList<NameValuePair>();
@@ -63,29 +64,29 @@ public class OwnCloudReaderMethods {
 			nVPairs.add(new BasicNameValuePair("id", "0"));
 		}
 		else if(tag.equals(TAGS.ALL))
-		{			
+		{
 			nVPairs.add(new BasicNameValuePair("type", "3"));
 			nVPairs.add(new BasicNameValuePair("id", "0"));
 		}
 		nVPairs.add(new BasicNameValuePair("lastModified", String.valueOf(lastSync)));
-				
-		
+
+
     	InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUpdatedUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
-    	
+
 		DatabaseConnection dbConn = new DatabaseConnection(cont);
         try
-        {	
+        {
         	if(api instanceof APIv1)
     			return readJsonStreamV1(is, new InsertItemIntoDatabase(dbConn));
         	else if(api instanceof APIv2)
         		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn));
-        } finally {        	
+        } finally {
         	dbConn.closeDatabase();
         	is.close();
         }
         return new int[] { 0, 0 };
 	}
-	
+
 	//"type": 1, // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
 	public static int GetItems(TAGS tag, Context cont, String offset, boolean getRead, String id, String type, API api) throws Exception
 	{
@@ -97,19 +98,19 @@ public class OwnCloudReaderMethods {
 			nVPairs.add(new BasicNameValuePair("id", id));
 		}
 		else if(tag.equals(TAGS.ALL))
-		{			
+		{
 			nVPairs.add(new BasicNameValuePair("type", type));
 			nVPairs.add(new BasicNameValuePair("id", id));
 		}
 		nVPairs.add(new BasicNameValuePair("offset", offset));
 		if(getRead)
-			nVPairs.add(new BasicNameValuePair("getRead", "true"));		 
+			nVPairs.add(new BasicNameValuePair("getRead", "true"));
 		else
 			nVPairs.add(new BasicNameValuePair("getRead", "false"));
-		
-		
+
+
 		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
-		
+
 		DatabaseConnection dbConn = new DatabaseConnection(cont);
         try
         {
@@ -117,37 +118,37 @@ public class OwnCloudReaderMethods {
     			return readJsonStreamV1(is, new InsertItemIntoDatabase(dbConn))[0];
         	else if(api instanceof APIv2)
         		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn))[0];
-        } finally {        	
+        } finally {
         	dbConn.closeDatabase();
         	is.close();
         }
         return 0;
 	}
-	
-	
+
+
 	public static int GetFolderTags(Context cont, API api) throws Exception
-	{	
+	{
 		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getFolderUrl(), null, api.getUsername(), api.getPassword(), cont);
 		DatabaseConnection dbConn = new DatabaseConnection(cont);
 		int[] result = new int[2];
 		try
         {
 			InsertFolderIntoDatabase ifid = new InsertFolderIntoDatabase(dbConn);
-			
+
 			if(api instanceof APIv1)
 				result = readJsonStreamV1(is, ifid);
         	else if(api instanceof APIv2)
         		result = readJsonStreamV2(is, ifid);
-			
+
 			ifid.WriteAllToDatabaseNow();
-        } finally {        	
+        } finally {
         	dbConn.closeDatabase();
-        	is.close();        	
+        	is.close();
         }
-		
+
 		return result[0];
 	}
-	
+
 	public static int[] GetFeeds(Context cont, API api) throws Exception
 	{
 		InputStream inputStream = HttpJsonRequest.PerformJsonRequest(api.getFeedUrl() , null, api.getUsername(), api.getPassword(), cont);
@@ -156,12 +157,12 @@ public class OwnCloudReaderMethods {
 		int result[] = new int[2];
 		try {
 			InsertFeedIntoDatabase ifid = new InsertFeedIntoDatabase(dbConn);
-			
+
 			if(api instanceof APIv1)
 				result = readJsonStreamV1(inputStream, ifid);
         	else if(api instanceof APIv2)
         		result = readJsonStreamV2(inputStream, ifid);
-			
+
 			ifid.WriteAllToDatabaseNow();
 		} finally {
 			dbConn.closeDatabase();
@@ -169,7 +170,7 @@ public class OwnCloudReaderMethods {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * can parse json like {"items":[{"id":6782}]}
 	 * @param in
@@ -187,9 +188,9 @@ public class OwnCloudReaderMethods {
         reader.beginArray();
         while (reader.hasNext()) {
         	//reader.beginObject();
-        	
+
         	JSONObject e = getJSONObjectFromReader(reader);
-        	
+
         	if(iJoBj.performAction(e))
                 newItemsCount++;
     		//reader.endObject();
@@ -198,10 +199,10 @@ public class OwnCloudReaderMethods {
         //reader.endArray();
         //reader.endObject();
         reader.close();
-        
+
         return new int[] { count, newItemsCount };
     }
-	
+
 	/**
 	 * can parse json like {"items":[{"id":6782}]}
 	 * @param in
@@ -218,32 +219,32 @@ public class OwnCloudReaderMethods {
         reader.nextName();//"ocs"
         reader.beginObject();//{
         reader.nextName();//meta
-        
+
         getJSONObjectFromReader(reader);//skip status etc.
-        
+
         reader.nextName();//data
         reader.beginObject();//{
         reader.nextName();//folders etc..
-        
+
         reader.beginArray();
         while (reader.hasNext()) {
         	//reader.beginObject();
-        	
+
         	JSONObject e = getJSONObjectFromReader(reader);
-        	
+
         	if(iJoBj.performAction(e))
                 newItemsCount++;
-    		
+
     		//reader.endObject();
     		count++;
         }
         //reader.endArray();
         //reader.endObject();
         reader.close();
-        
+
         return new int[] { count, newItemsCount };
     }
-	
+
 	/**
 	 * can read json like {"version":"1.101"}
 	 * @param in
@@ -256,39 +257,39 @@ public class OwnCloudReaderMethods {
 		int count = 0;
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         //reader.setLenient(true);
-        
+
         //JsonToken token = reader.peek();
         //while(token.equals(JsonToken.STRING))
         //	reader.skipValue();
-                	
+
         JSONObject e = getJSONObjectFromReader(reader);
-        iJoBj.performAction(e);        	
-    	        
+        iJoBj.performAction(e);
+
         reader.close();
-        
+
         return count;
     }
 
-	private static JSONObject getJSONObjectFromReader(JsonReader jsonReader) {		
+	private static JSONObject getJSONObjectFromReader(JsonReader jsonReader) {
 		JSONObject jObj = new JSONObject();
-		JsonToken tokenInstance = null; 
+		JsonToken tokenInstance = null;
 		try {
 			tokenInstance = jsonReader.peek();
 			if(tokenInstance == JsonToken.BEGIN_OBJECT)
 				jsonReader.beginObject();
 			else if (tokenInstance == JsonToken.BEGIN_ARRAY)
 				jsonReader.beginArray();
-			
+
 			while(jsonReader.hasNext()) {
 				JsonToken token;
 				String name;
 				try {
 					name = jsonReader.nextName();
 					token = jsonReader.peek();
-					
+
 					//Log.d(TAG, token.toString());
-										
-					switch(token) {	
+
+					switch(token) {
 						case NUMBER:
 							jObj.put(name, jsonReader.nextLong());
 							break;
@@ -297,7 +298,7 @@ public class OwnCloudReaderMethods {
 							break;
 						case BOOLEAN:
 							jObj.put(name, jsonReader.nextBoolean());
-							break;	
+							break;
 						case BEGIN_OBJECT:
 							//jsonReader.beginObject();
 							jObj.put(name, getJSONObjectFromReader(jsonReader));
@@ -306,62 +307,62 @@ public class OwnCloudReaderMethods {
 						default:
 							jObj.put(name, jsonReader.nextString());
 					}
-				} catch(Exception ex) {					
+				} catch(Exception ex) {
 					ex.printStackTrace();
 					jsonReader.skipValue();
 				}
 			}
-			
+
 			if(tokenInstance == JsonToken.BEGIN_OBJECT)
 				jsonReader.endObject();
 			else if (tokenInstance == JsonToken.BEGIN_ARRAY)
 				jsonReader.endArray();
-			
+
 			return jObj;
-		} catch (Exception e) {			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	
-	
+
+
 	public static boolean PerformTagExecutionAPIv2(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api)
-	{	        
+	{
         String jsonIds = null;
-        
-        
-		String url = api.getTagBaseUrl(); 
+
+
+		String url = api.getTagBaseUrl();
 		if(tag.equals(TAGS.MARK_ITEM_AS_READ) || tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
         {
 			jsonIds = buildIdsToJSONArray(itemIds);
-	        
+
 	        if(tag.equals(TAGS.MARK_ITEM_AS_READ))
 	        	url += "read/multiple";
 	        else
 	        	url += "unread/multiple";
         } else {
             DatabaseConnection dbConn = new DatabaseConnection(context);
-            
+
             HashMap<String, String> items = new HashMap<String, String>();
             for(String idItem : itemIds)
             {
 	            Cursor cursor = dbConn.getArticleByID(dbConn.getRowIdOfFeedByItemID(idItem));
 	            //Cursor cursor = dbConn.getFeedByID itemID);
 	            cursor.moveToFirst();
-	
+
 	            String idSubscription = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID));
 	            String guidHash = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUIDHASH));
-	            
+
 	            cursor.close();
-	            
+
 	            String subscription_id = dbConn.getSubscriptionIdByRowID(idSubscription);
 	            //url += subscription_id;
-	            
+
 	            items.put(guidHash, subscription_id);
             }
             dbConn.closeDatabase();
-            
+
             jsonIds = buildIdsToJSONArrayWithGuid(items);
             /*
 	        if(jsonIds != null)
@@ -369,13 +370,13 @@ public class OwnCloudReaderMethods {
 	            nameValuePairs = new ArrayList<NameValuePair>();
 	            nameValuePairs.add(new BasicNameValuePair("itemIds", jsonIds));
 	        }*/
-            
+
             if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
                 url += "star/multiple";
             else if(tag.equals(TAGS.MARK_ITEM_AS_UNSTARRED))
                 url += "unstar/multiple";
-            
-            
+
+
             /*
             url += "/" + guidHash;
 
@@ -384,7 +385,7 @@ public class OwnCloudReaderMethods {
             else if(tag.equals(TAGS.MARK_ITEM_AS_UNSTARRED))
                 url += "/unstar";
             */
-            
+
         }
         try
         {
@@ -401,10 +402,10 @@ public class OwnCloudReaderMethods {
             return false;
         }
 	}
-	
+
 	public static boolean PerformTagExecutionAPIv1(String itemId, FeedItemTags.TAGS tag, Context context, API api)
 	{
-		String url = api.getTagBaseUrl(); 
+		String url = api.getTagBaseUrl();
 		if(tag.equals(TAGS.MARK_ITEM_AS_READ) || tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
         {
 			if(tag.equals(TAGS.MARK_ITEM_AS_READ))
@@ -412,20 +413,20 @@ public class OwnCloudReaderMethods {
 			else
 				url += itemId + "/unread";
         } else {
-            DatabaseConnection dbConn = new DatabaseConnection(context);           
-                        
-            Cursor cursor = dbConn.getArticleByID(dbConn.getRowIdOfFeedByItemID(itemId));            
+            DatabaseConnection dbConn = new DatabaseConnection(context);
+
+            Cursor cursor = dbConn.getArticleByID(dbConn.getRowIdOfFeedByItemID(itemId));
             cursor.moveToFirst();
 
             String idSubscription = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID));
-            String guidHash = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUIDHASH));            
+            String guidHash = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUIDHASH));
             cursor.close();
-            
+
             String subscription_id = dbConn.getSubscriptionIdByRowID(idSubscription);
             url += subscription_id;
-            
+
             dbConn.closeDatabase();
-            
+
             url += "/" + guidHash;
             if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
                 url += "/star";
@@ -434,7 +435,7 @@ public class OwnCloudReaderMethods {
         }
         try
         {
-		    int result = HttpJsonRequest.performTagChangeRequest(url, api.getUsername(), api.getPassword(), context, null);		    
+		    int result = HttpJsonRequest.performTagChangeRequest(url, api.getUsername(), api.getPassword(), context, null);
 		    if(result == 200)
     			return true;
     		else
@@ -447,7 +448,7 @@ public class OwnCloudReaderMethods {
         }
 	}
 
-	
+
 	public static String GetVersionNumber(Context cont, String username, String password, String oc_root_path) throws Exception
 	{
 		//Try APIv2
@@ -462,7 +463,7 @@ public class OwnCloudReaderMethods {
 			} finally {
 				is.close();
 			}
-		} 
+		}
 		catch(AuthenticationException ex) {
 			throw ex;
 		} catch(Exception ex) {	//TODO GET HERE THE RIGHT EXCEPTION
@@ -478,9 +479,9 @@ public class OwnCloudReaderMethods {
 			}
 		}
 	}
-	
-	
-	
+
+
+
     private static String buildIdsToJSONArray(List<String> ids)
     {
         try
@@ -489,10 +490,10 @@ public class OwnCloudReaderMethods {
             for(String id : ids)
                 jArr.put(Integer.parseInt(id));
 
-            
+
             JSONObject jObj = new JSONObject();
             jObj.put("items", jArr);
-            
+
             return jObj.toString();
         }
         catch(Exception ex)
@@ -501,7 +502,7 @@ public class OwnCloudReaderMethods {
         }
         return null;
     }
-    
+
     private static String buildIdsToJSONArrayWithGuid(HashMap<String, String> items)
     {
         try
@@ -514,10 +515,10 @@ public class OwnCloudReaderMethods {
             	jOb.put("guidHash", entry.getKey());
             	jArr.put(jOb);
             }
-            
+
             JSONObject jObj = new JSONObject();
             jObj.put("items", jArr);
-            
+
             return jObj.toString();
         }
         catch(Exception ex)

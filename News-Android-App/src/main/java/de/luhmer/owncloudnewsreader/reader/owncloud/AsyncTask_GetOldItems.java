@@ -22,40 +22,46 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
+import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
+import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetOldItems extends AsyncTask_Reader {
-	
+
+    private static final String TAG = "AsyncTask_GetOldItems";
     public String feed_id;
     public String folder_id;
     private int downloadedItemsCount = 0;
     private API api;
-    
+
     public AsyncTask_GetOldItems(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener, String feed_id, String folder_id, API api) {
     	super(task_id, context, listener);
-    	
+
         this.feed_id = feed_id;
         this.folder_id = folder_id;
         this.api = api;
     }
-    
+
 	@Override
 	protected Exception doInBackground(Object... params) {
 		DatabaseConnection dbConn = new DatabaseConnection(context);
         try {
-        	long offset = 0;        	
+        	long offset = 0;
         	//int requestCount = 0;
         	//int maxSyncSize = Integer.parseInt(OwnCloudReaderMethods.maxSizePerSync);
         	String id = null;
         	String type = null;
-        	
+
         	if(feed_id != null)
         	{
         		offset = dbConn.getLowestItemIdByFeed(feed_id);
@@ -68,24 +74,35 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         		{
         			offset = dbConn.getLowestItemIdStarred();
         			id = "0";
-        			type = "2";        			
+        			type = "2";
         		} else {
         			offset = dbConn.getLowestItemIdByFolder(folder_id);
         			id = dbConn.getIdOfFolderByLabelPath(folder_id);
         			type = "1";
         		}
         	}
-        	
+
+
         	downloadedItemsCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id, type, api);
+
+            int totalCount = dbConn.getCountOfAllItems(false);
+
+            //If the number of items in the database is bigger than the maximum allowed number of items
+            if(totalCount > Constants.maxItemsCount) {
+                String feedIdDb = dbConn.getRowIdBySubscriptionID(feed_id);
+                dbConn.removeXLatestItems(totalCount - Constants.maxItemsCount, feedIdDb);
+                Log.d(TAG, "Deleted starred-items in order to free up enough space for the read items");
+            }
+
         	//downloadedItemsCount = OwnCloudReaderMethods.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id, type, api);
-        	
-        	
-        	//do {    
+
+
+        	//do {
         	//requestCount = OwnCloudReaderMethods.GetItems(TAGS.ALL, context, String.valueOf(offset), true, feed_id);
         	//	if(requestCount > 0)
         	//		offset = dbConn.getLowestItemIdByFeed(feed_id);
         	//} while(requestCount == maxSyncSize);
-        	
+
         } catch (Exception ex) {
             return ex;
         } finally {
@@ -93,14 +110,14 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         }
         return null;
 	}
-	
+
     @Override
     protected void onPostExecute(Object ex) {
     	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
     			listenerInstance.onAsyncTaskCompleted(task_id, ex);
 		}
-    	
+
     	if(downloadedItemsCount == 0)
     		Toast.makeText(context, context.getString(R.string.toast_no_more_downloads_available), Toast.LENGTH_LONG).show();
     	else
@@ -108,7 +125,19 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
     		String text = context.getString(R.string.toast_downloaded_x_items).replace("X", String.valueOf(downloadedItemsCount));
     		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     	}
-    	
+
+
+
+        if(context instanceof  NewsReaderListActivity) {
+            NewsReaderListActivity activity = (NewsReaderListActivity) context;
+            NewsReaderDetailFragment nrD = (NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            if(nrD != null)
+                nrD.UpdateCurrentRssView(context);
+        }
+
+
+
+
     	/*
     	DatabaseConnection dbConn = new DatabaseConnection(context);
     	try {
@@ -119,7 +148,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
     		dbConn.closeDatabase();
     	}
     	*/
-    	
+
 		detach();
     }
 }

@@ -5,16 +5,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.preference.PreferenceManager;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
-import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudConstants;
 

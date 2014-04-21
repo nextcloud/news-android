@@ -45,7 +45,7 @@ public abstract class API {
 	}
 
 	public static API GetRightApiForVersion(String appVersion, Context context) {
-		API api = null;
+		API api;
 		int versionCode = 0;
 		if(appVersion != null)
 		{
