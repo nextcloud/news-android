@@ -27,32 +27,42 @@ import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 
+import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
+
 public class FillTextForTextViewAsyncTask extends AsyncTask<Void, Void, String> {
 	IGetTextForTextViewAsyncTask iGetter;
 	WeakReference<TextView> textView;
-	
+
 	public FillTextForTextViewAsyncTask(TextView textView, IGetTextForTextViewAsyncTask iGetter)
 	{
 		this.iGetter = iGetter;
-		this.textView = new WeakReference<TextView>(textView); 
+		this.textView = new WeakReference<TextView>(textView);
 	}
-	
+
 	//http://stackoverflow.com/a/14217816
 	@Override
 	protected String doInBackground(Void... params) {
-		Process.setThreadPriority(9);		
+		//Process.setThreadPriority(9);
 		return iGetter.getText();
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 	 */
 	@Override
-	protected void onPostExecute(String result) {
-		if(result != null)
-			if(!result.equals("0"))
-				if(textView.get() != null)
-					textView.get().setText(result);
-		super.onPostExecute(result);
+	protected void onPostExecute(String text) {
+        if (isCancelled()) {
+            text = null;
+        }
+
+		if(text != null) {
+            if (!text.equals("0")) {
+                if (textView.get() != null) {
+                    textView.get().setText(text);
+
+                    NewsListCursorAdapter.FadeInTextView(textView.get());
+                }
+            }
+        }
 	}
 }

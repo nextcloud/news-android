@@ -182,13 +182,14 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        String headerText = (item.header != null) ? item.header : "";
 	        viewHolder.tV_HeaderText.setText(headerText);
 
+            /*
             String unreadCount = unreadCountFeeds.get((int) item.id_database);
             if(unreadCount != null)
                 viewHolder.tV_UnreadCount.setText(unreadCount);
-            else {
+            else {*/
                 boolean execludeStarredItems = (item.folder_id.equals(ALL_STARRED_ITEMS)) ? false : true;
                 SetUnreadCountForFeed(viewHolder.tV_UnreadCount, String.valueOf(item.id_database), execludeStarredItems);
-            }
+            //}
 
             loadFavIconForFeed(item.favIcon, viewHolder.imgView_FavIcon);
         }
@@ -292,11 +293,13 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         {
         	if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
         	{
+                /*
                 String unreadCount = unreadCountFeeds.get((int) group.id_database);
 
                 if(unreadCount != null)
                     viewHolder.txt_UnreadCount.setText(unreadCount);
                 else
+                */
                     SetUnreadCountForFeed(viewHolder.txt_UnreadCount, String.valueOf(group.id_database), true);
 
             	skipGetUnread = true;
@@ -304,11 +307,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
 
         if(!skipGetUnread) {
+            /*
             String unreadCount = unreadCountFolders.get((int) group.id_database);
 
             if(unreadCount != null)
                 viewHolder.txt_UnreadCount.setText(unreadCount);
-            else
+            else */
                 SetUnreadCountForFolder(viewHolder.txt_UnreadCount, String.valueOf(group.id_database));
         }
 
@@ -397,25 +401,26 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	private void SetUnreadCountForFeed(TextView textView, String idDatabase, boolean execludeStarredItems)
 	{
 		IGetTextForTextViewAsyncTask iGetter = new UnreadFeedCount(mContext, idDatabase, execludeStarredItems);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-			// Execute in parallel
-			new FillTextForTextViewAsyncTask(textView, iGetter).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));
-		else
-			new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
+        FillTextForTextView(textView, iGetter);
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void SetUnreadCountForFolder(TextView textView, String idDatabase)
 	{
 		IGetTextForTextViewAsyncTask iGetter = new UnreadFolderCount(mContext, idDatabase);
-
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-			// Execute in parallel
-			new FillTextForTextViewAsyncTask(textView, iGetter).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));
-		else
-			new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
-
+        FillTextForTextView(textView, iGetter);
 	}
+
+
+    public static void FillTextForTextView(TextView textView, IGetTextForTextViewAsyncTask iGetter) {
+        textView.setVisibility(View.INVISIBLE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            // Execute in parallel
+            new FillTextForTextViewAsyncTask(textView, iGetter).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));
+        else
+            new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
+    }
 
 
 
@@ -469,13 +474,13 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     }
 
 
-    SparseArray<String> unreadCountFolders;
-    SparseArray<String> unreadCountFeeds;
+    //SparseArray<String> unreadCountFolders;
+    //SparseArray<String> unreadCountFeeds;
     SparseArray<String> urlsToFavIcons;
     @Override
     public void notifyDataSetChanged() {
-        unreadCountFolders = dbConn.getUnreadItemCountForFolder();
-        unreadCountFeeds = dbConn.getUnreadItemCountForFeed();
+        //unreadCountFolders = dbConn.getUnreadItemCountForFolder();
+        //unreadCountFeeds = dbConn.getUnreadItemCountForFeed();
         urlsToFavIcons = dbConn.getUrlsToFavIcons();
 
         super.notifyDataSetChanged();

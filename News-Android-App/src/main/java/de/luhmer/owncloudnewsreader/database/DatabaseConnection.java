@@ -363,11 +363,13 @@ public class DatabaseConnection {
         database.execSQL(sql);
     }
 
+    /*
     public void removeReadItems(int limit) {
         String sql = "DELETE FROM " + RSS_ITEM_TABLE + " WHERE rowid IN (SELECT rowid FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_READ_TEMP + " = 1 " +
                 " AND " + RSS_ITEM_READ + " = 1 ORDER BY " + RSS_ITEM_PUBDATE + " desc LIMIT " + limit +  ")";
         database.execSQL(sql);
     }
+    */
 
     /*
 	public Cursor getAllData(String TABLE_NAME) {

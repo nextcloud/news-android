@@ -92,8 +92,8 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
                 do {
 	        		offset = dbConn.getLowestItemId(true);
 	        		requestCount = api.GetItems(TAGS.ALL_STARRED, context, String.valueOf(offset), true, "0", "2", api);
-	        		if(requestCount > 0)
-	        			offset = dbConn.getLowestItemId(true);
+	        		//if(requestCount > 0)
+	        		//	offset = dbConn.getLowestItemId(true);
 	        		totalCount += requestCount;
 	        	} while(requestCount == maxSyncSize && totalCount < maxItemsInDatabase);
         	}

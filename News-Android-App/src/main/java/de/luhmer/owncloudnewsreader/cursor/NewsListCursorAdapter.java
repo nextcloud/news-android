@@ -55,10 +55,13 @@ import java.lang.ref.WeakReference;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.ListView.UnreadFeedCount;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.async_tasks.IGetTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
@@ -250,11 +253,8 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
         extendedLayout.textViewItemBody.setVisibility(View.INVISIBLE);
         String idItemDb = cursor.getString(0);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            // Execute in parallel
-            new DescriptionTextLoaderTask(extendedLayout.textViewItemBody, idItemDb).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));
-        else
-            new DescriptionTextLoaderTask(extendedLayout.textViewItemBody, idItemDb).execute((Void) null);
+        IGetTextForTextViewAsyncTask iGetter = new DescriptionTextGetter(idItemDb);
+        SubscriptionExpandableListAdapter.FillTextForTextView(extendedLayout.textViewItemBody, iGetter);
 
         extendedLayout.textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
         extendedLayout.textViewSummary.setTag(cursor.getString(0));
@@ -366,10 +366,31 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
 
 
+    class DescriptionTextGetter implements IGetTextForTextViewAsyncTask {
+
+        private String idItemDb;
+
+        public DescriptionTextGetter(String idItemDb) {
+            this.idItemDb = idItemDb;
+        }
+
+        @Override
+        public String getText() {
+            DatabaseConnection dbConn = new DatabaseConnection(mContext);
+
+            Cursor cursor = dbConn.getItemByDbID(idItemDb);
+            cursor.moveToFirst();
+            String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
+            String result = getBodyText(body);
+            cursor.close();
+
+            return  result;
+        }
+    }
 
 
 
-
+    /*
     class DescriptionTextLoaderTask extends AsyncTask<Void, Void, String> {
         private String idItemDb;
         private final WeakReference<TextView> textViewWeakReference;
@@ -406,30 +427,29 @@ public class NewsListCursorAdapter extends CursorAdapter {
                 if (textView != null) {
                     textView.setText(text);
 
-                    fadeInTextView(textView);
+                    FadeInTextView(textView);
                 }
             }
         }
+    }
+    */
 
+    public static void FadeInTextView(final TextView textView)
+    {
+        Animation fadeOut = new AlphaAnimation(0, 1);
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setDuration(300);
 
-
-        private void fadeInTextView(final TextView textView)
+        fadeOut.setAnimationListener(new Animation.AnimationListener()
         {
-            Animation fadeOut = new AlphaAnimation(0, 1);
-            fadeOut.setInterpolator(new AccelerateInterpolator());
-            fadeOut.setDuration(300);
-
-            fadeOut.setAnimationListener(new Animation.AnimationListener()
+            public void onAnimationEnd(Animation animation)
             {
-                public void onAnimationEnd(Animation animation)
-                {
-                    textView.setVisibility(View.VISIBLE);
-                }
-                public void onAnimationRepeat(Animation animation) {}
-                public void onAnimationStart(Animation animation) {}
-            });
+                textView.setVisibility(View.VISIBLE);
+            }
+            public void onAnimationRepeat(Animation animation) {}
+            public void onAnimationStart(Animation animation) {}
+        });
 
-            textView.startAnimation(fadeOut);
-        }
+        textView.startAnimation(fadeOut);
     }
 }
