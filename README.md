@@ -64,8 +64,17 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.5.9 (in development)
+0.6.0 (in development)
 ---------------------
+
+0.5.9 (Google Play - Beta)
+---------------------
+- Extreme performance improvements
+- Several bug fixes
+- Layout improvement
+- New feature - <a href="https://github.com/owncloud/News-Android-App/issues/35">#35 Subscribe to feed with app</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/208">#208 Summary: gray font on black background</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/154">#154 Scrolling feed list is slow</a>
 
 
 0.5.8 (Google Play)
