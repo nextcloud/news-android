@@ -43,20 +43,20 @@ public class FavIconHandler {
 	public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context, String feedID)
 	{
 		try
-		{	
-			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, ImageHandler.getPathFavIcons(context));						
+		{
+			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, ImageHandler.getPathFavIcons(context));
 			if(favIconFile.isFile() && favIconFile.length() > 0)
 			{
 				/*
 				InputStream fs = new FileInputStream(favIconFile);
-				BufferedInputStream is = new BufferedInputStream(fs, 32*1024);				
+				BufferedInputStream is = new BufferedInputStream(fs, 32*1024);
 				Bitmap bitmap = GetScaledImage(is, 50, 50);
 				if(bitmap != null)
 					return new BitmapDrawable(context.getResources(), bitmap);
 				else
 					return null;
 				*/
-				
+
 				if(feedID != null) {
                 	DatabaseConnection dbConn = new DatabaseConnection(context);
                 	try {
@@ -69,7 +69,7 @@ public class FavIconHandler {
                 		dbConn.closeDatabase();
                 	}
                 }
-				
+
 				return Drawable.createFromPath(favIconFile.getPath());
 			}
 		}
@@ -79,16 +79,16 @@ public class FavIconHandler {
 		}
 		return null;
 	}
-	
+
 	public static int getResourceIdForRightDefaultFeedIcon(Context context)
 	{
 		if(ThemeChooser.isDarkTheme(context))
 			return R.drawable.default_feed_icon_light;
 		else
 			return R.drawable.default_feed_icon_dark;
-		
+
 	}
-	
+
 	/*
 	private static Bitmap GetScaledImage(BufferedInputStream is, int minimumDesiredBitmapWidth, int minimumDesiredBitmapHeight)
 	{
@@ -110,7 +110,7 @@ public class FavIconHandler {
 	            // inSampleSize prefers multiples of 2, but we prefer to prioritize memory savings
 	            decodeBitmapOptions.inSampleSize= Math.max(1,Math.min(originalWidth / minimumDesiredBitmapWidth, originalHeight / minimumDesiredBitmapHeight));
 	        }
-	        
+
 	        return BitmapFactory.decodeStream(is,null,decodeBitmapOptions);
 
 	    } catch( IOException e ) {
@@ -121,16 +121,50 @@ public class FavIconHandler {
 	        } catch( IOException ignored ) {}
 	    }
 	}*/
-	
-	
+
+
 	static SparseArray<FavIconCache> imageViewReferences = new SparseArray<FavIconCache>();
 	String feedID;
-	
+
+
+    static SparseArray<FavIconCache> favIconToFeedId = new SparseArray<FavIconCache>();
+    public static void PreCacheFavIcon(String WEB_URL_TO_FILE, Context context, String feedID) {
+
+        FavIconCache favIconCache = new FavIconCache();
+        favIconCache.context = context;
+        favIconCache.WEB_URL_TO_FILE = WEB_URL_TO_FILE;
+
+        int key = Integer.parseInt(feedID);
+        favIconToFeedId.put(key, favIconCache);
+        GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, favIconDownloadFinished, key, ImageHandler.getPathFavIcons(context), context, null);
+        giAsync.scaleImage = true;
+        giAsync.dstHeight = 2*32;
+        giAsync.dstWidth = 2*32;
+        giAsync.feedID = feedID;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            // Execute in parallel
+            giAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void)null));
+        else
+            giAsync.execute((Void)null);
+    }
+
+    static ImageDownloadFinished favIconDownloadFinished = new ImageDownloadFinished() {
+
+        @Override
+        public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
+            FavIconCache favIconCache = favIconToFeedId.get(AsynkTaskId);
+            FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context, String.valueOf(AsynkTaskId));
+            imageViewReferences.remove(AsynkTaskId);
+        }
+    };
+
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context, String feedID, BitmapDrawableLruCache lruCache)
-	{	
+	{
 		this.feedID = feedID;
-		
+
 		boolean setImageAlready = false;
 		if(lruCache != null) {
 			if(lruCache.get(feedID) != null) {
@@ -146,13 +180,13 @@ public class FavIconHandler {
 			favIconCache.context = context;
 			favIconCache.WEB_URL_TO_FILE = WEB_URL_TO_FILE;
 			favIconCache.imageViewReference = imageViewReference;
-			
+
 			int key = 0;
 			if(imageViewReferences.size() > 0)
 				key = imageViewReferences.keyAt(imageViewReferences.size() -1) + 1;
 			imageViewReferences.append(key, favIconCache);
-			
-			
+
+
 			imageView.setImageDrawable(null);
 			GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, ImageHandler.getPathFavIcons(context), context/*, imageView*/, lruCache);
 			giAsync.scaleImage = true;
@@ -168,30 +202,30 @@ public class FavIconHandler {
 				giAsync.execute((Void)null);
 		}
 	}
-	
+
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
 		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
-			//WeakReference<ImageView> imageViewRef = imageViewReferences.get(AsynkTaskId);			
+			//WeakReference<ImageView> imageViewRef = imageViewReferences.get(AsynkTaskId);
 			FavIconCache favIconCache = imageViewReferences.get(AsynkTaskId);
 			WeakReference<ImageView> imageViewRef = favIconCache.imageViewReference;
-			
+
 			if(imageViewRef != null)
-			{	
+			{
 	            ImageView imageView = imageViewRef.get();
 	            if (imageView != null) {
 	            	BitmapDrawable bd = (BitmapDrawable) FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context, feedID);
-	            	if(lruCache != null && feedID != null && bd != null)	            		
+	            	if(lruCache != null && feedID != null && bd != null)
 	            		lruCache.put(feedID, bd);
 	                imageView.setImageDrawable(bd);
 	            }
 			}
-			
-			imageViewReferences.remove(AsynkTaskId);			
+
+			imageViewReferences.remove(AsynkTaskId);
 		}
 	};
-	
+
 	static class FavIconCache
 	{
 		public WeakReference<ImageView> imageViewReference;

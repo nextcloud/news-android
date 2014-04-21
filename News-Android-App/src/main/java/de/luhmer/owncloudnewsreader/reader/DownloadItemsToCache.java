@@ -26,7 +26,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.util.SparseArray;
 
-import de.luhmer.owncloudnewsreader.async_tasks.FillTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
@@ -35,32 +34,32 @@ import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 public class DownloadItemsToCache {
 	SparseArray<String> URLs;
 	Context context;
-	
+
 	public DownloadItemsToCache(Context context) {
 		URLs = new SparseArray<String>();
 		this.context = context;
 	}
-	
+
 	public void StartDownloadOfImage(String URL_TO_IMAGE)
 	{
 		int key = 0;
 		if(URLs.size() > 0)
 			key = URLs.keyAt(URLs.size() -1) + 1;
 		URLs.append(key, URL_TO_IMAGE);
-		
+
 		 GetImageAsyncTask getImageAsync = new GetImageAsyncTask(URL_TO_IMAGE, imgDownloadFinished, key, ImageHandler.getPathImageCache(context), context, null);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
             getImageAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));// Execute in parallel
         else
 		    getImageAsync.execute((Void)null);
-	}	
-	
+	}
+
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
 		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
-						
-		}		
+
+		}
 	};
 }

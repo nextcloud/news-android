@@ -45,7 +45,6 @@ import com.devspark.robototextview.widget.RobotoCheckBox;
 
 import java.util.ArrayList;
 
-import de.luhmer.owncloudnewsreader.ListView.BlockingExpandableListView;
 import de.luhmer.owncloudnewsreader.ListView.BlockingListView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
@@ -70,12 +69,12 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	protected static final String TAG = "NewsReaderDetailFragment";
 
 	//private DatabaseConnection dbConn;
-	
-	//private boolean DialogShowedToMarkLastItemsAsRead = false; 
-	
+
+	//private boolean DialogShowedToMarkLastItemsAsRead = false;
+
 	/*
 	private NewsListCursorAdapter lvAdapter;
-	
+
 	public NewsListCursorAdapter getLvAdapter() {
 		return lvAdapter;
 	}*/
@@ -97,7 +96,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	}
 
 	String titel;
-	
+
 	/**
 	 * @return the titel
 	 */
@@ -115,11 +114,11 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 	//private static ArrayList<Integer> databaseIdsOfItems;
 	ArrayList<RobotoCheckBox> stayUnreadCheckboxes;
-	
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
-	 */	
+	 */
 	public NewsReaderDetailFragment() {
 		//databaseIdsOfItems = new ArrayList<Integer>();
 		stayUnreadCheckboxes = new ArrayList<RobotoCheckBox>();
@@ -128,23 +127,23 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
     public void setUpdateListViewOnStartUp(boolean reloadCursorOnStartUp) {
         this.reloadCursorOnStartUp = reloadCursorOnStartUp;
     }
-	
+
 	public void setActivatedPosition(int position) {
 		mActivatedPosition = position;
 	}
 	public void setMarginFromTop(int margin) {
 		marginFromTop = margin;
 	}
-	
-	
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		//setRetainInstance(true);
-				
+
 		//dbConn = new DatabaseConnection(getActivity());
-		
+
 		if(getArguments() != null) {
 			if (getArguments().containsKey(NewsReaderListActivity.SUBSCRIPTION_ID)) {
 				idFeed = getArguments().getString(NewsReaderListActivity.SUBSCRIPTION_ID);
@@ -155,13 +154,13 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			if (getArguments().containsKey(NewsReaderListActivity.FOLDER_ID)) {
 				idFolder = getArguments().getString(NewsReaderListActivity.FOLDER_ID);
 			}
-				
+
 			((SherlockFragmentActivity) getActivity()).getSupportActionBar().setTitle(titel);
-			
+
 			UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
-			
+
 			//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-			
+
 			//lvAdapter = null;
 
 			getActivity().getSupportLoaderManager().destroyLoader(0);
@@ -172,10 +171,10 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 			UpdateCursor();
 		}
 	}
-	
+
 
 	public void UpdateMenuItemsState()
-	{	
+	{
 		if(MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems() != null)
 		{
 			if(idFolder != null) {
@@ -187,45 +186,45 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 				MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
 		}
 	}
-	
-	
+
+
 	/* (non-Javadoc)
 	 * @see android.support.v4.app.ListFragment#onViewCreated(android.view.View, android.os.Bundle)
 	 */
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		
+
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false))
-		{		
+		{
 			getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
-				
+
 	            public void onScrollStateChanged(AbsListView view, int scrollState) {
-	            
+
 	            }
-	
+
 	            RobotoCheckBox lastViewedArticleCheckbox = null;
 	            public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
-	            	
+
 	            	if(lastViewedArticleCheckbox == null)
-	            		lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view); 
+	            		lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view);
 
 	            	RobotoCheckBox cb = getCheckBoxAtPosition(0, view);
 	            	if(lastViewedArticleCheckbox != cb) {
 	            		if(! (lastViewedArticleCheckbox.isChecked() && stayUnreadCheckboxes.contains(lastViewedArticleCheckbox)));
 	            			NewsListCursorAdapter.ChangeCheckBoxState(lastViewedArticleCheckbox, true, getActivity());
-	            		
+
 	            		lastViewedArticleCheckbox = cb;
 	            	}
 	            }
 	        });
 		}
-		
+
 		super.onViewCreated(view, savedInstanceState);
 	}
-	
-	
-	
+
+
+
 	private RobotoCheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
 	{
 		ListView lv = (ListView) viewLV;
@@ -250,7 +249,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	public void UpdateCursor()
 	{
 		try
-		{	
+		{
 			LoaderManager loader = getActivity().getSupportLoaderManager();
 			loader.initLoader(0, null, loaderCallbacks);
 		}
@@ -269,7 +268,6 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
             NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
-
 
             // Block children layout for now
             BlockingListView bView = ((BlockingListView) getListView());
@@ -360,7 +358,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
         DatabaseConnection dbConn = new DatabaseConnection(context);
     	return dbConn.getCurrentSelectedRssItems(getSortDirection(context));
     }
-    
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -369,23 +367,23 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	}
 
 
-	
+
 	public static class NewsDetailCursorLoader extends SimpleCursorLoader {
 		String idFolder;
 		String idFeed;
-		
+
 	    public NewsDetailCursorLoader(Context context, String idFolder, String idFeed) {
-	        super(context);	        
+	        super(context);
 	        this.idFolder = idFolder;
 	        this.idFeed = idFeed;
 	    }
 
-	    @Override 
+	    @Override
 	    public Cursor loadInBackground() {
 	        return getRightCusor(getContext() /*, idFolder, idFeed */);
 	    }
 	}
-	
+
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 

@@ -31,6 +31,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.util.SparseArray;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -47,31 +48,33 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
+import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
 public class DownloadImagesService extends IntentService {
 
 	public static final String LAST_ITEM_ID = "LAST_ITEM_ID";
+    public static final String DOWNLOAD_FAVICONS_EXCLUSIVE = "DOWNLOAD_FAVICONS_EXCLUSIVE";
 	private static Random random;
-	
+
 	private int NOTIFICATION_ID = 1;
 	private NotificationManager notificationManager;
 	private NotificationCompat.Builder NotificationDownloadImages;
 	private int count;
 	private int maxCount;
 	//private int total_size = 0;
-	
+
 	public DownloadImagesService() {
 		super(null);
 		initService();
 	}
-	
+
 	public DownloadImagesService(String name) {
 		super(name);
 		initService();
 	}
-	
+
 	private void initService()
 	{
 		count = 0;
@@ -100,49 +103,69 @@ public class DownloadImagesService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		String lastId = String.valueOf(intent.getLongExtra(LAST_ITEM_ID, 0));
-		DatabaseConnection dbConn = new DatabaseConnection(this);
-		Cursor cursor = dbConn.getAllItemsWithIdHigher(lastId);
-		List<String> links = new ArrayList<String>();
-		try
-		{
-			if(cursor != null)
-			{
-				while(cursor.moveToNext())
-				{
-					String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
-					links.addAll(ImageHandler.getImageLinksFromText(body));
-				}
-			}
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			cursor.close();
-			dbConn.closeDatabase();
-		}
-		maxCount = links.size();
-						
-		Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
-		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
-		notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-		NotificationDownloadImages = new NotificationCompat.Builder(this)
-	        .setContentTitle("ownCloud News Reader")
-	        .setContentText("Downloading Images for offline usage")
-	        .setSmallIcon(R.drawable.ic_launcher)
-	        .setContentIntent(pIntent);
-   
-		Notification notify = NotificationDownloadImages.build();
-		
-		//Hide the notification after its selected
-		notify.flags |= Notification.FLAG_AUTO_CANCEL;
-		//notify.flags |= Notification.FLAG_NO_CLEAR;
-		
-		if(maxCount > 0)
-			notificationManager.notify(NOTIFICATION_ID, notify); 
-		
-		for(String link : links)
-	    	new GetImageAsyncTask(link, imgDownloadFinished, 999, ImageHandler.getPathImageCache(this), this, null).execute();
+        boolean downloadFavIconsExclusive = intent.getBooleanExtra(DOWNLOAD_FAVICONS_EXCLUSIVE, false);
+
+        DatabaseConnection dbConn = new DatabaseConnection(this);
+        Notification notify = BuildNotification();
+        SparseArray<String> linksFavIcons = dbConn.getUrlsToFavIcons();
+
+        if(linksFavIcons.size() > 0)
+            notificationManager.notify(NOTIFICATION_ID, notify);
+
+        for(int i = 0; i < linksFavIcons.size(); i++) {
+            int key = linksFavIcons.keyAt(i);
+            String link = linksFavIcons.get(i);
+            FavIconHandler.PreCacheFavIcon(link, this, String.valueOf(key));
+        }
+
+
+
+
+        if(!downloadFavIconsExclusive) {
+            String lastId = String.valueOf(intent.getLongExtra(LAST_ITEM_ID, 0));
+            Cursor cursor = dbConn.getAllItemsWithIdHigher(lastId);
+            List<String> links = new ArrayList<String>();
+            try {
+                if (cursor != null) {
+                    while (cursor.moveToNext()) {
+                        String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
+                        links.addAll(ImageHandler.getImageLinksFromText(body));
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            } finally {
+                cursor.close();
+                dbConn.closeDatabase();
+            }
+            maxCount = links.size();
+
+            if (maxCount > 0)
+                notificationManager.notify(NOTIFICATION_ID, notify);
+
+            for (String link : links)
+                new GetImageAsyncTask(link, imgDownloadFinished, 999, ImageHandler.getPathImageCache(this), this, null).execute();
+        }
 	}
+
+    private Notification BuildNotification() {
+        Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationDownloadImages = new NotificationCompat.Builder(this)
+                .setContentTitle("ownCloud News Reader")
+                .setContentText("Downloading Images for offline usage")
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentIntent(pIntent);
+
+        Notification notify = NotificationDownloadImages.build();
+
+        //Hide the notification after its selected
+        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+        //notify.flags |= Notification.FLAG_NO_CLEAR;
+
+        return notify;
+    }
 
     private void RemoveOldImages(Context context) {
         HashMap<File, Long> files;
@@ -199,9 +222,9 @@ public class DownloadImagesService extends IntentService {
         }
         return sortedMap;
     }
-	
+
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
-		
+
 		@Override
 		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
 
@@ -222,7 +245,7 @@ public class DownloadImagesService extends IntentService {
 			NotificationDownloadImages.setContentText("Downloading Images for offline usage - " + count + "/" + maxCount);
             // Displays the progress bar for the first time.
             notificationManager.notify(NOTIFICATION_ID, NotificationDownloadImages.build());
-            
+
             if(maxCount == count) {
             	notificationManager.cancel(NOTIFICATION_ID);
                 if(DownloadImagesService.this != null)

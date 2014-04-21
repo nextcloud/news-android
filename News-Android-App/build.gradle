@@ -35,9 +35,9 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:19.0.+'
     compile 'com.jakewharton:butterknife:4.0.+'
+    compile 'com.squareup.picasso:picasso:2.2.0@jar'
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
     compile 'com.github.chrisbanes.actionbarpulltorefresh:extra-abs:+'
-
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // compile 'com.google.android.gms:play-services:4.2.42'

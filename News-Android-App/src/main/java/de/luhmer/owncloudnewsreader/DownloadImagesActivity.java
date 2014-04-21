@@ -27,7 +27,7 @@ public class DownloadImagesActivity extends Activity {
                 .setCancelable(true)
                 .setPositiveButton(getString(android.R.string.yes) ,new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
-                        AsyncTask_GetItems.StartDownloadingImages(DownloadImagesActivity.this, highestItemIdBeforeSync);
+                        AsyncTask_GetItems.StartDownloadingImages(DownloadImagesActivity.this, highestItemIdBeforeSync, false);
                         DownloadImagesActivity.this.finish();
                     }
                 })

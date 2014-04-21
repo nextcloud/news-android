@@ -52,7 +52,7 @@ public class DatabaseConnection {
     }
 
     public SparseArray<String> getUnreadItemCountForFeed() {
-        String buildSQL = "SELECT " + RSS_ITEM_SUBSCRIPTION_ID + ", COUNT(" + RSS_ITEM_RSSITEM_ID + ")" +
+        String buildSQL = "SELECT " + RSS_ITEM_SUBSCRIPTION_ID + ", COUNT(" + RSS_ITEM_RSSITEM_ID + ")" + // rowid as _id,
                 " FROM " + RSS_ITEM_TABLE +
                 " GROUP BY " + RSS_ITEM_SUBSCRIPTION_ID;
 
@@ -330,7 +330,7 @@ public class DatabaseConnection {
 
     public long getLowestItemIdStarred()
     {
-    	String buildSQL = "SELECT MIN(" + RSS_ITEM_RSSITEM_ID + ") FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_STARRED_TEMP + " == 1";
+    	String buildSQL = "SELECT MIN(" + RSS_ITEM_RSSITEM_ID + ") FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1";
     	return getLongValueBySQL(buildSQL);
     }
 
@@ -349,6 +349,24 @@ public class DatabaseConnection {
     public int removeAllItemsWithIdLowerThan(String id_db)
     {
     	return database.delete(RSS_ITEM_TABLE, "rowid < ?", new String[] { id_db });
+    }
+
+    public void removeXLatestItems(int limit, String execludeFeed) {
+        String sql = "DELETE FROM " + RSS_ITEM_TABLE + " WHERE rowid IN (SELECT rowid FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_READ + " != 0 " +
+                " AND " + RSS_ITEM_READ_TEMP + " != 0 XX ORDER BY " + RSS_ITEM_PUBDATE + " desc LIMIT " + limit + ")";
+
+        if(execludeFeed != null)
+            sql = sql.replace("XX", "AND " + RSS_ITEM_SUBSCRIPTION_ID +" != " + execludeFeed);
+        else
+            sql = sql.replace("XX", "");
+
+        database.execSQL(sql);
+    }
+
+    public void removeReadItems(int limit) {
+        String sql = "DELETE FROM " + RSS_ITEM_TABLE + " WHERE rowid IN (SELECT rowid FROM " + RSS_ITEM_TABLE + " WHERE " + RSS_ITEM_READ_TEMP + " = 1 " +
+                " AND " + RSS_ITEM_READ + " = 1 ORDER BY " + RSS_ITEM_PUBDATE + " desc LIMIT " + limit +  ")";
+        database.execSQL(sql);
     }
 
     /*
@@ -428,6 +446,14 @@ public class DatabaseConnection {
         	Log.d("DB_HELPER", "getAllSubSubscriptions SQL: " + buildSQL);
         return database.rawQuery(buildSQL, null);
 	}
+
+    public Cursor getItemByDbID(String ID_ITEM_DB) {//Feeds
+        String buildSQL = "SELECT rowid as _id, * FROM " + RSS_ITEM_TABLE + " WHERE rowid = '" + ID_ITEM_DB + "'";
+
+        if(DATABASE_DEBUG_MODE)
+            Log.d("DB_HELPER", "getSubSubscriptionsByID SQL: " + buildSQL);
+        return database.rawQuery(buildSQL, null);
+    }
 
 	public Cursor getFeedByDbID(String ID_FEED_DB) {//Feeds
 		String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE rowid = '" + ID_FEED_DB + "'";

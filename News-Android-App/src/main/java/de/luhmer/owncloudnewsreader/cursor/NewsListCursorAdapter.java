@@ -26,6 +26,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.CursorAdapter;
@@ -37,6 +38,9 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.webkit.WebView;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -47,6 +51,10 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.devspark.robototextview.widget.RobotoCheckBox;
 import com.devspark.robototextview.widget.RobotoTextView;
 
+import java.lang.ref.WeakReference;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
@@ -66,26 +74,26 @@ public class NewsListCursorAdapter extends CursorAdapter {
     final int LengthBody = 300;
     ForegroundColorSpan bodyForegroundColor;
     IOnStayUnread onStayUnread;
-    
+
     PostDelayHandler pDelayHandler;
-    
+
     int selectedDesign = 0;
-    
+
 	@SuppressLint("SimpleDateFormat")
 	@SuppressWarnings("deprecation")
 	public NewsListCursorAdapter(Context context, Cursor c, IOnStayUnread onStayUnread) {
 		super(context, c);
 
 		this.onStayUnread = onStayUnread;
-		
+
 		pDelayHandler = new PostDelayHandler(context);
-		
+
         //simpleDateFormat = new SimpleDateFormat("EEE, d. MMM HH:mm:ss");
         bodyForegroundColor = new ForegroundColorSpan(context.getResources().getColor(android.R.color.secondary_text_dark));
 
         _Reader = new OwnCloud_Reader();
 		dbConn = new DatabaseConnection(context);
-		
+
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 		selectedDesign = Integer.valueOf(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"));
 	}
@@ -93,27 +101,27 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	@Override
 	public void bindView(final View view, final Context context, Cursor cursor) {
         final String idItemDb = cursor.getString(0);
-        
+
         switch (selectedDesign) {
 			case 0:
 				setSimpleLayout(view, cursor);
 				break;
-				
+
 			case 1:
 				setExtendedLayout(view, cursor);
 				break;
-				
+
 			case 2:
 				setExtendedLayoutWebView(view, cursor);
 				break;
-	
+
 			default:
 				break;
 	    }
-        
+
         FontHelper fHelper = new FontHelper(context);
         fHelper.setFontForAllChildren(view, fHelper.getFont());
-        
+
         RobotoCheckBox cbStarred = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_starred);
         if(ThemeChooser.isDarkTheme(mContext))
             cbStarred.setBackgroundResource(R.drawable.checkbox_background_holo_dark);
@@ -129,14 +137,14 @@ public class NewsListCursorAdapter extends CursorAdapter {
         cbStarred.setChecked(isStarred);
         cbStarred.setClickable(true);
         cbStarred.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 dbConn.updateIsStarredOfItem(idItemDb, isChecked);
 
                 if(isChecked)
                 	UpdateIsReadCheckBox(buttonView, idItemDb);
-                
+
                 pDelayHandler.DelayTimer();
 			}
 		});
@@ -163,17 +171,17 @@ public class NewsListCursorAdapter extends CursorAdapter {
         	fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
         }
 
-        
+
         cbRead.setClickable(true);
         cbRead.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 ChangeReadStateOfItem((RobotoCheckBox) buttonView, view, isChecked, context);
 			}
 		});
-        
-        
+
+
         String colorString = dbConn.getAvgColourOfFeedByDbId(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
         View viewColor = view.findViewById(R.id.color_line_feed);
         if(colorString != null)
@@ -207,58 +215,80 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
 	public void setSimpleLayout(View view, Cursor cursor)
 	{
-		TextView textViewSummary = (TextView) view.findViewById(R.id.summary);
-        textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString());
+        SimpleLayout simpleLayout = new SimpleLayout(view);
 
-        TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
+        simpleLayout.textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString());
+
         long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
-        //textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
         String dateString = (String) DateUtils.getRelativeTimeSpanString(pubDate);
-        textViewItemDate.setText(dateString);
-        
-        TextView textViewTitle = (TextView) view.findViewById(R.id.tv_subscription);        
-        textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
-        textViewSummary.setTag(cursor.getString(0));
+        simpleLayout.textViewItemDate.setText(dateString);
+
+        simpleLayout.textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
+        simpleLayout.textViewSummary.setTag(cursor.getString(0));
 	}
-	
+
+    static class SimpleLayout {
+        @InjectView(R.id.summary) TextView textViewSummary;
+        @InjectView(R.id.tv_item_date) TextView textViewItemDate;
+        @InjectView(R.id.tv_subscription) TextView textViewTitle;
+
+        SimpleLayout(View view) {
+            ButterKnife.inject(this, view);
+        }
+    }
+
 	public void setExtendedLayout(View view, Cursor cursor)
 	{
-		TextView textViewSummary = (TextView) view.findViewById(R.id.summary);
-        textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString());
+        ExtendedLayout extendedLayout = new ExtendedLayout(view);
 
-        TextView textViewItemDate = (TextView) view.findViewById(R.id.tv_item_date);
+        extendedLayout.textViewSummary.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString());
+
         long pubDate = cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE));
         //textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
         String dateString = (String) DateUtils.getRelativeTimeSpanString(pubDate);
-        textViewItemDate.setText(dateString);
+        extendedLayout.textViewItemDate.setText(dateString);
 
-        TextView textViewItemBody = (TextView) view.findViewById(R.id.body);
-        String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));        
-        textViewItemBody.setText(getBodyText(body));
+        extendedLayout.textViewItemBody.setVisibility(View.INVISIBLE);
+        String idItemDb = cursor.getString(0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            // Execute in parallel
+            new DescriptionTextLoaderTask(extendedLayout.textViewItemBody, idItemDb).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));
+        else
+            new DescriptionTextLoaderTask(extendedLayout.textViewItemBody, idItemDb).execute((Void) null);
 
-        TextView textViewTitle = (TextView) view.findViewById(R.id.tv_subscription);        
-        textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
-        textViewSummary.setTag(cursor.getString(0));
+        extendedLayout.textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
+        extendedLayout.textViewSummary.setTag(cursor.getString(0));
 	}
-	
+
+    static class ExtendedLayout {
+        @InjectView(R.id.summary) TextView textViewSummary;
+        @InjectView(R.id.tv_item_date) TextView textViewItemDate;
+        @InjectView(R.id.body) TextView textViewItemBody;
+        @InjectView(R.id.tv_subscription) TextView textViewTitle;
+
+        ExtendedLayout(View view) {
+            ButterKnife.inject(this, view);
+        }
+    }
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void setExtendedLayoutWebView(View view, Cursor cursor)
-	{						
+	{
         WebView webViewContent = (WebView) view.findViewById(R.id.webView_body);
         webViewContent.setClickable(false);
         webViewContent.setFocusable(false);
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
         //	webViewContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        
+
         webViewContent.loadDataWithBaseURL("", NewsDetailFragment.getHtmlPage(mContext, dbConn , cursor.getInt(0)), "text/html", "UTF-8", "");
 	}
-				
+
 	public void CloseDatabaseConnection()
 	{
 		if(dbConn != null)
 			dbConn.closeDatabase();
 	}
-	
+
 	private void UpdateIsReadCheckBox(View view, String idItemDb)
 	{
 		LinearLayout lLayout = (LinearLayout) view.getParent();
@@ -270,13 +300,13 @@ public class NewsListCursorAdapter extends CursorAdapter {
         }
         cbRead.setChecked(isChecked);
 	}
-	
+
 	public static void ChangeCheckBoxState(RobotoCheckBox cb, boolean state, Context context)
 	{
 		if(cb != null && cb.isChecked() != state)
             cb.setChecked(state);
 	}
-	
+
 	public static void UpdateListCursor(Context context)
 	{
 		SherlockFragmentActivity sfa = (SherlockFragmentActivity) context;
@@ -284,7 +314,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 		if(sfa instanceof NewsReaderListActivity && ((NewsReaderListActivity) sfa).isSlidingPaneOpen())
 			((NewsReaderListActivity) sfa).updateAdapter();
 	}
-	
+
 
     private String getBodyText(String body)
     {
@@ -292,13 +322,13 @@ public class NewsListCursorAdapter extends CursorAdapter {
         //    body = body.substring(0, LengthBody);
 
         body = body.replaceAll("<img[^>]*>", "");
-        body = body.replaceAll("<video[^>]*>", "");        
+        body = body.replaceAll("<video[^>]*>", "");
 
         SpannableString bodyStringSpannable = new SpannableString(Html.fromHtml(body));
         bodyStringSpannable.setSpan(bodyForegroundColor, 0, bodyStringSpannable.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
         String bodyString = bodyStringSpannable.toString().trim();
-        
+
         if(bodyString.length() > LengthBody)
             bodyString = bodyString.substring(0, LengthBody);
 
@@ -309,9 +339,9 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	public View newView(Context cont, Cursor cursor, ViewGroup parent) {
 		// when the view will be created for first time,
         // we need to tell the adapters, how each item will look
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());        
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View retView = null;
-        
+
         switch (selectedDesign) {
 			case 0:
 				retView = inflater.inflate(R.layout.subscription_detail_list_item_simple, parent, false);
@@ -321,13 +351,85 @@ public class NewsListCursorAdapter extends CursorAdapter {
 				break;
 			case 2:
 				retView = inflater.inflate(R.layout.subscription_detail_list_item_extended_webview, parent, false);
-				break;	
+				break;
         }
-        
-        
+
+
         if(retView != null)
         	retView.setTag(cursor.getString(0));
-        
+
         return retView;
 	}
+
+
+
+
+
+
+
+
+
+
+    class DescriptionTextLoaderTask extends AsyncTask<Void, Void, String> {
+        private String idItemDb;
+        private final WeakReference<TextView> textViewWeakReference;
+
+        public DescriptionTextLoaderTask(TextView textView, String idItemDb) {
+            textViewWeakReference = new WeakReference<TextView>(textView);
+            this.idItemDb = idItemDb;
+        }
+
+        @Override
+        // Actual download method, run in the task thread
+        protected String doInBackground(Void... params) {
+
+            DatabaseConnection dbConn = new DatabaseConnection(mContext);
+
+            Cursor cursor = dbConn.getItemByDbID(idItemDb);
+            cursor.moveToFirst();
+            String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
+            String result = getBodyText(body);
+            cursor.close();
+
+            return result;
+        }
+
+        @Override
+        // Once the image is downloaded, associates it to the imageView
+        protected void onPostExecute(String text) {
+            if (isCancelled()) {
+                text = null;
+            }
+
+            if (textViewWeakReference != null) {
+                TextView textView = textViewWeakReference.get();
+                if (textView != null) {
+                    textView.setText(text);
+
+                    fadeInTextView(textView);
+                }
+            }
+        }
+
+
+
+        private void fadeInTextView(final TextView textView)
+        {
+            Animation fadeOut = new AlphaAnimation(0, 1);
+            fadeOut.setInterpolator(new AccelerateInterpolator());
+            fadeOut.setDuration(300);
+
+            fadeOut.setAnimationListener(new Animation.AnimationListener()
+            {
+                public void onAnimationEnd(Animation animation)
+                {
+                    textView.setVisibility(View.VISIBLE);
+                }
+                public void onAnimationRepeat(Animation animation) {}
+                public void onAnimationStart(Animation animation) {}
+            });
+
+            textView.startAnimation(fadeOut);
+        }
+    }
 }

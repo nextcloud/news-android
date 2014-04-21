@@ -6,22 +6,22 @@
 
     <!--
     android:background="@drawable/checkbox_background"
-        android:button="@drawable/checkbox" 
+        android:button="@drawable/checkbox"
      -->
-	
+
 	<View
         android:id="@+id/color_line_feed"
         android:layout_width="@dimen/color_bar_of_feeds"
         android:layout_height="match_parent"
         android:background="@color/abs__background_holo_dark"/>
 
-	
+
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
     	android:orientation="vertical" >
-    	
-	    
+
+
 	    <LinearLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
 	        android:layout_marginRight="@dimen/listview_row_margin_right"
 	        android:layout_marginTop="@dimen/listview_row_margin_top"
 	        android:orientation="horizontal" >
-	
+
 	        <com.devspark.robototextview.widget.RobotoTextView
 	            android:id="@+id/tv_subscription"
 	            android:layout_width="0dp"
@@ -41,7 +41,7 @@
 	            android:text="Hdfsa"
 	            android:layout_weight="1"
 	            android:textSize="14sp" />
-	
+
 	        <com.devspark.robototextview.widget.RobotoTextView
 	            android:id="@+id/tv_item_date"
 	            android:layout_width="wrap_content"
@@ -52,21 +52,21 @@
 	            android:singleLine="true"
 	            android:textSize="14sp"  />
 	    </LinearLayout>
-	
+
 	    <LinearLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
 	        android:layout_marginLeft="@dimen/listview_row_margin_left"
 	        android:layout_marginBottom="@dimen/listview_row_margin_bottom"
 	        android:orientation="horizontal" >
-	
+
 	        <LinearLayout
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_marginRight="@dimen/listview_row_margin_right"
                 android:layout_weight="1" >
-	            
+
 				<com.devspark.robototextview.widget.RobotoTextView
 	                android:id="@+id/summary"
 	                android:layout_width="match_parent"
@@ -77,7 +77,7 @@
 	                android:textSize="17sp"
 	                android:text="Hi\nfds"
 	                android:textStyle="bold" />
-	
+
 	            <com.devspark.robototextview.widget.RobotoTextView
 	                android:id="@+id/body"
 	                android:layout_marginTop="5dp"
@@ -85,14 +85,14 @@
 	                android:layout_height="wrap_content"
 	                android:ellipsize="end"
 	                android:lines="4"
-	                android:text="Hi\nfsddfs\nfdsfs\nfsfdsds"
-	                android:textColor="#858585"
+	                android:text="Test"
+	                android:textColor="@color/extended_listview_body_text_color"
 	                android:textSize="14sp"
 	                android:autoLink="none" />
 	            <!-- android:gravity="center_vertical" -->
 	        </LinearLayout>
-	
-	
+
+
 	        <LinearLayout
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
@@ -109,16 +109,23 @@
                     android:layout_gravity="center_horizontal"
                     android:button="@drawable/checkbox_background_empty"
                     android:background="@drawable/checkbox_background_holo_light" />
-	
+
 	            <com.devspark.robototextview.widget.RobotoCheckBox
 	                android:id="@+id/cb_lv_item_read"
 	                android:layout_marginTop="20dp"
 	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"                
+	                android:layout_height="wrap_content"
 	                android:clickable="false"
 	                android:focusable="false"
                     android:layout_gravity="center_horizontal" />
 	            </LinearLayout>
 		</LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_marginTop="-2.0dp"
+            android:background="@color/divider_row_color" />
+
     </LinearLayout>
 </LinearLayout>

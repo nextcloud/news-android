@@ -28,9 +28,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -508,6 +505,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			    		long highestItemId = dbConn.getLowestItemIdUnread();
 			    		Intent service = new Intent(this, DownloadImagesService.class);
 			        	service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
+                        //service.putExtra(DownloadImagesService.DOWNLOAD_FAVICONS_EXCLUSIVE, true);
 			    		startService(service);
 			    	} finally {
 			    		dbConn.closeDatabase();
