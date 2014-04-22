@@ -532,9 +532,11 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).lvAdapter.ReloadAdapter();
         	((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCursor();
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
-            boolean val = data.getBooleanExtra(NewFeedActivity.ADD_NEW_SUCCESS, false);
-            if(val)
-                startSync();
+            if(data != null) {
+                boolean val = data.getBooleanExtra(NewFeedActivity.ADD_NEW_SUCCESS, false);
+                if (val)
+                    startSync();
+            }
         }
     }
 
