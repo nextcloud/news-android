@@ -19,6 +19,7 @@
   <string name="message_bar_reload">Επαναφόρτωση</string>
   <string name="allUnreadFeeds">Όλα τα μη ανεγνωσμένα</string>
   <string name="starredFeeds">Επισημασμένα αντικείμενα</string>
+  <string name="title_activity_new_feed">Προσθήκη νέας ροής</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Ανανέωση </string>
   <string name="menu_About_Changelog">Περί / Αλλαγές</string>
@@ -38,6 +39,7 @@
   <string name="action_save">Αποθήκευση</string>
   <string name="action_settings">Ρυθμίσεις</string>
   <string name="action_sync_settings">Επιλογές συγχρονισμού</string>
+  <string name="action_add_new_feed">Προσθήκη νέας ροής</string>
   <string name="notification_new_items_ticker">Έχετε Χ νέα αδιάβαστα στοιχεία</string>
   <string name="notification_new_items_text">Χ νέα αδιάβαστα στοιχεία διαθέσιμα</string>
   <!--Strings related to login-->

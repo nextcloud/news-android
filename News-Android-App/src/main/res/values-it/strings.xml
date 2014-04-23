@@ -19,6 +19,7 @@
   <string name="message_bar_reload">Ricarica</string>
   <string name="allUnreadFeeds">Tutti gli elementi non letti</string>
   <string name="starredFeeds">Elementi preferiti</string>
+  <string name="title_activity_new_feed">Aggiungi una nuova fonte</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aggiorna</string>
   <string name="menu_About_Changelog">Informazioni / Novità</string>
@@ -38,6 +39,7 @@
   <string name="action_save">Salva</string>
   <string name="action_settings">Impostazioni</string>
   <string name="action_sync_settings">Sincronizza impostazioni</string>
+  <string name="action_add_new_feed">Aggiungi una nuova fonte</string>
   <string name="notification_new_items_ticker">Hai X nuovi elementi non letti</string>
   <string name="notification_new_items_text">X nuovi elementi non letti disponibili</string>
   <!--Strings related to login-->

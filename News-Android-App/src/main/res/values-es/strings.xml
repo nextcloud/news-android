@@ -19,6 +19,7 @@
   <string name="message_bar_reload">Recargar</string>
   <string name="allUnreadFeeds">Todos los artículos sin leer</string>
   <string name="starredFeeds">Artículos destacados</string>
+  <string name="title_activity_new_feed">Añadir nueva fuente</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
   <string name="menu_About_Changelog">Acerca de / Changelog</string>
@@ -38,6 +39,7 @@
   <string name="action_save">Guardar</string>
   <string name="action_settings">Ajustes</string>
   <string name="action_sync_settings">Ajustes de sincronización</string>
+  <string name="action_add_new_feed">Añadir nueva fuente</string>
   <string name="notification_new_items_ticker">Tiene X artículos nuevos sin leer</string>
   <string name="notification_new_items_text">X nuevos artículos sin leer disponibles</string>
   <!--Strings related to login-->

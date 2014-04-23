@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="title_activity_new_feed">නව සංග්‍රහයක් එකතු කරන්න</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">නැවුම් කරන්න</string>
   <!--EMAIL-->
@@ -8,6 +9,7 @@
   <string name="action_Share">බෙදා හදා ගන්න</string>
   <string name="action_save">සුරකින්න</string>
   <string name="action_settings">සිටුවම්</string>
+  <string name="action_add_new_feed">නව සංග්‍රහයක් එකතු කරන්න</string>
   <!--Strings related to login-->
   <string name="pref_title_username">පරිශීලක නම</string>
   <string name="pref_title_password">මුර පදය</string>

@@ -18,6 +18,7 @@
   <string name="message_bar_reload">Обновить</string>
   <string name="allUnreadFeeds">Все непрочитанные</string>
   <string name="starredFeeds">Помеченные элементы</string>
+  <string name="title_activity_new_feed">Добавить новую ленту</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Обновить</string>
   <string name="menu_About_Changelog">Изменения</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Параметры сервера</string>
   <string name="action_save">Сохранить</string>
   <string name="action_settings">Настройки</string>
+  <string name="action_add_new_feed">Добавить новую ленту</string>
   <string name="notification_new_items_ticker">У вас X новых непрочитанных пунктов</string>
   <string name="notification_new_items_text">Доступно X новых непрочитанных пунктов</string>
   <!--Strings related to login-->

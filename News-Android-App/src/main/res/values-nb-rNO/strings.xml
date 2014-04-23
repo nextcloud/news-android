@@ -18,6 +18,7 @@
   <string name="message_bar_reload">Last på nytt</string>
   <string name="allUnreadFeeds">Alle uleste elementer</string>
   <string name="starredFeeds">Stjernemerkede elementer</string>
+  <string name="title_activity_new_feed">Legg til ny strøm</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Oppdater</string>
   <string name="menu_About_Changelog">Om / Endringslogg</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Serverinnstillinger</string>
   <string name="action_save">Lagre</string>
   <string name="action_settings">Innstillinger</string>
+  <string name="action_add_new_feed">Legg til ny strøm</string>
   <string name="notification_new_items_ticker">Du har X nye uleste elementer</string>
   <string name="notification_new_items_text">X nye uleste elementer tilgjengelig</string>
   <!--Strings related to login-->

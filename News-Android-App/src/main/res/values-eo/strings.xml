@@ -8,6 +8,7 @@
   <string name="message_bar_reload">Reŝargi</string>
   <string name="allUnreadFeeds">Ĉiuj nelegitaj eroj</string>
   <string name="starredFeeds">Markitaj eroj</string>
+  <string name="title_activity_new_feed">Aldoni novan fluon</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Refreŝigi</string>
   <string name="menu_markAllAsRead">Marki ĉion kiel legita</string>
@@ -21,6 +22,7 @@
   <string name="action_Share">Kunhavigi</string>
   <string name="action_save">Konservi</string>
   <string name="action_settings">Agordo</string>
+  <string name="action_add_new_feed">Aldoni novan fluon</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uzantonomo</string>
   <string name="pref_title_password">Pasvorto</string>

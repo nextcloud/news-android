@@ -18,6 +18,7 @@
   <string name="message_bar_reload">Tải </string>
   <string name="allUnreadFeeds">Tất cả các mục chưa đọc</string>
   <string name="starredFeeds">Những mục được đánh dấu</string>
+  <string name="title_activity_new_feed">Thêm feed mới</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Làm mới</string>
   <string name="menu_About_Changelog">About / Changelog</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Cài </string>
   <string name="action_save">Lưu</string>
   <string name="action_settings">Cài đặt</string>
+  <string name="action_add_new_feed">Thêm feed mới</string>
   <string name="notification_new_items_ticker">Bạn có X mục mới chưa đọc</string>
   <string name="notification_new_items_text">X mục mới chưa đọc có giá trị</string>
   <!--Strings related to login-->

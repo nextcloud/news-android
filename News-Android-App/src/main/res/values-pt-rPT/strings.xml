@@ -18,6 +18,7 @@
   <string name="message_bar_reload">Recarregar</string>
   <string name="allUnreadFeeds">Todos os itens não lidos</string>
   <string name="starredFeeds">Itens destacados</string>
+  <string name="title_activity_new_feed">Adicionar novo feed</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Actualizar</string>
   <string name="menu_About_Changelog">Acerca / Alterações</string>
@@ -36,6 +37,7 @@
   <string name="action_login">Configurações do servidor</string>
   <string name="action_save">Guardar</string>
   <string name="action_settings">Configurações</string>
+  <string name="action_add_new_feed">Adicionar novo feed</string>
   <string name="notification_new_items_ticker">Você tem X novos itens por ler</string>
   <string name="notification_new_items_text">X novos itens por ler disponíveis</string>
   <!--Strings related to login-->
