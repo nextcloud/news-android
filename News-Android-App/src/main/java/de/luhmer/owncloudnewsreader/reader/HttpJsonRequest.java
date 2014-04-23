@@ -99,7 +99,7 @@ public class HttpJsonRequest {
         //	CookieHandler.setDefault(new CookieManager());
 
 
-        //urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-GB; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 (.NET CLR 3.5.30729)");
+        urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:28.0) Gecko/20100101 Firefox/28.0");
         //urlConnection.setRequestProperty("Host", "de.luhmer.ownCloudNewsReader");
         urlConnection.connect();
 
