@@ -25,6 +25,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -47,6 +48,7 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.FillTextForTextViewAsyncTask;
@@ -56,6 +58,7 @@ import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.FillTextForTextViewHelper;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
@@ -82,9 +85,15 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
     LayoutInflater inflater;
     private final String favIconPath;
+    boolean mIsLargeTablet;
+    private static boolean isXLargeTablet(Context context) {
+        return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
+    }
 
     public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnection dbConn)
     {
+        mIsLargeTablet = isXLargeTablet(mContext);
+
         //Picasso.with(mContext).setDebugging(true);
 
         this.favIconPath = ImageHandler.getPathFavIcons(mContext);
@@ -401,26 +410,15 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	private void SetUnreadCountForFeed(TextView textView, String idDatabase, boolean execludeStarredItems)
 	{
 		IGetTextForTextViewAsyncTask iGetter = new UnreadFeedCount(mContext, idDatabase, execludeStarredItems);
-        FillTextForTextView(textView, iGetter);
+        FillTextForTextViewHelper.FillTextForTextView(textView, iGetter, !mIsLargeTablet);
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void SetUnreadCountForFolder(TextView textView, String idDatabase)
 	{
 		IGetTextForTextViewAsyncTask iGetter = new UnreadFolderCount(mContext, idDatabase);
-        FillTextForTextView(textView, iGetter);
+        FillTextForTextViewHelper.FillTextForTextView(textView, iGetter, !mIsLargeTablet);
 	}
-
-
-    public static void FillTextForTextView(TextView textView, IGetTextForTextViewAsyncTask iGetter) {
-        textView.setVisibility(View.INVISIBLE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            // Execute in parallel
-            new FillTextForTextViewAsyncTask(textView, iGetter).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void) null));
-        else
-            new FillTextForTextViewAsyncTask(textView, iGetter).execute((Void) null);
-    }
 
 
 

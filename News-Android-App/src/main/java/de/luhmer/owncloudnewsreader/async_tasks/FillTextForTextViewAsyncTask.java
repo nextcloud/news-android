@@ -23,6 +23,7 @@ package de.luhmer.owncloudnewsreader.async_tasks;
 
 import android.os.AsyncTask;
 import android.os.Process;
+import android.view.View;
 import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
@@ -32,14 +33,24 @@ import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 public class FillTextForTextViewAsyncTask extends AsyncTask<Void, Void, String> {
 	IGetTextForTextViewAsyncTask iGetter;
 	WeakReference<TextView> textView;
+    boolean enableAnimation;
 
-	public FillTextForTextViewAsyncTask(TextView textView, IGetTextForTextViewAsyncTask iGetter)
+	public FillTextForTextViewAsyncTask(TextView textView, IGetTextForTextViewAsyncTask iGetter, boolean enableAnimation)
 	{
 		this.iGetter = iGetter;
 		this.textView = new WeakReference<TextView>(textView);
+        this.enableAnimation = enableAnimation;
 	}
 
-	//http://stackoverflow.com/a/14217816
+    @Override
+    protected void onPreExecute() {
+        if(enableAnimation && textView.get() != null)
+            textView.get().setVisibility(View.INVISIBLE);
+
+        super.onPreExecute();
+    }
+
+    //http://stackoverflow.com/a/14217816
 	@Override
 	protected String doInBackground(Void... params) {
 		//Process.setThreadPriority(9);
@@ -60,7 +71,8 @@ public class FillTextForTextViewAsyncTask extends AsyncTask<Void, Void, String> 
                 if (textView.get() != null) {
                     textView.get().setText(text);
 
-                    NewsListCursorAdapter.FadeInTextView(textView.get());
+                    if(enableAnimation)
+                        NewsListCursorAdapter.FadeInTextView(textView.get());
                 }
             }
         }

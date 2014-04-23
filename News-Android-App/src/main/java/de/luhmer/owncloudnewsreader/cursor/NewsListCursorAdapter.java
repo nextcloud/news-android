@@ -63,6 +63,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.IGetTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.FillTextForTextViewHelper;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -254,7 +255,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
         extendedLayout.textViewItemBody.setVisibility(View.INVISIBLE);
         String idItemDb = cursor.getString(0);
         IGetTextForTextViewAsyncTask iGetter = new DescriptionTextGetter(idItemDb);
-        SubscriptionExpandableListAdapter.FillTextForTextView(extendedLayout.textViewItemBody, iGetter);
+        FillTextForTextViewHelper.FillTextForTextView(extendedLayout.textViewItemBody, iGetter, true);
 
         extendedLayout.textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
         extendedLayout.textViewSummary.setTag(cursor.getString(0));
