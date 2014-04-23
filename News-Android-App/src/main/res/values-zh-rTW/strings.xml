@@ -18,6 +18,7 @@
   <string name="message_bar_reload">重新載入</string>
   <string name="allUnreadFeeds">所有未閱讀項目。</string>
   <string name="starredFeeds">演示項目</string>
+  <string name="title_activity_new_feed">加入新訂閱</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">重新整理</string>
   <string name="menu_About_Changelog">關於 / 更新日誌</string>
@@ -36,6 +37,7 @@
   <string name="action_login">伺服器設定</string>
   <string name="action_save">儲存</string>
   <string name="action_settings">設定</string>
+  <string name="action_add_new_feed">加入新訂閱</string>
   <string name="notification_new_items_ticker">您有 X 新的未讀項目</string>
   <string name="notification_new_items_text">X 新的未讀項目可用</string>
   <!--Strings related to login-->

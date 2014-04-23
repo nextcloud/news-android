@@ -14,6 +14,7 @@
   <string name="message_bar_reload">Birkargatu</string>
   <string name="allUnreadFeeds">Irakurri gabeko elementu guztiak</string>
   <string name="starredFeeds">Izardun elementuak</string>
+  <string name="title_activity_new_feed">Gehitu iturburu  berria</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Birkargatu</string>
   <string name="menu_markAllAsRead">Markatu guztiak irakurria gisa</string>
@@ -30,6 +31,7 @@
   <string name="action_login">Zerbitzariaren ezarpenak</string>
   <string name="action_save">Gorde</string>
   <string name="action_settings">Ezarpenak</string>
+  <string name="action_add_new_feed">Gehitu iturburu  berria</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Erabiltzaile izena</string>
   <string name="pref_title_password">Pasahitza</string>

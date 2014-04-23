@@ -19,6 +19,7 @@
   <string name="message_bar_reload">Herladen</string>
   <string name="allUnreadFeeds">Alle ongelezen items</string>
   <string name="starredFeeds">Gemarkeerde items</string>
+  <string name="title_activity_new_feed">Voeg nieuwe feed toe</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Vernieuwen</string>
   <string name="menu_About_Changelog">Over / Wijzigingen</string>
@@ -38,6 +39,7 @@
   <string name="action_save">Bewaren</string>
   <string name="action_settings">Instellingen</string>
   <string name="action_sync_settings">Sync Settings</string>
+  <string name="action_add_new_feed">Voeg nieuwe feed toe</string>
   <string name="notification_new_items_ticker">U hebt X nieuwe ongelezen artikelen</string>
   <string name="notification_new_items_text">X nieuwe ongelezen artikelen beschikbaar</string>
   <!--Strings related to login-->

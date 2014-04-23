@@ -10,6 +10,7 @@
   <string name="message_bar_reload">Päivitä</string>
   <string name="allUnreadFeeds">Kaikki lukemattomat kohteet</string>
   <string name="starredFeeds">Tähdellä varustetut</string>
+  <string name="title_activity_new_feed">Lisää uusi syöte</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Päivitä</string>
   <string name="menu_About_Changelog">Tietoja / muutosloki</string>
@@ -26,6 +27,7 @@
   <string name="action_login">Palvelinasetukset</string>
   <string name="action_save">Tallenna</string>
   <string name="action_settings">Asetukset</string>
+  <string name="action_add_new_feed">Lisää uusi syöte</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>

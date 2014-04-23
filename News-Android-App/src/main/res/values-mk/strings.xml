@@ -4,6 +4,7 @@
   <string name="empty_view_content">Тука нема ништо</string>
   <string name="allUnreadFeeds">Сите непрочитани пораки</string>
   <string name="starredFeeds">Обележени пораки со ѕвезда</string>
+  <string name="title_activity_new_feed">Додади нов канал</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Освежи</string>
   <string name="menu_markAllAsRead">Означи сѐ како прочитано</string>
@@ -16,6 +17,7 @@
   <string name="action_Share">Сподели</string>
   <string name="action_save">Сними</string>
   <string name="action_settings">Подесувања</string>
+  <string name="action_add_new_feed">Додади нов канал</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>

@@ -19,6 +19,7 @@
   <string name="message_bar_reload">Lae uuesti</string>
   <string name="allUnreadFeeds">Kõik lugemata üksused</string>
   <string name="starredFeeds">Tärniga märgitud üksused</string>
+  <string name="title_activity_new_feed">Lisa uudisvoog</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Värskenda</string>
   <string name="menu_About_Changelog">Teave / Muudatused</string>
@@ -38,6 +39,7 @@
   <string name="action_save">Salvesta</string>
   <string name="action_settings">Seaded</string>
   <string name="action_sync_settings">Sync seaded</string>
+  <string name="action_add_new_feed">Lisa uudisvoog</string>
   <string name="notification_new_items_ticker">Sul on X uut lugemata kirjet</string>
   <string name="notification_new_items_text">Saadaval on X uut lugemata kirjet</string>
   <!--Strings related to login-->

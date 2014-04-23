@@ -19,6 +19,7 @@
   <string name="message_bar_reload">Ladda om</string>
   <string name="allUnreadFeeds">Alla olästa objekt</string>
   <string name="starredFeeds">Stjärnmärkta objekt</string>
+  <string name="title_activity_new_feed">Lägg till flöde</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Uppdatera</string>
   <string name="menu_About_Changelog">Om / Ändringslogg</string>
@@ -38,6 +39,7 @@
   <string name="action_save">Spara</string>
   <string name="action_settings">Inställningar</string>
   <string name="action_sync_settings">Synk inställningar</string>
+  <string name="action_add_new_feed">Lägg till flöde</string>
   <string name="notification_new_items_ticker">Du har X olästa saker</string>
   <string name="notification_new_items_text">X nya olästa saker är tillgängliga</string>
   <!--Strings related to login-->

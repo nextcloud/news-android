@@ -19,6 +19,7 @@
   <string name="message_bar_reload">Recharger</string>
   <string name="allUnreadFeeds">Tous les articles non lus</string>
   <string name="starredFeeds">Articles favoris</string>
+  <string name="title_activity_new_feed">Ajouter un nouveau flux</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Rafraîchir</string>
   <string name="menu_About_Changelog">À propos / Journal des modifications</string>
@@ -38,6 +39,7 @@
   <string name="action_save">Sauvegarder</string>
   <string name="action_settings">Paramètres</string>
   <string name="action_sync_settings">Paramètres de synchronisation</string>
+  <string name="action_add_new_feed">Ajouter un nouveau flux</string>
   <string name="notification_new_items_ticker">Vous avez X nouveaux articles non-lus</string>
   <string name="notification_new_items_text">X nouveaux articles non-lus disponibles</string>
   <!--Strings related to login-->

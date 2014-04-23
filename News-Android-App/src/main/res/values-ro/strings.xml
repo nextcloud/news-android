@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="message_bar_reload">Reîncarca</string>
+  <string name="title_activity_new_feed">Adaugă flux nou</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Împrospătare</string>
   <!--EMAIL-->
@@ -9,6 +10,7 @@
   <string name="action_Share">Partajează</string>
   <string name="action_save">Salvează</string>
   <string name="action_settings">Setări</string>
+  <string name="action_add_new_feed">Adaugă flux nou</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nume utilizator</string>
   <string name="pref_title_password">Parolă</string>
