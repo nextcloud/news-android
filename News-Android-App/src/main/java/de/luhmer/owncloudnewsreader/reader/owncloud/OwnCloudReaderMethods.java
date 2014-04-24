@@ -466,8 +466,8 @@ public class OwnCloudReaderMethods {
 		}
 		catch(AuthenticationException ex) {
 			throw ex;
-		} catch(Exception ex) {	//TODO GET HERE THE RIGHT EXCEPTION
-    			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH + OwnCloudConstants.JSON_FORMAT;
+		} catch(Exception ex) {//TODO GET HERE THE RIGHT EXCEPTION
+    		String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH + OwnCloudConstants.JSON_FORMAT;
             requestUrl = API.validateURL(requestUrl);
 			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);
 			try {
