@@ -31,17 +31,12 @@ import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
-
-/**
- * A login screen that offers login via email/password.
-
- */
 public class NewFeedActivity extends SherlockActivity {
 
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private AddNewFeedTask mAuthTask = null;
+    private AddNewFeedTask mAddFeedTask = null;
 
     // UI references.
     @InjectView(R.id.et_feed_url) EditText mFeedUrlView;
@@ -93,7 +88,7 @@ public class NewFeedActivity extends SherlockActivity {
      * errors are presented and no actual login attempt is made.
      */
     public void attemptAddNewFeed() {
-        if (mAuthTask != null) {
+        if (mAddFeedTask != null) {
             return;
         }
 
@@ -115,7 +110,7 @@ public class NewFeedActivity extends SherlockActivity {
             focusView = mFeedUrlView;
             cancel = true;
         } else if (!isUrlValid(urlToFeed)) {
-            //mFeedUrlView.setError(getString(R.string.error_invalid_email));//TODO this line is needed
+            mFeedUrlView.setError(getString(R.string.error_invalid_url));
             focusView = mFeedUrlView;
             cancel = true;
         }
@@ -128,8 +123,8 @@ public class NewFeedActivity extends SherlockActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new AddNewFeedTask(urlToFeed, folderId);
-            mAuthTask.execute((Void) null);
+            mAddFeedTask = new AddNewFeedTask(urlToFeed, folderId);
+            mAddFeedTask.execute((Void) null);
         }
     }
     private boolean isUrlValid(String url) {
@@ -225,7 +220,7 @@ public class NewFeedActivity extends SherlockActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
+            mAddFeedTask = null;
             showProgress(false);
 
             if (success) {
@@ -235,14 +230,14 @@ public class NewFeedActivity extends SherlockActivity {
 
                 finish();
             } else {
-                mFeedUrlView.setError(getString(R.string.error_incorrect_password));
+                mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
                 mFeedUrlView.requestFocus();
             }
         }
 
         @Override
         protected void onCancelled() {
-            mAuthTask = null;
+            mAddFeedTask = null;
             showProgress(false);
         }
     }
@@ -253,6 +248,9 @@ public class NewFeedActivity extends SherlockActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
+                if(mAddFeedTask != null)
+                    mAddFeedTask.cancel(true);
+
                 //NavUtils.navigateUpFromSameTask(this);
                 finish();
                 return true;
