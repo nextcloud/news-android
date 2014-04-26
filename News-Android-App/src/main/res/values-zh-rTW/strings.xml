@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">自動同步</string>
   <string name="app_name">ownCloud新聞閱讀器</string>
+  <string name="title_activity_sync_interval_selector">同步時間間隔選擇</string>
   <string name="title_activity_news_detail">新聞內容活動</string>
   <string name="title_activity_subscription">訂閱活動</string>
   <string name="title_newsreader_list">新聞閱讀器</string>
@@ -37,6 +38,7 @@
   <string name="action_login">伺服器設定</string>
   <string name="action_save">儲存</string>
   <string name="action_settings">設定</string>
+  <string name="action_sync_settings">同步設定</string>
   <string name="action_add_new_feed">加入新訂閱</string>
   <string name="notification_new_items_ticker">您有 X 新的未讀項目</string>
   <string name="notification_new_items_text">X 新的未讀項目可用</string>
@@ -88,6 +90,8 @@
   <string name="pref_title_DisableHostnameVerification">停用主機名稱檢驗</string>
   <string name="pref_title_NavigateWithVolumeButtons">用音量鍵瀏覽</string>
   <string name="pref_title_MarkAsReadWhileScrolling">當滾動時標註為已讀</string>
+  <string name="pref_title_OpenInBrowserDirectly">忽略詳細檢視和在瀏覽器開啟文章</string>
+  <string name="pref_title_notification_new_articles_available">當有新文章時顯示通知</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">允許未知憑證?</string>
   <string name="mtm_decision_always">總是</string>
@@ -174,6 +178,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 分鐘</item>
+    <item>15 分鐘</item>
+    <item>30 分鐘</item>
+    <item>45 分鐘</item>
+    <item>1 小時</item>
+    <item>2 小時</item>
+    <item>3 小時</item>
+    <item>6 小時</item>
+    <item>12 小時</item>
+    <item>24 小時</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
