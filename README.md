@@ -64,8 +64,20 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.6.0 (in development)
+0.6.1 (in development)
 ---------------------
+
+0.6.0 (Google Play - Beta)(in development)
+---------------------
+- Performance improvements
+- Layout improvement
+- Fix critical app crash when leaving the add new activity
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/199">#199 Change App-Logo/Icon</a>
+- Improvement (better performance now) - <a href="https://github.com/owncloud/News-Android-App/issues/154">#154 Scrolling feed list is slow</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/215">#215 Adjust Colors of light and dark view to the web-interface</a>
+
+
+
 
 0.5.9 (Google Play - Beta)
 ---------------------
