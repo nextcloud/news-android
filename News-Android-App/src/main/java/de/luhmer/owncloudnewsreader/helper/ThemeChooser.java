@@ -62,14 +62,15 @@ public class ThemeChooser {
 	}
 	*/
 
+    static Boolean mIsDarkTheme;
 	public static boolean isDarkTheme(Context context)
 	{
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String value = mPrefs.getString(SettingsActivity.SP_APP_THEME, "0");
+        if(mIsDarkTheme == null) {
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            String value = mPrefs.getString(SettingsActivity.SP_APP_THEME, "0");
 
-		if(value.equals("0"))
-			return true;
-
-		return false;
+            mIsDarkTheme = value.equals("0") ? true : false;
+        }
+		return mIsDarkTheme;
 	}
 }

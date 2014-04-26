@@ -39,37 +39,39 @@
 		<item name="android:backgroundDimEnabled">false</item>
   	</style>
   	-->
-    
-    
-    
-    <!-- 
+
+
+
+    <!--
     <style name="LoginFormContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">16dp</item>
     </style>
 	-->
-	
-	<!-- 
+
+	<!--
 	<style name="RobotoFontStyle">
         <item name="typeface">robotoslab_regular</item> -->
-        <!-- https://github.com/johnkil/Android-RobotoTextView#usage --> <!-- 
+        <!-- https://github.com/johnkil/Android-RobotoTextView#usage --> <!--
     </style>
-    
+
 	<style name="RobotoFontStyleBold">
         <item name="typeface">robotoslab_bold</item>
     </style>
 	-->
-	
+
+
+
 	<style name="LoginDialogEditTextStyle" >
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginLeft">4dp</item>
         <item name="android:layout_marginRight">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
-        
+
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        
+
         <!--  RobotoFontStyle -->
     </style>
 </resources>

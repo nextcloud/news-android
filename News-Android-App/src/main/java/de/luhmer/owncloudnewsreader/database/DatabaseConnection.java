@@ -34,26 +34,39 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.ListView.UnreadFolderCount;
+
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS;
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
 
 public class DatabaseConnection {
 	private DatabaseHelper openHelper;
     private SQLiteDatabase database;
 
 
-    public SparseArray<String> getUnreadItemCountForFolder() {
+    public SparseArray<String> getUnreadItemCountForFolder(Context mContext) {
         String buildSQL = "SELECT " + FOLDER_LABEL_ID + ", COUNT(" + RSS_ITEM_RSSITEM_ID + ")" +
                 " FROM " + RSS_ITEM_TABLE + " rss " +
                 " JOIN " + SUBSCRIPTION_TABLE + " st ON rss." + RSS_ITEM_SUBSCRIPTION_ID + " = st." + SUBSCRIPTION_ID +
                 " JOIN " + FOLDER_TABLE + " f ON st." + SUBSCRIPTION_FOLDER_ID + " = f." + FOLDER_LABEL_ID +
+                " WHERE " + RSS_ITEM_READ_TEMP + " != 1 " +
                 " GROUP BY f." + FOLDER_LABEL_ID;
 
-        return getSparseArrayFromSQL(buildSQL, 0, 1);
+        SparseArray<String> values = getSparseArrayFromSQL(buildSQL, 0, 1);
+
+
+        values.put(ALL_UNREAD_ITEMS.getValue(), new UnreadFolderCount(mContext, ALL_UNREAD_ITEMS.getValueString()).getText());
+        values.put(ALL_STARRED_ITEMS.getValue(), new UnreadFolderCount(mContext, ALL_STARRED_ITEMS.getValueString()).getText());
+
+
+        return values;
     }
 
     public SparseArray<String> getUnreadItemCountForFeed() {
         String buildSQL = "SELECT " + RSS_ITEM_SUBSCRIPTION_ID + ", COUNT(" + RSS_ITEM_RSSITEM_ID + ")" + // rowid as _id,
                 " FROM " + RSS_ITEM_TABLE +
+                " WHERE " + RSS_ITEM_READ_TEMP + " != 1 " +
                 " GROUP BY " + RSS_ITEM_SUBSCRIPTION_ID;
 
         return getSparseArrayFromSQL(buildSQL, 0, 1);
@@ -736,7 +749,7 @@ public class DatabaseConnection {
 		String buildSQL = getAllFeedsSelectStatement() +
 	 			" FROM " + RSS_ITEM_TABLE;
 
-	 	if(!(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_ITEMS)))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+	 	if(!(ID_FOLDER.equals(ALL_UNREAD_ITEMS.getValueString()) || ID_FOLDER.equals(ALL_STARRED_ITEMS.getValueString()) || ID_FOLDER.equals(ALL_ITEMS.getValueString())))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
 	 	{
 			buildSQL += " WHERE subscription_id_subscription IN " +
 					"(SELECT sc.rowid " +
@@ -748,13 +761,9 @@ public class DatabaseConnection {
 				buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
 	 	}
 	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) && onlyUnread)//only unRead should only be null when testing the size of items
-	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+	 	else if(ID_FOLDER.equals(ALL_UNREAD_ITEMS.getValueString()))
 	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " != 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
-	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
-	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED + " != 1";
-	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) && onlyUnread)
-	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
-	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+	 	else if(ID_FOLDER.equals(ALL_STARRED_ITEMS.getValueString()))
 	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1";
 
 
@@ -771,7 +780,7 @@ public class DatabaseConnection {
 		String buildSQL = "SELECT " + RSS_ITEM_RSSITEM_ID +
 	 			" FROM " + RSS_ITEM_TABLE;
 
-	 	if(!(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_ITEMS)))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+	 	if(!(ID_FOLDER.equals(ALL_UNREAD_ITEMS.getValueString()) || ID_FOLDER.equals(ALL_STARRED_ITEMS.getValueString()) || ID_FOLDER.equals(ALL_ITEMS.getValueString())))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
 	 	{
 			buildSQL += " WHERE subscription_id_subscription IN " +
 					"(SELECT sc.rowid " +
@@ -783,13 +792,13 @@ public class DatabaseConnection {
 				buildSQL += " AND " + RSS_ITEM_READ_TEMP + " != 1";
 	 	}
 	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) && onlyUnread)//only unRead should only be null when testing the size of items
-	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+	 	else if(ID_FOLDER.equals(ALL_UNREAD_ITEMS.getValueString()))
 	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " != 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
 	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
 	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED + " != 1";
 	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) && onlyUnread)
 	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
-	 	else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+	 	else if(ID_FOLDER.equals(ALL_STARRED_ITEMS.getValueString()))
 	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " = 1";
 
 
@@ -815,14 +824,14 @@ public class DatabaseConnection {
                     " GROUP BY sc.rowid " +
                     " HAVING COUNT(*) > 0";
         }
-		else if(onlyUnread || ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) /*ID_SUBSCRIPTION.matches("-10|-11")*/)
+		else if(onlyUnread || ID_FOLDER.equals(ALL_UNREAD_ITEMS.getValueString()) /*ID_SUBSCRIPTION.matches("-10|-11")*/)
         {
             buildSQL += " JOIN " + RSS_ITEM_TABLE + " rss ON sc.rowid = rss." + RSS_ITEM_SUBSCRIPTION_ID +
                         " WHERE f.rowid = " + ID_FOLDER  + " AND rss." + RSS_ITEM_READ_TEMP + " != 1" +
                         " GROUP BY sc.rowid " +
                         " HAVING COUNT(*) > 0";
 
-            if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+            if(ID_FOLDER.equals(ALL_UNREAD_ITEMS.getValueString()))
             	buildSQL = buildSQL.replace("f.rowid = " + ID_FOLDER + " AND", "");//Remove to ID stuff because i want the result of all feeds where are unread items in
         }
         else

@@ -177,7 +177,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
         if(savedInstanceState == null)//When the app starts (no orientation change)
         {
-        	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null, true);
+        	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValueString(), true, null, true);
         	StartDetailFragmentNow();
         }
 

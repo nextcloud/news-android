@@ -195,8 +195,8 @@ public class NewsDetailFragment extends SherlockFragment {
 
                     //The following three lines are a workaround for websites which don't use a background colour
                     NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
-                    webview.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color));
-                    ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color));
+                    webview.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
+                    ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
 
 
                     if(ThemeChooser.isDarkTheme(getActivity())) {

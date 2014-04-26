@@ -105,9 +105,10 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
             android:layout_marginTop="5.5dp"
-            android:background="@color/divider_row_color" />
+            android:background="@color/divider_row_color_dark_theme" />
     </LinearLayout>
 </LinearLayout>

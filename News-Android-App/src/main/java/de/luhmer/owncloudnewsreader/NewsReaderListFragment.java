@@ -63,6 +63,7 @@ import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncServiceCallback;
@@ -97,10 +98,10 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		public void startedSync(String sync_type) throws RemoteException {
 			SYNC_TYPES st = SYNC_TYPES.valueOf(sync_type);
 			String LastUpdatedLabelTextTemp = null;
-			
+
 			switch(st) {
 				case SYNC_TYPE__GET_API:
-					break;			
+					break;
 				case SYNC_TYPE__ITEM_STATES:
 					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateTags);
 					break;
@@ -114,9 +115,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateItems);
 					break;
 			}
-			
+
 			final String LastUpdatedLabelText = LastUpdatedLabelTextTemp;
-			
+
 			Handler refresh = new Handler(Looper.getMainLooper());
 			refresh.post(new Runnable() {
 				public void run() {
@@ -127,7 +128,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
                     */
 				}
 			});
-			
+
 		}
 
 		@Override
@@ -142,12 +143,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 					*/
 				}
 			});
-			
+
 			SYNC_TYPES st = SYNC_TYPES.valueOf(sync_type);
-			
+
 			switch(st) {
 				case SYNC_TYPE__GET_API:
-					break;				
+					break;
 				case SYNC_TYPE__ITEM_STATES:
 					break;
 				case SYNC_TYPE__FOLDER:
@@ -180,14 +181,14 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		}
 
 	};
-	
+
 	/*
 	public IOwnCloudSyncServiceCallback getCallback() {
 		return callback;
 	}*/
-	
-	
-	
+
+
+
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
 	 * activated item position. Only used on tablets.
@@ -231,11 +232,11 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	 */
 	private static Callbacks sExpListCallbacks = new Callbacks() {
 		@Override
-		public void onChildItemClicked(String idSubscription, String optional_folder_id) {			
+		public void onChildItemClicked(String idSubscription, String optional_folder_id) {
 		}
 
 		@Override
-		public void onTopItemClicked(String idSubscription, boolean isFolder, String optional_folder_id) {			
+		public void onTopItemClicked(String idSubscription, boolean isFolder, String optional_folder_id) {
 		}
 	};
 
@@ -246,7 +247,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
     ExpandableListView eListView;
     PullToRefreshLayout mPullToRefreshLayout;
 	//public static IReader _Reader = null;  //AsyncTask_GetGReaderTags asyncTask_GetUnreadFeeds = null;
-	
+
 	//public static String username;
 	//public static String password;
 	//AsyncUpdateFinished asyncUpdateFinished;
@@ -260,33 +261,24 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	 */
 	public NewsReaderListFragment() {
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		//setRetainInstance(true);
-		
+
 		try
 		{
 			dbConn = new DatabaseConnection(getActivity());
-			
+
 			//SettingsActivity.CheckForUnsycedChangesInDatabase(context);
-			
 			//dbConn.resetDatabase();
-			
 			//dbConn.clearDatabaseOverSize();
-			
-			//username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
-			//password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
-			
 			//dbConn.resetRssItemsDatabase();
-			
+
 			lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn);
 			lvAdapter.setHandlerListener(expListTextClickedListener);
-			
-			//if(_Reader == null)
-			//	_Reader = new OwnCloud_Reader();
 
             mListener = new BaseMessage.OnMessageClickListener()
             {
@@ -320,9 +312,9 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			ex.printStackTrace();
 		}
 	}
-	
-	
-	
+
+
+
 	@Override
 	public void onStart() {
 		Intent serviceIntent = new Intent(getActivity(), OwnCloudSyncService.class);
@@ -344,11 +336,11 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		mConnection = null;
 		super.onStop();
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see android.support.v4.app.Fragment#onResume()
 	 */
-	/*	
+	/*
 	@Override
 	public void onResume() {
 		try {
@@ -360,8 +352,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		super.onResume();
 	}
 	*/
-	
-	
+
+
 
 	/* (non-Javadoc)
 	 * @see android.support.v4.app.Fragment#onPause()
@@ -374,18 +366,18 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 
 	private ServiceConnection generateServiceConnection() {
 		return new ServiceConnection() {
-	    	
+
 	    	@Override
 	    	public void onServiceConnected(ComponentName name, IBinder binder) {
                 _ownCloudSyncService = IOwnCloudSyncService.Stub.asInterface(binder);
 	    		try {
                     _ownCloudSyncService.registerCallback(callback);
-	    			
+
 	    			//Start auto sync if enabled
 	    			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 	    			if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
 	    				StartSync();
-	    			
+
 	    			if(getActivity() instanceof NewsReaderListActivity)
 	    				((NewsReaderListActivity) getActivity()).UpdateButtonSyncLayout();
 	    		}
@@ -399,30 +391,26 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	    		try {
                     _ownCloudSyncService.unregisterCallback(callback);
 	    		}
-	    		catch (Exception e) { 
+	    		catch (Exception e) {
 	    			e.printStackTrace();
 	    		}
-	    	}	
+	    	}
 		};
     }
-	
+
 
 	public void StartSync()
 	{
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		//Update username and password again.. (might have been changed by the login dialog)
-		//username = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_username", "");
-		//password = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString("edt_password", "");
-		
-		
+
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
 			NewsReaderListActivity.StartLoginFragment((SherlockFragmentActivity) getActivity());
 		else {
 			try {
 				if (!_ownCloudSyncService.isSyncRunning())
-				{					
+				{
 					new PostDelayHandler(getActivity()).stopRunningPostDelayHandler();//Stop pending sync handler
-					
+
 					//_ownCloadSyncService.startSync();
 
 					/*
@@ -446,12 +434,10 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			//else
 	            //_Reader.attachToRunningTask(-10, getActivity(), onAsyncTask_GetVersionFinished);
 		}
-		
-		//UpdateSyncButtonLayout();
 	}
-	
-	
-	
+
+
+
 	private void HandleExceptionMessages(Exception ex) {
 		if(ex instanceof HttpHostConnectException)
             ShowToastLong("Cannot connect to the Host !");
@@ -465,22 +451,26 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
         }
         else
             ShowToastLong(ex.getLocalizedMessage());
-		
+
 		UpdateSyncButtonLayout();
 	}
-	
-		
+
+
 
     public void ShowToastLong(String message)
     {
         Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
-    
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.expandable_list_layout, container, false);
+
+        if(!ThemeChooser.isDarkTheme(getActivity())) {
+            view.setBackgroundColor(getResources().getColor(R.color.slider_listview_background_color_light_theme));
+        }
 
         eListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
 
@@ -497,14 +487,14 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
                 .listener(this)
                         // Finally commit the setup to our PullToRefreshLayout
                 .setup(mPullToRefreshLayout);
-		
+
 		eListView.setOnChildClickListener(onChildClickListener);
 		//eListView.setSmoothScrollbarEnabled(true);
 
 		eListView.setClickable(true);
 		eListView.setAdapter(lvAdapter);
-		
-		
+
+
 		return view;
 	}
 
@@ -531,13 +521,13 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	}
 
 	ExpListTextClicked expListTextClickedListener = new ExpListTextClicked() {
-		
+
 		@Override
 		public void onTextClicked(String idSubscription, Context context, boolean isFolder, String optional_folder_id) {
 			mCallbacks.onTopItemClicked(idSubscription, isFolder, optional_folder_id);
 		}
 	};
-	
+
 	/*
 	@Override
 	public void onListItemClick(ListView listView, View view, int position,
@@ -546,26 +536,26 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
-		
+
 		//mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
 	}*/
-	
-	
+
+
 	OnChildClickListener onChildClickListener = new OnChildClickListener() {
-		
+
 		@Override
 		public boolean onChildClick(ExpandableListView parent, View v,
 				int groupPosition, int childPosition, long id) {
-			
+
 			long idItem = lvAdapter.getChildId(groupPosition, childPosition);
-			
+
 			String optional_id_folder = null;
 			FolderSubscribtionItem groupItem = (FolderSubscribtionItem) lvAdapter.getGroup(groupPosition);
 			if(groupItem != null)
 				optional_id_folder = String.valueOf(groupItem.id_database);
-			
+
 			mCallbacks.onChildItemClicked(String.valueOf(idItem), optional_id_folder);
-			
+
 			return false;
 		}
 	};
@@ -577,8 +567,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	public void setActivateOnItemClick(boolean activateOnItemClick) {
 		// When setting CHOICE_MODE_SINGLE, ListView will automatically
 		// give items the 'activated' state when touched.
-		
-		
+
+
 		eListView.setChoiceMode(activateOnItemClick ? ListView.CHOICE_MODE_SINGLE : ListView.CHOICE_MODE_NONE);
 	}
 

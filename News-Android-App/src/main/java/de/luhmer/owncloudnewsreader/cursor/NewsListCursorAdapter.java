@@ -26,7 +26,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.CursorAdapter;
@@ -51,12 +50,8 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.devspark.robototextview.widget.RobotoCheckBox;
 import com.devspark.robototextview.widget.RobotoTextView;
 
-import java.lang.ref.WeakReference;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
-import de.luhmer.owncloudnewsreader.ListView.UnreadFeedCount;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
@@ -75,7 +70,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	DatabaseConnection dbConn;
 	IReader _Reader;
     //SimpleDateFormat simpleDateFormat;
-    final int LengthBody = 300;
+    final int LengthBody = 400;
     ForegroundColorSpan bodyForegroundColor;
     IOnStayUnread onStayUnread;
 
@@ -229,9 +224,14 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
         simpleLayout.textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
         simpleLayout.textViewSummary.setTag(cursor.getString(0));
+
+        if(!ThemeChooser.isDarkTheme(mContext)) {
+            simpleLayout.viewDivider.setBackgroundColor(mContext.getResources().getColor(R.color.divider_row_color_light_theme));
+        }
 	}
 
     static class SimpleLayout {
+        @InjectView(R.id.divider) View viewDivider;
         @InjectView(R.id.summary) TextView textViewSummary;
         @InjectView(R.id.tv_item_date) TextView textViewItemDate;
         @InjectView(R.id.tv_subscription) TextView textViewTitle;
@@ -259,9 +259,15 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
         extendedLayout.textViewTitle.setText(dbConn.getTitleOfSubscriptionByRowID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID))));
         extendedLayout.textViewSummary.setTag(cursor.getString(0));
+
+        if(!ThemeChooser.isDarkTheme(mContext)) {
+            extendedLayout.textViewItemBody.setTextColor(mContext.getResources().getColor(R.color.extended_listview_item_body_text_color_light_theme));
+            extendedLayout.viewDivider.setBackgroundColor(mContext.getResources().getColor(R.color.divider_row_color_light_theme));
+        }
 	}
 
     static class ExtendedLayout {
+        @InjectView(R.id.divider) View viewDivider;
         @InjectView(R.id.summary) TextView textViewSummary;
         @InjectView(R.id.tv_item_date) TextView textViewItemDate;
         @InjectView(R.id.body) TextView textViewItemBody;
@@ -319,9 +325,6 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
     private String getBodyText(String body)
     {
-        //if(body.length() > LengthBody)
-        //    body = body.substring(0, LengthBody);
-
         body = body.replaceAll("<img[^>]*>", "");
         body = body.replaceAll("<video[^>]*>", "");
 

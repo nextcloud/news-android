@@ -40,7 +40,7 @@
 	            android:singleLine="true"
 	            android:text="Hdfsa"
 	            android:layout_weight="1"
-	            android:textSize="14sp" />
+	            android:textSize="15sp" />
 
 	        <com.devspark.robototextview.widget.RobotoTextView
 	            android:id="@+id/tv_item_date"
@@ -50,7 +50,7 @@
 	            android:layout_gravity="right"
 	            android:text="21.09.2013"
 	            android:singleLine="true"
-	            android:textSize="14sp"  />
+	            android:textSize="15sp"  />
 	    </LinearLayout>
 
 	    <LinearLayout
@@ -86,7 +86,7 @@
 	                android:ellipsize="end"
 	                android:lines="4"
 	                android:text="Test"
-	                android:textColor="@color/extended_listview_body_text_color"
+	                android:textColor="@color/extended_listview_item_body_text_color_dark_theme"
 	                android:textSize="14sp"
 	                android:autoLink="none" />
 	            <!-- android:gravity="center_vertical" -->
@@ -122,10 +122,11 @@
 		</LinearLayout>
 
         <View
+            android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
             android:layout_marginTop="-2.0dp"
-            android:background="@color/divider_row_color" />
+            android:background="@color/divider_row_color_dark_theme" />
 
     </LinearLayout>
 </LinearLayout>

@@ -45,45 +45,45 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 	private static final String TAG = "WidgetTodoViewsFactory";
-	
+
 	DatabaseConnection dbConn;
 	Cursor cursor;
 	private Context context = null;
-		
+
 	private int appWidgetId;
-	
+
 	public WidgetTodoViewsFactory(Context context, Intent intent) {
 		this.context = context;
 		appWidgetId = intent.getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-		
+
 		if(Constants.debugModeWidget)
 			Log.d(TAG, "CONSTRUCTOR CALLED - " + appWidgetId);
 	}
-	
+
 	@Override
 	public void onCreate() {
 		if(Constants.debugModeWidget)
 			Log.d(TAG, "onCreate");
-		
+
 		dbConn = new DatabaseConnection(context);
 		//onDataSetChanged();
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		if(dbConn != null)
 			dbConn.closeDatabase();
 	}
-	
+
 	@Override
 	public int getCount() {
 		return cursor.getCount();
 	}
-	
-	// Given the position (index) of a WidgetItem in the array, use the item's text value in 
+
+	// Given the position (index) of a WidgetItem in the array, use the item's text value in
     // combination with the app widget item XML file to construct a RemoteViews object.
     @SuppressLint("SimpleDateFormat")
-	public RemoteViews getViewAt(int position) {    	
+	public RemoteViews getViewAt(int position) {
     	//RemoteViews rv = new RemoteViews(context.getPackageName(), android.R.layout.simple_list_item_2);
     	RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
     	cursor.moveToPosition(position);
@@ -135,36 +135,36 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 
         // Return the RemoteViews object.
         return rv;
-    }	
-//	
+    }
+//
 	@Override
 	public RemoteViews getLoadingView() {
 		return(null);
 	}
-	
+
 	@Override
 	public int getViewTypeCount() {
 		return(1);
 	}
-	
+
 	@Override
 	public long getItemId(int position) {
 		return(position);
 	}
-	
+
 	@Override
 	public boolean hasStableIds() {
 		return(true);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onDataSetChanged() {
 		if(Constants.debugModeWidget)
 			Log.d(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
-		
-		
-		cursor = dbConn.getAllItemsForFolder(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, false, SORT_DIRECTION.desc);
+
+
+		cursor = dbConn.getAllItemsForFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValueString(), false, SORT_DIRECTION.desc);
 		cursor.moveToFirst();
 	}
 }

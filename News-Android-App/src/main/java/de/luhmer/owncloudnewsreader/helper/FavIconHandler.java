@@ -80,7 +80,7 @@ public class FavIconHandler {
 		return null;
 	}
 
-	public static int getResourceIdForRightDefaultFeedIcon(Context context)
+    public static int getResourceIdForRightDefaultFeedIcon(Context context)
 	{
 		if(ThemeChooser.isDarkTheme(context))
 			return R.drawable.default_feed_icon_light;

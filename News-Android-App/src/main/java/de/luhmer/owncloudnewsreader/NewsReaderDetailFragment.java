@@ -178,7 +178,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		if(MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems() != null)
 		{
 			if(idFolder != null) {
-				if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
+				if(idFolder.equals(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValueString()))
 					MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
 				else
 					MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(true);
@@ -322,7 +322,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
         boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
         boolean onlyStarredItems = false;
         if(idFolder != null)
-            if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+            if(idFolder.equals(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValueString()))
                 onlyStarredItems = true;
 
         DatabaseConnection dbConn = new DatabaseConnection(context);
@@ -334,7 +334,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
             sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, getSortDirection(context));
         else if(idFolder != null)
         {
-            if(idFolder.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+            if(idFolder.equals(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValueString()))
                 onlyUnreadItems = false;
             sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, getSortDirection(context));
         }

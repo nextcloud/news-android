@@ -30,7 +30,6 @@ import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
@@ -70,7 +69,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         	}
         	else if(folder_id != null)
         	{
-        		if(folder_id.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS))
+        		if(folder_id.equals(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValueString()))
         		{
         			offset = dbConn.getLowestItemIdStarred();
         			id = "0";
