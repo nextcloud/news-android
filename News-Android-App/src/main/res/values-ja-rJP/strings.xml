@@ -37,6 +37,7 @@
   <string name="action_login">サーバー設定</string>
   <string name="action_save">保存</string>
   <string name="action_settings">設定</string>
+  <string name="action_sync_settings">設定の同期</string>
   <string name="action_add_new_feed">新しいフィードを追加</string>
   <string name="notification_new_items_ticker">X 新しい未読アイテムがあります。</string>
   <string name="notification_new_items_text">X 新しい未読アイテムが利用できます</string>
@@ -176,6 +177,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 分</item>
+    <item>15 分</item>
+    <item>30 分</item>
+    <item>45 分</item>
+    <item>1 時間</item>
+    <item>2 時間</item>
+    <item>3 時間</item>
+    <item>6 時間</item>
+    <item>12 時間</item>
+    <item>24 時間</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
