@@ -1,10 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Llector de noticies ownCloud</string>
+  <string name="empty_view_content">Nun hai nengún elementu equí</string>
   <string name="message_bar_reload">Recargar</string>
+  <string name="allUnreadFeeds">Tolos elementos lleios</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Actualizar</string>
   <!--EMAIL-->
+  <string name="email_sendMail">Unviar corréu</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favoritos</string>
+  <string name="action_openInBrowser">Abrir nel restolador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_save">Guardar</string>
   <string name="action_settings">Axustes</string>
@@ -14,6 +20,9 @@
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
+  <string name="pull_to_refresh_updateTags">Sincronizando l\'estáu de los elementos</string>
+  <string name="pull_to_refresh_updateFolder">Sincronizando carpeta</string>
+  <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Axustes</string>
   <!--General settings-->
