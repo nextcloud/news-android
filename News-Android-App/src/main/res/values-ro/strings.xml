@@ -1,13 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="empty_view_header">Informatii</string>
   <string name="message_bar_reload">Reîncarca</string>
   <string name="title_activity_new_feed">Adaugă flux nou</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Împrospătare</string>
+  <string name="menu_StartImageCaching">Descarca imagini </string>
   <!--EMAIL-->
+  <string name="email_sendMail">Trimiteti e-mail\n</string>
   <!--Action Bar Items-->
   <string name="action_starred">Marcat</string>
+  <string name="action_read">Citeste</string>
   <string name="action_Share">Partajează</string>
+  <string name="action_login">Setarile serverului</string>
   <string name="action_save">Salvează</string>
   <string name="action_settings">Setări</string>
   <string name="action_add_new_feed">Adaugă flux nou</string>
@@ -16,6 +21,9 @@
   <string name="pref_title_password">Parolă</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Inregistrati-va</string>
+  <string name="error_incorrect_password">Aceasta parola este incorecta </string>
+  <string name="error_field_required">Acest camp este obligatoriu </string>
   <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Setări</string>
@@ -28,8 +36,14 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="warning">Atenție</string>
+  <string name="pref_title_ShowOnlyUnread">Arata doar articolele necitite </string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_NavigateWithVolumeButtons">Navigheaza cu tastele de volum </string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">Intotdeauna</string>
+  <string name="mtm_decision_once">O data</string>
+  <string name="mtm_decision_abort">Anuleaza</string>
+  <string name="mtm_notification">Verificare certificat</string>
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Eroare</string>
@@ -55,6 +69,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Notificari</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
