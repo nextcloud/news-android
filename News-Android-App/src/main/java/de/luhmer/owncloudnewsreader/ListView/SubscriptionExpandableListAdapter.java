@@ -93,6 +93,11 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         public String getValueString() {
             return String.valueOf(id);
         }
+
+        @Override
+        public String toString() {
+            return getValueString();
+        }
     }
 
     int mTextColorLightTheme;
@@ -306,7 +311,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 				boolean skipFireEvent = false;
 				if(group.idFolder != null)
 				{
-					if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
+					if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER.getValueString()))
 					{
 						fireListTextClicked(val, mContext, false, group.idFolder);
 						skipFireEvent = true;
@@ -323,7 +328,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         boolean skipGetUnread = false;
         if(group.idFolder != null)
         {
-        	if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
+        	if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER.getValueString()))
         	{
                 String unreadCount = unreadCountFeeds.get((int) group.id_database);
 
@@ -361,14 +366,14 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         if(group.idFolder != null)
         {
-	        if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER))
+	        if(group.idFolder.equals(ITEMS_WITHOUT_FOLDER.getValueString()))
 	        {
                 String favIconURL = urlsToFavIcons.get((int) group.id_database);
 
                 loadFavIconForFeed(favIconURL, viewHolder.imgView);
 	        }
         } else {
-        	if(String.valueOf(group.id_database).equals(ALL_STARRED_ITEMS)) {
+        	if(String.valueOf(group.id_database).equals(ALL_STARRED_ITEMS.getValueString())) {
         		viewHolder.imgView.setVisibility(View.VISIBLE);
         		//viewHolder.imgView.setImageResource(R.drawable.btn_rating_star_off_normal_holo_light);
                 viewHolder.imgView.setImageDrawable(getBtn_rating_star_off_normal_holo_light(mContext));

@@ -64,8 +64,14 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.6.1 (in development)
+0.6.2 (in development)
 ---------------------
+
+
+0.6.1 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/216">#216 Bug in list overview in 0.6.0</a>
+
 
 0.6.0 (Google Play - Beta)(in development)
 ---------------------
