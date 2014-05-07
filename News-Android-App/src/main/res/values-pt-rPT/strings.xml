@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Sincronização automatica</string>
   <string name="app_name">Leitor de notícias do OwnCloud</string>
+  <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronização</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">NewsReader</string>
@@ -37,6 +38,7 @@
   <string name="action_login">Configurações do servidor</string>
   <string name="action_save">Guardar</string>
   <string name="action_settings">Configurações</string>
+  <string name="action_sync_settings">Configuracao de sincronização </string>
   <string name="action_add_new_feed">Adicionar novo feed</string>
   <string name="notification_new_items_ticker">Você tem X novos itens por ler</string>
   <string name="notification_new_items_text">X novos itens por ler disponíveis</string>
@@ -176,6 +178,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Minutos</item>
+    <item>15 Minutos</item>
+    <item>30 Minutos</item>
+    <item>45 Minutos</item>
+    <item>1 Hora</item>
+    <item>2 Horas</item>
+    <item>3 Horas</item>
+    <item>6 Horas</item>
+    <item>12 Horas</item>
+    <item>24 Horas</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
