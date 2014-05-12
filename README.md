@@ -55,8 +55,10 @@ for the dev branch:
 git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 ></pre>
 
+>Run the following script "remove_invalid_languages.sh"
 
 >Import the Project and start coding!
+
 
 
 >That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
@@ -64,13 +66,21 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.6.2 (in development)
+0.6.3 (in development)
 ---------------------
+
+
+
+0.6.2 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/219">#219 No feed icons in list overview (0.6.1)</a>
+
 
 
 0.6.1 (Google Play)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/216">#216 Bug in list overview in 0.6.0</a>
+
 
 
 0.6.0 (Google Play - Beta)(in development)

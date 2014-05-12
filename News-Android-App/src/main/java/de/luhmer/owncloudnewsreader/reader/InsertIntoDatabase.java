@@ -40,7 +40,7 @@ public class InsertIntoDatabase {
     public static void InsertFoldersIntoDatabase(List<String[]> tags, DatabaseConnection dbConn)
     {
         //DatabaseConnection dbConn = new DatabaseConnection(activity);
-    	
+
         //List<String[]> tags = (List<String[]>) task_result;
         List<String> tagsAvailable = dbConn.convertCursorToStringArray(dbConn.getAllTopSubscriptions(false), 1);
 
@@ -60,14 +60,14 @@ public class InsertIntoDatabase {
 	                    dbConn.insertNewFolder(label, label_path);
 	                }
 	            }
-	
+
 	            List<String> tagsToRemove = new ArrayList<String>();
-	
-	
+
+
 	            List<String> newLabelList = new ArrayList<String>();
 	            for(String[] subTag : tags)
 	                newLabelList.add(subTag[0]);
-	
+
 	            for(String tag : tagsAvailable)
 	            {
 	                if(!newLabelList.contains(tag))
@@ -77,16 +77,16 @@ public class InsertIntoDatabase {
 	                    Log.d(TAG, "Result delete: " + result);
 	                }
 	            }
-	            
+
 	            Log.d("ADD", ""+ tagsToAdd.size());
 	            Log.d("REMOVE", ""+ tagsToRemove.size());
 	        }
 	        //dbConn.getDatabase().setTransactionSuccessful();
-        } finally {        	
+        } finally {
             //dbConn.getDatabase().endTransaction();
         }
 
-        
+
         //dbConn.closeDatabase();
     }
 
@@ -105,17 +105,17 @@ public class InsertIntoDatabase {
 	            {
 	                if(!tagsAvailable.contains(tag.header))
 	                {
-	                    String folderID_db = dbConn.getIdOfFolderByLabelPath(String.valueOf(tag.folder_id));
+	                    String folderID_db = dbConn.getIdOfFolderByLabelPath(String.valueOf(tag.idFolder));
 	                    dbConn.insertNewFeed(tag.header, folderID_db, tag.subscription_id, tag.favIcon);
 	                } else {
-	                	String folderID_db = dbConn.getIdOfFolderByLabelPath(String.valueOf(tag.folder_id));
+	                	String folderID_db = dbConn.getIdOfFolderByLabelPath(String.valueOf(tag.idFolder));
 	                    int result = dbConn.updateFeed(tag.header, folderID_db, tag.subscription_id, tag.favIcon);
 	                    Log.d(TAG, "Affected Rows: " + result);
 	                }
 	            }
-	
+
 	            //tags.clear();
-	
+
 	            for(String tag : tagsAvailable)
 	            {
 	                boolean found = false;
@@ -133,13 +133,13 @@ public class InsertIntoDatabase {
 	                    Log.d(TAG, "Remove Subscription: " + result);
 	                }
 	            }
-	
+
 	            //lvAdapter.notifyDataSetChanged();
-	
-	            //lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn);	            
+
+	            //lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn);
 	        }
 	        //dbConn.getDatabase().setTransactionSuccessful();
-	    } finally {        	
+	    } finally {
 	        //dbConn.getDatabase().endTransaction();
 	    }
         //dbConn.closeDatabase();
@@ -154,24 +154,24 @@ public class InsertIntoDatabase {
         try
         {
 	        if(files != null)
-	        {  
-	            for (RssFile rssFile : files) 
+	        {
+	            for (RssFile rssFile : files)
 	            	InsertSingleFeedItemIntoDatabase(rssFile, dbConn);
 	        }
 	        //dbConn.getDatabase().setTransactionSuccessful();
-	    } finally {        	
+	    } finally {
 	        //dbConn.getDatabase().endTransaction();
 	    }
 
         dbConn.closeDatabase();
     }
-    
+
     public static boolean InsertSingleFeedItemIntoDatabase(RssFile rssFile, DatabaseConnection dbConn)
     {
         boolean newItem = false;
 
         if(rssFile != null)
-        {  
+        {
         	Boolean isFeedAlreadyInDatabase = dbConn.doesRssItemAlreadyExsists(rssFile.getItem_Id());
 
             /*
@@ -180,7 +180,7 @@ public class InsertIntoDatabase {
         		int result = dbConn.removeItemByItemId(rssFile.getItem_Id());
         		Log.d(TAG, "Delete Item: " + result);
         	}*/
-        	
+
             String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
             //String IdSubscription = dbConn.getIdSubscriptionByStreamID(rssFile.getFeedID());
             if(FeedId_Db != null)
