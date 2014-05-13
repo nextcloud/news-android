@@ -9,8 +9,10 @@
   <string name="title_newsreader_detail">新闻读者详情</string>
   <string name="empty_view_header">信息</string>
   <string name="empty_view_content">无内容</string>
+  <string name="toast_GettingMoreItems">已开始下载更多项目.. 请稍候。</string>
   <string name="tv_clickHereToOpenItem">点击此处打开</string>
   <string name="no_wifi_available">没有连接到WiFi</string>
+  <string name="do_you_want_to_download_without_wifi">您是否想在无 WiFi 连接时下载图片</string>
   <string name="max_items_count_reached">你已经达到了文件数的上限</string>
   <string name="widget_header">ownCloud新闻</string>
   <string name="message_bar_new_articles_available">新项目可用</string>
@@ -103,9 +105,48 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>简洁</item>
+    <item>扩展</item>
+    <item>网页视图扩展</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">错误</string>
   <string name="login_dialog_text_something_went_wrong">什么地方出错了 :(</string>
+  <string name="login_dialog_text_not_compatible">此 App 版本与您的 ownCloud 新闻 App 不兼容。请更新新闻 app 和 appframework。</string>
   <string name="login_dialog_title_security_warning">安全警告</string>
   <string name="login_dialog_text_security_warning">你正在使用的是安全性相对较差的http协议 (其他人可能会截取到你的账号密码等信息)，强烈建议您使用https协议访问本网站</string>
   <!--Data & Sync-->
@@ -131,6 +172,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 分钟</item>
+    <item>15 分钟</item>
+    <item>30 分钟</item>
+    <item>45 分钟</item>
+    <item>1 小时</item>
+    <item>2 小时</item>
+    <item>3 小时</item>
+    <item>6 小时</item>
+    <item>12 小时</item>
+    <item>24 小时</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
