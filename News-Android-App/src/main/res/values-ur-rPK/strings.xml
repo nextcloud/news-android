@@ -4,6 +4,7 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">تقسیم</string>
+  <string name="action_save">حفظ</string>
   <string name="action_settings">سیٹینگز</string>
   <!--Strings related to login-->
   <string name="pref_title_username">یوزر نیم</string>
@@ -20,6 +21,7 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">انتباہ</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <!--Settings for Display-->
