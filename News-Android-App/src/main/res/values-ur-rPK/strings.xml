@@ -3,6 +3,8 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_Share">تقسیم</string>
+  <string name="action_save">حفظ</string>
   <string name="action_settings">سیٹینگز</string>
   <!--Strings related to login-->
   <string name="pref_title_username">یوزر نیم</string>
@@ -19,11 +21,13 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">انتباہ</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">ایرر</string>
+  <string name="login_dialog_title_security_warning">حفاظتی انتباہ</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
