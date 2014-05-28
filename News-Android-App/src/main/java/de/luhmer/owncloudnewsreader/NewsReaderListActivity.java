@@ -47,6 +47,7 @@ import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.AccountImporter;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -89,6 +90,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
+
+        AccountImporter.findAccounts(this);
 
 
 		AccountManager mAccountManager = AccountManager.get(this);
