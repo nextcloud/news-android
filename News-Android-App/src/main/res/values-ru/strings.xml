@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Авто синхронизация</string>
   <string name="app_name">Чтение новостей в ownCloud</string>
+  <string name="title_activity_sync_interval_selector">Переключатель интервала синхронизации</string>
   <string name="title_activity_news_detail">Последние новости</string>
   <string name="title_activity_subscription">Активные подписки</string>
   <string name="title_newsreader_list">Чтение новостей</string>
@@ -177,6 +178,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Минут</item>
+    <item>15 Минут</item>
+    <item>30 Минут</item>
+    <item>45 Минут</item>
+    <item>1 Час</item>
+    <item>2 Часа</item>
+    <item>3 Часа</item>
+    <item>6 Часов</item>
+    <item>12 Часов</item>
+    <item>24 Часа</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
