@@ -30,6 +30,11 @@
     <string name="menu_StartImageCaching">Download images</string>
     <string name="menu_downloadMoreItems">Download more items</string>
 
+
+    <!-- Import Accounts -->
+    <string name="import_account_dialog_title">Import Account</string>
+
+
     <!-- EMAIL -->
     <string name="email_sourceCode">Sourcecode of item - Bugreport</string>
     <string name="email_sendMail">Send EMail</string>

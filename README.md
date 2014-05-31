@@ -66,9 +66,19 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.6.3 (in development)
+0.6.5 (in development)
 ---------------------
 
+
+0.6.4 (Google Play - Beta)
+---------------------
+- Improvement - Improved feed list scroll performance
+- Improvement - Fixed that the list was blocked while updating the unread count
+
+
+0.6.3 (Google Play - Beta)
+---------------------
+- Feature - Import Accounts from other ownCloud Apps
 
 
 0.6.2 (Google Play)
@@ -83,7 +93,7 @@ Updates
 
 
 
-0.6.0 (Google Play - Beta)(in development)
+0.6.0 (Google Play - Beta)
 ---------------------
 - Performance improvements
 - Layout improvement

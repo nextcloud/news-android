@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader.async_tasks;
 
 import android.os.AsyncTask;
-import android.os.Process;
 import android.view.View;
 import android.widget.TextView;
 

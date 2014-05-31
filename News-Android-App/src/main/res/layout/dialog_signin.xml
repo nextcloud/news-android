@@ -1,29 +1,29 @@
 <ScrollView
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"    	
+	xmlns:tools="http://schemas.android.com/tools"
 	tools:context=".LoginActivity"
 	android:id="@+id/login_form"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent" >
-	
+
 	<LinearLayout
 	    android:orientation="vertical"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content" >
-    		    
+
 	    <com.devspark.robototextview.widget.RobotoEditText
 	        android:id="@+id/username"
 	        android:inputType="textEmailAddress"
 	        style="@style/LoginDialogEditTextStyle"
 	        android:hint="@string/pref_title_username" />
-	    
+
 	    <com.devspark.robototextview.widget.RobotoEditText
 	        android:id="@+id/password"
 	        android:inputType="textPassword"
 	        style="@style/LoginDialogEditTextStyle"
 	        android:fontFamily="sans-serif"
 	        android:hint="@string/pref_title_password" />
-	
+
 	    <com.devspark.robototextview.widget.RobotoEditText
 	        android:id="@+id/edt_owncloudRootPath"
 	        android:fontFamily="sans-serif"
@@ -34,13 +34,19 @@
 	        android:singleLine="true"
 	        android:title="@string/pref_default_owncloudRootPath"
 	        style="@style/LoginDialogEditTextStyle" />
-	    
+
 	    <com.devspark.robototextview.widget.RobotoCheckBox
 	        android:id="@+id/cb_AllowAllSSLCertificates"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="@string/pref_title_DisableHostnameVerification" />
-	
+
+        <com.devspark.robototextview.widget.RobotoButton
+            android:id="@+id/btn_importAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Import Account from other ownCloud App"/>
+
 	    <View
 	        android:layout_width="match_parent"
 			android:layout_height="1dp"
@@ -48,11 +54,11 @@
 			android:layout_marginTop="5dp"
 			android:layout_marginLeft="8dp"
 			android:layout_marginRight="8dp" />
-	    
+
 	    <LinearLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content" >
-	        
+
            <com.devspark.robototextview.widget.RobotoButton
                android:id="@+id/btn_cancel"
                android:layout_width="0dip"
@@ -61,13 +67,13 @@
                android:background="@android:color/transparent"
                android:text="@android:string/cancel" />
 
-           <View               
+           <View
                android:layout_width="1dp"
                android:layout_height="match_parent"
                android:background="#383E44"
                android:layout_marginTop="8dp"
                android:layout_marginBottom="8dp" />
-           
+
            <com.devspark.robototextview.widget.RobotoButton
                android:id="@+id/btn_signin"
                android:layout_width="0dip"
@@ -76,6 +82,6 @@
                android:background="@android:color/transparent"
                android:text="@string/action_sign_in_short" />
 		</LinearLayout>
-	
-	</LinearLayout>	
+
+	</LinearLayout>
 </ScrollView>

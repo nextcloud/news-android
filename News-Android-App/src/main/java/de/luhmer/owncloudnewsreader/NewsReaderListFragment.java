@@ -30,6 +30,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -96,39 +97,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 
 		@Override
 		public void startedSync(String sync_type) throws RemoteException {
-			SYNC_TYPES st = SYNC_TYPES.valueOf(sync_type);
-			String LastUpdatedLabelTextTemp = null;
-
-			switch(st) {
-				case SYNC_TYPE__GET_API:
-					break;
-				case SYNC_TYPE__ITEM_STATES:
-					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateTags);
-					break;
-				case SYNC_TYPE__FOLDER:
-					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateFolder);
-					break;
-				case SYNC_TYPE__FEEDS:
-					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateFeeds);
-					break;
-				case SYNC_TYPE__ITEMS:
-					LastUpdatedLabelTextTemp = getString(R.string.pull_to_refresh_updateItems);
-					break;
-			}
-
-			final String LastUpdatedLabelText = LastUpdatedLabelTextTemp;
-
 			Handler refresh = new Handler(Looper.getMainLooper());
 			refresh.post(new Runnable() {
 				public void run() {
 					UpdateSyncButtonLayout();
-                    /*
-					if (eListView != null)
-						eListView.getLoadingLayoutProxy().setLastUpdatedLabel(LastUpdatedLabelText);
-                    */
 				}
 			});
-
 		}
 
 		@Override
@@ -137,10 +111,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			refresh.post(new Runnable() {
 				public void run() {
 					UpdateSyncButtonLayout();
-                    /*
-					if (eListView != null)
-						//eListView.getLoadingLayoutProxy().setLastUpdatedLabel(null);
-					*/
 				}
 			});
 
@@ -161,7 +131,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 					refresh = new Handler(Looper.getMainLooper());
 					refresh.post(new Runnable() {
 						public void run() {
-                        lvAdapter.ReloadAdapter();
+                        ReloadAdapter();
                         NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
 						if (nlActivity != null)
 							nlActivity.UpdateItemList();
@@ -186,6 +156,39 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	public IOwnCloudSyncServiceCallback getCallback() {
 		return callback;
 	}*/
+
+    public void ListViewNotifyDataSetChanged()  {
+        lvAdapter.NotifyDataSetChangedAsync();
+    }
+
+    public void ReloadAdapter() {
+        new ReloadAdapterAsync().execute((Void) null);
+    }
+
+    private class ReloadAdapterAsync extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            lvAdapter.ReloadAdapter();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            //lvAdapter.notifyDataSetChanged();
+            lvAdapter.NotifyDataSetChangedAsync();
+
+            progressBar.setVisibility(View.GONE);
+
+            super.onPostExecute(aVoid);
+        }
+    }
 
 
 
@@ -242,9 +245,10 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 
 	DatabaseConnection dbConn;
 	//SubscriptionExpandableListAdapter lvAdapter;
-	SubscriptionExpandableListAdapter lvAdapter;
+	private SubscriptionExpandableListAdapter lvAdapter;
 	//ExpandableListView eListView;
     ExpandableListView eListView;
+    View progressBar;
     PullToRefreshLayout mPullToRefreshLayout;
 	//public static IReader _Reader = null;  //AsyncTask_GetGReaderTags asyncTask_GetUnreadFeeds = null;
 
@@ -276,9 +280,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 			//dbConn.resetDatabase();
 			//dbConn.clearDatabaseOverSize();
 			//dbConn.resetRssItemsDatabase();
-
-			lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn);
-			lvAdapter.setHandlerListener(expListTextClickedListener);
 
             mListener = new BaseMessage.OnMessageClickListener()
             {
@@ -472,7 +473,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
             view.setBackgroundColor(getResources().getColor(R.color.slider_listview_background_color_light_theme));
         }
 
+        progressBar = view.findViewById(R.id.pbProgress);
+
         eListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
+
+        lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn, eListView);
+        lvAdapter.setHandlerListener(expListTextClickedListener);
 
 		eListView.setGroupIndicator(null);
 
@@ -494,6 +500,8 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		eListView.setClickable(true);
 		eListView.setAdapter(lvAdapter);
 
+
+        ReloadAdapter();
 
 		return view;
 	}

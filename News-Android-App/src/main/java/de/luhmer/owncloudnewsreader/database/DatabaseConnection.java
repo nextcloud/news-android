@@ -115,7 +115,7 @@ public class DatabaseConnection {
     public static final String RSS_CURRENT_VIEW_RSS_ITEM_ID = "rss_current_view_rss_item_id";
 
 
-    public enum SORT_DIRECTION { asc, desc };
+    public enum SORT_DIRECTION { asc, desc }
 
 
     public static final boolean DATABASE_DEBUG_MODE = false; //(false && Constants.DEBUG_MODE) ? true: false;
@@ -161,6 +161,7 @@ public class DatabaseConnection {
     	}
 	}
 
+    /*
     public void markAllItemsAsRead(List<Integer> itemIds)
 	{
 		List<String> items = new ArrayList<String>();
@@ -168,6 +169,7 @@ public class DatabaseConnection {
 			items.add(String.valueOf(itemId));
 		markAllItemsAsReadUnread(items, true);
 	}
+    */
 
     public void markAllItemsAsReadForCurrentView()
 	{
@@ -393,8 +395,12 @@ public class DatabaseConnection {
 	*/
 
 	public Cursor getAllTopSubscriptions(boolean onlyUnread) {
-		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NULL";
-		String buildSQL = "SELECT DISTINCT(f.rowid) as _id, * FROM " + FOLDER_TABLE + " f ";
+		//String buildSQL = "SELECT DISTINCT(f.rowid) as _id, * FROM " + FOLDER_TABLE + " f ";
+
+
+        String buildSQL = "SELECT DISTINCT(f.rowid) as _id, " + FOLDER_LABEL +
+                            " FROM " + FOLDER_TABLE + " f ";
+
         if(onlyUnread)
         {
             buildSQL += " JOIN " + SUBSCRIPTION_TABLE + " sc ON f.rowid = sc." + SUBSCRIPTION_FOLDER_ID +
@@ -410,8 +416,9 @@ public class DatabaseConnection {
 	}
 
 	public Cursor getAllTopSubscriptionsWithoutFolder(boolean onlyUnread) {
-		//String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE subscription_id_subscription IS NULL";
-		String buildSQL = "SELECT DISTINCT(sc.rowid) as _id, * FROM " + SUBSCRIPTION_TABLE + " sc ";
+		//String buildSQL = "SELECT DISTINCT(sc.rowid) as _id, * FROM " + SUBSCRIPTION_TABLE + " sc ";
+        String buildSQL = "SELECT DISTINCT(sc.rowid) as _id, " + SUBSCRIPTION_HEADERTEXT + ", " + SUBSCRIPTION_ID + ", " + SUBSCRIPTION_FAVICON_URL +
+                            " FROM " + SUBSCRIPTION_TABLE + " sc ";
 
 		if(onlyUnread)
 		{
@@ -812,10 +819,10 @@ public class DatabaseConnection {
     }
 
 	public Cursor getAllSubscriptionForFolder(String ID_FOLDER, boolean onlyUnread) {
-        //String buildSQL = "SELECT rowid as _id, * FROM " + SUBSCRIPTION_TABLE + " WHERE " + SUBSCRIPTION_SUBSCRIPTION_ID + "=" + ID_SUBSCRIPTION;
-		String buildSQL = "SELECT sc.rowid as _id, sc.* " +
-							"FROM " + SUBSCRIPTION_TABLE + " sc " +
-							"LEFT OUTER JOIN folder f ON sc.folder_idfolder = f.rowid ";
+        //String buildSQL = "SELECT sc.rowid as _id, sc.* " +
+		String buildSQL = "SELECT sc.rowid as _id, sc." + SUBSCRIPTION_HEADERTEXT + ", sc." + SUBSCRIPTION_ID + ", sc." + SUBSCRIPTION_FAVICON_URL +
+							" FROM " + SUBSCRIPTION_TABLE + " sc " +
+							" LEFT OUTER JOIN folder f ON sc.folder_idfolder = f.rowid ";
 
 		if(ID_FOLDER.equals("-11"))//Starred
         {

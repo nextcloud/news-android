@@ -41,13 +41,11 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-import de.luhmer.owncloudnewsreader.ListView.BlockingExpandableListView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.helper.AccountImporter;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -70,7 +68,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 	private SlidingPaneLayout mSlidingLayout;
 
-	static final String TAG = "NewsReaderListActivity";
+	//static final String TAG = "NewsReaderListActivity";
 	//ActionBarDrawerToggle drawerToggle;
 	//DrawerLayout drawerLayout;
 
@@ -91,20 +89,18 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
 
-        AccountImporter.findAccounts(this);
-
 
 		AccountManager mAccountManager = AccountManager.get(this);
 
 		boolean isAccountThere = false;
 		//Remove all accounts first
 		Account[] accounts = mAccountManager.getAccounts();
-	    for (int index = 0; index < accounts.length; index++) {
-	    	if (accounts[index].type.intern() == AccountGeneral.ACCOUNT_TYPE) {
-	    		//mAccountManager.removeAccount(accounts[index], null, null);
-	    		isAccountThere = true;
-	    	}
-	    }
+        for (Account account : accounts) {
+            if (account.type.intern().equals(AccountGeneral.ACCOUNT_TYPE)) {
+                //mAccountManager.removeAccount(accounts[index], null, null);
+                isAccountThere = true;
+            }
+        }
 
 	    if(!isAccountThere) {
 		    //Then add the new account
@@ -210,7 +206,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_STRING, ndf.getListView().getFirstVisiblePosition());
 			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING, top);
 			outState.putString(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
-			outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null ? true : false);
+			outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
 			outState.putString(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFolder() : ndf.getIdFeed());
 		}
 
@@ -259,28 +255,13 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	}
 
 	public void updateAdapter() {
-		NewsReaderListFragment nlf = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer));
-		if(nlf != null)
-		{
-			// Block children layout for now
-			BlockingExpandableListView bView = ((BlockingExpandableListView) nlf.eListView);
+        NewsReaderListFragment nlf = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer));
+        if(nlf != null) {
+            nlf.ListViewNotifyDataSetChanged();
+        }
+    }
 
-			int firstVisPos = bView.getFirstVisiblePosition();
-			View firstVisView = bView.getChildAt(0);
-			int top = firstVisView != null ? firstVisView.getTop() : 0;
 
-			// Number of items added before the first visible item
-			int itemsAddedBeforeFirstVisible = 0;
-
-			bView.setBlockLayoutChildren(true);
-			nlf.lvAdapter.notifyDataSetChanged();
-			bView.setBlockLayoutChildren(false);
-
-			// Call setSelectionFromTop to change the ListView position
-			if(bView.getCount() >= firstVisPos + itemsAddedBeforeFirstVisible)
-				bView.setSelectionFromTop(firstVisPos + itemsAddedBeforeFirstVisible, top);
-		}
-	}
 
 	@Override
 	protected void onResume() {
@@ -292,10 +273,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	}
 
 	public boolean shouldDrawerStayOpen() {
-		if(getResources().getBoolean(R.bool.two_pane))
-			return true;
-		return false;
-	}
+        return getResources().getBoolean(R.bool.two_pane);
+    }
 
 	private StartDetailFragmentHolder startDetailFHolder = null;
 
@@ -527,12 +506,12 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
             int pos = data.getIntExtra("POS", 0);
             UpdateListViewAndScrollToPos(this, pos);
 
-            ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).lvAdapter.notifyDataSetChanged();
+            ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).ListViewNotifyDataSetChanged();
         }
 
         if(requestCode == RESULT_SETTINGS)
         {
-        	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).lvAdapter.ReloadAdapter();
+        	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).ReloadAdapter();
         	((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCursor();
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
             if(data != null) {
@@ -546,15 +525,15 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
     public static void StartLoginFragment(final SherlockFragmentActivity activity)
     {
-	   	LoginDialogFragment dialog = new LoginDialogFragment();
-	   	dialog.setmActivity(activity);
+	   	LoginDialogFragment dialog = LoginDialogFragment.getInstance();
+	   	dialog.setActivity(activity);
 	   	dialog.setListener(new LoginSuccessfullListener() {
 
-			@Override
-			public void LoginSucceeded() {
-				((NewsReaderListActivity) activity).startSync();
-			}
-		});
+            @Override
+            public void LoginSucceeded() {
+                ((NewsReaderListActivity) activity).startSync();
+            }
+        });
 	    dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
     }
 

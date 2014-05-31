@@ -12,6 +12,9 @@
                android:layout_height="match_parent"/>
 
     -->
+
+
+
     <uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefreshLayout
         android:id="@+id/ptr_layout"
         android:layout_width="match_parent"
@@ -36,5 +39,18 @@
 
     </uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefreshLayout>
 	<!--  </com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
+
+    <RelativeLayout
+        android:id="@+id/pbProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
 </RelativeLayout>

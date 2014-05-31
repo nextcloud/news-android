@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.SparseArray;
@@ -36,6 +37,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -47,13 +49,11 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.async_tasks.IGetTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.data.AbstractItem;
 import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.FillTextForTextViewHelper;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -64,13 +64,13 @@ import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAd
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ITEMS_WITHOUT_FOLDER;
 
 public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter {
-    private static final String TAG = "SubscriptionExpandableListAdapter";
-
-    //BitmapDrawableLruCache favIconCache = null;
+    //private static final String TAG = "SubscriptionExpandableListAdapter";
 
 	private Context mContext;
     private DatabaseConnection dbConn;
     FontHelper fHelper;
+
+    ListView listView;
 
     ExpListTextClicked eListTextClickHandler;
 
@@ -110,7 +110,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         //return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
     }
 
-    public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnection dbConn)
+    public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnection dbConn, ListView listView)
     {
         mIsTwoPane = isTwoPane(mContext);
 
@@ -130,7 +130,13 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         fHelper = new FontHelper(mContext);
 
-    	ReloadAdapter();
+        unreadCountFeeds = new SparseArray<String>();
+        unreadCountFolders = new SparseArray<String>();
+
+        mCategoriesArrayList = new ArrayList<AbstractItem>();
+        mItemsArrayList = new SparseArray<SparseArray<ConcreteFeedItem>>();
+
+        this.listView = listView;
     }
 
     private void AddEverythingInCursorFolderToSubscriptions(Cursor itemsCursor)
@@ -160,28 +166,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	@SuppressWarnings("deprecation")
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
+
 		int parent_id = (int)getGroupId(groupPosition);
-        //Check if we are not in our current group now, or the current cached items are wrong - MUST BE RECACHED
-        //if(mItemsArrayList.isEmpty() /*|| ((ConcreteSubscribtionItem)mItemsArrayList.get(0)).parent_id != parent_id */){
-		if(mItemsArrayList.indexOfKey(groupPosition) < 0 /*|| (mItemsArrayList.get(groupPosition).size() <= childPosition)*/ /*|| ((ConcreteSubscribtionItem)mItemsArrayList.get(0)).parent_id != parent_id */){
-			mItemsArrayList.append(groupPosition, new SparseArray<ConcreteFeedItem>());
-            Cursor itemsCursor = dbConn.getAllSubscriptionForFolder(String.valueOf(parent_id), showOnlyUnread);
-            itemsCursor.requery();
-            //mItemsArrayList.clear();
-            int childPosTemp = childPosition;
-            if (itemsCursor.moveToFirst())
-                do {
-                    long id_database = itemsCursor.getLong(0);
-                    String name = itemsCursor.getString(1);
-                    String subscription_id = itemsCursor.getString(2);
-                    String urlFavicon = itemsCursor.getString(itemsCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));
-                    ConcreteFeedItem newItem = new ConcreteFeedItem(name, String.valueOf(parent_id), subscription_id, urlFavicon, id_database);
-                    mItemsArrayList.get(groupPosition).put(childPosTemp, newItem);
-                    childPosTemp++;
-                } while (itemsCursor.moveToNext());
-            itemsCursor.close();
-        }
-        return mItemsArrayList.get(groupPosition).get(childPosition);
+        return mItemsArrayList.get(parent_id).get(childPosition);
 	}
 
 	@Override
@@ -216,20 +203,22 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        viewHolder.tV_HeaderText.setText(headerText);
 
 
+
             String unreadCount = unreadCountFeeds.get((int) item.id_database);
             if(unreadCount != null)
                 viewHolder.tV_UnreadCount.setText(unreadCount);
+            else
+                viewHolder.tV_UnreadCount.setText("0");
+            /*
             else {
                 viewHolder.tV_UnreadCount.setText("0");
                 //mItemsArrayList.get(groupPosition).remove(childPosition-1);
                 //this.notifyDataSetChanged();
-            }
+            }*/
             /*
             else {
-                boolean excludeStarredItems = (item.folder_id.equals(ALL_STARRED_ITEMS)) ? false : true;
+                boolean excludeStarredItems = (item.idFolder.equals(ALL_STARRED_ITEMS)) ? false : true;
                 SetUnreadCountForFeed(viewHolder.tV_UnreadCount, String.valueOf(item.id_database), excludeStarredItems);
-
-                Log.d(TAG, "Fetching unread count manually... " + item.header);
             }*/
 
             loadFavIconForFeed(item.favIcon, viewHolder.imgView_FavIcon);
@@ -259,15 +248,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		int count;
-        if(mItemsArrayList.indexOfKey(groupPosition) < 0){
-            Cursor itemsCursor = dbConn.getAllSubscriptionForFolder(String.valueOf(getGroupId(groupPosition)), showOnlyUnread);
-            count = itemsCursor.getCount();
-            itemsCursor.close();
-        }
-        else
-            count = mItemsArrayList.get(groupPosition).size();
-        return count;
+        int parent_id = (int)getGroupId(groupPosition);
+        return (mItemsArrayList.get(parent_id) != null) ? mItemsArrayList.get(parent_id).size() : 0;
 	}
 
 	@Override
@@ -348,16 +330,16 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         viewHolder.txt_UnreadCount.setText("0");
         boolean skipGetUnread = false;
         if(group.idFolder != null && group.idFolder.equals(ITEMS_WITHOUT_FOLDER.getValueString())) {
-            String unreadCount = unreadCountFeeds.get((int) group.id_database);
 
+            String unreadCount = unreadCountFeeds.get((int) group.id_database);
             if(unreadCount != null)
                 viewHolder.txt_UnreadCount.setText(unreadCount);
-
             /*
             else {
                 //SetUnreadCountForFeed(viewHolder.txt_UnreadCount, String.valueOf(group.id_database), true);
                 //Log.d(TAG, "Fetching unread count manually... " + group.headerFolder);
-            } */
+            }
+             */
 
 
 
@@ -366,13 +348,15 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         if(!skipGetUnread) {
             String unreadCount = unreadCountFolders.get((int) group.id_database);
-
             if(unreadCount != null)
                 viewHolder.txt_UnreadCount.setText(unreadCount);
+            /*
             else {
+                //viewHolder.txt_UnreadCount.setText("-1");
                 SetUnreadCountForFolder(viewHolder.txt_UnreadCount, String.valueOf(group.id_database));
                 //Log.d(TAG, "Fetching unread count manually... " + group.headerFolder);
             }
+            */
         }
 
 
@@ -464,6 +448,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
 
+    /*
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void SetUnreadCountForFeed(TextView textView, String idDatabase, boolean execludeStarredItems)
 	{
@@ -477,6 +462,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		IGetTextForTextViewAsyncTask iGetter = new UnreadFolderCount(mContext, idDatabase);
         FillTextForTextViewHelper.FillTextForTextView(textView, iGetter, !mIsTwoPane);
 	}
+    */
 
 
 
@@ -511,8 +497,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
     public void ReloadAdapter()
     {
-    	SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-    	showOnlyUnread = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        showOnlyUnread = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
 
         mCategoriesArrayList = new ArrayList<AbstractItem>();
         mCategoriesArrayList.add(new FolderSubscribtionItem(mContext.getString(R.string.allUnreadFeeds), null, ALL_UNREAD_ITEMS.getValue(), null));
@@ -526,21 +512,85 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         //AddEverythingInCursorToSubscriptions(dbConn.getAllTopSubscriptionsWithUnreadFeeds());
         mItemsArrayList = new SparseArray<SparseArray<ConcreteFeedItem>>();
 
-        this.notifyDataSetChanged();
+
+        for(int groupPosition = 0; groupPosition < mCategoriesArrayList.size(); groupPosition++) {
+            int parent_id = (int)getGroupId(groupPosition);
+            String parentId = String.valueOf(parent_id);
+            mItemsArrayList.append(parent_id, new SparseArray<ConcreteFeedItem>());
+            Cursor itemsCursor = dbConn.getAllSubscriptionForFolder(parentId, showOnlyUnread);
+            itemsCursor.requery();
+            int childPosTemp = 0;
+            if (itemsCursor.moveToFirst())
+                do {
+                    long id_database = itemsCursor.getLong(0);
+                    String name = itemsCursor.getString(itemsCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_HEADERTEXT));
+                    String subscription_id = itemsCursor.getString(itemsCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_ID));
+                    String urlFavicon = itemsCursor.getString(itemsCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));
+                    ConcreteFeedItem newItem = new ConcreteFeedItem(name, parentId, subscription_id, urlFavicon, id_database);
+                    mItemsArrayList.get(parent_id).put(childPosTemp, newItem);
+                    childPosTemp++;
+                } while (itemsCursor.moveToNext());
+            itemsCursor.close();
+        }
     }
+
 
 
     SparseArray<String> unreadCountFolders;
     SparseArray<String> unreadCountFeeds;
     SparseArray<String> urlsToFavIcons;
+
+    @Deprecated
     @Override
     public void notifyDataSetChanged() {
-        unreadCountFolders = dbConn.getUnreadItemCountForFolder(mContext);
-        unreadCountFeeds = dbConn.getUnreadItemCountForFeed();
-        urlsToFavIcons = dbConn.getUrlsToFavIcons();
-
         super.notifyDataSetChanged();
     }
+
+    public void NotifyDataSetChangedAsync() {
+        new NotifyDataSetChangedAsyncTask().execute((Void) null);
+    }
+
+
+    private class NotifyDataSetChangedAsyncTask extends AsyncTask<Void, Void, Void> {
+        // Block children layout for now
+        BlockingExpandableListView bView;
+
+
+        @Override
+        protected void onPreExecute() {
+            bView = (BlockingExpandableListView) listView;
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            unreadCountFolders = dbConn.getUnreadItemCountForFolder(mContext);
+            unreadCountFeeds = dbConn.getUnreadItemCountForFeed();
+            urlsToFavIcons = dbConn.getUrlsToFavIcons();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            int firstVisPos = bView.getFirstVisiblePosition();
+            View firstVisView = bView.getChildAt(0);
+            int top = firstVisView != null ? firstVisView.getTop() : 0;
+
+            // Number of items added before the first visible item
+            int itemsAddedBeforeFirstVisible = 0;
+
+            bView.setBlockLayoutChildren(true);
+            notifyDataSetChanged();
+            bView.setBlockLayoutChildren(false);
+
+            // Call setSelectionFromTop to change the ListView position
+            if(bView.getCount() >= firstVisPos + itemsAddedBeforeFirstVisible)
+                bView.setSelectionFromTop(firstVisPos + itemsAddedBeforeFirstVisible, top);
+
+            super.onPostExecute(aVoid);
+        }
+    }
+
 
     public void setHandlerListener(ExpListTextClicked listener)
 	{

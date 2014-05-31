@@ -42,7 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
@@ -272,7 +271,7 @@ public class OwnCloudReaderMethods {
 
 	private static JSONObject getJSONObjectFromReader(JsonReader jsonReader) {
 		JSONObject jObj = new JSONObject();
-		JsonToken tokenInstance = null;
+		JsonToken tokenInstance;
 		try {
 			tokenInstance = jsonReader.peek();
 			if(tokenInstance == JsonToken.BEGIN_OBJECT)
@@ -329,7 +328,7 @@ public class OwnCloudReaderMethods {
 
 	public static boolean PerformTagExecutionAPIv2(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api)
 	{
-        String jsonIds = null;
+        String jsonIds;
 
 
 		String url = api.getTagBaseUrl();
