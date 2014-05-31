@@ -15,7 +15,7 @@
   <string name="do_you_want_to_download_without_wifi">Resimleri bir kablosuz bağlantı olmadan indirmek ister misiniz</string>
   <string name="max_items_count_reached">XX ögenin azami sayısına ulaştınız</string>
   <string name="widget_header">ownCloud Haberler</string>
-  <string name="message_bar_new_articles_available">Yeni ögeler mevcut</string>
+  <string name="message_bar_new_articles_available">Yeni öge mevcut</string>
   <string name="message_bar_reload">Yeniden yükle</string>
   <string name="allUnreadFeeds">Tüm okunmamış ögeler</string>
   <string name="starredFeeds">Yıldızlı ögeler</string>
@@ -23,7 +23,7 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Yenile</string>
   <string name="menu_About_Changelog">Hakkında / Değişim Günlüğü</string>
-  <string name="menu_markAllAsRead">Tümünü okundu olarak işaretle</string>
+  <string name="menu_markAllAsRead">Tümünü okundu işaretle</string>
   <string name="menu_StartImageCaching">Resimleri indir</string>
   <string name="menu_downloadMoreItems">Daha fazla öge indir</string>
   <!--EMAIL-->
@@ -85,7 +85,7 @@
   <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Önbelleği yine de sıfırlamak ister misiniz?</string>
   <string name="warning">Uyarı</string>
   <string name="pref_title_AutoSyncOnStart">Başlangıçta eşitle</string>
-  <string name="pref_title_ShowOnlyUnread">Sadece okunmamış makaleleri göster</string>
+  <string name="pref_title_ShowOnlyUnread">Sadece okunmamışları göster</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Ana Makine Doğrulamayı Devre Dışı Bırak</string>
   <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezin</string>
@@ -100,7 +100,7 @@
   <string name="mtm_notification">Sertifika Doğrulama</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Görüntüle</string>
-  <string name="pref_title_app_theme">Uygulama teması (uygulamak için yeniden başlatma gerekli)</string>
+  <string name="pref_title_app_theme">Uygulama teması (uygulanması için yeniden başlatma gerekli)</string>
   <string name="pref_title_feed_list_layout">Besleme listesi yerleşimi</string>
   <string name="pref_display_font_layout">Yazı Tipi (uygulanması için yeniden başlatma gerekiyor)</string>
   <string-array name="pref_display_apptheme">
@@ -154,7 +154,7 @@
   <string name="login_dialog_text_something_went_wrong">Bir şeyler yanlış gitti :(</string>
   <string name="login_dialog_text_not_compatible">Bu uygulama sürümü sizin ownCloud Haber uygulamanız ile uyumlu değil. Lütfen haber uygulama ve uygulama çerçevesini güncelleyin.</string>
   <string name="login_dialog_title_security_warning">Güvenlik Uyarısı</string>
-  <string name="login_dialog_text_security_warning">https kullanmıyorsunuz. Bir saldırgan trafiğinizi kesip hassas verilere erişim kazanabilir (örn. parolanız). Bu yüzden https kullanmanız şiddetle tavsiye olunur!</string>
+  <string name="login_dialog_text_security_warning">HTTPS kullanmıyorsunuz. Bir saldırgan trafiğinizi kesip hassas verilere erişim kazanabilir (örn. parolanız). Bu yüzden HTTPS kullanmanız şiddetle tavsiye olunur!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Veri ve eşitleme</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->

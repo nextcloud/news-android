@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Automata szinkronizáció</string>
   <string name="app_name">ownCloud Hírolvasó</string>
+  <string name="title_activity_sync_interval_selector">A szinkronizáció gyakoriságának kiválasztása</string>
   <string name="title_activity_news_detail">HírekRészletTevékenység</string>
   <string name="title_activity_subscription">ElőfizetésiTevékenység</string>
   <string name="title_newsreader_list">Hírolvasó</string>
@@ -37,6 +38,7 @@
   <string name="action_login">Szerver Beállítások</string>
   <string name="action_save">Mentés</string>
   <string name="action_settings">Beállítások</string>
+  <string name="action_sync_settings">Szinkronizációs beállítások</string>
   <string name="action_add_new_feed">Új hírcsatorna hozzáadása</string>
   <string name="notification_new_items_ticker">Van X db el nem olvasott elem</string>
   <string name="notification_new_items_text">X darab új olvasatlan elem érhető el</string>
@@ -176,6 +178,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 perc</item>
+    <item>15 perc</item>
+    <item>30 perc</item>
+    <item>45 perc</item>
+    <item>1 óra</item>
+    <item>2 óra</item>
+    <item>3 óra</item>
+    <item>6 óra</item>
+    <item>12 óra</item>
+    <item>24 óra</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
