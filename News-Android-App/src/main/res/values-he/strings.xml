@@ -7,6 +7,7 @@
   <string name="starredFeeds">פריטים שמסומנים בכוכב</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">רענון</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sendMail">שליחת הודעה בדוא״ל</string>
   <!--Action Bar Items-->

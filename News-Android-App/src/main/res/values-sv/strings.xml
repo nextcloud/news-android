@@ -26,6 +26,7 @@
   <string name="menu_markAllAsRead">Markera alla som lästa</string>
   <string name="menu_StartImageCaching">Ladda ner bilder</string>
   <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">Källkod av objekt - Buggrapport</string>
   <string name="email_sendMail">Skicka e-post</string>

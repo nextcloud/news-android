@@ -2,6 +2,7 @@
 <resources>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">নবোদ্যম</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">তারা চিহ্নিত</string>

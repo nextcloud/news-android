@@ -26,6 +26,7 @@
   <string name="menu_markAllAsRead">Märgi loetuks</string>
   <string name="menu_StartImageCaching">Laadi pildid alla</string>
   <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">Lähtekoodi üksus - vearaport</string>
   <string name="email_sendMail">Saada e-mail</string>

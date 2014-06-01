@@ -24,6 +24,7 @@
   <string name="menu_markAllAsRead">सभी को पढ़े हुओं की तरह चिन्हित करें </string>
   <string name="menu_StartImageCaching">तस्वीरें डाउनलोड करें </string>
   <string name="menu_downloadMoreItems">और मदों को डाउनलोड करें </string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">मद का सोर्सकोड - बगरिपोर्ट </string>
   <string name="email_sendMail">ईमेल भेजें </string>

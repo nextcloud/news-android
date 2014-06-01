@@ -2,6 +2,7 @@
 <resources>
   <string name="title_activity_new_feed">Bæta við nýjum fréttastraum</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Stjörnumerkt</string>

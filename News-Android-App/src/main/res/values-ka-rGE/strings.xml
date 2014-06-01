@@ -3,6 +3,7 @@
   <string name="message_bar_reload">გადატვირთვა</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">განახლება</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">ვარსკვლავმინიჭებული</string>

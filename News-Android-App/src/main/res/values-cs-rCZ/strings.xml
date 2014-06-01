@@ -26,6 +26,7 @@
   <string name="menu_markAllAsRead">Označit vše jako přečtené</string>
   <string name="menu_StartImageCaching">Stáhnout obrázky</string>
   <string name="menu_downloadMoreItems">Stáhnout další položky</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">Zdrojový kód položky - Chybová zpráva</string>
   <string name="email_sendMail">Odeslat e-mail</string>

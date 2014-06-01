@@ -26,6 +26,7 @@
   <string name="menu_markAllAsRead">Marca-ho tot com a llegit</string>
   <string name="menu_StartImageCaching">Baixa imatges</string>
   <string name="menu_downloadMoreItems">Baixa més elements</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">Codi font de l\'element - Informe d\'errades</string>
   <string name="email_sendMail">Envia correu electrónic</string>

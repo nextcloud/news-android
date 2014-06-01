@@ -3,6 +3,7 @@
   <string name="title_activity_new_feed">புதிய ஊட்டை சேர்க்க</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">மீள் ஏற்றுக</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">பகிர்வு</string>

@@ -26,6 +26,7 @@
   <string name="menu_markAllAsRead">标记所有为已读</string>
   <string name="menu_StartImageCaching">下载图片</string>
   <string name="menu_downloadMoreItems">下载更多内容</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">源代码-错误报告</string>
   <string name="email_sendMail">发送邮件</string>

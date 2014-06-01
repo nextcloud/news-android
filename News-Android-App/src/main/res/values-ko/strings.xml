@@ -25,6 +25,7 @@
   <string name="menu_markAllAsRead">모두 읽은 것으로 표시</string>
   <string name="menu_StartImageCaching">그림 다운로드</string>
   <string name="menu_downloadMoreItems">더 많은 항목 다운로드</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">뉴스의 원본 코드 - 버그 보고</string>
   <string name="email_sendMail">이메일 보내기</string>

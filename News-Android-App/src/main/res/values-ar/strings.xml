@@ -21,6 +21,7 @@
   <string name="menu_markAllAsRead">تحديد الكل كمقروء</string>
   <string name="menu_StartImageCaching">تحميل الصور</string>
   <string name="menu_downloadMoreItems">تحميل المزيد من العناصر</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sendMail">إرسال بريد إلكتروني</string>
   <!--Action Bar Items-->

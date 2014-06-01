@@ -26,6 +26,7 @@
   <string name="menu_markAllAsRead">Marca tutti come letti</string>
   <string name="menu_StartImageCaching">Scarica le immagini</string>
   <string name="menu_downloadMoreItems">Scarica altri elementi</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">Codice sorgente dell\'elemento - Segnalazione bug</string>
   <string name="email_sendMail">Invia email</string>

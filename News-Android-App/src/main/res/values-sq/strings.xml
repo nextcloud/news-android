@@ -2,6 +2,7 @@
 <resources>
   <string name="message_bar_reload">Ngarko</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Nda</string>

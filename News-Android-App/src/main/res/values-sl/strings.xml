@@ -26,6 +26,7 @@
   <string name="menu_markAllAsRead">Označi vse kot prebrano</string>
   <string name="menu_StartImageCaching">Prejmi slike</string>
   <string name="menu_downloadMoreItems">Prejmi več predmetov</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">Pregled izvorne kode - Prijava napake</string>
   <string name="email_sendMail">Pošlji elektronsko sporočilo</string>

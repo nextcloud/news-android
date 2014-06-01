@@ -24,6 +24,7 @@
   <string name="menu_markAllAsRead">Tandai semua telah dibaca</string>
   <string name="menu_StartImageCaching">Unduh gambar</string>
   <string name="menu_downloadMoreItems">Unduh beberapa item</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">Kode sumber item - Bugreport</string>
   <string name="email_sendMail">Kirim EMail</string>

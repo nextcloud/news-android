@@ -8,6 +8,7 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Освежи</string>
   <string name="menu_markAllAsRead">Означи сѐ како прочитано</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sendMail">Испрати Електронска порака</string>
   <!--Action Bar Items-->

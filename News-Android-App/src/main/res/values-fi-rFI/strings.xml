@@ -17,6 +17,7 @@
   <string name="menu_markAllAsRead">Merkitse kaikki luetuiksi</string>
   <string name="menu_StartImageCaching">Lataa kuvat</string>
   <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sendMail">Lähetä EMail</string>
   <!--Action Bar Items-->

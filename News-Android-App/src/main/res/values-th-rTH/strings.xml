@@ -3,6 +3,7 @@
   <string name="title_activity_new_feed">เพิ่ม feed ใหม่</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">รีเฟรช</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">ติดดาวแล้ว</string>

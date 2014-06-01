@@ -26,6 +26,7 @@
   <string name="menu_markAllAsRead">すべて既読にする</string>
   <string name="menu_StartImageCaching">画像をダウンロード</string>
   <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">アイテムのソースコード - バグ報告</string>
   <string name="email_sendMail">メールを送る</string>

@@ -19,6 +19,7 @@
   <string name="menu_About_Changelog">درباره / تغییرات</string>
   <string name="menu_markAllAsRead">علامت همه به عنوان خوانده شده</string>
   <string name="menu_downloadMoreItems">دانلود آیتم های بیشتر</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">کد منبع از آیتم - گزارش اشکالات</string>
   <string name="email_sendMail">فرستادن ایمیل</string>

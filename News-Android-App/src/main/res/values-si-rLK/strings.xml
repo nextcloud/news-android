@@ -3,6 +3,7 @@
   <string name="title_activity_new_feed">නව සංග්‍රහයක් එකතු කරන්න</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">නැවුම් කරන්න</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">තරු දැමු</string>

@@ -26,6 +26,7 @@
   <string name="menu_markAllAsRead">Alles als gelesen kennzeichnen</string>
   <string name="menu_StartImageCaching">Lade Bilder herunter</string>
   <string name="menu_downloadMoreItems">Weitere Artikel herunterladen.</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <string name="email_sourceCode">Quelltext des Elements - Fehlerbericht</string>
   <string name="email_sendMail">E-Mail senden</string>

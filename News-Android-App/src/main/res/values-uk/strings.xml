@@ -6,6 +6,7 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Оновити</string>
   <string name="menu_StartImageCaching">Завантажити зображення</string>
+  <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">Помічені зірочкою</string>
