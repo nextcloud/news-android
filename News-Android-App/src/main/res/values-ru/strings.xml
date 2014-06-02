@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">Скачать изображения</string>
   <string name="menu_downloadMoreItems">Загрузить еще</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Импортировать аккаунт</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Исходный код элемента - Отчет об ошибке</string>
   <string name="email_sendMail">Отправить сообщение</string>

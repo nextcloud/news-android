@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">Baixar imagens</string>
   <string name="menu_downloadMoreItems">Fazer download de mais itens</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Importar Conta</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-fonte do item - Reportar erros</string>
   <string name="email_sendMail">Enviar e-mail</string>

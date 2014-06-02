@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Automaattinen synkronointi</string>
   <string name="app_name">ownCloud-uutislukija</string>
+  <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
   <string name="title_newsreader_list">Uutislukija</string>
   <string name="empty_view_content">Ei kohteita</string>
   <string name="toast_GettingMoreItems">Lisäkohteiden lataus aloitettu, odota hetki...</string>
@@ -18,6 +19,7 @@
   <string name="menu_StartImageCaching">Lataa kuvat</string>
   <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Tuo tili</string>
   <!--EMAIL-->
   <string name="email_sendMail">Lähetä EMail</string>
   <!--Action Bar Items-->
@@ -28,6 +30,7 @@
   <string name="action_login">Palvelinasetukset</string>
   <string name="action_save">Tallenna</string>
   <string name="action_settings">Asetukset</string>
+  <string name="action_sync_settings">Synkronointiasetukset</string>
   <string name="action_add_new_feed">Lisää uusi syöte</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
