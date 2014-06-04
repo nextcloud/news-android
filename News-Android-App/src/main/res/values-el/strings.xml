@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">Λήψη εικόνων</string>
   <string name="menu_downloadMoreItems">Λήψη περισσότερων αντικειμένων</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Εισαγωγή λογαριασμού</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Πρωτογενής κώδικας στοιχείου - Αναφορά σφάλματος</string>
   <string name="email_sendMail">Αποστολή Αλληλογραφίας</string>

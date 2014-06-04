@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">Descargar imágenes</string>
   <string name="menu_downloadMoreItems">Descargar más artículos</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Importar cuenta de usuario</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código fuente del artículo - Bugreport</string>
   <string name="email_sendMail">Enviar email</string>

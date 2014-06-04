@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">下載圖片</string>
   <string name="menu_downloadMoreItems">下載更多項目</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">匯入帳戶</string>
   <!--EMAIL-->
   <string name="email_sourceCode">項目中的原始碼 - 錯誤回報</string>
   <string name="email_sendMail">送出電郵</string>

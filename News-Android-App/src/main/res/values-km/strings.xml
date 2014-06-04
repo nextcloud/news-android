@@ -1,18 +1,28 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">ធ្វើសមកាលកម្មដោយស្វ័យប្រវត្តិ</string>
+  <string name="empty_view_header">ព័ត៌មាន</string>
+  <string name="widget_header">ព័ត៌មានពី ownCloud</string>
+  <string name="message_bar_reload">ផ្ទុកឡើងវិញ</string>
+  <string name="title_activity_new_feed">បន្ថែមមតិព័ត៌មានថ្មី</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">បាន​ដាក់​ផ្កាយ</string>
+  <string name="action_openInBrowser">បើកទៅក្នុង​កម្មវិធីរុករក</string>
   <string name="action_Share">ចែក​រំលែក</string>
   <string name="action_save">រក្សាទុក</string>
   <string name="action_settings">ការកំណត់</string>
+  <string name="action_add_new_feed">បន្ថែមមតិព័ត៌មានថ្មី</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ឈ្មោះ​អ្នកប្រើ</string>
   <string name="pref_title_password">ពាក្យសម្ងាត់</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">ចុះឈ្មោះចូល</string>
+  <string name="login_progress_signing_in">កំពុង​ចុះឈ្មោះចូល...</string>
+  <string name="error_incorrect_password">ពាក្យសម្ងាត់នេះគឺមិនត្រឹមត្រូវ</string>
   <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">ការកំណត់</string>
@@ -25,9 +35,18 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="warning">បម្រាម</string>
+  <string name="pref_title_AutoSyncOnStart">ការចាប់ផ្ដើម​ធ្វើសមកាលកម្ម</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">រាល់ពេល</string>
+  <string name="mtm_decision_once">ម្ដងម្កាល</string>
+  <string name="mtm_decision_abort">អំពី</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">ការបង្ហាញ</string>
+  <string-array name="pref_display_apptheme">
+    <item>ងងឹត</item>
+    <item>ភ្លឺt</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">កំហុស</string>
   <string name="login_dialog_title_security_warning">បម្រាម​សុវត្ថិភាព</string>
