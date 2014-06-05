@@ -12,7 +12,7 @@
   <string name="toast_GettingMoreItems">Iniciouse a descarga de máis elementos... agarde.</string>
   <string name="tv_clickHereToOpenItem">Prema aquí para abrir o elemento</string>
   <string name="no_wifi_available">Non está conectado á WiFi</string>
-  <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi</string>
+  <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi?</string>
   <string name="max_items_count_reached">Acadou o tamaño máximo de XX elementos</string>
   <string name="widget_header">Novas do </string>
   <string name="message_bar_new_articles_available">Novos elementos dispoñíbeis</string>
@@ -98,7 +98,7 @@
   <string name="mtm_accept_cert">Aceptar un certificado descoñecido?</string>
   <string name="mtm_decision_always">Sempre</string>
   <string name="mtm_decision_once">Unha vez</string>
-  <string name="mtm_decision_abort">Cancelar</string>
+  <string name="mtm_decision_abort">Interromper</string>
   <string name="mtm_notification">Verificación do certificado</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Presentar</string>

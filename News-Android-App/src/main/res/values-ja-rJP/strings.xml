@@ -27,9 +27,10 @@
   <string name="menu_StartImageCaching">画像をダウンロード</string>
   <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">アカウントをインポート</string>
   <!--EMAIL-->
   <string name="email_sourceCode">アイテムのソースコード - バグ報告</string>
-  <string name="email_sendMail">メールを送る</string>
+  <string name="email_sendMail">メールを送信</string>
   <!--Action Bar Items-->
   <string name="action_starred">共有</string>
   <string name="action_read">読込</string>
