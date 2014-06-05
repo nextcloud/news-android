@@ -52,4 +52,10 @@
         android:orderInCategory="102"
         android:title="@string/menu_About_Changelog"/>
 
+    <item
+        android:id="@+id/menu_CreateDatabaseDump"
+        android:showAsAction="never"
+        android:orderInCategory="103"
+        android:title="Create Database Dump"/>
+
 </menu>

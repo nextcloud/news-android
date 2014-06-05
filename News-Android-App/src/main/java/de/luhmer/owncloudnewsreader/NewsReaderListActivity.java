@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -46,6 +47,7 @@ import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -493,6 +495,15 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			    		dbConn.closeDatabase();
 			    	}
 					break;
+
+                case R.id.menu_CreateDatabaseDump:
+                    DatabaseUtils.CopyDatabaseToSdCard(this);
+
+                    new AlertDialog.Builder(this)
+                            .setMessage("Created dump at: " + DatabaseUtils.GetPath(this))
+                            .setNeutralButton(getString(android.R.string.ok), null)
+                            .show();
+                    break;
 			}
 		}
 		return super.onOptionsItemSelected(item);
