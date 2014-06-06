@@ -1,2 +1,2 @@
-include ':News-Android-App', ':MessageBar'
+include ':News-Android-App', ':MessageBar', ':ownCloud-Account-Importer'
 include ':Changeloglib:ChangeLogLibrary'

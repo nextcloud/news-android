@@ -66,8 +66,15 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.6.6 (in development)
+
+0.6.7 (in development)
 ---------------------
+
+0.6.6 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/223">#223 All unread article counts are 0</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/220">#220 Wrong display of unread items</a>
+
 
 0.6.5 (Google Play - Beta)
 ---------------------
