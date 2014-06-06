@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">Downloaden afbeeldingen</string>
   <string name="menu_downloadMoreItems">Download meer objecten</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Import account</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Sourceode van het item - Bug melding</string>
   <string name="email_sendMail">Email versturen</string>

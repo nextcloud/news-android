@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">Ladda ner bilder</string>
   <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Importera Konto</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Källkod av objekt - Buggrapport</string>
   <string name="email_sendMail">Skicka e-post</string>
