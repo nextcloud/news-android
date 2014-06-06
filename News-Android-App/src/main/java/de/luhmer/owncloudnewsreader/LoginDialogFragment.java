@@ -21,8 +21,6 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -48,11 +46,13 @@ import java.net.URL;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import de.luhmer.owncloud.accountimporter.ImportAccountsDialogFragment;
+import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
+import de.luhmer.owncloud.accountimporter.helper.OwnCloudAccount;
+import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.helper.AccountImporter;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
-import de.luhmer.owncloudnewsreader.interfaces.IAccountImport;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 
 /**
@@ -92,35 +92,10 @@ public class LoginDialogFragment extends SherlockDialogFragment implements IAcco
 	ProgressDialog mDialogLogin;
 
     @Override
-    public void accountAccessGranted(Account account, Bundle data) {
-
-        int lastAtPos = account.name.lastIndexOf("@");
-        String urlString = account.name.substring(lastAtPos + 1);
-        String username = account.name.substring(0, lastAtPos);
-
-        if(!urlString.startsWith("http"))
-            urlString = "https://" + urlString;
-
-        String password = data.getString(AccountManager.KEY_AUTHTOKEN);
-
-
-        mUsernameView.setText(username);
-        mPasswordView.setText(password);
-
-        try {
-            final String urlStringOrig = urlString;
-            URL url = new URL(urlStringOrig);
-            urlString = url.getProtocol() + "://" + url.getHost();
-            if(url.getPath().contains("/owncloud")) {
-                urlString += url.getPath().substring(0, url.getPath().indexOf("/owncloud") + 9);
-            } else if(url.getPath().contains("/")) {
-                urlString += url.getPath().substring(0, url.getPath().indexOf("/"));
-            }
-
-            mOc_root_path_View.setText(ImportAccountsDialogFragment.validateURL(urlString));
-        } catch(Exception ex) {
-            ex.printStackTrace();
-        }
+    public void accountAccessGranted(OwnCloudAccount account) {
+        mUsernameView.setText(account.getUsername());
+        mPasswordView.setText(account.getPassword());
+        mOc_root_path_View.setText(account.getUrl());
     }
 
     public interface LoginSuccessfullListener {
@@ -213,8 +188,9 @@ public class LoginDialogFragment extends SherlockDialogFragment implements IAcco
         view.findViewById(R.id.btn_importAccount).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ImportAccountsDialogFragment selectDialogFragment = ImportAccountsDialogFragment.newInstance();
-                selectDialogFragment.show(getActivity().getSupportFragmentManager(), "dialog");
+                ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
+                //ImportAccountsDialogFragment selectDialogFragment = ImportAccountsDialogFragment.newInstance();
+                //selectDialogFragment.show(getActivity().getSupportFragmentManager(), "dialog");
             }
         });
 

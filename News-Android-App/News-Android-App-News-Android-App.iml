@@ -78,6 +78,7 @@
     <orderEntry type="library" exported="" name="library-0.4.0" level="project" />
     <orderEntry type="library" exported="" name="actionbarsherlock-4.4.0" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.3.1" level="project" />
+    <orderEntry type="module" module-name="ownCloud-Account-Importer" exported="" />
     <orderEntry type="module" module-name="MessageBar" exported="" />
     <orderEntry type="module" module-name="ChangeLogLibrary" exported="" />
   </component>

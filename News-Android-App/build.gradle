@@ -12,7 +12,6 @@ apply plugin: 'android'
 android {
     compileSdkVersion 19
     buildToolsVersion '19.0.0'
-
     defaultConfig {
         minSdkVersion 7
         targetSdkVersion 19
@@ -23,12 +22,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-
-
     sourceSets {
         main {
-	     aidl.srcDirs = ['src/main/java']
+            aidl.srcDirs = ['src/main/java']
         }
+    }
+    productFlavors {
     }
 }
 
@@ -45,4 +44,5 @@ dependencies {
     compile files('src/main/libs/jsoup-1.7.2.jar')
     compile project(':Changeloglib:ChangeLogLibrary')
     compile project(':MessageBar')
+    compile project(':ownCloud-Account-Importer')
 }
