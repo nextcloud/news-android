@@ -46,7 +46,7 @@ public class DatabaseConnection {
 
 
     public SparseArray<String> getUnreadItemCountForFolder(Context mContext) {
-        String buildSQL = "SELECT " + FOLDER_LABEL_ID + ", COUNT(" + RSS_ITEM_RSSITEM_ID + ")" +
+        String buildSQL = "SELECT f.rowid, COUNT(" + RSS_ITEM_RSSITEM_ID + ")" +
                 " FROM " + RSS_ITEM_TABLE + " rss " +
                 " JOIN " + SUBSCRIPTION_TABLE + " st ON rss." + RSS_ITEM_SUBSCRIPTION_ID + " = st.rowid" +
                 " JOIN " + FOLDER_TABLE + " f ON st." + SUBSCRIPTION_FOLDER_ID + " = f.rowid" +
