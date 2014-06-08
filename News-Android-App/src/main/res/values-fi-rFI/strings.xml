@@ -6,6 +6,7 @@
   <string name="title_newsreader_list">Uutislukija</string>
   <string name="empty_view_content">Ei kohteita</string>
   <string name="toast_GettingMoreItems">Lisäkohteiden lataus aloitettu, odota hetki...</string>
+  <string name="tv_clickHereToOpenItem">Avaa kohde painamalla tästä</string>
   <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
   <string name="message_bar_new_articles_available">Uusia kohteita saatavilla</string>
   <string name="message_bar_reload">Päivitä</string>
@@ -26,12 +27,14 @@
   <string name="action_starred">Varustettu tähdellä</string>
   <string name="action_read">Luku</string>
   <string name="action_openInBrowser">Avaa selaimessa</string>
+  <string name="action_sendSourceCode">Lähetä kohde kehittäjälle</string>
   <string name="action_Share">Jaa</string>
   <string name="action_login">Palvelinasetukset</string>
   <string name="action_save">Tallenna</string>
   <string name="action_settings">Asetukset</string>
   <string name="action_sync_settings">Synkronointiasetukset</string>
   <string name="action_add_new_feed">Lisää uusi syöte</string>
+  <string name="notification_new_items_text">X uutta lukematonta kohdetta saatavilla</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>
