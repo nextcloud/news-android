@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.util.SparseArray;
@@ -35,6 +36,9 @@ import java.util.List;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.UnreadFolderCount;
+import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
+import de.luhmer.owncloudnewsreader.data.DatabaseFeedItem;
+import de.luhmer.owncloudnewsreader.data.RssFile;
 
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
@@ -873,29 +877,43 @@ public class DatabaseConnection {
         return database.update(SUBSCRIPTION_TABLE, contentValues, SUBSCRIPTION_ID  + "= ?", new String[] { subscription_id });
     }
 
-	public void insertNewItem (String title, String link, String description, Boolean isRead, String ID_SUBSCRIPTION, String ID_RSSITEM, Date timestamp, Boolean isStarred, String guid, String guidHash, String lastModified, String author, boolean insertItem) {
+    public void insertNewItems(List<RssFile> items) {
+        database.beginTransaction();
+        try {
+            for(RssFile item : items) {
+                insertNewItem(item, true, false, false);
+            }
+            database.setTransactionSuccessful();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            database.endTransaction();
+        }
+    }
+
+	public void insertNewItem (RssFile item, boolean insertItem) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(RSS_ITEM_TITLE, title);
-        contentValues.put(RSS_ITEM_LINK, link);
-        contentValues.put(RSS_ITEM_BODY, description);
-        contentValues.put(RSS_ITEM_READ, isRead);
-        contentValues.put(RSS_ITEM_SUBSCRIPTION_ID, ID_SUBSCRIPTION);
-        contentValues.put(RSS_ITEM_RSSITEM_ID, ID_RSSITEM);
-        contentValues.put(RSS_ITEM_PUBDATE, timestamp.getTime());
-        contentValues.put(RSS_ITEM_STARRED, isStarred);
-        contentValues.put(RSS_ITEM_GUID, guid);
-        contentValues.put(RSS_ITEM_GUIDHASH, guidHash);
-        contentValues.put(RSS_ITEM_LAST_MODIFIED, lastModified);
-        contentValues.put(RSS_ITEM_AUTHOR, author);
+        contentValues.put(RSS_ITEM_TITLE, item.getTitle());
+        contentValues.put(RSS_ITEM_LINK, item.getLink());
+        contentValues.put(RSS_ITEM_BODY, item.getDescription());
+        contentValues.put(RSS_ITEM_READ, item.getRead());
+        contentValues.put(RSS_ITEM_SUBSCRIPTION_ID, String.valueOf(item.getFeedID_Db()));
+        contentValues.put(RSS_ITEM_RSSITEM_ID, item.getItem_Id());
+        contentValues.put(RSS_ITEM_PUBDATE, item.getDate().getTime());
+        contentValues.put(RSS_ITEM_STARRED, item.getStarred());
+        contentValues.put(RSS_ITEM_GUID, item.getGuid());
+        contentValues.put(RSS_ITEM_GUIDHASH, item.getGuidHash());
+        contentValues.put(RSS_ITEM_LAST_MODIFIED, item.getLastModified());
+        contentValues.put(RSS_ITEM_AUTHOR, item.getAuthor());
 
-        contentValues.put(RSS_ITEM_READ_TEMP, isRead);
-		contentValues.put(RSS_ITEM_STARRED_TEMP, isStarred);
+        contentValues.put(RSS_ITEM_READ_TEMP, item.getRead());
+		contentValues.put(RSS_ITEM_STARRED_TEMP, item.getStarred());
 
-        long result = 0;
+        long result;
         if(insertItem)
             result = database.insert(RSS_ITEM_TABLE, null, contentValues);
         else
-            result = database.update(RSS_ITEM_TABLE, contentValues, RSS_ITEM_RSSITEM_ID + "=?", new String[] { ID_RSSITEM });
+            result = database.update(RSS_ITEM_TABLE, contentValues, RSS_ITEM_RSSITEM_ID + "=?", new String[] { item.getItem_Id() });
 
         Log.d("DatabaseConnection", "Inserted Rows: " + result);
     }

@@ -174,35 +174,13 @@ public class InsertIntoDatabase {
         {
         	Boolean isFeedAlreadyInDatabase = dbConn.doesRssItemAlreadyExsists(rssFile.getItem_Id());
 
-            /*
-        	if(isFeedAlreadyInDatabase)
-        	{
-        		int result = dbConn.removeItemByItemId(rssFile.getItem_Id());
-        		Log.d(TAG, "Delete Item: " + result);
-        	}*/
-
             String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
             //String IdSubscription = dbConn.getIdSubscriptionByStreamID(rssFile.getFeedID());
             if(FeedId_Db != null)
             {
                 rssFile.setFeedID_Db(FeedId_Db);
-                //if(!dbConn.doesRssItemAlreadyExsists(rssFile.getFeedID()))
-                dbConn.insertNewItem(rssFile.getTitle(),
-                        rssFile.getLink(),
-                        rssFile.getDescription(),
-                        rssFile.getRead(),
-                        String.valueOf(rssFile.getFeedID_Db()),
-                        rssFile.getItem_Id(),
-                        rssFile.getDate(),
-                        rssFile.getStarred(),
-                        rssFile.getGuid(),
-                        rssFile.getGuidHash(),
-                        rssFile.getLastModified(),
-                        rssFile.getAuthor(),
-                        !isFeedAlreadyInDatabase);
 
-
-                //dbConn.clearDatabaseOverSize();
+                dbConn.insertNewItem(rssFile, !isFeedAlreadyInDatabase);
 
                 newItem = !rssFile.getRead();
             }
