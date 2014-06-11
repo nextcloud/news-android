@@ -19,7 +19,7 @@
   <string name="message_bar_reload">Znovu načítať</string>
   <string name="allUnreadFeeds">Všetky neprečítané položky</string>
   <string name="starredFeeds">Položky s hviezdičkou</string>
-  <string name="title_activity_new_feed">Pridať kanál</string>
+  <string name="title_activity_new_feed">Pridať nový kanál</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Obnoviť</string>
   <string name="menu_About_Changelog">O aplikácii / Zoznam zmien</string>
@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">Stiahnuť obrázky</string>
   <string name="menu_downloadMoreItems">Stiahnuť viac položiek</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Importný účet</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Zdrojový kód položky - Správa o chybe</string>
   <string name="email_sendMail">Odoslať email</string>
@@ -40,7 +41,7 @@
   <string name="action_save">Uložiť</string>
   <string name="action_settings">Nastavenia</string>
   <string name="action_sync_settings">Nastavenia synchronizácie</string>
-  <string name="action_add_new_feed">Pridať kanál</string>
+  <string name="action_add_new_feed">Pridať nový kanál</string>
   <string name="notification_new_items_ticker">Máte X nových neprečítaných položiek</string>
   <string name="notification_new_items_text">X nových neprečítaných položiek k dispozícii</string>
   <!--Strings related to login-->
@@ -181,16 +182,16 @@
     <item>10000</item>
   </string-array>
   <string-array name="array_sync_interval">
-    <item>5 Minutes</item>
-    <item>15 Minutes</item>
-    <item>30 Minutes</item>
-    <item>45 Minutes</item>
-    <item>1 Hour</item>
-    <item>2 Hours</item>
-    <item>3 Hours</item>
-    <item>6 Hours</item>
-    <item>12 Hours</item>
-    <item>24 Hours</item>
+    <item>5 minút</item>
+    <item>15 minút</item>
+    <item>30 minút</item>
+    <item>45 minút</item>
+    <item>1 hodina</item>
+    <item>2 hodiny</item>
+    <item>3 hodiny</item>
+    <item>6 hodín</item>
+    <item>12 hodín</item>
+    <item>24 hodín</item>
   </string-array>
   <string-array name="array_sync_interval_values">
     <item>5</item>
