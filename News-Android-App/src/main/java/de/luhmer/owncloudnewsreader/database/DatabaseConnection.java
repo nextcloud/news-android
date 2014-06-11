@@ -881,7 +881,7 @@ public class DatabaseConnection {
         database.beginTransaction();
         try {
             for(RssFile item : items) {
-                insertNewItem(item, true, false, false);
+                insertNewItem(item, true);
             }
             database.setTransactionSuccessful();
         } catch (SQLException e) {

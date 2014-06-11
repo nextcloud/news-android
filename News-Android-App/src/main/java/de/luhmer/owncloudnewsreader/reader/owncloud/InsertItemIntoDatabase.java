@@ -23,6 +23,7 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import org.json.JSONObject;
 
+import java.lang.Override;
 import java.util.Date;
 
 import de.luhmer.owncloudnewsreader.data.RssFile;
@@ -32,9 +33,13 @@ import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 public class InsertItemIntoDatabase implements IHandleJsonObject {
 	
 	DatabaseConnection dbConn;
-	
+    List<RssFile> buffer;
+    static final short bufferSize = 200;
+    int count = 0;
+
 	public InsertItemIntoDatabase(DatabaseConnection dbConn) {
 		this.dbConn = dbConn;
+        buffer = ArrayList<RssFile>(bufferSize);
 	}
 	
     private static RssFile parseItem(JSONObject e)
@@ -61,6 +66,18 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
 	@Override
 	public boolean performAction(JSONObject jObj) {
 		RssFile rssFile = parseItem(jObj);
-        return InsertIntoDatabase.InsertSingleFeedItemIntoDatabase(rssFile, dbConn);
+        buffer.add(rssFile);
+        count++;
+
+        if(count >= bufferSize) {
+            performDatabaseBatchInsert();
+        }
 	}
+
+
+    public boolean performDatabaseBatchInsert() {
+        dbConn.insertNewItems(buffer);
+        count = 0;
+        buffer.clear();
+    }
 }

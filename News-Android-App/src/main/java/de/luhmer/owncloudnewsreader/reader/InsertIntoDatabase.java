@@ -150,7 +150,7 @@ public class InsertIntoDatabase {
     {
         DatabaseConnection dbConn = new DatabaseConnection(activity);
 
-        //dbConn.getDatabase().beginTransaction();
+        dbConn.getDatabase().beginTransaction();
         try
         {
 	        if(files != null)
@@ -158,9 +158,9 @@ public class InsertIntoDatabase {
 	            for (RssFile rssFile : files)
 	            	InsertSingleFeedItemIntoDatabase(rssFile, dbConn);
 	        }
-	        //dbConn.getDatabase().setTransactionSuccessful();
+	        dbConn.getDatabase().setTransactionSuccessful();
 	    } finally {
-	        //dbConn.getDatabase().endTransaction();
+	        dbConn.getDatabase().endTransaction();
 	    }
 
         dbConn.closeDatabase();
