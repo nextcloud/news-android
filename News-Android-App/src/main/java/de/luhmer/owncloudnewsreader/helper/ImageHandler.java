@@ -170,9 +170,14 @@ public class ImageHandler {
 	{
         String path = getPath(context);
 		boolean result = deleteDir(new File(path));
-        createEmptyFile(path + "/.nomedia");
+        createNoMediaFile(context);
         return result;
 	}
+
+    public static void createNoMediaFile(Context context) {
+        String path = getPath(context);
+        createEmptyFile(path + "/.nomedia");
+    }
 
     public static void createEmptyFile(String path) {
         try {

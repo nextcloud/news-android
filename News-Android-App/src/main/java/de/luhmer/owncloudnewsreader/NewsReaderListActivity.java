@@ -48,6 +48,7 @@ import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -182,6 +183,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         	StartDetailFragmentNow();
         }
 
+
+        ImageHandler.createNoMediaFile(this);
         //AppRater.app_launched(this);
         //AppRater.rateNow(this);
 
