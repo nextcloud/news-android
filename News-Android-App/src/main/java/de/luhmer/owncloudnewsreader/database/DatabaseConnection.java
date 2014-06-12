@@ -951,6 +951,11 @@ public class DatabaseConnection {
 		return getStringValueBySQL(buildSQL);
     }
 
+    public SparseArray<String> getFeedIds() {
+        String buildSQL = "SELECT " + SUBSCRIPTION_ID + ", rowid as _id FROM " + SUBSCRIPTION_TABLE;
+        return getSparseArrayFromSQL(buildSQL);
+    }
+
 	public String getRowIdBySubscriptionID (String StreamID) {
 		//String buildSQL = "SELECT rowid as _id FROM " + SUBSCRIPTION_TABLE + " WHERE " + SUBSCRIPTION_HEADERTEXT  + " = '" + SubscriptionName + "'";
 		String buildSQL = "SELECT rowid as _id FROM " + SUBSCRIPTION_TABLE + " WHERE " + SUBSCRIPTION_ID  + " = '" + StreamID + "'";

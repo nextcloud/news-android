@@ -34,10 +34,13 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
     RssFile[] buffer;
     static final short bufferSize = 200;
     int index = 0;
+    SparseArray<Integer> feedIds;
 
 	public InsertItemIntoDatabase(DatabaseConnection dbConn) {
 		this.dbConn = dbConn;
         buffer = new RssFile[bufferSize];
+
+        feedIds = dbConn.getFeedIds();
 	}
 
     private static RssFile parseItem(JSONObject e)
@@ -70,7 +73,7 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
         buffer[index] = rssFile;
         index++;
 
-        String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
+        String FeedId_Db = feedIds.get(rssFile.getFeedID());
         if(FeedId_Db != null) {
             rssFile.setFeedID_Db(FeedId_Db);
             result = !rssFile.getRead();

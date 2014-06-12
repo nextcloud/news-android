@@ -29,6 +29,7 @@
         android:gravity="center_vertical|right"
         android:singleLine="true"
         android:layout_marginRight="20dp"
+        android:layout_marginLeft="5dp"
         android:textColor="@color/slider_listview_text_color_dark_theme" />
 
 </LinearLayout>
