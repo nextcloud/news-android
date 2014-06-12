@@ -77,7 +77,7 @@
 			            android:gravity="center_vertical"
 			            android:layout_gravity="left"
 			            android:singleLine="true"
-			            android:text="Test"
+			            android:text="Testfdsahj kfdhsajk fhdjaks fhjdksal fhjlads"
 			            android:layout_weight="1"
 			            android:textSize="13sp" />
 
@@ -88,6 +88,7 @@
 			            android:ellipsize="end"
 			            android:gravity="center_vertical"
 			            android:layout_gravity="right"
+                        android:layout_marginLeft="5dp"
 			            android:text="Hi"
 			            android:singleLine="true"
 			            android:textSize="13sp" />
