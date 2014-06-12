@@ -195,6 +195,10 @@ public class OwnCloudReaderMethods {
     		//reader.endObject();
     		count++;
         }
+
+        if(iJoBj instanceof  InsertItemIntoDatabase)
+            ((InsertItemIntoDatabase) iJoBj).performDatabaseBatchInsert(); //Save pending buffer
+
         //reader.endArray();
         //reader.endObject();
         reader.close();
@@ -237,6 +241,10 @@ public class OwnCloudReaderMethods {
     		//reader.endObject();
     		count++;
         }
+
+        if(iJoBj instanceof  InsertItemIntoDatabase)
+            ((InsertItemIntoDatabase) iJoBj).performDatabaseBatchInsert(); //Save pending buffer
+
         //reader.endArray();
         //reader.endObject();
         reader.close();

@@ -23,25 +23,23 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import org.json.JSONObject;
 
-import java.lang.Override;
 import java.util.Date;
 
 import de.luhmer.owncloudnewsreader.data.RssFile;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 
 public class InsertItemIntoDatabase implements IHandleJsonObject {
-	
+
 	DatabaseConnection dbConn;
-    List<RssFile> buffer;
+    RssFile[] buffer;
     static final short bufferSize = 200;
-    int count = 0;
+    int index = 0;
 
 	public InsertItemIntoDatabase(DatabaseConnection dbConn) {
 		this.dbConn = dbConn;
-        buffer = ArrayList<RssFile>(bufferSize);
+        buffer = new RssFile[bufferSize];
 	}
-	
+
     private static RssFile parseItem(JSONObject e)
 	{
 		Date date = new Date(e.optLong("pubDate") * 1000);
@@ -58,26 +56,41 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
                                 !e.optBoolean("unread"), null,
                                 e.optString("feedId"), null,
                                 date, e.optBoolean("starred"),
-                                e.optString("guid"), e.optString("guidHash"),
+                                e.optString("guid"),
+                                e.optString("guidHash"),
                                 e.optString("lastModified"),
                                 e.optString("author"));
 	}
 
 	@Override
 	public boolean performAction(JSONObject jObj) {
-		RssFile rssFile = parseItem(jObj);
-        buffer.add(rssFile);
-        count++;
+        boolean result = false;
 
-        if(count >= bufferSize) {
+		RssFile rssFile = parseItem(jObj);
+        buffer[index] = rssFile;
+        index++;
+
+        String FeedId_Db = dbConn.getRowIdBySubscriptionID(String.valueOf(rssFile.getFeedID()));
+        if(FeedId_Db != null) {
+            rssFile.setFeedID_Db(FeedId_Db);
+            result = !rssFile.getRead();
+        }
+
+        if(index >= bufferSize) {
             performDatabaseBatchInsert();
         }
-	}
+
+        return result;
+    }
 
 
     public boolean performDatabaseBatchInsert() {
-        dbConn.insertNewItems(buffer);
-        count = 0;
-        buffer.clear();
+        if(index > 0) {
+            dbConn.insertNewItems(buffer);
+            index = 0;
+            buffer = new RssFile[bufferSize];
+        }
+
+        return true;
     }
 }

@@ -30,14 +30,11 @@ import android.util.Log;
 import android.util.SparseArray;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.UnreadFolderCount;
-import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
-import de.luhmer.owncloudnewsreader.data.DatabaseFeedItem;
 import de.luhmer.owncloudnewsreader.data.RssFile;
 
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS;
@@ -877,11 +874,12 @@ public class DatabaseConnection {
         return database.update(SUBSCRIPTION_TABLE, contentValues, SUBSCRIPTION_ID  + "= ?", new String[] { subscription_id });
     }
 
-    public void insertNewItems(List<RssFile> items) {
+    public void insertNewItems(RssFile[] items) {
         database.beginTransaction();
         try {
             for(RssFile item : items) {
-                insertNewItem(item, true);
+                Boolean isFeedAlreadyInDatabase = doesRssItemAlreadyExsists(item.getItem_Id());
+                insertNewItem(item, isFeedAlreadyInDatabase);
             }
             database.setTransactionSuccessful();
         } catch (SQLException e) {
