@@ -350,9 +350,9 @@ public class LoginDialogFragment extends SherlockDialogFragment implements IAcco
 		mOc_root_path_View.setError(null);
 
 		// Store values at the time of the login attempt.
-		mUsername = mUsernameView.getText().toString();
+		mUsername = mUsernameView.getText().toString().trim();
 		mPassword = mPasswordView.getText().toString();
-		mOc_root_path = mOc_root_path_View.getText().toString();
+		mOc_root_path = mOc_root_path_View.getText().toString().trim();
 
 		boolean cancel = false;
 		View focusView = null;
