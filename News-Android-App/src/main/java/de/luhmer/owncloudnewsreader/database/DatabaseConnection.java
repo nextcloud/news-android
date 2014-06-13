@@ -876,10 +876,15 @@ public class DatabaseConnection {
 
     public void insertNewItems(RssFile[] items) {
         database.beginTransaction();
+
+        List<Integer> rssItems = getRssItemsIds();
+
         try {
             for(RssFile item : items) {
-                Boolean isFeedAlreadyInDatabase = doesRssItemAlreadyExsists(item.getItem_Id());
-                insertNewItem(item, isFeedAlreadyInDatabase);
+                if(item != null) {
+                    boolean isFeedAlreadyInDatabase = rssItems.contains(item.getItem_Id()); //doesRssItemAlreadyExsists(item.getItem_Id());
+                    insertNewItem(item, !isFeedAlreadyInDatabase);
+                }
             }
             database.setTransactionSuccessful();
         } catch (SQLException e) {
@@ -913,7 +918,7 @@ public class DatabaseConnection {
         else
             result = database.update(RSS_ITEM_TABLE, contentValues, RSS_ITEM_RSSITEM_ID + "=?", new String[] { item.getItem_Id() });
 
-        Log.d("DatabaseConnection", "Inserted Rows: " + result);
+        //Log.d("DatabaseConnection", "Inserted Rows: " + result);
     }
 
     public HashMap<String, String> getListOfFolders () {
@@ -953,7 +958,7 @@ public class DatabaseConnection {
 
     public SparseArray<String> getFeedIds() {
         String buildSQL = "SELECT " + SUBSCRIPTION_ID + ", rowid as _id FROM " + SUBSCRIPTION_TABLE;
-        return getSparseArrayFromSQL(buildSQL);
+        return getSparseArrayFromSQL(buildSQL, 0, 1);
     }
 
 	public String getRowIdBySubscriptionID (String StreamID) {
@@ -1013,6 +1018,33 @@ public class DatabaseConnection {
             return false;
     }
 
+    public List<Integer> getRssItemsIds() {
+        String buildSQL = "SELECT " + RSS_ITEM_RSSITEM_ID + " FROM " + RSS_ITEM_TABLE;
+        Cursor cursor = database.rawQuery(buildSQL, null);
+        return convertCursorToIntArray(cursor, 0);
+    }
+
+    public List<Integer> convertCursorToIntArray(Cursor cursor, int column_id)
+    {
+        List<Integer> items = new ArrayList<Integer>();
+        try
+        {
+            if(cursor != null)
+            {
+                if(cursor.getCount() > 0)
+                {
+                    cursor.moveToFirst();
+                    do {
+                        items.add(cursor.getInt(column_id));
+                    } while(cursor.moveToNext());
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+        return items;
+    }
+
 	public List<String> convertCursorToStringArray(Cursor cursor, int column_id)
 	{
 	    List<String> items = new ArrayList<String>();
@@ -1032,7 +1064,6 @@ public class DatabaseConnection {
 	    	cursor.close();
 	    }
 	    return items;
-
 	}
 
 	private String getStringValueBySQL(String buildSQL)

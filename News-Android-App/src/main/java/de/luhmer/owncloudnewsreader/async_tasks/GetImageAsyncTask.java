@@ -27,6 +27,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.util.ByteArrayBuffer;
 
@@ -43,26 +44,26 @@ import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
 public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 {
-	//private static final String TAG = "GetImageAsyncTask";
+	private static final String TAG = "GetImageAsyncTask";
 
 	//private static int count = 0;
-	
+
 	private URL WEB_URL_TO_FILE;
 	private ImageDownloadFinished imageDownloadFinished;
 	private int AsyncTaskId;
 	private String rootPath;
 	private Context cont;
-	
+
 	private BitmapDrawableLruCache lruCache;
-	
+
 	public String feedID = null;
 	public boolean scaleImage = false;
 	public int dstHeight; // height in pixels
 	public int dstWidth; // width in pixels
-	
+
 	//private ImageView imgView;
 	//private WeakReference<ImageView> imageViewReference;
-	
+
 	public GetImageAsyncTask(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, int AsynkTaskId, String rootPath, Context cont/*, ImageView imageView*/, BitmapDrawableLruCache lruCache) {
 		try
 		{
@@ -70,7 +71,8 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 		}
 		catch(Exception ex)
 		{
-			ex.printStackTrace();
+            Log.d(TAG, ex.getLocalizedMessage() + " - URL: " + WEB_URL_TO_FILE);
+			//ex.printStackTrace();
 		}
 		this.lruCache = lruCache;
 		this.cont = cont;
@@ -79,7 +81,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 		this.rootPath = rootPath;
 		//this.imageViewReference = new WeakReference<ImageView>(imageView);
 	}
-	
+
 	@Override
 	protected void onPostExecute(String result) {
 		if(imageDownloadFinished != null)
@@ -101,15 +103,15 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 				dir.mkdirs();
 				cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
 				//cacheFile.createNewFile();
-				
-				
-				
+
+
+
 				/* Open a connection to that URL. */
                 URLConnection urlConn = WEB_URL_TO_FILE.openConnection();
 
                 urlConn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
-                
-                
+
+
                 /*
                  * Define InputStreams to read from the URLConnection.
                  */
@@ -136,18 +138,18 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
                 FileOutputStream fos = new FileOutputStream(cacheFile);
                 fos.write(baf.toByteArray());
                 fos.close();
-				
-				
+
+
 				/*
 				FileOutputStream fOut = new FileOutputStream(cacheFile);
 				Bitmap mBitmap = BitmapFactory.decodeStream(WEB_URL_TO_FILE.openStream());
-				
+
 				Log.d(TAG, "Downloading image: " + WEB_URL_TO_FILE.toString());
-				
-				if(mBitmap != null) {					
+
+				if(mBitmap != null) {
 					if(scaleImage)
 						mBitmap = Bitmap.createScaledBitmap(mBitmap, dstWidth, dstHeight, true);
-					
+
 					mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
 				}
 				fOut.close();
@@ -161,7 +163,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 					HashMap<File, Long> files;
 					long size = ImageHandler.getFolderSize(new File(ImageHandler.getPath(cont)));
 					size = (long) (size / 1024d / 1024d);
-					
+
 					SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
 					int max_allowed_size = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, "1000"));//Default is 1Gb --> 1000mb
 					if(size > max_allowed_size)
@@ -171,7 +173,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 						{
 							files.put(file, file.lastModified());
 						}
-						
+
 						for(Object itemObj : sortHashMapByValuesD(files).entrySet())
 						{
 							File file = (File) itemObj;
@@ -187,11 +189,11 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 		}
 		catch(Exception ex)
 		{
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}
 	    return null;
 	}
 
-	
+
 
 }

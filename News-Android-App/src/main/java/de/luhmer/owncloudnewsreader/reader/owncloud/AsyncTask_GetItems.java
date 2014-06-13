@@ -31,6 +31,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.DownloadImagesActivity;
@@ -46,13 +47,23 @@ import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 public class AsyncTask_GetItems extends AsyncTask_Reader {
     private long highestItemIdBeforeSync;
     private API api;
+    int totalCount;
 
     public AsyncTask_GetItems(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
     	super(task_id, context, listener);
     	this.api = api;
+
+        totalCount = 0;
     }
 
-	@Override
+    @Override
+    protected void onProgressUpdate(Void... values) {
+        Toast.makeText(context, "Fetched " + totalCount + " items so far..", Toast.LENGTH_SHORT).show();
+
+        super.onProgressUpdate(values);
+    }
+
+    @Override
 	protected Exception doInBackground(Object... params) {
 		DatabaseConnection dbConn = new DatabaseConnection(context);
         try {
@@ -78,16 +89,16 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         	{
                 int maxItemsInDatabase = Constants.maxItemsCount;
 
-                int totalCount = 0;
                 do {
 	        		requestCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), false, "0", "3", api);
 	        		if(requestCount > 0)
 	        			offset = dbConn.getLowestItemId(false);
 	        		totalCount += requestCount;
-	        	} while(requestCount == maxSyncSize);
+
+                    publishProgress((Void) null);
+                } while(requestCount == maxSyncSize);
 
                 mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, totalCount).commit();
-
 
                 do {
 	        		offset = dbConn.getLowestItemId(true);

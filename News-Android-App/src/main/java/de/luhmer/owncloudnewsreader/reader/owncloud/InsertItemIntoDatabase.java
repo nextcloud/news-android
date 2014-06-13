@@ -21,6 +21,8 @@
 
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
+import android.util.SparseArray;
+
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -34,7 +36,7 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
     RssFile[] buffer;
     static final short bufferSize = 200;
     int index = 0;
-    SparseArray<Integer> feedIds;
+    SparseArray<String> feedIds;
 
 	public InsertItemIntoDatabase(DatabaseConnection dbConn) {
 		this.dbConn = dbConn;
@@ -73,7 +75,7 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
         buffer[index] = rssFile;
         index++;
 
-        String FeedId_Db = feedIds.get(rssFile.getFeedID());
+        String FeedId_Db = feedIds.get(Integer.parseInt(rssFile.getFeedID()));
         if(FeedId_Db != null) {
             rssFile.setFeedID_Db(FeedId_Db);
             result = !rssFile.getRead();

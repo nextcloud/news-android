@@ -51,7 +51,7 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public class OwnCloudReaderMethods {
 	//private static final String TAG = "OwnCloudReaderMethods";
-	public static String maxSizePerSync = "200";
+	public static String maxSizePerSync = "300";
 
 	public static int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception
 	{
