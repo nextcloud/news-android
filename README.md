@@ -67,10 +67,16 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 Updates
 ==================================
 
-0.6.7 (in development)
+0.6.8 (in development)
 ---------------------
 
-0.6.6 (Google Play - Beta)
+0.6.7 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/226">#226 Poor sync performance under high count of unread articles</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/227">#227 Images appears in android gallery apps</a>
+
+
+0.6.6 (Google Play)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/223">#223 All unread article counts are 0</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/220">#220 Wrong display of unread items</a>
