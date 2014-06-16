@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">Auto sincronização</string>
-  <string name="app_name">Leitor de notícias do ownCloud</string>
-  <string name="title_activity_sync_interval_selector">Seletor de Intervalo de sincronização</string>
+  <string name="app_name">Leitor de Notícias do ownCloud</string>
+  <string name="title_activity_sync_interval_selector">Seletor de Intervalo de Sincronização</string>
   <string name="title_activity_news_detail">Detalhes da notícia</string>
   <string name="title_activity_subscription">Ativar subscrição</string>
-  <string name="title_newsreader_list">Leitor de notícias</string>
-  <string name="title_newsreader_detail">Detalhes do leitor de notícias</string>
+  <string name="title_newsreader_list">Leitor de Notícias</string>
+  <string name="title_newsreader_detail">Detalhes do Leitor de Notícias</string>
   <string name="empty_view_header">Informações</string>
   <string name="empty_view_content">Este local está vazio</string>
   <string name="toast_GettingMoreItems">Download de mais itens já iniciado.. Por favor, aguarde.</string>
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir um item</string>
   <string name="no_wifi_available">Nenhum WiFi conectado</string>
   <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
-  <string name="max_items_count_reached">Você atingiu o tamanho maxiumum de XX itens</string>
+  <string name="max_items_count_reached">Você atingiu o tamanho máximo de XX itens</string>
   <string name="widget_header">Notícias ownCloud</string>
   <string name="message_bar_new_articles_available">Novos itens disponíveis</string>
   <string name="message_bar_reload">Recarregar</string>
@@ -29,16 +29,16 @@
   <!--Import Accounts-->
   <string name="import_account_dialog_title">Importar Conta</string>
   <!--EMAIL-->
-  <string name="email_sourceCode">Código-fonte do item - Reportar erros</string>
+  <string name="email_sourceCode">Código-fonte do item - Relatório de Erros</string>
   <string name="email_sendMail">Enviar e-mail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Vistos</string>
-  <string name="action_read">Leia</string>
-  <string name="action_openInBrowser">Abrir no navegador</string>
-  <string name="action_sendSourceCode">Enviar item ao desenvolvedor</string>
+  <string name="action_read">Ler</string>
+  <string name="action_openInBrowser">Abrir no Navegador</string>
+  <string name="action_sendSourceCode">Enviar item ao Desenvolvedor</string>
   <string name="action_Share">Compartilhar</string>
   <string name="action_login">Configurações do servidor</string>
-  <string name="action_save">Guardar</string>
+  <string name="action_save">Salvar</string>
   <string name="action_settings">Configurações</string>
   <string name="action_sync_settings">Configurações de Sincronização</string>
   <string name="action_add_new_feed">Adicionar novo feed</string>
@@ -50,7 +50,7 @@
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
-  <string name="action_sign_in_short">Login</string>
+  <string name="action_sign_in_short">Entrar</string>
   <string name="login_progress_signing_in">Fazendo login...</string>
   <string name="error_incorrect_password">A senha está incorreta</string>
   <string name="error_field_required">Este campo é obrigatório</string>
@@ -66,7 +66,7 @@
   <string name="title_activity_settings">Configurações</string>
   <!--General settings-->
   <string name="pref_header_general">Geral</string>
-  <string name="pref_title_general_sort_order">Classificar Ordenação</string>
+  <string name="pref_title_general_sort_order">Ordem de Classificação</string>
   <string-array name="pref_general_sort_order">
     <item>Novo -&gt; Antigo</item>
     <item>Antigo -&gt; Novo</item>
@@ -101,7 +101,7 @@
   <string name="mtm_decision_abort">Abortar</string>
   <string name="mtm_notification">Verificação de Certificado</string>
   <!--Settings for Display-->
-  <string name="pref_header_display">Display</string>
+  <string name="pref_header_display">Exibir</string>
   <string name="pref_title_app_theme">Tema do aplicativo (é preciso reiniciar o aplicativo para as mudanças terem efeito)</string>
   <string name="pref_title_feed_list_layout">Layout da lista de feeds</string>
   <string name="pref_display_font_layout">Fonte (requer reinicialização para aplicar)</string>
@@ -116,7 +116,7 @@
   <string-array name="pref_display_feed_list_layout">
     <item>Simples</item>
     <item>Estendido</item>
-    <item>Estendido com modo Web</item>
+    <item>Estendido com modo Webview</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
