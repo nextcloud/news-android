@@ -882,7 +882,8 @@ public class DatabaseConnection {
         try {
             for(RssFile item : items) {
                 if(item != null) {
-                    boolean isFeedAlreadyInDatabase = rssItems.contains(item.getItem_Id()); //doesRssItemAlreadyExsists(item.getItem_Id());
+                    Integer itemId = Integer.parseInt(item.getItem_Id());
+                    boolean isFeedAlreadyInDatabase = rssItems.contains(itemId); //doesRssItemAlreadyExsists(item.getItem_Id());
                     insertNewItem(item, !isFeedAlreadyInDatabase);
                 }
             }

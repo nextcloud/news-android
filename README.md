@@ -69,6 +69,8 @@ Updates
 
 0.6.8 (in development)
 ---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/232">#232 Sync of already read items creates duplicate items</a>
+
 
 0.6.7 (Google Play - Beta)
 ---------------------
