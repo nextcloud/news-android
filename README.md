@@ -67,14 +67,18 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 Updates
 ==================================
 
-0.6.8 (in development)
+0.6.9 (in development)
+---------------------
+
+0.6.8 (Google Play - Beta)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/232">#232 Sync of already read items creates duplicate items</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/230">#230 Leaving space after ownCloud address in the Login dialog produces an error</a>
 
 
 0.6.7 (Google Play - Beta)
 ---------------------
-- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/226">#226 Poor sync performance under high count of unread articles</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/226">#226 Poor sync performance under high count of unread articles</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/227">#227 Images appears in android gallery apps</a>
 
 
