@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">Laadi pildid alla</string>
   <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Impordi konto</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Lähtekoodi üksus - vearaport</string>
   <string name="email_sendMail">Saada e-mail</string>
