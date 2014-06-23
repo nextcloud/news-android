@@ -49,15 +49,15 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.data.AbstractItem;
-import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
-import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
+import de.luhmer.owncloudnewsreader.model.AbstractItem;
+import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
+import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
@@ -554,6 +554,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private class NotifyDataSetChangedAsyncTask extends AsyncTask<Void, Void, Void> {
         // Block children layout for now
         BlockingExpandableListView bView;
+        SparseArray<String> unreadCountFoldersTemp;
+        SparseArray<String> unreadCountFeedsTemp;
+        SparseArray<String> urlsToFavIconsTemp;
 
 
         @Override
@@ -564,14 +567,18 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         @Override
         protected Void doInBackground(Void... voids) {
-            unreadCountFolders = dbConn.getUnreadItemCountForFolder(mContext);
-            unreadCountFeeds = dbConn.getUnreadItemCountForFeed();
-            urlsToFavIcons = dbConn.getUrlsToFavIcons();
+            unreadCountFoldersTemp = dbConn.getUnreadItemCountForFolder(mContext);
+            unreadCountFeedsTemp = dbConn.getUnreadItemCountForFeed();
+            urlsToFavIconsTemp = dbConn.getUrlsToFavIcons();
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
+            unreadCountFolders = unreadCountFoldersTemp;
+            unreadCountFeeds = unreadCountFeedsTemp;
+            urlsToFavIcons = urlsToFavIconsTemp;
+
             int firstVisPos = bView.getFirstVisiblePosition();
             View firstVisView = bView.getChildAt(0);
             int top = firstVisView != null ? firstVisView.getTop() : 0;
