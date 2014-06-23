@@ -89,6 +89,8 @@ public class SettingsActivity extends SherlockPreferenceActivity {
     public static final String CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING = "cb_openInBrowserDirectly";
     public static final String CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING = "cb_showNotificationNewArticles";
 
+    public static final String CB_ENABLE_PODCASTS_STRING = "cb_enablePodcasts";
+
 
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
@@ -157,10 +159,16 @@ public class SettingsActivity extends SherlockPreferenceActivity {
         getPreferenceScreen().addPreference(header);
         addPreferencesFromResource(R.xml.pref_notification);
 
+        header = new PreferenceCategory(this);
+        header.setTitle(R.string.pref_header_notifications);
+        getPreferenceScreen().addPreference(header);
+        addPreferencesFromResource(R.xml.pref_podcast);
+
 		bindGeneralPreferences(null, this);
 		bindDisplayPreferences(null, this);
 		bindDataSyncPreferences(null, this);
         bindNotificationPreferences(null, this);
+        bindPodcastPreferences(null, this);
 	}
 
 	/* (non-Javadoc)
@@ -310,6 +318,22 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 			bindGeneralPreferences(this, null);
 		}
 	}
+
+    /**
+     * This fragment shows notification preferences only. It is used when the
+     * activity is showing a two-pane settings UI.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class PodcastPreferenceFragment extends
+            PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_podcast);
+
+            bindPodcastPreferences(this, null);
+        }
+    }
 
 
 	/**
@@ -463,6 +487,19 @@ public class SettingsActivity extends SherlockPreferenceActivity {
         else
         {
             bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING));
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private static void bindPodcastPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
+    {
+        if(prefFrag != null)
+        {
+            bindPreferenceBooleanToValue(prefFrag.findPreference(CB_ENABLE_PODCASTS_STRING));
+        }
+        else
+        {
+            bindPreferenceBooleanToValue(prefAct.findPreference(CB_ENABLE_PODCASTS_STRING));
         }
     }
 

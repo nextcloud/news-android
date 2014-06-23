@@ -25,26 +25,26 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 
 public class InsertFeedIntoDatabase implements IHandleJsonObject{
-	
+
 	DatabaseConnection dbConn;
 	ArrayList<ConcreteFeedItem> feeds = new ArrayList<ConcreteFeedItem>();
-	
+
 	public InsertFeedIntoDatabase(DatabaseConnection dbConn) {
 		this.dbConn = dbConn;
 	}
-	
+
     private static ConcreteFeedItem parseFeed(JSONObject e)
 	{
     	String faviconLink = e.optString("faviconLink");
         if(faviconLink != null)
             if(faviconLink.equals("null") || faviconLink.trim().equals(""))
                 faviconLink = null;
-        
+
         return new ConcreteFeedItem(e.optString("title"), e.optString("folderId"), e.optString("id"), faviconLink, -1);
 	}
 
@@ -54,7 +54,7 @@ public class InsertFeedIntoDatabase implements IHandleJsonObject{
 		feeds.add(rssFeed);
         return true;
 	}
-	
+
 	public void WriteAllToDatabaseNow() {
 		InsertIntoDatabase.InsertSubscriptionsIntoDatabase(feeds, dbConn);
 	}

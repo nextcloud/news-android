@@ -19,7 +19,7 @@
 *
 */
 
-package de.luhmer.owncloudnewsreader.data;
+package de.luhmer.owncloudnewsreader.model;
 
 public abstract class AbstractItem {
     public long id_database;

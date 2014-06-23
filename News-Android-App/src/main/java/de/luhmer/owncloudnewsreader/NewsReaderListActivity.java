@@ -41,6 +41,7 @@ import android.view.View;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
@@ -53,6 +54,7 @@ import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
+import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefreshLayout;
 
 /**
@@ -70,6 +72,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		 NewsReaderListFragment.Callbacks {
 
 	private SlidingPaneLayout mSlidingLayout;
+    public PodcastSlidingUpPanelLayout sliding_layout;
 
 	//static final String TAG = "NewsReaderListActivity";
 	//ActionBarDrawerToggle drawerToggle;
@@ -80,6 +83,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
 
+    PodcastFragment podcastFragment;
+    boolean isSlideUpPanelExpanded = false;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -126,6 +131,38 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
                    		.commit();
 
 
+
+
+
+
+        sliding_layout = (PodcastSlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        UpdatePodcastView();
+
+        sliding_layout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View view, float v) {
+
+            }
+
+            @Override
+            public void onPanelCollapsed(View view) {
+                isSlideUpPanelExpanded = false;
+            }
+
+            @Override
+            public void onPanelExpanded(View view) {
+                isSlideUpPanelExpanded = true;
+            }
+
+            @Override
+            public void onPanelAnchored(View view) {
+
+            }
+        });
+
+
+
+
         mSlidingLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane);
 
         mSlidingLayout.setParallaxDistance(280);
@@ -159,6 +196,16 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		});
         mSlidingLayout.openPane();
 
+
+
+
+
+
+
+
+
+
+
         /*
 		// Get a reference of the DrawerLayout
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -191,11 +238,32 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         //onTopItemClicked(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
     }
 
+
 	private static final String FIRST_VISIBLE_DETAIL_ITEM_STRING = "FIRST_VISIBLE_DETAIL_ITEM_STRING";
 	private static final String FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING = "FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING";
 	private static final String ID_FEED_STRING = "ID_FEED_STRING";
 	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
 	private static final String OPTIONAL_FOLDER_ID ="OPTIONAL_FOLDER_ID";
+
+
+    public void UpdatePodcastView() {
+
+        if(podcastFragment != null) {
+            getSupportFragmentManager().beginTransaction().remove(podcastFragment).commitAllowingStateLoss();
+        }
+
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false)) {
+            podcastFragment = PodcastFragment.newInstance(null, null);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.podcast_frame, podcastFragment)
+                    .commitAllowingStateLoss();
+        } else {
+            sliding_layout.getChildAt(1).setVisibility(View.GONE);
+            podcastFragment = null;
+        }
+    }
 
 	/* (non-Javadoc)
 	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
@@ -215,6 +283,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			outState.putString(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFolder() : ndf.getIdFeed());
 		}
 
+        //outState.putString("WORKAROUND_FOR_BUG_19917_KEY", "WORKAROUND_FOR_BUG_19917_VALUE");
 		super.onSaveInstanceState(outState);
 	}
 
@@ -436,9 +505,11 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 	@Override
 	public void onBackPressed() {
-		if(mSlidingLayout.isOpen())
+        if(podcastFragment != null && isSlideUpPanelExpanded) {
+            if (!podcastFragment.onBackPressed())
+                sliding_layout.collapsePane();
+        } else if(mSlidingLayout.isOpen())
 			super.onBackPressed();
-			//mSlidingLayout.closePane();
 		else
 			mSlidingLayout.openPane();
 	}
@@ -527,6 +598,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         {
         	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).ReloadAdapter();
         	((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCursor();
+
+            UpdatePodcastView();
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
             if(data != null) {
                 boolean val = data.getBooleanExtra(NewFeedActivity.ADD_NEW_SUCCESS, false);

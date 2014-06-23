@@ -27,9 +27,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.data.ConcreteFeedItem;
-import de.luhmer.owncloudnewsreader.data.RssFile;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
+import de.luhmer.owncloudnewsreader.model.RssFile;
 
 /**
  * Created by David on 24.05.13.

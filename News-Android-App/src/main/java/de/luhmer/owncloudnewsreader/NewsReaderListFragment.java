@@ -60,12 +60,12 @@ import org.apache.http.conn.HttpHostConnectException;
 import de.luhmer.owncloudnewsreader.Constants.SYNC_TYPES;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
-import de.luhmer.owncloudnewsreader.data.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
+import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncServiceCallback;
 import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
@@ -133,8 +133,11 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 						public void run() {
                         ReloadAdapter();
                         NewsReaderListActivity nlActivity = (NewsReaderListActivity) getActivity();
-						if (nlActivity != null)
-							nlActivity.UpdateItemList();
+						if (nlActivity != null) {
+                            nlActivity.UpdateItemList();
+
+                            nlActivity.UpdatePodcastView();
+                        }
 
                         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                         int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
@@ -501,6 +504,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		eListView.setAdapter(lvAdapter);
 
 
+        lvAdapter.notifyDataSetChanged();
         ReloadAdapter();
 
 		return view;

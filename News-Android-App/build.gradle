@@ -1,12 +1,15 @@
 apply plugin: 'android'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
     defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 19
+        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
     }
+
     buildTypes {
         release {
             runProguard false
@@ -23,11 +26,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.0.+'
-    compile 'com.jakewharton:butterknife:5.1.+'
-    compile 'com.squareup.picasso:picasso:2.3.1@jar'
-    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
-    compile 'com.github.chrisbanes.actionbarpulltorefresh:extra-abs:+'
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // compile 'com.google.android.gms:play-services:4.2.42'
@@ -36,4 +34,11 @@ dependencies {
     compile project(':Changeloglib:ChangeLogLibrary')
     compile project(':MessageBar')
     compile project(':ownCloud-Account-Importer')
+    compile 'com.android.support:support-v4:19.0.+'
+    compile 'com.jakewharton:butterknife:5.1.+'
+    compile 'com.squareup.picasso:picasso:2.3.1@jar'
+    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+    compile 'com.github.chrisbanes.actionbarpulltorefresh:extra-abs:+'
+    compile 'com.sothree.slidinguppanel:library:+'
+    compile 'de.greenrobot:eventbus:2.2.1'
 }

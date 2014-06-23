@@ -35,7 +35,9 @@ import java.util.List;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.UnreadFolderCount;
-import de.luhmer.owncloudnewsreader.data.RssFile;
+import de.luhmer.owncloudnewsreader.model.AudioPodcastItem;
+import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
+import de.luhmer.owncloudnewsreader.model.RssFile;
 
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
@@ -114,6 +116,10 @@ public class DatabaseConnection {
 
     public static final String RSS_CURRENT_VIEW_TABLE = "rss_current_view";
     public static final String RSS_CURRENT_VIEW_RSS_ITEM_ID = "rss_current_view_rss_item_id";
+
+    public static final String RSS_ITEM_ENC_MIME = "enclosureMime";
+    public static final String RSS_ITEM_ENC_LINK = "enclosureLink";
+
 
 
     public enum SORT_DIRECTION { asc, desc }
@@ -913,6 +919,9 @@ public class DatabaseConnection {
         contentValues.put(RSS_ITEM_READ_TEMP, item.getRead());
 		contentValues.put(RSS_ITEM_STARRED_TEMP, item.getStarred());
 
+        contentValues.put(RSS_ITEM_ENC_LINK, item.getEnclosureLink());
+        contentValues.put(RSS_ITEM_ENC_MIME, item.getEnclosureMime());
+
         long result;
         if(insertItem)
             result = database.insert(RSS_ITEM_TABLE, null, contentValues);
@@ -920,6 +929,69 @@ public class DatabaseConnection {
             result = database.update(RSS_ITEM_TABLE, contentValues, RSS_ITEM_RSSITEM_ID + "=?", new String[] { item.getItem_Id() });
 
         //Log.d("DatabaseConnection", "Inserted Rows: " + result);
+    }
+
+    public List<PodcastFeedItem> getListOfFeedsWithAudioPodcasts() {
+
+        String buildSQL = "SELECT DISTINCT sc.rowid, " + SUBSCRIPTION_HEADERTEXT + ", COUNT(rss.rowid) FROM " + SUBSCRIPTION_TABLE + " sc " +
+                            " JOIN " + RSS_ITEM_TABLE + " rss ON sc.rowid = rss." + RSS_ITEM_SUBSCRIPTION_ID +
+                            " WHERE rss." + RSS_ITEM_ENC_MIME + " IN ('audio/mp3') GROUP BY sc.rowid";
+
+        List<PodcastFeedItem> result = new ArrayList<PodcastFeedItem>();
+        Cursor cursor = database.rawQuery(buildSQL, null);
+        try
+        {
+            if(cursor != null)
+            {
+                if(cursor.getCount() > 0)
+                {
+                    cursor.moveToFirst();
+                    do {
+                        PodcastFeedItem podcastItem = new PodcastFeedItem();
+                        podcastItem.itemId = cursor.getString(0);
+                        podcastItem.title = cursor.getString(1);
+                        podcastItem.count = cursor.getInt(2);
+                        result.add(podcastItem);
+                    } while(cursor.moveToNext());
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return result;
+    }
+
+    public List<AudioPodcastItem> getListOfAudioPodcastsForFeed(String feedId) {
+
+        String buildSQL = "SELECT rowid, " + RSS_ITEM_TITLE + ", " + RSS_ITEM_ENC_LINK + ", " + RSS_ITEM_ENC_MIME + " FROM " + RSS_ITEM_TABLE +
+                " WHERE " + RSS_ITEM_ENC_MIME + " IN ('audio/mp3') AND " + RSS_ITEM_SUBSCRIPTION_ID + " = " + feedId;
+
+
+        List<AudioPodcastItem> result = new ArrayList<AudioPodcastItem>();
+        Cursor cursor = database.rawQuery(buildSQL, null);
+        try
+        {
+            if(cursor != null)
+            {
+                if(cursor.getCount() > 0)
+                {
+                    cursor.moveToFirst();
+                    do {
+                        AudioPodcastItem podcastItem = new AudioPodcastItem();
+                        podcastItem.itemId = cursor.getString(0);
+                        podcastItem.title = cursor.getString(1);
+                        podcastItem.link = cursor.getString(2);
+                        podcastItem.mimeType = cursor.getString(3);
+                        result.add(podcastItem);
+                    } while(cursor.moveToNext());
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return result;
     }
 
     public HashMap<String, String> getListOfFolders () {

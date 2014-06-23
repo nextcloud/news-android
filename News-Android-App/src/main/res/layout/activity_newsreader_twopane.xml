@@ -4,20 +4,40 @@
     android:id="@+id/sliding_pane"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
-    
+
+
     <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderListFragment" -->
-    <FrameLayout        
+    <FrameLayout
         android:id="@+id/left_drawer"
         android:layout_width="350dp"
         android:layout_height="match_parent"
         android:layout_gravity="start" />
-    
+
     <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderDetailFragment" -->
-    <FrameLayout
-        android:id="@+id/content_frame"
+
+    <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
+        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_layout"
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
-		
+        android:layout_weight="1"
+        android:gravity="bottom"
+        sothree:panelHeight="68dp"
+        sothree:shadowHeight="4dp"
+        sothree:paralaxOffset="100dp"
+        sothree:dragView="@+id/name">
+
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/podcast_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout>
+
+
 </android.support.v4.widget.SlidingPaneLayout>

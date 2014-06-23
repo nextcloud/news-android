@@ -19,19 +19,15 @@
 *
 */
 
-package de.luhmer.owncloudnewsreader.data;
+package de.luhmer.owncloudnewsreader.model;
 
-public class ConcreteFeedItem extends AbstractItem {
+public class FolderSubscribtionItem extends AbstractItem {
 
-	public String subscription_id;
-    public String favIcon;
 
-	public ConcreteFeedItem(String header, String folder_id, String subscription_id, String favIcon, long id_database/*, String parent_title*/) {
 
-        super(id_database, header, folder_id);
+	public FolderSubscribtionItem(String headerFolder, String idFolder, long idFolder_database, String idSubscription) {
+        super(idFolder_database, headerFolder, String.valueOf(idFolder_database));
 
-		this.subscription_id = subscription_id;
-        this.favIcon = favIcon;
-        this.id_database = id_database;
+		this.idFolder = idFolder;
 	}
 }

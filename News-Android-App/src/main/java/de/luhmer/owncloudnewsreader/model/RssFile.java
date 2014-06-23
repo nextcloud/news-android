@@ -19,7 +19,7 @@
 *
 */
 
-package de.luhmer.owncloudnewsreader.data;
+package de.luhmer.owncloudnewsreader.model;
 
 import java.util.Date;
 import java.util.List;
@@ -33,7 +33,7 @@ public class RssFile {
 	private Boolean Read;
 	private Boolean Starred;
 	private String Author;
-	
+
 
 	//private String StreamID;
 	private String FeedID;
@@ -43,8 +43,13 @@ public class RssFile {
     private String guid;
     private String guidHash;
     private String lastModified;
-	
-	public RssFile(long DB_Id, String Item_Id, String Title, String Link, String Description, Boolean Read, String FeedID_Db, String FeedID, List<String> Categories, /*String StreamID, */Date date, Boolean Starred, String guid, String guidHash, String lastModified, String author) {
+
+    private String enclosureMime;
+    private String enclosureLink;
+
+
+
+    public RssFile(long DB_Id, String Item_Id, String Title, String Link, String Description, Boolean Read, String FeedID_Db, String FeedID, List<String> Categories, /*String StreamID, */Date date, Boolean Starred, String guid, String guidHash, String lastModified, String author, String enclosureLink, String enclosureMime) {
 		this.setDB_Id(DB_Id);
 		this.setTitle(Title);
 		this.setLink(Link);
@@ -60,6 +65,8 @@ public class RssFile {
         this.setFeedID_Db(FeedID_Db);
         this.setLastModified(lastModified);
         this.setAuthor(author);
+        this.setEnclosureLink(enclosureLink);
+        this.setEnclosureMime(enclosureMime);
 	}
 
 	public String getTitle() {
@@ -86,6 +93,23 @@ public class RssFile {
 	public void setRead(Boolean read) {
 		Read = read;
 	}
+
+
+    public void setEnclosureMime(String enclosureMime) {
+        this.enclosureMime = enclosureMime;
+    }
+
+    public void setEnclosureLink(String enclosureLink) {
+        this.enclosureLink = enclosureLink;
+    }
+
+    public String getEnclosureLink() {
+        return enclosureLink;
+    }
+
+    public String getEnclosureMime() {
+        return enclosureMime;
+    }
 
 	public String getFeedID() {
 		return FeedID;
@@ -174,7 +198,7 @@ public class RssFile {
 	public void setLastModified(String lastModified) {
 		this.lastModified = lastModified;
 	}
-	
+
 	/**
 	 * @return the author
 	 */

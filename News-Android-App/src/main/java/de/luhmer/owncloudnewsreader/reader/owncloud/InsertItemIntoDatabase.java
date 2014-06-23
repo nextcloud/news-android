@@ -27,8 +27,8 @@ import org.json.JSONObject;
 
 import java.util.Date;
 
-import de.luhmer.owncloudnewsreader.data.RssFile;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.model.RssFile;
 
 public class InsertItemIntoDatabase implements IHandleJsonObject {
 
@@ -64,7 +64,9 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
                                 e.optString("guid"),
                                 e.optString("guidHash"),
                                 e.optString("lastModified"),
-                                e.optString("author"));
+                                e.optString("author"),
+                                e.optString("enclosureLink"),
+                                e.optString("enclosureMime"));
 	}
 
 	@Override

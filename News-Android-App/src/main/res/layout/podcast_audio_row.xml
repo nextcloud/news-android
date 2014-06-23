@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:padding="10dp"
+    android:gravity="center_vertical"
+    android:background="#ffc3c3c3">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Large Tex dfs hysjd kfhsakj lfhjdaksl fh"
+        android:textColor="#ff161616"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:id="@+id/tv_title" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="3 Podcasts verfügbar!"
+        android:textColor="#ff161616"
+        android:id="@+id/tv_body" />
+
+</LinearLayout>
