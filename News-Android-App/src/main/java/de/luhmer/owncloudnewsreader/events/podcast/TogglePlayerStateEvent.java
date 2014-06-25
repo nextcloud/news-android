@@ -1,4 +1,4 @@
-package de.luhmer.owncloudnewsreader.events;
+package de.luhmer.owncloudnewsreader.events.podcast;
 
 /**
  * Created by David on 20.06.2014.

@@ -9,9 +9,10 @@ import android.os.IBinder;
 import java.io.IOException;
 
 import de.greenrobot.event.EventBus;
-import de.luhmer.owncloudnewsreader.events.OpenAudioPodcastEvent;
-import de.luhmer.owncloudnewsreader.events.TogglePlayerStateEvent;
-import de.luhmer.owncloudnewsreader.events.UpdatePodcastStatusEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.OpenAudioPodcastEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
 import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 
 public class AudioPodcastService extends Service {
@@ -57,17 +58,40 @@ public class AudioPodcastService extends Service {
 
     public static final int delay = 500; //In milliseconds
 
+    private boolean isPreparing = false;
+
     public void openFile(String pathToFile, String mediaTitle) {
         try {
             this.mediaTitle = mediaTitle;
 
+            if(mediaPlayer.isPlaying())
+                pause();
+
+            isPreparing = true;
+            mHandler.postDelayed(mUpdateTimeTask, 0);
+
             mediaPlayer.reset();
             mediaPlayer.setDataSource(pathToFile);
-            mediaPlayer.prepare();
+            mediaPlayer.prepareAsync();
 
-            play();
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    play();
+                    isPreparing = false;
+                }
+            });
+
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    pause();//Send the over signal
+                }
+            });
+
         } catch (IOException e) {
             e.printStackTrace();
+            isPreparing = false;
         }
     }
 
@@ -90,6 +114,14 @@ public class AudioPodcastService extends Service {
         }
     }
 
+    public void onEvent(WindPodcast event) {
+        if(mediaPlayer != null) {
+            double totalDuration = mediaPlayer.getDuration();
+            int position = (int)((totalDuration / 100d) * event.toPositionInPercent);
+            mediaPlayer.seekTo(position);
+        }
+    }
+
     public void onEventBackgroundThread(OpenAudioPodcastEvent event) {
         openFile(event.pathToFile, event.mediaTitle);
     }
@@ -99,6 +131,8 @@ public class AudioPodcastService extends Service {
 
     public void play() {
         mediaPlayer.start();
+
+        mHandler.removeCallbacks(mUpdateTimeTask);
         mHandler.postDelayed(mUpdateTimeTask, 0);
     }
 
@@ -110,8 +144,12 @@ public class AudioPodcastService extends Service {
     }
 
     public void sendMediaStatus() {
-        long totalDuration = mediaPlayer.getDuration();
-        long currentDuration = mediaPlayer.getCurrentPosition();
+        long totalDuration = 0;
+        long currentDuration = 0;
+        if(!isPreparing) {
+            totalDuration = mediaPlayer.getDuration();
+            currentDuration = mediaPlayer.getCurrentPosition();
+        }
 
             /*
             // Displaying Total Duration time
@@ -125,7 +163,7 @@ public class AudioPodcastService extends Service {
             songProgressBar.setProgress(progress);
             */
 
-        UpdatePodcastStatusEvent audioPodcastEvent = new UpdatePodcastStatusEvent(currentDuration, totalDuration, mediaPlayer.isPlaying(), mediaTitle);
+        UpdatePodcastStatusEvent audioPodcastEvent = new UpdatePodcastStatusEvent(currentDuration, totalDuration, mediaPlayer.isPlaying(), mediaTitle, isPreparing);
         eventBus.post(audioPodcastEvent);
     }
 

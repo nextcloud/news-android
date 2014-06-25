@@ -41,7 +41,6 @@ import android.view.View;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
@@ -84,7 +83,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	public static final String TITEL = "TITEL";
 
     PodcastFragment podcastFragment;
-    boolean isSlideUpPanelExpanded = false;
+    //boolean isSlideUpPanelExpanded = false;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -137,29 +136,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
         sliding_layout = (PodcastSlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         UpdatePodcastView();
-
-        sliding_layout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
-            @Override
-            public void onPanelSlide(View view, float v) {
-
-            }
-
-            @Override
-            public void onPanelCollapsed(View view) {
-                isSlideUpPanelExpanded = false;
-            }
-
-            @Override
-            public void onPanelExpanded(View view) {
-                isSlideUpPanelExpanded = true;
-            }
-
-            @Override
-            public void onPanelAnchored(View view) {
-
-            }
-        });
-
 
 
 
@@ -505,7 +481,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 	@Override
 	public void onBackPressed() {
-        if(podcastFragment != null && isSlideUpPanelExpanded) {
+        if(podcastFragment != null && sliding_layout.isExpanded()) {
             if (!podcastFragment.onBackPressed())
                 sliding_layout.collapsePane();
         } else if(mSlidingLayout.isOpen())
@@ -526,7 +502,11 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			switch (item.getItemId()) {
 
 				case android.R.id.home:
-					if(!mSlidingLayout.isOpen())
+                    if(podcastFragment != null && sliding_layout.isExpanded()) {
+                        if (!podcastFragment.onBackPressed())
+                            sliding_layout.collapsePane();
+                    }
+					else if(!mSlidingLayout.isOpen())
 						mSlidingLayout.openPane();
 					return true;
 

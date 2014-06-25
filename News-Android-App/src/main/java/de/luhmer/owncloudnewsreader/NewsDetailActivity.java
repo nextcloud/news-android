@@ -75,6 +75,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	public ViewPager mViewPager;
 	private int currentPosition;
 
+    PodcastFragment podcastFragment;
+
 	PostDelayHandler pDelayHandler;
 
 	MenuItem menuItem_Starred;
@@ -187,7 +189,7 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
     public void UpdatePodcastView() {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         if(mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false)) {
-            PodcastFragment podcastFragment = PodcastFragment.newInstance(null, null);
+            podcastFragment = PodcastFragment.newInstance(null, null);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.podcast_frame, podcastFragment)
                     .commit();
@@ -345,6 +347,15 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
         return new BitmapDrawable(bitmapResized);
     }
 
+    @Override
+    public void onBackPressed() {
+        if(podcastFragment != null && sliding_layout.isExpanded()) {
+            if (!podcastFragment.onBackPressed())
+                sliding_layout.collapsePane();
+        } else
+            super.onBackPressed();
+    }
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -372,7 +383,12 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				super.onBackPressed();
+                if(podcastFragment != null && sliding_layout.isExpanded()) {
+                    if (!podcastFragment.onBackPressed())
+                        sliding_layout.collapsePane();
+                } else {
+                    super.onBackPressed();
+                }
 				break;
 
 			case R.id.action_starred:

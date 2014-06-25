@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.events.AudioPodcastClicked;
+import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
 import de.luhmer.owncloudnewsreader.model.AudioPodcastItem;
 
 /**

@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.events.PodcastFeedClicked;
+import de.luhmer.owncloudnewsreader.events.podcast.PodcastFeedClicked;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 
 /**
@@ -41,7 +41,7 @@ public class PodcastFeedArrayAdapter extends ArrayAdapter<PodcastFeedItem> {
         final PodcastFeedItem feedItem = getItem(position);
 
         holder.tvTitle.setText(feedItem.title);
-        holder.tvBody.setText(feedItem.count + " Podcasts available.");
+        holder.tvBody.setText(feedItem.count + " Podcasts available");
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

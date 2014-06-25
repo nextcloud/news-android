@@ -1,4 +1,4 @@
-package de.luhmer.owncloudnewsreader.events;
+package de.luhmer.owncloudnewsreader.events.podcast;
 
 /**
  * Created by David on 20.06.2014.
@@ -9,6 +9,7 @@ public class UpdatePodcastStatusEvent {
     private long max;
     private String title;
     private boolean playing;
+    private boolean preparingFile;
 
     public String getTitle() {
         return title;
@@ -26,11 +27,16 @@ public class UpdatePodcastStatusEvent {
         return max;
     }
 
-    public UpdatePodcastStatusEvent(long current, long max, boolean playing, String title) {
+    public boolean isPreparingFile() {
+        return preparingFile;
+    }
+
+    public UpdatePodcastStatusEvent(long current, long max, boolean playing, String title, boolean preparingFile) {
         this.current = current;
         this.max = max;
         this.playing = playing;
         this.title = title;
+        this.preparingFile = preparingFile;
     }
 
 }

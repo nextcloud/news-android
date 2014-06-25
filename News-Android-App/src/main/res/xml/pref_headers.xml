@@ -17,12 +17,13 @@
     <header
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$DataSyncPreferenceFragment"
         android:title="@string/pref_header_data_sync" />
-   
-    
-    <!--
+
+
     <header
-        android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$NotificationPreferenceFragment"
+        android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$PodcastPreferenceFragment"
         android:title="@string/pref_header_notifications" />
+
+    <!--
     <header
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$DataSyncPreferenceFragment"
         android:title="@string/pref_header_data_sync" />

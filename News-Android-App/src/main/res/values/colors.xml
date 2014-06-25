@@ -14,5 +14,7 @@
     <color name="extended_listview_item_body_text_color_dark_theme">#ffaaaaaa</color>
     <color name="extended_listview_item_body_text_color_light_theme">#ff393939</color>
 
+    <color name="slide_up_panel_header_background_color">#ff343434</color>
+    <color name="slide_up_panel_slider_background_color">#ffdcdcdc</color>
 
 </resources>

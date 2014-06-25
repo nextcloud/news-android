@@ -9,7 +9,7 @@ import android.support.v4.app.NotificationCompat;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.events.UpdatePodcastStatusEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 
 /**
  * Created by David on 22.06.2014.
@@ -101,7 +101,7 @@ public class PodcastNotification {
         notificationBuilder
                 .setContentTitle(podcast.getTitle())
                 .setContentText(fromText + " - " + toText)
-                .setProgress(100, progress, false)
+                .setProgress(100, progress, podcast.isPreparingFile())
                 .build();
 
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());

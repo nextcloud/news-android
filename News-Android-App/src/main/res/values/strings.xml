@@ -20,7 +20,6 @@
     <string name="message_bar_reload">Reload</string>
     <string name="allUnreadFeeds">All unread items</string>
     <string name="starredFeeds">Starred items</string>
-
     <string name="title_activity_new_feed">Add new feed</string>
     <!-- <string name="non_sorted_articles">Nicht zugeordnete Artikel</string> -->
 
@@ -30,10 +29,8 @@
     <string name="menu_StartImageCaching">Download images</string>
     <string name="menu_downloadMoreItems">Download more items</string>
 
-
     <!-- Import Accounts -->
     <string name="import_account_dialog_title">Import Account</string>
-
 
     <!-- EMAIL -->
     <string name="email_sourceCode">Sourcecode of item - Bugreport</string>
@@ -50,7 +47,6 @@
     <string name="action_settings">Settings</string>
     <string name="action_sync_settings">Sync Settings</string>
     <string name="action_add_new_feed">Add new feed</string>
-
     <string name="notification_new_items_ticker">You have X new unread items</string>
     <string name="notification_new_items_text">X new unread items available</string>
 
@@ -123,6 +119,12 @@
     <string name="mtm_decision_once">Once</string>
     <string name="mtm_decision_abort">Abort</string>
     <string name="mtm_notification">Certificate Verification</string>
+
+
+    <!-- Podcast -->
+    <string name="pref_header_podcast">Podcast</string>
+    <string name="pref_enable_podcasts">Enable Podcast support</string>
+
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Display</string>
@@ -209,8 +211,6 @@
         <item>5000</item>
         <item>10000</item>
     </string-array>
-
-
     <string-array name="array_sync_interval">
         <item>5 Minutes</item>
         <item>15 Minutes</item>
@@ -258,7 +258,7 @@
     -->
 
 
-<!--     <string name="pref_title_system_sync_settings">System sync settings</string> -->
+    <!-- <string name="pref_title_system_sync_settings">System sync settings</string> -->
 
     <string name="pref_header_notifications">Notifications</string>
     <!--
@@ -267,5 +267,7 @@
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>
     -->
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
