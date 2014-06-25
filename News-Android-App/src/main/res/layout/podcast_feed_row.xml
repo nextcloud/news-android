@@ -5,27 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:padding="10dp"
-    android:gravity="center_vertical"
-    android:background="#ffc3c3c3">
+    android:gravity="center_vertical" >
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
         android:text="Large Text"
         android:singleLine="true"
-        android:ellipsize="end"
         android:textColor="#ff161616"
-        android:id="@+id/tv_title" />
+        android:ellipsize="end" />
+
 
 
     <TextView
+        android:id="@+id/tv_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="3 Podcasts verfügbar!"
         android:textColor="#ff161616"
-        android:id="@+id/tv_body" />
+        android:text="3 Podcasts verfügbar!" />
 
 </LinearLayout>

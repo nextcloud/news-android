@@ -5,88 +5,134 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff343434">
+    android:background="#fff">
 
 
     <!-- HEADER -->
-    <LinearLayout
+    <ViewSwitcher
+        android:id="@+id/viewSwitcherProgress"
         android:layout_width="match_parent"
-        android:layout_height="70dp" >
+        android:layout_height="70dp"
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out">
 
+
+
+        <!-- Default Header -->
         <LinearLayout
-            android:id="@+id/ll_podcast_header"
-            android:layout_width="0dip"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No title selected"
-                android:ellipsize="end"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:singleLine="true"
-                android:textColor="@color/slider_listview_text_color_dark_theme" />
-
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:id="@+id/pb_progress"
-                android:layout_marginTop="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:progress="0"
-                android:max="100" />
+            android:orientation="horizontal"
+            android:background="@color/slide_up_panel_header_background_color" >
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:id="@+id/ll_podcast_header"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_from"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="0:00"
-                    android:textColor="@color/slider_listview_text_color_dark_theme" />
-
-                <TextView
-                    android:id="@+id/tv_to"
+                    android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0:00"
+                    android:text="No title selected"
+                    android:ellipsize="end"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:singleLine="true"
                     android:textColor="@color/slider_listview_text_color_dark_theme" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/pb_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:progress="0"
+                    android:max="100" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_from"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="0:00"
+                        android:textColor="@color/slider_listview_text_color_dark_theme" />
+
+                    <TextView
+                        android:id="@+id/tv_to"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0:00"
+                        android:textColor="@color/slider_listview_text_color_dark_theme" />
+                </LinearLayout>
+
             </LinearLayout>
 
+            <FrameLayout
+                android:id="@+id/fl_playPausePodcastWrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <ImageButton
+                    android:id="@+id/btn_playPausePodcast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_gravity="center_vertical"
+                    android:background="@android:drawable/ic_media_play" />
+
+            </FrameLayout>
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/fl_playPausePodcastWrapper"
-            android:layout_width="wrap_content"
+
+        <!-- Expanded Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingRight="@dimen/activity_horizontal_margin">
+            android:orientation="vertical"
+            android:background="@color/slide_up_panel_slider_background_color">
 
-            <ImageButton
-                android:id="@+id/btn_playPausePodcast"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_titleSlider"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="No title selected"
+                android:textSize="18sp" />
+
+            <!--
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:duplicateParentState="true"
-                android:clickable="false"
-                android:focusable="false"
-                android:layout_gravity="center_vertical"
-                android:background="@android:drawable/ic_media_play" />
-
-        </FrameLayout>
+                android:text="Slide down or press the back button to return"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"/>
+            -->
+        </LinearLayout>
 
 
-    </LinearLayout>
+    </ViewSwitcher>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/background_with_shadow" />
 
     <!--
     <View
@@ -122,16 +168,12 @@
         <ListView
             android:id="@+id/podcastFeedList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:dividerHeight="10dp"
-            android:divider="@android:color/transparent" />
+            android:layout_height="match_parent" />
 
         <ListView
             android:id="@+id/podcastTitleGrid"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:dividerHeight="10dp"
-            android:divider="@android:color/transparent" />
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/tv_no_podcasts_available"
@@ -166,4 +208,88 @@
             android:id="@+id/podcastTitleGrid"/>
             -->
     </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:rotation="180"
+        android:background="@drawable/background_with_shadow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@color/slide_up_panel_slider_background_color"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_fromSlider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_gravity="center_vertical" />
+
+            <SeekBar
+                android:id="@+id/sb_progress"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progress="0"
+                android:max="100" />
+
+            <TextView
+                android:id="@+id/tv_ToSlider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20:00"
+                android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btn_previousPodcastSlider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/av_rewind"/>
+
+            <ImageButton
+                android:id="@+id/btn_playPausePodcastSlider"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/av_play"/>
+
+            <ImageButton
+                android:id="@+id/btn_nextPodcastSlider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/av_fast_forward"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 </LinearLayout>
