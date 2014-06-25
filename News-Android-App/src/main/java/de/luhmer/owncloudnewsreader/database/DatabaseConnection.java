@@ -54,7 +54,7 @@ public class DatabaseConnection {
                 " JOIN " + SUBSCRIPTION_TABLE + " st ON rss." + RSS_ITEM_SUBSCRIPTION_ID + " = st.rowid" +
                 " JOIN " + FOLDER_TABLE + " f ON st." + SUBSCRIPTION_FOLDER_ID + " = f.rowid" +
                 " WHERE " + RSS_ITEM_READ_TEMP + " != 1 " +
-                " GROUP BY f." + FOLDER_LABEL_ID;
+                " GROUP BY f.rowid";
 
         SparseArray<String> values = getSparseArrayFromSQL(buildSQL, 0, 1);
 
@@ -807,7 +807,8 @@ public class DatabaseConnection {
 	 	}
 	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS) && onlyUnread)//only unRead should only be null when testing the size of items
 	 	else if(ID_FOLDER.equals(ALL_UNREAD_ITEMS.getValueString()))
-	 		buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " != 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
+            buildSQL += " WHERE " + RSS_ITEM_READ_TEMP + " != 1";
+	 		//buildSQL += " WHERE " + RSS_ITEM_STARRED_TEMP + " != 1 AND " + RSS_ITEM_READ_TEMP + " != 1";
 	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS))
 	 	//	buildSQL += " WHERE " + RSS_ITEM_STARRED + " != 1";
 	 	//else if(ID_FOLDER.equals(SubscriptionExpandableListAdapter.ALL_STARRED_ITEMS) && onlyUnread)
@@ -931,11 +932,13 @@ public class DatabaseConnection {
         //Log.d("DatabaseConnection", "Inserted Rows: " + result);
     }
 
+    private static final String ALLOWED_PODCASTS_TYPES = "audio/mp3', 'audio/mpeg', 'audio/ogg', 'audio/opus', 'audio/ogg;codecs=opus";
+
     public List<PodcastFeedItem> getListOfFeedsWithAudioPodcasts() {
 
         String buildSQL = "SELECT DISTINCT sc.rowid, " + SUBSCRIPTION_HEADERTEXT + ", COUNT(rss.rowid) FROM " + SUBSCRIPTION_TABLE + " sc " +
                             " JOIN " + RSS_ITEM_TABLE + " rss ON sc.rowid = rss." + RSS_ITEM_SUBSCRIPTION_ID +
-                            " WHERE rss." + RSS_ITEM_ENC_MIME + " IN ('audio/mp3') GROUP BY sc.rowid";
+                            " WHERE rss." + RSS_ITEM_ENC_MIME + " IN ('" + ALLOWED_PODCASTS_TYPES + "') GROUP BY sc.rowid";
 
         List<PodcastFeedItem> result = new ArrayList<PodcastFeedItem>();
         Cursor cursor = database.rawQuery(buildSQL, null);
@@ -965,7 +968,7 @@ public class DatabaseConnection {
     public List<AudioPodcastItem> getListOfAudioPodcastsForFeed(String feedId) {
 
         String buildSQL = "SELECT rowid, " + RSS_ITEM_TITLE + ", " + RSS_ITEM_ENC_LINK + ", " + RSS_ITEM_ENC_MIME + " FROM " + RSS_ITEM_TABLE +
-                " WHERE " + RSS_ITEM_ENC_MIME + " IN ('audio/mp3') AND " + RSS_ITEM_SUBSCRIPTION_ID + " = " + feedId;
+                " WHERE " + RSS_ITEM_ENC_MIME + " IN ('" + ALLOWED_PODCASTS_TYPES + "') AND " + RSS_ITEM_SUBSCRIPTION_ID + " = " + feedId;
 
 
         List<AudioPodcastItem> result = new ArrayList<AudioPodcastItem>();
