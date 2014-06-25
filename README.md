@@ -67,8 +67,34 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 Updates
 ==================================
 
-0.6.9 (in development)
+0.7.0 (in development)
 ---------------------
+
+0.6.9.3 (Google Play - Beta)
+---------------------
+- Accept ogg podcasts
+- Improve layout of podcast player
+
+0.6.9.2 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/234">#234 Favorite items don't count in total item count</a>
+- Accept mpeg podcasts (only mp3)
+
+
+0.6.9.1 (Google Play - Beta)
+---------------------
+- Add notifications for Podcasts
+- Fix app crash (tablets)
+- Add option to disable podcast support
+- Add podcast view to item detail view
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/231">#231 App 0.6.7 crashs on start or after closing</a>
+
+
+0.6.9 (Google Play - Beta)
+---------------------
+- Add Podcast support (early preview)
+- Bug fixes
+
 
 0.6.8 (Google Play - Beta)
 ---------------------
