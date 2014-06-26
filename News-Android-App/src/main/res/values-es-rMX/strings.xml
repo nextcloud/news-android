@@ -95,6 +95,7 @@
   <string name="mtm_decision_once">Una vez</string>
   <string name="mtm_decision_abort">Abortar</string>
   <string name="mtm_notification">Verificación del certificado</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema de la aplicación (requiere reiniciar para aplicar)</string>

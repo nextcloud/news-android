@@ -100,6 +100,7 @@
   <string name="mtm_decision_once">Единожды</string>
   <string name="mtm_decision_abort">Отмена</string>
   <string name="mtm_notification">Проверка сертификата</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Показать</string>
   <string name="pref_title_app_theme">Применить тему (требуется перезапуск, чтобы настройки вступили в силу)</string>

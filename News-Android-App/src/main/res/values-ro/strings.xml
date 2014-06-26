@@ -49,6 +49,7 @@
   <string name="mtm_decision_once">O data</string>
   <string name="mtm_decision_abort">Anuleaza</string>
   <string name="mtm_notification">Verificare certificat</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Eroare</string>

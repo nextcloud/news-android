@@ -74,6 +74,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">Navigiere mit den Volumenknüpfen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Während des Scrollens als gelesen markieren</string>
   <!--MemorizingTrustManager-->
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Anzeige</string>
   <string name="pref_title_app_theme">App-Theme (benötigt einen Neustart zur Übernahme)</string>

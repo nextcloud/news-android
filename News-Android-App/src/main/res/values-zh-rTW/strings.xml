@@ -100,6 +100,7 @@
   <string name="mtm_decision_once">這一次</string>
   <string name="mtm_decision_abort">中斷</string>
   <string name="mtm_notification">憑證驗證</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">顯示</string>
   <string name="pref_title_app_theme">軟體桌面 (需要重啟來套用)</string>

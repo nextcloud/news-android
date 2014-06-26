@@ -100,6 +100,7 @@
   <string name="mtm_decision_once">Én gang</string>
   <string name="mtm_decision_abort">Avbryt</string>
   <string name="mtm_notification">Sertifikatverifikasjon</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Vis</string>
   <string name="pref_title_app_theme">Applikasjonstema (krever omstart)</string>

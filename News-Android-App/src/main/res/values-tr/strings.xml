@@ -100,6 +100,7 @@
   <string name="mtm_decision_once">Sadece Bu Kez</string>
   <string name="mtm_decision_abort">İptal Et</string>
   <string name="mtm_notification">Sertifika Doğrulama</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Görüntüle</string>
   <string name="pref_title_app_theme">Uygulama teması (uygulanması için yeniden başlatma gerekli)</string>

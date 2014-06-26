@@ -100,6 +100,7 @@
   <string name="mtm_decision_once">Μια φορά</string>
   <string name="mtm_decision_abort">Ματαίωση</string>
   <string name="mtm_notification">Επαλήθευση Πιστοποιητικού</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Εμφάνιση</string>
   <string name="pref_title_app_theme">Θέμα εφαρμογής (απαιτεί επανεκκίνηση για εφαρμογή)</string>

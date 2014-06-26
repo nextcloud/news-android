@@ -67,6 +67,7 @@
   <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری در حال پیمایش به عنوان خوانده شده </string>
   <!--MemorizingTrustManager-->
   <string name="mtm_decision_abort">قطع عملیات</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">نمایشی</string>
   <string name="pref_title_app_theme">قالب برنامه ( نیاز به راه اندازی مجدد برای به کار بردن )</string>

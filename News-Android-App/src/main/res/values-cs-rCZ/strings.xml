@@ -100,6 +100,7 @@
   <string name="mtm_decision_once">Jednou</string>
   <string name="mtm_decision_abort">Přerušit</string>
   <string name="mtm_notification">Ověření certifikátu</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Zobrazení</string>
   <string name="pref_title_app_theme">Vzhled aplikace (změna vyžaduje restart)</string>

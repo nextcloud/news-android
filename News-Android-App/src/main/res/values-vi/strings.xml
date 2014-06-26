@@ -97,6 +97,7 @@
   <string name="mtm_decision_once">Một </string>
   <string name="mtm_decision_abort">Hủy bỏ</string>
   <string name="mtm_notification">Xác nhận C</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Hiển th</string>
   <string name="pref_title_app_theme">Chủ đề (khởi động lại mới dùng )</string>
