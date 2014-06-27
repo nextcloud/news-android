@@ -481,9 +481,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 	@Override
 	public void onBackPressed() {
-        if(podcastFragment != null && sliding_layout.isExpanded()) {
+        if(podcastFragment != null && sliding_layout.isPanelExpanded()) {
             if (!podcastFragment.onBackPressed())
-                sliding_layout.collapsePane();
+                sliding_layout.collapsePanel();
         } else if(mSlidingLayout.isOpen())
 			super.onBackPressed();
 		else
@@ -502,9 +502,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			switch (item.getItemId()) {
 
 				case android.R.id.home:
-                    if(podcastFragment != null && sliding_layout.isExpanded()) {
+                    if(podcastFragment != null && sliding_layout.isPanelExpanded()) {
                         if (!podcastFragment.onBackPressed())
-                            sliding_layout.collapsePane();
+                            sliding_layout.collapsePanel();
                     }
 					else if(!mSlidingLayout.isOpen())
 						mSlidingLayout.openPane();

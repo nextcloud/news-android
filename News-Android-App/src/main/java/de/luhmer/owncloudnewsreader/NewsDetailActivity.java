@@ -349,9 +349,9 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if(podcastFragment != null && sliding_layout.isExpanded()) {
+        if(podcastFragment != null && sliding_layout.isPanelExpanded()) {
             if (!podcastFragment.onBackPressed())
-                sliding_layout.collapsePane();
+                sliding_layout.collapsePanel();
         } else
             super.onBackPressed();
     }
@@ -383,9 +383,9 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 		switch (item.getItemId()) {
 			case android.R.id.home:
-                if(podcastFragment != null && sliding_layout.isExpanded()) {
+                if(podcastFragment != null && sliding_layout.isPanelExpanded()) {
                     if (!podcastFragment.onBackPressed())
-                        sliding_layout.collapsePane();
+                        sliding_layout.collapsePanel();
                 } else {
                     super.onBackPressed();
                 }

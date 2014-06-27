@@ -378,6 +378,11 @@ public class PodcastFragment extends SherlockFragment {
         public void onPanelAnchored(View view) {
 
         }
+
+        @Override
+        public void onPanelHidden(View view) {
+
+        }
     };
 
     boolean blockSeekbarUpdate = false;

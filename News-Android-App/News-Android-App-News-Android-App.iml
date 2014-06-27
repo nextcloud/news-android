@@ -60,8 +60,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="library-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="eventbus-2.2.1" level="project" />
+    <orderEntry type="library" exported="" name="library-1.0.3" level="project" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="extra-abs-0.9.9" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />

@@ -12,7 +12,7 @@
     <ViewSwitcher
         android:id="@+id/viewSwitcherProgress"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="68dp"
         android:inAnimation="@android:anim/fade_in"
         android:outAnimation="@android:anim/fade_out">
 

@@ -46,8 +46,10 @@ public class PodcastSlidingUpPanelLayout extends SlidingUpPanelLayout{
 
     private boolean isDragViewHit(int x, int y) {
 
+
+
         //original implementation - only allow dragging on mDragView
-        View v = isExpanded() ? mDragView : mSlideableView;
+        View v = isPanelExpanded() ? mDragView : mSlideableView;
         if (v == null) return false;
         int[] viewLocation = new int[2];
         v.getLocationOnScreen(viewLocation);
