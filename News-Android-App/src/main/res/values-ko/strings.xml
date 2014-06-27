@@ -97,6 +97,7 @@
   <string name="mtm_decision_once">한 번만</string>
   <string name="mtm_decision_abort">중단</string>
   <string name="mtm_notification">인증서 확인</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">표시</string>
   <string name="pref_title_app_theme">앱 테마 (재시작 후 적용됨)</string>

@@ -99,6 +99,7 @@
   <string name="mtm_decision_once">Egyszer</string>
   <string name="mtm_decision_abort">Megszakítás</string>
   <string name="mtm_notification">Tanusítvány Ellenörzés</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Kijelző</string>
   <string name="pref_title_app_theme">Alkalmazás téma(újraindítást igényel)</string>

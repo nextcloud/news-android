@@ -100,6 +100,7 @@
   <string name="mtm_decision_once">Eenmalig</string>
   <string name="mtm_decision_abort">Afbreken</string>
   <string name="mtm_notification">Certificaat verificatie</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Weergeven</string>
   <string name="pref_title_app_theme">App thema (vereist herstarten)</string>

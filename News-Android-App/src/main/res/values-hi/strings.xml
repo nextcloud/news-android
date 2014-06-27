@@ -89,6 +89,7 @@
   <string name="mtm_decision_once">एक बार </string>
   <string name="mtm_decision_abort">रद्द करना </string>
   <string name="mtm_notification">प्रमाणपत्र का सत्यापन </string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">डिस्प्ले </string>
   <string name="pref_title_app_theme">अनुप्रयोग की थीम (लागू करने के लिए पुन: चालू करने की जरूरत है) </string>

@@ -36,6 +36,7 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_decision_always">Завжди</string>
   <string name="mtm_decision_once">Один раз</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Помилка</string>

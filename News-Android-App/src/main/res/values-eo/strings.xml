@@ -5,6 +5,9 @@
   <string name="title_newsreader_detail">Detaloj de Abonflulegilo</string>
   <string name="empty_view_header">Informo</string>
   <string name="empty_view_content">Neniu ero estas ĉi tie</string>
+  <string name="toast_GettingMoreItems">Ekelŝutis pli da eroj. Bonvolu atendi.</string>
+  <string name="tv_clickHereToOpenItem">Klaku ĉi tie por malfermi la eron</string>
+  <string name="message_bar_new_articles_available">Novaj eroj disponeblas</string>
   <string name="message_bar_reload">Reŝargi</string>
   <string name="allUnreadFeeds">Ĉiuj nelegitaj eroj</string>
   <string name="starredFeeds">Markitaj eroj</string>
@@ -12,7 +15,10 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Refreŝigi</string>
   <string name="menu_markAllAsRead">Marki ĉion kiel legita</string>
+  <string name="menu_StartImageCaching">Elŝuti bildojn</string>
+  <string name="menu_downloadMoreItems">Elŝuti pli da eroj</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Enporti konton</string>
   <!--EMAIL-->
   <string name="email_sendMail">Sendi retpoŝton</string>
   <!--Action Bar Items-->
@@ -21,9 +27,13 @@
   <string name="action_openInBrowser">Malfermi en TTT-legilo</string>
   <string name="action_sendSourceCode">Sendi eron al ellaboranto</string>
   <string name="action_Share">Kunhavigi</string>
+  <string name="action_login">Servila agordaro</string>
   <string name="action_save">Konservi</string>
   <string name="action_settings">Agordo</string>
+  <string name="action_sync_settings">Sinkroniga agordo</string>
   <string name="action_add_new_feed">Aldoni novan fluon</string>
+  <string name="notification_new_items_ticker">Vi havas X novajn nelegitajn erojn</string>
+  <string name="notification_new_items_text">X novaj nelegitaj eroj disponeblas</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uzantonomo</string>
   <string name="pref_title_password">Pasvorto</string>
@@ -36,6 +46,8 @@
   <string name="error_field_required">Ĉi tiu kampo nepras</string>
   <string name="error_invalid_url">Ĉi tiu URL malĝustas</string>
   <!--Toast Messages-->
+  <string name="toast_no_more_downloads_available">Ne pli da eroj disponeblas</string>
+  <string name="pull_to_refresh_updateTags">Sinkronigante statojn de eroj</string>
   <string name="pull_to_refresh_updateFolder">Sinkroniĝas dosierujo</string>
   <string name="pull_to_refresh_updateFeeds">Sinkroniĝas fluoj</string>
   <string name="pull_to_refresh_updateItems">Sinkroniĝas eroj</string>
@@ -43,27 +55,49 @@
   <string name="title_activity_settings">Agordo</string>
   <!--General settings-->
   <string name="pref_header_general">Ĝenerala</string>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Forviŝante kaŝmemoron</string>
+  <string name="dialog_clearing_cache_please_wait">Forviŝatas la kaŝmemoro. Bonvolu atendi.</string>
+  <string name="calculating_cache_size">Kalkulatas la grando de kaŝmemoro. Bonvolu atendi.</string>
   <string name="warning">Averto</string>
   <string name="pref_title_ShowOnlyUnread">Montri nur nelegitajn artikolojn</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">Ĉiam</string>
+  <string name="mtm_decision_once">Unufoje</string>
+  <!--Podcast-->
   <!--Settings for Display-->
+  <string name="pref_header_display">Montrilo</string>
+  <string-array name="pref_display_apptheme">
+    <item>Malklara</item>
+    <item>Klara</item>
+  </string-array>
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Eraro</string>
   <string name="login_dialog_title_security_warning">Sekureca averto</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Datumoj &amp; sinkronigo</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Forviŝi la kaŝmemoron</string>
+  <string name="pref_title_Max_Cache_Size">Maksimuma grando de kaŝmemoro</string>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">

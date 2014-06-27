@@ -57,6 +57,7 @@
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <string name="mtm_decision_abort">Прекини</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Прикажи</string>
   <!--Login Dialog-->

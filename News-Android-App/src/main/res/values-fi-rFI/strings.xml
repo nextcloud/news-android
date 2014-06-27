@@ -86,6 +86,9 @@
   <string name="mtm_decision_once">Vain kerran</string>
   <string name="mtm_decision_abort">Keskeytä</string>
   <string name="mtm_notification">Varmennevahvistus</string>
+  <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Käytä podcast-tukea</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Näyttö</string>
   <string name="pref_title_app_theme">Sovelluksen teema (muutos vaatii uudelleenkäynnistyksen)</string>

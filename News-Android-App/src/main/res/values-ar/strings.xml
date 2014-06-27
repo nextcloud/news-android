@@ -73,6 +73,7 @@
   <string name="mtm_decision_once">مرة واحدة</string>
   <string name="mtm_decision_abort">إلغاء.</string>
   <string name="mtm_notification">التحقق من الشهادة</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">عرض</string>
   <string name="pref_display_font_layout">خط (يتطلب إعادة التشغيل ليتم التطبيق)</string>

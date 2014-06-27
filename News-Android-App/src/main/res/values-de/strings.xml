@@ -100,6 +100,9 @@
   <string name="mtm_decision_once">Einmal</string>
   <string name="mtm_decision_abort">Abbrechen</string>
   <string name="mtm_notification">Zertifikatsnachweis</string>
+  <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Podcast-Unterstützung aktivieren</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Anzeige</string>
   <string name="pref_title_app_theme">App-Theme (Neustart notwendig)</string>

@@ -100,6 +100,7 @@
   <string name="mtm_decision_once">En gang</string>
   <string name="mtm_decision_abort">Afbryd</string>
   <string name="mtm_notification">Certifikat Verificering</string>
+  <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Skærm</string>
   <string name="pref_title_app_theme">App tema (kræver genstart)</string>
