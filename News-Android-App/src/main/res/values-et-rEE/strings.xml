@@ -101,6 +101,8 @@
   <string name="mtm_decision_abort">Katkesta</string>
   <string name="mtm_notification">Sertifikaadi kontroll</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Luba podcasti tugi</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Vaade</string>
   <string name="pref_title_app_theme">Rakenduse teema (vajab restarti)</string>

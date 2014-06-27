@@ -3,12 +3,12 @@
   <string name="auto_sync_string">Sincronização automatica</string>
   <string name="app_name">Leitor de notícias do OwnCloud</string>
   <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronização</string>
-  <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="title_activity_subscription">SubscriptionActivity</string>
+  <string name="title_activity_news_detail">NotíciasDetalheAtividade</string>
+  <string name="title_activity_subscription">SubscriçãoAtividade</string>
   <string name="title_newsreader_list">NewsReader</string>
   <string name="title_newsreader_detail">NewsReader Detail</string>
   <string name="empty_view_header">Informação</string>
-  <string name="empty_view_content">Não itens</string>
+  <string name="empty_view_content">Sem itens aqui</string>
   <string name="toast_GettingMoreItems">Começou a transferir mais itens... Por favor aguarde.</string>
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir o item</string>
   <string name="no_wifi_available">Sem ligação WiFi</string>
@@ -24,20 +24,20 @@
   <string name="menu_update">Actualizar</string>
   <string name="menu_About_Changelog">Acerca / Alterações</string>
   <string name="menu_markAllAsRead">Marcar todos como lidos</string>
-  <string name="menu_StartImageCaching">Descarregar as imagens</string>
+  <string name="menu_StartImageCaching">Transferir as imagens</string>
   <string name="menu_downloadMoreItems">Descarregar mais itens</string>
   <!--Import Accounts-->
   <string name="import_account_dialog_title">Conta Importar</string>
   <!--EMAIL-->
-  <string name="email_sourceCode">Código-Fonte do item: Reportar bug</string>
-  <string name="email_sendMail">Enviar E-mail</string>
+  <string name="email_sourceCode">Código Fonte do item: Comunicar Erro</string>
+  <string name="email_sendMail">Enviar e-mail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Marcado</string>
   <string name="action_read">Lido</string>
-  <string name="action_openInBrowser">Abrir no browser</string>
+  <string name="action_openInBrowser">Abrir no Navegador</string>
   <string name="action_sendSourceCode">Enviar item ao Programador</string>
-  <string name="action_Share">Partilhar</string>
-  <string name="action_login">Configurações do servidor</string>
+  <string name="action_Share">Compartilhar</string>
+  <string name="action_login">Configurações do Servidor</string>
   <string name="action_save">Guardar</string>
   <string name="action_settings">Configurações</string>
   <string name="action_sync_settings">Configuracao de sincronização </string>
@@ -46,15 +46,15 @@
   <string name="notification_new_items_text">X novos itens por ler disponíveis</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
-  <string name="pref_title_password">Password</string>
+  <string name="pref_title_password">Senha</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
-  <string name="action_sign_in_short">Entrar</string>
-  <string name="login_progress_signing_in">A entrar...</string>
-  <string name="error_incorrect_password">Esta password está incorrecta</string>
-  <string name="error_field_required">O campo é obrigatório</string>
-  <string name="error_invalid_url">O endereço está incorrecto</string>
+  <string name="action_sign_in_short">Iniciar Sessão</string>
+  <string name="login_progress_signing_in">A iniciar a sessão ...</string>
+  <string name="error_incorrect_password">Esta senha está incorreta</string>
+  <string name="error_field_required">Este campo é obrigatório</string>
+  <string name="error_invalid_url">O url está incorreto</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Descarregado X itens antigos</string>
   <string name="toast_no_more_downloads_available">Não há mais itens disponíveis</string>
@@ -86,8 +86,8 @@
   <string name="calculating_cache_size">A calcular o tamanho da cache...Aguarde por favor.</string>
   <string name="reset_cache_unsaved_changes">Há mudanças não sincronizadas. Gostaria de repor a cache na mesma?</string>
   <string name="warning">Aviso</string>
-  <string name="pref_title_AutoSyncOnStart">Sincronizar no carregamento...</string>
-  <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos por ler</string>
+  <string name="pref_title_AutoSyncOnStart">Sincronizar no arranque</string>
+  <string name="pref_title_ShowOnlyUnread">Só mostrar os artigos não lidos</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Desactivar a verificação do nome do servidor</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegue usando os botões de volume</string>
@@ -101,9 +101,11 @@
   <string name="mtm_decision_abort">Abortar</string>
   <string name="mtm_notification">Verificação do certificado</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Ativar suporte a Podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
-  <string name="pref_title_app_theme">Tema da aplicação (deve reiniciar para aplicar)</string>
+  <string name="pref_title_app_theme">Tema da App (deve reiniciar para aplicar)</string>
   <string name="pref_title_feed_list_layout">Disposição da lista de feeds</string>
   <string name="pref_display_font_layout">Fonte (requer reinicio para aplicar)</string>
   <string-array name="pref_display_apptheme">
@@ -116,8 +118,8 @@
   </string-array>
   <string-array name="pref_display_feed_list_layout">
     <item>Simples</item>
-    <item>Extendido</item>
-    <item>Extendido com vista Web</item>
+    <item>Estendido</item>
+    <item>Estendido com visualização da Web</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
@@ -154,14 +156,14 @@
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erro</string>
-  <string name="login_dialog_text_something_went_wrong">Algo correu mal :(</string>
-  <string name="login_dialog_text_not_compatible">Esta versão da aplicação não é compatível com sua Aplicação de Notícias ownCloud. Por favor atualize a aplicação de notícias e a appframework.</string>
+  <string name="login_dialog_text_something_went_wrong">Ocorreu algo de errado :(</string>
+  <string name="login_dialog_text_not_compatible">Esta versão da App não é compatível com sua App de Notícias ownCloud. Por favor, atualize a app de notícias e a appframework.</string>
   <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
   <string name="login_dialog_text_security_warning">Não está a usar https. Um atacante poderá intercetar o seu tráfego e ganhar acesso a alguns dados sensíveis (por ex.: a sua senha). Recomenda-se vivamente usar https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Dados &amp; sincronização</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
-  <string name="pref_title_clearCache">Limpar dados temporários</string>
+  <string name="pref_title_clearCache">Limpar a cache</string>
   <string name="pref_title_CacheImagesOffline">Imagens offline da cache</string>
   <string name="pref_title_Max_Cache_Size">Tamanho máximo da cache</string>
   <string-array name="pref_data_sync_max_cache_size">
@@ -230,4 +232,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <string name="hello_blank_fragment">Olá fragmento em branco</string>
 </resources>
