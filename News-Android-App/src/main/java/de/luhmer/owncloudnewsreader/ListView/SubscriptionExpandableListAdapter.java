@@ -208,7 +208,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             if(unreadCount != null)
                 viewHolder.tV_UnreadCount.setText(unreadCount);
             else
-                viewHolder.tV_UnreadCount.setText("0");
+                viewHolder.tV_UnreadCount.setText("");
             /*
             else {
                 viewHolder.tV_UnreadCount.setText("0");
@@ -226,7 +226,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         else
         {
 	        viewHolder.tV_HeaderText.setText(mContext.getString(R.string.login_dialog_text_something_went_wrong));
-	        viewHolder.tV_UnreadCount.setText("0");
+	        viewHolder.tV_UnreadCount.setText("");
 	        viewHolder.imgView_FavIcon.setImageDrawable(null);
         }
 
@@ -327,7 +327,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		});
 
 
-        viewHolder.txt_UnreadCount.setText("0");
+        viewHolder.txt_UnreadCount.setText("");
         boolean skipGetUnread = false;
         if(group.idFolder != null && group.idFolder.equals(ITEMS_WITHOUT_FOLDER.getValueString())) {
 
