@@ -101,6 +101,7 @@
   <string name="mtm_decision_abort">Annuler</string>
   <string name="mtm_notification">Vérification du certificat</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Affichage</string>
   <string name="pref_title_app_theme">Thème (nécessite un redémarrage)</string>

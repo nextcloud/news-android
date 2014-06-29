@@ -101,6 +101,8 @@
   <string name="mtm_decision_abort">Albortar</string>
   <string name="mtm_notification">Verificación del certificáu</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Habilitar sofitu de Podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Amosar</string>
   <string name="pref_title_app_theme">Tema de l\'aplicación (necesita reaniciar)</string>
@@ -230,4 +232,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <string name="hello_blank_fragment">Fragmentu blancu Hola</string>
 </resources>
