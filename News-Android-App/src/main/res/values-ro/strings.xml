@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Sincronizare Auto</string>
   <string name="empty_view_header">Informaţii</string>
   <string name="no_wifi_available">Nu exista conexiune WiFi</string>
-  <string name="message_bar_reload">Reîncarca</string>
+  <string name="message_bar_reload">Reîncarcă</string>
   <string name="title_activity_new_feed">Adaugă flux nou</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Împrospătare</string>
@@ -14,10 +15,12 @@
   <!--Action Bar Items-->
   <string name="action_starred">Marcat</string>
   <string name="action_read">Citeşte</string>
+  <string name="action_openInBrowser">Deschide in Browser</string>
   <string name="action_Share">Partajează</string>
   <string name="action_login">Setările serverului</string>
   <string name="action_save">Salvează</string>
   <string name="action_settings">Setări</string>
+  <string name="action_sync_settings">Setări Sincronizare</string>
   <string name="action_add_new_feed">Adaugă flux nou</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nume utilizator</string>
@@ -45,6 +48,7 @@
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Navigheaza cu tastele de volum </string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Accepta Certificat Necunoscut?</string>
   <string name="mtm_decision_always">Întotdeauna</string>
   <string name="mtm_decision_once">O data</string>
   <string name="mtm_decision_abort">Anuleaza</string>
@@ -56,6 +60,8 @@
   <string name="login_dialog_title_security_warning">Avertisment de securitate</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string name="pref_title_clearCache">Sterge cache</string>
+  <string name="pref_title_Max_Cache_Size">Mărime maximă Cache</string>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
