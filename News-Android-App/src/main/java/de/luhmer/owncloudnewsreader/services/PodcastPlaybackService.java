@@ -5,17 +5,19 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.IBinder;
+import android.view.SurfaceHolder;
 
 import java.io.IOException;
 
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.events.podcast.OpenAudioPodcastEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
 import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 
-public class AudioPodcastService extends Service {
+public class PodcastPlaybackService extends Service {
 
     PodcastNotification podcastNotification;
 
@@ -26,23 +28,34 @@ public class AudioPodcastService extends Service {
         super.onCreate();
     }
 
-    public AudioPodcastService() {
+    public PodcastPlaybackService() {
         mediaPlayer = new MediaPlayer();
         mHandler = new Handler();
         eventBus = EventBus.getDefault();
 
         eventBus.register(this);
 
+
+
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                play();
+                isPreparing = false;
+            }
+        });
+
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                mHandler.removeCallbacks(mUpdateTimeTask);
+                pause();//Send the over signal
             }
         });
 
 
         //openFile("/sdcard/Music/#Musik/Finest Tunes/Netsky - Running Low (Ft. Beth Ditto).mp3");
     }
+
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -73,22 +86,6 @@ public class AudioPodcastService extends Service {
             mediaPlayer.reset();
             mediaPlayer.setDataSource(pathToFile);
             mediaPlayer.prepareAsync();
-
-            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mediaPlayer) {
-                    play();
-                    isPreparing = false;
-                }
-            });
-
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    pause();//Send the over signal
-                }
-            });
-
         } catch (IOException e) {
             e.printStackTrace();
             isPreparing = false;
@@ -126,6 +123,13 @@ public class AudioPodcastService extends Service {
         openFile(event.pathToFile, event.mediaTitle);
     }
 
+    public void onEvent(RegisterVideoOutput videoOutput) {
+        if(mediaPlayer != null) {
+            //getHolder().addCallback(videoOutput);
+            videoOutput.surfaceView.getHolder().setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        }
+    }
+
 
 
 
@@ -137,7 +141,9 @@ public class AudioPodcastService extends Service {
     }
 
     public void pause() {
-        mediaPlayer.pause();
+        if(mediaPlayer.isPlaying())
+            mediaPlayer.pause();
+
         mHandler.removeCallbacks(mUpdateTimeTask);
 
         sendMediaStatus();
@@ -166,5 +172,46 @@ public class AudioPodcastService extends Service {
         UpdatePodcastStatusEvent audioPodcastEvent = new UpdatePodcastStatusEvent(currentDuration, totalDuration, mediaPlayer.isPlaying(), mediaTitle, isPreparing);
         eventBus.post(audioPodcastEvent);
     }
+
+
+
+
+    SurfaceHolder.Callback mSHCallback = new SurfaceHolder.Callback()
+    {
+        public void surfaceChanged(SurfaceHolder holder, int format,
+                                   int w, int h)
+        {
+            mSurfaceWidth = w;
+            mSurfaceHeight = h;
+            if (mIsPrepared && mVideoWidth == w && mVideoHeight == h) {
+                if (mSeekWhenPrepared != 0) {
+                    mMediaPlayer.seekTo(mSeekWhenPrepared);
+                }
+                mMediaPlayer.start();
+                if (mMediaController != null) {
+                    mMediaController.show();
+                }
+            }
+        }
+
+        public void surfaceCreated(SurfaceHolder holder)
+        {
+            mSurfaceHolder = holder;
+            openVideo();
+        }
+
+        public void surfaceDestroyed(SurfaceHolder holder)
+        {
+            // after we return from this we can't use the surface any more
+            mSurfaceHolder = null;
+            if (mMediaController != null) mMediaController.hide();
+            if (mMediaPlayer != null) {
+                mMediaPlayer.reset();
+                mMediaPlayer.release();
+                mMediaPlayer = null;
+            }
+        }
+    };
+
 
 }
