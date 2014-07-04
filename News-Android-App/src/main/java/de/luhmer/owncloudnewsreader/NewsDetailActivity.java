@@ -38,9 +38,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
@@ -53,10 +51,9 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
-import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
-public class NewsDetailActivity extends SherlockFragmentActivity {
+public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -67,15 +64,12 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
-    public PodcastSlidingUpPanelLayout sliding_layout;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	public ViewPager mViewPager;
 	private int currentPosition;
-
-    PodcastFragment podcastFragment;
 
 	PostDelayHandler pDelayHandler;
 
@@ -99,9 +93,6 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 		setContentView(R.layout.activity_news_detail);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        sliding_layout = (PodcastSlidingUpPanelLayout) findViewById(R.id.sliding_layout);
-        UpdatePodcastView();
 
 		pDelayHandler = new PostDelayHandler(this);
 
@@ -184,19 +175,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 			public void onPageScrollStateChanged(int arg0) {
 			}
 		});
-	}
-
-    public void UpdatePodcastView() {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false)) {
-            podcastFragment = PodcastFragment.newInstance(null, null);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.podcast_frame, podcastFragment)
-                    .commit();
-        } else {
-            sliding_layout.getChildAt(1).setVisibility(View.GONE);
-        }
     }
+
 
 	@Override
 	protected void onDestroy() {
@@ -349,10 +329,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if(podcastFragment != null && sliding_layout.isPanelExpanded()) {
-            if (!podcastFragment.onBackPressed())
-                sliding_layout.collapsePanel();
-        } else
+        if(handlePodcastBackPressed());
+        else
             super.onBackPressed();
     }
 
@@ -383,10 +361,8 @@ public class NewsDetailActivity extends SherlockFragmentActivity {
 
 		switch (item.getItemId()) {
 			case android.R.id.home:
-                if(podcastFragment != null && sliding_layout.isPanelExpanded()) {
-                    if (!podcastFragment.onBackPressed())
-                        sliding_layout.collapsePanel();
-                } else {
+                if(handlePodcastBackPressed());
+                else {
                     super.onBackPressed();
                 }
 				break;

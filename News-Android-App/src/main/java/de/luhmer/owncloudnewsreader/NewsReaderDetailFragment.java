@@ -52,7 +52,6 @@ import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.cursor.SimpleCursorLoader;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
-import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -140,7 +139,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//setRetainInstance(true);
+		setRetainInstance(true);
 
 		//dbConn = new DatabaseConnection(getActivity());
 
@@ -173,7 +172,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	}
 
 
-	public void UpdateMenuItemsState()
+    public void UpdateMenuItemsState()
 	{
 		if(MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems() != null)
 		{
@@ -222,6 +221,8 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 		super.onViewCreated(view, savedInstanceState);
 	}
+
+
 
 
 

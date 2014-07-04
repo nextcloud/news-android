@@ -1,4 +1,4 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 android {
 
@@ -25,6 +25,13 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'com.android.support:support-v4:20.+'
+    }
+}
+
+
 dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
@@ -34,7 +41,7 @@ dependencies {
     compile project(':Changeloglib:ChangeLogLibrary')
     compile project(':MessageBar')
     compile project(':ownCloud-Account-Importer')
-    compile 'com.android.support:support-v4:19.0.+'
+    compile 'com.android.support:support-v4:20.+'
     compile 'com.jakewharton:butterknife:5.1.+'
     compile 'com.squareup.picasso:picasso:2.3.1@jar'
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'

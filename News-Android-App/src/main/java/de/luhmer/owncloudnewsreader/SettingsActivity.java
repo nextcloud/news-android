@@ -51,6 +51,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -597,7 +598,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 		protected Void doInBackground(Void... params) {
 			try
 			{
-				getFolderSize(new File(ImageHandler.getPath(_mActivity)));
+				getFolderSize(new File(FileUtils.getPath(_mActivity)));
 				mSize = dcmFormat.format(size / 1024d / 1024d) + "MB";
 				mCount = String.valueOf(count) + " Files";
 			}

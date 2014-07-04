@@ -24,6 +24,8 @@ import android.widget.ViewSwitcher;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -34,14 +36,16 @@ import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
-import de.luhmer.owncloudnewsreader.events.podcast.OpenAudioPodcastEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.OpenPodcastEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastFeedClicked;
+import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
-import de.luhmer.owncloudnewsreader.model.AudioPodcastItem;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
-import de.luhmer.owncloudnewsreader.services.AudioPodcastService;
+import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
+import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 
 
@@ -106,6 +110,9 @@ public class PodcastFragment extends SherlockFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setRetainInstance(true);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -114,7 +121,10 @@ public class PodcastFragment extends SherlockFragment {
 
         eventBus = EventBus.getDefault();
 
-        getActivity().startService(new Intent(getActivity(), AudioPodcastService.class));
+        // when initialize
+        //getActivity().registerReceiver(downloadCompleteReceiver, downloadCompleteIntentFilter);
+
+        getActivity().startService(new Intent(getActivity(), PodcastPlaybackService.class));
     }
 
 
@@ -133,29 +143,135 @@ public class PodcastFragment extends SherlockFragment {
         super.onPause();
     }
 
+    public void onEventMainThread(StartDownloadPodcast podcast) {
+        PodcastDownloadService.startPodcastDownload(getActivity(), podcast.podcast);//, new DownloadReceiver(new Handler(), new WeakReference<ProgressBar>(holder.pbDownloadPodcast)));
+    }
+
+    /*
+    private class DownloadReceiver extends ResultReceiver {
+        WeakReference<ProgressBar> progressBar;
+
+        public DownloadReceiver(Handler handler, WeakReference<ProgressBar> progressBar) {
+            super(handler);
+
+            this.progressBar = progressBar;
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if (resultCode == PodcastDownloadService.UPDATE_PROGRESS) {
+
+                if(progressBar.get() != null) {
+                    int progress = resultData.getInt("progress");
+                    progressBar.get().setIndeterminate(false);
+                    progressBar.get().setProgress(progress);
+                    if (progress == 100) {
+                        progressBar.get().setVisibility(View.GONE);
+                    }
+                }
+            }
+        }
+    }
+    */
+
+    public static String[] VIDEO_FORMATS = { "youtube" };
+
     public void onEventMainThread(AudioPodcastClicked podcast) {
-        final AudioPodcastItem audioPodcast = audioPodcasts.get(podcast.position);
+        final PodcastItem audioPodcast = audioPodcasts.get(podcast.position);
 
         tvTitle.setText(audioPodcast.title);
 
-        eventBus.post(new OpenAudioPodcastEvent() {{ pathToFile = audioPodcast.link; mediaTitle = audioPodcast.title; }});
+        boolean isVideo = Arrays.asList(VIDEO_FORMATS).contains(audioPodcast.mimeType);
 
-        Toast.makeText(getActivity(), "Starting podcast.. please wait", Toast.LENGTH_SHORT).show();
+        if(audioPodcast.mimeType.equals("youtube") && !audioPodcast.offlineCached)
+            Toast.makeText(getActivity(), "Cannot stream from youtube. Please download the video first.", Toast.LENGTH_SHORT).show();
+        else {
+            File file = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), audioPodcast.link, true));
+            if(file.exists())
+                audioPodcast.link = file.getAbsolutePath();
+            else
+                Toast.makeText(getActivity(), "Starting podcast.. please wait", Toast.LENGTH_SHORT).show(); //Only show if we need to stream the file
+
+            eventBus.post(new OpenPodcastEvent(audioPodcast.link, audioPodcast.title, isVideo));
+        }
     }
 
     public void onEventMainThread(PodcastFeedClicked podcast) {
         DatabaseConnection dbConn = new DatabaseConnection(getActivity());
-        audioPodcasts = dbConn.getListOfAudioPodcastsForFeed(feedsWithAudioPodcasts.get(podcast.position).itemId);
+        audioPodcasts = dbConn.getListOfAudioPodcastsForFeed(getActivity(), feedsWithAudioPodcasts.get(podcast.position).itemId);
 
-        PodcastArrayAdapter mArrayAdapter = new PodcastArrayAdapter(getActivity(), audioPodcasts.toArray(new AudioPodcastItem[audioPodcasts.size()]));
+
+        for(int i = 0; i < audioPodcasts.size(); i++) {
+            PodcastItem podcastItem = audioPodcasts.get(i);
+
+            File podcastFile = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), podcastItem.link, false));
+            File podcastFileCache = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), podcastItem.link, false) + ".download");
+            if(podcastFile.exists())
+                podcastItem.downloadProgress = PodcastItem.DOWNLOAD_COMPLETED;
+            else if(podcastFileCache.exists())
+                podcastItem.downloadProgress = 0;
+            else
+                podcastItem.downloadProgress = PodcastItem.DOWNLOAD_NOT_STARTED;
+        }
+
+        PodcastArrayAdapter mArrayAdapter = new PodcastArrayAdapter(getActivity(), audioPodcasts.toArray(new PodcastItem[audioPodcasts.size()]));
         if (podcastTitleGrid != null) {
             podcastTitleGrid.setAdapter(mArrayAdapter);
         }
 
         podcastTitleGrid.setVisibility(View.VISIBLE);
         podcastFeedList.setVisibility(View.GONE);
+
+
+        //eventBus.post(new OpenAudioPodcastEvent(FileUtils.getPathPodcasts(getActivity()) + "/Foxes.mp4", "Test Video"));
+        //eventBus.post(new OpenPodcastEvent(FileUtils.getPathPodcasts(getActivity()) + "/Aneta.mp4", "Test Video", true));
+
+        //PodcastDownloadService.startPodcastDownload(getActivity(), new PodcastItem("5", "Blaa", "http://www.youtube.com/v/wtLJPvx7-ys?version=3&f=playlists&app=youtube_gdata", "youtube"));
     }
 
+
+    public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
+        PodcastArrayAdapter podcastArrayAdapter = (PodcastArrayAdapter) podcastTitleGrid.getAdapter();
+
+        for(int i = 0; i < podcastTitleGrid.getCount(); i++) {
+            if(podcastArrayAdapter.getItem(i).link.equals(downloadProgress.podcast.link)) {
+
+                if(podcastArrayAdapter.getItem(i).downloadProgress != downloadProgress.podcast.downloadProgress) { //If Progress changed
+                    PodcastItem pItem = podcastArrayAdapter.getItem(i);
+
+                    if (downloadProgress.podcast.downloadProgress == 100) {
+                        pItem.downloadProgress = PodcastItem.DOWNLOAD_COMPLETED;
+                        File file = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), pItem.link, false));
+                        pItem.offlineCached = file.exists();
+                    } else
+                        pItem.downloadProgress = downloadProgress.podcast.downloadProgress;
+                    podcastTitleGrid.invalidateViews();
+                }
+
+                return;
+                /*
+                View v = podcastTitleGrid.getChildAt(i -
+                        podcastTitleGrid.getFirstVisiblePosition());
+                ((ProgressBar)v.findViewById(R.id.pbDownloadPodcast)).setProgress(downloadProgress.podcast.downloadProgress);
+
+                //podcastArrayAdapter.notifyDataSetChanged();
+                return;
+                */
+            }
+        }
+    }
+
+    /*
+    private String downloadCompleteIntentName = DownloadManager.ACTION_DOWNLOAD_COMPLETE;
+    private IntentFilter downloadCompleteIntentFilter = new IntentFilter(downloadCompleteIntentName);
+    private BroadcastReceiver downloadCompleteReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ((ArrayAdapter) podcastTitleGrid.getAdapter()).notifyDataSetChanged();
+        }
+    };
+    */
 
 
     int lastDrawableId;
@@ -207,7 +323,7 @@ public class PodcastFragment extends SherlockFragment {
         }
     }
 
-    List<AudioPodcastItem> audioPodcasts;
+    List<PodcastItem> audioPodcasts;
     List<PodcastFeedItem> feedsWithAudioPodcasts;
 
     @InjectView(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
@@ -274,15 +390,14 @@ public class PodcastFragment extends SherlockFragment {
         ButterKnife.inject(this, view);
 
 
-        if(getActivity() instanceof NewsReaderListActivity) {
-            sliding_layout = ((NewsReaderListActivity) getActivity()).sliding_layout;
-        } else if(getActivity() instanceof NewsDetailActivity) {
-            sliding_layout = ((NewsDetailActivity) getActivity()).sliding_layout;
+        if(getActivity() instanceof PodcastSherlockFragmentActivity) {
+            sliding_layout = ((PodcastSherlockFragmentActivity) getActivity()).getSlidingLayout();
         }
 
         if(sliding_layout != null) {
             sliding_layout.setSlideableView(rlPodcast);
             sliding_layout.setDragView(rlPodcastHeader);
+            //sliding_layout.setEnableDragViewTouchEvents(true);
 
             sliding_layout.setPanelSlideListener(onPanelSlideListener);
         }
@@ -365,6 +480,9 @@ public class PodcastFragment extends SherlockFragment {
             if(sliding_layout != null)
                 sliding_layout.setDragView(rlPodcastHeader);
             viewSwitcherProgress.setDisplayedChild(0);
+
+            if(getActivity() instanceof PodcastSherlockFragmentActivity)
+                ((PodcastSherlockFragmentActivity)getActivity()).togglePodcastVideoViewAnimation();
         }
 
         @Override
@@ -372,6 +490,9 @@ public class PodcastFragment extends SherlockFragment {
             if(sliding_layout != null)
                 sliding_layout.setDragView(viewSwitcherProgress);
             viewSwitcherProgress.setDisplayedChild(1);
+
+            if(getActivity() instanceof PodcastSherlockFragmentActivity)
+                ((PodcastSherlockFragmentActivity)getActivity()).togglePodcastVideoViewAnimation();
         }
 
         @Override
@@ -389,7 +510,7 @@ public class PodcastFragment extends SherlockFragment {
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-            Log.d(TAG, "onProgressChanged");
+            //Log.d(TAG, "onProgressChanged");
         }
 
         @Override
@@ -400,8 +521,12 @@ public class PodcastFragment extends SherlockFragment {
 
         @Override
         public void onStopTrackingTouch(final SeekBar seekBar) {
-            eventBus.post(new WindPodcast() {{ toPositionInPercent = seekBar.getProgress(); }});
-            blockSeekbarUpdate = false;
+            if(hasTitleInCache) {
+                eventBus.post(new WindPodcast() {{
+                    toPositionInPercent = seekBar.getProgress();
+                }});
+                blockSeekbarUpdate = false;
+            }
             Log.d(TAG, "onStopTrackingTouch");
         }
     };

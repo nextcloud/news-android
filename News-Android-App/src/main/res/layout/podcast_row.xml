@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Large Tex dfs hysjd kfhsakj lfhjdaksl fh"
+            android:textColor="#ff161616"
+            android:ellipsize="end"
+            android:maxLines="2" />
+
+
+        <TextView
+            android:id="@+id/tv_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="3 Podcasts verfügbar!"
+            android:textColor="#ff161616" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:id="@+id/pbDownloadPodcast"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:max="100"
+                android:progress="0"/>
+
+            <TextView
+                android:id="@+id/tvDownloadPodcastProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:text="100%"
+                android:gravity="center_vertical"
+                android:textColor="#ff161616"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_downloadPodcastWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:paddingRight="@dimen/podcast_horizontal_margin">
+
+        <ImageButton
+            android:id="@+id/btn_downloadPodcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_gravity="center"
+            android:background="@drawable/av_download" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_PlayPodcastWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:paddingRight="@dimen/podcast_horizontal_margin">
+
+        <ImageButton
+            android:id="@+id/btn_playPodcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_gravity="center"
+            android:background="@drawable/av_play" />
+
+    </FrameLayout>
+
+</LinearLayout>

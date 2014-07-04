@@ -32,14 +32,14 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:gravity="center_vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingLeft="@dimen/podcast_horizontal_margin"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No title selected"
+                    android:text="@string/no_podcast_selected"
                     android:ellipsize="end"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -81,7 +81,7 @@
                 android:id="@+id/fl_playPausePodcastWrapper"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingRight="@dimen/activity_horizontal_margin">
+                android:paddingRight="@dimen/podcast_horizontal_margin">
 
                 <ImageButton
                     android:id="@+id/btn_playPausePodcast"
@@ -148,8 +148,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:paddingLeft="@dimen/podcast_horizontal_margin"
+        android:paddingRight="@dimen/podcast_horizontal_margin">
         <!--
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -218,11 +218,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_height="@dimen/podcast_media_control_height"
+        android:paddingLeft="@dimen/podcast_horizontal_margin"
+        android:paddingRight="@dimen/podcast_horizontal_margin"
         android:background="@color/slide_up_panel_slider_background_color"
         android:orientation="vertical">
 
@@ -245,6 +243,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:progress="0"
                 android:max="100" />
 
@@ -269,7 +268,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/av_rewind"/>
 
             <ImageButton
@@ -277,7 +276,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/av_play"/>
 
             <ImageButton

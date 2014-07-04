@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.SurfaceHolder;
+import android.view.View;
 
 import java.io.IOException;
 
 import de.greenrobot.event.EventBus;
-import de.luhmer.owncloudnewsreader.events.podcast.OpenAudioPodcastEvent;
+import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.events.podcast.NewPodcastPlaybackListener;
+import de.luhmer.owncloudnewsreader.events.podcast.OpenPodcastEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
@@ -19,33 +23,35 @@ import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 
 public class PodcastPlaybackService extends Service {
 
+    private static final String TAG = "PodcastPlaybackService";
     PodcastNotification podcastNotification;
 
     @Override
     public void onCreate() {
         podcastNotification = new PodcastNotification(this);
 
+        mediaTitle = getString(R.string.no_podcast_selected);
+
         super.onCreate();
     }
 
     public PodcastPlaybackService() {
-        mediaPlayer = new MediaPlayer();
+        mMediaPlayer = new MediaPlayer();
         mHandler = new Handler();
         eventBus = EventBus.getDefault();
 
         eventBus.register(this);
 
-
-
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 play();
                 isPreparing = false;
+                canCallGetDuration = true;
             }
         });
 
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 pause();//Send the over signal
@@ -53,39 +59,52 @@ public class PodcastPlaybackService extends Service {
         });
 
 
+        eventBus.post(new PodcastPlaybackServiceStarted());
+
+        mHandler.postDelayed(mUpdateTimeTask, 0);
+
         //openFile("/sdcard/Music/#Musik/Finest Tunes/Netsky - Running Low (Ft. Beth Ditto).mp3");
     }
 
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return Service.START_STICKY;
+        //return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return null;
+        //throw new UnsupportedOperationException("Not yet implemented");
     }
 
 
     private EventBus eventBus;
     private Handler mHandler;
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mMediaPlayer;
     private String mediaTitle;
+    View parentResizableView;
 
     public static final int delay = 500; //In milliseconds
 
+    private boolean canCallGetDuration = false;//Otherwise the player would call getDuration all the time without loading a media file
     private boolean isPreparing = false;
+    private boolean isVideoFile = false;
 
     public void openFile(String pathToFile, String mediaTitle) {
         try {
-            this.mediaTitle = mediaTitle;
-
-            if(mediaPlayer.isPlaying())
+            if(mMediaPlayer.isPlaying())
                 pause();
+
+            this.mediaTitle = mediaTitle;
 
             isPreparing = true;
             mHandler.postDelayed(mUpdateTimeTask, 0);
 
-            mediaPlayer.reset();
-            mediaPlayer.setDataSource(pathToFile);
-            mediaPlayer.prepareAsync();
+            mMediaPlayer.reset();
+            mMediaPlayer.setDataSource(pathToFile);
+            mMediaPlayer.prepareAsync();
         } catch (IOException e) {
             e.printStackTrace();
             isPreparing = false;
@@ -104,7 +123,7 @@ public class PodcastPlaybackService extends Service {
     };
 
     public void onEvent(TogglePlayerStateEvent event) {
-        if(mediaPlayer.isPlaying()) {
+        if(mMediaPlayer.isPlaying()) {
             pause();
         } else {
             play();
@@ -112,49 +131,91 @@ public class PodcastPlaybackService extends Service {
     }
 
     public void onEvent(WindPodcast event) {
-        if(mediaPlayer != null) {
-            double totalDuration = mediaPlayer.getDuration();
+        if(mMediaPlayer != null) {
+            double totalDuration = mMediaPlayer.getDuration();
             int position = (int)((totalDuration / 100d) * event.toPositionInPercent);
-            mediaPlayer.seekTo(position);
+            mMediaPlayer.seekTo(position);
         }
     }
 
-    public void onEventBackgroundThread(OpenAudioPodcastEvent event) {
+    public void onEventBackgroundThread(OpenPodcastEvent event) {
+        this.isVideoFile = event.isVideoFile;
         openFile(event.pathToFile, event.mediaTitle);
     }
 
     public void onEvent(RegisterVideoOutput videoOutput) {
-        if(mediaPlayer != null) {
-            //getHolder().addCallback(videoOutput);
-            videoOutput.surfaceView.getHolder().setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        if(mMediaPlayer != null) {
+            if(videoOutput.surfaceView == null) {
+                mMediaPlayer.setDisplay(null);
+                Log.d(TAG, "Disable Screen output!");
+
+                mMediaPlayer.setScreenOnWhilePlaying(false);
+            } else {
+                if(videoOutput.surfaceView.getHolder() != mSurfaceHolder) {
+                    parentResizableView = videoOutput.parentResizableView;
+
+                    videoOutput.surfaceView.getHolder().addCallback(mSHCallback);
+                    //videoOutput.surfaceView.getHolder().setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS); //holder.setType(SurfaceHolder.SURFACE_TYPE_GPU);
+
+                    populateVideo();
+
+                    Log.d(TAG, "Enable Screen output!");
+                }
+            }
         }
+    }
+
+    public void onEvent(NewPodcastPlaybackListener newListener) {
+        sendMediaStatus();
     }
 
 
 
 
     public void play() {
-        mediaPlayer.start();
+        try {
+            int progress = mMediaPlayer.getCurrentPosition() / mMediaPlayer.getDuration();
+            if (progress >= 1) {
+                mMediaPlayer.seekTo(0);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        mMediaPlayer.start();
 
         mHandler.removeCallbacks(mUpdateTimeTask);
         mHandler.postDelayed(mUpdateTimeTask, 0);
+
+        populateVideo();
+    }
+
+    private void populateVideo() {
+        double videoHeightRel = (double) mSurfaceWidth / (double) mMediaPlayer.getVideoWidth();
+        int videoHeight = (int) (mMediaPlayer.getVideoHeight() * videoHeightRel);
+
+        if (mSurfaceWidth != 0 && videoHeight != 0 && mSurfaceHolder != null) {
+            //mSurfaceHolder.setFixedSize(mSurfaceWidth, videoHeight);
+
+            parentResizableView.getLayoutParams().height = videoHeight;
+            parentResizableView.setLayoutParams(parentResizableView.getLayoutParams());
+        }
     }
 
     public void pause() {
-        if(mediaPlayer.isPlaying())
-            mediaPlayer.pause();
+        if(mMediaPlayer.isPlaying())
+            mMediaPlayer.pause();
 
         mHandler.removeCallbacks(mUpdateTimeTask);
-
         sendMediaStatus();
     }
 
     public void sendMediaStatus() {
         long totalDuration = 0;
         long currentDuration = 0;
-        if(!isPreparing) {
-            totalDuration = mediaPlayer.getDuration();
-            currentDuration = mediaPlayer.getCurrentPosition();
+        if(!isPreparing && canCallGetDuration) {
+            totalDuration = mMediaPlayer.getDuration();
+            currentDuration = mMediaPlayer.getCurrentPosition();
         }
 
             /*
@@ -169,21 +230,43 @@ public class PodcastPlaybackService extends Service {
             songProgressBar.setProgress(progress);
             */
 
-        UpdatePodcastStatusEvent audioPodcastEvent = new UpdatePodcastStatusEvent(currentDuration, totalDuration, mediaPlayer.isPlaying(), mediaTitle, isPreparing);
+        UpdatePodcastStatusEvent audioPodcastEvent = new UpdatePodcastStatusEvent(currentDuration, totalDuration, mMediaPlayer.isPlaying(), mediaTitle, isPreparing, canCallGetDuration, isVideoFile);
         eventBus.post(audioPodcastEvent);
     }
 
 
+    public class PodcastPlaybackServiceStarted {
+
+    }
+
+    /*
+    public class VideoAvailableState {
+        public VideoAvailableState(boolean isVideoAvailable) {
+            this.isVideoAvailable = isVideoAvailable;
+        }
+
+        public boolean isVideoAvailable;
+    }
+    */
 
 
+
+    int mSurfaceWidth;
+    int mSurfaceHeight;
+    SurfaceHolder mSurfaceHolder;
     SurfaceHolder.Callback mSHCallback = new SurfaceHolder.Callback()
     {
-        public void surfaceChanged(SurfaceHolder holder, int format,
-                                   int w, int h)
+        public void surfaceChanged(SurfaceHolder holder, int format, int surfaceWidth, int surfaceHeight)
         {
-            mSurfaceWidth = w;
-            mSurfaceHeight = h;
-            if (mIsPrepared && mVideoWidth == w && mVideoHeight == h) {
+            mSurfaceWidth = surfaceWidth;
+            mSurfaceHeight = surfaceHeight;
+
+            //populateVideo();
+
+            //Log.d(TAG, "surfaceChanged");
+
+            /*
+            if (!isPreparing && mVideoWidth == w && mVideoHeight == h) {
                 if (mSeekWhenPrepared != 0) {
                     mMediaPlayer.seekTo(mSeekWhenPrepared);
                 }
@@ -192,24 +275,22 @@ public class PodcastPlaybackService extends Service {
                     mMediaController.show();
                 }
             }
+            */
         }
 
         public void surfaceCreated(SurfaceHolder holder)
         {
             mSurfaceHolder = holder;
-            openVideo();
+            mMediaPlayer.setDisplay(mSurfaceHolder);
+
+            mMediaPlayer.setScreenOnWhilePlaying(true);
+
+            Log.d(TAG, "surfaceCreated");
         }
 
         public void surfaceDestroyed(SurfaceHolder holder)
         {
-            // after we return from this we can't use the surface any more
-            mSurfaceHolder = null;
-            if (mMediaController != null) mMediaController.hide();
-            if (mMediaPlayer != null) {
-                mMediaPlayer.reset();
-                mMediaPlayer.release();
-                mMediaPlayer = null;
-            }
+            Log.d(TAG, "surfaceDestroyed");
         }
     };
 

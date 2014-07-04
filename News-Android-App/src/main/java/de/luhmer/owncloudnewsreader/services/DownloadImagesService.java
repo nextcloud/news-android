@@ -49,6 +49,7 @@ import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
@@ -144,7 +145,7 @@ public class DownloadImagesService extends IntentService {
                 notificationManager.notify(NOTIFICATION_ID, notify);
 
             for (String link : links)
-                new GetImageAsyncTask(link, imgDownloadFinished, 999, ImageHandler.getPathImageCache(this), this, null).execute();
+                new GetImageAsyncTask(link, imgDownloadFinished, 999, FileUtils.getPathImageCache(this), this, null).execute();
         }
 	}
 
@@ -169,7 +170,7 @@ public class DownloadImagesService extends IntentService {
 
     private void RemoveOldImages(Context context) {
         HashMap<File, Long> files;
-        long size = ImageHandler.getFolderSize(new File(ImageHandler.getPath(context)));
+        long size = ImageHandler.getFolderSize(new File(FileUtils.getPath(context)));
         size = (long) (size / 1024d / 1024d);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -177,7 +178,7 @@ public class DownloadImagesService extends IntentService {
         if(size > max_allowed_size)
         {
             files = new HashMap<File, Long>();
-            for(File file : ImageHandler.getFilesFromDir(new File(ImageHandler.getPathImageCache(context))))
+            for(File file : ImageHandler.getFilesFromDir(new File(FileUtils.getPathImageCache(context))))
             {
                 files.put(file, file.lastModified());
             }

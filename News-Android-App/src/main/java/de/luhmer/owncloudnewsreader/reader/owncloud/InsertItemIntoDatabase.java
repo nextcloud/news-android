@@ -55,18 +55,29 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
         content = content.replaceAll("<img[^>]*auslieferung.commindo-media-ressourcen.de.*>", "");
         content = content.replaceAll("<img[^>]*rss.buysellads.com.*>", "");
 
+        String url = e.optString("url");
+        String guid = e.optString("guid");
+        String enclosureLink = e.optString("enclosureLink");
+        String enclosureMime = e.optString("enclosureMime");
+
+        if(enclosureLink.isEmpty() && guid.startsWith("http://gdata.youtube.com/feeds/api/")) {
+            enclosureLink = url;
+            enclosureMime = "youtube";
+        }
+
+
         return new RssFile(0, e.optString("id"),
                                 e.optString("title"),
-                                e.optString("url"), content,
+                                url, content,
                                 !e.optBoolean("unread"), null,
                                 e.optString("feedId"), null,
                                 date, e.optBoolean("starred"),
-                                e.optString("guid"),
+                                guid,
                                 e.optString("guidHash"),
                                 e.optString("lastModified"),
                                 e.optString("author"),
-                                e.optString("enclosureLink"),
-                                e.optString("enclosureMime"));
+                                enclosureLink,
+                                enclosureMime);
 	}
 
 	@Override

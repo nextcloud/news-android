@@ -7,13 +7,26 @@ import java.io.Serializable;
  */
 public class PodcastItem implements Serializable {
 
+    public PodcastItem() {
+
+    }
+
+    public PodcastItem(String itemId, String title, String link, String mimeType, boolean offlineCached) {
+        this.itemId = itemId;
+        this.title = title;
+        this.link = link;
+        this.mimeType = mimeType;
+        this.offlineCached = offlineCached;
+    }
+
     public String itemId;
     public String title;
     public String link;
     public String mimeType;
+    public boolean offlineCached;
 
-    public int downloadProgress;
+    public Integer downloadProgress;
 
-    public static int DOWNLOAD_COMPLETED = -1;
-    public static int DOWNLOAD_NOT_STARTED = -2;
+    public static Integer DOWNLOAD_COMPLETED = -1;
+    public static Integer DOWNLOAD_NOT_STARTED = -2;
 }

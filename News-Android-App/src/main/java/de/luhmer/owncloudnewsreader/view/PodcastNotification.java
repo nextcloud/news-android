@@ -54,19 +54,10 @@ public class PodcastNotification {
 
 
     int lastDrawableId;
-    long lastUpdate = 0;
-    int seconds = 1;//Time of delay between each update
 
     public void onEvent(UpdatePodcastStatusEvent podcast) {
-        /*
-        long current = new Date().getTime();
-
-        if((lastUpdate + (1000 * seconds)) > current) {
+        if(!podcast.isFileLoaded())
             return;
-        } else {
-            lastUpdate = current;
-        }
-        */
 
         int drawableId = podcast.isPlaying() ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
         String actionText = podcast.isPlaying() ? "Pause" : "Play";

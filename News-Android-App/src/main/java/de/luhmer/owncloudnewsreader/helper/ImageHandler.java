@@ -23,7 +23,6 @@ package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Environment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -116,34 +115,6 @@ public class ImageHandler {
 
 
 
-	public static String getPathFavIcons(Context context)
-	{
-		return getPath(context) + "/favIcons";
-	}
-
-	public static String getPathImageCache(Context context)
-	{
-		return getPath(context) + "/imgCache";
-	}
-
-	public static String getPath(Context context) {
-		String url;
-		Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
-		if(isSDPresent)
-		{
-			url = Environment.getExternalStorageDirectory().getAbsolutePath();
-			if (android.os.Build.DEVICE.contains("Samsung") || android.os.Build.MANUFACTURER.contains("Samsung")) {
-				url = url + "/external_sd";
-			}
-			//url = url + "/" + context.getString(R.string.app_name);
-			url = url + "/ownCloud News Reader";
-		}
-		else
-			url = context.getCacheDir().getAbsolutePath();
-
-		return url;
-	}
-
 
 	public static List<String> getImageLinksFromText(String text)
 	{
@@ -168,14 +139,14 @@ public class ImageHandler {
 
 	public static boolean clearCache(Context context)
 	{
-        String path = getPath(context);
+        String path = FileUtils.getPath(context);
 		boolean result = deleteDir(new File(path));
         createNoMediaFile(context);
         return result;
 	}
 
     public static void createNoMediaFile(Context context) {
-        String path = getPath(context);
+        String path = FileUtils.getPath(context);
         createEmptyFile(path + "/.nomedia");
     }
 

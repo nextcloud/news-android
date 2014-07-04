@@ -49,11 +49,9 @@ import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
-import de.luhmer.owncloudnewsreader.helper.MenuUtilsSherlockFragmentActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
-import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefreshLayout;
 
 /**
@@ -70,8 +68,8 @@ import uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefresh
 public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity implements
 		 NewsReaderListFragment.Callbacks {
 
-	private SlidingPaneLayout mSlidingLayout;
-    public PodcastSlidingUpPanelLayout sliding_layout;
+	SlidingPaneLayout mSlidingLayout;
+
 
 	//static final String TAG = "NewsReaderListActivity";
 	//ActionBarDrawerToggle drawerToggle;
@@ -82,7 +80,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
 
-    PodcastFragment podcastFragment;
     //boolean isSlideUpPanelExpanded = false;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -131,14 +128,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 
 
-
-
-
-        sliding_layout = (PodcastSlidingUpPanelLayout) findViewById(R.id.sliding_layout);
-        UpdatePodcastView();
-
-
-
         mSlidingLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane);
 
         mSlidingLayout.setParallaxDistance(280);
@@ -152,6 +141,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 			@Override
 			public void onPanelOpened(View arg0) {
+                togglePodcastVideoViewAnimation();
+
 				updateAdapter();
 
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -162,6 +153,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 			@Override
 			public void onPanelClosed(View arg0) {
+                togglePodcastVideoViewAnimation();
+
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -221,25 +214,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
 	private static final String OPTIONAL_FOLDER_ID ="OPTIONAL_FOLDER_ID";
 
-
-    public void UpdatePodcastView() {
-
-        if(podcastFragment != null) {
-            getSupportFragmentManager().beginTransaction().remove(podcastFragment).commitAllowingStateLoss();
-        }
-
-
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false)) {
-            podcastFragment = PodcastFragment.newInstance(null, null);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.podcast_frame, podcastFragment)
-                    .commitAllowingStateLoss();
-        } else {
-            sliding_layout.getChildAt(1).setVisibility(View.GONE);
-            podcastFragment = null;
-        }
-    }
 
 	/* (non-Javadoc)
 	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
@@ -481,10 +455,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 	@Override
 	public void onBackPressed() {
-        if(podcastFragment != null && sliding_layout.isPanelExpanded()) {
-            if (!podcastFragment.onBackPressed())
-                sliding_layout.collapsePanel();
-        } else if(mSlidingLayout.isOpen())
+        if(handlePodcastBackPressed());
+        else if(mSlidingLayout.isOpen())
 			super.onBackPressed();
 		else
 			mSlidingLayout.openPane();
@@ -502,10 +474,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 			switch (item.getItemId()) {
 
 				case android.R.id.home:
-                    if(podcastFragment != null && sliding_layout.isPanelExpanded()) {
-                        if (!podcastFragment.onBackPressed())
-                            sliding_layout.collapsePanel();
-                    }
+                    if(handlePodcastBackPressed());
 					else if(!mSlidingLayout.isOpen())
 						mSlidingLayout.openPane();
 					return true;

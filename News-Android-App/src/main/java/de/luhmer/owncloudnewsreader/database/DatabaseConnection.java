@@ -29,15 +29,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.util.SparseArray;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.UnreadFolderCount;
-import de.luhmer.owncloudnewsreader.model.AudioPodcastItem;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
+import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.RssFile;
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
@@ -932,7 +934,7 @@ public class DatabaseConnection {
         //Log.d("DatabaseConnection", "Inserted Rows: " + result);
     }
 
-    private static final String ALLOWED_PODCASTS_TYPES = "audio/mp3', 'audio/mpeg', 'audio/ogg', 'audio/opus', 'audio/ogg;codecs=opus";
+    private static final String ALLOWED_PODCASTS_TYPES = "audio/mp3', 'audio/mpeg', 'audio/ogg', 'audio/opus', 'audio/ogg;codecs=opus', 'youtube";
 
     public List<PodcastFeedItem> getListOfFeedsWithAudioPodcasts() {
 
@@ -965,13 +967,13 @@ public class DatabaseConnection {
         return result;
     }
 
-    public List<AudioPodcastItem> getListOfAudioPodcastsForFeed(String feedId) {
+    public List<PodcastItem> getListOfAudioPodcastsForFeed(Context context, String feedId) {
 
         String buildSQL = "SELECT rowid, " + RSS_ITEM_TITLE + ", " + RSS_ITEM_ENC_LINK + ", " + RSS_ITEM_ENC_MIME + " FROM " + RSS_ITEM_TABLE +
                 " WHERE " + RSS_ITEM_ENC_MIME + " IN ('" + ALLOWED_PODCASTS_TYPES + "') AND " + RSS_ITEM_SUBSCRIPTION_ID + " = " + feedId;
 
 
-        List<AudioPodcastItem> result = new ArrayList<AudioPodcastItem>();
+        List<PodcastItem> result = new ArrayList<PodcastItem>();
         Cursor cursor = database.rawQuery(buildSQL, null);
         try
         {
@@ -981,11 +983,17 @@ public class DatabaseConnection {
                 {
                     cursor.moveToFirst();
                     do {
-                        AudioPodcastItem podcastItem = new AudioPodcastItem();
+                        PodcastItem podcastItem = new PodcastItem();
                         podcastItem.itemId = cursor.getString(0);
                         podcastItem.title = cursor.getString(1);
                         podcastItem.link = cursor.getString(2);
                         podcastItem.mimeType = cursor.getString(3);
+
+                        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));
+                        podcastItem.offlineCached = file.exists();
+
+
+
                         result.add(podcastItem);
                     } while(cursor.moveToNext());
                 }

@@ -10,6 +10,8 @@ public class UpdatePodcastStatusEvent {
     private String title;
     private boolean playing;
     private boolean preparingFile;
+    private boolean fileLoaded;
+    private boolean isVideoFile;
 
     public String getTitle() {
         return title;
@@ -31,12 +33,20 @@ public class UpdatePodcastStatusEvent {
         return preparingFile;
     }
 
-    public UpdatePodcastStatusEvent(long current, long max, boolean playing, String title, boolean preparingFile) {
+    public boolean isFileLoaded() {
+        return fileLoaded;
+    }
+
+    public boolean isVideoFile() { return isVideoFile; }
+
+    public UpdatePodcastStatusEvent(long current, long max, boolean playing, String title, boolean preparingFile, boolean fileLoaded, boolean isVideoFile) {
         this.current = current;
         this.max = max;
         this.playing = playing;
         this.title = title;
         this.preparingFile = preparingFile;
+        this.fileLoaded = fileLoaded;
+        this.isVideoFile = isVideoFile;
     }
 
 }

@@ -46,6 +46,7 @@ import java.util.Date;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -264,7 +265,7 @@ public class NewsDetailFragment extends SherlockFragment {
 	        		favIconUrl = favIconCursor.getString(favIconCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));
 	        		if(favIconUrl != null)
 	        		{
-	        			File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, ImageHandler.getPathFavIcons(context));
+	        			File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, FileUtils.getPathFavIcons(context));
 	        			if(file.isFile())
 	        				favIconUrl = "file://" + file.getAbsolutePath().toString();
 	        		}
@@ -356,7 +357,7 @@ public class NewsDetailFragment extends SherlockFragment {
 			link = link.trim();
 			try
 			{
-				File file = ImageHandler.getFullPathOfCacheFile(link, ImageHandler.getPathImageCache(context));
+				File file = ImageHandler.getFullPathOfCacheFile(link, FileUtils.getPathImageCache(context));
 				if(file.isFile())
 					text = text.replace(link, "file://" + file.getAbsolutePath().toString());
 			}

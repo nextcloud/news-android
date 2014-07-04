@@ -55,6 +55,6 @@ public class DatabaseUtils {
 	}
 
     public static File GetPath(Context context) {
-        return new File(ImageHandler.getPath(context) + "/dbBackup/" + DatabaseHelper.DATABASE_NAME);
+        return new File(FileUtils.getPath(context) + "/dbBackup/" + DatabaseHelper.DATABASE_NAME);
     }
 }

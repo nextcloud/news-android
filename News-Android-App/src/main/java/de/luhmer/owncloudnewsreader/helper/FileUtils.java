@@ -21,6 +21,9 @@
 
 package de.luhmer.owncloudnewsreader.helper;
 
+import android.content.Context;
+import android.os.Environment;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,7 +38,7 @@ public class FileUtils {
      * <br/>
      * <i> Note: <code>fromFile</code> and <code>toFile</code> will be closed by
      * this function.</i>
-     * 
+     *
      * @param fromFile
      *            - FileInputStream for the file to copy from.
      * @param toFile
@@ -60,4 +63,45 @@ public class FileUtils {
             }
         }
     }
+
+
+
+
+
+    public static String getPath(Context context) {
+        String url;
+        Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
+        if(isSDPresent)
+        {
+            url = Environment.getExternalStorageDirectory().getAbsolutePath();
+            if (android.os.Build.DEVICE.contains("Samsung") || android.os.Build.MANUFACTURER.contains("Samsung")) {
+                url = url + "/external_sd";
+            }
+            //url = url + "/" + context.getString(R.string.app_name);
+            url = url + "/ownCloud News Reader";
+        }
+        else
+            url = context.getCacheDir().getAbsolutePath();
+
+        return url;
+    }
+
+
+
+
+    public static String getPathPodcasts(Context context)
+    {
+        return getPath(context) + "/podcasts";
+    }
+
+    public static String getPathFavIcons(Context context)
+    {
+        return getPath(context) + "/favIcons";
+    }
+
+    public static String getPathImageCache(Context context)
+    {
+        return getPath(context) + "/imgCache";
+    }
+
 }

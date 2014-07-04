@@ -46,7 +46,7 @@ public class FavIconHandler {
 	{
 		try
 		{
-			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, ImageHandler.getPathFavIcons(context));
+			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, FileUtils.getPathFavIcons(context));
 			if(favIconFile.isFile() && favIconFile.length() > 0)
 			{
 				if(feedID != null) {
@@ -94,7 +94,7 @@ public class FavIconHandler {
 
         int key = Integer.parseInt(feedID);
         favIconToFeedId.put(key, favIconCache);
-        GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, favIconDownloadFinished, key, ImageHandler.getPathFavIcons(context), context, null);
+        GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, favIconDownloadFinished, key, FileUtils.getPathFavIcons(context), context, null);
         giAsync.scaleImage = true;
         giAsync.dstHeight = 2*32;
         giAsync.dstWidth = 2*32;
@@ -146,7 +146,7 @@ public class FavIconHandler {
 
 
 			imageView.setImageDrawable(null);
-			GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, ImageHandler.getPathFavIcons(context), context/*, imageView*/, lruCache);
+			GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, FileUtils.getPathFavIcons(context), context/*, imageView*/, lruCache);
 			giAsync.scaleImage = true;
 			giAsync.dstHeight = 2*32;
 			giAsync.dstWidth = 2*32;

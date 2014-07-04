@@ -70,6 +70,15 @@ Updates
 0.7.0 (in development)
 ---------------------
 
+0.6.9.4 (Google Play - Beta)
+---------------------
+- Add Podcast download support
+- Add Video Podcast Support
+- Youtube playlists are supported <a href="http://elliottbledsoe.com/brain-drain/how-to/rss-subscribe-to-youtube-playlist/">(Subscribe to a YouTube playlist using RSS)</a>
+- Fix app crash
+- Other fixes and improvements
+
+
 0.6.9.3 (Google Play - Beta)
 ---------------------
 - Accept ogg podcasts

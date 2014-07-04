@@ -16,6 +16,7 @@
 <!--     </style> -->
 
     <!-- <style name="AppBaseTheme" parent="android:Theme.Light"></style> -->
+    <!-- <style name="AppBaseTheme" parent="@style/android:Theme.Material"></style> -->
     <style name="AppBaseTheme" parent="@style/Theme.Sherlock"></style>
 
     <!-- Application theme. -->

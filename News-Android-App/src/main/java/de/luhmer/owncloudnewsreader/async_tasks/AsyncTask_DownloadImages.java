@@ -26,25 +26,26 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
+import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
 public class AsyncTask_DownloadImages extends AsyncTask<Void, Void, Void>{
 	String text;
 	Context context;
-	
+
 	public AsyncTask_DownloadImages(String text, Context context) {
 		this.text = text;
 		this.context = context;
 	}
-	
+
 	@Override
 	protected Void doInBackground(Void... params) {
 		if(text != null)
 		{
 			List<String> links = ImageHandler.getImageLinksFromText(text);
-		    
+
 		    for(String link : links)
-		    	new GetImageAsyncTask(link, null, 999, ImageHandler.getPathImageCache(context), context, null).execute();
+		    	new GetImageAsyncTask(link, null, 999, FileUtils.getPathImageCache(context), context, null).execute();
 		}
 		return null;
 	}

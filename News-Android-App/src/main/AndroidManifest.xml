@@ -19,10 +19,12 @@
         android:debuggable="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".NewsReaderListActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop">
 
             <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
             <intent-filter>
@@ -124,9 +126,13 @@
         </activity>
 
         <service
-            android:name=".services.AudioPodcastService"
+            android:name=".services.PodcastPlaybackService"
             android:enabled="true"
             android:exported="true" >
+        </service>
+        <service
+            android:name=".services.PodcastDownloadService"
+            android:exported="false" >
         </service>
     </application>
 
