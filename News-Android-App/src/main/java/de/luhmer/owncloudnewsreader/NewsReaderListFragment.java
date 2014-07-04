@@ -30,7 +30,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -165,33 +164,10 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
     }
 
     public void ReloadAdapter() {
-        new ReloadAdapterAsync().execute((Void) null);
+        lvAdapter.ReloadAdapterAsync(progressBar);
     }
 
-    private class ReloadAdapterAsync extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            progressBar.setVisibility(View.VISIBLE);
 
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            lvAdapter.ReloadAdapter();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            //lvAdapter.notifyDataSetChanged();
-            lvAdapter.NotifyDataSetChangedAsync();
-
-            progressBar.setVisibility(View.GONE);
-
-            super.onPostExecute(aVoid);
-        }
-    }
 
 
 
