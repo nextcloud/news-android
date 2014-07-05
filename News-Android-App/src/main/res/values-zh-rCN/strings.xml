@@ -27,6 +27,7 @@
   <string name="menu_StartImageCaching">下载图片</string>
   <string name="menu_downloadMoreItems">下载更多内容</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">导入帐号</string>
   <!--EMAIL-->
   <string name="email_sourceCode">源代码-错误报告</string>
   <string name="email_sendMail">发送邮件</string>
@@ -94,6 +95,8 @@
   <string name="mtm_decision_abort">终止</string>
   <string name="mtm_notification">校验证书</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">启用 Podcast 支持</string>
   <!--Settings for Display-->
   <string name="pref_header_display">显示</string>
   <string name="pref_title_app_theme">应用皮肤 (需要重启来生效)</string>
