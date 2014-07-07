@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -71,11 +72,26 @@ public class SyncIntervalSelectorActivity extends SherlockFragmentActivity {
 
             mPrefs.edit().putInt(SYNC_INTERVAL_IN_MINUTES_STRING, minutes).commit();
 
+            SetAccountSyncInterval(this);
+
+            finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public static void SetAccountSyncInterval(Context context) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 0);
+
+        if(minutes != 0) {
             long SYNC_INTERVAL = minutes * SECONDS_PER_MINUTE;
 
-            AccountManager mAccountManager = AccountManager.get(this);
+            AccountManager mAccountManager = AccountManager.get(context);
             Account[] accounts = mAccountManager.getAccountsByType(AccountGeneral.ACCOUNT_TYPE);
-            for(Account account : accounts) {
+            for (Account account : accounts) {
 
                 ContentResolver.setSyncAutomatically(account, AccountGeneral.ACCOUNT_TYPE, true);
 
@@ -86,14 +102,8 @@ public class SyncIntervalSelectorActivity extends SherlockFragmentActivity {
                         bundle,
                         SYNC_INTERVAL);
             }
-
-            finish();
         }
-
-
-        return super.onOptionsItemSelected(item);
     }
-
 
 
     /**

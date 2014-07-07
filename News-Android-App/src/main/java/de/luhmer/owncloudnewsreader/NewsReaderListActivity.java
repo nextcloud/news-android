@@ -110,6 +110,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		    //Then add the new account
 	    	Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
 	    	mAccountManager.addAccountExplicitly(account, "", new Bundle());
+
+            SyncIntervalSelectorActivity.SetAccountSyncInterval(this);
 	    	//ContentResolver.setSyncAutomatically(account, getString(R.string.authorities), true);
 			//ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
 	    }
