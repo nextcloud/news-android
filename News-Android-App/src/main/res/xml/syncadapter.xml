@@ -5,5 +5,3 @@
 	android:accountType="de.luhmer.owncloudnewsreader"
     android:userVisible="true"
     android:supportsUploading="false" />
-
-        
