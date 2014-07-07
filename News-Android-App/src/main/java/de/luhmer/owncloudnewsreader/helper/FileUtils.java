@@ -24,10 +24,13 @@ package de.luhmer.owncloudnewsreader.helper;
 import android.content.Context;
 import android.os.Environment;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 public class FileUtils {
 	/**
@@ -88,6 +91,16 @@ public class FileUtils {
 
 
 
+    public static boolean DeletePodcastFile(Context context, String url) {
+        try {
+            File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, url, false));
+            if(file.exists())
+                return file.delete();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
 
     public static String getPathPodcasts(Context context)
     {

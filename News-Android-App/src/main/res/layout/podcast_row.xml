@@ -64,6 +64,25 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/fl_deletePodcastWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:paddingRight="@dimen/podcast_horizontal_margin">
+
+        <ImageButton
+            android:id="@+id/btn_deletePodcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_gravity="center"
+            android:background="@drawable/content_discard" />
+
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/fl_downloadPodcastWrapper"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

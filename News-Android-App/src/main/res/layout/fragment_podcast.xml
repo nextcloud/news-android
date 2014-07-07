@@ -64,14 +64,14 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="0:00"
+                        android:text="00:00"
                         android:textColor="@color/slider_listview_text_color_dark_theme" />
 
                     <TextView
                         android:id="@+id/tv_to"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0:00"
+                        android:text="00:00"
                         android:textColor="@color/slider_listview_text_color_dark_theme" />
                 </LinearLayout>
 
@@ -251,7 +251,7 @@
                 android:id="@+id/tv_ToSlider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20:00"
+                android:text="00:00"
                 android:layout_gravity="center_vertical" />
 
         </LinearLayout>

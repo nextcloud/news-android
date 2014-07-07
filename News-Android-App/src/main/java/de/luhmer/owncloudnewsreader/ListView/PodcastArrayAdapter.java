@@ -16,6 +16,7 @@ import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
+import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.JavaYoutubeDownloader;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
@@ -75,6 +76,17 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
             }
         });
 
+        holder.flDeletePodcast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FileUtils.DeletePodcastFile(getContext(), podcastItem.link)) {
+                    podcastItem.offlineCached = false;
+                    podcastItem.downloadProgress = PodcastItem.DOWNLOAD_NOT_STARTED;
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
 
         holder.pbDownloadPodcast.setProgress(podcastItem.downloadProgress);
         if(podcastItem.downloadProgress >= 0)
@@ -96,6 +108,8 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         } else {
             holder.flDownloadPodcast.setVisibility(View.GONE);
         }
+
+        holder.flDeletePodcast.setVisibility((podcastItem.downloadProgress == PodcastItem.DOWNLOAD_COMPLETED) ? View.VISIBLE : View.GONE );
 
         /*
         File podcastFile = new File(PodcastDownloadService.getUrlToPodcastFile(getContext(), podcastItem.link, true));
@@ -127,6 +141,7 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         @InjectView(R.id.tv_body) TextView tvBody;
         @InjectView(R.id.fl_downloadPodcastWrapper) FrameLayout flDownloadPodcast;
         @InjectView(R.id.fl_PlayPodcastWrapper) FrameLayout flPlayPodcast;
+        @InjectView(R.id.fl_deletePodcastWrapper) FrameLayout flDeletePodcast;
         @InjectView(R.id.pbDownloadPodcast) ProgressBar pbDownloadPodcast;
         @InjectView(R.id.tvDownloadPodcastProgress) TextView tvDownloadPodcastProgress;
 

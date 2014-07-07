@@ -187,10 +187,10 @@ public class PodcastFragment extends SherlockFragment {
         if(audioPodcast.mimeType.equals("youtube") && !audioPodcast.offlineCached)
             Toast.makeText(getActivity(), "Cannot stream from youtube. Please download the video first.", Toast.LENGTH_SHORT).show();
         else {
-            File file = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), audioPodcast.link, true));
+            File file = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), audioPodcast.link, false));
             if(file.exists())
                 audioPodcast.link = file.getAbsolutePath();
-            else
+            else if(!audioPodcast.offlineCached)
                 Toast.makeText(getActivity(), "Starting podcast.. please wait", Toast.LENGTH_SHORT).show(); //Only show if we need to stream the file
 
             eventBus.post(new OpenPodcastEvent(audioPodcast.link, audioPodcast.title, isVideo));
