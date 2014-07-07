@@ -48,19 +48,18 @@ public class MemorizingDialogFragment extends SherlockDialogFragment
 	public MemorizingDialogFragment() {
 		
 	}
-	
-	public MemorizingDialogFragment(Intent i) {
-		//Intent i = getActivity().getIntent();
-		app = i.getStringExtra(MemorizingTrustManager.DECISION_INTENT_APP);
-		decisionId = i.getIntExtra(MemorizingTrustManager.DECISION_INTENT_ID, MTMDecision.DECISION_INVALID);
-		cert = i.getStringExtra(MemorizingTrustManager.DECISION_INTENT_CERT);
-		Log.d(TAG, "onResume with " + i.getExtras() + " decId=" + decisionId);
-		Log.d(TAG, "data: " + i.getData());
-	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		Log.d(TAG, "onCreate");
+        Bundle i = getArguments();
+
+        app = i.getString(MemorizingTrustManager.DECISION_INTENT_APP);
+        decisionId = i.getInt(MemorizingTrustManager.DECISION_INTENT_ID, MTMDecision.DECISION_INVALID);
+        cert = i.getString(MemorizingTrustManager.DECISION_INTENT_CERT);
+        //Log.d(TAG, "onResume with " + i.getExtras() + " decId=" + decisionId);
+        //Log.d(TAG, "data: " + i.getData());
+
 		super.onCreate(savedInstanceState);
 	}
 

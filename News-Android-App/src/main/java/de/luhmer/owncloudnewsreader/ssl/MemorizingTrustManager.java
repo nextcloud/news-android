@@ -39,6 +39,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NotificationCompat;
@@ -416,11 +417,14 @@ public class MemorizingTrustManager implements X509TrustManager {
 			public void run() {
 				Intent ni = new Intent(mContext, MemorizingDialogFragment.class);
 				ni.setData(Uri.parse(MemorizingTrustManager.class.getName() + "/" + myId));
-				ni.putExtra(DECISION_INTENT_APP, mContext.getPackageName());
-				ni.putExtra(DECISION_INTENT_ID, myId);
-				ni.putExtra(DECISION_INTENT_CERT, certMessage);
+
+                Bundle bundle = new Bundle();
+                bundle.putString(DECISION_INTENT_APP, mContext.getPackageName());
+                bundle.putInt(DECISION_INTENT_ID, myId);
+                bundle.putString(DECISION_INTENT_CERT, certMessage);
 				
-				SherlockDialogFragment dialog = new MemorizingDialogFragment(ni);
+				SherlockDialogFragment dialog = new MemorizingDialogFragment();
+                dialog.setArguments(bundle);
 				try {
 					dialog.show(((FragmentActivity) getUI()).getSupportFragmentManager(), "NoticeDialogFragment");
 				} catch(Exception ex) {
