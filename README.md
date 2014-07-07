@@ -70,6 +70,12 @@ Updates
 0.7.0 (in development)
 ---------------------
 
+0.6.9.5 (Google Play - Beta)
+---------------------
+- Add option to delete downloaded podcasts
+- Bug fixes
+
+
 0.6.9.4 (Google Play - Beta)
 ---------------------
 - Add Podcast download support
