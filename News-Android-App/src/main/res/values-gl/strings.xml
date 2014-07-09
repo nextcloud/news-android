@@ -103,6 +103,7 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Activar a compatibilidade cos podcast</string>
+  <string name="no_podcast_selected">Non hai ningún podcast seleccionadp</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Presentar</string>
   <string name="pref_title_app_theme">Tema de aplicativo (require reiniciar para aplicar)</string>

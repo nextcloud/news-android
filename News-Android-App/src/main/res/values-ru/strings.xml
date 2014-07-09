@@ -32,7 +32,7 @@
   <string name="email_sourceCode">Исходный код элемента - Отчет об ошибке</string>
   <string name="email_sendMail">Отправить сообщение</string>
   <!--Action Bar Items-->
-  <string name="action_starred">Отмеченный</string>
+  <string name="action_starred">Отмеченные</string>
   <string name="action_read">Читать</string>
   <string name="action_openInBrowser">Открыть в браузере</string>
   <string name="action_sendSourceCode">Отправить сообщение разработчикам</string>
@@ -103,6 +103,7 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Подкаст</string>
   <string name="pref_enable_podcasts">Включить поддержку Подкастов</string>
+  <string name="no_podcast_selected">Нет выбранных подкастов</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Показать</string>
   <string name="pref_title_app_theme">Применить тему (требуется перезапуск, чтобы настройки вступили в силу)</string>
