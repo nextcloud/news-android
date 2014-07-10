@@ -103,6 +103,7 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Podcast-Unterstützung aktivieren</string>
+  <string name="no_podcast_selected">Kein Podcast ausgewählt</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Anzeige</string>
   <string name="pref_title_app_theme">App-Theme (benötigt einen Neustart zur Übernahme)</string>
