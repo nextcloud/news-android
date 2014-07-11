@@ -70,6 +70,14 @@ Updates
 0.7.0 (in development)
 ---------------------
 
+0.6.9.6 (Google Play)
+---------------------
+- Fix app crash on devices with Android 2.2 - 2.3.*
+- Small layout improvements (podcast view)
+- Automatically restart app after podcast view has been enabled/disabled (or app theme changed)
+- Start podcasts from the item detail view
+
+
 0.6.9.5 (Google Play - Beta)
 ---------------------
 - Add option to delete downloaded podcasts
