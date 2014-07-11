@@ -153,7 +153,7 @@ public class NewsDetailFragment extends SherlockFragment {
 
 		init_webView();
 		NewsDetailActivity nrda = ((NewsDetailActivity)getActivity());
-		String idItem = nrda.getIdCurrentFeed(section_number - 1);
+		String idItem = nrda.getIdCurrentRssItem(section_number - 1);
 		webview.loadDataWithBaseURL("", getHtmlPage(ndActivity, ndActivity.dbConn, Integer.parseInt(idItem)), "text/html", "UTF-8", "");
 	}
 

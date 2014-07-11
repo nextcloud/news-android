@@ -2,6 +2,7 @@ package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
@@ -139,8 +140,7 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
             getSupportFragmentManager().beginTransaction().remove(podcastFragment).commitAllowingStateLoss();
         }
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false)) {
+        if(IsPodcastViewEnabled(this)) {
             podcastFragment = PodcastFragment.newInstance(null, null);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.podcast_frame, podcastFragment)
@@ -153,13 +153,18 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
         }
     }
 
+    public static boolean IsPodcastViewEnabled(Context context) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false);
+    }
+
     protected boolean podcastRequiresRestartOfUI() {
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean podcastEnabled = mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false);
 
-        if(podcastEnabled && sliding_layout.getVisibility() == View.GONE ||
-                !podcastEnabled && sliding_layout.getVisibility() == View.VISIBLE)
+        if((podcastEnabled && sliding_layout.getChildAt(1).getVisibility() == View.GONE) ||
+                (!podcastEnabled && sliding_layout.getChildAt(1).getVisibility() == View.VISIBLE))
             return true;
         return false;
     }

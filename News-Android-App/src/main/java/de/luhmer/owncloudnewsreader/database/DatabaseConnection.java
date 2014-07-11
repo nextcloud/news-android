@@ -967,6 +967,27 @@ public class DatabaseConnection {
         return result;
     }
 
+    public PodcastItem getPodcastForItem(Context context, String itemId) {
+        String buildSQL = "SELECT rowid, " + RSS_ITEM_TITLE + ", " + RSS_ITEM_ENC_LINK + ", " + RSS_ITEM_ENC_MIME + " FROM " + RSS_ITEM_TABLE +
+                " WHERE " + RSS_ITEM_ENC_MIME + " IN ('" + ALLOWED_PODCASTS_TYPES + "') AND rowid = " + itemId;
+
+        Cursor cursor = database.rawQuery(buildSQL, null);
+        try
+        {
+            if(cursor != null)
+            {
+                if(cursor.getCount() > 0)
+                {
+                    cursor.moveToFirst();
+                    return ParsePodcastItemFromCursor(context, cursor);
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+        return null;
+    }
+
     public List<PodcastItem> getListOfAudioPodcastsForFeed(Context context, String feedId) {
 
         String buildSQL = "SELECT rowid, " + RSS_ITEM_TITLE + ", " + RSS_ITEM_ENC_LINK + ", " + RSS_ITEM_ENC_MIME + " FROM " + RSS_ITEM_TABLE +
@@ -983,17 +1004,7 @@ public class DatabaseConnection {
                 {
                     cursor.moveToFirst();
                     do {
-                        PodcastItem podcastItem = new PodcastItem();
-                        podcastItem.itemId = cursor.getString(0);
-                        podcastItem.title = cursor.getString(1);
-                        podcastItem.link = cursor.getString(2);
-                        podcastItem.mimeType = cursor.getString(3);
-
-                        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));
-                        podcastItem.offlineCached = file.exists();
-
-
-
+                        PodcastItem podcastItem = ParsePodcastItemFromCursor(context, cursor);
                         result.add(podcastItem);
                     } while(cursor.moveToNext());
                 }
@@ -1003,6 +1014,19 @@ public class DatabaseConnection {
         }
 
         return result;
+    }
+
+    public static PodcastItem ParsePodcastItemFromCursor(Context context, Cursor cursor) {
+        PodcastItem podcastItem = new PodcastItem();
+        podcastItem.itemId = cursor.getString(0);
+        podcastItem.title = cursor.getString(cursor.getColumnIndex(RSS_ITEM_TITLE)); //cursor.getString(1);
+        podcastItem.link = cursor.getString(cursor.getColumnIndex(RSS_ITEM_ENC_LINK)); //cursor.getString(2);
+        podcastItem.mimeType = cursor.getString(cursor.getColumnIndex(RSS_ITEM_ENC_MIME)); //cursor.getString(3);
+
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));
+        podcastItem.offlineCached = file.exists();
+
+        return podcastItem;
     }
 
     public HashMap<String, String> getListOfFolders () {

@@ -178,22 +178,24 @@ public class PodcastFragment extends SherlockFragment {
     public static String[] VIDEO_FORMATS = { "youtube" };
 
     public void onEventMainThread(AudioPodcastClicked podcast) {
-        final PodcastItem audioPodcast = audioPodcasts.get(podcast.position);
+        final PodcastItem podcastItem = audioPodcasts.get(podcast.position);
+        tvTitle.setText(podcastItem.title);
+        OpenPodcast(getActivity(), podcastItem);
+    }
 
-        tvTitle.setText(audioPodcast.title);
+    public static void OpenPodcast(Context context, PodcastItem podcastItem) {
+        boolean isVideo = Arrays.asList(VIDEO_FORMATS).contains(podcastItem.mimeType);
 
-        boolean isVideo = Arrays.asList(VIDEO_FORMATS).contains(audioPodcast.mimeType);
-
-        if(audioPodcast.mimeType.equals("youtube") && !audioPodcast.offlineCached)
-            Toast.makeText(getActivity(), "Cannot stream from youtube. Please download the video first.", Toast.LENGTH_SHORT).show();
+        if(podcastItem.mimeType.equals("youtube") && !podcastItem.offlineCached)
+            Toast.makeText(context, "Cannot stream from youtube. Please download the video first.", Toast.LENGTH_SHORT).show();
         else {
-            File file = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), audioPodcast.link, false));
+            File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));
             if(file.exists())
-                audioPodcast.link = file.getAbsolutePath();
-            else if(!audioPodcast.offlineCached)
-                Toast.makeText(getActivity(), "Starting podcast.. please wait", Toast.LENGTH_SHORT).show(); //Only show if we need to stream the file
+                podcastItem.link = file.getAbsolutePath();
+            else if(!podcastItem.offlineCached)
+                Toast.makeText(context, "Starting podcast.. please wait", Toast.LENGTH_SHORT).show(); //Only show if we need to stream the file
 
-            eventBus.post(new OpenPodcastEvent(audioPodcast.link, audioPodcast.title, isVideo));
+            EventBus.getDefault().post(new OpenPodcastEvent(podcastItem.link, podcastItem.title, isVideo));
         }
     }
 

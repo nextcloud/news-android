@@ -39,6 +39,7 @@
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
     <string name="action_read">Read</string>
+    <string name="action_playPodacst">Play Podcast</string>
     <string name="action_openInBrowser">Open in Browser</string>
     <string name="action_sendSourceCode">Send item to Developer</string>
     <string name="action_Share">Share</string>

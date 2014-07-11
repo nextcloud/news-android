@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.ResultReceiver;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -213,8 +214,9 @@ public class PodcastDownloadService extends IntentService {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
 
+            Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        }
 
         podcast.downloadProgress = 100;
         eventBus.post(new DownloadProgressUpdate(podcast));

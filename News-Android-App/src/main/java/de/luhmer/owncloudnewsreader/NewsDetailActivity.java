@@ -43,12 +43,15 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
+import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -73,6 +76,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
 	PostDelayHandler pDelayHandler;
 
+    MenuItem menuItem_PlayPodcast;
 	MenuItem menuItem_Starred;
 	MenuItem menuItem_Read;
 
@@ -234,7 +238,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 		ResumeVideoPlayersOnCurrentPage();
 
 		//String idFeed = String.valueOf(rssFiles.get(position).getDB_Id());
-		String idFeed = getIdCurrentFeed(currentPosition);
+		String idFeed = getIdCurrentRssItem(currentPosition);
 
 		if(!dbConn.isFeedUnreadStarred(idFeed, true))
 		{
@@ -253,7 +257,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
      * @param position
      * @return
      */
-	public String getIdCurrentFeed(int position) {
+	public String getIdCurrentRssItem(int position) {
         if(position < cursor.getCount()) {
 		    cursor.moveToPosition(position);
 		    String idFeed = String.valueOf(cursor.getString(0));
@@ -279,14 +283,18 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
 	public void UpdateActionBarIcons()
 	{
-		String idFeed = getIdCurrentFeed(currentPosition);
+		String idRssItem = getIdCurrentRssItem(currentPosition);
         boolean isStarred = false;
         boolean isRead = false;
 
-        if(idFeed != "-1") {
-            isStarred = dbConn.isFeedUnreadStarred(idFeed, false);
-            isRead = dbConn.isFeedUnreadStarred(idFeed, true);
+        if(idRssItem != "-1") {
+            isStarred = dbConn.isFeedUnreadStarred(idRssItem, false);
+            isRead = dbConn.isFeedUnreadStarred(idRssItem, true);
+
+            PodcastItem podcastItem = dbConn.getPodcastForItem(this, idRssItem);
+            menuItem_PlayPodcast.setVisible((podcastItem != null && PodcastSherlockFragmentActivity.IsPodcastViewEnabled(this)));
         }
+
 
         //if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
         if(isStarred && menuItem_Starred != null)
@@ -342,6 +350,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
 		menuItem_Starred = menu.findItem(R.id.action_starred);
 		menuItem_Read = menu.findItem(R.id.action_read);
+        menuItem_PlayPodcast = menu.findItem(R.id.action_playPodcast);
         UpdateActionBarIcons();
 
 		return true;
@@ -349,7 +358,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		String idFeed = getIdCurrentFeed(currentPosition);
+		String idFeed = getIdCurrentRssItem(currentPosition);
 		Cursor cursor = dbConn.getArticleByID(idFeed);
 
         String currentUrl = "";
@@ -367,24 +376,37 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
                 }
 				break;
 
+            case R.id.action_read:
+
+                if(cursor != null)
+                {
+                    cursor.moveToFirst();
+                    String id = cursor.getString(0);
+                    markItemAsReadUnread(id, !menuItem_Read.isChecked());
+                    cursor.close();
+                }
+
+                UpdateActionBarIcons();
+
+                pDelayHandler.DelayTimer();
+
+                break;
+
 			case R.id.action_starred:
-				//String idItem_Db = String.valueOf(rssFiles.get(currentPosition).getDB_Id());
-				String idItem_Db = getIdCurrentFeed(currentPosition);
-                //String idItem = String.valueOf(rssFiles.get(currentPosition).getItem_Id());
-				Boolean curState = dbConn.isFeedUnreadStarred(idItem_Db, false);
+				Boolean curState = dbConn.isFeedUnreadStarred(idFeed, false);
 
-				//rssFiles.get(currentPosition).setStarred(!curState);
-
-				dbConn.updateIsStarredOfItem(idItem_Db, !curState);
+				dbConn.updateIsStarredOfItem(idFeed, !curState);
 
 				UpdateActionBarIcons();
 
 				pDelayHandler.DelayTimer();
 
+                /*
 				List<String> idItems = new ArrayList<String>();
 				cursor.moveToFirst();
 				idItems.add(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
 				cursor.close();
+                */
 				break;
 
 			case R.id.action_openInBrowser:
@@ -423,6 +445,12 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 				}
 				break;
 			 */
+
+            case R.id.action_playPodcast:
+                PodcastItem podcastItem = dbConn.getPodcastForItem(this, idFeed);
+                PodcastFragment.OpenPodcast(NewsDetailActivity.this, podcastItem);
+                break;
+
             case R.id.action_ShareItem:
 
             	String title = "";
@@ -451,21 +479,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
                 startActivity(Intent.createChooser(share, "Share Item"));
                 break;
 
-            case R.id.action_read:
 
-            	if(cursor != null)
-				{
-					cursor.moveToFirst();
-					String id = cursor.getString(0);
-					markItemAsReadUnread(id, !menuItem_Read.isChecked());
-					cursor.close();
-				}
-
-            	UpdateActionBarIcons();
-
-            	pDelayHandler.DelayTimer();
-
-            	break;
 		}
 
         if(cursor != null)

@@ -26,7 +26,13 @@
         android:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_menu_set_as"
         android:title="@string/action_openInBrowser"/>
-    
+
+    <item
+        android:id="@+id/action_playPodcast"
+        android:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/action_playPodacst"/>
+
     <!-- 
     <item
         android:id="@+id/action_sendSourceCode"
