@@ -52,25 +52,25 @@ public class ThemeChooser {
 		}
 	}
 
-	/*
-	public static void ChangeBackgroundOfSlider(Activity activity) {
-		View navigation_drawer = activity.getWindow().getDecorView().findViewById(R.id.left_drawer);
-		if(isDarkTheme(activity))
-			navigation_drawer.setBackgroundColor(color.abs__background_holo_light);
-		else
-			navigation_drawer.setBackgroundColor(color.abs__background_holo_light);
-	}
-	*/
+    public static boolean ThemeRequiresRestartOfUI(Context context) {
+        if(mIsDarkTheme != null && mIsDarkTheme != isDarkTheme(context, true)) {
+            return true;
+        }
+        return false;
+    }
 
     static Boolean mIsDarkTheme;
 	public static boolean isDarkTheme(Context context)
 	{
-        if(mIsDarkTheme == null) {
+        return isDarkTheme(context, false);
+	}
+
+    public static boolean isDarkTheme(Context context, boolean forceReloadCache) {
+        if(mIsDarkTheme == null || forceReloadCache) {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             String value = mPrefs.getString(SettingsActivity.SP_APP_THEME, "0");
-
             mIsDarkTheme = value.equals("0") ? true : false;
         }
-		return mIsDarkTheme;
-	}
+        return mIsDarkTheme;
+    }
 }

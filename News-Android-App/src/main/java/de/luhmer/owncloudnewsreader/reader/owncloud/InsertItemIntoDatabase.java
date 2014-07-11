@@ -60,7 +60,7 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
         String enclosureLink = e.optString("enclosureLink");
         String enclosureMime = e.optString("enclosureMime");
 
-        if(enclosureLink.isEmpty() && guid.startsWith("http://gdata.youtube.com/feeds/api/")) {
+        if(enclosureLink.trim().equals("") && guid.startsWith("http://gdata.youtube.com/feeds/api/")) {
             enclosureLink = url;
             enclosureMime = "youtube";
         }

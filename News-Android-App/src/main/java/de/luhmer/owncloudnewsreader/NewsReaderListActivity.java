@@ -223,21 +223,45 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 
-		NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
-		if(ndf != null) {
-			View v = ndf.getListView().getChildAt(0);
-			int top = (v == null) ? 0 : v.getTop();
-
-			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_STRING, ndf.getListView().getFirstVisiblePosition());
-			outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING, top);
-			outState.putString(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
-			outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
-			outState.putString(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFolder() : ndf.getIdFeed());
-		}
+        safeInstanceState(outState);
 
         //outState.putString("WORKAROUND_FOR_BUG_19917_KEY", "WORKAROUND_FOR_BUG_19917_VALUE");
 		super.onSaveInstanceState(outState);
 	}
+
+    private void safeInstanceState(Bundle outState) {
+        NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
+        if(ndf != null) {
+            View v = ndf.getListView().getChildAt(0);
+            int top = (v == null) ? 0 : v.getTop();
+
+            outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_STRING, ndf.getListView().getFirstVisiblePosition());
+            outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING, top);
+            outState.putString(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
+            outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
+            outState.putString(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFolder() : ndf.getIdFeed());
+        }
+    }
+
+    private void restoreInstanceState(Bundle savedInstanceState) {
+        if(savedInstanceState.containsKey(FIRST_VISIBLE_DETAIL_ITEM_STRING) &&
+                savedInstanceState.containsKey(ID_FEED_STRING) &&
+                savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
+                savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
+
+
+            startDetailFHolder = new StartDetailFragmentHolder(savedInstanceState.getString(OPTIONAL_FOLDER_ID),
+                    savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
+                    savedInstanceState.getString(ID_FEED_STRING),
+                    false);
+
+            NewsReaderDetailFragment ndf = StartDetailFragmentNow();
+            if(ndf != null) {
+                ndf.setActivatedPosition(savedInstanceState.getInt(FIRST_VISIBLE_DETAIL_ITEM_STRING));
+                ndf.setMarginFromTop(savedInstanceState.getInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING));
+            }
+        }
+    }
 
 	/* (non-Javadoc)
 	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onRestoreInstanceState(android.os.Bundle)
@@ -245,23 +269,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		if(savedInstanceState != null) {
-			if(savedInstanceState.containsKey(FIRST_VISIBLE_DETAIL_ITEM_STRING) &&
-					savedInstanceState.containsKey(ID_FEED_STRING) &&
-					savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
-					savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
-
-
-				startDetailFHolder = new StartDetailFragmentHolder(savedInstanceState.getString(OPTIONAL_FOLDER_ID),
-																	savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
-																	savedInstanceState.getString(ID_FEED_STRING),
-                                                                    false);
-
-	        	NewsReaderDetailFragment ndf = StartDetailFragmentNow();
-	        	if(ndf != null) {
-	        		ndf.setActivatedPosition(savedInstanceState.getInt(FIRST_VISIBLE_DETAIL_ITEM_STRING));
-	        		ndf.setMarginFromTop(savedInstanceState.getInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING));
-	        	}
-			}
+			restoreInstanceState(savedInstanceState);
 		}
 		super.onRestoreInstanceState(savedInstanceState);
 	}
@@ -535,6 +543,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	}
 
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //if (requestCode == 1) {
@@ -550,7 +559,12 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).ReloadAdapter();
         	((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCursor();
 
-            UpdatePodcastView();
+            //UpdatePodcastView();
+
+            if(podcastRequiresRestartOfUI() || ThemeChooser.ThemeRequiresRestartOfUI(this)) {
+                finish();
+                startActivity(getIntent());
+            }
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
             if(data != null) {
                 boolean val = data.getBooleanExtra(NewFeedActivity.ADD_NEW_SUCCESS, false);

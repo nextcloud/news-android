@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.nineoldandroids.view.ViewHelper;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -24,6 +25,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 
@@ -110,8 +112,6 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
     }
 
 
-    //TODO sliding_layout.collapsePanel();// --> on Orientation change!!!!
-
     /*
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -133,12 +133,11 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
         return false;
     }
 
-    public void UpdatePodcastView() {
+    protected void UpdatePodcastView() {
 
         if(podcastFragment != null) {
             getSupportFragmentManager().beginTransaction().remove(podcastFragment).commitAllowingStateLoss();
         }
-
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         if(mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false)) {
@@ -146,10 +145,23 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.podcast_frame, podcastFragment)
                     .commitAllowingStateLoss();
+
+            sliding_layout.getChildAt(1).setVisibility(View.VISIBLE);
         } else {
             sliding_layout.getChildAt(1).setVisibility(View.GONE);
             podcastFragment = null;
         }
+    }
+
+    protected boolean podcastRequiresRestartOfUI() {
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean podcastEnabled = mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false);
+
+        if(podcastEnabled && sliding_layout.getVisibility() == View.GONE ||
+                !podcastEnabled && sliding_layout.getVisibility() == View.VISIBLE)
+            return true;
+        return false;
     }
 
 
@@ -319,6 +331,7 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
 
 
 
+    /*
     Animator.AnimatorListener onResizeListener = new Animator.AnimatorListener() {
         @Override
         public void onAnimationStart(Animator animator) {
@@ -343,15 +356,6 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
             view.setLayoutParams(view.getLayoutParams());
 
             //view.setX(0);
-
-            /*
-            surfaceView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
-            surfaceView.forceLayout();
-            surfaceView.requestLayout();
-            surfaceView.invalidate();
-            surfaceView.requestLayout();
-            surfaceView.forceLayout();
-            */
         }
 
         @Override
@@ -364,6 +368,7 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
 
         }
     };
+    */
 
 
     /*
@@ -398,13 +403,13 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
         int podcastMediaControlHeightDp = pxToDp((int) getResources().getDimension(R.dimen.podcast_media_control_height));
 
         if(isTabletView && sliding_layout.isPanelExpanded()) { //On Tablets
-            animateToPosition(podcastMediaControlHeightDp);
+            animateToPositionTargetApiSafe(podcastMediaControlHeightDp);
         } else if(!isTabletView && isLeftSliderOpen)
-            animateToPosition(0);
+            animateToPositionTargetApiSafe(0);
         else if(sliding_layout.isPanelExpanded()) {
-            animateToPosition(podcastMediaControlHeightDp);
+            animateToPositionTargetApiSafe(podcastMediaControlHeightDp);
         } else {
-            animateToPosition(64);
+            animateToPositionTargetApiSafe(64);
         }
     }
 
@@ -413,8 +418,42 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 
+
+    public void animateToPositionTargetApiSafe(int yPosition) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1){
+            animateToPositionNewApi(yPosition);
+        } else{
+            animateToPositionOldApi(yPosition);
+        }
+    }
+
+    public void animateToPositionOldApi(final int yPosition) {
+        appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
+        appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
+
+        View view = rlVideoPodcastSurfaceWrapper; //surfaceView
+
+        if(scaleFactor != 1) {
+            int newHeight = view.getLayoutParams().height *= scaleFactor;
+            int newWidth = view.getLayoutParams().width *= scaleFactor;
+            scaleFactor = 1;
+
+            view.getLayoutParams().height = newHeight;
+            view.getLayoutParams().width = newWidth;
+
+            view.setLayoutParams(view.getLayoutParams());
+        }
+
+        int absoluteYPosition = appHeight - view.getHeight() - (int) getResources().getDimension(R.dimen.activity_vertical_margin) - (int) dipToPx(yPosition);
+        float xPosition = rlVideoPodcastSurfaceWrapper.getVideoXPosition();
+        ViewHelper.setTranslationX(view, xPosition);
+        ViewHelper.setTranslationY(view, absoluteYPosition);
+
+        oldScaleFactor = 1;
+    }
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
-    public void animateToPosition(final int yPosition) {
+    public void animateToPositionNewApi(final int yPosition) {
         appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
         appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
 
@@ -434,13 +473,6 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
 
 
 
-
-
-
-
-
-
-
         if(scaleFactor != 1) {
             int oldHeight = view.getLayoutParams().height;
             int oldWidth = view.getLayoutParams().width;
@@ -457,7 +489,7 @@ public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    animateToPosition(yPosition);
+                    animateToPositionTargetApiSafe(yPosition);
                 }
 
                 @Override

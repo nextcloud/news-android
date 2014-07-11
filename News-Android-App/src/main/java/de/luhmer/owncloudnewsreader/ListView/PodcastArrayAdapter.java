@@ -89,10 +89,15 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
 
 
         holder.pbDownloadPodcast.setProgress(podcastItem.downloadProgress);
-        if(podcastItem.downloadProgress >= 0)
+        if(podcastItem.downloadProgress >= 0) {
+            holder.tvDownloadPodcastProgress.setVisibility(View.VISIBLE);
+            holder.pbDownloadPodcast.setVisibility(View.VISIBLE);
             holder.tvDownloadPodcastProgress.setText(podcastItem.downloadProgress + "%");
-        else
-            holder.tvDownloadPodcastProgress.setText(null);
+        }
+        else {
+            holder.tvDownloadPodcastProgress.setVisibility(View.GONE);
+            holder.pbDownloadPodcast.setVisibility(View.GONE);
+        }
 
 
         if(podcastItem.link.contains(JavaYoutubeDownloader.host)) {
