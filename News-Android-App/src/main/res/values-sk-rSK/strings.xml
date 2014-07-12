@@ -103,7 +103,6 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Zobrazenie</string>
-  <string name="pref_title_app_theme">Téma aplikácie (zmena si vyžaduje reštart)</string>
   <string name="pref_title_feed_list_layout">Rozvrhnutie zoznamu kanálov</string>
   <string name="pref_display_font_layout">Font (zmeny sa prejavia po reštarte)</string>
   <string-array name="pref_display_apptheme">

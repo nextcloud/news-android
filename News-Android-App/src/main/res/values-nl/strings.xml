@@ -105,7 +105,6 @@
   <string name="pref_enable_podcasts">Activeren Podcast ondersteuning</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Weergeven</string>
-  <string name="pref_title_app_theme">App thema (vereist herstarten)</string>
   <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
   <string name="pref_display_font_layout">Lettertype (vereist herstarten)</string>
   <string-array name="pref_display_apptheme">

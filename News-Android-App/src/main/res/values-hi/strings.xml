@@ -92,7 +92,6 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">डिस्प्ले </string>
-  <string name="pref_title_app_theme">अनुप्रयोग की थीम (लागू करने के लिए पुन: चालू करने की जरूरत है) </string>
   <string name="pref_title_feed_list_layout">फीड सूची का अभिन्यास </string>
   <string name="pref_display_font_layout">फॉंट (लागू करने के लिए पुन: चालू करना ज़रूरी है) </string>
   <string-array name="pref_display_apptheme">

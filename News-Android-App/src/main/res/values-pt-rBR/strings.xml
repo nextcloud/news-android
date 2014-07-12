@@ -106,7 +106,6 @@
   <string name="no_podcast_selected">Nenhum podcast selecionado</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Exibir</string>
-  <string name="pref_title_app_theme">Tema do aplicativo (é preciso reiniciar o aplicativo para as mudanças terem efeito)</string>
   <string name="pref_title_feed_list_layout">Layout da lista de feeds</string>
   <string name="pref_display_font_layout">Fonte (requer reinicialização para aplicar)</string>
   <string-array name="pref_display_apptheme">

@@ -100,7 +100,6 @@
   <string name="no_podcast_selected">无 Podcast 被选中</string>
   <!--Settings for Display-->
   <string name="pref_header_display">显示</string>
-  <string name="pref_title_app_theme">应用皮肤 (需要重启来生效)</string>
   <string name="pref_title_feed_list_layout">源清单布局</string>
   <string name="pref_display_font_layout">字体( 需要重启生效 )</string>
   <string-array name="pref_display_apptheme">

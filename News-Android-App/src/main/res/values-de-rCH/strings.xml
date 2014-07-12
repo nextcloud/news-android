@@ -77,7 +77,6 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Anzeige</string>
-  <string name="pref_title_app_theme">App-Theme (benötigt einen Neustart zur Übernahme)</string>
   <string name="pref_title_feed_list_layout">Feed-Listenlayout</string>
   <string name="pref_display_font_layout">Schriftart (benötigt einen Neustart zur Übernahme)</string>
   <string-array name="pref_display_apptheme">

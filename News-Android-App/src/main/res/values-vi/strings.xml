@@ -100,7 +100,6 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Hiển th</string>
-  <string name="pref_title_app_theme">Chủ đề (khởi động lại mới dùng )</string>
   <string name="pref_title_feed_list_layout">Danh sách bố trí F</string>
   <string name="pref_display_font_layout">Font (vui lòng khởi động lại)</string>
   <string-array name="pref_display_apptheme">

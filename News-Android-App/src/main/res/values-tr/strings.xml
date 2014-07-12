@@ -106,7 +106,6 @@
   <string name="no_podcast_selected">Hiç podcast seçilmedi</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Görüntüle</string>
-  <string name="pref_title_app_theme">Uygulama teması (uygulanması için yeniden başlatma gerekli)</string>
   <string name="pref_title_feed_list_layout">Besleme listesi yerleşimi</string>
   <string name="pref_display_font_layout">Yazı Tipi (uygulanması için yeniden başlatma gerekiyor)</string>
   <string-array name="pref_display_apptheme">

@@ -103,7 +103,6 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">顯示</string>
-  <string name="pref_title_app_theme">軟體桌面 (需要重啟來套用)</string>
   <string name="pref_title_feed_list_layout">來源列表版型</string>
   <string name="pref_display_font_layout">字型 (需要重新啟動)</string>
   <string-array name="pref_display_apptheme">

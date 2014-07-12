@@ -98,7 +98,6 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Ekranas</string>
-  <string name="pref_title_app_theme">Programos tema (reikia paleisti iš naujo, kad pritaikyti)</string>
   <string name="pref_title_feed_list_layout">Sklaikos kanalų sąrašo išdėstymas</string>
   <string name="pref_display_font_layout">Šriftas (reikia paleisti iš naujo, kad pritaikyti)</string>
   <string-array name="pref_display_apptheme">

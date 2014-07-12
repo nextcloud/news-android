@@ -106,7 +106,6 @@
   <string name="no_podcast_selected">Podcast が選択されていません</string>
   <!--Settings for Display-->
   <string name="pref_header_display">表示</string>
-  <string name="pref_title_app_theme">アプリのテーマ (適用するには再起動する必要があります)</string>
   <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
   <string name="pref_display_font_layout">フォント (適用するには再起動する必要があります)</string>
   <string-array name="pref_display_apptheme">
