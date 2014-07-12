@@ -105,7 +105,6 @@
   <string name="pref_enable_podcasts">Ativar suporte a Podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
-  <string name="pref_title_app_theme">Tema da App (deve reiniciar para aplicar)</string>
   <string name="pref_title_feed_list_layout">Disposição da lista de feeds</string>
   <string name="pref_display_font_layout">Fonte (requer reinicio para aplicar)</string>
   <string-array name="pref_display_apptheme">

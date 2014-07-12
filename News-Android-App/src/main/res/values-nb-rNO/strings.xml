@@ -105,7 +105,6 @@
   <string name="pref_enable_podcasts">Aktiver støtte for Podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Vis</string>
-  <string name="pref_title_app_theme">Applikasjonstema (krever omstart)</string>
   <string name="pref_title_feed_list_layout">Feedliostens oppsett</string>
   <string name="pref_display_font_layout">Font (krever omstart)</string>
   <string-array name="pref_display_apptheme">

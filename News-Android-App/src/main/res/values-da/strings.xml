@@ -101,9 +101,11 @@
   <string name="mtm_decision_abort">Afbryd</string>
   <string name="mtm_notification">Certifikat Verificering</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Slå understøttelse af podcast til</string>
+  <string name="no_podcast_selected">Der er ikke valgt podcasts</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Skærm</string>
-  <string name="pref_title_app_theme">App tema (kræver genstart)</string>
   <string name="pref_title_feed_list_layout">Feed liste layout</string>
   <string name="pref_display_font_layout">Skrifttype (kræver genstart for at tage effekt)</string>
   <string-array name="pref_display_apptheme">

@@ -106,7 +106,6 @@
   <string name="no_podcast_selected">No heu seleccionat cap podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Pantalla</string>
-  <string name="pref_title_app_theme">Tema de l\'aplicació (requereix reiniciar-la)</string>
   <string name="pref_title_feed_list_layout">Format de llista de fonts</string>
   <string name="pref_display_font_layout">Lletra (requereix reiniciar l\'aplicació per aplicar-la)</string>
   <string-array name="pref_display_apptheme">

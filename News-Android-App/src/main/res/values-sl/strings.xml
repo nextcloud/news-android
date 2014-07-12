@@ -105,7 +105,6 @@
   <string name="pref_enable_podcasts">Omogoči podporo protokolu podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Prikaz</string>
-  <string name="pref_title_app_theme">Tema programa (pred uporabo je treba program ponovno zagnati)</string>
   <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
   <string name="pref_display_font_layout">Pisava (pred uporabo je treba program znova zagnati)</string>
   <string-array name="pref_display_apptheme">

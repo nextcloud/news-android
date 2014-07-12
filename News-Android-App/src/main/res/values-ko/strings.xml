@@ -100,7 +100,6 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">표시</string>
-  <string name="pref_title_app_theme">앱 테마 (재시작 후 적용됨)</string>
   <string name="pref_title_feed_list_layout">피드 목록 레이아웃</string>
   <string name="pref_display_font_layout">글꼴 (재시작 후 적용됨)</string>
   <string-array name="pref_display_apptheme">
