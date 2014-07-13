@@ -12,7 +12,6 @@
   <string name="tv_clickHereToOpenItem">Click aquí para abrir artículo</string>
   <string name="no_wifi_available">No hay una conexión WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Desea descargar las imágenes sin conexión WiFi</string>
-  <string name="max_items_count_reached">Has alcanzado el tamaño máximo de XX elementos</string>
   <string name="widget_header">Noticias de ownCloud</string>
   <string name="message_bar_new_articles_available">Nuevos elementos disponibles</string>
   <string name="message_bar_reload">Recargar</string>

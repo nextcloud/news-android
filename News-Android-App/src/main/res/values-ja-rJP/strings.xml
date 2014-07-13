@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">項目を開くにはここをクリック</string>
   <string name="no_wifi_available">WiFi接続がありません</string>
   <string name="do_you_want_to_download_without_wifi">WiFi接続が無い場合に画像をダウンロードしますか？</string>
-  <string name="max_items_count_reached">アイテム数の上限に達しました。</string>
   <string name="widget_header">ownCloudニュース</string>
   <string name="message_bar_new_articles_available">新しいアイテムが利用可能です</string>
   <string name="message_bar_reload">再読み込み</string>

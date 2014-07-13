@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Kliknite tu za odpiranje predmeta</string>
   <string name="no_wifi_available">Ni vzpostavljene povezave WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike brez vzpostavljene povezave WiFi?</string>
-  <string name="max_items_count_reached">Dosežena je največja omejitev dovoljenih predmetov.</string>
   <string name="widget_header">Novice ownCloud</string>
   <string name="message_bar_new_articles_available">Na voljo so novi predmeti</string>
   <string name="message_bar_reload">Ponovno naloži</string>

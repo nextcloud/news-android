@@ -11,7 +11,6 @@
   <string name="tv_clickHereToOpenItem">Klikatu hemen elementua irekitzeko</string>
   <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
   <string name="do_you_want_to_download_without_wifi">Irudiak WiFi konexioa gabe deskargatu nahi dituzu</string>
-  <string name="max_items_count_reached">XX elementu kopuru maximora iritsi zara</string>
   <string name="widget_header">ownCloud Berriak</string>
   <string name="message_bar_new_articles_available">Artikulu berriak daude</string>
   <string name="message_bar_reload">Birkargatu</string>

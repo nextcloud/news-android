@@ -12,7 +12,6 @@
   <string name="tv_clickHereToOpenItem">Spauskite čia, kad atverti elementą</string>
   <string name="no_wifi_available">Nėra WiFi ryšio</string>
   <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslėlius be WiFi ryšio?</string>
-  <string name="max_items_count_reached">Jūs pasiekėt didžiausią elementų dydį - XX</string>
   <string name="widget_header">ownCloud Naujienos</string>
   <string name="message_bar_new_articles_available">Yra naujų elementų</string>
   <string name="message_bar_reload">Įkelti iš naujo</string>

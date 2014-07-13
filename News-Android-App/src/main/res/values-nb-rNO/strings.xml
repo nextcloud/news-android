@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Klikk her for å åpne element</string>
   <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
   <string name="do_you_want_to_download_without_wifi">Vil du laste ned bildene uten WiFi tilkobling?</string>
-  <string name="max_items_count_reached">Du har nådd maksimum størrelse av XX elementer</string>
   <string name="widget_header">ownCloud Nyheter</string>
   <string name="message_bar_new_articles_available">Nye elementer tilgjengelig</string>
   <string name="message_bar_reload">Last på nytt</string>

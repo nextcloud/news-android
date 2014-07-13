@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Feu clic aquí per obrir l\'element</string>
   <string name="no_wifi_available">Sense connexió WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Voleu baixar les imatges sense una connexió WiFi</string>
-  <string name="max_items_count_reached">Heu assolit la mida màxima de XX elements</string>
   <string name="widget_header">Notícies ownCloud</string>
   <string name="message_bar_new_articles_available">Nous elements disponibles</string>
   <string name="message_bar_reload">Carrega de nou</string>

@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Klikněte zde pro otevření položky</string>
   <string name="no_wifi_available">Wi-Fi není připojeno</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
-  <string name="max_items_count_reached">Dosáhli jste maximální velikosti XX položek</string>
   <string name="widget_header">ownCloud Novinky</string>
   <string name="message_bar_new_articles_available">Jsou k dispozici nové položky</string>
   <string name="message_bar_reload">Obnovit</string>
@@ -34,6 +33,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">S hvězdičkou</string>
   <string name="action_read">Číst</string>
+  <string name="action_playPodacst">Přehrát podcast</string>
   <string name="action_openInBrowser">Otevřít v prohlížeči</string>
   <string name="action_sendSourceCode">Odeslat položku vývojáři</string>
   <string name="action_Share">Sdílet</string>

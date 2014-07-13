@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">点击此处打开</string>
   <string name="no_wifi_available">没有连接到WiFi</string>
   <string name="do_you_want_to_download_without_wifi">您是否想在无 WiFi 连接时下载图片</string>
-  <string name="max_items_count_reached">你已经达到了文件数的上限</string>
   <string name="widget_header">ownCloud新闻</string>
   <string name="message_bar_new_articles_available">新项目可用</string>
   <string name="message_bar_reload">刷新</string>

@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Ögeyi açmak için buraya tıklayın</string>
   <string name="no_wifi_available">Kablosuz bağlı değil</string>
   <string name="do_you_want_to_download_without_wifi">Resimleri bir kablosuz bağlantı olmadan indirmek ister misiniz</string>
-  <string name="max_items_count_reached">XX ögenin azami sayısına ulaştınız</string>
   <string name="widget_header">ownCloud Haberler</string>
   <string name="message_bar_new_articles_available">Yeni öge mevcut</string>
   <string name="message_bar_reload">Yeniden yükle</string>

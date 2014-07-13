@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Kliki siia üksuse avamiseks</string>
   <string name="no_wifi_available">WiFi pole ühendatud</string>
   <string name="do_you_want_to_download_without_wifi">Kas soovid pildid alla laadida WiFi ühendust kasutamata</string>
-  <string name="max_items_count_reached">Oled jõudnud XX üksuste maksimaalse suuruseni</string>
   <string name="widget_header">ownCloud Uudised</string>
   <string name="message_bar_new_articles_available">Sadaval on uusi kirjeid</string>
   <string name="message_bar_reload">Lae uuesti</string>

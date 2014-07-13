@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">點這裡來開啟項目</string>
   <string name="no_wifi_available">沒有連到無線網路</string>
   <string name="do_you_want_to_download_without_wifi">您要在不使用無線網路連線的情形下來下載圖片</string>
-  <string name="max_items_count_reached">您已達到 XX 項目的最大空間限制</string>
   <string name="widget_header">ownCloud 新聞</string>
   <string name="message_bar_new_articles_available">有新的項目</string>
   <string name="message_bar_reload">重新載入</string>

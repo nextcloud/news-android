@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
   <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
-  <string name="max_items_count_reached">Περάσατε το όριο μεγέθους των ΧΧ στοιχείων</string>
   <string name="widget_header">Νέα ownCloud</string>
   <string name="message_bar_new_articles_available">Διαθέσιμα νέα αντικείμενα</string>
   <string name="message_bar_reload">Επαναφόρτωση</string>

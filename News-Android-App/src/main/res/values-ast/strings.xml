@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Clic equí p\'abrir l\'artículu</string>
   <string name="no_wifi_available">Nun hai conexón WiFi</string>
   <string name="do_you_want_to_download_without_wifi">¿Quies baxar les semeyes ensin una conexón WiFi?</string>
-  <string name="max_items_count_reached">Algamesti\'l tamañu máximu de XX elementos</string>
   <string name="widget_header">Noticies ownCloud</string>
   <string name="message_bar_new_articles_available">Elementos nuevos disponibles</string>
   <string name="message_bar_reload">Recargar</string>

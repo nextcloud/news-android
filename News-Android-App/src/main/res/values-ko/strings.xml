@@ -12,7 +12,6 @@
   <string name="tv_clickHereToOpenItem">항목을 열려면 누르십시오</string>
   <string name="no_wifi_available">WiFi에 연결되지 않았음</string>
   <string name="do_you_want_to_download_without_wifi">WiFi에 연결되지 않은 상태에서 그림을 다운로드하시겠습니까</string>
-  <string name="max_items_count_reached">최대 항목 크기 XX개가 가득 찼습니다</string>
   <string name="widget_header">ownCloud 뉴스</string>
   <string name="message_bar_new_articles_available">새 항목 사용 가능</string>
   <string name="message_bar_reload">새로 고침</string>
