@@ -13,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">Нажмите здесь, чтобы открыть элемент</string>
   <string name="no_wifi_available">Нет соеденения с Wi-Fi</string>
   <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединение</string>
+  <string name="max_items_count_reached">Вы достигли максимального размера в XX пункта</string>
   <string name="widget_header">Новости ownCloud</string>
   <string name="message_bar_new_articles_available">Доступны новые элементы</string>
   <string name="message_bar_reload">Обновить</string>
@@ -105,6 +106,7 @@
   <string name="no_podcast_selected">Нет выбранных подкастов</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Показать</string>
+  <string name="pref_title_app_theme">Тема приложения</string>
   <string name="pref_title_feed_list_layout">Список лент для макета</string>
   <string name="pref_display_font_layout">Шрифт (для применения необходима перезагрузка)</string>
   <string-array name="pref_display_apptheme">

@@ -13,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">Hier klicken, um Artikel zu öffnen</string>
   <string name="no_wifi_available">Keine WLAN-Verbindung</string>
   <string name="do_you_want_to_download_without_wifi">Willst du die Bilder ohne W-LAN-Verbindung herunterladen</string>
+  <string name="max_items_count_reached">Du hast die maximale Größe von XX Titeln erreicht</string>
   <string name="widget_header">ownCloud-News</string>
   <string name="message_bar_new_articles_available">Neue Elemente verfügbar</string>
   <string name="message_bar_reload">Aktualisieren</string>

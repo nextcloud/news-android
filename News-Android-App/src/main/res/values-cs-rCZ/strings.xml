@@ -13,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">Klikněte zde pro otevření položky</string>
   <string name="no_wifi_available">Wi-Fi není připojeno</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
+  <string name="max_items_count_reached">Dosáhli jste maximální velikosti XX položek</string>
   <string name="widget_header">ownCloud Novinky</string>
   <string name="message_bar_new_articles_available">Jsou k dispozici nové položky</string>
   <string name="message_bar_reload">Obnovit</string>
@@ -106,6 +107,7 @@
   <string name="no_podcast_selected">Nebyl vybrán žádný podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Zobrazení</string>
+  <string name="pref_title_app_theme">Vzhled aplikace</string>
   <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
   <string name="pref_display_font_layout">Font (změna se projeví po restartu)</string>
   <string-array name="pref_display_apptheme">

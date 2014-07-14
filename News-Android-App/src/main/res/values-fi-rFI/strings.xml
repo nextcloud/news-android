@@ -93,6 +93,7 @@
   <string name="no_podcast_selected">Podcastia ei ole valittu</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Näyttö</string>
+  <string name="pref_title_app_theme">Sovelluksen teema</string>
   <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
   <string name="pref_display_font_layout">Kirjasin (vaatii uudelleenkäynnistyksen tullakseen voimaan)</string>
   <string-array name="pref_display_apptheme">

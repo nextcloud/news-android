@@ -13,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">Ögeyi açmak için buraya tıklayın</string>
   <string name="no_wifi_available">Kablosuz bağlı değil</string>
   <string name="do_you_want_to_download_without_wifi">Resimleri bir kablosuz bağlantı olmadan indirmek ister misiniz</string>
+  <string name="max_items_count_reached">XX ögenin azami sayısına ulaştınız</string>
   <string name="widget_header">ownCloud Haberler</string>
   <string name="message_bar_new_articles_available">Yeni öge mevcut</string>
   <string name="message_bar_reload">Yeniden yükle</string>
@@ -33,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Yıldızlı</string>
   <string name="action_read">Oku</string>
+  <string name="action_playPodacst">Podcast\'i Oynat</string>
   <string name="action_openInBrowser">Tarayıcıda Aç</string>
   <string name="action_sendSourceCode">Ögeyi Geliştiriciye gönder</string>
   <string name="action_Share">Paylaş</string>
@@ -105,6 +107,7 @@
   <string name="no_podcast_selected">Hiç podcast seçilmedi</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Görüntüle</string>
+  <string name="pref_title_app_theme">Uyg. teması</string>
   <string name="pref_title_feed_list_layout">Besleme listesi yerleşimi</string>
   <string name="pref_display_font_layout">Yazı Tipi (uygulanması için yeniden başlatma gerekiyor)</string>
   <string-array name="pref_display_apptheme">
