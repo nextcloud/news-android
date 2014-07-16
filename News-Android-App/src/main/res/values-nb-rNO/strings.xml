@@ -13,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">Klikk her for å åpne element</string>
   <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
   <string name="do_you_want_to_download_without_wifi">Vil du laste ned bildene uten WiFi tilkobling?</string>
+  <string name="max_items_count_reached">Du har nådd maksimal størrelse på XX elementer</string>
   <string name="widget_header">ownCloud Nyheter</string>
   <string name="message_bar_new_articles_available">Nye elementer tilgjengelig</string>
   <string name="message_bar_reload">Last på nytt</string>
@@ -33,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Merket</string>
   <string name="action_read">Les</string>
+  <string name="action_playPodacst">Spill podcast</string>
   <string name="action_openInBrowser">Åpne i nettleser</string>
   <string name="action_sendSourceCode">Send element til utvikler</string>
   <string name="action_Share">Del</string>
@@ -102,8 +104,10 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Aktiver støtte for Podcast</string>
+  <string name="no_podcast_selected">Ingen podcast valgt</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Vis</string>
+  <string name="pref_title_app_theme">App-tema</string>
   <string name="pref_title_feed_list_layout">Feedliostens oppsett</string>
   <string name="pref_display_font_layout">Font (krever omstart)</string>
   <string-array name="pref_display_apptheme">
