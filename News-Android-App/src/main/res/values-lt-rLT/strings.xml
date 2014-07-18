@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">Auto sinchronizavimas</string>
   <string name="app_name">ownCloud naujienų skaitymo programa</string>
+  <string name="title_activity_sync_interval_selector">Sinchronizavimo intervalas</string>
   <string name="title_activity_news_detail">NaujienosInformacijaVeikla</string>
   <string name="title_activity_subscription">PrenumerataVeikla</string>
   <string name="title_newsreader_list">Naujienų skaitymas</string>
@@ -12,11 +13,13 @@
   <string name="tv_clickHereToOpenItem">Spauskite čia, kad atverti elementą</string>
   <string name="no_wifi_available">Nėra WiFi ryšio</string>
   <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslėlius be WiFi ryšio?</string>
+  <string name="max_items_count_reached">Jūs pasiekėt didžiausią elementų kiekį - XX</string>
   <string name="widget_header">ownCloud Naujienos</string>
   <string name="message_bar_new_articles_available">Yra naujų elementų</string>
   <string name="message_bar_reload">Įkelti iš naujo</string>
   <string name="allUnreadFeeds">Visi neskaityti elementai</string>
   <string name="starredFeeds">Pažymėti elementai</string>
+  <string name="title_activity_new_feed">Pridėti naują srautą</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Atnaujinti</string>
   <string name="menu_About_Changelog">Apie / Pakitimai</string>
@@ -24,18 +27,22 @@
   <string name="menu_StartImageCaching">Atsisiųsti paveikslėlius</string>
   <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Importuoti paskyrą</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Pirminis elemento kodas - Pranešti apie spragą</string>
   <string name="email_sendMail">Siųsti el. laišką</string>
   <!--Action Bar Items-->
   <string name="action_starred">Pažymėti</string>
   <string name="action_read">Skaityti</string>
+  <string name="action_playPodacst">Groti Podcast</string>
   <string name="action_openInBrowser">Atverti naršyklėje</string>
   <string name="action_sendSourceCode">Nusiųstas elementas kūrėjui</string>
   <string name="action_Share">Dalintis</string>
   <string name="action_login">Serverio nustatymai</string>
   <string name="action_save">Išsaugoti</string>
   <string name="action_settings">Nustatymai</string>
+  <string name="action_sync_settings">Sinchronizavimo nustatymai</string>
+  <string name="action_add_new_feed">Pridėti naują srautą</string>
   <string name="notification_new_items_ticker">Turite neperskaitytų X elementų</string>
   <string name="notification_new_items_text">X nauji neperskaityti elementai pasiekiami</string>
   <!--Strings related to login-->
@@ -95,8 +102,12 @@
   <string name="mtm_decision_abort">Atšaukti</string>
   <string name="mtm_notification">Sertifikato patikrinimas</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Įjungti Podcast palaikymą</string>
+  <string name="no_podcast_selected">Nepasirinktos joks podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Ekranas</string>
+  <string name="pref_title_app_theme">Programos tema</string>
   <string name="pref_title_feed_list_layout">Sklaikos kanalų sąrašo išdėstymas</string>
   <string name="pref_display_font_layout">Šriftas (reikia paleisti iš naujo, kad pritaikyti)</string>
   <string-array name="pref_display_apptheme">
@@ -174,6 +185,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 min.</item>
+    <item>15 min.</item>
+    <item>30 min.</item>
+    <item>45 min.</item>
+    <item>1 val.</item>
+    <item>2 val.</item>
+    <item>3 val.</item>
+    <item>6 val.</item>
+    <item>12 val.</item>
+    <item>24 val.</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
