@@ -13,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">点击此处打开</string>
   <string name="no_wifi_available">没有连接到WiFi</string>
   <string name="do_you_want_to_download_without_wifi">您是否想在无 WiFi 连接时下载图片</string>
+  <string name="max_items_count_reached">你已经到达 XX 条目的上限</string>
   <string name="widget_header">ownCloud新闻</string>
   <string name="message_bar_new_articles_available">新项目可用</string>
   <string name="message_bar_reload">刷新</string>
@@ -33,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">已加星标</string>
   <string name="action_read">阅读</string>
+  <string name="action_playPodacst">播放 Podcast</string>
   <string name="action_openInBrowser">在浏览器中打开</string>
   <string name="action_sendSourceCode">给开发者发消息</string>
   <string name="action_Share">共享</string>
@@ -99,6 +101,7 @@
   <string name="no_podcast_selected">无 Podcast 被选中</string>
   <!--Settings for Display-->
   <string name="pref_header_display">显示</string>
+  <string name="pref_title_app_theme">应用主题</string>
   <string name="pref_title_feed_list_layout">源清单布局</string>
   <string name="pref_display_font_layout">字体( 需要重启生效 )</string>
   <string-array name="pref_display_apptheme">
