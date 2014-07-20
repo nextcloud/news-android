@@ -4,6 +4,7 @@
   <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_starred">তারকাচিহ্নিত</string>
   <string name="action_Share">শেয়ার</string>
   <string name="action_save">সেভ</string>
   <string name="action_settings">সেটিংস</string>
