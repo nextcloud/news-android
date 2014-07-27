@@ -3,6 +3,8 @@
   <string name="auto_sync_string">Sinkronizazio Automatikoa</string>
   <string name="app_name">ownCloud berri rakurlea</string>
   <string name="title_activity_sync_interval_selector">Sinkronizazio Tartearen Hautatzailea</string>
+  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">BerriIrakurlea</string>
   <string name="title_newsreader_detail">BerriIrakurle xehetasuna</string>
   <string name="empty_view_header">Informazioa</string>
@@ -11,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">Klikatu hemen elementua irekitzeko</string>
   <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
   <string name="do_you_want_to_download_without_wifi">Irudiak WiFi konexioa gabe deskargatu nahi dituzu</string>
+  <string name="max_items_count_reached">XX elementuen gehienezko tamaina iritsi zara</string>
   <string name="widget_header">ownCloud Berriak</string>
   <string name="message_bar_new_articles_available">Artikulu berriak daude</string>
   <string name="message_bar_reload">Birkargatu</string>
@@ -26,10 +29,12 @@
   <!--Import Accounts-->
   <string name="import_account_dialog_title">Inportatu Kontua</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Elementuaren kode-iturburua - Bugreport </string>
   <string name="email_sendMail">Bidali eposta</string>
   <!--Action Bar Items-->
   <string name="action_starred">Izarduna</string>
   <string name="action_read">Irakurri</string>
+  <string name="action_playPodacst">Erreproduzitu podcasta</string>
   <string name="action_openInBrowser">Ireki nabigatzailean</string>
   <string name="action_sendSourceCode">Bidali elementu agaratzaileari</string>
   <string name="action_Share">Partekatu</string>
@@ -53,6 +58,8 @@
   <string name="error_invalid_url">URL-a baliogabea da</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Deskargatutako X elementu zaharrak</string>
+  <string name="toast_no_more_downloads_available">Ez dago datu gehigarri eskuragarririk</string>
+  <string name="pull_to_refresh_updateTags">Elementuen egoera sinkronizatzen</string>
   <string name="pull_to_refresh_updateFolder">Karpeta sinkronizatzen</string>
   <string name="pull_to_refresh_updateFeeds">Jarioak sinkronizatzen</string>
   <string name="pull_to_refresh_updateItems">Elementuak sinkronizatzen</string>
@@ -78,12 +85,14 @@
   <string name="dialog_clearing_cache">Cachea garbitzen</string>
   <string name="dialog_clearing_cache_please_wait">Cachea garbitzen... mesedez itxoin.</string>
   <string name="calculating_cache_size">Cachearen tamaina kalkulatzen. Mesedez itxoin.</string>
+  <string name="reset_cache_unsaved_changes">Sinkronizatu gabeko datuak daude. Nahi duzu hala ere cachea berrabiaraztea?</string>
   <string name="warning">Abisua</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronizatu abioan</string>
   <string name="pref_title_ShowOnlyUnread">Erakutsi irakurri gabeko artikuluak bakarrik</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Ezgaitu Hostalari Izenaren Egiaztapena</string>
   <string name="pref_title_NavigateWithVolumeButtons">Mugitu bolumen botoiekin</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Markatu irakurrita gisa korritzean</string>
   <string name="pref_title_OpenInBrowserDirectly">Saltatu zehaztapen bistaratzea eta ireki artikulua arkataztailean</string>
   <string name="pref_title_notification_new_articles_available">Bistaratu jakinarazpenak artikulu berriak daudenean</string>
   <!--MemorizingTrustManager-->
@@ -95,8 +104,10 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Gaitu Podcastak</string>
+  <string name="no_podcast_selected">Ez dago podcast hautatua</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Bistaratzea</string>
+  <string name="pref_title_app_theme">Aplikazioaren gaia</string>
   <string name="pref_title_feed_list_layout">Eremu zerrenda ingurunea</string>
   <string name="pref_display_font_layout">Letra mota (ezartzeko berrabiaraztea beharrezkoa)</string>
   <string-array name="pref_display_apptheme">
@@ -107,10 +118,29 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Sinplea</item>
+    <item>Hedatua</item>
+    <item>Hedatua web bistaratzearekin</item>
+  </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
   </string-array>
   <string-array name="pref_display_font_values">
     <item>0</item>
