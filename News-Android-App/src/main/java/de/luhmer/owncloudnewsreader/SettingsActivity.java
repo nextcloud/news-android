@@ -42,15 +42,13 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.MenuItem;
+import android.view.MenuItem;
 
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
@@ -67,7 +65,7 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends SherlockPreferenceActivity {
+public class SettingsActivity extends PreferenceActivity {
 	/**
 	 * Determines whether to always show the simplified settings UI, where
 	 * settings are presented in a single list. When false, settings are shown
@@ -115,7 +113,7 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 
 		super.onCreate(savedInstanceState);
 
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
@@ -506,15 +504,9 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 
 
 	public static void CheckForUnsycedChangesInDatabaseAndResetDatabase(final Context context) {
-		DatabaseConnection dbConn = new DatabaseConnection(context);
+		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 		boolean resetDatabase = true;
-		if(dbConn.getAllNewReadItems().size() > 0)
-			resetDatabase = false;
-		else if(dbConn.getAllNewUnreadItems().size() > 0)
-			resetDatabase = false;
-		else if(dbConn.getAllNewStarredItems().size() > 0)
-			resetDatabase = false;
-		else if(dbConn.getAllNewUnstarredItems().size() > 0)
+		if(dbConn.areThereAnyUnsavedChangesInDatabase())
 			resetDatabase = false;
 
 		if(resetDatabase) {
@@ -537,8 +529,6 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 				.create()
 				.show();
 		}
-
-		dbConn.closeDatabase();
 	}
 
     public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Boolean> {
@@ -564,15 +554,11 @@ public class SettingsActivity extends SherlockPreferenceActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            DatabaseConnection dbConn = new DatabaseConnection(_mActivity);
-            try {
-                dbConn.resetDatabase();
-                boolean success = ImageHandler.clearCache(_mActivity);
-                new GetCacheSizeAsync().execute((Void)null);
-                return success;
-            } finally {
-                dbConn.closeDatabase();
-            }
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(_mActivity);
+            dbConn.resetDatabase();
+            boolean success = ImageHandler.clearCache(_mActivity);
+            new GetCacheSizeAsync().execute((Void)null);
+            return success;
         }
 
         @Override

@@ -11,7 +11,7 @@ public class PodcastItem implements Serializable {
 
     }
 
-    public PodcastItem(String itemId, String title, String link, String mimeType, boolean offlineCached) {
+    public PodcastItem(long itemId, String title, String link, String mimeType, boolean offlineCached) {
         this.itemId = itemId;
         this.title = title;
         this.link = link;
@@ -19,7 +19,7 @@ public class PodcastItem implements Serializable {
         this.offlineCached = offlineCached;
     }
 
-    public String itemId;
+    public long itemId;
     public String title;
     public String link;
     public String mimeType;

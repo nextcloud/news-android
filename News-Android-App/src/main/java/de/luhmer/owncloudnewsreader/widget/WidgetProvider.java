@@ -46,7 +46,7 @@ public class WidgetProvider extends AppWidgetProvider {
     public static final String ACTION_WIDGET_CONFIGURE = "ConfigureWidget";
     public static final String ACTION_WIDGET_RECEIVER = "ActionReceiverWidget";
     public static final String ACTION_LIST_CLICK = "ACTION_LIST_CLICK";
-    public static final String UID_TODO = "UID_TODO";
+    public static final String RSS_ITEM_ID = "RSS_ITEM_ID";
     
     public static final String EXTRA_ITEM = null;
 	private static final String TAG = "WidgetProvider";
@@ -82,15 +82,15 @@ public class WidgetProvider extends AppWidgetProvider {
             } */else if (action.equals(ACTION_LIST_CLICK)) {
                 try
                 {
-                    String uid = intent.getExtras().getString(UID_TODO);
+                    Long rssItemId = intent.getExtras().getLong(RSS_ITEM_ID);
                     //Intent intentToDoListAct = new Intent(context, TodoListActivity.class);
                     Intent intentToDoListAct = new Intent(context, NewsDetailActivity.class);
-                    intentToDoListAct.putExtra(UID_TODO, uid);
+                    intentToDoListAct.putExtra(RSS_ITEM_ID, rssItemId);
                     intentToDoListAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intentToDoListAct);
 
                     if(Constants.debugModeWidget)
-                        Log.d(TAG, "ListItem Clicked Starting Activity for Item: " + uid);
+                        Log.d(TAG, "ListItem Clicked Starting Activity for Item: " + rssItemId);
                 }
                 catch(Exception ex)
                 {

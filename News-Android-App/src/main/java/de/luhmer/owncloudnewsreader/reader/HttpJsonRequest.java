@@ -181,10 +181,10 @@ public class HttpJsonRequest {
 	}
 	*/
 
-    public static int performCreateFeedRequest(String urlString, String username, String password, Context context, String feedUrl, String folderId) throws Exception {
+    public static int performCreateFeedRequest(String urlString, String username, String password, Context context, String feedUrl, long folderId) throws Exception {
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("url", feedUrl));
-        nameValuePairs.add(new BasicNameValuePair("folderId", folderId));
+        nameValuePairs.add(new BasicNameValuePair("folderId", String.valueOf(folderId)));
         if(nameValuePairs != null)
             urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8");
 

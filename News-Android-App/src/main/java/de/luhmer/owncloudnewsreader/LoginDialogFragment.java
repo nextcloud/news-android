@@ -30,6 +30,7 @@ import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,8 +38,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-
-import com.actionbarsherlock.app.SherlockDialogFragment;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -51,7 +50,7 @@ import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
 import de.luhmer.owncloud.accountimporter.helper.OwnCloudAccount;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 
@@ -59,7 +58,7 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
-public class LoginDialogFragment extends SherlockDialogFragment implements IAccountImport {
+public class LoginDialogFragment extends DialogFragment implements IAccountImport {
 
     static LoginDialogFragment instance;
     public static LoginDialogFragment getInstance() {
@@ -513,9 +512,9 @@ public class LoginDialogFragment extends SherlockDialogFragment implements IAcco
 					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_something_went_wrong), getActivity());
 			} else {
 				//Reset Database
-				DatabaseConnection dbConn = new DatabaseConnection(getActivity());
+				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
 				dbConn.resetDatabase();
-				dbConn.closeDatabase();
+				//dbConn.closeDatabase();
 
 				//LoginFragment.this.dismiss();
 				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());

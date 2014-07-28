@@ -3,8 +3,11 @@ package de.luhmer.owncloudnewsreader;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -21,7 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.File;
@@ -34,8 +36,9 @@ import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
+import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.OpenPodcastEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastFeedClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
@@ -50,7 +53,7 @@ import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 
 
 /**
- * A simple {@link SherlockFragment} subclass.
+ * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link PodcastFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
@@ -58,7 +61,7 @@ import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
  * create an instance of this fragment.
  *
  */
-public class PodcastFragment extends SherlockFragment {
+public class PodcastFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -200,8 +203,8 @@ public class PodcastFragment extends SherlockFragment {
     }
 
     public void onEventMainThread(PodcastFeedClicked podcast) {
-        DatabaseConnection dbConn = new DatabaseConnection(getActivity());
-        audioPodcasts = dbConn.getListOfAudioPodcastsForFeed(getActivity(), feedsWithAudioPodcasts.get(podcast.position).itemId);
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
+        audioPodcasts = dbConn.getListOfAudioPodcastsForFeed(getActivity(), feedsWithAudioPodcasts.get(podcast.position).mFeed.getId());
 
 
         for(int i = 0; i < audioPodcasts.size(); i++) {
@@ -381,7 +384,7 @@ public class PodcastFragment extends SherlockFragment {
 
 
         // create ContextThemeWrapper from the original Activity Context with the custom theme
-        Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_Sherlock_Light_DarkActionBar);
+        Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_AppCompat_Light_DarkActionBar);
         // clone the inflater using the ContextThemeWrapper
         LayoutInflater localInflater = inflater.cloneInContext(context);
         // inflate using the cloned inflater, not the passed in default
@@ -392,8 +395,8 @@ public class PodcastFragment extends SherlockFragment {
         ButterKnife.inject(this, view);
 
 
-        if(getActivity() instanceof PodcastSherlockFragmentActivity) {
-            sliding_layout = ((PodcastSherlockFragmentActivity) getActivity()).getSlidingLayout();
+        if(getActivity() instanceof PodcastFragmentActivity) {
+            sliding_layout = ((PodcastFragmentActivity) getActivity()).getSlidingLayout();
         }
 
         if(sliding_layout != null) {
@@ -407,7 +410,7 @@ public class PodcastFragment extends SherlockFragment {
 
 
 
-        DatabaseConnection dbConn = new DatabaseConnection(getActivity());
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
         feedsWithAudioPodcasts = dbConn.getListOfFeedsWithAudioPodcasts();
         PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), feedsWithAudioPodcasts.toArray(new PodcastFeedItem[feedsWithAudioPodcasts.size()]));
         if (podcastFeedList != null) {
@@ -423,7 +426,21 @@ public class PodcastFragment extends SherlockFragment {
 
         sb_progress.setOnSeekBarChangeListener(onSeekBarChangeListener);
 
+
         return view;
+    }
+
+
+    public void onEvent(FeedPanelSlideEvent event){
+        if(!event.isPanelOpen()) {
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            if (!mPrefs.getBoolean(Constants.SHOW_CASE_PODCAST_ENABLED_SHOWN_BOOLEAN, false)) {
+                mPrefs.edit().putBoolean(Constants.SHOW_CASE_PODCAST_ENABLED_SHOWN_BOOLEAN, true).commit();
+
+                NewsReaderListActivity nrlActivity = ((NewsReaderListActivity) getActivity());
+                nrlActivity.showShowCaseViewForView(nrlActivity.getNewsReaderDetailFragment().getView(), pb_progress, "Podcasts", "Click on this view or slide it up to open the podcast selector.");
+            }
+        }
     }
 
 
@@ -483,8 +500,8 @@ public class PodcastFragment extends SherlockFragment {
                 sliding_layout.setDragView(rlPodcastHeader);
             viewSwitcherProgress.setDisplayedChild(0);
 
-            if(getActivity() instanceof PodcastSherlockFragmentActivity)
-                ((PodcastSherlockFragmentActivity)getActivity()).togglePodcastVideoViewAnimation();
+            if(getActivity() instanceof PodcastFragmentActivity)
+                ((PodcastFragmentActivity)getActivity()).togglePodcastVideoViewAnimation();
         }
 
         @Override
@@ -493,8 +510,8 @@ public class PodcastFragment extends SherlockFragment {
                 sliding_layout.setDragView(viewSwitcherProgress);
             viewSwitcherProgress.setDisplayedChild(1);
 
-            if(getActivity() instanceof PodcastSherlockFragmentActivity)
-                ((PodcastSherlockFragmentActivity)getActivity()).togglePodcastVideoViewAnimation();
+            if(getActivity() instanceof PodcastFragmentActivity)
+                ((PodcastFragmentActivity)getActivity()).togglePodcastVideoViewAnimation();
         }
 
         @Override

@@ -7,3 +7,6 @@
 [submodule "ownCloud-Account-Importer"]
 	path = ownCloud-Account-Importer
 	url = https://github.com/David-Development/ownCloud-Account-Importer.git
+[submodule "ShowcaseView"]
+	path = ShowcaseView
+	url = https://github.com/amlcurran/ShowcaseView.git

@@ -37,7 +37,7 @@ import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.DownloadImagesActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.NetworkConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
@@ -65,8 +65,10 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 
     @Override
 	protected Exception doInBackground(Object... params) {
-		DatabaseConnection dbConn = new DatabaseConnection(context);
+		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
         try {
+            dbConn.clearDatabaseOverSize();
+
 		    //String authKey = AuthenticationManager.getGoogleAuthKey(username, password);
         	//SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         	//int maxItemsInDatabase = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_ITEMS_SYNC, "200"));
@@ -90,7 +92,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
                 int maxItemsInDatabase = Constants.maxItemsCount;
 
                 do {
-	        		requestCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), false, "0", "3", api);
+	        		requestCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), false, 0, "3", api);
 	        		if(requestCount > 0)
 	        			offset = dbConn.getLowestItemId(false);
 	        		totalCount += requestCount;
@@ -102,7 +104,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 
                 do {
 	        		offset = dbConn.getLowestItemId(true);
-	        		requestCount = api.GetItems(TAGS.ALL_STARRED, context, String.valueOf(offset), true, "0", "2", api);
+	        		requestCount = api.GetItems(TAGS.ALL_STARRED, context, String.valueOf(offset), true, 0, "2", api);
 	        		//if(requestCount > 0)
 	        		//	offset = dbConn.getLowestItemId(true);
 	        		totalCount += requestCount;
@@ -116,9 +118,10 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         		//OwnCloudReaderMethods.GetUpdatedItems(TAGS.ALL, context, lastModified, api);
         	}
         } catch (Exception ex) {
+            ex.printStackTrace();
             return ex;
         } finally {
-        	dbConn.closeDatabase();
+        	//dbConn.closeDatabase();
         }
         return null;
 	}
@@ -130,35 +133,30 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     			listenerInstance.onAsyncTaskCompleted(task_id, ex);
 		}
 
-    	SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-    	if(mPrefs.getBoolean(SettingsActivity.CB_CACHE_IMAGES_OFFLINE_STRING, false))
-    	{
-    		if(!NetworkConnection.isWLANConnected(context) && NetworkConnection.isNetworkAvailable(context))
-    			ShowDownloadImageWithoutWifiQuestion();
-    		else if(NetworkConnection.isNetworkAvailable(context))
-    			StartDownloadingImages(context, highestItemIdBeforeSync, false);
-    	} else {
-            StartDownloadingImages(context, highestItemIdBeforeSync, true);
+        if(ex != null) {
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            if (mPrefs.getBoolean(SettingsActivity.CB_CACHE_IMAGES_OFFLINE_STRING, false)) {
+                if (!NetworkConnection.isWLANConnected(context) && NetworkConnection.isNetworkAvailable(context))
+                    ShowDownloadImageWithoutWifiQuestion();
+                else if (NetworkConnection.isNetworkAvailable(context))
+                    StartDownloadingImages(context, highestItemIdBeforeSync, false);
+            } else {
+                StartDownloadingImages(context, highestItemIdBeforeSync, true);
+            }
         }
-
 
 		detach();
     }
 
     public static void StartDownloadingImages(Context context, long highestItemIdBeforeSync, boolean favIconsExclusive)
     {
-    	DatabaseConnection dbConn = new DatabaseConnection(context);
-    	try {
-    		Intent service = new Intent(context, DownloadImagesService.class);
-        	service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemIdBeforeSync);
+        Intent service = new Intent(context, DownloadImagesService.class);
+        service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemIdBeforeSync);
 
-            if(favIconsExclusive)
-                service.putExtra(DownloadImagesService.DOWNLOAD_FAVICONS_EXCLUSIVE, true);
+        if(favIconsExclusive)
+            service.putExtra(DownloadImagesService.DOWNLOAD_FAVICONS_EXCLUSIVE, true);
 
-    		context.startService(service);
-    	} finally {
-    		dbConn.closeDatabase();
-    	}
+        context.startService(service);
     }
 
 

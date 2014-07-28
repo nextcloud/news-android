@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
@@ -18,20 +20,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
 
 import java.net.URL;
-import java.util.HashMap;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Folder;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
-public class NewFeedActivity extends SherlockActivity {
+public class NewFeedActivity extends ActionBarActivity {
 
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -45,10 +47,11 @@ public class NewFeedActivity extends SherlockActivity {
     @InjectView(R.id.new_feed_form) View mLoginFormView;
     @InjectView(R.id.btn_addFeed) Button mAddFeedButton;
 
-    HashMap<String, String> folders;
+    List<Folder> folders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeChooser.chooseTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_feed);
 
@@ -56,13 +59,17 @@ public class NewFeedActivity extends SherlockActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        DatabaseConnection dbConn = new DatabaseConnection(this);
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
 
         folders = dbConn.getListOfFolders();
-        folders.put("No folder", "0");
+        folders.add(0, new Folder(0, "No folder"));
 
-        String[] folderNames = folders.keySet().toArray(new String[folders.size()]);
+        String[] folderNames = new String[folders.size()];
+        for(int i = 0; i < folders.size(); i++) {
+            folderNames[i] = folders.get(i).getLabel();
+        }
+
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
         mFolderView.setAdapter(spinnerArrayAdapter);
 
@@ -92,7 +99,7 @@ public class NewFeedActivity extends SherlockActivity {
             return;
         }
 
-        String folderId = folders.get(mFolderView.getSelectedItem().toString());
+        Folder folder = folders.get(mFolderView.getSelectedItemPosition());
 
         // Reset errors.
         mFeedUrlView.setError(null);
@@ -123,7 +130,7 @@ public class NewFeedActivity extends SherlockActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAddFeedTask = new AddNewFeedTask(urlToFeed, folderId);
+            mAddFeedTask = new AddNewFeedTask(urlToFeed, folder.getId());//TODO needs testing!
             mAddFeedTask.execute((Void) null);
         }
     }
@@ -186,10 +193,10 @@ public class NewFeedActivity extends SherlockActivity {
     public class AddNewFeedTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mUrlToFeed;
-        private final String mFolderId;
+        private final long mFolderId;
 
 
-        AddNewFeedTask(String urlToFeed, String folderId) {
+        AddNewFeedTask(String urlToFeed, long folderId) {
             this.mUrlToFeed = urlToFeed;
             this.mFolderId = folderId;
         }

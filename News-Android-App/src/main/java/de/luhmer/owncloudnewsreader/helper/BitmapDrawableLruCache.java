@@ -28,7 +28,7 @@ import android.support.v4.util.LruCache;
 
 
 
-public class BitmapDrawableLruCache extends LruCache<String, BitmapDrawable> {
+public class BitmapDrawableLruCache extends LruCache<Long, BitmapDrawable> {
     public static int getDefaultLruCacheSize() {
         final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         final int cacheSize = maxMemory / 8;
@@ -45,7 +45,7 @@ public class BitmapDrawableLruCache extends LruCache<String, BitmapDrawable> {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
 	@Override
-    protected int sizeOf(String key, BitmapDrawable bitmap) {
+    protected int sizeOf(Long key, BitmapDrawable bitmap) {
 		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB_MR1)
 			return bitmap.getBitmap().getByteCount() / 1024;
 		else

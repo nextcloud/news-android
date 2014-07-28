@@ -24,9 +24,9 @@ package de.luhmer.owncloudnewsreader.model;
 public abstract class AbstractItem {
     public long id_database;
     public String header;
-    public String idFolder;
+    public Long idFolder;
 
-    AbstractItem(long id_database, String header, String idFolder)
+    AbstractItem(long id_database, String header, Long idFolder)
     {
         this.id_database = id_database;
         this.header = header;

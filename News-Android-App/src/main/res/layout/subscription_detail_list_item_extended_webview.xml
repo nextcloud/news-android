@@ -20,7 +20,7 @@
 	        android:id="@+id/color_line_feed"
 	        android:layout_width="@dimen/color_bar_of_feeds"
 	        android:layout_height="fill_parent"
-	        android:background="@color/abs__background_holo_dark"/>
+	        android:background="@color/slider_listview_background_color_dark_theme"/>
         
         <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/tv_clickHereToOpen"

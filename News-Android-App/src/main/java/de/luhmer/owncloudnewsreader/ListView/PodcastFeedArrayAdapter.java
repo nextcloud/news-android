@@ -40,8 +40,8 @@ public class PodcastFeedArrayAdapter extends ArrayAdapter<PodcastFeedItem> {
 
         final PodcastFeedItem feedItem = getItem(position);
 
-        holder.tvTitle.setText(feedItem.title);
-        holder.tvBody.setText(feedItem.count + " Podcasts available");
+        holder.tvTitle.setText(feedItem.mFeed.getFeedTitle());
+        holder.tvBody.setText(feedItem.mPodcastCount + " Podcasts available");
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

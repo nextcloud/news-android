@@ -25,21 +25,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 
 public class InsertFolderIntoDatabase implements IHandleJsonObject{
+
+    DatabaseConnectionOrm dbConn;
+	ArrayList<Folder> folders = new ArrayList<Folder>();
 	
-	DatabaseConnection dbConn;
-	ArrayList<String[]> folders = new ArrayList<String[]>();
-	
-	public InsertFolderIntoDatabase(DatabaseConnection dbConn) {
+	public InsertFolderIntoDatabase(DatabaseConnectionOrm dbConn) {
 		this.dbConn = dbConn;
 	}
 	
-    private static String[] parseFolder(JSONObject e)
+    private static Folder parseFolder(JSONObject e)
 	{
-    	return new String[] { e.optString("name"), e.optString("id") };
+    	return new Folder(e.optLong("id"), e.optString("name"));
 	}
 
 	@Override

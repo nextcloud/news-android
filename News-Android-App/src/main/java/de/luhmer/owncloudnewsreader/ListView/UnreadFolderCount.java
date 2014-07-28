@@ -26,6 +26,7 @@ import android.content.Context;
 import de.luhmer.owncloudnewsreader.async_tasks.IGetTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 
+@Deprecated
 public class UnreadFolderCount implements IGetTextForTextViewAsyncTask {
 
 	Context context;

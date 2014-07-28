@@ -23,14 +23,14 @@ package de.luhmer.owncloudnewsreader.model;
 
 public class ConcreteFeedItem extends AbstractItem {
 
-	public String subscription_id;
+	public long feedId;
     public String favIcon;
 
-	public ConcreteFeedItem(String header, String folder_id, String subscription_id, String favIcon, long id_database/*, String parent_title*/) {
+	public ConcreteFeedItem(String header, Long folder_id, long feedId, String favIcon, long id_database/*, String parent_title*/) {
 
         super(id_database, header, folder_id);
 
-		this.subscription_id = subscription_id;
+		this.feedId = feedId;
         this.favIcon = favIcon;
         this.id_database = id_database;
 	}

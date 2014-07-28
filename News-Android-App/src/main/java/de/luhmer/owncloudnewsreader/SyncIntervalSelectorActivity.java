@@ -9,21 +9,21 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 
 
-public class SyncIntervalSelectorActivity extends SherlockFragmentActivity {
+public class SyncIntervalSelectorActivity extends FragmentActivity {
 
     SharedPreferences mPrefs;
     PlaceholderFragment mFragment;
@@ -51,8 +51,7 @@ public class SyncIntervalSelectorActivity extends SherlockFragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getSupportMenuInflater()
-                .inflate(R.menu.sync_interval_selector, menu);
+        getMenuInflater().inflate(R.menu.sync_interval_selector, menu);
         return true;
     }
 
@@ -116,7 +115,7 @@ public class SyncIntervalSelectorActivity extends SherlockFragmentActivity {
     //public static final long SYNC_INTERVAL_IN_MINUTES = 60L;
     public static final String SYNC_INTERVAL_IN_MINUTES_STRING = "SYNC_INTERVAL_IN_MINUTES_STRING";
 
-    public static class PlaceholderFragment extends SherlockFragment {
+    public static class PlaceholderFragment extends Fragment {
 
         public ListView lvItems;
 

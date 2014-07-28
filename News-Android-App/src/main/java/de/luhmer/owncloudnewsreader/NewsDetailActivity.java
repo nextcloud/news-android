@@ -21,9 +21,10 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -38,25 +39,21 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
-public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
+public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -82,9 +79,9 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
     IReader _Reader;
     //ArrayList<Integer> databaseItemIds;
-    DatabaseConnection dbConn;
+    DatabaseConnectionOrm dbConn;
 	//public List<RssFile> rssFiles;
-    Cursor cursor;
+    LazyList<RssItem> rssItems;
 
     public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
 
@@ -101,7 +98,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 		pDelayHandler = new PostDelayHandler(this);
 
 		_Reader = new OwnCloud_Reader();
-		dbConn = new DatabaseConnection(this);
+		dbConn = new DatabaseConnectionOrm(this);
 		Intent intent = getIntent();
 
 		//long subsciption_id = -1;
@@ -125,25 +122,19 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
 
 
-		SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
-    	String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
-    	if(sortDirection.equals("1"))
-    		sDirection = SORT_DIRECTION.desc;
-		cursor = dbConn.getCurrentSelectedRssItems(sDirection);
+        rssItems = dbConn.getCurrentRssItemView(getSortDirectionFromSettings(this));
 
         //If the Activity gets started from the Widget, read the item id and get the selected index in the cursor.
-        if(intent.hasExtra(WidgetProvider.UID_TODO)) {
-            cursor.moveToFirst();
-            String rss_item_id = intent.getExtras().getString(WidgetProvider.UID_TODO);
-            do {
-                String current_item_id = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
-                if(rss_item_id.equals(current_item_id)) {
-                    getSupportActionBar().setTitle(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE)));
+        if(intent.hasExtra(WidgetProvider.RSS_ITEM_ID)) {
+            long rss_item_id = intent.getExtras().getLong(WidgetProvider.RSS_ITEM_ID);
+            for(RssItem rssItem : rssItems) {
+                if(rss_item_id == rssItem.getId()) {
+                    getSupportActionBar().setTitle(rssItem.getTitle());
                     break;
                 }
                 else
                     item_id++;
-            } while(cursor.moveToNext());
+            }
         }
 
 		// Create the adapter that will return a fragment for each of the three
@@ -181,11 +172,17 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 		});
     }
 
+    public static SORT_DIRECTION getSortDirectionFromSettings(Context context) {
+        SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
+        if (sortDirection.equals("1"))
+            sDirection = SORT_DIRECTION.desc;
+        return sDirection;
+    }
 
 	@Override
 	protected void onDestroy() {
-		if(dbConn != null)
-			dbConn.closeDatabase();
 		super.onDestroy();
 	}
 
@@ -196,7 +193,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 		{
 	        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN))
 	        {
-	        	if(currentPosition < cursor.getCount() -1)
+	        	if(currentPosition < rssItems.size()-1)
 	        	{
 	        		mViewPager.setCurrentItem(currentPosition + 1, true);
 	        		return true;
@@ -237,34 +234,18 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 		currentPosition = position;
 		ResumeVideoPlayersOnCurrentPage();
 
-		//String idFeed = String.valueOf(rssFiles.get(position).getDB_Id());
-		String idFeed = getIdCurrentRssItem(currentPosition);
-
-		if(!dbConn.isFeedUnreadStarred(idFeed, true))
+		if(!rssItems.get(position).getRead_temp())
 		{
-			markItemAsReadUnread(idFeed, true);
+			markItemAsReadUnread(rssItems.get(position), true);
 
 			pDelayHandler.DelayTimer();
 
-			Log.d("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + idFeed);
+			Log.d("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
 		}
 		else //Only in else because the function markItemAsReas updates the ActionBar items as well
 			UpdateActionBarIcons();
 	}
 
-    /**
-     * Returns the id of a feed. When the position is invalid, -1 is returned.
-     * @param position
-     * @return
-     */
-	public String getIdCurrentRssItem(int position) {
-        if(position < cursor.getCount()) {
-		    cursor.moveToPosition(position);
-		    String idFeed = String.valueOf(cursor.getString(0));
-		    return idFeed;
-        }
-        return "-1";
-	}
 
 	private void ResumeVideoPlayersOnCurrentPage()
 	{
@@ -283,17 +264,39 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
 	public void UpdateActionBarIcons()
 	{
-		String idRssItem = getIdCurrentRssItem(currentPosition);
-        boolean isStarred = false;
-        boolean isRead = false;
+        /*
+        if(menuItem_PlayPodcast == null
+                || menuItem_Read == null
+                || menuItem_Starred == null)
+            return;
+        */
 
-        if(idRssItem != "-1") {
-            isStarred = dbConn.isFeedUnreadStarred(idRssItem, false);
-            isRead = dbConn.isFeedUnreadStarred(idRssItem, true);
+        RssItem rssItem = rssItems.get(currentPosition);
 
-            PodcastItem podcastItem = dbConn.getPodcastForItem(this, idRssItem);
-            menuItem_PlayPodcast.setVisible((podcastItem != null && PodcastSherlockFragmentActivity.IsPodcastViewEnabled(this)));
+        boolean isStarred = rssItem.getStarred_temp();
+        boolean isRead = rssItem.getRead_temp();
+
+
+        PodcastItem podcastItem =  DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
+        boolean podcastAvailable = !podcastItem.link.equals("");
+
+
+        if(podcastAvailable && !PodcastFragmentActivity.IsPodcastViewEnabled(this)) {
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+            if(!mPrefs.getBoolean(Constants.SHOW_CASE_PODCAST_AVAILABLE_INFO_SHOWN_BOOLEAN, false)) {
+                mPrefs.edit().putBoolean(Constants.SHOW_CASE_PODCAST_AVAILABLE_INFO_SHOWN_BOOLEAN, true).commit();
+
+                new AlertDialog.Builder(this)
+                        .setTitle("Podcast detected")
+                        .setMessage("You can enable the podcast support in the app settings")
+                        .setNeutralButton(getString(android.R.string.ok), null)
+                        .show();
+            }
         }
+
+        if(menuItem_PlayPodcast != null)
+            menuItem_PlayPodcast.setVisible((podcastAvailable && PodcastFragmentActivity.IsPodcastViewEnabled(this)));
+
 
 
         //if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
@@ -346,7 +349,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		//getMenuInflater().inflate(R.menu.news_detail, menu);
-		getSupportMenuInflater().inflate(R.menu.news_detail, menu);
+		getMenuInflater().inflate(R.menu.news_detail, menu);
 
 		menuItem_Starred = menu.findItem(R.id.action_starred);
 		menuItem_Read = menu.findItem(R.id.action_read);
@@ -358,15 +361,7 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		String idFeed = getIdCurrentRssItem(currentPosition);
-		Cursor cursor = dbConn.getArticleByID(idFeed);
-
-        String currentUrl = "";
-        if(cursor != null)
-        {
-            cursor.moveToFirst();
-            currentUrl = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
-        }
+		RssItem rssItem = rssItems.get(currentPosition);
 
 		switch (item.getItemId()) {
 			case android.R.id.home:
@@ -377,25 +372,15 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 				break;
 
             case R.id.action_read:
-
-                if(cursor != null)
-                {
-                    cursor.moveToFirst();
-                    String id = cursor.getString(0);
-                    markItemAsReadUnread(id, !menuItem_Read.isChecked());
-                    cursor.close();
-                }
-
+                markItemAsReadUnread(rssItem, !menuItem_Read.isChecked());
                 UpdateActionBarIcons();
-
                 pDelayHandler.DelayTimer();
-
                 break;
 
 			case R.id.action_starred:
-				Boolean curState = dbConn.isFeedUnreadStarred(idFeed, false);
-
-				dbConn.updateIsStarredOfItem(idFeed, !curState);
+				Boolean curState = rssItem.getStarred_temp();
+                rssItem.setStarred_temp(!curState);
+                dbConn.updateRssItem(rssItem);
 
 				UpdateActionBarIcons();
 
@@ -410,12 +395,11 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 				break;
 
 			case R.id.action_openInBrowser:
-				//String link = rssFiles.get(currentPosition).getLink();
+				String link = rssItem.getLink();
 
-				//if(!link.isEmpty())
-				if(currentUrl.trim().length() > 0)
+				if(link.length() > 0)
 				{
-					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
 					startActivity(browserIntent);
 				}
 				break;
@@ -447,17 +431,14 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 			 */
 
             case R.id.action_playPodcast:
-                PodcastItem podcastItem = dbConn.getPodcastForItem(this, idFeed);
+                PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
                 PodcastFragment.OpenPodcast(NewsDetailActivity.this, podcastItem);
                 break;
 
             case R.id.action_ShareItem:
 
-            	String title = "";
-            	String content = currentUrl;
-
-                if(cursor != null)
-				    title = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE));
+            	String title = rssItem.getTitle();
+            	String content = rssItem.getLink();
 
 				NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 				if(fragment != null) { // could be null if not instantiated yet
@@ -482,15 +463,13 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
 		}
 
-        if(cursor != null)
-            cursor.close();
-
 		return super.onOptionsItemSelected(item);
 	}
 
 
-	private void markItemAsReadUnread(String item_id, boolean read) {
-		dbConn.updateIsReadOfItem(item_id, read);
+	private void markItemAsReadUnread(RssItem item, boolean read) {
+        item.setRead_temp(read);
+		dbConn.updateRssItem(item);
 		UpdateActionBarIcons();
 	}
 
@@ -552,7 +531,8 @@ public class NewsDetailActivity extends PodcastSherlockFragmentActivity {
 
 		@Override
 		public int getCount() {
-			return cursor.getCount();
+			//return cursor.getCount();
+            return rssItems.size();
 		}
 
 		@Override

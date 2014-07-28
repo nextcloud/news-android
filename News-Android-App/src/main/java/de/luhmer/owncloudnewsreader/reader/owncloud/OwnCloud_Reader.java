@@ -49,7 +49,7 @@ public class OwnCloud_Reader implements IReader {
 
 	@Override
 	public void Start_AsyncTask_GetOldItems(int task_id,
-			Context context, OnAsyncTaskCompletedListener listener, String feed_id, String folder_id) {
+			Context context, OnAsyncTaskCompletedListener listener, Long feed_id, Long folder_id) {
 		setSyncRunning(true);
 		AsyncTasksRunning.append(task_id, (AsyncTask_Reader) new AsyncTask_GetOldItems(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, feed_id, folder_id, api).execute());
 	}

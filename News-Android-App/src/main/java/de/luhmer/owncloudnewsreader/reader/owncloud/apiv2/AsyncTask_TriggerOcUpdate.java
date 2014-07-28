@@ -2,11 +2,13 @@ package de.luhmer.owncloudnewsreader.reader.owncloud.apiv2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.preference.PreferenceManager;
 
+import java.util.List;
+
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudConstants;
@@ -32,8 +34,8 @@ public class AsyncTask_TriggerOcUpdate extends AsyncTask_Reader {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             String oc_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "") + OwnCloudConstants.ROOT_PATH_APIv2 + "feeds/update" + OwnCloudConstants.JSON_FORMAT;
 
-            DatabaseConnection dbConn = new DatabaseConnection(context);
-            Cursor cursor = dbConn.getAllSubSubscriptions();
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
+            List<Feed> feedList = dbConn.getListOfFeeds();
 
 
             /*
@@ -51,7 +53,6 @@ public class AsyncTask_TriggerOcUpdate extends AsyncTask_Reader {
                 } while(cursor.moveToNext());
             }
             */
-            dbConn.closeDatabase();
 
             return true;
         } catch (Exception ex) {

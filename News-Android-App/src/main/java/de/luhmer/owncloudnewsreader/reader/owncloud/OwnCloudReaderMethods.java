@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
-import android.database.Cursor;
 
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
@@ -42,7 +41,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
@@ -72,7 +72,7 @@ public class OwnCloudReaderMethods {
 
     	InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUpdatedUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
 
-		DatabaseConnection dbConn = new DatabaseConnection(cont);
+		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
         try
         {
         	if(api instanceof APIv1)
@@ -80,7 +80,7 @@ public class OwnCloudReaderMethods {
         	else if(api instanceof APIv2)
         		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn));
         } finally {
-        	dbConn.closeDatabase();
+        	//dbConn.closeDatabase();//TODO this line is needed
         	is.close();
         }
         return new int[] { 0, 0 };
@@ -110,7 +110,7 @@ public class OwnCloudReaderMethods {
 
 		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
 
-		DatabaseConnection dbConn = new DatabaseConnection(cont);
+		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
         try
         {
         	if(api instanceof APIv1)
@@ -118,7 +118,7 @@ public class OwnCloudReaderMethods {
         	else if(api instanceof APIv2)
         		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn))[0];
         } finally {
-        	dbConn.closeDatabase();
+            //dbConn.closeDatabase();//TODO this line is needed
         	is.close();
         }
         return 0;
@@ -128,7 +128,7 @@ public class OwnCloudReaderMethods {
 	public static int GetFolderTags(Context cont, API api) throws Exception
 	{
 		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getFolderUrl(), null, api.getUsername(), api.getPassword(), cont);
-		DatabaseConnection dbConn = new DatabaseConnection(cont);
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
 		int[] result = new int[2];
 		try
         {
@@ -141,7 +141,7 @@ public class OwnCloudReaderMethods {
 
 			ifid.WriteAllToDatabaseNow();
         } finally {
-        	dbConn.closeDatabase();
+            //dbConn.closeDatabase();//TODO this line is needed
         	is.close();
         }
 
@@ -152,7 +152,7 @@ public class OwnCloudReaderMethods {
 	{
 		InputStream inputStream = HttpJsonRequest.PerformJsonRequest(api.getFeedUrl() , null, api.getUsername(), api.getPassword(), cont);
 
-		DatabaseConnection dbConn = new DatabaseConnection(cont);
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
 		int result[] = new int[2];
 		try {
 			InsertFeedIntoDatabase ifid = new InsertFeedIntoDatabase(dbConn);
@@ -164,7 +164,7 @@ public class OwnCloudReaderMethods {
 
 			ifid.WriteAllToDatabaseNow();
 		} finally {
-			dbConn.closeDatabase();
+            //dbConn.closeDatabase();//TODO this line is needed
 			inputStream.close();
 		}
 		return result;
@@ -349,26 +349,14 @@ public class OwnCloudReaderMethods {
 	        else
 	        	url += "unread/multiple";
         } else {
-            DatabaseConnection dbConn = new DatabaseConnection(context);
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
             HashMap<String, String> items = new HashMap<String, String>();
             for(String idItem : itemIds)
             {
-	            Cursor cursor = dbConn.getArticleByID(dbConn.getRowIdOfFeedByItemID(idItem));
-	            //Cursor cursor = dbConn.getFeedByID itemID);
-	            cursor.moveToFirst();
-
-	            String idSubscription = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID));
-	            String guidHash = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUIDHASH));
-
-	            cursor.close();
-
-	            String subscription_id = dbConn.getSubscriptionIdByRowID(idSubscription);
-	            //url += subscription_id;
-
-	            items.put(guidHash, subscription_id);
+	            RssItem rssItem = dbConn.getRssItemById(Long.parseLong(idItem));
+	            items.put(rssItem.getGuidHash(), String.valueOf(rssItem.getFeedId()));
             }
-            dbConn.closeDatabase();
 
             jsonIds = buildIdsToJSONArrayWithGuid(items);
             /*
@@ -420,21 +408,14 @@ public class OwnCloudReaderMethods {
 			else
 				url += itemId + "/unread";
         } else {
-            DatabaseConnection dbConn = new DatabaseConnection(context);
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
-            Cursor cursor = dbConn.getArticleByID(dbConn.getRowIdOfFeedByItemID(itemId));
-            cursor.moveToFirst();
+            RssItem rssItem = dbConn.getRssItemById(Long.parseLong(itemId));
 
-            String idSubscription = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID));
-            String guidHash = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_GUIDHASH));
-            cursor.close();
+            url += rssItem.getFeedId();
 
-            String subscription_id = dbConn.getSubscriptionIdByRowID(idSubscription);
-            url += subscription_id;
 
-            dbConn.closeDatabase();
-
-            url += "/" + guidHash;
+            url += "/" + rssItem.getGuidHash();
             if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
                 url += "/star";
             else if(tag.equals(TAGS.MARK_ITEM_AS_UNSTARRED))

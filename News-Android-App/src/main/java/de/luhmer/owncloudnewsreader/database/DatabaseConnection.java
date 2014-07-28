@@ -145,7 +145,7 @@ public class DatabaseConnection {
     	return openHelper;
     }
 
-    public void clearDatabaseOverSize()
+    public void getAllItemsIdsForFeedSQL()
 	{
 		//If i have 9023 rows in the database, when i run that query it should delete 8023 rows and leave me with 1000
 		//database.execSQL("DELETE FROM " + RSS_ITEM_TABLE + " WHERE " +  + "ORDER BY rowid DESC LIMIT 1000 *
@@ -952,11 +952,13 @@ public class DatabaseConnection {
                 {
                     cursor.moveToFirst();
                     do {
+                        /*
                         PodcastFeedItem podcastItem = new PodcastFeedItem();
                         podcastItem.itemId = cursor.getString(0);
                         podcastItem.title = cursor.getString(1);
                         podcastItem.count = cursor.getInt(2);
                         result.add(podcastItem);
+                        */
                     } while(cursor.moveToNext());
                 }
             }
@@ -1018,7 +1020,7 @@ public class DatabaseConnection {
 
     public static PodcastItem ParsePodcastItemFromCursor(Context context, Cursor cursor) {
         PodcastItem podcastItem = new PodcastItem();
-        podcastItem.itemId = cursor.getString(0);
+        podcastItem.itemId = cursor.getLong(0);
         podcastItem.title = cursor.getString(cursor.getColumnIndex(RSS_ITEM_TITLE)); //cursor.getString(1);
         podcastItem.link = cursor.getString(cursor.getColumnIndex(RSS_ITEM_ENC_LINK)); //cursor.getString(2);
         podcastItem.mimeType = cursor.getString(cursor.getColumnIndex(RSS_ITEM_ENC_MIME)); //cursor.getString(3);

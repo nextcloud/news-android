@@ -100,8 +100,8 @@ public abstract class API {
 		return OwnCloudReaderMethods.GetFolderTags(cont, api);
 	}
 
-	public int GetItems(TAGS tag, Context cont, String offset, boolean getRead, String id, String type, API api) throws Exception {
-		return OwnCloudReaderMethods.GetItems(tag, cont, offset, getRead, id, type, api);
+	public int GetItems(TAGS tag, Context cont, String offset, boolean getRead, int id, String type, API api) throws Exception {
+		return OwnCloudReaderMethods.GetItems(tag, cont, offset, getRead, String.valueOf(id), type, api);
 	}
 
 	public int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception {

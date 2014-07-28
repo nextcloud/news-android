@@ -25,8 +25,8 @@ public class FolderSubscribtionItem extends AbstractItem {
 
 
 
-	public FolderSubscribtionItem(String headerFolder, String idFolder, long idFolder_database, String idSubscription) {
-        super(idFolder_database, headerFolder, String.valueOf(idFolder_database));
+	public FolderSubscribtionItem(String headerFolder, Long idFolder, long idFolder_database) {
+        super(idFolder_database, headerFolder, idFolder_database);
 
 		this.idFolder = idFolder;
 	}

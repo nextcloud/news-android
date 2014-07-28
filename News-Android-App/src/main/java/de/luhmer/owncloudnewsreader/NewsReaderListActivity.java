@@ -36,23 +36,28 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
+import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
+import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
-import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.ShowcaseDimHelper;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
-import uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefreshLayout;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -65,7 +70,7 @@ import uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefresh
  * {@link NewsReaderListFragment.Callbacks} interface to listen for item
  * selections.
  */
-public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity implements
+public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 		 NewsReaderListFragment.Callbacks {
 
 	SlidingPaneLayout mSlidingLayout;
@@ -76,7 +81,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	//DrawerLayout drawerLayout;
 
 	public static final String FOLDER_ID = "FOLDER_ID";
-	public static final String SUBSCRIPTION_ID = "SUBSCRIPTION_ID";
+	public static final String FEED_ID = "FEED_ID";
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
 
@@ -85,13 +90,13 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
 		ThemeChooser.chooseTheme(this);
-
-		//setTheme(R.style.Theme_Sherlock);
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
+
+
+        //DaoSession session = DatabaseHelperOrm.getDaoSession(this);
+
 
 
 		AccountManager mAccountManager = AccountManager.get(this);
@@ -163,6 +168,8 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
                 getMenuItemUpdater().setVisible(true);
 
 				StartDetailFragmentNow();
+
+                EventBus.getDefault().post(new FeedPanelSlideEvent(false));
 			}
 		});
         mSlidingLayout.openPane();
@@ -170,34 +177,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 
 
 
-
-
-
-
-
-
-
-        /*
-		// Get a reference of the DrawerLayout
-		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		*/
-
-		// Set a listener to be notified of drawer events.
-		//drawerLayout.setDrawerListener(drawerToggle);
-
-
-        //if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
-		//	startSync();
-
-        /*
-		if(!shouldDrawerStayOpen()) {
-			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-			getSupportActionBar().setHomeButtonEnabled(true);
-		}*/
-
         if(savedInstanceState == null)//When the app starts (no orientation change)
         {
-        	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValueString(), true, null, true);
+        	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
         	StartDetailFragmentNow();
         }
 
@@ -205,8 +187,43 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         ImageHandler.createNoMediaFile(this);
         //AppRater.app_launched(this);
         //AppRater.rateNow(this);
+    }
 
-        //onTopItemClicked(SubscriptionExpandableListAdapter.ALL_UNREAD_ITEMS, true, null);
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void showShowCaseViewForView(final View dimView, View targetView, String title, String text) {
+        if(!ShowcaseDimHelper.isHoneycombOrAbove())//Showcase View is only supported on API Level 11+
+            return;
+
+        ShowcaseDimHelper.dimView(dimView);
+
+        ViewTarget target = new ViewTarget(targetView);
+        ShowcaseView sv = new ShowcaseView.Builder(this)
+                .setTarget(target)
+                .setContentTitle(title)
+                .setContentText(text)
+                .hideOnTouchOutside()
+                .build();
+
+        sv.setOnShowcaseEventListener(new OnShowcaseEventListener() {
+            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public void onShowcaseViewHide(ShowcaseView showcaseView) {
+                ShowcaseDimHelper.undoDimView(dimView);
+            }
+
+            @Override
+            public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
+
+            }
+
+            @Override
+            public void onShowcaseViewShow(ShowcaseView showcaseView) {
+
+            }
+        });
+
+        sv.show();
     }
 
 
@@ -229,17 +246,21 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		super.onSaveInstanceState(outState);
 	}
 
+    public NewsReaderDetailFragment getNewsReaderDetailFragment() {
+        return ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
+    }
+
     private void safeInstanceState(Bundle outState) {
-        NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
+        NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
         if(ndf != null) {
             View v = ndf.getListView().getChildAt(0);
             int top = (v == null) ? 0 : v.getTop();
 
             outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_STRING, ndf.getListView().getFirstVisiblePosition());
             outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING, top);
-            outState.putString(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
+            outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
             outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
-            outState.putString(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFolder() : ndf.getIdFeed());
+            outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
         }
     }
 
@@ -250,9 +271,9 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
                 savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
 
 
-            startDetailFHolder = new StartDetailFragmentHolder(savedInstanceState.getString(OPTIONAL_FOLDER_ID),
+            startDetailFHolder = new StartDetailFragmentHolder(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
                     savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
-                    savedInstanceState.getString(ID_FEED_STRING),
+                    savedInstanceState.getLong(ID_FEED_STRING),
                     false);
 
             NewsReaderDetailFragment ndf = StartDetailFragmentNow();
@@ -313,20 +334,20 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	private StartDetailFragmentHolder startDetailFHolder = null;
 
 	private class StartDetailFragmentHolder {
-		String idSubscription;
+		long idFeed;
 		boolean isFolder;
-		String optional_folder_id;
+        Long optional_folder_id;
         boolean updateListView;
 
-		public StartDetailFragmentHolder(String idSubscription, boolean isFolder, String optional_folder_id, boolean updateListView) {
-			this.idSubscription = idSubscription;
+		public StartDetailFragmentHolder(long idFeed, boolean isFolder, Long optional_folder_id, boolean updateListView) {
+			this.idFeed = idFeed;
 			this.isFolder = isFolder;
 			this.optional_folder_id = optional_folder_id;
             this.updateListView = updateListView;
 		}
 
 		public NewsReaderDetailFragment StartDetailFragment() {
-			return NewsReaderListActivity.this.StartDetailFragment(idSubscription, isFolder, optional_folder_id, updateListView);
+			return NewsReaderListActivity.this.StartDetailFragment(idFeed, isFolder, optional_folder_id, updateListView);
 		}
 	}
 
@@ -335,49 +356,49 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 	 * that the item with the given ID was selected.
 	 */
 	@Override
-	public void onTopItemClicked(String idSubscription, boolean isFolder, String optional_folder_id) {
+	public void onTopItemClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
 		if(!shouldDrawerStayOpen())
 			mSlidingLayout.closePane();
 
-		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, isFolder, optional_folder_id, true);
+		startDetailFHolder = new StartDetailFragmentHolder(idFeed, isFolder, optional_folder_id, true);
 
 		if(shouldDrawerStayOpen())
 			StartDetailFragmentNow();
 	}
 
 	@Override
-	public void onChildItemClicked(String idSubscription, String optional_folder_id) {
+	public void onChildItemClicked(long idFeed, Long optional_folder_id) {
 		if(!shouldDrawerStayOpen())
 			mSlidingLayout.closePane();
 
 		//StartDetailFragment(idSubscription, false, optional_folder_id);
-		startDetailFHolder = new StartDetailFragmentHolder(idSubscription, false, optional_folder_id, true);
+		startDetailFHolder = new StartDetailFragmentHolder(idFeed, false, optional_folder_id, true);
 		if(shouldDrawerStayOpen())
 			StartDetailFragmentNow();
 	}
 
-	private NewsReaderDetailFragment StartDetailFragment(String id, Boolean folder, String optional_folder_id, boolean UpdateListView)
+	private NewsReaderDetailFragment StartDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean UpdateListView)
 	{
 		if(super.getMenuItemDownloadMoreItems() != null)
 			super.getMenuItemDownloadMoreItems().setEnabled(true);
 
-		DatabaseConnection dbConn = new DatabaseConnection(getApplicationContext());
+		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
 
 		Intent intent = new Intent();
 
 		if(!folder)
 		{
-			intent.putExtra(SUBSCRIPTION_ID, id);
+			intent.putExtra(FEED_ID, id);
 			intent.putExtra(FOLDER_ID, optional_folder_id);
-			intent.putExtra(TITEL, dbConn.getTitleOfSubscriptionByRowID(id));
+			intent.putExtra(TITEL, dbConn.getFeedById(id).getFeedTitle());
 		}
 		else
 		{
 			intent.putExtra(FOLDER_ID, id);
-			int idFolder = Integer.valueOf(id);
+			int idFolder = (int) id;
 			if(idFolder >= 0)
-				intent.putExtra(TITEL, dbConn.getTitleOfFolderByID(id));
+				intent.putExtra(TITEL, dbConn.getFolderById(id).getLabel());
 			else if(idFolder == -10)
 				intent.putExtra(TITEL, getString(R.string.allUnreadFeeds));
 			else if(idFolder == -11)
@@ -394,8 +415,6 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 				.replace(R.id.content_frame, fragment)
 				.commit();
 
-		dbConn.closeDatabase();
-
 		return fragment;
 	}
 
@@ -404,7 +423,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
     {
         NewsReaderDetailFragment nrD = (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
         if(nrD != null)
-            ((NewsListCursorAdapter)nrD.getListAdapter()).notifyDataSetChanged();
+            ((NewsListArrayAdapter)nrD.getListAdapter()).notifyDataSetChanged();
             //nrD.UpdateCursor();
     }
 
@@ -425,7 +444,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
             try {
                 NewsReaderListFragment ndf = (NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
             	IOwnCloudSyncService _Reader = ndf._ownCloudSyncService;
-                PullToRefreshLayout pullToRefreshView = ndf.mPullToRefreshLayout;
+                SwipeRefreshLayout pullToRefreshView = ndf.mPullToRefreshLayout;
 
                 if(_Reader != null) {
 					if(_Reader.isSyncRunning())
@@ -439,7 +458,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 					{
 						super.getMenuItemUpdater().setActionView(null);
 					    if(pullToRefreshView != null)
-					    	pullToRefreshView.setRefreshComplete();
+					    	pullToRefreshView.setRefreshing(false);
 					}
                 }
 			} catch (RemoteException e) {
@@ -456,7 +475,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
 		//getSupportMenuInflater().inflate(R.menu.news_reader, menu);
 
 
-		super.onCreateOptionsMenu(menu, getSupportMenuInflater(), this);
+		super.onCreateOptionsMenu(menu, getMenuInflater(), this);
 
         UpdateButtonSyncLayout();
 
@@ -517,16 +536,14 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
                     break;
 
 				case R.id.menu_StartImageCaching:
-					DatabaseConnection dbConn = new DatabaseConnection(this);
-			    	try {
-			    		long highestItemId = dbConn.getLowestItemIdUnread();
-			    		Intent service = new Intent(this, DownloadImagesService.class);
-			        	service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
-                        //service.putExtra(DownloadImagesService.DOWNLOAD_FAVICONS_EXCLUSIVE, true);
-			    		startService(service);
-			    	} finally {
-			    		dbConn.closeDatabase();
-			    	}
+					DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
+
+                    long highestItemId = dbConn.getLowestRssItemIdUnread();//TODO needs testing!
+                    Intent service = new Intent(this, DownloadImagesService.class);
+                    service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
+                    //service.putExtra(DownloadImagesService.DOWNLOAD_FAVICONS_EXCLUSIVE, true);
+                    startService(service);
+
 					break;
 
                 case R.id.menu_CreateDatabaseDump:
@@ -557,7 +574,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
         if(requestCode == RESULT_SETTINGS)
         {
         	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).ReloadAdapter();
-        	((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCursor();
+        	((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCurrentRssView(this, false);
 
             //UpdatePodcastView();
 
@@ -575,7 +592,7 @@ public class NewsReaderListActivity extends MenuUtilsSherlockFragmentActivity im
     }
 
 
-    public static void StartLoginFragment(final SherlockFragmentActivity activity)
+    public static void StartLoginFragment(final FragmentActivity activity)
     {
 	   	LoginDialogFragment dialog = LoginDialogFragment.getInstance();
 	   	dialog.setActivity(activity);

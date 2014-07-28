@@ -21,33 +21,34 @@
 
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
-import android.util.SparseArray;
-
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.model.RssFile;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
 public class InsertItemIntoDatabase implements IHandleJsonObject {
 
-	DatabaseConnection dbConn;
-    RssFile[] buffer;
+	DatabaseConnectionOrm dbConn;
+    List<RssItem> buffer;
     static final short bufferSize = 200;
     int index = 0;
-    SparseArray<String> feedIds;
+    //List<Feed> feeds;
 
-	public InsertItemIntoDatabase(DatabaseConnection dbConn) {
+	public InsertItemIntoDatabase(DatabaseConnectionOrm dbConn) {
 		this.dbConn = dbConn;
-        buffer = new RssFile[bufferSize];
+        //buffer = new RssItem[bufferSize];
+        buffer = new ArrayList<RssItem>(bufferSize);
 
-        feedIds = dbConn.getFeedIds();
+        //feeds = dbConn.getListOfFeeds();
 	}
 
-    private static RssFile parseItem(JSONObject e)
-	{
-		Date date = new Date(e.optLong("pubDate") * 1000);
+    private static RssItem parseItem(JSONObject e) throws JSONException {
+		Date pubDate = new Date(e.optLong("pubDate") * 1000);
 
         String content = e.optString("body");
         content = content.replaceAll("<img[^>]*feedsportal.com.*>", "");
@@ -65,8 +66,27 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
             enclosureMime = "youtube";
         }
 
+        RssItem rssItem = new RssItem();
+        rssItem.setId(e.getLong("id"));
+        rssItem.setFeedId(e.optLong("feedId"));
+        rssItem.setLink(url);
+        rssItem.setTitle(e.optString("title"));
+        rssItem.setGuid(guid);
+        rssItem.setGuidHash(e.optString("guidHash"));
+        rssItem.setBody(content);
+        rssItem.setAuthor(e.optString("author"));
+        rssItem.setLastModified(new Date(e.optLong("lastModified")));
+        rssItem.setEnclosureLink(enclosureLink);
+        rssItem.setEnclosureMime(enclosureMime);
+        rssItem.setRead(!e.optBoolean("unread"));
+        rssItem.setRead_temp(rssItem.getRead());
+        rssItem.setStarred(e.optBoolean("starred"));
+        rssItem.setStarred_temp(rssItem.getStarred());
+        rssItem.setPubDate(pubDate);
 
-        return new RssFile(0, e.optString("id"),
+        return rssItem;
+        /*
+        new RssItem(0, e.optString("id"),
                                 e.optString("title"),
                                 url, content,
                                 !e.optBoolean("unread"), null,
@@ -78,24 +98,29 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
                                 e.optString("author"),
                                 enclosureLink,
                                 enclosureMime);
+                                */
 	}
 
 	@Override
 	public boolean performAction(JSONObject jObj) {
         boolean result = false;
 
-		RssFile rssFile = parseItem(jObj);
-        buffer[index] = rssFile;
-        index++;
+        try {
+            RssItem rssFile = parseItem(jObj);
+            //buffer[index] = rssFile;
+            buffer.add(rssFile);
+            index++;
 
-        String FeedId_Db = feedIds.get(Integer.parseInt(rssFile.getFeedID()));
-        if(FeedId_Db != null) {
-            rssFile.setFeedID_Db(FeedId_Db);
-            result = !rssFile.getRead();
-        }
 
-        if(index >= bufferSize) {
-            performDatabaseBatchInsert();
+            if (rssFile != null)
+                result = !rssFile.getRead();
+
+            //if (index >= bufferSize) {
+            if (buffer.size() >= bufferSize) {
+                performDatabaseBatchInsert();
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
         }
 
         return result;
@@ -104,9 +129,12 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
 
     public boolean performDatabaseBatchInsert() {
         if(index > 0) {
-            dbConn.insertNewItems(buffer);
+            //dbConn.insertNewItems(buffer);
+            dbConn.insertNewItems(buffer.toArray(new RssItem[buffer.size()]));
+
             index = 0;
-            buffer = new RssFile[bufferSize];
+            //buffer = new RssItem[bufferSize];
+            buffer = new ArrayList<RssItem>(bufferSize);
         }
 
         return true;

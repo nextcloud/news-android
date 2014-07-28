@@ -56,7 +56,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 
 	private BitmapDrawableLruCache lruCache;
 
-	public String feedID = null;
+	public Long feedID = null;
 	public boolean scaleImage = false;
 	public int dstHeight; // height in pixels
 	public int dstWidth; // width in pixels

@@ -1,61 +1,62 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/menu_update"
         android:title="@string/menu_update"
         android:icon="@drawable/ic_menu_refresh"
-        android:showAsAction="always" />
+        app:showAsAction="always" />
 
     <item android:id="@+id/menu_StartImageCaching"
         android:title="@string/menu_StartImageCaching"
         android:orderInCategory="95"
-        android:showAsAction="never" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_markAllAsRead"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:orderInCategory="96"
         android:title="@string/menu_markAllAsRead"/>
 
     <item
         android:id="@+id/menu_downloadMoreItems"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:orderInCategory="97"
         android:title="@string/menu_downloadMoreItems"/>
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="98"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/action_settings"/>
 
     <item
         android:id="@+id/action_sync_settings"
         android:orderInCategory="99"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/action_sync_settings"/>
 
     <item
         android:id="@+id/action_login"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/action_login"/>
 
     <item
         android:id="@+id/action_add_new_feed"
         android:orderInCategory="101"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/action_add_new_feed"/>
 
     <item
         android:id="@+id/menu_About_Changelog"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:orderInCategory="102"
         android:title="@string/menu_About_Changelog"/>
 
 
     <item
         android:id="@+id/menu_CreateDatabaseDump"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:orderInCategory="103"
         android:title="Create Database Dump"
         android:visible="false"/>

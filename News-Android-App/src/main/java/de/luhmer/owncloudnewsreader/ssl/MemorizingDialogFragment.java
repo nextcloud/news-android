@@ -31,13 +31,12 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.util.Log;
-
-import com.actionbarsherlock.app.SherlockDialogFragment;
 
 import de.luhmer.owncloudnewsreader.R;
 
-public class MemorizingDialogFragment extends SherlockDialogFragment
+public class MemorizingDialogFragment extends DialogFragment
 		implements OnClickListener,OnCancelListener {
 	final static String TAG = "MemorizingDialogFragment";
 

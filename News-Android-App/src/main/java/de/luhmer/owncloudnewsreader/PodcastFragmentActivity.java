@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.SurfaceView;
@@ -15,7 +16,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.nineoldandroids.view.ViewHelper;
 
 import butterknife.ButterKnife;
@@ -26,14 +26,13 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 
 /**
  * Created by David on 29.06.2014.
  */
-public class PodcastSherlockFragmentActivity extends SherlockFragmentActivity {
+public class PodcastFragmentActivity extends ActionBarActivity {
 
     private static final String TAG = "PodcastSherlockFragmentActivity";
     private PodcastFragment podcastFragment;

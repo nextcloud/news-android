@@ -2,6 +2,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <de.luhmer.owncloudnewsreader.ListView.BlockingListView
+	    android:id="@android:id/list"
+	    style="?android:attr/textAppearanceLarge"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:divider="@null"
+        android:visibility="gone"
+		android:dividerHeight="0dp" />
+
     <TextView
         android:id="@+id/tv_no_items_available"
         android:layout_width="match_parent"
@@ -11,15 +21,17 @@
         android:visibility="gone"
         android:textSize="18sp" />
 
-    <de.luhmer.owncloudnewsreader.ListView.BlockingListView
-	    android:id="@android:id/list"
-	    style="?android:attr/textAppearanceLarge"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:divider="@null"
-		android:dividerHeight="0dp" />
 
-	<!-- android:textIsSelectable="true" -->
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
+
+
+    <!-- android:textIsSelectable="true" -->
     <!-- android:padding="16dp" -->
 
 </FrameLayout>

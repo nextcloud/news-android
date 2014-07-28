@@ -26,7 +26,7 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
@@ -46,37 +46,37 @@ public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 		List<Boolean> succeeded = new ArrayList<Boolean>();
 		
 		try {
-			DatabaseConnection dbConn = new DatabaseConnection(context);
+			DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 			try {
 				//Mark as READ
-				List<String> itemIds = dbConn.getAllNewReadItems();
+				List<String> itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewReadRssItems());
 				boolean result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_READ, context, api);
 				if(result)
 					dbConn.change_readUnreadStateOfItem(itemIds, true);
 				succeeded.add(result);
 				
 				//Mark as UNREAD
-				itemIds = dbConn.getAllNewUnreadItems();
+				itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnreadRssItems());
 				result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNREAD, context, api);
 				if(result)
 					dbConn.change_readUnreadStateOfItem(itemIds, false);
 				succeeded.add(result);
 				
 				//Mark as STARRED
-				itemIds = dbConn.getAllNewStarredItems();
+				itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewStarredRssItems());
 				result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_STARRED, context, api);
 				if(result)
 					dbConn.change_starrUnstarrStateOfItem(itemIds, true);
 				succeeded.add(result);
 				
 				//Mark as UNSTARRED
-				itemIds = dbConn.getAllNewUnstarredItems();
+				itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnstarredRssItems());
 				result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNSTARRED, context, api);
 				if(result)
 					dbConn.change_starrUnstarrStateOfItem(itemIds, false);
 				succeeded.add(result);
 			} finally {
-				dbConn.closeDatabase();
+				//dbConn.closeDatabase();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

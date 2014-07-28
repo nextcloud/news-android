@@ -28,6 +28,11 @@ public class Constants {
 
     public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
 
+
+    public static final String SHOW_CASE_PODCAST_ENABLED_SHOWN_BOOLEAN = "FIRST_TIME_PODCAST_ENABLED_BOOLEAN";
+    public static final String SHOW_CASE_APP_STARTED_SHOWN_BOOLEAN = "FIRST_TIME_APP_STARTED_BOOLEAN";
+    public static final String SHOW_CASE_PODCAST_AVAILABLE_INFO_SHOWN_BOOLEAN = "PODCAST_AVAILABLE_INFO_SHOWN_BOOLEAN";
+
     /*
     private static final String _P_KEY_PART1 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNmCsMj6M4zkjpKRG8MG5+yIAyqSQE2etVkZsc3s";
     private static final String _P_KEY_PART2 = "V5zLoQ/NUOVC0fS2tj8IWk6UYqQGk9rmVold3sDGiTCvWGFecjwel3qxzz23hKLlemrv2+0WPrZ5KOqiaCEMi";

@@ -66,9 +66,38 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-
-0.7.0 (in development)
+0.7.1 (in development)
 ---------------------
+
+
+0.7.0 (Google Play - Beta)
+---------------------
+- Layout improvements
+- Bug fixes
+
+
+0.6.9.9 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/244">#244 app crashs if screen rotate</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/245">#245 clicking on feeds under starred items gives weird result</a>
+- Lot of bug fixes
+
+
+0.6.9.8 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/243">#243 Readed items are not synced to owncloud</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/242">#242 Starred items aren't counted</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/241">#241 Feeds without unread items are shown</a>
+
+
+0.6.9.7 (Google Play - Beta)
+---------------------
+- Rewrite backend - **IMPORTANT** All your data will be deleted. You'll have to make a full-sync after the update. 
+- Lot of bug fixes/improvements
+- Performance improvements
+- Add sorting podcasts by pub-date (descending)
+- Add showcase view (API 11+)
+
 
 0.6.9.6 (Google Play)
 ---------------------

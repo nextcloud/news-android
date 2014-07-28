@@ -25,37 +25,43 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
-import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 
 public class InsertFeedIntoDatabase implements IHandleJsonObject{
 
-	DatabaseConnection dbConn;
-	ArrayList<ConcreteFeedItem> feeds = new ArrayList<ConcreteFeedItem>();
+	DatabaseConnectionOrm dbConn;
+	ArrayList<Feed> feeds = new ArrayList<Feed>();
 
-	public InsertFeedIntoDatabase(DatabaseConnection dbConn) {
+	public InsertFeedIntoDatabase(DatabaseConnectionOrm dbConn) {
 		this.dbConn = dbConn;
 	}
 
-    private static ConcreteFeedItem parseFeed(JSONObject e)
+    private static Feed parseFeed(JSONObject e)
 	{
     	String faviconLink = e.optString("faviconLink");
         if(faviconLink != null)
             if(faviconLink.equals("null") || faviconLink.trim().equals(""))
                 faviconLink = null;
 
-        return new ConcreteFeedItem(e.optString("title"), e.optString("folderId"), e.optString("id"), faviconLink, -1);
+        Feed feed = new Feed();
+        feed.setId(e.optLong("id"));
+        feed.setFeedTitle(e.optString("title"));
+        feed.setFolderId(e.optLong("folderId"));
+        feed.setFaviconUrl(faviconLink);
+
+        return feed;
 	}
 
 	@Override
 	public boolean performAction(JSONObject jObj) {
-		ConcreteFeedItem rssFeed = parseFeed(jObj);
+        Feed rssFeed = parseFeed(jObj);
 		feeds.add(rssFeed);
         return true;
 	}
 
 	public void WriteAllToDatabaseNow() {
-		InsertIntoDatabase.InsertSubscriptionsIntoDatabase(feeds, dbConn);
+		InsertIntoDatabase.InsertFeedsIntoDatabase(feeds, dbConn);
 	}
 }

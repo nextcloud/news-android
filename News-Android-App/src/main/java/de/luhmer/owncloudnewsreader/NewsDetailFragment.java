@@ -24,10 +24,10 @@ package de.luhmer.owncloudnewsreader;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,21 +38,19 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.actionbarsherlock.app.SherlockFragment;
-
 import java.io.File;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.WebViewLinkLongClickInterface;
 
-public class NewsDetailFragment extends SherlockFragment {
+public class NewsDetailFragment extends Fragment {
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
 
 	public static final String TAG = "NewsDetailFragment";
@@ -153,8 +151,10 @@ public class NewsDetailFragment extends SherlockFragment {
 
 		init_webView();
 		NewsDetailActivity nrda = ((NewsDetailActivity)getActivity());
-		String idItem = nrda.getIdCurrentRssItem(section_number - 1);
-		webview.loadDataWithBaseURL("", getHtmlPage(ndActivity, ndActivity.dbConn, Integer.parseInt(idItem)), "text/html", "UTF-8", "");
+		RssItem rssItem = nrda.rssItems.get(section_number - 1);
+
+
+        webview.loadDataWithBaseURL("", getHtmlPage(ndActivity, rssItem), "text/html", "UTF-8", "");
 	}
 
 	@SuppressLint("SetJavaScriptEnabled")
@@ -242,7 +242,7 @@ public class NewsDetailFragment extends SherlockFragment {
 
 
 	@SuppressLint("SimpleDateFormat")
-	public static String getHtmlPage(Context context, DatabaseConnection dbConn, int idItem)
+	public static String getHtmlPage(Context context, RssItem rssItem)
 	{
 		init_webTemplate(context);
 		String htmlData = web_template;
@@ -250,99 +250,70 @@ public class NewsDetailFragment extends SherlockFragment {
 		//RssFile rssFile = ((NewsDetailActivity)getActivity()).rssFiles.get(section_number - 1);
         //int idItem = ndActivity.databaseItemIds.get(section_number - 1);
 
-        Cursor cursor = dbConn.getArticleByID(String.valueOf(idItem));
-        cursor.moveToFirst();
 
-        String favIconUrl = "";
+
+        String favIconUrl = rssItem.getFeed().getFaviconUrl();
 
 		try {
-			Cursor favIconCursor = dbConn.getFeedByDbID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
-	        try
-	        {
-	        	favIconCursor.moveToFirst();
-	        	if(favIconCursor.getCount() > 0)
-	        	{
-	        		favIconUrl = favIconCursor.getString(favIconCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_FAVICON_URL));
-	        		if(favIconUrl != null)
-	        		{
-	        			File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, FileUtils.getPathFavIcons(context));
-	        			if(file.isFile())
-	        				favIconUrl = "file://" + file.getAbsolutePath().toString();
-	        		}
-	        		else
-	        			favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
-	        	}
-	        } catch(Exception ex) {
-	        	ex.printStackTrace();
-	        } finally {
-	        	favIconCursor.close();
-	        }
+            if(favIconUrl != null)
+            {
+                File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, FileUtils.getPathFavIcons(context));
+                if(file.isFile())
+                    favIconUrl = "file://" + file.getAbsolutePath().toString();
+            }
+            else {
+                favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
 
 
-	        String divHeader = "<div id=\"header\">";
-	        StringBuilder sb = new StringBuilder(htmlData);
-	        //htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), rssFile.getTitle().trim()).toString();
-	        String title = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE));
-	        String linkToFeed = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
-	        title = "<a href=\"" + linkToFeed + "\">" + title + "</a>";
-	        htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), title.trim()).toString();
+        String divHeader = "<div id=\"header\">";
+        StringBuilder sb = new StringBuilder(htmlData);
+        //htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), rssFile.getTitle().trim()).toString();
+        String title = rssItem.getTitle();
+        String linkToFeed = rssItem.getLink();
+        title = "<a href=\"" + linkToFeed + "\">" + title + "</a>";
+        htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), title.trim()).toString();
 
 
-	        //String divSubscription = "<div id=\"subscription\">";
-	        //htmlData = sb.insert(htmlData.indexOf(divSubscription) + divSubscription.length(), rssFile.getStreamID().trim()).toString();
+        //String divSubscription = "<div id=\"subscription\">";
+        //htmlData = sb.insert(htmlData.indexOf(divSubscription) + divSubscription.length(), rssFile.getStreamID().trim()).toString();
 
-	        Date date = new Date(cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE)));
-	        if(date != null)
-	        {
-	        	String divDate = "<div id=\"datetime\">";
-	        	//SimpleDateFormat formater = new SimpleDateFormat();
-	        	//String dateString = formater.format(date);
-	        	String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
-	        	htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), dateString).toString();
-	        }
+        Date date = rssItem.getPubDate();
+        if(date != null)
+        {
+            String divDate = "<div id=\"datetime\">";
+            //SimpleDateFormat formater = new SimpleDateFormat();
+            //String dateString = formater.format(date);
+            String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
+            htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), dateString).toString();
+        }
 
 
-	        //String subscription = ((NewsDetailActivity) getActivity()).dbConn.getTitleOfSubscriptionByRowID(String.valueOf(rssFile.getFeedID_Db()));
-	        //String subscription = dbConn.getTitleOfSubscriptionByDBItemID(String.valueOf(idItem));
-	        Cursor cursorFeed = dbConn.getFeedByDbID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
-	        cursorFeed.moveToFirst();
-	        String subscription = cursorFeed.getString(cursorFeed.getColumnIndex(DatabaseConnection.SUBSCRIPTION_HEADERTEXT)).trim();
-	        cursorFeed.close();
+        //String subscription = ((NewsDetailActivity) getActivity()).dbConn.getTitleOfSubscriptionByRowID(String.valueOf(rssFile.getFeedID_Db()));
+        //String subscription = dbConn.getTitleOfSubscriptionByDBItemID(String.valueOf(idItem));
 
-	        String authorOfArticle = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_AUTHOR));
-	        if(authorOfArticle != null)
-	        	if(!authorOfArticle.trim().equals(""))
-	        		subscription += " - " + authorOfArticle.trim();
+        String feedTitle = rssItem.getFeed().getFeedTitle();
 
-	        String divSubscription = "<div id=\"subscription\">";
-	        int pos = htmlData.indexOf(divSubscription) + divSubscription.length();
-	        pos = htmlData.indexOf("/>", pos) + 2;//Wegen des Favicon <img />
-	        htmlData = sb.insert(pos, subscription.trim()).toString();
 
-	        String divContent = "<div id=\"content\">";
-	        String description = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
-	        //htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), rssFile.getDescription().trim()).toString();
-	        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), getDescriptionWithCachedImages(description, context).trim()).toString();
+        String authorOfArticle = rssItem.getAuthor();
+        if(authorOfArticle != null)
+            if(!authorOfArticle.trim().equals(""))
+                feedTitle += " - " + authorOfArticle.trim();
 
-	        //String link = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
-	        //Uri uri = Uri.parse(rssFile.getLink());
-	        //Uri uri = Uri.parse(link);
-	        //String domainName = uri.getHost();
-	        //String searchString = "http://s2.googleusercontent.com/s2/favicons?domain=";
-	        //htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length(), domainName).toString();
+        String divSubscription = "<div id=\"subscription\">";
+        int pos = htmlData.indexOf(divSubscription) + divSubscription.length();
+        pos = htmlData.indexOf("/>", pos) + 2;//Wegen des Favicon <img />
+        htmlData = sb.insert(pos, feedTitle.trim()).toString();
 
-	        String searchString = "<img id=\"imgFavicon\" src=";
-	        htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length() + 1, favIconUrl).toString();
+        String divContent = "<div id=\"content\">";
+        String description = rssItem.getBody();
+        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), getDescriptionWithCachedImages(description, context).trim()).toString();
 
-	        //htmlData = URLEncoder.encode(htmlData).replaceAll("\\+"," ");
-
-	        //webview.loadDataWithBaseURL("", htmlData, "text/html", "UTF-8", "");
-	        //webview.loadData(htmlData, "text/html; charset=UTF-8", "UTF-8");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			cursor.close();
-		}
+        String searchString = "<img id=\"imgFavicon\" src=";
+        htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length() + 1, favIconUrl).toString();
 
 		return htmlData;
 	}

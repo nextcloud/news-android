@@ -28,12 +28,11 @@ import android.app.Dialog;
 import android.content.pm.PackageInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager.LayoutParams;
 import android.widget.TextView;
-
-import com.actionbarsherlock.app.SherlockDialogFragment;
 
 import it.gmariotti.changelibs.library.view.ChangeLogListView;
 
@@ -41,7 +40,7 @@ import it.gmariotti.changelibs.library.view.ChangeLogListView;
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
-public class VersionInfoDialogFragment extends SherlockDialogFragment {
+public class VersionInfoDialogFragment extends DialogFragment {
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override

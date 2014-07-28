@@ -37,6 +37,10 @@ import android.os.Looper;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,8 +51,6 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.michaelflisar.messagebar.MessageBar;
 import com.michaelflisar.messagebar.messages.BaseMessage;
 import com.michaelflisar.messagebar.messages.TextMessage;
@@ -56,10 +58,12 @@ import com.michaelflisar.messagebar.messages.TextMessage;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.Constants.SYNC_TYPES;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -68,9 +72,6 @@ import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncServiceCallback;
 import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
-import uk.co.senab.actionbarpulltorefresh.extras.actionbarsherlock.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
@@ -81,7 +82,7 @@ import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class NewsReaderListFragment extends SherlockFragment implements OnCreateContextMenuListener, OnRefreshListener/*
+public class NewsReaderListFragment extends Fragment implements OnCreateContextMenuListener, SwipeRefreshLayout.OnRefreshListener/*
 																ExpandableListView.OnChildClickListener,
 																ExpandableListView.OnGroupCollapseListener,
 																ExpandableListView.OnGroupExpandListener*/ {
@@ -183,10 +184,11 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	 * The fragment's current callback object, which is notified of list item
 	 * clicks.
 	 */
-	private Callbacks mCallbacks = sExpListCallbacks;
+	private Callbacks mCallbacks = null;
+
 
     @Override
-    public void onRefreshStarted(View view) {
+    public void onRefresh() {
         StartSync();
     }
 
@@ -204,31 +206,17 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		public void onChildItemClicked(String idSubscription, String optional_folder_id);
-		public void onTopItemClicked(String idSubscription, boolean isFolder, String optional_folder_id);
+		public void onChildItemClicked(long idFeed, Long optional_folder_id);
+		public void onTopItemClicked(long idFeed, boolean isFolder, Long optional_folder_id);
 	}
 
-	/**
-	 * A dummy implementation of the {@link Callbacks} interface that does
-	 * nothing. Used only when this fragment is not attached to an activity.
-	 */
-	private static Callbacks sExpListCallbacks = new Callbacks() {
-		@Override
-		public void onChildItemClicked(String idSubscription, String optional_folder_id) {
-		}
 
-		@Override
-		public void onTopItemClicked(String idSubscription, boolean isFolder, String optional_folder_id) {
-		}
-	};
-
-	DatabaseConnection dbConn;
 	//SubscriptionExpandableListAdapter lvAdapter;
 	private SubscriptionExpandableListAdapter lvAdapter;
 	//ExpandableListView eListView;
-    ExpandableListView eListView;
-    View progressBar;
-    PullToRefreshLayout mPullToRefreshLayout;
+    @InjectView(R.id.expandableListView) ExpandableListView eListView;
+    @InjectView(R.id.pbProgress) View progressBar;
+    @InjectView(R.id.ptr_layout) SwipeRefreshLayout mPullToRefreshLayout;
 	//public static IReader _Reader = null;  //AsyncTask_GetGReaderTags asyncTask_GetUnreadFeeds = null;
 
 	//public static String username;
@@ -253,8 +241,6 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 
 		try
 		{
-			dbConn = new DatabaseConnection(getActivity());
-
 			//SettingsActivity.CheckForUnsycedChangesInDatabase(context);
 			//dbConn.resetDatabase();
 			//dbConn.clearDatabaseOverSize();
@@ -272,16 +258,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
                 {
                     //Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
 
+
+                    //TODO needs testing!
                     NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.content_frame));
                     if(ndf != null) {
-                        try {
-                            ndf.UpdateCurrentRssView(getActivity());
-                            ndf.getLoaderManager().restartLoader(0, null, ndf.loaderCallbacks);
-                            ndf.setActivatedPosition(0);
-                            ndf.setMarginFromTop(0);
-                        } catch(Exception ex) {
-                            ex.printStackTrace();
-                        }
+                        //ndf.reloadAdapterFromScratch();
+                        ndf.UpdateCurrentRssView(getActivity(), true);
                     }
                 }
             };
@@ -384,7 +366,7 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
-			NewsReaderListActivity.StartLoginFragment((SherlockFragmentActivity) getActivity());
+			NewsReaderListActivity.StartLoginFragment((FragmentActivity) getActivity());
 		else {
 			try {
 				if (!_ownCloudSyncService.isSyncRunning())
@@ -446,32 +428,25 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.expandable_list_layout, container, false);
+		View view = inflater.inflate(R.layout.fragment_newsreader_list, container, false);
 
         if(!ThemeChooser.isDarkTheme(getActivity())) {
             view.setBackgroundColor(getResources().getColor(R.color.slider_listview_background_color_light_theme));
         }
 
-        progressBar = view.findViewById(R.id.pbProgress);
+        ButterKnife.inject(this, view);
 
-        eListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
-
-        lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn, eListView);
+        lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), eListView);
         lvAdapter.setHandlerListener(expListTextClickedListener);
 
 		eListView.setGroupIndicator(null);
 
-        // Now find the PullToRefreshLayout to setup
-        mPullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
+        mPullToRefreshLayout.setOnRefreshListener(this);
+        mPullToRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
-        // Now setup the PullToRefreshLayout
-        ActionBarPullToRefresh.from(getActivity())
-                // Mark All Children as pullable
-                .allChildrenArePullable()
-                        // Set the OnRefreshListener
-                .listener(this)
-                        // Finally commit the setup to our PullToRefreshLayout
-                .setup(mPullToRefreshLayout);
 
 		eListView.setOnChildClickListener(onChildClickListener);
 		//eListView.setSmoothScrollbarEnabled(true);
@@ -482,6 +457,14 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 
         lvAdapter.notifyDataSetChanged();
         ReloadAdapter();
+
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if(!mPrefs.getBoolean(Constants.SHOW_CASE_APP_STARTED_SHOWN_BOOLEAN, false)) {
+            mPrefs.edit().putBoolean(Constants.SHOW_CASE_APP_STARTED_SHOWN_BOOLEAN, true).commit();
+            ((NewsReaderListActivity) getActivity()).showShowCaseViewForView(eListView, view, "Pull To Refresh", "Pull down the list to refresh your feeds");
+        }
+
 
 		return view;
 	}
@@ -504,17 +487,16 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 	public void onDetach() {
 		super.onDetach();
 
-		// Reset the active callbacks interface to the dummy implementation.
-		mCallbacks = sExpListCallbacks;
+		mCallbacks = null;
 	}
 
 	ExpListTextClicked expListTextClickedListener = new ExpListTextClicked() {
 
 		@Override
-		public void onTextClicked(String idSubscription, Context context, boolean isFolder, String optional_folder_id) {
-			mCallbacks.onTopItemClicked(idSubscription, isFolder, optional_folder_id);
+		public void onTextClicked(long idFeed, Context context, boolean isFolder, Long optional_folder_id) {
+            mCallbacks.onTopItemClicked(idFeed, isFolder, optional_folder_id);
 		}
-	};
+    };
 
 	/*
 	@Override
@@ -537,12 +519,12 @@ public class NewsReaderListFragment extends SherlockFragment implements OnCreate
 
 			long idItem = lvAdapter.getChildId(groupPosition, childPosition);
 
-			String optional_id_folder = null;
+			Long optional_id_folder = null;
 			FolderSubscribtionItem groupItem = (FolderSubscribtionItem) lvAdapter.getGroup(groupPosition);
 			if(groupItem != null)
-				optional_id_folder = String.valueOf(groupItem.id_database);
+				optional_id_folder = groupItem.id_database;
 
-			mCallbacks.onChildItemClicked(String.valueOf(idItem), optional_id_folder);
+			mCallbacks.onChildItemClicked(idItem, optional_id_folder);
 
 			return false;
 		}

@@ -26,7 +26,6 @@ import android.annotation.TargetApi;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Build;
 import android.text.Html;
 import android.util.Log;
@@ -35,19 +34,21 @@ import android.widget.RemoteViewsService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 	private static final String TAG = "WidgetTodoViewsFactory";
 
-	DatabaseConnection dbConn;
-	Cursor cursor;
+	DatabaseConnectionOrm dbConn;
+    List<RssItem> rssItems;
 	private Context context = null;
 
 	private int appWidgetId;
@@ -65,19 +66,19 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 		if(Constants.debugModeWidget)
 			Log.d(TAG, "onCreate");
 
-		dbConn = new DatabaseConnection(context);
+		dbConn = new DatabaseConnectionOrm(context);
 		//onDataSetChanged();
 	}
 
 	@Override
 	public void onDestroy() {
-		if(dbConn != null)
-			dbConn.closeDatabase();
+		//if(dbConn != null)
+			//dbConn.closeDatabase();
 	}
 
 	@Override
 	public int getCount() {
-		return cursor.getCount();
+		return rssItems.size();
 	}
 
 	// Given the position (index) of a WidgetItem in the array, use the item's text value in
@@ -86,25 +87,22 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 	public RemoteViews getViewAt(int position) {
     	//RemoteViews rv = new RemoteViews(context.getPackageName(), android.R.layout.simple_list_item_2);
     	RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
-    	cursor.moveToPosition(position);
+        RssItem rssItem = rssItems.get(position);
 
         try
         {
-            //Cursor feedCursor = dbConn.getFeedByFeedID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
-            Cursor feedCursor = dbConn.getFeedByDbID(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
-            feedCursor.moveToFirst();
-            String header = feedCursor.getString(feedCursor.getColumnIndex(DatabaseConnection.SUBSCRIPTION_HEADERTEXT)).trim();
-            String colorString = dbConn.getAvgColourOfFeedByDbId(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID)));
-            feedCursor.close();
 
-            String authorOfArticle = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_AUTHOR));
+            String header = rssItem.getFeed().getFeedTitle();
+            String colorString = rssItem.getFeed().getAvgColour();
+
+            String authorOfArticle = rssItem.getAuthor();
             header += authorOfArticle == null ? "" : " - " + authorOfArticle.trim();
-            String title = Html.fromHtml(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_TITLE))).toString().trim();
-            String id = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
+            String title = Html.fromHtml(rssItem.getTitle()).toString();
+            long id = rssItem.getId();
             //rv.setTextViewText(android.R.id.text1, header);
             //rv.setTextViewText(android.R.id.text2, title);
 
-            Date date = new Date(cursor.getLong(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_PUBDATE)));
+            Date date = rssItem.getPubDate();
             String dateString = "";
             if(date != null)
             {
@@ -126,7 +124,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             //Get a fresh new intent
             Intent ei = new Intent();
             //Load it with whatever extra you want
-            ei.putExtra(WidgetProvider.UID_TODO, id);
+            ei.putExtra(WidgetProvider.RSS_ITEM_ID, id);
             //Set it on the list remote view
             rv.setOnClickFillInIntent(R.id.ll_root_view_widget_row, ei);
         } catch(Exception ex) {
@@ -164,7 +162,6 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 			Log.d(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
 
 
-		cursor = dbConn.getAllItemsForFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValueString(), false, SORT_DIRECTION.desc);
-		cursor.moveToFirst();
+        rssItems = dbConn.getListOfAllItemsForFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), false, SORT_DIRECTION.desc);
 	}
 }

@@ -25,40 +25,42 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteCursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.app.SherlockListFragment;
 import com.devspark.robototextview.widget.RobotoCheckBox;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.ListView.BlockingListView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
 import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
-import de.luhmer.owncloudnewsreader.cursor.SimpleCursorLoader;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
  * either contained in a {@link NewsReaderListActivity} in two-pane mode (on
  * tablets) or a {@link NewsReaderListActivity} on handsets.
  */
-public class NewsReaderDetailFragment extends SherlockListFragment implements IOnStayUnread {
+public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnread {
 	/**
 	 * The fragment argument representing the item ID that this fragment
 	 * represents.
@@ -67,7 +69,6 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 	protected static final String TAG = "NewsReaderDetailFragment";
 
-	//private DatabaseConnection dbConn;
 
 	//private boolean DialogShowedToMarkLastItemsAsRead = false;
 
@@ -78,19 +79,19 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		return lvAdapter;
 	}*/
 
-	String idFeed;
+	Long idFeed;
 	/**
 	 * @return the idFeed
 	 */
-	public String getIdFeed() {
+	public Long getIdFeed() {
 		return idFeed;
 	}
 
-	String idFolder;
+	Long idFolder;
 	/**
 	 * @return the idFolder
 	 */
-	public String getIdFolder() {
+	public Long getIdFolder() {
 		return idFolder;
 	}
 
@@ -113,6 +114,9 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 	//private static ArrayList<Integer> databaseIdsOfItems;
 	ArrayList<RobotoCheckBox> stayUnreadCheckboxes;
+
+    @InjectView(R.id.pb_loading) ProgressBar pbLoading;
+    @InjectView(R.id.tv_no_items_available) TextView tvNoItemsAvailable;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -139,22 +143,22 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setRetainInstance(true);
+		//setRetainInstance(true);
 
 		//dbConn = new DatabaseConnection(getActivity());
 
 		if(getArguments() != null) {
-			if (getArguments().containsKey(NewsReaderListActivity.SUBSCRIPTION_ID)) {
-				idFeed = getArguments().getString(NewsReaderListActivity.SUBSCRIPTION_ID);
+			if (getArguments().containsKey(NewsReaderListActivity.FEED_ID)) {
+				idFeed = getArguments().getLong(NewsReaderListActivity.FEED_ID);
 			}
 			if (getArguments().containsKey(NewsReaderListActivity.TITEL)) {
 				titel = getArguments().getString(NewsReaderListActivity.TITEL);
 			}
 			if (getArguments().containsKey(NewsReaderListActivity.FOLDER_ID)) {
-				idFolder = getArguments().getString(NewsReaderListActivity.FOLDER_ID);
+				idFolder = getArguments().getLong(NewsReaderListActivity.FOLDER_ID);
 			}
 
-			((SherlockFragmentActivity) getActivity()).getSupportActionBar().setTitle(titel);
+			getActivity().getActionBar().setTitle(titel);
 
 			UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
 
@@ -162,27 +166,22 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 			//lvAdapter = null;
 
-			getActivity().getSupportLoaderManager().destroyLoader(0);
-
-            if(reloadCursorOnStartUp)
-                UpdateCurrentRssView(getActivity());
-
-			UpdateCursor();
+			//getActivity().getSupportLoaderManager().destroyLoader(0);
 		}
 	}
 
 
     public void UpdateMenuItemsState()
 	{
-		if(MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems() != null)
+		if(MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems() != null)
 		{
 			if(idFolder != null) {
-				if(idFolder.equals(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValueString()))
-					MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
+				if(idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue())
+					MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
 				else
-					MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(true);
+					MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(true);
 			} else
-				MenuUtilsSherlockFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
+				MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
 		}
 	}
 
@@ -192,6 +191,7 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	 */
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false))
@@ -219,7 +219,12 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 	        });
 		}
 
-		super.onViewCreated(view, savedInstanceState);
+        if(reloadCursorOnStartUp)
+            UpdateCurrentRssView(getActivity(), true);
+        else
+            UpdateCurrentRssView(getActivity(), false);
+
+        //UpdateCursor();
 	}
 
 
@@ -247,128 +252,130 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 		super.onDestroy();
 	}
 
-	public void UpdateCursor()
-	{
-		try
-		{
-			LoaderManager loader = getActivity().getSupportLoaderManager();
-			loader.initLoader(0, null, loaderCallbacks);
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-	}
 
-    public LoaderCallbacks<Cursor> loaderCallbacks = new LoaderCallbacks<Cursor>() {
-        @Override
-        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-            return new NewsDetailCursorLoader(getActivity(), idFolder, idFeed);
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-            NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
-
-            // Block children layout for now
-            BlockingListView bView = ((BlockingListView) getListView());
-
-            bView.setBlockLayoutChildren(true);
-
-            if(nca == null) {
-                NewsListCursorAdapter lvAdapter  = new NewsListCursorAdapter(getActivity(), null, NewsReaderDetailFragment.this);
-                setListAdapter(lvAdapter);
-                nca = lvAdapter;
-            }
-            nca.swapCursor(cursor);
-
-            if(cursor.getCount() <= 0) {
-                getListView().setVisibility(View.GONE);
-                getActivity().findViewById(R.id.tv_no_items_available).setVisibility(View.VISIBLE);
-            } else {
-                getListView().setVisibility(View.VISIBLE);
-                getActivity().findViewById(R.id.tv_no_items_available).setVisibility(View.GONE);
-            }
-
-            try {
-                if(mActivatedPosition != ListView.INVALID_POSITION && marginFromTop != ListView.INVALID_POSITION)
-                    getListView().setSelectionFromTop(mActivatedPosition, marginFromTop);
-                else if(mActivatedPosition != ListView.INVALID_POSITION)
-                    getListView().setSelection(mActivatedPosition);
-            } catch(Exception ex) {
-                ex.printStackTrace();
-            }
-
-            bView.setBlockLayoutChildren(false);
-            //((NewsListCursorAdapter) getListAdapter()).changeCursor(cursor);
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> loader) {
-            NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
-            if(nca != null)
-                ((NewsListCursorAdapter) getListAdapter()).swapCursor(null);
-        }
-    };
 
 	public void notifyDataSetChangedOnAdapter()
 	{
-		NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
-		if(nca != null)
-			((NewsListCursorAdapter) getListAdapter()).notifyDataSetChanged();
+        NewsListArrayAdapter nca = (NewsListArrayAdapter) getListAdapter();
+        if(nca != null)
+            nca.notifyDataSetChanged();
+
+		//NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
+		//if(nca != null)
+			//((NewsListCursorAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
-    public void UpdateCurrentRssView(Context context) {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
-        boolean onlyStarredItems = false;
-        if(idFolder != null)
-            if(idFolder.equals(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValueString()))
-                onlyStarredItems = true;
+    /**
+     * Updates the current RSS-View
+     * @param context
+     */
+    public void UpdateCurrentRssView(Context context, boolean refreshCurrentRssView) {
+        new UpdateCurrentRssViewTask(context, refreshCurrentRssView).execute((Void) null);//TODO api level 11--> new method
+    }
 
-        DatabaseConnection dbConn = new DatabaseConnection(context);
+    private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, LazyList<RssItem>> {
 
-        dbConn.clearDatabaseOverSize();
+        Context context;
+        SORT_DIRECTION sortDirection;
+        boolean refreshCurrentRssView;
 
-        String sqlSelectStatement = null;
-        if(idFeed != null)
-            sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, getSortDirection(context));
-        else if(idFolder != null)
-        {
-            if(idFolder.equals(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValueString()))
-                onlyUnreadItems = false;
-            sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, getSortDirection(context));
+        public UpdateCurrentRssViewTask(Context context, boolean refreshCurrentRssView) {
+            this.context = context;
+            this.refreshCurrentRssView = refreshCurrentRssView;
         }
-        if(sqlSelectStatement != null) {
-            dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
+
+        @Override
+        protected void onPreExecute() {
+            pbLoading.setVisibility(View.VISIBLE);
+            getListView().setVisibility(View.GONE);
+            tvNoItemsAvailable.setVisibility(View.GONE);
+
+            sortDirection = getSortDirection(context);
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected LazyList<RssItem> doInBackground(Void... urls) {
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
+
+            if(refreshCurrentRssView) {
+                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+                boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
+                boolean onlyStarredItems = false;
+                if (idFolder != null)
+                    if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
+                        onlyStarredItems = true;
+
+                String sqlSelectStatement = null;
+                if (idFeed != null)
+                    sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection);
+                else if (idFolder != null) {
+                    if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
+                        onlyUnreadItems = false;
+                    sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sortDirection);
+                }
+                if (sqlSelectStatement != null) {
+                    dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
+                }
+            }
+            return dbConn.getCurrentRssItemView(sortDirection);
+        }
+
+        @Override
+        protected void onPostExecute(LazyList<RssItem> rssItemLazyList) {
+            try
+            {
+                // Block children layout for now
+                BlockingListView bView = ((BlockingListView) getListView());
+
+                bView.setBlockLayoutChildren(true);
+
+                NewsListArrayAdapter lvAdapter  = new NewsListArrayAdapter(getActivity(), rssItemLazyList, NewsReaderDetailFragment.this);
+                setListAdapter(lvAdapter);
+
+                pbLoading.setVisibility(View.GONE);
+                if(lvAdapter.getCount() <= 0) {
+                    getListView().setVisibility(View.GONE);
+                    tvNoItemsAvailable.setVisibility(View.VISIBLE);
+                } else {
+                    getListView().setVisibility(View.VISIBLE);
+                    tvNoItemsAvailable.setVisibility(View.GONE);
+                }
+
+                try {
+                    if(mActivatedPosition != ListView.INVALID_POSITION && marginFromTop != ListView.INVALID_POSITION)
+                        getListView().setSelectionFromTop(mActivatedPosition, marginFromTop);
+                    else if(mActivatedPosition != ListView.INVALID_POSITION)
+                        getListView().setSelection(mActivatedPosition);
+                } catch(Exception ex) {
+                    ex.printStackTrace();
+                }
+
+                bView.setBlockLayoutChildren(false);
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
         }
     }
+
 
     public static SORT_DIRECTION getSortDirection(Context context) {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
-        String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
-        if(sortDirection.equals("1"))
-            sDirection = SORT_DIRECTION.desc;
-
-        return sDirection;
-    }
-
-    public static Cursor getRightCusor(Context context /*, String idFolder, String idFeed */)
-    {
-        DatabaseConnection dbConn = new DatabaseConnection(context);
-    	return dbConn.getCurrentSelectedRssItems(getSortDirection(context));
+        return NewsDetailActivity.getSortDirectionFromSettings(context);
     }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_newsreader_detail, container, false);
+        ButterKnife.inject(this, rootView);
 		return rootView;
 	}
 
 
-
+    /*
 	public static class NewsDetailCursorLoader extends SimpleCursorLoader {
 		String idFolder;
 		String idFeed;
@@ -381,17 +388,17 @@ public class NewsReaderDetailFragment extends SherlockListFragment implements IO
 
 	    @Override
 	    public Cursor loadInBackground() {
-	        return getRightCusor(getContext() /*, idFolder, idFeed */);
+	        return getRightCusor(getContext());
 	    }
 	}
+    */
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         if(mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
-            Cursor c = ((SQLiteCursor) l.getAdapter().getItem(position));
-            String currentUrl = c.getString(c.getColumnIndex(DatabaseConnection.RSS_ITEM_LINK));
+            String currentUrl = ((NewsListArrayAdapter) getListAdapter()).getItem(position).getLink();
 
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
             startActivity(browserIntent);

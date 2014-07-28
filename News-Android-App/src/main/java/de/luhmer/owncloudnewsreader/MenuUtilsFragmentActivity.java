@@ -24,22 +24,22 @@ package de.luhmer.owncloudnewsreader;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
-public class MenuUtilsSherlockFragmentActivity extends PodcastSherlockFragmentActivity {
+public class MenuUtilsFragmentActivity extends PodcastFragmentActivity {
 
     protected static final String TAG = "MenuUtils";
 
@@ -105,7 +105,7 @@ public class MenuUtilsSherlockFragmentActivity extends PodcastSherlockFragmentAc
     public static boolean onOptionsItemSelected(MenuItem item, FragmentActivity activity) {
         switch (item.getItemId()) {
             case R.id.menu_About_Changelog:
-                SherlockDialogFragment dialog = new VersionInfoDialogFragment();
+                DialogFragment dialog = new VersionInfoDialogFragment();
                 dialog.show(activity.getSupportFragmentManager(), "VersionChangelogDialogFragment");
                 return true;
 
@@ -113,35 +113,16 @@ public class MenuUtilsSherlockFragmentActivity extends PodcastSherlockFragmentAc
                 NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame));
                 if(ndf != null)
                 {
-					/*
-					for(int i = 0; i < ndf.getListView().getChildCount(); i++)
-					{
-						 View view = ndf.getListView().getChildAt(i);
-						 CheckBox cb = (CheckBox) view.findViewById(R.id.cb_lv_item_read);
-						 if(!cb.isChecked())
-							 cb.setChecked(true);
-					}
-					*/
+                    DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(activity);
+                    //dbConn.markAllItemsAsReadForCurrentView();
 
-                    DatabaseConnection dbConn = new DatabaseConnection(activity);
-                    try {
-						/*
-						//dbConn.markAllItemsAsRead(ndf.getDatabaseIdsOfItems());
-						List<Integer> items = new ArrayList<Integer>();
-
-
-						Cursor cursor = ncla.getLvAdapter().getCursor();
-						cursor.moveToFirst();
-						do {
-							items.add(Integer.parseInt(cursor.getString(0)));
-						} while (cursor.moveToNext());
-						dbConn.markAllItemsAsRead(items);
-						*/
-                        dbConn.markAllItemsAsReadForCurrentView();
-                    } finally {
-                        dbConn.closeDatabase();
+                    for(int i = 0; i < ndf.getListAdapter().getCount(); i++) {
+                        RssItem rssItem = (RssItem) ndf.getListAdapter().getItem(i);
+                        rssItem.setRead_temp(true);
+                        dbConn.updateRssItem(rssItem);
                     }
-                    ndf.UpdateCursor();
+
+                    ndf.notifyDataSetChangedOnAdapter();
 
                     //If tablet view is enabled update the listview as well
                     if(activity instanceof NewsReaderListActivity)
@@ -159,27 +140,6 @@ public class MenuUtilsSherlockFragmentActivity extends PodcastSherlockFragmentAc
 
     private static void DownloadMoreItems()
     {
-        /*
-		DatabaseConnection dbConn = new DatabaseConnection(activity);
-		int count = dbConn.getCountFeedsForFolder(SubscriptionExpandableListAdapter.ALL_ITEMS, false);
-		if(count >= Constants.maxItemsCount)
-		{
-			String text = activity.getString(R.string.max_items_count_reached);
-			text = text.replace("XX", "" + Constants.maxItemsCount);
-			new AlertDialog.Builder(activity)
-					.setTitle(activity.getString(R.string.empty_view_header))
-					.setMessage(text)
-					.setPositiveButton(activity.getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog,int id) {
-
-						}
-					  })
-					.create()
-					.show();
-			//Toast.makeText(activity, text, Toast.LENGTH_LONG).show();
-		}
-		else
-		{*/
         String username = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext()).getString("edt_username", "");
         String password = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext()).getString("edt_password", "");
 
@@ -189,7 +149,6 @@ public class MenuUtilsSherlockFragmentActivity extends PodcastSherlockFragmentAc
 
             Toast.makeText(activity, activity.getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
         }
-        //}
     }
 
     static OnAsyncTaskCompletedListener onAsyncTaskGetVersionFinished = new OnAsyncTaskCompletedListener() {
@@ -212,7 +171,7 @@ public class MenuUtilsSherlockFragmentActivity extends PodcastSherlockFragmentAc
         public void onAsyncTaskCompleted(int task_id, Object task_result) {
             NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame));
             if(ndf != null)
-                ndf.UpdateCursor();
+                ndf.UpdateCurrentRssView(activity, true);
 
             Log.d(TAG, "Finished Download extra items..");
         }

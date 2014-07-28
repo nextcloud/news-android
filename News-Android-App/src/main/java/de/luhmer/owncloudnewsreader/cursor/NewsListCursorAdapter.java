@@ -28,6 +28,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.CursorAdapter;
 import android.text.Html;
 import android.text.Spannable;
@@ -46,13 +47,11 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.devspark.robototextview.widget.RobotoCheckBox;
 import com.devspark.robototextview.widget.RobotoTextView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
@@ -65,6 +64,7 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
+@Deprecated
 public class NewsListCursorAdapter extends CursorAdapter {
 	//private static final String TAG = "NewsListCursorAdapter";
 	DatabaseConnection dbConn;
@@ -287,8 +287,9 @@ public class NewsListCursorAdapter extends CursorAdapter {
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
         //	webViewContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
-        webViewContent.loadDataWithBaseURL("", NewsDetailFragment.getHtmlPage(mContext, dbConn , cursor.getInt(0)), "text/html", "UTF-8", "");
+        //webViewContent.loadDataWithBaseURL("", NewsDetailFragment.getHtmlPage(mContext, dbConn , cursor.getInt(0)), "text/html", "UTF-8", ""); //This line is needed to run the adapter
 	}
+
 
 	public void CloseDatabaseConnection()
 	{
@@ -316,7 +317,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
 	public static void UpdateListCursor(Context context)
 	{
-		SherlockFragmentActivity sfa = (SherlockFragmentActivity) context;
+		FragmentActivity sfa = (FragmentActivity) context;
 
 		if(sfa instanceof NewsReaderListActivity && ((NewsReaderListActivity) sfa).isSlidingPaneOpen())
 			((NewsReaderListActivity) sfa).updateAdapter();

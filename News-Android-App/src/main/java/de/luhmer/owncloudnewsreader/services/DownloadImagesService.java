@@ -28,7 +28,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.SparseArray;
@@ -46,7 +45,8 @@ import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
@@ -106,7 +106,7 @@ public class DownloadImagesService extends IntentService {
 	protected void onHandleIntent(Intent intent) {
         boolean downloadFavIconsExclusive = intent.getBooleanExtra(DOWNLOAD_FAVICONS_EXCLUSIVE, false);
 
-        DatabaseConnection dbConn = new DatabaseConnection(this);
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
         Notification notify = BuildNotification();
         SparseArray<String> linksFavIcons = dbConn.getUrlsToFavIcons();
 
@@ -116,29 +116,21 @@ public class DownloadImagesService extends IntentService {
         for(int i = 0; i < linksFavIcons.size(); i++) {
             int key = linksFavIcons.keyAt(i);
             String link = linksFavIcons.get(i);
-            FavIconHandler.PreCacheFavIcon(link, this, String.valueOf(key));
+            FavIconHandler.PreCacheFavIcon(link, this, (long) key);
         }
 
 
 
 
         if(!downloadFavIconsExclusive) {
-            String lastId = String.valueOf(intent.getLongExtra(LAST_ITEM_ID, 0));
-            Cursor cursor = dbConn.getAllItemsWithIdHigher(lastId);
+            long lastId = intent.getLongExtra(LAST_ITEM_ID, 0);
+            List<RssItem> rssItemList = dbConn.getAllItemsWithIdHigher(lastId);
             List<String> links = new ArrayList<String>();
-            try {
-                if (cursor != null) {
-                    while (cursor.moveToNext()) {
-                        String body = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
-                        links.addAll(ImageHandler.getImageLinksFromText(body));
-                    }
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            } finally {
-                cursor.close();
-                dbConn.closeDatabase();
+            for(RssItem rssItem : rssItemList) {
+                String body = rssItem.getBody();
+                links.addAll(ImageHandler.getImageLinksFromText(body));
             }
+
             maxCount = links.size();
 
             if (maxCount > 0)
