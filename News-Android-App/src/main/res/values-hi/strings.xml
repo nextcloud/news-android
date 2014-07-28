@@ -12,7 +12,6 @@
   <string name="tv_clickHereToOpenItem">मद को खोलने के लिए यहाँ क्लिक करें </string>
   <string name="no_wifi_available">कोई WiFi कनेक्ट नहीं है </string>
   <string name="do_you_want_to_download_without_wifi">क्या आप बिना किसी WiFi कनेक्शन के तस्वीरों को डाउनलोड करना चाहते हैं </string>
-  <string name="max_items_count_reached">आप XX मदों के अधिकतम साइज़ तक पहुंच चुके हैं </string>
   <string name="widget_header">ownCloud समाचार </string>
   <string name="message_bar_new_articles_available">नई आइटम उपलब्ध</string>
   <string name="message_bar_reload">रिलोड</string>

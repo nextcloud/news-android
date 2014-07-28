@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Kliknite tu pre otvorenie položky</string>
   <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez WiFi pripojenia</string>
-  <string name="max_items_count_reached">Bola dosiahnutá maximálna veľkosť XX položiek</string>
   <string name="widget_header">ownCloud Novinky</string>
   <string name="message_bar_new_articles_available">Dostupné nové položky</string>
   <string name="message_bar_reload">Znovu načítať</string>

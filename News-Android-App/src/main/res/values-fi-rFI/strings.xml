@@ -26,6 +26,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Varustettu tähdellä</string>
   <string name="action_read">Luku</string>
+  <string name="action_playPodacst">Toista podcast</string>
   <string name="action_openInBrowser">Avaa selaimessa</string>
   <string name="action_sendSourceCode">Lähetä kohde kehittäjälle</string>
   <string name="action_Share">Jaa</string>
@@ -89,8 +90,10 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Käytä podcast-tukea</string>
+  <string name="no_podcast_selected">Podcastia ei ole valittu</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Näyttö</string>
+  <string name="pref_title_app_theme">Sovelluksen teema</string>
   <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
   <string name="pref_display_font_layout">Kirjasin (vaatii uudelleenkäynnistyksen tullakseen voimaan)</string>
   <string-array name="pref_display_apptheme">

@@ -13,7 +13,7 @@
   <string name="tv_clickHereToOpenItem">Clic equí p\'abrir l\'artículu</string>
   <string name="no_wifi_available">Nun hai conexón WiFi</string>
   <string name="do_you_want_to_download_without_wifi">¿Quies baxar les semeyes ensin una conexón WiFi?</string>
-  <string name="max_items_count_reached">Algamesti\'l tamañu máximu de XX elementos</string>
+  <string name="max_items_count_reached">Algamasti\'l tamañu máximu de XX oxetos</string>
   <string name="widget_header">Noticies ownCloud</string>
   <string name="message_bar_new_articles_available">Elementos nuevos disponibles</string>
   <string name="message_bar_reload">Recargar</string>
@@ -34,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Favoritos</string>
   <string name="action_read">Lleer</string>
+  <string name="action_playPodacst">Reproducir podcast</string>
   <string name="action_openInBrowser">Abrir nel restolador</string>
   <string name="action_sendSourceCode">Unviar oxetu al desendolcador</string>
   <string name="action_Share">Compartir</string>
@@ -106,6 +107,7 @@
   <string name="no_podcast_selected">Nun s\'esbillaron podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Amosar</string>
+  <string name="pref_title_app_theme">Tema de l\'aplicación</string>
   <string name="pref_title_feed_list_layout">Llista de fontes</string>
   <string name="pref_display_font_layout">Fonte (requier reaniciar p\'aplicar)</string>
   <string-array name="pref_display_apptheme">

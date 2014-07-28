@@ -34,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">共有</string>
   <string name="action_read">読込</string>
+  <string name="action_playPodacst">Podcast を再生</string>
   <string name="action_openInBrowser">ブラウザーで開く</string>
   <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
@@ -106,6 +107,7 @@
   <string name="no_podcast_selected">Podcast が選択されていません</string>
   <!--Settings for Display-->
   <string name="pref_header_display">表示</string>
+  <string name="pref_title_app_theme">アプリテーマ</string>
   <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
   <string name="pref_display_font_layout">フォント (適用するには再起動する必要があります)</string>
   <string-array name="pref_display_apptheme">

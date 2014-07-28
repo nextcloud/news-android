@@ -13,7 +13,7 @@
   <string name="tv_clickHereToOpenItem">Click aquí para abrir artículo</string>
   <string name="no_wifi_available">No hay una conexión WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Desea descargar las imágenes sin conexión WiFi</string>
-  <string name="max_items_count_reached">Has alcanzado el tamaño máximo de XX elementos</string>
+  <string name="max_items_count_reached">Ha alcanzado el tamaño máximo de XX elementos</string>
   <string name="widget_header">Noticias de ownCloud</string>
   <string name="message_bar_new_articles_available">Nuevos elementos disponibles</string>
   <string name="message_bar_reload">Recargar</string>
@@ -34,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Destacado</string>
   <string name="action_read">Leer</string>
+  <string name="action_playPodacst">Reproducir podcast</string>
   <string name="action_openInBrowser">Abrir en Navegador</string>
   <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
@@ -106,6 +107,7 @@
   <string name="no_podcast_selected">Ningún podcast seleccionado</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
+  <string name="pref_title_app_theme">Tema de la aplicación</string>
   <string name="pref_title_feed_list_layout">Lista de fuentes</string>
   <string name="pref_display_font_layout">Fuente (es necesario reiniciar)</string>
   <string-array name="pref_display_apptheme">

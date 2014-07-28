@@ -13,7 +13,7 @@
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
   <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
-  <string name="max_items_count_reached">Περάσατε το όριο μεγέθους των ΧΧ στοιχείων</string>
+  <string name="max_items_count_reached">Έφτασες το μέγιστο μέγεθος από XX στοιχεία</string>
   <string name="widget_header">Νέα ownCloud</string>
   <string name="message_bar_new_articles_available">Διαθέσιμα νέα αντικείμενα</string>
   <string name="message_bar_reload">Επαναφόρτωση</string>
@@ -34,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Με αστέρι</string>
   <string name="action_read">Ανάγνωση</string>
+  <string name="action_playPodacst">Αναπαραγωγή Podcast</string>
   <string name="action_openInBrowser">Άνοιγμα στον Περιηγητή</string>
   <string name="action_sendSourceCode">Αποστολή αντικειμένου στον Προγραμματιστή</string>
   <string name="action_Share">Διαμοιρασμός</string>
@@ -103,8 +104,10 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Ενεργοποίηση υποστήριξης Podcast</string>
+  <string name="no_podcast_selected">Δεν επιλέχθηκε Podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Εμφάνιση</string>
+  <string name="pref_title_app_theme">Θέμα εφαρμογής</string>
   <string name="pref_title_feed_list_layout">Προβολή λίστας ροών</string>
   <string name="pref_display_font_layout">Γραμματοσειρά (απαιτεί επανεκκίνηση για εφαρμογή)</string>
   <string-array name="pref_display_apptheme">

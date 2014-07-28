@@ -13,7 +13,7 @@
   <string name="tv_clickHereToOpenItem">Kliknij tutaj aby otworzyć element</string>
   <string name="no_wifi_available">Brak połączenia WIFI</string>
   <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
-  <string name="max_items_count_reached">Został osiągnięty maksymalny rozmiar XX elementów</string>
+  <string name="max_items_count_reached">Osiągnąłeś maksymalny rozmiar XX pozycji</string>
   <string name="widget_header">ownCloud News</string>
   <string name="message_bar_new_articles_available">Nowe elementy są dostępne</string>
   <string name="message_bar_reload">Przeładuj</string>
@@ -34,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Oznaczone</string>
   <string name="action_read">Odczyt</string>
+  <string name="action_playPodacst">Odtwórz Podcast</string>
   <string name="action_openInBrowser">Otwórz w przeglądarce</string>
   <string name="action_sendSourceCode">Wyślij element do autora</string>
   <string name="action_Share">Udostępnij</string>
@@ -103,8 +104,10 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Włącz obsługę Podcastów</string>
+  <string name="no_podcast_selected">Brak wybranego podcastu</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Wygląd</string>
+  <string name="pref_title_app_theme">Motyw aplikacji</string>
   <string name="pref_title_feed_list_layout">Układ listy kanałów</string>
   <string name="pref_display_font_layout">Czcionka (wymaga restartu aplikacji)</string>
   <string-array name="pref_display_apptheme">

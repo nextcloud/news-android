@@ -9,7 +9,6 @@
   <string name="tv_clickHereToOpenItem">إضغط هنا لفتح العنصر</string>
   <string name="no_wifi_available">لم يتم الاتصال بشبكة الواي فاي</string>
   <string name="do_you_want_to_download_without_wifi">هل ترغب بتحميل الصورة على الرغم من عدم وجود اتصال واي فاي؟</string>
-  <string name="max_items_count_reached">لقد وصلت الحجم الأقصى من س س من العناصر </string>
   <string name="widget_header">أخبار ownCloud</string>
   <string name="message_bar_new_articles_available">يوجد عناصر جديدة متوفرة </string>
   <string name="message_bar_reload">إعادة تحميل</string>

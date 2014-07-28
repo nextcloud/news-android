@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Lire</string>
   <string name="no_wifi_available">Aucune connexion WIF</string>
   <string name="do_you_want_to_download_without_wifi">Télécharger les images sans connexion WiFi ?</string>
-  <string name="max_items_count_reached">Vous avez atteint le nombre maximum de XX articles</string>
   <string name="widget_header">Actualités ownCloud</string>
   <string name="message_bar_new_articles_available">Nouveaux articles disponibles</string>
   <string name="message_bar_reload">Recharger</string>

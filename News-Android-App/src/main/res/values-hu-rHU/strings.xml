@@ -13,7 +13,6 @@
   <string name="tv_clickHereToOpenItem">Klikkel ide az elem megnyitásához</string>
   <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Le szeretnéd tölteni a képeket WiFi kapcsolat nélkül?</string>
-  <string name="max_items_count_reached">Elérted a maximum méretét a XX elemnek</string>
   <string name="widget_header">ownCloud Hírek</string>
   <string name="message_bar_new_articles_available">Új elemek érhetőek el</string>
   <string name="message_bar_reload">Újratöltés</string>

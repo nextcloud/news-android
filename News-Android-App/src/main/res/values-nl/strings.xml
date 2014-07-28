@@ -34,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Gemarkeerd</string>
   <string name="action_read">Lees</string>
+  <string name="action_playPodacst">Afspelen Podcast</string>
   <string name="action_openInBrowser">Openen in Browser</string>
   <string name="action_sendSourceCode">Verzend item naar ontwikkelaar</string>
   <string name="action_Share">Delen</string>
@@ -103,8 +104,10 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Activeren Podcast ondersteuning</string>
+  <string name="no_podcast_selected">Geen podcast geselecteerd</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Weergeven</string>
+  <string name="pref_title_app_theme">App thema</string>
   <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
   <string name="pref_display_font_layout">Lettertype (vereist herstarten)</string>
   <string-array name="pref_display_apptheme">

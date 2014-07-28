@@ -34,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">S hvězdičkou</string>
   <string name="action_read">Číst</string>
+  <string name="action_playPodacst">Přehrát podcast</string>
   <string name="action_openInBrowser">Otevřít v prohlížeči</string>
   <string name="action_sendSourceCode">Odeslat položku vývojáři</string>
   <string name="action_Share">Sdílet</string>
@@ -106,6 +107,7 @@
   <string name="no_podcast_selected">Nebyl vybrán žádný podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Zobrazení</string>
+  <string name="pref_title_app_theme">Vzhled aplikace</string>
   <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
   <string name="pref_display_font_layout">Font (změna se projeví po restartu)</string>
   <string-array name="pref_display_apptheme">

@@ -12,7 +12,6 @@
   <string name="tv_clickHereToOpenItem">Klik disini untuk membuka item</string>
   <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
   <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
-  <string name="max_items_count_reached">Anda sudah mencapai ukuran maksimal item XX</string>
   <string name="widget_header">Berita ownCloud</string>
   <string name="message_bar_new_articles_available">Item baru tersedia</string>
   <string name="message_bar_reload">Muat ulang</string>

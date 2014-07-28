@@ -13,7 +13,7 @@
   <string name="tv_clickHereToOpenItem">Kliknite tu za odpiranje predmeta</string>
   <string name="no_wifi_available">Ni vzpostavljene povezave WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike brez vzpostavljene povezave WiFi?</string>
-  <string name="max_items_count_reached">Dosežena je največja omejitev dovoljenih predmetov.</string>
+  <string name="max_items_count_reached">Dosežena je največja dovoljena velikost XX predmetov</string>
   <string name="widget_header">Novice ownCloud</string>
   <string name="message_bar_new_articles_available">Na voljo so novi predmeti</string>
   <string name="message_bar_reload">Ponovno naloži</string>
@@ -34,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Označeno</string>
   <string name="action_read">Branje</string>
+  <string name="action_playPodacst">Predvajaj podcast</string>
   <string name="action_openInBrowser">Odpri v brskalniku</string>
   <string name="action_sendSourceCode">Pošlji predmet razvijalcem</string>
   <string name="action_Share">Souporaba</string>
@@ -103,8 +104,10 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Omogoči podporo protokolu podcast</string>
+  <string name="no_podcast_selected">Ni izbranega podcasta</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Prikaz</string>
+  <string name="pref_title_app_theme">Ime teme</string>
   <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
   <string name="pref_display_font_layout">Pisava (pred uporabo je treba program znova zagnati)</string>
   <string-array name="pref_display_apptheme">
