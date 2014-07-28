@@ -1,4 +1,5 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- 
     <item
@@ -10,26 +11,26 @@
     
     <item
         android:id="@+id/action_starred"
-        android:showAsAction="always"
+        app:showAsAction="always"
         android:icon="@drawable/checkbox_background_holo_dark"
         android:title="@string/action_starred"/>
     <!-- android:icon="@drawable/btn_rating_star_off_normal_holo_light" -->
     
     <item
         android:id="@+id/action_read"
-        android:showAsAction="always"        
+        app:showAsAction="always"
         android:checkable="true"
         android:title="@string/action_read" />
     
     <item
         android:id="@+id/action_openInBrowser"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_menu_set_as"
         android:title="@string/action_openInBrowser"/>
 
     <item
         android:id="@+id/action_playPodcast"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_media_play"
         android:title="@string/action_playPodacst"/>
 
