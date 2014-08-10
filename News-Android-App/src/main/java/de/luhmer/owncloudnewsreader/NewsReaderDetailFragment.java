@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -158,8 +159,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 				idFolder = getArguments().getLong(NewsReaderListActivity.FOLDER_ID);
 			}
 
-			getActivity().getActionBar().setTitle(titel);
-
 			UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
 
 			//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -192,6 +191,8 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(titel);
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false))
