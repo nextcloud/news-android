@@ -39,12 +39,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.KeyManagementException;
+import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
@@ -122,6 +128,33 @@ public class HttpJsonRequest {
 		if (urlConnection instanceof HttpsURLConnection) {
 			HttpsURLConnection httpsURLConnection = (HttpsURLConnection) urlConnection;
 
+            /*
+            try {
+                TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                        return null;
+                    }
+                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                    }
+                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                    }
+                } };
+                // Install the all-trusting trust manager
+                final SSLContext sc = SSLContext.getInstance("SSL");
+                sc.init(null, trustAllCerts, new java.security.SecureRandom());
+                HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+                // Create all-trusting host name verifier
+                HostnameVerifier allHostsValid = new HostnameVerifier() {
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                };
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            */
+
+
 			// set location of the keystore
 			MemorizingTrustManager.setKeyStoreFile("private", "sslkeys.bks");
 
@@ -130,6 +163,7 @@ public class HttpJsonRequest {
 			sc.init(null, MemorizingTrustManager.getInstanceList(context),
 					new java.security.SecureRandom());
 			httpsURLConnection.setSSLSocketFactory(sc.getSocketFactory());
+
 
 			// disable redirects to reduce possible confusion
 			//httpsURLConnection.setFollowRedirects(false);

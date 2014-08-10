@@ -145,6 +145,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
+
 		try
 		{
             mViewPager.setCurrentItem(item_id, true);
@@ -212,13 +213,13 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		if(keyCode == KeyEvent.KEYCODE_BACK)
 		{
 			NewsDetailFragment ndf = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
-			if(ndf != null && ndf.webview != null)
+			if(ndf != null && ndf.mWebView != null)
 			{
-				if(ndf.webview.canGoBack())
+				if(ndf.mWebView.canGoBack())
 				{
-					ndf.webview.goBack();
-					if(!ndf.webview.canGoBack())//RssItem
-						ndf.LoadRssItemInWebView();
+					ndf.mWebView.goBack();
+					if(!ndf.mWebView.canGoBack())//RssItem
+						ndf.startLoadRssItemToWebViewTask();
 
 					return true;
 				}
@@ -442,9 +443,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 				NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 				if(fragment != null) { // could be null if not instantiated yet
-					if(!fragment.webview.getUrl().equals("about:blank") && !fragment.webview.getUrl().trim().equals("")) {
-						content = fragment.webview.getUrl();
-						title = fragment.webview.getTitle();
+					if(!fragment.mWebView.getUrl().equals("about:blank") && !fragment.mWebView.getUrl().trim().equals("")) {
+						content = fragment.mWebView.getUrl();
+						title = fragment.mWebView.getTitle();
 					}
 				}
 

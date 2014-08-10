@@ -94,10 +94,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
 
-
         //DaoSession session = DatabaseHelperOrm.getDaoSession(this);
-
-
 
 		AccountManager mAccountManager = AccountManager.get(this);
 
@@ -106,7 +103,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 		Account[] accounts = mAccountManager.getAccounts();
         for (Account account : accounts) {
             if (account.type.intern().equals(AccountGeneral.ACCOUNT_TYPE)) {
-                //mAccountManager.removeAccount(accounts[index], null, null);
                 isAccountThere = true;
             }
         }

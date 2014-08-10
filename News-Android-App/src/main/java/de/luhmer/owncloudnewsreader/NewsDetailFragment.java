@@ -25,6 +25,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -43,7 +44,10 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
@@ -58,16 +62,16 @@ public class NewsDetailFragment extends Fragment {
 	public static String web_template;
 	public static int background_color = Integer.MIN_VALUE;
 
-	public WebView webview;
-	private ProgressBar progressbar_webview;
+	@InjectView(R.id.webview) WebView mWebView;
+    @InjectView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
+	@InjectView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
 	private int section_number;
 
-	public NewsDetailFragment() {
-		//setRetainInstance(true);
-	}
+    public NewsDetailFragment() {
+        setRetainInstance(true);
+    }
 
-
-	/*
+    /*
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		webview.saveState(outState);
@@ -88,8 +92,8 @@ public class NewsDetailFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(webview != null) {
-            webview.destroy();
+        if(mWebView != null) {
+            mWebView.destroy();
         }
     }
 
@@ -101,10 +105,10 @@ public class NewsDetailFragment extends Fragment {
 	                .getMethod("onPause", (Class[]) null)
 	                            .invoke(webview, (Object[]) null);
 	        */
-        if(webview != null) {
+        if(mWebView != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
-                webview.onPause();
-            webview.pauseTimers();
+                mWebView.onPause();
+            mWebView.pauseTimers();
         }
     }
 
@@ -116,10 +120,10 @@ public class NewsDetailFragment extends Fragment {
 	                .getMethod("onResume", (Class[]) null)
 	                            .invoke(webview, (Object[]) null);
 	 */
-        if(webview != null) {
+        if(mWebView != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
-                webview.onResume();
-            webview.resumeTimers();
+                mWebView.onResume();
+            mWebView.resumeTimers();
         }
     }
 
@@ -130,37 +134,61 @@ public class NewsDetailFragment extends Fragment {
 
 		section_number = (Integer) getArguments().get(ARG_SECTION_NUMBER);
 
-		webview = (WebView) rootView.findViewById(R.id.webview);
+        ButterKnife.inject(this, rootView);
 
-		progressbar_webview = (ProgressBar) rootView.findViewById(R.id.progressbar_webview);
-
-        LoadRssItemInWebView();
+        startLoadRssItemToWebViewTask();
 
 		return rootView;
 	}
 
-	public void LoadRssItemInWebView()
-	{
-		NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+    public void startLoadRssItemToWebViewTask() {
+        AsyncTaskHelper.StartAsyncTask(new LoadRssItemToWebViewAsyncTask(), ((Void) null));
+    }
 
-		if(background_color != Integer.MIN_VALUE && ThemeChooser.isDarkTheme(ndActivity))
-		{
-			webview.setBackgroundColor(background_color);
-			ndActivity.mViewPager.setBackgroundColor(background_color);
-		}
+    private class LoadRssItemToWebViewAsyncTask extends AsyncTask<Void, Void, String> {
 
-		init_webView();
-		NewsDetailActivity nrda = ((NewsDetailActivity)getActivity());
-		RssItem rssItem = nrda.rssItems.get(section_number - 1);
+        @Override
+        protected void onPreExecute() {
+            NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
 
+            if(background_color != Integer.MIN_VALUE && ThemeChooser.isDarkTheme(ndActivity))
+            {
+                mWebView.setBackgroundColor(background_color);
+                ndActivity.mViewPager.setBackgroundColor(background_color);
+            }
 
-        webview.loadDataWithBaseURL("", getHtmlPage(ndActivity, rssItem), "text/html", "UTF-8", "");
-	}
+            init_webView();
+
+            mWebView.setVisibility(View.GONE);
+            mProgressBarLoading.setVisibility(View.VISIBLE);
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+
+            RssItem rssItem = ndActivity.rssItems.get(section_number - 1);
+
+            return getHtmlPage(ndActivity, rssItem);
+        }
+
+        @Override
+        protected void onPostExecute(String htmlPage) {
+            mWebView.setVisibility(View.VISIBLE);
+            mProgressBarLoading.setVisibility(View.GONE);
+
+            mWebView.loadDataWithBaseURL("", htmlPage, "text/html", "UTF-8", "");
+            super.onPostExecute(htmlPage);
+        }
+    }
+
 
 	@SuppressLint("SetJavaScriptEnabled")
 	private void init_webView()
 	{
-		WebSettings webSettings = webview.getSettings();
+		WebSettings webSettings = mWebView.getSettings();
 	    //webSettings.setPluginState(WebSettings.PluginState.ON);
 	    webSettings.setJavaScriptEnabled(true);
 	    webSettings.setAllowFileAccess(true);
@@ -182,33 +210,33 @@ public class NewsDetailFragment extends Fragment {
         //webview.clearCache(true);
 
 
-        webview.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
+        mWebView.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
 
-	    webview.setWebChromeClient(new WebChromeClient() {
+        mWebView.setWebChromeClient(new WebChromeClient() {
 	    	public void onProgressChanged(WebView view, int progress)
 	    	{
-	    		if(progress < 100 && progressbar_webview.getVisibility() == ProgressBar.GONE){
-					progressbar_webview.setVisibility(ProgressBar.VISIBLE);
+	    		if(progress < 100 && mProgressbarWebView.getVisibility() == ProgressBar.GONE){
+                    mProgressbarWebView.setVisibility(ProgressBar.VISIBLE);
 	    		}
-	    		progressbar_webview.setProgress(progress);
+                mProgressbarWebView.setProgress(progress);
 	    		if(progress == 100) {
-	    			progressbar_webview.setVisibility(ProgressBar.GONE);
+                    mProgressbarWebView.setVisibility(ProgressBar.GONE);
 
                     //The following three lines are a workaround for websites which don't use a background colour
                     NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
-                    webview.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
+                    mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
                     ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
 
 
                     if(ThemeChooser.isDarkTheme(getActivity())) {
-                        webview.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                        mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     }
 
 
 
                     String jsLinkLongClick = getTextFromAssets("LinkLongClick.js", getActivity());
                     //webview.loadUrl("javascript:(function(){document.getElementById('buttonClick').click();})()");
-                    webview.loadUrl("javascript:(function(){ " + jsLinkLongClick + " })()");
+                    mWebView.loadUrl("javascript:(function(){ " + jsLinkLongClick + " })()");
 
 
 
@@ -234,7 +262,7 @@ public class NewsDetailFragment extends Fragment {
 	    	}
 	    });
 
-	    webview.setWebViewClient(new WebViewClient() {
+        mWebView.setWebViewClient(new WebViewClient() {
 
 	    });
 	}
@@ -246,11 +274,6 @@ public class NewsDetailFragment extends Fragment {
 	{
 		init_webTemplate(context);
 		String htmlData = web_template;
-
-		//RssFile rssFile = ((NewsDetailActivity)getActivity()).rssFiles.get(section_number - 1);
-        //int idItem = ndActivity.databaseItemIds.get(section_number - 1);
-
-
 
         String favIconUrl = rssItem.getFeed().getFaviconUrl();
 
