@@ -66,8 +66,15 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.7.1 (in development)
+0.7.2 (in development)
 ---------------------
+
+
+0.7.1 (Google Play - Beta)
+---------------------
+- Layout improvements
+- Performance improvements
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/244">#244 app crashs if screen rotate</a>
 
 
 0.7.0 (Google Play - Beta)
@@ -78,7 +85,6 @@ Updates
 
 0.6.9.9 (Google Play - Beta)
 ---------------------
-- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/244">#244 app crashs if screen rotate</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/245">#245 clicking on feeds under starred items gives weird result</a>
 - Lot of bug fixes
 
