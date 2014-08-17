@@ -1,14 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Avtomatik sinxronizasiya</string>
+  <string name="app_name">ownCloud xəbərlərinin oxuyucusu</string>
+  <string name="title_activity_sync_interval_selector">Seçici İnterval Sinxronizasiyası</string>
+  <string name="title_activity_news_detail">XəbərlərDetallıFəaliyyəti</string>
+  <string name="title_activity_subscription">QeydiyyatFəaliyyəti</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_Share">Yayımla</string>
+  <string name="action_save">Saxlamaq</string>
+  <string name="action_settings">Quraşdırmalar</string>
   <!--Strings related to login-->
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Quraşdırmalar</string>
   <!--General settings-->
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
@@ -21,6 +30,7 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Səhv</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
