@@ -5,6 +5,9 @@
   <string name="title_activity_sync_interval_selector">Seçici İnterval Sinxronizasiyası</string>
   <string name="title_activity_news_detail">XəbərlərDetallıFəaliyyəti</string>
   <string name="title_activity_subscription">QeydiyyatFəaliyyəti</string>
+  <string name="empty_view_content">Burda heş bir məlumat yoxdur</string>
+  <string name="toast_GettingMoreItems">Ətraflı detalların yüklənilməsi başlanıldı. Xahiş olunur gözləyəsiniz.</string>
+  <string name="tv_clickHereToOpenItem">Burda sıxın ki, bölməni açasınız</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--Import Accounts-->
   <!--EMAIL-->
@@ -13,12 +16,14 @@
   <string name="action_save">Saxlamaq</string>
   <string name="action_settings">Quraşdırmalar</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">İstifadəçi adı</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Quraşdırmalar</string>
   <!--General settings-->
+  <string name="pref_header_general">Ümumi</string>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>

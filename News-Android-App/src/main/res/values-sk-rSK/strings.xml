@@ -13,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">Kliknite tu pre otvorenie položky</string>
   <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez WiFi pripojenia</string>
+  <string name="max_items_count_reached">Dosiahli ste maximálnu veľkosť XX položiek</string>
   <string name="widget_header">ownCloud Novinky</string>
   <string name="message_bar_new_articles_available">Dostupné nové položky</string>
   <string name="message_bar_reload">Znovu načítať</string>
@@ -33,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">S hviezdičkou</string>
   <string name="action_read">Čítať</string>
+  <string name="action_playPodacst">Prehrať podcast</string>
   <string name="action_openInBrowser">Otvoriť v prehliadači</string>
   <string name="action_sendSourceCode">Odoslať položku vývojárovi</string>
   <string name="action_Share">Zdieľať</string>
@@ -100,8 +102,12 @@
   <string name="mtm_decision_abort">Prerušiť</string>
   <string name="mtm_notification">Overenie certifikátu</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Zapnúť podporu podcastov</string>
+  <string name="no_podcast_selected">Nebol vybraný žiaden podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Zobrazenie</string>
+  <string name="pref_title_app_theme">Téma vzhľadu aplikácie</string>
   <string name="pref_title_feed_list_layout">Rozvrhnutie zoznamu kanálov</string>
   <string name="pref_display_font_layout">Font (zmeny sa prejavia po reštarte)</string>
   <string-array name="pref_display_apptheme">
