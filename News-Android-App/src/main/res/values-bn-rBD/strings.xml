@@ -1,33 +1,91 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">স্বয়ংক্রিয় sync</string>
+  <string name="app_name">ownCloud সংবাদপাঠক</string>
+  <string name="title_activity_sync_interval_selector">Sync Interval নির্বাচনকারী</string>
+  <string name="title_activity_news_detail">বিস্তারিত সংবাদ কার্যক্রম</string>
+  <string name="title_activity_subscription">গ্রাহক কার্যক্রম</string>
+  <string name="title_newsreader_list">সংবাদপাঠক</string>
+  <string name="title_newsreader_detail">সংবাদপাঠক সম্পর্কিত বিস্তারিত</string>
+  <string name="empty_view_header">তথ্য</string>
+  <string name="empty_view_content">এখানে কিছু নেই</string>
+  <string name="toast_GettingMoreItems">অন্য আইটেম ডাউনলোড চলছে, অপেক্ষা করুন।</string>
+  <string name="tv_clickHereToOpenItem">আইটেম খুলতে একানে ক্লিক করুন</string>
+  <string name="no_wifi_available">WiFi সংযুক্ত নয়</string>
+  <string name="do_you_want_to_download_without_wifi">আপনি কি WiFi সংযোগ ছাড়াই ইমেজ ডা্‌উনলোড করতে চান </string>
+  <string name="max_items_count_reached">আপনি সর্বোচ্চ আকৃতির XX আইটেমে পৌছে গেছেন</string>
+  <string name="widget_header">ownCloud সংবাদ</string>
+  <string name="message_bar_new_articles_available">নতুন আইটেম পাওয়া যাচ্ছে</string>
+  <string name="message_bar_reload">পূনরায় লোড কর</string>
+  <string name="allUnreadFeeds">অপঠিত সকল আইটেম</string>
+  <string name="starredFeeds">তারকাচিহ্নিত আইটেম</string>
+  <string name="title_activity_new_feed">নতুন feed যোগ কর</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">নবোদ্যম</string>
+  <string name="menu_About_Changelog">সম্পর্কে / লগপরিবর্তন</string>
+  <string name="menu_markAllAsRead">সব পঠিত হিসেবে চিহ্নিত কর</string>
+  <string name="menu_StartImageCaching">ইমেজ ডাউনলোড কর</string>
+  <string name="menu_downloadMoreItems">আরো আইটেম ডাউনলোড কর</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">একাউন্ট আমদানি</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">আইটেমের সোর্স কোড - Bugreport</string>
+  <string name="email_sendMail">ইমেইল পাঠাও</string>
   <!--Action Bar Items-->
   <string name="action_starred">তারা চিহ্নিত</string>
+  <string name="action_read">পড়</string>
+  <string name="action_playPodacst">পডকাস্ট চালাও</string>
+  <string name="action_openInBrowser">ব্রাউজারে খোল</string>
+  <string name="action_sendSourceCode">ডেভলপারকে পাঠাও</string>
   <string name="action_Share">ভাগাভাগি কর</string>
+  <string name="action_login">সার্ভার নিয়ামকসমূহ</string>
   <string name="action_save">সংরক্ষণ</string>
   <string name="action_settings">নিয়ামকসমূহ</string>
+  <string name="action_sync_settings">Sync নিয়ামকসমূহ</string>
+  <string name="action_add_new_feed">নতুন feed যোগ কর</string>
+  <string name="notification_new_items_ticker">আপনার X অপঠিত আইটেম রয়েছে</string>
+  <string name="notification_new_items_text">X নতুন আইটেম পাওয়া যাচ্ছে</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ব্যবহারকারী</string>
   <string name="pref_title_password">কূটশব্দ</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">সাইন ইন</string>
+  <string name="login_progress_signing_in">সাইনিং ইন</string>
+  <string name="error_incorrect_password">ভুল কুটশব্দ </string>
+  <string name="error_field_required">এই ফিল্ডটি প্রয়োজন</string>
+  <string name="error_invalid_url">ভুল url</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">X পুরনো আইটেম ডাউনলোড করা হয়েছে</string>
+  <string name="toast_no_more_downloads_available">আর কোন আইটেম নেই </string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">নিয়ামকসমূহ</string>
   <!--General settings-->
   <string name="pref_header_general">সাধারণ</string>
+  <string name="pref_title_general_sort_order">গোছাও</string>
+  <string-array name="pref_general_sort_order">
+    <item>নতুন -&gt; পুরনো</item>
+    <item>পুরনো -&gt; নতুন</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>১</item>
+    <item>০</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">ক্যাশে খালি করা হচ্ছে</string>
+  <string name="dialog_clearing_cache_please_wait">ক্যাশে খালি করা হচ্ছে.. অপেক্ষা করুন</string>
+  <string name="calculating_cache_size">ক্যাশে পরিমাপ করা হচ্ছে.. অপেক্ষা করুন</string>
   <string name="warning">সতর্কবাণী</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">সর্বদা</string>
+  <string name="mtm_decision_once">একবার</string>
   <!--Podcast-->
   <!--Settings for Display-->
   <!--Login Dialog-->
