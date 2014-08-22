@@ -8,6 +8,7 @@
   <string name="empty_view_content">Burda heş bir məlumat yoxdur</string>
   <string name="toast_GettingMoreItems">Ətraflı detalların yüklənilməsi başlanıldı. Xahiş olunur gözləyəsiniz.</string>
   <string name="tv_clickHereToOpenItem">Burda sıxın ki, bölməni açasınız</string>
+  <string name="message_bar_reload">Yenidən yüklə</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--Import Accounts-->
   <!--EMAIL-->
@@ -17,6 +18,7 @@
   <string name="action_settings">Quraşdırmalar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">İstifadəçi adı</string>
+  <string name="pref_title_password">Şifrə</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
