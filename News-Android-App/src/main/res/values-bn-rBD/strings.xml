@@ -59,6 +59,10 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">X পুরনো আইটেম ডাউনলোড করা হয়েছে</string>
   <string name="toast_no_more_downloads_available">আর কোন আইটেম নেই </string>
+  <string name="pull_to_refresh_updateTags">আইটেমসমূহের সমন্বয়করণ চলছে</string>
+  <string name="pull_to_refresh_updateFolder">ফোল্ডার সমন্বয়করণ করা হচ্ছে</string>
+  <string name="pull_to_refresh_updateFeeds">ফীড সমন্বয়করণ করা হচ্ছে</string>
+  <string name="pull_to_refresh_updateItems">আইটেম সমন্বয়করণ করা হচ্ছে</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">নিয়ামকসমূহ</string>
   <!--General settings-->
@@ -81,18 +85,109 @@
   <string name="dialog_clearing_cache">ক্যাশে খালি করা হচ্ছে</string>
   <string name="dialog_clearing_cache_please_wait">ক্যাশে খালি করা হচ্ছে.. অপেক্ষা করুন</string>
   <string name="calculating_cache_size">ক্যাশে পরিমাপ করা হচ্ছে.. অপেক্ষা করুন</string>
+  <string name="reset_cache_unsaved_changes">সমন্বয়হীন পরিবর্তন রয়েছে। আপনি কি তবু ক্যাশে রিসেট করতে চান?</string>
   <string name="warning">সতর্কবাণী</string>
+  <string name="pref_title_AutoSyncOnStart">শুরুতেই সমন্বয় কর</string>
+  <string name="pref_title_ShowOnlyUnread">শুধু অপঠিত লেখা প্রদর্শন করুন</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_NavigateWithVolumeButtons">শব্দ নিয়ণ্ত্রক বোতামের সাহায্যে নেভিগেট কর</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">স্ক্রল করাকালে পঠিত হিসেবে চিহ্নিত কর</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_decision_always">সর্বদা</string>
   <string name="mtm_decision_once">একবার</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">পডকাস্ট</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">প্রদর্শন কর</string>
+  <string-array name="pref_display_apptheme">
+    <item>গাঢ়</item>
+    <item>হাল্কা</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">সমস্যা</string>
+  <string name="login_dialog_text_something_went_wrong">কিছু একটা ভুল হয়েছে :(</string>
   <string name="login_dialog_title_security_warning">নিরাপত্তাজনিত সতর্কতা</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Minutes</item>
+    <item>15 Minutes</item>
+    <item>30 Minutes</item>
+    <item>45 Minutes</item>
+    <item>1 Hour</item>
+    <item>2 Hours</item>
+    <item>3 Hours</item>
+    <item>6 Hours</item>
+    <item>12 Hours</item>
+    <item>24 Hours</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
