@@ -16,6 +16,7 @@
   <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_starred">Ulduzlu</string>
   <string name="action_Share">Yayımla</string>
   <string name="action_save">Saxlamaq</string>
   <string name="action_settings">Quraşdırmalar</string>

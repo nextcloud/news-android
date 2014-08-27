@@ -90,15 +90,26 @@
   <string name="pref_title_AutoSyncOnStart">শুরুতেই সমন্বয় কর</string>
   <string name="pref_title_ShowOnlyUnread">শুধু অপঠিত লেখা প্রদর্শন করুন</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">হোস্টনেম প্রমাণ বন্ধ কর</string>
   <string name="pref_title_NavigateWithVolumeButtons">শব্দ নিয়ণ্ত্রক বোতামের সাহায্যে নেভিগেট কর</string>
   <string name="pref_title_MarkAsReadWhileScrolling">স্ক্রল করাকালে পঠিত হিসেবে চিহ্নিত কর</string>
+  <string name="pref_title_OpenInBrowserDirectly">বিস্তারিত প্রদর্শন এড়িয়ে যাও এবং ব্রাউজারে আর্টিকেল খোল</string>
+  <string name="pref_title_notification_new_articles_available">নতুন লেখা পাওয়া গেলে বার্তা প্রদর্শন কর</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">অজানা প্রত্যয়নপত্র গ্রহণ করবো?</string>
   <string name="mtm_decision_always">সর্বদা</string>
   <string name="mtm_decision_once">একবার</string>
+  <string name="mtm_decision_abort">বাতিল কর</string>
+  <string name="mtm_notification">প্রত্যয়নপত্র প্রমাণ</string>
   <!--Podcast-->
   <string name="pref_header_podcast">পডকাস্ট</string>
+  <string name="pref_enable_podcasts">পডকাস্ট সমর্থন চালু কর</string>
+  <string name="no_podcast_selected">কোন পডকাস্ট নির্বাচন করা হয়নি</string>
   <!--Settings for Display-->
   <string name="pref_header_display">প্রদর্শন কর</string>
+  <string name="pref_title_app_theme">অ্যাপ থিম</string>
+  <string name="pref_title_feed_list_layout">ফিডলিস্ট প্রদর্শনী</string>
+  <string name="pref_display_font_layout">ফন্ট (প্রযোজ্য হতে কম্পিউটার পূনরায় চালূ করতে হবে)</string>
   <string-array name="pref_display_apptheme">
     <item>গাঢ়</item>
     <item>হাল্কা</item>
@@ -143,9 +154,15 @@
   <!--Login Dialog-->
   <string name="login_dialog_title_error">সমস্যা</string>
   <string name="login_dialog_text_something_went_wrong">কিছু একটা ভুল হয়েছে :(</string>
+  <string name="login_dialog_text_not_compatible">এই অ্যাপ সংষ্করণ আপনার ownCloud News অ্যাপের সম্পূরক নয়। আপনার নিউজ অ্যাপ ও appframework নবায়ন করুন। </string>
   <string name="login_dialog_title_security_warning">নিরাপত্তাজনিত সতর্কতা</string>
+  <string name="login_dialog_text_security_warning">আপনি https ব্যবহার করছেননা। কোন আক্রমণকারী আপনার ডাটাপথে প্রবেশ করে আপনার গুরুত্বপূর্ণ ডাটা পেয়ে যাবে যেমন: আপনার কুটশব্দ)। এজন্য আপনাকে https ব্যবহারের জন্য জোর সুপারিশ করা হলো!  </string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">ডাটা &amp; sync</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string name="pref_title_clearCache">ক্যাশে পরিষ্কার কর</string>
+  <string name="pref_title_CacheImagesOffline">অফলাইনে ইমেজ ক্যাশে কর</string>
+  <string name="pref_title_Max_Cache_Size">সর্বোচ্চ ক্যাশে আকার</string>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -207,7 +224,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">dhjgIdrgknmSi</string>
+  <string name="pref_header_notifications">বার্তাসমূহ</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
