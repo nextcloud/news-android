@@ -82,7 +82,9 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Rensar cache</string>
   <string name="dialog_clearing_cache_please_wait">Rensar cache.. Var god vänta.</string>
-  <string name="calculating_cache_size">Beräknar cachestorlek.. Var god Vänta.\n\n</string>
+  <string name="calculating_cache_size">Beräknar cachestorlek.. Var god Vänta.
+
+</string>
   <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
   <string name="warning">Varning</string>
   <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>

@@ -11,7 +11,8 @@
   <string name="menu_StartImageCaching">Descarca imagini </string>
   <!--Import Accounts-->
   <!--EMAIL-->
-  <string name="email_sendMail">Trimiteti e-mail\n</string>
+  <string name="email_sendMail">Trimiteti e-mail
+</string>
   <!--Action Bar Items-->
   <string name="action_starred">Marcat</string>
   <string name="action_read">Citeşte</string>
