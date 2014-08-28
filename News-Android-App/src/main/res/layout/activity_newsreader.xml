@@ -31,7 +31,6 @@
     android:layout_height="match_parent" >
 
     <android.support.v4.widget.SlidingPaneLayout
-
         android:id="@+id/sliding_pane"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -55,8 +54,7 @@
             android:gravity="bottom"
             sothree:panelHeight="68dp"
             sothree:shadowHeight="4dp"
-            sothree:paralaxOffset="100dp"
-            sothree:dragView="@+id/name">
+            sothree:paralaxOffset="100dp" > <!-- sothree:dragView="@+id/name" -->
 
             <FrameLayout
                 android:id="@+id/content_frame"

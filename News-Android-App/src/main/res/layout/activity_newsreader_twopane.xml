@@ -29,8 +29,7 @@
             android:gravity="bottom"
             sothree:panelHeight="68dp"
             sothree:shadowHeight="4dp"
-            sothree:paralaxOffset="100dp"
-            sothree:dragView="@+id/name">
+            sothree:paralaxOffset="100dp"> <!-- sothree:dragView="@+id/name" -->
 
             <FrameLayout
                 android:id="@+id/content_frame"
