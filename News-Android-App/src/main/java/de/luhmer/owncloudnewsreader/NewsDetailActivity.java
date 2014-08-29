@@ -241,16 +241,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 			pDelayHandler.DelayTimer();
 
-			Log.d("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
+			Log.v("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
 		}
 		else //Only in else because the function markItemAsReas updates the ActionBar items as well
 			UpdateActionBarIcons();
 	}
 
 
+    private NewsDetailFragment getNewsDetailFragmentAtPosition(int position) {
+        return (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
+    }
+
 	private void ResumeVideoPlayersOnCurrentPage()
 	{
-		NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+		NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
 		if(fragment != null)  // could be null if not instantiated yet
 			fragment.ResumeCurrentPage();
 
@@ -258,7 +262,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	private void StopVideoOnCurrentPage()
 	{
-		NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+        NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
 		if(fragment != null)  // could be null if not instantiated yet
 			fragment.PauseCurrentPage();
 	}
@@ -396,7 +400,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 				break;
 
 			case R.id.action_openInBrowser:
-				String link = rssItem.getLink();
+                NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
+                String link = newsDetailFragment.mWebView.getUrl().toString();
+
+                if(link.equals("about:blank"))
+				    link = rssItem.getLink();
 
 				if(link.length() > 0)
 				{
@@ -441,7 +449,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             	String title = rssItem.getTitle();
             	String content = rssItem.getLink();
 
-				NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+                NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
 				if(fragment != null) { // could be null if not instantiated yet
 					if(!fragment.mWebView.getUrl().equals("about:blank") && !fragment.mWebView.getUrl().trim().equals("")) {
 						content = fragment.mWebView.getUrl();
