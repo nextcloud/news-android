@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_root_view_widget_row"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingRight="@dimen/listview_row_margin_right"
     android:orientation="horizontal"
     android:background="@drawable/row_divider_line"
     android:baselineAligned="false" >
@@ -16,6 +14,7 @@
 	    android:orientation="horizontal" />
     
     <LinearLayout
+        android:id="@+id/ll_root_view_widget_row"
         android:layout_width="0dip"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -31,7 +30,7 @@
 	        android:gravity="center_vertical"
 	        android:singleLine="true"
 	        android:textIsSelectable="false"
-	        android:text="dsjkafd"
+	        android:text="Item title"
 	        android:ellipsize="end"
 	        android:textStyle="bold"
 	        android:textSize="18sp" />
@@ -50,7 +49,7 @@
 	            android:gravity="center_vertical"
 	            android:singleLine="true"
 	            android:textIsSelectable="false"
-	            android:text="cdskfjds"
+	            android:text="Feed name"
 	            android:textSize="16sp" />
 	
 	        <TextView
@@ -60,16 +59,29 @@
 	            android:gravity="center_vertical|right"
 	            android:singleLine="true"
 	            android:textIsSelectable="false"
-	            android:text="dsjkfldsjalf"
+	            android:text="07.08.14 19:00"
 	            android:textSize="16sp" />
 
-	    </LinearLayout>   
+	    </LinearLayout>
+
     </LinearLayout>
-<!-- 
-    <CheckBox
-        android:id="@+id/cb_lv_item_read"
-        android:layout_gravity="right"
+
+    <LinearLayout
+        android:id="@+id/cb_lv_item_read_wrapper"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
- -->
+        android:layout_height="match_parent"
+        android:gravity="right|center_vertical"
+        android:clickable="true"
+        android:paddingLeft="@dimen/listview_row_margin_left"
+        android:paddingRight="@dimen/listview_row_margin_right">
+
+        <ImageView
+            android:id="@+id/cb_lv_item_read"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:clickable="false"
+            android:background="@drawable/btn_check_on_holo_dark"/>
+
+    </LinearLayout>
+
 </LinearLayout>

@@ -85,13 +85,21 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
     // combination with the app widget item XML file to construct a RemoteViews object.
     @SuppressLint("SimpleDateFormat")
 	public RemoteViews getViewAt(int position) {
+        RssItem rssItem = rssItems.get(position);
+
     	//RemoteViews rv = new RemoteViews(context.getPackageName(), android.R.layout.simple_list_item_2);
     	RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
-        RssItem rssItem = rssItems.get(position);
+
+        /*
+        if(rssItem.getRead_temp())
+            rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
+        else
+            rv = new RemoteViews(context.getPackageName(), R.layout.widget_item_unread);
+        */
+
 
         try
         {
-
             String header = rssItem.getFeed().getFeedTitle();
             String colorString = rssItem.getFeed().getAvgColour();
 
@@ -99,8 +107,6 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             header += authorOfArticle == null ? "" : " - " + authorOfArticle.trim();
             String title = Html.fromHtml(rssItem.getTitle()).toString();
             long id = rssItem.getId();
-            //rv.setTextViewText(android.R.id.text1, header);
-            //rv.setTextViewText(android.R.id.text2, title);
 
             Date date = rssItem.getPubDate();
             String dateString = "";
@@ -115,10 +121,20 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             rv.setTextViewText(R.id.feed_title, title);
 
 
+
+            if(rssItem.getRead_temp()) {
+                rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", R.drawable.btn_check_on_holo_dark);
+            }
+            else {
+                rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", R.drawable.btn_check_off_holo_dark);
+            }
+
+
+
             //View viewColor = view.findViewById(R.id.color_line_feed);
             if(colorString != null)
                 rv.setInt(R.id.color_line_feed, "setBackgroundColor", Integer.parseInt(colorString));
-                //rv.set(R.id.color_line_feed, Integer.parseInt(colorString));
+
 
 
             //Get a fresh new intent
@@ -127,6 +143,16 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             ei.putExtra(WidgetProvider.RSS_ITEM_ID, id);
             //Set it on the list remote view
             rv.setOnClickFillInIntent(R.id.ll_root_view_widget_row, ei);
+
+            //Get a fresh new intent
+            Intent iCheck = new Intent();
+            //Load it with whatever extra you want
+            iCheck.putExtra(WidgetProvider.RSS_ITEM_ID, id);
+            iCheck.putExtra(WidgetProvider.ACTION_CHECKED_CLICK, true);
+            rv.setOnClickFillInIntent(R.id.cb_lv_item_read, iCheck);
+
+
+
         } catch(Exception ex) {
             Log.d(TAG, ex.getLocalizedMessage());
         }

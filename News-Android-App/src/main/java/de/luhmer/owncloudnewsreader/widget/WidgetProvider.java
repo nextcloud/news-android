@@ -38,6 +38,8 @@ import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
 public class WidgetProvider extends AppWidgetProvider {
 
@@ -46,6 +48,7 @@ public class WidgetProvider extends AppWidgetProvider {
     public static final String ACTION_WIDGET_CONFIGURE = "ConfigureWidget";
     public static final String ACTION_WIDGET_RECEIVER = "ActionReceiverWidget";
     public static final String ACTION_LIST_CLICK = "ACTION_LIST_CLICK";
+    public static final String ACTION_CHECKED_CLICK = "ACTION_CHECKED_CLICK";
     public static final String RSS_ITEM_ID = "RSS_ITEM_ID";
     
     public static final String EXTRA_ITEM = null;
@@ -60,11 +63,11 @@ public class WidgetProvider extends AppWidgetProvider {
     		appWidgetId = new int[] { intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID) };
     	else
     		appWidgetId = new int[] { AppWidgetManager.INVALID_APPWIDGET_ID };
-    	
-    	if(Constants.debugModeWidget)
-    		Log.d(TAG, "onRecieve - WidgetID: " + appWidgetId);
 
         String action = intent.getAction();
+
+        Log.v(TAG, "onRecieve - WidgetID: " + appWidgetId + " - " + action);
+
         for(int i = 0; i < appWidgetId.length; i++) {
             if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(action)) {
                 if (appWidgetId[i] != AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -83,14 +86,29 @@ public class WidgetProvider extends AppWidgetProvider {
                 try
                 {
                     Long rssItemId = intent.getExtras().getLong(RSS_ITEM_ID);
-                    //Intent intentToDoListAct = new Intent(context, TodoListActivity.class);
-                    Intent intentToDoListAct = new Intent(context, NewsDetailActivity.class);
-                    intentToDoListAct.putExtra(RSS_ITEM_ID, rssItemId);
-                    intentToDoListAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intentToDoListAct);
 
-                    if(Constants.debugModeWidget)
-                        Log.d(TAG, "ListItem Clicked Starting Activity for Item: " + rssItemId);
+
+                    if(intent.hasExtra(ACTION_CHECKED_CLICK)) {
+                        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
+                        RssItem rssItem = dbConn.getRssItemById(rssItemId);
+                        rssItem.setRead_temp(!rssItem.getRead_temp());
+                        //rssItem.setRead_temp(true);
+
+
+
+                        AppWidgetManager.getInstance(context)
+                                .notifyAppWidgetViewDataChanged(appWidgetId[i], R.id.list_view);
+
+                        Log.v(TAG, "I'm here!!! It fucking works!");
+                    } else {
+                        //Intent intentToDoListAct = new Intent(context, TodoListActivity.class);
+                        Intent intentToDoListAct = new Intent(context, NewsDetailActivity.class);
+                        intentToDoListAct.putExtra(RSS_ITEM_ID, rssItemId);
+                        intentToDoListAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intentToDoListAct);
+                    }
+
+                    Log.v(TAG, "ListItem Clicked Starting Activity for Item: " + rssItemId);
                 }
                 catch(Exception ex)
                 {
@@ -170,7 +188,15 @@ public class WidgetProvider extends AppWidgetProvider {
 										        		onListClickIntent,
 										        		PendingIntent.FLAG_UPDATE_CURRENT);
         rv.setPendingIntentTemplate(R.id.list_view, onListClickPendingIntent);
-        
+
+
+        /*
+        Intent intentWidget = new Intent(context, WidgetProvider.class);
+        PendingIntent pendingWidgetIntent = PendingIntent.getBroadcast(context, 0, intentWidget, PendingIntent.FLAG_UPDATE_CURRENT);
+        rv.setOnClickPendingIntent(R.id.cb_lv_item_read_wrapper, pendingWidgetIntent);
+        */
+
+
         Intent intentToDoListAct = new Intent(context, NewsReaderListActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intentToDoListAct, 0);
         rv.setOnClickPendingIntent(R.id.tV_widget_header, pendingIntent);
