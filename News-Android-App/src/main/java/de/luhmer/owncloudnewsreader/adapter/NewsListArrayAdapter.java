@@ -11,6 +11,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,8 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
  * Created by David on 18.07.2014.
  */
 public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
+
+    private static final String TAG = "NewsListArrayAdapter";
 
     DatabaseConnectionOrm dbConn;
     IReader _Reader;
@@ -163,6 +166,8 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         View viewColor = view.findViewById(R.id.color_line_feed);
         if(colorString != null)
             viewColor.setBackgroundColor(Integer.parseInt(colorString));
+
+        Log.v(TAG, "Color: " + colorString);
     }
 
     public void ChangeReadStateOfItem(RobotoCheckBox checkBox, View parentView, boolean isChecked, Context context) {

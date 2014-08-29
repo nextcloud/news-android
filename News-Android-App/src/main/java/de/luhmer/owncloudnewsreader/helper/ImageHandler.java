@@ -37,9 +37,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ImageHandler {
-    //private static final String TAG = "DownloadImagesFromWeb";
-
-
 
     public static Drawable LoadImageFromWebOperations(String url) {
         try {
@@ -51,8 +48,6 @@ public class ImageHandler {
             return null;
         }
     }
-
-
 
 
     public static List<File> getFilesFromDir(File dir) {

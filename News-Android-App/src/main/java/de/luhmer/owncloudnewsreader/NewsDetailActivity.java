@@ -390,13 +390,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 				UpdateActionBarIcons();
 
 				pDelayHandler.DelayTimer();
-
-                /*
-				List<String> idItems = new ArrayList<String>();
-				cursor.moveToFirst();
-				idItems.add(cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID)));
-				cursor.close();
-                */
 				break;
 
 			case R.id.action_openInBrowser:
@@ -482,29 +475,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		UpdateActionBarIcons();
 	}
 
-
-	/*
-	OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagRead = new OnAsyncTaskCompletedListener() {
-
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-            boolean success = (Boolean) task_result;
-            if(!success)
-                Toast.makeText(NewsDetailActivity.this, "Error while changing the read tag..", Toast.LENGTH_LONG).show();
-
-            Log.d("FINISHED PERFORM TAG READ ", "" + task_result);
-		}
-	};
-
-	OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagStarred = new OnAsyncTaskCompletedListener() {
-
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			Log.d("FINISHED PERFORM TAG STARRED ", "" + task_result);
-		}
-	};
-	*/
-
 	@Override
 	public void finish() {
 		Intent intent = new Intent();
@@ -546,17 +516,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			/*
-			Locale l = Locale.getDefault();
-			switch (position) {
-			case 0:
-				return getString(R.string.title_section1).toUpperCase(l);
-			case 1:
-				return getString(R.string.title_section2).toUpperCase(l);
-			case 2:
-				return getString(R.string.title_section3).toUpperCase(l);
-			}
-			*/
 			return null;
 		}
 	}
