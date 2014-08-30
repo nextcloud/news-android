@@ -112,10 +112,12 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         	}
         	else
         	{
+                //First reset the count of last updated items
+                mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0).commit();
+                //Get all updated items
                 int[] result = api.GetUpdatedItems(TAGS.ALL, context, lastModified + 1, api);
+                //If no exception occurs, set the number of updated items
                 mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, result[1]).commit();
-
-        		//OwnCloudReaderMethods.GetUpdatedItems(TAGS.ALL, context, lastModified, api);
         	}
         } catch (Exception ex) {
             ex.printStackTrace();
