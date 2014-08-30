@@ -326,9 +326,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
     public Drawable getSmallVersionOfActionbarIcon(int res_id) {
         Bitmap b = ((BitmapDrawable)getResources().getDrawable(res_id)).getBitmap();
-        Bitmap bitmapResized = null;
+        Bitmap bitmapResized;
 
-        int density = getResources().getDisplayMetrics().densityDpi;
+        float density = getResources().getDisplayMetrics().density;
+        //int density = getResources().getDisplayMetrics().densityDpi;
+
+        bitmapResized = Bitmap.createScaledBitmap(b, (int)(48f * density), (int)(48f * density), false);
+
+        /*
         if(density <= DisplayMetrics.DENSITY_LOW)
             bitmapResized = Bitmap.createScaledBitmap(b, 32, 32, false);
         else if(density <= DisplayMetrics.DENSITY_MEDIUM)
@@ -337,8 +342,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             bitmapResized = Bitmap.createScaledBitmap(b, 64, 64, false);
         else if(density <= DisplayMetrics.DENSITY_XHIGH)
             bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false);
+        else if(density <= DisplayMetrics.DENSITY_XXHIGH)
+            bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false); //We need here something more!!!
         else
             bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false);
+        */
         //Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 32, 32, false);
         return new BitmapDrawable(bitmapResized);
     }
