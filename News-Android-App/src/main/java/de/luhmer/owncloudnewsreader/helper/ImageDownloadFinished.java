@@ -22,6 +22,9 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 
+import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+
 public interface ImageDownloadFinished {
-	void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache);
+	void DownloadFinished(int AsynkTaskId, @NonNull Long feedId, Bitmap bitmap);
 }

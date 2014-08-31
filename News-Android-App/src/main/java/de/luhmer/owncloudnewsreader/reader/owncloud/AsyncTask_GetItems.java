@@ -135,12 +135,12 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     			listenerInstance.onAsyncTaskCompleted(task_id, ex);
 		}
 
-        if(ex != null) {
+        if(ex == null && NetworkConnection.isNetworkAvailable(context)) {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             if (mPrefs.getBoolean(SettingsActivity.CB_CACHE_IMAGES_OFFLINE_STRING, false)) {
-                if (!NetworkConnection.isWLANConnected(context) && NetworkConnection.isNetworkAvailable(context))
+                if (!NetworkConnection.isWLANConnected(context))
                     ShowDownloadImageWithoutWifiQuestion();
-                else if (NetworkConnection.isNetworkAvailable(context))
+                else
                     StartDownloadingImages(context, highestItemIdBeforeSync, false);
             } else {
                 StartDownloadingImages(context, highestItemIdBeforeSync, true);
@@ -150,6 +150,12 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 		detach();
     }
 
+    /**
+     *
+     * @param context
+     * @param highestItemIdBeforeSync
+     * @param favIconsExclusive indicates if only favIcons should be downloaded
+     */
     public static void StartDownloadingImages(Context context, long highestItemIdBeforeSync, boolean favIconsExclusive)
     {
         Intent service = new Intent(context, DownloadImagesService.class);
@@ -185,32 +191,5 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
         notificationManager.notify(0, notification);
-
-       //final Context contextDownloadImage = this.context;
-
-        /*
-    	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-		// set title
-		alertDialogBuilder.setTitle(contextDownloadImage.getString(R.string.no_wifi_available));
-
-			// set dialog message
-		alertDialogBuilder
-			.setMessage(contextDownloadImage.getString(R.string.do_you_want_to_download_without_wifi))
-			.setCancelable(true)
-			.setPositiveButton(contextDownloadImage.getString(android.R.string.yes) ,new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					StartDownloadingImages(contextDownloadImage);
-				}
-			})
-			.setNegativeButton(contextDownloadImage.getString(android.R.string.no) ,new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-				}
-			});
-
-		AlertDialog alertDialog = alertDialogBuilder.create();
-
-		alertDialog.show();
-		*/
     }
 }

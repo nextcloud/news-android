@@ -534,10 +534,9 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 				case R.id.menu_StartImageCaching:
 					DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
-                    long highestItemId = dbConn.getLowestRssItemIdUnread();//TODO needs testing!
+                    long highestItemId = dbConn.getLowestRssItemIdUnread();
                     Intent service = new Intent(this, DownloadImagesService.class);
                     service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
-                    //service.putExtra(DownloadImagesService.DOWNLOAD_FAVICONS_EXCLUSIVE, true);
                     startService(service);
 
 					break;

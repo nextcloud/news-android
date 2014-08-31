@@ -42,7 +42,7 @@ import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
-public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
+public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 {
 	private static final String TAG = "GetImageAsyncTask";
 
@@ -54,17 +54,16 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	private String rootPath;
 	private Context cont;
 
-	private BitmapDrawableLruCache lruCache;
-
 	public Long feedID = null;
 	public boolean scaleImage = false;
 	public int dstHeight; // height in pixels
 	public int dstWidth; // width in pixels
 
+    Bitmap bmp;
 	//private ImageView imgView;
 	//private WeakReference<ImageView> imageViewReference;
 
-	public GetImageAsyncTask(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, int AsynkTaskId, String rootPath, Context cont/*, ImageView imageView*/, BitmapDrawableLruCache lruCache) {
+	public GetImageAsyncTask(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, int AsynkTaskId, String rootPath, Context cont, Long feedId) {
 		try
 		{
 			this.WEB_URL_TO_FILE = new URL(WEB_URL_TO_FILE);
@@ -74,7 +73,8 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
             Log.d(TAG, ex.getLocalizedMessage() + " - URL: " + WEB_URL_TO_FILE);
 			//ex.printStackTrace();
 		}
-		this.lruCache = lruCache;
+
+        this.feedID = feedID;
 		this.cont = cont;
 		imageDownloadFinished = imgDownloadFinished;
 		this.AsyncTaskId = AsynkTaskId;
@@ -83,9 +83,9 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	}
 
 	@Override
-	protected void onPostExecute(String result) {
+	protected void onPostExecute(Bitmap result) {
 		if(imageDownloadFinished != null)
-			imageDownloadFinished.DownloadFinished(AsyncTaskId, result, lruCache);
+			imageDownloadFinished.DownloadFinished(AsyncTaskId, feedID, result);
 		//imgView.setImageDrawable(GetFavIconFromCache(WEB_URL_TO_FILE.toString(), context));
 		super.onPostExecute(result);
 	}
@@ -93,7 +93,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
 	@SuppressWarnings("deprecation")
 	@SuppressLint("NewApi")
 	@Override
-	protected String doInBackground(Void... params) {
+	protected Bitmap doInBackground(Void... params) {
 		try
 		{
 			File cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
@@ -127,71 +127,25 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, String>
                         baf.append((byte) current);
                 }
 
-                if(lruCache != null) {
-                	if(lruCache.get(feedID) == null) {
-                		Bitmap bmp = BitmapFactory.decodeByteArray(baf.toByteArray(), 0, baf.length());
-                		if(feedID != null && bmp != null)
-                			lruCache.put(feedID, new BitmapDrawable(bmp));
-                	}
+                bmp = BitmapFactory.decodeByteArray(baf.toByteArray(), 0, baf.length());
+
+                //If the file is not empty
+                if(baf.length() > 0) {
+                    FileOutputStream fos = new FileOutputStream(cacheFile);
+                    fos.write(baf.toByteArray());
+                    fos.close();
                 }
-                /* Convert the Bytes read to a String. */
-                FileOutputStream fos = new FileOutputStream(cacheFile);
-                fos.write(baf.toByteArray());
-                fos.close();
 
 
-				/*
-				FileOutputStream fOut = new FileOutputStream(cacheFile);
-				Bitmap mBitmap = BitmapFactory.decodeStream(WEB_URL_TO_FILE.openStream());
 
-				Log.d(TAG, "Downloading image: " + WEB_URL_TO_FILE.toString());
-
-				if(mBitmap != null) {
-					if(scaleImage)
-						mBitmap = Bitmap.createScaledBitmap(mBitmap, dstWidth, dstHeight, true);
-
-					mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
-				}
-				fOut.close();
-				*/
-
-                /*
-				count++;
-				if(count >= 25)//Check every 25 images the cache size
-				{
-					count = 0;
-					HashMap<File, Long> files;
-					long size = ImageHandler.getFolderSize(new File(ImageHandler.getPath(cont)));
-					size = (long) (size / 1024d / 1024d);
-
-					SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
-					int max_allowed_size = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, "1000"));//Default is 1Gb --> 1000mb
-					if(size > max_allowed_size)
-					{
-						files = new HashMap<File, Long>();
-						for(File file : ImageHandler.getFilesFromDir(new File(ImageHandler.getPathImageCache(cont))))
-						{
-							files.put(file, file.lastModified());
-						}
-
-						for(Object itemObj : sortHashMapByValuesD(files).entrySet())
-						{
-							File file = (File) itemObj;
-							file.delete();
-							size -= file.length();
-							if(size < max_allowed_size)
-								break;
-						}
-					}
-				} */
 			}
-			return cacheFile.getPath();
+			//return cacheFile.getPath();
 		}
 		catch(Exception ex)
 		{
 			//ex.printStackTrace();
 		}
-	    return null;
+	    return bmp;
 	}
 
 

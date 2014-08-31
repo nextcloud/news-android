@@ -28,6 +28,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.SparseArray;
@@ -91,13 +92,6 @@ public class DownloadImagesService extends IntentService {
 		{
 			if(maxCount == 0)
 				notificationManager.cancel(NOTIFICATION_ID);
-			/*
-			else if(maxCount != count)
-			{
-				NotificationDownloadImages.setProgress(maxCount, count, false);
-				NotificationDownloadImages.setContentText("Stopped downloading images. Application was closed.");
-	        	notificationManager.notify(NOTIFICATION_ID, NotificationDownloadImages.build());
-			}*/
 		}
 		super.onDestroy();
 	}
@@ -116,7 +110,7 @@ public class DownloadImagesService extends IntentService {
         for(int i = 0; i < linksFavIcons.size(); i++) {
             int key = linksFavIcons.keyAt(i);
             String link = linksFavIcons.get(i);
-            FavIconHandler.PreCacheFavIcon(link, this, (long) key);
+            new FavIconHandler(this).PreCacheFavIcon(link, (long) key);
         }
 
 
@@ -219,16 +213,7 @@ public class DownloadImagesService extends IntentService {
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
-		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
-
-            if(fileCachePath != null) {
-                File file = new File(fileCachePath);
-                long size = file.length();
-                //total_size += size;
-                if(size == 0)
-                    file.delete();
-            }
-
+		public void DownloadFinished(int AsynkTaskId, Long feedId, Bitmap bitmap) {
 
 			count++;
             // Sets the progress indicator to a max value, the

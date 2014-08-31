@@ -43,6 +43,12 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 public class FavIconHandler {
     private static final String TAG = "FavIconHandler";
 
+    Context context;
+
+    public FavIconHandler(Context context) {
+        this.context = context;
+    }
+
     public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context, Long feedID)
 	{
 		try
@@ -81,110 +87,29 @@ public class FavIconHandler {
 
 	}
 
-	static SparseArray<FavIconCache> imageViewReferences = new SparseArray<FavIconCache>();
-	Long feedID;
-
-    static SparseArray<FavIconCache> favIconToFeedId = new SparseArray<FavIconCache>();
-    public static void PreCacheFavIcon(String WEB_URL_TO_FILE, Context context, Long feedID) {
-
-        FavIconCache favIconCache = new FavIconCache();
-        favIconCache.context = context;
-        favIconCache.WEB_URL_TO_FILE = WEB_URL_TO_FILE;
-
+	public void PreCacheFavIcon(String WEB_URL_TO_FILE, Long feedID) {
         int key = feedID.intValue();
-        favIconToFeedId.put(key, favIconCache);
-        GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, favIconDownloadFinished, key, FileUtils.getPathFavIcons(context), context, null);
+        GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, favIconDownloadFinished, key, FileUtils.getPathFavIcons(context), context, feedID);
         giAsync.scaleImage = true;
         giAsync.dstHeight = 2*32;
         giAsync.dstWidth = 2*32;
         giAsync.feedID = feedID;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            // Execute in parallel
-            giAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void)null));
-        else
-            giAsync.execute((Void)null);
+
+        AsyncTaskHelper.StartAsyncTask(giAsync, ((Void)null));
     }
 
-    static ImageDownloadFinished favIconDownloadFinished = new ImageDownloadFinished() {
+    ImageDownloadFinished favIconDownloadFinished = new ImageDownloadFinished() {
 
         @Override
-        public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
-            FavIconCache favIconCache = favIconToFeedId.get(AsynkTaskId);
-            FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context, (long) AsynkTaskId);
-            imageViewReferences.remove(AsynkTaskId);
+        public void DownloadFinished(int AsynkTaskId, Long feedId, Bitmap bitmap) {
+            if(bitmap != null) {
+                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
+                Feed feed = dbConn.getFeedById(feedId);
+                String avg = ColourCalculator.ColourHexFromBitmap(bitmap);
+                feed.setAvgColour(avg);
+                dbConn.updateFeed(feed);
+            }
         }
     };
-
-
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public void GetImageAsync(ImageView imageView, String WEB_URL_TO_FILE, Context context, Long feedID, BitmapDrawableLruCache lruCache)
-	{
-		this.feedID = feedID;
-
-		boolean setImageAlready = false;
-		if(lruCache != null) {
-			if(lruCache.get(feedID) != null) {
-				if (imageView != null) {
-	                imageView.setImageDrawable(lruCache.get(feedID));
-	                setImageAlready = true;
-	            }
-			}
-		}
-		if(!setImageAlready) {
-			WeakReference<ImageView> imageViewReference = new WeakReference<ImageView>(imageView);
-			FavIconCache favIconCache = new FavIconCache();
-			favIconCache.context = context;
-			favIconCache.WEB_URL_TO_FILE = WEB_URL_TO_FILE;
-			favIconCache.imageViewReference = imageViewReference;
-
-			int key = 0;
-			if(imageViewReferences.size() > 0)
-				key = imageViewReferences.keyAt(imageViewReferences.size() -1) + 1;
-			imageViewReferences.append(key, favIconCache);
-
-
-			imageView.setImageDrawable(null);
-			GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, imgDownloadFinished, key, FileUtils.getPathFavIcons(context), context/*, imageView*/, lruCache);
-			giAsync.scaleImage = true;
-			giAsync.dstHeight = 2*32;
-			giAsync.dstWidth = 2*32;
-			giAsync.feedID = feedID;
-
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-				giAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ((Void)null));
-			else
-				giAsync.execute((Void)null);
-		}
-	}
-
-	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
-
-		@Override
-		public void DownloadFinished(int AsynkTaskId, String fileCachePath, BitmapDrawableLruCache lruCache) {
-			//WeakReference<ImageView> imageViewRef = imageViewReferences.get(AsynkTaskId);
-			FavIconCache favIconCache = imageViewReferences.get(AsynkTaskId);
-			WeakReference<ImageView> imageViewRef = favIconCache.imageViewReference;
-
-			if(imageViewRef != null)
-			{
-	            ImageView imageView = imageViewRef.get();
-	            if (imageView != null) {
-	            	BitmapDrawable bd = (BitmapDrawable) FavIconHandler.GetFavIconFromCache(favIconCache.WEB_URL_TO_FILE, favIconCache.context, feedID);
-	            	if(lruCache != null && feedID != null && bd != null)
-	            		lruCache.put(feedID, bd);
-	                imageView.setImageDrawable(bd);
-	            }
-			}
-
-			imageViewReferences.remove(AsynkTaskId);
-		}
-	};
-
-	static class FavIconCache
-	{
-		public WeakReference<ImageView> imageViewReference;
-		public String WEB_URL_TO_FILE;
-		public Context context;
-	}
 }
