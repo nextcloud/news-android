@@ -19,11 +19,12 @@
          This preference simply launches an intent when selected. Use this UI sparingly, per
          design guidelines.
     -->
-    <!--
-    <Preference android:title="@string/pref_title_system_sync_settings" >
-        <intent android:action="android.settings.SYNC_SETTINGS" />
+
+    <Preference
+        android:key="pref_sync_settings"
+        android:title="@string/action_sync_settings" >
     </Preference>
-    -->
+
     
     <!-- 
     <ListPreference

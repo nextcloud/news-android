@@ -29,6 +29,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -42,6 +43,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.view.MenuItem;
 
 import java.io.File;
@@ -90,6 +92,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static final String CB_ENABLE_PODCASTS_STRING = "cb_enablePodcasts";
 
+    public static final String PREF_SYNC_SETTINGS = "pref_sync_settings";
 
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
@@ -442,8 +445,13 @@ public class SettingsActivity extends PreferenceActivity {
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindDataSyncPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
 	{
+        String[] authorities = { "de.luhmer.owncloudnewsreader" };
+        Intent intentSyncSettings = new Intent(Settings.ACTION_SYNC_SETTINGS);
+        intentSyncSettings.putExtra(Settings.EXTRA_AUTHORITIES, authorities);
+
 		if(prefFrag != null)
 		{
+            prefFrag.findPreference(PREF_SYNC_SETTINGS).setIntent(intentSyncSettings);
 			//bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefFrag.findPreference(EDT_CLEAR_CACHE);
 			bindPreferenceBooleanToValue(prefFrag.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));
@@ -451,6 +459,7 @@ public class SettingsActivity extends PreferenceActivity {
 		}
 		else
 		{
+            prefAct.findPreference(PREF_SYNC_SETTINGS).setIntent(intentSyncSettings);
 			//bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefAct.findPreference(EDT_CLEAR_CACHE);
 			bindPreferenceBooleanToValue(prefAct.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));

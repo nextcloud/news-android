@@ -29,11 +29,7 @@
         app:showAsAction="never"
         android:title="@string/action_settings"/>
 
-    <item
-        android:id="@+id/action_sync_settings"
-        android:orderInCategory="99"
-        app:showAsAction="never"
-        android:title="@string/action_sync_settings"/>
+
 
     <item
         android:id="@+id/action_login"
