@@ -84,7 +84,9 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String CB_SYNCONSTARTUP_STRING = "cb_AutoSyncOnStart";
     public static final String CB_SHOWONLYUNREAD_STRING = "cb_ShowOnlyUnread";
     public static final String CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING = "cb_NavigateWithVolumeButtons";
-    public static final String CB_CACHE_IMAGES_OFFLINE_STRING = "cb_cacheImagesOffline";
+
+    public static final String LV_CACHE_IMAGES_OFFLINE_STRING = "lv_cacheImagesOffline";
+
     public static final String CB_MARK_AS_READ_WHILE_SCROLLING_STRING = "cb_MarkAsReadWhileScrolling";
     public static final String CB_DISABLE_HOSTNAME_VERIFICATION_STRING = "cb_DisableHostnameVerification";
     public static final String CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING = "cb_openInBrowserDirectly";
@@ -454,7 +456,7 @@ public class SettingsActivity extends PreferenceActivity {
             prefFrag.findPreference(PREF_SYNC_SETTINGS).setIntent(intentSyncSettings);
 			//bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefFrag.findPreference(EDT_CLEAR_CACHE);
-			bindPreferenceBooleanToValue(prefFrag.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(LV_CACHE_IMAGES_OFFLINE_STRING));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_CACHE_SIZE));
 		}
 		else
@@ -462,7 +464,7 @@ public class SettingsActivity extends PreferenceActivity {
             prefAct.findPreference(PREF_SYNC_SETTINGS).setIntent(intentSyncSettings);
 			//bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefAct.findPreference(EDT_CLEAR_CACHE);
-			bindPreferenceBooleanToValue(prefAct.findPreference(CB_CACHE_IMAGES_OFFLINE_STRING));
+            bindPreferenceSummaryToValue(prefAct.findPreference(LV_CACHE_IMAGES_OFFLINE_STRING));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_CACHE_SIZE));
 
 		}

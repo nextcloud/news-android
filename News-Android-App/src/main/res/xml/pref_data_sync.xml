@@ -42,10 +42,22 @@
         android:maxLines="1"
         android:singleLine="true"
         android:title="@string/pref_title_clearCache" />
-    
+
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_data_sync_image_cache"
+        android:entryValues="@array/pref_data_sync_image_cache_values"
+        android:key="lv_cacheImagesOffline"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_CacheImagesOffline" />
+
+    <!--
     <CheckBoxPreference
         android:key="cb_cacheImagesOffline"
         android:title="@string/pref_title_CacheImagesOffline" />
+    -->
     
     <ListPreference
         android:defaultValue="500"

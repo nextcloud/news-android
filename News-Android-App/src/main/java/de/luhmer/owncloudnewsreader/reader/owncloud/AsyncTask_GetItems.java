@@ -137,13 +137,25 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 
         if(ex == null && NetworkConnection.isNetworkAvailable(context)) {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            if (mPrefs.getBoolean(SettingsActivity.CB_CACHE_IMAGES_OFFLINE_STRING, false)) {
-                if (!NetworkConnection.isWLANConnected(context))
-                    ShowDownloadImageWithoutWifiQuestion();
-                else
+
+            int syncStrategy = Integer.parseInt(mPrefs.getString(SettingsActivity.LV_CACHE_IMAGES_OFFLINE_STRING, "0"));
+
+            switch(syncStrategy) {
+                case 0:
+                    break;
+                case 1://Download via WiFi only
+                    if (NetworkConnection.isWLANConnected(context))
+                        StartDownloadingImages(context, highestItemIdBeforeSync, false);
+                    break;
+                case 2: //Download via WiFi and Mobile
                     StartDownloadingImages(context, highestItemIdBeforeSync, false);
-            } else {
-                StartDownloadingImages(context, highestItemIdBeforeSync, true);
+                    break;
+                case 3://Download via WiFi and ask for mobile
+                    if (!NetworkConnection.isWLANConnected(context))
+                        ShowDownloadImageWithoutWifiQuestion();
+                    else
+                        StartDownloadingImages(context, highestItemIdBeforeSync, false);
+                    break;
             }
         }
 
