@@ -510,13 +510,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 				    startActivityForResult(intent, RESULT_SETTINGS);
 					return true;
 
-                case R.id.action_sync_settings:
-                    String[] authorities = { "de.luhmer.owncloudnewsreader" };
-                    Intent intentSyncSettings = new Intent(Settings.ACTION_SYNC_SETTINGS);
-                    intentSyncSettings.putExtra(Settings.EXTRA_AUTHORITIES, authorities);
-                    startActivity(intentSyncSettings);
-                    break;
-
 				case R.id.menu_update:
 					//menuItemUpdater = item.setActionView(R.layout.inderterminate_progress);
 					startSync();
@@ -573,7 +566,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 
             //UpdatePodcastView();
 
-            if(podcastRequiresRestartOfUI() || ThemeChooser.ThemeRequiresRestartOfUI(this)) {
+            if(ThemeChooser.ThemeRequiresRestartOfUI(this)) {
                 finish();
                 startActivity(getIntent());
             }

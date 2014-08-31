@@ -286,7 +286,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         boolean podcastAvailable = !podcastItem.link.equals("");
 
 
-        if(podcastAvailable && !PodcastFragmentActivity.IsPodcastViewEnabled(this)) {
+        if(podcastAvailable) {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
             if(!mPrefs.getBoolean(Constants.SHOW_CASE_PODCAST_AVAILABLE_INFO_SHOWN_BOOLEAN, false)) {
                 mPrefs.edit().putBoolean(Constants.SHOW_CASE_PODCAST_AVAILABLE_INFO_SHOWN_BOOLEAN, true).commit();
@@ -300,7 +300,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         }
 
         if(menuItem_PlayPodcast != null)
-            menuItem_PlayPodcast.setVisible((podcastAvailable && PodcastFragmentActivity.IsPodcastViewEnabled(this)));
+            menuItem_PlayPodcast.setVisible(podcastAvailable);
 
 
 
@@ -441,8 +441,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			 */
 
             case R.id.action_playPodcast:
-                PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
-                PodcastFragment.OpenPodcast(NewsDetailActivity.this, podcastItem);
+                PodcastFragment podcastFragment = (PodcastFragment) getSupportFragmentManager().findFragmentById(R.id.podcast_frame);
+                podcastFragment.OpenPodcast(NewsDetailActivity.this, rssItem);
                 break;
 
             case R.id.action_ShareItem:

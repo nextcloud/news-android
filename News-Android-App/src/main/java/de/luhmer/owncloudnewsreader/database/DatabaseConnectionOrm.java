@@ -35,7 +35,7 @@ import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAd
  */
 public class DatabaseConnectionOrm {
 
-    private static final List<String> ALLOWED_PODCASTS_TYPES = new ArrayList<String>() {
+    public static final List<String> ALLOWED_PODCASTS_TYPES = new ArrayList<String>() {
         {
             this.add("audio/mp3");
             this.add("audio/mpeg");

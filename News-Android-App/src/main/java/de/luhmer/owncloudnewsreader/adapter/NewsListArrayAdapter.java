@@ -1,6 +1,7 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -20,6 +21,9 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.webkit.WebView;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,19 +32,24 @@ import com.devspark.robototextview.widget.RobotoTextView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.Optional;
 import de.greenrobot.dao.query.LazyList;
+import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
+import de.luhmer.owncloudnewsreader.PodcastFragment;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.IGetTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.events.podcast.OpenPodcastEvent;
 import de.luhmer.owncloudnewsreader.helper.FillTextForTextViewHelper;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
@@ -58,12 +67,12 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     IOnStayUnread onStayUnread;
     PostDelayHandler pDelayHandler;
     int selectedDesign = 0;
-    Context mContext;
+    FragmentActivity mActivity;
 
-    public NewsListArrayAdapter(Context context, LazyList<RssItem> lazyList, IOnStayUnread onStayUnread) {
-        super(context, lazyList);
+    public NewsListArrayAdapter(FragmentActivity activity, LazyList<RssItem> lazyList, IOnStayUnread onStayUnread) {
+        super(activity, lazyList);
 
-        mContext = context;
+        mActivity = activity;
         this.onStayUnread = onStayUnread;
 
         pDelayHandler = new PostDelayHandler(context);
@@ -100,12 +109,8 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         FontHelper fHelper = new FontHelper(context);
         fHelper.setFontForAllChildren(view, fHelper.getFont());
 
-        if(ThemeChooser.isDarkTheme(mContext))
+        if(ThemeChooser.isDarkTheme(mActivity))
             cbStarred.setBackgroundResource(R.drawable.checkbox_background_holo_dark);
-        /*
-        //The default is white so we don't need to set it here again..
-        else
-            cbStarred.setBackgroundResource(R.drawable.checkbox_background_holo_light);*/
 
         cbStarred.setOnCheckedChangeListener(null);
 
@@ -157,7 +162,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ChangeReadStateOfItem((RobotoCheckBox) buttonView, view, isChecked, mContext);
+                ChangeReadStateOfItem((RobotoCheckBox) buttonView, view, isChecked, mActivity);
             }
         });
 
@@ -166,6 +171,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         View viewColor = view.findViewById(R.id.color_line_feed);
         if(colorString != null)
             viewColor.setBackgroundColor(Integer.parseInt(colorString));
+
 
         Log.v(TAG, "Color: " + colorString);
     }
@@ -176,7 +182,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         rssItem.setRead_temp(isChecked);
         dbConn.updateRssItem(rssItem);
 
-        UpdateListCursor(mContext);
+        UpdateListCursor(mActivity);
 
         pDelayHandler.DelayTimer();
 
@@ -195,7 +201,33 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         }
     }
 
-    public void setSimpleLayout(View view, RssItem rssItem)
+
+
+    static class SimpleLayout {
+        @InjectView(R.id.divider) View viewDivider;
+        @InjectView(R.id.summary) TextView textViewSummary;
+        @InjectView(R.id.tv_item_date) TextView textViewItemDate;
+        @InjectView(R.id.tv_subscription) TextView textViewTitle;
+        @Optional @InjectView(R.id.btn_playPodcast) ImageView btnPlayPodcast;
+        @Optional @InjectView(R.id.fl_playPodcastWrapper) FrameLayout flPlayPodcastWrapper;
+
+        SimpleLayout(View view) {
+            ButterKnife.inject(this, view);
+        }
+    }
+
+    static class ExtendedLayout extends SimpleLayout {
+        @InjectView(R.id.body) TextView textViewItemBody;
+
+        ExtendedLayout(View view) {
+            super(view);
+            ButterKnife.inject(this, view);
+        }
+    }
+
+
+
+    public void setSimpleLayout(View view, final RssItem rssItem)
     {
         SimpleLayout simpleLayout = new SimpleLayout(view);
 
@@ -207,57 +239,41 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
         simpleLayout.textViewTitle.setText(rssItem.getFeed().getFeedTitle());
 
-        if(!ThemeChooser.isDarkTheme(mContext)) {
-            simpleLayout.viewDivider.setBackgroundColor(mContext.getResources().getColor(R.color.divider_row_color_light_theme));
+        if(!ThemeChooser.isDarkTheme(mActivity)) {
+            simpleLayout.viewDivider.setBackgroundColor(mActivity.getResources().getColor(R.color.divider_row_color_light_theme));
+        }
+
+        if(DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
+            simpleLayout.btnPlayPodcast.setVisibility(View.VISIBLE);
+            if(ThemeChooser.isDarkTheme(mActivity)) {
+                simpleLayout.btnPlayPodcast.setBackgroundResource(android.R.drawable.ic_media_play);
+            }
+
+            simpleLayout.flPlayPodcastWrapper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PodcastFragment podcastFragment = (PodcastFragment) mActivity.getSupportFragmentManager().findFragmentById(R.id.podcast_frame);
+                    podcastFragment.OpenPodcast(context, rssItem);
+                }
+            });
+
+        } else {
+            simpleLayout.btnPlayPodcast.setVisibility(View.GONE);
         }
     }
-
-    static class SimpleLayout {
-        @InjectView(R.id.divider) View viewDivider;
-        @InjectView(R.id.summary) TextView textViewSummary;
-        @InjectView(R.id.tv_item_date) TextView textViewItemDate;
-        @InjectView(R.id.tv_subscription) TextView textViewTitle;
-
-        SimpleLayout(View view) {
-            ButterKnife.inject(this, view);
-        }
-    }
-
 
     public void setExtendedLayout(View view, RssItem rssItem)
     {
         ExtendedLayout extendedLayout = new ExtendedLayout(view);
-
-        extendedLayout.textViewSummary.setText(Html.fromHtml(rssItem.getTitle()).toString());
-
-        long pubDate = rssItem.getPubDate().getTime();
-        //textViewItemDate.setText(simpleDateFormat.format(new Date(pubDate)));
-        String dateString = (String) DateUtils.getRelativeTimeSpanString(pubDate);
-        extendedLayout.textViewItemDate.setText(dateString);
+        setSimpleLayout(view, rssItem);
 
         extendedLayout.textViewItemBody.setVisibility(View.INVISIBLE);
 
         IGetTextForTextViewAsyncTask iGetter = new DescriptionTextGetter(rssItem.getId());
         FillTextForTextViewHelper.FillTextForTextView(extendedLayout.textViewItemBody, iGetter, true);//TODO is this really needed any longer? direct insert text is also possible
 
-        extendedLayout.textViewTitle.setText(rssItem.getFeed().getFeedTitle());
-
-        if(!ThemeChooser.isDarkTheme(mContext)) {
-            extendedLayout.textViewItemBody.setTextColor(mContext.getResources().getColor(R.color.extended_listview_item_body_text_color_light_theme));
-            extendedLayout.viewDivider.setBackgroundColor(mContext.getResources().getColor(R.color.divider_row_color_light_theme));
-        }
-    }
-
-
-    static class ExtendedLayout {
-        @InjectView(R.id.divider) View viewDivider;
-        @InjectView(R.id.summary) TextView textViewSummary;
-        @InjectView(R.id.tv_item_date) TextView textViewItemDate;
-        @InjectView(R.id.body) TextView textViewItemBody;
-        @InjectView(R.id.tv_subscription) TextView textViewTitle;
-
-        ExtendedLayout(View view) {
-            ButterKnife.inject(this, view);
+        if(!ThemeChooser.isDarkTheme(mActivity)) {
+            extendedLayout.textViewItemBody.setTextColor(mActivity.getResources().getColor(R.color.extended_listview_item_body_text_color_light_theme));
         }
     }
 
@@ -271,7 +287,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
         //	webViewContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
-        webViewContent.loadDataWithBaseURL("", NewsDetailFragment.getHtmlPage(mContext, rssItem), "text/html", "UTF-8", "");
+        webViewContent.loadDataWithBaseURL("", NewsDetailFragment.getHtmlPage(mActivity, rssItem), "text/html", "UTF-8", "");
     }
 
 
@@ -359,7 +375,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         @Override
         public String getText() {
 
-            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(mContext);
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(mActivity);
 
             RssItem rssItem = dbConn.getRssItemById(idItemDb);
 

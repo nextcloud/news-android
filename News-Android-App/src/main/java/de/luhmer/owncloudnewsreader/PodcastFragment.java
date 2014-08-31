@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.Arrays;
@@ -37,6 +39,7 @@ import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.OpenPodcastEvent;
@@ -98,12 +101,6 @@ public class PodcastFragment extends Fragment {
     //Your created method
     public boolean onBackPressed() //returns if the event was handled
     {
-        if(audioPodcasts != null) { //We are in the AudioPodcast view
-            audioPodcasts = null;
-            podcastTitleGrid.setVisibility(View.GONE);
-            podcastFeedList.setVisibility(View.VISIBLE);
-            return true;
-        }
         return false;
     }
 
@@ -150,43 +147,12 @@ public class PodcastFragment extends Fragment {
         PodcastDownloadService.startPodcastDownload(getActivity(), podcast.podcast);//, new DownloadReceiver(new Handler(), new WeakReference<ProgressBar>(holder.pbDownloadPodcast)));
     }
 
-    /*
-    private class DownloadReceiver extends ResultReceiver {
-        WeakReference<ProgressBar> progressBar;
-
-        public DownloadReceiver(Handler handler, WeakReference<ProgressBar> progressBar) {
-            super(handler);
-
-            this.progressBar = progressBar;
-        }
-
-        @Override
-        protected void onReceiveResult(int resultCode, Bundle resultData) {
-            super.onReceiveResult(resultCode, resultData);
-            if (resultCode == PodcastDownloadService.UPDATE_PROGRESS) {
-
-                if(progressBar.get() != null) {
-                    int progress = resultData.getInt("progress");
-                    progressBar.get().setIndeterminate(false);
-                    progressBar.get().setProgress(progress);
-                    if (progress == 100) {
-                        progressBar.get().setVisibility(View.GONE);
-                    }
-                }
-            }
-        }
-    }
-    */
-
     public static String[] VIDEO_FORMATS = { "youtube" };
 
-    public void onEventMainThread(AudioPodcastClicked podcast) {
-        final PodcastItem podcastItem = audioPodcasts.get(podcast.position);
-        tvTitle.setText(podcastItem.title);
-        OpenPodcast(getActivity(), podcastItem);
-    }
 
-    public static void OpenPodcast(Context context, PodcastItem podcastItem) {
+    public void OpenPodcast(Context context, RssItem rssItem) {
+        PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(context, rssItem);
+
         boolean isVideo = Arrays.asList(VIDEO_FORMATS).contains(podcastItem.mimeType);
 
         if(podcastItem.mimeType.equals("youtube") && !podcastItem.offlineCached)
@@ -199,9 +165,12 @@ public class PodcastFragment extends Fragment {
                 Toast.makeText(context, "Starting podcast.. please wait", Toast.LENGTH_SHORT).show(); //Only show if we need to stream the file
 
             EventBus.getDefault().post(new OpenPodcastEvent(podcastItem.link, podcastItem.title, isVideo));
+
+            Picasso.with(context).load(rssItem.getFeed().getFaviconUrl()).into(imgFavIcon);
         }
     }
 
+    /*
     public void onEventMainThread(PodcastFeedClicked podcast) {
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
         audioPodcasts = dbConn.getListOfAudioPodcastsForFeed(getActivity(), feedsWithAudioPodcasts.get(podcast.position).mFeed.getId());
@@ -234,6 +203,7 @@ public class PodcastFragment extends Fragment {
 
         //PodcastDownloadService.startPodcastDownload(getActivity(), new PodcastItem("5", "Blaa", "http://www.youtube.com/v/wtLJPvx7-ys?version=3&f=playlists&app=youtube_gdata", "youtube"));
     }
+    */
 
 
     public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
@@ -267,20 +237,11 @@ public class PodcastFragment extends Fragment {
         }
     }
 
-    /*
-    private String downloadCompleteIntentName = DownloadManager.ACTION_DOWNLOAD_COMPLETE;
-    private IntentFilter downloadCompleteIntentFilter = new IntentFilter(downloadCompleteIntentName);
-    private BroadcastReceiver downloadCompleteReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            ((ArrayAdapter) podcastTitleGrid.getAdapter()).notifyDataSetChanged();
-        }
-    };
-    */
 
-
+    UpdatePodcastStatusEvent podcast;
     int lastDrawableId;
     public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
+        this.podcast = podcast;
 
         hasTitleInCache = true;
 
@@ -293,7 +254,7 @@ public class PodcastFragment extends Fragment {
             btnPlayPausePodcastSlider.setBackgroundResource(drawableIdDarkDesign);
         }
 
-        int hours = (int)( podcast.getCurrent() / (1000*60*60));
+        int hours = (int)(podcast.getCurrent() / (1000*60*60));
         int minutes = (int)(podcast.getCurrent() % (1000*60*60)) / (1000*60);
         int seconds = (int) ((podcast.getCurrent() % (1000*60*60)) % (1000*60) / 1000);
         minutes += hours * 60;
@@ -311,15 +272,16 @@ public class PodcastFragment extends Fragment {
         tvTitleSlider.setText(podcast.getTitle());
 
         if(podcast.isPreparingFile()) {
-            if(!blockSeekbarUpdate)
-                sb_progress.setIndeterminate(true);
+            sb_progress.setVisibility(View.INVISIBLE);
+            pb_progress2.setVisibility(View.VISIBLE);
 
             pb_progress.setIndeterminate(true);
         } else {
             double progress = ((double) podcast.getCurrent() / (double) podcast.getMax()) * 100d;
 
             if(!blockSeekbarUpdate) {
-                sb_progress.setIndeterminate(false);
+                sb_progress.setVisibility(View.VISIBLE);
+                pb_progress2.setVisibility(View.INVISIBLE);
                 sb_progress.setProgress((int) progress);
             }
 
@@ -328,14 +290,13 @@ public class PodcastFragment extends Fragment {
         }
     }
 
-    List<PodcastItem> audioPodcasts;
-    List<PodcastFeedItem> feedsWithAudioPodcasts;
 
     @InjectView(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
     @InjectView(R.id.btn_playPausePodcastSlider) ImageButton btnPlayPausePodcastSlider;
     @InjectView(R.id.btn_nextPodcastSlider) ImageButton btnNextPodcastSlider;
     @InjectView(R.id.btn_previousPodcastSlider) ImageButton btnPreviousPodcastSlider;
 
+    @InjectView(R.id.img_feed_favicon) ImageView imgFavIcon;
 
     @InjectView(R.id.tv_title) TextView tvTitle;
     @InjectView(R.id.tv_titleSlider) TextView tvTitleSlider;
@@ -348,6 +309,8 @@ public class PodcastFragment extends Fragment {
 
     @InjectView(R.id.sb_progress) SeekBar sb_progress;
     @InjectView(R.id.pb_progress) ProgressBar pb_progress;
+    @InjectView(R.id.pb_progress2) ProgressBar pb_progress2;
+
 
     @InjectView(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
     @InjectView(R.id.rlPodcast) RelativeLayout rlPodcast;
@@ -371,11 +334,18 @@ public class PodcastFragment extends Fragment {
     }
 
     @OnClick(R.id.btn_nextPodcastSlider) void nextChapter() {
-        Toast.makeText(getActivity(), "This feature is not supported yet :(", Toast.LENGTH_SHORT).show();
+        eventBus.post(new WindPodcast() {{
+            long position = podcast.getCurrent() + 30000;
+            toPositionInPercent = ((double) position / (double) podcast.getMax()) * 100d;
+        }});
+        //Toast.makeText(getActivity(), "This feature is not supported yet :(", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.btn_previousPodcastSlider) void previousChapter() {
-        Toast.makeText(getActivity(), "This feature is not supported yet :(", Toast.LENGTH_SHORT).show();
+        eventBus.post(new WindPodcast() {{
+            long position = podcast.getCurrent() - 10000;
+            toPositionInPercent = ((double) position / (double) podcast.getMax()) * 100d;
+        }});
     }
 
     PodcastSlidingUpPanelLayout sliding_layout;
@@ -409,13 +379,15 @@ public class PodcastFragment extends Fragment {
 
 
 
-
+        PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), new PodcastFeedItem[0]);
+        /*
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
         feedsWithAudioPodcasts = dbConn.getListOfFeedsWithAudioPodcasts();
         PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), feedsWithAudioPodcasts.toArray(new PodcastFeedItem[feedsWithAudioPodcasts.size()]));
         if (podcastFeedList != null) {
             podcastFeedList.setAdapter(mArrayAdapter);
         }
+        */
 
         if(mArrayAdapter.getCount() > 0) {
             view.findViewById(R.id.tv_no_podcasts_available).setVisibility(View.GONE);

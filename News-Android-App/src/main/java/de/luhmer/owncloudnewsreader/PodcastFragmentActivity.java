@@ -2,9 +2,11 @@ package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 
@@ -69,10 +72,11 @@ public class PodcastFragmentActivity extends ActionBarActivity {
         };
         */
 
+        //new blaa().execute((Void)null);
+
+
         super.onPostCreate(savedInstanceState);
     }
-
-
 
 
     @Override
@@ -84,9 +88,6 @@ public class PodcastFragmentActivity extends ActionBarActivity {
                 lastOrientation = currentOrientation;
             }
         }
-
-        //rlVideoPodcastSurfaceWrapper.setVisibility(View.GONE);
-        //isVideoViewVisible = false;
 
         super.onWindowFocusChanged(hasWindowFocus);
     }
@@ -139,39 +140,33 @@ public class PodcastFragmentActivity extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction().remove(podcastFragment).commitAllowingStateLoss();
         }
 
-        if(IsPodcastViewEnabled(this)) {
-            podcastFragment = PodcastFragment.newInstance(null, null);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.podcast_frame, podcastFragment)
-                    .commitAllowingStateLoss();
+        podcastFragment = PodcastFragment.newInstance(null, null);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.podcast_frame, podcastFragment)
+                .commitAllowingStateLoss();
 
-            sliding_layout.getChildAt(1).setVisibility(View.VISIBLE);
-        } else {
-            sliding_layout.getChildAt(1).setVisibility(View.GONE);
-            podcastFragment = null;
-        }
+        if(!currentlyPlaying)
+            sliding_layout.setPanelHeight(0);
     }
 
-    public static boolean IsPodcastViewEnabled(Context context) {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false);
-    }
-
-    protected boolean podcastRequiresRestartOfUI() {
-
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean podcastEnabled = mPrefs.getBoolean(SettingsActivity.CB_ENABLE_PODCASTS_STRING, false);
-
-        if((podcastEnabled && sliding_layout.getChildAt(1).getVisibility() == View.GONE) ||
-                (!podcastEnabled && sliding_layout.getChildAt(1).getVisibility() == View.VISIBLE))
-            return true;
-        return false;
-    }
-
+    boolean currentlyPlaying = false;
 
     boolean surfaceInitalized = false;
     boolean isVideoViewVisible = true;
     public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
+        if(podcast.isFileLoaded() || podcast.isPreparingFile() && !currentlyPlaying) {
+            //Expand view
+
+            sliding_layout.setPanelHeight((int)dipToPx(68));
+
+            currentlyPlaying = true;
+        } else if(!(podcast.isPreparingFile() || podcast.isFileLoaded()) && currentlyPlaying) {
+            //Hide view
+
+            sliding_layout.setPanelHeight(0);
+
+            currentlyPlaying = false;
+        }
 
         if (podcast.isVideoFile()) {
             if((!isVideoViewVisible || !surfaceInitalized) && rlVideoPodcastSurfaceWrapper.isPositionReady()) {

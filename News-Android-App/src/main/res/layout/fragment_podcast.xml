@@ -25,6 +25,14 @@
             android:orientation="horizontal"
             android:background="@color/slide_up_panel_header_background_color" >
 
+            <ImageView
+                android:id="@+id/img_feed_favicon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/podcast_horizontal_margin"
+                android:layout_marginRight="@dimen/podcast_horizontal_margin" />
+
             <LinearLayout
                 android:id="@+id/ll_podcast_header"
                 android:layout_width="0dip"
@@ -32,7 +40,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:gravity="center_vertical"
-                android:paddingLeft="@dimen/podcast_horizontal_margin"
                 android:orientation="vertical">
 
                 <TextView
@@ -180,9 +187,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="No podcasts available"
+            android:text="No chapters available"
             android:textSize="18sp"
-            android:textColor="@color/slider_listview_text_color_dark_theme"/>
+            android:textColor="@color/divider_row_color_dark_theme"/>
 
         <!--
         <it.gmariotti.cardslib.library.view.CardGridView
@@ -236,16 +243,32 @@
                 android:text="00:00"
                 android:layout_gravity="center_vertical" />
 
-            <SeekBar
-                android:id="@+id/sb_progress"
+
+            <FrameLayout
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:progress="0"
-                android:max="100" />
+                android:gravity="center">
+
+                <SeekBar
+                    android:id="@+id/sb_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="0"
+                    android:max="100" />
+
+                <ProgressBar
+                    android:id="@+id/pb_progress2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_ToSlider"
@@ -263,32 +286,78 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <ImageButton
-                android:id="@+id/btn_previousPodcastSlider"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:text="10"/>
+
+                <TextView
+                    android:layout_marginTop="-7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="secs"/>
+
+            </LinearLayout>
+
+
+            <ImageButton
+                android:id="@+id/btn_previousPodcastSlider"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/av_rewind"/>
 
             <ImageButton
                 android:id="@+id/btn_playPausePodcastSlider"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/av_play"/>
 
             <ImageButton
                 android:id="@+id/btn_nextPodcastSlider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:background="@drawable/av_fast_forward"/>
 
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:text="30"/>
+
+                <TextView
+                    android:layout_marginTop="-7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="secs"/>
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>
