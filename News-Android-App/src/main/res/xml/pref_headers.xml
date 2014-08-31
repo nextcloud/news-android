@@ -21,7 +21,7 @@
 
     <header
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$PodcastPreferenceFragment"
-        android:title="@string/pref_header_notifications" />
+        android:title="@string/pref_header_podcast" />
 
     <!--
     <header
