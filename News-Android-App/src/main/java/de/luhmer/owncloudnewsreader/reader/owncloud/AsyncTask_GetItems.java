@@ -140,23 +140,30 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 
             int syncStrategy = Integer.parseInt(mPrefs.getString(SettingsActivity.LV_CACHE_IMAGES_OFFLINE_STRING, "0"));
 
+            boolean downloadImages = false;
+
             switch(syncStrategy) {
                 case 0:
                     break;
                 case 1://Download via WiFi only
                     if (NetworkConnection.isWLANConnected(context))
-                        StartDownloadingImages(context, highestItemIdBeforeSync, false);
+                        downloadImages = true;
                     break;
                 case 2: //Download via WiFi and Mobile
-                    StartDownloadingImages(context, highestItemIdBeforeSync, false);
+                    downloadImages = true;
                     break;
                 case 3://Download via WiFi and ask for mobile
                     if (!NetworkConnection.isWLANConnected(context))
                         ShowDownloadImageWithoutWifiQuestion();
                     else
-                        StartDownloadingImages(context, highestItemIdBeforeSync, false);
+                        downloadImages = true;
                     break;
             }
+
+            if(downloadImages) //If images should be cached
+                StartDownloadingImages(context, highestItemIdBeforeSync, false);
+            else //Download favIcons
+                StartDownloadingImages(context, highestItemIdBeforeSync, true);
         }
 
 		detach();

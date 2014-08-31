@@ -74,7 +74,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 			//ex.printStackTrace();
 		}
 
-        this.feedID = feedID;
+        this.feedID = feedId;
 		this.cont = cont;
 		imageDownloadFinished = imgDownloadFinished;
 		this.AsyncTaskId = AsynkTaskId;
@@ -135,9 +135,6 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
                     fos.write(baf.toByteArray());
                     fos.close();
                 }
-
-
-
 			}
 			//return cacheFile.getPath();
 		}
