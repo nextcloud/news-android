@@ -66,7 +66,11 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.7.2 (in development)
+0.7.3 (in development)
+---------------------
+
+
+0.7.2 (Google Play - Beta)
 ---------------------
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/252">#252 "Open in Browser" should open current page.</a> 
 - New feature - <a href="https://github.com/owncloud/News-Android-App/issues/182">#182 »Read« checkbox in widget</a>
@@ -74,9 +78,10 @@ Updates
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/212">#212 sort order of starred items</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/124">#124 Add download image options: Over WiFi only/ Over WiFi & Mobil / Ask when not connected to WiFi</a>
 - Bug fixes
+- Improve podcast layout
 
 
-0.7.1 (Google Play - Beta)
+0.7.1 (Google Play)
 ---------------------
 - Layout improvements
 - Performance improvements
