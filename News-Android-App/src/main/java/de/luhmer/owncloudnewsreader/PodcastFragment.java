@@ -42,7 +42,6 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
-import de.luhmer.owncloudnewsreader.events.podcast.OpenPodcastEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastFeedClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
@@ -123,8 +122,6 @@ public class PodcastFragment extends Fragment {
 
         // when initialize
         //getActivity().registerReceiver(downloadCompleteReceiver, downloadCompleteIntentFilter);
-
-        getActivity().startService(new Intent(getActivity(), PodcastPlaybackService.class));
     }
 
 
@@ -147,28 +144,8 @@ public class PodcastFragment extends Fragment {
         PodcastDownloadService.startPodcastDownload(getActivity(), podcast.podcast);//, new DownloadReceiver(new Handler(), new WeakReference<ProgressBar>(holder.pbDownloadPodcast)));
     }
 
-    public static String[] VIDEO_FORMATS = { "youtube" };
 
 
-    public void OpenPodcast(Context context, RssItem rssItem) {
-        PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(context, rssItem);
-
-        boolean isVideo = Arrays.asList(VIDEO_FORMATS).contains(podcastItem.mimeType);
-
-        if(podcastItem.mimeType.equals("youtube") && !podcastItem.offlineCached)
-            Toast.makeText(context, "Cannot stream from youtube. Please download the video first.", Toast.LENGTH_SHORT).show();
-        else {
-            File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));
-            if(file.exists())
-                podcastItem.link = file.getAbsolutePath();
-            else if(!podcastItem.offlineCached)
-                Toast.makeText(context, "Starting podcast.. please wait", Toast.LENGTH_SHORT).show(); //Only show if we need to stream the file
-
-            EventBus.getDefault().post(new OpenPodcastEvent(podcastItem.link, podcastItem.title, isVideo));
-
-            Picasso.with(context).load(rssItem.getFeed().getFaviconUrl()).into(imgFavIcon);
-        }
-    }
 
     /*
     public void onEventMainThread(PodcastFeedClicked podcast) {

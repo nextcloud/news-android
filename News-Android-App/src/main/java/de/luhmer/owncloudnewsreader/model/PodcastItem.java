@@ -11,12 +11,14 @@ public class PodcastItem implements Serializable {
 
     }
 
-    public PodcastItem(long itemId, String title, String link, String mimeType, boolean offlineCached) {
+    public PodcastItem(long itemId, String title, String link, String mimeType, boolean offlineCached, String favIcon, boolean isVideoPodcast) {
         this.itemId = itemId;
         this.title = title;
         this.link = link;
         this.mimeType = mimeType;
         this.offlineCached = offlineCached;
+        this.favIcon = favIcon;
+        this.isVideoPodcast = isVideoPodcast;
     }
 
     public long itemId;
@@ -24,6 +26,8 @@ public class PodcastItem implements Serializable {
     public String link;
     public String mimeType;
     public boolean offlineCached;
+    public String favIcon;
+    public boolean isVideoPodcast;
 
     public Integer downloadProgress;
 

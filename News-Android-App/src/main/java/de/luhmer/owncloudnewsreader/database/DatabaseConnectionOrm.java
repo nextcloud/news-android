@@ -6,6 +6,7 @@ import android.util.SparseArray;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -45,6 +46,8 @@ public class DatabaseConnectionOrm {
             this.add("youtube");
         }
     };
+
+    public static final String[] VIDEO_FORMATS = { "youtube" };
 
 
 
@@ -335,6 +338,10 @@ public class DatabaseConnectionOrm {
         podcastItem.title = rssItem.getTitle();
         podcastItem.link = rssItem.getEnclosureLink();
         podcastItem.mimeType = rssItem.getEnclosureMime();
+        podcastItem.favIcon = rssItem.getFeed().getFaviconUrl();
+
+        boolean isVideo = Arrays.asList(DatabaseConnectionOrm.VIDEO_FORMATS).contains(podcastItem.mimeType);
+        podcastItem.isVideoPodcast = isVideo;
 
         File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));
         podcastItem.offlineCached = file.exists();

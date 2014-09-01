@@ -2,43 +2,57 @@ package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
-import android.app.ActionBar;
+import android.content.ComponentName;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.nineoldandroids.view.ViewHelper;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.util.Arrays;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
+import de.luhmer.owncloudnewsreader.interfaces.IPlayPodcastClicked;
+import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
+import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 
 /**
  * Created by David on 29.06.2014.
  */
-public class PodcastFragmentActivity extends ActionBarActivity {
+public class PodcastFragmentActivity extends ActionBarActivity implements IPlayPodcastClicked {
+
+    PodcastPlaybackService mPodcastPlaybackService;
+    boolean mBound = false;
+
 
     private static final String TAG = "PodcastSherlockFragmentActivity";
-    private PodcastFragment podcastFragment;
+    private PodcastFragment mPodcastFragment;
 
     private EventBus eventBus;
 
@@ -55,10 +69,6 @@ public class PodcastFragmentActivity extends ActionBarActivity {
 
         ButterKnife.inject(this);
 
-        //surfaceView.getHolder().setFixedSize(surfaceView.getWidth(), 10);
-        //surfaceView.setVisibility(View.GONE);
-        //rlVideoPodcastSurfaceWrapper.setVisibility(View.GONE);
-
         rlVideoPodcastSurfaceWrapper.setVisibility(View.INVISIBLE);
 
         UpdatePodcastView();
@@ -72,12 +82,26 @@ public class PodcastFragmentActivity extends ActionBarActivity {
         };
         */
 
-        //new blaa().execute((Void)null);
-
-
         super.onPostCreate(savedInstanceState);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Bind to LocalService
+        Intent intent = new Intent(this, PodcastPlaybackService.class);
+        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Unbind from the service
+        if (mBound) {
+            unbindService(mConnection);
+            mBound = false;
+        }
+    }
 
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
@@ -113,21 +137,38 @@ public class PodcastFragmentActivity extends ActionBarActivity {
     }
 
 
-    /*
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        sliding_layout.collapsePanel();
-        super.onConfigurationChanged(newConfig);
-    }
-    */
+    /** Defines callbacks for service binding, passed to bindService() */
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            PodcastPlaybackService.LocalBinder binder = (PodcastPlaybackService.LocalBinder) service;
+            mPodcastPlaybackService = binder.getService();
+
+            if(mPodcastPlaybackService.getCurrentlyPlayingPodcast() != null) {
+                Picasso.with(PodcastFragmentActivity.this).load(mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon).into(mPodcastFragment.imgFavIcon);
+            }
+
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
+
+
 
     public PodcastSlidingUpPanelLayout getSlidingLayout() {
         return sliding_layout;
     }
 
     public boolean handlePodcastBackPressed() {
-        if(podcastFragment != null && sliding_layout.isPanelExpanded()) {
-            if (!podcastFragment.onBackPressed())
+        if(mPodcastFragment != null && sliding_layout.isPanelExpanded()) {
+            if (!mPodcastFragment.onBackPressed())
                 sliding_layout.collapsePanel();
             return true;
         }
@@ -136,13 +177,13 @@ public class PodcastFragmentActivity extends ActionBarActivity {
 
     protected void UpdatePodcastView() {
 
-        if(podcastFragment != null) {
-            getSupportFragmentManager().beginTransaction().remove(podcastFragment).commitAllowingStateLoss();
+        if(mPodcastFragment != null) {
+            getSupportFragmentManager().beginTransaction().remove(mPodcastFragment).commitAllowingStateLoss();
         }
 
-        podcastFragment = PodcastFragment.newInstance(null, null);
+        mPodcastFragment = PodcastFragment.newInstance(null, null);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.podcast_frame, podcastFragment)
+                .replace(R.id.podcast_frame, mPodcastFragment)
                 .commitAllowingStateLoss();
 
         if(!currentlyPlaying)
@@ -527,5 +568,25 @@ public class PodcastFragmentActivity extends ActionBarActivity {
         Resources r = getResources();
         float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
         return px;
+    }
+
+    @Override
+    public void openPodcast(RssItem rssItem) {
+        PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
+
+        if(podcastItem.mimeType.equals("youtube") && !podcastItem.offlineCached)
+            Toast.makeText(this, "Cannot stream from youtube. Please download the video first.", Toast.LENGTH_SHORT).show();
+        else {
+            File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.link, false));
+            if(file.exists())
+                podcastItem.link = file.getAbsolutePath();
+            else if(!podcastItem.offlineCached)
+                Toast.makeText(this, "Starting podcast.. please wait", Toast.LENGTH_SHORT).show(); //Only show if we need to stream the file
+
+            //EventBus.getDefault().post(new OpenPodcastEvent(podcastItem.link, podcastItem.title, isVideo));
+            mPodcastPlaybackService.openFile(podcastItem);
+
+            Picasso.with(this).load(rssItem.getFeed().getFaviconUrl()).into(mPodcastFragment.imgFavIcon);
+        }
     }
 }

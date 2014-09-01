@@ -3,6 +3,7 @@ package de.luhmer.owncloudnewsreader.services;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -14,15 +15,42 @@ import java.io.IOException;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.NewPodcastPlaybackListener;
-import de.luhmer.owncloudnewsreader.events.podcast.OpenPodcastEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
+import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 
 public class PodcastPlaybackService extends Service {
 
+    // Binder given to clients
+    private final IBinder mBinder = new LocalBinder();
+
+    public PodcastItem getCurrentlyPlayingPodcast() {
+        return mCurrentlyPlayingPodcast;
+    }
+
+    /**
+     * Class used for the client Binder.  Because we know this service always
+     * runs in the same process as its clients, we don't need to deal with IPC.
+     */
+    public class LocalBinder extends Binder {
+        public PodcastPlaybackService getService() {
+            // Return this instance of LocalService so clients can call public methods
+            return PodcastPlaybackService.this;
+        }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return mBinder;
+    }
+
+
+
+
+    private PodcastItem mCurrentlyPlayingPodcast;
     private static final String TAG = "PodcastPlaybackService";
     PodcastNotification podcastNotification;
 
@@ -41,6 +69,14 @@ public class PodcastPlaybackService extends Service {
         eventBus = EventBus.getDefault();
 
         eventBus.register(this);
+
+        mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mediaPlayer, int i, int i2) {
+                isPreparing = false;
+                return false;
+            }
+        });
 
         mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -73,12 +109,6 @@ public class PodcastPlaybackService extends Service {
         //return super.onStartCommand(intent, flags, startId);
     }
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-        //throw new UnsupportedOperationException("Not yet implemented");
-    }
-
 
     private EventBus eventBus;
     private Handler mHandler;
@@ -92,18 +122,21 @@ public class PodcastPlaybackService extends Service {
     private boolean isPreparing = false;
     private boolean isVideoFile = false;
 
-    public void openFile(String pathToFile, String mediaTitle) {
+    public void openFile(PodcastItem podcastItem) {
+        this.mCurrentlyPlayingPodcast = podcastItem;
+
+        this.isVideoFile = podcastItem.isVideoPodcast;
         try {
             if(mMediaPlayer.isPlaying())
                 pause();
 
-            this.mediaTitle = mediaTitle;
+            this.mediaTitle = podcastItem.title;
 
             isPreparing = true;
             mHandler.postDelayed(mUpdateTimeTask, 0);
 
             mMediaPlayer.reset();
-            mMediaPlayer.setDataSource(pathToFile);
+            mMediaPlayer.setDataSource(podcastItem.link);
             mMediaPlayer.prepareAsync();
         } catch (IOException e) {
             e.printStackTrace();
@@ -138,10 +171,12 @@ public class PodcastPlaybackService extends Service {
         }
     }
 
+    /*
     public void onEventBackgroundThread(OpenPodcastEvent event) {
         this.isVideoFile = event.isVideoFile;
         openFile(event.pathToFile, event.mediaTitle);
     }
+    */
 
     public void onEvent(RegisterVideoOutput videoOutput) {
         if(mMediaPlayer != null) {

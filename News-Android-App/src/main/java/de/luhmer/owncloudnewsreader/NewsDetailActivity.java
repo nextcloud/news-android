@@ -441,8 +441,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			 */
 
             case R.id.action_playPodcast:
-                PodcastFragment podcastFragment = (PodcastFragment) getSupportFragmentManager().findFragmentById(R.id.podcast_frame);
-                podcastFragment.OpenPodcast(NewsDetailActivity.this, rssItem);
+                openPodcast(rssItem);
                 break;
 
             case R.id.action_ShareItem:

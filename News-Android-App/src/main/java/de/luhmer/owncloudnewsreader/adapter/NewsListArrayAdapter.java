@@ -1,7 +1,6 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -22,7 +21,6 @@ import android.view.animation.Animation;
 import android.webkit.WebView;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,22 +32,19 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.Optional;
 import de.greenrobot.dao.query.LazyList;
-import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.PodcastFragment;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.IGetTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.events.podcast.OpenPodcastEvent;
 import de.luhmer.owncloudnewsreader.helper.FillTextForTextViewHelper;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.interfaces.IPlayPodcastClicked;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
@@ -68,12 +63,14 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     PostDelayHandler pDelayHandler;
     int selectedDesign = 0;
     FragmentActivity mActivity;
+    IPlayPodcastClicked playPodcastClicked;
 
-    public NewsListArrayAdapter(FragmentActivity activity, LazyList<RssItem> lazyList, IOnStayUnread onStayUnread) {
+    public NewsListArrayAdapter(FragmentActivity activity, LazyList<RssItem> lazyList, IOnStayUnread onStayUnread, IPlayPodcastClicked playPodcastClicked) {
         super(activity, lazyList);
 
         mActivity = activity;
         this.onStayUnread = onStayUnread;
+        this.playPodcastClicked = playPodcastClicked;
 
         pDelayHandler = new PostDelayHandler(context);
 
@@ -251,8 +248,9 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
             simpleLayout.flPlayPodcastWrapper.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PodcastFragment podcastFragment = (PodcastFragment) mActivity.getSupportFragmentManager().findFragmentById(R.id.podcast_frame);
-                    podcastFragment.OpenPodcast(context, rssItem);
+                    //PodcastFragment podcastFragment = (PodcastFragment) mActivity.getSupportFragmentManager().findFragmentById(R.id.podcast_frame);
+                    //podcastFragment.OpenPodcast(context, rssItem);
+                    playPodcastClicked.openPodcast(rssItem);
                 }
             });
 
@@ -260,6 +258,8 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
             simpleLayout.btnPlayPodcast.setVisibility(View.GONE);
         }
     }
+
+
 
     public void setExtendedLayout(View view, RssItem rssItem)
     {

@@ -332,7 +332,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
                 bView.setBlockLayoutChildren(true);
 
-                NewsListArrayAdapter lvAdapter  = new NewsListArrayAdapter(getActivity(), rssItemLazyList, NewsReaderDetailFragment.this);
+                NewsListArrayAdapter lvAdapter  = new NewsListArrayAdapter(getActivity(), rssItemLazyList, NewsReaderDetailFragment.this, (PodcastFragmentActivity) getActivity());
                 setListAdapter(lvAdapter);
 
                 pbLoading.setVisibility(View.GONE);

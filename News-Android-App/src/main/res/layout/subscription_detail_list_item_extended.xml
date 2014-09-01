@@ -93,6 +93,20 @@
 	        </LinearLayout>
 
 
+            <FrameLayout
+                android:id="@+id/fl_playPodcastWrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/listview_row_margin_left" >
+
+                <ImageView
+                    android:id="@+id/btn_playPodcast"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/av_play"/>
+            </FrameLayout>
+
 	        <LinearLayout
                 android:layout_width="50dp"
                 android:layout_height="match_parent"

@@ -103,7 +103,6 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 				//cacheFile.createNewFile();
 
 
-
 				/* Open a connection to that URL. */
                 URLConnection urlConn = WEB_URL_TO_FILE.openConnection();
 
@@ -120,15 +119,15 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
                  * Read bytes to the Buffer until there is nothing more to read(-1).
                  */
                 ByteArrayBuffer baf = new ByteArrayBuffer(50);
-                int current = 0;
+                int current;
                 while ((current = bis.read()) != -1) {
-                        baf.append((byte) current);
+                    baf.append((byte) current);
                 }
-
-                bmp = BitmapFactory.decodeByteArray(baf.toByteArray(), 0, baf.length());
 
                 //If the file is not empty
                 if(baf.length() > 0) {
+                    bmp = BitmapFactory.decodeByteArray(baf.toByteArray(), 0, baf.length());
+
                     FileOutputStream fos = new FileOutputStream(cacheFile);
                     fos.write(baf.toByteArray());
                     fos.close();
