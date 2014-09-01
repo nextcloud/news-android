@@ -26,5 +26,5 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
 public interface ImageDownloadFinished {
-	void DownloadFinished(int AsynkTaskId, @NonNull Long feedId, Bitmap bitmap);
+	void DownloadFinished(long AsynkTaskId, Bitmap bitmap);
 }

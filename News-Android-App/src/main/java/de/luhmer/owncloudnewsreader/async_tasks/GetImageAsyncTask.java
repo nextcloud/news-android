@@ -50,11 +50,10 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 
 	private URL WEB_URL_TO_FILE;
 	private ImageDownloadFinished imageDownloadFinished;
-	private int AsyncTaskId;
+	private long AsyncTaskId;
 	private String rootPath;
 	private Context cont;
 
-	public Long feedID = null;
 	public boolean scaleImage = false;
 	public int dstHeight; // height in pixels
 	public int dstWidth; // width in pixels
@@ -63,7 +62,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 	//private ImageView imgView;
 	//private WeakReference<ImageView> imageViewReference;
 
-	public GetImageAsyncTask(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, int AsynkTaskId, String rootPath, Context cont, Long feedId) {
+	public GetImageAsyncTask(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, long AsynkTaskId, String rootPath, Context cont) {
 		try
 		{
 			this.WEB_URL_TO_FILE = new URL(WEB_URL_TO_FILE);
@@ -74,7 +73,6 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 			//ex.printStackTrace();
 		}
 
-        this.feedID = feedId;
 		this.cont = cont;
 		imageDownloadFinished = imgDownloadFinished;
 		this.AsyncTaskId = AsynkTaskId;
@@ -85,7 +83,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 	@Override
 	protected void onPostExecute(Bitmap result) {
 		if(imageDownloadFinished != null)
-			imageDownloadFinished.DownloadFinished(AsyncTaskId, feedID, result);
+			imageDownloadFinished.DownloadFinished(AsyncTaskId, result);
 		//imgView.setImageDrawable(GetFavIconFromCache(WEB_URL_TO_FILE.toString(), context));
 		super.onPostExecute(result);
 	}

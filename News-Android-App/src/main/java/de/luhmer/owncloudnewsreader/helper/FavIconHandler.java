@@ -87,13 +87,11 @@ public class FavIconHandler {
 
 	}
 
-	public void PreCacheFavIcon(String WEB_URL_TO_FILE, Long feedID) {
-        int key = feedID.intValue();
-        GetImageAsyncTask giAsync = new GetImageAsyncTask(WEB_URL_TO_FILE, favIconDownloadFinished, key, FileUtils.getPathFavIcons(context), context, feedID);
+	public void PreCacheFavIcon(Feed feed) {
+        GetImageAsyncTask giAsync = new GetImageAsyncTask(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId(), FileUtils.getPathFavIcons(context), context);
         giAsync.scaleImage = true;
         giAsync.dstHeight = 2*32;
         giAsync.dstWidth = 2*32;
-        giAsync.feedID = feedID;
 
 
         AsyncTaskHelper.StartAsyncTask(giAsync, ((Void)null));
@@ -102,10 +100,10 @@ public class FavIconHandler {
     ImageDownloadFinished favIconDownloadFinished = new ImageDownloadFinished() {
 
         @Override
-        public void DownloadFinished(int AsynkTaskId, Long feedId, Bitmap bitmap) {
+        public void DownloadFinished(long AsynkTaskId, Bitmap bitmap) {
             if(bitmap != null) {
                 DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-                Feed feed = dbConn.getFeedById(feedId);
+                Feed feed = dbConn.getFeedById(AsynkTaskId);
                 String avg = ColourCalculator.ColourHexFromBitmap(bitmap);
                 feed.setAvgColour(avg);
                 dbConn.updateFeed(feed);

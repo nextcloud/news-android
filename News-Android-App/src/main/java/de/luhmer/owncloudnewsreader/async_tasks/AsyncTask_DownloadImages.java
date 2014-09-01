@@ -45,7 +45,7 @@ public class AsyncTask_DownloadImages extends AsyncTask<Void, Void, Void>{
 			List<String> links = ImageHandler.getImageLinksFromText(text);
 
 		    for(String link : links)
-		    	new GetImageAsyncTask(link, null, 999, FileUtils.getPathImageCache(context), context, null).execute();
+		    	new GetImageAsyncTask(link, null, 999, FileUtils.getPathImageCache(context), context).execute();
 		}
 		return null;
 	}

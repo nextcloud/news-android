@@ -171,9 +171,8 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         View viewColor = view.findViewById(R.id.color_line_feed);
         if(colorString != null)
             viewColor.setBackgroundColor(Integer.parseInt(colorString));
-
-
-        Log.v(TAG, "Color: " + colorString);
+        else
+            Log.v(TAG, "NO COLOR SET! - " + item.getFeed().getFeedTitle());
     }
 
     public void ChangeReadStateOfItem(RobotoCheckBox checkBox, View parentView, boolean isChecked, Context context) {

@@ -47,6 +47,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
@@ -102,16 +103,17 @@ public class DownloadImagesService extends IntentService {
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
         Notification notify = BuildNotification();
-        SparseArray<String> linksFavIcons = dbConn.getUrlsToFavIcons();
 
-        if(linksFavIcons.size() > 0)
-            notificationManager.notify(NOTIFICATION_ID, notify);
+        //if(linksFavIcons.size() > 0)
+            //notificationManager.notify(NOTIFICATION_ID, notify);
 
-        for(int i = 0; i < linksFavIcons.size(); i++) {
-            int key = linksFavIcons.keyAt(i);
-            String link = linksFavIcons.get(i);
-            new FavIconHandler(this).PreCacheFavIcon(link, (long) key);
+        List<Feed> feedList = dbConn.getListOfFeeds();
+        FavIconHandler favIconHandler = new FavIconHandler(this);
+        for(Feed feed : feedList) {
+            favIconHandler.PreCacheFavIcon(feed);
         }
+        feedList = null;
+        favIconHandler = null;
 
 
 
@@ -131,7 +133,7 @@ public class DownloadImagesService extends IntentService {
                 notificationManager.notify(NOTIFICATION_ID, notify);
 
             for (String link : links)
-                new GetImageAsyncTask(link, imgDownloadFinished, 999, FileUtils.getPathImageCache(this), this, null).execute();
+                new GetImageAsyncTask(link, imgDownloadFinished, 999, FileUtils.getPathImageCache(this), this).execute();
         }
 	}
 
@@ -213,7 +215,7 @@ public class DownloadImagesService extends IntentService {
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
-		public void DownloadFinished(int AsynkTaskId, Long feedId, Bitmap bitmap) {
+		public void DownloadFinished(long AsynkTaskId, Bitmap bitmap) {
 
 			count++;
             // Sets the progress indicator to a max value, the
