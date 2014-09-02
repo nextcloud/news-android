@@ -2,8 +2,11 @@ package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.res.Resources;
@@ -23,7 +26,6 @@ import com.nineoldandroids.view.ViewHelper;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.util.Arrays;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -34,6 +36,8 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
+import de.luhmer.owncloudnewsreader.helper.FileUtils;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPodcastClicked;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -90,6 +94,10 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
         super.onStart();
         // Bind to LocalService
         Intent intent = new Intent(this, PodcastPlaybackService.class);
+        if(!isMyServiceRunning(PodcastPlaybackService.class)) {
+            startService(intent);
+        }
+
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -136,6 +144,16 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
         super.onPause();
     }
 
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /** Defines callbacks for service binding, passed to bindService() */
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -147,9 +165,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
             PodcastPlaybackService.LocalBinder binder = (PodcastPlaybackService.LocalBinder) service;
             mPodcastPlaybackService = binder.getService();
 
-            if(mPodcastPlaybackService.getCurrentlyPlayingPodcast() != null) {
-                Picasso.with(PodcastFragmentActivity.this).load(mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon).into(mPodcastFragment.imgFavIcon);
-            }
+            loadPodcastFavIcon();
 
             mBound = true;
         }
@@ -161,6 +177,23 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
     };
 
 
+    public void loadPodcastFavIcon() {
+        if(mPodcastPlaybackService.getCurrentlyPlayingPodcast() != null && mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon != null) {
+            String favIconUrl = mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon;
+            File cacheFile = ImageHandler.getFullPathOfCacheFileSafe(favIconUrl, FileUtils.getPathFavIcons(this));
+            if(cacheFile != null && cacheFile.exists()) {
+                Picasso.with(PodcastFragmentActivity.this)
+                        .load(cacheFile)
+                        .placeholder(R.drawable.default_feed_icon_light)
+                        .into(mPodcastFragment.imgFavIcon);
+            } else {
+                Picasso.with(PodcastFragmentActivity.this)
+                        .load(favIconUrl)
+                        .placeholder(R.drawable.default_feed_icon_light)
+                        .into(mPodcastFragment.imgFavIcon);
+            }
+        }
+    }
 
     public PodcastSlidingUpPanelLayout getSlidingLayout() {
         return sliding_layout;
@@ -192,26 +225,30 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
 
     boolean currentlyPlaying = false;
 
-    boolean surfaceInitalized = false;
+    boolean surfaceInitialized = false;
     boolean isVideoViewVisible = true;
     public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
-        if(podcast.isFileLoaded() || podcast.isPreparingFile() && !currentlyPlaying) {
+        if((podcast.isFileLoaded() || podcast.isPreparingFile()) && !currentlyPlaying) {
             //Expand view
 
             sliding_layout.setPanelHeight((int)dipToPx(68));
 
             currentlyPlaying = true;
+
+            Log.v(TAG, "expanding podcast view!");
         } else if(!(podcast.isPreparingFile() || podcast.isFileLoaded()) && currentlyPlaying) {
             //Hide view
 
             sliding_layout.setPanelHeight(0);
 
             currentlyPlaying = false;
+
+            Log.v(TAG, "collapsing podcast view!");
         }
 
         if (podcast.isVideoFile()) {
-            if((!isVideoViewVisible || !surfaceInitalized) && rlVideoPodcastSurfaceWrapper.isPositionReady()) {
-                surfaceInitalized = true;
+            if((!isVideoViewVisible || !surfaceInitialized) && rlVideoPodcastSurfaceWrapper.isPositionReady()) {
+                surfaceInitialized = true;
                 isVideoViewVisible = true;
 
                 rlVideoPodcastSurfaceWrapper.setVisibility(View.VISIBLE);
@@ -571,22 +608,44 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
     }
 
     @Override
-    public void openPodcast(RssItem rssItem) {
-        PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
+    public void openPodcast(final RssItem rssItem) {
+        final PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
 
         if(podcastItem.mimeType.equals("youtube") && !podcastItem.offlineCached)
             Toast.makeText(this, "Cannot stream from youtube. Please download the video first.", Toast.LENGTH_SHORT).show();
         else {
             File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.link, false));
-            if(file.exists())
+            if(file.exists()) {
                 podcastItem.link = file.getAbsolutePath();
-            else if(!podcastItem.offlineCached)
-                Toast.makeText(this, "Starting podcast.. please wait", Toast.LENGTH_SHORT).show(); //Only show if we need to stream the file
 
-            //EventBus.getDefault().post(new OpenPodcastEvent(podcastItem.link, podcastItem.title, isVideo));
-            mPodcastPlaybackService.openFile(podcastItem);
+                mPodcastPlaybackService.openFile(podcastItem);
+                loadPodcastFavIcon();// Picasso.with(this).load(rssItem.getFeed().getFaviconUrl()).into(mPodcastFragment.imgFavIcon);
+            } else if(!podcastItem.offlineCached) {
 
-            Picasso.with(this).load(rssItem.getFeed().getFaviconUrl()).into(mPodcastFragment.imgFavIcon);
+                new AlertDialog.Builder(this)
+                        .setPositiveButton("Stream", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mPodcastPlaybackService.openFile(podcastItem);
+                                //Picasso.with(PodcastFragmentActivity.this).load(rssItem.getFeed().getFaviconUrl()).into(mPodcastFragment.imgFavIcon);
+                                loadPodcastFavIcon();
+                            }
+                        })
+                        .setNegativeButton("Abort", null)
+                        .setNeutralButton("Download", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                PodcastDownloadService.startPodcastDownload(PodcastFragmentActivity.this, podcastItem);
+
+                                Toast.makeText(PodcastFragmentActivity.this, "Starting download of podcast. Please wait..", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setTitle("Podcast")
+                        .setMessage("Choose if you want to download or stream the selected podcast")
+                        .show();
+
+
+            }
         }
     }
 }

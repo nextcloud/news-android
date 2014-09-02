@@ -54,7 +54,6 @@ public class PodcastDownloadService extends IntentService {
      *
      * @see IntentService
      */
-    // TODO: Customize helper method
     public static void startPodcastDownload(Context context, PodcastItem podcastItem/*, ResultReceiver receiver*/) {
         Intent intent = new Intent(context, PodcastDownloadService.class);
         intent.setAction(ACTION_DOWNLOAD);

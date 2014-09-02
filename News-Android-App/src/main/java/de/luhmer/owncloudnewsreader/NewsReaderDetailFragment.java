@@ -47,6 +47,7 @@ import java.util.ArrayList;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.dao.query.LazyList;
+import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.BlockingListView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
@@ -55,6 +56,7 @@ import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -169,6 +171,21 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 		}
 	}
 
+    @Override
+    public void onResume() {
+        EventBus.getDefault().register(this);
+
+        //Reload data. Use case: download was finished while app was not in foreground
+        notifyDataSetChangedOnAdapter();
+
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+    }
 
     public void UpdateMenuItemsState()
 	{
@@ -254,6 +271,22 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	}
 
 
+    public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
+        NewsListArrayAdapter nca = (NewsListArrayAdapter) getListAdapter();
+        if(nca != null) {
+            nca.downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
+
+            RssItem currentRssItem;
+            for (int i = getListView().getFirstVisiblePosition(); i < getListView().getLastVisiblePosition(); i++) {
+                currentRssItem = (RssItem) getListAdapter().getItem(i);
+                if (currentRssItem.getId().equals(downloadProgress.podcast.itemId)) {
+                    int position = i - getListView().getFirstVisiblePosition();
+                    nca.setDownloadPodcastProgressbar(getListView().getChildAt(position), currentRssItem);
+                    break;
+                }
+            }
+        }
+    }
 
 	public void notifyDataSetChangedOnAdapter()
 	{

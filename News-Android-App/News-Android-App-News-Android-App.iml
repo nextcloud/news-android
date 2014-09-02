@@ -93,6 +93,7 @@
     <orderEntry type="library" exported="" name="butterknife-5.1.2" level="project" />
     <orderEntry type="module" module-name="library" exported="" />
     <orderEntry type="module" module-name="ownCloud-Account-Importer" exported="" />
+    <orderEntry type="module" module-name="android-HoloCircularProgressBar-library" exported="" />
     <orderEntry type="module" module-name="MessageBar" exported="" />
     <orderEntry type="module" module-name="ChangeLogLibrary" exported="" />
   </component>

@@ -1,3 +1,4 @@
 include ':News-Android-App', ':MessageBar', ':ownCloud-Account-Importer'
 include ':Changeloglib:ChangeLogLibrary'
 include ':ShowcaseView:library'
+include ':android-HoloCircularProgressBar:library'

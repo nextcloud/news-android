@@ -12,6 +12,7 @@ import android.text.SpannableString;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,15 @@ import android.widget.TextView;
 import com.devspark.robototextview.widget.RobotoCheckBox;
 import com.devspark.robototextview.widget.RobotoTextView;
 
+import java.io.File;
+import java.util.HashMap;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.Optional;
 import de.greenrobot.dao.query.LazyList;
+import de.greenrobot.event.EventBus;
+import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
@@ -45,8 +51,11 @@ import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPodcastClicked;
+import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
+import de.passsy.holocircularprogressbar.HoloCircularProgressBar;
 
 /**
  * Created by David on 18.07.2014.
@@ -54,6 +63,8 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
     private static final String TAG = "NewsListArrayAdapter";
+
+    public static SparseArray<Integer> downloadProgressList = new SparseArray<Integer>();
 
     DatabaseConnectionOrm dbConn;
     IReader _Reader;
@@ -64,6 +75,8 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     int selectedDesign = 0;
     FragmentActivity mActivity;
     IPlayPodcastClicked playPodcastClicked;
+
+
 
     public NewsListArrayAdapter(FragmentActivity activity, LazyList<RssItem> lazyList, IOnStayUnread onStayUnread, IPlayPodcastClicked playPodcastClicked) {
         super(activity, lazyList);
@@ -197,7 +210,40 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         }
     }
 
+    /*
+    public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
+        downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
+        //get invalidateViews();
 
+
+        //notifyDataSetChanged();
+
+        /*
+        for(int i = 0; i < getCount(); i++) {
+            if(getItem(i).getId().equals(downloadProgress.podcast.itemId)) {
+
+
+
+                if(getItem(i).downloadProgress != downloadProgress.podcast.downloadProgress) { //If Progress changed
+                    PodcastItem pItem = podcastArrayAdapter.getItem(i);
+
+                    if (downloadProgress.podcast.downloadProgress == 100) {
+                        pItem.downloadProgress = PodcastItem.DOWNLOAD_COMPLETED;
+                        File file = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), pItem.link, false));
+                        pItem.offlineCached = file.exists();
+                    } else
+                        pItem.downloadProgress = downloadProgress.podcast.downloadProgress;
+                    podcastTitleGrid.invalidateViews();
+                }
+
+                return;
+
+                notifyDataSetChanged();
+
+            }
+        }
+    }
+    */
 
     static class SimpleLayout {
         @InjectView(R.id.divider) View viewDivider;
@@ -239,8 +285,12 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
             simpleLayout.viewDivider.setBackgroundColor(mActivity.getResources().getColor(R.color.divider_row_color_light_theme));
         }
 
+
+        //Podcast stuff
         if(DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
-            simpleLayout.btnPlayPodcast.setVisibility(View.VISIBLE);
+            //Enable podcast buttons in view
+            simpleLayout.flPlayPodcastWrapper.setVisibility(View.VISIBLE);
+
             if(ThemeChooser.isDarkTheme(mActivity)) {
                 simpleLayout.btnPlayPodcast.setBackgroundResource(android.R.drawable.ic_media_play);
             }
@@ -254,11 +304,35 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
                 }
             });
 
+            setDownloadPodcastProgressbar(view, rssItem);
         } else {
-            simpleLayout.btnPlayPodcast.setVisibility(View.GONE);
+            simpleLayout.flPlayPodcastWrapper.setVisibility(View.GONE);
         }
     }
 
+    public void setDownloadPodcastProgressbar(View view, RssItem rssItem) {
+        HoloCircularProgressBar pbPodcastDownloadProgress = (HoloCircularProgressBar) view.findViewById(R.id.podcastDownloadProgress);
+
+        if(!ThemeChooser.isDarkTheme(mActivity)) {
+            pbPodcastDownloadProgress.setProgressBackgroundColor(context.getResources().getColor(R.color.slide_up_panel_header_background_color));
+        }
+
+        if(PodcastAlreadyCached(context, rssItem.getEnclosureLink()))
+            pbPodcastDownloadProgress.setProgress(1);
+        else {
+            if(downloadProgressList.get(rssItem.getId().intValue()) != null) {
+                float progressInPercent = downloadProgressList.get(rssItem.getId().intValue()) / 100f;
+                pbPodcastDownloadProgress.setProgress(progressInPercent);
+            } else {
+                pbPodcastDownloadProgress.setProgress(0);
+            }
+        }
+    }
+
+    public static boolean PodcastAlreadyCached(Context context, String podcastUrl) {
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastUrl, false));
+        return file.exists();
+    }
 
 
     public void setExtendedLayout(View view, RssItem rssItem)

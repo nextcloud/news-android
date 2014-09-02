@@ -56,6 +56,8 @@ public class PodcastPlaybackService extends Service {
 
     @Override
     public void onCreate() {
+        Log.v(TAG, "onCreate PodcastPlaybackService");
+
         podcastNotification = new PodcastNotification(this);
 
         mediaTitle = getString(R.string.no_podcast_selected);
