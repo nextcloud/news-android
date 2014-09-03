@@ -105,27 +105,6 @@ public class InsertIntoDatabase {
                 for(Feed feed : newFeeds)
                     dbConn.insertNewFeed(feed);
 
-                /*
-                for(Feed feed : newFeeds)
-	            {
-
-
-                    long folderID_db = dbConn.getIdOfFolderFeedId(String.valueOf(feed.getId())).getFeedList();
-                    Feed feed = new Feed()
-
-	                if(!tagsAvailable.contains(tag.header))
-	                {
-	                    dbConn.insertNewFeed(tag.header, folderID_db, tag.subscription_id, tag.favIcon);
-                        Log.d(TAG, "Insert Rows: " + result);
-	                } else {
-	                    int result = dbConn.updateFeed(tag.header, folderID_db, tag.subscription_id, tag.favIcon);
-	                    Log.d(TAG, "Updated Rows: " + result);
-	                }
-
-	            }
-	            */
-
-
 	            for(Feed feed : oldFeeds)
 	            {
 	                boolean found = false;
@@ -133,6 +112,10 @@ public class InsertIntoDatabase {
 	                {
 	                    if(oldFeeds.get(i).getFeedTitle().equals(feed.getFeedTitle()))
 	                    {
+                            //Set the avg color after sync again.
+                            feed.setAvgColour(oldFeeds.get(i).getAvgColour());
+                            dbConn.updateFeed(feed);
+
 	                        found = true;
 	                        break;
 	                    }
@@ -143,11 +126,6 @@ public class InsertIntoDatabase {
 	                    Log.d(TAG, "Remove Subscription: " + feed.getFeedTitle());
 	                }
 	            }
-
-
-	            //lvAdapter.notifyDataSetChanged();
-
-	            //lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), dbConn);
 	        }
 	        //dbConn.getDatabase().setTransactionSuccessful();
 	    } finally {
