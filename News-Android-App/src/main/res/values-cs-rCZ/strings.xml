@@ -168,6 +168,18 @@
   <string name="pref_title_clearCache">Vyprázdnit mezipaměť</string>
   <string name="pref_title_CacheImagesOffline">Ukládat obrázky do offline mezipaměti</string>
   <string name="pref_title_Max_Cache_Size">Maximální velikost mezipaměti</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Nikdy</item>
+    <item>Pouze přes WiFi</item>
+    <item>Přes WiFi &amp; Mobil</item>
+    <item>Dotázat se, pokud nepřipojeno přes WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
