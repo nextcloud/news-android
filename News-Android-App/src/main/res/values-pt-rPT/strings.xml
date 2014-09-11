@@ -168,6 +168,18 @@
   <string name="pref_title_clearCache">Limpar a cache</string>
   <string name="pref_title_CacheImagesOffline">Imagens offline da cache</string>
   <string name="pref_title_Max_Cache_Size">Tamanho máximo da cache</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Nunca</item>
+    <item>Apenas através de WiFi</item>
+    <item>Através de WiFi e Dados Moveis</item>
+    <item>Perguntar quando não ligado a WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
