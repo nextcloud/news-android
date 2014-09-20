@@ -3,6 +3,7 @@ package de.luhmer.owncloudnewsreader.adapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
@@ -13,6 +14,7 @@ import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,20 +26,19 @@ import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.devspark.robototextview.widget.RobotoCheckBox;
 import com.devspark.robototextview.widget.RobotoTextView;
 
 import java.io.File;
-import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.Optional;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.event.EventBus;
-import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
@@ -46,12 +47,12 @@ import de.luhmer.owncloudnewsreader.async_tasks.IGetTextForTextViewAsyncTask;
 import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.helper.FillTextForTextViewHelper;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.interfaces.IPlayPodcastClicked;
-import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
@@ -65,6 +66,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     private static final String TAG = "NewsListArrayAdapter";
 
     public static SparseArray<Integer> downloadProgressList = new SparseArray<Integer>();
+    long idOfCurrentlyPlayedPodcast = -1;
 
     DatabaseConnectionOrm dbConn;
     IReader _Reader;
@@ -74,16 +76,15 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     PostDelayHandler pDelayHandler;
     int selectedDesign = 0;
     FragmentActivity mActivity;
-    IPlayPodcastClicked playPodcastClicked;
+    IPlayPausePodcastClicked playPausePodcastClicked;
 
 
-
-    public NewsListArrayAdapter(FragmentActivity activity, LazyList<RssItem> lazyList, IOnStayUnread onStayUnread, IPlayPodcastClicked playPodcastClicked) {
+    public NewsListArrayAdapter(FragmentActivity activity, LazyList<RssItem> lazyList, IOnStayUnread onStayUnread, IPlayPausePodcastClicked playPausePodcastClicked) {
         super(activity, lazyList);
 
         mActivity = activity;
         this.onStayUnread = onStayUnread;
-        this.playPodcastClicked = playPodcastClicked;
+        this.playPausePodcastClicked = playPausePodcastClicked;
 
         pDelayHandler = new PostDelayHandler(context);
 
@@ -95,6 +96,25 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         selectedDesign = Integer.valueOf(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"));
+
+
+        EventBus.getDefault().register(this);
+    }
+
+    public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
+        if (podcast.isPlaying()) {
+            if (podcast.getRssItemId() != idOfCurrentlyPlayedPodcast) {
+                idOfCurrentlyPlayedPodcast = podcast.getRssItemId();
+                notifyDataSetChanged();
+
+                Log.v(TAG, "Updating Listview - Podcast started");
+            }
+        } else if (idOfCurrentlyPlayedPodcast != -1) {
+            idOfCurrentlyPlayedPodcast = -1;
+            notifyDataSetChanged();
+
+            Log.v(TAG, "Updating Listview - Podcast paused");
+        }
     }
 
     @Override
@@ -119,7 +139,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         FontHelper fHelper = new FontHelper(context);
         fHelper.setFontForAllChildren(view, fHelper.getFont());
 
-        if(ThemeChooser.isDarkTheme(mActivity))
+        if (ThemeChooser.isDarkTheme(mActivity))
             cbStarred.setBackgroundResource(R.drawable.checkbox_background_holo_dark);
 
         cbStarred.setOnCheckedChangeListener(null);
@@ -134,7 +154,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
                 item.setStarred_temp(isChecked);
                 dbConn.updateRssItem(item);
 
-                if(isChecked)
+                if (isChecked)
                     UpdateIsReadCheckBox(buttonView, item);
 
                 pDelayHandler.DelayTimer();
@@ -143,7 +163,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
 
         LinearLayout ll_cb_starred_wrapper = (LinearLayout) view.findViewById(R.id.ll_cb_starred_wrapper);
-        if(ll_cb_starred_wrapper != null) {
+        if (ll_cb_starred_wrapper != null) {
             ll_cb_starred_wrapper.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -160,11 +180,10 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         Boolean isRead = item.getRead_temp();
         //Log.d("ISREAD", "" + isChecked + " - Cursor: " + cursor.getString(0));
         cbRead.setChecked(isRead);
-        if(!isRead) {
+        if (!isRead) {
             RobotoTextView textView = (RobotoTextView) view.findViewById(R.id.summary);
             fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
         }
-
 
 
         cbRead.setClickable(true);
@@ -179,7 +198,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
         String colorString = item.getFeed().getAvgColour();
         View viewColor = view.findViewById(R.id.color_line_feed);
-        if(colorString != null)
+        if (colorString != null)
             viewColor.setBackgroundColor(Integer.parseInt(colorString));
         else
             Log.v(TAG, "NO COLOR SET! - " + item.getFeed().getFeedTitle());
@@ -187,7 +206,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
     public void ChangeReadStateOfItem(RobotoCheckBox checkBox, View parentView, boolean isChecked, Context context) {
 
-        RssItem rssItem = dbConn.getRssItemById((Long)checkBox.getTag());
+        RssItem rssItem = dbConn.getRssItemById((Long) checkBox.getTag());
         rssItem.setRead_temp(isChecked);
         dbConn.updateRssItem(rssItem);
 
@@ -196,10 +215,9 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         pDelayHandler.DelayTimer();
 
         RobotoTextView textView = (RobotoTextView) parentView.findViewById(R.id.summary);
-        if(textView != null && parentView.getTop() >= 0)
-        {
+        if (textView != null && parentView.getTop() >= 0) {
             FontHelper fHelper = new FontHelper(context);
-            if(isChecked)
+            if (isChecked)
                 fHelper.setFontStyleForSingleView(textView, fHelper.getFont());
             else {
                 fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
@@ -246,12 +264,20 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     */
 
     static class SimpleLayout {
-        @InjectView(R.id.divider) View viewDivider;
-        @InjectView(R.id.summary) TextView textViewSummary;
-        @InjectView(R.id.tv_item_date) TextView textViewItemDate;
-        @InjectView(R.id.tv_subscription) TextView textViewTitle;
-        @Optional @InjectView(R.id.btn_playPodcast) ImageView btnPlayPodcast;
-        @Optional @InjectView(R.id.fl_playPodcastWrapper) FrameLayout flPlayPodcastWrapper;
+        @InjectView(R.id.divider)
+        View viewDivider;
+        @InjectView(R.id.summary)
+        TextView textViewSummary;
+        @InjectView(R.id.tv_item_date)
+        TextView textViewItemDate;
+        @InjectView(R.id.tv_subscription)
+        TextView textViewTitle;
+        @Optional
+        @InjectView(R.id.btn_playPausePodcast)
+        ImageView btnPlayPausePodcast;
+        @Optional
+        @InjectView(R.id.fl_playPausePodcastWrapper)
+        FrameLayout flPlayPausePodcastWrapper;
 
         SimpleLayout(View view) {
             ButterKnife.inject(this, view);
@@ -259,7 +285,8 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     }
 
     static class ExtendedLayout extends SimpleLayout {
-        @InjectView(R.id.body) TextView textViewItemBody;
+        @InjectView(R.id.body)
+        TextView textViewItemBody;
 
         ExtendedLayout(View view) {
             super(view);
@@ -268,9 +295,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     }
 
 
-
-    public void setSimpleLayout(View view, final RssItem rssItem)
-    {
+    public void setSimpleLayout(View view, final RssItem rssItem) {
         SimpleLayout simpleLayout = new SimpleLayout(view);
 
         simpleLayout.textViewSummary.setText(Html.fromHtml(rssItem.getTitle()).toString());
@@ -281,33 +306,52 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
         simpleLayout.textViewTitle.setText(rssItem.getFeed().getFeedTitle());
 
-        if(!ThemeChooser.isDarkTheme(mActivity)) {
+        if (!ThemeChooser.isDarkTheme(mActivity)) {
             simpleLayout.viewDivider.setBackgroundColor(mActivity.getResources().getColor(R.color.divider_row_color_light_theme));
         }
 
 
         //Podcast stuff
-        if(DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
+        if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
+            final boolean isPlaying = idOfCurrentlyPlayedPodcast == rssItem.getId();
+            int drawableResource;
             //Enable podcast buttons in view
-            simpleLayout.flPlayPodcastWrapper.setVisibility(View.VISIBLE);
+            simpleLayout.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
 
-            if(ThemeChooser.isDarkTheme(mActivity)) {
-                simpleLayout.btnPlayPodcast.setBackgroundResource(android.R.drawable.ic_media_play);
+            if (ThemeChooser.isDarkTheme(mActivity)) {
+                drawableResource = isPlaying ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
+            } else {
+                drawableResource = isPlaying ? R.drawable.av_pause : R.drawable.av_play;
             }
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) simpleLayout.btnPlayPausePodcast.getLayoutParams();
+            params.setMargins(DpToPx(mActivity, isPlaying ? 0 : 2), 0, 0, 0);
+            simpleLayout.btnPlayPausePodcast.setLayoutParams(params);
+            simpleLayout.btnPlayPausePodcast.setBackgroundResource(drawableResource);
 
-            simpleLayout.flPlayPodcastWrapper.setOnClickListener(new View.OnClickListener() {
+
+            simpleLayout.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //PodcastFragment podcastFragment = (PodcastFragment) mActivity.getSupportFragmentManager().findFragmentById(R.id.podcast_frame);
-                    //podcastFragment.OpenPodcast(context, rssItem);
-                    playPodcastClicked.openPodcast(rssItem);
+                    if (isPlaying) {
+                        playPausePodcastClicked.pausePodcast();
+                    } else {
+                        playPausePodcastClicked.openPodcast(rssItem);
+                    }
                 }
             });
 
             setDownloadPodcastProgressbar(view, rssItem);
         } else {
-            simpleLayout.flPlayPodcastWrapper.setVisibility(View.GONE);
+            simpleLayout.flPlayPausePodcastWrapper.setVisibility(View.GONE);
         }
+    }
+
+    public static int DpToPx(Context context, int dp) {
+        Resources r = context.getResources();
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dp,
+                r.getDisplayMetrics());
     }
 
     public void setDownloadPodcastProgressbar(View view, RssItem rssItem) {

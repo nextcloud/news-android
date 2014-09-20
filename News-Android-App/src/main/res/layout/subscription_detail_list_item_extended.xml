@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:orientation="horizontal" >
@@ -94,17 +95,29 @@
 
 
             <FrameLayout
-                android:id="@+id/fl_playPodcastWrapper"
+                android:id="@+id/fl_playPausePodcastWrapper"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingLeft="@dimen/listview_row_margin_left" >
 
                 <ImageView
-                    android:id="@+id/btn_playPodcast"
+                    android:id="@+id/btn_playPausePodcast"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:background="@drawable/av_play"/>
+
+                <de.passsy.holocircularprogressbar.HoloCircularProgressBar
+                    android:id="@+id/podcastDownloadProgress"
+                    android:layout_gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+
+                    app:stroke_width="2dp"
+                    app:progress_color="@android:color/holo_blue_dark"
+                    app:progress_background_color="#cccccc"
+                    app:marker_visible="false"
+                    app:thumb_visible="false"/>
             </FrameLayout>
 
 	        <LinearLayout

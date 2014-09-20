@@ -12,6 +12,11 @@ public class UpdatePodcastStatusEvent {
     private boolean preparingFile;
     private boolean fileLoaded;
     private boolean isVideoFile;
+    private long rssItemId;
+
+    public long getRssItemId() {
+        return rssItemId;
+    }
 
     public String getTitle() {
         return title;
@@ -39,7 +44,7 @@ public class UpdatePodcastStatusEvent {
 
     public boolean isVideoFile() { return isVideoFile; }
 
-    public UpdatePodcastStatusEvent(long current, long max, boolean playing, String title, boolean preparingFile, boolean fileLoaded, boolean isVideoFile) {
+    public UpdatePodcastStatusEvent(long current, long max, boolean playing, String title, boolean preparingFile, boolean fileLoaded, boolean isVideoFile, long rssItemId) {
         this.current = current;
         this.max = max;
         this.playing = playing;
@@ -47,6 +52,7 @@ public class UpdatePodcastStatusEvent {
         this.preparingFile = preparingFile;
         this.fileLoaded = fileLoaded;
         this.isVideoFile = isVideoFile;
+        this.rssItemId = rssItemId;
     }
 
 }

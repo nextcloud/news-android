@@ -64,6 +64,7 @@ public class ZoomableRelativeLayout extends RelativeLayout {
         return mPositionReady;
     }
 
+    /*
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         if(hasWindowFocus) {
@@ -72,6 +73,7 @@ public class ZoomableRelativeLayout extends RelativeLayout {
         }
         super.onWindowFocusChanged(hasWindowFocus);
     }
+    */
 
 
 
@@ -80,6 +82,8 @@ public class ZoomableRelativeLayout extends RelativeLayout {
         getLocationOnScreen(position);
         mVideoXPosition = position[0];
         mVideoYPosition = position[1];
+
+        mPositionReady = true;
 
         Log.d(TAG, "Grabbing new Video Wrapper Position. X:" + mVideoXPosition + " - Y:" + mVideoYPosition);
 
@@ -148,6 +152,10 @@ public class ZoomableRelativeLayout extends RelativeLayout {
 
             // Don't let the object get too small or too large.
             mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+
+            if(mScaleFactor < 1)
+                mScaleFactor = 1;
+
 
             Log.d(TAG, "Scale:" + mScaleFactor);
 

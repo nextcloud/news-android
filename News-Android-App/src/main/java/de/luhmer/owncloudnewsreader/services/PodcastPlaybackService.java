@@ -267,7 +267,11 @@ public class PodcastPlaybackService extends Service {
             songProgressBar.setProgress(progress);
             */
 
-        UpdatePodcastStatusEvent audioPodcastEvent = new UpdatePodcastStatusEvent(currentDuration, totalDuration, mMediaPlayer.isPlaying(), mediaTitle, isPreparing, canCallGetDuration, isVideoFile);
+        long currentRssItemId = -1;
+        if(mCurrentlyPlayingPodcast != null)
+            currentRssItemId = mCurrentlyPlayingPodcast.itemId;
+
+        UpdatePodcastStatusEvent audioPodcastEvent = new UpdatePodcastStatusEvent(currentDuration, totalDuration, mMediaPlayer.isPlaying(), mediaTitle, isPreparing, canCallGetDuration, isVideoFile, currentRssItemId);
         eventBus.post(audioPodcastEvent);
     }
 
