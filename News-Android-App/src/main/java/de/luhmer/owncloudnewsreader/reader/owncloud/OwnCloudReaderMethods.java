@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -179,11 +180,21 @@ public class OwnCloudReaderMethods {
 	 * @throws JSONException
 	 */
 	public static int[] readJsonStreamV2(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
+        List<String> allowedArrays = Arrays.asList(new String[] { "feeds", "folders", "items" });
+
 		int count = 0;
         int newItemsCount = 0;
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         reader.beginObject();
-        reader.nextName();
+
+        String currentName;
+        while(reader.hasNext() && (currentName = reader.nextName()) != null) {
+            if(allowedArrays.contains(currentName))
+                break;
+            else
+                reader.skipValue();
+        }
+
         reader.beginArray();
         while (reader.hasNext()) {
         	//reader.beginObject();
