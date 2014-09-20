@@ -168,6 +168,18 @@
   <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
   <string name="pref_title_CacheImagesOffline">Αποθήκευση εικόνων για χρήση χωρίς σύνδεση</string>
   <string name="pref_title_Max_Cache_Size">Μέγιστο μέγεθος στοιχείων προς αποθήκευση</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Ποτέ</item>
+    <item>Μόνο μέσω WiFi</item>
+    <item>Μέσω WiFi &amp; Δίκτυο</item>
+    <item>Να ερωτηθώ όταν δεν υπάρχει σύνδεση WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>

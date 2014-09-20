@@ -13,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">Feu clic aquí per obrir l\'element</string>
   <string name="no_wifi_available">Sense connexió WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Voleu baixar les imatges sense una connexió WiFi</string>
+  <string name="max_items_count_reached">Heu assolit la mida màxima de XX elements</string>
   <string name="widget_header">Notícies ownCloud</string>
   <string name="message_bar_new_articles_available">Nous elements disponibles</string>
   <string name="message_bar_reload">Carrega de nou</string>
@@ -33,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Estrellat</string>
   <string name="action_read">Llegeix</string>
+  <string name="action_playPodacst">Reprodueix el Podcast</string>
   <string name="action_openInBrowser">Obre al navegador</string>
   <string name="action_sendSourceCode">Envia element al desenvolupador</string>
   <string name="action_Share">Comparteix</string>
@@ -105,6 +107,7 @@
   <string name="no_podcast_selected">No heu seleccionat cap podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Pantalla</string>
+  <string name="pref_title_app_theme">Tema de l\'aplicació</string>
   <string name="pref_title_feed_list_layout">Format de llista de fonts</string>
   <string name="pref_display_font_layout">Lletra (requereix reiniciar l\'aplicació per aplicar-la)</string>
   <string-array name="pref_display_apptheme">
@@ -165,6 +168,18 @@
   <string name="pref_title_clearCache">Esborra la memòria cau</string>
   <string name="pref_title_CacheImagesOffline">Comprimeix imatges fora de línia</string>
   <string name="pref_title_Max_Cache_Size">Memòria cau màxima</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Mai</item>
+    <item>Només via WiFi</item>
+    <item>Via WiFi &amp; Móbil</item>
+    <item>Pregunta-m\'ho quan no estigui connectat via WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
