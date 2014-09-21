@@ -9,13 +9,13 @@
   <string name="title_newsreader_detail">NewsReader Detail</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Keine Artikel vorhanden</string>
-  <string name="toast_GettingMoreItems">Lade weitere Artikel herunter... Bitte warten.</string>
+  <string name="toast_GettingMoreItems">Das Herunterladen weiterer Artikel wird gestartet … Bitte warten.</string>
   <string name="tv_clickHereToOpenItem">Hier klicken, um Artikel zu öffnen.</string>
   <string name="no_wifi_available">Keine WLAN-Verbindung</string>
-  <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne W-LAN-Verbindung herunterladen</string>
+  <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne WLAN-Verbindung herunterladen</string>
   <string name="max_items_count_reached">Sie haben die maximale Größe von XX Titeln erreicht</string>
   <string name="widget_header">ownCloud-News</string>
-  <string name="message_bar_new_articles_available">Neue Elemente verfügbar</string>
+  <string name="message_bar_new_articles_available">Neue Artikel verfügbar</string>
   <string name="message_bar_reload">Aktualisieren</string>
   <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
   <string name="starredFeeds">Favorisierte Artikel</string>
@@ -24,7 +24,7 @@
   <string name="menu_update">Aktualisieren</string>
   <string name="menu_About_Changelog">Über / Änderungen</string>
   <string name="menu_markAllAsRead">Alles als gelesen kennzeichnen</string>
-  <string name="menu_StartImageCaching">Lade Bilder herunter</string>
+  <string name="menu_StartImageCaching">Bilder herunterladen</string>
   <string name="menu_downloadMoreItems">Weitere Artikel herunterladen.</string>
   <!--Import Accounts-->
   <string name="import_account_dialog_title">Benutzerkonto importieren</string>
@@ -82,17 +82,17 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="dialog_clearing_cache">Cache löschen</string>
-  <string name="dialog_clearing_cache_please_wait">Lösche den Cache.. Bitte warten.</string>
-  <string name="calculating_cache_size">Berechne Cachegröße... Bitte warten.</string>
-  <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchten Sie dennoch den Cache leeren?</string>
+  <string name="dialog_clearing_cache">Zwischenspeicher löschen</string>
+  <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird gelöscht … Bitte warten.</string>
+  <string name="calculating_cache_size">Zwischenspeichergröße wird berechnet … Bitte warten.</string>
+  <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchten Sie dennoch den Zwischenspeicher leeren?</string>
   <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Start synchronisieren</string>
   <string name="pref_title_ShowOnlyUnread">Nur ungelesene Artikel anzeigen</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Hostnamen-Nachweis deaktivieren</string>
   <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärketasten navigieren</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Während des Scrollens als gelesen markieren</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Beim Bildlauf als gelesen markieren</string>
   <string name="pref_title_OpenInBrowserDirectly">Detailansicht überspringen und Artikel im Browser öffnen</string>
   <string name="pref_title_notification_new_articles_available">Benachrichtigungen anzeigen, wenn neue Artikel verfügbar sind</string>
   <!--MemorizingTrustManager-->
@@ -165,7 +165,7 @@
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
-  <string name="pref_title_clearCache">Cache leeren</string>
+  <string name="pref_title_clearCache">Zwischenspeicher leeren</string>
   <string name="pref_title_CacheImagesOffline">Bilder Offline zwischenspeichern</string>
   <string name="pref_title_Max_Cache_Size">Maximale Cachegröße</string>
   <string-array name="pref_data_sync_image_cache">
