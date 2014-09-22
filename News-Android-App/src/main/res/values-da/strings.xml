@@ -32,7 +32,7 @@
   <string name="email_sourceCode">Artiklens kildekode - Fejlrapport</string>
   <string name="email_sendMail">Send e-mail</string>
   <!--Action Bar Items-->
-  <string name="action_starred">Markéret</string>
+  <string name="action_starred">Stjernemarkéret</string>
   <string name="action_read">Læst</string>
   <string name="action_playPodacst">Afspil podcast</string>
   <string name="action_openInBrowser">Åbn i browser</string>
