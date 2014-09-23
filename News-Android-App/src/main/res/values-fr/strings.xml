@@ -168,6 +168,18 @@
   <string name="pref_title_clearCache">Vider le cache</string>
   <string name="pref_title_CacheImagesOffline">Mise en cache hors-ligne des images</string>
   <string name="pref_title_Max_Cache_Size">Taille maximale du cache</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Jamais</item>
+    <item>Via WiFi uniquement</item>
+    <item>Via WiFi &amp; Réseau mobile</item>
+    <item>Demander si non connecté via WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 Mo</item>
     <item>500 Mo</item>
