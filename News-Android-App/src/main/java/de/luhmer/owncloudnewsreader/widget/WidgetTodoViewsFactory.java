@@ -154,7 +154,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 
 
         } catch(Exception ex) {
-            Log.d(TAG, ex.getLocalizedMessage());
+            Log.d(TAG, "Error: " + ex.getLocalizedMessage());
         }
 
         // Return the RemoteViews object.
@@ -188,6 +188,6 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 			Log.d(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
 
 
-        rssItems = dbConn.getListOfAllItemsForFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), false, SORT_DIRECTION.desc);
+        rssItems = dbConn.getListOfAllItemsForFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), false, SORT_DIRECTION.desc, 200);
 	}
 }

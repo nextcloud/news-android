@@ -57,6 +57,7 @@ public class DatabaseConnectionOrm {
         daoSession.getRssItemDao().deleteAll();
         daoSession.getFeedDao().deleteAll();
         daoSession.getFolderDao().deleteAll();
+        daoSession.getCurrentRssItemViewDao().deleteAll();
     }
 
     public DatabaseConnectionOrm(Context context) {
@@ -191,7 +192,11 @@ public class DatabaseConnectionOrm {
 
 
     public long getLowestRssItemIdUnread() {
-        return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.eq(false)).orderAsc(RssItemDao.Properties.Id).limit(1).unique().getId();
+        RssItem rssItem = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.eq(false)).orderAsc(RssItemDao.Properties.Id).limit(1).unique();
+        if(rssItem != null)
+            return rssItem.getId();
+        else
+            return 0;
     }
 
     public RssItem getLowestRssItemIdByFeed(long idFeed) {
@@ -380,9 +385,10 @@ public class DatabaseConnectionOrm {
         return (rssItem != null) ? rssItem.getId() : 0;
     }
 
-    public List<RssItem> getListOfAllItemsForFolder(long ID_FOLDER, boolean onlyUnread, DatabaseConnection.SORT_DIRECTION sortDirection) {//TODO needs testing!
+    public List<RssItem> getListOfAllItemsForFolder(long ID_FOLDER, boolean onlyUnread, DatabaseConnection.SORT_DIRECTION sortDirection, int limit) {
         String whereStatement = getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, sortDirection);
         whereStatement = whereStatement.replace("SELECT " + RssItemDao.Properties.Id.columnName + " FROM " + RssItemDao.TABLENAME, "");
+        whereStatement += " LIMIT " + limit;
         return daoSession.getRssItemDao().queryRaw(whereStatement, null);
     }
 

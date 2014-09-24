@@ -417,10 +417,14 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 
     public void UpdateItemList()
     {
-        NewsReaderDetailFragment nrD = (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
-        if(nrD != null)
-            ((NewsListArrayAdapter)nrD.getListAdapter()).notifyDataSetChanged();
+        try {
+            NewsReaderDetailFragment nrD = (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            if (nrD != null)
+                ((NewsListArrayAdapter) nrD.getListAdapter()).notifyDataSetChanged();
             //nrD.UpdateCursor();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 
@@ -445,14 +449,18 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
                 if(_Reader != null) {
 					if(_Reader.isSyncRunning())
 					{
-						super.getMenuItemUpdater().setActionView(R.layout.inderterminate_progress);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+						    super.getMenuItemUpdater().setActionView(R.layout.inderterminate_progress);
+
 					    if(pullToRefreshView != null && !pullToRefreshView.isRefreshing()) {
 					    	pullToRefreshView.setRefreshing(true);
                         }
 					}
 					else
 					{
-						super.getMenuItemUpdater().setActionView(null);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+						    super.getMenuItemUpdater().setActionView(null);
+
 					    if(pullToRefreshView != null)
 					    	pullToRefreshView.setRefreshing(false);
 					}

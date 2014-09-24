@@ -95,11 +95,11 @@ public class WidgetProvider extends AppWidgetProvider {
                         //rssItem.setRead_temp(true);
 
 
-
-                        AppWidgetManager.getInstance(context)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) //TODO this means updating the widget is only possible on newer devices..
+                            AppWidgetManager.getInstance(context)
                                 .notifyAppWidgetViewDataChanged(appWidgetId[i], R.id.list_view);
 
-                        Log.v(TAG, "I'm here!!! It fucking works!");
+                        Log.v(TAG, "I'm here!!! Widget update works!");
                     } else {
                         //Intent intentToDoListAct = new Intent(context, TodoListActivity.class);
                         Intent intentToDoListAct = new Intent(context, NewsDetailActivity.class);

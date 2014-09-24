@@ -66,8 +66,23 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.7.3 (in development)
+0.7.5 (in development)
 ---------------------
+
+
+0.7.4 (Google Play - Beta)
+---------------------
+- Update podcast feature
+- Fix podcast video view position
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/256">#256 3.001: Expected BEGIN_ARRAY but was Number at line 1 column 19</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/262">#262 Deleting a feed on the server does not delete it on the client</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/257">#257 Share "Title - url" via twitter</a>
+- Lot of bug fixes
+
+
+0.7.3 (Google Play - Beta)
+---------------------
+- Update podcast feature (Add option to download podcast)
 
 
 0.7.2 (Google Play - Beta)

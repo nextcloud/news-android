@@ -496,8 +496,11 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
             RssItem rssItem = dbConn.getRssItemById(idItemDb);
 
-            String body = rssItem.getBody();
-            String result = getBodyText(body);
+            String result = "Rss item not found.";
+            if(rssItem != null) {
+                String body = rssItem.getBody();
+                result = getBodyText(body);
+            }
 
             return  result;
         }
