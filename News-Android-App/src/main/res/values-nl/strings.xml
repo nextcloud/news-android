@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">Auto sync</string>
-  <string name="app_name">ownCloud Nieuws Lezer</string>
+  <string name="app_name">ownCloud Nieuwslezer</string>
   <string name="title_activity_sync_interval_selector">Sync interval selector</string>
   <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
   <string name="title_activity_subscription">AbonnementActiviteit</string>
@@ -9,36 +9,36 @@
   <string name="title_newsreader_detail">NieuwsLezer Details</string>
   <string name="empty_view_header">Informatie</string>
   <string name="empty_view_content">Geen items hier</string>
-  <string name="toast_GettingMoreItems">Begonnen meer objecten te downloaden... Even geduld a.u.b.</string>
+  <string name="toast_GettingMoreItems">Bezig meer berichten te downloaden... Even geduld a.u.b.</string>
   <string name="tv_clickHereToOpenItem">Klik hier om te openen</string>
   <string name="no_wifi_available">Geen wifi verbinding</string>
   <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
-  <string name="max_items_count_reached">U heeft de maximum grootte van XX items bereikt</string>
+  <string name="max_items_count_reached">U heeft de maximum grootte van XX berichten bereikt</string>
   <string name="widget_header">ownCloud nieuws</string>
   <string name="message_bar_new_articles_available">Nieuwe berichten aanwezig</string>
   <string name="message_bar_reload">Herladen</string>
-  <string name="allUnreadFeeds">Alle ongelezen items</string>
-  <string name="starredFeeds">Gemarkeerde items</string>
+  <string name="allUnreadFeeds">Alle ongelezen berichten</string>
+  <string name="starredFeeds">Gemarkeerde berichten</string>
   <string name="title_activity_new_feed">Voeg nieuwe feed toe</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Vernieuwen</string>
   <string name="menu_About_Changelog">Over / Wijzigingen</string>
   <string name="menu_markAllAsRead">Alles als gelezen markeren</string>
   <string name="menu_StartImageCaching">Downloaden afbeeldingen</string>
-  <string name="menu_downloadMoreItems">Download meer objecten</string>
+  <string name="menu_downloadMoreItems">Download meer berichten</string>
   <!--Import Accounts-->
   <string name="import_account_dialog_title">Import account</string>
   <!--EMAIL-->
-  <string name="email_sourceCode">Sourceode van het item - Bug melding</string>
+  <string name="email_sourceCode">Sourcecode van het item - Bug melding</string>
   <string name="email_sendMail">Email versturen</string>
   <!--Action Bar Items-->
   <string name="action_starred">Gemarkeerd</string>
   <string name="action_read">Lees</string>
   <string name="action_playPodacst">Afspelen Podcast</string>
-  <string name="action_openInBrowser">Openen in Browser</string>
+  <string name="action_openInBrowser">Openen in browser</string>
   <string name="action_sendSourceCode">Verzend item naar ontwikkelaar</string>
   <string name="action_Share">Delen</string>
-  <string name="action_login">Server instellingen</string>
+  <string name="action_login">Serverinstellingen</string>
   <string name="action_save">Bewaren</string>
   <string name="action_settings">Instellingen</string>
   <string name="action_sync_settings">Sync Settings</string>
@@ -57,12 +57,12 @@
   <string name="error_field_required">Dit veld is verplicht</string>
   <string name="error_invalid_url">De URL is ongeldig</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X oude objecten gedownload</string>
-  <string name="toast_no_more_downloads_available">Niet meer onderwerpen beschikbaar</string>
+  <string name="toast_downloaded_x_items">X oude berichten gedownload</string>
+  <string name="toast_no_more_downloads_available">Geen berichten meer beschikbaar</string>
   <string name="pull_to_refresh_updateTags">Synchroniseren onderwerp statussen</string>
   <string name="pull_to_refresh_updateFolder">Synchroniseren map</string>
   <string name="pull_to_refresh_updateFeeds">Synchroniseren feeds</string>
-  <string name="pull_to_refresh_updateItems">Synchroniseren onderwerpen</string>
+  <string name="pull_to_refresh_updateItems">Synchroniseren berichten</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Instellingen</string>
   <!--General settings-->
@@ -84,7 +84,7 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Schoonmaken cache</string>
   <string name="dialog_clearing_cache_please_wait">Schoonmaken cache. Even geduld.</string>
-  <string name="calculating_cache_size">Berekenen cacke grootte. Even geduld aub.</string>
+  <string name="calculating_cache_size">Berekenen cacheomvang. Even geduld aub.</string>
   <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wilt u de cache toch resetten?</string>
   <string name="warning">Waarschuwing</string>
   <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>
@@ -93,7 +93,7 @@
   <string name="pref_title_DisableHostnameVerification">Deactiveren Hostname verificatie</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigeren met volumeknoppen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
-  <string name="pref_title_OpenInBrowserDirectly">Stal detailoverzicht over en open het artikel in de browser.</string>
+  <string name="pref_title_OpenInBrowserDirectly">Sla detailoverzicht over en open het artikel in de browser.</string>
   <string name="pref_title_notification_new_articles_available">Toon meldingen als er nieuwe artikelen zijn</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Onbekend certificaat accepteren?</string>
