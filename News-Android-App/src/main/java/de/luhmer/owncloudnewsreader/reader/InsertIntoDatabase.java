@@ -108,9 +108,9 @@ public class InsertIntoDatabase {
 	            for(Feed feed : oldFeeds)
 	            {
 	                boolean found = false;
-	                for(int i = 0; i < oldFeeds.size(); i++)
+	                for(int i = 0; i < newFeeds.size(); i++)
 	                {
-	                    if(oldFeeds.get(i).getFeedTitle().equals(feed.getFeedTitle()))
+	                    if(newFeeds.get(i).getFeedTitle().equals(feed.getFeedTitle()))
 	                    {
                             //Set the avg color after sync again.
                             feed.setAvgColour(oldFeeds.get(i).getAvgColour());
