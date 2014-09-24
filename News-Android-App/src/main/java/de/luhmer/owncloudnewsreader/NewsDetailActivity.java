@@ -457,6 +457,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 					}
 				}
 
+                //Fix for #257
+                content = title + " - " + content;
+
 				//content += "<br/><br/>Send via <a href=\"https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader\">ownCloud News Reader</a>";
 
                 Intent share = new Intent(Intent.ACTION_SEND);
