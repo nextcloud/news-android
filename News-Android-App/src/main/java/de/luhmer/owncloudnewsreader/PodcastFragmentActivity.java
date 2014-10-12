@@ -81,7 +81,11 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
             public void onGlobalLayout() {
                 rlVideoPodcastSurfaceWrapper.readVideoPosition();
 
-                rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                    rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                } else {
+                    rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
             }
         });
 
