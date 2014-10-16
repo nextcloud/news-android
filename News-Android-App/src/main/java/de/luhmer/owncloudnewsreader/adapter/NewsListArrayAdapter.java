@@ -120,6 +120,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     @Override
     public void bindView(final View view, final Context context, final RssItem item) {
 
+
         switch (selectedDesign) {
             case 0:
                 setSimpleLayout(view, item);
@@ -133,6 +134,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
             default:
                 break;
         }
+
 
         RobotoCheckBox cbStarred = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_starred);
 
@@ -196,12 +198,17 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         });
 
 
-        String colorString = item.getFeed().getAvgColour();
-        View viewColor = view.findViewById(R.id.color_line_feed);
-        if (colorString != null)
-            viewColor.setBackgroundColor(Integer.parseInt(colorString));
-        else
-            Log.v(TAG, "NO COLOR SET! - " + item.getFeed().getFeedTitle());
+        if(item.getFeed() != null) {
+            String colorString = item.getFeed().getAvgColour();
+            View viewColor = view.findViewById(R.id.color_line_feed);
+            if (colorString != null)
+                viewColor.setBackgroundColor(Integer.parseInt(colorString));
+            else
+                Log.v(TAG, "NO COLOR SET! - " + item.getFeed().getFeedTitle());
+        } else {
+            //This this only happen while sync is running
+            Log.v(TAG, "No feed found");
+        }
     }
 
     public void ChangeReadStateOfItem(RobotoCheckBox checkBox, View parentView, boolean isChecked, Context context) {
@@ -304,7 +311,12 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         String dateString = (String) DateUtils.getRelativeTimeSpanString(pubDate);
         simpleLayout.textViewItemDate.setText(dateString);
 
-        simpleLayout.textViewTitle.setText(rssItem.getFeed().getFeedTitle());
+        if(rssItem.getFeed() != null) {
+            simpleLayout.textViewTitle.setText(rssItem.getFeed().getFeedTitle());
+        } else {
+            //This this only happen while sync is running
+            Log.v(TAG, "Feed not found!!!");
+        }
 
         if (!ThemeChooser.isDarkTheme(mActivity)) {
             simpleLayout.viewDivider.setBackgroundColor(mActivity.getResources().getColor(R.color.divider_row_color_light_theme));

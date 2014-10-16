@@ -32,6 +32,7 @@ import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.SparseArray;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -112,10 +113,6 @@ public class DownloadImagesService extends IntentService {
         for(Feed feed : feedList) {
             favIconHandler.PreCacheFavIcon(feed);
         }
-        feedList = null;
-        favIconHandler = null;
-
-
 
 
         if(!downloadFavIconsExclusive) {
@@ -132,8 +129,13 @@ public class DownloadImagesService extends IntentService {
             if (maxCount > 0)
                 notificationManager.notify(NOTIFICATION_ID, notify);
 
-            for (String link : links)
-                new GetImageAsyncTask(link, imgDownloadFinished, 999, FileUtils.getPathImageCache(this), this).execute();
+            try {
+                for (String link : links)
+                    new GetImageAsyncTask(link, imgDownloadFinished, 999, FileUtils.getPathImageCache(this), this).execute();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                Toast.makeText(this, "Error while downloading images.", Toast.LENGTH_LONG).show();
+            }
         }
 	}
 
