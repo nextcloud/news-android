@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Автоматична синхронізація</string>
   <string name="empty_view_header">Інформація</string>
   <string name="message_bar_reload">Перезавантажити</string>
   <string name="title_activity_new_feed">Додати нову стрічку</string>
@@ -62,6 +63,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Сповіщення</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
