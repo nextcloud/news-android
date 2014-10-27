@@ -2,8 +2,9 @@
 <resources>
   <string name="auto_sync_string">Sync otmatis</string>
   <string name="app_name">Pembaca Berita ownCloud</string>
+  <string name="title_activity_sync_interval_selector">Pemilih Jeda Sync</string>
   <string name="title_activity_news_detail">AktivitasRinciBerita</string>
-  <string name="title_activity_subscription">AktivitasLanggan</string>
+  <string name="title_activity_subscription">AktivitasLangganan</string>
   <string name="title_newsreader_list">PembacaBerita</string>
   <string name="title_newsreader_detail">Rincian PembacaBerita</string>
   <string name="empty_view_header">Informasi</string>
@@ -12,11 +13,13 @@
   <string name="tv_clickHereToOpenItem">Klik disini untuk membuka item</string>
   <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
   <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
+  <string name="max_items_count_reached">Anda melampaui ukuran maksimal item XX</string>
   <string name="widget_header">Berita ownCloud</string>
   <string name="message_bar_new_articles_available">Item baru tersedia</string>
   <string name="message_bar_reload">Muat ulang</string>
   <string name="allUnreadFeeds">Semua item yang belum dibaca</string>
   <string name="starredFeeds">Item yang dibintangi</string>
+  <string name="title_activity_new_feed">Tambah feed baru</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Segarkan</string>
   <string name="menu_About_Changelog">About / Changelog</string>
@@ -24,18 +27,22 @@
   <string name="menu_StartImageCaching">Unduh gambar</string>
   <string name="menu_downloadMoreItems">Unduh beberapa item</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Impor Akun</string>
   <!--EMAIL-->
-  <string name="email_sourceCode">Kode sumber item - Bugreport</string>
+  <string name="email_sourceCode">Kode sumber item - laporanBug</string>
   <string name="email_sendMail">Kirim EMail</string>
   <!--Action Bar Items-->
-  <string name="action_starred">dibintangi</string>
+  <string name="action_starred">Dibintangi</string>
   <string name="action_read">Baca</string>
-  <string name="action_openInBrowser">Buka di Browser</string>
+  <string name="action_playPodacst">Putar Siniar</string>
+  <string name="action_openInBrowser">Buka di Peramban</string>
   <string name="action_sendSourceCode">Kirim item kepada Pengembang</string>
   <string name="action_Share">Bagikan</string>
   <string name="action_login">Pengaturan Server</string>
   <string name="action_save">Simpan</string>
   <string name="action_settings">Setelan</string>
+  <string name="action_sync_settings">Setelan Sync</string>
+  <string name="action_add_new_feed">Tambah feed baru</string>
   <string name="notification_new_items_ticker">Anda memiliki X item baru yang belum dibaca</string>
   <string name="notification_new_items_text">X item baru yang belum dibaca tersedia</string>
   <!--Strings related to login-->
@@ -54,7 +61,7 @@
   <string name="toast_no_more_downloads_available">Tidak ada item lain yang tersedia</string>
   <string name="pull_to_refresh_updateTags">Status Sinkronisasi Item</string>
   <string name="pull_to_refresh_updateFolder">Menyelaraskan folder</string>
-  <string name="pull_to_refresh_updateFeeds">Menyelaraskan umpan</string>
+  <string name="pull_to_refresh_updateFeeds">Mensinkronisasi feed</string>
   <string name="pull_to_refresh_updateItems">Menyelaraskan item</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Setelan</string>
@@ -80,7 +87,7 @@
   <string name="calculating_cache_size">Menghitung ukuran cache.. Silakan tunggu.</string>
   <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
   <string name="warning">Peringatan</string>
-  <string name="pref_title_AutoSyncOnStart">Selaraskan pada saat mulai</string>
+  <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>
   <string name="pref_title_ShowOnlyUnread">Tampilkan hanya artikel yang belum dibaca</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Nonaktifkan Verifikasi Hostname</string>
@@ -95,8 +102,12 @@
   <string name="mtm_decision_abort">Batal</string>
   <string name="mtm_notification">Verifikasi Sertifikat</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Siniar</string>
+  <string name="pref_enable_podcasts">Aktifkan dukungan Siniar</string>
+  <string name="no_podcast_selected">Tidak ada siniar yang dipilih</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Tampilkan</string>
+  <string name="pref_title_app_theme">Tema aplikasi</string>
   <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
   <string name="pref_display_font_layout">Huruf (memerlukan restart untuk menerapkan)</string>
   <string-array name="pref_display_apptheme">
@@ -117,6 +128,20 @@
     <item>1</item>
     <item>2</item>
   </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
   <string-array name="pref_display_font_values">
     <item>0</item>
     <item>2</item>
@@ -132,7 +157,7 @@
     <item>19</item>
   </string-array>
   <!--Login Dialog-->
-  <string name="login_dialog_title_error">Galat</string>
+  <string name="login_dialog_title_error">Kesalahan</string>
   <string name="login_dialog_text_something_went_wrong">Ada yang tidak beres :(</string>
   <string name="login_dialog_text_not_compatible">Versi aplikasi ini tidak kompatibel dengan aplikasi berita ownCloud. Silakan perbarui aplikasi berita ini dan aplikasi bingkai kerjanya.</string>
   <string name="login_dialog_title_security_warning">Peringatan Keamanan</string>
@@ -143,6 +168,18 @@
   <string name="pref_title_clearCache">Bersihkan cache</string>
   <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
   <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Jangan pernah</item>
+    <item>Hanya lewat WiFi</item>
+    <item>Hanya lewat WiFi &amp; Mobil</item>
+    <item>Tanyakan saat tidak terhubung ke WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -160,6 +197,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Menit</item>
+    <item>15 Menit</item>
+    <item>30 Menit</item>
+    <item>45 Menit</item>
+    <item>1 Jam</item>
+    <item>2 Jam</item>
+    <item>3 Jam</item>
+    <item>6 Jam</item>
+    <item>12 Jam</item>
+    <item>24 Jam</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
