@@ -26,12 +26,14 @@
   <string name="menu_StartImageCaching">Képek letőltése</string>
   <string name="menu_downloadMoreItems">Több elem letőltése</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Konto importálás</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Forráskód - Hibajelentés</string>
   <string name="email_sendMail">Email küldése</string>
   <!--Action Bar Items-->
   <string name="action_starred">Csillagozott</string>
   <string name="action_read">Olvas</string>
+  <string name="action_playPodacst">Podcast lejatszás</string>
   <string name="action_openInBrowser">Megnyitás böngészőben</string>
   <string name="action_sendSourceCode">Küldjük el a fejlesztőnek</string>
   <string name="action_Share">Megosztás</string>
@@ -99,8 +101,12 @@
   <string name="mtm_decision_abort">Megszakítás</string>
   <string name="mtm_notification">Tanusítvány Ellenörzés</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Podcast támogatás engedélyezve</string>
+  <string name="no_podcast_selected">Nincs Podcast kiválasztva</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Kijelző</string>
+  <string name="pref_title_app_theme">App téma </string>
   <string name="pref_title_feed_list_layout">A csatorna elrendezés</string>
   <string name="pref_display_font_layout">Betü(a módosításhoz újraindítás szükséges)</string>
   <string-array name="pref_display_apptheme">
@@ -161,6 +167,12 @@
   <string name="pref_title_clearCache">Átmeneti tár(cache) tisztitása</string>
   <string name="pref_title_CacheImagesOffline">Képek offline tárolása ideglenesen</string>
   <string name="pref_title_Max_Cache_Size">Maximum Cache Méret</string>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>

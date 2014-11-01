@@ -1,48 +1,227 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Автоматична синхронізація</string>
+  <string name="app_name">Читати Новини в ownCloud </string>
+  <string name="title_activity_sync_interval_selector">Перемикач Інтервалу Синхронізації</string>
+  <string name="title_activity_news_detail">Останні Новини</string>
+  <string name="title_activity_subscription">Активні піписки</string>
+  <string name="title_newsreader_list">Читати Новини</string>
+  <string name="title_newsreader_detail">Читання новин подробиці</string>
   <string name="empty_view_header">Інформація</string>
+  <string name="empty_view_content">Нічого нема</string>
+  <string name="toast_GettingMoreItems">Розпочато завантаження... Будь ласка зачекайте</string>
+  <string name="tv_clickHereToOpenItem">Натисніть, щоб відкрити елемент</string>
+  <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
+  <string name="do_you_want_to_download_without_wifi">Бажаєте завантажувати зображення коли немає WiFi з\'єднання?</string>
+  <string name="max_items_count_reached">Ви досягли максимального розміру в XX пунктів</string>
+  <string name="widget_header">Новини ownCloud </string>
+  <string name="message_bar_new_articles_available">Є нові елементи</string>
   <string name="message_bar_reload">Перезавантажити</string>
+  <string name="allUnreadFeeds">Всі непрочитані</string>
+  <string name="starredFeeds">Помічені</string>
   <string name="title_activity_new_feed">Додати нову стрічку</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Оновити</string>
+  <string name="menu_About_Changelog">Зміни</string>
+  <string name="menu_markAllAsRead">Позначити все як прочитане</string>
   <string name="menu_StartImageCaching">Завантажити зображення</string>
+  <string name="menu_downloadMoreItems">Завантажити більше елементів</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Імпортувати обліковий запис</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Джерело елементу - Звіт про помилку</string>
+  <string name="email_sendMail">Надіслати листа</string>
   <!--Action Bar Items-->
   <string name="action_starred">Помічені зірочкою</string>
+  <string name="action_read">Читати</string>
+  <string name="action_playPodacst">Відтворити Подкаст</string>
   <string name="action_openInBrowser">Відкрити у переглядачі</string>
+  <string name="action_sendSourceCode">Надіслати повідомлення розробникам</string>
   <string name="action_Share">Поділитися</string>
+  <string name="action_login">Налаштування Серверу</string>
   <string name="action_save">Зберегти</string>
   <string name="action_settings">Налаштування</string>
+  <string name="action_sync_settings">Налаштування синхронізації</string>
   <string name="action_add_new_feed">Додати нову стрічку</string>
+  <string name="notification_new_items_ticker">У вас X нових, непрочитаних елементів</string>
+  <string name="notification_new_items_text">Доступно X нових непрочитаних елемнтів </string>
   <!--Strings related to login-->
   <string name="pref_title_username">Ім\'я користувача</string>
   <string name="pref_title_password">Пароль</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Ввійти...</string>
+  <string name="login_progress_signing_in">Вхід...</string>
+  <string name="error_incorrect_password">Це невірний пароль</string>
+  <string name="error_field_required">Обов\'язкове поле</string>
+  <string name="error_invalid_url">Невірний url</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Завантажити X старих елементів</string>
+  <string name="toast_no_more_downloads_available">Більше немає об\'єктів</string>
+  <string name="pull_to_refresh_updateTags">Синхронізація елементів</string>
+  <string name="pull_to_refresh_updateFolder">Синхронізується тека</string>
+  <string name="pull_to_refresh_updateFeeds">Синхронізуються стрічки</string>
+  <string name="pull_to_refresh_updateItems">Синхронізуються елементи</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Налаштування</string>
   <!--General settings-->
   <string name="pref_header_general">Загалом</string>
+  <string name="pref_title_general_sort_order">Порядок сортування</string>
+  <string-array name="pref_general_sort_order">
+    <item>Новіші -&gt; Старші</item>
+    <item>Старші -&gt; Нові</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Очистити кеш</string>
+  <string name="dialog_clearing_cache_please_wait">Очищення кешу... Будь ласка, зачекайте.</string>
+  <string name="calculating_cache_size">Перелік розміру кеша... Будь ласка, зачекайте.</string>
+  <string name="reset_cache_unsaved_changes">Є несинхронізовані зміни. Ви дійсно бажаєте очистити кеш?</string>
   <string name="warning">Попередження</string>
+  <string name="pref_title_AutoSyncOnStart">Синхронізація при включені</string>
+  <string name="pref_title_ShowOnlyUnread">Показати непрочитані статті</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Вимкнути перевірку доменного ім\'я</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Керування кнопками гучності</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Помічати прочитаними при прокрутці</string>
+  <string name="pref_title_OpenInBrowserDirectly">Пропустити детальний перегляд та перейти в браузер</string>
+  <string name="pref_title_notification_new_articles_available">Показати сповіщення коли доступна нова стаття</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Підтвердити невідомий сертифікат?</string>
   <string name="mtm_decision_always">Завжди</string>
   <string name="mtm_decision_once">Один раз</string>
+  <string name="mtm_decision_abort">Відміна</string>
+  <string name="mtm_notification">Перевірка сертифікату</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Подкаст</string>
+  <string name="pref_enable_podcasts">Ввімкнути підтримку Подкастів</string>
+  <string name="no_podcast_selected">Жодного Подкасту не обрано</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Показати</string>
+  <string name="pref_title_app_theme">Тема додатку</string>
+  <string name="pref_title_feed_list_layout">Поле списку стрічок</string>
+  <string name="pref_display_font_layout">Шрифт (для застосування необхідно перезавантажити)</string>
+  <string-array name="pref_display_apptheme">
+    <item>Темна</item>
+    <item>Світла</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Проста</item>
+    <item>Розширена</item>
+    <item>Розширена з Webview</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Помилка</string>
+  <string name="login_dialog_text_something_went_wrong">Щось пішло не так :(</string>
+  <string name="login_dialog_text_not_compatible">Ця версія додатку не сумісна з вашим додатком Читання Новин. Будь ласка, оновіть додаток та framework для додатка.</string>
   <string name="login_dialog_title_security_warning">Попередження про небезпеку</string>
+  <string name="login_dialog_text_security_warning">Ви не використовуєте HTTPS. Зловмисники можуть перехопити трафік та отримати доступ до деяких персональних даних (наприклад пароль). Ми наполегливо рекомендуємо використовувати HTTPS!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Дані та синхронізація</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string name="pref_title_clearCache">Очистити кеш</string>
+  <string name="pref_title_CacheImagesOffline">Зберігати зображення оффлайн</string>
+  <string name="pref_title_Max_Cache_Size">Максимальний розмір кеша</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Ніколи</item>
+    <item>Тільки по WiFi</item>
+    <item>По WiFi та мережі</item>
+    <item>Спитати коли немає WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 МБ</item>
+    <item>500 МБ</item>
+    <item>750 МБ</item>
+    <item>1 ГБ</item>
+    <item>2 ГБ</item>
+    <item>5 ГБ</item>
+    <item>10 ГБ</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Хвилин</item>
+    <item>15 Хвилин</item>
+    <item>30 Хвилин</item>
+    <item>45 Хвилин</item>
+    <item>1 Година</item>
+    <item>2 Години</item>
+    <item>3 Години</item>
+    <item>6 Годин</item>
+    <item>12 Годин</item>
+    <item>24 Години</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
@@ -62,6 +241,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Сповіщення</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
