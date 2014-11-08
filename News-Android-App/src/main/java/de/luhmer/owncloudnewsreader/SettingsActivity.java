@@ -92,7 +92,7 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING = "cb_openInBrowserDirectly";
     public static final String CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING = "cb_showNotificationNewArticles";
 
-    public static final String CB_ENABLE_PODCASTS_STRING = "cb_enablePodcasts";
+    //public static final String CB_ENABLE_PODCASTS_STRING = "cb_enablePodcasts";
 
     public static final String PREF_SYNC_SETTINGS = "pref_sync_settings";
 
@@ -174,7 +174,7 @@ public class SettingsActivity extends PreferenceActivity {
 		bindDisplayPreferences(null, this);
 		bindDataSyncPreferences(null, this);
         bindNotificationPreferences(null, this);
-        bindPodcastPreferences(null, this);
+        //bindPodcastPreferences(null, this);
 	}
 
 	/* (non-Javadoc)
@@ -326,9 +326,10 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 
     /**
-     * This fragment shows notification preferences only. It is used when the
+     * This fragment shows podcast preferences only. It is used when the
      * activity is showing a two-pane settings UI.
      */
+    /*
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class PodcastPreferenceFragment extends
             PreferenceFragment {
@@ -340,6 +341,7 @@ public class SettingsActivity extends PreferenceActivity {
             bindPodcastPreferences(this, null);
         }
     }
+    */
 
 
 	/**
@@ -507,11 +509,11 @@ public class SettingsActivity extends PreferenceActivity {
     {
         if(prefFrag != null)
         {
-            bindPreferenceBooleanToValue(prefFrag.findPreference(CB_ENABLE_PODCASTS_STRING));
+            //bindPreferenceBooleanToValue(prefFrag.findPreference(CB_ENABLE_PODCASTS_STRING));
         }
         else
         {
-            bindPreferenceBooleanToValue(prefAct.findPreference(CB_ENABLE_PODCASTS_STRING));
+            //bindPreferenceBooleanToValue(prefAct.findPreference(CB_ENABLE_PODCASTS_STRING));
         }
     }
 

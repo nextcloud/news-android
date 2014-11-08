@@ -286,19 +286,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         boolean podcastAvailable = !podcastItem.link.equals("");
 
 
-        if(podcastAvailable) {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-            if(!mPrefs.getBoolean(Constants.SHOW_CASE_PODCAST_AVAILABLE_INFO_SHOWN_BOOLEAN, false)) {
-                mPrefs.edit().putBoolean(Constants.SHOW_CASE_PODCAST_AVAILABLE_INFO_SHOWN_BOOLEAN, true).commit();
-
-                new AlertDialog.Builder(this)
-                        .setTitle("Podcast detected")
-                        .setMessage("You can enable the podcast support in the app settings")
-                        .setNeutralButton(getString(android.R.string.ok), null)
-                        .show();
-            }
-        }
-
         if(menuItem_PlayPodcast != null)
             menuItem_PlayPodcast.setVisible(podcastAvailable);
 

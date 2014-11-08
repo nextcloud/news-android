@@ -381,20 +381,6 @@ public class PodcastFragment extends Fragment {
     }
 
 
-    public void onEvent(FeedPanelSlideEvent event){
-        if(!event.isPanelOpen()) {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            if (!mPrefs.getBoolean(Constants.SHOW_CASE_PODCAST_ENABLED_SHOWN_BOOLEAN, false)) {
-                mPrefs.edit().putBoolean(Constants.SHOW_CASE_PODCAST_ENABLED_SHOWN_BOOLEAN, true).commit();
-
-                NewsReaderListActivity nrlActivity = ((NewsReaderListActivity) getActivity());
-                nrlActivity.showShowCaseViewForView(nrlActivity.getNewsReaderDetailFragment().getView(), pb_progress, "Podcasts", "Click on this view or slide it up to open the podcast selector.");
-            }
-        }
-    }
-
-
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

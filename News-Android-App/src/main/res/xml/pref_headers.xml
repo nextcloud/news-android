@@ -19,9 +19,11 @@
         android:title="@string/pref_header_data_sync" />
 
 
+    <!--
     <header
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$PodcastPreferenceFragment"
         android:title="@string/pref_header_podcast" />
+    -->
 
     <!--
     <header
