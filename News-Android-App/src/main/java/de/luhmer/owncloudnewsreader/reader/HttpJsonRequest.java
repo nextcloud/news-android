@@ -55,6 +55,7 @@ import javax.net.ssl.X509TrustManager;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
+import de.luhmer.owncloudnewsreader.ssl.TLSSocketFactory;
 import de.luhmer.owncloudnewsreader.util.Base64;
 
 public class HttpJsonRequest {
@@ -162,7 +163,11 @@ public class HttpJsonRequest {
 			SSLContext sc = SSLContext.getInstance("TLS");
 			sc.init(null, MemorizingTrustManager.getInstanceList(context),
 					new java.security.SecureRandom());
-			httpsURLConnection.setSSLSocketFactory(sc.getSocketFactory());
+
+            // enables TLSv1.1/1.2 for Jelly Bean Devices
+            TLSSocketFactory tlsSocketFactory = new TLSSocketFactory(sc);
+
+            httpsURLConnection.setSSLSocketFactory(tlsSocketFactory);
 
 
 			// disable redirects to reduce possible confusion
