@@ -66,8 +66,16 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.7.7 (in development)
+0.7.8 (in development)
 ---------------------
+
+
+0.7.7 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/278">#278 App broken on latest News release (4.0.1)</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/277">#277 Blockquote not correctly rendered</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/272">#272 Too much loading since v0.7.x</a>
+- Bug fixes/Improvements
 
 
 0.7.6 (Google Play)
