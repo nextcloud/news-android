@@ -423,7 +423,7 @@ public class NewsDetailFragment extends Fragment {
         return "";
     }
 
-    private static void init_webTemplate(Context context)
+    private static synchronized void init_webTemplate(Context context)
 	{
 		if(web_template == null)
 		{
