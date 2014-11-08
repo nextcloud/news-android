@@ -107,7 +107,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/av_play"/>
 
-                <de.passsy.holocircularprogressbar.HoloCircularProgressBar
+                <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
                     android:id="@+id/podcastDownloadProgress"
                     android:layout_gravity="center"
                     android:layout_width="50dp"

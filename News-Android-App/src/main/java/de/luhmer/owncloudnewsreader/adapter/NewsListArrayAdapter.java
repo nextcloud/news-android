@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import com.devspark.robototextview.widget.RobotoCheckBox;
 import com.devspark.robototextview.widget.RobotoTextView;
+import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import java.io.File;
 
@@ -56,7 +57,6 @@ import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
-import de.passsy.holocircularprogressbar.HoloCircularProgressBar;
 
 /**
  * Created by David on 18.07.2014.
