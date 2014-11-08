@@ -13,7 +13,7 @@
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
   <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
-  <string name="max_items_count_reached">Έφτασες το μέγιστο μέγεθος από XX στοιχεία</string>
+  <string name="max_items_count_reached">Περάσατε το όριο μεγέθους των XX στοιχείων</string>
   <string name="widget_header">Νέα ownCloud</string>
   <string name="message_bar_new_articles_available">Διαθέσιμα νέα αντικείμενα</string>
   <string name="message_bar_reload">Επαναφόρτωση</string>
@@ -34,7 +34,6 @@
   <!--Action Bar Items-->
   <string name="action_starred">Με αστέρι</string>
   <string name="action_read">Ανάγνωση</string>
-  <string name="action_playPodacst">Αναπαραγωγή Podcast</string>
   <string name="action_openInBrowser">Άνοιγμα στον Περιηγητή</string>
   <string name="action_sendSourceCode">Αποστολή αντικειμένου στον Προγραμματιστή</string>
   <string name="action_Share">Διαμοιρασμός</string>
@@ -43,8 +42,8 @@
   <string name="action_settings">Ρυθμίσεις</string>
   <string name="action_sync_settings">Επιλογές συγχρονισμού</string>
   <string name="action_add_new_feed">Προσθήκη νέας ροής</string>
-  <string name="notification_new_items_ticker">Έχετε Χ νέα αδιάβαστα στοιχεία</string>
-  <string name="notification_new_items_text">Χ νέα αδιάβαστα στοιχεία διαθέσιμα</string>
+  <string name="notification_new_items_ticker">Έχετε X νέα αδιάβαστα στοιχεία</string>
+  <string name="notification_new_items_text">X νέα αδιάβαστα στοιχεία διαθέσιμα</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
   <string name="pref_title_password">Συνθηματικό</string>
@@ -57,7 +56,7 @@
   <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
   <string name="error_invalid_url">Αυτός ο σύνδεσμος είναι εσφαλμένος</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Κατέβηκαν Χ παλαιά στοιχεία</string>
+  <string name="toast_downloaded_x_items">Κατέβηκαν X παλαιά στοιχεία</string>
   <string name="toast_no_more_downloads_available">Δεν υπάρχουν επιπλέον στοιχεία διαθέσιμα</string>
   <string name="pull_to_refresh_updateTags">Συγχρονισμός κατάστασης στοιχείων</string>
   <string name="pull_to_refresh_updateFolder">Συγχρονισμός φακέλου</string>
@@ -104,10 +103,9 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Ενεργοποίηση υποστήριξης Podcast</string>
-  <string name="no_podcast_selected">Δεν επιλέχθηκε Podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Εμφάνιση</string>
-  <string name="pref_title_app_theme">Θέμα εφαρμογής</string>
+  <string name="pref_title_app_theme">Θέμα εφαρμογής (απαιτεί επανεκκίνηση για εφαρμογή)</string>
   <string name="pref_title_feed_list_layout">Προβολή λίστας ροών</string>
   <string name="pref_display_font_layout">Γραμματοσειρά (απαιτεί επανεκκίνηση για εφαρμογή)</string>
   <string-array name="pref_display_apptheme">
@@ -168,18 +166,6 @@
   <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
   <string name="pref_title_CacheImagesOffline">Αποθήκευση εικόνων για χρήση χωρίς σύνδεση</string>
   <string name="pref_title_Max_Cache_Size">Μέγιστο μέγεθος στοιχείων προς αποθήκευση</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Ποτέ</item>
-    <item>Μόνο μέσω WiFi</item>
-    <item>Μέσω WiFi &amp; Δίκτυο</item>
-    <item>Να ερωτηθώ όταν δεν υπάρχει σύνδεση WiFi</item>
-  </string-array>
-  <string-array name="pref_data_sync_image_cache_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -246,4 +232,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
