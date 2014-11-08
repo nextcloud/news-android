@@ -46,17 +46,40 @@ public abstract class API {
 
 	public static API GetRightApiForVersion(String appVersion, Context context) {
 		API api;
-		int versionCode = 0;
+        int majorVersion = 0;
+		int minorVersion = 0;
 		if(appVersion != null)
 		{
-			appVersion = appVersion.replace(".", "");
-			versionCode = Integer.parseInt(appVersion);
+            majorVersion = Integer.parseInt(appVersion.substring(0,1));
+            appVersion = appVersion.substring(2);
+
+            appVersion = appVersion.replace(".", "");
+            minorVersion = Integer.parseInt(appVersion);
 		}
-		if (versionCode >= 1101) {
-			api = new APIv2(context);
-		} else {
-			api = new APIv1(context);
-		}
+
+        switch (majorVersion) {
+            case 1:
+                if (minorVersion >= 101) {
+                    api = new APIv2(context);
+                } else {
+                    api = new APIv1(context);
+                }
+                break;
+            case 2:
+                api = new APIv2(context);
+                break;
+            case 3:
+                api = new APIv2(context);
+                break;
+            case 4:
+                api = new APIv2(context);
+                break;
+            default:
+                //Api is not known. Fallback to APIv2
+                api = new APIv2(context);
+                break;
+        }
+
 		return api;
 	}
 
