@@ -42,7 +42,7 @@ import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
-public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
+public class GetImageThreaded extends Thread
 {
 	private static final String TAG = "GetImageAsyncTask";
 
@@ -50,7 +50,7 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 
 	private URL WEB_URL_TO_FILE;
 	private ImageDownloadFinished imageDownloadFinished;
-	private long AsyncTaskId;
+	private long ThreadId;
 	private String rootPath;
 	private Context cont;
 
@@ -59,10 +59,8 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 	public int dstWidth; // width in pixels
 
     Bitmap bmp;
-	//private ImageView imgView;
-	//private WeakReference<ImageView> imageViewReference;
 
-	public GetImageAsyncTask(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, long AsynkTaskId, String rootPath, Context cont) {
+	public GetImageThreaded(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, long ThreadId, String rootPath, Context cont) {
 		try
 		{
 			this.WEB_URL_TO_FILE = new URL(WEB_URL_TO_FILE);
@@ -75,32 +73,23 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
 
 		this.cont = cont;
 		imageDownloadFinished = imgDownloadFinished;
-		this.AsyncTaskId = AsynkTaskId;
+		this.ThreadId = ThreadId;
 		this.rootPath = rootPath;
 		//this.imageViewReference = new WeakReference<ImageView>(imageView);
 	}
 
-	@Override
-	protected void onPostExecute(Bitmap result) {
-		if(imageDownloadFinished != null)
-			imageDownloadFinished.DownloadFinished(AsyncTaskId, result);
-		//imgView.setImageDrawable(GetFavIconFromCache(WEB_URL_TO_FILE.toString(), context));
-		super.onPostExecute(result);
-	}
 
-	@SuppressWarnings("deprecation")
-	@SuppressLint("NewApi")
-	@Override
-	protected Bitmap doInBackground(Void... params) {
-		try
-		{
-			File cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
-			if(!cacheFile.isFile())
-			{
-				File dir = new File(rootPath);
-				dir.mkdirs();
-				cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
-				//cacheFile.createNewFile();
+    @Override
+    public void run() {
+        try
+        {
+            File cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
+            if(!cacheFile.isFile())
+            {
+                File dir = new File(rootPath);
+                dir.mkdirs();
+                cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
+                //cacheFile.createNewFile();
 
 
 				/* Open a connection to that URL. */
@@ -132,16 +121,20 @@ public class GetImageAsyncTask extends AsyncTask<Void, Void, Bitmap>
                     fos.write(baf.toByteArray());
                     fos.close();
                 }
-			}
-			//return cacheFile.getPath();
-		}
-		catch(Exception ex)
-		{
-			//ex.printStackTrace();
-		}
-	    return bmp;
-	}
+            }
+            //return cacheFile.getPath();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        //return bmp;
 
+        if(imageDownloadFinished != null)
+            imageDownloadFinished.DownloadFinished(ThreadId, bmp);
+
+        super.run();
+    }
 
 
 }

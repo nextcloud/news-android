@@ -36,7 +36,7 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
+import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 
@@ -88,13 +88,12 @@ public class FavIconHandler {
 	}
 
 	public void PreCacheFavIcon(Feed feed) {
-        GetImageAsyncTask giAsync = new GetImageAsyncTask(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId(), FileUtils.getPathFavIcons(context), context);
+        GetImageThreaded giAsync = new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId(), FileUtils.getPathFavIcons(context), context);
         giAsync.scaleImage = true;
         giAsync.dstHeight = 2*32;
         giAsync.dstWidth = 2*32;
 
-
-        AsyncTaskHelper.StartAsyncTask(giAsync, ((Void)null));
+        giAsync.start();
     }
 
     ImageDownloadFinished favIconDownloadFinished = new ImageDownloadFinished() {

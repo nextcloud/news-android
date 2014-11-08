@@ -40,13 +40,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.async_tasks.GetImageAsyncTask;
+import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -65,9 +66,12 @@ public class DownloadImagesService extends IntentService {
 	private int NOTIFICATION_ID = 1;
 	private NotificationManager notificationManager;
 	private NotificationCompat.Builder NotificationDownloadImages;
-	private int count;
+
 	private int maxCount;
 	//private int total_size = 0;
+
+    private String pathToImageCache;
+    List<String> linksToImages = new LinkedList<String>();
 
 	public DownloadImagesService() {
 		super(null);
@@ -81,7 +85,8 @@ public class DownloadImagesService extends IntentService {
 
 	private void initService()
 	{
-		count = 0;
+        pathToImageCache = FileUtils.getPathImageCache(this);
+
 		maxCount = 0;
 		if(random == null)
 			random = new Random();
@@ -129,15 +134,22 @@ public class DownloadImagesService extends IntentService {
             if (maxCount > 0)
                 notificationManager.notify(NOTIFICATION_ID, notify);
 
-            try {
-                for (String link : links)
-                    new GetImageAsyncTask(link, imgDownloadFinished, 999, FileUtils.getPathImageCache(this), this).execute();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                Toast.makeText(this, "Error while downloading images.", Toast.LENGTH_LONG).show();
-            }
+            linksToImages.addAll(links);
+
+            StartNextDownloadInQueue();
         }
 	}
+
+    private synchronized void StartNextDownloadInQueue() {
+        try {
+            if(linksToImages.size() > 0)
+                new GetImageThreaded(linksToImages.get(0), imgDownloadFinished, 999, pathToImageCache, this).start();
+            linksToImages.remove(0);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Toast.makeText(this, "Error while downloading images.", Toast.LENGTH_LONG).show();
+        }
+    }
 
     private Notification BuildNotification() {
         Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
@@ -217,21 +229,21 @@ public class DownloadImagesService extends IntentService {
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
-		public void DownloadFinished(long AsynkTaskId, Bitmap bitmap) {
+		public void DownloadFinished(long ThreadId, Bitmap bitmap) {
 
-			count++;
-            // Sets the progress indicator to a max value, the
-            // current completion percentage, and "determinate"
-            // state
-			NotificationDownloadImages.setProgress(maxCount, count, false);
-			NotificationDownloadImages.setContentText("Downloading Images for offline usage - " + count + "/" + maxCount);
-            // Displays the progress bar for the first time.
-            notificationManager.notify(NOTIFICATION_ID, NotificationDownloadImages.build());
+            int count = maxCount - linksToImages.size();
+
 
             if(maxCount == count) {
             	notificationManager.cancel(NOTIFICATION_ID);
                 if(DownloadImagesService.this != null)
                     RemoveOldImages(DownloadImagesService.this);
+            } else {
+                NotificationDownloadImages.setProgress(maxCount, count+1, false);
+                NotificationDownloadImages.setContentText("Downloading Images for offline usage - " + (count+1) + "/" + maxCount);
+                notificationManager.notify(NOTIFICATION_ID, NotificationDownloadImages.build());
+
+                StartNextDownloadInQueue();
             }
 		}
 	};
