@@ -13,6 +13,7 @@
   <string name="tv_clickHereToOpenItem">點這裡來開啟項目</string>
   <string name="no_wifi_available">沒有連到無線網路</string>
   <string name="do_you_want_to_download_without_wifi">您要在不使用無線網路連線的情形下來下載圖片</string>
+  <string name="max_items_count_reached">您已經達到 XX 項目中最大的容量</string>
   <string name="widget_header">ownCloud 新聞</string>
   <string name="message_bar_new_articles_available">有新的項目</string>
   <string name="message_bar_reload">重新載入</string>
@@ -33,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">星號</string>
   <string name="action_read">讀取</string>
+  <string name="action_playPodacst">撥放 Podcast</string>
   <string name="action_openInBrowser">開啟瀏覽器</string>
   <string name="action_sendSourceCode">寄送項目到開發者</string>
   <string name="action_Share">分享</string>
@@ -100,8 +102,12 @@
   <string name="mtm_decision_abort">中斷</string>
   <string name="mtm_notification">憑證驗證</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">啟用 Podcast 支援</string>
+  <string name="no_podcast_selected">沒有選擇 podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">顯示</string>
+  <string name="pref_title_app_theme">App 主題</string>
   <string name="pref_title_feed_list_layout">來源列表版型</string>
   <string name="pref_display_font_layout">字型 (需要重新啟動)</string>
   <string-array name="pref_display_apptheme">
@@ -162,6 +168,18 @@
   <string name="pref_title_clearCache">清除快取</string>
   <string name="pref_title_CacheImagesOffline">離線圖片快取</string>
   <string name="pref_title_Max_Cache_Size">最大快取容量</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>從不</item>
+    <item>只透過WiFi</item>
+    <item>透過WiFi &amp; 手機</item>
+    <item>當沒連接到 WiFi 時詢問</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
