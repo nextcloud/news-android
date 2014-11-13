@@ -23,7 +23,7 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Rafraîchir</string>
   <string name="menu_About_Changelog">À propos / Journal des modifications</string>
-  <string name="menu_markAllAsRead">Marquez tous comme lu</string>
+  <string name="menu_markAllAsRead">Marquer tous comme lus</string>
   <string name="menu_StartImageCaching">Télécharger les images</string>
   <string name="menu_downloadMoreItems">+ d\'articles</string>
   <!--Import Accounts-->
@@ -55,7 +55,7 @@
   <string name="login_progress_signing_in">Connexion en cours…</string>
   <string name="error_incorrect_password">Le mot de passe est incorrect</string>
   <string name="error_field_required">Ce champs est requis</string>
-  <string name="error_invalid_url">Cet URL est incorrect</string>
+  <string name="error_invalid_url">Cette URL est incorrecte</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">X anciens articles téléchargés</string>
   <string name="toast_no_more_downloads_available">Aucun article supplémentaire disponible</string>
@@ -103,7 +103,7 @@
   <string name="mtm_notification">Vérification du certificat</string>
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Activer le support des Podcasts</string>
+  <string name="pref_enable_podcasts">Activer la prise en charge des Podcasts</string>
   <string name="no_podcast_selected">Aucun Podcast sélectionné</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Affichage</string>
