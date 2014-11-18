@@ -45,7 +45,10 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -114,7 +117,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.chooseSupportTheme(this);
+		ThemeChooser.chooseTheme(this);
 
 		super.onCreate(savedInstanceState);
 
@@ -123,6 +126,19 @@ public class SettingsActivity extends PreferenceActivity {
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
         */
+
+        // get the root container of the preferences list
+        LinearLayout root = (LinearLayout)findViewById(android.R.id.list).getParent().getParent().getParent();
+        Toolbar toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
+        toolbar.setTitle(R.string.title_activity_settings);
+        root.addView(toolbar, 0); // insert at top
+        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 	}
 
 	@Override
