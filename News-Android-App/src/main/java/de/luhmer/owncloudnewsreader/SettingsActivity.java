@@ -44,6 +44,7 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import java.io.File;
@@ -111,16 +112,17 @@ public class SettingsActivity extends PreferenceActivity {
     EditTextPreference clearCachePref;
     static Activity _mActivity;
 
-
-	@Override
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.chooseTheme(this);
+		ThemeChooser.chooseSupportTheme(this);
 
 		super.onCreate(savedInstanceState);
 
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        */
 	}
 
 	@Override
@@ -165,10 +167,12 @@ public class SettingsActivity extends PreferenceActivity {
         getPreferenceScreen().addPreference(header);
         addPreferencesFromResource(R.xml.pref_notification);
 
+        /*
         header = new PreferenceCategory(this);
-        header.setTitle(R.string.pref_header_notifications);
+        header.setTitle(R.string.pref_header_podcast);
         getPreferenceScreen().addPreference(header);
         addPreferencesFromResource(R.xml.pref_podcast);
+        */
 
 		bindGeneralPreferences(null, this);
 		bindDisplayPreferences(null, this);
