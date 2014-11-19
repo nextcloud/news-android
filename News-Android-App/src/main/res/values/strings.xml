@@ -200,7 +200,7 @@
     <string-array name="pref_data_sync_image_cache">
         <item>Never</item>
         <item>Over WiFi only</item>
-        <item>Over WiFi &amp; Mobil</item>
+        <item>Over WiFi &amp; Mobile</item>
         <item>Ask when not connected to WiFi</item>
     </string-array>
     <string-array name="pref_data_sync_image_cache_values">
