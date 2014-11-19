@@ -10,7 +10,7 @@
     <string name="title_newsreader_detail">NewsReader Detail</string>
     <string name="empty_view_header">Information</string>
     <string name="empty_view_content">No items here</string>
-    <string name="toast_GettingMoreItems">Started downloading more items.. Please wait.</string>
+    <string name="toast_GettingMoreItems">Started downloading more items... Please wait.</string>
     <string name="tv_clickHereToOpenItem">Click here to open item</string>
     <string name="no_wifi_available">No WiFi connected</string>
     <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a WiFi connection</string>
