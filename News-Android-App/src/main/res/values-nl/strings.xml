@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">NieuwsLezer Details</string>
   <string name="empty_view_header">Informatie</string>
   <string name="empty_view_content">Geen items hier</string>
-  <string name="toast_GettingMoreItems">Bezig meer berichten te downloaden... Even geduld a.u.b.</string>
   <string name="tv_clickHereToOpenItem">Klik hier om te openen</string>
   <string name="no_wifi_available">Geen wifi verbinding</string>
   <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">Leegmaken cache</string>
   <string name="pref_title_CacheImagesOffline">Afbeeldingen offline cachen</string>
   <string name="pref_title_Max_Cache_Size">Max cache grootte</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Nooit</item>
-    <item>Alleen over wifi</item>
-    <item>Over wifi &amp; mobiel</item>
-    <item>Vragen wanneer niet verbonden met wifi</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

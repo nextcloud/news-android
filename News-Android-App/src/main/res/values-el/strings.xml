@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Λεπτομέρειες Ανάγνωσης Ειδήσεων</string>
   <string name="empty_view_header">Πληροφορίες</string>
   <string name="empty_view_content">Κανένα στοιχείο</string>
-  <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε.</string>
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
   <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
   <string name="pref_title_CacheImagesOffline">Αποθήκευση εικόνων για χρήση χωρίς σύνδεση</string>
   <string name="pref_title_Max_Cache_Size">Μέγιστο μέγεθος στοιχείων προς αποθήκευση</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Ποτέ</item>
-    <item>Μόνο μέσω WiFi</item>
-    <item>Μέσω WiFi &amp; Δίκτυο</item>
-    <item>Να ερωτηθώ όταν δεν υπάρχει σύνδεση WiFi</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

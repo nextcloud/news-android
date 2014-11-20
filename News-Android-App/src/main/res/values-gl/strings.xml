@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Detalle do lector de novas</string>
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Non hai elementos aquí</string>
-  <string name="toast_GettingMoreItems">Iniciouse a descarga de máis elementos... agarde.</string>
   <string name="tv_clickHereToOpenItem">Prema aquí para abrir o elemento</string>
   <string name="no_wifi_available">Non está conectado á WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi?</string>

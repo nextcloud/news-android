@@ -8,7 +8,6 @@
   <string name="title_newsreader_detail">NewsReader का विवरण </string>
   <string name="empty_view_header">जानकारी </string>
   <string name="empty_view_content">यहाँ कोई मदें नहीं हैं </string>
-  <string name="toast_GettingMoreItems">और मदों  को डाउनलोड करना शुरू कर दिया है.. कृपया प्रतीक्षा करें। </string>
   <string name="tv_clickHereToOpenItem">मद को खोलने के लिए यहाँ क्लिक करें </string>
   <string name="no_wifi_available">कोई WiFi कनेक्ट नहीं है </string>
   <string name="do_you_want_to_download_without_wifi">क्या आप बिना किसी WiFi कनेक्शन के तस्वीरों को डाउनलोड करना चाहते हैं </string>

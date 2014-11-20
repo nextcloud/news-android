@@ -8,7 +8,6 @@
   <string name="title_newsreader_detail">뉴스 리더 자세히</string>
   <string name="empty_view_header">정보</string>
   <string name="empty_view_content">항목 없음</string>
-  <string name="toast_GettingMoreItems">더 많은 항목 다운로드 시작 중... 잠시 기다리십시오.</string>
   <string name="tv_clickHereToOpenItem">항목을 열려면 누르십시오</string>
   <string name="no_wifi_available">WiFi에 연결되지 않았음</string>
   <string name="do_you_want_to_download_without_wifi">WiFi에 연결되지 않은 상태에서 그림을 다운로드하시겠습니까</string>

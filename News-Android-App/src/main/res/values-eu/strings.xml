@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">BerriIrakurle xehetasuna</string>
   <string name="empty_view_header">Informazioa</string>
   <string name="empty_view_content">Ez dago elementurik hemen</string>
-  <string name="toast_GettingMoreItems">Elementu gehiago deskargatzen... Itxoin mesedez</string>
   <string name="tv_clickHereToOpenItem">Klikatu hemen elementua irekitzeko</string>
   <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
   <string name="do_you_want_to_download_without_wifi">Irudiak WiFi konexioa gabe deskargatu nahi dituzu</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">Garbitu cachea</string>
   <string name="pref_title_CacheImagesOffline">Irudiak sare-kanporako cacheatu</string>
   <string name="pref_title_Max_Cache_Size">Cache tamaina maximoa</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Inoiz</item>
-    <item>Bakarrik WiFi bidez</item>
-    <item>WiFi &amp; Sare mugikorra</item>
-    <item>Galdetu WiFira konektatuta ez egotekotan</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

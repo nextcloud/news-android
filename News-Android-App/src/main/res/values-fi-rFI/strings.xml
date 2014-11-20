@@ -5,7 +5,6 @@
   <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
   <string name="title_newsreader_list">Uutislukija</string>
   <string name="empty_view_content">Ei kohteita</string>
-  <string name="toast_GettingMoreItems">Lisäkohteiden lataus aloitettu, odota hetki...</string>
   <string name="tv_clickHereToOpenItem">Avaa kohde painamalla tästä</string>
   <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
   <string name="message_bar_new_articles_available">Uusia kohteita saatavilla</string>

@@ -6,7 +6,6 @@
   <string name="title_activity_news_detail">XəbərlərDetallıFəaliyyəti</string>
   <string name="title_activity_subscription">QeydiyyatFəaliyyəti</string>
   <string name="empty_view_content">Burda heş bir məlumat yoxdur</string>
-  <string name="toast_GettingMoreItems">Ətraflı detalların yüklənilməsi başlanıldı. Xahiş olunur gözləyəsiniz.</string>
   <string name="tv_clickHereToOpenItem">Burda sıxın ki, bölməni açasınız</string>
   <string name="no_wifi_available">Qoşulmuş WiFi yoxdur</string>
   <string name="do_you_want_to_download_without_wifi">WiFi qoşulması olmadan, şəkilləri yükləmək istəyirsiniz?</string>

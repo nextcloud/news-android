@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Haber Okuyucu Ayrıntıları</string>
   <string name="empty_view_header">Bilgi</string>
   <string name="empty_view_content">Burada öge yok</string>
-  <string name="toast_GettingMoreItems">Daha fazla öge indirme başlatıldı... Lütfen bekleyin.</string>
   <string name="tv_clickHereToOpenItem">Ögeyi açmak için buraya tıklayın</string>
   <string name="no_wifi_available">Kablosuz bağlı değil</string>
   <string name="do_you_want_to_download_without_wifi">Resimleri bir kablosuz bağlantı olmadan indirmek ister misiniz</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">Önbelleği temizle</string>
   <string name="pref_title_CacheImagesOffline">Resimleri çevrimdışı önbelleğe al</string>
   <string name="pref_title_Max_Cache_Size">Azami Önbellek Boyutu</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Asla</item>
-    <item>Sadece kablosuz</item>
-    <item>Kablosuz &amp; Mobil</item>
-    <item>Kablosuza bağlı değilken sor</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

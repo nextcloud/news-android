@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">ニュースリーダーの詳細</string>
   <string name="empty_view_header">情報</string>
   <string name="empty_view_content">ここにアイテムなし</string>
-  <string name="toast_GettingMoreItems">さらにアイテムをダウンロード開始... お待ちください。</string>
   <string name="tv_clickHereToOpenItem">項目を開くにはここをクリック</string>
   <string name="no_wifi_available">WiFi接続がありません</string>
   <string name="do_you_want_to_download_without_wifi">WiFi接続が無い場合に画像をダウンロードしますか？</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">キャッシュをクリア</string>
   <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
   <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>同期しない</item>
-    <item>WiFiでのみ</item>
-    <item>WiFiとモバイル回線</item>
-    <item>WiFiに未接続時に聞く</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

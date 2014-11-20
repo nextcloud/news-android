@@ -5,7 +5,6 @@
   <string name="title_newsreader_detail">Detaloj de Abonflulegilo</string>
   <string name="empty_view_header">Informo</string>
   <string name="empty_view_content">Neniu ero estas ĉi tie</string>
-  <string name="toast_GettingMoreItems">Ekelŝutis pli da eroj. Bonvolu atendi.</string>
   <string name="tv_clickHereToOpenItem">Klaku ĉi tie por malfermi la eron</string>
   <string name="message_bar_new_articles_available">Novaj eroj disponeblas</string>
   <string name="message_bar_reload">Reŝargi</string>

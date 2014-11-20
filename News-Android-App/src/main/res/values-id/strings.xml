@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Rincian PembacaBerita</string>
   <string name="empty_view_header">Informasi</string>
   <string name="empty_view_content">Tak ada item disini</string>
-  <string name="toast_GettingMoreItems">Memulai mengunduh beberapa item.. Silakan tunggu.</string>
   <string name="tv_clickHereToOpenItem">Klik disini untuk membuka item</string>
   <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
   <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">Bersihkan cache</string>
   <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
   <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Jangan pernah</item>
-    <item>Hanya lewat WiFi</item>
-    <item>Hanya lewat WiFi &amp; Mobil</item>
-    <item>Tanyakan saat tidak terhubung ke WiFi</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

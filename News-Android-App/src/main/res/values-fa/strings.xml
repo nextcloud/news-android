@@ -7,7 +7,6 @@
   <string name="title_newsreader_detail">جزئیات خبر خوان</string>
   <string name="empty_view_header">اطلاعات</string>
   <string name="empty_view_content">هیچ آیتمی اینجا نیست.</string>
-  <string name="toast_GettingMoreItems">دانلود کردن آیتم های بیشترشروع شده است.. لطفا صبر کنید.</string>
   <string name="tv_clickHereToOpenItem">برای باز کردن آیتم اینجا را کلیک کنید.</string>
   <string name="no_wifi_available">هیچ WiFi متصل نیست.</string>
   <string name="do_you_want_to_download_without_wifi">آیا میخواهید تصاویر را بدون هیچ اتصال WiFi  دریافت کنید؟</string>

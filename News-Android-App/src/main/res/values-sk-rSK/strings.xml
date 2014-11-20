@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Detail čítačky noviniek</string>
   <string name="empty_view_header">Informácie</string>
   <string name="empty_view_content">Žiadne položky</string>
-  <string name="toast_GettingMoreItems">Začalo sa sťahovanie ďalších položiek .. Počkajte prosím.</string>
   <string name="tv_clickHereToOpenItem">Kliknite tu pre otvorenie položky</string>
   <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez WiFi pripojenia</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">Vyčistiť medzipamäť</string>
   <string name="pref_title_CacheImagesOffline">Ukladať obrázky do offline mezipameti</string>
   <string name="pref_title_Max_Cache_Size">Maximálna medzipamäť</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Nikdy</item>
-    <item>Len cez WiFi</item>
-    <item>Cez WiFi &amp; Mobil</item>
-    <item>Spýtať, keď nie je pripojený cez WiFi</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

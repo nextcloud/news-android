@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Szczegóły Aktualności</string>
   <string name="empty_view_header">informacje</string>
   <string name="empty_view_content">Nic tu nie ma</string>
-  <string name="toast_GettingMoreItems">Rozpoczęto pobieranie elementów. Proszę czekać.</string>
   <string name="tv_clickHereToOpenItem">Kliknij tutaj aby otworzyć element</string>
   <string name="no_wifi_available">Brak połączenia WIFI</string>
   <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">Czyść pamięć podręczną</string>
   <string name="pref_title_CacheImagesOffline">Zapisuj obrazy offline</string>
   <string name="pref_title_Max_Cache_Size">Maksymalny rozmiar pamięci podręcznej</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Nigdy</item>
-    <item>Tylko przez WiFi</item>
-    <item>Przez WiFi &amp; Mobil</item>
-    <item>Zapytaj, gdy niepodłączony do WiFi</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

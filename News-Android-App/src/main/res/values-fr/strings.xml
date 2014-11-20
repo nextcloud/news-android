@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Détail du lecteur d\'actualités</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Aucun article</string>
-  <string name="toast_GettingMoreItems">Téléchargement d\'articles supplémentaires en cours... Veuillez patienter.</string>
   <string name="tv_clickHereToOpenItem">Lire</string>
   <string name="no_wifi_available">Aucune connexion WIF</string>
   <string name="do_you_want_to_download_without_wifi">Télécharger les images sans connexion WiFi ?</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">Vider le cache</string>
   <string name="pref_title_CacheImagesOffline">Mise en cache hors-ligne des images</string>
   <string name="pref_title_Max_Cache_Size">Taille maximale du cache</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Jamais</item>
-    <item>Via WiFi uniquement</item>
-    <item>Via WiFi &amp; Réseau mobile</item>
-    <item>Demander si non connecté via WiFi</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">সংবাদপাঠক সম্পর্কিত বিস্তারিত</string>
   <string name="empty_view_header">তথ্য</string>
   <string name="empty_view_content">এখানে কিছু নেই</string>
-  <string name="toast_GettingMoreItems">অন্য আইটেম ডাউনলোড চলছে, অপেক্ষা করুন।</string>
   <string name="tv_clickHereToOpenItem">আইটেম খুলতে একানে ক্লিক করুন</string>
   <string name="no_wifi_available">WiFi সংযুক্ত নয়</string>
   <string name="do_you_want_to_download_without_wifi">আপনি কি WiFi সংযোগ ছাড়াই ইমেজ ডা্‌উনলোড করতে চান </string>
