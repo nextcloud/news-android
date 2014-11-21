@@ -9,10 +9,11 @@
   <string name="title_newsreader_detail">Détail du lecteur d\'actualités</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Aucun article</string>
+  <string name="toast_GettingMoreItems">Téléchargement d\'articles supplémentaire en cours... Veuillez patienter.</string>
   <string name="tv_clickHereToOpenItem">Lire</string>
   <string name="no_wifi_available">Aucune connexion WIF</string>
   <string name="do_you_want_to_download_without_wifi">Télécharger les images sans connexion WiFi ?</string>
-  <string name="max_items_count_reached">Vous avez atteint la limite maximale de XX items</string>
+  <string name="max_items_count_reached">Vous avez atteint la limite maximale de XX articles</string>
   <string name="widget_header">Actualités ownCloud</string>
   <string name="message_bar_new_articles_available">Nouveaux articles disponibles</string>
   <string name="message_bar_reload">Recharger</string>
