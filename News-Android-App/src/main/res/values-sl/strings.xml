@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">Podrobnosti bralnika novic</string>
   <string name="empty_view_header">Podrobnosti</string>
   <string name="empty_view_content">Ni vsebine</string>
+  <string name="toast_GettingMoreItems">Prenos vsebine je začet ... Počakajte.</string>
   <string name="tv_clickHereToOpenItem">Kliknite tu za odpiranje predmeta</string>
   <string name="no_wifi_available">Ni vzpostavljene povezave WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike brez vzpostavljene povezave WiFi?</string>
@@ -167,6 +168,12 @@
   <string name="pref_title_clearCache">Počisti predpomnilnik</string>
   <string name="pref_title_CacheImagesOffline">Shrani slike v predpomnilnik za delo brez povezave</string>
   <string name="pref_title_Max_Cache_Size">Največja velikost predpomnilnika</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Nikoli</item>
+    <item>Le preko WiFi</item>
+    <item>Preko WiFi ali Mobilne povezave</item>
+    <item>Vprašaj, kadar ni povezave preko WiFi</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>
