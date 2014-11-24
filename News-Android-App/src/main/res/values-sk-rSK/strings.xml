@@ -167,6 +167,12 @@
   <string name="pref_title_clearCache">Vyčistiť medzipamäť</string>
   <string name="pref_title_CacheImagesOffline">Ukladať obrázky do offline mezipameti</string>
   <string name="pref_title_Max_Cache_Size">Maximálna medzipamäť</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Nikdy</item>
+    <item>Iba cez WiFi</item>
+    <item>Iba cez WiFi &amp; Mobil</item>
+    <item>Spýtať sa keď nieste pripojený k WiFi</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>
