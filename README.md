@@ -66,8 +66,15 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.7.8 (in development)
+0.8.1 (in development)
 ---------------------
+
+
+0.8.0 (Google Play)
+---------------------
+- Material Design
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/236">#236 Read items in Android News Client are not synced to server</a>
+- Bug fixes/Improvements
 
 
 0.7.7 (Google Play)
