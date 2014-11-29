@@ -9,7 +9,7 @@
   <string name="title_newsreader_detail">NewsReader Oplysninger</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Her er ingen artikler</string>
-  <string name="toast_GettingMoreItems">Download af flere artikler påbegyndt... Vent venligst. </string>
+  <string name="toast_GettingMoreItems">Startede med at downloade flere artikler... Vent venligst.</string>
   <string name="tv_clickHereToOpenItem">Klik her for at åbne artikel</string>
   <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
   <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden brug af WiFi-forbindelse</string>
@@ -171,7 +171,7 @@
   <string-array name="pref_data_sync_image_cache">
     <item>Aldrig</item>
     <item>Kun via wifi</item>
-    <item>Via wifi &amp; mobildata</item>
+    <item>Via wifi &amp; mobil</item>
     <item>Spørg når der ikke er wifi-forbindelse</item>
   </string-array>
   <string-array name="pref_data_sync_image_cache_values">

@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Nyhetsläsare Detalj</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Inga objekt här</string>
-  <string name="toast_GettingMoreItems">Började ladda ner fler objekt.. Var god vänta.</string>
   <string name="tv_clickHereToOpenItem">Klicka här för att öppna objekt</string>
   <string name="no_wifi_available">Ingen WIFI ansluten</string>
   <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>

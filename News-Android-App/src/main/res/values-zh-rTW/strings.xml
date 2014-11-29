@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">新聞閱讀器內容</string>
   <string name="empty_view_header">資訊</string>
   <string name="empty_view_content">無任何項目。</string>
-  <string name="toast_GettingMoreItems">開始下載更多項目.. 請稍後。</string>
   <string name="tv_clickHereToOpenItem">點這裡來開啟項目</string>
   <string name="no_wifi_available">沒有連到無線網路</string>
   <string name="do_you_want_to_download_without_wifi">您要在不使用無線網路連線的情形下來下載圖片</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">清除快取</string>
   <string name="pref_title_CacheImagesOffline">離線圖片快取</string>
   <string name="pref_title_Max_Cache_Size">最大快取容量</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>從不</item>
-    <item>只透過WiFi</item>
-    <item>透過WiFi &amp; 手機</item>
-    <item>當沒連接到 WiFi 時詢問</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

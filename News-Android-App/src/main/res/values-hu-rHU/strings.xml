@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">HírOlvasó Részletek</string>
   <string name="empty_view_header">Információ</string>
   <string name="empty_view_content">Itt nincs semmi</string>
-  <string name="toast_GettingMoreItems">Elkezdtél több elemet letölteni.. Kérlek várj.</string>
   <string name="tv_clickHereToOpenItem">Klikkel ide az elem megnyitásához</string>
   <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Le szeretnéd tölteni a képeket WiFi kapcsolat nélkül?</string>

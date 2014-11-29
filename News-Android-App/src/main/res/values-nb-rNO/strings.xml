@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Nyhetsleser detaljer</string>
   <string name="empty_view_header">Informasjon</string>
   <string name="empty_view_content">Ingenting her</string>
-  <string name="toast_GettingMoreItems">Begynte å laste ned flere elementer... Vennligst vent.</string>
   <string name="tv_clickHereToOpenItem">Klikk her for å åpne element</string>
   <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
   <string name="do_you_want_to_download_without_wifi">Vil du laste ned bildene uten WiFi tilkobling?</string>
@@ -168,12 +167,6 @@
   <string name="pref_title_clearCache">Slett hurtiglager</string>
   <string name="pref_title_CacheImagesOffline">Bildehurtiglager er offline</string>
   <string name="pref_title_Max_Cache_Size">Maks hurtiglagerstørrelse</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Aldri</item>
-    <item>Bare over WiFi</item>
-    <item>Over WiFi &amp; Mobil</item>
-    <item>Spør når ikke tilknyttet WiFi</item>
-  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

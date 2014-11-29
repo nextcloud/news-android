@@ -9,7 +9,7 @@
   <string name="title_newsreader_detail">Detail čtečky zpráv</string>
   <string name="empty_view_header">Informace</string>
   <string name="empty_view_content">Žádné položky</string>
-  <string name="toast_GettingMoreItems">Bylo zahájeno stahování dalších položek... Prosím čekejte.</string>
+  <string name="toast_GettingMoreItems">Spuštěno stahování více položek. Chvíli strpení.</string>
   <string name="tv_clickHereToOpenItem">Klikněte zde pro otevření položky</string>
   <string name="no_wifi_available">Wi-Fi není připojeno</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
@@ -171,8 +171,8 @@
   <string-array name="pref_data_sync_image_cache">
     <item>Nikdy</item>
     <item>Pouze přes WiFi</item>
-    <item>Přes WiFi &amp; Mobil</item>
-    <item>Dotázat se, pokud nepřipojeno přes WiFi</item>
+    <item>Přes WiFi &amp; Mobilní síť</item>
+    <item>Dotázat se pokud bez WiFi</item>
   </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>

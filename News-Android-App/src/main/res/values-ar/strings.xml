@@ -5,7 +5,6 @@
   <string name="title_newsreader_list">قارئ الأخبار</string>
   <string name="empty_view_header">المعلومات</string>
   <string name="empty_view_content">لا يوجد عناصر هنا</string>
-  <string name="toast_GettingMoreItems">بدء تحميل المزيد من العناصر.. يرجى الانتظار.</string>
   <string name="tv_clickHereToOpenItem">إضغط هنا لفتح العنصر</string>
   <string name="no_wifi_available">لم يتم الاتصال بشبكة الواي فاي</string>
   <string name="do_you_want_to_download_without_wifi">هل ترغب بتحميل الصورة على الرغم من عدم وجود اتصال واي فاي؟</string>

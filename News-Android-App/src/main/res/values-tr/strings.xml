@@ -170,9 +170,9 @@
   <string name="pref_title_Max_Cache_Size">Azami Önbellek Boyutu</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Asla</item>
-    <item>Sadece kablosuz</item>
-    <item>Kablosuz &amp; Mobil</item>
-    <item>Kablosuza bağlı değilken sor</item>
+    <item>Sadece WiFi ile</item>
+    <item>WiFi ve Mobil</item>
+    <item>WiFi ile bağlı değilken sor</item>
   </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>

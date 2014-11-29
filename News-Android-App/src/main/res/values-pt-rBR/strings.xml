@@ -9,7 +9,7 @@
   <string name="title_newsreader_detail">Detalhes do Leitor de Notícias</string>
   <string name="empty_view_header">Informações</string>
   <string name="empty_view_content">Este local está vazio</string>
-  <string name="toast_GettingMoreItems">Download de mais itens já iniciado.. Por favor, aguarde.</string>
+  <string name="toast_GettingMoreItems">Iniciado o download de mais itens... Por favor, aguarde.</string>
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir um item</string>
   <string name="no_wifi_available">Nenhum WiFi conectado</string>
   <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
@@ -170,9 +170,9 @@
   <string name="pref_title_Max_Cache_Size">Tamanho Máximo do Cache</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Nunca</item>
-    <item>Apenas Sobre WiFi</item>
+    <item>Somente WiFi</item>
     <item>Sobre WiFi &amp; Móvel</item>
-    <item>Pergunte quando não estiver conectado ao Wi-Fi</item>
+    <item>Perguntar quando não estiver conectado ao Wi-Fi</item>
   </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>

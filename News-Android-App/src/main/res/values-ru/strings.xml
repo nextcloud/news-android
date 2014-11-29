@@ -9,7 +9,7 @@
   <string name="title_newsreader_detail">Чтение новостей подробнее</string>
   <string name="empty_view_header">Информация</string>
   <string name="empty_view_content">Ничего нет</string>
-  <string name="toast_GettingMoreItems">Начата загрузка. .. Пожалуйста, подождите.</string>
+  <string name="toast_GettingMoreItems">Загружаем новые записи... Пожалуйста, подождите.</string>
   <string name="tv_clickHereToOpenItem">Нажмите здесь, чтобы открыть элемент</string>
   <string name="no_wifi_available">Нет соеденения с Wi-Fi</string>
   <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединение</string>
@@ -170,9 +170,9 @@
   <string name="pref_title_Max_Cache_Size">Максимальный размер кэша</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Никогда</item>
-    <item>Только по WiFi</item>
-    <item>По WiFi и модему</item>
-    <item>Спрашивать, если WiFi не подключен</item>
+    <item>Только через WiFi </item>
+    <item>Через WiFi &amp; и мобильный интернет</item>
+    <item>Спросить, если не подключён WiFi</item>
   </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>

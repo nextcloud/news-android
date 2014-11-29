@@ -10,7 +10,7 @@
     <string name="title_newsreader_detail">NewsReader Detail</string>
     <string name="empty_view_header">Information</string>
     <string name="empty_view_content">No items here</string>
-    <string name="toast_GettingMoreItems">Started downloading more items.. Please wait.</string>
+    <string name="toast_GettingMoreItems">Started downloading more items... Please wait.</string>
     <string name="tv_clickHereToOpenItem">Click here to open item</string>
     <string name="no_wifi_available">No WiFi connected</string>
     <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a WiFi connection</string>
@@ -200,7 +200,7 @@
     <string-array name="pref_data_sync_image_cache">
         <item>Never</item>
         <item>Over WiFi only</item>
-        <item>Over WiFi &amp; Mobil</item>
+        <item>Over WiFi &amp; Mobile</item>
         <item>Ask when not connected to WiFi</item>
     </string-array>
     <string-array name="pref_data_sync_image_cache_values">

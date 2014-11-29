@@ -27,6 +27,7 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Fout</string>
   <string name="login_dialog_title_security_warning">Sekuriteits waarskuwing</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->

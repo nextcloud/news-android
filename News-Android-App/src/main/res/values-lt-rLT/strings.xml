@@ -9,7 +9,6 @@
   <string name="title_newsreader_detail">Naujienų skaityklės informacija</string>
   <string name="empty_view_header">Informacija</string>
   <string name="empty_view_content">Nėra elementų</string>
-  <string name="toast_GettingMoreItems">Atsiunčiama daugiau elementų.. Prašome palaukti.</string>
   <string name="tv_clickHereToOpenItem">Spauskite čia, kad atverti elementą</string>
   <string name="no_wifi_available">Nėra WiFi ryšio</string>
   <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslėlius be WiFi ryšio?</string>
