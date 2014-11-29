@@ -25,6 +25,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
@@ -36,6 +37,16 @@ public class ThemeChooser {
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static void chooseTheme(Activity act)
 	{
+
+        if(isDarkTheme(act))
+        {
+            act.setTheme(R.style.AppTheme);
+        } else {
+            act.setTheme(R.style.AppThemeLight);
+        }
+
+
+        /*
 		if(isDarkTheme(act))
 		{
 			//if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
@@ -50,7 +61,9 @@ public class ThemeChooser {
 				//act.setTheme(R.style.Sherlock___Theme_DarkActionBar);
 			act.setTheme(R.style.Theme_AppCompat_Light_DarkActionBar);
 		}
+        */
 	}
+
 
     public static boolean ThemeRequiresRestartOfUI(Context context) {
         if(mIsDarkTheme != null && mIsDarkTheme != isDarkTheme(context, true)) {

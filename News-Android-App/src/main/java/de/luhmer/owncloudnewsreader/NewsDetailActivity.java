@@ -36,12 +36,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -64,6 +67,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
+    @InjectView(R.id.toolbar) Toolbar toolbar;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -87,13 +91,16 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
 		ThemeChooser.chooseTheme(this);
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        ButterKnife.inject(this);
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
 		pDelayHandler = new PostDelayHandler(this);
 
@@ -104,6 +111,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		//long subsciption_id = -1;
 		//long folder_id = -1;
 		int item_id = 0;
+
 
 		//if(intent.hasExtra(NewsReaderDetailActivity.SUBSCRIPTION_ID))
 		//	subsciption_id = intent.getExtras().getLong(NewsReaderDetailActivity.SUBSCRIPTION_ID);

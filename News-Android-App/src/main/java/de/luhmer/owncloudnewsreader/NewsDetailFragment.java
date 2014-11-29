@@ -447,7 +447,7 @@ public class NewsDetailFragment extends Fragment {
 
 	        	FontHelper fHelper = new FontHelper(context);
 
-	        	web_template = web_template.replace("ROBOTO_FONT_STYLE", fHelper.getFontName());
+	        	web_template = web_template.replace("ROBOTO_FONT_STYLE", "ROBOTO_REGULAR");
 
 		        /*
 		        DisplayMetrics displaymetrics = new DisplayMetrics();

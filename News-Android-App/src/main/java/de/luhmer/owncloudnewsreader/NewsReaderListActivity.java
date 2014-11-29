@@ -37,6 +37,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +46,8 @@ import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
@@ -73,10 +76,10 @@ import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
 public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 		 NewsReaderListFragment.Callbacks {
 
-	SlidingPaneLayout mSlidingLayout;
+	@InjectView(R.id.sliding_pane) SlidingPaneLayout mSlidingLayout;
 
 
-	//static final String TAG = "NewsReaderListActivity";
+    //static final String TAG = "NewsReaderListActivity";
 	//ActionBarDrawerToggle drawerToggle;
 	//DrawerLayout drawerLayout;
 
@@ -84,6 +87,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 	public static final String FEED_ID = "FEED_ID";
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
+    @InjectView(R.id.toolbar) Toolbar toolbar;
 
     //boolean isSlideUpPanelExpanded = false;
 
@@ -93,6 +97,12 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 		ThemeChooser.chooseTheme(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
+
+        ButterKnife.inject(this);
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
         //DaoSession session = DatabaseHelperOrm.getDaoSession(this);
 
@@ -128,10 +138,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         fragmentManager.beginTransaction()
         				.replace(R.id.left_drawer, new NewsReaderListFragment())
                    		.commit();
-
-
-
-        mSlidingLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane);
 
         mSlidingLayout.setParallaxDistance(280);
         mSlidingLayout.setSliderFadeColor(getResources().getColor(android.R.color.transparent));

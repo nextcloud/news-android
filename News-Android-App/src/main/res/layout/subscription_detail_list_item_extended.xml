@@ -31,7 +31,7 @@
 	        android:layout_marginTop="@dimen/listview_row_margin_top"
 	        android:orientation="horizontal" >
 
-	        <com.devspark.robototextview.widget.RobotoTextView
+	        <TextView
 	            android:id="@+id/tv_subscription"
 	            android:layout_width="0dp"
 	            android:layout_height="match_parent"
@@ -43,7 +43,7 @@
 	            android:layout_weight="1"
 	            android:textSize="15sp" />
 
-	        <com.devspark.robototextview.widget.RobotoTextView
+	        <TextView
 	            android:id="@+id/tv_item_date"
 	            android:layout_width="wrap_content"
 	            android:layout_height="match_parent"
@@ -68,7 +68,7 @@
                 android:layout_marginRight="@dimen/listview_row_margin_right"
                 android:layout_weight="1" >
 
-				<com.devspark.robototextview.widget.RobotoTextView
+				<TextView
 	                android:id="@+id/summary"
 	                android:layout_width="match_parent"
 	                android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
 	                android:text="Hi\nfds"
 	                android:textStyle="bold" />
 
-	            <com.devspark.robototextview.widget.RobotoTextView
+	            <TextView
 	                android:id="@+id/body"
 	                android:layout_marginTop="5dp"
 	                android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                 android:layout_gravity="right"
                 android:gravity="center_horizontal|center_vertical" >
 
-                <com.devspark.robototextview.widget.RobotoCheckBox
+                <CheckBox
                     android:id="@+id/cb_lv_item_starred"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
@@ -137,7 +137,7 @@
                     android:button="@drawable/checkbox_background_empty"
                     android:background="@drawable/checkbox_background_holo_light" />
 
-	            <com.devspark.robototextview.widget.RobotoCheckBox
+	            <CheckBox
 	                android:id="@+id/cb_lv_item_read"
 	                android:layout_marginTop="20dp"
 	                android:layout_width="wrap_content"
@@ -153,7 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
             android:layout_marginTop="-2.0dp"
-            android:background="@color/divider_row_color_dark_theme" />
+            android:background="?attr/dividerLineColor" />
 
     </LinearLayout>
 </LinearLayout>

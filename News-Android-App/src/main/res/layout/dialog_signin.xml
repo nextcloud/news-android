@@ -11,20 +11,20 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content" >
 
-	    <com.devspark.robototextview.widget.RobotoEditText
+	    <EditText
 	        android:id="@+id/username"
 	        android:inputType="textEmailAddress"
 	        style="@style/LoginDialogEditTextStyle"
 	        android:hint="@string/pref_title_username" />
 
-	    <com.devspark.robototextview.widget.RobotoEditText
+	    <EditText
 	        android:id="@+id/password"
 	        android:inputType="textPassword"
 	        style="@style/LoginDialogEditTextStyle"
 	        android:fontFamily="sans-serif"
 	        android:hint="@string/pref_title_password" />
 
-	    <com.devspark.robototextview.widget.RobotoEditText
+	    <EditText
 	        android:id="@+id/edt_owncloudRootPath"
 	        android:fontFamily="sans-serif"
 	        android:hint="@string/pref_default_owncloudRootPath"
@@ -35,13 +35,13 @@
 	        android:title="@string/pref_default_owncloudRootPath"
 	        style="@style/LoginDialogEditTextStyle" />
 
-	    <com.devspark.robototextview.widget.RobotoCheckBox
+	    <CheckBox
 	        android:id="@+id/cb_AllowAllSSLCertificates"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="@string/pref_title_DisableHostnameVerification" />
 
-        <com.devspark.robototextview.widget.RobotoButton
+        <Button
             android:id="@+id/btn_importAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content" >
 
-           <com.devspark.robototextview.widget.RobotoButton
+           <Button
                android:id="@+id/btn_cancel"
                android:layout_width="0dip"
                android:layout_height="match_parent"
@@ -74,7 +74,7 @@
                android:layout_marginTop="8dp"
                android:layout_marginBottom="8dp" />
 
-           <com.devspark.robototextview.widget.RobotoButton
+           <Button
                android:id="@+id/btn_signin"
                android:layout_width="0dip"
                android:layout_height="match_parent"

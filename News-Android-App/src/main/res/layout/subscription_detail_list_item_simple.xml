@@ -11,7 +11,7 @@
         android:id="@+id/color_line_feed"
         android:layout_width="@dimen/color_bar_of_feeds"
         android:layout_height="match_parent"
-        android:background="@color/slider_listview_background_color_dark_theme"/>
+        android:background="?attr/dividerLineColor"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent">
 
-                <com.devspark.robototextview.widget.RobotoCheckBox
+                <CheckBox
                     android:id="@+id/cb_lv_item_starred"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
@@ -54,7 +54,7 @@
 			        android:button="@drawable/checkbox"
 			     -->
 
-				<com.devspark.robototextview.widget.RobotoTextView
+				<TextView
 			        android:id="@+id/summary"
 			        android:layout_width="match_parent"
 			        android:layout_height="0dip"
@@ -70,7 +70,7 @@
 			        android:layout_height="match_parent"
 			        android:orientation="horizontal" >
 
-			        <com.devspark.robototextview.widget.RobotoTextView
+			        <TextView
 			            android:id="@+id/tv_subscription"
 			            android:layout_width="0dp"
 			            android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
 			            android:layout_weight="1"
 			            android:textSize="13sp" />
 
-			        <com.devspark.robototextview.widget.RobotoTextView
+			        <TextView
 			            android:id="@+id/tv_item_date"
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
 
             </FrameLayout>
 
-            <com.devspark.robototextview.widget.RobotoCheckBox
+            <CheckBox
                 android:id="@+id/cb_lv_item_read"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
@@ -138,7 +138,7 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
-            android:layout_marginTop="5.5dp"
-            android:background="@color/divider_row_color_dark_theme" />
+            android:layout_marginTop="5.0dp"
+            android:background="?attr/dividerLineColor" />
     </LinearLayout>
 </LinearLayout>

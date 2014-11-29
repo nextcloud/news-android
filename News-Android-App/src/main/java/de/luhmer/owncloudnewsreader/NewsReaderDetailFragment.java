@@ -36,11 +36,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.devspark.robototextview.widget.RobotoCheckBox;
 
 import java.util.ArrayList;
 
@@ -116,7 +115,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
     private boolean reloadCursorOnStartUp = false;
 
 	//private static ArrayList<Integer> databaseIdsOfItems;
-	ArrayList<RobotoCheckBox> stayUnreadCheckboxes;
+	ArrayList<CheckBox> stayUnreadCheckboxes;
 
     @InjectView(R.id.pb_loading) ProgressBar pbLoading;
     @InjectView(R.id.tv_no_items_available) TextView tvNoItemsAvailable;
@@ -127,7 +126,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	 */
 	public NewsReaderDetailFragment() {
 		//databaseIdsOfItems = new ArrayList<Integer>();
-		stayUnreadCheckboxes = new ArrayList<RobotoCheckBox>();
+		stayUnreadCheckboxes = new ArrayList<CheckBox>();
 	}
 
     public void setUpdateListViewOnStartUp(boolean reloadCursorOnStartUp) {
@@ -220,13 +219,13 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
 	            }
 
-	            RobotoCheckBox lastViewedArticleCheckbox = null;
+	            CheckBox lastViewedArticleCheckbox = null;
 	            public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
 
 	            	if(lastViewedArticleCheckbox == null)
 	            		lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view);
 
-	            	RobotoCheckBox cb = getCheckBoxAtPosition(0, view);
+                    CheckBox cb = getCheckBoxAtPosition(0, view);
 	            	if(lastViewedArticleCheckbox != cb) {
 	            		if(! (lastViewedArticleCheckbox.isChecked() && stayUnreadCheckboxes.contains(lastViewedArticleCheckbox)));
 	            			NewsListCursorAdapter.ChangeCheckBoxState(lastViewedArticleCheckbox, true, getActivity());
@@ -249,12 +248,12 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
 
 
-	private RobotoCheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
+	private CheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
 	{
 		ListView lv = (ListView) viewLV;
-		View view = (View) lv.getChildAt(pos);
+		View view = lv.getChildAt(pos);
 		if(view != null)
-			return (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_read);
+			return (CheckBox) view.findViewById(R.id.cb_lv_item_read);
 		else
 			return null;
 	}
@@ -437,7 +436,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
             startActivity(browserIntent);
 
-            ((RobotoCheckBox) v.findViewById(R.id.cb_lv_item_read)).setChecked(true);
+            ((CheckBox) v.findViewById(R.id.cb_lv_item_read)).setChecked(true);
         } else {
             Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);
 
@@ -450,7 +449,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
 
 	@Override
-	public void stayUnread(RobotoCheckBox cb) {
+	public void stayUnread(CheckBox cb) {
 		stayUnreadCheckboxes.add(cb);
 	}
 }

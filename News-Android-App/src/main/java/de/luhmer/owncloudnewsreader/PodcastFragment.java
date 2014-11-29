@@ -38,7 +38,6 @@ import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
-import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;

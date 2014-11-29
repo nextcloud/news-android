@@ -13,7 +13,7 @@
         android:button="@drawable/checkbox" 
     -->
 
-    <com.devspark.robototextview.widget.RobotoTextView
+    <TextView
         android:id="@+id/tv_subscription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:text="@string/empty_view_header"
         android:textSize="15sp" />
 
-    <com.devspark.robototextview.widget.RobotoTextView
+    <TextView
         android:id="@+id/summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

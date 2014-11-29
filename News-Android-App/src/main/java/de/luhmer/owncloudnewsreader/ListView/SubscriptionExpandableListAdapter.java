@@ -197,10 +197,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             viewHolder = new ChildHolder(convertView, mContext);
             convertView.setTag(viewHolder);
 
+
+            /*
             if(!ThemeChooser.isDarkTheme(mContext)) {
                 viewHolder.tV_HeaderText.setTextColor(mTextColorLightTheme);
                 viewHolder.tV_UnreadCount.setTextColor(mTextColorLightTheme);
-            }
+            } */
         }
 
 
@@ -310,10 +312,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             viewHolder = new GroupHolder(convertView, mContext);
             view.setTag(viewHolder);
 
+
+            /*
             if(!ThemeChooser.isDarkTheme(mContext)) {
                 viewHolder.txt_UnreadCount.setTextColor(mTextColorLightTheme);
                 viewHolder.txt_Summary.setTextColor(mTextColorLightTheme);
-            }
+            } */
         } else {
         	viewHolder = (GroupHolder) convertView.getTag();
         }

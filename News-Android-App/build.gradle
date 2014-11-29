@@ -79,8 +79,8 @@ sourceSets {
 
 configurations.all {
     resolutionStrategy {
-        force 'com.android.support:support-v4:20.+'
-        force 'com.android.support:appcompat-v7:20.+'
+        force 'com.android.support:support-v4:21.+'
+        force 'com.android.support:appcompat-v7:21.+'
     }
 }
 
@@ -97,8 +97,8 @@ dependencies {
     compile project(':ownCloud-Account-Importer')
     compile project(':ShowcaseView:library')
     compile project(':android-HoloCircularProgressBar:library')
-    compile 'com.android.support:support-v4:20.+'
-    compile 'com.android.support:appcompat-v7:20.+'
+    compile 'com.android.support:support-v4:21.+'
+    compile 'com.android.support:appcompat-v7:21.+'
     compile 'com.jakewharton:butterknife:5.1.+'
     compile 'com.squareup.picasso:picasso:2.3.1@jar'
     compile 'com.sothree.slidinguppanel:library:+'

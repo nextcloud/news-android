@@ -42,13 +42,11 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.webkit.WebView;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.devspark.robototextview.widget.RobotoCheckBox;
-import com.devspark.robototextview.widget.RobotoTextView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -121,7 +119,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
         FontHelper fHelper = new FontHelper(context);
         fHelper.setFontForAllChildren(view, fHelper.getFont());
 
-        RobotoCheckBox cbStarred = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_starred);
+        CheckBox cbStarred = (CheckBox) view.findViewById(R.id.cb_lv_item_starred);
         if(ThemeChooser.isDarkTheme(mContext))
             cbStarred.setBackgroundResource(R.drawable.checkbox_background_holo_dark);
         /*
@@ -153,20 +151,20 @@ public class NewsListCursorAdapter extends CursorAdapter {
             ll_cb_starred_wrapper.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    RobotoCheckBox cbStarred = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_starred);
+                    CheckBox cbStarred = (CheckBox) view.findViewById(R.id.cb_lv_item_starred);
                     cbStarred.setChecked(!cbStarred.isChecked());
                 }
             });
         }
 
-        RobotoCheckBox cbRead = (RobotoCheckBox) view.findViewById(R.id.cb_lv_item_read);
+        CheckBox cbRead = (CheckBox) view.findViewById(R.id.cb_lv_item_read);
         cbRead.setTag(idItemDb);
         cbRead.setOnCheckedChangeListener(null);
         Boolean isChecked = dbConn.isFeedUnreadStarred(cursor.getString(0), true);
         //Log.d("ISREAD", "" + isChecked + " - Cursor: " + cursor.getString(0));
         cbRead.setChecked(isChecked);
         if(!isChecked) {
-        	RobotoTextView textView = (RobotoTextView) view.findViewById(R.id.summary);
+        	TextView textView = (TextView) view.findViewById(R.id.summary);
         	fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
         }
 
@@ -176,7 +174,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ChangeReadStateOfItem((RobotoCheckBox) buttonView, view, isChecked, context);
+                ChangeReadStateOfItem((CheckBox) buttonView, view, isChecked, context);
 			}
 		});
 
@@ -187,7 +185,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
         	viewColor.setBackgroundColor(Integer.parseInt(colorString));
 	}
 
-    public void ChangeReadStateOfItem(RobotoCheckBox checkBox, View parentView, boolean isChecked, Context context) {
+    public void ChangeReadStateOfItem(CheckBox checkBox, View parentView, boolean isChecked, Context context) {
 
         dbConn.updateIsReadOfItem(checkBox.getTag().toString(), isChecked);
 
@@ -195,7 +193,7 @@ public class NewsListCursorAdapter extends CursorAdapter {
 
         pDelayHandler.DelayTimer();
 
-        RobotoTextView textView = (RobotoTextView) parentView.findViewById(R.id.summary);
+        TextView textView = (TextView) parentView.findViewById(R.id.summary);
         if(textView != null && parentView.getTop() >= 0)
         {
             FontHelper fHelper = new FontHelper(context);
@@ -301,15 +299,15 @@ public class NewsListCursorAdapter extends CursorAdapter {
 	{
 		LinearLayout lLayout = (LinearLayout) view.getParent();
 		Boolean isChecked = dbConn.isFeedUnreadStarred(idItemDb, true);
-		RobotoCheckBox cbRead = (RobotoCheckBox) lLayout.findViewById(R.id.cb_lv_item_read);
+		CheckBox cbRead = (CheckBox) lLayout.findViewById(R.id.cb_lv_item_read);
         if(cbRead == null) {//In the default layout the star checkbox is nested two times.
             lLayout = (LinearLayout) lLayout.getParent();
-            cbRead = (RobotoCheckBox) lLayout.findViewById(R.id.cb_lv_item_read);
+            cbRead = (CheckBox) lLayout.findViewById(R.id.cb_lv_item_read);
         }
         cbRead.setChecked(isChecked);
 	}
 
-	public static void ChangeCheckBoxState(RobotoCheckBox cb, boolean state, Context context)
+	public static void ChangeCheckBoxState(CheckBox cb, boolean state, Context context)
 	{
 		if(cb != null && cb.isChecked() != state)
             cb.setChecked(state);

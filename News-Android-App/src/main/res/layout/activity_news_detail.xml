@@ -1,66 +1,76 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
-        xmlns:sothree="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/sliding_layout"
-        android:layout_width="match_parent"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <FrameLayout
         android:layout_height="match_parent"
-        android:gravity="bottom"
-        sothree:panelHeight="68dp"
-        sothree:shadowHeight="4dp"
-        sothree:paralaxOffset="100dp"
-        sothree:dragView="@+id/name">
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar">
 
-
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
+        <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
+            xmlns:sothree="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/sliding_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".NewsDetailActivity" >
+            android:gravity="bottom"
+            sothree:panelHeight="68dp"
+            sothree:shadowHeight="4dp"
+            sothree:paralaxOffset="100dp"
+            sothree:dragView="@+id/name">
 
-            <!--
-            This title strip will display the currently visible page title, as well as the page
-            titles for adjacent pages.
-            -->
 
-            <!--
-            <android.support.v4.view.PagerTitleStrip
-                android:id="@+id/pager_title_strip"
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:background="#33b5e5"
-                android:paddingBottom="4dp"
-                android:paddingTop="4dp"
-                android:textColor="#fff" />
-            -->
-        </android.support.v4.view.ViewPager>
+                android:layout_height="match_parent"
+                tools:context=".NewsDetailActivity" >
 
-        <FrameLayout
-            android:id="@+id/podcast_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <!--
+                This title strip will display the currently visible page title, as well as the page
+                titles for adjacent pages.
+                -->
 
-    </de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout>
+                <!--
+                <android.support.v4.view.PagerTitleStrip
+                    android:id="@+id/pager_title_strip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:background="#33b5e5"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:textColor="#fff" />
+                -->
+            </android.support.v4.view.ViewPager>
 
+            <FrameLayout
+                android:id="@+id/podcast_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-
-    <de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout
-        android:id="@+id/videoPodcastSurfaceWrapper"
-        android:layout_width="@dimen/podcast_video_player_width"
-        android:layout_height="100dp"
-        android:background="#ff7c7c7c"
-        android:padding="2dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginRight="@dimen/podcast_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin" >
-
-    </de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout>
+        </de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout>
 
 
-</FrameLayout>
+
+        <de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout
+            android:id="@+id/videoPodcastSurfaceWrapper"
+            android:layout_width="@dimen/podcast_video_player_width"
+            android:layout_height="100dp"
+            android:background="#ff7c7c7c"
+            android:padding="2dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="@dimen/podcast_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin" >
+
+        </de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout>
+
+
+    </FrameLayout>
+</RelativeLayout>

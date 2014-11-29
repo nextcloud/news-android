@@ -18,12 +18,6 @@
     <!-- <style name="AppBaseTheme" parent="android:Theme.Light"></style> -->
     <!-- <style name="AppBaseTheme" parent="@style/android:Theme.Material"></style> -->
 
-    <!-- Application theme. -->
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
-
     <style name="Divider">
 	    <item name="android:layout_width">match_parent</item>
 	    <item name="android:layout_height">1dp</item>

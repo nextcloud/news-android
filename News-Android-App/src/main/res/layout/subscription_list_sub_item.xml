@@ -11,7 +11,7 @@
         android:layout_gravity="center_vertical"
         android:id="@+id/iVFavicon"/>
 
-    <com.devspark.robototextview.widget.RobotoTextView
+    <TextView
         android:id="@+id/summary"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -19,17 +19,15 @@
         android:gravity="center_vertical"
         android:singleLine="true"
         android:layout_weight="1"
-        android:textSize="20sp"
-        android:textColor="@color/slider_listview_text_color_dark_theme" />
+        android:textSize="20sp" />
 
-    <com.devspark.robototextview.widget.RobotoTextView
+    <TextView
         android:id="@+id/tv_unreadCount"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical|right"
         android:singleLine="true"
         android:layout_marginRight="20dp"
-        android:layout_marginLeft="5dp"
-        android:textColor="@color/slider_listview_text_color_dark_theme" />
+        android:layout_marginLeft="5dp" />
 
 </LinearLayout>

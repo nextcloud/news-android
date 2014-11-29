@@ -25,62 +25,71 @@
 </android.support.v4.widget.DrawerLayout>
 -->
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <android.support.v4.widget.SlidingPaneLayout
-        android:id="@+id/sliding_pane"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
 
-
-        <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderListFragment" -->
-        <FrameLayout
-            android:id="@+id/left_drawer"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start" />
-
-        <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderDetailFragment" -->
-
-
-        <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
-            xmlns:sothree="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/sliding_layout"
+        <android.support.v4.widget.SlidingPaneLayout
+            android:id="@+id/sliding_pane"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
-            sothree:panelHeight="68dp"
-            sothree:shadowHeight="4dp"
-            sothree:paralaxOffset="100dp" > <!-- sothree:dragView="@+id/name" -->
+            android:layout_height="match_parent">
 
+
+            <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderListFragment" -->
             <FrameLayout
-                android:id="@+id/content_frame"
+                android:id="@+id/left_drawer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start" />
+
+            <!-- android:name="de.luhmer.owncloudnewsreader.NewsReaderDetailFragment" -->
+
+
+            <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
+                xmlns:sothree="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/sliding_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                sothree:panelHeight="68dp"
+                sothree:shadowHeight="4dp"
+                sothree:paralaxOffset="100dp" > <!-- sothree:dragView="@+id/name" -->
 
-            <FrameLayout
-                android:id="@+id/podcast_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                <FrameLayout
+                    android:id="@+id/content_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        </de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout>
+                <FrameLayout
+                    android:id="@+id/podcast_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-    </android.support.v4.widget.SlidingPaneLayout>
+            </de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout>
+
+        </android.support.v4.widget.SlidingPaneLayout>
 
 
-    <de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout
-        android:id="@+id/videoPodcastSurfaceWrapper"
-        android:layout_width="@dimen/podcast_video_player_width"
-        android:layout_height="100dp"
-        android:background="#ff7c7c7c"
-        android:padding="2dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginRight="@dimen/podcast_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin" >
+        <de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout
+            android:id="@+id/videoPodcastSurfaceWrapper"
+            android:layout_width="@dimen/podcast_video_player_width"
+            android:layout_height="100dp"
+            android:background="#ff7c7c7c"
+            android:padding="2dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="@dimen/podcast_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin" >
 
-    </de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout>
+        </de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout>
 
-</FrameLayout>
+    </FrameLayout>
+</RelativeLayout>

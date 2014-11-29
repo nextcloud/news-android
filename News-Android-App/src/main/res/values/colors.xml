@@ -17,4 +17,19 @@
     <color name="slide_up_panel_header_background_color">#ff343434</color>
     <color name="slide_up_panel_slider_background_color">#ffdcdcdc</color>
 
+
+    <color name="material_grey_900">#212121</color>
+
+    <color name="material_blue_900">#0d47a1</color>
+
+
+
+
+    <color name="colorPrimary">@color/material_blue_grey_800</color>
+    <color name="colorPrimaryDark">@color/material_blue_grey_900</color>
+
+    <color name="colorSecondary">@color/material_deep_teal_200</color>
+    <color name="colorSecondaryDark">@color/material_deep_teal_500</color>
+
+
 </resources>
