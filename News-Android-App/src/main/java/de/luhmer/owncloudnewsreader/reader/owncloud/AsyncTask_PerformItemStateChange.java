@@ -91,7 +91,7 @@ public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 	
     @Override
     protected void onPostExecute(Object values) {    	
-    	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
+     	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
     			listenerInstance.onAsyncTaskCompleted(task_id, values);	
 		}

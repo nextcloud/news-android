@@ -65,21 +65,10 @@ public class SyncItemStateService extends IntentService {
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			
 			if(!(task_result instanceof Exception))
-			{	
-				API api = null;
+			{
 				String appVersion = task_result.toString();
-				int versionCode = 0;
-				if(appVersion != null)
-				{
-					appVersion = appVersion.replace(".", "");
-					versionCode = Integer.parseInt(appVersion);
-				}
-				if (versionCode >= 1101) {
-					api = new APIv2(SyncItemStateService.this);
-				} else {
-					api = new APIv1(SyncItemStateService.this);
-				}
-				
+                API api = API.GetRightApiForVersion(appVersion, SyncItemStateService.this);
+
 				((OwnCloud_Reader)_Reader).setApi(api);
 				
 				_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange, SyncItemStateService.this, null);

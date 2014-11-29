@@ -24,11 +24,13 @@ package de.luhmer.owncloudnewsreader.helper;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
 
 import de.luhmer.owncloudnewsreader.services.SyncItemStateService;
 
 public class PostDelayHandler {
-	private static Handler handlerTimer;
+    private static final String TAG = "PostDelayHandler";
+    private static Handler handlerTimer;
 	private final int delayTime = 5 * 60000;//60 000 = 1min 
 	Context context;
 	private static boolean isDelayed = false;
@@ -49,8 +51,11 @@ public class PostDelayHandler {
 			handlerTimer.postDelayed(new Runnable(){
 		        public void run() {
 		        	isDelayed = false;
+                    Log.v(TAG, "Time exceeded.. Sync state of changed items");
 		        	if((!SyncItemStateService.isMyServiceRunning(context)) && NetworkConnection.isNetworkAvailable(context))
-		        	{	        	
+		        	{
+                        Log.v(TAG, "Starting Service");
+
 		        		Intent iService = new Intent(context, SyncItemStateService.class); 
 		        		context.startService(iService);
 		        	}
