@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">新聞閱讀器內容</string>
   <string name="empty_view_header">資訊</string>
   <string name="empty_view_content">無任何項目。</string>
+  <string name="toast_GettingMoreItems">開始下載更多項目.. 請稍後。</string>
   <string name="tv_clickHereToOpenItem">點這裡來開啟項目</string>
   <string name="no_wifi_available">沒有連到無線網路</string>
   <string name="do_you_want_to_download_without_wifi">您要在不使用無線網路連線的情形下來下載圖片</string>
