@@ -29,6 +29,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 import android.util.SparseArray;
 import android.widget.ImageView;
 
@@ -106,6 +107,10 @@ public class FavIconHandler {
                 String avg = ColourCalculator.ColourHexFromBitmap(bitmap);
                 feed.setAvgColour(avg);
                 dbConn.updateFeed(feed);
+
+                Log.v(TAG, "Updating AVG color of feed: " + feed.getFeedTitle() + " - Color: " + avg);
+            } else {
+                Log.v(TAG, "Failed to update AVG color of feed: " + AsynkTaskId);
             }
         }
     };

@@ -38,6 +38,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
@@ -84,7 +86,10 @@ public class GetImageThreaded extends Thread
         try
         {
             File cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
-            if(!cacheFile.isFile())
+
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
+            Feed feed = dbConn.getFeedById(ThreadId);
+            if(!cacheFile.isFile() || feed.getAvgColour() == null)
             {
                 File dir = new File(rootPath);
                 dir.mkdirs();
