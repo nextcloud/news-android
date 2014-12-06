@@ -66,8 +66,16 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.8.1 (in development)
+0.8.2 (in development)
 ---------------------
+
+
+0.8.1 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/291">#291 0.8.0: App crashes when adding new feed</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/290">#290 0.8.0: Thre dot menu in light theme wrong colors (black font on dark gray background)</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/289">#289 0.8.0: Widget isn't working anymore</a>
+- Bug fixes/Improvements
 
 
 0.8.0 (Google Play)
