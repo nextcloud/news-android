@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -46,6 +47,7 @@ public class NewFeedActivity extends ActionBarActivity {
     @InjectView(R.id.new_feed_progress) View mProgressView;
     @InjectView(R.id.new_feed_form) View mLoginFormView;
     @InjectView(R.id.btn_addFeed) Button mAddFeedButton;
+    @InjectView(R.id.toolbar) Toolbar toolbar;
 
     List<Folder> folders;
 
@@ -57,7 +59,10 @@ public class NewFeedActivity extends ActionBarActivity {
 
         ButterKnife.inject(this);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
