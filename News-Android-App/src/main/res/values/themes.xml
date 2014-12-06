@@ -29,5 +29,9 @@
         <item name="rssItemListBackground">#ffdedede</item>
     </style>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColor">#ffc0c0c0</item>
+    </style>
+
 
 </resources>
