@@ -160,7 +160,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
         // Return the RemoteViews object.
         return rv;
     }
-//
+
 	@Override
 	public RemoteViews getLoadingView() {
 		return(null);

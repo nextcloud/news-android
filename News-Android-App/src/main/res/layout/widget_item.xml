@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="?attr/dividerLineColor"
+    android:background="#8a000000"
     android:baselineAligned="false" >
 
     
@@ -80,7 +80,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:clickable="false"
-            android:background="@drawable/btn_check_on_holo_dark"/>
+            android:background="@drawable/abc_btn_check_to_on_mtrl_000"/>
 
     </LinearLayout>
 
