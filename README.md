@@ -66,8 +66,14 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.8.2 (in development)
+0.8.3 (in development)
 ---------------------
+
+
+0.8.2 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/292">#292 0.8.1: Can't save sync interval</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/282">#282 Launch by default: *rss.xml - subscribe</a>
 
 
 0.8.1 (Google Play)
