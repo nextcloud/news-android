@@ -124,7 +124,7 @@ Updates
 - New feature - <a href="https://github.com/owncloud/News-Android-App/issues/182">#182 »Read« checkbox in widget</a>
 - Move "Sync Settings" option from Actionbar to Settings
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/212">#212 sort order of starred items</a>
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/124">#124 Add download image options: Over WiFi only/ Over WiFi & Mobil / Ask when not connected to WiFi</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/124">#124 Add download image options: Over WiFi only,Over WiFi & Mobil or ask when not connected to WiFi</a>
 - Bug fixes
 - Improve podcast layout
 
