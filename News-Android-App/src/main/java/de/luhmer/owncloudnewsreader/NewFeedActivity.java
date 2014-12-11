@@ -3,8 +3,10 @@ package de.luhmer.owncloudnewsreader;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -91,6 +93,19 @@ public class NewFeedActivity extends ActionBarActivity {
                 attemptAddNewFeed();
             }
         });
+
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+
+        if (action.compareTo(Intent.ACTION_VIEW) == 0) {
+            //String scheme = intent.getScheme();
+            //ContentResolver resolver = getContentResolver();
+
+            //Uri uri = intent.getData();
+            Log.v("tag" , "Content intent detected: " + action + " : " + intent.getDataString());
+            mFeedUrlView.setText(intent.getDataString());
+        }
     }
 
 

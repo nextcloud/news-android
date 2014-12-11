@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.luhmer.owncloudnewsreader"
-    android:versionCode="73"
-    android:versionName="0.8.1" >
+    android:versionCode="74"
+    android:versionName="0.8.2" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -32,26 +32,52 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".NewsDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_news_detail" >
         </activity>
 
-        <service android:name=".services.DownloadImagesService" />
-        <service android:name=".services.SyncItemStateService" />
-
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
-        <activity android:name=".DownloadImagesActivity" />
+
+        <activity android:name=".DownloadImagesActivity">
+        </activity>
+
+        <activity
+            android:name=".SyncIntervalSelectorActivity"
+            android:label="@string/title_activity_sync_interval_selector" >
+        </activity>
+
+        <activity
+            android:name=".NewFeedActivity"
+            android:label="@string/title_activity_new_feed"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+                <data android:host="*" />
+                <data android:pathPattern=".*\\atom.xml" />
+                <data android:pathPattern=".*\\rss.xml" />
+                <data android:pathPattern=".*\\.rss" />
+            </intent-filter>
+        </activity>
 
         <!--
 		**********************************************************************
 		* Sync Adapter and Service
 		**********************************************************************
         -->
+
+        <service android:name=".services.DownloadImagesService" />
+        <service android:name=".services.SyncItemStateService" />
 
         <service
             android:name=".services.OwnCloudAuthenticatorService"
@@ -115,15 +141,6 @@
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <activity
-            android:name=".SyncIntervalSelectorActivity"
-            android:label="@string/title_activity_sync_interval_selector" >
-        </activity>
-        <activity
-            android:name=".NewFeedActivity"
-            android:label="@string/title_activity_new_feed"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
-        </activity>
 
         <service
             android:name=".services.PodcastPlaybackService"
