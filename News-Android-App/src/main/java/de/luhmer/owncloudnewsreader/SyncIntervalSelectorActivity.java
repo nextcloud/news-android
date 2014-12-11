@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 
 
@@ -29,11 +32,18 @@ public class SyncIntervalSelectorActivity extends ActionBarActivity {
     SharedPreferences mPrefs;
     PlaceholderFragment mFragment;
     String[] items_values;
+    @InjectView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sync_interval_selector);
+
+        ButterKnife.inject(this);
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         items_values = getResources().getStringArray(R.array.array_sync_interval_values);
