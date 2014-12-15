@@ -142,9 +142,10 @@ public class DownloadImagesService extends IntentService {
 
     private synchronized void StartNextDownloadInQueue() {
         try {
-            if(linksToImages.size() > 0)
-                new GetImageThreaded(linksToImages.get(0), imgDownloadFinished, 999, pathToImageCache, this).start();
-            linksToImages.remove(0);
+            if(linksToImages.size() > 0) {
+                String link = linksToImages.remove(0);
+                new GetImageThreaded(link, imgDownloadFinished, 999, pathToImageCache, this).start();
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
             Toast.makeText(this, "Error while downloading images.", Toast.LENGTH_LONG).show();
