@@ -98,7 +98,7 @@ public class NewFeedActivity extends ActionBarActivity {
         Intent intent = getIntent();
         String action = intent.getAction();
 
-        if (action.compareTo(Intent.ACTION_VIEW) == 0) {
+        if (action != null && action.compareTo(Intent.ACTION_VIEW) == 0) {
             //String scheme = intent.getScheme();
             //ContentResolver resolver = getContentResolver();
 
