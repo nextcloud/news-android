@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">新闻读者详情</string>
   <string name="empty_view_header">信息</string>
   <string name="empty_view_content">无内容</string>
+  <string name="toast_GettingMoreItems">正在下载更多内容...请稍候.</string>
   <string name="tv_clickHereToOpenItem">点击此处打开</string>
   <string name="no_wifi_available">没有连接到WiFi</string>
   <string name="do_you_want_to_download_without_wifi">您是否想在无 WiFi 连接时下载图片</string>
@@ -161,6 +162,18 @@
   <string name="pref_title_clearCache">清除缓存</string>
   <string name="pref_title_CacheImagesOffline">离线缓存图片</string>
   <string name="pref_title_Max_Cache_Size">最大缓存大小</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>从不</item>
+    <item>仅在 WiFi 下</item>
+    <item>仅在 WiFi 和移动网络</item>
+    <item>在未连接到 WiFi 时询问</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
