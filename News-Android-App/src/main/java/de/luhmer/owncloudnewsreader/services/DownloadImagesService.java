@@ -257,8 +257,7 @@ public class DownloadImagesService extends IntentService {
 
             if(maxCount == count) {
             	notificationManager.cancel(NOTIFICATION_ID);
-                if(DownloadImagesService.this != null)
-                    RemoveOldImages(DownloadImagesService.this);
+                RemoveOldImages(DownloadImagesService.this);
             } else {
                 NotificationDownloadImages.setProgress(maxCount, count+1, false);
                 NotificationDownloadImages.setContentText("Downloading Images for offline usage - " + (count+1) + "/" + maxCount);
