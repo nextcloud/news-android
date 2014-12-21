@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">Szczegóły Aktualności</string>
   <string name="empty_view_header">informacje</string>
   <string name="empty_view_content">Nic tu nie ma</string>
+  <string name="toast_GettingMoreItems">Rozpoczęto pobieranie elementów... Proszę czekać.</string>
   <string name="tv_clickHereToOpenItem">Kliknij tutaj aby otworzyć element</string>
   <string name="no_wifi_available">Brak połączenia WIFI</string>
   <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
