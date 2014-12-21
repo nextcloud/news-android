@@ -194,10 +194,10 @@ public class DownloadImagesService extends IntentService {
     private void RemoveOldImages(Context context) {
         HashMap<File, Long> files;
         long size = ImageHandler.getFolderSize(new File(FileUtils.getPath(context)));
-        size = (long) (size / 1024d / 1024d);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         int max_allowed_size = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, "1000"));//Default is 1Gb --> 1000mb
+        max_allowed_size *= 1024 * 1024; // convert to byte
         if(size > max_allowed_size)
         {
             files = new HashMap<>();
