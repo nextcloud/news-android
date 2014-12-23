@@ -4,11 +4,17 @@
   <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_Share">﻿ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="action_save">﻿ಉಳಿಸಿ</string>
+  <string name="action_settings">ಆಯ್ಕೆ</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">﻿ಬಳಕೆಯ ಹೆಸರು</string>
+  <string name="pref_title_password">ಗುಪ್ತ ಪದ</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">ಆಯ್ಕೆ</string>
   <!--General settings-->
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
@@ -16,11 +22,14 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">﻿ಎಚ್ಚರಿಕೆ</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <!--Podcast-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">﻿ತಪ್ಪಾಗಿದೆ</string>
+  <string name="login_dialog_title_security_warning">﻿ಭದ್ರತಾ ಎಚ್ಚರಿಕೆ</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
@@ -42,6 +51,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">ಸೂಚನೆಗಳು</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
