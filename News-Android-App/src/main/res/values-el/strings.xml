@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">Λεπτομέρειες Ανάγνωσης Ειδήσεων</string>
   <string name="empty_view_header">Πληροφορίες</string>
   <string name="empty_view_content">Κανένα στοιχείο</string>
+  <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε.</string>
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
   <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
