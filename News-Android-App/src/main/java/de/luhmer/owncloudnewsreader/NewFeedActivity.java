@@ -98,13 +98,20 @@ public class NewFeedActivity extends ActionBarActivity {
         Intent intent = getIntent();
         String action = intent.getAction();
 
-        if (action != null && action.compareTo(Intent.ACTION_VIEW) == 0) {
+        if (action != null) {
+            String url = "";
+            if(action.equals(Intent.ACTION_VIEW)) {
+                url = intent.getDataString();
+            } else if(action.equals(Intent.ACTION_SEND)) {
+                url = intent.getStringExtra(Intent.EXTRA_TEXT);
+            }
+
             //String scheme = intent.getScheme();
             //ContentResolver resolver = getContentResolver();
 
             //Uri uri = intent.getData();
-            Log.v("tag" , "Content intent detected: " + action + " : " + intent.getDataString());
-            mFeedUrlView.setText(intent.getDataString());
+            Log.v("tag" , "Content intent detected: " + action + " : " + url);
+            mFeedUrlView.setText(url);
         }
     }
 
