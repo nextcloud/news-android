@@ -338,6 +338,9 @@ public class NewsDetailFragment extends Fragment {
         String searchString = "<img id=\"imgFavicon\" src=";
         htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length() + 1, favIconUrl).toString();
 
+
+        htmlData = htmlData.replaceAll("\"//", "\"https://");
+
 		return htmlData;
 	}
 
