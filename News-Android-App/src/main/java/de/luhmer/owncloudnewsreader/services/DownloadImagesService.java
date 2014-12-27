@@ -186,7 +186,7 @@ public class DownloadImagesService extends IntentService {
                 files.put(file, file.lastModified());
             }
 
-            for(Object itemObj : sortHashMapByValuesD(files).entrySet())
+            for(Object itemObj : sortHashMapByValuesD(files).keySet())
             {
                 File file = (File) itemObj;
                 file.delete();
