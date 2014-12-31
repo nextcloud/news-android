@@ -7,11 +7,15 @@
   <string name="action_starred">Označeno</string>
   <string name="action_Share">Podijeli</string>
   <string name="action_save">Spasi</string>
+  <string name="action_settings">Postavke</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Korisničko ime</string>
+  <string name="pref_title_password">Lozinka</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Postavke</string>
   <!--General settings-->
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
@@ -19,11 +23,14 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="warning">Upozorenje</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <!--Podcast-->
   <!--Settings for Display-->
   <!--Login Dialog-->
+  <string name="login_dialog_title_error">Greška</string>
+  <string name="login_dialog_title_security_warning">Sigurnosno Upozorenje</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
