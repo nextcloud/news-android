@@ -83,7 +83,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Очистить кеш.</string>
-  <string name="dialog_clearing_cache_please_wait">Очищение кеш... Подождите.</string>
+  <string name="dialog_clearing_cache_please_wait">Идет очистка кэша... Пожалуйста, подождите.</string>
   <string name="calculating_cache_size">Расчет размера кэша... Пожалуйста, подождите.</string>
   <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
   <string name="warning">Предупреждение</string>
@@ -159,7 +159,7 @@
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Ошибка</string>
   <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
-  <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением Чтения новостей через ownCloud. Пожалуйста, обновите приложение новости и framework для приложений.</string>
+  <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением ownCloud News. Обновите приложение News и appframework.</string>
   <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
   <string name="login_dialog_text_security_warning">Вы не используете HTTPS. Злоумышленники могут перехватить трафик и получить доступ к некоторым конфиденциальным данным (например, пароль). Мы настоятельно рекомендуем использовать HTTPS!</string>
   <!--Data & Sync-->
