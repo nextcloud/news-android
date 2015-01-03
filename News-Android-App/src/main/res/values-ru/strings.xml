@@ -32,12 +32,12 @@
   <string name="email_sourceCode">Исходный код элемента - Отчет об ошибке</string>
   <string name="email_sendMail">Отправить сообщение</string>
   <!--Action Bar Items-->
-  <string name="action_starred">Отмеченные</string>
+  <string name="action_starred">Избранное</string>
   <string name="action_read">Читать</string>
   <string name="action_playPodacst">Воспроизвести Подкаст</string>
   <string name="action_openInBrowser">Открыть в браузере</string>
   <string name="action_sendSourceCode">Отправить сообщение разработчикам</string>
-  <string name="action_Share">Открыть доступ</string>
+  <string name="action_Share">Поделиться</string>
   <string name="action_login">Параметры сервера</string>
   <string name="action_save">Сохранить</string>
   <string name="action_settings">Настройки</string>
