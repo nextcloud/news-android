@@ -9,9 +9,11 @@
   <string name="title_newsreader_detail">Nyhetsläsare Detalj</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Inga objekt här</string>
+  <string name="toast_GettingMoreItems">Påbörjat nerladdning av fler objekt.. Var god vänta.</string>
   <string name="tv_clickHereToOpenItem">Klicka här för att öppna objekt</string>
   <string name="no_wifi_available">Ingen WIFI ansluten</string>
   <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>
+  <string name="max_items_count_reached">Du har nått maximal storlek av XX objekt</string>
   <string name="widget_header">ownCloud nyheter</string>
   <string name="message_bar_new_articles_available">Nya saker tillgängliga</string>
   <string name="message_bar_reload">Ladda om</string>
@@ -32,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Stjärnmärkt</string>
   <string name="action_read">Läsa</string>
+  <string name="action_playPodacst">Spela Podcast</string>
   <string name="action_openInBrowser">Öppna i webbläsaren</string>
   <string name="action_sendSourceCode">Skicka objekt till utvecklaren</string>
   <string name="action_Share">Dela</string>
@@ -103,8 +106,10 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Aktivera Podcast support</string>
+  <string name="no_podcast_selected">Ingen podcast vald</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Visa</string>
+  <string name="pref_title_app_theme">App tema</string>
   <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
   <string name="pref_display_font_layout">Font (omstart krävs för att ändringarna ska börja gälla)</string>
   <string-array name="pref_display_apptheme">
@@ -165,6 +170,18 @@
   <string name="pref_title_clearCache">Rensa cache</string>
   <string name="pref_title_CacheImagesOffline">Cacha bilder offline</string>
   <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Aldrig</item>
+    <item>Endast över WiFi</item>
+    <item>Över WiFi &amp; Mobildata</item>
+    <item>Fråga om ej ansluten till WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
