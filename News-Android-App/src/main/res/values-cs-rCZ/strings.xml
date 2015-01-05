@@ -9,7 +9,7 @@
   <string name="title_newsreader_detail">Detail čtečky zpráv</string>
   <string name="empty_view_header">Informace</string>
   <string name="empty_view_content">Žádné položky</string>
-  <string name="toast_GettingMoreItems">Spuštěno stahování více položek. Chvíli strpení.</string>
+  <string name="toast_GettingMoreItems">Spuštěno stahování více položek... Chvíli strpení.</string>
   <string name="tv_clickHereToOpenItem">Klikněte zde pro otevření položky</string>
   <string name="no_wifi_available">Wi-Fi není připojeno</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
