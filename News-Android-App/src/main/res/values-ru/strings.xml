@@ -60,7 +60,7 @@
   <string name="toast_downloaded_x_items">Скачать Х старых элементов</string>
   <string name="toast_no_more_downloads_available">Больше нет объектов</string>
   <string name="pull_to_refresh_updateTags">Синхронизация элементов</string>
-  <string name="pull_to_refresh_updateFolder">Синхронизируется папка</string>
+  <string name="pull_to_refresh_updateFolder">Синхронизируется каталог</string>
   <string name="pull_to_refresh_updateFeeds">Синхронизируются ленты</string>
   <string name="pull_to_refresh_updateItems">Синхронизируется содержимое</string>
   <!--Strings related to Settings-->
