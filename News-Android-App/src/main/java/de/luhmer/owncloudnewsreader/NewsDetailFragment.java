@@ -195,8 +195,7 @@ public class NewsDetailFragment extends Fragment {
 	    //webSettings.setPluginsEnabled(true);
 	    //webSettings.setDomStorageEnabled(true);
 
-	    webSettings.setJavaScriptCanOpenWindowsAutomatically(
-                false);
+	    webSettings.setJavaScriptCanOpenWindowsAutomatically(false);
 	    webSettings.setSupportMultipleWindows(false);
 	    webSettings.setSupportZoom(false);
 	    //webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
