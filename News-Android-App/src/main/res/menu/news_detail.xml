@@ -34,6 +34,12 @@
         android:icon="@android:drawable/ic_media_play"
         android:title="@string/action_playPodacst"/>
 
+    <item
+        android:id="@+id/action_tts"
+        app:showAsAction="never"
+        android:title="@string/action_textToSpeech"/>
+
+
     <!-- 
     <item
         android:id="@+id/action_sendSourceCode"

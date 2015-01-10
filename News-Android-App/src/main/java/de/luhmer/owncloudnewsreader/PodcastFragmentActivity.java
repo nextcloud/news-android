@@ -245,6 +245,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
     boolean surfaceInitialized = false;
     boolean isVideoViewVisible = true;
     public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
+        //If file is loaded or preparing and podcast is paused/not running expand the view
         if((podcast.isFileLoaded() || podcast.isPreparingFile()) && !currentlyPlaying) {
             //Expand view
 
@@ -253,7 +254,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
             currentlyPlaying = true;
 
             Log.v(TAG, "expanding podcast view!");
-        } else if(!(podcast.isPreparingFile() || podcast.isFileLoaded()) && currentlyPlaying) {
+        } else if(!(podcast.isPreparingFile() || podcast.isFileLoaded()) && currentlyPlaying) { //If file is not loaded or podcast is not preparing file and is playing
             //Hide view
 
             sliding_layout.setPanelHeight(0);

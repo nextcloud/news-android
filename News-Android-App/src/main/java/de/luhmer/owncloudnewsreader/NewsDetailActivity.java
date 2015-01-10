@@ -37,6 +37,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -52,6 +53,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -437,6 +439,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
             case R.id.action_playPodcast:
                 openPodcast(rssItem);
+                break;
+
+            case R.id.action_tts:
+                TTSItem ttsItem = new TTSItem(rssItem.getId(), rssItem.getTitle(), rssItem.getTitle() + "\n\n " + Html.fromHtml(rssItem.getBody()).toString(), rssItem.getFeed().getFaviconUrl());
+                mPodcastPlaybackService.openTtsFeed(ttsItem);
                 break;
 
             case R.id.action_ShareItem:
