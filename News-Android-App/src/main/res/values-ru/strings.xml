@@ -43,6 +43,7 @@
   <string name="action_settings">Настройки</string>
   <string name="action_sync_settings">Настройки синхронизации</string>
   <string name="action_add_new_feed">Добавить новую ленту</string>
+  <string name="action_textToSpeech">Зачитать</string>
   <string name="notification_new_items_ticker">У вас X новых непрочитанных пунктов</string>
   <string name="notification_new_items_text">Доступно X новых непрочитанных пунктов</string>
   <!--Strings related to login-->

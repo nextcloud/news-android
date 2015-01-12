@@ -43,6 +43,7 @@
   <string name="action_settings">Einstellungen</string>
   <string name="action_sync_settings">Einstellungen zur Synchronisation</string>
   <string name="action_add_new_feed">Einen neuen Feed hinzufügen</string>
+  <string name="action_textToSpeech">Vorlesen</string>
   <string name="notification_new_items_ticker">Sie haben X neue ungelesene Einträge</string>
   <string name="notification_new_items_text">X neue ungelesene Einträge verfügbar</string>
   <!--Strings related to login-->

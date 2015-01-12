@@ -43,6 +43,7 @@
   <string name="action_settings">Ayarlar</string>
   <string name="action_sync_settings">Eşitleme Ayarları</string>
   <string name="action_add_new_feed">Yeni besleme ekle</string>
+  <string name="action_textToSpeech">Sesli oku</string>
   <string name="notification_new_items_ticker">X adet okunmamış öge var</string>
   <string name="notification_new_items_text">X yeni okunmamış öge var</string>
   <!--Strings related to login-->

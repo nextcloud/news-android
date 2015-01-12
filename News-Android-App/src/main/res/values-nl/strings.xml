@@ -43,6 +43,7 @@
   <string name="action_settings">Instellingen</string>
   <string name="action_sync_settings">Sync Settings</string>
   <string name="action_add_new_feed">Voeg nieuwe feed toe</string>
+  <string name="action_textToSpeech">Voorlezen</string>
   <string name="notification_new_items_ticker">U hebt X nieuwe ongelezen artikelen</string>
   <string name="notification_new_items_text">X nieuwe ongelezen artikelen beschikbaar</string>
   <!--Strings related to login-->

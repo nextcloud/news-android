@@ -43,6 +43,7 @@
   <string name="action_settings">Nastavení</string>
   <string name="action_sync_settings">Nastavení synchronizace</string>
   <string name="action_add_new_feed">Přidat nový kanál</string>
+  <string name="action_textToSpeech">Přečíst</string>
   <string name="notification_new_items_ticker">Máte X nových nepřečtených položek</string>
   <string name="notification_new_items_text">X nových položek k dispozici</string>
   <!--Strings related to login-->

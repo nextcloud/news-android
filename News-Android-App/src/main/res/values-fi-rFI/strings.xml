@@ -5,6 +5,7 @@
   <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
   <string name="title_newsreader_list">Uutislukija</string>
   <string name="empty_view_content">Ei kohteita</string>
+  <string name="toast_GettingMoreItems">Lisäkohteiden lataaminen aloitettiin, odota hetki...</string>
   <string name="tv_clickHereToOpenItem">Avaa kohde painamalla tästä</string>
   <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
   <string name="message_bar_new_articles_available">Uusia kohteita saatavilla</string>
@@ -132,6 +133,7 @@
   <string name="pref_header_data_sync">Data &amp; synkronointi</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
+  <string name="pref_title_CacheImagesOffline">Varastoi kuvat yhteydetöntä tilaa varten</string>
   <string name="pref_title_Max_Cache_Size">Välimuistin enimmäiskoko</string>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
