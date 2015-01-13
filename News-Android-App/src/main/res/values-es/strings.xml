@@ -43,6 +43,7 @@
   <string name="action_settings">Ajustes</string>
   <string name="action_sync_settings">Ajustes de sincronización</string>
   <string name="action_add_new_feed">Añadir nueva fuente</string>
+  <string name="action_textToSpeech">Recopilar información</string>
   <string name="notification_new_items_ticker">Tiene X artículos nuevos sin leer</string>
   <string name="notification_new_items_text">X nuevos artículos disponibles sin leer</string>
   <!--Strings related to login-->

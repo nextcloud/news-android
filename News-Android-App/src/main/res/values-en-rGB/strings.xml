@@ -43,6 +43,7 @@
   <string name="action_settings">Settings</string>
   <string name="action_sync_settings">Sync Settings</string>
   <string name="action_add_new_feed">Add new feed</string>
+  <string name="action_textToSpeech">Read out</string>
   <string name="notification_new_items_ticker">You have X new unread items</string>
   <string name="notification_new_items_text">X new unread items available</string>
   <!--Strings related to login-->

@@ -43,6 +43,7 @@
   <string name="action_settings">Indstillinger</string>
   <string name="action_sync_settings">Synkroniseringsindstillinger</string>
   <string name="action_add_new_feed">Tilføj nyt feed</string>
+  <string name="action_textToSpeech">Læs højt</string>
   <string name="notification_new_items_ticker">Du har X nye, ulæste emner</string>
   <string name="notification_new_items_text">X nye, ulæste poster til rådighed</string>
   <!--Strings related to login-->
