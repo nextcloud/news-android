@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">Читання новин подробиці</string>
   <string name="empty_view_header">Інформація</string>
   <string name="empty_view_content">Нічого нема</string>
+  <string name="toast_GettingMoreItems">Розпочато завантаження декількох елементів... Будь ласка, зачекайте</string>
   <string name="tv_clickHereToOpenItem">Натисніть, щоб відкрити елемент</string>
   <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
   <string name="do_you_want_to_download_without_wifi">Бажаєте завантажувати зображення коли немає WiFi з\'єднання?</string>
@@ -42,6 +43,7 @@
   <string name="action_settings">Налаштування</string>
   <string name="action_sync_settings">Налаштування синхронізації</string>
   <string name="action_add_new_feed">Додати нову стрічку</string>
+  <string name="action_textToSpeech">Читати</string>
   <string name="notification_new_items_ticker">У вас X нових, непрочитаних елементів</string>
   <string name="notification_new_items_text">Доступно X нових непрочитаних елемнтів </string>
   <!--Strings related to login-->
