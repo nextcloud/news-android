@@ -31,22 +31,24 @@ public class ColourCalculator {
 		int pixelColor;
 		int width = pic.getWidth();
 		int height = pic.getHeight();
-		int size = width * height;
 
-		for (int x = 0; x < width; ++x) {
-			for (int y = 0; y < height; ++y) {
-				pixelColor = pic.getPixel(x, y);
-				A += Color.alpha(pixelColor);
-				R += Color.red(pixelColor);
-				G += Color.green(pixelColor);
-				B += Color.blue(pixelColor);
-			}
-		}
+        int size = width * height;
+        if(size > 0) {
+            for (int x = 0; x < width; ++x) {
+                for (int y = 0; y < height; ++y) {
+                    pixelColor = pic.getPixel(x, y);
+                    A += Color.alpha(pixelColor);
+                    R += Color.red(pixelColor);
+                    G += Color.green(pixelColor);
+                    B += Color.blue(pixelColor);
+                }
+            }
 
-		A /= size;
-		R /= size;
-		G /= size;
-		B /= size;
+            A /= size;
+            R /= size;
+            G /= size;
+            B /= size;
+        }
 
 		int[] average = { A, R, G, B };
 		return average;
