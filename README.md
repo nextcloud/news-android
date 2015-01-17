@@ -66,8 +66,17 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.8.4 (in development)
+0.8.5 (in development)
 ---------------------
+
+
+0.8.4 (Google Play)
+---------------------
+- PLEASE NOTE: This update deletes all your un-synchronized changes. After updating you'll need to perform a manual sync.
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/288">#288 Text to Speech (TTS)</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/307">#307 App crash when favicon has a height or width of 0px</a>
+- Improvement - Show dialog to share a link/open in browser on long clicking a link in the detail-view
+- Improve performance
 
 
 0.8.3 (Google Play)
