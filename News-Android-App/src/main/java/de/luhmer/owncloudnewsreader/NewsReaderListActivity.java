@@ -27,6 +27,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -38,6 +39,7 @@ import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,6 +48,8 @@ import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
@@ -53,7 +57,12 @@ import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
 import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.DatabaseHelperOrm;
+import de.luhmer.owncloudnewsreader.database.model.DaoSession;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
+import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
@@ -189,7 +198,77 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         ImageHandler.createNoMediaFile(this);
         //AppRater.app_launched(this);
         //AppRater.rateNow(this);
+
+
+        /*
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                startTesting();
+            }
+        }).start();
+        */
     }
+
+
+    /* TEST!!! */
+
+    public void startTesting() {
+
+        try {
+            Thread.sleep(10000); //Wait 10 Seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(activity);
+        DaoSession daoSession = DatabaseHelperOrm.getDaoSession(activity);
+        List<Feed> feedList = dbConn.getAllFeedsWithUnreadRssItems();
+        List<Folder> folderList = dbConn.getListOfFolders();
+
+        long avgTime = 0;
+        final int runs = 100;
+
+        for(int i = 0; i < runs; i++) {
+            long start = System.currentTimeMillis();
+
+            /* Test 1 */
+            /*
+            for (Feed feed : feedList) {
+                String query = dbConn.getAllItemsIdsForFeedSQL(feed.getId(), true, false, DatabaseConnection.SORT_DIRECTION.asc);
+                Cursor c = daoSession.getDatabase().rawQuery(query, null);
+                if(c != null) {
+                    c.moveToFirst();
+                    do {
+                        int xcv = c.getInt(0);
+                    } while (c.moveToNext());
+                }
+            }
+            */
+            /* Test 1 Ende */
+
+            /* Test 2 */
+            for (Folder folder : folderList) {
+                String query =  dbConn.getAllItemsIdsForFolderSQL(folder.getId(), true, DatabaseConnection.SORT_DIRECTION.asc);
+
+                dbConn.insertIntoRssCurrentViewTable(query);
+                //Log.d(TAG, "Inserting time needed: " + (System.currentTimeMillis() - start) + " ms");
+            }
+            /* Test 2 Ende */
+
+            avgTime += (System.currentTimeMillis() - start);
+        }
+        avgTime /= runs;
+        Log.d(TAG, "Time needed in average:" + avgTime + " ms");
+    }
+
+
+    /* TEST ENDE!!! */
+
+
+
+
+
 
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

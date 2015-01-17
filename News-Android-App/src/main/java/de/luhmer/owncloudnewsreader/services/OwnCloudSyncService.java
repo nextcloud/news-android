@@ -47,8 +47,6 @@ import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.AsyncTask_TriggerOcUpdate;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService.Stub;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
@@ -210,18 +208,6 @@ public class OwnCloudSyncService extends Service {
                     }
                     UpdateWidget();
                 }
-
-                if(_Reader instanceof OwnCloud_Reader) {
-                    API api = ((OwnCloud_Reader)_Reader).getApi();
-                    if(api instanceof APIv2) {
-                        new AsyncTask_TriggerOcUpdate(0,
-                                OwnCloudSyncService.this,
-                                api.getUsername(),
-                                api.getPassword(),
-                                new OnAsyncTaskCompletedListener[] { onAsyncTask_UpdateOcFeeds })
-                                .execute((Void) null);
-                    }
-                }
             }
 
             Log.d(TAG, "onAsyncTask_GetItems Finished");
@@ -230,12 +216,6 @@ public class OwnCloudSyncService extends Service {
 		}
 	};
 
-    OnAsyncTaskCompletedListener onAsyncTask_UpdateOcFeeds = new OnAsyncTaskCompletedListener() {
-        @Override
-        public void onAsyncTaskCompleted(int task_id, Object task_result) {
-
-        }
-    };
 
     private void UpdateWidget()
     {

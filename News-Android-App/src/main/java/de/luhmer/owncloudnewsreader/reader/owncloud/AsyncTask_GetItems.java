@@ -122,8 +122,6 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         } catch (Exception ex) {
             ex.printStackTrace();
             return ex;
-        } finally {
-        	//dbConn.closeDatabase();
         }
         return null;
 	}

@@ -40,6 +40,9 @@ public class InsertIntoDatabase {
 
     public static void InsertFoldersIntoDatabase(List<Folder> folderList, DatabaseConnectionOrm dbConn)
     {
+        dbConn.deleteOldAndInsertNewFolders(folderList.toArray(new Folder[folderList.size()]));
+
+        /*
         List<Feed> feeds = dbConn.getListOfFeeds();
 
         List<String> tagsAvailable = new ArrayList<String>(feeds.size());
@@ -47,131 +50,56 @@ public class InsertIntoDatabase {
             tagsAvailable.add(feeds.get(i).getFeedTitle());
 
 
-        //dbConn.getDatabase().beginTransaction();
-        try
+        if(folderList != null)
         {
-	        if(folderList != null)
-	        {
-                int addedCount = 0;
-                int removedCount = 0;
+            int addedCount = 0;
+            int removedCount = 0;
 
-	            for(Folder folder : folderList)
-	            {
-	                if(!tagsAvailable.contains(folder.getLabel()))
-	                {
-                        addedCount++;
-                        dbConn.insertNewFolder(folder);
-                    }
-	            }
+            for(Folder folder : folderList)
+            {
+                if(!tagsAvailable.contains(folder.getLabel()))
+                {
+                    addedCount++;
+                    dbConn.insertNewFolder(folder);
+                }
+            }
 
-
-	            //List<String> newLabelList = new ArrayList<String>();
-	            /*
-                for(String[] subTag : tags)
-	                newLabelList.add(subTag[0]);
-	                */
-
-                /*
-	            for(String tag : tagsAvailable)
-	            {
-	                if(!newLabelList.contains(tag))
-	                {
-	                    int result = dbConn.removeFolderByFolderLabel(tag);//TODO this line is needed!!!!
-	                    Log.d(TAG, "Result delete: " + result);
-	                }
-	            }
-                */
-
-	            Log.d("ADD", ""+ addedCount);
-	            Log.d("REMOVE", ""+ removedCount++);
-	        }
-	        //dbConn.getDatabase().setTransactionSuccessful();
-        } finally {
-            //dbConn.getDatabase().endTransaction();
+            Log.d("ADD", ""+ addedCount);
+            Log.d("REMOVE", ""+ removedCount++);
         }
-
-
-        //dbConn.closeDatabase();
+    */
     }
 
     public static void InsertFeedsIntoDatabase(ArrayList<Feed> newFeeds, DatabaseConnectionOrm dbConn)
     {
         List<Feed> oldFeeds = dbConn.getListOfFeeds();
 
-        try
+        if(newFeeds != null)
         {
-	        if(newFeeds != null)
-	        {
-                for(Feed feed : newFeeds)
-                    dbConn.insertNewFeed(feed);
+            for(Feed feed : newFeeds)
+                dbConn.insertNewFeed(feed);
 
-	            for(Feed feed : oldFeeds)
-	            {
-	                boolean found = false;
-	                for(int i = 0; i < newFeeds.size(); i++)
-	                {
-	                    if(newFeeds.get(i).getFeedTitle().equals(feed.getFeedTitle()))
-	                    {
-                            //Set the avg color after sync again.
-                            feed.setAvgColour(oldFeeds.get(i).getAvgColour());
-                            dbConn.updateFeed(feed);
+            for(Feed feed : oldFeeds)
+            {
+                boolean found = false;
+                for(int i = 0; i < newFeeds.size(); i++)
+                {
+                    if(newFeeds.get(i).getFeedTitle().equals(feed.getFeedTitle()))
+                    {
+                        //Set the avg color after sync again.
+                        feed.setAvgColour(oldFeeds.get(i).getAvgColour());
+                        dbConn.updateFeed(feed);
 
-	                        found = true;
-	                        break;
-	                    }
-	                }
-	                if(!found)
-	                {
-	                	dbConn.removeFeedById(feed.getId());
-	                    Log.d(TAG, "Remove Subscription: " + feed.getFeedTitle());
-	                }
-	            }
-	        }
-	        //dbConn.getDatabase().setTransactionSuccessful();
-	    } finally {
-	        //dbConn.getDatabase().endTransaction();
-	    }
-        //dbConn.closeDatabase();
-    }
-
-
-    public static void InsertRssItemsIntoDatabase(List<RssItem> files, Activity activity)
-    {
-        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(activity);
-
-        if(files != null) {
-            dbConn.insertNewItems(files.toArray(new RssItem[files.size()]));
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found)
+                {
+                    dbConn.removeFeedById(feed.getId());
+                    Log.d(TAG, "Remove Subscription: " + feed.getFeedTitle());
+                }
+            }
         }
-
-        /*
-        dbConn.getDatabase().beginTransaction();
-        try
-        {
-	        if(files != null)
-	        {
-	            for (RssItem rssFile : files)
-	            	InsertSingleFeedItemIntoDatabase(rssFile, dbConn);
-	        }
-	        dbConn.getDatabase().setTransactionSuccessful();
-	    } finally {
-	        dbConn.getDatabase().endTransaction();
-	    }
-
-        dbConn.closeDatabase();
-        */
-    }
-
-    public static boolean InsertSingleFeedItemIntoDatabase(RssItem rssFile, DatabaseConnectionOrm dbConn)
-    {
-        boolean newItem = false;
-
-        if(rssFile != null)
-        {
-        	//Boolean isFeedAlreadyInDatabase = dbConn.doesRssItemAlreadyExsists(rssFile.getId());
-
-            dbConn.insertNewItems(rssFile);
-            newItem = !rssFile.getRead();
-        }
-        return newItem;
     }
 }

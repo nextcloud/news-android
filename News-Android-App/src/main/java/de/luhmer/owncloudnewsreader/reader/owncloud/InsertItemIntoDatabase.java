@@ -129,12 +129,10 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
 
     public boolean performDatabaseBatchInsert() {
         if(index > 0) {
-            //dbConn.insertNewItems(buffer);
             dbConn.insertNewItems(buffer.toArray(new RssItem[buffer.size()]));
 
             index = 0;
-            //buffer = new RssItem[bufferSize];
-            buffer = new ArrayList<RssItem>(bufferSize);
+            buffer = new ArrayList<>(bufferSize);
         }
 
         return true;

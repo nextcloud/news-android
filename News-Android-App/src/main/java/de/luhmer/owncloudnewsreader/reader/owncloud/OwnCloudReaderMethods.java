@@ -81,7 +81,6 @@ public class OwnCloudReaderMethods {
         	else if(api instanceof APIv2)
         		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn));
         } finally {
-        	//dbConn.closeDatabase();//TODO this line is needed
         	is.close();
         }
         return new int[] { 0, 0 };
@@ -119,7 +118,6 @@ public class OwnCloudReaderMethods {
         	else if(api instanceof APIv2)
         		return readJsonStreamV2(is, new InsertItemIntoDatabase(dbConn))[0];
         } finally {
-            //dbConn.closeDatabase();//TODO this line is needed
         	is.close();
         }
         return 0;
@@ -142,7 +140,6 @@ public class OwnCloudReaderMethods {
 
 			ifid.WriteAllToDatabaseNow();
         } finally {
-            //dbConn.closeDatabase();//TODO this line is needed
         	is.close();
         }
 
@@ -165,7 +162,6 @@ public class OwnCloudReaderMethods {
 
 			ifid.WriteAllToDatabaseNow();
 		} finally {
-            //dbConn.closeDatabase();//TODO this line is needed
 			inputStream.close();
 		}
 		return result;
