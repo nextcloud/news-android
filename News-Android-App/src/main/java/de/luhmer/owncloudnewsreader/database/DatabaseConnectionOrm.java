@@ -64,8 +64,20 @@ public class DatabaseConnectionOrm {
         daoSession = DatabaseHelperOrm.getDaoSession(context);
     }
 
+    /*
     public void insertNewFolder (Folder folder) {
         daoSession.getFolderDao().insertOrReplace(folder);
+    }*/
+
+    public void deleteOldAndInsertNewFolders (final Folder... folder) {
+        daoSession.runInTx(new Runnable() {
+            @Override
+            public void run() {
+                daoSession.getFolderDao().deleteAll();
+                daoSession.getFolderDao().insertInTx(folder);
+            }
+        });
+
     }
 
     public void insertNewFeed (Feed feed) {
@@ -359,10 +371,7 @@ public class DatabaseConnectionOrm {
 
         String buildSQL =  "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME +
-                " WHERE " + RssItemDao.Properties.FeedId.columnName + " IN " +
-                "(SELECT " + FeedDao.Properties.Id.columnName +
-                " FROM " + FeedDao.TABLENAME +
-                " WHERE " + FeedDao.Properties.Id.columnName  + " = " + idFeed + ")";
+                " WHERE " + RssItemDao.Properties.FeedId.columnName + " = " + idFeed;
 
         if(onlyUnread && !onlyStarredItems)
             buildSQL += " AND " + RssItemDao.Properties.Read_temp.columnName + " != 1";
@@ -426,8 +435,16 @@ public class DatabaseConnectionOrm {
     public void insertIntoRssCurrentViewTable(String SQL_SELECT) {
         SQL_SELECT = "INSERT INTO " + CurrentRssItemViewDao.TABLENAME +
                 " (" + CurrentRssItemViewDao.Properties.RssItemId.columnName + ") " + SQL_SELECT;
-        daoSession.getCurrentRssItemViewDao().deleteAll();
-        daoSession.getDatabase().execSQL(SQL_SELECT);
+
+        final String SQL_INSERT_STATEMENT = SQL_SELECT;
+
+        daoSession.runInTx(new Runnable() {
+            @Override
+            public void run() {
+                daoSession.getCurrentRssItemViewDao().deleteAll();
+                daoSession.getDatabase().execSQL(SQL_INSERT_STATEMENT);
+            }
+        });
     }
 
     public SparseArray<String> getUnreadItemCountForFolder() {
@@ -448,7 +465,7 @@ public class DatabaseConnectionOrm {
     }
 
     public String getUnreadItemsCountForSpecificFolder(SPECIAL_FOLDERS specialFolder) {
-        String buildSQL = "SELECT COUNT(rss." + RssItemDao.Properties.Id.columnName + ")" +
+        String buildSQL = "SELECT COUNT(1)" +
                 " FROM " + RssItemDao.TABLENAME + " rss ";
 
         if(specialFolder != null && specialFolder.equals(SPECIAL_FOLDERS.ALL_STARRED_ITEMS)) {
@@ -462,7 +479,7 @@ public class DatabaseConnectionOrm {
     }
 
     public SparseArray<String> getUnreadItemCountForFeed() {
-        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(" + RssItemDao.Properties.Id.columnName + ")" + // rowid as _id,
+        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(1)" + // rowid as _id,
                 " FROM " + RssItemDao.TABLENAME +
                 " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1 " +
                 " GROUP BY " + RssItemDao.Properties.FeedId.columnName;
@@ -471,7 +488,7 @@ public class DatabaseConnectionOrm {
     }
 
     public SparseArray<String> getStarredItemCountForFeed() {
-        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(" + RssItemDao.Properties.Id.columnName + ")" + // rowid as _id,
+        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(1)" + // rowid as _id,
                 " FROM " + RssItemDao.TABLENAME +
                 " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1 " +
                 " GROUP BY " + RssItemDao.Properties.FeedId.columnName;

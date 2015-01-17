@@ -13,14 +13,14 @@ import de.greenrobot.daogenerator.Schema;
  *
  * @author Jeremy
  */
-public class Version3 extends SchemaVersion {
+public class Version4 extends SchemaVersion {
 
     /**
      * Constructor
      *
      * @param current
      */
-    public Version3(boolean current) {
+    public Version4(boolean current) {
         super(current);
 
         Schema schema = getSchema();
@@ -32,7 +32,7 @@ public class Version3 extends SchemaVersion {
      */
     @Override
     public int getVersionNumber() {
-        return 3;
+        return 4;
     }
 
     private static void addEntitysToSchema(Schema schema) {
@@ -45,7 +45,7 @@ public class Version3 extends SchemaVersion {
         /* Feed */
         Entity feed = schema.addEntity("Feed");
         Property feedId = feed.addIdProperty().notNull().getProperty();
-        Property folderIdProperty = feed.addLongProperty("folderId").getProperty();
+        Property folderIdProperty = feed.addLongProperty("folderId").index().getProperty();
 
         feed.addStringProperty("feedTitle").notNull();
         feed.addStringProperty("faviconUrl");
@@ -57,7 +57,7 @@ public class Version3 extends SchemaVersion {
         /* RSS Item */
         Entity rssItem = schema.addEntity("RssItem");
         Property rssItemId = rssItem.addIdProperty().notNull().getProperty();
-        Property rssItemFeedId = rssItem.addLongProperty("feedId").notNull().getProperty();
+        Property rssItemFeedId = rssItem.addLongProperty("feedId").notNull().index().getProperty();
 
         rssItem.addStringProperty("link");
         rssItem.addStringProperty("title");
