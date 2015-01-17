@@ -357,13 +357,18 @@ public class DatabaseConnectionOrm {
 
     public String getAllItemsIdsForFeedSQL(long idFeed, boolean onlyUnread, boolean onlyStarredItems, DatabaseConnection.SORT_DIRECTION sortDirection) {
 
+        //TODO does this sql statement work properly?
+        String buildSQL =  "SELECT " + RssItemDao.Properties.Id.columnName +
+                " FROM " + RssItemDao.TABLENAME +
+                " WHERE " + RssItemDao.Properties.FeedId.columnName + " = " + idFeed;
+        /*
         String buildSQL =  "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME +
                 " WHERE " + RssItemDao.Properties.FeedId.columnName + " IN " +
                 "(SELECT " + FeedDao.Properties.Id.columnName +
                 " FROM " + FeedDao.TABLENAME +
                 " WHERE " + FeedDao.Properties.Id.columnName  + " = " + idFeed + ")";
-
+        */
         if(onlyUnread && !onlyStarredItems)
             buildSQL += " AND " + RssItemDao.Properties.Read_temp.columnName + " != 1";
         else if(onlyStarredItems)
@@ -462,7 +467,7 @@ public class DatabaseConnectionOrm {
     }
 
     public SparseArray<String> getUnreadItemCountForFeed() {
-        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(" + RssItemDao.Properties.Id.columnName + ")" + // rowid as _id,
+        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(1)" + // rowid as _id,
                 " FROM " + RssItemDao.TABLENAME +
                 " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1 " +
                 " GROUP BY " + RssItemDao.Properties.FeedId.columnName;
@@ -471,7 +476,7 @@ public class DatabaseConnectionOrm {
     }
 
     public SparseArray<String> getStarredItemCountForFeed() {
-        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(" + RssItemDao.Properties.Id.columnName + ")" + // rowid as _id,
+        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(1)" + // rowid as _id,
                 " FROM " + RssItemDao.TABLENAME +
                 " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1 " +
                 " GROUP BY " + RssItemDao.Properties.FeedId.columnName;

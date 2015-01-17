@@ -29,7 +29,7 @@ public class DatabaseOrmGenerator {
     public static void main(String[] args) throws IOException, Exception {
         List<SchemaVersion> versions = new ArrayList<SchemaVersion>();
 
-        versions.add(new Version3(true));
+        versions.add(new Version4(true));
 
         validateSchemas(versions);
 
