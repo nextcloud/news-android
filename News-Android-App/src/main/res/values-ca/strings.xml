@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">Detall de LectorNotícies</string>
   <string name="empty_view_header">Informació</string>
   <string name="empty_view_content">Cap element</string>
+  <string name="toast_GettingMoreItems">S\'han començat a baixar nous elements... Espereu.</string>
   <string name="tv_clickHereToOpenItem">Feu clic aquí per obrir l\'element</string>
   <string name="no_wifi_available">Sense connexió WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Voleu baixar les imatges sense una connexió WiFi</string>
@@ -42,6 +43,7 @@
   <string name="action_settings">Arranjament</string>
   <string name="action_sync_settings">Arranjament de sincronització</string>
   <string name="action_add_new_feed">Afegeix una font nova</string>
+  <string name="action_textToSpeech">De lectura</string>
   <string name="notification_new_items_ticker">Teniu X elements nous sense llegir</string>
   <string name="notification_new_items_text">X elements nous disponibles sense llegir</string>
   <!--Strings related to login-->
@@ -167,6 +169,12 @@
   <string name="pref_title_clearCache">Esborra la memòria cau</string>
   <string name="pref_title_CacheImagesOffline">Comprimeix imatges fora de línia</string>
   <string name="pref_title_Max_Cache_Size">Memòria cau màxima</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Mai</item>
+    <item>Només via WIFI</item>
+    <item>Via WiFi &amp; Mòbil</item>
+    <item>Pregunta quan no està conectat al WiFi</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

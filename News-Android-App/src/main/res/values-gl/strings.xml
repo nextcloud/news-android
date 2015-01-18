@@ -43,6 +43,7 @@
   <string name="action_settings">Axustes</string>
   <string name="action_sync_settings">Axustes da sincronización</string>
   <string name="action_add_new_feed">Engadir unha nova fonte</string>
+  <string name="action_textToSpeech">Ler a saída</string>
   <string name="notification_new_items_ticker">Ten X novos elementos sen ler</string>
   <string name="notification_new_items_text">Dispón de X elementos novos sen ler</string>
   <!--Strings related to login-->

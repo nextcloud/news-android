@@ -1,42 +1,49 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">자동 동기화</string>
-  <string name="app_name">Owncloud 뉴스 리더</string>
+  <string name="app_name">ownCloud 뉴스 리더</string>
+  <string name="title_activity_sync_interval_selector">동기화 주기 선택기</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">뉴스 리더</string>
-  <string name="title_newsreader_detail">뉴스 리더 자세히</string>
+  <string name="title_newsreader_detail">뉴스 리더 자세한 정보</string>
   <string name="empty_view_header">정보</string>
   <string name="empty_view_content">항목 없음</string>
+  <string name="toast_GettingMoreItems">항목을 다운로드하고 있습니다... 잠시 기다려 주십시오.</string>
   <string name="tv_clickHereToOpenItem">항목을 열려면 누르십시오</string>
-  <string name="no_wifi_available">WiFi에 연결되지 않았음</string>
-  <string name="do_you_want_to_download_without_wifi">WiFi에 연결되지 않은 상태에서 그림을 다운로드하시겠습니까</string>
+  <string name="no_wifi_available">Wi-Fi에 연결되지 않았음</string>
+  <string name="do_you_want_to_download_without_wifi">Wi-Fi에 연결되지 않은 상태에서 사진을 다운로드하시겠습니까?</string>
+  <string name="max_items_count_reached">XX 항목의 최대 크기에 도달하였습니다</string>
   <string name="widget_header">ownCloud 뉴스</string>
   <string name="message_bar_new_articles_available">새 항목 사용 가능</string>
   <string name="message_bar_reload">새로 고침</string>
-  <string name="allUnreadFeeds">모든 읽지 않은 뉴스</string>
-  <string name="starredFeeds">별표한 뉴스</string>
+  <string name="allUnreadFeeds">모든 읽지 않은 항목</string>
+  <string name="starredFeeds">별표한 항목</string>
   <string name="title_activity_new_feed">새 피드 추가</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">새로 고침</string>
   <string name="menu_About_Changelog">정보 / 변경 사항</string>
   <string name="menu_markAllAsRead">모두 읽은 것으로 표시</string>
-  <string name="menu_StartImageCaching">그림 다운로드</string>
+  <string name="menu_StartImageCaching">사진 다운로드</string>
   <string name="menu_downloadMoreItems">더 많은 항목 다운로드</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">계정 가져오기</string>
   <!--EMAIL-->
-  <string name="email_sourceCode">뉴스의 원본 코드 - 버그 보고</string>
+  <string name="email_sourceCode">항목의 원본 코드 - 버그 보고</string>
   <string name="email_sendMail">이메일 보내기</string>
   <!--Action Bar Items-->
   <string name="action_starred">별표</string>
   <string name="action_read">읽기</string>
+  <string name="action_playPodacst">팟캐스트 재생</string>
   <string name="action_openInBrowser">브라우저에서 열기</string>
   <string name="action_sendSourceCode">개발자에게 항목 보내기</string>
   <string name="action_Share">공유</string>
   <string name="action_login">서버 설정</string>
   <string name="action_save">저장</string>
   <string name="action_settings">설정</string>
+  <string name="action_sync_settings">동기화 설정</string>
   <string name="action_add_new_feed">새 피드 추가</string>
+  <string name="action_textToSpeech">음성으로 읽기</string>
   <string name="notification_new_items_ticker">X개의 읽지 않은 항목이 있습니다</string>
   <string name="notification_new_items_text">X개의 읽지 않은 항목 사용 가능</string>
   <!--Strings related to login-->
@@ -56,7 +63,7 @@
   <string name="pull_to_refresh_updateTags">항목 상태 동기화 중</string>
   <string name="pull_to_refresh_updateFolder">폴더 동기화 중</string>
   <string name="pull_to_refresh_updateFeeds">피드 동기화 중</string>
-  <string name="pull_to_refresh_updateItems">뉴스 동기화 중</string>
+  <string name="pull_to_refresh_updateItems">항목 동기화 중</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">설정</string>
   <!--General settings-->
@@ -77,11 +84,11 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">캐시 비우는 중</string>
-  <string name="dialog_clearing_cache_please_wait">캐시를 비우고 있습니다... 잠시 기다리십시오.</string>
-  <string name="calculating_cache_size">캐시 크기 계산 중... 잠시만 기다려 주십시오.</string>
-  <string name="reset_cache_unsaved_changes">동기화되지 않은 변경 사항이 있습니다. 캐시를 초기화하시겠습니까?</string>
+  <string name="dialog_clearing_cache_please_wait">캐시를 비우고 있습니다... 잠시 기다려 주십시오.</string>
+  <string name="calculating_cache_size">캐시 크기 계산 중... 잠시 기다려 주십시오.</string>
+  <string name="reset_cache_unsaved_changes">동기화되지 않은 변경 사항이 있습니다. 캐시를 비우시겠습니까?</string>
   <string name="warning">경고</string>
-  <string name="pref_title_AutoSyncOnStart">시작 시 동기화</string>
+  <string name="pref_title_AutoSyncOnStart">시작할 때 동기화</string>
   <string name="pref_title_ShowOnlyUnread">읽지 않은 항목만 보기</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">호스트 이름 확인 사용 안함</string>
@@ -90,16 +97,20 @@
   <string name="pref_title_OpenInBrowserDirectly">자세히 보기를 건너뛰고 브라우저에서 글 열기</string>
   <string name="pref_title_notification_new_articles_available">새 글이 있을 때 알림 표시</string>
   <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">알려지지 않은 인증서를 허용하시겠습니까?</string>
+  <string name="mtm_accept_cert">알 수 없는 인증서를 허용하시겠습니까?</string>
   <string name="mtm_decision_always">항상</string>
   <string name="mtm_decision_once">한 번만</string>
   <string name="mtm_decision_abort">중단</string>
   <string name="mtm_notification">인증서 확인</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">팟캐스트</string>
+  <string name="pref_enable_podcasts">팟캐스트 지원 활성화</string>
+  <string name="no_podcast_selected">팟캐스트가 선택되지 않았음</string>
   <!--Settings for Display-->
   <string name="pref_header_display">표시</string>
+  <string name="pref_title_app_theme">앱 테마</string>
   <string name="pref_title_feed_list_layout">피드 목록 레이아웃</string>
-  <string name="pref_display_font_layout">글꼴 (재시작 후 적용됨)</string>
+  <string name="pref_display_font_layout">글꼴 (다시 시작 후 적용됨)</string>
   <string-array name="pref_display_apptheme">
     <item>어둡게</item>
     <item>밝게</item>
@@ -151,21 +162,33 @@
   <string name="login_dialog_text_something_went_wrong">무언가 잘못되었습니다 :(</string>
   <string name="login_dialog_text_not_compatible">이 앱 버전은 ownCloud 뉴스 앱과 호환되지 않습니다. 뉴스 앱과 프레임워크를 업데이트하십시오.</string>
   <string name="login_dialog_title_security_warning">보안 경고</string>
-  <string name="login_dialog_text_security_warning">HTTPS를 사용하고 있지 않습니다. 공격자가 트래픽을 감청하여 암호와 같은 민감한 데이터에 접근할 수 있습니다. HTTP 사용을 적극 권장합니다!</string>
+  <string name="login_dialog_text_security_warning">HTTPS를 사용하고 있지 않습니다. 공격자가 트래픽을 감청하여 암호와 같은 민감한 데이터에 접근할 수 있습니다. HTTPS 사용을 적극 권장합니다!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">데이터 및 동기화</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">캐시 비우기</string>
-  <string name="pref_title_CacheImagesOffline">오프라인 사용을 위하여 이미지 저장</string>
+  <string name="pref_title_CacheImagesOffline">오프라인 사용을 위하여 사진 저장</string>
   <string name="pref_title_Max_Cache_Size">최대 캐시 크기</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>하지 않음</item>
+    <item>Wi-Fi에서만</item>
+    <item>Wi-Fi 및 모바일 데이터</item>
+    <item>Wi-Fi에 연결되지 않았을 때 묻기</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
+    <item>250MB</item>
+    <item>500MB</item>
+    <item>750MB</item>
+    <item>1GB</item>
+    <item>2GB</item>
+    <item>5GB</item>
+    <item>10GB</item>
   </string-array>
   <string-array name="pref_data_sync_max_cache_size_values">
     <item>250</item>
@@ -175,6 +198,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5분</item>
+    <item>15분</item>
+    <item>30분</item>
+    <item>45분</item>
+    <item>1시간</item>
+    <item>2시간</item>
+    <item>3시간</item>
+    <item>6시간</item>
+    <item>12시간</item>
+    <item>24시간</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
