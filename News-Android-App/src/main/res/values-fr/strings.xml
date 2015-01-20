@@ -43,6 +43,7 @@
   <string name="action_settings">Paramètres</string>
   <string name="action_sync_settings">Paramètres de synchronisation</string>
   <string name="action_add_new_feed">Ajouter un nouveau flux</string>
+  <string name="action_textToSpeech">Lire à haute voix</string>
   <string name="notification_new_items_ticker">Vous avez X nouveaux articles non-lus</string>
   <string name="notification_new_items_text">X nouveaux articles non-lus disponibles</string>
   <!--Strings related to login-->

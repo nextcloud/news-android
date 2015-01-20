@@ -43,6 +43,7 @@
   <string name="action_settings">Inställningar</string>
   <string name="action_sync_settings">Synk inställningar</string>
   <string name="action_add_new_feed">Lägg till flöde</string>
+  <string name="action_textToSpeech">Läs upp</string>
   <string name="notification_new_items_ticker">Du har X olästa saker</string>
   <string name="notification_new_items_text">X nya olästa saker är tillgängliga</string>
   <!--Strings related to login-->
