@@ -6,6 +6,7 @@
   <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_starred">Označeno zvjezdicom</string>
   <string name="action_Share">Podijeli</string>
   <string name="action_save">Snimi</string>
   <string name="action_settings">Postavke</string>
