@@ -43,6 +43,7 @@
   <string name="action_settings">Nastavitve</string>
   <string name="action_sync_settings">Nastavitve usklajevanja</string>
   <string name="action_add_new_feed">Dodaj nov vir</string>
+  <string name="action_textToSpeech">Preberi</string>
   <string name="notification_new_items_ticker">Neprebranih je več prispevkov</string>
   <string name="notification_new_items_text">Na voljo je več neprebranih predmetov</string>
   <!--Strings related to login-->
