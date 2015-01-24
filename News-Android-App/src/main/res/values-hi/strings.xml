@@ -2,6 +2,7 @@
 <resources>
   <string name="auto_sync_string">आटो सिंक </string>
   <string name="app_name">ownCloud समाचार वाचक </string>
+  <string name="title_activity_sync_interval_selector">सिंक स्तर चयनकर्ता</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">NewsReader</string>
