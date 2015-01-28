@@ -3,6 +3,7 @@
   <string name="auto_sync_string">Sincronizare Auto</string>
   <string name="empty_view_header">Informaţii</string>
   <string name="no_wifi_available">Nu exista conexiune WiFi</string>
+  <string name="do_you_want_to_download_without_wifi">Doriti descarcarea imaginilor fara conexiune WiFi</string>
   <string name="message_bar_reload">Reîncarcă</string>
   <string name="title_activity_new_feed">Adaugă flux nou</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
