@@ -43,6 +43,7 @@
   <string name="action_settings">Ρυθμίσεις</string>
   <string name="action_sync_settings">Επιλογές συγχρονισμού</string>
   <string name="action_add_new_feed">Προσθήκη νέας ροής</string>
+  <string name="action_textToSpeech">Ανάγνωση από</string>
   <string name="notification_new_items_ticker">Έχετε Χ νέα αδιάβαστα στοιχεία</string>
   <string name="notification_new_items_text">Χ νέα αδιάβαστα στοιχεία διαθέσιμα</string>
   <!--Strings related to login-->
