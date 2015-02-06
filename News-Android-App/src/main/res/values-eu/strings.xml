@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">BerriIrakurle xehetasuna</string>
   <string name="empty_view_header">Informazioa</string>
   <string name="empty_view_content">Ez dago elementurik hemen</string>
+  <string name="toast_GettingMoreItems">Elementu gehiago deskargatzen... Itxoin mesedez.</string>
   <string name="tv_clickHereToOpenItem">Klikatu hemen elementua irekitzeko</string>
   <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
   <string name="do_you_want_to_download_without_wifi">Irudiak WiFi konexioa gabe deskargatu nahi dituzu</string>
@@ -42,6 +43,7 @@
   <string name="action_settings">Ezarpenak</string>
   <string name="action_sync_settings">Sinkronizazio Ezarpenak</string>
   <string name="action_add_new_feed">Gehitu iturburu  berria</string>
+  <string name="action_textToSpeech">Iraukurri ozenki</string>
   <string name="notification_new_items_ticker">Irakurri gabeko X artikulu dituzu</string>
   <string name="notification_new_items_text">Irakurri gabeko X artikulu</string>
   <!--Strings related to login-->
