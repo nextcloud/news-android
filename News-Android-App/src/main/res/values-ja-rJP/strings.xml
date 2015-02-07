@@ -43,6 +43,7 @@
   <string name="action_settings">設定</string>
   <string name="action_sync_settings">設定の同期</string>
   <string name="action_add_new_feed">新しいフィードを追加</string>
+  <string name="action_textToSpeech">音声読み上げ</string>
   <string name="notification_new_items_ticker">X 新しい未読アイテムがあります。</string>
   <string name="notification_new_items_text">X 新しい未読アイテムが利用できます</string>
   <!--Strings related to login-->
@@ -94,6 +95,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
   <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
   <string name="pref_title_OpenInBrowserDirectly">詳細ビューを見過ごし、ブラウザーにて開く</string>
+  <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
   <string name="mtm_decision_always">常に</string>
