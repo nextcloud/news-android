@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">Детайли на Новинарската Емисия</string>
   <string name="empty_view_header">Информация</string>
   <string name="empty_view_content">Няма новини</string>
+  <string name="toast_GettingMoreItems">Започна сваляне на повече файлове... Моля, изчакайте.</string>
   <string name="tv_clickHereToOpenItem">Натисни тук, за да отвориш новина</string>
   <string name="no_wifi_available">Не си свързан с WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Искаш ли да изтеглиш изображенията без WiFi връзка?</string>
@@ -42,6 +43,7 @@
   <string name="action_settings">Настройки</string>
   <string name="action_sync_settings">Настройки на Синхронизацията</string>
   <string name="action_add_new_feed">Добави нов поток</string>
+  <string name="action_textToSpeech">Прочита</string>
   <string name="notification_new_items_ticker">Имаш X нови, непрочетени артикула</string>
   <string name="notification_new_items_text">X нови, непрочетени артикула</string>
   <!--Strings related to login-->
@@ -167,6 +169,12 @@
   <string name="pref_title_clearCache">Изчисти кеша</string>
   <string name="pref_title_CacheImagesOffline">Запази изображенията</string>
   <string name="pref_title_Max_Cache_Size">Макс. Размер на Кеша</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Никога</item>
+    <item>Само през WiFi</item>
+    <item>Само през WiFi &amp; и мобилна връзка</item>
+    <item>Да попита, когато не е през WiFi</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>
