@@ -9,7 +9,7 @@
   <string name="title_newsreader_detail">Detailansicht</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Keine Artikel vorhanden</string>
-  <string name="toast_GettingMoreItems">Starte mit dem Herunterladen weiterer Objekte... Bitte warten.</string>
+  <string name="toast_GettingMoreItems">Beginne mit dem Herunterladen weiterer Objekte… Bitte warten.</string>
   <string name="tv_clickHereToOpenItem">Hier klicken, um Artikel zu öffnen</string>
   <string name="no_wifi_available">Keine WLAN-Verbindung</string>
   <string name="do_you_want_to_download_without_wifi">Willst du die Bilder ohne W-LAN-Verbindung herunterladen</string>
@@ -53,7 +53,7 @@
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Einloggen</string>
-  <string name="login_progress_signing_in">Logge ein...</string>
+  <string name="login_progress_signing_in">Anmeldung…</string>
   <string name="error_incorrect_password">Dieses Passwort ist falsch</string>
   <string name="error_field_required">Dieses Feld ist erforderlich</string>
   <string name="error_invalid_url">Diese URL ist falsch</string>
@@ -85,7 +85,7 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Cache löschen</string>
   <string name="dialog_clearing_cache_please_wait">Lösche den Cache.. Bitte warten.</string>
-  <string name="calculating_cache_size">Berechne Cachegröße... Bitte warten.</string>
+  <string name="calculating_cache_size">Berechne Cachegröße… Bitte warten.</string>
   <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchtest Du dennoch den Cache leeren?</string>
   <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Starten synchronisieren</string>

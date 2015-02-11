@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="empty_view_header">Информација</string>
+  <string name="message_bar_reload">Поново учитај</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Освежи</string>
   <!--Import Accounts-->
@@ -35,6 +37,7 @@
   <string name="login_dialog_title_security_warning">Сигурносно упозорење</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string name="pref_title_clearCache">Очисти кеш</string>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
