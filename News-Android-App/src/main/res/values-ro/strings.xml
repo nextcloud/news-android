@@ -1,16 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">Sincronizare Auto</string>
+  <string name="title_activity_sync_interval_selector">Interval de sincronizare</string>
+  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="title_activity_subscription">SubscriptionActivity</string>
+  <string name="title_newsreader_list">NewsReader</string>
   <string name="empty_view_header">Informaţii</string>
+  <string name="tv_clickHereToOpenItem">Apăsați aici pentru a deschide fișierul</string>
   <string name="no_wifi_available">Nu exista conexiune WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Doriti descarcarea imaginilor fara conexiune WiFi</string>
+  <string name="max_items_count_reached">Ații ajuns la limita maximă de XX articole</string>
+  <string name="widget_header">Știri ownCloud</string>
   <string name="message_bar_reload">Reîncarcă</string>
   <string name="title_activity_new_feed">Adaugă flux nou</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Împrospătare</string>
+  <string name="menu_About_Changelog">Despre / Modificări</string>
   <string name="menu_markAllAsRead">Marcaţi tot ca fiind citit</string>
   <string name="menu_StartImageCaching">Descarca imagini </string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Importează cont</string>
   <!--EMAIL-->
   <string name="email_sendMail">Trimiteti e-mail
 </string>

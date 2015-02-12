@@ -43,6 +43,7 @@
   <string name="action_settings">設定</string>
   <string name="action_sync_settings">同步設定</string>
   <string name="action_add_new_feed">加入新訂閱</string>
+  <string name="action_textToSpeech">讀出</string>
   <string name="notification_new_items_ticker">您有 X 新的未讀項目</string>
   <string name="notification_new_items_text">X 新的未讀項目可用</string>
   <!--Strings related to login-->

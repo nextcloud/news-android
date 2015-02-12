@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">Autosincronizar</string>
-  <string name="app_name">Lector de Noticias ownCloud</string>
+  <string name="app_name">Lector de noticias ownCloud</string>
   <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronización</string>
   <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
   <string name="title_activity_subscription">ActividadSuscripción</string>
@@ -35,8 +35,8 @@
   <string name="action_starred">Destacado</string>
   <string name="action_read">Leer</string>
   <string name="action_playPodacst">Reproducir podcast</string>
-  <string name="action_openInBrowser">Abrir en Navegador</string>
-  <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
+  <string name="action_openInBrowser">Abrir en navegador</string>
+  <string name="action_sendSourceCode">Enviar artículo al desarrollador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Ajustes del Servidor</string>
   <string name="action_save">Guardar</string>
@@ -86,7 +86,7 @@
   <string name="dialog_clearing_cache">Vaciando el caché</string>
   <string name="dialog_clearing_cache_please_wait">Vaciando el caché... Espere.</string>
   <string name="calculating_cache_size">Calculando tamaño de cache... Por favor espere.</string>
-  <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quieres vaciar la caché igualmente?</string>
+  <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quiere vaciar la caché igualmente?</string>
   <string name="warning">Precaución</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar al inicio</string>
   <string name="pref_title_ShowOnlyUnread">Mostrar sólo artículos no leídos</string>
