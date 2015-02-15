@@ -43,6 +43,7 @@
   <string name="action_settings">Ustawienia</string>
   <string name="action_sync_settings">Ustawienia synchronizacji</string>
   <string name="action_add_new_feed">Dodaj nowy kanał</string>
+  <string name="action_textToSpeech">Przeczytane</string>
   <string name="notification_new_items_ticker">Masz X nowych nie przeczytanych wpisów</string>
   <string name="notification_new_items_text">X nowych wpisów jest dostępnych</string>
   <!--Strings related to login-->
@@ -168,6 +169,12 @@
   <string name="pref_title_clearCache">Czyść pamięć podręczną</string>
   <string name="pref_title_CacheImagesOffline">Zapisuj obrazy offline</string>
   <string name="pref_title_Max_Cache_Size">Maksymalny rozmiar pamięci podręcznej</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Nigdy</item>
+    <item>Tylko przez WiFi</item>
+    <item>Przez WiFi &amp; Mobilne</item>
+    <item>Zapytaj gdy nie podłączony do WiFi</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>
