@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.nineoldandroids.view.ViewHelper;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -133,7 +134,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
         if(hasWindowFocus) {
             int currentOrientation = getResources().getConfiguration().orientation;
             if (currentOrientation != lastOrientation) {
-                sliding_layout.collapsePanel();
+                sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 lastOrientation = currentOrientation;
             }
         }
@@ -217,9 +218,9 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
     }
 
     public boolean handlePodcastBackPressed() {
-        if(mPodcastFragment != null && sliding_layout.isPanelExpanded()) {
+        if(mPodcastFragment != null && sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
             if (!mPodcastFragment.onBackPressed())
-                sliding_layout.collapsePanel();
+                sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
             return true;
         }
         return false;
@@ -436,11 +437,11 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
 
         int podcastMediaControlHeightDp = pxToDp((int) getResources().getDimension(R.dimen.podcast_media_control_height));
 
-        if(isTabletView && sliding_layout.isPanelExpanded()) { //On Tablets
+        if(isTabletView && sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) { //On Tablets
             animateToPositionTargetApiSafe(podcastMediaControlHeightDp);
         } else if(!isTabletView && isLeftSliderOpen)
             animateToPositionTargetApiSafe(0);
-        else if(sliding_layout.isPanelExpanded()) {
+        else if(sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
             animateToPositionTargetApiSafe(podcastMediaControlHeightDp);
         } else {
             animateToPositionTargetApiSafe(64);
