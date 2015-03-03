@@ -1,23 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">Sincronizare Auto</string>
+  <string name="app_name">News Reader ownCloud</string>
   <string name="title_activity_sync_interval_selector">Interval de sincronizare</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
   <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">NewsReader</string>
+  <string name="title_newsreader_detail">Detaliu de NewsReader</string>
   <string name="empty_view_header">Informaţii</string>
+  <string name="empty_view_content">Articole absente</string>
+  <string name="toast_GettingMoreItems">Multiple descărcări concomitente... Așteptați.</string>
   <string name="tv_clickHereToOpenItem">Apăsați aici pentru a deschide fișierul</string>
   <string name="no_wifi_available">Nu exista conexiune WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Doriti descarcarea imaginilor fara conexiune WiFi</string>
   <string name="max_items_count_reached">Ații ajuns la limita maximă de XX articole</string>
   <string name="widget_header">Știri ownCloud</string>
+  <string name="message_bar_new_articles_available">Articole noi la dispoziție</string>
   <string name="message_bar_reload">Reîncarcă</string>
+  <string name="allUnreadFeeds">Toate articolele necitite</string>
+  <string name="starredFeeds">Articole selectate</string>
   <string name="title_activity_new_feed">Adaugă flux nou</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Împrospătare</string>
   <string name="menu_About_Changelog">Despre / Modificări</string>
   <string name="menu_markAllAsRead">Marcaţi tot ca fiind citit</string>
   <string name="menu_StartImageCaching">Descarca imagini </string>
+  <string name="menu_downloadMoreItems">Descarcă mai multe articole </string>
   <!--Import Accounts-->
   <string name="import_account_dialog_title">Importează cont</string>
   <!--EMAIL-->
@@ -26,6 +34,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Marcat</string>
   <string name="action_read">Citeşte</string>
+  <string name="action_playPodacst">Inițiază Podcast</string>
   <string name="action_openInBrowser">Deschide in Browser</string>
   <string name="action_Share">Partajează</string>
   <string name="action_login">Setările serverului</string>
@@ -43,6 +52,7 @@
   <string name="login_progress_signing_in">Înregistrare</string>
   <string name="error_incorrect_password">Aceasta parola este incorecta </string>
   <string name="error_field_required">Acest câmp este obligatoriu </string>
+  <string name="error_invalid_url">Acest url este incorect</string>
   <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Setări</string>
@@ -66,14 +76,19 @@
   <string name="mtm_decision_abort">Anuleaza</string>
   <string name="mtm_notification">Verificare certificat</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
   <!--Settings for Display-->
+  <string name="pref_display_font_layout">Font (necesită restart)</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Eroare</string>
   <string name="login_dialog_title_security_warning">Avertisment de securitate</string>
+  <string name="login_dialog_text_security_warning">Nu ați folosit https. Un hacker ar putea intercepta conținutul și obține acces la informație privată (ex.: parola). Se recomandă folosirea https-ului!</string>
   <!--Data & Sync-->
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
-  <string name="pref_title_clearCache">Sterge cache</string>
+  <string name="pref_title_clearCache">Șterge cache</string>
+  <string name="pref_title_CacheImagesOffline">Imagini Cache offline</string>
   <string name="pref_title_Max_Cache_Size">Mărime maximă Cache</string>
+  <string-array name="pref_data_sync_image_cache"/>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
