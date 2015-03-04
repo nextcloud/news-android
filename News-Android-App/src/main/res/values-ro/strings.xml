@@ -29,6 +29,7 @@
   <!--Import Accounts-->
   <string name="import_account_dialog_title">Importează cont</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Cod Sursă al articolului - Bugreport</string>
   <string name="email_sendMail">Trimiteti e-mail
 </string>
   <!--Action Bar Items-->
@@ -54,6 +55,8 @@
   <string name="error_field_required">Acest câmp este obligatoriu </string>
   <string name="error_invalid_url">Acest url este incorect</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Descarcă X articole vechi</string>
+  <string name="pull_to_refresh_updateFolder">Sincronizarea dosarului</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Setări</string>
   <!--General settings-->
@@ -65,10 +68,14 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Ștergere cache</string>
+  <string name="dialog_clearing_cache_please_wait">Ștergere cache... Așteptați.</string>
+  <string name="calculating_cache_size">Estimarea dimensiunii cache... Așteptați.</string>
   <string name="warning">Atenție</string>
   <string name="pref_title_ShowOnlyUnread">Arata doar articolele necitite </string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Navigheaza cu tastele de volum </string>
+  <string name="pref_title_notification_new_articles_available">Arată notificarea cînd apar articole noi</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepta Certificat Necunoscut?</string>
   <string name="mtm_decision_always">Întotdeauna</string>
@@ -77,10 +84,13 @@
   <string name="mtm_notification">Verificare certificat</string>
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
+  <string name="no_podcast_selected">Nu a fost selectat podcastul</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">Display</string>
   <string name="pref_display_font_layout">Font (necesită restart)</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Eroare</string>
+  <string name="login_dialog_text_something_went_wrong">Undeva s-a comis o eroare :(</string>
   <string name="login_dialog_title_security_warning">Avertisment de securitate</string>
   <string name="login_dialog_text_security_warning">Nu ați folosit https. Un hacker ar putea intercepta conținutul și obține acces la informație privată (ex.: parola). Se recomandă folosirea https-ului!</string>
   <!--Data & Sync-->
