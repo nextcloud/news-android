@@ -208,6 +208,9 @@ public class NewsDetailFragment extends Fragment {
         //webSettings.setDatabaseEnabled(true);
         //webview.clearCache(true);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            mWebView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+
 
         mWebView.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
 

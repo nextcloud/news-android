@@ -412,8 +412,9 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         WebView webViewContent = (WebView) view.findViewById(R.id.webView_body);
         webViewContent.setClickable(false);
         webViewContent.setFocusable(false);
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-        //	webViewContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+        	webViewContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
         webViewContent.loadDataWithBaseURL("", NewsDetailFragment.getHtmlPage(mActivity, rssItem), "text/html", "UTF-8", "");
     }
