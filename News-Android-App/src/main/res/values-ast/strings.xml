@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">Detalle del Llector de noticies</string>
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Nun hai nengún elementu equí</string>
+  <string name="toast_GettingMoreItems">Descarga d\'artículos aniciada... Por favor espera.</string>
   <string name="tv_clickHereToOpenItem">Clic equí p\'abrir l\'artículu</string>
   <string name="no_wifi_available">Nun hai conexón WiFi</string>
   <string name="do_you_want_to_download_without_wifi">¿Quies baxar les semeyes ensin una conexón WiFi?</string>
