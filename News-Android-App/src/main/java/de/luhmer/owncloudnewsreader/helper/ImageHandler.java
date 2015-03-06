@@ -119,13 +119,13 @@ public class ImageHandler {
 		Matcher matcher = pattern.matcher(text);
 	    // Check all occurance
 	    while (matcher.find()) {
-	    	//System.out.print("Start index: " + matcher.start());
-	    	//System.out.print(" End index: " + matcher.end() + " ");
-	    	//System.out.println(matcher.group());
-
 	    	Matcher matcherSrcLink = patternSrcLink.matcher(matcher.group());
 	    	if(matcherSrcLink.find()) {
-	    		links.add(matcherSrcLink.group(1));
+                String link = matcherSrcLink.group(1);
+                if(link.startsWith("//")) { //Maybe the text contains image urls without http or https prefix.
+                    link = "https:" + link;
+                }
+	    		links.add(link);
 	    	}
 	    }
 	    return links;
