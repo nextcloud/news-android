@@ -33,6 +33,7 @@ import org.apache.http.util.ByteArrayBuffer;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
@@ -112,7 +113,7 @@ public class GetImageThreaded extends Thread
                 /*
                  * Read bytes to the Buffer until there is nothing more to read(-1).
                  */
-                ByteArrayBuffer baf = new ByteArrayBuffer(50);
+                ByteArrayBuffer baf = new ByteArrayBuffer(bis.available());
                 int current;
                 while ((current = bis.read()) != -1) {
                     baf.append((byte) current);
@@ -128,9 +129,11 @@ public class GetImageThreaded extends Thread
                 }
             }
             //return cacheFile.getPath();
-        }
-        catch(Exception ex)
-        {
+        } catch (OutOfMemoryError E) {
+            Log.v(TAG, "OutOfMemoryError - Image too large!");
+        } catch (FileNotFoundException ex) {
+            Log.v(TAG, "File not found: " + WEB_URL_TO_FILE);
+        } catch(Exception ex) {
             ex.printStackTrace();
         }
         //return bmp;

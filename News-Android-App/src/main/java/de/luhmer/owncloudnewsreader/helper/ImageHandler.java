@@ -110,16 +110,17 @@ public class ImageHandler {
 
 
 
+    private static final Pattern patternImg = Pattern.compile("<img[^>]*>");
+    private static final Pattern patternImgSrcLink = Pattern.compile("src=\"(.*?)\"");
 
 	public static List<String> getImageLinksFromText(String text)
 	{
 		List<String> links = new ArrayList<String>();
-		Pattern pattern = Pattern.compile("<img[^>]*>");
-		Pattern patternSrcLink = Pattern.compile("src=\"(.*?)\"");
-		Matcher matcher = pattern.matcher(text);
-	    // Check all occurance
+
+		Matcher matcher = patternImg.matcher(text);
+	    // Check all occurrences
 	    while (matcher.find()) {
-	    	Matcher matcherSrcLink = patternSrcLink.matcher(matcher.group());
+	    	Matcher matcherSrcLink = patternImgSrcLink.matcher(matcher.group());
 	    	if(matcherSrcLink.find()) {
                 String link = matcherSrcLink.group(1);
                 if(link.startsWith("//")) { //Maybe the text contains image urls without http or https prefix.

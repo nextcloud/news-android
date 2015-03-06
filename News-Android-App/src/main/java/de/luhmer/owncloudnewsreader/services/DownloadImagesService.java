@@ -127,7 +127,13 @@ public class DownloadImagesService extends IntentService {
             for(RssItem rssItem : rssItemList) {
                 String body = rssItem.getBody();
                 links.addAll(ImageHandler.getImageLinksFromText(body));
+
+                if(links.size() > 10000) {
+                    notificationManager.notify(123, GetNotificationLimitImagesReached(10000));
+                    break;
+                }
             }
+
 
             maxCount = links.size();
 
@@ -150,6 +156,22 @@ public class DownloadImagesService extends IntentService {
             ex.printStackTrace();
             Toast.makeText(this, "Error while downloading images.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private Notification GetNotificationLimitImagesReached(int limit) {
+        Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
+        NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this)
+                .setContentTitle("ownCloud News Reader")
+                .setContentText("Only " + limit + " images can be cached at once")
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentIntent(pIntent);
+
+        Notification notify = notifyBuilder.build();
+
+        //Hide the notification after its selected
+        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+        return notify;
     }
 
     private Notification BuildNotification() {
@@ -180,7 +202,7 @@ public class DownloadImagesService extends IntentService {
         int max_allowed_size = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, "1000"));//Default is 1Gb --> 1000mb
         if(size > max_allowed_size)
         {
-            files = new HashMap<File, Long>();
+            files = new HashMap<>();
             for(File file : ImageHandler.getFilesFromDir(new File(FileUtils.getPathImageCache(context))))
             {
                 files.put(file, file.lastModified());
