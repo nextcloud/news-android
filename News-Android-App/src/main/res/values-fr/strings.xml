@@ -61,7 +61,7 @@
   <string name="toast_downloaded_x_items">X anciens articles téléchargés</string>
   <string name="toast_no_more_downloads_available">Aucun article supplémentaire disponible</string>
   <string name="pull_to_refresh_updateTags">Synchronisation de l’état des articles</string>
-  <string name="pull_to_refresh_updateFolder">Synchronisation des dossiers</string>
+  <string name="pull_to_refresh_updateFolder">Synchronisation du dossier</string>
   <string name="pull_to_refresh_updateFeeds">Synchronisation des flux</string>
   <string name="pull_to_refresh_updateItems">Synchronisation des articles</string>
   <!--Strings related to Settings-->
