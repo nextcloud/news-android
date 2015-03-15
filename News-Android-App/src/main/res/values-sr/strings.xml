@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="empty_view_header">Информација</string>
+  <string name="empty_view_header">Подаци</string>
   <string name="message_bar_reload">Поново учитај</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Освежи</string>
