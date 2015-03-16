@@ -1,43 +1,202 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">Ауто-синхронизација</string>
+  <string name="app_name">ОунКлауд читач вести</string>
+  <string name="title_activity_sync_interval_selector">Избор размака синхронизације</string>
+  <string name="title_newsreader_list">Читач новости</string>
+  <string name="title_newsreader_detail">Детаљи читача</string>
   <string name="empty_view_header">Подаци</string>
+  <string name="empty_view_content">Овде нема ничега</string>
+  <string name="toast_GettingMoreItems">Почео сам преузимање још ставки... Сачекајте.</string>
+  <string name="tv_clickHereToOpenItem">Кликните оде да отворите ставку</string>
+  <string name="no_wifi_available">Нема бежичне везе</string>
+  <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе?</string>
+  <string name="widget_header">ОунКлауд новости</string>
+  <string name="message_bar_new_articles_available">Има нових ставки</string>
   <string name="message_bar_reload">Поново учитај</string>
+  <string name="allUnreadFeeds">Све непрочитане ставке</string>
+  <string name="starredFeeds">Озвездане ставке</string>
+  <string name="title_activity_new_feed">Додај довод</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Освежи</string>
+  <string name="menu_About_Changelog">О програму / Дневник измена</string>
+  <string name="menu_markAllAsRead">Означи све као прочитано</string>
+  <string name="menu_StartImageCaching">Преузми слике</string>
+  <string name="menu_downloadMoreItems">Преузми још ставки</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Увези налог</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">Изворни код ставке — Извештај о грешци</string>
+  <string name="email_sendMail">Пошаљи е-пошту</string>
   <!--Action Bar Items-->
   <string name="action_starred">Означено звездицом</string>
+  <string name="action_read">Читај</string>
+  <string name="action_openInBrowser">Отвори у прегледачу</string>
+  <string name="action_sendSourceCode">Пошаљи ставку програмеру</string>
   <string name="action_Share">Дели</string>
+  <string name="action_login">Поставке сервера</string>
   <string name="action_save">Сачувај</string>
   <string name="action_settings">Поставке</string>
+  <string name="action_sync_settings">Поставке синхронизације</string>
+  <string name="action_add_new_feed">Додај довод</string>
+  <string name="action_textToSpeech">Ишчитај</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">Пријави се</string>
+  <string name="login_progress_signing_in">Пријављујем се...</string>
+  <string name="error_incorrect_password">Лозинка је неисправна</string>
+  <string name="error_field_required">Ово поље је неопходно</string>
+  <string name="error_invalid_url">УРЛ је неисправан</string>
   <!--Toast Messages-->
+  <string name="toast_no_more_downloads_available">Нема више доступних ставки</string>
+  <string name="pull_to_refresh_updateTags">Синхронизујем стања ставки</string>
+  <string name="pull_to_refresh_updateFolder">Синхронизујем фасцикле</string>
+  <string name="pull_to_refresh_updateFeeds">Синхронизујем доводе</string>
+  <string name="pull_to_refresh_updateItems">Синхронизујем ставке</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Поставке</string>
   <!--General settings-->
   <string name="pref_header_general">Опште</string>
+  <string name="pref_title_general_sort_order">Сортирање</string>
+  <string-array name="pref_general_sort_order">
+    <item>нови -&gt; стари</item>
+    <item>стари -&gt; нови</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">Чистим кеш</string>
+  <string name="dialog_clearing_cache_please_wait">Чистим кеш... Сачекајте.</string>
+  <string name="calculating_cache_size">Рачунам величину кеша... Сачекајте.</string>
+  <string name="reset_cache_unsaved_changes">Постоје несинхронизоване измене. Да ипак обришем кеш?</string>
   <string name="warning">Упозорење</string>
+  <string name="pref_title_AutoSyncOnStart">Синхронизација при покретању</string>
+  <string name="pref_title_ShowOnlyUnread">Прикажи само непрочитане чланке</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">Искључи проверу имена домаћина</string>
+  <string name="pref_title_NavigateWithVolumeButtons">Навигација помоћу дугмади за јачину звука</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Означи као прочитано током клизања</string>
+  <string name="pref_title_OpenInBrowserDirectly">Прескочи детаљан приказ и отвори у прегледачу</string>
+  <string name="pref_title_notification_new_articles_available">Прикажи обавештења о новим чланцима</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">Прихватити непознати сертификат?</string>
+  <string name="mtm_decision_always">Увек</string>
+  <string name="mtm_decision_once">Једном</string>
+  <string name="mtm_decision_abort">Прекини</string>
+  <string name="mtm_notification">Провера сертификата</string>
   <!--Podcast-->
   <!--Settings for Display-->
+  <string name="pref_header_display">Приказ</string>
+  <string name="pref_title_app_theme">Тема</string>
+  <string name="pref_title_feed_list_layout">Распоред листе довода</string>
+  <string name="pref_display_font_layout">Фонт (након рестарта)</string>
+  <string-array name="pref_display_apptheme">
+    <item>тамна</item>
+    <item>светла</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>једноставан</item>
+    <item>проширен</item>
+    <item>проширен са веб приказом</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Грешка</string>
+  <string name="login_dialog_text_something_went_wrong">Нешто је пошло наопако :(</string>
   <string name="login_dialog_title_security_warning">Сигурносно упозорење</string>
+  <string name="login_dialog_text_security_warning">Не користите безбедни пренос. Нападач може пресрести ваш саобраћај и доћи у посед осетљивих података (нпр. ваше лозинке). Заиста препоручујемо да користите https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">Подаци и синхронизација</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Очисти кеш</string>
+  <string name="pref_title_CacheImagesOffline">Кеширај слике ван везе</string>
+  <string name="pref_title_Max_Cache_Size">Највише</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>никад</item>
+    <item>само преко бежичне везе</item>
+    <item>преко бежичне и мобилне</item>
+    <item>питај кад нема бежичне везе</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 MB</item>
+    <item>500 MB</item>
+    <item>750 MB</item>
+    <item>1 GB</item>
+    <item>2 GB</item>
+    <item>5 GB</item>
+    <item>10 GB</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 минута</item>
+    <item>15 минута</item>
+    <item>30 минута</item>
+    <item>45 минута</item>
+    <item>1 сат</item>
+    <item>2 сата</item>
+    <item>3 сата</item>
+    <item>6 сати</item>
+    <item>12 сати</item>
+    <item>24 сата</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
