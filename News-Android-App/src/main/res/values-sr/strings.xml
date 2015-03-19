@@ -44,6 +44,7 @@
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Пријави се</string>
   <string name="login_progress_signing_in">Пријављујем се...</string>
@@ -135,6 +136,7 @@
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Грешка</string>
   <string name="login_dialog_text_something_went_wrong">Нешто је пошло наопако :(</string>
+  <string name="login_dialog_text_not_compatible">Верзија ове апликације није усклађена са новинском апликацијом оунКлауда. Ажурирајте апликацију и њен радни оквир.</string>
   <string name="login_dialog_title_security_warning">Сигурносно упозорење</string>
   <string name="login_dialog_text_security_warning">Не користите безбедни пренос. Нападач може пресрести ваш саобраћај и доћи у посед осетљивих података (нпр. ваше лозинке). Заиста препоручујемо да користите https!</string>
   <!--Data & Sync-->
