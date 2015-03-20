@@ -3,6 +3,7 @@
   <string name="auto_sync_string">Ауто-синхронизација</string>
   <string name="app_name">ОунКлауд читач вести</string>
   <string name="title_activity_sync_interval_selector">Избор размака синхронизације</string>
+  <string name="title_activity_subscription">Активност претплаћивања</string>
   <string name="title_newsreader_list">Читач новости</string>
   <string name="title_newsreader_detail">Детаљи читача</string>
   <string name="empty_view_header">Подаци</string>
@@ -11,6 +12,7 @@
   <string name="tv_clickHereToOpenItem">Кликните оде да отворите ставку</string>
   <string name="no_wifi_available">Нема бежичне везе</string>
   <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе?</string>
+  <string name="max_items_count_reached">Достигли сте максималан број ставки: XX</string>
   <string name="widget_header">ОунКлауд новости</string>
   <string name="message_bar_new_articles_available">Има нових ставки</string>
   <string name="message_bar_reload">Поново учитај</string>
@@ -31,6 +33,7 @@
   <!--Action Bar Items-->
   <string name="action_starred">Означено звездицом</string>
   <string name="action_read">Читај</string>
+  <string name="action_playPodacst">Пусти подемисију</string>
   <string name="action_openInBrowser">Отвори у прегледачу</string>
   <string name="action_sendSourceCode">Пошаљи ставку програмеру</string>
   <string name="action_Share">Дели</string>
@@ -40,6 +43,8 @@
   <string name="action_sync_settings">Поставке синхронизације</string>
   <string name="action_add_new_feed">Додај довод</string>
   <string name="action_textToSpeech">Ишчитај</string>
+  <string name="notification_new_items_ticker">Нових непрочитаних ставки: X</string>
+  <string name="notification_new_items_text">Нових непрочитаних ставки: X</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>
@@ -52,6 +57,7 @@
   <string name="error_field_required">Ово поље је неопходно</string>
   <string name="error_invalid_url">УРЛ је неисправан</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">Старих ставки преузето: X</string>
   <string name="toast_no_more_downloads_available">Нема више доступних ставки</string>
   <string name="pull_to_refresh_updateTags">Синхронизујем стања ставки</string>
   <string name="pull_to_refresh_updateFolder">Синхронизујем фасцикле</string>
@@ -96,6 +102,9 @@
   <string name="mtm_decision_abort">Прекини</string>
   <string name="mtm_notification">Провера сертификата</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Подемисија</string>
+  <string name="pref_enable_podcasts">Укључи подршку за подемисију</string>
+  <string name="no_podcast_selected">Нема изабране подемисије</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Приказ</string>
   <string name="pref_title_app_theme">Тема</string>
@@ -118,6 +127,20 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Робото танки</item>
+    <item>Робото лагани</item>
+    <item>Робото обичан</item>
+    <item>Робото средњи</item>
+    <item>Робото подебљан</item>
+    <item>Робото црни</item>
+    <item>Робото кондезовани</item>
+    <item>Робото кондензовани подебљани</item>
+    <item>Робото Слеб танки</item>
+    <item>Робото Слеб лагани</item>
+    <item>Робото Слеб обични</item>
+    <item>Робото Слеб подебљани</item>
   </string-array>
   <string-array name="pref_display_font_values">
     <item>0</item>
@@ -143,7 +166,7 @@
   <string name="pref_header_data_sync">Подаци и синхронизација</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Очисти кеш</string>
-  <string name="pref_title_CacheImagesOffline">Кеширај слике ван везе</string>
+  <string name="pref_title_CacheImagesOffline">Кеширај слике за рад ван везе</string>
   <string name="pref_title_Max_Cache_Size">Највише</string>
   <string-array name="pref_data_sync_image_cache">
     <item>никад</item>
