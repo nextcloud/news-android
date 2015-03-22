@@ -9,8 +9,8 @@ Bugs and enhancements can be reported under: https://github.com/owncloud/News-An
   <img src="http://www.android.com/images/brand/android_app_on_play_large.png">
 </a>
 
-<a href="https://f-droid.org/repository/browse/?fdfilter=ownCloud%20News&fdid=de.luhmer.owncloudnewsreader" alt="ownCloud News App on fdroid.org">
-  <img src="https://f-droid.org/wiki/images/fdroid-135.png" width="80" height="80" >
+<a href="https://f-droid.org/repository/browse/?fdid=de.luhmer.owncloudnewsreader" alt="ownCloud News App on fdroid.org">
+  <img src="https://camo.githubusercontent.com/7df0eafa4433fa4919a56f87c3d99cf81b68d01c/68747470733a2f2f662d64726f69642e6f72672f77696b692f696d616765732f632f63342f462d44726f69642d627574746f6e5f617661696c61626c652d6f6e2e706e67">
 </a>
 </p>
 
