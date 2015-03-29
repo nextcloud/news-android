@@ -43,6 +43,7 @@ public class DatabaseConnectionOrm {
             this.add("audio/ogg");
             this.add("audio/opus");
             this.add("audio/ogg;codecs=opus");
+            this.add("audio/x-m4a");
             this.add("youtube");
         }
     };
