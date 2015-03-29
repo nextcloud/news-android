@@ -66,8 +66,7 @@ public class GetImageThreaded extends Thread
 		}
 		catch(Exception ex)
 		{
-            Log.d(TAG, ex.getLocalizedMessage() + " - URL: " + WEB_URL_TO_FILE);
-			//ex.printStackTrace();
+            Log.d(TAG, "Invalid URL: " + WEB_URL_TO_FILE, ex);
 		}
 
 		this.cont = cont;
