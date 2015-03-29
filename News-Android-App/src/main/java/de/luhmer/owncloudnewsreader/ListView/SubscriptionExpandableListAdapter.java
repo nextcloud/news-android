@@ -127,11 +127,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         mTextColorLightTheme = mContext.getResources().getColor(R.color.slider_listview_text_color_light_theme);
 
-    	//int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
-    	//Use 1/8 of the available memory for this memory cache
-    	//int cachSize = maxMemory / 8;
-    	//favIconCache = new BitmapDrawableLruCache(cachSize);
-
         fHelper = new FontHelper(mContext);
 
         unreadCountFeeds = new SparseArray<String>();

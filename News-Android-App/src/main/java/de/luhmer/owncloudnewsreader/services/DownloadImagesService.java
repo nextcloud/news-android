@@ -31,7 +31,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.util.SparseArray;
 import android.widget.Toast;
 
 import java.io.File;
@@ -51,7 +50,6 @@ import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
