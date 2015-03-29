@@ -209,8 +209,8 @@ public class DownloadImagesService extends IntentService {
             for(Object itemObj : sortHashMapByValuesD(files).keySet())
             {
                 File file = (File) itemObj;
-                file.delete();
                 size -= file.length();
+                file.delete();
                 if(size < max_allowed_size)
                     break;
             }
