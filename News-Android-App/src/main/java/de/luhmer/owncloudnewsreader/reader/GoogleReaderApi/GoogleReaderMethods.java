@@ -21,8 +21,6 @@
 
 package de.luhmer.owncloudnewsreader.reader.GoogleReaderApi;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
@@ -46,14 +44,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.model.RssFile;
-import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class GoogleReaderMethods {
 
@@ -139,47 +133,6 @@ public class GoogleReaderMethods {
 		return _SUBTITLE_ARRAYLIST;
 	}
 
-	public static String[] getStarredList(String _USERNAME, String _PASSWORD) {
-		Log.d("mygr","METHOD: getStarredList()");
-
-		String returnString = null;
-
-		String _TAG_LABEL = null;
-		try {
-			_TAG_LABEL = "stream/contents/user/" + AuthenticationManager.getGoogleUserID(_USERNAME, _PASSWORD) + "/state/com.google/starred";
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-
-		try{
-
-			HttpClient client = new DefaultHttpClient();
-			HttpGet request = new HttpGet(GoogleReaderConstants._API_URL + _TAG_LABEL);
-			request.addHeader("Authorization", GoogleReaderConstants._AUTHPARAMS + AuthenticationManager.getGoogleAuthKey(_USERNAME, _PASSWORD));
-
-			HttpResponse response = client.execute(request);
-
-			returnString = HttpHelper.request(response);
-
-			Pattern pattern = Pattern.compile("\"alternate\":\\[\\{\"href\":\"(.*?)\",");
-			Matcher matcher = pattern.matcher(returnString);
-
-			ArrayList<String> resultList = new ArrayList<String>();
-
-			while (matcher.find())
-				resultList.add(matcher.group(1));
-
-			String[] ret = new String[resultList.size()];
-			resultList.toArray(ret);
-		    return ret;
-
-		}catch(IOException e){
-			e.printStackTrace();
-
-			return null;
-		}
-
-	}
 
 	@SuppressWarnings("unused")
 	public static ArrayList<RssFile> getFeeds(String _USERNAME, String _PASSWORD, String _TAG_LABEL) {
@@ -360,141 +313,4 @@ public class GoogleReaderMethods {
 	}
 
 
-
-	public static void MarkItemAsStarred(Boolean isStarred, Cursor cursor, DatabaseConnection dbConn, Context context, OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagStarred)
-	{
-		List<NameValuePair> nameValuePairs = getStarredReadNameValuePairs(dbConn, cursor);
-		if(isStarred)
-			nameValuePairs.add(new BasicNameValuePair("a", GoogleReaderConstants._STATE_STARRED));
-		else
-			nameValuePairs.add(new BasicNameValuePair("r", GoogleReaderConstants._STATE_STARRED));
-		ExecuteTagsReadStarred(nameValuePairs, context, asyncTaskCompletedPerformTagStarred);
-		Log.d("CHECKBOX", "STARRED CHANGED: " + isStarred);
-		dbConn.updateIsStarredOfItem(cursor.getString(0), isStarred);
-	}
-
-	public static void MarkItemAsRead(Boolean isRead, Cursor cursor, DatabaseConnection dbConn, Context context, OnAsyncTaskCompletedListener asyncTaskCompletedPerformTagRead)
-	{
-		List<NameValuePair> nameValuePairs = getStarredReadNameValuePairs(dbConn, cursor);
-		if(isRead)
-			nameValuePairs.add(new BasicNameValuePair("a", GoogleReaderConstants._STATE_READ));
-		else
-			nameValuePairs.add(new BasicNameValuePair("r", GoogleReaderConstants._STATE_READ));
-		ExecuteTagsReadStarred(nameValuePairs, context, asyncTaskCompletedPerformTagRead);
-
-		Log.d("CHECKBOX", "STATUS CHANGED: " + isRead);
-		dbConn.updateIsReadOfItem(cursor.getString(0), isRead);
-	}
-
-	private static List<NameValuePair> getStarredReadNameValuePairs(DatabaseConnection dbConn, Cursor cursor)
-	{
-		String subscription_id = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_SUBSCRIPTION_ID));
-		String rss_item_id = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_RSSITEM_ID));
-
-		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("async", "true"));
-		nameValuePairs.add(new BasicNameValuePair("s", dbConn.getRowIdBySubscriptionID(subscription_id)));
-		nameValuePairs.add(new BasicNameValuePair("i", rss_item_id));
-		return nameValuePairs;
-	}
-
-	private static void ExecuteTagsReadStarred(List<NameValuePair> nameValuePairs, Context context, OnAsyncTaskCompletedListener asyncTaskCompleted)
-	{
-		//AsyncTask_PerformTagAction apt = new AsyncTask_PerformTagAction(0, context, asyncTaskCompleted);
-		//TODO this is needed
-		/*apt.execute(NewsReaderListFragment.username,
-					NewsReaderListFragment.password,
-					nameValuePairs);
-					*/
-	}
-
-	/*
-	public static String mark_all_feeds_as_read(String _USERNAME, String _PASSWORD, String FEED_ID) {
-		Log.d("mygr","METHOD: markAllAsRead");
-
-		try{
-			//String url = GoogleReaderConstants._MARK_ALL_AS_READ + "?s=" + FEED_ID + "&T=" + AuthenticationManager.getGoogleToken(_USERNAME, _PASSWORD);
-			String url = GoogleReaderConstants._MARK_ALL_AS_READ + "?s=" + FEED_ID;
-
-			HttpClient client = new DefaultHttpClient();
-			HttpGet request = new HttpGet(url);
-			request.addHeader("Authorization", GoogleReaderConstants._AUTHPARAMS + AuthenticationManager.getGoogleAuthKey(_USERNAME, _PASSWORD));
-			HttpResponse response = client.execute(request);
-
-			return HttpHelper.request(response);
-		}catch(IOException e){
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public static String markItemAsStarred(String _USERNAME, String _PASSWORD, String FEED_ID, Boolean markAsStarred) {
-		Log.d("mygr","METHOD: markItemAsStarred");
-
-		try{
-			String url = GoogleReaderConstants.get_TAG_STARRED(markAsStarred);
-			url += "&s=" + FEED_ID + "&T=" + AuthenticationManager.getGoogleToken(_USERNAME, _PASSWORD);
-
-			HttpClient client = new DefaultHttpClient();
-			HttpGet request = new HttpGet(url);
-			request.addHeader("Authorization", GoogleReaderConstants._AUTHPARAMS + AuthenticationManager.getGoogleAuthKey(_USERNAME, _PASSWORD));
-
-			HttpResponse response = client.execute(request);
-
-			return HttpHelper.request(response);
-		}catch(IOException e){
-			e.printStackTrace();
-			return null;
-		}
-	}*/
-
-/*
-	// Get the subscription list of a user
-	public String[] getSubscriptionList()
-	{
-		ArrayList subsList = new ArrayList();
-		try
-		{
-			Document doc = Jsoup.connect(Constants.SUBSCRIPTION_LIST_URL).header("Authorization", Constants.AUTHPARAMS + authkey).get();
-			Elements links = doc.select("string");
-			for(Element link : links)
-				if(link.attr("name").equals("id"))
-					subsList.add(link.text());
-			String[] subsArr = new String[subsList.size()];
-			subsList.toArray(subsArr);
-			return subsArr;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-			return null;
-		}
-	}
-
-
-	public boolean addSubscription(String feedurl,String title,boolean recommendation)
-	{
-		String source="";
-		if(recommendation)
-			source="&source=RECOMMENDATION";
-		try{
-			Document doc = Jsoup.connect(Constants.SUBSCRIPTION_EDIT_URL+"?client=PrivateReader-v1"+source)
-					.header("Authorization", Constants.AUTHPARAMS + authkey)
-					.data("s","feed/"+feedurl,
-						"ac","subscribe",
-						typgetGoogleToken      "t",title,
-						"T",token)
-					.post();
-			if(doc.text().equals("OK"))
-				return true;
-			else
-				return false;
-		 }
-		 catch(Exception ex)
-		 {
-			 ex.printStackTrace();
-			 return false;
-		 }
-	}
-	*/
 }

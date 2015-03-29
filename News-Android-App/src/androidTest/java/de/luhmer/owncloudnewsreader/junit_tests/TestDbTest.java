@@ -13,7 +13,6 @@ import org.robolectric.annotation.Config;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseHelperOrm;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;

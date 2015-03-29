@@ -457,26 +457,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     }
 
 
-
-    /*
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void SetUnreadCountForFeed(TextView textView, String idDatabase, boolean execludeStarredItems)
-	{
-		IGetTextForTextViewAsyncTask iGetter = new UnreadFeedCount(mContext, idDatabase, execludeStarredItems);
-        FillTextForTextViewHelper.FillTextForTextView(textView, iGetter, !mIsTwoPane);
-	}
-
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void SetUnreadCountForFolder(TextView textView, String idDatabase)
-	{
-		IGetTextForTextViewAsyncTask iGetter = new UnreadFolderCount(mContext, idDatabase);
-        FillTextForTextViewHelper.FillTextForTextView(textView, iGetter, !mIsTwoPane);
-	}
-    */
-
-
-
-
 	static class GroupHolder
 	{
         @InjectView(R.id.summary) TextView txt_Summary;
