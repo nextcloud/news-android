@@ -110,6 +110,7 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 pause();//Send the over signal
+                podcastNotification.cancel();
             }
         });
 

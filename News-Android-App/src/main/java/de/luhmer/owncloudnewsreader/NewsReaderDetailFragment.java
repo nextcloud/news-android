@@ -29,10 +29,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +51,8 @@ import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
 import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
 import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
@@ -74,13 +72,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
 
 	//private boolean DialogShowedToMarkLastItemsAsRead = false;
-
-	/*
-	private NewsListCursorAdapter lvAdapter;
-
-	public NewsListCursorAdapter getLvAdapter() {
-		return lvAdapter;
-	}*/
 
 	Long idFeed;
 	/**
@@ -293,10 +284,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
         NewsListArrayAdapter nca = (NewsListArrayAdapter) getListAdapter();
         if(nca != null)
             nca.notifyDataSetChanged();
-
-		//NewsListCursorAdapter nca = (NewsListCursorAdapter) getListAdapter();
-		//if(nca != null)
-			//((NewsListCursorAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
     /**

@@ -21,12 +21,9 @@
 
 package de.luhmer.owncloudnewsreader.async_tasks;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import org.apache.http.util.ByteArrayBuffer;
@@ -41,7 +38,6 @@ import java.net.URLConnection;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
-import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
@@ -70,8 +66,7 @@ public class GetImageThreaded extends Thread
 		}
 		catch(Exception ex)
 		{
-            Log.d(TAG, ex.getLocalizedMessage() + " - URL: " + WEB_URL_TO_FILE);
-			//ex.printStackTrace();
+            Log.d(TAG, "Invalid URL: " + WEB_URL_TO_FILE, ex);
 		}
 
 		this.cont = cont;

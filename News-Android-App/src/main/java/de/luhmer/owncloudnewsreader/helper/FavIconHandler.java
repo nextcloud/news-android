@@ -89,6 +89,11 @@ public class FavIconHandler {
 	}
 
 	public void PreCacheFavIcon(Feed feed) {
+        if(feed.getFaviconUrl() == null) {
+            Log.v(TAG, "No favicon for "+feed.getFeedTitle());
+            return;
+        }
+
         GetImageThreaded giAsync = new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId(), FileUtils.getPathFavIcons(context), context);
         giAsync.scaleImage = true;
         giAsync.dstHeight = 2*32;

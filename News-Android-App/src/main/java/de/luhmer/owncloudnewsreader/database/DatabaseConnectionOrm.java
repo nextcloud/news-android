@@ -43,13 +43,14 @@ public class DatabaseConnectionOrm {
             this.add("audio/ogg");
             this.add("audio/opus");
             this.add("audio/ogg;codecs=opus");
+            this.add("audio/x-m4a");
             this.add("youtube");
         }
     };
 
     public static final String[] VIDEO_FORMATS = { "youtube" };
 
-
+    public enum SORT_DIRECTION { asc, desc }
 
     DaoSession daoSession;
 
@@ -330,11 +331,11 @@ public class DatabaseConnectionOrm {
     }
 
 
-    public LazyList<RssItem> getCurrentRssItemView(DatabaseConnection.SORT_DIRECTION sortDirection) {
+    public LazyList<RssItem> getCurrentRssItemView(SORT_DIRECTION sortDirection) {
         WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.Id.columnName + " IN " +
                 "(SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")");
 
-        if(sortDirection.equals(DatabaseConnection.SORT_DIRECTION.asc))
+        if(sortDirection.equals(SORT_DIRECTION.asc))
             return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderAsc(RssItemDao.Properties.PubDate).listLazy();
         else
             return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderDesc(RssItemDao.Properties.PubDate).listLazy();
@@ -367,7 +368,7 @@ public class DatabaseConnectionOrm {
     }
 
 
-    public String getAllItemsIdsForFeedSQL(long idFeed, boolean onlyUnread, boolean onlyStarredItems, DatabaseConnection.SORT_DIRECTION sortDirection) {
+    public String getAllItemsIdsForFeedSQL(long idFeed, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection) {
 
         String buildSQL =  "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME +
@@ -394,17 +395,17 @@ public class DatabaseConnectionOrm {
         return (rssItem != null) ? rssItem.getId() : 0;
     }
 
-    public List<RssItem> getListOfAllItemsForFolder(long ID_FOLDER, boolean onlyUnread, DatabaseConnection.SORT_DIRECTION sortDirection, int limit) {
+    public List<RssItem> getListOfAllItemsForFolder(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection, int limit) {
         String whereStatement = getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, sortDirection);
         whereStatement = whereStatement.replace("SELECT " + RssItemDao.Properties.Id.columnName + " FROM " + RssItemDao.TABLENAME, "");
         whereStatement += " LIMIT " + limit;
         return daoSession.getRssItemDao().queryRaw(whereStatement, null);
     }
 
-    public String getAllItemsIdsForFolderSQL(long ID_FOLDER, boolean onlyUnread, DatabaseConnection.SORT_DIRECTION sortDirection) {
+    public String getAllItemsIdsForFolderSQL(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
         //If all starred items are requested always return them in desc. order
         if(ID_FOLDER == ALL_STARRED_ITEMS.getValue())
-            sortDirection = DatabaseConnection.SORT_DIRECTION.desc;
+            sortDirection = SORT_DIRECTION.desc;
 
         String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME;
