@@ -27,15 +27,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseHelper;
-
 public class DatabaseUtils {
+
+    public static final String DATABASE_NAME = "OwncloudNewsReader.db";
 
 	public static boolean CopyDatabaseToSdCard(Context context)
 	{
-		//context.getPackageCodePath()//Path to apk file..!
-		//String path = "/data/data/de.luhmer.owncloudnewsreader/databases/" + DatabaseHelper.DATABASE_NAME;
-		String path = context.getDatabasePath(DatabaseHelper.DATABASE_NAME).getPath();
+		String path = context.getDatabasePath(DATABASE_NAME).getPath();
 
 	    File db = new File(path);
 	    File backupDb = GetPath(context);
@@ -55,6 +53,6 @@ public class DatabaseUtils {
 	}
 
     public static File GetPath(Context context) {
-        return new File(FileUtils.getPath(context) + "/dbBackup/" + DatabaseHelper.DATABASE_NAME);
+        return new File(FileUtils.getPath(context) + "/dbBackup/" + DATABASE_NAME);
     }
 }

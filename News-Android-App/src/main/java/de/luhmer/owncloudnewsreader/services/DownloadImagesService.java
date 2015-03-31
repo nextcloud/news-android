@@ -31,7 +31,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.util.SparseArray;
 import android.widget.Toast;
 
 import java.io.File;
@@ -51,7 +50,6 @@ import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.helper.BitmapDrawableLruCache;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
@@ -196,10 +194,10 @@ public class DownloadImagesService extends IntentService {
     private void RemoveOldImages(Context context) {
         HashMap<File, Long> files;
         long size = ImageHandler.getFolderSize(new File(FileUtils.getPath(context)));
-        size = (long) (size / 1024d / 1024d);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         int max_allowed_size = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, "1000"));//Default is 1Gb --> 1000mb
+        max_allowed_size *= 1024 * 1024; // convert to byte
         if(size > max_allowed_size)
         {
             files = new HashMap<>();
@@ -211,8 +209,8 @@ public class DownloadImagesService extends IntentService {
             for(Object itemObj : sortHashMapByValuesD(files).keySet())
             {
                 File file = (File) itemObj;
-                file.delete();
                 size -= file.length();
+                file.delete();
                 if(size < max_allowed_size)
                     break;
             }
@@ -259,8 +257,7 @@ public class DownloadImagesService extends IntentService {
 
             if(maxCount == count) {
             	notificationManager.cancel(NOTIFICATION_ID);
-                if(DownloadImagesService.this != null)
-                    RemoveOldImages(DownloadImagesService.this);
+                RemoveOldImages(DownloadImagesService.this);
             } else {
                 NotificationDownloadImages.setProgress(maxCount, count+1, false);
                 NotificationDownloadImages.setContentText("Downloading Images for offline usage - " + (count+1) + "/" + maxCount);
