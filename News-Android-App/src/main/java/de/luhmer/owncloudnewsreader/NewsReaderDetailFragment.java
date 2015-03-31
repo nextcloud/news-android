@@ -182,13 +182,11 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	{
 		if(MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems() != null)
 		{
-			if(idFolder != null) {
-				if(idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue())
-					MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
-				else
-					MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(true);
-			} else
-				MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
+			if(idFolder != null && idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue()) {
+                MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
+            } else {
+                MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(true);
+            }
 		}
 	}
 
