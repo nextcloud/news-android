@@ -66,8 +66,14 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.8.5 (in development)
+0.8.6 (in development)
 ---------------------
+
+
+0.8.5 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/311">#311 Android 5.0.2 performance</a>
+- Bug fixes
 
 
 0.8.4 (Google Play)
