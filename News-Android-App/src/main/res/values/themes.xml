@@ -30,7 +30,7 @@
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColor">#ffc0c0c0</item>
+        <item name="android:textColor">@color/options_menu_item_text</item>
     </style>
 
 
