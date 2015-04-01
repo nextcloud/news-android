@@ -43,6 +43,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -70,6 +71,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
     @InjectView(R.id.toolbar) Toolbar toolbar;
+	@InjectView(R.id.progressIndicator) ProgressBar progressIndicator;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -150,6 +152,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+		progressIndicator.setMax(mSectionsPagerAdapter.getCount());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -244,6 +248,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		StopVideoOnCurrentPage();
 		currentPosition = position;
 		ResumeVideoPlayersOnCurrentPage();
+		progressIndicator.setProgress(position + 1);
 
 		if(!rssItems.get(position).getRead_temp())
 		{

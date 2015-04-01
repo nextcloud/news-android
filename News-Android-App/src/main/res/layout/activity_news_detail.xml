@@ -71,6 +71,13 @@
 
         </de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout>
 
+        <de.luhmer.owncloudnewsreader.view.AnimatingProgressBar
+            android:id="@+id/progressIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="-7dp"
+            style="?android:attr/progressBarStyleHorizontal" />
 
     </FrameLayout>
 </RelativeLayout>
