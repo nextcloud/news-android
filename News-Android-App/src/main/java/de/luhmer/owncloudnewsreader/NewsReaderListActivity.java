@@ -27,12 +27,10 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
@@ -57,7 +55,6 @@ import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
 import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnection;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseHelperOrm;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;
@@ -249,7 +246,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 
             /* Test 2 */
             for (Folder folder : folderList) {
-                String query =  dbConn.getAllItemsIdsForFolderSQL(folder.getId(), true, DatabaseConnection.SORT_DIRECTION.asc);
+                String query =  dbConn.getAllItemsIdsForFolderSQL(folder.getId(), true, DatabaseConnectionOrm.SORT_DIRECTION.asc);
 
                 dbConn.insertIntoRssCurrentViewTable(query);
                 //Log.d(TAG, "Inserting time needed: " + (System.currentTimeMillis() - start) + " ms");

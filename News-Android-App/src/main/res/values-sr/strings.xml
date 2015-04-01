@@ -3,6 +3,7 @@
   <string name="auto_sync_string">Ауто-синхронизација</string>
   <string name="app_name">ОунКлауд читач вести</string>
   <string name="title_activity_sync_interval_selector">Избор размака синхронизације</string>
+  <string name="title_activity_news_detail">Активност о детаљима вести</string>
   <string name="title_activity_subscription">Активност претплаћивања</string>
   <string name="title_newsreader_list">Читач новости</string>
   <string name="title_newsreader_detail">Детаљи читача</string>

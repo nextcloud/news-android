@@ -5,8 +5,8 @@
   <string name="title_activity_sync_interval_selector">Sélecteur d\'intervalle de synchronisation</string>
   <string name="title_activity_news_detail">Activité de détail d’article</string>
   <string name="title_activity_subscription">Activité d’abonnement</string>
-  <string name="title_newsreader_list">Lecteur d\'actualités</string>
-  <string name="title_newsreader_detail">Détail du lecteur d\'actualités</string>
+  <string name="title_newsreader_list">Lecteur de news</string>
+  <string name="title_newsreader_detail">Détail du lecteur de news</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Aucun article</string>
   <string name="toast_GettingMoreItems">Téléchargement d\'articles supplémentaire en cours... Veuillez patienter.</string>
