@@ -127,11 +127,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         mTextColorLightTheme = mContext.getResources().getColor(R.color.slider_listview_text_color_light_theme);
 
-    	//int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
-    	//Use 1/8 of the available memory for this memory cache
-    	//int cachSize = maxMemory / 8;
-    	//favIconCache = new BitmapDrawableLruCache(cachSize);
-
         fHelper = new FontHelper(mContext);
 
         unreadCountFeeds = new SparseArray<String>();
@@ -460,26 +455,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
         return ic_find_previous_holo;
     }
-
-
-
-    /*
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void SetUnreadCountForFeed(TextView textView, String idDatabase, boolean execludeStarredItems)
-	{
-		IGetTextForTextViewAsyncTask iGetter = new UnreadFeedCount(mContext, idDatabase, execludeStarredItems);
-        FillTextForTextViewHelper.FillTextForTextView(textView, iGetter, !mIsTwoPane);
-	}
-
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void SetUnreadCountForFolder(TextView textView, String idDatabase)
-	{
-		IGetTextForTextViewAsyncTask iGetter = new UnreadFolderCount(mContext, idDatabase);
-        FillTextForTextViewHelper.FillTextForTextView(textView, iGetter, !mIsTwoPane);
-	}
-    */
-
-
 
 
 	static class GroupHolder

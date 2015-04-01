@@ -100,6 +100,8 @@ public class PodcastNotification {
         //.addAction(android.R.drawable.ic_media_pause, "More", resultPendingIntent)
     }
 
-
-
+    public void cancel()
+    {
+        notificationManager.cancel(NOTIFICATION_ID);
+    }
 }
