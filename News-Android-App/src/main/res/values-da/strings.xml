@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">Automatisk synkronisering </string>
-  <string name="app_name">ownCloud News Reader</string>
-  <string name="title_activity_sync_interval_selector">Synkroniseringsinterval</string>
-  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="app_name">ownCloud Nyheds Læser</string>
+  <string name="title_activity_sync_interval_selector">Synkroniseringsinterval vælger</string>
+  <string name="title_activity_news_detail">DetaljeretNyhedsAktivitet</string>
   <string name="title_activity_subscription">AbonnementAktivitet</string>
-  <string name="title_newsreader_list">NewsReader</string>
-  <string name="title_newsreader_detail">NewsReader Oplysninger</string>
+  <string name="title_newsreader_list">NyhedsLæser</string>
+  <string name="title_newsreader_detail">NyhedsLæser Oplysninger</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Her er ingen artikler</string>
-  <string name="toast_GettingMoreItems">Startede med at downloade flere artikler... Vent venligst.</string>
+  <string name="toast_GettingMoreItems">Henter flere artikler... Vent venligst.</string>
   <string name="tv_clickHereToOpenItem">Klik her for at åbne artikel</string>
   <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
   <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden brug af WiFi-forbindelse</string>
   <string name="max_items_count_reached">Du har nået den maksimale størrelse på XX poster</string>
-  <string name="widget_header">ownCloud News</string>
+  <string name="widget_header">ownCloud Nyheder</string>
   <string name="message_bar_new_articles_available">Nye artikler er tilgængelige</string>
   <string name="message_bar_reload">Genindlæs</string>
   <string name="allUnreadFeeds">Alle ulæste artikler</string>
@@ -85,8 +85,8 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Nulstil mellemlager</string>
   <string name="dialog_clearing_cache_please_wait">Nulstiller mellemlageret... Vent venligst.</string>
-  <string name="calculating_cache_size">Beregner cachestørrelse... Vent venligst.</string>
-  <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille cachen alligevel?</string>
+  <string name="calculating_cache_size">Beregner mellemlagerstørrelse... Vent venligst.</string>
+  <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
   <string name="warning">Advarsel</string>
   <string name="pref_title_AutoSyncOnStart">Synkroniserer ved opstart</string>
   <string name="pref_title_ShowOnlyUnread">Vis kun ulæste artikler</string>
@@ -130,18 +130,18 @@
     <item>2</item>
   </string-array>
   <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
+    <item>Roboto Tynd</item>
+    <item>Roboto Let</item>
+    <item>Roboto Almindelig</item>
+    <item>Roboto Mellem</item>
+    <item>Roboto Fed</item>
+    <item>Roboto Sort</item>
+    <item>Roboto Smal</item>
+    <item>Roboto Smal og fed</item>
+    <item>Roboto Bred og tynd</item>
+    <item>Roboto Bred og let</item>
+    <item>Roboto Almindelig bred</item>
+    <item>Roboto Bred og fed</item>
   </string-array>
   <string-array name="pref_display_font_values">
     <item>0</item>
@@ -160,15 +160,15 @@
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fejl</string>
   <string name="login_dialog_text_something_went_wrong">Noget gik galt :(</string>
-  <string name="login_dialog_text_not_compatible">Denne app-version er ikke kompatibel med din ownCloud News App. Opdatér venligst news-app\'en og appframeworket.</string>
+  <string name="login_dialog_text_not_compatible">Denne app-version er ikke kompatibel med din ownCloud News App. Opdatér venligst nyheds-app\'en og appframework.</string>
   <string name="login_dialog_title_security_warning">Sikkerhedsadvarsel</string>
   <string name="login_dialog_text_security_warning">Du benytter ikke https. En ondsindet person kan opsnappe din trafik og få adgang til følsomme data (f.eks. dit kodeord). Derfor er det stærkt anbefalet at bruge https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; sync</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
-  <string name="pref_title_clearCache">Ryd cache</string>
+  <string name="pref_title_clearCache">Ryd mellemlageret</string>
   <string name="pref_title_CacheImagesOffline">Foretag mellemlagring af billeder offline</string>
-  <string name="pref_title_Max_Cache_Size">Maksimumstørrelse på cache</string>
+  <string name="pref_title_Max_Cache_Size">Maksimumstørrelse på mellemlageret</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Aldrig</item>
     <item>Kun via wifi</item>
