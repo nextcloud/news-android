@@ -17,12 +17,32 @@
 	        style="@style/LoginDialogEditTextStyle"
 	        android:hint="@string/pref_title_username" />
 
-	    <EditText
-	        android:id="@+id/password"
-	        android:inputType="textPassword"
-	        style="@style/LoginDialogEditTextStyle"
-	        android:fontFamily="sans-serif"
-	        android:hint="@string/pref_title_password" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/pref_title_password"
+                style="@style/LoginDialogEditTextStyle"
+                android:fontFamily="sans-serif"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <ImageView
+                android:id="@+id/imgView_ShowPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@android:drawable/ic_menu_view"/>
+
+        </FrameLayout>
 
 	    <EditText
 	        android:id="@+id/edt_owncloudRootPath"

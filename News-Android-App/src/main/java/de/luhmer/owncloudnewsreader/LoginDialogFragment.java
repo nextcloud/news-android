@@ -31,6 +31,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -86,8 +88,9 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	@InjectView(R.id.password) EditText mPasswordView;
 	@InjectView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
 	@InjectView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
+    @InjectView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
 
-
+    boolean mPasswordVisible = false;
 	ProgressDialog mDialogLogin;
 
     @Override
@@ -129,24 +132,13 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
         View view = inflater.inflate(R.layout.dialog_signin, null);
         ButterKnife.inject(this, view);
 
-        builder.setView(view)
-        	/*
-        	// Add action buttons
-           .setPositiveButton(R.string.action_sign_in_short, new DialogInterface.OnClickListener() {
-               @Override
-               public void onClick(DialogInterface dialog, int id) {
-            	   //attemptLogin();
-               }
-           })
-           .setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
-               public void onClick(DialogInterface dialog, int id) {
-                   LoginDialogFragment.this.getDialog().cancel();
-               }
-           })*/
-           .setTitle(getString(R.string.action_sign_in_short));
+        builder.setView(view).setTitle(getString(R.string.action_sign_in_short));
 
         FontHelper fHelper = new FontHelper(getActivity());
         fHelper.setFontForAllChildren(view, fHelper.getFont());
+
+
+        mImageViewShowPwd.setOnClickListener(ImgViewShowPasswordListener);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
@@ -204,6 +196,20 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 
         return builder.create();
     }
+
+    private View.OnClickListener ImgViewShowPasswordListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mPasswordVisible = !mPasswordVisible;
+
+            if(mPasswordVisible) {
+                mPasswordView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            } else {
+                mPasswordView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            }
+        }
+    };
+
 
     @OnClick(R.id.btn_signin) void SignIn() {
         attemptLogin();
