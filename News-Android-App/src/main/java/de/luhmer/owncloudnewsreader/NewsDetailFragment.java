@@ -30,6 +30,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,8 +164,22 @@ public class NewsDetailFragment extends Fragment {
             mWebView.setVisibility(View.VISIBLE);
             mProgressBarLoading.setVisibility(View.GONE);
 
+            SetSoftwareRenderModeForWebView(htmlPage, mWebView);
+
             mWebView.loadDataWithBaseURL("", htmlPage, "text/html", "UTF-8", "");
             super.onPostExecute(htmlPage);
+        }
+    }
+
+    public static void SetSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            if(htmlPage.contains(".gif")) {
+                webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+                Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
+            } else {
+                webView.setLayerType(WebView.LAYER_TYPE_HARDWARE, null);
+                Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
+            }
         }
     }
 
@@ -191,10 +206,6 @@ public class NewsDetailFragment extends Fragment {
         //webSettings.setAppCacheMaxSize(200);
         //webSettings.setDatabaseEnabled(true);
         //webview.clearCache(true);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            mWebView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
-
 
         mWebView.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
 

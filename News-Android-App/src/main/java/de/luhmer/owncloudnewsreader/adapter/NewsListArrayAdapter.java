@@ -39,6 +39,7 @@ import butterknife.InjectView;
 import butterknife.Optional;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.event.EventBus;
+import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
@@ -413,10 +414,11 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         webViewContent.setClickable(false);
         webViewContent.setFocusable(false);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-        	webViewContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        String htmlPage = NewsDetailFragment.getHtmlPage(mActivity, rssItem);
 
-        webViewContent.loadDataWithBaseURL("", NewsDetailFragment.getHtmlPage(mActivity, rssItem), "text/html", "UTF-8", "");
+        NewsDetailFragment.SetSoftwareRenderModeForWebView(htmlPage, webViewContent);
+
+        webViewContent.loadDataWithBaseURL("", htmlPage, "text/html", "UTF-8", "");
     }
 
 
