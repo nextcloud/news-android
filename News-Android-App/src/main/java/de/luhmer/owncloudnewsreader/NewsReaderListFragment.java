@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -40,7 +41,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,7 +100,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 			Handler refresh = new Handler(Looper.getMainLooper());
 			refresh.post(new Runnable() {
 				public void run() {
-					UpdateSyncButtonLayout();
+                    ((NewsReaderListActivity)getActivity()).UpdateButtonLayout();;
 				}
 			});
 		}
@@ -110,7 +110,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 			Handler refresh = new Handler(Looper.getMainLooper());
 			refresh.post(new Runnable() {
 				public void run() {
-					UpdateSyncButtonLayout();
+                    ((NewsReaderListActivity) getActivity()).UpdateButtonLayout();
 				}
 			});
 
@@ -237,15 +237,8 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//setRetainInstance(true);
-
 		try
 		{
-			//SettingsActivity.CheckForUnsycedChangesInDatabase(context);
-			//dbConn.resetDatabase();
-			//dbConn.clearDatabaseOverSize();
-			//dbConn.resetRssItemsDatabase();
-
             mListener = new BaseMessage.OnMessageClickListener()
             {
                 @Override
@@ -258,8 +251,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 {
                     //Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
 
-
-                    //TODO needs testing!
                     NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.content_frame));
                     if(ndf != null) {
                         //ndf.reloadAdapterFromScratch();
@@ -267,7 +258,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                     }
                 }
             };
-
 		}
 		catch(Exception ex)
 		{
@@ -281,9 +271,22 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	public void onStart() {
 		Intent serviceIntent = new Intent(getActivity(), OwnCloudSyncService.class);
 		mConnection = generateServiceConnection();
+        if(!isMyServiceRunning(OwnCloudSyncService.class)) {
+            getActivity().startService(serviceIntent);
+        }
         getActivity().bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
 		super.onStart();
 	}
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 	@Override
 	public void onStop() {
@@ -341,7 +344,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	    				StartSync();
 
 	    			if(getActivity() instanceof NewsReaderListActivity)
-	    				((NewsReaderListActivity) getActivity()).UpdateButtonSyncLayout();
+	    				((NewsReaderListActivity) getActivity()).UpdateButtonLayout();
 	    		}
 	    		catch (Exception e) {
 	    			e.printStackTrace();
@@ -388,7 +391,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 							ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
 					//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
 				} else {
-                    UpdateSyncButtonLayout();
+                    ((NewsReaderListActivity) getActivity()).UpdateButtonLayout();
                 }
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -406,15 +409,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         else if(ex instanceof HttpResponseException)
         {
             HttpResponseException responseException = (HttpResponseException) ex;
-            //if(responseException.getStatusCode() == 401)
-            //    ShowToastLong("Authentication failed");
-            //else
             ShowToastLong(responseException.getLocalizedMessage());
         }
         else
             ShowToastLong(ex.getLocalizedMessage());
 
-		UpdateSyncButtonLayout();
+        ((NewsReaderListActivity) getActivity()).UpdateButtonLayout();
 	}
 
 
@@ -541,10 +541,4 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 		eListView.setChoiceMode(activateOnItemClick ? ListView.CHOICE_MODE_SINGLE : ListView.CHOICE_MODE_NONE);
 	}
-
-    public void UpdateSyncButtonLayout()
-    {
-    	if(getActivity() != null)
-    		((NewsReaderListActivity) getActivity()).UpdateButtonSyncLayout();
-    }
 }

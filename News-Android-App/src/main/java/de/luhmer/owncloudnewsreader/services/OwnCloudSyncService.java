@@ -95,8 +95,18 @@ public class OwnCloudSyncService extends Service {
 		Log.d(TAG, "onCreate() called");
 	}
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        //Destroy service if no sync is running
+        if(!_Reader.isSyncRunning()) {
+            Log.v(TAG, "Stopping service because of inactivity");
+            stopSelf();
+        }
 
-	OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
+        return super.onUnbind(intent);
+    }
+
+    OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
@@ -256,6 +266,8 @@ public class OwnCloudSyncService extends Service {
 	}
 	
 	private void finishedSync(SYNC_TYPES sync_type) {
+        Log.v(TAG, "Finished Sync: " + sync_type.toString());
+
 		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
 		for(IOwnCloudSyncServiceCallback icb : callbackList) {
 			try {
