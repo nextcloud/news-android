@@ -46,8 +46,6 @@ import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
-import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
@@ -56,10 +54,6 @@ import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener
 import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.database.DatabaseHelperOrm;
-import de.luhmer.owncloudnewsreader.database.model.DaoSession;
-import de.luhmer.owncloudnewsreader.database.model.Feed;
-import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
@@ -95,8 +89,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 	public static final String TITEL = "TITEL";
     @InjectView(R.id.toolbar) Toolbar toolbar;
 
-    //boolean isSlideUpPanelExpanded = false;
-
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,8 +101,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
-
-        //DaoSession session = DatabaseHelperOrm.getDaoSession(this);
 
 		AccountManager mAccountManager = AccountManager.get(this);
 
@@ -129,8 +119,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 	    	mAccountManager.addAccountExplicitly(account, "", new Bundle());
 
             SyncIntervalSelectorActivity.SetAccountSyncInterval(this);
-	    	//ContentResolver.setSyncAutomatically(account, getString(R.string.authorities), true);
-			//ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
 	    }
 
 		//Init config --> if nothing is configured start the login dialog.
@@ -183,8 +171,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         mSlidingLayout.openPane();
 
 
-
-
         if(savedInstanceState == null)//When the app starts (no orientation change)
         {
         	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
@@ -206,66 +192,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         }).start();
         */
     }
-
-
-    /* TEST!!! */
-
-    public void startTesting() {
-
-        try {
-            Thread.sleep(10000); //Wait 10 Seconds
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(activity);
-        DaoSession daoSession = DatabaseHelperOrm.getDaoSession(activity);
-        List<Feed> feedList = dbConn.getAllFeedsWithUnreadRssItems();
-        List<Folder> folderList = dbConn.getListOfFolders();
-
-        long avgTime = 0;
-        final int runs = 100;
-
-        for(int i = 0; i < runs; i++) {
-            long start = System.currentTimeMillis();
-
-            /* Test 1 */
-            /*
-            for (Feed feed : feedList) {
-                String query = dbConn.getAllItemsIdsForFeedSQL(feed.getId(), true, false, DatabaseConnection.SORT_DIRECTION.asc);
-                Cursor c = daoSession.getDatabase().rawQuery(query, null);
-                if(c != null) {
-                    c.moveToFirst();
-                    do {
-                        int xcv = c.getInt(0);
-                    } while (c.moveToNext());
-                }
-            }
-            */
-            /* Test 1 Ende */
-
-            /* Test 2 */
-            for (Folder folder : folderList) {
-                String query =  dbConn.getAllItemsIdsForFolderSQL(folder.getId(), true, DatabaseConnectionOrm.SORT_DIRECTION.asc);
-
-                dbConn.insertIntoRssCurrentViewTable(query);
-                //Log.d(TAG, "Inserting time needed: " + (System.currentTimeMillis() - start) + " ms");
-            }
-            /* Test 2 Ende */
-
-            avgTime += (System.currentTimeMillis() - start);
-        }
-        avgTime /= runs;
-        Log.d(TAG, "Time needed in average:" + avgTime + " ms");
-    }
-
-
-    /* TEST ENDE!!! */
-
-
-
-
-
 
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -319,8 +245,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 	protected void onSaveInstanceState(Bundle outState) {
 
         safeInstanceState(outState);
-
-        //outState.putString("WORKAROUND_FOR_BUG_19917_KEY", "WORKAROUND_FOR_BUG_19917_VALUE");
 		super.onSaveInstanceState(outState);
 	}
 
@@ -455,7 +379,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 			StartDetailFragmentNow();
 	}
 
-	private NewsReaderDetailFragment StartDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean UpdateListView)
+	private NewsReaderDetailFragment StartDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView)
 	{
 		if(super.getMenuItemDownloadMoreItems() != null)
 			super.getMenuItemDownloadMoreItems().setEnabled(true);
@@ -486,7 +410,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 		Bundle arguments = intent.getExtras();
 
 		NewsReaderDetailFragment fragment = new NewsReaderDetailFragment();
-        fragment.setUpdateListViewOnStartUp(UpdateListView);
+        fragment.setUpdateListViewOnStartUp(updateListView);
 
 		fragment.setArguments(arguments);
 		getSupportFragmentManager().beginTransaction()
@@ -516,19 +440,17 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 		((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).StartSync();
     }
 
-	public void UpdateButtonSyncLayout()
+	public void UpdateButtonLayout()
     {
         if(super.getMenuItemUpdater() != null)
         {
-            //IReader _Reader = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer))._Reader;
-
-
             try {
                 NewsReaderListFragment ndf = (NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
-            	IOwnCloudSyncService _Reader = ndf._ownCloudSyncService;
                 SwipeRefreshLayout pullToRefreshView = ndf.mPullToRefreshLayout;
 
-                if(_Reader != null) {
+                if(ndf._ownCloudSyncService != null) {
+                    IOwnCloudSyncService _Reader = ndf._ownCloudSyncService;
+
 					if(_Reader.isSyncRunning())
 					{
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
@@ -536,6 +458,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 
 					    if(pullToRefreshView != null && !pullToRefreshView.isRefreshing()) {
 					    	pullToRefreshView.setRefreshing(true);
+                            Log.v(TAG, "Start ptr refreshing");
                         }
 					}
 					else
@@ -543,8 +466,10 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 						    super.getMenuItemUpdater().setActionView(null);
 
-					    if(pullToRefreshView != null)
-					    	pullToRefreshView.setRefreshing(false);
+					    if(pullToRefreshView != null) {
+                            pullToRefreshView.setRefreshing(false);
+                            Log.v(TAG, "Finished ptr refreshing");
+                        }
 					}
                 }
 			} catch (RemoteException e) {
@@ -557,13 +482,9 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.news_reader, menu);
-		//getSupportMenuInflater().inflate(R.menu.news_reader, menu);
-
-
 		super.onCreateOptionsMenu(menu, getMenuInflater(), this);
 
-        UpdateButtonSyncLayout();
+        UpdateButtonLayout();
 
 		return true;
 	}
@@ -652,9 +573,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         if(requestCode == RESULT_SETTINGS)
         {
         	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).ReloadAdapter();
-        	((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCurrentRssView(this, false);
-
-            //UpdatePodcastView();
+        	//((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCurrentRssView(this, false);
 
             if(ThemeChooser.ThemeRequiresRestartOfUI(this)) {
                 finish();
@@ -683,20 +602,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         });
 	    dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
     }
-
-    /*
-    @Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		//if (requestCode == 1) {
-			if(resultCode == RESULT_OK){
-				int pos = data.getIntExtra("POS", 0);
-				UpdateListViewAndScrollToPos(this, pos);
-			}
-			if (resultCode == RESULT_CANCELED) {
-				//Write your code on no result return
-			}
-		//}
-	}*/
 
 
     //@TargetApi(Build.VERSION_CODES.FROYO)
