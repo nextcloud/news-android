@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
@@ -212,8 +213,8 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     }
 
     public void ChangeReadStateOfItem(CheckBox checkBox, View parentView, boolean isChecked, Context context) {
-
-        RssItem rssItem = dbConn.getRssItemById((Long) checkBox.getTag());
+        Long rssItemId = (Long) checkBox.getTag();
+        RssItem rssItem = dbConn.getRssItemById(rssItemId);
         rssItem.setRead_temp(isChecked);
         dbConn.updateRssItem(rssItem);
 

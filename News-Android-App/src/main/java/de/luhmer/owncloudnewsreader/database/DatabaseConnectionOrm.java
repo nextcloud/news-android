@@ -2,6 +2,7 @@ package de.luhmer.owncloudnewsreader.database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.util.SparseArray;
 
 import java.io.File;
@@ -49,6 +50,7 @@ public class DatabaseConnectionOrm {
     };
 
     public static final String[] VIDEO_FORMATS = { "youtube" };
+    private final String TAG = getClass().getCanonicalName();
 
     public enum SORT_DIRECTION { asc, desc }
 
@@ -513,6 +515,8 @@ public class DatabaseConnectionOrm {
 
         if(total > max)
         {
+            Log.v(TAG, "Clearing Database oversize");
+
             int overSize = total - max;
             //Soll verhindern, dass ungelesene Artikel gelöscht werden
             if(overSize > read)
@@ -521,9 +525,12 @@ public class DatabaseConnectionOrm {
             String sqlStatement = "DELETE FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Id.columnName +
                                     " IN (SELECT " + RssItemDao.Properties.Id.columnName + " FROM " + RssItemDao.TABLENAME +
                                     " WHERE " + RssItemDao.Properties.Read_temp.columnName + " = 1 AND " + RssItemDao.Properties.Starred_temp.columnName + " != 1 " +
+                                    " AND " + RssItemDao.Properties.Id.columnName + " NOT IN (SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")" +
                                     " ORDER BY " + RssItemDao.Properties.Id.columnName + " asc LIMIT " + overSize + ")";
             daoSession.getDatabase().execSQL(sqlStatement);
     		/* SELECT * FROM rss_item WHERE read_temp = 1 ORDER BY rowid asc LIMIT 3; */
+        } else {
+            Log.v(TAG, "Clearing Database oversize not necessary");
         }
     }
 
