@@ -33,6 +33,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.Toolbar;
@@ -497,8 +498,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
-	//public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+	//public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
 
 		public SectionsPagerAdapter(FragmentManager fm) {
@@ -508,8 +509,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
 			Fragment fragment = new NewsDetailFragment();
 			Bundle args = new Bundle();
 			args.putInt(NewsDetailFragment.ARG_SECTION_NUMBER, position + 1);
