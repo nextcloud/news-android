@@ -57,7 +57,7 @@ import de.luhmer.owncloudnewsreader.interfaces.WebViewLinkLongClickInterface;
 public class NewsDetailFragment extends Fragment {
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
 
-	public static final String TAG = "NewsDetailFragment";
+	public final String TAG = getClass().getCanonicalName();
 
 	public static String web_template;
 	public static int background_color = Integer.MIN_VALUE;
@@ -70,12 +70,6 @@ public class NewsDetailFragment extends Fragment {
     public NewsDetailFragment() {
         setRetainInstance(true);
     }
-
-    /*
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		webview.saveState(outState);
-	}*/
 
     @Override
     public void onResume() {
@@ -100,11 +94,6 @@ public class NewsDetailFragment extends Fragment {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void PauseCurrentPage()
     {
-			/*
-	        Class.forName("android.webkit.WebView")
-	                .getMethod("onPause", (Class[]) null)
-	                            .invoke(webview, (Object[]) null);
-	        */
         if(mWebView != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
                 mWebView.onPause();
@@ -115,11 +104,6 @@ public class NewsDetailFragment extends Fragment {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void ResumeCurrentPage()
     {
-			/*
-	        Class.forName("android.webkit.WebView")
-	                .getMethod("onResume", (Class[]) null)
-	                            .invoke(webview, (Object[]) null);
-	 */
         if(mWebView != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
                 mWebView.onResume();
@@ -234,32 +218,8 @@ public class NewsDetailFragment extends Fragment {
                         mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     }
 
-
-
                     String jsLinkLongClick = getTextFromAssets("LinkLongClick.js", getActivity());
-                    //webview.loadUrl("javascript:(function(){document.getElementById('buttonClick').click();})()");
                     mWebView.loadUrl("javascript:(function(){ " + jsLinkLongClick + " })()");
-
-
-
-
-
-                    /*
-                    image.addEventListener("touchstart", function(e){
-                        timer = window.setTimeout(function() {
-                            e.preventDefault();
-                            alert(image.getAttribute('title'));
-                            //alert("fired - touchstart");
-                        }, 1000);
-                    });
-
-                    image.addEventListener('touchend', function() {
-                        clearTimeout(timer);
-                    });
-                    */
-
-
-
 	    		}
 	    	}
 	    });
@@ -302,23 +262,13 @@ public class NewsDetailFragment extends Fragment {
         title = "<a href=\"" + linkToFeed + "\">" + title + "</a>";
         htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), title.trim()).toString();
 
-
-        //String divSubscription = "<div id=\"subscription\">";
-        //htmlData = sb.insert(htmlData.indexOf(divSubscription) + divSubscription.length(), rssFile.getStreamID().trim()).toString();
-
         Date date = rssItem.getPubDate();
         if(date != null)
         {
             String divDate = "<div id=\"datetime\">";
-            //SimpleDateFormat formater = new SimpleDateFormat();
-            //String dateString = formater.format(date);
             String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
             htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), dateString).toString();
         }
-
-
-        //String subscription = ((NewsDetailActivity) getActivity()).dbConn.getTitleOfSubscriptionByRowID(String.valueOf(rssFile.getFeedID_Db()));
-        //String subscription = dbConn.getTitleOfSubscriptionByDBItemID(String.valueOf(idItem));
 
         String feedTitle = rssItem.getFeed().getFeedTitle();
 
@@ -369,43 +319,6 @@ public class NewsDetailFragment extends Fragment {
 		return text;
 	}
 
-	/*
-	@Override
-	protected void onCreateContextMenu(ContextMenu menu) {
-	    super.onCreateContextMenu(menu);
-
-	    HitTestResult result = getHitTestResult();
-
-	    MenuItem.OnMenuItemClickListener handler = new MenuItem.OnMenuItemClickListener() {
-	        public boolean onMenuItemClick(MenuItem item) {
-	                // do the menu action
-	                return true;
-	        }
-	    };
-
-	    if (result.getType() == HitTestResult.IMAGE_TYPE ||
-	            result.getType() == HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
-	        // Menu options for an image.
-	        //set the header title to the image url
-	        menu.setHeaderTitle(result.getExtra());
-	        menu.add(0, ID_SAVEIMAGE, 0, "Save Image").setOnMenuItemClickListener(handler);
-	        menu.add(0, ID_VIEWIMAGE, 0, "View Image").setOnMenuItemClickListener(handler);
-	    } else if (result.getType() == HitTestResult.ANCHOR_TYPE ||
-	            result.getType() == HitTestResult.SRC_ANCHOR_TYPE) {
-	        // Menu options for a hyperlink.
-	        //set the header title to the link url
-	        menu.setHeaderTitle(result.getExtra());
-	        menu.add(0, ID_SAVELINK, 0, "Save Link").setOnMenuItemClickListener(handler);
-	        menu.add(0, ID_SHARELINK, 0, "Share Link").setOnMenuItemClickListener(handler);
-	    }
-	}*/
-
-
-
-
-
-
-
 
 
 
@@ -439,7 +352,6 @@ public class NewsDetailFragment extends Fragment {
 
 		        if(background_color_string != null)
 				{
-					//if(background_color.matches("^#.{3,6}$"))
 					if(background_color_string.matches("^#.{3}$"))
 						background_color = Color.parseColor(convertHexColorFrom3To6Characters(background_color_string));
 					else if(background_color_string.matches("^#.{6}$"))
@@ -450,16 +362,9 @@ public class NewsDetailFragment extends Fragment {
 		        	web_template = web_template.replace("<body id=\"lightTheme\">", "<body id=\"darkTheme\">");
 
 
-	        	FontHelper fHelper = new FontHelper(context);
+	        	//FontHelper fHelper = new FontHelper(context);
 
 	        	web_template = web_template.replace("ROBOTO_FONT_STYLE", "ROBOTO_REGULAR");
-
-		        /*
-		        DisplayMetrics displaymetrics = new DisplayMetrics();
-		        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-		        //int height = displaymetrics.heightPixels;
-		        int width = displaymetrics.widthPixels;
-		        */
 			} catch(Exception ex){
 				ex.printStackTrace();
 			}
