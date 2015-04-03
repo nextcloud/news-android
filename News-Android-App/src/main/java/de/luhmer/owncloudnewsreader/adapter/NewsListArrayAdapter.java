@@ -228,7 +228,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
                 fHelper.setFontStyleForSingleView(textView, fHelper.getFont());
             else {
                 fHelper.setFontStyleForSingleView(textView, fHelper.getFontUnreadStyle());
-                onStayUnread.stayUnread(checkBox);
+                onStayUnread.stayUnread((Long) checkBox.getTag());
             }
 
             textView.invalidate();

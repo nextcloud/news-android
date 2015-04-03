@@ -24,5 +24,5 @@ package de.luhmer.owncloudnewsreader.cursor;
 import android.widget.CheckBox;
 
 public interface IOnStayUnread {
-	public void stayUnread(CheckBox cb);
+	public void stayUnread(Long rssItemId);
 }

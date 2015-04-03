@@ -42,6 +42,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -109,7 +111,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
     private boolean reloadCursorOnStartUp = false;
 
 	//private static ArrayList<Integer> databaseIdsOfItems;
-	ArrayList<CheckBox> stayUnreadCheckboxes;
+	HashSet<Long> stayUnreadRssItems;
 
     @InjectView(R.id.pb_loading) ProgressBar pbLoading;
     @InjectView(R.id.tv_no_items_available) TextView tvNoItemsAvailable;
@@ -120,7 +122,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	 */
 	public NewsReaderDetailFragment() {
 		//databaseIdsOfItems = new ArrayList<Integer>();
-		stayUnreadCheckboxes = new ArrayList<CheckBox>();
+        stayUnreadRssItems = new HashSet<>();
 	}
 
     public void setUpdateListViewOnStartUp(boolean reloadCursorOnStartUp) {
@@ -188,7 +190,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
     }
 
     private AbsListView.OnScrollListener ListScrollListener = new AbsListView.OnScrollListener() {
-        CheckBox lastViewedArticleCheckbox = null;
+        //CheckBox lastViewedArticleCheckbox = null;
 
         @Override
         public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -198,15 +200,32 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
         @Override
         public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
 
+            /*
             if(lastViewedArticleCheckbox == null)
                 lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view);
+                */
 
-            CheckBox cb = getCheckBoxAtPosition(0, view);
-            if(lastViewedArticleCheckbox != cb) {
-                if(! (lastViewedArticleCheckbox.isChecked() && stayUnreadCheckboxes.contains(lastViewedArticleCheckbox)));
-                NewsListArrayAdapter.ChangeCheckBoxState(lastViewedArticleCheckbox, true, getActivity());
+            if(totalItemCount <= 0)
+                return;
 
-                lastViewedArticleCheckbox = cb;
+
+            List<CheckBox> checkBoxes = new ArrayList<>();
+            checkBoxes.add(getCheckBoxAtPosition(0, view));
+
+            //Check if Listview is scrolled to bottom
+            if (view.getLastVisiblePosition() == (totalItemCount-1) && view.getChildAt(visibleItemCount-1).getBottom() <= view.getHeight())
+            {
+                for (int i = 1; i < visibleItemCount; i++) {
+                    checkBoxes.add(getCheckBoxAtPosition(i, view));
+                }
+            }
+
+            for(CheckBox cb : checkBoxes) {
+                Long rssItemId = (Long)cb.getTag();
+
+                if(!cb.isChecked() && !stayUnreadRssItems.contains(rssItemId)) {
+                    NewsListArrayAdapter.ChangeCheckBoxState(cb, true, getActivity());
+                }
             }
         }
     };
@@ -393,25 +412,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 		return rootView;
 	}
 
-
-    /*
-	public static class NewsDetailCursorLoader extends SimpleCursorLoader {
-		String idFolder;
-		String idFeed;
-
-	    public NewsDetailCursorLoader(Context context, String idFolder, String idFeed) {
-	        super(context);
-	        this.idFolder = idFolder;
-	        this.idFeed = idFeed;
-	    }
-
-	    @Override
-	    public Cursor loadInBackground() {
-	        return getRightCusor(getContext());
-	    }
-	}
-    */
-
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 
@@ -435,7 +435,9 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
 
 	@Override
-	public void stayUnread(CheckBox cb) {
-		stayUnreadCheckboxes.add(cb);
+	public void stayUnread(Long rssItemId) {
+        if(!stayUnreadRssItems.contains(rssItemId)) {
+            stayUnreadRssItems.add(rssItemId);
+        }
 	}
 }
