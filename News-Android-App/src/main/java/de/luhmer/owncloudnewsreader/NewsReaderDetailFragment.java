@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
@@ -68,7 +70,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	 */
 	public static final String ARG_ITEM_ID = "item_id";
 
-	protected static final String TAG = "NewsReaderDetailFragment";
+	protected final String TAG = getClass().getCanonicalName();
 
 
 	//private boolean DialogShowedToMarkLastItemsAsRead = false;
@@ -152,7 +154,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 				idFolder = getArguments().getLong(NewsReaderListActivity.FOLDER_ID);
 			}
 
-			UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
+			//UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
 
 			//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
@@ -166,8 +168,15 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
     public void onResume() {
         EventBus.getDefault().register(this);
 
-        //Reload data. Use case: download was finished while app was not in foreground
-        notifyDataSetChangedOnAdapter();
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false)) {
+            getListView().setOnScrollListener(ListScrollListener);
+        }
+
+        if(reloadCursorOnStartUp)
+            UpdateCurrentRssView(getActivity(), true);
+        else
+            UpdateCurrentRssView(getActivity(), false);
 
         super.onResume();
     }
@@ -177,6 +186,30 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
         EventBus.getDefault().unregister(this);
         super.onPause();
     }
+
+    private AbsListView.OnScrollListener ListScrollListener = new AbsListView.OnScrollListener() {
+        CheckBox lastViewedArticleCheckbox = null;
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+        }
+
+        @Override
+        public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
+
+            if(lastViewedArticleCheckbox == null)
+                lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view);
+
+            CheckBox cb = getCheckBoxAtPosition(0, view);
+            if(lastViewedArticleCheckbox != cb) {
+                if(! (lastViewedArticleCheckbox.isChecked() && stayUnreadCheckboxes.contains(lastViewedArticleCheckbox)));
+                NewsListCursorAdapter.ChangeCheckBoxState(lastViewedArticleCheckbox, true, getActivity());
+
+                lastViewedArticleCheckbox = cb;
+            }
+        }
+    };
 
     public void UpdateMenuItemsState()
 	{
@@ -199,39 +232,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
         super.onViewCreated(view, savedInstanceState);
 
         ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(titel);
-
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false))
-		{
-			getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
-
-	            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-	            }
-
-	            CheckBox lastViewedArticleCheckbox = null;
-	            public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
-
-	            	if(lastViewedArticleCheckbox == null)
-	            		lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view);
-
-                    CheckBox cb = getCheckBoxAtPosition(0, view);
-	            	if(lastViewedArticleCheckbox != cb) {
-	            		if(! (lastViewedArticleCheckbox.isChecked() && stayUnreadCheckboxes.contains(lastViewedArticleCheckbox)));
-	            			NewsListCursorAdapter.ChangeCheckBoxState(lastViewedArticleCheckbox, true, getActivity());
-
-	            		lastViewedArticleCheckbox = cb;
-	            	}
-	            }
-	        });
-		}
-
-        if(reloadCursorOnStartUp)
-            UpdateCurrentRssView(getActivity(), true);
-        else
-            UpdateCurrentRssView(getActivity(), false);
-
-        //UpdateCursor();
 	}
 
 
@@ -289,7 +289,8 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
      * @param context
      */
     public void UpdateCurrentRssView(Context context, boolean refreshCurrentRssView) {
-        new UpdateCurrentRssViewTask(context, refreshCurrentRssView).execute((Void) null);//TODO api level 11--> new method
+        Log.v(TAG, "UpdateCurrentRssView");
+        AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context, refreshCurrentRssView), (Void) null);
     }
 
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, LazyList<RssItem>> {
@@ -347,7 +348,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
             {
                 // Block children layout for now
                 BlockingListView bView = ((BlockingListView) getListView());
-
                 bView.setBlockLayoutChildren(true);
 
                 NewsListArrayAdapter lvAdapter  = new NewsListArrayAdapter(getActivity(), rssItemLazyList, NewsReaderDetailFragment.this, (PodcastFragmentActivity) getActivity());
