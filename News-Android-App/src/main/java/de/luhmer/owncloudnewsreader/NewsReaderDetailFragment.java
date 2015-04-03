@@ -204,7 +204,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
             CheckBox cb = getCheckBoxAtPosition(0, view);
             if(lastViewedArticleCheckbox != cb) {
                 if(! (lastViewedArticleCheckbox.isChecked() && stayUnreadCheckboxes.contains(lastViewedArticleCheckbox)));
-                NewsListCursorAdapter.ChangeCheckBoxState(lastViewedArticleCheckbox, true, getActivity());
+                NewsListArrayAdapter.ChangeCheckBoxState(lastViewedArticleCheckbox, true, getActivity());
 
                 lastViewedArticleCheckbox = cb;
             }
