@@ -238,6 +238,15 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		return super.onKeyDown(keyCode, event);
     }
 
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP) || (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+			// capture event to suppress android system sound
+			return true;
+		}
+		return super.onKeyUp(keyCode, event);
+	}
+
 	private void PageChanged(int position)
 	{
 		StopVideoOnCurrentPage();
