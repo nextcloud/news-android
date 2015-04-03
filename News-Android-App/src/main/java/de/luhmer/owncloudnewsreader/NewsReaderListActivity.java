@@ -168,15 +168,14 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
                 EventBus.getDefault().post(new FeedPanelSlideEvent(false));
 			}
 		});
-        mSlidingLayout.openPane();
 
+        mSlidingLayout.openPane();
 
         if(savedInstanceState == null)//When the app starts (no orientation change)
         {
         	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
         	StartDetailFragmentNow();
         }
-
 
         ImageHandler.createNoMediaFile(this);
         //AppRater.app_launched(this);
@@ -231,6 +230,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
     }
 
 
+    private static final String SLIDING_PANE_OPEN_BOOLEAN = "SLIDING_PANE_OPEN_BOOLEAN";
 	private static final String FIRST_VISIBLE_DETAIL_ITEM_STRING = "FIRST_VISIBLE_DETAIL_ITEM_STRING";
 	private static final String FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING = "FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING";
 	private static final String ID_FEED_STRING = "ID_FEED_STRING";
@@ -243,7 +243,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 	 */
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-
         safeInstanceState(outState);
 		super.onSaveInstanceState(outState);
 	}
@@ -252,7 +251,11 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         return ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
     }
 
+
+
     private void safeInstanceState(Bundle outState) {
+        outState.putBoolean(SLIDING_PANE_OPEN_BOOLEAN, mSlidingLayout.isOpen());
+
         NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
         if(ndf != null) {
             View v = ndf.getListView().getChildAt(0);
@@ -267,6 +270,11 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
     }
 
     private void restoreInstanceState(Bundle savedInstanceState) {
+        boolean isOpen = savedInstanceState.getBoolean(SLIDING_PANE_OPEN_BOOLEAN);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(!isOpen);
+        getSupportActionBar().setHomeButtonEnabled(!isOpen);
+
+
         if(savedInstanceState.containsKey(FIRST_VISIBLE_DETAIL_ITEM_STRING) &&
                 savedInstanceState.containsKey(ID_FEED_STRING) &&
                 savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
