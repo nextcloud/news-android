@@ -235,41 +235,6 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         }
     }
 
-    /*
-    public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
-        downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
-        //get invalidateViews();
-
-
-        //notifyDataSetChanged();
-
-        /*
-        for(int i = 0; i < getCount(); i++) {
-            if(getItem(i).getId().equals(downloadProgress.podcast.itemId)) {
-
-
-
-                if(getItem(i).downloadProgress != downloadProgress.podcast.downloadProgress) { //If Progress changed
-                    PodcastItem pItem = podcastArrayAdapter.getItem(i);
-
-                    if (downloadProgress.podcast.downloadProgress == 100) {
-                        pItem.downloadProgress = PodcastItem.DOWNLOAD_COMPLETED;
-                        File file = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), pItem.link, false));
-                        pItem.offlineCached = file.exists();
-                    } else
-                        pItem.downloadProgress = downloadProgress.podcast.downloadProgress;
-                    podcastTitleGrid.invalidateViews();
-                }
-
-                return;
-
-                notifyDataSetChanged();
-
-            }
-        }
-    }
-    */
-
     static class SimpleLayout {
         @InjectView(R.id.divider)
         View viewDivider;
