@@ -80,7 +80,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	private String mUsername;
 	private String mPassword;
 	private String mOc_root_path;
-	//private boolean mCbAllowAllSSL;
 	private boolean mCbDisableHostnameVerification;
 
 	// UI references.
@@ -146,22 +145,9 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
         mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
         mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
 
-
-
-        /*
-        if(savedInstanceState != null && mUsername == null){
-        	mUsername = savedInstanceState.getString(mUsernameString);
-        	mPassword = savedInstanceState.getString(mPasswordString);
-        	mOc_root_path = savedInstanceState.getString(mOc_root_pathString);
-        	mCbAllowAllSSL = savedInstanceState.getBoolean(mCbAllowAllSSLString);
-        }
-        */
-
     	// Set up the login form.
  		mUsernameView.setText(mUsername);
-
  		mPasswordView.setText(mPassword);
-
  		mOc_root_path_View.setText(mOc_root_path);
 
  		mCbDisableHostnameVerificationView.setChecked(mCbDisableHostnameVerification);
@@ -180,19 +166,12 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
             @Override
             public void onClick(View view) {
                 ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
-                //ImportAccountsDialogFragment selectDialogFragment = ImportAccountsDialogFragment.newInstance();
-                //selectDialogFragment.show(getActivity().getSupportFragmentManager(), "dialog");
             }
         });
 
         if(AccountImporter.findAccounts(getActivity()).size() <= 0) {
             view.findViewById(R.id.btn_importAccount).setVisibility(View.GONE);
         }
-
-
- 		//mLoginFormView = view.findViewById(R.id.login_form);
- 		//mLoginStatusView = view.findViewById(R.id.login_status);
- 		//mLoginStatusMessageView = (TextView) view.findViewById(R.id.login_status_message);
 
         return builder.create();
     }
@@ -228,117 +207,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
         return pDialog;
 	}
 
-	/*
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState) {
-		savedInstanceState.putString(mUsernameString, mUsernameView.getText().toString());
-		savedInstanceState.putString(mPasswordString, mPasswordView.getText().toString());
-		savedInstanceState.putString(mOc_root_pathString, mOc_root_path_View.getText().toString());
-		savedInstanceState.putBoolean(mCbAllowAllSSLString, mCbAllowAllSSLView.isChecked());
-
-		super.onSaveInstanceState(savedInstanceState);
-	}*/
-
-	/*
-	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.dialog_signin, container);
-
-		// Set up the login form.
-		//mUsername = getIntent().getStringExtra(EXTRA_EMAIL);
-		mUsernameView = (EditText) view.findViewById(R.id.username);
-		mUsernameView.setText(mUsername);
-
-		mPasswordView = (EditText) view.findViewById(R.id.password);
-		mPasswordView.setText(mPassword);
-		mPasswordView
-				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
-					public boolean onEditorAction(TextView textView, int id,
-							KeyEvent keyEvent) {
-						if (id == R.id.btn_signin || id == EditorInfo.IME_NULL) {
-							attemptLogin();
-							return true;
-						}
-						return false;
-					}
-				});
-
-		mOc_root_path_View = (EditText) view.findViewById(R.id.edt_owncloudRootPath);
-		mOc_root_path_View.setText(mOc_root_path);
-
-		mLoginFormView = view.findViewById(R.id.login_form);
-		mLoginStatusView = view.findViewById(R.id.login_status);
-		mLoginStatusMessageView = (TextView) view.findViewById(R.id.login_status_message);
-
-		view.findViewById(R.id.btn_signin).setOnClickListener(
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						attemptLogin();
-					}
-				});
-
-		return view;
-	}*/
-
-
-	/*
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		setTheme(android.R.style.Theme_Holo_Dialog);
-
-		super.onCreate(savedInstanceState);
-
-		setContentView(R.layout.dialog_signin);
-
-		// Set up the login form.
-		//mUsername = getIntent().getStringExtra(EXTRA_EMAIL);
-		mUsernameView = (EditText) findViewById(R.id.username);
-		mUsernameView.setText(mUsername);
-
-		mPasswordView = (EditText) findViewById(R.id.password);
-		mPasswordView.setText(mPassword);
-		mPasswordView
-				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
-					public boolean onEditorAction(TextView textView, int id,
-							KeyEvent keyEvent) {
-						if (id == R.id.btn_signin || id == EditorInfo.IME_NULL) {
-							attemptLogin();
-							return true;
-						}
-						return false;
-					}
-				});
-
-		mOc_root_path_View = (EditText) findViewById(R.id.edt_owncloudRootPath);
-		mOc_root_path_View.setText(mOc_root_path);
-
-		mLoginFormView = findViewById(R.id.login_form);
-		mLoginStatusView = findViewById(R.id.login_status);
-		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
-
-		findViewById(R.id.btn_signin).setOnClickListener(
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						attemptLogin();
-					}
-				});
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
-	}*/
-
-
-
-
 	/**
 	 * Attempts to sign in or register the account specified by the login form.
 	 * If there are form errors (invalid email, missing fields, etc.), the
@@ -367,21 +235,13 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			mPasswordView.setError(getString(R.string.error_field_required));
 			focusView = mPasswordView;
 			cancel = true;
-		}/* else if (mPassword.length() < 4) {
-			mPasswordView.setError(getString(R.string.error_invalid_password));
-			focusView = mPasswordView;
-			cancel = true;
-		}*/
+		}
 		// Check for a valid email address.
 		if (TextUtils.isEmpty(mUsername)) {
 			mUsernameView.setError(getString(R.string.error_field_required));
 			focusView = mUsernameView;
 			cancel = true;
-		} /*else if (!mUsername.contains("@")) {
-			mUsernameView.setError(getString(R.string.error_invalid_email));
-			focusView = mUsernameView;
-			cancel = true;
-		}*/
+		}
 
 		if (TextUtils.isEmpty(mOc_root_path)) {
 			mOc_root_path_View.setError(getString(R.string.error_field_required));
@@ -406,11 +266,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
-			// Show a progress spinner, and kick off a background task to
-			// perform the user login attempt.
-
-			//mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-			//showProgress(true);
 			mAuthTask = new UserLoginTask(mUsername, mPassword, mOc_root_path);
 			mAuthTask.execute((Void) null);
 
@@ -419,47 +274,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		}
 	}
 
-	/**
-	 * Shows the progress UI and hides the login form.
-	 */
-	/*
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-	private void showProgress(final boolean show) {
-		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-		// for very easy animations. If available, use these APIs to fade-in
-		// the progress spinner.
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-			int shortAnimTime = getResources().getInteger(
-					android.R.integer.config_shortAnimTime);
-
-			mLoginStatusView.setVisibility(View.VISIBLE);
-			mLoginStatusView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 1 : 0)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginStatusView.setVisibility(show ? View.VISIBLE
-									: View.GONE);
-						}
-					});
-
-			mLoginFormView.setVisibility(View.VISIBLE);
-			mLoginFormView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 0 : 1)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginFormView.setVisibility(show ? View.GONE
-									: View.VISIBLE);
-						}
-					});
-		} else {
-			// The ViewPropertyAnimator APIs are not available, so simply show
-			// and hide the relevant UI components.
-			mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
-			mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-		}
-	}*/
 
 	/**
 	 * Represents an asynchronous login/registration task used to authenticate
@@ -503,7 +317,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		@Override
 		protected void onPostExecute(final Integer versionCode) {
 			mAuthTask = null;
-			//showProgress(false);
 
 			mDialogLogin.dismiss();
 
@@ -530,23 +343,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 				editor.putString(SettingsActivity.EDT_USERNAME_STRING, username);
 				editor.commit();
 
-				/*
-				AccountManager mAccountManager = AccountManager.get(mActivity);
-
-				//Remove all accounts first
-				Account[] accounts = mAccountManager.getAccounts();
-			    for (int index = 0; index < accounts.length; index++) {
-			    if (accounts[index].type.intern() == AccountGeneral.ACCOUNT_TYPE)
-			    	mAccountManager.removeAccount(accounts[index], null, null);
-			    }
-
-			    //Then add the new account
-				Account account = new Account(mUsername, AccountGeneral.ACCOUNT_TYPE);
-				mAccountManager.addAccountExplicitly(account, mPassword, null);
-
-				ContentResolver.setIsSyncable(account, getString(R.string.authorities), 1);
-				*/
-
 				if(listener != null)
 					listener.LoginSucceeded();
 
@@ -559,7 +355,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		@Override
 		protected void onCancelled() {
 			mAuthTask = null;
-			//showProgress(false);
 		}
 	}
 
