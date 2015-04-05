@@ -105,10 +105,10 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Podcast</string>
   <string name="pref_enable_podcasts">Activer la prise en charge des Podcasts</string>
-  <string name="no_podcast_selected">Aucun Podcast sélectionné</string>
+  <string name="no_podcast_selected">Aucun podcast sélectionné</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Affichage</string>
-  <string name="pref_title_app_theme">App thème</string>
+  <string name="pref_title_app_theme">Thème de l\'app</string>
   <string name="pref_title_feed_list_layout">Disposition de la liste des flux</string>
   <string name="pref_display_font_layout">Police (nécessite un redémarrage)</string>
   <string-array name="pref_display_apptheme">
