@@ -66,11 +66,26 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.8.6 (in development)
+0.8.8 (in development)
 ---------------------
 
 
-0.8.5 (Google Play)
+0.8.7 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/331">#331 Bug in 0.8.6: App crashs by opening an article in external browser</a>
+
+
+0.8.6 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/303">#303 List Item opens wrong Article (off by one)</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/308">#308 Allow feeds being checked as "keep unread" instead of "read" when "mark as read while scrolling" feature is used</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/324">#324 when I read the last unread news the news are not marked as read</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/327">#327 Scrolling with volume keys produces sound...</a> (Thanks @cemrich)
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/321">#321 Disabled options menu item not greyed out in actionbar</a> (Thanks @cemrich)
+- Bug fixes
+
+
+0.8.5 (Google Play - Beta)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/311">#311 Android 5.0.2 performance</a>
 - Bug fixes
