@@ -44,8 +44,8 @@
   <string name="action_sync_settings">Επιλογές συγχρονισμού</string>
   <string name="action_add_new_feed">Προσθήκη νέας ροής</string>
   <string name="action_textToSpeech">Ανάγνωση από</string>
-  <string name="notification_new_items_ticker">Έχετε Χ νέα αδιάβαστα στοιχεία</string>
-  <string name="notification_new_items_text">Χ νέα αδιάβαστα στοιχεία διαθέσιμα</string>
+  <string name="notification_new_items_ticker">Έχετε X νέα αδιάβαστα στοιχεία</string>
+  <string name="notification_new_items_text">X νέα αδιάβαστα στοιχεία διαθέσιμα</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
   <string name="pref_title_password">Συνθηματικό</string>
@@ -58,7 +58,7 @@
   <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
   <string name="error_invalid_url">Αυτός ο σύνδεσμος είναι εσφαλμένος</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Κατέβηκαν Χ παλαιά στοιχεία</string>
+  <string name="toast_downloaded_x_items">Κατέβηκαν X παλαιά στοιχεία</string>
   <string name="toast_no_more_downloads_available">Δεν υπάρχουν επιπλέον στοιχεία διαθέσιμα</string>
   <string name="pull_to_refresh_updateTags">Συγχρονισμός κατάστασης στοιχείων</string>
   <string name="pull_to_refresh_updateFolder">Συγχρονισμός φακέλου</string>
