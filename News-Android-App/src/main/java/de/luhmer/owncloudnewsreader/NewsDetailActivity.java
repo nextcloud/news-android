@@ -39,9 +39,15 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -53,6 +59,7 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
+import de.luhmer.owncloudnewsreader.model.Tuple;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -88,7 +95,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	//public List<RssFile> rssFiles;
     LazyList<RssItem> rssItems;
 
-    public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
+    //public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -267,7 +274,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 
     private NewsDetailFragment getNewsDetailFragmentAtPosition(int position) {
-        return (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
+		if(mSectionsPagerAdapter.items.get(position) != null)
+			return mSectionsPagerAdapter.items.get(position).get();
+		return null;
+        //return (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
     }
 
 	private void ResumeVideoPlayersOnCurrentPage()
@@ -336,7 +346,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         float density = getResources().getDisplayMetrics().density;
         //int density = getResources().getDisplayMetrics().densityDpi;
 
-        bitmapResized = Bitmap.createScaledBitmap(b, (int)(48f * density), (int)(48f * density), false);
+        bitmapResized = Bitmap.createScaledBitmap(b, (int) (48f * density), (int) (48f * density), false);
 
         /*
         if(density <= DisplayMetrics.DENSITY_LOW)
@@ -510,21 +520,57 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	//public class SectionsPagerAdapter extends FragmentPagerAdapter {
 	public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
+		SparseArray<WeakReference<NewsDetailFragment>> items = new SparseArray<>();
 
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
+
+			if(fm.getFragments() != null) {
+				for (Fragment fragment : fm.getFragments()) {
+					if (fragment instanceof NewsDetailFragment) {
+						int id = ((NewsDetailFragment) fragment).getSectionNumber();
+						items.put(id, new WeakReference<>((NewsDetailFragment) fragment));
+					}
+				}
+			}
 		}
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			Fragment fragment = new NewsDetailFragment();
-			Bundle args = new Bundle();
-			args.putInt(NewsDetailFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
+			NewsDetailFragment fragment = null;
+			int key;
+			for(int i = 0; i < items.size(); i++) {
+				key = items.keyAt(i);
+				WeakReference<NewsDetailFragment> wr = items.get(key);
+				if(wr.get() != null) {
+					if ((wr.get()).getSectionNumber() == position){
+						fragment = wr.get();
+						break;
+					}
+				} else {
+					items.remove(key);//Remove null pointer --> Should never happen
+					i--; //One key removed (at position i -> so reduce i by one)
+				}
+			}
+
+			if(fragment == null) {
+				fragment = new NewsDetailFragment();
+				Bundle args = new Bundle();
+				args.putInt(NewsDetailFragment.ARG_SECTION_NUMBER, position);
+				fragment.setArguments(args);
+				items.put(position, new WeakReference<>(fragment));
+			}
+
 			return fragment;
 		}
 
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object)
+		{
+			items.remove(position);
+
+			super.destroyItem(container, position, object);
+		}
 
 		@Override
 		public int getCount() {

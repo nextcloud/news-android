@@ -50,7 +50,6 @@ import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
-import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.WebViewLinkLongClickInterface;
@@ -69,7 +68,11 @@ public class NewsDetailFragment extends Fragment {
 	private int section_number;
 
     public NewsDetailFragment() {
-        setRetainInstance(true);
+        //setRetainInstance(true);
+    }
+
+    public int getSectionNumber() {
+        return section_number;
     }
 
     @Override
@@ -154,7 +157,7 @@ public class NewsDetailFragment extends Fragment {
         protected String doInBackground(Void... voids) {
             NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
 
-            RssItem rssItem = ndActivity.rssItems.get(section_number - 1);
+            RssItem rssItem = ndActivity.rssItems.get(section_number);
 
             return getHtmlPage(ndActivity, rssItem);
         }
