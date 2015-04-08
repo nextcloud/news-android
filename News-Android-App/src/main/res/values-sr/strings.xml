@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">Ауто-синхронизација</string>
-  <string name="app_name">ОунКлауд читач вести</string>
+  <string name="app_name">оунКлауд читач вести</string>
   <string name="title_activity_sync_interval_selector">Избор размака синхронизације</string>
   <string name="title_activity_news_detail">Активност о детаљима вести</string>
   <string name="title_activity_subscription">Активност претплаћивања</string>
