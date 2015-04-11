@@ -66,11 +66,18 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.8.8 (in development)
+0.8.9 (in development)
 ---------------------
 
 
-0.8.7 (Google Play)
+0.8.8 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/329">#329 "Mark all as read" freezes UI for long lists.</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/333">#333 Crash when opening Settings on Android 2.3</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/332">#332 [0.8.7] Crash when opening article after mark newer item as read</a>
+
+
+0.8.7 (Google Play - Beta)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/331">#331 Bug in 0.8.6: App crashs by opening an article in external browser</a>
 
