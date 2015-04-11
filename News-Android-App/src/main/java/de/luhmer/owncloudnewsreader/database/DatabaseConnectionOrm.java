@@ -15,6 +15,7 @@ import java.util.List;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.WhereCondition;
 import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemView;
 import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemViewDao;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -264,6 +265,33 @@ public class DatabaseConnectionOrm {
 
         daoSession.getRssItemDao().update(rssItem);
     }
+
+    public void markAllItemsAsReadForCurrentView() {
+        /*
+        String sql = "UPDATE " + RssItemDao.TABLENAME + " SET " + RssItemDao.Properties.Read_temp.columnName + " = 1 " +
+                "WHERE " + RssItemDao.Properties.Id.columnName + " IN (SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")";
+        daoSession.getDatabase().execSQL(sql);
+        */
+
+        WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.Id.columnName + " IN " +
+                "(SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")");
+
+        int iterationCount = 0;
+        final int itemsPerIteration = 100;
+        List<RssItem> rssItemList;
+        do {
+            int offset = iterationCount * itemsPerIteration;
+            int limit = itemsPerIteration;
+            rssItemList = daoSession.getRssItemDao().queryBuilder().where(whereCondition).limit(limit).offset(offset).listLazy();
+            for (RssItem rssItem : rssItemList) {
+                rssItem.setRead_temp(true);
+            }
+            daoSession.getRssItemDao().updateInTx(rssItemList);
+
+            iterationCount++;
+        } while(rssItemList.size() == itemsPerIteration);
+    }
+
 
     public List<String> getRssItemsIdsFromList(List<RssItem> rssItemList) {
         List<String> itemIds = new ArrayList<String>();

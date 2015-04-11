@@ -114,8 +114,9 @@ public class MenuUtilsFragmentActivity extends PodcastFragmentActivity {
                 if(ndf != null)
                 {
                     DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(activity);
-                    //dbConn.markAllItemsAsReadForCurrentView();
+                    dbConn.markAllItemsAsReadForCurrentView();
 
+                    /*
                     for(int i = 0; i < ndf.getListAdapter().getCount(); i++) {
                         RssItem rssItem = (RssItem) ndf.getListAdapter().getItem(i);
                         rssItem.setRead_temp(true);
@@ -123,11 +124,13 @@ public class MenuUtilsFragmentActivity extends PodcastFragmentActivity {
                     }
 
                     ndf.notifyDataSetChangedOnAdapter();
+                    */
 
                     //If tablet view is enabled update the listview as well
                     if(activity instanceof NewsReaderListActivity)
                         ((NewsReaderListActivity) activity).updateAdapter();
 
+                    ndf.UpdateCurrentRssView(activity, false);
                 }
                 return true;
 

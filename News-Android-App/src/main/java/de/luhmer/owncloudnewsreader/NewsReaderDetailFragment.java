@@ -372,6 +372,10 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
                 BlockingListView bView = ((BlockingListView) getListView());
                 bView.setBlockLayoutChildren(true);
 
+                if(getListAdapter() != null) {
+                    ((NewsListArrayAdapter) getListAdapter()).getLazyList().close(); //Close cursor to release resources
+                }
+
                 NewsListArrayAdapter lvAdapter  = new NewsListArrayAdapter(getActivity(), rssItemLazyList, NewsReaderDetailFragment.this, (PodcastFragmentActivity) getActivity());
                 setListAdapter(lvAdapter);
 
