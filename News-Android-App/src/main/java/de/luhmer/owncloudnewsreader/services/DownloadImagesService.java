@@ -83,12 +83,16 @@ public class DownloadImagesService extends IntentService {
 
 	private void initService()
 	{
-        pathToImageCache = FileUtils.getPathImageCache(this);
+        try {
+            pathToImageCache = FileUtils.getPathImageCache(this);
 
-		maxCount = 0;
-		if(random == null)
-			random = new Random();
-		NOTIFICATION_ID = random.nextInt();
+            maxCount = 0;
+            if (random == null)
+                random = new Random();
+            NOTIFICATION_ID = random.nextInt();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 	}
 
 	@Override
