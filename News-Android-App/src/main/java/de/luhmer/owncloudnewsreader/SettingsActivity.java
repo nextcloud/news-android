@@ -45,10 +45,13 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -127,18 +130,43 @@ public class SettingsActivity extends PreferenceActivity {
         }
         */
 
+		Toolbar toolbar;
+
         // get the root container of the preferences list
-        LinearLayout root = (LinearLayout)findViewById(android.R.id.list).getParent().getParent().getParent();
-        Toolbar toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
-        toolbar.setTitle(R.string.title_activity_settings);
-        root.addView(toolbar, 0); // insert at top
-        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
+			toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
+			root.addView(toolbar, 0); // insert at top
+		} else { //Support for older devices
+			ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+			ListView content = (ListView) root.getChildAt(0);
+
+			toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
+
+			root.removeAllViews();
+
+			int height;
+			TypedValue tv = new TypedValue();
+			if(getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)) {
+				height = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+			} else {
+				height = toolbar.getHeight();
+			}
+
+			content.setPadding(0, height, 0, 0);
+
+			root.addView(content);
+			root.addView(toolbar);
+		}
+
+		toolbar.setTitle(R.string.title_activity_settings);
+		toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					finish();
+				}
+			});
 	}
 
 	@Override
