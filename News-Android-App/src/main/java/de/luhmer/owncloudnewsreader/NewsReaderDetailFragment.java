@@ -358,6 +358,9 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
                     dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
                 }
             }
+
+            setUpdateListViewOnStartUp(false);//Always reset this variable here. Otherwise the list will be cleared when the activity is restarted
+
             return dbConn.getCurrentRssItemView(sortDirection);
         }
 

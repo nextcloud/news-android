@@ -228,7 +228,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 		if(keyCode == KeyEvent.KEYCODE_BACK)
 		{
-			NewsDetailFragment ndf = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+			NewsDetailFragment ndf = getNewsDetailFragmentAtPosition(currentPosition);//(NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+
 			if(ndf != null && ndf.mWebView != null)
 			{
 				if(ndf.mWebView.canGoBack())
@@ -538,19 +539,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 			NewsDetailFragment fragment = null;
-			int key;
-			for(int i = 0; i < items.size(); i++) {
-				key = items.keyAt(i);
-				WeakReference<NewsDetailFragment> wr = items.get(key);
-				if(wr.get() != null) {
-					if ((wr.get()).getSectionNumber() == position){
-						fragment = wr.get();
-						break;
-					}
-				} else {
-					items.remove(key);//Remove null pointer --> Should never happen
-					i--; //One key removed (at position i -> so reduce i by one)
-				}
+
+			if(items.get(position) != null) {
+				fragment = items.get(position).get();
 			}
 
 			if(fragment == null) {
