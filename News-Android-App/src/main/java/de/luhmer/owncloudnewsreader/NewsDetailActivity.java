@@ -257,6 +257,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	private void PageChanged(int position)
 	{
+		/*
+		NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
+		if(fragment != null) {
+			//fragment.mWebView.requestLayout();
+			//fragment.mWebView.onScrollChanged(fragment.mWebView.getScrollX(), fragment.mWebView.getScrollY(), fragment.mWebView.getScrollX(), fragment.mWebView.getScrollY());
+		}
+		*/
+
 		StopVideoOnCurrentPage();
 		currentPosition = position;
 		ResumeVideoPlayersOnCurrentPage();

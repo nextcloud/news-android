@@ -180,8 +180,16 @@ public class NewsDetailFragment extends Fragment {
                 webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
                 Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
             } else {
-                webView.setLayerType(WebView.LAYER_TYPE_HARDWARE, null);
-                Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
+                //webView.setLayerType(WebView.LAYER_TYPE_HARDWARE, null);
+                //Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
+
+                if(webView.getLayerType() == WebView.LAYER_TYPE_HARDWARE) {
+                    Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
+                } else if (webView.getLayerType() == WebView.LAYER_TYPE_SOFTWARE){
+                    Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
+                } else {
+                    Log.v("NewsDetailFragment", "Using LAYER_TYPE_DEFAULT");
+                }
             }
         }
     }
