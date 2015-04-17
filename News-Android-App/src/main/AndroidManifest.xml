@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.luhmer.owncloudnewsreader"
-    android:versionCode="82"
-    android:versionName="0.8.9.5" >
+    android:versionCode="83"
+    android:versionName="0.9.0"
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
