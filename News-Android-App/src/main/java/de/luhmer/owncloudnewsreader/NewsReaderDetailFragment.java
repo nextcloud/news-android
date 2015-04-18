@@ -372,6 +372,15 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
                 BlockingListView bView = ((BlockingListView) getListView());
                 bView.setBlockLayoutChildren(true);
 
+                //Check if position is invalid. Otherwise we have a rotation change and the position is already set.
+                if(mActivatedPosition == ListView.INVALID_POSITION) {
+                    setActivatedPosition(bView.getFirstVisiblePosition());
+                    View v = bView.getChildAt(0);
+                    int top = (v == null) ? 0 : v.getTop();
+                    setMarginFromTop(top);
+                }
+
+
                 if(getListAdapter() != null) {
                     ((NewsListArrayAdapter) getListAdapter()).getLazyList().close(); //Close cursor to release resources
                 }
@@ -398,6 +407,10 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
                 }
 
                 bView.setBlockLayoutChildren(false);
+
+                //Reset the activated position always to INVALID.
+                mActivatedPosition = ListView.INVALID_POSITION;
+                marginFromTop = ListView.INVALID_POSITION;
             }
             catch(Exception ex)
             {
