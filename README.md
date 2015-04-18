@@ -66,11 +66,17 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.9.0 (in development)
+0.9.1 (in development)
 ---------------------
 
 
-0.8.9.5 (Google Play)
+0.9.0 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/339">#339 Does not remember position in article listing</a> 
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/338">#338 Allow App to be installed on SD-Card</a>
+
+
+0.8.9.5 (Google Play - Beta)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/334">#334 Display error since 0.8.6 - white screen after swiping to next article</a>
 
