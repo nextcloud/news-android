@@ -3,8 +3,8 @@
   <string name="auto_sync_string">Synchronisation auto.</string>
   <string name="app_name">ownCloud News Reader</string>
   <string name="title_activity_sync_interval_selector">Sélecteur d\'intervalle de synchronisation</string>
-  <string name="title_activity_news_detail">Activité de détail d’article</string>
-  <string name="title_activity_subscription">Activité d’abonnement</string>
+  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">Lecteur de news</string>
   <string name="title_newsreader_detail">Détail du lecteur de news</string>
   <string name="empty_view_header">Information</string>
