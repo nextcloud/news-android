@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="auto_sync_string">Ауто-синхронизација</string>
+  <string name="auto_sync_string">Ауто-освежавање</string>
   <string name="app_name">оунКлауд читач вести</string>
-  <string name="title_activity_sync_interval_selector">Избор размака синхронизације</string>
-  <string name="title_activity_news_detail">Активност о детаљима вести</string>
-  <string name="title_activity_subscription">Активност претплаћивања</string>
+  <string name="title_activity_sync_interval_selector">Период освежавања</string>
+  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="title_activity_subscription">SubscriptionActivity</string>
   <string name="title_newsreader_list">Читач новости</string>
   <string name="title_newsreader_detail">Детаљи читача</string>
   <string name="empty_view_header">Подаци</string>
   <string name="empty_view_content">Овде нема ничега</string>
   <string name="toast_GettingMoreItems">Почео сам преузимање још ставки... Сачекајте.</string>
-  <string name="tv_clickHereToOpenItem">Кликните оде да отворите ставку</string>
+  <string name="tv_clickHereToOpenItem">Кликните овде да отворите ставку</string>
   <string name="no_wifi_available">Нема бежичне везе</string>
   <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе?</string>
   <string name="max_items_count_reached">Достигли сте максималан број ставки: XX</string>
-  <string name="widget_header">ОунКлауд новости</string>
-  <string name="message_bar_new_articles_available">Има нових ставки</string>
+  <string name="widget_header">оунКлауд новости</string>
+  <string name="message_bar_new_articles_available"> нових ставки</string>
   <string name="message_bar_reload">Поново учитај</string>
   <string name="allUnreadFeeds">Све непрочитане ставке</string>
   <string name="starredFeeds">Озвездане ставке</string>
@@ -32,7 +32,7 @@
   <string name="email_sourceCode">Изворни код ставке — Извештај о грешци</string>
   <string name="email_sendMail">Пошаљи е-пошту</string>
   <!--Action Bar Items-->
-  <string name="action_starred">Означено звездицом</string>
+  <string name="action_starred">Озвездано</string>
   <string name="action_read">Читај</string>
   <string name="action_playPodacst">Пусти подемисију</string>
   <string name="action_openInBrowser">Отвори у прегледачу</string>
@@ -41,7 +41,7 @@
   <string name="action_login">Поставке сервера</string>
   <string name="action_save">Сачувај</string>
   <string name="action_settings">Поставке</string>
-  <string name="action_sync_settings">Поставке синхронизације</string>
+  <string name="action_sync_settings">Поставке освежавања</string>
   <string name="action_add_new_feed">Додај довод</string>
   <string name="action_textToSpeech">Ишчитај</string>
   <string name="notification_new_items_ticker">Нових непрочитаних ставки: X</string>
@@ -60,10 +60,10 @@
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">Старих ставки преузето: X</string>
   <string name="toast_no_more_downloads_available">Нема више доступних ставки</string>
-  <string name="pull_to_refresh_updateTags">Синхронизујем стања ставки</string>
-  <string name="pull_to_refresh_updateFolder">Синхронизујем фасцикле</string>
-  <string name="pull_to_refresh_updateFeeds">Синхронизујем доводе</string>
-  <string name="pull_to_refresh_updateItems">Синхронизујем ставке</string>
+  <string name="pull_to_refresh_updateTags">Освежавам стања ставки</string>
+  <string name="pull_to_refresh_updateFolder">Освежавам фасцикле</string>
+  <string name="pull_to_refresh_updateFeeds">Освежавам доводе</string>
+  <string name="pull_to_refresh_updateItems">Освежавам ставке</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Поставке</string>
   <!--General settings-->
@@ -88,7 +88,7 @@
   <string name="calculating_cache_size">Рачунам величину кеша... Сачекајте.</string>
   <string name="reset_cache_unsaved_changes">Постоје несинхронизоване измене. Да ипак обришем кеш?</string>
   <string name="warning">Упозорење</string>
-  <string name="pref_title_AutoSyncOnStart">Синхронизација при покретању</string>
+  <string name="pref_title_AutoSyncOnStart">Освежи при покретању</string>
   <string name="pref_title_ShowOnlyUnread">Прикажи само непрочитане чланке</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Искључи проверу имена домаћина</string>
@@ -105,7 +105,7 @@
   <!--Podcast-->
   <string name="pref_header_podcast">Подемисија</string>
   <string name="pref_enable_podcasts">Укључи подршку за подемисију</string>
-  <string name="no_podcast_selected">Нема изабране подемисије</string>
+  <string name="no_podcast_selected">Није изабрана подемисија</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Приказ</string>
   <string name="pref_title_app_theme">Тема</string>
