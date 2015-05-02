@@ -12,7 +12,7 @@
   <string name="toast_GettingMoreItems">アイテム更にダウンロード中...しばらくお待ちください。</string>
   <string name="tv_clickHereToOpenItem">項目を開くにはここをクリック</string>
   <string name="no_wifi_available">WiFi接続がありません</string>
-  <string name="do_you_want_to_download_without_wifi">WiFi接続が無い場合に画像をダウンロードしますか？</string>
+  <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか？</string>
   <string name="max_items_count_reached">アイテム数の上限に達しました。</string>
   <string name="widget_header">ownCloudニュース</string>
   <string name="message_bar_new_articles_available">新しいアイテムが利用可能です</string>
@@ -94,7 +94,7 @@
   <string name="pref_title_DisableHostnameVerification">ホスト名の検証を無効化</string>
   <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
   <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
-  <string name="pref_title_OpenInBrowserDirectly">詳細ビューを見過ごし、ブラウザーにて開く</string>
+  <string name="pref_title_OpenInBrowserDirectly">詳細ビューを見過ごし、ブラウザーで開く</string>
   <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
