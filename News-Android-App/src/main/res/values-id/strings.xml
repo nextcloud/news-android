@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">Rincian PembacaBerita</string>
   <string name="empty_view_header">Informasi</string>
   <string name="empty_view_content">Tak ada item disini</string>
+  <string name="toast_GettingMoreItems">Mulai mengunduh lebih banyak item... Mohon tunggu.</string>
   <string name="tv_clickHereToOpenItem">Klik disini untuk membuka item</string>
   <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
   <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
@@ -21,7 +22,7 @@
   <string name="title_activity_new_feed">Tambah feed baru</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Segarkan</string>
-  <string name="menu_About_Changelog">About / Changelog</string>
+  <string name="menu_About_Changelog">Tentang / Catatan perubahan</string>
   <string name="menu_markAllAsRead">Tandai semua telah dibaca</string>
   <string name="menu_StartImageCaching">Unduh gambar</string>
   <string name="menu_downloadMoreItems">Unduh beberapa item</string>
@@ -42,6 +43,7 @@
   <string name="action_settings">Setelan</string>
   <string name="action_sync_settings">Setelan Sync</string>
   <string name="action_add_new_feed">Tambah feed baru</string>
+  <string name="action_textToSpeech">Bacalah</string>
   <string name="notification_new_items_ticker">Anda memiliki X item baru yang belum dibaca</string>
   <string name="notification_new_items_text">X item baru yang belum dibaca tersedia</string>
   <!--Strings related to login-->
@@ -167,6 +169,12 @@
   <string name="pref_title_clearCache">Bersihkan cache</string>
   <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
   <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Jangan pernah</item>
+    <item>Hanya melalui WiFi</item>
+    <item>Melalui WiFi &amp; Mobile</item>
+    <item>Tanya ketika tidak tersambung ke WiFi</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>
