@@ -205,9 +205,15 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
                 lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view);
                 */
 
-            if(totalItemCount <= 0)
+            //When there are no items in the list
+            if(totalItemCount <= 0) {
                 return;
+            }
 
+            //If list is loaded and the event is triggered even if no scroll gesture was performed
+            if(firstVisibleItem == 0 && view.getChildAt(0).getTop() == 0) {
+                return;
+            }
 
             List<CheckBox> checkBoxes = new ArrayList<>();
             checkBoxes.add(getCheckBoxAtPosition(0, view));
