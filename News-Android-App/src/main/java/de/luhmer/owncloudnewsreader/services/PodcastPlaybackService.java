@@ -58,7 +58,7 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
     private TTSItem mCurrentlyPlayingTTS;
 
     private static final String TAG = "PodcastPlaybackService";
-    PodcastNotification podcastNotification;
+    private PodcastNotification podcastNotification;
 
     private EventBus eventBus;
     private Handler mHandler;
@@ -66,9 +66,9 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
     private TextToSpeech ttsController;
     private String mediaTitle;
     private PlaybackType mPlaybackType;
-    View parentResizableView;
+    private View parentResizableView;
 
-    enum PlaybackType { PODCAST, TTS };
+    private enum PlaybackType { PODCAST, TTS };
 
     @Override
     public void onCreate() {

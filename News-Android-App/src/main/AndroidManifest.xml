@@ -79,6 +79,8 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle" />
+
         <!--
 		**********************************************************************
 		* Sync Adapter and Service
