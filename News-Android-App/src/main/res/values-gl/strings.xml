@@ -161,7 +161,7 @@
   <string name="login_dialog_title_error">Erro</string>
   <string name="login_dialog_text_something_went_wrong">Algo foi mal :(</string>
   <string name="login_dialog_text_not_compatible">Esta versión da aplicación non é compatíbel coa súa aplicación de novas para ownCloud. Actualice a aplicación de novas e o marco de traballo da aplicación.</string>
-  <string name="login_dialog_title_security_warning">Aviso de seguranza</string>
+  <string name="login_dialog_title_security_warning">Aviso de seguridade</string>
   <string name="login_dialog_text_security_warning">Non está a empregar https. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal). Polo que recomendámoslle que empregue https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Datos e sincronización</string>
