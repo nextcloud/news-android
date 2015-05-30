@@ -1,8 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
 public class Constants {
-	public static final Boolean DEBUG_MODE = true;
-	public static final Boolean debugModeWidget = true;
+	public static final Boolean debugModeWidget = false;
 
 
     public static final String _TAG_LABEL_UNREAD = "stream/contents/user/-/state/com.google/reading-list?n=1000&r=n&xt=user/-/state/com.google/read";
