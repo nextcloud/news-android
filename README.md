@@ -66,8 +66,14 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.9.1 (in development)
+0.9.2 (in development)
 ---------------------
+
+
+0.9.1 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/343">#343 Mark as read only when scrolling past article</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/345">#345 Pause support for podcast streams</a>
 
 
 0.9.0 (Google Play)
