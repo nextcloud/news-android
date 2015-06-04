@@ -2,15 +2,18 @@
 <resources>
   <string name="auto_sync_string">Tự đồng b</string>
   <string name="app_name">Tin tức ownCloud </string>
+  <string name="title_activity_sync_interval_selector">Đồng bộ khoảng thời gian đã chọn</string>
   <string name="title_activity_news_detail">Chi tiết hoạt </string>
   <string name="title_activity_subscription">Hoạt động đăng k</string>
   <string name="title_newsreader_list">Đọc t</string>
   <string name="title_newsreader_detail">Tin chi </string>
   <string name="empty_view_header">Thông tin</string>
   <string name="empty_view_content">Không có mục nào ở đây</string>
+  <string name="toast_GettingMoreItems">Bắt đầu tải thêm các tập tin khác ... Xin vui lòng chờ.</string>
   <string name="tv_clickHereToOpenItem">Bấm ở đây để mở danh mục</string>
   <string name="no_wifi_available">Không có </string>
   <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải về những hình ảnh mà không c kết nối WiFi</string>
+  <string name="max_items_count_reached">Bạn đã đạt đến kích thước tối đa của XX mục</string>
   <string name="widget_header">ownCloud News</string>
   <string name="message_bar_new_articles_available">Những mục mới có giá trị</string>
   <string name="message_bar_reload">Tải </string>
@@ -24,19 +27,23 @@
   <string name="menu_StartImageCaching">Tải hình </string>
   <string name="menu_downloadMoreItems">Tải nhiều h</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">Nhập vào tài khoản</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Danh mục mã nguòn - Báo b</string>
   <string name="email_sendMail">Gởi th</string>
   <!--Action Bar Items-->
   <string name="action_starred">Starred</string>
   <string name="action_read">Đọc</string>
+  <string name="action_playPodacst">Chơi Podcast</string>
   <string name="action_openInBrowser">Mở trong trình </string>
   <string name="action_sendSourceCode">Gởi tới nhà phát tr</string>
   <string name="action_Share">Chia sẻ</string>
   <string name="action_login">Cài </string>
   <string name="action_save">Lưu</string>
   <string name="action_settings">Cài đặt</string>
+  <string name="action_sync_settings">Đồng bộ cài đặt</string>
   <string name="action_add_new_feed">Thêm feed mới</string>
+  <string name="action_textToSpeech">Đọc</string>
   <string name="notification_new_items_ticker">Bạn có X mục mới chưa đọc</string>
   <string name="notification_new_items_text">X mục mới chưa đọc có giá trị</string>
   <!--Strings related to login-->
@@ -96,8 +103,12 @@
   <string name="mtm_decision_abort">Hủy bỏ</string>
   <string name="mtm_notification">Xác nhận C</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Kích hoạt tính năng hỗ trợ Podcast</string>
+  <string name="no_podcast_selected">Khôngc có podcast nào được chọn</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Hiển th</string>
+  <string name="pref_title_app_theme">Chủ để ứng dụng</string>
   <string name="pref_title_feed_list_layout">Danh sách bố trí F</string>
   <string name="pref_display_font_layout">Font (vui lòng khởi động lại)</string>
   <string-array name="pref_display_apptheme">
@@ -158,6 +169,18 @@
   <string name="pref_title_clearCache">Xóa bộ nhớ </string>
   <string name="pref_title_CacheImagesOffline">Bộ đệm hình ảnh ẩn</string>
   <string name="pref_title_Max_Cache_Size">Kích cỡ tối đa bộ </string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Không bao giờ</item>
+    <item>Chỉ qua Wifi</item>
+    <item>Qua Wifi và mạng di động</item>
+    <item>Hỏi khi không kết nối WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -175,6 +198,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Minutes</item>
+    <item>15 Minutes</item>
+    <item>30 Minutes</item>
+    <item>45 Minutes</item>
+    <item>1 Hour</item>
+    <item>2 Hours</item>
+    <item>3 Hours</item>
+    <item>6 Hours</item>
+    <item>12 Hours</item>
+    <item>24 Hours</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
