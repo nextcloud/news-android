@@ -1,42 +1,169 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">ผสานข้อมูลอัตโนมัติ</string>
+  <string name="app_name">ประกาศข่าว ownCloud</string>
+  <string name="title_activity_sync_interval_selector">เลือกช่วงเวลาการผสานข้อมูล</string>
+  <string name="title_activity_news_detail">รายละเอียดกิจกรรม</string>
+  <string name="title_activity_subscription">สมัครสมาชิกกิจกรรม</string>
+  <string name="title_newsreader_list">ประกาศข่าว</string>
+  <string name="title_newsreader_detail">ประกาศรายละเอียดข่าว</string>
+  <string name="empty_view_header">สารสนเทศ</string>
+  <string name="empty_view_content">ไม่มีรายการที่นี่</string>
+  <string name="toast_GettingMoreItems">เริ่มดาวน์โหลดรายการอื่นๆ โปรดรอสักครู่ ...</string>
+  <string name="tv_clickHereToOpenItem">คลิกที่นี่เพื่อเปิดรายการ</string>
+  <string name="no_wifi_available">ไม่มีการเชื่อมต่อ Wifi</string>
+  <string name="do_you_want_to_download_without_wifi">คุณต้องการดาวน์โหลดรูปภาพได้โดยไม่ต้องเชื่อมต่อ WiFi</string>
+  <string name="max_items_count_reached">คุณได้มาถึงขนาดสูงสุดของ XX รายการ</string>
+  <string name="widget_header">ข่าว ownCloud</string>
+  <string name="message_bar_new_articles_available">มีรายการใหม่</string>
+  <string name="message_bar_reload">โหลดใหม่อีกครั้ง</string>
+  <string name="allUnreadFeeds">ยังไม่ได้อ่านรายการทั้งหมด</string>
+  <string name="starredFeeds">รายการที่ติดดาว</string>
   <string name="title_activity_new_feed">เพิ่ม feed ใหม่</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">รีเฟรช</string>
+  <string name="menu_About_Changelog">เกี่ยวกับ/เปลี่ยนแปลง</string>
+  <string name="menu_markAllAsRead">เลือกอ่านทั้งหมด</string>
+  <string name="menu_StartImageCaching">ดาวน์โหลดรูปภาพ</string>
+  <string name="menu_downloadMoreItems">ดาวน์โหลดรายการอื่นๆ</string>
   <!--Import Accounts-->
+  <string name="import_account_dialog_title">นำเข้าบัญชี</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">รหัสต้นฉบับของรายการ - รายงานข้อผิดพลาด</string>
+  <string name="email_sendMail">ส่งอีเมล</string>
   <!--Action Bar Items-->
   <string name="action_starred">ติดดาวแล้ว</string>
   <string name="action_read">อ่าน</string>
+  <string name="action_playPodacst">เล่นพอดคาสต์</string>
+  <string name="action_openInBrowser">เปิดในเบราว์เซอร์</string>
+  <string name="action_sendSourceCode">ส่งรายการไปให้นักพัฒนา</string>
   <string name="action_Share">แชร์</string>
+  <string name="action_login">ตั้งค่าเซิร์ฟเวอร์</string>
   <string name="action_save">บันทึก</string>
   <string name="action_settings">ตั้งค่า</string>
+  <string name="action_sync_settings">ตั้งค่าการผสานข้อมูล</string>
   <string name="action_add_new_feed">เพิ่ม feed ใหม่</string>
+  <string name="action_textToSpeech">อ่านออก</string>
+  <string name="notification_new_items_ticker">คุณมีรายการใหม่ที่ยังไม่ได้อ่าน X รายการ</string>
+  <string name="notification_new_items_text">ยังไม่ได้อ่าน X รายการใหม่</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>
   <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">เข้าสู่ระบบ</string>
+  <string name="login_progress_signing_in">กำลังเข้าสู่ระบบ ...</string>
+  <string name="error_incorrect_password">รหัสผ่านนี้ไม่ถูกต้อง</string>
+  <string name="error_field_required">ต้องใส่ข้อมูลในฟิลด์นี้</string>
+  <string name="error_invalid_url">URL นี้ไม่ถูกต้อง</string>
   <!--Toast Messages-->
+  <string name="toast_downloaded_x_items">ดาวน์โหลดรายการเก่า X รายการ</string>
+  <string name="toast_no_more_downloads_available">ไม่มีรายการที่ใช้ได้</string>
+  <string name="pull_to_refresh_updateTags">กำลังผสานข้อมูลรายการ</string>
+  <string name="pull_to_refresh_updateFolder">กำลังผสานข้อมูลโฟลเดอร์</string>
+  <string name="pull_to_refresh_updateFeeds">กำลังผสานข้อมูลฟีด</string>
+  <string name="pull_to_refresh_updateItems">กำลังรายการผสานข้อมูล</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">ตั้งค่า</string>
   <!--General settings-->
   <string name="pref_header_general">ทั่วไป</string>
+  <string name="pref_title_general_sort_order">เรียงลำดับ</string>
+  <string-array name="pref_general_sort_order">
+    <item>ใหม่ -&gt; เก่า</item>
+    <item>เก่า -&gt; ใหม่</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">กำลังเคลียแคช</string>
+  <string name="dialog_clearing_cache_please_wait">กำลังเคลียแคช ... กรุณารอสักครู่</string>
+  <string name="calculating_cache_size">การคำนวณขนาดแคช ... โปรดรอสักครู่</string>
   <string name="warning">คำเตือน</string>
+  <string name="pref_title_AutoSyncOnStart">ผสานข้อมูลเมื่อเริ่มต้น</string>
+  <string name="pref_title_ShowOnlyUnread">แสดงบทความที่ยังไม่ได้อ่านเท่านั้น</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">ปิดการใช้งานการตรวจสอบ Hostname</string>
+  <string name="pref_title_NavigateWithVolumeButtons">นำทางด้วยปุ่มปรับระดับเสียง</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">ทำเครื่องหมายว่าอ่านในขณะที่เลื่อน</string>
+  <string name="pref_title_OpenInBrowserDirectly">ข้ามมุมมองรายละเอียดและบทความในเบราว์เซอร์</string>
+  <string name="pref_title_notification_new_articles_available">แสดงการแจ้งเตือนเมื่อมีบทความใหม่</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">ยอมรับใบรับรองที่ไม่รู้จัก?</string>
+  <string name="mtm_decision_always">เสมอ</string>
+  <string name="mtm_decision_once">ครั้งเดียว</string>
+  <string name="mtm_decision_abort">ยกเลิก</string>
+  <string name="mtm_notification">การตรวจสอบใบรับรอง</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">พอดคาสต์</string>
+  <string name="pref_enable_podcasts">เปิดใช้การสนับสนุนพอดคาสต์</string>
+  <string name="no_podcast_selected">ไม่ได้เลือกพอดคาสต์</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">แสดงผล</string>
+  <string name="pref_title_app_theme">ธีมแอพฯ</string>
+  <string name="pref_title_feed_list_layout">รูปแบบรายการฟีด</string>
+  <string name="pref_display_font_layout">ตัวอักษร (ต้องรีสตาร์ทเพื่อเปิดใช้งาน)</string>
+  <string-array name="pref_display_apptheme">
+    <item>มืด</item>
+    <item>สว่าง</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>ปกติ</item>
+    <item>ขยาย</item>
+    <item>ขยายด้วย Webview</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_display_font">
+    <item>Roboto Thin</item>
+    <item>Roboto Light</item>
+    <item>Roboto Regular</item>
+    <item>Roboto Medium</item>
+    <item>Roboto Bold</item>
+    <item>Roboto Black</item>
+    <item>Roboto Condensed</item>
+    <item>Roboto Condensed Bold</item>
+    <item>Roboto Slab Thin</item>
+    <item>Roboto Slab Light</item>
+    <item>Roboto Slab Regular</item>
+    <item>Roboto Slab Bold</item>
+  </string-array>
+  <string-array name="pref_display_font_values">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>6</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>14</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">ข้อผิดพลาด</string>
+  <string name="login_dialog_text_something_went_wrong">เกิดข้อผิดพลาดบางอย่าง :(</string>
+  <string name="login_dialog_text_not_compatible">แอพฯรุ่นนี้เข้ากันไม่ได้กับแอพฯข่าว ownCloud ของคุณ โปรดอัพเดตแอพฯข่าวและ appframework</string>
   <string name="login_dialog_title_security_warning">คำเตือนเกี่ยวกับความปลอดภัย</string>
+  <string name="login_dialog_text_security_warning">คุณไม่ได้ใช้ https คุณอาจถูกดักแพคเกจเช่นรหัสผ่านของคุณ ดังนั้นจึงขอแนะนำให้ใช้ https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">ข้อมูล &amp; ผสานข้อมูล</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
