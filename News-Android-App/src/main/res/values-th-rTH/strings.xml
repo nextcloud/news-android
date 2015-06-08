@@ -83,9 +83,10 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="dialog_clearing_cache">กำลังเคลียแคช</string>
+  <string name="dialog_clearing_cache">กำลังล้างแคช</string>
   <string name="dialog_clearing_cache_please_wait">กำลังเคลียแคช ... กรุณารอสักครู่</string>
   <string name="calculating_cache_size">การคำนวณขนาดแคช ... โปรดรอสักครู่</string>
+  <string name="reset_cache_unsaved_changes">มีการเปลี่ยนแปลงที่ไม่ได้ผสานข้อมูล คุณต้องการตั้งค่าแคชหรือไม่?</string>
   <string name="warning">คำเตือน</string>
   <string name="pref_title_AutoSyncOnStart">ผสานข้อมูลเมื่อเริ่มต้น</string>
   <string name="pref_title_ShowOnlyUnread">แสดงบทความที่ยังไม่ได้อ่านเท่านั้น</string>
@@ -161,10 +162,67 @@
   <string name="login_dialog_text_something_went_wrong">เกิดข้อผิดพลาดบางอย่าง :(</string>
   <string name="login_dialog_text_not_compatible">แอพฯรุ่นนี้เข้ากันไม่ได้กับแอพฯข่าว ownCloud ของคุณ โปรดอัพเดตแอพฯข่าวและ appframework</string>
   <string name="login_dialog_title_security_warning">คำเตือนเกี่ยวกับความปลอดภัย</string>
-  <string name="login_dialog_text_security_warning">คุณไม่ได้ใช้ https คุณอาจถูกดักแพคเกจเช่นรหัสผ่านของคุณ ดังนั้นจึงขอแนะนำให้ใช้ https!</string>
+  <string name="login_dialog_text_security_warning">คุณไม่ได้ใช้ Https คุณอาจถูกดักแพคเกจเช่นรหัสผ่านของคุณดังนั้นจึงขอแนะนำให้ใช้ Https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">ข้อมูล &amp; ผสานข้อมูล</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string name="pref_title_clearCache">ล้างแคช</string>
+  <string name="pref_title_CacheImagesOffline">แคชรูปภาพออฟไลน์</string>
+  <string name="pref_title_Max_Cache_Size">ขนาดแคชสูงสุด</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>ไม่เคย</item>
+    <item>เฉพาะ WiFi เท่านั้น</item>
+    <item>เฉพาะ WiFi &amp; เคลือข่ายมือถือ</item>
+    <item>ถามเมื่อไม่ได้เชื่อมต่อกับ WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 เมกะไบต์</item>
+    <item>500 เมกะไบต์</item>
+    <item>750 เมกะไบต์</item>
+    <item>1 กิกะไบต์</item>
+    <item>2 กิกะไบต์</item>
+    <item>5 กิกะไบต์</item>
+    <item>10 กิกะไบต์</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 นาที</item>
+    <item>15 นาที</item>
+    <item>30 นาที</item>
+    <item>45 นาที</item>
+    <item>1 ชั่วโมง</item>
+    <item>2 ชั่วโมง</item>
+    <item>3 ชั่วโมง</item>
+    <item>6 ชั่วโมง</item>
+    <item>12 ชั่วโมง</item>
+    <item>24 ชั่วโมง</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
