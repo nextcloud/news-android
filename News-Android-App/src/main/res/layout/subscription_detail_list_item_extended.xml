@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal" >
 
     <!--
@@ -56,7 +56,7 @@
 
 	    <LinearLayout
 	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
+	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="@dimen/listview_row_margin_left"
 	        android:layout_marginBottom="@dimen/listview_row_margin_bottom"
 	        android:orientation="horizontal" >
@@ -74,9 +74,9 @@
 	                android:layout_height="wrap_content"
 	                android:ellipsize="end"
 	                android:gravity="center_vertical"
-	                android:lines="2"
+	                android:lines="4"
 	                android:textSize="17sp"
-	                android:text="Hi\nfds"
+	                android:text="-"
 	                android:textStyle="bold" />
 
 	            <TextView
@@ -86,7 +86,7 @@
 	                android:layout_height="wrap_content"
 	                android:ellipsize="end"
 	                android:lines="4"
-	                android:text="Test"
+	                android:text="-"
 	                android:textColor="@color/extended_listview_item_body_text_color_dark_theme"
 	                android:textSize="14sp"
 	                android:autoLink="none" />

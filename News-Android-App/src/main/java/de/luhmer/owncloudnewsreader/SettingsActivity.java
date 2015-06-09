@@ -106,7 +106,7 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
-    public static final String SP_FONT = "sp_font";
+    public static final String SP_TITLE_LINES_COUNT = "sp_title_lines_count";
     public static final String SP_SORT_ORDER = "sp_sort_order";
 
 
@@ -449,13 +449,13 @@ public class SettingsActivity extends PreferenceActivity {
 		{
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_APP_THEME));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FEED_LIST_LAYOUT));
-			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FONT));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_TITLE_LINES_COUNT));
 		}
 		else
 		{
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_APP_THEME));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FEED_LIST_LAYOUT));
-			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FONT));
+			bindPreferenceSummaryToValue(prefAct.findPreference(SP_TITLE_LINES_COUNT));
 		}
 	}
 

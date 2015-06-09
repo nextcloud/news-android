@@ -67,17 +67,17 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     private static final String TAG = "NewsListArrayAdapter";
 
     public static SparseArray<Integer> downloadProgressList = new SparseArray<Integer>();
-    long idOfCurrentlyPlayedPodcast = -1;
+    private long idOfCurrentlyPlayedPodcast = -1;
 
-    DatabaseConnectionOrm dbConn;
-    IReader _Reader;
-    final int LengthBody = 400;
-    ForegroundColorSpan bodyForegroundColor;
-    IOnStayUnread onStayUnread;
-    PostDelayHandler pDelayHandler;
-    int selectedDesign = 0;
-    FragmentActivity mActivity;
-    IPlayPausePodcastClicked playPausePodcastClicked;
+    private int titleLineCount;
+    private DatabaseConnectionOrm dbConn;
+    private final int LengthBody = 400;
+    private ForegroundColorSpan bodyForegroundColor;
+    private IOnStayUnread onStayUnread;
+    private PostDelayHandler pDelayHandler;
+    private int selectedDesign = 0;
+    private FragmentActivity mActivity;
+    private IPlayPausePodcastClicked playPausePodcastClicked;
 
 
     public NewsListArrayAdapter(FragmentActivity activity, LazyList<RssItem> lazyList, IOnStayUnread onStayUnread, IPlayPausePodcastClicked playPausePodcastClicked) {
@@ -92,12 +92,11 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         //simpleDateFormat = new SimpleDateFormat("EEE, d. MMM HH:mm:ss");
         bodyForegroundColor = new ForegroundColorSpan(context.getResources().getColor(android.R.color.secondary_text_dark));
 
-        _Reader = new OwnCloud_Reader();
         dbConn = new DatabaseConnectionOrm(context);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         selectedDesign = Integer.valueOf(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"));
-
+        titleLineCount = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_TITLE_LINES_COUNT, "2"));
 
         EventBus.getDefault().register(this);
     }
@@ -272,6 +271,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         SimpleLayout simpleLayout = new SimpleLayout(view);
 
         simpleLayout.textViewSummary.setText(Html.fromHtml(rssItem.getTitle()).toString());
+        simpleLayout.textViewSummary.setLines(titleLineCount);
 
         long pubDate = rssItem.getPubDate().getTime();
         String dateString = (String) DateUtils.getRelativeTimeSpanString(pubDate);

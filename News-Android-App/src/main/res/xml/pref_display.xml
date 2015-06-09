@@ -24,10 +24,10 @@
     
     <ListPreference
         android:defaultValue="2"
-        android:entries="@array/pref_display_font"
-        android:entryValues="@array/pref_display_font_values"
-        android:key="sp_font"
-        android:title="@string/pref_display_font_layout" />
+        android:entries="@array/pref_title_lines_count"
+        android:entryValues="@array/pref_title_lines_count_values"
+        android:key="sp_title_lines_count"
+        android:title="@string/pref_display_title_lines_count" />
     
     <!--
          This preference simply launches an intent when selected. Use this UI sparingly, per
