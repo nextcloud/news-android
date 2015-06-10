@@ -110,7 +110,6 @@
   <string name="pref_header_display">Приказ</string>
   <string name="pref_title_app_theme">Тема</string>
   <string name="pref_title_feed_list_layout">Распоред листе довода</string>
-  <string name="pref_display_font_layout">Фонт (након рестарта)</string>
   <string-array name="pref_display_apptheme">
     <item>тамна</item>
     <item>светла</item>
@@ -128,34 +127,6 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Робото танки</item>
-    <item>Робото лагани</item>
-    <item>Робото обичан</item>
-    <item>Робото средњи</item>
-    <item>Робото подебљан</item>
-    <item>Робото црни</item>
-    <item>Робото кондезовани</item>
-    <item>Робото кондензовани подебљани</item>
-    <item>Робото Слеб танки</item>
-    <item>Робото Слеб лагани</item>
-    <item>Робото Слеб обични</item>
-    <item>Робото Слеб подебљани</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Грешка</string>

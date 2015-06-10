@@ -110,7 +110,6 @@
   <string name="pref_header_display">Prikaz</string>
   <string name="pref_title_app_theme">Ime teme</string>
   <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
-  <string name="pref_display_font_layout">Pisava (pred uporabo je treba program znova zagnati)</string>
   <string-array name="pref_display_apptheme">
     <item>Temna</item>
     <item>Svetla</item>
@@ -128,34 +127,6 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Ozka</item>
-    <item>Roboto Zožano</item>
-    <item>Roboto Običajna</item>
-    <item>Roboto Srednja</item>
-    <item>Roboto Krepka</item>
-    <item>Roboto Black</item>
-    <item>Roboto Stisnjeno</item>
-    <item>Roboto Stisnjeno Krepko</item>
-    <item>Roboto Slab Ozka</item>
-    <item>Roboto Slab Zožano</item>
-    <item>Roboto Slab Običajna</item>
-    <item>Roboto Slab Krepka</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Napaka</string>

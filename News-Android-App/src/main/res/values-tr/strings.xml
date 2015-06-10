@@ -110,7 +110,6 @@
   <string name="pref_header_display">Görüntüle</string>
   <string name="pref_title_app_theme">Uyg. teması</string>
   <string name="pref_title_feed_list_layout">Besleme listesi yerleşimi</string>
-  <string name="pref_display_font_layout">Yazı Tipi (uygulanması için yeniden başlatma gerekiyor)</string>
   <string-array name="pref_display_apptheme">
     <item>Koyu</item>
     <item>Açık</item>
@@ -128,34 +127,6 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto İnce</item>
-    <item>Roboto Açık</item>
-    <item>Roboto Normal</item>
-    <item>Roboto Orta</item>
-    <item>Roboto Kalın</item>
-    <item>Roboto Siyah</item>
-    <item>Roboto Yoğun</item>
-    <item>Roboto Yoğun Kalın</item>
-    <item>Roboto Levha İnce</item>
-    <item>Roboto Levha Açık</item>
-    <item>Roboto Levha Normal</item>
-    <item>Roboto Levha Kalın</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Hata</string>

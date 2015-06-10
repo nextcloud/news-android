@@ -110,7 +110,6 @@
   <string name="pref_header_display">Ekran</string>
   <string name="pref_title_app_theme">Proqram mövzusu</string>
   <string name="pref_title_feed_list_layout">Axın siyahısının görünüşü</string>
-  <string name="pref_display_font_layout">Yazı(Mənimsədilməsi üçün təkrər işə salınılması tələb edilir)</string>
   <string-array name="pref_display_apptheme">
     <item>Qaranlıq</item>
     <item>İşıqlı</item>
@@ -128,34 +127,6 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto incə</item>
-    <item>Roboto İşıqlı</item>
-    <item>Roboto Normal</item>
-    <item>Roboto Orta</item>
-    <item>Roboto Qalın</item>
-    <item>Roboto Qara</item>
-    <item>Roboto Qatılaşdırılmış</item>
-    <item>Roboto Qatılaşdırılmış Qalın</item>
-    <item>Roboto Lövhələr İncə</item>
-    <item>Roboto Lövhələr İşıqlı</item>
-    <item>Roboto Lövhələr Adi</item>
-    <item>Roboto Lövhələr Qalın</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Səhv</string>

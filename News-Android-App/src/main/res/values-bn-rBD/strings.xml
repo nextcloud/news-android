@@ -108,7 +108,6 @@
   <string name="pref_header_display">প্রদর্শন কর</string>
   <string name="pref_title_app_theme">অ্যাপ থিম</string>
   <string name="pref_title_feed_list_layout">ফিডলিস্ট প্রদর্শনী</string>
-  <string name="pref_display_font_layout">ফন্ট (প্রযোজ্য হতে কম্পিউটার পূনরায় চালূ করতে হবে)</string>
   <string-array name="pref_display_apptheme">
     <item>গাঢ়</item>
     <item>হাল্কা</item>
@@ -121,34 +120,6 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">সমস্যা</string>
