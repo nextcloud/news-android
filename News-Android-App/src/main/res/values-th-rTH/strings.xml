@@ -110,6 +110,7 @@
   <string name="pref_header_display">แสดงผล</string>
   <string name="pref_title_app_theme">ธีมแอพฯ</string>
   <string name="pref_title_feed_list_layout">รูปแบบรายการฟีด</string>
+  <string name="pref_display_title_lines_count">จำนวนบรรทัดสำหรับชื่อเรื่อง</string>
   <string-array name="pref_display_apptheme">
     <item>มืด</item>
     <item>สว่าง</item>
@@ -127,6 +128,18 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">ข้อผิดพลาด</string>
