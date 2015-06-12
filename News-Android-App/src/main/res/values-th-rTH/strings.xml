@@ -55,7 +55,7 @@
   <string name="action_sign_in_short">เข้าสู่ระบบ</string>
   <string name="login_progress_signing_in">กำลังเข้าสู่ระบบ ...</string>
   <string name="error_incorrect_password">รหัสผ่านนี้ไม่ถูกต้อง</string>
-  <string name="error_field_required">ต้องใส่ข้อมูลในฟิลด์นี้</string>
+  <string name="error_field_required">ต้องใส่ข้อมูลลงในช่องนี้</string>
   <string name="error_invalid_url">URL นี้ไม่ถูกต้อง</string>
   <!--Toast Messages-->
   <string name="toast_downloaded_x_items">ดาวน์โหลดรายการเก่า X รายการ</string>
