@@ -62,7 +62,7 @@
   <string name="toast_no_more_downloads_available">Ingen flere elemeter tilgjengelig</string>
   <string name="pull_to_refresh_updateTags">Synkroniserer elementtilstander</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserer mappe</string>
-  <string name="pull_to_refresh_updateFeeds">Synkroniserer feed</string>
+  <string name="pull_to_refresh_updateFeeds">Synkroniserer strøm</string>
   <string name="pull_to_refresh_updateItems">Synkroniserer elementer</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Innstillinger</string>
@@ -109,7 +109,8 @@
   <!--Settings for Display-->
   <string name="pref_header_display">Vis</string>
   <string name="pref_title_app_theme">App-tema</string>
-  <string name="pref_title_feed_list_layout">Feedliostens oppsett</string>
+  <string name="pref_title_feed_list_layout">Oppsett for strømlisten</string>
+  <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
   <string-array name="pref_display_apptheme">
     <item>Mørk</item>
     <item>Lys</item>
@@ -127,6 +128,18 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Feil</string>
