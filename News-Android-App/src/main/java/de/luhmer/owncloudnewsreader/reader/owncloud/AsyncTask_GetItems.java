@@ -196,7 +196,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         Notification notification = new NotificationCompat.Builder(context)
                 .setContentTitle(context.getString(R.string.no_wifi_available))
                 .setContentText(context.getString(R.string.do_you_want_to_download_without_wifi))
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setLargeIcon(bm)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)

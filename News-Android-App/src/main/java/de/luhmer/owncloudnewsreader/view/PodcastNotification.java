@@ -49,7 +49,7 @@ public class PodcastNotification {
 
         // Create the final Notification object.
         notificationBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setAutoCancel(true)
                 .setContentIntent(resultPendingIntent);
     }

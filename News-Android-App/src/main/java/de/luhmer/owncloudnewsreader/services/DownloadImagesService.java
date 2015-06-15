@@ -166,7 +166,7 @@ public class DownloadImagesService extends IntentService {
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this)
                 .setContentTitle("ownCloud News Reader")
                 .setContentText("Only " + limit + " images can be cached at once")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent);
 
         Notification notify = notifyBuilder.build();
@@ -183,7 +183,7 @@ public class DownloadImagesService extends IntentService {
         NotificationDownloadImages = new NotificationCompat.Builder(this)
                 .setContentTitle("ownCloud News Reader")
                 .setContentText("Downloading Images for offline usage")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent);
 
         Notification notify = NotificationDownloadImages.build();
