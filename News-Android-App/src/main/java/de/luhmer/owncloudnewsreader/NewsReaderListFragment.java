@@ -51,10 +51,6 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.michaelflisar.messagebar.MessageBar;
-import com.michaelflisar.messagebar.messages.BaseMessage;
-import com.michaelflisar.messagebar.messages.TextMessage;
-
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
 
@@ -142,10 +138,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                         int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
                         if(newItemsCount > 0) {
-                            MessageBar messageBar = new MessageBar(getActivity(), true);
-                            TextMessage textMessage = new TextMessage(newItemsCount + " " + getString(R.string.message_bar_new_articles_available), getString(R.string.message_bar_reload), R.drawable.ic_menu_refresh);
-                            textMessage.setClickListener(mListener);
-                            messageBar.show(textMessage);
+							NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.content_frame));
+							if(ndf != null) {
+								Toast.makeText(getActivity(),newItemsCount + " " + getString(R.string.message_bar_new_articles_available),Toast.LENGTH_LONG).show();
+								//ndf.reloadAdapterFromScratch();
+								ndf.UpdateCurrentRssView(getActivity(), true);
+							}
                         }
 						}
 					});
@@ -224,8 +222,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	//AsyncUpdateFinished asyncUpdateFinished;
 	ServiceConnection mConnection = null;
 
-    private BaseMessage.OnMessageClickListener mListener = null;
-
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
@@ -236,33 +232,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		try
-		{
-            mListener = new BaseMessage.OnMessageClickListener()
-            {
-                @Override
-                public void onButton2Click(Parcelable data)
-                {
-                }
-
-                @Override
-                public void onButton1Click(Parcelable data)
-                {
-                    //Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
-
-                    NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.content_frame));
-                    if(ndf != null) {
-                        //ndf.reloadAdapterFromScratch();
-                        ndf.UpdateCurrentRssView(getActivity(), true);
-                    }
-                }
-            };
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
 	}
 
 
