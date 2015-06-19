@@ -8,10 +8,12 @@ import org.junit.Test;
 import org.junit.rules.Stopwatch;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.List;
 
+import de.luhmer.owncloudnewsreader.BuildConfig;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseHelperOrm;
@@ -20,9 +22,8 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 
 import static org.junit.Assert.*;
 
-
-@Config(emulateSdk=18)
 @RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = 21)
 public class TestDbTest {
 
     private NewsReaderListActivity activity;
