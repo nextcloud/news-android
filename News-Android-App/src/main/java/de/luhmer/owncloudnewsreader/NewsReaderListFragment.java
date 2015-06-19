@@ -143,7 +143,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                         int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
                         if(newItemsCount > 0) {
                             MessageBar messageBar = new MessageBar(getActivity(), true);
-                            TextMessage textMessage = new TextMessage(newItemsCount + " " + getString(R.string.message_bar_new_articles_available), getString(R.string.message_bar_reload), R.drawable.ic_menu_refresh);
+                            TextMessage textMessage = new TextMessage(getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount), getString(R.string.message_bar_reload), R.drawable.ic_menu_refresh);
                             textMessage.setClickListener(mListener);
                             messageBar.show(textMessage);
                         }

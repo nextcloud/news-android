@@ -10,13 +10,19 @@
     <string name="title_newsreader_detail">NewsReader Detail</string>
     <string name="empty_view_header">Information</string>
     <string name="empty_view_content">No items here</string>
-    <string name="toast_GettingMoreItems">Started downloading more items... Please wait.</string>
+    <string name="toast_GettingMoreItems">Started downloading more items… Please wait.</string>
     <string name="tv_clickHereToOpenItem">Click here to open item</string>
     <string name="no_wifi_available">No WiFi connected</string>
     <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a WiFi connection</string>
-    <string name="max_items_count_reached">You\'ve reached the maximum size of XX items</string>
+    <plurals name="max_items_count_reached">
+        <item quantity="one">You\'ve reached the maximum size of %d item</item>
+        <item quantity="other">You\'ve reached the maximum size of %d items</item>
+    </plurals>
     <string name="widget_header">ownCloud News</string>
-    <string name="message_bar_new_articles_available">New items available</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d new item available</item>
+        <item quantity="other">%d new items available</item>
+    </plurals>
     <string name="message_bar_reload">Reload</string>
     <string name="allUnreadFeeds">All unread items</string>
     <string name="starredFeeds">Starred items</string>
@@ -49,8 +55,14 @@
     <string name="action_sync_settings">Sync Settings</string>
     <string name="action_add_new_feed">Add new feed</string>
     <string name="action_textToSpeech">Read out</string>
-    <string name="notification_new_items_ticker">You have X new unread items</string>
-    <string name="notification_new_items_text">X new unread items available</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">You have %d new unread item</item>
+        <item quantity="other">You have %d new unread items</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d new unread item available</item>
+        <item quantity="other">%d new unread items available</item>
+    </plurals>
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>
@@ -66,7 +78,10 @@
     <string name="error_invalid_url">This url is incorrect</string>
 
     <!-- Toast Messages -->
-    <string name="toast_downloaded_x_items">Downloaded X old items</string>
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Downloaded %d old item</item>
+        <item quantity="other">Downloaded %d old items</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">No further items available</string>
     <string name="pull_to_refresh_updateTags">Synchronizing items states</string>
     <string name="pull_to_refresh_updateFolder">Synchronizing folder</string>
@@ -102,8 +117,8 @@
     -->
 
     <string name="dialog_clearing_cache">Clearing cache</string>
-    <string name="dialog_clearing_cache_please_wait">Clearing cache.. Please wait.</string>
-    <string name="calculating_cache_size">Calculating cache size.. Please wait.</string>
+    <string name="dialog_clearing_cache_please_wait">Clearing cache… Please wait.</string>
+    <string name="calculating_cache_size">Calculating cache size… Please wait.</string>
     <string name="reset_cache_unsaved_changes">There are unsynchronized changes. Would you like to reset the cache anyway?</string>
     <string name="warning">Warning</string>
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>

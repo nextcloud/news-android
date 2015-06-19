@@ -27,6 +27,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
@@ -209,8 +210,9 @@ public class OwnCloudSyncService extends Service {
 
                     ComponentName componentInfo = runningTaskInfo.get(0).topActivity;
                     if(!componentInfo.getPackageName().equals("de.luhmer.owncloudnewsreader")) {
-                        String tickerText = getString(R.string.notification_new_items_ticker).replace("X", String.valueOf(newItemsCount));
-                        String contentText = getString(R.string.notification_new_items_text).replace("X", String.valueOf(newItemsCount));
+						Resources res = getResources();
+                        String tickerText = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
+                        String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
                         String title = getString(R.string.app_name);
 
                         if(mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true))//Default is true
