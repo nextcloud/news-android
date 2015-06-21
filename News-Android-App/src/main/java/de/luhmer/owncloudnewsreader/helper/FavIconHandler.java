@@ -33,6 +33,8 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.lang.ref.WeakReference;
 
@@ -44,10 +46,27 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 public class FavIconHandler {
     private static final String TAG = "FavIconHandler";
 
-    Context context;
+    private Context context;
+    private final String favIconPath;
 
     public FavIconHandler(Context context) {
         this.context = context;
+        favIconPath = FileUtils.getPathFavIcons(context);
+    }
+
+    public void loadFavIconForFeed(String favIconUrl, ImageView imgView) {
+        File cacheFile = ImageHandler.getFullPathOfCacheFileSafe(favIconUrl, favIconPath);
+        if(cacheFile != null && cacheFile.exists()) {
+            Picasso.with(context)
+                    .load(cacheFile)
+                    .placeholder(FavIconHandler.getResourceIdForRightDefaultFeedIcon(context))
+                    .into(imgView, null);
+        } else {
+            Picasso.with(context)
+                    .load(favIconUrl)
+                    .placeholder(FavIconHandler.getResourceIdForRightDefaultFeedIcon(context))
+                    .into(imgView, null);
+        }
     }
 
     public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context, Long feedID)
@@ -94,7 +113,7 @@ public class FavIconHandler {
             return;
         }
 
-        GetImageThreaded giAsync = new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId(), FileUtils.getPathFavIcons(context), context);
+        GetImageThreaded giAsync = new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId(), favIconPath, context);
         giAsync.scaleImage = true;
         giAsync.dstHeight = 2*32;
         giAsync.dstWidth = 2*32;

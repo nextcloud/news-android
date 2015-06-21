@@ -50,6 +50,7 @@ import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
+import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.FillTextForTextViewHelper;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
@@ -78,7 +79,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
     private int selectedDesign = 0;
     private FragmentActivity mActivity;
     private IPlayPausePodcastClicked playPausePodcastClicked;
-
+    private FavIconHandler favIconHandler;
 
     public NewsListArrayAdapter(FragmentActivity activity, LazyList<RssItem> lazyList, IOnStayUnread onStayUnread, IPlayPausePodcastClicked playPausePodcastClicked) {
         super(activity, lazyList);
@@ -87,6 +88,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         this.onStayUnread = onStayUnread;
         this.playPausePodcastClicked = playPausePodcastClicked;
 
+        favIconHandler = new FavIconHandler(mActivity);
         pDelayHandler = new PostDelayHandler(context);
 
         //simpleDateFormat = new SimpleDateFormat("EEE, d. MMM HH:mm:ss");
@@ -250,6 +252,9 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         @Optional
         @InjectView(R.id.fl_playPausePodcastWrapper)
         FrameLayout flPlayPausePodcastWrapper;
+        @Optional
+        @InjectView(R.id.imgViewFavIcon)
+        ImageView imgViewFavIcon;
 
         SimpleLayout(View view) {
             ButterKnife.inject(this, view);
@@ -288,6 +293,8 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
             simpleLayout.viewDivider.setBackgroundColor(mActivity.getResources().getColor(R.color.divider_row_color_light_theme));
         }
 
+
+        favIconHandler.loadFavIconForFeed(rssItem.getFeed().getFaviconUrl(), simpleLayout.imgViewFavIcon);
 
         //Podcast stuff
         if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {

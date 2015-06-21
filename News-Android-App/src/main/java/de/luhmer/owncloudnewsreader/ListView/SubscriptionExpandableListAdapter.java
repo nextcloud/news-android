@@ -106,10 +106,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
     }
 
-    int mTextColorLightTheme;
+    private int mTextColorLightTheme;
+    private FavIconHandler favIconHandler;
 
     LayoutInflater inflater;
-    private final String favIconPath;
     boolean mIsTwoPane;
     public static boolean isTwoPane(Context context) {
         return context.getResources().getBoolean(R.bool.two_pane);
@@ -120,7 +120,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     {
         mIsTwoPane = isTwoPane(mContext);
 
-        this.favIconPath = FileUtils.getPathFavIcons(mContext);
+        favIconHandler = new FavIconHandler(mContext);
+
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	this.mContext = mContext;
     	this.dbConn = dbConn;
@@ -186,7 +187,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             else
                 viewHolder.tV_UnreadCount.setText("");
 
-            loadFavIconForFeed(item.favIcon, viewHolder.imgView_FavIcon);
+            favIconHandler.loadFavIconForFeed(item.favIcon, viewHolder.imgView_FavIcon);
         }
         else
         {
@@ -316,7 +317,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        if(group.idFolder == ITEMS_WITHOUT_FOLDER.getValue())
 	        {
                 ConcreteFeedItem concreteFeedItem = ((ConcreteFeedItem) group);
-                loadFavIconForFeed(concreteFeedItem.favIcon, viewHolder.imgView);
+                favIconHandler.loadFavIconForFeed(concreteFeedItem.favIcon, viewHolder.imgView);
 	        }
         } else {
         	if(group.id_database == ALL_STARRED_ITEMS.getValue()) {
@@ -343,21 +344,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         return convertView;
 	}
 
-    private void loadFavIconForFeed(String favIconUrl, ImageView imgView) {
 
-        File cacheFile = ImageHandler.getFullPathOfCacheFileSafe(favIconUrl, favIconPath);
-        if(cacheFile != null && cacheFile.exists()) {
-            Picasso.with(mContext)
-                    .load(cacheFile)
-                    .placeholder(FavIconHandler.getResourceIdForRightDefaultFeedIcon(mContext))
-                    .into(imgView, null);
-        } else {
-            Picasso.with(mContext)
-                    .load(favIconUrl)
-                    .placeholder(FavIconHandler.getResourceIdForRightDefaultFeedIcon(mContext))
-                    .into(imgView, null);
-        }
-    }
 
 
 

@@ -70,6 +70,13 @@
 			        android:layout_height="match_parent"
 			        android:orientation="horizontal" >
 
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="5dp"
+                        android:id="@+id/imgViewFavIcon"/>
+
 			        <TextView
 			            android:id="@+id/tv_subscription"
 			            android:layout_width="0dp"

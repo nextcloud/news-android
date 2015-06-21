@@ -31,15 +31,22 @@
 	        android:layout_marginTop="@dimen/listview_row_margin_top"
 	        android:orientation="horizontal" >
 
+			<ImageView
+				android:layout_width="15dp"
+				android:layout_height="15dp"
+				android:layout_marginTop="3dp"
+				android:layout_marginRight="5dp"
+				android:id="@+id/imgViewFavIcon"/>
+
 	        <TextView
 	            android:id="@+id/tv_subscription"
 	            android:layout_width="0dp"
-	            android:layout_height="match_parent"
+	            android:layout_height="wrap_content"
 	            android:ellipsize="end"
 	            android:gravity="center_vertical"
 	            android:layout_gravity="left"
 	            android:singleLine="true"
-	            android:text="Hdfsa"
+	            android:text="Hdfsffsggfddsa"
 	            android:layout_weight="1"
 	            android:textSize="15sp" />
 
