@@ -45,11 +45,11 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.support.v7.internal.widget.TintCheckBox;
-import android.support.v7.internal.widget.TintCheckedTextView;
-import android.support.v7.internal.widget.TintEditText;
-import android.support.v7.internal.widget.TintRadioButton;
-import android.support.v7.internal.widget.TintSpinner;
+import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.AppCompatCheckedTextView;
+import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatRadioButton;
+import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -379,15 +379,15 @@ public class SettingsActivity extends PreferenceActivity {
 			// standard framework versions
 			switch (name) {
 				case "EditText":
-					return new TintEditText(this, attrs);
+					return new AppCompatEditText(this, attrs);
 				case "Spinner":
-					return new TintSpinner(this, attrs);
+					return new AppCompatSpinner(this, attrs);
 				case "CheckBox":
-					return new TintCheckBox(this, attrs);
+					return new AppCompatCheckBox(this, attrs);
 				case "RadioButton":
-					return new TintRadioButton(this, attrs);
+					return new AppCompatRadioButton(this, attrs);
 				case "CheckedTextView":
-					return new TintCheckedTextView(this, attrs);
+					return new AppCompatCheckedTextView(this, attrs);
 			}
 		}
 
