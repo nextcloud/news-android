@@ -1,25 +1,12 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'robolectric'
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.robolectric:robolectric-gradle-plugin:0.14.+'
-    }
-}
 
 android {
-
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
     buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
-
-        testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
     }
 
     buildTypes {
@@ -29,27 +16,6 @@ android {
         }
     }
 
-
-    productFlavors {
-    }
-
-
-    sourceSets {
-        main {
-            aidl.srcDirs = ['src/main/java']
-        }
-
-
-        instrumentTest.setRoot('src/androidTest/java')
-
-        androidTest {
-            java.srcDir file('src/androidTest/java')
-            setRoot('src/androidTest/')
-        }
-    }
-
-
-
     lintOptions {
         checkReleaseBuilds false
 
@@ -58,38 +24,19 @@ android {
 
         abortOnError false
     }
-}
 
-configurations {
-    robolectricTests {
-        extendsFrom compile
+    sourceSets {
+        main {
+            aidl.srcDirs = ['src/main/java']
+        }
     }
 }
-
-apply plugin: 'android-unit-test'
-
-sourceSets {
-    robolectricTests {
-        java.srcDir file('src/androidTest/java')
-        resources.srcDir file('src/androidTest/resources')
-        compileClasspath += configurations.robolectricTests
-        runtimeClasspath += compileClasspath
-
-    }
-}
-
 
 configurations.all {
     resolutionStrategy {
-        force 'com.android.support:support-v4:21.+'
-        force 'com.android.support:appcompat-v7:21.+'
+        force 'com.android.support:support-v4:22.2.0'
+        force 'com.android.support:appcompat-v7:22.2.0'
     }
-}
-
-
-
-afterEvaluate {
-    tasks.findByName("assembleDebug").dependsOn("testDebugClasses")
 }
 
 dependencies {
@@ -106,8 +53,8 @@ dependencies {
     compile project(':ownCloud-Account-Importer')
     compile project(':ShowcaseView:library')
     compile project(':android-HoloCircularProgressBar:library')
-    compile 'com.android.support:support-v4:21.+'
-    compile 'com.android.support:appcompat-v7:21.+'
+    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.jakewharton:butterknife:5.1.+'
     compile 'com.squareup.picasso:picasso:2.3.1@jar'
     compile 'com.sothree.slidinguppanel:library:+'
@@ -116,39 +63,6 @@ dependencies {
     compile 'de.greenrobot:greendao-generator:1.3.1@jar'
     compile 'org.freemarker:freemarker:2.3.18@jar'
 
-
-
-
-    testCompile 'org.robolectric:robolectric:2.4'
+    testCompile 'org.robolectric:robolectric:3.0-rc3'
     testCompile 'junit:junit:4.+'
-
-    // these aren’t getting used
-    //androidTestCompile 'some.other.library'
-    //instrumentTestCompile 'additional.library'
 }
-
-
-
-/*
-task robolectric(type: Test, dependsOn: assemble) {
-
-    workingDir 'src/main'
-
-    testClassesDir = sourceSets.robolectricTests.output.classesDir
-
-    android.sourceSets.main.java.srcDirs.each { dir ->
-        def buildDir = dir.getAbsolutePath().split('/')
-        buildDir = (buildDir[0..(buildDir.length - 4)] + ['build', 'classes', 'debug']).join('/')
-
-        project.getPlugins().getPlugin('android').prepareTaskMap.each {
-            sourceSets.robolectricTests.compileClasspath += files(it.value.explodedDir.getAbsolutePath() + '/classes.jar')
-            sourceSets.robolectricTests.runtimeClasspath += files(it.value.explodedDir.getAbsolutePath() + '/classes.jar')
-        }
-
-        sourceSets.robolectricTests.compileClasspath += files(buildDir)
-        sourceSets.robolectricTests.runtimeClasspath += files(buildDir)
-    }
-
-    classpath = sourceSets.robolectricTests.runtimeClasspath
-}
-*/
