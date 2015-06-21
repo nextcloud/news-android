@@ -66,14 +66,21 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 
 Updates
 ==================================
-0.9.2 (in development)
+0.9.3 (in development)
 ---------------------
+
+0.9.2 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/350">#350 option to set lines-count of title</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/318">#318 Image in advanced News item</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/342">#342 Low contrast checkboxes in settings (pre Lollipop)</a>
 
 
 0.9.1 (Google Play)
 ---------------------
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/343">#343 Mark as read only when scrolling past article</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/345">#345 Pause support for podcast streams</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/348">#348 Notification icon in Android 5.0 is just a white square</a>
 
 
 0.9.0 (Google Play)
