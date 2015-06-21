@@ -44,7 +44,14 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
+import android.support.v7.internal.widget.TintCheckBox;
+import android.support.v7.internal.widget.TintCheckedTextView;
+import android.support.v7.internal.widget.TintEditText;
+import android.support.v7.internal.widget.TintRadioButton;
+import android.support.v7.internal.widget.TintSpinner;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -358,7 +365,36 @@ public class SettingsActivity extends PreferenceActivity {
                         preference.getContext()).getBoolean(preference.getKey(), false));
     }
 
-    /**
+	@Nullable
+	@Override
+	public View onCreateView(String name, Context context, AttributeSet attrs) {
+		// Allow super to try and create a view first
+		final View result = super.onCreateView(name, context, attrs);
+		if (result != null) {
+			return result;
+		}
+
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+			// If we're running pre-L, we need to 'inject' our tint aware Views in place of the
+			// standard framework versions
+			switch (name) {
+				case "EditText":
+					return new TintEditText(this, attrs);
+				case "Spinner":
+					return new TintSpinner(this, attrs);
+				case "CheckBox":
+					return new TintCheckBox(this, attrs);
+				case "RadioButton":
+					return new TintRadioButton(this, attrs);
+				case "CheckedTextView":
+					return new TintCheckedTextView(this, attrs);
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * This fragment shows general preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
