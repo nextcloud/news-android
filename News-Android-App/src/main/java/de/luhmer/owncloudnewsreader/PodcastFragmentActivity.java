@@ -13,7 +13,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
@@ -52,7 +52,7 @@ import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 /**
  * Created by David on 29.06.2014.
  */
-public class PodcastFragmentActivity extends ActionBarActivity implements IPlayPausePodcastClicked {
+public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
     PodcastPlaybackService mPodcastPlaybackService;
     boolean mBound = false;
