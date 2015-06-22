@@ -31,6 +31,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -38,6 +39,7 @@ import android.os.Looper;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -49,11 +51,8 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.michaelflisar.messagebar.MessageBar;
-import com.michaelflisar.messagebar.messages.BaseMessage;
-import com.michaelflisar.messagebar.messages.TextMessage;
 
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
@@ -142,10 +141,15 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                         int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
                         if(newItemsCount > 0) {
-                            MessageBar messageBar = new MessageBar(getActivity(), true);
-                            TextMessage textMessage = new TextMessage(getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount), getString(R.string.message_bar_reload), R.drawable.ic_menu_refresh);
-                            textMessage.setClickListener(mListener);
-                            messageBar.show(textMessage);
+							Snackbar snackbar = Snackbar.make(eListView, getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount), Snackbar.LENGTH_LONG);
+							snackbar.setAction(getString(R.string.message_bar_reload), mListener);
+							snackbar.setActionTextColor(getResources().getColor(R.color.accent_material_dark));
+							// Setting android:TextColor to #000 in the light theme results in black on black
+							// text on the Snackbar, set the text back to white,
+							// TODO: find a cleaner way to do this
+							TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+							textView.setTextColor(Color.WHITE);
+							snackbar.show();
                         }
 						}
 					});
@@ -224,7 +228,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	//AsyncUpdateFinished asyncUpdateFinished;
 	ServiceConnection mConnection = null;
 
-    private BaseMessage.OnMessageClickListener mListener = null;
+    private View.OnClickListener mListener = null;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -239,15 +243,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 		try
 		{
-            mListener = new BaseMessage.OnMessageClickListener()
+            mListener = new View.OnClickListener()
             {
                 @Override
-                public void onButton2Click(Parcelable data)
-                {
-                }
-
-                @Override
-                public void onButton1Click(Parcelable data)
+                public void onClick(View view)
                 {
                     //Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
 
