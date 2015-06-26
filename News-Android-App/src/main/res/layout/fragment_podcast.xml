@@ -317,7 +317,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/av_rewind"/>
+                android:background="@drawable/ic_action_fast_rewind"/>
 
             <ImageButton
                 android:id="@+id/btn_playPausePodcastSlider"
@@ -325,14 +325,14 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/av_play"/>
+                android:background="@drawable/ic_action_play_arrow"/>
 
             <ImageButton
                 android:id="@+id/btn_nextPodcastSlider"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:background="@drawable/av_fast_forward"/>
+                android:background="@drawable/ic_action_fast_forward"/>
 
 
             <LinearLayout

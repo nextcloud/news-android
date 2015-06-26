@@ -25,7 +25,7 @@
     <item
         android:id="@+id/action_openInBrowser"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_set_as"
+        android:icon="@drawable/ic_action_open_in_browser"
         android:title="@string/action_openInBrowser"/>
 
     <item

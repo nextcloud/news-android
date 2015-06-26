@@ -3,7 +3,7 @@
 
     <item android:id="@+id/menu_update"
         android:title="@string/menu_update"
-        android:icon="@drawable/ic_menu_refresh"
+        android:icon="@drawable/ic_action_refresh"
         app:showAsAction="always" />
 
     <item android:id="@+id/menu_StartImageCaching"

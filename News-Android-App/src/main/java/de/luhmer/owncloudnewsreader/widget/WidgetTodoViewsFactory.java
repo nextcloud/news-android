@@ -114,7 +114,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             rv.setTextViewText(R.id.feed_title, title);
 
 
-            int resId = rssItem.getRead_temp() ? R.drawable.btn_check_on_holo_dark : R.drawable.btn_check_off_holo_dark;
+            int resId = rssItem.getRead_temp() ? R.drawable.ic_check_box_white : R.drawable.ic_check_box_outline_blank_white;
             rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", resId);
 
             //View viewColor = view.findViewById(R.id.color_line_feed);

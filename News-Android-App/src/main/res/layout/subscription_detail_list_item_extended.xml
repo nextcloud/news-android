@@ -112,7 +112,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/av_play"/>
+                    android:background="@drawable/ic_action_play_arrow"/>
 
                 <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
                     android:id="@+id/podcastDownloadProgress"
