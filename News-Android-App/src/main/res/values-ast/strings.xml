@@ -43,6 +43,7 @@
   <string name="action_settings">Axustes</string>
   <string name="action_sync_settings">Axustes de sincronización</string>
   <string name="action_add_new_feed">Amestar feed nuevu</string>
+  <string name="action_textToSpeech">Axuntar información</string>
   <string name="notification_new_items_ticker">Tienes X elementos nuevos ensin lleer</string>
   <string name="notification_new_items_text">X elementos nuevos ensin lleer disponibles </string>
   <!--Strings related to login-->
@@ -109,6 +110,7 @@
   <string name="pref_header_display">Amosar</string>
   <string name="pref_title_app_theme">Tema de l\'aplicación</string>
   <string name="pref_title_feed_list_layout">Llista de fontes</string>
+  <string name="pref_display_title_lines_count">Cuntar llínees por títulu</string>
   <string-array name="pref_display_apptheme">
     <item>Escuru</item>
     <item>Claru</item>
@@ -126,6 +128,18 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fallu</string>
