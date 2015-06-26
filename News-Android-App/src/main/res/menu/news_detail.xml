@@ -49,7 +49,7 @@
     
     <item
         android:id="@+id/action_ShareItem"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_menu_share"
         android:title="@string/action_Share" />
 
