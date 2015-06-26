@@ -49,7 +49,6 @@ dependencies {
     compile files('src/main/libs/gson-2.2.4.jar')
     compile files('src/main/libs/jsoup-1.7.2.jar')
     compile project(':Changeloglib:ChangeLogLibrary')
-    compile project(':MessageBar')
     compile project(':ownCloud-Account-Importer')
     compile project(':ShowcaseView:library')
     compile project(':android-HoloCircularProgressBar:library')
