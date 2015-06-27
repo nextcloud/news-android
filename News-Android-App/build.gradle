@@ -47,7 +47,6 @@ dependencies {
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // compile 'com.google.android.gms:play-services:4.2.42'
     compile files('src/main/libs/gson-2.2.4.jar')
-    compile files('src/main/libs/jsoup-1.7.2.jar')
     compile project(':Changeloglib:ChangeLogLibrary')
     compile project(':ownCloud-Account-Importer')
     compile project(':ShowcaseView:library')
@@ -61,7 +60,6 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.2.1'
     compile 'de.greenrobot:greendao:1.3.7@jar'
     compile 'de.greenrobot:greendao-generator:1.3.1@jar'
-    compile 'org.freemarker:freemarker:2.3.18@jar'
 
     testCompile 'org.robolectric:robolectric:3.0-rc3'
     testCompile 'junit:junit:4.+'
