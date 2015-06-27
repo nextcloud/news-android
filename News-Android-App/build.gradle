@@ -32,13 +32,6 @@ android {
     }
 }
 
-configurations.all {
-    resolutionStrategy {
-        force 'com.android.support:support-v4:22.2.0'
-        force 'com.android.support:appcompat-v7:22.2.0'
-    }
-}
-
 dependencies {
     // core android studio module
     //compile project(':core')
