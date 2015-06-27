@@ -47,6 +47,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
@@ -259,7 +260,15 @@ public class NewsDetailFragment extends Fragment {
 		init_webTemplate(context);
 		String htmlData = web_template;
 
-        String favIconUrl = rssItem.getFeed().getFaviconUrl();
+
+        String feedTitle = "Undefined";
+        String favIconUrl = "";
+
+        Feed feed = rssItem.getFeed();
+        if(feed != null) {
+            feedTitle = feed.getFeedTitle();
+            favIconUrl = feed.getFaviconUrl();
+        }
 
 		try {
             if(favIconUrl != null)
@@ -291,8 +300,6 @@ public class NewsDetailFragment extends Fragment {
             String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
             htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), dateString).toString();
         }
-
-        String feedTitle = rssItem.getFeed().getFeedTitle();
 
 
         String authorOfArticle = rssItem.getAuthor();
