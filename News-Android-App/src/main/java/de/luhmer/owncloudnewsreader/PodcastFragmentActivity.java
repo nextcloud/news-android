@@ -1,7 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
-import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.ComponentName;
@@ -23,7 +22,6 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.nineoldandroids.view.ViewHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.squareup.picasso.Picasso;
 
@@ -323,7 +321,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     boolean isFullScreen = false;
     float scaleFactor = 1;
     boolean useAnimation = false;
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
+
     public void onEventMainThread(VideoDoubleClicked doubleClicked) {
         appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
         appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
@@ -431,13 +429,13 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         int podcastMediaControlHeightDp = pxToDp((int) getResources().getDimension(R.dimen.podcast_media_control_height));
 
         if(isTabletView && sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) { //On Tablets
-            animateToPositionTargetApiSafe(podcastMediaControlHeightDp);
+            animateToPosition(podcastMediaControlHeightDp);
         } else if(!isTabletView && isLeftSliderOpen)
-            animateToPositionTargetApiSafe(0);
+            animateToPosition(0);
         else if(sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
-            animateToPositionTargetApiSafe(podcastMediaControlHeightDp);
+            animateToPosition(podcastMediaControlHeightDp);
         } else {
-            animateToPositionTargetApiSafe(64);
+            animateToPosition(64);
         }
     }
 
@@ -446,42 +444,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 
-
-    public void animateToPositionTargetApiSafe(int yPosition) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1){
-            animateToPositionNewApi(yPosition);
-        } else{
-            animateToPositionOldApi(yPosition);
-        }
-    }
-
-    public void animateToPositionOldApi(final int yPosition) {
-        appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
-        appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
-
-        View view = rlVideoPodcastSurfaceWrapper; //surfaceView
-
-        if(scaleFactor != 1) {
-            int newHeight = view.getLayoutParams().height *= scaleFactor;
-            int newWidth = view.getLayoutParams().width *= scaleFactor;
-            scaleFactor = 1;
-
-            view.getLayoutParams().height = newHeight;
-            view.getLayoutParams().width = newWidth;
-
-            view.setLayoutParams(view.getLayoutParams());
-        }
-
-        int absoluteYPosition = appHeight - view.getHeight() - (int) getResources().getDimension(R.dimen.activity_vertical_margin) - (int) dipToPx(yPosition);
-        float xPosition = rlVideoPodcastSurfaceWrapper.getVideoXPosition();
-        ViewHelper.setTranslationX(view, xPosition);
-        ViewHelper.setTranslationY(view, absoluteYPosition);
-
-        oldScaleFactor = 1;
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
-    public void animateToPositionNewApi(final int yPosition) {
+    public void animateToPosition(final int yPosition) {
         appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
         appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
 
@@ -503,7 +466,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    animateToPositionTargetApiSafe(yPosition);
+                    animateToPosition(yPosition);
                 }
 
                 @Override

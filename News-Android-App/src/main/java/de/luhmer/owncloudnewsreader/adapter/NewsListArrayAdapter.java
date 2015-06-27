@@ -1,13 +1,11 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
-import android.annotation.TargetApi;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NotificationCompat;
@@ -410,8 +408,6 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         }
     }
 
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void setExtendedLayoutWebView(View view, RssItem rssItem)
     {
         WebView webViewContent = (WebView) view.findViewById(R.id.webView_body);

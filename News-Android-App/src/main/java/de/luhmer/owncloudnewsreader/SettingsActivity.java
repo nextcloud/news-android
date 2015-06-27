@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -141,31 +140,9 @@ public class SettingsActivity extends PreferenceActivity {
 		Toolbar toolbar;
 
         // get the root container of the preferences list
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-			LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
-			toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
-			root.addView(toolbar, 0); // insert at top
-		} else { //Support for older devices
-			ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-			ListView content = (ListView) root.getChildAt(0);
-
-			toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
-
-			root.removeAllViews();
-
-			int height;
-			TypedValue tv = new TypedValue();
-			if(getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)) {
-				height = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-			} else {
-				height = toolbar.getHeight();
-			}
-
-			content.setPadding(0, height, 0, 0);
-
-			root.addView(content);
-			root.addView(toolbar);
-		}
+		LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
+		toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
+		root.addView(toolbar, 0); // insert at top
 
 		toolbar.setTitle(R.string.title_activity_settings);
 		toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
@@ -271,21 +248,17 @@ public class SettingsActivity extends PreferenceActivity {
 	 * "simplified" settings UI should be shown.
 	 */
 	private static boolean isSimplePreferences(Context context) {
-		return ALWAYS_SIMPLE_PREFS
-				|| Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB
-				|| !isXLargeTablet(context);
+		return !isXLargeTablet(context);
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void onBuildHeaders(List<Header> target) {
 		if (!isSimplePreferences(this)) {
 			loadHeadersFromResource(R.xml.pref_headers, target);
 		}
 	}
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected boolean isValidFragment(String fragmentName) {
         return true;
@@ -399,7 +372,6 @@ public class SettingsActivity extends PreferenceActivity {
 	 * This fragment shows general preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class GeneralPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
@@ -433,7 +405,6 @@ public class SettingsActivity extends PreferenceActivity {
 	 * This fragment shows notification preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class NotificationPreferenceFragment extends
 			PreferenceFragment {
 		@Override
@@ -449,7 +420,6 @@ public class SettingsActivity extends PreferenceActivity {
 	 * This fragment shows data and sync preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class DataSyncPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
@@ -465,7 +435,6 @@ public class SettingsActivity extends PreferenceActivity {
 	 * This fragment shows data and sync preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class DisplayPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
@@ -479,7 +448,6 @@ public class SettingsActivity extends PreferenceActivity {
 
 
 	@SuppressWarnings("deprecation")
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindDisplayPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
 	{
 		if(prefFrag != null)
@@ -497,7 +465,6 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 
 	@SuppressWarnings("deprecation")
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindGeneralPreferences(PreferenceFragment prefFrag, final PreferenceActivity prefAct)
 	{
 		if(prefFrag != null)
@@ -533,7 +500,6 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 
 	@SuppressWarnings("deprecation")
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindDataSyncPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
 	{
         String[] authorities = { "de.luhmer.owncloudnewsreader" };
@@ -576,7 +542,6 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private static void bindNotificationPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
     {
         if(prefFrag != null)
@@ -589,7 +554,6 @@ public class SettingsActivity extends PreferenceActivity {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private static void bindPodcastPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
     {
         if(prefFrag != null)

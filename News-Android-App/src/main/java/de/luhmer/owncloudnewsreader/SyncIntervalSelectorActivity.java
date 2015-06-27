@@ -2,7 +2,6 @@ package de.luhmer.owncloudnewsreader;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -65,7 +64,6 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
         return true;
     }
 
-    @TargetApi(Build.VERSION_CODES.FROYO)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

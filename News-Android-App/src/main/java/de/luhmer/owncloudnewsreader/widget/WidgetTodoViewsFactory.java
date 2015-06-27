@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader.widget;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -43,7 +42,6 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTIO
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 	private static final String TAG = "WidgetTodoViewsFactory";
 

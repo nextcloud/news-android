@@ -59,7 +59,6 @@ import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
@@ -291,7 +290,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
      */
     public void UpdateCurrentRssView(Context context, boolean refreshCurrentRssView) {
         Log.v(TAG, "UpdateCurrentRssView");
-        AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context, refreshCurrentRssView), (Void) null);
+        new UpdateCurrentRssViewTask(context, refreshCurrentRssView).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, LazyList<RssItem>> {

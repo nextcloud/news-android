@@ -1,12 +1,10 @@
 package de.luhmer.owncloudnewsreader.services;
 
-import android.annotation.TargetApi;
 import android.app.DownloadManager;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.ResultReceiver;
 import android.widget.Toast;
 
@@ -96,18 +94,14 @@ public class PodcastDownloadService extends IntentService {
      * Handle action Foo in the provided background thread with the provided
      * parameters.
      */
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void handleActionDownload(PodcastItem podcast) {
         Uri uri = Uri.parse(podcast.link);
         DownloadManager.Request request = new DownloadManager.Request(uri);
         request.setDescription(podcast.mimeType);
         request.setTitle(podcast.title);
 
-        // in order for this if to run, you must use the android 3.2 to compile your app
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            request.allowScanningByMediaScanner();
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        }
+        request.allowScanningByMediaScanner();
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
         String path = "file://" + getUrlToPodcastFile(this, podcast.link, true);
         request.setDestinationUri(Uri.parse(path));

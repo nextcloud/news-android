@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.pm.PackageInfo;
@@ -75,15 +74,11 @@ public class VersionInfoDialogFragment extends DialogFragment {
 	/* (non-Javadoc)
 	 * @see android.support.v4.app.DialogFragment#onStart()
 	 */
-	@TargetApi(Build.VERSION_CODES.FROYO)
 	@Override
 	public void onStart() {
 		//Use the full screen for this dialog even in Landscape Mode.
 		LayoutParams params = getDialog().getWindow().getAttributes();
-        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.ECLAIR_MR1)
-        	params.width = LayoutParams.FILL_PARENT;
-        else
-        	params.width = LayoutParams.MATCH_PARENT;
+       	params.width = LayoutParams.MATCH_PARENT;
         
         getDialog().getWindow().setAttributes(params);
         

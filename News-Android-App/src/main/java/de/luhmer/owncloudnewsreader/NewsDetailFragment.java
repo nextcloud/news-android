@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -49,7 +48,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -96,22 +94,18 @@ public class NewsDetailFragment extends Fragment {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void PauseCurrentPage()
     {
         if(mWebView != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
-                mWebView.onPause();
+            mWebView.onPause();
             mWebView.pauseTimers();
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void ResumeCurrentPage()
     {
         if(mWebView != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
-                mWebView.onResume();
+            mWebView.onResume();
             mWebView.resumeTimers();
         }
     }
@@ -131,7 +125,7 @@ public class NewsDetailFragment extends Fragment {
 	}
 
     public void startLoadRssItemToWebViewTask() {
-        AsyncTaskHelper.StartAsyncTask(new LoadRssItemToWebViewAsyncTask(), ((Void) null));
+        new LoadRssItemToWebViewAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     private class LoadRssItemToWebViewAsyncTask extends AsyncTask<Void, Void, String> {
@@ -176,21 +170,19 @@ public class NewsDetailFragment extends Fragment {
     }
 
     public static void SetSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if(htmlPage.contains(".gif")) {
-                webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+        if(htmlPage.contains(".gif")) {
+            webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+            Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
+        } else {
+            //webView.setLayerType(WebView.LAYER_TYPE_HARDWARE, null);
+            //Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
+
+            if(webView.getLayerType() == WebView.LAYER_TYPE_HARDWARE) {
+                Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
+            } else if (webView.getLayerType() == WebView.LAYER_TYPE_SOFTWARE){
                 Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
             } else {
-                //webView.setLayerType(WebView.LAYER_TYPE_HARDWARE, null);
-                //Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
-
-                if(webView.getLayerType() == WebView.LAYER_TYPE_HARDWARE) {
-                    Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
-                } else if (webView.getLayerType() == WebView.LAYER_TYPE_SOFTWARE){
-                    Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
-                } else {
-                    Log.v("NewsDetailFragment", "Using LAYER_TYPE_DEFAULT");
-                }
+                Log.v("NewsDetailFragment", "Using LAYER_TYPE_DEFAULT");
             }
         }
     }

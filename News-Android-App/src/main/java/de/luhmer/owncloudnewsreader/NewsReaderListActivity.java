@@ -23,11 +23,9 @@ package de.luhmer.owncloudnewsreader;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
@@ -37,7 +35,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -96,7 +93,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     @InjectView(R.id.toolbar) Toolbar toolbar;
 	@InjectView(R.id.sliding_pane) SlidingPaneLayout mSlidingLayout;
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		ThemeChooser.chooseTheme(this);
@@ -142,11 +138,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void showShowCaseViewForView(final View dimView, View targetView, String title, String text) {
-        if(!ShowcaseDimHelper.isHoneycombOrAbove())//Showcase View is only supported on API Level 11+
-            return;
-
         ShowcaseDimHelper.dimView(dimView);
 
         ViewTarget target = new ViewTarget(targetView);
@@ -158,7 +150,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 .build();
 
         sv.setOnShowcaseEventListener(new OnShowcaseEventListener() {
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onShowcaseViewHide(ShowcaseView showcaseView) {
                 ShowcaseDimHelper.undoDimView(dimView);
@@ -341,9 +332,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		reloadCountNumbersOfSlidingPaneAdapter();
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			invalidateOptionsMenu();
-		}
+		invalidateOptionsMenu();
 
 		super.onResume();
 	}
@@ -474,8 +463,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 					if(_Reader.isSyncRunning())
 					{
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-							menuItemUpdater.setActionView(R.layout.inderterminate_progress);
+						menuItemUpdater.setActionView(R.layout.inderterminate_progress);
 
 					    if(pullToRefreshView != null && !pullToRefreshView.isRefreshing()) {
 					    	pullToRefreshView.setRefreshing(true);
@@ -484,8 +472,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					}
 					else
 					{
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-						    menuItemUpdater.setActionView(null);
+					    menuItemUpdater.setActionView(null);
 
 					    if(pullToRefreshView != null) {
                             pullToRefreshView.setRefreshing(false);
