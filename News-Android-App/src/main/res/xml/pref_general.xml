@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <!-- 
-    <CheckBoxPreference
+    <SwitchPreference
         android:defaultValue="true"
         android:key="example_checkbox"
         android:summary="@string/pref_description_social_recommendations"
@@ -48,29 +48,29 @@
     -->
     
     <!-- 
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="cb_AllowAllSSLCertificates"
         android:title="@string/pref_title_AllowAllSSLCertificates" />
 
     -->
     
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="cb_AutoSyncOnStart"
         android:title="@string/pref_title_AutoSyncOnStart" />
     
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="cb_ShowOnlyUnread"
         android:title="@string/pref_title_ShowOnlyUnread" />
     
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="cb_NavigateWithVolumeButtons"
         android:title="@string/pref_title_NavigateWithVolumeButtons" />
     
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="cb_MarkAsReadWhileScrolling"
         android:title="@string/pref_title_MarkAsReadWhileScrolling" />
 
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="cb_openInBrowserDirectly"
         android:title="@string/pref_title_OpenInBrowserDirectly" />
 
