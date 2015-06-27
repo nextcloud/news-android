@@ -48,6 +48,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -58,7 +59,6 @@ public class NewsDetailFragment extends Fragment {
 
 	public final String TAG = getClass().getCanonicalName();
 
-	public static String web_template;
 	public static int background_color = Integer.MIN_VALUE;
 
 	@InjectView(R.id.webview) WebView mWebView;
@@ -164,7 +164,7 @@ public class NewsDetailFragment extends Fragment {
 
             SetSoftwareRenderModeForWebView(htmlPage, mWebView);
 
-            mWebView.loadDataWithBaseURL("", htmlPage, "text/html", "UTF-8", "");
+            mWebView.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
             super.onPostExecute(htmlPage);
         }
     }
@@ -214,13 +214,12 @@ public class NewsDetailFragment extends Fragment {
         mWebView.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
 
         mWebView.setWebChromeClient(new WebChromeClient() {
-	    	public void onProgressChanged(WebView view, int progress)
-	    	{
-	    		if(progress < 100 && mProgressbarWebView.getVisibility() == ProgressBar.GONE){
+            public void onProgressChanged(WebView view, int progress) {
+                if (progress < 100 && mProgressbarWebView.getVisibility() == ProgressBar.GONE) {
                     mProgressbarWebView.setVisibility(ProgressBar.VISIBLE);
-	    		}
+                }
                 mProgressbarWebView.setProgress(progress);
-	    		if(progress == 100) {
+                if (progress == 100) {
                     mProgressbarWebView.setVisibility(ProgressBar.GONE);
 
                     //The following three lines are a workaround for websites which don't use a background colour
@@ -235,9 +234,9 @@ public class NewsDetailFragment extends Fragment {
 
                     String jsLinkLongClick = getTextFromAssets("LinkLongClick.js", getActivity());
                     mWebView.loadUrl("javascript:(function(){ " + jsLinkLongClick + " })()");
-	    		}
-	    	}
-	    });
+                }
+            }
+        });
 
         mWebView.setWebViewClient(new WebViewClient() {
 
@@ -249,17 +248,19 @@ public class NewsDetailFragment extends Fragment {
 	@SuppressLint("SimpleDateFormat")
 	public static String getHtmlPage(Context context, RssItem rssItem)
 	{
-		init_webTemplate(context);
-		String htmlData = web_template;
-
-
         String feedTitle = "Undefined";
-        String favIconUrl = "";
+        String favIconUrl = null;
 
         Feed feed = rssItem.getFeed();
+        int[] colors = ColorHelper.getColorsFromAttributes(context,
+                R.attr.dividerLineColor,
+                R.attr.rssItemListBackground);
+        int feedColor = colors[0];
         if(feed != null) {
             feedTitle = feed.getFeedTitle();
             favIconUrl = feed.getFaviconUrl();
+            if(feed.getAvgColour() != null)
+                feedColor = Integer.parseInt(feed.getAvgColour());
         }
 
 		try {
@@ -276,43 +277,66 @@ public class NewsDetailFragment extends Fragment {
             ex.printStackTrace();
         }
 
+        String body_id;
+        if(ThemeChooser.isDarkTheme(context)) {
+            body_id = "darkTheme";
+        } else
+            body_id = "lightTheme";
 
-        String divHeader = "<div id=\"header\">";
-        StringBuilder sb = new StringBuilder(htmlData);
-        //htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), rssFile.getTitle().trim()).toString();
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />");
+        builder.append("<script type=\"text/javascript\" src=\"web.js\"></script>");
+        builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
+        builder.append("<style type=\"text/css\">");
+        builder.append(String.format(
+                "#top_section { border-left: 4px solid %s; border-bottom: 1px solid %s; background: %s }",
+                        ColorHelper.getCssColor(feedColor),
+                        ColorHelper.getCssColor(colors[0]),
+                        ColorHelper.getCssColor(colors[1]))
+        );
+        builder.append("</style>");
+        builder.append(String.format("</head><body id=\"%s\"><div id=\"top_section\">",body_id));
+
+        builder.append("<div id=\"header\">");
         String title = rssItem.getTitle();
         String linkToFeed = rssItem.getLink();
-        title = "<a href=\"" + linkToFeed + "\">" + title + "</a>";
-        htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), title.trim()).toString();
-
-        Date date = rssItem.getPubDate();
-        if(date != null)
-        {
-            String divDate = "<div id=\"datetime\">";
-            String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
-            htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), dateString).toString();
-        }
-
+        builder.append(String.format("<a href=\"%s\">%s</a>",linkToFeed,title));
+        builder.append("</div>");
 
         String authorOfArticle = rssItem.getAuthor();
         if(authorOfArticle != null)
             if(!authorOfArticle.trim().equals(""))
                 feedTitle += " - " + authorOfArticle.trim();
 
-        String divSubscription = "<div id=\"subscription\">";
-        int pos = htmlData.indexOf(divSubscription) + divSubscription.length();
-        pos = htmlData.indexOf("/>", pos) + 2;//Wegen des Favicon <img />
-        htmlData = sb.insert(pos, feedTitle.trim()).toString();
+        builder.append("<div id=\"header_small_text\">");
 
-        String divContent = "<div id=\"content\">";
+        builder.append("<div id=\"subscription\">");
+        builder.append(String.format("<img id=\"imgFavicon\" src=\"%s\" />", favIconUrl));
+        builder.append(feedTitle.trim());
+        builder.append("</div>");
+
+        Date date = rssItem.getPubDate();
+        if(date != null)
+        {
+            String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
+            builder.append("<div id=\"datetime\">");
+            builder.append(dateString);
+            builder.append("</div>");
+        }
+
+        builder.append("</div>");
+
+        builder.append("</div>");
+
         String description = rssItem.getBody();
-        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), getDescriptionWithCachedImages(description, context).trim()).toString();
+        builder.append("<div id=\"content\">");
+        builder.append(getDescriptionWithCachedImages(description, context).trim());
+        builder.append("</div>");
 
-        String searchString = "<img id=\"imgFavicon\" src=";
-        htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length() + 1, favIconUrl).toString();
+        builder.append("</body></html>");
 
-
-        htmlData = htmlData.replaceAll("\"//", "\"https://");
+        String htmlData = builder.toString().replaceAll("\"//", "\"https://");
 
 		return htmlData;
 	}
@@ -361,36 +385,6 @@ public class NewsDetailFragment extends Fragment {
         }
         return "";
     }
-
-    private static synchronized void init_webTemplate(Context context)
-	{
-		if(web_template == null)
-		{
-			try {
-		        web_template = getTextFromAssets("web_template.html", context);
-
-		        String background_color_string = SearchString(web_template, "background-color:", ";");
-
-		        if(background_color_string != null)
-				{
-					if(background_color_string.matches("^#.{3}$"))
-						background_color = Color.parseColor(convertHexColorFrom3To6Characters(background_color_string));
-					else if(background_color_string.matches("^#.{6}$"))
-						background_color = Color.parseColor(background_color_string);
-				}
-
-		        if(ThemeChooser.isDarkTheme(context))
-		        	web_template = web_template.replace("<body id=\"lightTheme\">", "<body id=\"darkTheme\">");
-
-
-	        	//FontHelper fHelper = new FontHelper(context);
-
-	        	web_template = web_template.replace("ROBOTO_FONT_STYLE", "ROBOTO_REGULAR");
-			} catch(Exception ex){
-				ex.printStackTrace();
-			}
-		}
-	}
 
 	private static String SearchString(String data, String startString, String endString)
 	{
