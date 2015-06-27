@@ -353,17 +353,22 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     Drawable btn_rating_star_off_normal_holo_light;
 
     private Drawable getBtn_rating_star_off_normal_holo_light(Context context) {
-        if(btn_rating_star_off_normal_holo_light == null)
-            btn_rating_star_off_normal_holo_light = context.getResources().getDrawable(R.drawable.btn_rating_star_off_normal_holo_light);
+        if(btn_rating_star_off_normal_holo_light == null) {
+            if(ThemeChooser.isDarkTheme(mContext)) {
+                btn_rating_star_off_normal_holo_light = context.getResources().getDrawable(R.drawable.ic_action_star_border_dark);
+            } else {
+                btn_rating_star_off_normal_holo_light = context.getResources().getDrawable(R.drawable.ic_action_star_border_light);
+            }
+        }
         return btn_rating_star_off_normal_holo_light;
     }
 
     private Drawable getic_find_next_holo(Context context) {
         if(ic_find_next_holo == null) {
             if(ThemeChooser.isDarkTheme(mContext))
-                ic_find_next_holo = context.getResources().getDrawable(R.drawable.ic_find_next_holo_dark);
+                ic_find_next_holo = context.getResources().getDrawable(R.drawable.ic_action_expand_less_dark);
             else
-                ic_find_next_holo = context.getResources().getDrawable(R.drawable.ic_find_next_holo_light);
+                ic_find_next_holo = context.getResources().getDrawable(R.drawable.ic_action_expand_less_light);
         }
         return ic_find_next_holo;
     }
@@ -371,9 +376,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private Drawable getic_find_previous_holo(Context context) {
         if(ic_find_previous_holo == null) {
             if(ThemeChooser.isDarkTheme(mContext))
-                ic_find_previous_holo = context.getResources().getDrawable(R.drawable.ic_find_previous_holo_dark);
+                ic_find_previous_holo = context.getResources().getDrawable(R.drawable.ic_action_expand_more_dark);
             else
-                ic_find_previous_holo = context.getResources().getDrawable(R.drawable.ic_find_previous_holo_light);
+                ic_find_previous_holo = context.getResources().getDrawable(R.drawable.ic_action_expand_more_light);
         }
         return ic_find_previous_holo;
     }

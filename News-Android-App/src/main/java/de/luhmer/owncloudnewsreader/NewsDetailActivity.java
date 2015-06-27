@@ -330,20 +330,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
         //if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
         if(isStarred && menuItem_Starred != null)
-            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_on_normal_holo_dark));
+            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.ic_action_star_dark));
             //menuItem_Starred.setIcon(R.drawable.btn_rating_star_on_normal_holo_light);
         else if(menuItem_Starred != null)
-            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_off_normal_holo_dark));
+            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.ic_action_star_border_dark));
             //menuItem_Starred.setIcon(R.drawable.btn_rating_star_off_normal_holo_light);
 
 
 
         if(isRead && menuItem_Read != null) {
-            menuItem_Read.setIcon(R.drawable.btn_check_on_holo_dark);
+            menuItem_Read.setIcon(R.drawable.ic_check_box_white);
             menuItem_Read.setChecked(true);
         }
         else if(menuItem_Read != null) {
-            menuItem_Read.setIcon(R.drawable.btn_check_off_holo_dark);
+            menuItem_Read.setIcon(R.drawable.ic_check_box_outline_blank_white);
             menuItem_Read.setChecked(false);
         }
 	}

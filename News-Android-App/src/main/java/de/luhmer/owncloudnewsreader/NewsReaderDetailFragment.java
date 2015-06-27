@@ -30,7 +30,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -256,7 +256,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(titel);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(titel);
 	}
 
 

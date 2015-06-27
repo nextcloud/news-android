@@ -306,7 +306,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
             if (ThemeChooser.isDarkTheme(mActivity)) {
                 drawableResource = isPlaying ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
             } else {
-                drawableResource = isPlaying ? R.drawable.av_pause : R.drawable.av_play;
+                drawableResource = isPlaying ? R.drawable.ic_action_pause : R.drawable.ic_action_play_arrow;
             }
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) simpleLayout.btnPlayPausePodcast.getLayoutParams();
             params.setMargins(DpToPx(mActivity, isPlaying ? 0 : 2), 0, 0, 0);

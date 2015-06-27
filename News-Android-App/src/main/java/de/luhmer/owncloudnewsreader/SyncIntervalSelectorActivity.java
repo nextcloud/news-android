@@ -10,8 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,7 +26,7 @@ import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 
 
-public class SyncIntervalSelectorActivity extends ActionBarActivity {
+public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
     SharedPreferences mPrefs;
     PlaceholderFragment mFragment;

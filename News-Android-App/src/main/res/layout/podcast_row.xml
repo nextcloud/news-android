@@ -78,7 +78,7 @@
             android:clickable="false"
             android:focusable="false"
             android:layout_gravity="center"
-            android:background="@drawable/content_discard" />
+            android:background="@drawable/ic_action_delete" />
 
     </FrameLayout>
 
@@ -97,7 +97,7 @@
             android:clickable="false"
             android:focusable="false"
             android:layout_gravity="center"
-            android:background="@drawable/av_download" />
+            android:background="@drawable/ic_action_file_download" />
 
     </FrameLayout>
 
@@ -117,7 +117,7 @@
             android:clickable="false"
             android:focusable="false"
             android:layout_gravity="center"
-            android:background="@drawable/av_play" />
+            android:background="@drawable/ic_action_play_arrow" />
 
     </FrameLayout>
 

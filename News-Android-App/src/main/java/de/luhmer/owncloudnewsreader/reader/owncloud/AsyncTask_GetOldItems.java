@@ -112,7 +112,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
     		Toast.makeText(context, context.getString(R.string.toast_no_more_downloads_available), Toast.LENGTH_LONG).show();
     	else
     	{
-    		String text = context.getString(R.string.toast_downloaded_x_items).replace("X", String.valueOf(downloadedItemsCount));
+    		String text = context.getResources().getQuantityString(R.plurals.toast_downloaded_x_items, downloadedItemsCount, downloadedItemsCount);
     		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     	}
 
