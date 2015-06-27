@@ -327,14 +327,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             menuItem_PlayPodcast.setVisible(podcastAvailable);
 
 
-
-        //if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
         if(isStarred && menuItem_Starred != null)
-            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.ic_action_star_dark));
-            //menuItem_Starred.setIcon(R.drawable.btn_rating_star_on_normal_holo_light);
+            menuItem_Starred.setIcon(R.drawable.ic_action_star_dark);
         else if(menuItem_Starred != null)
-            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.ic_action_star_border_dark));
-            //menuItem_Starred.setIcon(R.drawable.btn_rating_star_off_normal_holo_light);
+            menuItem_Starred.setIcon(R.drawable.ic_action_star_border_dark);
 
 
 
@@ -348,32 +344,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         }
 	}
 
-    public Drawable getSmallVersionOfActionbarIcon(int res_id) {
-        Bitmap b = ((BitmapDrawable)getResources().getDrawable(res_id)).getBitmap();
-        Bitmap bitmapResized;
-
-        float density = getResources().getDisplayMetrics().density;
-        //int density = getResources().getDisplayMetrics().densityDpi;
-
-        bitmapResized = Bitmap.createScaledBitmap(b, (int) (48f * density), (int) (48f * density), false);
-
-        /*
-        if(density <= DisplayMetrics.DENSITY_LOW)
-            bitmapResized = Bitmap.createScaledBitmap(b, 32, 32, false);
-        else if(density <= DisplayMetrics.DENSITY_MEDIUM)
-            bitmapResized = Bitmap.createScaledBitmap(b, 48, 48, false);
-        else if(density <= DisplayMetrics.DENSITY_HIGH)
-            bitmapResized = Bitmap.createScaledBitmap(b, 64, 64, false);
-        else if(density <= DisplayMetrics.DENSITY_XHIGH)
-            bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false);
-        else if(density <= DisplayMetrics.DENSITY_XXHIGH)
-            bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false); //We need here something more!!!
-        else
-            bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false);
-        */
-        //Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 32, 32, false);
-        return new BitmapDrawable(bitmapResized);
-    }
 
     @Override
     public void onBackPressed() {
