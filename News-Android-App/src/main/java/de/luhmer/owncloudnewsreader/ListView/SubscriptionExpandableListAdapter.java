@@ -39,9 +39,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,11 +49,8 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
-import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.FontHelper;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.AbstractItem;
@@ -83,7 +77,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private SparseArray<SparseArray<ConcreteFeedItem>> mItemsArrayList;
 	private boolean showOnlyUnread = false;
 
-    public static enum SPECIAL_FOLDERS  {
+    public enum SPECIAL_FOLDERS  {
         ALL_UNREAD_ITEMS(-10), ALL_STARRED_ITEMS(-11), ALL_ITEMS(-12), ITEMS_WITHOUT_FOLDER(-22);
 
         private int id;
@@ -322,22 +316,19 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         } else {
         	if(group.id_database == ALL_STARRED_ITEMS.getValue()) {
         		viewHolder.imgView.setVisibility(View.VISIBLE);
-        		//viewHolder.imgView.setImageResource(R.drawable.btn_rating_star_off_normal_holo_light);
+                viewHolder.imgView.setRotation(0);
                 viewHolder.imgView.setImageDrawable(getBtn_rating_star_off_normal_holo_light(mContext));
         	} else if (getChildrenCount( groupPosition ) == 0 ) {
 	        	viewHolder.imgView.setVisibility(View.INVISIBLE);
 	        } else {
 	        	viewHolder.imgView.setVisibility(View.VISIBLE);
-	        	//viewHolder.imgView.setImageResource(R.drawable.ic_find_next_holo);
-                viewHolder.imgView.setImageDrawable(getic_find_next_holo(mContext));
+                viewHolder.imgView.setImageDrawable(getFolderIndicatorIcon(mContext));
 
 	        	if(isExpanded) {
-	        		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-	        			viewHolder.imgView.setRotation(-90);
-	        		else
-                        viewHolder.imgView.setImageDrawable(getic_find_previous_holo(mContext));
-	        			//viewHolder.imgView.setImageResource(R.drawable.ic_find_previous_holo);
-	        	}
+                    viewHolder.imgView.setRotation(90);
+	        	} else {
+                    viewHolder.imgView.setRotation(180);
+                }
 	        }
         }
 
@@ -348,8 +339,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
 
-    Drawable ic_find_next_holo;
-    Drawable ic_find_previous_holo;
+    Drawable folder_indicator_icon;
     Drawable btn_rating_star_off_normal_holo_light;
 
     private Drawable getBtn_rating_star_off_normal_holo_light(Context context) {
@@ -363,24 +353,14 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         return btn_rating_star_off_normal_holo_light;
     }
 
-    private Drawable getic_find_next_holo(Context context) {
-        if(ic_find_next_holo == null) {
+    private Drawable getFolderIndicatorIcon(Context context) {
+        if(folder_indicator_icon == null) {
             if(ThemeChooser.isDarkTheme(mContext))
-                ic_find_next_holo = context.getResources().getDrawable(R.drawable.ic_action_expand_less_dark);
+                folder_indicator_icon = context.getResources().getDrawable(R.drawable.ic_action_expand_less_dark);
             else
-                ic_find_next_holo = context.getResources().getDrawable(R.drawable.ic_action_expand_less_light);
+                folder_indicator_icon = context.getResources().getDrawable(R.drawable.ic_action_expand_less_light);
         }
-        return ic_find_next_holo;
-    }
-
-    private Drawable getic_find_previous_holo(Context context) {
-        if(ic_find_previous_holo == null) {
-            if(ThemeChooser.isDarkTheme(mContext))
-                ic_find_previous_holo = context.getResources().getDrawable(R.drawable.ic_action_expand_more_dark);
-            else
-                ic_find_previous_holo = context.getResources().getDrawable(R.drawable.ic_action_expand_more_light);
-        }
-        return ic_find_previous_holo;
+        return folder_indicator_icon;
     }
 
 
