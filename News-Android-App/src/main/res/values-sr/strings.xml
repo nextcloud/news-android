@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Детаљи читача</string>
   <string name="empty_view_header">Подаци</string>
   <string name="empty_view_content">Овде нема ничега</string>
-  <string name="toast_GettingMoreItems">Почео сам преузимање још ставки... Сачекајте.</string>
   <string name="tv_clickHereToOpenItem">Кликните овде да отворите ставку</string>
   <string name="no_wifi_available">Нема бежичне везе</string>
   <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе?</string>
-  <string name="max_items_count_reached">Достигли сте максималан број ставки: XX</string>
   <string name="widget_header">оунКлауд новости</string>
-  <string name="message_bar_new_articles_available"> нових ставки</string>
   <string name="message_bar_reload">Поново учитај</string>
   <string name="allUnreadFeeds">Све непрочитане ставке</string>
   <string name="starredFeeds">Озвездане ставке</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Поставке освежавања</string>
   <string name="action_add_new_feed">Додај довод</string>
   <string name="action_textToSpeech">Ишчитај</string>
-  <string name="notification_new_items_ticker">Нових непрочитаних ставки: X</string>
-  <string name="notification_new_items_text">Нових непрочитаних ставки: X</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Ово поље је неопходно</string>
   <string name="error_invalid_url">УРЛ је неисправан</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Старих ставки преузето: X</string>
   <string name="toast_no_more_downloads_available">Нема више доступних ставки</string>
   <string name="pull_to_refresh_updateTags">Освежавам стања ставки</string>
   <string name="pull_to_refresh_updateFolder">Освежавам фасцикле</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Чистим кеш</string>
-  <string name="dialog_clearing_cache_please_wait">Чистим кеш... Сачекајте.</string>
-  <string name="calculating_cache_size">Рачунам величину кеша... Сачекајте.</string>
   <string name="reset_cache_unsaved_changes">Постоје несинхронизоване измене. Да ипак обришем кеш?</string>
   <string name="warning">Упозорење</string>
   <string name="pref_title_AutoSyncOnStart">Освежи при покретању</string>

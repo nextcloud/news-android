@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Podrobnosti bralnika novic</string>
   <string name="empty_view_header">Podrobnosti</string>
   <string name="empty_view_content">Ni vsebine</string>
-  <string name="toast_GettingMoreItems">Prenos vsebine je začet ... Počakajte.</string>
   <string name="tv_clickHereToOpenItem">Kliknite tu za odpiranje predmeta</string>
   <string name="no_wifi_available">Ni vzpostavljene povezave WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike brez vzpostavljene povezave WiFi?</string>
-  <string name="max_items_count_reached">Dosežena je največja dovoljena velikost XX predmetov</string>
   <string name="widget_header">Novice ownCloud</string>
-  <string name="message_bar_new_articles_available">Na voljo so novi predmeti</string>
   <string name="message_bar_reload">Ponovno naloži</string>
   <string name="allUnreadFeeds">Vsi neprebrani predmeti</string>
   <string name="starredFeeds">Označeni predmeti</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Nastavitve usklajevanja</string>
   <string name="action_add_new_feed">Dodaj nov vir</string>
   <string name="action_textToSpeech">Preberi</string>
-  <string name="notification_new_items_ticker">Neprebranih je več prispevkov</string>
-  <string name="notification_new_items_text">Na voljo je več neprebranih predmetov</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uporabniško ime</string>
   <string name="pref_title_password">Geslo</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Vpis v to polje je obvezno</string>
   <string name="error_invalid_url">Naslov URL ni veljaven</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Prejetih je X starih dokumentov</string>
   <string name="toast_no_more_downloads_available">Ni nadaljnjih predmetov</string>
   <string name="pull_to_refresh_updateTags">Usklajevanje stanj predmetov</string>
   <string name="pull_to_refresh_updateFolder">Usklajevanje mape</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Čiščenje predpomnilnika</string>
-  <string name="dialog_clearing_cache_please_wait">Poteka čiščenje predpomnilnika ...</string>
-  <string name="calculating_cache_size">Izračunavanje velikosti predpomnilnika. Počakajte ...</string>
   <string name="reset_cache_unsaved_changes">Obstajajo neusklajene spremembe. Ali želite vseeno počistiti predpomnilnik?</string>
   <string name="warning">Opozorilo</string>
   <string name="pref_title_AutoSyncOnStart">Uskladi ob zagonu</string>

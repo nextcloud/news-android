@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">NieuwsLezer Details</string>
   <string name="empty_view_header">Informatie</string>
   <string name="empty_view_content">Geen items hier</string>
-  <string name="toast_GettingMoreItems">Begonnen meer onderwerpen te downloaden... Even geduld a.u.b.</string>
   <string name="tv_clickHereToOpenItem">Klik hier om te openen</string>
   <string name="no_wifi_available">Geen wifi verbinding</string>
   <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
-  <string name="max_items_count_reached">U heeft de maximum grootte van XX berichten bereikt</string>
   <string name="widget_header">ownCloud nieuws</string>
-  <string name="message_bar_new_articles_available">Nieuwe berichten aanwezig</string>
   <string name="message_bar_reload">Herladen</string>
   <string name="allUnreadFeeds">Alle ongelezen berichten</string>
   <string name="starredFeeds">Gemarkeerde berichten</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Sync Settings</string>
   <string name="action_add_new_feed">Voeg nieuwe feed toe</string>
   <string name="action_textToSpeech">Voorlezen</string>
-  <string name="notification_new_items_ticker">U hebt X nieuwe ongelezen artikelen</string>
-  <string name="notification_new_items_text">X nieuwe ongelezen artikelen beschikbaar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
   <string name="pref_title_password">Wachtwoord</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Dit veld is verplicht</string>
   <string name="error_invalid_url">De URL is ongeldig</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X oude berichten gedownload</string>
   <string name="toast_no_more_downloads_available">Geen berichten meer beschikbaar</string>
   <string name="pull_to_refresh_updateTags">Synchroniseren onderwerp statussen</string>
   <string name="pull_to_refresh_updateFolder">Synchroniseren map</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Schoonmaken cache</string>
-  <string name="dialog_clearing_cache_please_wait">Schoonmaken cache. Even geduld.</string>
-  <string name="calculating_cache_size">Berekenen cacheomvang. Even geduld aub.</string>
   <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wilt u de cache toch resetten?</string>
   <string name="warning">Waarschuwing</string>
   <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>

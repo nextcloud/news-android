@@ -13,7 +13,6 @@
   <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Le szeretnéd tölteni a képeket WiFi kapcsolat nélkül?</string>
   <string name="widget_header">ownCloud Hírek</string>
-  <string name="message_bar_new_articles_available">Új elemek érhetőek el</string>
   <string name="message_bar_reload">Újratöltés</string>
   <string name="allUnreadFeeds">Az összes olvasatlan</string>
   <string name="starredFeeds">Csillagozottak</string>
@@ -41,8 +40,6 @@
   <string name="action_settings">Beállítások</string>
   <string name="action_sync_settings">Szinkronizációs beállítások</string>
   <string name="action_add_new_feed">Új hírcsatorna hozzáadása</string>
-  <string name="notification_new_items_ticker">Van X db el nem olvasott elem</string>
-  <string name="notification_new_items_text">X darab új olvasatlan elem érhető el</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Felhasználónév</string>
   <string name="pref_title_password">Jelszó</string>
@@ -55,7 +52,6 @@
   <string name="error_field_required">Ez a mező szükséges</string>
   <string name="error_invalid_url">Ez az url hibás</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Letöltve X régi elem</string>
   <string name="toast_no_more_downloads_available">Nincs elérhető további elem</string>
   <string name="pull_to_refresh_updateTags">Elemek állapotának szinkronizácíója</string>
   <string name="pull_to_refresh_updateFolder">Mappa szinkronizálása</string>
@@ -81,8 +77,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">A gyorsítótár törlése folyamatban</string>
-  <string name="dialog_clearing_cache_please_wait">A gyorsítótár törlése folyamatban.. Kérlek várj.</string>
-  <string name="calculating_cache_size">A cache méretének kiszámítása.. Kérlek várj.</string>
   <string name="reset_cache_unsaved_changes">Vannak nem színkronizált változások. Bizots hogy alaphelyzetbe szeretnéd állítani a cache-t így is?</string>
   <string name="warning">Figyelmeztetés</string>
   <string name="pref_title_AutoSyncOnStart">Szinkronizáció induláskor</string>

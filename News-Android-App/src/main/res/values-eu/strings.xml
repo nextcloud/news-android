@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">BerriIrakurle xehetasuna</string>
   <string name="empty_view_header">Informazioa</string>
   <string name="empty_view_content">Ez dago elementurik hemen</string>
-  <string name="toast_GettingMoreItems">Elementu gehiago deskargatzen... Itxoin mesedez.</string>
   <string name="tv_clickHereToOpenItem">Klikatu hemen elementua irekitzeko</string>
   <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
   <string name="do_you_want_to_download_without_wifi">Irudiak WiFi konexioa gabe deskargatu nahi dituzu</string>
-  <string name="max_items_count_reached">XX elementuen gehienezko tamaina iritsi zara</string>
   <string name="widget_header">ownCloud Berriak</string>
-  <string name="message_bar_new_articles_available">Artikulu berriak daude</string>
   <string name="message_bar_reload">Birkargatu</string>
   <string name="allUnreadFeeds">Irakurri gabeko elementu guztiak</string>
   <string name="starredFeeds">Izardun elementuak</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Sinkronizazio Ezarpenak</string>
   <string name="action_add_new_feed">Gehitu iturburu  berria</string>
   <string name="action_textToSpeech">Iraukurri ozenki</string>
-  <string name="notification_new_items_ticker">Irakurri gabeko X artikulu dituzu</string>
-  <string name="notification_new_items_text">Irakurri gabeko X artikulu</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Erabiltzaile izena</string>
   <string name="pref_title_password">Pasahitza</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Eremu hau beharrezkoa da</string>
   <string name="error_invalid_url">URL-a baliogabea da</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Deskargatutako X elementu zaharrak</string>
   <string name="toast_no_more_downloads_available">Ez dago datu gehigarri eskuragarririk</string>
   <string name="pull_to_refresh_updateTags">Elementuen egoera sinkronizatzen</string>
   <string name="pull_to_refresh_updateFolder">Karpeta sinkronizatzen</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Cachea garbitzen</string>
-  <string name="dialog_clearing_cache_please_wait">Cachea garbitzen... mesedez itxoin.</string>
-  <string name="calculating_cache_size">Cachearen tamaina kalkulatzen. Mesedez itxoin.</string>
   <string name="reset_cache_unsaved_changes">Sinkronizatu gabeko datuak daude. Nahi duzu hala ere cachea berrabiaraztea?</string>
   <string name="warning">Abisua</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronizatu abioan</string>

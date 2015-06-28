@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Rincian PembacaBerita</string>
   <string name="empty_view_header">Informasi</string>
   <string name="empty_view_content">Tak ada item disini</string>
-  <string name="toast_GettingMoreItems">Mulai mengunduh lebih banyak item... Mohon tunggu.</string>
   <string name="tv_clickHereToOpenItem">Klik disini untuk membuka item</string>
   <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
   <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
-  <string name="max_items_count_reached">Anda melampaui ukuran maksimal item XX</string>
   <string name="widget_header">Berita ownCloud</string>
-  <string name="message_bar_new_articles_available">Item baru tersedia</string>
   <string name="message_bar_reload">Muat ulang</string>
   <string name="allUnreadFeeds">Semua item yang belum dibaca</string>
   <string name="starredFeeds">Item yang dibintangi</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Setelan Sync</string>
   <string name="action_add_new_feed">Tambah feed baru</string>
   <string name="action_textToSpeech">Bacalah</string>
-  <string name="notification_new_items_ticker">Anda memiliki X item baru yang belum dibaca</string>
-  <string name="notification_new_items_text">X item baru yang belum dibaca tersedia</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Sandi</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Bidang wajib diisi</string>
   <string name="error_invalid_url">URL salah</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Item X lama terunduh</string>
   <string name="toast_no_more_downloads_available">Tidak ada item lain yang tersedia</string>
   <string name="pull_to_refresh_updateTags">Status Sinkronisasi Item</string>
   <string name="pull_to_refresh_updateFolder">Menyelaraskan folder</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Membersihkan cache</string>
-  <string name="dialog_clearing_cache_please_wait">Membersihkan cache.. Silakan tunggu.</string>
-  <string name="calculating_cache_size">Menghitung ukuran cache.. Silakan tunggu.</string>
   <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
   <string name="warning">Peringatan</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>

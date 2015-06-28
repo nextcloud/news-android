@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">뉴스 리더 자세한 정보</string>
   <string name="empty_view_header">정보</string>
   <string name="empty_view_content">항목 없음</string>
-  <string name="toast_GettingMoreItems">항목을 다운로드하고 있습니다... 잠시 기다려 주십시오.</string>
   <string name="tv_clickHereToOpenItem">항목을 열려면 누르십시오</string>
   <string name="no_wifi_available">Wi-Fi에 연결되지 않았음</string>
   <string name="do_you_want_to_download_without_wifi">Wi-Fi에 연결되지 않은 상태에서 사진을 다운로드하시겠습니까?</string>
-  <string name="max_items_count_reached">XX 항목의 최대 크기에 도달하였습니다</string>
   <string name="widget_header">ownCloud 뉴스</string>
-  <string name="message_bar_new_articles_available">새 항목 사용 가능</string>
   <string name="message_bar_reload">새로 고침</string>
   <string name="allUnreadFeeds">모든 읽지 않은 항목</string>
   <string name="starredFeeds">별표한 항목</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">동기화 설정</string>
   <string name="action_add_new_feed">새 피드 추가</string>
   <string name="action_textToSpeech">음성으로 읽기</string>
-  <string name="notification_new_items_ticker">X개의 읽지 않은 항목이 있습니다</string>
-  <string name="notification_new_items_text">X개의 읽지 않은 항목 사용 가능</string>
   <!--Strings related to login-->
   <string name="pref_title_username">사용자 이름</string>
   <string name="pref_title_password">암호</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">이 항목은 필수 사항입니다</string>
   <string name="error_invalid_url">URL이 잘못되었습니다</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X개의 오래된 항목 다운로드됨</string>
   <string name="toast_no_more_downloads_available">더 이상 항목 없음</string>
   <string name="pull_to_refresh_updateTags">항목 상태 동기화 중</string>
   <string name="pull_to_refresh_updateFolder">폴더 동기화 중</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">캐시 비우는 중</string>
-  <string name="dialog_clearing_cache_please_wait">캐시를 비우고 있습니다... 잠시 기다려 주십시오.</string>
-  <string name="calculating_cache_size">캐시 크기 계산 중... 잠시 기다려 주십시오.</string>
   <string name="reset_cache_unsaved_changes">동기화되지 않은 변경 사항이 있습니다. 캐시를 비우시겠습니까?</string>
   <string name="warning">경고</string>
   <string name="pref_title_AutoSyncOnStart">시작할 때 동기화</string>

@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Nyhetsläsare Detalj</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Inga objekt här</string>
-  <string name="toast_GettingMoreItems">Påbörjat nerladdning av fler objekt.. Var god vänta.</string>
   <string name="tv_clickHereToOpenItem">Klicka här för att öppna objekt</string>
   <string name="no_wifi_available">Ingen WIFI ansluten</string>
   <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>
-  <string name="max_items_count_reached">Du har nått maximal storlek av XX objekt</string>
   <string name="widget_header">ownCloud nyheter</string>
-  <string name="message_bar_new_articles_available">Nya saker tillgängliga</string>
   <string name="message_bar_reload">Ladda om</string>
   <string name="allUnreadFeeds">Alla olästa objekt</string>
   <string name="starredFeeds">Stjärnmärkta objekt</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Synk inställningar</string>
   <string name="action_add_new_feed">Lägg till flöde</string>
   <string name="action_textToSpeech">Läs upp</string>
-  <string name="notification_new_items_ticker">Du har X olästa saker</string>
-  <string name="notification_new_items_text">X nya olästa saker är tillgängliga</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Användarnamn</string>
   <string name="pref_title_password">Lösenord</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Detta fält obligatoriskt</string>
   <string name="error_invalid_url">Felaktig URL</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Laddade ner X gamla objekt</string>
   <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
   <string name="pull_to_refresh_updateTags">Synkroniseringsstatus</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserar mapp</string>
@@ -84,10 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Rensar cache</string>
-  <string name="dialog_clearing_cache_please_wait">Rensar cache.. Var god vänta.</string>
-  <string name="calculating_cache_size">Beräknar cachestorlek.. Var god Vänta.
-
-</string>
   <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
   <string name="warning">Varning</string>
   <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>

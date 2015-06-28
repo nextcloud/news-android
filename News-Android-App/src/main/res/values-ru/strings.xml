@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Чтение новостей - подробнее</string>
   <string name="empty_view_header">Информация</string>
   <string name="empty_view_content">Здесь нет элементов</string>
-  <string name="toast_GettingMoreItems">Началась загрузка новых элементов... Пожалуйста, подождите.</string>
   <string name="tv_clickHereToOpenItem">Нажмите здесь, чтобы открыть элемент</string>
   <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
   <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
-  <string name="max_items_count_reached">Вы достигли максимального размера в XX элемента</string>
   <string name="widget_header">Новости ownCloud</string>
-  <string name="message_bar_new_articles_available">Доступны новые элементы</string>
   <string name="message_bar_reload">Обновить</string>
   <string name="allUnreadFeeds">Все непрочитанные</string>
   <string name="starredFeeds">Избранные элементы</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Настройки синхронизации</string>
   <string name="action_add_new_feed">Добавить новую ленту</string>
   <string name="action_textToSpeech">Зачитать вслух</string>
-  <string name="notification_new_items_ticker">У вас X новых непрочитанных элементов</string>
-  <string name="notification_new_items_text">Доступно X новых непрочитанных элементов</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
   <string name="pref_title_password">Пароль</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Это поле обязательно для заполнения</string>
   <string name="error_invalid_url">Неверный url адрес</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Скачано Х старых элементов</string>
   <string name="toast_no_more_downloads_available">Доступных объектов больше нет</string>
   <string name="pull_to_refresh_updateTags">Синхронизация элементов</string>
   <string name="pull_to_refresh_updateFolder">Синхронизируется каталог</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Очистить кеш.</string>
-  <string name="dialog_clearing_cache_please_wait">Идет очистка кэша... Пожалуйста, подождите.</string>
-  <string name="calculating_cache_size">Расчет размера кэша... Пожалуйста, подождите.</string>
   <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
   <string name="warning">Предупреждение</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>

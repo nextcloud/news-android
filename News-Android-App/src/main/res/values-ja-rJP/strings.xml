@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">ニュースリーダーの詳細</string>
   <string name="empty_view_header">情報</string>
   <string name="empty_view_content">ここにアイテムなし</string>
-  <string name="toast_GettingMoreItems">アイテム更にダウンロード中...しばらくお待ちください。</string>
   <string name="tv_clickHereToOpenItem">項目を開くにはここをクリック</string>
   <string name="no_wifi_available">WiFi接続がありません</string>
   <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか？</string>
-  <string name="max_items_count_reached">アイテム数の上限に達しました。</string>
   <string name="widget_header">ownCloudニュース</string>
-  <string name="message_bar_new_articles_available">新しいアイテムが利用可能です</string>
   <string name="message_bar_reload">再読み込み</string>
   <string name="allUnreadFeeds">すべての未読アイテム</string>
   <string name="starredFeeds">共有アイテム</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">設定の同期</string>
   <string name="action_add_new_feed">新しいフィードを追加</string>
   <string name="action_textToSpeech">音声読み上げ</string>
-  <string name="notification_new_items_ticker">X 新しい未読アイテムがあります。</string>
-  <string name="notification_new_items_text">X 新しい未読アイテムが利用できます</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">パスワード</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">このフィールドは必須です</string>
   <string name="error_invalid_url">このURLは不正確です</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">ダウンロードされた古いXアイテム</string>
   <string name="toast_no_more_downloads_available">これ以上利用できるアイテムがありません</string>
   <string name="pull_to_refresh_updateTags">アイテムの状態を同期中</string>
   <string name="pull_to_refresh_updateFolder">フォルダーを同期中</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
-  <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています。しばらくお待ちください。</string>
-  <string name="calculating_cache_size">キャッシュサイズを計算中.. しばらくお待ちください。</string>
   <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
   <string name="warning">警告</string>
   <string name="pref_title_AutoSyncOnStart">起動時に同期</string>

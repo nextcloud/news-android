@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Detalle del Llector de noticies</string>
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Nun hai nengún elementu equí</string>
-  <string name="toast_GettingMoreItems">Descarga d\'artículos aniciada... Por favor espera.</string>
   <string name="tv_clickHereToOpenItem">Clic equí p\'abrir l\'artículu</string>
   <string name="no_wifi_available">Nun hai conexón WiFi</string>
   <string name="do_you_want_to_download_without_wifi">¿Quies baxar les semeyes ensin una conexón WiFi?</string>
-  <string name="max_items_count_reached">Algamasti\'l tamañu máximu de XX oxetos</string>
   <string name="widget_header">Noticies ownCloud</string>
-  <string name="message_bar_new_articles_available">Elementos nuevos disponibles</string>
   <string name="message_bar_reload">Recargar</string>
   <string name="allUnreadFeeds">Tolos temes ensin lleer</string>
   <string name="starredFeeds">Artículos destacaos</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Axustes de sincronización</string>
   <string name="action_add_new_feed">Amestar feed nuevu</string>
   <string name="action_textToSpeech">Axuntar información</string>
-  <string name="notification_new_items_ticker">Tienes X elementos nuevos ensin lleer</string>
-  <string name="notification_new_items_text">X elementos nuevos ensin lleer disponibles </string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome d\'usuariu</string>
   <string name="pref_title_password">Contraseña</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Requierse esti campu</string>
   <string name="error_invalid_url">La url ye incorreuta</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Downloaded X old items</string>
   <string name="toast_no_more_downloads_available">Nun hai elementos disponibles</string>
   <string name="pull_to_refresh_updateTags">Sincronizando l\'estáu de los elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando carpeta</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Llimpiando caché</string>
-  <string name="dialog_clearing_cache_please_wait">Llimpiando caché.. espera.</string>
-  <string name="calculating_cache_size">Calculando tamañu cache.. Espera.</string>
   <string name="reset_cache_unsaved_changes">Hai cambeos non sincronizaos. ¿Quies vaciar la caché de toes formes?</string>
   <string name="warning">Avisu</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar nel aniciu</string>

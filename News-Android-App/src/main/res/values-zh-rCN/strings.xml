@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">新闻读者详情</string>
   <string name="empty_view_header">信息</string>
   <string name="empty_view_content">无内容</string>
-  <string name="toast_GettingMoreItems">正在下载更多内容...请稍候.</string>
   <string name="tv_clickHereToOpenItem">点击此处打开</string>
   <string name="no_wifi_available">没有连接到WiFi</string>
   <string name="do_you_want_to_download_without_wifi">您是否想在无 WiFi 连接时下载图片</string>
-  <string name="max_items_count_reached">你已经到达 XX 条目的上限</string>
   <string name="widget_header">ownCloud新闻</string>
-  <string name="message_bar_new_articles_available">新项目可用</string>
   <string name="message_bar_reload">刷新</string>
   <string name="allUnreadFeeds">所有未读内容</string>
   <string name="starredFeeds">标星内容</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">同步设置</string>
   <string name="action_add_new_feed">增加新 Feed</string>
   <string name="action_textToSpeech">朗读</string>
-  <string name="notification_new_items_ticker">你有X条未读消息</string>
-  <string name="notification_new_items_text">有X条未读消息</string>
   <!--Strings related to login-->
   <string name="pref_title_username">用户名</string>
   <string name="pref_title_password">密码</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">这个字段是必填的</string>
   <string name="error_invalid_url">这个网址是错误的</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">下载的 X 的老内容</string>
   <string name="toast_no_more_downloads_available">没有更多的选项了</string>
   <string name="pull_to_refresh_updateTags">同步内容的状态</string>
   <string name="pull_to_refresh_updateFolder">同步文件夹</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">清除缓存</string>
-  <string name="dialog_clearing_cache_please_wait">清理缓存中，请稍候。</string>
-  <string name="calculating_cache_size">计算缓存大小...请稍候。</string>
   <string name="reset_cache_unsaved_changes">有一部分文件未同步，你确定仍然清空缓存吗？</string>
   <string name="warning">警告</string>
   <string name="pref_title_AutoSyncOnStart">启动后就同步</string>

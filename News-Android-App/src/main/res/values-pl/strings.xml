@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Szczegóły Aktualności</string>
   <string name="empty_view_header">informacje</string>
   <string name="empty_view_content">Nic tu nie ma</string>
-  <string name="toast_GettingMoreItems">Rozpoczęto pobieranie elementów... Proszę czekać.</string>
   <string name="tv_clickHereToOpenItem">Kliknij tutaj aby otworzyć element</string>
   <string name="no_wifi_available">Brak połączenia WIFI</string>
   <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
-  <string name="max_items_count_reached">Osiągnąłeś maksymalny rozmiar XX pozycji</string>
   <string name="widget_header">ownCloud News</string>
-  <string name="message_bar_new_articles_available">Nowe elementy są dostępne</string>
   <string name="message_bar_reload">Przeładuj</string>
   <string name="allUnreadFeeds">Wszystkie nieprzeczytane</string>
   <string name="starredFeeds">Oznaczone Gwiazdką</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Ustawienia synchronizacji</string>
   <string name="action_add_new_feed">Dodaj nowy kanał</string>
   <string name="action_textToSpeech">Przeczytane</string>
-  <string name="notification_new_items_ticker">Masz X nowych nie przeczytanych wpisów</string>
-  <string name="notification_new_items_text">X nowych wpisów jest dostępnych</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nazwa użytkownika</string>
   <string name="pref_title_password">Hasło</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Ten element jest wymagany</string>
   <string name="error_invalid_url">Ten adres jest niepoprawny</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Pobierz X starych elementów</string>
   <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych elementów</string>
   <string name="pull_to_refresh_updateTags">Synchronizowanie elementów stanów</string>
   <string name="pull_to_refresh_updateFolder">Synchronizowanie folder</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Czyszczenie pamięci podręcznej</string>
-  <string name="dialog_clearing_cache_please_wait">Czyszczenie Pamięci podręcznej.. Proszę czekać.</string>
-  <string name="calculating_cache_size">Obliczam rozmiar pamięci podręcznej... Proszę czekać.</string>
   <string name="reset_cache_unsaved_changes">Są niezsynchronizowane zmiany. Czy chcesz zresetować pamięć podręczną?</string>
   <string name="warning">Ostrzeżenie</string>
   <string name="pref_title_AutoSyncOnStart">Synchronizuj na starcie</string>

@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Detail čítačky noviniek</string>
   <string name="empty_view_header">Informácie</string>
   <string name="empty_view_content">Žiadne položky</string>
-  <string name="toast_GettingMoreItems">Začínam sťahovanie viacerých položiek ... Prosím, počkajte.</string>
   <string name="tv_clickHereToOpenItem">Kliknite tu pre otvorenie položky</string>
   <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez WiFi pripojenia</string>
-  <string name="max_items_count_reached">Dosiahli ste maximálnu veľkosť XX položiek</string>
   <string name="widget_header">ownCloud Novinky</string>
-  <string name="message_bar_new_articles_available">Dostupné nové položky</string>
   <string name="message_bar_reload">Znovu načítať</string>
   <string name="allUnreadFeeds">Všetky neprečítané položky</string>
   <string name="starredFeeds">Položky s hviezdičkou</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Nastavenia synchronizácie</string>
   <string name="action_add_new_feed">Pridať nový kanál</string>
   <string name="action_textToSpeech">Prečítať</string>
-  <string name="notification_new_items_ticker">Máte X nových neprečítaných položiek</string>
-  <string name="notification_new_items_text">X nových neprečítaných položiek k dispozícii</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Meno používateľa</string>
   <string name="pref_title_password">Heslo</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Toto pole je povinné</string>
   <string name="error_invalid_url">URL je nesprávna</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Stiahnutých X starých položiek</string>
   <string name="toast_no_more_downloads_available">Žiadne ďalšie položky k dispozícii</string>
   <string name="pull_to_refresh_updateTags">Synchronizujem stav položiek</string>
   <string name="pull_to_refresh_updateFolder">Synchronizujem priečinok</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
-  <string name="dialog_clearing_cache_please_wait">Čistenie medzipamäte... Počkajte prosím.</string>
-  <string name="calculating_cache_size">Počítam veľkosť medzipamäte. Počkajte prosím.</string>
   <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
   <string name="warning">Varovanie</string>
   <string name="pref_title_AutoSyncOnStart">Synchronizovať pri spustení</string>

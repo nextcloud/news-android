@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">ประกาศรายละเอียดข่าว</string>
   <string name="empty_view_header">สารสนเทศ</string>
   <string name="empty_view_content">ไม่มีรายการที่นี่</string>
-  <string name="toast_GettingMoreItems">เริ่มดาวน์โหลดรายการอื่นๆ โปรดรอสักครู่ ...</string>
   <string name="tv_clickHereToOpenItem">คลิกที่นี่เพื่อเปิดรายการ</string>
   <string name="no_wifi_available">ไม่มีการเชื่อมต่อ Wifi</string>
   <string name="do_you_want_to_download_without_wifi">คุณต้องการดาวน์โหลดรูปภาพได้โดยไม่ต้องเชื่อมต่อ WiFi</string>
-  <string name="max_items_count_reached">คุณได้มาถึงขนาดสูงสุดของ XX รายการ</string>
   <string name="widget_header">ข่าว ownCloud</string>
-  <string name="message_bar_new_articles_available">มีรายการใหม่</string>
   <string name="message_bar_reload">โหลดใหม่อีกครั้ง</string>
   <string name="allUnreadFeeds">ยังไม่ได้อ่านรายการทั้งหมด</string>
   <string name="starredFeeds">รายการที่ติดดาว</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">ตั้งค่าการผสานข้อมูล</string>
   <string name="action_add_new_feed">เพิ่ม feed ใหม่</string>
   <string name="action_textToSpeech">อ่านออก</string>
-  <string name="notification_new_items_ticker">คุณมีรายการใหม่ที่ยังไม่ได้อ่าน X รายการ</string>
-  <string name="notification_new_items_text">ยังไม่ได้อ่าน X รายการใหม่</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">ต้องใส่ข้อมูลลงในช่องนี้</string>
   <string name="error_invalid_url">URL นี้ไม่ถูกต้อง</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">ดาวน์โหลดรายการเก่า X รายการ</string>
   <string name="toast_no_more_downloads_available">ไม่มีรายการที่ใช้ได้</string>
   <string name="pull_to_refresh_updateTags">กำลังผสานข้อมูลรายการ</string>
   <string name="pull_to_refresh_updateFolder">กำลังผสานข้อมูลโฟลเดอร์</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">กำลังล้างแคช</string>
-  <string name="dialog_clearing_cache_please_wait">กำลังเคลียแคช ... กรุณารอสักครู่</string>
-  <string name="calculating_cache_size">การคำนวณขนาดแคช ... โปรดรอสักครู่</string>
   <string name="reset_cache_unsaved_changes">มีการเปลี่ยนแปลงที่ไม่ได้ผสานข้อมูล คุณต้องการตั้งค่าแคชหรือไม่?</string>
   <string name="warning">คำเตือน</string>
   <string name="pref_title_AutoSyncOnStart">ผสานข้อมูลเมื่อเริ่มต้น</string>

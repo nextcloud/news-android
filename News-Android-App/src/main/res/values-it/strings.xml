@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Dettagli lettore di notizie</string>
   <string name="empty_view_header">Informazioni</string>
   <string name="empty_view_content">Nessun elemento</string>
-  <string name="toast_GettingMoreItems">Scaricamento di altri elementi iniziato... Attendi.</string>
   <string name="tv_clickHereToOpenItem">Fai clic qui per aprire l\'elemento</string>
   <string name="no_wifi_available">WiFi non connesso</string>
   <string name="do_you_want_to_download_without_wifi">Vuoi scaricare le immagini senza una connessione WiFi</string>
-  <string name="max_items_count_reached">Hai raggiunto la dimensione massima di XX elementi</string>
   <string name="widget_header">Notizie di ownCloud</string>
-  <string name="message_bar_new_articles_available">Nuovi elementi disponibili</string>
   <string name="message_bar_reload">Ricarica</string>
   <string name="allUnreadFeeds">Tutti gli elementi non letti</string>
   <string name="starredFeeds">Elementi preferiti</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Sincronizza impostazioni</string>
   <string name="action_add_new_feed">Aggiungi una nuova fonte</string>
   <string name="action_textToSpeech">Lettura vocale</string>
-  <string name="notification_new_items_ticker">Hai X nuovi elementi non letti</string>
-  <string name="notification_new_items_text">X nuovi elementi non letti disponibili</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome utente</string>
   <string name="pref_title_password">Password</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Questo campo è obbligatorio</string>
   <string name="error_invalid_url">Questo URL non è corretto</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Scaricati X vecchi elementi</string>
   <string name="toast_no_more_downloads_available">Non ci sono altri elementi disponibili</string>
   <string name="pull_to_refresh_updateTags">Sincronizzazione degli stati degli elementi</string>
   <string name="pull_to_refresh_updateFolder">Sincronizzazione cartella</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Svuotamento cache</string>
-  <string name="dialog_clearing_cache_please_wait">Svuotamento della cache in corso... Attendere.</string>
-  <string name="calculating_cache_size">Calcolo delle dimensioni della cache in corso... Attendere.</string>
   <string name="reset_cache_unsaved_changes">Ci sono modifiche non sincronizzate. Vuoi ripristinare comunque la cache?</string>
   <string name="warning">Avviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizza all\'avvio</string>

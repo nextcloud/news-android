@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Детайли на Новинарската Емисия</string>
   <string name="empty_view_header">Информация</string>
   <string name="empty_view_content">Няма новини</string>
-  <string name="toast_GettingMoreItems">Започна сваляне на повече файлове... Моля, изчакайте.</string>
   <string name="tv_clickHereToOpenItem">Натисни тук, за да отвориш новина</string>
   <string name="no_wifi_available">Не си свързан с WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Искаш ли да изтеглиш изображенията без WiFi връзка?</string>
-  <string name="max_items_count_reached">Достигнахте максималния брой новини - XX</string>
   <string name="widget_header">ownCloud Новини</string>
-  <string name="message_bar_new_articles_available">Има нови артикули</string>
   <string name="message_bar_reload">Презареди</string>
   <string name="allUnreadFeeds">Всички непрочетени</string>
   <string name="starredFeeds">Любими</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Настройки на Синхронизацията</string>
   <string name="action_add_new_feed">Добави нов поток</string>
   <string name="action_textToSpeech">Прочита</string>
-  <string name="notification_new_items_ticker">Имаш X нови, непрочетени артикула</string>
-  <string name="notification_new_items_text">X нови, непрочетени артикула</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Потребител</string>
   <string name="pref_title_password">Парола</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Това поле е задължително</string>
   <string name="error_invalid_url">Сгрешен интернет адрес</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Изтегли X стари новини</string>
   <string name="toast_no_more_downloads_available">Няма други новини</string>
   <string name="pull_to_refresh_updateTags">Синхронизиране състоянието</string>
   <string name="pull_to_refresh_updateFolder">Синхронизиране на папка</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Изчисти кеша</string>
-  <string name="dialog_clearing_cache_please_wait">Изчистване на кеша... Моля, изчакай.</string>
-  <string name="calculating_cache_size">Изчисляване размера на кеша... Моля, изчакай.</string>
   <string name="reset_cache_unsaved_changes">Има несизнхронизирани промени. Искаш ли да нулираш кеша въпреки това?</string>
   <string name="warning">Предупреждение</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизирай на стартиране</string>

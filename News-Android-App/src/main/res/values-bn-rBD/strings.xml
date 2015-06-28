@@ -12,9 +12,7 @@
   <string name="tv_clickHereToOpenItem">আইটেম খুলতে একানে ক্লিক করুন</string>
   <string name="no_wifi_available">WiFi সংযুক্ত নয়</string>
   <string name="do_you_want_to_download_without_wifi">আপনি কি WiFi সংযোগ ছাড়াই ইমেজ ডা্‌উনলোড করতে চান </string>
-  <string name="max_items_count_reached">আপনি সর্বোচ্চ আকৃতির XX আইটেমে পৌছে গেছেন</string>
   <string name="widget_header">ownCloud সংবাদ</string>
-  <string name="message_bar_new_articles_available">নতুন আইটেম পাওয়া যাচ্ছে</string>
   <string name="message_bar_reload">পূনরায় লোড কর</string>
   <string name="allUnreadFeeds">অপঠিত সকল আইটেম</string>
   <string name="starredFeeds">তারকাচিহ্নিত আইটেম</string>
@@ -42,8 +40,6 @@
   <string name="action_settings">নিয়ামকসমূহ</string>
   <string name="action_sync_settings">Sync নিয়ামকসমূহ</string>
   <string name="action_add_new_feed">নতুন feed যোগ কর</string>
-  <string name="notification_new_items_ticker">আপনার X অপঠিত আইটেম রয়েছে</string>
-  <string name="notification_new_items_text">X নতুন আইটেম পাওয়া যাচ্ছে</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ব্যবহারকারী</string>
   <string name="pref_title_password">কূটশব্দ</string>
@@ -56,7 +52,6 @@
   <string name="error_field_required">এই ফিল্ডটি প্রয়োজন</string>
   <string name="error_invalid_url">ভুল url</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X পুরনো আইটেম ডাউনলোড করা হয়েছে</string>
   <string name="toast_no_more_downloads_available">আর কোন আইটেম নেই </string>
   <string name="pull_to_refresh_updateTags">আইটেমসমূহের সমন্বয়করণ চলছে</string>
   <string name="pull_to_refresh_updateFolder">ফোল্ডার সমন্বয়করণ করা হচ্ছে</string>
@@ -82,8 +77,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">ক্যাশে খালি করা হচ্ছে</string>
-  <string name="dialog_clearing_cache_please_wait">ক্যাশে খালি করা হচ্ছে.. অপেক্ষা করুন</string>
-  <string name="calculating_cache_size">ক্যাশে পরিমাপ করা হচ্ছে.. অপেক্ষা করুন</string>
   <string name="reset_cache_unsaved_changes">সমন্বয়হীন পরিবর্তন রয়েছে। আপনি কি তবু ক্যাশে রিসেট করতে চান?</string>
   <string name="warning">সতর্কবাণী</string>
   <string name="pref_title_AutoSyncOnStart">শুরুতেই সমন্বয় কর</string>

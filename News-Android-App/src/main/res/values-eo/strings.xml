@@ -6,7 +6,6 @@
   <string name="empty_view_header">Informo</string>
   <string name="empty_view_content">Neniu ero estas ĉi tie</string>
   <string name="tv_clickHereToOpenItem">Klaku ĉi tie por malfermi la eron</string>
-  <string name="message_bar_new_articles_available">Novaj eroj disponeblas</string>
   <string name="message_bar_reload">Reŝargi</string>
   <string name="allUnreadFeeds">Ĉiuj nelegitaj eroj</string>
   <string name="starredFeeds">Markitaj eroj</string>
@@ -31,8 +30,6 @@
   <string name="action_settings">Agordo</string>
   <string name="action_sync_settings">Sinkroniga agordo</string>
   <string name="action_add_new_feed">Aldoni novan fluon</string>
-  <string name="notification_new_items_ticker">Vi havas X novajn nelegitajn erojn</string>
-  <string name="notification_new_items_text">X novaj nelegitaj eroj disponeblas</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uzantonomo</string>
   <string name="pref_title_password">Pasvorto</string>
@@ -65,8 +62,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Forviŝante kaŝmemoron</string>
-  <string name="dialog_clearing_cache_please_wait">Forviŝatas la kaŝmemoro. Bonvolu atendi.</string>
-  <string name="calculating_cache_size">Kalkulatas la grando de kaŝmemoro. Bonvolu atendi.</string>
   <string name="warning">Averto</string>
   <string name="pref_title_ShowOnlyUnread">Montri nur nelegitajn artikolojn</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->

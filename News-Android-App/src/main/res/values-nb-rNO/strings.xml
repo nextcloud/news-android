@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Nyhetsleser detaljer</string>
   <string name="empty_view_header">Informasjon</string>
   <string name="empty_view_content">Ingenting her</string>
-  <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet... Vennligst vent.</string>
   <string name="tv_clickHereToOpenItem">Klikk her for å åpne element</string>
   <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
   <string name="do_you_want_to_download_without_wifi">Vil du laste ned bildene uten WiFi tilkobling?</string>
-  <string name="max_items_count_reached">Du har nådd maksimal størrelse på XX elementer</string>
   <string name="widget_header">ownCloud Nyheter</string>
-  <string name="message_bar_new_articles_available">Nye elementer tilgjengelig</string>
   <string name="message_bar_reload">Last på nytt</string>
   <string name="allUnreadFeeds">Alle uleste elementer</string>
   <string name="starredFeeds">Stjernemerkede elementer</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Innstillinger for synkronisering</string>
   <string name="action_add_new_feed">Legg til ny strøm</string>
   <string name="action_textToSpeech">Les opp</string>
-  <string name="notification_new_items_ticker">Du har X nye uleste elementer</string>
-  <string name="notification_new_items_text">X nye uleste elementer tilgjengelig</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brukernavn</string>
   <string name="pref_title_password">Passord</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Dette feltet er påkrevd</string>
   <string name="error_invalid_url">Denne adressen er feil</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Lastet ned X gamle elementer</string>
   <string name="toast_no_more_downloads_available">Ingen flere elemeter tilgjengelig</string>
   <string name="pull_to_refresh_updateTags">Synkroniserer elementtilstander</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserer mappe</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Sletter hurtiglager</string>
-  <string name="dialog_clearing_cache_please_wait">Sletter hurtiglager... Vennligst vent</string>
-  <string name="calculating_cache_size">Beregner størrelse på hurtiglager... Vennligst vent.</string>
   <string name="reset_cache_unsaved_changes">Det er usynkroniserte forandringer. Vil du resette hurtilageret likevel?</string>
   <string name="warning">Advarsel</string>
   <string name="pref_title_AutoSyncOnStart">Synkroniser under oppstart</string>

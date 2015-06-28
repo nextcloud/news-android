@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Detall de LectorNotícies</string>
   <string name="empty_view_header">Informació</string>
   <string name="empty_view_content">Cap element</string>
-  <string name="toast_GettingMoreItems">S\'han començat a baixar nous elements... Espereu.</string>
   <string name="tv_clickHereToOpenItem">Feu clic aquí per obrir l\'element</string>
   <string name="no_wifi_available">Sense connexió WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Voleu baixar les imatges sense una connexió WiFi</string>
-  <string name="max_items_count_reached">Heu assolit la mida màxima de XX elements</string>
   <string name="widget_header">Notícies ownCloud</string>
-  <string name="message_bar_new_articles_available">Nous elements disponibles</string>
   <string name="message_bar_reload">Carrega de nou</string>
   <string name="allUnreadFeeds">Tots els elements no llegits</string>
   <string name="starredFeeds">Elements amb estrelles</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Arranjament de sincronització</string>
   <string name="action_add_new_feed">Afegeix una font nova</string>
   <string name="action_textToSpeech">De lectura</string>
-  <string name="notification_new_items_ticker">Teniu X elements nous sense llegir</string>
-  <string name="notification_new_items_text">X elements nous disponibles sense llegir</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'usuari</string>
   <string name="pref_title_password">Contrasenya</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Es requereix aquest camp</string>
   <string name="error_invalid_url">La URL és incorrecta</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">S\'han baixat X elements antics</string>
   <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
   <string name="pull_to_refresh_updateTags">Estat de sincronització de serveis</string>
   <string name="pull_to_refresh_updateFolder">Sincronitzant carpetes</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">S\'està esborrant la memòria cau</string>
-  <string name="dialog_clearing_cache_please_wait">S\'està esborrant la memòria cau... Espereu</string>
-  <string name="calculating_cache_size">Calculant la mida de la memòria cau... Espereu.</string>
   <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu eliminar la memòria cau igualment?</string>
   <string name="warning">Avís</string>
   <string name="pref_title_AutoSyncOnStart">Sincronitza en inicialitzar</string>

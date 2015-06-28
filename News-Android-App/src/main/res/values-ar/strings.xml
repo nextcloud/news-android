@@ -9,7 +9,6 @@
   <string name="no_wifi_available">لم يتم الاتصال بشبكة الواي فاي</string>
   <string name="do_you_want_to_download_without_wifi">هل ترغب بتحميل الصورة على الرغم من عدم وجود اتصال واي فاي؟</string>
   <string name="widget_header">أخبار ownCloud</string>
-  <string name="message_bar_new_articles_available">يوجد عناصر جديدة متوفرة </string>
   <string name="message_bar_reload">إعادة تحميل</string>
   <string name="allUnreadFeeds">كل العناصر غير المقروءه</string>
   <string name="starredFeeds">العناصر المعلّمة بنجمة</string>
@@ -42,7 +41,6 @@
   <string name="error_field_required">هذا الحقل مطلوب</string>
   <string name="error_invalid_url">رابط URL غير صحيح</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">تم تحميل س من العناصر القديمة.</string>
   <string name="toast_no_more_downloads_available">لا يوجد عناصر أخرى متوفرة</string>
   <string name="pull_to_refresh_updateTags">مزامنة حالة العناصر</string>
   <string name="pull_to_refresh_updateFolder">مزامنة المجلد</string>
@@ -59,7 +57,6 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="calculating_cache_size">يتم حساب حجم ذاكرة التخزين المؤقتة.. الرجاء الانتظار.</string>
   <string name="warning">تحذير</string>
   <string name="pref_title_AutoSyncOnStart">بدء المزامنة عند التشغيل</string>
   <string name="pref_title_ShowOnlyUnread">أظهر فقط المقالات غير المقروءة</string>

@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Tin chi </string>
   <string name="empty_view_header">Thông tin</string>
   <string name="empty_view_content">Không có mục nào ở đây</string>
-  <string name="toast_GettingMoreItems">Bắt đầu tải thêm các tập tin khác ... Xin vui lòng chờ.</string>
   <string name="tv_clickHereToOpenItem">Bấm ở đây để mở danh mục</string>
   <string name="no_wifi_available">Không có </string>
   <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải về những hình ảnh mà không c kết nối WiFi</string>
-  <string name="max_items_count_reached">Bạn đã đạt đến kích thước tối đa của XX mục</string>
   <string name="widget_header">ownCloud News</string>
-  <string name="message_bar_new_articles_available">Những mục mới có giá trị</string>
   <string name="message_bar_reload">Tải </string>
   <string name="allUnreadFeeds">Tất cả các mục chưa đọc</string>
   <string name="starredFeeds">Những mục được đánh dấu</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Đồng bộ cài đặt</string>
   <string name="action_add_new_feed">Thêm feed mới</string>
   <string name="action_textToSpeech">Đọc</string>
-  <string name="notification_new_items_ticker">Bạn có X mục mới chưa đọc</string>
-  <string name="notification_new_items_text">X mục mới chưa đọc có giá trị</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Tên đăng nhập</string>
   <string name="pref_title_password">Mật khẩu</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Những mục cần th</string>
   <string name="error_invalid_url">URL không </string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Tải về mục cũ X</string>
   <string name="toast_no_more_downloads_available">Không có thư mục </string>
   <string name="pull_to_refresh_updateTags">Đồng bộ với vị trí của b</string>
   <string name="pull_to_refresh_updateFolder">Đồng bộ thư mục</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Xóa bộ </string>
-  <string name="dialog_clearing_cache_please_wait">Bộ đệm đang được xóa..</string>
-  <string name="calculating_cache_size">Tính toán kích thước bộ nhớ đệm .. Chờ trong giây  .</string>
   <string name="reset_cache_unsaved_changes">Có sự thay đổi đồng bộ. Bạn muốn thiết lập lại bộ nhớ đệm ?</string>
   <string name="warning">Cảnh báo</string>
   <string name="pref_title_AutoSyncOnStart">Đồng bộ khi khởi </string>

@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Detaliu de NewsReader</string>
   <string name="empty_view_header">Informaţii</string>
   <string name="empty_view_content">Nici un articol aici</string>
-  <string name="toast_GettingMoreItems">Multiple descărcări concomitente... Așteptați.</string>
   <string name="tv_clickHereToOpenItem">Apăsați aici pentru a deschide fișierul</string>
   <string name="no_wifi_available">Nu exista conexiune WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Doriti descarcarea imaginilor fara conexiune WiFi</string>
-  <string name="max_items_count_reached">Ații ajuns la limita maximă de XX articole</string>
   <string name="widget_header">Știri ownCloud</string>
-  <string name="message_bar_new_articles_available">Articole noi la dispoziție</string>
   <string name="message_bar_reload">Reîncarcă</string>
   <string name="allUnreadFeeds">Toate articolele necitite</string>
   <string name="starredFeeds">Articole selectate</string>
@@ -45,8 +42,6 @@
   <string name="action_sync_settings">Setări Sincronizare</string>
   <string name="action_add_new_feed">Adaugă flux nou</string>
   <string name="action_textToSpeech">Citit</string>
-  <string name="notification_new_items_ticker">Ai X articole necitite noi</string>
-  <string name="notification_new_items_text">X noi articole necitite disponibile</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nume utilizator</string>
   <string name="pref_title_password">Parolă</string>
@@ -59,7 +54,6 @@
   <string name="error_field_required">Acest câmp este obligatoriu </string>
   <string name="error_invalid_url">Acest url este incorect</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Descarcă X articole vechi</string>
   <string name="toast_no_more_downloads_available">Nici un articol disponibil.</string>
   <string name="pull_to_refresh_updateTags">Sincronizez stările articolelor</string>
   <string name="pull_to_refresh_updateFolder">Sincronizarea dosarului</string>
@@ -85,8 +79,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Ștergere cache</string>
-  <string name="dialog_clearing_cache_please_wait">Ștergere cache... Așteptați.</string>
-  <string name="calculating_cache_size">Estimarea dimensiunii cache... Așteptați.</string>
   <string name="reset_cache_unsaved_changes">Există modificări nesincronizate. Dorești totuși să ștergi cache-ul?</string>
   <string name="warning">Atenție</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizare la pornire</string>

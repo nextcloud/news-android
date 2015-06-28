@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Detail čtečky zpráv</string>
   <string name="empty_view_header">Informace</string>
   <string name="empty_view_content">Žádné položky</string>
-  <string name="toast_GettingMoreItems">Spuštěno stahování více položek... Chvíli strpení.</string>
   <string name="tv_clickHereToOpenItem">Klikněte zde pro otevření položky</string>
   <string name="no_wifi_available">Wi-Fi není připojeno</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
-  <string name="max_items_count_reached">Dosáhli jste maximální velikosti XX položek</string>
   <string name="widget_header">ownCloud Novinky</string>
-  <string name="message_bar_new_articles_available">Jsou k dispozici nové položky</string>
   <string name="message_bar_reload">Obnovit</string>
   <string name="allUnreadFeeds">Všechny nepřečtené položky</string>
   <string name="starredFeeds">Položky s hvězdičkou</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Nastavení synchronizace</string>
   <string name="action_add_new_feed">Přidat nový kanál</string>
   <string name="action_textToSpeech">Přečíst</string>
-  <string name="notification_new_items_ticker">Máte X nových nepřečtených položek</string>
-  <string name="notification_new_items_text">X nových položek k dispozici</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uživatelské jméno</string>
   <string name="pref_title_password">Heslo</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Tato položka je povinná</string>
   <string name="error_invalid_url">Tato URL je nesprávná</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Staženo X starých položek</string>
   <string name="toast_no_more_downloads_available">K dispozici nejsou žádné další položky</string>
   <string name="pull_to_refresh_updateTags">Synchronizuji stav položek</string>
   <string name="pull_to_refresh_updateFolder">Synchronizuji složku</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
-  <string name="dialog_clearing_cache_please_wait">Vyprazdňování mezipaměťi ... Počkejte prosím. </string>
-  <string name="calculating_cache_size">Počítám velikost mezipaměti... Počkejte prosím.</string>
   <string name="reset_cache_unsaved_changes">Existují nesesynchronizované změny. Přejete si přesto vyprázdnit mezipaměť?</string>
   <string name="warning">Varování</string>
   <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>
@@ -110,6 +102,7 @@
   <string name="pref_header_display">Zobrazení</string>
   <string name="pref_title_app_theme">Vzhled aplikace</string>
   <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
+  <string name="pref_display_title_lines_count">Počet řádek pro nadpis</string>
   <string-array name="pref_display_apptheme">
     <item>Tmavý</item>
     <item>Světlý</item>

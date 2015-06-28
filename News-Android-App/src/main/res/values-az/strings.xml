@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">XəbərlərOxuyucu Detallı</string>
   <string name="empty_view_header">İnformasiya</string>
   <string name="empty_view_content">Burda heş bir məlumat yoxdur</string>
-  <string name="toast_GettingMoreItems">Çoxlu hisseler yüklənməyə başlamışdır. Xahiş olunur gözləyəsiniz.</string>
   <string name="tv_clickHereToOpenItem">Burda sıxın ki, bölməni açasınız</string>
   <string name="no_wifi_available">Qoşulmuş WiFi yoxdur</string>
   <string name="do_you_want_to_download_without_wifi">WiFi qoşulması olmadan, şəkilləri yükləmək istəyirsiniz?</string>
-  <string name="max_items_count_reached">Siz XX hissələrin maksimum həcminə çatmısınız.</string>
   <string name="widget_header">ownCloud xəbərlər</string>
-  <string name="message_bar_new_articles_available">Yeni ihssələr mövcuddur</string>
   <string name="message_bar_reload">Yenidən yüklə</string>
   <string name="allUnreadFeeds">Bütün oxunmayan hissələr</string>
   <string name="starredFeeds">Ulduzlanmış elementlər</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Sync quraşdırmaları</string>
   <string name="action_add_new_feed">Yeni kanalı əlavə et</string>
   <string name="action_textToSpeech">Oxuyun</string>
-  <string name="notification_new_items_ticker">Sizin X yeni oxunulmamış mənbələriniz mövcuddur </string>
-  <string name="notification_new_items_text">X yeni mənbələr mövcuddur</string>
   <!--Strings related to login-->
   <string name="pref_title_username">İstifadəçi adı</string>
   <string name="pref_title_password">Şifrə</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Bu sütun tələb edilir</string>
   <string name="error_invalid_url">Bu URL yalnışdır</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X köhnə mənbələr yüklənmişdir</string>
   <string name="toast_no_more_downloads_available">Heç bir əlavə mənbələr yoxdur</string>
   <string name="pull_to_refresh_updateTags">Mənbələrin statusları sinxronizasiya olunur</string>
   <string name="pull_to_refresh_updateFolder">Qovluq sinxronizasiya edilir</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Keş təmizlənir</string>
-  <string name="dialog_clearing_cache_please_wait">Keş təmizlənir.. Xahiş olunur gözləyəsiniz.</string>
-  <string name="calculating_cache_size">Keş həcmi hesablanır.. Xahiş olunur gözləyəsiniz.</string>
   <string name="reset_cache_unsaved_changes">Orda sinxronizasiya edilməmiş dəyişikliklər var. Siz keşi istənilən halda sifirlamaq isteəyirsiniz?</string>
   <string name="warning">Xəbərdarlıq</string>
   <string name="pref_title_AutoSyncOnStart">İşə düşəndə sinxronizasiya elə</string>

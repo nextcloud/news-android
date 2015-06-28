@@ -50,7 +50,6 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="calculating_cache_size">Ве молам причекајте. Ја пресметувам големината на кешот...</string>
   <string name="warning">Предупредување</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизирај при стартување</string>
   <string name="pref_title_ShowOnlyUnread">Прикажи само непрочитани</string>

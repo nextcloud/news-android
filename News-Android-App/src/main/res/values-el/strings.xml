@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Λεπτομέρειες Ανάγνωσης Ειδήσεων</string>
   <string name="empty_view_header">Πληροφορίες</string>
   <string name="empty_view_content">Κανένα στοιχείο</string>
-  <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε.</string>
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
   <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
-  <string name="max_items_count_reached">Έφτασες το μέγιστο μέγεθος από XX στοιχεία</string>
   <string name="widget_header">Νέα ownCloud</string>
-  <string name="message_bar_new_articles_available">Διαθέσιμα νέα αντικείμενα</string>
   <string name="message_bar_reload">Επαναφόρτωση</string>
   <string name="allUnreadFeeds">Όλα τα μη ανεγνωσμένα</string>
   <string name="starredFeeds">Επισημασμένα αντικείμενα</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Επιλογές συγχρονισμού</string>
   <string name="action_add_new_feed">Προσθήκη νέας ροής</string>
   <string name="action_textToSpeech">Ανάγνωση από</string>
-  <string name="notification_new_items_ticker">Έχετε X νέα αδιάβαστα στοιχεία</string>
-  <string name="notification_new_items_text">X νέα αδιάβαστα στοιχεία διαθέσιμα</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
   <string name="pref_title_password">Συνθηματικό</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
   <string name="error_invalid_url">Αυτός ο σύνδεσμος είναι εσφαλμένος</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Κατέβηκαν X παλαιά στοιχεία</string>
   <string name="toast_no_more_downloads_available">Δεν υπάρχουν επιπλέον στοιχεία διαθέσιμα</string>
   <string name="pull_to_refresh_updateTags">Συγχρονισμός κατάστασης στοιχείων</string>
   <string name="pull_to_refresh_updateFolder">Συγχρονισμός φακέλου</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Εκκαθάριση προσωρινής μνήμης</string>
-  <string name="dialog_clearing_cache_please_wait">Εκκαθάριση προσωρινής μνήμης σε εξέλιξη.. Παρακαλώ περιμένετε.</string>
-  <string name="calculating_cache_size">Υπολογισμός μεγέθους στοιχείων σε εξέλιξη.. Παρακαλώ περιμένετε.</string>
   <string name="reset_cache_unsaved_changes">Υπάρχουν αλλαγές που δεν έχουν συγχρονιστεί. Θα θέλατε να επαναφέρετε τα αποθηκευμένα στοιχεία ούτως ή άλλως;</string>
   <string name="warning">Προειδοποίηση</string>
   <string name="pref_title_AutoSyncOnStart">Συγχρονισμός κατά την έναρξη</string>

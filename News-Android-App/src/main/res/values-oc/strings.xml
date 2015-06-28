@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Detalh del lector de news</string>
   <string name="empty_view_header">Informacion</string>
   <string name="empty_view_content">Pas cap d\'article</string>
-  <string name="toast_GettingMoreItems">Telecargament d\'articles suplementari en cors... Pacientatz.</string>
   <string name="tv_clickHereToOpenItem">Legir</string>
   <string name="no_wifi_available">Pas cap de connexion Wi-Fi</string>
   <string name="do_you_want_to_download_without_wifi">Telecargar los imatges sens connexion Wi-Fi ?</string>
-  <string name="max_items_count_reached">Avètz atench lo limit maximal de XX articles</string>
   <string name="widget_header">Actualitats ownCloud</string>
-  <string name="message_bar_new_articles_available">Novèls articles disponibles</string>
   <string name="message_bar_reload">Recargar</string>
   <string name="allUnreadFeeds">Totes los articles pas legits</string>
   <string name="starredFeeds">Articles favorits</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Paramètres de sincronizacion</string>
   <string name="action_add_new_feed">Apondre un flux novèl</string>
   <string name="action_textToSpeech">Legir a votz nauta</string>
-  <string name="notification_new_items_ticker">Avètz X novèls articles pas legits</string>
-  <string name="notification_new_items_text">X novèls articles pas legits disponibles</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilizaire</string>
   <string name="pref_title_password">Senhal</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Aqueste camp es requesit</string>
   <string name="error_invalid_url">Aquesta URL es incorrècta</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X ancians articles telecargats</string>
   <string name="toast_no_more_downloads_available">Cap d\'article suplementari pas disponible</string>
   <string name="pull_to_refresh_updateTags">Sincronizacion de l’estat dels articles</string>
   <string name="pull_to_refresh_updateFolder">Sincronizacion del dorsièr</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Voidar l\'escondedor</string>
-  <string name="dialog_clearing_cache_please_wait">Netejatge de l\'escondedor en cors... Pacientatz.</string>
-  <string name="calculating_cache_size">Calcul de la talha de l\'escondedor en cors... Pacientatz.</string>
   <string name="reset_cache_unsaved_changes">Certanas modificacions son pas sincronizadas. Volètz reïnicializar l\'escondedor malgrat tot ?</string>
   <string name="warning">Atencion</string>
   <string name="pref_title_AutoSyncOnStart">Sincro. a l\'aviada</string>

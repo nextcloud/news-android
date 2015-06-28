@@ -13,7 +13,6 @@
   <string name="no_wifi_available">कोई WiFi कनेक्ट नहीं है </string>
   <string name="do_you_want_to_download_without_wifi">क्या आप बिना किसी WiFi कनेक्शन के तस्वीरों को डाउनलोड करना चाहते हैं </string>
   <string name="widget_header">ownCloud समाचार </string>
-  <string name="message_bar_new_articles_available">नई आइटम उपलब्ध</string>
   <string name="message_bar_reload">रिलोड</string>
   <string name="allUnreadFeeds">सभी अपठित मदें </string>
   <string name="starredFeeds">तारांकित की गई मदें </string>
@@ -48,7 +47,6 @@
   <string name="error_field_required">इस क्षेत्र को भरना ज़रूरी है </string>
   <string name="error_invalid_url">यह url गलत है </string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X पुरानी मदें डाउनलोड की गईं </string>
   <string name="toast_no_more_downloads_available">आगे कोई मदें उपलब्ध नहीं हैं </string>
   <string name="pull_to_refresh_updateTags">मदों का संकालन करना दर्शाता है </string>
   <string name="pull_to_refresh_updateFolder">फोल्डर का संकालन करना</string>
@@ -73,7 +71,6 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="calculating_cache_size">कैश के साइज़ की गणना कर रहा है। कृपया प्रतीक्षा करें। </string>
   <string name="reset_cache_unsaved_changes">एक साथ न होने वाले बदलाव मौजूद हैं। क्या आप फिर भी कैश रीसेट करना चाहेंगे?</string>
   <string name="warning">चेतावनी </string>
   <string name="pref_title_AutoSyncOnStart">स्टार्टअप पर समन्वयित</string>

@@ -12,9 +12,7 @@
   <string name="tv_clickHereToOpenItem">Kliki siia üksuse avamiseks</string>
   <string name="no_wifi_available">WiFi pole ühendatud</string>
   <string name="do_you_want_to_download_without_wifi">Kas soovid pildid alla laadida WiFi ühendust kasutamata</string>
-  <string name="max_items_count_reached">Oled jõudnud XX üksuste maksimaalse suuruseni</string>
   <string name="widget_header">ownCloud Uudised</string>
-  <string name="message_bar_new_articles_available">Sadaval on uusi kirjeid</string>
   <string name="message_bar_reload">Lae uuesti</string>
   <string name="allUnreadFeeds">Kõik lugemata üksused</string>
   <string name="starredFeeds">Tärniga märgitud üksused</string>
@@ -42,8 +40,6 @@
   <string name="action_settings">Seaded</string>
   <string name="action_sync_settings">Sync seaded</string>
   <string name="action_add_new_feed">Lisa uudisvoog</string>
-  <string name="notification_new_items_ticker">Sul on X uut lugemata kirjet</string>
-  <string name="notification_new_items_text">Saadaval on X uut lugemata kirjet</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
   <string name="pref_title_password">Parool</string>
@@ -56,7 +52,6 @@
   <string name="error_field_required">See väli on kohustuslik</string>
   <string name="error_invalid_url">URL pole korrektne</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Alla laaditud X vana üksust</string>
   <string name="toast_no_more_downloads_available">Rohkem üksusi pole saadaval</string>
   <string name="pull_to_refresh_updateTags">Sünkroniseerin üksuste seisu</string>
   <string name="pull_to_refresh_updateFolder">Sünkroniseerin kataloogi</string>
@@ -82,8 +77,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
-  <string name="dialog_clearing_cache_please_wait">Tühjendan puhvrit... Palun oota.</string>
-  <string name="calculating_cache_size">Arvutan puhvri suurust... Palun oota.</string>
   <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
   <string name="warning">Hoiatus</string>
   <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>

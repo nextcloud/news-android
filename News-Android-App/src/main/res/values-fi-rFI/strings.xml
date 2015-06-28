@@ -5,10 +5,8 @@
   <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
   <string name="title_newsreader_list">Uutislukija</string>
   <string name="empty_view_content">Ei kohteita</string>
-  <string name="toast_GettingMoreItems">Lisäkohteiden lataaminen aloitettiin, odota hetki...</string>
   <string name="tv_clickHereToOpenItem">Avaa kohde painamalla tästä</string>
   <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
-  <string name="message_bar_new_articles_available">Uusia kohteita saatavilla</string>
   <string name="message_bar_reload">Päivitä</string>
   <string name="allUnreadFeeds">Kaikki lukemattomat kohteet</string>
   <string name="starredFeeds">Tähdellä varustetut</string>
@@ -35,7 +33,6 @@
   <string name="action_settings">Asetukset</string>
   <string name="action_sync_settings">Synkronointiasetukset</string>
   <string name="action_add_new_feed">Lisää uusi syöte</string>
-  <string name="notification_new_items_text">X uutta lukematonta kohdetta saatavilla</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>
@@ -73,8 +70,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
-  <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki.</string>
-  <string name="calculating_cache_size">Lasketaan välimuistin kokoa... Odota hetki.</string>
   <string name="warning">Varoitus</string>
   <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
   <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>

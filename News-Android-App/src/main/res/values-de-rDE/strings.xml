@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">NewsReader Detail</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Keine Artikel vorhanden</string>
-  <string name="toast_GettingMoreItems">Starte mit dem Herunterladen weiterer Objekte... Bitte warten.</string>
   <string name="tv_clickHereToOpenItem">Hier klicken, um Artikel zu öffnen.</string>
   <string name="no_wifi_available">Keine WLAN-Verbindung</string>
   <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne WLAN-Verbindung herunterladen</string>
-  <string name="max_items_count_reached">Sie haben die maximale Größe von XX Titeln erreicht</string>
   <string name="widget_header">ownCloud-News</string>
-  <string name="message_bar_new_articles_available">Neue Artikel verfügbar</string>
   <string name="message_bar_reload">Aktualisieren</string>
   <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
   <string name="starredFeeds">Favorisierte Artikel</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Einstellungen zur Synchronisation</string>
   <string name="action_add_new_feed">Einen neuen Feed hinzufügen</string>
   <string name="action_textToSpeech">Vorlesen</string>
-  <string name="notification_new_items_ticker">Sie haben X neue ungelesene Einträge</string>
-  <string name="notification_new_items_text">X neue ungelesene Einträge verfügbar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <string name="pref_title_password">Passwort</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Dieses Feld ist erforderlich.</string>
   <string name="error_invalid_url">Diese URL ist falsch.</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X alte Artikel heruntergeladen</string>
   <string name="toast_no_more_downloads_available">Keine weiteren Elemente verfügbar</string>
   <string name="pull_to_refresh_updateTags">Synchronisiere Artikelstatus</string>
   <string name="pull_to_refresh_updateFolder">Synchronisiere Ordner</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Zwischenspeicher löschen</string>
-  <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird gelöscht … Bitte warten.</string>
-  <string name="calculating_cache_size">Zwischenspeichergröße wird berechnet … Bitte warten.</string>
   <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchten Sie dennoch den Zwischenspeicher leeren?</string>
   <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Start synchronisieren</string>

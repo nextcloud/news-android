@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Detalhes do Leitor de Notícias</string>
   <string name="empty_view_header">Informações</string>
   <string name="empty_view_content">Este local está vazio</string>
-  <string name="toast_GettingMoreItems">Iniciado o download de mais itens... Por favor, aguarde.</string>
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir um item</string>
   <string name="no_wifi_available">Nenhum WiFi conectado</string>
   <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
-  <string name="max_items_count_reached">Você já atingiu o tamanho máximo de itens XX</string>
   <string name="widget_header">Notícias ownCloud</string>
-  <string name="message_bar_new_articles_available">Novos itens disponíveis</string>
   <string name="message_bar_reload">Recarregar</string>
   <string name="allUnreadFeeds">Todos itens não lidos</string>
   <string name="starredFeeds">Itens vistos</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Configurações de Sincronização</string>
   <string name="action_add_new_feed">Adicionar novo feed</string>
   <string name="action_textToSpeech">Leia</string>
-  <string name="notification_new_items_ticker">Você tem X itens não lidos</string>
-  <string name="notification_new_items_text">X novos itens não lidos disponíveis</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Este campo é obrigatório</string>
   <string name="error_invalid_url">A URL está incorreta</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Foram baixados X itens antigos</string>
   <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
   <string name="pull_to_refresh_updateTags">Sincronizando estados dos itens</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Limpando o cache</string>
-  <string name="dialog_clearing_cache_please_wait">Limpando o cache.. Por favor aguarde.</string>
-  <string name="calculating_cache_size">Calculando o tamanho do cache .. Por favor, aguarde.</string>
   <string name="reset_cache_unsaved_changes">Há alterações não sincronizadas. Gostaria de redefinir o cache de qualquer maneira?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>

@@ -42,7 +42,6 @@
   <string name="error_field_required">این فیلد مورد نیاز است</string>
   <string name="error_invalid_url">این آدرس url  نادرست است.</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X آیتم های دانلود شده قدیمی</string>
   <string name="pull_to_refresh_updateTags">همگام سازی حالت های آیتم ها</string>
   <string name="pull_to_refresh_updateFolder">همگام سازی پوشه </string>
   <string name="pull_to_refresh_updateFeeds">همگام سازی خوراک خوان ها</string>
@@ -57,7 +56,6 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="calculating_cache_size">محاسبه اندازه حافظه پنهان.. لطفا صبر کنید.</string>
   <string name="warning">اخطار</string>
   <string name="pref_title_AutoSyncOnStart">همگام سازی در هنگام راه اندازی</string>
   <string name="pref_title_ShowOnlyUnread">فقط نمایش مقالات خوانده نشده</string>

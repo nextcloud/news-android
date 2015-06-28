@@ -13,7 +13,6 @@
   <string name="no_wifi_available">No estás conectado a WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Querés bajar las imágenes sin conexión WiFi</string>
   <string name="widget_header">Noticias de ownCloud</string>
-  <string name="message_bar_new_articles_available">Nuevos elementos disponibles</string>
   <string name="message_bar_reload">Recargar</string>
   <string name="allUnreadFeeds">Todos los artículos sin leer</string>
   <string name="starredFeeds">Artículos destacados</string>
@@ -39,8 +38,6 @@
   <string name="action_settings">Configuración</string>
   <string name="action_sync_settings">Configuración de sincro. </string>
   <string name="action_add_new_feed">Agregar nueva fuente</string>
-  <string name="notification_new_items_ticker">Tu tienes X nuevos items sin leer</string>
-  <string name="notification_new_items_text">X nuevos items sin leer disponibles</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>
@@ -53,7 +50,6 @@
   <string name="error_field_required">Este campo es requerido</string>
   <string name="error_invalid_url">Esta URL es incorrecta</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Se descargaron X artículos antiguos</string>
   <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
   <string name="pull_to_refresh_updateTags">Sincronizando estado de elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando carpeta</string>
@@ -79,8 +75,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Borrando la caché</string>
-  <string name="dialog_clearing_cache_please_wait">Borrando la caché... Por favor espere.</string>
-  <string name="calculating_cache_size">Calculando el tamaño de la caché... Por favor, esperá.</string>
   <string name="reset_cache_unsaved_changes">Hay cambios que no fueron sincronizados. ¿Querés vaciar la caché de todas formas?</string>
   <string name="warning">Atención</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar al comenzar</string>

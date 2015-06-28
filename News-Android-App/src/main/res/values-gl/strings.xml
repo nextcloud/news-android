@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Detalle do lector de novas</string>
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Non hai elementos aquí</string>
-  <string name="toast_GettingMoreItems">Iniciouse a descarga de máis elementos... agarde.</string>
   <string name="tv_clickHereToOpenItem">Prema aquí para abrir o elemento</string>
   <string name="no_wifi_available">Non está conectado á WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi?</string>
-  <string name="max_items_count_reached">Acadou o tamaño máximo de XX elementos</string>
   <string name="widget_header">Novas do </string>
-  <string name="message_bar_new_articles_available">Novos elementos dispoñíbeis</string>
   <string name="message_bar_reload">Volver cargar</string>
   <string name="allUnreadFeeds">Todos os elementos sen ler</string>
   <string name="starredFeeds">Elementos destacados</string>
@@ -44,8 +41,6 @@
   <string name="action_sync_settings">Axustes da sincronización</string>
   <string name="action_add_new_feed">Engadir unha nova fonte</string>
   <string name="action_textToSpeech">Ler a saída</string>
-  <string name="notification_new_items_ticker">Ten X novos elementos sen ler</string>
-  <string name="notification_new_items_text">Dispón de X elementos novos sen ler</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de usuario</string>
   <string name="pref_title_password">Contrasinal</string>
@@ -58,7 +53,6 @@
   <string name="error_field_required">Este campo é obrigatorio</string>
   <string name="error_invalid_url">Este URL é incorrecto</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Descargados X elementos antigos</string>
   <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
   <string name="pull_to_refresh_updateTags">Sincronizando o estado dos elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando o cartafol</string>
@@ -84,8 +78,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Limpando a caché</string>
-  <string name="dialog_clearing_cache_please_wait">Limpando a caché... Agarde.</string>
-  <string name="calculating_cache_size">Calculando o tamaño da caché. Agarde.</string>
   <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
