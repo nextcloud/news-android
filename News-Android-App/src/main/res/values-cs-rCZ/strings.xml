@@ -9,10 +9,21 @@
   <string name="title_newsreader_detail">Detail čtečky zpráv</string>
   <string name="empty_view_header">Informace</string>
   <string name="empty_view_content">Žádné položky</string>
+  <string name="toast_GettingMoreItems">Probíhá stahování dalších položek... Chvíli strpení.</string>
   <string name="tv_clickHereToOpenItem">Klikněte zde pro otevření položky</string>
   <string name="no_wifi_available">Wi-Fi není připojeno</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Dosáhli jste maximální velikosti %d položky</item>
+    <item quantity="few">Dosáhli jste maximální velikosti %d položek</item>
+    <item quantity="other">Dosáhli jste maximální velikosti %d položek</item>
+  </plurals>
   <string name="widget_header">ownCloud Novinky</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nová položka k dispozici</item>
+    <item quantity="few">%d nové položky k dispozici</item>
+    <item quantity="other">%d nových položek k dispozici</item>
+  </plurals>
   <string name="message_bar_reload">Obnovit</string>
   <string name="allUnreadFeeds">Všechny nepřečtené položky</string>
   <string name="starredFeeds">Položky s hvězdičkou</string>
@@ -41,6 +52,16 @@
   <string name="action_sync_settings">Nastavení synchronizace</string>
   <string name="action_add_new_feed">Přidat nový kanál</string>
   <string name="action_textToSpeech">Přečíst</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Máte %d novou nepřečtenou položku</item>
+    <item quantity="few">Máte %d nové nepřečtené položky</item>
+    <item quantity="other">Máte %d nových nepřečtených položek</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d nová nepřečtená položka k dispozici</item>
+    <item quantity="few">%d nové nepřečtené položky k dispozici</item>
+    <item quantity="other">%d nových nepřečtených položek k dispozici</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Uživatelské jméno</string>
   <string name="pref_title_password">Heslo</string>
@@ -53,6 +74,11 @@
   <string name="error_field_required">Tato položka je povinná</string>
   <string name="error_invalid_url">Tato URL je nesprávná</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Stažena %d stará položka</item>
+    <item quantity="few">Staženo %d staré položky</item>
+    <item quantity="other">Staženo %d starých položek</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">K dispozici nejsou žádné další položky</string>
   <string name="pull_to_refresh_updateTags">Synchronizuji stav položek</string>
   <string name="pull_to_refresh_updateFolder">Synchronizuji složku</string>
@@ -78,6 +104,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
+  <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti... Chvíli strpení.</string>
+  <string name="calculating_cache_size">Probíhá výpočet odkládací paměti... Chvíli strpení.</string>
   <string name="reset_cache_unsaved_changes">Existují nesesynchronizované změny. Přejete si přesto vyprázdnit mezipaměť?</string>
   <string name="warning">Varování</string>
   <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>

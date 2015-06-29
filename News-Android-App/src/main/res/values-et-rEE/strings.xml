@@ -40,6 +40,11 @@
   <string name="action_settings">Seaded</string>
   <string name="action_sync_settings">Sync seaded</string>
   <string name="action_add_new_feed">Lisa uudisvoog</string>
+  <string name="action_textToSpeech">Loe ette</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Sul on %d uus lugemata kirje</item>
+    <item quantity="other">Sul on %d uut lugemata kirjet</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
   <string name="pref_title_password">Parool</string>
@@ -77,6 +82,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
+  <string name="dialog_clearing_cache_please_wait">Vahemälu tühjendamine... palun oota</string>
+  <string name="calculating_cache_size">Vahemälu suuruse arvutamine... Palun oota.</string>
   <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
   <string name="warning">Hoiatus</string>
   <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
@@ -101,6 +108,7 @@
   <string name="pref_header_display">Vaade</string>
   <string name="pref_title_app_theme">Rakendi teema</string>
   <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>
+  <string name="pref_display_title_lines_count">Pealkirja ridade arv</string>
   <string-array name="pref_display_apptheme">
     <item>Hele</item>
     <item>Tume</item>
@@ -119,6 +127,18 @@
     <item>1</item>
     <item>2</item>
   </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Viga</string>
   <string name="login_dialog_text_something_went_wrong">Midagi läks valesti :(</string>
@@ -131,6 +151,12 @@
   <string name="pref_title_clearCache">Tühjenda puhver</string>
   <string name="pref_title_CacheImagesOffline">Puhverda pildid võrguta seisu</string>
   <string name="pref_title_Max_Cache_Size">Maksimaalne puhvri suurus</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Mitte kunagi</item>
+    <item>Ainult üle WiFi</item>
+    <item>WiFi &amp; andmeside</item>
+    <item>Küsi, kui pole WiFisse ühendatud</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

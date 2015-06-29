@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">NieuwsLezer Details</string>
   <string name="empty_view_header">Informatie</string>
   <string name="empty_view_content">Geen items hier</string>
+  <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>
   <string name="tv_clickHereToOpenItem">Klik hier om te openen</string>
   <string name="no_wifi_available">Geen wifi verbinding</string>
   <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">U bereikte de maximale omvang van %d bericht</item>
+    <item quantity="other">U bereikte de maximale omvang van %d berichten</item>
+  </plurals>
   <string name="widget_header">ownCloud nieuws</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nieuw bericht beschikbaar</item>
+    <item quantity="other">%d nieuwe berichten beschikbaar</item>
+  </plurals>
   <string name="message_bar_reload">Herladen</string>
   <string name="allUnreadFeeds">Alle ongelezen berichten</string>
   <string name="starredFeeds">Gemarkeerde berichten</string>
@@ -41,6 +50,14 @@
   <string name="action_sync_settings">Sync Settings</string>
   <string name="action_add_new_feed">Voeg nieuwe feed toe</string>
   <string name="action_textToSpeech">Voorlezen</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">U hebt %d nieuw ongelezen bericht</item>
+    <item quantity="other">U hebt %d nieuwe ongelezen berichten</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d nieuw ongelezen bericht beschikbaar</item>
+    <item quantity="other">%d nieuwe ongelezen berichten beschikbaar</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
   <string name="pref_title_password">Wachtwoord</string>
@@ -53,6 +70,10 @@
   <string name="error_field_required">Dit veld is verplicht</string>
   <string name="error_invalid_url">De URL is ongeldig</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Downloaden %d oud bericht</item>
+    <item quantity="other">Downloaden %d oude berichten</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Geen berichten meer beschikbaar</string>
   <string name="pull_to_refresh_updateTags">Synchroniseren onderwerp statussen</string>
   <string name="pull_to_refresh_updateFolder">Synchroniseren map</string>
@@ -78,6 +99,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Schoonmaken cache</string>
+  <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
+  <string name="calculating_cache_size">Berekenen omvang cache... Even geduld.</string>
   <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wilt u de cache toch resetten?</string>
   <string name="warning">Waarschuwing</string>
   <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>

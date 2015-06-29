@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">Detalle del lector de noticias</string>
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">No hay artículos aquí</string>
+  <string name="toast_GettingMoreItems">Inició la descarga de más elementos... Por favor espere.</string>
   <string name="tv_clickHereToOpenItem">Click aquí para abrir el elemento</string>
   <string name="no_wifi_available">No hay una conexión WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Desea descargar las imágenes sin conexión WiFi</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Ha alcanzado el máximo tamaño de %d ítem</item>
+    <item quantity="other">Ha alcanzado el máximo tamaño de %d ítems</item>
+  </plurals>
   <string name="widget_header">Noticias de ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nuevo elemento disponible</item>
+    <item quantity="other">%d nuevos elementos disponibles</item>
+  </plurals>
   <string name="message_bar_reload">Recargar</string>
   <string name="allUnreadFeeds">Todos los artículos sin leer</string>
   <string name="starredFeeds">Artículos destacados</string>
@@ -53,6 +62,10 @@
   <string name="error_field_required">Este campo es necesario</string>
   <string name="error_invalid_url">Esta url es incorrecta</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Descargó %d ítem elemento</item>
+    <item quantity="other">Descargó %d antiguos elementos</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
   <string name="pull_to_refresh_updateTags">Sincronizando estado de elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando archivos</string>
@@ -78,6 +91,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Vaciando el caché</string>
+  <string name="dialog_clearing_cache_please_wait">Limpiando cache.... Por favor espere.</string>
+  <string name="calculating_cache_size">Calculando tamaño de la memoria cache... Por favor espere.</string>
   <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quiere vaciar la caché igualmente?</string>
   <string name="warning">Precaución</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar al inicio</string>

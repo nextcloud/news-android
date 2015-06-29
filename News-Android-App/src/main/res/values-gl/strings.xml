@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">Detalle do lector de novas</string>
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Non hai elementos aquí</string>
+  <string name="toast_GettingMoreItems">Iniciada a descarga de máis elementos... Agarde.</string>
   <string name="tv_clickHereToOpenItem">Prema aquí para abrir o elemento</string>
   <string name="no_wifi_available">Non está conectado á WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi?</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Acadou o tamaño máximo de %d elemento</item>
+    <item quantity="other">Acadou o tamaño máximo de %d elementos</item>
+  </plurals>
   <string name="widget_header">Novas do </string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d elemento novo dispoñíbel</item>
+    <item quantity="other">%d elementos novos dispoñíbeis</item>
+  </plurals>
   <string name="message_bar_reload">Volver cargar</string>
   <string name="allUnreadFeeds">Todos os elementos sen ler</string>
   <string name="starredFeeds">Elementos destacados</string>
@@ -41,6 +50,14 @@
   <string name="action_sync_settings">Axustes da sincronización</string>
   <string name="action_add_new_feed">Engadir unha nova fonte</string>
   <string name="action_textToSpeech">Ler a saída</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Ten %d elemento novo sen ler</item>
+    <item quantity="other">Ten %d elementos novos sen ler</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">Dispón de %d elemento novo sen ler</item>
+    <item quantity="other">Dispón de %d elementos novos sen ler</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de usuario</string>
   <string name="pref_title_password">Contrasinal</string>
@@ -53,6 +70,10 @@
   <string name="error_field_required">Este campo é obrigatorio</string>
   <string name="error_invalid_url">Este URL é incorrecto</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Descargado %d elemento antigo</item>
+    <item quantity="other">Descargados %d elementos antigos</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
   <string name="pull_to_refresh_updateTags">Sincronizando o estado dos elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando o cartafol</string>
@@ -78,6 +99,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Limpando a caché</string>
+  <string name="dialog_clearing_cache_please_wait">Limpando a caché. Agarde.</string>
+  <string name="calculating_cache_size">Calculando o tamaño da caché. Agarde.</string>
   <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
