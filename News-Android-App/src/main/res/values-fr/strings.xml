@@ -54,6 +54,10 @@
     <item quantity="one">Il y a %d nouvel article non lu</item>
     <item quantity="other">Il y a %d nouveaux articles non lus</item>
   </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d nouvel article non lu disponible</item>
+    <item quantity="other">%d nouveaux articles non lus disponibles</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilisateur</string>
   <string name="pref_title_password">Mot de passe</string>
@@ -96,13 +100,13 @@
   <string name="pref_title_AutoSyncOnStart">Synchro. au démarrage</string>
   <string name="pref_title_ShowOnlyUnread">Masquer les articles lus</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
-  <string name="pref_title_DisableHostnameVerification">Désactiver la vérification du nom de machine</string>
+  <string name="pref_title_DisableHostnameVerification">Désactiver la vérification du nom d\'hôte</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviguer avec les boutons de volume</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu tout en défilant</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu lors du défilement</string>
   <string name="pref_title_OpenInBrowserDirectly">Passer la vue détaillée et ouvrir directement l\'article dans le navigateur</string>
   <string name="pref_title_notification_new_articles_available">Afficher une notification lorsque de nouveaux articles sont disponibles</string>
   <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Accepter les certificats non-sûrs ?</string>
+  <string name="mtm_accept_cert">Accepter les certificats non sûrs ?</string>
   <string name="mtm_decision_always">Toujours</string>
   <string name="mtm_decision_once">Cette fois</string>
   <string name="mtm_decision_abort">Annuler</string>
@@ -148,7 +152,7 @@
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erreur</string>
-  <string name="login_dialog_text_something_went_wrong">Un problème est survenu :-(</string>
+  <string name="login_dialog_text_something_went_wrong">Quelque chose s\'est mal passé :(</string>
   <string name="login_dialog_text_not_compatible">La version de cette application n\'est pas compatible avec votre application News de ownCloud. Veuillez mettre à jour l\'application News et le framework d\'applications.</string>
   <string name="login_dialog_title_security_warning">Avertissement de sécurité</string>
   <string name="login_dialog_text_security_warning">Vous n\'utilisez pas HTTPS. Une personne malveillante pourrait intercepter votre trafic et obtenir des données sensibles (ex. votre mot de passe). Il est fortement recommandé d\'utiliser HTTPS !</string>
