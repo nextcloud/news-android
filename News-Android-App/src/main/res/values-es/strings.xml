@@ -50,6 +50,14 @@
   <string name="action_sync_settings">Ajustes de sincronización</string>
   <string name="action_add_new_feed">Añadir nueva fuente</string>
   <string name="action_textToSpeech">Recopilar información</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Tienes %d elementos nuevos sin leer</item>
+    <item quantity="other">Tienes %d elementos nuevos sin leer</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d elementos nuevos sin leer</item>
+    <item quantity="other">%d elementos nuevos sin leer</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>

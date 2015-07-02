@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">自动同步</string>
-  <string name="app_name">ownCloud新闻阅读器</string>
+  <string name="app_name">ownCloud 新闻阅读器</string>
   <string name="title_activity_sync_interval_selector">同步间隔选择器</string>
   <string name="title_activity_news_detail">新闻详细活动</string>
   <string name="title_activity_subscription">订阅活动</string>
@@ -12,7 +12,7 @@
   <string name="tv_clickHereToOpenItem">点击此处打开</string>
   <string name="no_wifi_available">没有连接到WiFi</string>
   <string name="do_you_want_to_download_without_wifi">您是否想在无 WiFi 连接时下载图片</string>
-  <string name="widget_header">ownCloud新闻</string>
+  <string name="widget_header">ownCloud 新闻</string>
   <string name="message_bar_reload">刷新</string>
   <string name="allUnreadFeeds">所有未读内容</string>
   <string name="starredFeeds">标星内容</string>
