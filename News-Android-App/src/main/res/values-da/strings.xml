@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">NyhedsLæser Oplysninger</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Her er ingen artikler</string>
+  <string name="toast_GettingMoreItems">Påbegyndte download af flere elementer... Vent venligst.</string>
   <string name="tv_clickHereToOpenItem">Klik her for at åbne artikel</string>
   <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
   <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden brug af WiFi-forbindelse</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Du har nået den maksimale størrelse på %d element</item>
+    <item quantity="other">Du har nået den maksimale størrelse på %d elementer</item>
+  </plurals>
   <string name="widget_header">ownCloud Nyheder</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nyt element er tilgængeligt</item>
+    <item quantity="other">%d nye elementer er tilgængelige</item>
+  </plurals>
   <string name="message_bar_reload">Genindlæs</string>
   <string name="allUnreadFeeds">Alle ulæste artikler</string>
   <string name="starredFeeds">Markerede artikler</string>
@@ -41,6 +50,14 @@
   <string name="action_sync_settings">Synkroniseringsindstillinger</string>
   <string name="action_add_new_feed">Tilføj nyt feed</string>
   <string name="action_textToSpeech">Læs højt</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Du har %d nyt, ulæst element</item>
+    <item quantity="other">Du har %d nye, ulæste elementer</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d nyt, ulæst element er tilgængeligt</item>
+    <item quantity="other">%d nye, ulæste elementer er tilgængelige</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Brugernavn</string>
   <string name="pref_title_password">Kodeord</string>
@@ -53,6 +70,10 @@
   <string name="error_field_required">Dette felt er påkrævet</string>
   <string name="error_invalid_url">Denne URL er ikke korrekt</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Hentede %d gammelt element</item>
+    <item quantity="other">Hentede %d gamle elementer</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelig</string>
   <string name="pull_to_refresh_updateTags">Synkroniserer status for artikler</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserer mappe</string>
@@ -78,6 +99,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Nulstil mellemlager</string>
+  <string name="dialog_clearing_cache_please_wait">Rydder mellemlageret... Vent venligst.</string>
+  <string name="calculating_cache_size">Beregner størrelse på mellemlager... Vent venligst.</string>
   <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
   <string name="warning">Advarsel</string>
   <string name="pref_title_AutoSyncOnStart">Synkroniserer ved opstart</string>

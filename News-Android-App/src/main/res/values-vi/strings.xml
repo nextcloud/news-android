@@ -9,9 +9,13 @@
   <string name="title_newsreader_detail">Tin chi </string>
   <string name="empty_view_header">Thông tin</string>
   <string name="empty_view_content">Không có mục nào ở đây</string>
+  <string name="toast_GettingMoreItems">Bắt đầu tải thêm các tin khác ... Xin vui lòng chờ đợi.</string>
   <string name="tv_clickHereToOpenItem">Bấm ở đây để mở danh mục</string>
   <string name="no_wifi_available">Không có </string>
   <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải về những hình ảnh mà không c kết nối WiFi</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="other">Bạn đã đạt đến kích thước tối đa của %d mục</item>
+  </plurals>
   <string name="widget_header">ownCloud News</string>
   <string name="message_bar_reload">Tải </string>
   <string name="allUnreadFeeds">Tất cả các mục chưa đọc</string>

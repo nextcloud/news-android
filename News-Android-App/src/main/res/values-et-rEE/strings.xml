@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">Uudistelugeja üksikasjad</string>
   <string name="empty_view_header">Info</string>
   <string name="empty_view_content">Siin pole üksusi</string>
+  <string name="toast_GettingMoreItems">Rohkemate kirjete allaladaimist on alustatud... Palun oota.</string>
   <string name="tv_clickHereToOpenItem">Kliki siia üksuse avamiseks</string>
   <string name="no_wifi_available">WiFi pole ühendatud</string>
   <string name="do_you_want_to_download_without_wifi">Kas soovid pildid alla laadida WiFi ühendust kasutamata</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Sa jõudsid %d kirje maksimaalse suuruseni</item>
+    <item quantity="other">Sa jõudsid %d kirje maksimaalse suuruseni</item>
+  </plurals>
   <string name="widget_header">ownCloud Uudised</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">Saadaval on %d uus kirjet</item>
+    <item quantity="other">Saadaval on %d uut kirjet</item>
+  </plurals>
   <string name="message_bar_reload">Lae uuesti</string>
   <string name="allUnreadFeeds">Kõik lugemata üksused</string>
   <string name="starredFeeds">Tärniga märgitud üksused</string>
@@ -45,6 +54,10 @@
     <item quantity="one">Sul on %d uus lugemata kirje</item>
     <item quantity="other">Sul on %d uut lugemata kirjet</item>
   </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">Saadaval on %d uus lugemata kirje</item>
+    <item quantity="other">Saadaval on %d uut lugemata kirjet</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
   <string name="pref_title_password">Parool</string>
@@ -57,6 +70,10 @@
   <string name="error_field_required">See väli on kohustuslik</string>
   <string name="error_invalid_url">URL pole korrektne</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Alla on laaditud %d vana kirje</item>
+    <item quantity="other">Alla on laaditud %d vana kirjet</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Rohkem üksusi pole saadaval</string>
   <string name="pull_to_refresh_updateTags">Sünkroniseerin üksuste seisu</string>
   <string name="pull_to_refresh_updateFolder">Sünkroniseerin kataloogi</string>
