@@ -58,7 +58,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 
     @Override
     protected void onProgressUpdate(Void... values) {
-        Toast.makeText(context, "Fetched " + totalCount + " items so far..", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getResources().getQuantityString(R.plurals.fetched_items_so_far,totalCount,totalCount), Toast.LENGTH_SHORT).show();
 
         super.onProgressUpdate(values);
     }

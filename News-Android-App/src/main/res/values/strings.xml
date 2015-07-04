@@ -87,6 +87,10 @@
     <string name="pull_to_refresh_updateFolder">Synchronizing folder</string>
     <string name="pull_to_refresh_updateFeeds">Synchronizing feeds</string>
     <string name="pull_to_refresh_updateItems">Synchronizing items</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Fetched %d item so far..</item>
+        <item quantity="other">Fetched %d items so far..</item>
+    </plurals>
 
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Settings</string>
