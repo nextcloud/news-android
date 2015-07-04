@@ -26,9 +26,6 @@ import android.content.Context;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.auth.AuthenticationException;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +33,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -56,19 +52,19 @@ public class OwnCloudReaderMethods {
 
 	public static int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception
 	{
-		List<NameValuePair> nVPairs = new ArrayList<NameValuePair>();
-		//nVPairs.add(new BasicNameValuePair("batchSize", maxSizePerSync));
+		HashMap<String,String> nVPairs = new HashMap<>();
+		//nVPairs.put("batchSize", maxSizePerSync));
 		if(tag.equals(TAGS.ALL_STARRED))
 		{
-			nVPairs.add(new BasicNameValuePair("type", "2"));
-			nVPairs.add(new BasicNameValuePair("id", "0"));
+			nVPairs.put("type", "2");
+			nVPairs.put("id", "0");
 		}
 		else if(tag.equals(TAGS.ALL))
 		{
-			nVPairs.add(new BasicNameValuePair("type", "3"));
-			nVPairs.add(new BasicNameValuePair("id", "0"));
+			nVPairs.put("type", "3");
+			nVPairs.put("id", "0");
 		}
-		nVPairs.add(new BasicNameValuePair("lastModified", String.valueOf(lastSync)));
+		nVPairs.put("lastModified", String.valueOf(lastSync));
 
 
     	InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUpdatedUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
@@ -89,23 +85,23 @@ public class OwnCloudReaderMethods {
 	//"type": 1, // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
 	public static int GetItems(TAGS tag, Context cont, String offset, boolean getRead, String id, String type, API api) throws Exception
 	{
-		List<NameValuePair> nVPairs = new ArrayList<NameValuePair>();
-		nVPairs.add(new BasicNameValuePair("batchSize", maxSizePerSync));
+		HashMap<String,String> nVPairs = new HashMap<>();
+		nVPairs.put("batchSize", maxSizePerSync);
 		if(tag.equals(TAGS.ALL_STARRED))
 		{
-			nVPairs.add(new BasicNameValuePair("type", type));
-			nVPairs.add(new BasicNameValuePair("id", id));
+			nVPairs.put("type", type);
+			nVPairs.put("id", id);
 		}
 		else if(tag.equals(TAGS.ALL))
 		{
-			nVPairs.add(new BasicNameValuePair("type", type));
-			nVPairs.add(new BasicNameValuePair("id", id));
+			nVPairs.put("type", type);
+			nVPairs.put("id", id);
 		}
-		nVPairs.add(new BasicNameValuePair("offset", offset));
+		nVPairs.put("offset", offset);
 		if(getRead)
-			nVPairs.add(new BasicNameValuePair("getRead", "true"));
+			nVPairs.put("getRead", "true");
 		else
-			nVPairs.add(new BasicNameValuePair("getRead", "false"));
+			nVPairs.put("getRead", "false");
 
 
 		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
@@ -370,7 +366,7 @@ public class OwnCloudReaderMethods {
 	        if(jsonIds != null)
 	        {
 	            nameValuePairs = new ArrayList<NameValuePair>();
-	            nameValuePairs.add(new BasicNameValuePair("itemIds", jsonIds));
+	            nameValuePairs.put("itemIds", jsonIds));
 	        }*/
 
             if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
@@ -458,9 +454,6 @@ public class OwnCloudReaderMethods {
 			} finally {
 				is.close();
 			}
-		}
-		catch(AuthenticationException ex) {
-			throw ex;
 		} catch(Exception ex) {//TODO GET HERE THE RIGHT EXCEPTION
     		String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH + OwnCloudConstants.JSON_FORMAT;
             requestUrl = API.validateURL(requestUrl);

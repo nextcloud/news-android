@@ -26,24 +26,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.auth.AuthenticationException;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
-import org.apache.http.message.BasicNameValuePair;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -63,10 +61,11 @@ public class HttpJsonRequest {
 
 	//@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@SuppressLint("DefaultLocale")
-	public static InputStream PerformJsonRequest(String urlString, List<NameValuePair> nameValuePairs, final String username, final String password, Context context) throws AuthenticationException, Exception
+	public static InputStream PerformJsonRequest(String urlString, HashMap<String,String> nameValuePairs, final String username, final String password, Context context) throws Exception
 	{
-		if(nameValuePairs != null)
-            urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8");
+		if(nameValuePairs != null) {
+            urlString += getUrlEncodedString(nameValuePairs);
+        }
 
 		URL url = new URL(API.validateURL(urlString));
 
@@ -114,15 +113,20 @@ public class HttpJsonRequest {
         if(HttpResult == HttpURLConnection.HTTP_OK) {
         	return urlConnection.getInputStream();
         } else {
-        	if(urlConnection.getResponseMessage().equals("Unauthorized"))
-        		throw new AuthenticationException(urlConnection.getResponseMessage());
-        	else
-        		throw new Exception(urlConnection.getResponseMessage());
+     		throw new Exception(urlConnection.getResponseMessage());
         }
 	}
 
+    private static String getUrlEncodedString(HashMap<String, String> nameValuePairs) throws UnsupportedEncodingException {
+        String urlString = "";
+        for(Entry<String,String> entry: nameValuePairs.entrySet()) {
+            urlString += String.format("&%s=%s", URLEncoder.encode(entry.getKey(), "UTF-8"), URLEncoder.encode(entry.getValue(), "UTF-8"));
+        }
+        return urlString;
+    }
 
-	private static HttpURLConnection getUrlConnection(URL url, Context context, String username, String password) throws IOException, KeyManagementException, NoSuchAlgorithmException {
+
+    private static HttpURLConnection getUrlConnection(URL url, Context context, String username, String password) throws IOException, KeyManagementException, NoSuchAlgorithmException {
 		URLConnection urlConnection = url.openConnection();
 
 		// If https is used, use MemorizingTrustManager for certificate verification
@@ -177,7 +181,12 @@ public class HttpJsonRequest {
 			// (this still shows a certification dialog, which requires user interaction!)
 			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 	        if(sp.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false))
-	        	httpsURLConnection.setHostnameVerifier(new AllowAllHostnameVerifier());
+	        	httpsURLConnection.setHostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                });
 	        else
 	        	httpsURLConnection.setHostnameVerifier(HttpsURLConnection.getDefaultHostnameVerifier());
 		}
@@ -221,11 +230,10 @@ public class HttpJsonRequest {
 	*/
 
     public static int performCreateFeedRequest(String urlString, String username, String password, Context context, String feedUrl, long folderId) throws Exception {
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        nameValuePairs.add(new BasicNameValuePair("url", feedUrl));
-        nameValuePairs.add(new BasicNameValuePair("folderId", String.valueOf(folderId)));
-        if(nameValuePairs != null)
-            urlString += "&" + URLEncodedUtils.format(nameValuePairs, "utf-8");
+        HashMap<String,String> nameValuePairs = new HashMap<>();
+        nameValuePairs.put("url", feedUrl);
+        nameValuePairs.put("folderId", String.valueOf(folderId));
+        urlString += getUrlEncodedString(nameValuePairs);
 
 
         URL url = new URL(API.validateURL(urlString));
