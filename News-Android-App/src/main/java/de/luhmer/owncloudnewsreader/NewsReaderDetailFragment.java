@@ -27,6 +27,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -102,6 +103,7 @@ public class NewsReaderDetailFragment extends Fragment {
     @InjectView(R.id.pb_loading) ProgressBar pbLoading;
     @InjectView(R.id.tv_no_items_available) View tvNoItemsAvailable;
     @InjectView(R.id.list) RecyclerView recyclerView;
+    @InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -263,8 +265,7 @@ public class NewsReaderDetailFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             pbLoading.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
-            tvNoItemsAvailable.setVisibility(View.GONE);
+            tvNoItemsAvailable.setVisibility(View.INVISIBLE);
 
             sortDirection = getSortDirection(context);
 
@@ -328,11 +329,9 @@ public class NewsReaderDetailFragment extends Fragment {
 
                 pbLoading.setVisibility(View.GONE);
                 if(nra.getItemCount() <= 0) {
-                    recyclerView.setVisibility(View.GONE);
                     tvNoItemsAvailable.setVisibility(View.VISIBLE);
                 } else {
-                    recyclerView.setVisibility(View.VISIBLE);
-                    tvNoItemsAvailable.setVisibility(View.GONE);
+                    tvNoItemsAvailable.setVisibility(View.INVISIBLE);
                 }
 
                 // TODO: see above: bView.setBlockLayoutChildren(false);
@@ -357,6 +356,8 @@ public class NewsReaderDetailFragment extends Fragment {
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+        swipeRefresh.setColorSchemeResources(R.color.owncloudBlueLight);
+        swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) getActivity());
         return rootView;
 	}
 

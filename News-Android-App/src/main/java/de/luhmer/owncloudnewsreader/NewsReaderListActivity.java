@@ -78,7 +78,7 @@ import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
  * selections.
  */
 public class NewsReaderListActivity extends PodcastFragmentActivity implements
-		 NewsReaderListFragment.Callbacks,RecyclerItemClickListener {
+		 NewsReaderListFragment.Callbacks,RecyclerItemClickListener,SwipeRefreshLayout.OnRefreshListener {
 
 	private static final String TAG = NewsReaderListActivity.class.getCanonicalName();
 
@@ -291,6 +291,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private StartDetailFragmentHolder startDetailFHolder = null;
 
+	@Override
+	public void onRefresh() {
+		startSync();
+	}
+
 	private class StartDetailFragmentHolder {
 		long idFeed;
 		boolean isFolder;
@@ -397,29 +402,21 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	public void UpdateButtonLayout()
     {
-        if(menuItemUpdater != null)
-        {
-            try {
-                NewsReaderListFragment ndf = (NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
+		try {
+			NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
+			NewsReaderDetailFragment newsReaderDetailFragment = getNewsReaderDetailFragment();
 
-                if(ndf._ownCloudSyncService != null) {
-                    IOwnCloudSyncService _Reader = ndf._ownCloudSyncService;
+			if(newsReaderListFragment != null && newsReaderListFragment._ownCloudSyncService != null) {
+				IOwnCloudSyncService _Reader = newsReaderListFragment._ownCloudSyncService;
 
-					if(_Reader.isSyncRunning())
-					{
-					    menuItemUpdater.setActionView(R.layout.inderterminate_progress);
-						ndf.setRefreshing(true);
-					}
-					else
-					{
-					    menuItemUpdater.setActionView(null);
-						ndf.setRefreshing(false);
-					}
-                }
-			} catch (RemoteException e) {
-				e.printStackTrace();
+				boolean isSyncRunning = _Reader.isSyncRunning();
+
+				newsReaderListFragment.setRefreshing(isSyncRunning);
+				newsReaderDetailFragment.swipeRefresh.setRefreshing(isSyncRunning);
 			}
-        }
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
     }
 
 
