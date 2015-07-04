@@ -13,7 +13,15 @@
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir um item</string>
   <string name="no_wifi_available">Nenhum WiFi conectado</string>
   <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Você atingiu o tamanho máximo de %d item</item>
+    <item quantity="other">Você atingiu o tamanho máximo de %d itens</item>
+  </plurals>
   <string name="widget_header">Notícias ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d novo item disponível</item>
+    <item quantity="other">%d novos itens disponíveis</item>
+  </plurals>
   <string name="message_bar_reload">Recarregar</string>
   <string name="allUnreadFeeds">Todos itens não lidos</string>
   <string name="starredFeeds">Itens vistos</string>
@@ -42,6 +50,14 @@
   <string name="action_sync_settings">Configurações de Sincronização</string>
   <string name="action_add_new_feed">Adicionar novo feed</string>
   <string name="action_textToSpeech">Leia</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Você tem %d novo item não lido</item>
+    <item quantity="other">Você tem %d novos itens não lidos</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d novo item não lido disponível</item>
+    <item quantity="other">%d novos itens não lidos disponíveis</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>
@@ -54,6 +70,10 @@
   <string name="error_field_required">Este campo é obrigatório</string>
   <string name="error_invalid_url">A URL está incorreta</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Transferido %d item antigo</item>
+    <item quantity="other">Transferidos %d itens antigos</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
   <string name="pull_to_refresh_updateTags">Sincronizando estados dos itens</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
