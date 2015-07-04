@@ -655,14 +655,13 @@ public class SettingsActivity extends PreferenceActivity {
         protected Boolean doInBackground(Void... params) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(_mActivity);
             dbConn.resetDatabase();
-            boolean success = ImageHandler.clearCache(_mActivity);
-            new GetCacheSizeAsync().execute((Void)null);
-            return success;
+			return ImageHandler.clearCache(_mActivity);
         }
 
         @Override
         protected void onPostExecute(Boolean result) {
-            pd.dismiss();
+			new GetCacheSizeAsync().execute((Void)null);
+			pd.dismiss();
             if(result)
                 LoginDialogFragment.ShowAlertDialog("Information" , "Cache is cleared!", _mActivity);
             else
