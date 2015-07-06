@@ -9,10 +9,17 @@
   <string name="title_newsreader_detail">Rincian PembacaBerita</string>
   <string name="empty_view_header">Informasi</string>
   <string name="empty_view_content">Tak ada item disini</string>
+  <string name="toast_GettingMoreItems">Mulai mengunduh lebih banyak item... Mohon tunggu.</string>
   <string name="tv_clickHereToOpenItem">Klik disini untuk membuka item</string>
   <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
   <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="other">Anda telah mencapai ukuran maksimum %d item</item>
+  </plurals>
   <string name="widget_header">Berita ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="other">%d item baru tersedia</item>
+  </plurals>
   <string name="message_bar_reload">Muat ulang</string>
   <string name="allUnreadFeeds">Semua item yang belum dibaca</string>
   <string name="starredFeeds">Item yang dibintangi</string>
@@ -41,6 +48,12 @@
   <string name="action_sync_settings">Setelan Sync</string>
   <string name="action_add_new_feed">Tambah feed baru</string>
   <string name="action_textToSpeech">Bacalah</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="other">Anda memiliki %d item baru yang belum dibaca</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="other">Terdapat %d item baru yang belum dibaca </item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Sandi</string>
@@ -53,11 +66,14 @@
   <string name="error_field_required">Bidang wajib diisi</string>
   <string name="error_invalid_url">URL salah</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="other">Mengunduh %d item lama</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Tidak ada item lain yang tersedia</string>
   <string name="pull_to_refresh_updateTags">Status Sinkronisasi Item</string>
-  <string name="pull_to_refresh_updateFolder">Menyelaraskan folder</string>
+  <string name="pull_to_refresh_updateFolder">Mensinkronisasi folder</string>
   <string name="pull_to_refresh_updateFeeds">Mensinkronisasi feed</string>
-  <string name="pull_to_refresh_updateItems">Menyelaraskan item</string>
+  <string name="pull_to_refresh_updateItems">Mensinkronisasi item</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Setelan</string>
   <!--General settings-->
@@ -78,6 +94,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Membersihkan cache</string>
+  <string name="dialog_clearing_cache_please_wait">Membersihkan tembolok... Mohon tunggu.</string>
+  <string name="calculating_cache_size">Menghitung ukuran tembolok... Mohon tunggu.</string>
   <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
   <string name="warning">Peringatan</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>
@@ -102,6 +120,7 @@
   <string name="pref_header_display">Tampilkan</string>
   <string name="pref_title_app_theme">Tema aplikasi</string>
   <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
+  <string name="pref_display_title_lines_count">Jumlah Baris untuk judul</string>
   <string-array name="pref_display_apptheme">
     <item>Gelap</item>
     <item>Terang</item>
@@ -119,6 +138,18 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Kesalahan</string>
