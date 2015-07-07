@@ -95,6 +95,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Vider le cache</string>
+  <string name="dialog_clearing_cache_please_wait">Purge du cache... Veuillez patienter.</string>
+  <string name="calculating_cache_size">Calcul de la taille du cache... Veuillez patienter.</string>
   <string name="reset_cache_unsaved_changes">Certaines modifications ne sont pas synchronisées. Voulez-vous tout de même réinitialiser le cache ?</string>
   <string name="warning">Attention</string>
   <string name="pref_title_AutoSyncOnStart">Synchro. au démarrage</string>
