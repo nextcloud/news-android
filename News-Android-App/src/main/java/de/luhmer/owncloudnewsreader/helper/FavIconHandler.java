@@ -28,6 +28,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.support.v7.graphics.Palette;
 import android.util.Log;
 import android.util.SparseArray;
 import android.widget.ImageView;
@@ -68,35 +69,6 @@ public class FavIconHandler {
         }
     }
 
-    public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context, Long feedID)
-	{
-		try
-		{
-			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, FileUtils.getPathFavIcons(context));
-			if(favIconFile.isFile() && favIconFile.length() > 0)
-			{
-				if(feedID != null) {
-                	DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-                    Feed feed = dbConn.getFeedById(feedID);
-                    Bitmap bitmap = BitmapFactory.decodeFile(favIconFile.getAbsolutePath());
-                    String avg = ColourCalculator.ColourHexFromBitmap(bitmap);
-
-                    feed.setAvgColour(avg);
-                    dbConn.updateFeed(feed);
-                    //dbConn.setAvgColourOfFeedByDbId(feedID, avg);
-                }
-
-				return Drawable.createFromPath(favIconFile.getPath());
-			}
-		}
-		catch(Exception ex)
-		{
-            //Log.d(TAG, ex.getMessage());
-			ex.printStackTrace();
-		}
-		return null;
-	}
-
     public static int getResourceIdForRightDefaultFeedIcon(Context context)
 	{
 		if(ThemeChooser.isDarkTheme(context))
@@ -127,7 +99,10 @@ public class FavIconHandler {
             if(bitmap != null) {
                 DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
                 Feed feed = dbConn.getFeedById(AsynkTaskId);
-                String avg = ColourCalculator.ColourHexFromBitmap(bitmap);
+                Palette palette = Palette.from(bitmap).generate();
+                String avg = String.valueOf(
+                        palette.getVibrantColor(R.color.material_blue_grey_800)
+                );
                 feed.setAvgColour(avg);
                 dbConn.updateFeed(feed);
 
