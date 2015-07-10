@@ -70,6 +70,10 @@
   <string name="error_field_required">Ce champs est requis</string>
   <string name="error_invalid_url">Cette URL est incorrecte</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">%d ancien article téléchargé</item>
+    <item quantity="other">%d anciens articles téléchargés</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Aucun article supplémentaire disponible</string>
   <string name="pull_to_refresh_updateTags">Synchronisation de l’état des articles</string>
   <string name="pull_to_refresh_updateFolder">Synchronisation du dossier</string>
