@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -134,6 +135,15 @@ public class NewsReaderDetailFragment extends Fragment {
 		}
 	}
 
+    public void setData(Long idFeed, Long idFolder, String titel, boolean updateListView) {
+        this.idFeed = idFeed;
+        this.idFolder = idFolder;
+        this.titel = titel;
+        setUpdateListViewOnStartUp(updateListView);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(titel);
+        UpdateCurrentRssView(getActivity(),true);
+    }
+
     @Override
     public void onResume() {
         EventBus.getDefault().register(this);
@@ -196,17 +206,6 @@ public class NewsReaderDetailFragment extends Fragment {
             }
 		}
 	}
-
-
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.ListFragment#onViewCreated(android.view.View, android.os.Bundle)
-	 */
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(titel);
-    }
 
     public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
         NewsListRecyclerAdapter nca = (NewsListRecyclerAdapter) recyclerView.getAdapter();

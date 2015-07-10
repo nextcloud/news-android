@@ -51,6 +51,7 @@ import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
+import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
@@ -135,7 +136,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				super.onDrawerClosed(drawerView);
 				togglePodcastVideoViewAnimation();
 
-				StartDetailFragmentNow();
 				syncState();
 				EventBus.getDefault().post(new FeedPanelSlideEvent(false));
 			}
@@ -157,8 +157,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
         if(savedInstanceState == null)//When the app starts (no orientation change)
         {
-        	startDetailFHolder = new StartDetailFragmentHolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
-        	StartDetailFragmentNow();
+        	StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
         }
 
         ImageHandler.createNoMediaFile(this);
@@ -226,7 +225,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
 
 
-            startDetailFHolder = new StartDetailFragmentHolder(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
+            StartDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
                     savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
                     savedInstanceState.getLong(ID_FEED_STRING),
                     false);
@@ -256,15 +255,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		drawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	private NewsReaderDetailFragment StartDetailFragmentNow() {
-		NewsReaderDetailFragment nrdf = null;
-		if(startDetailFHolder != null) {
-			nrdf = startDetailFHolder.StartDetailFragment();
-			startDetailFHolder = null;
-		}
-		return nrdf;
-	}
-
 	public void reloadCountNumbersOfSlidingPaneAdapter() {
         NewsReaderListFragment nlf = getSlidingListFragment();
         if(nlf != null) {
@@ -289,29 +279,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         return getResources().getBoolean(R.bool.two_pane);
     }
 
-	private StartDetailFragmentHolder startDetailFHolder = null;
-
 	@Override
 	public void onRefresh() {
 		startSync();
-	}
-
-	private class StartDetailFragmentHolder {
-		long idFeed;
-		boolean isFolder;
-        Long optional_folder_id;
-        boolean updateListView;
-
-		public StartDetailFragmentHolder(long idFeed, boolean isFolder, Long optional_folder_id, boolean updateListView) {
-			this.idFeed = idFeed;
-			this.isFolder = isFolder;
-			this.optional_folder_id = optional_folder_id;
-            this.updateListView = updateListView;
-		}
-
-		public NewsReaderDetailFragment StartDetailFragment() {
-			return NewsReaderListActivity.this.StartDetailFragment(idFeed, isFolder, optional_folder_id, updateListView);
-		}
 	}
 
 	/**
@@ -323,10 +293,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if(!shouldDrawerStayOpen())
 			drawerLayout.closeDrawer(GravityCompat.START);
 
-		startDetailFHolder = new StartDetailFragmentHolder(idFeed, isFolder, optional_folder_id, true);
-
-		if(shouldDrawerStayOpen())
-			StartDetailFragmentNow();
+		StartDetailFragment(idFeed, isFolder, optional_folder_id, true);
 	}
 
 	@Override
@@ -335,9 +302,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			drawerLayout.closeDrawer(GravityCompat.START);
 
 		//StartDetailFragment(idSubscription, false, optional_folder_id);
-		startDetailFHolder = new StartDetailFragmentHolder(idFeed, false, optional_folder_id, true);
-		if(shouldDrawerStayOpen())
-			StartDetailFragmentNow();
+		StartDetailFragment(idFeed, false, optional_folder_id, true);
 	}
 
 	private NewsReaderDetailFragment StartDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView)
@@ -348,37 +313,30 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
-
-		Intent intent = new Intent();
+		Long feedId = null;
+		Long folderId;
+		String titel = null;
 
 		if(!folder)
 		{
-			intent.putExtra(FEED_ID, id);
-			intent.putExtra(FOLDER_ID, optional_folder_id);
-			intent.putExtra(TITEL, dbConn.getFeedById(id).getFeedTitle());
+			feedId = id;
+			folderId = optional_folder_id;
+			titel = dbConn.getFeedById(id).getFeedTitle();
 		}
 		else
 		{
-			intent.putExtra(FOLDER_ID, id);
+			folderId = id;
 			int idFolder = (int) id;
 			if(idFolder >= 0)
-				intent.putExtra(TITEL, dbConn.getFolderById(id).getLabel());
+				titel = dbConn.getFolderById(id).getLabel();
 			else if(idFolder == -10)
-				intent.putExtra(TITEL, getString(R.string.allUnreadFeeds));
+				titel = getString(R.string.allUnreadFeeds);
 			else if(idFolder == -11)
-				intent.putExtra(TITEL, getString(R.string.starredFeeds));
+				titel = getString(R.string.starredFeeds);
 		}
 
-		Bundle arguments = intent.getExtras();
-
-		NewsReaderDetailFragment fragment = new NewsReaderDetailFragment();
-        fragment.setUpdateListViewOnStartUp(updateListView);
-
-		fragment.setArguments(arguments);
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.content_frame, fragment)
-				.commit();
-
+		NewsReaderDetailFragment fragment = (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+		fragment.setData(feedId,folderId,titel,updateListView);
 		return fragment;
 	}
 
