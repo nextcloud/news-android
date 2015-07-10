@@ -540,8 +540,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         {
 			getSlidingListFragment().ReloadAdapter();
 
-            if(ThemeChooser.ThemeRequiresRestartOfUI(this)) {
-				finish();
+			String oldLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
+			String newLayout = PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
+
+            if(ThemeChooser.ThemeRequiresRestartOfUI(this) || !newLayout.equals(oldLayout)) {
+                finish();
                 startActivity(getIntent());
             }
         } else if(requestCode == RESULT_ADD_NEW_FEED) {

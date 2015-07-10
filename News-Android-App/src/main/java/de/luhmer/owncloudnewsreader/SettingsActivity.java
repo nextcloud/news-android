@@ -228,6 +228,17 @@ public class SettingsActivity extends PreferenceActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Intent intent = getIntent();
+		intent.putExtra(
+				SettingsActivity.SP_FEED_LIST_LAYOUT,
+				PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0")
+		);
+		setResult(RESULT_OK,intent);
+	}
+
 	/** {@inheritDoc} */
 	@Override
 	public boolean onIsMultiPane() {
