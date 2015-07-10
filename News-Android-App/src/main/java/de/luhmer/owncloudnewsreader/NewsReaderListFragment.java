@@ -138,7 +138,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                         int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
                         if(newItemsCount > 0) {
-							Snackbar snackbar = Snackbar.make(nlActivity.findViewById(R.id.drawer_layout), getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount), Snackbar.LENGTH_LONG);
+							Snackbar snackbar = Snackbar.make(nlActivity.findViewById(R.id.coordinator_layout), getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount), Snackbar.LENGTH_LONG);
 							snackbar.setAction(getString(R.string.message_bar_reload), mListener);
 							snackbar.setActionTextColor(getResources().getColor(R.color.accent_material_dark));
 							// Setting android:TextColor to #000 in the light theme results in black on black
