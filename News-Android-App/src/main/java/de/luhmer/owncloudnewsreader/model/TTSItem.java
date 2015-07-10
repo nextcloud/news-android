@@ -1,9 +1,11 @@
 package de.luhmer.owncloudnewsreader.model;
 
+import java.io.Serializable;
+
 /**
  * Created by David on 10.01.2015.
  */
-public class TTSItem {
+public class TTSItem implements Serializable {
 
     public TTSItem() {
 

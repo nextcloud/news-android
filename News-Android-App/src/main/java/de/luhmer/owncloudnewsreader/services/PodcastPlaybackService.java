@@ -52,7 +52,8 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
     }
 
 
-
+    public static final String PODCAST_ITEM = "PODCAST_ITEM";
+    public static final String TTS_ITEM = "TTS_ITEM";
 
     private PodcastItem mCurrentlyPlayingPodcast;
     private TTSItem mCurrentlyPlayingTTS;
@@ -125,6 +126,13 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null) {
+            if (intent.hasExtra(PODCAST_ITEM)) {
+                openFile((PodcastItem) intent.getSerializableExtra(PODCAST_ITEM));
+            } else if(intent.hasExtra(TTS_ITEM)) {
+                openTtsFeed((TTSItem) intent.getSerializableExtra(TTS_ITEM));
+            }
+        }
         return Service.START_STICKY;
         //return super.onStartCommand(intent, flags, startId);
     }
