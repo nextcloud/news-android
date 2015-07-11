@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">Haber Okuyucu Ayrıntıları</string>
   <string name="empty_view_header">Bilgi</string>
   <string name="empty_view_content">Burada öge yok</string>
+  <string name="toast_GettingMoreItems">Daha fazla öge indirilmeye başlandı... Lütfen bekleyin.</string>
   <string name="tv_clickHereToOpenItem">Ögeyi açmak için buraya tıklayın</string>
   <string name="no_wifi_available">Kablosuz bağlı değil</string>
   <string name="do_you_want_to_download_without_wifi">Resimleri bir kablosuz bağlantı olmadan indirmek ister misiniz</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">%d ögenin azami sayısına ulaştınız</item>
+    <item quantity="other">%d ögenin azami sayısına ulaştınız</item>
+  </plurals>
   <string name="widget_header">ownCloud Haberler</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d yeni öge mevcut</item>
+    <item quantity="other">%d yeni öge mevcut</item>
+  </plurals>
   <string name="message_bar_reload">Yeniden yükle</string>
   <string name="allUnreadFeeds">Tüm okunmamış ögeler</string>
   <string name="starredFeeds">Yıldızlı ögeler</string>
@@ -41,6 +50,14 @@
   <string name="action_sync_settings">Eşitleme Ayarları</string>
   <string name="action_add_new_feed">Yeni besleme ekle</string>
   <string name="action_textToSpeech">Sesli oku</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Yeni %d okunmamış ögeniz var</item>
+    <item quantity="other">Yeni %d okunmamış ögeniz var</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">Yeni %d okunmamış öge mevcut</item>
+    <item quantity="other">Yeni %d okunmamış öge mevcut</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Kullanıcı Adı</string>
   <string name="pref_title_password">Parola</string>
@@ -53,6 +70,10 @@
   <string name="error_field_required">Bu alan gerekli</string>
   <string name="error_invalid_url">Bu adres geçersiz</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">%d eski öge indirildi</item>
+    <item quantity="other">%d eski öge indirildi</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Daha fazla öge yok</string>
   <string name="pull_to_refresh_updateTags">Öge durumları eşitleniyor</string>
   <string name="pull_to_refresh_updateFolder">Klasör eşitleniyor</string>
@@ -78,6 +99,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Önbellek temizleniyor</string>
+  <string name="dialog_clearing_cache_please_wait">Önbellek temizleniyor... Lütfen bekleyin.</string>
+  <string name="calculating_cache_size">Önbellek boyutu hesaplanıyor... Lütfen bekleyin.</string>
   <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Önbelleği yine de sıfırlamak ister misiniz?</string>
   <string name="warning">Uyarı</string>
   <string name="pref_title_AutoSyncOnStart">Başlangıçta eşitle</string>
