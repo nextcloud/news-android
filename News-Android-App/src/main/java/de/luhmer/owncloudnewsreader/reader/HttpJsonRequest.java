@@ -25,6 +25,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,7 +55,6 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.TLSSocketFactory;
-import de.luhmer.owncloudnewsreader.util.Base64;
 
 public class HttpJsonRequest {
 	//private static final String TAG = "HttpJsonRequest";
@@ -192,7 +192,7 @@ public class HttpJsonRequest {
 		}
 
 		if(username != null && password != null)
-    		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encode((username + ":" + password).getBytes()));
+    		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString((username + ":" + password).getBytes(),Base64.DEFAULT));
 
 		return (HttpURLConnection) urlConnection;
 	}
