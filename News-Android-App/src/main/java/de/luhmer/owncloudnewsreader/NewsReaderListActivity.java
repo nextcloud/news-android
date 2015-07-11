@@ -164,7 +164,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         	StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
         }
 
-        ImageHandler.createNoMediaFile(this);
         //AppRater.app_launched(this);
         //AppRater.rateNow(this);
 

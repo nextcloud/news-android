@@ -33,6 +33,8 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,24 +70,20 @@ public class DownloadImagesService extends IntentService {
 	private int maxCount;
 	//private int total_size = 0;
 
-    private String pathToImageCache;
     List<String> linksToImages = new LinkedList<String>();
 
 	public DownloadImagesService() {
 		super(null);
-		initService();
 	}
 
 	public DownloadImagesService(String name) {
 		super(name);
-		initService();
 	}
 
-	private void initService()
-	{
+    @Override
+    public void onCreate() {
+        super.onCreate();
         try {
-            pathToImageCache = FileUtils.getPathImageCache(this);
-
             maxCount = 0;
             if (random == null)
                 random = new Random();
@@ -93,9 +91,9 @@ public class DownloadImagesService extends IntentService {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-	}
+    }
 
-	@Override
+    @Override
 	public void onDestroy() {
 		if(NotificationDownloadImages != null)
 		{
@@ -152,7 +150,7 @@ public class DownloadImagesService extends IntentService {
         try {
             if(linksToImages.size() > 0) {
                 String link = linksToImages.remove(0);
-                new GetImageThreaded(link, imgDownloadFinished, 999, pathToImageCache, this).start();
+                new GetImageThreaded(link, imgDownloadFinished, 999).start();
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -195,60 +193,8 @@ public class DownloadImagesService extends IntentService {
         return notify;
     }
 
-    private void RemoveOldImages(Context context) {
-        HashMap<File, Long> files;
-        long size = ImageHandler.getFolderSize(new File(FileUtils.getPath(context)));
-
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        int max_allowed_size = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, "1000"));//Default is 1Gb --> 1000mb
-        max_allowed_size *= 1024 * 1024; // convert to byte
-        if(size > max_allowed_size)
-        {
-            files = new HashMap<>();
-            for(File file : ImageHandler.getFilesFromDir(new File(FileUtils.getPathImageCache(context))))
-            {
-                files.put(file, file.lastModified());
-            }
-
-            for(Object itemObj : sortHashMapByValuesD(files).keySet())
-            {
-                File file = (File) itemObj;
-                size -= file.length();
-                file.delete();
-                if(size < max_allowed_size)
-                    break;
-            }
-        }
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static LinkedHashMap sortHashMapByValuesD(HashMap passedMap) {
-        List mapKeys = new ArrayList(passedMap.keySet());
-        List mapValues = new ArrayList(passedMap.values());
-        Collections.sort(mapValues);
-        Collections.sort(mapKeys);
-
-        LinkedHashMap sortedMap = new LinkedHashMap();
-
-        Iterator valueIt = mapValues.iterator();
-        while (valueIt.hasNext()) {
-            Object val = valueIt.next();
-            Iterator keyIt = mapKeys.iterator();
-
-            while (keyIt.hasNext()) {
-                Object key = keyIt.next();
-                String comp1 = passedMap.get(key).toString();
-                String comp2 = val.toString();
-
-                if (comp1.equals(comp2)){
-                    passedMap.remove(key);
-                    mapKeys.remove(key);
-                    sortedMap.put(key, val);
-                    break;
-                }
-            }
-        }
-        return sortedMap;
+    private void RemoveOldImages() {
+        ImageLoader.getInstance().clearDiskCache();
     }
 
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
@@ -261,7 +207,7 @@ public class DownloadImagesService extends IntentService {
 
             if(maxCount == count) {
             	notificationManager.cancel(NOTIFICATION_ID);
-                RemoveOldImages(DownloadImagesService.this);
+                RemoveOldImages();
             } else {
                 NotificationDownloadImages.setProgress(maxCount, count+1, false);
                 NotificationDownloadImages.setContentText("Downloading Images for offline usage - " + (count+1) + "/" + maxCount);

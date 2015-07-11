@@ -67,29 +67,16 @@ public class FileUtils {
         }
     }
 
-
-
-
-
     public static String getPath(Context context) {
-        String url;
-        Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
-        if(isSDPresent)
-        {
-            url = Environment.getExternalStorageDirectory().getAbsolutePath();
-            if (android.os.Build.DEVICE.contains("Samsung") || android.os.Build.MANUFACTURER.contains("Samsung")) {
-                url = url + "/external_sd";
-            }
-            //url = url + "/" + context.getString(R.string.app_name);
-            url = url + "/ownCloud News Reader";
-        }
-        else
-            url = context.getCacheDir().getAbsolutePath();
+        File externalCacheDir = context.getExternalCacheDir();
+        final String cachePath =
+                (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) ||
+                        !Environment.isExternalStorageRemovable()) && externalCacheDir != null ?
+                        externalCacheDir.getPath() :
+                        context.getCacheDir().getPath();
 
-        return url;
+        return cachePath;
     }
-
-
 
     public static boolean DeletePodcastFile(Context context, String url) {
         try {
@@ -106,15 +93,4 @@ public class FileUtils {
     {
         return getPath(context) + "/podcasts";
     }
-
-    public static String getPathFavIcons(Context context)
-    {
-        return getPath(context) + "/favIcons";
-    }
-
-    public static String getPathImageCache(Context context)
-    {
-        return getPath(context) + "/imgCache";
-    }
-
 }

@@ -24,8 +24,9 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -191,18 +192,12 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     public void loadPodcastFavIcon() {
         if(mPodcastPlaybackService.getCurrentlyPlayingPodcast() != null && mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon != null) {
             String favIconUrl = mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon;
-            File cacheFile = ImageHandler.getFullPathOfCacheFileSafe(favIconUrl, FileUtils.getPathFavIcons(this));
-            if(cacheFile != null && cacheFile.exists()) {
-                Picasso.with(PodcastFragmentActivity.this)
-                        .load(cacheFile)
-                        .placeholder(R.drawable.default_feed_icon_light)
-                        .into(mPodcastFragment.imgFavIcon);
-            } else {
-                Picasso.with(PodcastFragmentActivity.this)
-                        .load(favIconUrl)
-                        .placeholder(R.drawable.default_feed_icon_light)
-                        .into(mPodcastFragment.imgFavIcon);
-            }
+            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().
+                    showImageOnLoading(R.drawable.default_feed_icon_light).
+                    showImageForEmptyUri(R.drawable.default_feed_icon_light).
+                    showImageOnFail(R.drawable.default_feed_icon_light).
+                    build();
+            ImageLoader.getInstance().displayImage(favIconUrl,mPodcastFragment.imgFavIcon,displayImageOptions);
         }
     }
 

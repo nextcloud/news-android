@@ -39,6 +39,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.nostra13.universalimageloader.cache.disc.DiskCache;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.io.File;
 import java.io.InputStream;
 import java.util.Date;
@@ -49,7 +52,6 @@ import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.WebViewLinkLongClickInterface;
@@ -263,18 +265,14 @@ public class NewsDetailFragment extends Fragment {
                 feedColor = Integer.parseInt(feed.getAvgColour());
         }
 
-		try {
-            if(favIconUrl != null)
-            {
-                File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, FileUtils.getPathFavIcons(context));
-                if(file.isFile())
-                    favIconUrl = "file://" + file.getAbsolutePath().toString();
-            }
-            else {
-                favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
-            }
-        } catch(Exception ex) {
-            ex.printStackTrace();
+        if(favIconUrl != null)
+        {
+            DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
+            File file = diskCache.get(favIconUrl);
+            if(file != null)
+                favIconUrl = "file://" + file.getAbsolutePath();
+        } else {
+            favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
         }
 
         String body_id;
@@ -331,7 +329,7 @@ public class NewsDetailFragment extends Fragment {
 
         String description = rssItem.getBody();
         builder.append("<div id=\"content\">");
-        builder.append(getDescriptionWithCachedImages(description, context).trim());
+        builder.append(getDescriptionWithCachedImages(description).trim());
         builder.append("</div>");
 
         builder.append("</body></html>");
@@ -342,18 +340,19 @@ public class NewsDetailFragment extends Fragment {
 	}
 
 
-	private static String getDescriptionWithCachedImages(String text, Context context)
+	private static String getDescriptionWithCachedImages(String text)
 	{
 		List<String> links = ImageHandler.getImageLinksFromText(text);
+        DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
 
 		for(String link : links)
 		{
 			link = link.trim();
 			try
 			{
-				File file = ImageHandler.getFullPathOfCacheFile(link, FileUtils.getPathImageCache(context));
-				if(file.isFile())
-					text = text.replace(link, "file://" + file.getAbsolutePath().toString());
+				File file = diskCache.get(link);
+				if(file != null)
+					text = text.replace(link, "file://" + file.getAbsolutePath());
 			}
 			catch(Exception ex)
 			{

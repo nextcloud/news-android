@@ -21,45 +21,34 @@
 
 package de.luhmer.owncloudnewsreader.async_tasks;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import org.apache.http.util.ByteArrayBuffer;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.net.URL;
-import java.net.URLConnection;
 
-import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
 public class GetImageThreaded extends Thread
 {
 	private static final String TAG = "GetImageAsyncTask";
-
 	//private static int count = 0;
 
 	private URL WEB_URL_TO_FILE;
 	private ImageDownloadFinished imageDownloadFinished;
 	private long ThreadId;
-	private String rootPath;
-	private Context cont;
 
 	public boolean scaleImage = false;
 	public int dstHeight; // height in pixels
 	public int dstWidth; // width in pixels
 
-    Bitmap bmp;
+	private static final DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
+			.cacheOnDisk(true)
+			.build();
 
-	public GetImageThreaded(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, long ThreadId, String rootPath, Context cont) {
+	public GetImageThreaded(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, long ThreadId) {
 		try
 		{
 			this.WEB_URL_TO_FILE = new URL(WEB_URL_TO_FILE);
@@ -69,69 +58,15 @@ public class GetImageThreaded extends Thread
             Log.d(TAG, "Invalid URL: " + WEB_URL_TO_FILE, ex);
 		}
 
-		this.cont = cont;
 		imageDownloadFinished = imgDownloadFinished;
 		this.ThreadId = ThreadId;
-		this.rootPath = rootPath;
 		//this.imageViewReference = new WeakReference<ImageView>(imageView);
 	}
 
 
     @Override
     public void run() {
-        try
-        {
-            File cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
-
-            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
-            Feed feed = dbConn.getFeedById(ThreadId);
-            if(!cacheFile.isFile() || (feed != null && feed.getAvgColour() == null))
-            {
-                File dir = new File(rootPath);
-                dir.mkdirs();
-                cacheFile = ImageHandler.getFullPathOfCacheFile(WEB_URL_TO_FILE.toString(), rootPath);
-                //cacheFile.createNewFile();
-
-
-				/* Open a connection to that URL. */
-                URLConnection urlConn = WEB_URL_TO_FILE.openConnection();
-
-                urlConn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
-
-
-                /*
-                 * Define InputStreams to read from the URLConnection.
-                 */
-                InputStream is = urlConn.getInputStream();
-                BufferedInputStream bis = new BufferedInputStream(is);
-
-                /*
-                 * Read bytes to the Buffer until there is nothing more to read(-1).
-                 */
-                ByteArrayBuffer baf = new ByteArrayBuffer(bis.available());
-                int current;
-                while ((current = bis.read()) != -1) {
-                    baf.append((byte) current);
-                }
-
-                //If the file is not empty
-                if(baf.length() > 0) {
-                    bmp = BitmapFactory.decodeByteArray(baf.toByteArray(), 0, baf.length());
-
-                    FileOutputStream fos = new FileOutputStream(cacheFile);
-                    fos.write(baf.toByteArray());
-                    fos.close();
-                }
-            }
-            //return cacheFile.getPath();
-        } catch (OutOfMemoryError E) {
-            Log.v(TAG, "OutOfMemoryError - Image too large!");
-        } catch (FileNotFoundException ex) {
-            Log.v(TAG, "File not found: " + WEB_URL_TO_FILE);
-        } catch(Exception ex) {
-            ex.printStackTrace();
-        }
-        //return bmp;
+        Bitmap bmp = ImageLoader.getInstance().loadImageSync(WEB_URL_TO_FILE.toString(), displayImageOptions);
 
         if(imageDownloadFinished != null)
             imageDownloadFinished.DownloadFinished(ThreadId, bmp);

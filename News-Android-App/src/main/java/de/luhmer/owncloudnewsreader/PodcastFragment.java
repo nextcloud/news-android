@@ -26,7 +26,6 @@ import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.Arrays;

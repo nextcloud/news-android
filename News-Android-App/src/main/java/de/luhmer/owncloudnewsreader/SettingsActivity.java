@@ -36,7 +36,6 @@ import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
@@ -61,12 +60,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.text.DecimalFormat;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -538,18 +534,14 @@ public class SettingsActivity extends PreferenceActivity {
 
 		}
 
-		//clearCache.setText("")
-		clearCachePref.setSummary(_mActivity.getString(R.string.calculating_cache_size));
-
-		new GetCacheSizeAsync().execute((Void)null);
-		clearCachePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+		clearCachePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 
 				((EditTextPreference) preference).getDialog().dismiss();
 
-                CheckForUnsycedChangesInDatabaseAndResetDatabase(_mActivity);
+				CheckForUnsycedChangesInDatabaseAndResetDatabase(_mActivity);
 				return false;
 			}
 		});
@@ -609,7 +601,7 @@ public class SettingsActivity extends PreferenceActivity {
 		}
 	}
 
-    public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Boolean> {
+    public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog pd;
         Context context;
@@ -631,72 +623,18 @@ public class SettingsActivity extends PreferenceActivity {
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(_mActivity);
             dbConn.resetDatabase();
-			return ImageHandler.clearCache(_mActivity);
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-			new GetCacheSizeAsync().execute((Void) null);
-			pd.dismiss();
-			String resultString;
-			if(result)
-                resultString = context.getString(R.string.cache_is_cleared);
-            else
-                resultString = context.getString(R.string.login_dialog_text_something_went_wrong);
-			Toast.makeText(context, resultString, Toast.LENGTH_SHORT).show();
-            super.onPostExecute(result);
-        };
-    }
-
-	public static class GetCacheSizeAsync extends AsyncTask<Void, Void, Void> {
-
-		private String mSize = "0MB";
-		private String mCount;
-		private int count = 0;
-		private long size = 0;
-		private DecimalFormat dcmFormat = new DecimalFormat("#.##");
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			try
-			{
-				getFolderSize(new File(FileUtils.getPath(_mActivity)));
-				mSize = dcmFormat.format(size / 1024d / 1024d) + "MB";
-			}
-			catch(Exception ex)
-			{
-				ex.printStackTrace();
-			} finally {
-				mCount = _mActivity.getResources().getQuantityString(R.plurals.number_of_files,count,count);
-			}
+			ImageHandler.clearCache();
 			return null;
 		}
 
-		@Override
-		protected void onPostExecute(Void result) {
-			if(clearCachePref != null)
-				clearCachePref.setSummary(mCount + " - " + mSize);
-			super.onPostExecute(result);
-		};
-
-		public long getFolderSize(File dir) {
-			if(dir.isDirectory())
-			{
-				for (File file : dir.listFiles()) {
-					//File file = new File(fileS);
-				    if (file.isFile()) {
-				        //System.out.println(file.getName() + " " + file.length());
-				        size += file.length();
-				        count++;
-				    }
-				    else
-				        getFolderSize(file);
-				}
-			}
-			return size;
-		}
-	}
+        @Override
+        protected void onPostExecute(Void result) {
+			pd.dismiss();
+			Toast.makeText(context, context.getString(R.string.cache_is_cleared), Toast.LENGTH_SHORT).show();
+            super.onPostExecute(result);
+        };
+    }
 }
