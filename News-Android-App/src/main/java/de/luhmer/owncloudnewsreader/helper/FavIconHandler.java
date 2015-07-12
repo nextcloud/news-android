@@ -73,9 +73,6 @@ public class FavIconHandler {
         }
 
         GetImageThreaded giAsync = new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId());
-        giAsync.scaleImage = true;
-        giAsync.dstHeight = 2*32;
-        giAsync.dstWidth = 2*32;
 
         giAsync.start();
     }

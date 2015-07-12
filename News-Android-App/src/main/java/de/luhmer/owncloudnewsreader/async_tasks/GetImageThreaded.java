@@ -40,10 +40,6 @@ public class GetImageThreaded extends Thread
 	private ImageDownloadFinished imageDownloadFinished;
 	private long ThreadId;
 
-	public boolean scaleImage = false;
-	public int dstHeight; // height in pixels
-	public int dstWidth; // width in pixels
-
 	private static final DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
 			.cacheOnDisk(true)
 			.build();
