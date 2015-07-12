@@ -59,6 +59,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -660,23 +661,25 @@ public class SettingsActivity extends PreferenceActivity {
 
         @Override
         protected void onPostExecute(Boolean result) {
-			new GetCacheSizeAsync().execute((Void)null);
+			new GetCacheSizeAsync().execute((Void) null);
 			pd.dismiss();
-            if(result)
-                LoginDialogFragment.ShowAlertDialog("Information" , "Cache is cleared!", _mActivity);
+			String resultString;
+			if(result)
+                resultString = context.getString(R.string.cache_is_cleared);
             else
-                LoginDialogFragment.ShowAlertDialog("Information", context.getString(R.string.login_dialog_text_something_went_wrong), _mActivity);
+                resultString = context.getString(R.string.login_dialog_text_something_went_wrong);
+			Toast.makeText(context, resultString, Toast.LENGTH_SHORT).show();
             super.onPostExecute(result);
         };
     }
 
 	public static class GetCacheSizeAsync extends AsyncTask<Void, Void, Void> {
 
-		String mSize = "0MB";
-		String mCount = "0 Files";
-		int count = 0;
-		long size = 0;
-		DecimalFormat dcmFormat = new DecimalFormat("#.##");
+		private String mSize = "0MB";
+		private String mCount;
+		private int count = 0;
+		private long size = 0;
+		private DecimalFormat dcmFormat = new DecimalFormat("#.##");
 
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -684,11 +687,12 @@ public class SettingsActivity extends PreferenceActivity {
 			{
 				getFolderSize(new File(FileUtils.getPath(_mActivity)));
 				mSize = dcmFormat.format(size / 1024d / 1024d) + "MB";
-				mCount = String.valueOf(count) + " Files";
 			}
 			catch(Exception ex)
 			{
 				ex.printStackTrace();
+			} finally {
+				mCount = _mActivity.getResources().getQuantityString(R.plurals.number_of_files,count,count);
 			}
 			return null;
 		}

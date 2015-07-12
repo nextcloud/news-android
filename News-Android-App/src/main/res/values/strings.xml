@@ -94,6 +94,11 @@
 
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Settings</string>
+    <string name="cache_is_cleared">Cache is cleared!</string>
+    <plurals name="number_of_files">
+        <item quantity="one">%d File</item>
+        <item quantity="other">%d Files</item>
+    </plurals>
 
     <!-- General settings -->
     <string name="pref_header_general">General</string>
