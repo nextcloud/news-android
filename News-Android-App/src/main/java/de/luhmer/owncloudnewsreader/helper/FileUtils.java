@@ -24,6 +24,8 @@ package de.luhmer.owncloudnewsreader.helper;
 import android.content.Context;
 import android.os.Environment;
 
+import com.nostra13.universalimageloader.utils.StorageUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -68,14 +70,7 @@ public class FileUtils {
     }
 
     public static String getPath(Context context) {
-        File externalCacheDir = context.getExternalCacheDir();
-        final String cachePath =
-                (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) ||
-                        !Environment.isExternalStorageRemovable()) && externalCacheDir != null ?
-                        externalCacheDir.getPath() :
-                        context.getCacheDir().getPath();
-
-        return cachePath;
+        return StorageUtils.getCacheDirectory(context).getPath();
     }
 
     public static boolean DeletePodcastFile(Context context, String url) {
