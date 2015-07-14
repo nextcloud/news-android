@@ -155,21 +155,11 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         if(holder.flPlayPausePodcastWrapper != null) {
             if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(item.getEnclosureMime())) {
                 final boolean isPlaying = idOfCurrentlyPlayedPodcast == item.getId();
-                int drawableResource;
+                int state = (isPlaying ? 1 : -1) * android.R.attr.state_active;
                 //Enable podcast buttons in view
                 holder.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
 
-                // TODO: material icons for dark theme
-                if (ThemeChooser.isDarkTheme(activity)) {
-                    drawableResource = isPlaying ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
-                } else {
-                    drawableResource = isPlaying ? R.drawable.ic_action_pause : R.drawable.ic_action_play_arrow;
-                }
-                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) holder.btnPlayPausePodcast.getLayoutParams();
-                params.setMargins(DpToPx(activity, isPlaying ? 0 : 2), 0, 0, 0);
-                holder.btnPlayPausePodcast.setLayoutParams(params);
-                holder.btnPlayPausePodcast.setBackgroundResource(drawableResource);
-
+                holder.btnPlayPausePodcast.getDrawable().setState(new int[]{state});
 
                 holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -11,6 +11,8 @@
 
         <item name="dividerLineColor">#1effffff</item>
         <item name="rssItemListBackground">@color/material_grey_900</item>
+
+        <item name="playpauseDrawable">@drawable/newsreader_playpause</item>
     </style>
 
 
@@ -29,6 +31,8 @@
 
         <item name="dividerLineColor">#1e000000</item>
         <item name="rssItemListBackground">#ffdedede</item>
+
+        <item name="playpauseDrawable">@drawable/newsreader_playpause_light</item>
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
