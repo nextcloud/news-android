@@ -4,6 +4,10 @@
     <attr name="dividerLineColor" format="color" />
 
     <attr name="rssItemListBackground" format="color" />
+    <attr name="starredColor" format="color" />
+
+    <attr name="markasreadDrawable" format="reference" />
+    <attr name="starredDrawable" format="reference" />
 
     <attr name="playpauseDrawable" format="reference" />
 

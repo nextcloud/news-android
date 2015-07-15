@@ -4,19 +4,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content">
+    android:layout_width="wrap_content"
+    android:background="?attr/selectableItemBackground">
+
     <View
         android:id="@+id/color_line_feed"
         android:layout_height="match_parent"
         android:layout_width="4dp"
-        android:background="?attr/dividerLineColor" />
+        android:background="?attr/dividerLineColor"
+        android:layout_marginEnd="@dimen/listview_row_margin_left"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star_imageview"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_action_star_light"
+        android:layout_marginEnd="@dimen/listview_row_margin_left"
+        android:tint="?attr/starredColor" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
         android:descendantFocusability="blocksDescendants"
-        android:layout_marginStart="@dimen/listview_row_margin_left"
         android:layout_marginEnd="@dimen/listview_row_margin_right"
         android:layout_marginTop="@dimen/listview_row_margin_top"
         android:layout_marginBottom="@dimen/listview_row_margin_bottom"
@@ -35,7 +45,8 @@
             android:minLines="2"
             android:maxLines="2"
             android:layout_alignParentTop="true"
-            android:layout_toStartOf="@layout/subscription_detail_list_item_podcast_wrapper" />
+            android:layout_toLeftOf="@+id/podcast_wrapper"
+            android:layout_toStartOf="@+id/podcast_wrapper"/>
 
         <ImageView
             android:id="@+id/imgViewFavIcon"
@@ -46,16 +57,6 @@
             android:layout_alignParentStart="true"
             tools:src="@drawable/default_feed_icon_light" />
 
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:id="@+id/star_imageview"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_action_star_light"
-            android:layout_below="@+id/summary"
-            android:layout_alignParentStart="false"
-            android:layout_toEndOf="@+id/imgViewFavIcon" />
-
         <TextView
             android:id="@+id/tv_subscription"
             android:layout_width="wrap_content"
@@ -65,8 +66,6 @@
             android:textSize="13sp"
             tools:text="PortableApps.com"
             android:layout_below="@+id/summary"
-            android:layout_toRightOf="@+id/star_imageview"
-            android:layout_toLeftOf="@+id/tv_item_date"
             android:layout_toStartOf="@+id/tv_item_date"
             android:layout_toEndOf="@+id/imgViewFavIcon" />
 
@@ -78,7 +77,7 @@
             android:singleLine="true"
             android:textSize="13sp"
             tools:text="vor 13 Stunden"
-            android:layout_toStartOf="@layout/subscription_detail_list_item_podcast_wrapper"
+            android:layout_toStartOf="@+id/podcast_wrapper"
             android:layout_alignParentEnd="true"
             android:layout_alignBaseline="@id/tv_subscription"/>
 
@@ -87,7 +86,9 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/summary" />
+            android:layout_alignBottom="@+id/summary"
+            android:id="@+id/podcast_wrapper"
+            android:layout_centerVertical="true" />
 
     </RelativeLayout>
 

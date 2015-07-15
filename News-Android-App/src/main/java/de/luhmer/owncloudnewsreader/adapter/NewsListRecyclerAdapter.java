@@ -114,40 +114,10 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         holder.setRssItem(item);
 
-        holder.cbStarred.setOnCheckedChangeListener(null);
-
-        holder.cbStarred.setChecked(item.getStarred_temp());
-        holder.cbStarred.setClickable(true);
-
-        holder.cbStarred.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                item.setStarred_temp(isChecked);
-                dbConn.updateRssItem(item);
-
-                if (isChecked)
-                    holder.setReadState(true);
-
-                pDelayHandler.DelayTimer();
-            }
-        });
-
         holder.setStayUnread(stayUnreadItems.contains(item.getId()));
-        holder.cbRead.setOnCheckedChangeListener(null);
 
-        Boolean isRead = item.getRead_temp();
-        //Log.d("ISREAD", "" + isChecked + " - Cursor: " + cursor.getString(0));
-        holder.setReadState(isRead);
-
-        holder.cbRead.setClickable(true);
-        holder.cbRead.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ChangeReadStateOfItem(holder, isChecked);
-            }
-        });
+        holder.setReadState(item.getRead_temp());
+        holder.setStarred(item.getStarred_temp());
 
         holder.setClickListener((RecyclerItemClickListener) activity);
 
@@ -220,6 +190,25 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         viewHolder.setReadState(isChecked);
         stayUnreadItems.add(rssItem.getId());
+    }
+
+    public void toggleReadStateOfItem(ViewHolder viewHolder) {
+        RssItem rssItem = viewHolder.getRssItem();
+        boolean isRead = !rssItem.getRead_temp();
+        ChangeReadStateOfItem(viewHolder,isRead);
+    }
+
+    public void toggleStarredStateOfItem(ViewHolder viewHolder) {
+        RssItem rssItem = viewHolder.getRssItem();
+        boolean isStarred = !rssItem.getStarred_temp();
+        rssItem.setStarred_temp(isStarred);
+        if(isStarred) {
+            ChangeReadStateOfItem(viewHolder,true);
+        } else {
+            dbConn.updateRssItem(rssItem);
+            pDelayHandler.DelayTimer();
+        }
+        viewHolder.setStarred(isStarred);
     }
 
     @Override

@@ -29,11 +29,9 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final static String TAG = "RecyclerView.ViewHolder";
 
-    @InjectView(R.id.cb_lv_item_starred)
-    CheckBox cbStarred;
-
-    @InjectView(R.id.cb_lv_item_read)
-    CheckBox cbRead;
+    @Optional
+    @InjectView(R.id.star_imageview)
+    protected View starImageView;
 
     @InjectView(R.id.summary)
     protected TextView textViewSummary;
@@ -53,8 +51,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     @InjectView(R.id.btn_playPausePodcast)
     ImageView btnPlayPausePodcast;
 
-    @InjectView(R.id.fl_playPausePodcastWrapper)
-    FrameLayout flPlayPausePodcastWrapper;
+    @InjectView(R.id.podcast_wrapper)
+    View flPlayPausePodcastWrapper;
 
      // Only in extended with webview layout
     @Optional @InjectView(R.id.body)
@@ -75,7 +73,6 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             favIconHandler = new FavIconHandler(itemView.getContext());
         ButterKnife.inject(this, itemView);
         if(ThemeChooser.isDarkTheme(itemView.getContext())) {
-            cbStarred.setButtonDrawable(itemView.getResources().getDrawable(R.drawable.checkbox_background_holo_dark));
             if(textViewBody != null)
                 textViewBody.setTextColor(itemView.getResources().getColor(R.color.extended_listview_item_body_text_color_dark_theme));
         }
@@ -97,7 +94,6 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     }
 
     public void setReadState(boolean isRead) {
-        cbRead.setChecked(isRead);
         if(textViewSummary != null) {
             if (isRead)
                 textViewSummary.setTypeface(Typeface.DEFAULT);
@@ -108,7 +104,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     }
 
     public void setStarred(boolean isStarred) {
-
+        // TODO: extended view
+        if(isStarred)
+            starImageView.setVisibility(View.VISIBLE);
+        else
+            starImageView.setVisibility(View.GONE);
     }
 
     public RssItem getRssItem() {

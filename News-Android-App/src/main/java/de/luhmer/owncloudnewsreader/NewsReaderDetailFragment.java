@@ -21,8 +21,13 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -33,6 +38,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,7 +79,11 @@ public class NewsReaderDetailFragment extends Fragment {
 	//private boolean DialogShowedToMarkLastItemsAsRead = false;
 
 	Long idFeed;
-	/**
+
+    private Drawable markAsReadDrawable;
+    private Drawable starredDrawable;
+
+    /**
 	 * @return the idFeed
 	 */
 	public Long getIdFeed() {
@@ -352,13 +363,86 @@ public class NewsReaderDetailFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_newsreader_detail, container, false);
         ButterKnife.inject(this, rootView);
-		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new NewsReaderItemTouchHelperCallback());
+        itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+
         swipeRefresh.setColorSchemeResources(R.color.owncloudBlueLight);
         swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) getActivity());
+
         return rootView;
 	}
+
+    @Override
+    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
+        super.onInflate(activity, attrs, savedInstanceState);
+        TypedArray a = activity.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable,R.attr.starredDrawable});
+        markAsReadDrawable = a.getDrawable(0);
+        starredDrawable = a.getDrawable(1);
+        a.recycle();
+    }
+
+    // TODO: somehow always cancel item out animation
+    private class NewsReaderItemTouchHelperCallback extends ItemTouchHelper.SimpleCallback {
+        public NewsReaderItemTouchHelperCallback() {
+            super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+        }
+
+        @Override
+        public float getSwipeThreshold(RecyclerView.ViewHolder viewHolder) {
+            return 0.25f;
+        }
+
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int direction) {
+            final NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
+            if(direction == ItemTouchHelper.LEFT) {
+                adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
+            } else if(direction == ItemTouchHelper.RIGHT) {
+                adapter.toggleStarredStateOfItem((ViewHolder) viewHolder);
+            }
+            // Hack to reset view, see https://code.google.com/p/android/issues/detail?id=175798
+            recyclerView.removeView(viewHolder.itemView);
+        }
+
+        @Override
+        public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            // swipeRefresh cancels swiping left/right when accidentally moving in the y direction;
+            swipeRefresh.setEnabled(!isCurrentlyActive);
+            if(isCurrentlyActive) {
+                Rect viewRect = new Rect();
+                viewHolder.itemView.getDrawingRect(viewRect);
+                float fractionMoved = Math.abs(dX/viewHolder.itemView.getMeasuredWidth());
+                Drawable drawable;
+                if(dX < 0) {
+                    drawable = markAsReadDrawable;
+                    viewRect.left = (int) dX + viewRect.right;
+                } else {
+                    drawable = starredDrawable;
+                    viewRect.right = (int) dX - viewRect.left;
+                }
+
+                if(fractionMoved > getSwipeThreshold(viewHolder))
+                    drawable.setState(new int[]{android.R.attr.state_above_anchor});
+                else
+                    drawable.setState(new int[]{-android.R.attr.state_above_anchor});
+
+                viewRect.offset(0,viewHolder.itemView.getTop());
+                drawable.setBounds(viewRect);
+                drawable.draw(c);
+            }
+        }
+    }
 
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
