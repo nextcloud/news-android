@@ -82,6 +82,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
     private Drawable markAsReadDrawable;
     private Drawable starredDrawable;
+    private int accentColor;
 
     /**
 	 * @return the idFeed
@@ -152,7 +153,7 @@ public class NewsReaderDetailFragment extends Fragment {
         this.titel = titel;
         setUpdateListViewOnStartUp(updateListView);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(titel);
-        UpdateCurrentRssView(getActivity(),true);
+        UpdateCurrentRssView(getActivity(), true);
     }
 
     @Override
@@ -371,7 +372,7 @@ public class NewsReaderDetailFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
 
-        swipeRefresh.setColorSchemeResources(R.color.owncloudBlueLight);
+        swipeRefresh.setColorSchemeColors(accentColor);
         swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) getActivity());
 
         return rootView;
@@ -380,9 +381,10 @@ public class NewsReaderDetailFragment extends Fragment {
     @Override
     public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(activity, attrs, savedInstanceState);
-        TypedArray a = activity.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable,R.attr.starredDrawable});
+        TypedArray a = activity.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable,R.attr.starredDrawable,R.attr.colorAccent});
         markAsReadDrawable = a.getDrawable(0);
         starredDrawable = a.getDrawable(1);
+        accentColor = a.getColor(2,activity.getResources().getColor(R.color.owncloudBlueLight));
         a.recycle();
     }
 
