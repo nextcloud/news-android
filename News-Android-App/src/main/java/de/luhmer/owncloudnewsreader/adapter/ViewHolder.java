@@ -35,34 +35,34 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     @InjectView(R.id.cb_lv_item_read)
     CheckBox cbRead;
 
-    @Optional @InjectView(R.id.summary)
+    @InjectView(R.id.summary)
     protected TextView textViewSummary;
 
-    @Optional @InjectView(R.id.tv_item_date)
+    @InjectView(R.id.tv_item_date)
     protected TextView textViewItemDate;
 
-    @Optional @InjectView(R.id.tv_subscription)
+    @InjectView(R.id.tv_subscription)
     protected TextView textViewTitle;
 
-    @Optional @InjectView(R.id.imgViewFavIcon)
+    @InjectView(R.id.imgViewFavIcon)
     protected ImageView imgViewFavIcon;
 
     @InjectView(R.id.color_line_feed)
     protected View colorLineFeed;
 
-    @Optional @InjectView(R.id.body)
-    protected TextView textViewBody;
-
-    @Optional @InjectView(R.id.webView_body)
-    protected WebView webView_body;
-
-    @Optional
     @InjectView(R.id.btn_playPausePodcast)
     ImageView btnPlayPausePodcast;
 
-    @Optional
     @InjectView(R.id.fl_playPausePodcastWrapper)
     FrameLayout flPlayPausePodcastWrapper;
+
+     // Only in extended with webview layout
+    @Optional @InjectView(R.id.body)
+    protected TextView textViewBody;
+
+    // only in extended layout
+    @Optional @InjectView(R.id.webView_body)
+    protected WebView webView_body;
 
     private RecyclerItemClickListener clickListener;
     private RssItem rssItem;
@@ -101,9 +101,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         if(textViewSummary != null) {
             if (isRead)
                 textViewSummary.setTypeface(Typeface.DEFAULT);
-            else {
+            else
                 textViewSummary.setTypeface(Typeface.DEFAULT_BOLD);
-            }
             textViewSummary.invalidate();
         }
     }
@@ -128,7 +127,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             Log.v(TAG, "Feed not found!!!");
         }
 
-        setFeedColor(ColorHelper.getFeedColor(itemView.getContext(),rssItem.getFeed()));
+        setFeedColor(ColorHelper.getFeedColor(itemView.getContext(), rssItem.getFeed()));
 
         if(textViewSummary != null)
             textViewSummary.setText(Html.fromHtml(rssItem.getTitle()).toString());
@@ -147,9 +146,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon);
 
         if(webView_body != null) {
-            String htmlPage = NewsDetailFragment.getHtmlPage(itemView.getContext(),rssItem);
-            webView_body.setClickable(false);
-            webView_body.setFocusable(false);
+            String htmlPage = NewsDetailFragment.getHtmlPage(itemView.getContext(),rssItem,false);
             webView_body.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
         }
     }

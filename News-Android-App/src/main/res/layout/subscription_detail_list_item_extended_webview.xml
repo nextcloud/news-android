@@ -2,57 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="500dp"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <!--
-    android:background="@drawable/checkbox_background"
-        android:button="@drawable/checkbox" 
-     -->
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="right" >
-
-        <View
-	        android:id="@+id/color_line_feed"
-	        android:layout_width="@dimen/color_bar_of_feeds"
-	        android:layout_height="fill_parent"
-	        android:background="?attr/dividerLineColor"/>
-        
-        <TextView
-            android:id="@+id/tv_clickHereToOpen"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical|left"
-            android:textSize="15sp"  
-            android:layout_weight="1"
-			android:layout_marginLeft="@dimen/listview_row_margin_left"
-            android:gravity="center_vertical"
-            android:text="@string/tv_clickHereToOpenItem" />
-
-        <CheckBox
-            android:id="@+id/cb_lv_item_starred"
-            android:layout_width="27dp"
-            android:layout_height="27dp"
-            android:clickable="false"
-            android:focusable="false"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:button="@drawable/checkbox_background_holo_light" />
-
-
-        <CheckBox
-            android:id="@+id/cb_lv_item_read"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="center_vertical"
-            android:paddingRight="@dimen/listview_row_margin_right"
-            android:clickable="false"
-            android:focusable="false" />
-    </LinearLayout>
+    <include layout="@layout/subscription_detail_list_item_simple" />
 
     <WebView
         android:id="@+id/webView_body"

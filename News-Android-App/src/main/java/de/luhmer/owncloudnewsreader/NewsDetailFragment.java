@@ -156,7 +156,7 @@ public class NewsDetailFragment extends Fragment {
 
             RssItem rssItem = ndActivity.rssItems.get(section_number);
 
-            return getHtmlPage(ndActivity, rssItem);
+            return getHtmlPage(ndActivity, rssItem, true);
         }
 
         @Override
@@ -248,7 +248,7 @@ public class NewsDetailFragment extends Fragment {
 
 
 	@SuppressLint("SimpleDateFormat")
-	public static String getHtmlPage(Context context, RssItem rssItem)
+	public static String getHtmlPage(Context context, RssItem rssItem, boolean showHeader)
 	{
         String feedTitle = "Undefined";
         String favIconUrl = null;
@@ -294,38 +294,40 @@ public class NewsDetailFragment extends Fragment {
                         ColorHelper.getCssColor(colors[1]))
         );
         builder.append("</style>");
-        builder.append(String.format("</head><body id=\"%s\"><div id=\"top_section\">",body_id));
+        builder.append(String.format("</head><body id=\"%s\">",body_id));
 
-        builder.append("<div id=\"header\">");
-        String title = rssItem.getTitle();
-        String linkToFeed = rssItem.getLink();
-        builder.append(String.format("<a href=\"%s\">%s</a>",linkToFeed,title));
-        builder.append("</div>");
+        if(showHeader) {
+            builder.append("<div id=\"top_section\">");
+            builder.append("<div id=\"header\">");
+            String title = rssItem.getTitle();
+            String linkToFeed = rssItem.getLink();
+            builder.append(String.format("<a href=\"%s\">%s</a>", linkToFeed, title));
+            builder.append("</div>");
 
-        String authorOfArticle = rssItem.getAuthor();
-        if(authorOfArticle != null)
-            if(!authorOfArticle.trim().equals(""))
-                feedTitle += " - " + authorOfArticle.trim();
+            String authorOfArticle = rssItem.getAuthor();
+            if (authorOfArticle != null)
+                if (!authorOfArticle.trim().equals(""))
+                    feedTitle += " - " + authorOfArticle.trim();
 
-        builder.append("<div id=\"header_small_text\">");
+            builder.append("<div id=\"header_small_text\">");
 
-        builder.append("<div id=\"subscription\">");
-        builder.append(String.format("<img id=\"imgFavicon\" src=\"%s\" />", favIconUrl));
-        builder.append(feedTitle.trim());
-        builder.append("</div>");
+            builder.append("<div id=\"subscription\">");
+            builder.append(String.format("<img id=\"imgFavicon\" src=\"%s\" />", favIconUrl));
+            builder.append(feedTitle.trim());
+            builder.append("</div>");
 
-        Date date = rssItem.getPubDate();
-        if(date != null)
-        {
-            String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
-            builder.append("<div id=\"datetime\">");
-            builder.append(dateString);
+            Date date = rssItem.getPubDate();
+            if (date != null) {
+                String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
+                builder.append("<div id=\"datetime\">");
+                builder.append(dateString);
+                builder.append("</div>");
+            }
+
+            builder.append("</div>");
+
             builder.append("</div>");
         }
-
-        builder.append("</div>");
-
-        builder.append("</div>");
 
         String description = rssItem.getBody();
         builder.append("<div id=\"content\">");
