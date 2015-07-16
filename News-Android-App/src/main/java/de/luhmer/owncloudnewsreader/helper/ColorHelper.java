@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 
+import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
+
 /**
  * Created by daniel on 11.07.15.
  */
@@ -27,5 +31,22 @@ public class ColorHelper {
         }
         a.recycle();
         return colors;
+    }
+
+    public static int getColorFromAttribute(Context context, int attr) {
+        int[] colors = getColorsFromAttributes(context, attr);
+        if(colors.length >= 1)
+            return colors[0];
+        else
+            return 0;
+    }
+
+    public static int getFeedColor(Context context, Feed item) {
+        int color;
+        if(item != null && item.getAvgColour() != null)
+            color = Integer.parseInt(item.getAvgColour());
+        else
+            color = getColorFromAttribute(context, R.attr.dividerLineColor);
+        return color;
     }
 }

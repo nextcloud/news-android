@@ -19,6 +19,7 @@ import butterknife.Optional;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
@@ -123,15 +124,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         if(rssItem.getFeed() != null) {
             title = rssItem.getFeed().getFeedTitle();
             favIconUrl = rssItem.getFeed().getFaviconUrl();
-
-            String colorString = rssItem.getFeed().getAvgColour();
-            if (colorString != null)
-                setFeedColor(Integer.parseInt(colorString));
-            else
-                Log.v(TAG, "NO COLOR SET! - " + rssItem.getFeed().getFeedTitle());
         } else {
             Log.v(TAG, "Feed not found!!!");
         }
+
+        setFeedColor(ColorHelper.getFeedColor(itemView.getContext(),rssItem.getFeed()));
 
         if(textViewSummary != null)
             textViewSummary.setText(Html.fromHtml(rssItem.getTitle()).toString());
