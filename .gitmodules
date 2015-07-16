@@ -4,9 +4,6 @@
 [submodule "ownCloud-Account-Importer"]
 	path = ownCloud-Account-Importer
 	url = https://github.com/David-Development/ownCloud-Account-Importer.git
-[submodule "ShowcaseView"]
-	path = ShowcaseView
-	url = https://github.com/amlcurran/ShowcaseView.git
 [submodule "custom-tabs-client"]
 	path = custom-tabs-client
 	url = https://github.com/GoogleChrome/custom-tabs-client

@@ -1,0 +1,258 @@
+package de.luhmer.owncloudnewsreader.adapter;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.style.ForegroundColorSpan;
+import android.util.Log;
+import android.util.SparseArray;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CompoundButton;
+
+import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
+
+import java.io.File;
+import java.util.HashSet;
+
+import de.greenrobot.dao.query.LazyList;
+import de.greenrobot.event.EventBus;
+
+import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
+
+/**
+ * Created by daniel on 28.06.15.
+ */
+public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
+    private static final String TAG = "NewsListRecyclerAdapter";
+
+    public static SparseArray<Integer> downloadProgressList = new SparseArray<Integer>();
+    private long idOfCurrentlyPlayedPodcast = -1;
+
+    private LazyList<RssItem> lazyList;
+    private int titleLineCount;
+    private DatabaseConnectionOrm dbConn;
+    private final int LengthBody = 400;
+    private ForegroundColorSpan bodyForegroundColor;
+    private PostDelayHandler pDelayHandler;
+    private FragmentActivity activity;
+    private HashSet<Long> stayUnreadItems = new HashSet<>();
+
+    private IPlayPausePodcastClicked playPausePodcastClicked;
+
+    public NewsListRecyclerAdapter(FragmentActivity activity, LazyList<RssItem> lazyList, IPlayPausePodcastClicked playPausePodcastClicked) {
+        this.lazyList = lazyList;
+        this.activity = activity;
+        this.playPausePodcastClicked = playPausePodcastClicked;
+
+        pDelayHandler = new PostDelayHandler(activity);
+
+        bodyForegroundColor = new ForegroundColorSpan(activity.getResources().getColor(android.R.color.secondary_text_dark));
+
+        dbConn = new DatabaseConnectionOrm(activity);
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        titleLineCount = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_TITLE_LINES_COUNT, "2"));
+        setHasStableIds(true);
+
+        EventBus.getDefault().register(this);
+    }
+
+    public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
+        if (podcast.isPlaying()) {
+            if (podcast.getRssItemId() != idOfCurrentlyPlayedPodcast) {
+                idOfCurrentlyPlayedPodcast = podcast.getRssItemId();
+                notifyDataSetChanged();
+
+                Log.v(TAG, "Updating Listview - Podcast started");
+            }
+        } else if (idOfCurrentlyPlayedPodcast != -1) {
+            idOfCurrentlyPlayedPodcast = -1;
+            notifyDataSetChanged();
+
+            Log.v(TAG, "Updating Listview - Podcast paused");
+        }
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        Integer layout = 0;
+        switch(Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"))) {
+            case 0:
+                layout = R.layout.subscription_detail_list_item_simple;
+                break;
+            case 1:
+                layout = R.layout.subscription_detail_list_item_extended;
+                break;
+            case 2:
+                layout = R.layout.subscription_detail_list_item_extended_webview;
+                break;
+        }
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(layout, parent, false);
+        return new ViewHolder(view,titleLineCount);
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        final RssItem item = lazyList.get(position);
+
+        holder.setRssItem(item);
+
+        holder.cbStarred.setOnCheckedChangeListener(null);
+
+        holder.cbStarred.setChecked(item.getStarred_temp());
+        holder.cbStarred.setClickable(true);
+
+        holder.cbStarred.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                item.setStarred_temp(isChecked);
+                dbConn.updateRssItem(item);
+
+                if (isChecked)
+                    holder.setReadState(true);
+
+                pDelayHandler.DelayTimer();
+            }
+        });
+
+        holder.setStayUnread(stayUnreadItems.contains(item.getId()));
+        holder.cbRead.setOnCheckedChangeListener(null);
+
+        Boolean isRead = item.getRead_temp();
+        //Log.d("ISREAD", "" + isChecked + " - Cursor: " + cursor.getString(0));
+        holder.setReadState(isRead);
+
+        holder.cbRead.setClickable(true);
+        holder.cbRead.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ChangeReadStateOfItem(holder, isChecked);
+            }
+        });
+
+        holder.setClickListener((RecyclerItemClickListener) activity);
+
+        //Podcast stuff
+        if(holder.flPlayPausePodcastWrapper != null) {
+            if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(item.getEnclosureMime())) {
+                final boolean isPlaying = idOfCurrentlyPlayedPodcast == item.getId();
+                int drawableResource;
+                //Enable podcast buttons in view
+                holder.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
+
+                // TODO: material icons for dark theme
+                if (ThemeChooser.isDarkTheme(activity)) {
+                    drawableResource = isPlaying ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
+                } else {
+                    drawableResource = isPlaying ? R.drawable.ic_action_pause : R.drawable.ic_action_play_arrow;
+                }
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) holder.btnPlayPausePodcast.getLayoutParams();
+                params.setMargins(DpToPx(activity, isPlaying ? 0 : 2), 0, 0, 0);
+                holder.btnPlayPausePodcast.setLayoutParams(params);
+                holder.btnPlayPausePodcast.setBackgroundResource(drawableResource);
+
+
+                holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (isPlaying) {
+                            playPausePodcastClicked.pausePodcast();
+                        } else {
+                            playPausePodcastClicked.openPodcast(item);
+                        }
+                    }
+                });
+
+                setDownloadPodcastProgressbar(holder.itemView, item);
+            } else {
+                holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    public static int DpToPx(Context context, int dp) {
+        Resources r = context.getResources();
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dp,
+                r.getDisplayMetrics());
+    }
+
+    public void setDownloadPodcastProgressbar(View view, RssItem rssItem) {
+        HoloCircularProgressBar pbPodcastDownloadProgress = (HoloCircularProgressBar) view.findViewById(R.id.podcastDownloadProgress);
+
+        if(!ThemeChooser.isDarkTheme(activity)) {
+            pbPodcastDownloadProgress.setProgressBackgroundColor(view.getContext().getResources().getColor(R.color.slide_up_panel_header_background_color));
+        }
+
+        if(PodcastAlreadyCached(view.getContext(), rssItem.getEnclosureLink()))
+            pbPodcastDownloadProgress.setProgress(1);
+        else {
+            if(downloadProgressList.get(rssItem.getId().intValue()) != null) {
+                float progressInPercent = downloadProgressList.get(rssItem.getId().intValue()) / 100f;
+                pbPodcastDownloadProgress.setProgress(progressInPercent);
+            } else {
+                pbPodcastDownloadProgress.setProgress(0);
+            }
+        }
+    }
+
+    public static boolean PodcastAlreadyCached(Context context, String podcastUrl) {
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastUrl, false));
+        return file.exists();
+    }
+
+    public void ChangeReadStateOfItem(ViewHolder viewHolder, boolean isChecked) {
+        RssItem rssItem = viewHolder.getRssItem();
+        rssItem.setRead_temp(isChecked);
+        dbConn.updateRssItem(rssItem);
+
+        pDelayHandler.DelayTimer();
+
+        viewHolder.setReadState(isChecked);
+        stayUnreadItems.add(rssItem.getId());
+    }
+
+    @Override
+    public int getItemCount() {
+        return lazyList != null ? lazyList.size(): 0;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        if(lazyList != null) {
+            RssItem item = lazyList.get(position);
+            return item != null ? item.getId() : 0;
+        }
+        return 0;
+    }
+
+    public RssItem getItem(int position) {
+        return lazyList.get(position);
+    }
+
+    public void setLazyList(LazyList<RssItem> lazyList) {
+        this.lazyList.close();
+        this.lazyList = lazyList;
+        notifyDataSetChanged();
+    }
+}

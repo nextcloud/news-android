@@ -21,41 +21,32 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.CheckBox;
-import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import org.apache.commons.lang3.time.StopWatch;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.event.EventBus;
-import de.luhmer.owncloudnewsreader.ListView.BlockingListView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
-import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
-import de.luhmer.owncloudnewsreader.cursor.IOnStayUnread;
-import de.luhmer.owncloudnewsreader.cursor.NewsListCursorAdapter;
+import de.luhmer.owncloudnewsreader.adapter.DividerItemDecoration;
+import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
+import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -66,7 +57,7 @@ import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
  * either contained in a {@link NewsReaderListActivity} in two-pane mode (on
  * tablets) or a {@link NewsReaderListActivity} on handsets.
  */
-public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnread {
+public class NewsReaderDetailFragment extends Fragment {
 	/**
 	 * The fragment argument representing the item ID that this fragment
 	 * represents.
@@ -103,19 +94,14 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 		return titel;
 	}
 
-	/**
-	 * The current activated item position. Only used on tablets.
-	 */
-	private int mActivatedPosition = ListView.INVALID_POSITION;
-	private int marginFromTop = ListView.INVALID_POSITION;
-
     private boolean reloadCursorOnStartUp = false;
 
 	//private static ArrayList<Integer> databaseIdsOfItems;
-	HashSet<Long> stayUnreadRssItems;
+    private static final String LAYOUT_MANAGER_STATE = "LAYOUT_MANAGER_STATE";
 
     @InjectView(R.id.pb_loading) ProgressBar pbLoading;
-    @InjectView(R.id.tv_no_items_available) TextView tvNoItemsAvailable;
+    @InjectView(R.id.tv_no_items_available) View tvNoItemsAvailable;
+    @InjectView(R.id.list) RecyclerView recyclerView;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -123,20 +109,11 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	 */
 	public NewsReaderDetailFragment() {
 		//databaseIdsOfItems = new ArrayList<Integer>();
-        stayUnreadRssItems = new HashSet<>();
 	}
 
     public void setUpdateListViewOnStartUp(boolean reloadCursorOnStartUp) {
         this.reloadCursorOnStartUp = reloadCursorOnStartUp;
     }
-
-	public void setActivatedPosition(int position) {
-		mActivatedPosition = position;
-	}
-	public void setMarginFromTop(int margin) {
-		marginFromTop = margin;
-	}
-
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -160,8 +137,9 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
         EventBus.getDefault().register(this);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
         if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false)) {
-            getListView().setOnScrollListener(ListScrollListener);
+            recyclerView.addOnScrollListener(ListScrollListener);
         }
 
         if(reloadCursorOnStartUp)
@@ -178,42 +156,27 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
         super.onPause();
     }
 
-    private AbsListView.OnScrollListener ListScrollListener = new AbsListView.OnScrollListener() {
+    private RecyclerView.OnScrollListener ListScrollListener = new RecyclerView.OnScrollListener() {
+            //CheckBox lastViewedArticleCheckbox = null;
 
         @Override
-        public void onScrollStateChanged(AbsListView view, int scrollState) {
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 
         }
 
         @Override
-        public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
-
-            //When there are no items in the list
-            if(totalItemCount <= 0) {
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            if(dy == 0 || recyclerView.getChildCount() <= 0)
                 return;
-            }
 
-            //If list is loaded and the event is triggered even if no scroll gesture was performed
-            if(firstVisibleItem == 0 && view.getChildAt(0).getTop() == 0) {
-                return;
-            }
+            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+            int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+            int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
 
-            List<CheckBox> checkBoxes = new ArrayList<>();
-            checkBoxes.add(getCheckBoxAtPosition(0, view));
-
-            //Check if Listview is scrolled to bottom
-            if (view.getLastVisiblePosition() == (totalItemCount-1) && view.getChildAt(visibleItemCount-1).getBottom() <= view.getHeight())
-            {
-                for (int i = 1; i < visibleItemCount; i++) {
-                    checkBoxes.add(getCheckBoxAtPosition(i, view));
-                }
-            }
-
-            for(CheckBox cb : checkBoxes) {
-                Long rssItemId = (Long)cb.getTag();
-
-                if(!cb.isChecked() && !stayUnreadRssItems.contains(rssItemId)) {
-                    NewsListArrayAdapter.ChangeCheckBoxState(cb, true);
+            for(int i=firstVisibleItem;i<=lastVisibleItem;i++) {
+                ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(i);
+                if(vh != null && !vh.shouldStayUnread()) {
+                    vh.setReadState(true);
                 }
             }
         }
@@ -241,36 +204,20 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
         super.onViewCreated(view, savedInstanceState);
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(titel);
-	}
-
-
-	private CheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
-	{
-		ListView lv = (ListView) viewLV;
-		View view = lv.getChildAt(pos);
-		if(view != null)
-			return (CheckBox) view.findViewById(R.id.cb_lv_item_read);
-		else
-			return null;
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-	}
-
+    }
 
     public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
-        NewsListArrayAdapter nca = (NewsListArrayAdapter) getListAdapter();
+        NewsListRecyclerAdapter nca = (NewsListRecyclerAdapter) recyclerView.getAdapter();
         if(nca != null) {
-            nca.downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
+            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+            NewsListRecyclerAdapter.downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
 
             RssItem currentRssItem;
-            for (int i = getListView().getFirstVisiblePosition(); i < getListView().getLastVisiblePosition(); i++) {
-                currentRssItem = (RssItem) getListAdapter().getItem(i);
+            for (int i = linearLayoutManager.findFirstVisibleItemPosition(); i < linearLayoutManager.findLastVisibleItemPosition(); i++) {
+                currentRssItem = nca.getItem(i);
                 if (currentRssItem.getId().equals(downloadProgress.podcast.itemId)) {
-                    int position = i - getListView().getFirstVisiblePosition();
-                    nca.setDownloadPodcastProgressbar(getListView().getChildAt(position), currentRssItem);
+                    int position = i - linearLayoutManager.findFirstVisibleItemPosition();
+                    nca.setDownloadPodcastProgressbar(linearLayoutManager.getChildAt(position), currentRssItem);
                     break;
                 }
             }
@@ -279,7 +226,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
 	public void notifyDataSetChangedOnAdapter()
 	{
-        NewsListArrayAdapter nca = (NewsListArrayAdapter) getListAdapter();
+        NewsListRecyclerAdapter nca = (NewsListRecyclerAdapter) recyclerView.getAdapter();
         if(nca != null)
             nca.notifyDataSetChanged();
 	}
@@ -291,6 +238,15 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
     public void UpdateCurrentRssView(Context context, boolean refreshCurrentRssView) {
         Log.v(TAG, "UpdateCurrentRssView");
         new UpdateCurrentRssViewTask(context, refreshCurrentRssView).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    public LinearLayoutManager getLayoutManager() {
+        if(recyclerView == null) return null;
+        return (LinearLayoutManager) recyclerView.getLayoutManager();
     }
 
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, LazyList<RssItem>> {
@@ -307,7 +263,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
         @Override
         protected void onPreExecute() {
             pbLoading.setVisibility(View.VISIBLE);
-            getListView().setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
             tvNoItemsAvailable.setVisibility(View.GONE);
 
             sortDirection = getSortDirection(context);
@@ -357,49 +313,29 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
         protected void onPostExecute(LazyList<RssItem> rssItemLazyList) {
             try
             {
+                // TODO: is this necessary for RecyclerView?
                 // Block children layout for now
-                BlockingListView bView = ((BlockingListView) getListView());
-                bView.setBlockLayoutChildren(true);
+                //BlockingListView bView = ((BlockingListView) getListView());
+                //bView.setBlockLayoutChildren(true);
 
-                //Check if position is invalid. Otherwise we have a rotation change and the position is already set.
-                if(mActivatedPosition == ListView.INVALID_POSITION) {
-                    setActivatedPosition(bView.getFirstVisiblePosition());
-                    View v = bView.getChildAt(0);
-                    int top = (v == null) ? 0 : v.getTop();
-                    setMarginFromTop(top);
+                NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
+                if(nra != null) {
+                    nra.setLazyList(rssItemLazyList);
+                } else {
+                    nra = new NewsListRecyclerAdapter(getActivity(), rssItemLazyList, (PodcastFragmentActivity) getActivity());
+                    recyclerView.setAdapter(nra);
                 }
-
-
-                if(getListAdapter() != null) {
-                    ((NewsListArrayAdapter) getListAdapter()).getLazyList().close(); //Close cursor to release resources
-                }
-
-                NewsListArrayAdapter lvAdapter  = new NewsListArrayAdapter(getActivity(), rssItemLazyList, NewsReaderDetailFragment.this, (PodcastFragmentActivity) getActivity());
-                setListAdapter(lvAdapter);
 
                 pbLoading.setVisibility(View.GONE);
-                if(lvAdapter.getCount() <= 0) {
-                    getListView().setVisibility(View.GONE);
+                if(nra.getItemCount() <= 0) {
+                    recyclerView.setVisibility(View.GONE);
                     tvNoItemsAvailable.setVisibility(View.VISIBLE);
                 } else {
-                    getListView().setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.VISIBLE);
                     tvNoItemsAvailable.setVisibility(View.GONE);
                 }
 
-                try {
-                    if(mActivatedPosition != ListView.INVALID_POSITION && marginFromTop != ListView.INVALID_POSITION)
-                        getListView().setSelectionFromTop(mActivatedPosition, marginFromTop);
-                    else if(mActivatedPosition != ListView.INVALID_POSITION)
-                        getListView().setSelection(mActivatedPosition);
-                } catch(Exception ex) {
-                    ex.printStackTrace();
-                }
-
-                bView.setBlockLayoutChildren(false);
-
-                //Reset the activated position always to INVALID.
-                mActivatedPosition = ListView.INVALID_POSITION;
-                marginFromTop = ListView.INVALID_POSITION;
+                // TODO: see above: bView.setBlockLayoutChildren(false);
             }
             catch(Exception ex)
             {
@@ -418,35 +354,22 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_newsreader_detail, container, false);
         ButterKnife.inject(this, rootView);
-		return rootView;
+		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+        return rootView;
 	}
 
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if(savedInstanceState != null)
+            recyclerView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(LAYOUT_MANAGER_STATE));
+    }
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if(mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
-            String currentUrl = ((NewsListArrayAdapter) getListAdapter()).getItem(position).getLink();
-
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
-            startActivity(browserIntent);
-
-            ((CheckBox) v.findViewById(R.id.cb_lv_item_read)).setChecked(true);
-        } else {
-            Intent intentNewsDetailAct = new Intent(getActivity(), NewsDetailActivity.class);
-
-            intentNewsDetailAct.putExtra(NewsReaderListActivity.ITEM_ID, position);
-            intentNewsDetailAct.putExtra(NewsReaderListActivity.TITEL, titel);
-            startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
-        }
-		super.onListItemClick(l, v, position, id);
-	}
-
-
-	@Override
-	public void stayUnread(Long rssItemId) {
-        if(!stayUnreadRssItems.contains(rssItemId)) {
-            stayUnreadRssItems.add(rssItemId);
-        }
-	}
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(LAYOUT_MANAGER_STATE, getLayoutManager().onSaveInstanceState());
+    }
 }

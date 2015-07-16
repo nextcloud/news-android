@@ -4,14 +4,13 @@
     android:background="?attr/rssItemListBackground" >
 
 
-    <de.luhmer.owncloudnewsreader.ListView.BlockingListView
-	    android:id="@android:id/list"
+    <android.support.v7.widget.RecyclerView
+	    android:id="@+id/list"
 	    style="?android:attr/textAppearanceLarge"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
-	    android:divider="@null"
         android:visibility="gone"
-		android:dividerHeight="0dp" />
+        android:scrollbars="vertical" />
 
     <TextView
         android:id="@+id/tv_no_items_available"

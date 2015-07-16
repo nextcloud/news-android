@@ -42,7 +42,6 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +49,7 @@ import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,10 +81,7 @@ import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class NewsReaderListFragment extends Fragment implements OnCreateContextMenuListener, SwipeRefreshLayout.OnRefreshListener/*
-																ExpandableListView.OnChildClickListener,
-																ExpandableListView.OnGroupCollapseListener,
-																ExpandableListView.OnGroupExpandListener*/ {
+public class NewsReaderListFragment extends Fragment implements OnCreateContextMenuListener {
 
 	IOwnCloudSyncService _ownCloudSyncService;
 	private IOwnCloudSyncServiceCallback callback = new IOwnCloudSyncServiceCallback.Stub() {
@@ -141,7 +138,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                         int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
                         if(newItemsCount > 0) {
-							Snackbar snackbar = Snackbar.make(eListView, getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount), Snackbar.LENGTH_LONG);
+							Snackbar snackbar = Snackbar.make(nlActivity.findViewById(R.id.drawer_layout), getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount), Snackbar.LENGTH_LONG);
 							snackbar.setAction(getString(R.string.message_bar_reload), mListener);
 							snackbar.setActionTextColor(getResources().getColor(R.color.accent_material_dark));
 							// Setting android:TextColor to #000 in the light theme results in black on black
@@ -169,7 +166,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     }
 
     public void ReloadAdapter() {
-        lvAdapter.ReloadAdapterAsync(progressBar);
+        lvAdapter.ReloadAdapterAsync();
     }
 
 
@@ -190,13 +187,17 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	 */
 	private Callbacks mCallbacks = null;
 
+	public void setRefreshing(boolean isRefreshing) {
+		if(isRefreshing) {
+			headerLogo.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher_background));
+			headerLogoProgress.setVisibility(View.VISIBLE);
+		} else {
+			headerLogo.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher));
+			headerLogoProgress.setVisibility(View.INVISIBLE);
+		}
+	}
 
-    @Override
-    public void onRefresh() {
-        StartSync();
-    }
-
-    /**
+	/**
 	 * The current activated item position. Only used on tablets.
 	 */
 	//private static int mActivatedPosition = ListView.INVALID_POSITION;
@@ -219,8 +220,11 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	private SubscriptionExpandableListAdapter lvAdapter;
 	//ExpandableListView eListView;
     @InjectView(R.id.expandableListView) ExpandableListView eListView;
-    @InjectView(R.id.pbProgress) View progressBar;
-    @InjectView(R.id.ptr_layout) SwipeRefreshLayout mPullToRefreshLayout;
+	@InjectView(R.id.urlTextView) protected TextView urlTextView;
+	@InjectView(R.id.userTextView) protected TextView userTextView;
+	@InjectView(R.id.header_view) protected ViewGroup headerView;
+	@InjectView(R.id.header_logo) protected ImageView headerLogo;
+	@InjectView(R.id.header_logo_progress) protected View headerLogoProgress;
 	//public static IReader _Reader = null;  //AsyncTask_GetGReaderTags asyncTask_GetUnreadFeeds = null;
 
 	//public static String username;
@@ -241,27 +245,20 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		try
+		mListener = new View.OnClickListener()
 		{
-            mListener = new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    //Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
+			@Override
+			public void onClick(View view)
+			{
+				//Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
 
-                    NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.content_frame));
-                    if(ndf != null) {
-                        //ndf.reloadAdapterFromScratch();
-                        ndf.UpdateCurrentRssView(getActivity(), true);
-                    }
-                }
-            };
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
+				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.content_frame));
+				if(ndf != null) {
+					//ndf.reloadAdapterFromScratch();
+					ndf.UpdateCurrentRssView(getActivity(), true);
+				}
+			}
+		};
 	}
 
 
@@ -440,30 +437,27 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 		eListView.setGroupIndicator(null);
 
-        mPullToRefreshLayout.setOnRefreshListener(this);
-        mPullToRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-
-
 		eListView.setOnChildClickListener(onChildClickListener);
 		//eListView.setSmoothScrollbarEnabled(true);
 
 		eListView.setClickable(true);
 		eListView.setAdapter(lvAdapter);
 
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
+		String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, getString(R.string.app_name));
+
+		userTextView.setText(mUsername);
+		urlTextView.setText(mOc_root_path);
+		headerView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				StartSync();
+			}
+		});
 
         lvAdapter.notifyDataSetChanged();
         ReloadAdapter();
-
-
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if(!mPrefs.getBoolean(Constants.SHOW_CASE_APP_STARTED_SHOWN_BOOLEAN, false)) {
-            mPrefs.edit().putBoolean(Constants.SHOW_CASE_APP_STARTED_SHOWN_BOOLEAN, true).commit();
-            ((NewsReaderListActivity) getActivity()).showShowCaseViewForView(eListView, view, "Pull To Refresh", "Pull down the list to refresh your feeds");
-        }
-
 
 		return view;
 	}

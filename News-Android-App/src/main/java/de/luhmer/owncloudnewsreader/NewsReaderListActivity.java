@@ -23,17 +23,21 @@ package de.luhmer.owncloudnewsreader;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.SlidingPaneLayout;
-import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -42,22 +46,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
-import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.ViewTarget;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
-import de.luhmer.owncloudnewsreader.adapter.NewsListArrayAdapter;
+import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
+import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
-import de.luhmer.owncloudnewsreader.helper.ShowcaseDimHelper;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
@@ -78,7 +78,7 @@ import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
  * selections.
  */
 public class NewsReaderListActivity extends PodcastFragmentActivity implements
-		 NewsReaderListFragment.Callbacks {
+		 NewsReaderListFragment.Callbacks,RecyclerItemClickListener {
 
 	private static final String TAG = NewsReaderListActivity.class.getCanonicalName();
 
@@ -86,12 +86,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	public static final String FEED_ID = "FEED_ID";
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
+
 	private static MenuItem menuItemUpdater;
 	private static MenuItem menuItemDownloadMoreItems;
 	private static IReader _Reader;
 
     @InjectView(R.id.toolbar) Toolbar toolbar;
-	@InjectView(R.id.sliding_pane) SlidingPaneLayout mSlidingLayout;
+	@InjectView(R.id.drawer_layout) protected DrawerLayout drawerLayout;
+
+	private ActionBarDrawerToggle drawerToggle;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -113,16 +117,43 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         	StartLoginFragment(NewsReaderListActivity.this);
 
 
+		Bundle args = new Bundle();
+		String userName = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
+		String url = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
+		args.putString("accountName", String.format("%s\n%s",userName,url));
+		NewsReaderListFragment newsReaderListFragment = new NewsReaderListFragment();
+		newsReaderListFragment.setArguments(args);
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-        				.replace(R.id.left_drawer, new NewsReaderListFragment())
+        				.replace(R.id.left_drawer, newsReaderListFragment)
                    		.commit();
 
-        mSlidingLayout.setParallaxDistance(280);
-        mSlidingLayout.setSliderFadeColor(getResources().getColor(android.R.color.transparent));
-        mSlidingLayout.setPanelSlideListener(panelSlideListener);
-        mSlidingLayout.openPane();
+		drawerToggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.empty_view_content,R.string.empty_view_content) {
+			@Override
+			public void onDrawerClosed(View drawerView) {
+				super.onDrawerClosed(drawerView);
+				togglePodcastVideoViewAnimation();
+
+				StartDetailFragmentNow();
+				syncState();
+				EventBus.getDefault().post(new FeedPanelSlideEvent(false));
+			}
+
+			@Override
+			public void onDrawerOpened(View drawerView) {
+				super.onDrawerOpened(drawerView);
+				togglePodcastVideoViewAnimation();
+				reloadCountNumbersOfSlidingPaneAdapter();
+
+				syncState();
+			}
+		};
+
+		drawerLayout.setDrawerListener(drawerToggle);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
+		drawerToggle.syncState();
 
         if(savedInstanceState == null)//When the app starts (no orientation change)
         {
@@ -137,42 +168,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		UpdateButtonLayout();
     }
 
-
-    public void showShowCaseViewForView(final View dimView, View targetView, String title, String text) {
-        ShowcaseDimHelper.dimView(dimView);
-
-        ViewTarget target = new ViewTarget(targetView);
-        ShowcaseView sv = new ShowcaseView.Builder(this)
-                .setTarget(target)
-                .setContentTitle(title)
-                .setContentText(text)
-                .hideOnTouchOutside()
-                .build();
-
-        sv.setOnShowcaseEventListener(new OnShowcaseEventListener() {
-            @Override
-            public void onShowcaseViewHide(ShowcaseView showcaseView) {
-                ShowcaseDimHelper.undoDimView(dimView);
-            }
-
-            @Override
-            public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
-
-            }
-
-            @Override
-            public void onShowcaseViewShow(ShowcaseView showcaseView) {
-
-            }
-        });
-
-        sv.show();
-    }
-
-
-    private static final String SLIDING_PANE_OPEN_BOOLEAN = "SLIDING_PANE_OPEN_BOOLEAN";
-	private static final String FIRST_VISIBLE_DETAIL_ITEM_STRING = "FIRST_VISIBLE_DETAIL_ITEM_STRING";
-	private static final String FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING = "FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING";
 	private static final String ID_FEED_STRING = "ID_FEED_STRING";
 	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
 	private static final String OPTIONAL_FOLDER_ID ="OPTIONAL_FOLDER_ID";
@@ -190,41 +185,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     public NewsReaderDetailFragment getNewsReaderDetailFragment() {
         return ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
     }
-
-
-
-	private PanelSlideListener panelSlideListener = new PanelSlideListener() {
-		@Override
-		public void onPanelSlide(View arg0, float arg1) {
-		}
-
-		@Override
-		public void onPanelOpened(View arg0) {
-			togglePodcastVideoViewAnimation();
-
-			reloadCountNumbersOfSlidingPaneAdapter();
-
-			getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-			getSupportActionBar().setHomeButtonEnabled(false);
-
-			menuItemUpdater.setVisible(false);
-		}
-
-		@Override
-		public void onPanelClosed(View arg0) {
-			togglePodcastVideoViewAnimation();
-
-			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-			getSupportActionBar().setHomeButtonEnabled(true);
-
-			menuItemUpdater.setVisible(true);
-
-			StartDetailFragmentNow();
-
-			EventBus.getDefault().post(new FeedPanelSlideEvent(false));
-		}
-	};
-
 
 	/**
 	 * Check if the account is in the Android Account Manager. If not it will be added automatically
@@ -252,15 +212,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 
     private void safeInstanceState(Bundle outState) {
-        outState.putBoolean(SLIDING_PANE_OPEN_BOOLEAN, mSlidingLayout.isOpen());
-
         NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
         if(ndf != null) {
-            View v = ndf.getListView().getChildAt(0);
-            int top = (v == null) ? 0 : v.getTop();
-
-            outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_STRING, ndf.getListView().getFirstVisiblePosition());
-            outState.putInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING, top);
             outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
             outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
             outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
@@ -268,13 +221,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void restoreInstanceState(Bundle savedInstanceState) {
-        boolean isOpen = savedInstanceState.getBoolean(SLIDING_PANE_OPEN_BOOLEAN);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(!isOpen);
-        getSupportActionBar().setHomeButtonEnabled(!isOpen);
-
-
-        if(savedInstanceState.containsKey(FIRST_VISIBLE_DETAIL_ITEM_STRING) &&
-                savedInstanceState.containsKey(ID_FEED_STRING) &&
+        if(savedInstanceState.containsKey(ID_FEED_STRING) &&
                 savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
                 savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
 
@@ -283,13 +230,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
                     savedInstanceState.getLong(ID_FEED_STRING),
                     false);
-
-            NewsReaderDetailFragment ndf = StartDetailFragmentNow();
-            if(ndf != null) {
-                ndf.setActivatedPosition(savedInstanceState.getInt(FIRST_VISIBLE_DETAIL_ITEM_STRING));
-                ndf.setMarginFromTop(savedInstanceState.getInt(FIRST_VISIBLE_DETAIL_ITEM_MARGIN_TOP_STRING));
-            }
-        }
+		}
     }
 
 	/* (non-Javadoc)
@@ -303,10 +244,17 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		super.onRestoreInstanceState(savedInstanceState);
 	}
 
+	@Override
+	public void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		drawerToggle.syncState();
+	}
 
-    public boolean isSlidingPaneOpen() {
-        return mSlidingLayout.isOpen();
-    }
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		drawerToggle.onConfigurationChanged(newConfig);
+	}
 
 	private NewsReaderDetailFragment StartDetailFragmentNow() {
 		NewsReaderDetailFragment nrdf = null;
@@ -368,7 +316,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onTopItemClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
 		if(!shouldDrawerStayOpen())
-			mSlidingLayout.closePane();
+			drawerLayout.closeDrawer(GravityCompat.START);
 
 		startDetailFHolder = new StartDetailFragmentHolder(idFeed, isFolder, optional_folder_id, true);
 
@@ -379,7 +327,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onChildItemClicked(long idFeed, Long optional_folder_id) {
 		if(!shouldDrawerStayOpen())
-			mSlidingLayout.closePane();
+			drawerLayout.closeDrawer(GravityCompat.START);
 
 		//StartDetailFragment(idSubscription, false, optional_folder_id);
 		startDetailFHolder = new StartDetailFragmentHolder(idFeed, false, optional_folder_id, true);
@@ -435,7 +383,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         try {
             NewsReaderDetailFragment nrD = getDetailFragment();
             if (nrD != null)
-                ((NewsListArrayAdapter) nrD.getListAdapter()).notifyDataSetChanged();
+                nrD.getRecyclerView().getAdapter().notifyDataSetChanged();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -452,32 +400,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         if(menuItemUpdater != null)
         {
             try {
-                NewsReaderListFragment ndf = getSlidingListFragment();
-                SwipeRefreshLayout pullToRefreshView = null;
-
-				if(ndf != null) //If the Fragment is not instantiated yet.
-					pullToRefreshView = ndf.mPullToRefreshLayout;
+                NewsReaderListFragment ndf = (NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
 
                 if(ndf._ownCloudSyncService != null) {
                     IOwnCloudSyncService _Reader = ndf._ownCloudSyncService;
 
 					if(_Reader.isSyncRunning())
 					{
-						menuItemUpdater.setActionView(R.layout.inderterminate_progress);
-
-					    if(pullToRefreshView != null && !pullToRefreshView.isRefreshing()) {
-					    	pullToRefreshView.setRefreshing(true);
-                            Log.v(TAG, "Start ptr refreshing");
-                        }
+					    menuItemUpdater.setActionView(R.layout.inderterminate_progress);
+						ndf.setRefreshing(true);
 					}
 					else
 					{
 					    menuItemUpdater.setActionView(null);
-
-					    if(pullToRefreshView != null) {
-                            pullToRefreshView.setRefreshing(false);
-                            Log.v(TAG, "Finished ptr refreshing");
-                        }
+						ndf.setRefreshing(false);
 					}
                 }
 			} catch (RemoteException e) {
@@ -513,10 +449,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onBackPressed() {
         if(handlePodcastBackPressed());
-        else if(mSlidingLayout.isOpen())
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
 			super.onBackPressed();
 		else
-			mSlidingLayout.openPane();
+			drawerLayout.openDrawer(GravityCompat.START);
 	}
 
 	private static final int RESULT_SETTINGS = 15642;
@@ -524,12 +460,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		if(drawerToggle.onOptionsItemSelected(item))
+			return true;
 		switch (item.getItemId()) {
 
 			case android.R.id.home:
 				if(handlePodcastBackPressed());
-				else if(!mSlidingLayout.isOpen())
-					mSlidingLayout.openPane();
 				return true;
 
 			case R.id.action_settings:
@@ -685,4 +621,23 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     {
         ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).notifyDataSetChangedOnAdapter();
     }
+	@Override
+	public void onClick(ViewHolder vh, int position) {
+
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if (mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
+            String currentUrl = vh.toString();
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
+            startActivity(browserIntent);
+
+            vh.setReadState(true);
+		} else {
+			Intent intentNewsDetailAct = new Intent(this, NewsDetailActivity.class);
+
+			intentNewsDetailAct.putExtra(NewsReaderListActivity.ITEM_ID, position);
+			intentNewsDetailAct.putExtra(NewsReaderListActivity.TITEL, getNewsReaderDetailFragment().getTitel());
+			startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
+		}
+	}
 }

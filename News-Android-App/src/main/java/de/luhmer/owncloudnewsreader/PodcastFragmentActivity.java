@@ -15,6 +15,7 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -229,7 +230,12 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 .commitAllowingStateLoss();
 
         if(!currentlyPlaying)
-            sliding_layout.setPanelHeight(0);
+            sliding_layout.post(new Runnable() {
+                @Override
+                public void run() {
+                    sliding_layout.setPanelHeight(0);
+                }
+            });
     }
 
     boolean currentlyPlaying = false;
@@ -241,7 +247,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         if((podcast.isFileLoaded() || podcast.isPreparingFile()) && !currentlyPlaying) {
             //Expand view
 
-            sliding_layout.setPanelHeight((int)dipToPx(68));
+            sliding_layout.setPanelHeight((int) dipToPx(68));
 
             currentlyPlaying = true;
 
@@ -421,7 +427,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         boolean isLeftSliderOpen = false;
 
         if(this instanceof NewsReaderListActivity) {
-            isLeftSliderOpen = ((NewsReaderListActivity) this).mSlidingLayout.isOpen();
+            isLeftSliderOpen = ((NewsReaderListActivity) this).drawerLayout.isDrawerOpen(Gravity.LEFT);
         }
 
         boolean isTabletView = SubscriptionExpandableListAdapter.isTwoPane(this);

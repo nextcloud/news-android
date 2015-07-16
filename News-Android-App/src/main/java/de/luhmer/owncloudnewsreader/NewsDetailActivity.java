@@ -405,7 +405,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 						CustomTabActivityManager mCustomTabsManager = CustomTabActivityManager.getInstance();
 						mCustomTabsSession = getSession();
 						CustomTabUiBuilder uiBuilder = new CustomTabUiBuilder();
-						uiBuilder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+						uiBuilder.setToolbarColor(getResources().getColor(R.color.colorPrimaryDarkTheme));
 						uiBuilder.setShowTitle(true);
 						uiBuilder.setCloseButtonStyle(CustomTabUiBuilder.CLOSE_BUTTON_ARROW);
 						//prepareMenuItems(uiBuilder);

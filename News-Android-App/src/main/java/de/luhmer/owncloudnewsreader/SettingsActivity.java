@@ -44,6 +44,7 @@ import android.preference.PreferenceManager;
 import android.preference.TwoStatePreference;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
 import android.support.v7.widget.AppCompatEditText;
@@ -137,21 +138,23 @@ public class SettingsActivity extends PreferenceActivity {
         }
         */
 
-		Toolbar toolbar;
+		AppBarLayout appBarLayout;
 
         // get the root container of the preferences list
 		LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
-		toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
-		root.addView(toolbar, 0); // insert at top
+		appBarLayout = (AppBarLayout) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
+		root.addView(appBarLayout, 0); // insert at top
+
+		Toolbar toolbar = (Toolbar)appBarLayout.getChildAt(0);
 
 		toolbar.setTitle(R.string.title_activity_settings);
 		toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					finish();
-				}
-			});
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 	}
 
 	@Override

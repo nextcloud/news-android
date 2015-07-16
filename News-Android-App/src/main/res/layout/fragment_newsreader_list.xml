@@ -1,46 +1,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/slider_listview_background_color_dark_theme">
 
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/ptr_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <de.luhmer.owncloudnewsreader.ListView.BlockingExpandableListView
-            android:id="@+id/expandableListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:divider="?attr/dividerLineColor"
-            android:dividerHeight="1dip"/>
-
-
-        <!--
-        <View
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/listview_shadow" />
-            -->
-
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-	<!--  </com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
-
+    <!-- TODO: make header scroll up with listview -->
     <RelativeLayout
-        android:id="@+id/pbProgress"
+        android:id="@+id/header_view"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:padding="10dp"
+        android:background="@drawable/left_drawer_header_background"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text='Username'
+            android:id="@+id/userTextView"
+            android:textColor="@android:color/white"
+            android:layout_above="@+id/urlTextView"
+            android:layout_toRightOf="@+id/header_logo"
+            android:layout_toEndOf="@+id/header_logo"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/urlTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text='https://url_to_owncloud.oc'
+            android:textColor="@android:color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/header_logo"
+            android:layout_toEndOf="@+id/header_logo"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/header_logo"
+            android:layout_alignBottom="@+id/urlTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ic_launcher"
+            android:layout_marginRight="10dp" />
+
+        <ProgressBar android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="7dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:id="@+id/header_logo_progress"
+            android:layout_alignBottom="@+id/header_logo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            style="?android:attr/progressBarStyle" />
+
+    </RelativeLayout>
+
+    <de.luhmer.owncloudnewsreader.ListView.BlockingExpandableListView
+        android:id="@+id/expandableListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:visibility="gone">
-
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
-    </RelativeLayout>
+        android:divider="@null"
+        android:layout_below="@+id/header_view" />
 
 </RelativeLayout>

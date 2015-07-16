@@ -20,7 +20,7 @@
 	        android:id="@+id/color_line_feed"
 	        android:layout_width="@dimen/color_bar_of_feeds"
 	        android:layout_height="fill_parent"
-	        android:background="@color/slider_listview_background_color_dark_theme"/>
+	        android:background="?attr/dividerLineColor"/>
         
         <TextView
             android:id="@+id/tv_clickHereToOpen"
@@ -40,8 +40,7 @@
             android:clickable="false"
             android:focusable="false"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:button="@drawable/checkbox_background_empty"
-            android:background="@drawable/checkbox_background_holo_light" />
+            android:button="@drawable/checkbox_background_holo_light" />
 
 
         <CheckBox
@@ -62,11 +61,4 @@
         android:layout_weight="1"
         android:focusable="false"
         android:clickable="false" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:background="?attr/dividerLineColor" />
-    
 </LinearLayout>
