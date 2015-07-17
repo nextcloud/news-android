@@ -408,7 +408,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         cbRead.setChecked(read);
     }
 
-    public static void ChangeCheckBoxState(CheckBox cb, boolean state, Context context)
+    public static void ChangeCheckBoxState(CheckBox cb, boolean state)
     {
         if(cb != null && cb.isChecked() != state)
             cb.setChecked(state);
@@ -419,7 +419,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         FragmentActivity sfa = (FragmentActivity) context;
 
         if(sfa instanceof NewsReaderListActivity && ((NewsReaderListActivity) sfa).isSlidingPaneOpen())
-            ((NewsReaderListActivity) sfa).updateAdapter();
+            ((NewsReaderListActivity) sfa).reloadCountNumbersOfSlidingPaneAdapter();
     }
 
 

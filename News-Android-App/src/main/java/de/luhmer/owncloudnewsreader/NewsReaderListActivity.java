@@ -31,16 +31,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.ShowcaseView;
@@ -59,6 +62,10 @@ import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ShowcaseDimHelper;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.reader.IReader;
+import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
+import de.luhmer.owncloudnewsreader.reader.owncloud.API;
+import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
 
@@ -73,21 +80,21 @@ import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
  * {@link NewsReaderListFragment.Callbacks} interface to listen for item
  * selections.
  */
-public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
+public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		 NewsReaderListFragment.Callbacks {
 
-	@InjectView(R.id.sliding_pane) SlidingPaneLayout mSlidingLayout;
-
-
-    //static final String TAG = "NewsReaderListActivity";
-	//ActionBarDrawerToggle drawerToggle;
-	//DrawerLayout drawerLayout;
+	private static final String TAG = NewsReaderListActivity.class.getCanonicalName();
 
 	public static final String FOLDER_ID = "FOLDER_ID";
 	public static final String FEED_ID = "FEED_ID";
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
+	private static MenuItem menuItemUpdater;
+	private static MenuItem menuItemDownloadMoreItems;
+	private static IReader _Reader;
+
     @InjectView(R.id.toolbar) Toolbar toolbar;
+	@InjectView(R.id.sliding_pane) SlidingPaneLayout mSlidingLayout;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -102,24 +109,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
             setSupportActionBar(toolbar);
         }
 
-		AccountManager mAccountManager = AccountManager.get(this);
-
-		boolean isAccountThere = false;
-		//Remove all accounts first
-		Account[] accounts = mAccountManager.getAccounts();
-        for (Account account : accounts) {
-            if (account.type.intern().equals(AccountGeneral.ACCOUNT_TYPE)) {
-                isAccountThere = true;
-            }
-        }
-
-	    if(!isAccountThere) {
-		    //Then add the new account
-	    	Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
-	    	mAccountManager.addAccountExplicitly(account, "", new Bundle());
-
-            SyncIntervalSelectorActivity.SetAccountSyncInterval(this);
-	    }
+		initAccountManager();
 
 		//Init config --> if nothing is configured start the login dialog.
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -135,40 +125,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 
         mSlidingLayout.setParallaxDistance(280);
         mSlidingLayout.setSliderFadeColor(getResources().getColor(android.R.color.transparent));
-
-        mSlidingLayout.setPanelSlideListener(new PanelSlideListener() {
-
-			@Override
-			public void onPanelSlide(View arg0, float arg1) {
-			}
-
-			@Override
-			public void onPanelOpened(View arg0) {
-                togglePodcastVideoViewAnimation();
-
-				updateAdapter();
-
-                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                getSupportActionBar().setHomeButtonEnabled(false);
-
-                getMenuItemUpdater().setVisible(false);
-			}
-
-			@Override
-			public void onPanelClosed(View arg0) {
-                togglePodcastVideoViewAnimation();
-
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setHomeButtonEnabled(true);
-
-                getMenuItemUpdater().setVisible(true);
-
-				StartDetailFragmentNow();
-
-                EventBus.getDefault().post(new FeedPanelSlideEvent(false));
-			}
-		});
-
+        mSlidingLayout.setPanelSlideListener(panelSlideListener);
         mSlidingLayout.openPane();
 
         if(savedInstanceState == null)//When the app starts (no orientation change)
@@ -243,6 +200,64 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 
 
 
+	private PanelSlideListener panelSlideListener = new PanelSlideListener() {
+		@Override
+		public void onPanelSlide(View arg0, float arg1) {
+		}
+
+		@Override
+		public void onPanelOpened(View arg0) {
+			togglePodcastVideoViewAnimation();
+
+			reloadCountNumbersOfSlidingPaneAdapter();
+
+			getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+			getSupportActionBar().setHomeButtonEnabled(false);
+
+			menuItemUpdater.setVisible(false);
+		}
+
+		@Override
+		public void onPanelClosed(View arg0) {
+			togglePodcastVideoViewAnimation();
+
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			getSupportActionBar().setHomeButtonEnabled(true);
+
+			menuItemUpdater.setVisible(true);
+
+			StartDetailFragmentNow();
+
+			EventBus.getDefault().post(new FeedPanelSlideEvent(false));
+		}
+	};
+
+
+	/**
+	 * Check if the account is in the Android Account Manager. If not it will be added automatically
+	 */
+	private void initAccountManager() {
+		AccountManager mAccountManager = AccountManager.get(this);
+
+		boolean isAccountThere = false;
+		Account[] accounts = mAccountManager.getAccounts();
+		for (Account account : accounts) {
+			if (account.type.intern().equals(AccountGeneral.ACCOUNT_TYPE)) {
+				isAccountThere = true;
+			}
+		}
+
+		//If the account is not in the Android Account Manager
+		if(!isAccountThere) {
+			//Then add the new account
+			Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
+			mAccountManager.addAccountExplicitly(account, "", new Bundle());
+
+			SyncIntervalSelectorActivity.SetAccountSyncInterval(this);
+		}
+	}
+
+
     private void safeInstanceState(Bundle outState) {
         outState.putBoolean(SLIDING_PANE_OPEN_BOOLEAN, mSlidingLayout.isOpen());
 
@@ -309,8 +324,8 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 		return nrdf;
 	}
 
-	public void updateAdapter() {
-        NewsReaderListFragment nlf = ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer));
+	public void reloadCountNumbersOfSlidingPaneAdapter() {
+        NewsReaderListFragment nlf = getSlidingListFragment();
         if(nlf != null) {
             nlf.ListViewNotifyDataSetChanged();
         }
@@ -322,7 +337,11 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 	protected void onResume() {
 		ThemeChooser.chooseTheme(this);
 
-		updateAdapter();
+		reloadCountNumbersOfSlidingPaneAdapter();
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			invalidateOptionsMenu();
+		}
 
 		super.onResume();
 	}
@@ -379,8 +398,9 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 
 	private NewsReaderDetailFragment StartDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView)
 	{
-		if(super.getMenuItemDownloadMoreItems() != null)
-			super.getMenuItemDownloadMoreItems().setEnabled(true);
+		if(menuItemDownloadMoreItems != null) {
+			menuItemDownloadMoreItems.setEnabled(true);
+		}
 
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
@@ -422,10 +442,9 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
     public void UpdateItemList()
     {
         try {
-            NewsReaderDetailFragment nrD = (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            NewsReaderDetailFragment nrD = getDetailFragment();
             if (nrD != null)
                 ((NewsListArrayAdapter) nrD.getListAdapter()).notifyDataSetChanged();
-            //nrD.UpdateCursor();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -434,16 +453,15 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 
     void startSync()
     {
-		//menuItemUpdater.setActionView(R.layout.inderterminate_progress);
-		((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).StartSync();
+		getSlidingListFragment().StartSync();
     }
 
 	public void UpdateButtonLayout()
     {
-        if(super.getMenuItemUpdater() != null)
+        if(menuItemUpdater != null)
         {
             try {
-                NewsReaderListFragment ndf = (NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
+                NewsReaderListFragment ndf = getSlidingListFragment();
                 SwipeRefreshLayout pullToRefreshView = ndf.mPullToRefreshLayout;
 
                 if(ndf._ownCloudSyncService != null) {
@@ -452,7 +470,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 					if(_Reader.isSyncRunning())
 					{
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-						    super.getMenuItemUpdater().setActionView(R.layout.inderterminate_progress);
+							menuItemUpdater.setActionView(R.layout.inderterminate_progress);
 
 					    if(pullToRefreshView != null && !pullToRefreshView.isRefreshing()) {
 					    	pullToRefreshView.setRefreshing(true);
@@ -462,7 +480,7 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 					else
 					{
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-						    super.getMenuItemUpdater().setActionView(null);
+						    menuItemUpdater.setActionView(null);
 
 					    if(pullToRefreshView != null) {
                             pullToRefreshView.setRefreshing(false);
@@ -480,11 +498,24 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		super.onCreateOptionsMenu(menu, getMenuInflater(), this);
+		getMenuInflater().inflate(R.menu.news_reader, menu);
+
+		menuItemUpdater = menu.findItem(R.id.menu_update);
+		menuItemDownloadMoreItems = menu.findItem(R.id.menu_downloadMoreItems);
+
+		menuItemDownloadMoreItems.setEnabled(false);
+
+		NewsReaderDetailFragment ndf = getDetailFragment();
+		if(ndf != null)
+			ndf.UpdateMenuItemsState();
 
         UpdateButtonLayout();
 
 		return true;
+	}
+
+	public MenuItem getMenuItemDownloadMoreItems() {
+		return menuItemDownloadMoreItems;
 	}
 
 	@Override
@@ -501,80 +532,129 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		boolean handled = super.onOptionsItemSelected(item, this);
+		switch (item.getItemId()) {
 
-		if(!handled)
-		{
-			switch (item.getItemId()) {
+			case android.R.id.home:
+				if(handlePodcastBackPressed());
+				else if(!mSlidingLayout.isOpen())
+					mSlidingLayout.openPane();
+				return true;
 
-				case android.R.id.home:
-                    if(handlePodcastBackPressed());
-					else if(!mSlidingLayout.isOpen())
-						mSlidingLayout.openPane();
-					return true;
+			case R.id.action_settings:
+				Intent intent = new Intent(this, SettingsActivity.class);
+				startActivityForResult(intent, RESULT_SETTINGS);
+				return true;
 
-				case R.id.action_settings:
-					Intent intent = new Intent(this, SettingsActivity.class);
-				    //intent.putExtra(EXTRA_MESSAGE, message);
-				    startActivityForResult(intent, RESULT_SETTINGS);
-					return true;
+			case R.id.menu_update:
+				startSync();
+				break;
 
-				case R.id.menu_update:
-					//menuItemUpdater = item.setActionView(R.layout.inderterminate_progress);
-					startSync();
-					break;
+			case R.id.action_login:
+				StartLoginFragment(NewsReaderListActivity.this);
+				break;
 
-				case R.id.action_login:
-					StartLoginFragment(NewsReaderListActivity.this);
-					break;
+			case R.id.action_add_new_feed:
+				Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
+				startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
+				break;
 
-                case R.id.action_add_new_feed:
-                    Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
-                    startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
-                    break;
+			case R.id.menu_StartImageCaching:
+				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
-				case R.id.menu_StartImageCaching:
-					DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
+				long highestItemId = dbConn.getLowestRssItemIdUnread();
+				Intent service = new Intent(this, DownloadImagesService.class);
+				service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
+				startService(service);
 
-                    long highestItemId = dbConn.getLowestRssItemIdUnread();
-                    Intent service = new Intent(this, DownloadImagesService.class);
-                    service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
-                    startService(service);
+				break;
 
-					break;
+			case R.id.menu_CreateDatabaseDump:
+				DatabaseUtils.CopyDatabaseToSdCard(this);
 
-                case R.id.menu_CreateDatabaseDump:
-                    DatabaseUtils.CopyDatabaseToSdCard(this);
+				new AlertDialog.Builder(this)
+						.setMessage("Created dump at: " + DatabaseUtils.GetPath(this))
+						.setNeutralButton(getString(android.R.string.ok), null)
+						.show();
+				break;
 
-                    new AlertDialog.Builder(this)
-                            .setMessage("Created dump at: " + DatabaseUtils.GetPath(this))
-                            .setNeutralButton(getString(android.R.string.ok), null)
-                            .show();
-                    break;
-			}
+			case R.id.menu_About_Changelog:
+				DialogFragment dialog = new VersionInfoDialogFragment();
+				dialog.show(getSupportFragmentManager(), "VersionChangelogDialogFragment");
+				return true;
+
+			case R.id.menu_markAllAsRead:
+				NewsReaderDetailFragment ndf = getDetailFragment();
+				if(ndf != null)
+				{
+					DatabaseConnectionOrm dbConn2 = new DatabaseConnectionOrm(this);
+					dbConn2.markAllItemsAsReadForCurrentView();
+
+					reloadCountNumbersOfSlidingPaneAdapter();
+					ndf.UpdateCurrentRssView(this, false);
+				}
+				return true;
+
+			case R.id.menu_downloadMoreItems:
+				DownloadMoreItems();
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
 
+	private void DownloadMoreItems()
+	{
+		String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_username", "");
+		String password = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_password", "");
+
+		if(username != null) {
+			_Reader = new OwnCloud_Reader();
+			((OwnCloud_Reader)_Reader).Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTaskGetVersionFinished, username, password);
+
+			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	OnAsyncTaskCompletedListener onAsyncTaskGetVersionFinished = new OnAsyncTaskCompletedListener() {
+
+		@Override
+		public void onAsyncTaskCompleted(int task_id, Object task_result) {
+			if(_Reader != null) {
+				String appVersion = task_result.toString();
+				API api = API.GetRightApiForVersion(appVersion, NewsReaderListActivity.this);
+				((OwnCloud_Reader) _Reader).setApi(api);
+
+				NewsReaderDetailFragment ndf = getDetailFragment();
+				_Reader.Start_AsyncTask_GetOldItems(Constants.TaskID_GetItems, NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
+			}
+		}
+	};
+
+	OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {
+		@Override
+		public void onAsyncTaskCompleted(int task_id, Object task_result) {
+			NewsReaderDetailFragment ndf = getDetailFragment();
+			if(ndf != null)
+				ndf.UpdateCurrentRssView(NewsReaderListActivity.this, true);
+
+			Log.v(TAG, "Finished Download extra items..");
+		}
+	};
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //if (requestCode == 1) {
         if(resultCode == RESULT_OK){
-            int pos = data.getIntExtra("POS", 0);
-            UpdateListViewAndScrollToPos(this, pos);
+            UpdateListView(this);
 
-            ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).ListViewNotifyDataSetChanged();
+			getSlidingListFragment().ListViewNotifyDataSetChanged();
         }
 
         if(requestCode == RESULT_SETTINGS)
         {
-        	((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer)).ReloadAdapter();
-        	//((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame)).UpdateCurrentRssView(this, false);
+			getSlidingListFragment().ReloadAdapter();
 
             if(ThemeChooser.ThemeRequiresRestartOfUI(this)) {
-                finish();
+				finish();
                 startActivity(getIntent());
             }
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
@@ -586,6 +666,13 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         }
     }
 
+	private NewsReaderListFragment getSlidingListFragment() {
+		return ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer));
+	}
+
+	private NewsReaderDetailFragment getDetailFragment() {
+		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+	}
 
     public static void StartLoginFragment(final FragmentActivity activity)
     {
@@ -602,15 +689,8 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
     }
 
 
-    //@TargetApi(Build.VERSION_CODES.FROYO)
-	public static void UpdateListViewAndScrollToPos(FragmentActivity act, int pos)
+	public static void UpdateListView(FragmentActivity act)
     {
         ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).notifyDataSetChangedOnAdapter();
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)
-        	//((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.newsreader_detail_container)).getListView().smoothScrollToPosition(pos);
-        //else
-
-        //Is not used any longer
-        //((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).getListView().setSelection(pos);
     }
 }

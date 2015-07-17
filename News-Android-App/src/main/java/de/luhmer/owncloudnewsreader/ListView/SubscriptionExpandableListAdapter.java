@@ -28,6 +28,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -416,11 +419,17 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         @Override
         protected Void doInBackground(Void... voids) {
+            StopWatch stopwatch = new StopWatch();
+            stopwatch.start();
+
             unreadCountFoldersTemp = dbConn.getUnreadItemCountForFolder();
             unreadCountFeedsTemp = dbConn.getUnreadItemCountForFeed();
             starredCountFeedsTemp = dbConn.getStarredItemCountForFeed();
 
             urlsToFavIconsTemp = dbConn.getUrlsToFavIcons();
+
+            stopwatch.stop();
+            Log.v(TAG, "Fetched folder/feed counts in " + stopwatch.toString());
             return null;
         }
 
@@ -451,7 +460,16 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         @Override
         protected Tuple<ArrayList<AbstractItem>, SparseArray<SparseArray<ConcreteFeedItem>>> doInBackground(Void... voids) {
-            return ReloadAdapter();
+            StopWatch stopWatch = new StopWatch();
+            stopWatch.start();
+
+            Tuple<ArrayList<AbstractItem>, SparseArray<SparseArray<ConcreteFeedItem>>> ad = ReloadAdapter();
+            //return ReloadAdapter();
+
+            stopWatch.stop();
+            Log.v(TAG, "Reload Adapter - time taken: " + stopWatch.toString());
+
+            return ad;
         }
 
         @Override

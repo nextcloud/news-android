@@ -41,6 +41,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -141,10 +143,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//setRetainInstance(true);
-
-		//dbConn = new DatabaseConnection(getActivity());
-
 		if(getArguments() != null) {
 			if (getArguments().containsKey(NewsReaderListActivity.FEED_ID)) {
 				idFeed = getArguments().getLong(NewsReaderListActivity.FEED_ID);
@@ -155,14 +153,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 			if (getArguments().containsKey(NewsReaderListActivity.FOLDER_ID)) {
 				idFolder = getArguments().getLong(NewsReaderListActivity.FOLDER_ID);
 			}
-
-			//UpdateMenuItemsState();//Is called on Tablets and Smartphones but on Smartphones the menuItemDownloadMoreItems is null. So it will be ignored
-
-			//getListView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-
-			//lvAdapter = null;
-
-			//getActivity().getSupportLoaderManager().destroyLoader(0);
 		}
 	}
 
@@ -190,7 +180,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
     }
 
     private AbsListView.OnScrollListener ListScrollListener = new AbsListView.OnScrollListener() {
-        //CheckBox lastViewedArticleCheckbox = null;
 
         @Override
         public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -199,11 +188,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
         @Override
         public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, int totalItemCount) {
-
-            /*
-            if(lastViewedArticleCheckbox == null)
-                lastViewedArticleCheckbox = getCheckBoxAtPosition(0, view);
-                */
 
             //When there are no items in the list
             if(totalItemCount <= 0) {
@@ -230,7 +214,7 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
                 Long rssItemId = (Long)cb.getTag();
 
                 if(!cb.isChecked() && !stayUnreadRssItems.contains(rssItemId)) {
-                    NewsListArrayAdapter.ChangeCheckBoxState(cb, true, getActivity());
+                    NewsListArrayAdapter.ChangeCheckBoxState(cb, true);
                 }
             }
         }
@@ -238,12 +222,13 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
     public void UpdateMenuItemsState()
 	{
-		if(MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems() != null)
+        NewsReaderListActivity nla = (NewsReaderListActivity)getActivity();
+		if(nla.getMenuItemDownloadMoreItems() != null)
 		{
 			if(idFolder != null && idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue()) {
-                MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(false);
+                nla.getMenuItemDownloadMoreItems().setEnabled(false);
             } else {
-                MenuUtilsFragmentActivity.getMenuItemDownloadMoreItems().setEnabled(true);
+                nla.getMenuItemDownloadMoreItems().setEnabled(true);
             }
 		}
 	}
@@ -260,9 +245,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 	}
 
 
-
-
-
 	private CheckBox getCheckBoxAtPosition(int pos, AbsListView viewLV)
 	{
 		ListView lv = (ListView) viewLV;
@@ -275,12 +257,6 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
 	@Override
 	public void onDestroy() {
-		//if(lvAdapter != null)
-		//	lvAdapter.CloseDatabaseConnection();
-		//if(lvAdapter != null)
-		//	lvAdapter.CloseDatabaseConnection();
-		//if(dbConn != null)
-		//	dbConn.closeDatabase();
 		super.onDestroy();
 	}
 
@@ -342,6 +318,9 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
         @Override
         protected LazyList<RssItem> doInBackground(Void... urls) {
+            StopWatch stopWatch = new StopWatch();
+            stopWatch.start();
+
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
             if(refreshCurrentRssView) {
@@ -367,7 +346,12 @@ public class NewsReaderDetailFragment extends ListFragment implements IOnStayUnr
 
             setUpdateListViewOnStartUp(false);//Always reset this variable here. Otherwise the list will be cleared when the activity is restarted
 
-            return dbConn.getCurrentRssItemView(sortDirection);
+            LazyList<RssItem> list = dbConn.getCurrentRssItemView(sortDirection);
+
+            stopWatch.stop();
+            Log.v(TAG, "Reloaded CurrentRssView - time taken: " + stopWatch.toString());
+
+            return list;
         }
 
         @Override
