@@ -7,6 +7,8 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.speech.tts.TextToSpeech;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.View;
@@ -68,17 +70,33 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
     private PlaybackType mPlaybackType;
     private View parentResizableView;
 
-    private enum PlaybackType { PODCAST, TTS };
+    private enum PlaybackType { PODCAST, TTS }
 
     @Override
     public void onCreate() {
         Log.v(TAG, "onCreate PodcastPlaybackService");
 
         podcastNotification = new PodcastNotification(this);
-
         mediaTitle = getString(R.string.no_podcast_selected);
 
+        TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        if(mgr != null) {
+            mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+        }
+
         super.onCreate();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.v(TAG, "onDestroy PodcastPlaybackService");
+
+        TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        if(mgr != null) {
+            mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
+
+        super.onDestroy();
     }
 
     public PodcastPlaybackService() {
@@ -118,15 +136,12 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
         eventBus.post(new PodcastPlaybackServiceStarted());
 
         mHandler.postDelayed(mUpdateTimeTask, 0);
-
-        //openFile("/sdcard/Music/#Musik/Finest Tunes/Netsky - Running Low (Ft. Beth Ditto).mp3");
     }
 
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         return Service.START_STICKY;
-        //return super.onStartCommand(intent, flags, startId);
     }
 
 
@@ -358,15 +373,21 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
 
     }
 
-    /*
-    public class VideoAvailableState {
-        public VideoAvailableState(boolean isVideoAvailable) {
-            this.isVideoAvailable = isVideoAvailable;
+    PhoneStateListener phoneStateListener = new PhoneStateListener() {
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            if (state == TelephonyManager.CALL_STATE_RINGING) {
+                //Incoming call: Pause music
+                pause();
+            } else if(state == TelephonyManager.CALL_STATE_IDLE) {
+                //Not in call: Play music
+            } else if(state == TelephonyManager.CALL_STATE_OFFHOOK) {
+                //A call is dialing, active or on hold
+            }
+            super.onCallStateChanged(state, incomingNumber);
         }
+    };
 
-        public boolean isVideoAvailable;
-    }
-    */
 
 
 
@@ -379,22 +400,6 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
         {
             mSurfaceWidth = surfaceWidth;
             mSurfaceHeight = surfaceHeight;
-
-            //populateVideo();
-
-            //Log.d(TAG, "surfaceChanged");
-
-            /*
-            if (!isPreparing && mVideoWidth == w && mVideoHeight == h) {
-                if (mSeekWhenPrepared != 0) {
-                    mMediaPlayer.seekTo(mSeekWhenPrepared);
-                }
-                mMediaPlayer.start();
-                if (mMediaController != null) {
-                    mMediaController.show();
-                }
-            }
-            */
         }
 
         public void surfaceCreated(SurfaceHolder holder)
