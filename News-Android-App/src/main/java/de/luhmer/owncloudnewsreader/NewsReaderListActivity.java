@@ -180,16 +180,6 @@ public class NewsReaderListActivity extends MenuUtilsFragmentActivity implements
         ImageHandler.createNoMediaFile(this);
         //AppRater.app_launched(this);
         //AppRater.rateNow(this);
-
-
-        /*
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                startTesting();
-            }
-        }).start();
-        */
     }
 
 
