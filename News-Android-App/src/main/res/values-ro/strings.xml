@@ -13,6 +13,11 @@
   <string name="no_wifi_available">Nu exista conexiune WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Doriti descarcarea imaginilor fara conexiune WiFi</string>
   <string name="widget_header">Știri ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nou item valabil</item>
+    <item quantity="few">%d noi iteme valabile</item>
+    <item quantity="other">%d noi iteme valabile</item>
+  </plurals>
   <string name="message_bar_reload">Reîncarcă</string>
   <string name="allUnreadFeeds">Toate articolele necitite</string>
   <string name="starredFeeds">Articole selectate</string>

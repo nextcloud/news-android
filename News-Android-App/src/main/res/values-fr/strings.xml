@@ -55,8 +55,8 @@
     <item quantity="other">Il y a %d nouveaux articles non lus</item>
   </plurals>
   <plurals name="notification_new_items_text">
-    <item quantity="one">%d nouvel article non lu disponible</item>
-    <item quantity="other">%d nouveaux articles non lus disponibles</item>
+    <item quantity="one">%d nouvel article non lu</item>
+    <item quantity="other">%d nouveaux articles non lus</item>
   </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilisateur</string>
