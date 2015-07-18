@@ -305,10 +305,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
 
-        //viewHolder.txt_UnreadCount.setText(group.unreadCount);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-        	viewHolder.imgView.setRotation(0);
+        int rotation = 0;
 
+        //viewHolder.txt_UnreadCount.setText(group.unreadCount);
 
         if(group.idFolder != null)
         {
@@ -320,7 +319,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         } else {
         	if(group.id_database == ALL_STARRED_ITEMS.getValue()) {
         		viewHolder.imgView.setVisibility(View.VISIBLE);
-                viewHolder.imgView.setRotation(0);
+                rotation= 0;
                 viewHolder.imgView.setImageDrawable(getBtn_rating_star_off_normal_holo_light(mContext));
         	} else if (getChildrenCount( groupPosition ) == 0 ) {
 	        	viewHolder.imgView.setVisibility(View.INVISIBLE);
@@ -329,12 +328,30 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                 viewHolder.imgView.setImageDrawable(getFolderIndicatorIcon(mContext));
 
 	        	if(isExpanded) {
-                    viewHolder.imgView.setRotation(90);
+                    rotation = 90;
 	        	} else {
-                    viewHolder.imgView.setRotation(180);
+                    rotation = 180;
                 }
 	        }
+
+
+            //On API LEVEL < 11 we can't use the rotate method.. so we have to set different bitmaps.
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                if(group.id_database != ALL_STARRED_ITEMS.getValue()) {
+                    if (rotation == 90) {
+                        viewHolder.imgView.setImageDrawable(getFolderIndicatorIcon(mContext));
+                    } else {
+                        viewHolder.imgView.setImageDrawable(getFolderIndicatorIconDown(mContext));
+                    }
+                }
+            }
         }
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            viewHolder.imgView.setRotation(rotation);
+        }
+
 
         return convertView;
 	}
@@ -344,6 +361,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
     Drawable folder_indicator_icon;
+    Drawable folder_indicator_icon_old_android; //Only used on Android API LEVEL < 11
     Drawable btn_rating_star_off_normal_holo_light;
 
     private Drawable getBtn_rating_star_off_normal_holo_light(Context context) {
@@ -365,6 +383,16 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                 folder_indicator_icon = context.getResources().getDrawable(R.drawable.ic_action_expand_less_light);
         }
         return folder_indicator_icon;
+    }
+
+    private Drawable getFolderIndicatorIconDown(Context context) {
+        if(folder_indicator_icon_old_android == null) {
+            if(ThemeChooser.isDarkTheme(mContext))
+                folder_indicator_icon_old_android = context.getResources().getDrawable(R.drawable.ic_action_expand_more_dark);
+            else
+                folder_indicator_icon_old_android = context.getResources().getDrawable(R.drawable.ic_action_expand_more_light);
+        }
+        return folder_indicator_icon_old_android;
     }
 
 
