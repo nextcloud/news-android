@@ -25,13 +25,22 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Looper;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -45,6 +54,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -58,8 +68,9 @@ import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
+import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
@@ -67,6 +78,8 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
+import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncServiceCallback;
+import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -94,6 +107,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private static IReader _Reader;
 
     @InjectView(R.id.toolbar) Toolbar toolbar;
+
+	private ServiceConnection mConnection = null;
+	private View.OnClickListener mListener = null;
+
 	@Optional @InjectView(R.id.drawer_layout) protected DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
@@ -164,6 +181,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         	StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
         }
 
+		mListener = new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View view)
+			{
+				//Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
+
+				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
+				if(ndf != null) {
+					//ndf.reloadAdapterFromScratch();
+					ndf.UpdateCurrentRssView(NewsReaderListActivity.this, true);
+				}
+			}
+		};
         //AppRater.app_launched(this);
         //AppRater.rateNow(this);
 
@@ -267,7 +298,135 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
     }
 
+	@Override
+	protected void onStart() {
+		Intent serviceIntent = new Intent(this, OwnCloudSyncService.class);
+		mConnection = generateServiceConnection();
+		if(!isMyServiceRunning(OwnCloudSyncService.class)) {
+			startService(serviceIntent);
+		}
+		bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+		super.onStart();
+	}
 
+	@Override
+	protected void onStop() {
+		if(_ownCloudSyncService != null) {
+			try {
+				_ownCloudSyncService.unregisterCallback(callback);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+		unbindService(mConnection);
+		mConnection = null;
+		super.onStop();
+	}
+
+	private ServiceConnection generateServiceConnection() {
+		return new ServiceConnection() {
+
+			@Override
+			public void onServiceConnected(ComponentName name, IBinder binder) {
+				_ownCloudSyncService = IOwnCloudSyncService.Stub.asInterface(binder);
+				try {
+					_ownCloudSyncService.registerCallback(callback);
+
+					//Start auto sync if enabled
+					SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
+					if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
+						startSync();
+
+						UpdateButtonLayout();
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onServiceDisconnected(ComponentName name) {
+				try {
+					_ownCloudSyncService.unregisterCallback(callback);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		};
+	}
+
+	IOwnCloudSyncService _ownCloudSyncService;
+	private IOwnCloudSyncServiceCallback callback = new IOwnCloudSyncServiceCallback.Stub() {
+
+		@Override
+		public void throwException(AidlException ex) throws RemoteException {
+			// TODO: handle exception messages
+		}
+
+		@Override
+		public void startedSync(String sync_type) throws RemoteException {
+			Handler refresh = new Handler(Looper.getMainLooper());
+			refresh.post(new Runnable() {
+				public void run() {
+					UpdateButtonLayout();;
+				}
+			});
+		}
+
+		@Override
+		public void finishedSync(String sync_type) throws RemoteException {
+			Handler refresh = new Handler(Looper.getMainLooper());
+			refresh.post(new Runnable() {
+				public void run() {
+					UpdateButtonLayout();
+				}
+			});
+
+			Constants.SYNC_TYPES st = Constants.SYNC_TYPES.valueOf(sync_type);
+
+			switch(st) {
+				case SYNC_TYPE__GET_API:
+					break;
+				case SYNC_TYPE__ITEM_STATES:
+					break;
+				case SYNC_TYPE__FOLDER:
+					break;
+				case SYNC_TYPE__FEEDS:
+					break;
+				case SYNC_TYPE__ITEMS:
+
+					Log.d(TAG, "finished sync");
+					refresh = new Handler(Looper.getMainLooper());
+					refresh.post(new Runnable() {
+						public void run() {
+							NewsReaderListFragment newsReaderListFragment = (NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
+							newsReaderListFragment.ReloadAdapter();
+							UpdateItemList();
+							UpdatePodcastView();
+
+							SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
+							int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
+							if(newItemsCount > 0) {
+								Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
+										getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount),
+										Snackbar.LENGTH_LONG);
+								snackbar.setAction(getString(R.string.message_bar_reload), mListener);
+								snackbar.setActionTextColor(getResources().getColor(R.color.accent_material_dark));
+								// Setting android:TextColor to #000 in the light theme results in black on black
+								// text on the Snackbar, set the text back to white,
+								// TODO: find a cleaner way to do this
+								TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+								textView.setTextColor(Color.WHITE);
+								snackbar.show();
+							}
+						}
+					});
+					break;
+			}
+		}
+
+	};
 
 	@Override
 	protected void onResume() {
@@ -356,7 +515,31 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     void startSync()
     {
-		getSlidingListFragment().StartSync();
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
+			StartLoginFragment(this);
+		else {
+			try {
+				if (!_ownCloudSyncService.isSyncRunning())
+				{
+					new PostDelayHandler(this).stopRunningPostDelayHandler();//Stop pending sync handler
+
+					Bundle accBundle = new Bundle();
+					accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+					AccountManager mAccountManager = AccountManager.get(this);
+					Account[] accounts = mAccountManager.getAccounts();
+					for(Account acc : accounts)
+						if(acc.type.equals(AccountGeneral.ACCOUNT_TYPE))
+							ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
+					//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
+				} else {
+					UpdateButtonLayout();
+				}
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
     }
 
 	public void UpdateButtonLayout()
@@ -365,8 +548,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
 			NewsReaderDetailFragment newsReaderDetailFragment = getNewsReaderDetailFragment();
 
-			if(newsReaderListFragment != null && newsReaderListFragment._ownCloudSyncService != null) {
-				IOwnCloudSyncService _Reader = newsReaderListFragment._ownCloudSyncService;
+			if(_ownCloudSyncService != null) {
+				IOwnCloudSyncService _Reader = _ownCloudSyncService;
 
 				boolean isSyncRunning = _Reader.isSyncRunning();
 
