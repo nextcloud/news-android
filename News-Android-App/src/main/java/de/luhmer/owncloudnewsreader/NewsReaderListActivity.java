@@ -137,6 +137,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         ImageHandler.createNoMediaFile(this);
         //AppRater.app_launched(this);
         //AppRater.rateNow(this);
+
+		UpdateButtonLayout();
     }
 
 
@@ -462,7 +464,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         {
             try {
                 NewsReaderListFragment ndf = getSlidingListFragment();
-                SwipeRefreshLayout pullToRefreshView = ndf.mPullToRefreshLayout;
+                SwipeRefreshLayout pullToRefreshView = null;
+
+				if(ndf != null) //If the Fragment is not instantiated yet.
+					pullToRefreshView = ndf.mPullToRefreshLayout;
 
                 if(ndf._ownCloudSyncService != null) {
                     IOwnCloudSyncService _Reader = ndf._ownCloudSyncService;
