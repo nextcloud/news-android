@@ -165,7 +165,7 @@ public class HttpJsonRequest {
 		}
 
 		if(username != null && password != null) {
-            urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString((username + ":" + password).getBytes(), Base64.DEFAULT));
+            urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString((username + ":" + password).getBytes(), Base64.NO_WRAP));
         }
 
 		return (HttpURLConnection) urlConnection;
