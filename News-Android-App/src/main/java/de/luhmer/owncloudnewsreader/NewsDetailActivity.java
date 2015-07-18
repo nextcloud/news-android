@@ -181,25 +181,28 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			ex.printStackTrace();
 		}
 
+        mViewPager.addOnPageChangeListener(onPageChangeListener);
+
 		//Init ChromeCustomTabs
 		mCustomTabsSupported = bindCustomTabsService();
-
-		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
-
-			@Override
-			public void onPageSelected(int pos) {
-				PageChanged(pos);
-			}
-
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-		});
     }
+
+
+    private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
+
+        @Override
+        public void onPageSelected(int pos) {
+            PageChanged(pos);
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+        }
+    };
 
     public static SORT_DIRECTION getSortDirectionFromSettings(Context context) {
         SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
@@ -269,14 +272,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	private void PageChanged(int position)
 	{
-		/*
-		NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
-		if(fragment != null) {
-			//fragment.mWebView.requestLayout();
-			//fragment.mWebView.onScrollChanged(fragment.mWebView.getScrollX(), fragment.mWebView.getScrollY(), fragment.mWebView.getScrollX(), fragment.mWebView.getScrollY());
-		}
-		*/
-
 		StopVideoOnCurrentPage();
 		currentPosition = position;
 		ResumeVideoPlayersOnCurrentPage();
@@ -298,7 +293,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		if(mSectionsPagerAdapter.items.get(position) != null)
 			return mSectionsPagerAdapter.items.get(position).get();
 		return null;
-        //return (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
     }
 
 	private void ResumeVideoPlayersOnCurrentPage()
@@ -318,13 +312,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	public void UpdateActionBarIcons()
 	{
-        /*
-        if(menuItem_PlayPodcast == null
-                || menuItem_Read == null
-                || menuItem_Starred == null)
-            return;
-        */
-
         RssItem rssItem = rssItems.get(currentPosition);
 
         boolean isStarred = rssItem.getStarred_temp();
@@ -367,7 +354,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.news_detail, menu);
 		getMenuInflater().inflate(R.menu.news_detail, menu);
 
 		menuItem_Starred = menu.findItem(R.id.action_starred);
@@ -484,8 +470,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
                 //Fix for #257
                 content = title + " - " + content;
-
-				//content += "<br/><br/>Send via <a href=\"https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader\">ownCloud News Reader</a>";
 
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
