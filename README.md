@@ -73,8 +73,20 @@ Contributors
 
 Updates
 ==================================
-0.9.4 (in development)
+0.9.5 (in development)
 ---------------------
+
+
+0.9.4 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/363">#363 Add support for Chrome Custom Tabs</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/361">#361 Pause podcast when receiving call</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/362">#362 Redesign of the login dialog (special thanks to Daniel Schaal)</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/360">#360 Fix app crash</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/364">#364 App crash on Android < 4.1</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/258">#258 login fails with long passwords</a>
+- Bug fixes
+
 
 0.9.3 (Google Play)
 ---------------------
