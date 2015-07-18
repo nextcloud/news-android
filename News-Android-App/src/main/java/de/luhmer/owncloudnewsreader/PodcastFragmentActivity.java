@@ -14,7 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.SurfaceView;
@@ -44,6 +43,7 @@ import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
@@ -110,13 +110,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     @Override
     protected void onStart() {
         super.onStart();
-        // Bind to LocalService
-        Intent intent = new Intent(this, PodcastPlaybackService.class);
-        if(!isMyServiceRunning(PodcastPlaybackService.class)) {
-            startService(intent);
-        }
-
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -551,6 +544,34 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         return px;
     }
 
+    private void openPodcast(PodcastItem podcastItem) {
+        // Bind to LocalService
+        Intent intent = new Intent(this, PodcastPlaybackService.class);
+        if(!isMyServiceRunning(PodcastPlaybackService.class)) {
+            intent.putExtra(PodcastPlaybackService.PODCAST_ITEM, podcastItem);
+            startService(intent);
+        } else {
+            mPodcastPlaybackService.openFile(podcastItem);
+            loadPodcastFavIcon();
+        }
+
+        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    protected void openTTSItem(TTSItem ttsItem) {
+        // Bind to LocalService
+        Intent intent = new Intent(this, PodcastPlaybackService.class);
+        if(!isMyServiceRunning(PodcastPlaybackService.class)) {
+            intent.putExtra(PodcastPlaybackService.TTS_ITEM, ttsItem);
+            startService(intent);
+        } else {
+            mPodcastPlaybackService.openTtsFeed(ttsItem);
+            loadPodcastFavIcon();
+        }
+
+        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+    }
+
     @Override
     public void openPodcast(final RssItem rssItem) {
         final PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
@@ -559,8 +580,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         if(file.exists()) {
             podcastItem.link = file.getAbsolutePath();
 
-            mPodcastPlaybackService.openFile(podcastItem);
-            loadPodcastFavIcon();// Picasso.with(this).load(rssItem.getFeed().getFaviconUrl()).into(mPodcastFragment.imgFavIcon);
+            openPodcast(podcastItem);
         } else if(!podcastItem.offlineCached) {
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
@@ -581,9 +601,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 alertDialog.setPositiveButton("Stream", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        mPodcastPlaybackService.openFile(podcastItem);
-                        //Picasso.with(PodcastFragmentActivity.this).load(rssItem.getFeed().getFaviconUrl()).into(mPodcastFragment.imgFavIcon);
-                        loadPodcastFavIcon();
+                        openPodcast(podcastItem);
                     }
                 });
             }

@@ -22,6 +22,7 @@
 package de.luhmer.owncloudnewsreader.ListView;
 
 import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -551,6 +552,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     }
 
 
+    @SuppressLint("NewApi") // wrongly reports setSelectionFromTop is only available in lollipop
     public void notifyCountDataSetChanged(SparseArray<String> unreadCountFolders, SparseArray<String> unreadCountFeeds, SparseArray<String> urlsToFavIcons, SparseArray<String> starredCountFeeds) {
         this.unreadCountFolders = unreadCountFolders;
         this.unreadCountFeeds = unreadCountFeeds;

@@ -22,7 +22,8 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
@@ -35,6 +36,8 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -46,14 +49,12 @@ import java.net.URL;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 import de.luhmer.owncloud.accountimporter.ImportAccountsDialogFragment;
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
 import de.luhmer.owncloud.accountimporter.helper.OwnCloudAccount;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 
 /**
@@ -81,6 +82,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	private String mPassword;
 	private String mOc_root_path;
 	private boolean mCbDisableHostnameVerification;
+	private boolean showImportAccountButton;
 
 	// UI references.
 	@InjectView(R.id.username) EditText mUsernameView;
@@ -122,6 +124,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+		showImportAccountButton = AccountImporter.findAccounts(getActivity()).size() > 0;
 
 		//setRetainInstance(true);
 
@@ -131,11 +134,14 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
         View view = inflater.inflate(R.layout.dialog_signin, null);
         ButterKnife.inject(this, view);
 
-        builder.setView(view).setTitle(getString(R.string.action_sign_in_short));
+        builder.setView(view);
+		builder.setTitle(getString(R.string.action_sign_in_short));
 
-        FontHelper fHelper = new FontHelper(getActivity());
-        fHelper.setFontForAllChildren(view, fHelper.getFont());
+		builder.setPositiveButton(getString(R.string.action_sign_in_short), null);
 
+		if(showImportAccountButton) {
+			builder.setNeutralButton(getString(R.string.import_account), null);
+		}
 
         mImageViewShowPwd.setOnClickListener(ImgViewShowPasswordListener);
 
@@ -161,22 +167,46 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			}
 		});
 
+		AlertDialog dialog = builder.create();
+		// Set dialog to resize when soft keyboard pops up
+		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
-        view.findViewById(R.id.btn_importAccount).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
-            }
-        });
-
-        if(AccountImporter.findAccounts(getActivity()).size() <= 0) {
-            view.findViewById(R.id.btn_importAccount).setVisibility(View.GONE);
-        }
-
-        return builder.create();
+        return dialog;
     }
 
-    private View.OnClickListener ImgViewShowPasswordListener = new View.OnClickListener() {
+	@Override
+	public void onStart() {
+		super.onStart();
+		final AlertDialog dialog = (AlertDialog) getDialog();
+		// Override the onClickListeners, as the default implementation would dismiss the dialog
+		if (dialog != null) {
+			if (showImportAccountButton) {
+				Button neutralButton = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+				neutralButton.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
+					}
+				});
+			}
+			Button positiveButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+			positiveButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					attemptLogin();
+				}
+			});
+		}
+	}
+
+	@Override
+	public void onCancel(DialogInterface dialog) {
+		super.onCancel(dialog);
+		if(mActivity instanceof AuthenticatorActivity)
+			mActivity.finish();
+	}
+
+	private View.OnClickListener ImgViewShowPasswordListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             mPasswordVisible = !mPasswordVisible;
@@ -188,17 +218,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
             }
         }
     };
-
-
-    @OnClick(R.id.btn_signin) void SignIn() {
-        attemptLogin();
-    }
-
-    @OnClick(R.id.btn_cancel) void Cancel() {
-        LoginDialogFragment.this.getDialog().cancel();
-        if(mActivity instanceof AuthenticatorActivity)
-            mActivity.finish();
-    }
 
 	private ProgressDialog BuildPendingDialogWhileLoggingIn()
 	{

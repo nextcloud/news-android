@@ -85,7 +85,7 @@ public class GetImageThreaded extends Thread
 
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
             Feed feed = dbConn.getFeedById(ThreadId);
-            if(!cacheFile.isFile() || feed.getAvgColour() == null)
+            if(!cacheFile.isFile() || (feed != null && feed.getAvgColour() == null))
             {
                 File dir = new File(rootPath);
                 dir.mkdirs();

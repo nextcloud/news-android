@@ -1,7 +1,6 @@
 include ':News-Android-App', ':ownCloud-Account-Importer'
 include ':Changeloglib:ChangeLogLibrary'
 include ':ShowcaseView:library'
-include ':android-HoloCircularProgressBar:library'
 
 include 'customtabs'
 project(':customtabs').projectDir = new File(settingsDir, './custom-tabs-client/customtabs')

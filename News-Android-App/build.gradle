@@ -38,37 +38,29 @@ android {
     }
 }
 
-configurations.all {
-    resolutionStrategy {
-        force 'com.android.support:support-v4:22.2.0'
-        force 'com.android.support:appcompat-v7:22.2.0'
-    }
-}
-
 dependencies {
     // core android studio module
     //compile project(':core')
+
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // compile 'com.google.android.gms:play-services:4.2.42'
-    compile files('src/main/libs/gson-2.2.4.jar')
-    compile files('src/main/libs/jsoup-1.7.2.jar')
     compile project(':Changeloglib:ChangeLogLibrary')
     compile project(':ownCloud-Account-Importer')
     compile project(':ShowcaseView:library')
-    compile project(':android-HoloCircularProgressBar:library')
     compile project(':customtabs')
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support:design:22.2.0'
+    compile 'de.mrmaffen:holocircularprogressbar:1.0.1'
+    compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.jakewharton:butterknife:5.1.+'
     compile 'com.squareup.picasso:picasso:2.3.1@jar'
     compile 'com.sothree.slidinguppanel:library:+'
     compile 'de.greenrobot:eventbus:2.2.1'
     compile 'de.greenrobot:greendao:1.3.7@jar'
     compile 'de.greenrobot:greendao-generator:1.3.1@jar'
-    compile 'org.freemarker:freemarker:2.3.18@jar'
-
+    
     compile 'org.apache.commons:commons-lang3:3.4'
 
     testCompile 'org.robolectric:robolectric:3.0-rc3'

@@ -36,7 +36,7 @@
     <string name="menu_downloadMoreItems">Download more items</string>
 
     <!-- Import Accounts -->
-    <string name="import_account_dialog_title">Import Account</string>
+    <string name="import_account">Import Account</string>
 
     <!-- EMAIL -->
     <string name="email_sourceCode">Sourcecode of item - Bugreport</string>
@@ -67,7 +67,7 @@
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>
     <string name="pref_title_password">Password</string>
-    <!-- <string name="pref_title_owncloudRootPath">ownCloud root address</string> -->
+    <string name="pref_title_owncloudRootPath">ownCloud root address</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
     <!-- <string name="pref_default_username">admin</string> -->
 
@@ -87,9 +87,18 @@
     <string name="pull_to_refresh_updateFolder">Synchronizing folder</string>
     <string name="pull_to_refresh_updateFeeds">Synchronizing feeds</string>
     <string name="pull_to_refresh_updateItems">Synchronizing items</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Fetched %d item so far..</item>
+        <item quantity="other">Fetched %d items so far..</item>
+    </plurals>
 
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Settings</string>
+    <string name="cache_is_cleared">Cache is cleared!</string>
+    <plurals name="number_of_files">
+        <item quantity="one">%d File</item>
+        <item quantity="other">%d Files</item>
+    </plurals>
 
     <!-- General settings -->
     <string name="pref_header_general">General</string>

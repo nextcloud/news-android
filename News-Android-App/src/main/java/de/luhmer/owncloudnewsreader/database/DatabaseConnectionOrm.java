@@ -429,7 +429,7 @@ public class DatabaseConnectionOrm {
         String whereStatement = getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, sortDirection);
         whereStatement = whereStatement.replace("SELECT " + RssItemDao.Properties.Id.columnName + " FROM " + RssItemDao.TABLENAME, "");
         whereStatement += " LIMIT " + limit;
-        return daoSession.getRssItemDao().queryRaw(whereStatement, null);
+        return daoSession.getRssItemDao().queryRaw(whereStatement, (String)null);
     }
 
     public String getAllItemsIdsForFolderSQL(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {

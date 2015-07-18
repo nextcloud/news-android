@@ -1,107 +1,94 @@
 <ScrollView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	tools:context=".LoginActivity"
-	android:id="@+id/login_form"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent" >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".LoginActivity"
+    android:id="@+id/login_form"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-	<LinearLayout
-	    android:orientation="vertical"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/abc_dialog_padding_material"
+        android:paddingRight="@dimen/abc_dialog_padding_material"
+        android:paddingTop="@dimen/abc_dialog_padding_material">
 
-	    <EditText
-	        android:id="@+id/username"
-	        android:inputType="textEmailAddress"
-	        style="@style/LoginDialogEditTextStyle"
-	        android:hint="@string/pref_title_username" />
-
-
-        <FrameLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@+id/username_container">
+
+            <EditText
+                android:id="@+id/username"
+                android:inputType="textEmailAddress"
+                android:hint="@string/pref_title_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username_container"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/password_container">
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:hint="@string/pref_title_password"
-                style="@style/LoginDialogEditTextStyle"
-                android:fontFamily="sans-serif"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <ImageView
-                android:id="@+id/imgView_ShowPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:src="@android:drawable/ic_menu_view"/>
+        </android.support.design.widget.TextInputLayout>
 
-        </FrameLayout>
-
-	    <EditText
-	        android:id="@+id/edt_owncloudRootPath"
-	        android:fontFamily="sans-serif"
-	        android:hint="@string/pref_default_owncloudRootPath"
-	        android:inputType="textUri"
-	        android:maxLines="1"
-	        android:selectAllOnFocus="true"
-	        android:singleLine="true"
-	        android:title="@string/pref_default_owncloudRootPath"
-	        style="@style/LoginDialogEditTextStyle" />
-
-	    <CheckBox
-	        android:id="@+id/cb_AllowAllSSLCertificates"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/pref_title_DisableHostnameVerification" />
-
-        <Button
-            android:id="@+id/btn_importAccount"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/url_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Import Account from other ownCloud App"/>
+            android:layout_below="@+id/password_container"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
-	    <View
-	        android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#383E44"
-			android:layout_marginTop="5dp"
-			android:layout_marginLeft="8dp"
-			android:layout_marginRight="8dp" />
+            <EditText
+                android:id="@+id/edt_owncloudRootPath"
+                android:hint="@string/pref_title_owncloudRootPath"
+                android:inputType="textUri"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="@string/pref_default_owncloudRootPath"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-	    <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content" >
+        </android.support.design.widget.TextInputLayout>
 
-           <Button
-               android:id="@+id/btn_cancel"
-               android:layout_width="0dip"
-               android:layout_height="match_parent"
-               android:layout_weight="1"
-               android:background="@android:color/transparent"
-               android:text="@android:string/cancel" />
+        <ImageView
+            android:id="@+id/imgView_ShowPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/ic_action_visibility"
+            android:layout_alignTop="@+id/password_container"
+            android:layout_alignBottom="@+id/password_container"
+            android:layout_alignRight="@+id/password_container" />
 
-           <View
-               android:layout_width="1dp"
-               android:layout_height="match_parent"
-               android:background="#383E44"
-               android:layout_marginTop="8dp"
-               android:layout_marginBottom="8dp" />
+        <CheckBox
+            android:id="@+id/cb_AllowAllSSLCertificates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pref_title_DisableHostnameVerification"
+            android:layout_below="@+id/url_container"
+            android:layout_alignRight="@+id/imgView_ShowPassword"
+            android:layout_alignEnd="@+id/imgView_ShowPassword" />
 
-           <Button
-               android:id="@+id/btn_signin"
-               android:layout_width="0dip"
-               android:layout_height="match_parent"
-               android:layout_weight="1"
-               android:background="@android:color/transparent"
-               android:text="@string/action_sign_in_short" />
-		</LinearLayout>
+    </RelativeLayout>
 
-	</LinearLayout>
 </ScrollView>
