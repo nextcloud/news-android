@@ -1,12 +1,16 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
 import android.annotation.TargetApi;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -27,9 +31,7 @@ import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
@@ -40,7 +42,6 @@ import butterknife.InjectView;
 import butterknife.Optional;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.event.EventBus;
-import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
@@ -56,8 +57,6 @@ import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
-import de.luhmer.owncloudnewsreader.reader.IReader;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
@@ -284,9 +283,11 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
 
         if(rssItem.getFeed() != null) {
             simpleLayout.textViewTitle.setText(rssItem.getFeed().getFeedTitle());
+            favIconHandler.loadFavIconForFeed(rssItem.getFeed().getFaviconUrl(), simpleLayout.imgViewFavIcon);
         } else {
             //This this only happen while sync is running
             Log.v(TAG, "Feed not found!!!");
+            showNotifyMessage("Problem detected", "Inconsistency in database detected. Please clear the cache and try to sync again.");
         }
 
         if (!ThemeChooser.isDarkTheme(mActivity)) {
@@ -294,7 +295,7 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         }
 
 
-        favIconHandler.loadFavIconForFeed(rssItem.getFeed().getFaviconUrl(), simpleLayout.imgViewFavIcon);
+
 
         //Podcast stuff
         if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
@@ -329,6 +330,36 @@ public class NewsListArrayAdapter extends GreenDaoListAdapter<RssItem> {
         } else {
             simpleLayout.flPlayPausePodcastWrapper.setVisibility(View.GONE);
         }
+    }
+
+    private void showNotifyMessage(String title, String text) {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(mActivity)
+                        .setSmallIcon(R.drawable.ic_notification)
+                        .setContentTitle(title)
+                        .setContentText(text)
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(text));
+
+        // Creates an Intent for the Activity
+        Intent notifyIntent =  new Intent(mActivity, SettingsActivity.class);
+        // Sets the Activity to start in a new, empty task
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        // Creates the PendingIntent
+        PendingIntent notifyPendingIntent =
+                PendingIntent.getActivity(
+                        mActivity,
+                        0,
+                        notifyIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+
+        // Puts the PendingIntent into the notification builder
+        mBuilder.setContentIntent(notifyPendingIntent);
+
+
+        NotificationManager mNotificationManager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(45613, mBuilder.build());
     }
 
     public static int DpToPx(Context context, int dp) {
