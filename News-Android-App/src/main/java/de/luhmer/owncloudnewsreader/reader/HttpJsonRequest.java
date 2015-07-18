@@ -133,33 +133,6 @@ public class HttpJsonRequest {
 		if (urlConnection instanceof HttpsURLConnection) {
 			HttpsURLConnection httpsURLConnection = (HttpsURLConnection) urlConnection;
 
-            /*
-            try {
-                TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                        return null;
-                    }
-                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                    }
-                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                    }
-                } };
-                // Install the all-trusting trust manager
-                final SSLContext sc = SSLContext.getInstance("SSL");
-                sc.init(null, trustAllCerts, new java.security.SecureRandom());
-                HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-                // Create all-trusting host name verifier
-                HostnameVerifier allHostsValid = new HostnameVerifier() {
-                    public boolean verify(String hostname, SSLSession session) {
-                        return true;
-                    }
-                };
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            */
-
-
 			// set location of the keystore
 			MemorizingTrustManager.setKeyStoreFile("private", "sslkeys.bks");
 
@@ -191,43 +164,12 @@ public class HttpJsonRequest {
 	        	httpsURLConnection.setHostnameVerifier(HttpsURLConnection.getDefaultHostnameVerifier());
 		}
 
-		if(username != null && password != null)
-    		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString((username + ":" + password).getBytes(),Base64.DEFAULT));
+		if(username != null && password != null) {
+            urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString((username + ":" + password).getBytes(), Base64.DEFAULT));
+        }
 
 		return (HttpURLConnection) urlConnection;
 	}
-
-	/*
-	private static HttpURLConnection getUrlConnection(URL url, Context context, String username, String password) throws IOException, KeyManagementException, NoSuchAlgorithmException {
-		HttpURLConnection urlConnection = null;
-		if(url.getProtocol().toLowerCase(Locale.ENGLISH).equals("http"))
-			urlConnection = (HttpURLConnection) url.openConnection();
-		else
-		{
-			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-	        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false))
-	        {
-	        	TrustManager[] trustAllCerts = new TrustManager[] { new CustomTrustManager() };
-	    		SSLContext sc = SSLContext.getInstance("SSL");
-	    		sc.init(null, trustAllCerts, new java.security.SecureRandom());
-	    		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-
-	    		// Install the all-trusting host verifier
-	    		//HttpsURLConnection.setDefaultHostnameVerifier(new CustomHostnameVerifier());
-
-	    		//HttpsURLConnection.setDefaultHostnameVerifier(new StrictHostnameVerifier());
-	    		//HttpsURLConnection.setDefaultHostnameVerifier(new AllowAllHostnameVerifier());
-	    		HttpsURLConnection.setDefaultHostnameVerifier(new BrowserCompatHostnameVerifier());
-	        }
-	        urlConnection = (HttpURLConnection) url.openConnection();
-		}
-
-		if(username != null && password != null)
-    		urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encode((username + ":" + password).getBytes()));
-
-		return urlConnection;
-	}
-	*/
 
     public static int performCreateFeedRequest(String urlString, String username, String password, Context context, String feedUrl, long folderId) throws Exception {
         HashMap<String,String> nameValuePairs = new HashMap<>();
@@ -250,18 +192,6 @@ public class HttpJsonRequest {
 
         urlConnection.connect();
 
-        /*
-        int HttpResult = urlConnection.getResponseCode();
-        if(HttpResult == HttpURLConnection.HTTP_OK) {
-            return urlConnection.getInputStream();
-        } else {
-            if(urlConnection.getResponseMessage().equals("Unauthorized"))
-                throw new AuthenticationException(urlConnection.getResponseMessage());
-            else
-                throw new Exception(urlConnection.getResponseMessage());
-        }
-        */
-
         return urlConnection.getResponseCode();
     }
 
@@ -282,58 +212,5 @@ public class HttpJsonRequest {
 		}
 
 		return urlConnection.getResponseCode();
-
-		/*
-        URL url = new URL(urlString);
-        DefaultHttpClient httpClient;
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        if(sp.getBoolean(SettingsActivity.CB_ALLOWALLSSLCERTIFICATES_STRING, false) && url.getProtocol().toLowerCase().equals("https"))
-            httpClient = new SSLHttpClient(context);
-        else
-            httpClient = new DefaultHttpClient();
-
-        if(username != null && password != null)
-            httpClient.getCredentialsProvider().setCredentials(new AuthScope(null, -1), new UsernamePasswordCredentials(username,password));
-
-        HttpPut request = new HttpPut(url.toString());
-        request.setEntity(new StringEntity(content));
-        request.addHeader("Accept", "application/json");
-
-        HttpResponse response = httpClient.execute(request);
-        return response.getStatusLine().getStatusCode();
-        */
 	}
-
-
-
-    /**
-     * Trust every server - dont check for any certificate
-     */
-    /*
-    private static void trustAllHosts() {
-        // Create a trust manager that does not validate certificate chains
-        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                return new java.security.cert.X509Certificate[] {};
-            }
-
-            public void checkClientTrusted(X509Certificate[] chain,
-                                           String authType) throws CertificateException {
-            }
-
-            public void checkServerTrusted(X509Certificate[] chain,
-                                           String authType) throws CertificateException {
-            }
-        } };
-
-        // Install the all-trusting trust manager
-        try {
-            SSLContext sc = SSLContext.getInstance("TLS");
-            sc.init(null, trustAllCerts, new java.security.SecureRandom());
-            HttpsURLConnection
-                    .setDefaultSSLSocketFactory(sc.getSocketFactory());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 }
