@@ -161,6 +161,14 @@
             android:name=".services.PodcastDownloadService"
             android:exported="false" >
         </service>
+
+
+
+
+        <service
+            android:name="org.chromium.customtabsclient.KeepAliveService"
+            android:exported="true"/>
+
     </application>
 
 </manifest>

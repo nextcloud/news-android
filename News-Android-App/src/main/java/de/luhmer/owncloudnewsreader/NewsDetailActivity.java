@@ -21,15 +21,22 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.app.ActivityOptions;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.customtabs.CustomTabsCallback;
+import android.support.customtabs.CustomTabsClient;
+import android.support.customtabs.CustomTabsServiceConnection;
+import android.support.customtabs.CustomTabsSession;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -46,12 +53,12 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.dao.query.LazyList;
+import de.luhmer.owncloudnewsreader.chrometabs.CustomTabActivityManager;
+import de.luhmer.owncloudnewsreader.chrometabs.CustomTabUiBuilder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -59,13 +66,13 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
-import de.luhmer.owncloudnewsreader.model.Tuple;
 import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 public class NewsDetailActivity extends PodcastFragmentActivity {
 
+	private static final String TAG = NewsDetailActivity.class.getCanonicalName();
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
 	 * fragments for each of the sections. We use a
@@ -83,18 +90,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	public ViewPager mViewPager;
 	private int currentPosition;
 
-	PostDelayHandler pDelayHandler;
+	private PostDelayHandler pDelayHandler;
 
-    MenuItem menuItem_PlayPodcast;
-	MenuItem menuItem_Starred;
-	MenuItem menuItem_Read;
+	private MenuItem menuItem_PlayPodcast;
+	private MenuItem menuItem_Starred;
+	private MenuItem menuItem_Read;
 
-    IReader _Reader;
-    //ArrayList<Integer> databaseItemIds;
-    DatabaseConnectionOrm dbConn;
-	//public List<RssFile> rssFiles;
-    LazyList<RssItem> rssItems;
+	private IReader _Reader;
+	private DatabaseConnectionOrm dbConn;
+	public LazyList<RssItem> rssItems;
 
+	private CustomTabsSession mCustomTabsSession;
+	private CustomTabsClient mCustomTabsClient;
+
+	private boolean mCustomTabsSupported;
     //public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
 
 	@Override
@@ -171,6 +180,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		{
 			ex.printStackTrace();
 		}
+
+		//Init ChromeCustomTabs
+		mCustomTabsSupported = bindCustomTabsService();
 
 		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
 
@@ -403,8 +415,22 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 				if(link.length() > 0)
 				{
-					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-					startActivity(browserIntent);
+					if(mCustomTabsSupported) {
+						CustomTabActivityManager mCustomTabsManager = CustomTabActivityManager.getInstance();
+						mCustomTabsSession = getSession();
+						CustomTabUiBuilder uiBuilder = new CustomTabUiBuilder();
+						uiBuilder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+						uiBuilder.setShowTitle(true);
+						uiBuilder.setCloseButtonStyle(CustomTabUiBuilder.CLOSE_BUTTON_ARROW);
+						//prepareMenuItems(uiBuilder);
+						//prepareActionButton(uiBuilder);
+						uiBuilder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+						uiBuilder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+						mCustomTabsManager.launchUrl(this, mCustomTabsSession, link, uiBuilder);
+					} else {
+						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+						startActivity(browserIntent);
+					}
 				}
 				break;
 
@@ -475,6 +501,71 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	private boolean bindCustomTabsService() {
+		if (mCustomTabsClient != null)
+			return true;
+
+		String packageName = CustomTabActivityManager.getInstance().getPackageNameToUse(this);
+		if (packageName == null)
+			return false;
+		boolean ok = CustomTabsClient.bindCustomTabsService(
+				this, packageName, new CustomTabsServiceConnection() {
+					@Override
+					public void onCustomTabsServiceConnected(ComponentName name, CustomTabsClient client) {
+						mCustomTabsClient = client;
+					}
+
+					@Override
+					public void onServiceDisconnected(ComponentName name) {
+						mCustomTabsClient = null;
+					}
+				});
+		//if (ok) {};
+		return ok;
+	}
+
+	private CustomTabsSession getSession() {
+		if (mCustomTabsClient == null) {
+			mCustomTabsSession = null;
+		} else if (mCustomTabsSession == null) {
+			mCustomTabsSession = mCustomTabsClient.newSession(new CustomTabsCallback() {
+				@Override
+				public void onUserNavigationStarted(Uri url, Bundle extras) {
+					Log.w(TAG, "onUserNavigationStarted: url = " + url.toString());
+				}
+
+				@Override
+				public void onUserNavigationFinished(Uri url, Bundle extras) {
+					Log.w(TAG, "onUserNavigationFinished: url = " + url.toString());
+				}
+			});
+		}
+		return mCustomTabsSession;
+	}
+
+
+	private void prepareMenuItems(CustomTabUiBuilder uiBuilder) {
+		Intent menuIntent = new Intent();
+		menuIntent.setClass(getApplicationContext(), this.getClass());
+		// Optional animation configuration when the user clicks menu items.
+		Bundle menuBundle = ActivityOptions.makeCustomAnimation(this, android.R.anim.slide_in_left,
+				android.R.anim.slide_out_right).toBundle();
+		PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0, menuIntent, 0,
+				menuBundle);
+		uiBuilder.addMenuItem("Menu entry 1", pi);
+	}
+
+	private void prepareActionButton(CustomTabUiBuilder uiBuilder) {
+		// An example intent that sends an email.
+		Intent actionIntent = new Intent(Intent.ACTION_SEND);
+		actionIntent.setType("*/*");
+		actionIntent.putExtra(Intent.EXTRA_EMAIL, "example@example.com");
+		actionIntent.putExtra(Intent.EXTRA_SUBJECT, "example");
+		PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0, actionIntent, 0);
+		Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+		uiBuilder.setActionButton(icon, pi);
 	}
 
 

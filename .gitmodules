@@ -10,3 +10,6 @@
 [submodule "android-HoloCircularProgressBar"]
 	path = android-HoloCircularProgressBar
 	url = https://github.com/passsy/android-HoloCircularProgressBar.git
+[submodule "custom-tabs-client"]
+	path = custom-tabs-client
+	url = https://github.com/GoogleChrome/custom-tabs-client
