@@ -107,16 +107,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private FavIconHandler favIconHandler;
 
     LayoutInflater inflater;
-    boolean mIsTwoPane;
-    public static boolean isTwoPane(Context context) {
-        return context.getResources().getBoolean(R.bool.two_pane);
-        //return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
-    }
 
     public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnectionOrm dbConn, ListView listView)
     {
-        mIsTwoPane = isTwoPane(mContext);
-
         favIconHandler = new FavIconHandler(mContext);
 
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

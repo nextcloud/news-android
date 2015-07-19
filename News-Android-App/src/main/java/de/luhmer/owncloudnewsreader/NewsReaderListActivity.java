@@ -48,6 +48,7 @@ import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.Optional;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
@@ -93,7 +94,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private static IReader _Reader;
 
     @InjectView(R.id.toolbar) Toolbar toolbar;
-	@InjectView(R.id.drawer_layout) protected DrawerLayout drawerLayout;
+	@Optional @InjectView(R.id.drawer_layout) protected DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
 
@@ -130,30 +131,33 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         				.replace(R.id.left_drawer, newsReaderListFragment)
                    		.commit();
 
-		drawerToggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.empty_view_content,R.string.empty_view_content) {
-			@Override
-			public void onDrawerClosed(View drawerView) {
-				super.onDrawerClosed(drawerView);
-				togglePodcastVideoViewAnimation();
+		if(drawerLayout != null) {
+			drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.empty_view_content, R.string.empty_view_content) {
+				@Override
+				public void onDrawerClosed(View drawerView) {
+					super.onDrawerClosed(drawerView);
+					togglePodcastVideoViewAnimation();
 
-				syncState();
-				EventBus.getDefault().post(new FeedPanelSlideEvent(false));
-			}
+					syncState();
+					EventBus.getDefault().post(new FeedPanelSlideEvent(false));
+				}
 
-			@Override
-			public void onDrawerOpened(View drawerView) {
-				super.onDrawerOpened(drawerView);
-				togglePodcastVideoViewAnimation();
-				reloadCountNumbersOfSlidingPaneAdapter();
+				@Override
+				public void onDrawerOpened(View drawerView) {
+					super.onDrawerOpened(drawerView);
+					togglePodcastVideoViewAnimation();
+					reloadCountNumbersOfSlidingPaneAdapter();
 
-				syncState();
-			}
-		};
+					syncState();
+				}
+			};
 
-		drawerLayout.setDrawerListener(drawerToggle);
+			drawerLayout.setDrawerListener(drawerToggle);
+		}
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
-		drawerToggle.syncState();
+		if(drawerToggle != null)
+			drawerToggle.syncState();
 
         if(savedInstanceState == null)//When the app starts (no orientation change)
         {
@@ -226,9 +230,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 
             StartDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
-                    savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
-                    savedInstanceState.getLong(ID_FEED_STRING),
-                    false);
+					savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
+					savedInstanceState.getLong(ID_FEED_STRING),
+					false);
 		}
     }
 
@@ -246,13 +250,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-		drawerToggle.syncState();
+		if(drawerToggle != null)
+			drawerToggle.syncState();
 	}
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		drawerToggle.onConfigurationChanged(newConfig);
+		if(drawerToggle != null)
+			drawerToggle.onConfigurationChanged(newConfig);
 	}
 
 	public void reloadCountNumbersOfSlidingPaneAdapter() {
@@ -275,10 +281,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		super.onResume();
 	}
 
-	public boolean shouldDrawerStayOpen() {
-        return getResources().getBoolean(R.bool.two_pane);
-    }
-
 	@Override
 	public void onRefresh() {
 		startSync();
@@ -290,7 +292,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 */
 	@Override
 	public void onTopItemClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
-		if(!shouldDrawerStayOpen())
+		if(drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 
 		StartDetailFragment(idFeed, isFolder, optional_folder_id, true);
@@ -298,7 +300,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public void onChildItemClicked(long idFeed, Long optional_folder_id) {
-		if(!shouldDrawerStayOpen())
+		if(drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 
 		//StartDetailFragment(idSubscription, false, optional_folder_id);
@@ -404,10 +406,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onBackPressed() {
         if(handlePodcastBackPressed());
-        if(drawerLayout.isDrawerOpen(GravityCompat.START))
-			super.onBackPressed();
-		else
-			drawerLayout.openDrawer(GravityCompat.START);
+		if(drawerLayout != null) {
+			if (drawerLayout.isDrawerOpen(GravityCompat.START))
+				super.onBackPressed();
+			else
+				drawerLayout.openDrawer(GravityCompat.START);
+		}
 	}
 
 	private static final int RESULT_SETTINGS = 15642;
@@ -415,7 +419,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if(drawerToggle.onOptionsItemSelected(item))
+		if(drawerToggle != null && drawerToggle.onOptionsItemSelected(item))
 			return true;
 		switch (item.getItemId()) {
 

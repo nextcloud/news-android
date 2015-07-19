@@ -12,6 +12,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
@@ -426,17 +427,15 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     public void togglePodcastVideoViewAnimation() {
         boolean isLeftSliderOpen = false;
 
-        if(this instanceof NewsReaderListActivity) {
-            isLeftSliderOpen = ((NewsReaderListActivity) this).drawerLayout.isDrawerOpen(Gravity.LEFT);
+        if(this instanceof NewsReaderListActivity && ((NewsReaderListActivity) this).drawerLayout != null) {
+            isLeftSliderOpen = ((NewsReaderListActivity) this).drawerLayout.isDrawerOpen(GravityCompat.START);
         }
-
-        boolean isTabletView = SubscriptionExpandableListAdapter.isTwoPane(this);
 
         int podcastMediaControlHeightDp = pxToDp((int) getResources().getDimension(R.dimen.podcast_media_control_height));
 
-        if(isTabletView && sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) { //On Tablets
+        if(sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) { //On Tablets
             animateToPosition(podcastMediaControlHeightDp);
-        } else if(!isTabletView && isLeftSliderOpen)
+        } else if(isLeftSliderOpen)
             animateToPosition(0);
         else if(sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
             animateToPosition(podcastMediaControlHeightDp);
