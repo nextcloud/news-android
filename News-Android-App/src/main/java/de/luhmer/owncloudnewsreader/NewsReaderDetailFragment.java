@@ -100,7 +100,6 @@ public class NewsReaderDetailFragment extends Fragment {
 		return titel;
 	}
 
-    private int onResumeCount = 0;
     private static final String LAYOUT_MANAGER_STATE = "LAYOUT_MANAGER_STATE";
 
     @InjectView(R.id.pb_loading) ProgressBar pbLoading;
@@ -127,7 +126,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
     @Override
     public void onResume() {
-        Log.v(TAG, "onResume called!");
+        super.onResume();
 
         EventBus.getDefault().register(this);
 
@@ -139,13 +138,6 @@ public class NewsReaderDetailFragment extends Fragment {
             recyclerView.removeOnScrollListener(ListScrollListener);
         }
 
-        //When the fragment is instantiated by the xml file, onResume will be called twice
-        if(onResumeCount >= 2) {
-            UpdateCurrentRssView(getActivity(), false);
-        }
-        onResumeCount++;
-
-        super.onResume();
     }
 
     @Override
