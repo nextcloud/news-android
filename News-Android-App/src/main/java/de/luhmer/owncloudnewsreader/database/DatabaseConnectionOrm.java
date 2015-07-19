@@ -317,20 +317,7 @@ public class DatabaseConnectionOrm {
         return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Starred.eq(true), RssItemDao.Properties.Starred_temp.eq(false)).list();
     }
 
-
-
-
-
-    public int getCountOfAllItems(boolean execludeStarred) {//TODO needs testing!
-        long count;
-        if(execludeStarred)
-            count = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Starred_temp.notEq(true)).count();
-        else
-            count = daoSession.getRssItemDao().count();
-        return (int) count;
-    }
-
-    public LazyList<RssItem> getAllItemsWithIdHigher(long id) {//TODO needs testing!
+    public LazyList<RssItem> getAllItemsWithIdHigher(long id) {
         return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.ge(id)).listLazyUncached();
     }
 

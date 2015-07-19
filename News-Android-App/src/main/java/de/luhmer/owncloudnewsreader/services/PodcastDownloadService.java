@@ -28,21 +28,17 @@ import de.luhmer.owncloudnewsreader.model.PodcastItem;
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
  * <p>
- * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
 public class PodcastDownloadService extends IntentService {
-    // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
     private static final String ACTION_DOWNLOAD = "de.luhmer.owncloudnewsreader.services.action.DOWNLOAD";
 
 
 
-    // TODO: Rename parameters
     private static final String EXTRA_RECEIVER = "de.luhmer.owncloudnewsreader.services.extra.RECEIVER";
     private static final String EXTRA_URL = "de.luhmer.owncloudnewsreader.services.extra.URL";
-    private static final String EXTRA_PARAM2 = "de.luhmer.owncloudnewsreader.services.extra.PARAM2";
-    private static final String TAG = "PodcastDownloadService";
+    private static final String TAG = PodcastDownloadService.class.getCanonicalName();
 
     private EventBus eventBus;
 
@@ -57,7 +53,6 @@ public class PodcastDownloadService extends IntentService {
         intent.setAction(ACTION_DOWNLOAD);
         intent.putExtra(EXTRA_URL, podcastItem);
         //intent.putExtra(EXTRA_RECEIVER, receiver);
-        //intent.putExtra(EXTRA_PARAM2, param2);
         context.startService(intent);
     }
 
@@ -82,11 +77,7 @@ public class PodcastDownloadService extends IntentService {
                 downloadPodcast(podcast, this);
 
 
-            }/* else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
-            }*/
+            }
         }
     }
 
@@ -221,15 +212,13 @@ public class PodcastDownloadService extends IntentService {
         */
     }
 
-    public static final int UPDATE_PROGRESS = 5555;
+    //public static final int UPDATE_PROGRESS = 5555;
 
 
     public class DownloadProgressUpdate {
-
         public DownloadProgressUpdate(PodcastItem podcast) {
             this.podcast = podcast;
         }
-
         public PodcastItem podcast;
     }
 }
