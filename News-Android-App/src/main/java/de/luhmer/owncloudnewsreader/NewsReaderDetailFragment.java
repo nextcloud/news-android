@@ -67,18 +67,10 @@ import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
  * tablets) or a {@link NewsReaderListActivity} on handsets.
  */
 public class NewsReaderDetailFragment extends Fragment {
-	/**
-	 * The fragment argument representing the item ID that this fragment
-	 * represents.
-	 */
-	public static final String ARG_ITEM_ID = "item_id";
 
 	protected final String TAG = getClass().getCanonicalName();
 
-
-	//private boolean DialogShowedToMarkLastItemsAsRead = false;
-
-	Long idFeed;
+	private Long idFeed;
 
     private Drawable markAsReadDrawable;
     private Drawable starredDrawable;
@@ -108,9 +100,7 @@ public class NewsReaderDetailFragment extends Fragment {
 		return titel;
 	}
 
-    private boolean reloadCursorOnStartUp = false;
-
-	//private static ArrayList<Integer> databaseIdsOfItems;
+    private boolean isStartup = true;
     private static final String LAYOUT_MANAGER_STATE = "LAYOUT_MANAGER_STATE";
 
     @InjectView(R.id.pb_loading) ProgressBar pbLoading;
@@ -118,42 +108,21 @@ public class NewsReaderDetailFragment extends Fragment {
     @InjectView(R.id.list) RecyclerView recyclerView;
     @InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
 
+
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
 	public NewsReaderDetailFragment() {
-		//databaseIdsOfItems = new ArrayList<Integer>();
-	}
-
-    public void setUpdateListViewOnStartUp(boolean reloadCursorOnStartUp) {
-        this.reloadCursorOnStartUp = reloadCursorOnStartUp;
-    }
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		if(getArguments() != null) {
-			if (getArguments().containsKey(NewsReaderListActivity.FEED_ID)) {
-				idFeed = getArguments().getLong(NewsReaderListActivity.FEED_ID);
-			}
-			if (getArguments().containsKey(NewsReaderListActivity.TITEL)) {
-				titel = getArguments().getString(NewsReaderListActivity.TITEL);
-			}
-			if (getArguments().containsKey(NewsReaderListActivity.FOLDER_ID)) {
-				idFolder = getArguments().getLong(NewsReaderListActivity.FOLDER_ID);
-			}
-		}
 	}
 
     public void setData(Long idFeed, Long idFolder, String titel, boolean updateListView) {
         this.idFeed = idFeed;
         this.idFolder = idFolder;
         this.titel = titel;
-        setUpdateListViewOnStartUp(updateListView);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(titel);
-        UpdateCurrentRssView(getActivity(), true);
+        UpdateCurrentRssView(getActivity(), updateListView);
     }
 
     @Override
@@ -166,11 +135,11 @@ public class NewsReaderDetailFragment extends Fragment {
             recyclerView.addOnScrollListener(ListScrollListener);
         }
 
-        if(reloadCursorOnStartUp)
-            UpdateCurrentRssView(getActivity(), true);
-        else
+        if(!isStartup) {
             UpdateCurrentRssView(getActivity(), false);
-
+        } else {
+            isStartup = false;
+        }
         super.onResume();
     }
 
@@ -264,9 +233,9 @@ public class NewsReaderDetailFragment extends Fragment {
 
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, LazyList<RssItem>> {
 
-        Context context;
-        SORT_DIRECTION sortDirection;
-        boolean refreshCurrentRssView;
+        private Context context;
+        private SORT_DIRECTION sortDirection;
+        private boolean refreshCurrentRssView;
 
         public UpdateCurrentRssViewTask(Context context, boolean refreshCurrentRssView) {
             this.context = context;
@@ -311,8 +280,6 @@ public class NewsReaderDetailFragment extends Fragment {
                 }
             }
 
-            setUpdateListViewOnStartUp(false);//Always reset this variable here. Otherwise the list will be cleared when the activity is restarted
-
             LazyList<RssItem> list = dbConn.getCurrentRssItemView(sortDirection);
 
             stopWatch.stop();
@@ -325,11 +292,6 @@ public class NewsReaderDetailFragment extends Fragment {
         protected void onPostExecute(LazyList<RssItem> rssItemLazyList) {
             try
             {
-                // TODO: is this necessary for RecyclerView?
-                // Block children layout for now
-                //BlockingListView bView = ((BlockingListView) getListView());
-                //bView.setBlockLayoutChildren(true);
-
                 NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
                 if(nra != null) {
                     nra.setLazyList(rssItemLazyList);
@@ -345,7 +307,9 @@ public class NewsReaderDetailFragment extends Fragment {
                     tvNoItemsAvailable.setVisibility(View.INVISIBLE);
                 }
 
-                // TODO: see above: bView.setBlockLayoutChildren(false);
+                if(refreshCurrentRssView) { //Scroll to top
+                    recyclerView.scrollToPosition(0);
+                }
             }
             catch(Exception ex)
             {

@@ -62,7 +62,6 @@ import butterknife.Optional;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
-import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
@@ -109,7 +108,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     @InjectView(R.id.toolbar) Toolbar toolbar;
 
 	private ServiceConnection mConnection = null;
-	private View.OnClickListener mListener = null;
 
 	@Optional @InjectView(R.id.drawer_layout) protected DrawerLayout drawerLayout;
 
@@ -181,25 +179,26 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         	StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
         }
 
-		mListener = new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View view)
-			{
-				//Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
-
-				NewsReaderDetailFragment ndf = ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
-				if(ndf != null) {
-					//ndf.reloadAdapterFromScratch();
-					ndf.UpdateCurrentRssView(NewsReaderListActivity.this, true);
-				}
-			}
-		};
         //AppRater.app_launched(this);
         //AppRater.rateNow(this);
 
 		UpdateButtonLayout();
     }
+
+	View.OnClickListener mSnackbarListener = new View.OnClickListener()
+	{
+		@Override
+		public void onClick(View view)
+		{
+			//Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
+
+			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+			if(ndf != null) {
+				//ndf.reloadAdapterFromScratch();
+				ndf.UpdateCurrentRssView(NewsReaderListActivity.this, true);
+			}
+		}
+	};
 
 	private static final String ID_FEED_STRING = "ID_FEED_STRING";
 	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
@@ -214,10 +213,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         safeInstanceState(outState);
 		super.onSaveInstanceState(outState);
 	}
-
-    public NewsReaderDetailFragment getNewsReaderDetailFragment() {
-        return ((NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame));
-    }
 
 	/**
 	 * Check if the account is in the Android Account Manager. If not it will be added automatically
@@ -400,7 +395,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					Handler refresh = new Handler(Looper.getMainLooper());
 					refresh.post(new Runnable() {
 						public void run() {
-							NewsReaderListFragment newsReaderListFragment = (NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
+							NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
 							newsReaderListFragment.ReloadAdapter();
 							UpdateItemList();
 							UpdatePodcastView();
@@ -411,7 +406,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 								Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
 										getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount),
 										Snackbar.LENGTH_LONG);
-								snackbar.setAction(getString(R.string.message_bar_reload), mListener);
+								snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
 								snackbar.setActionTextColor(getResources().getColor(R.color.accent_material_dark));
 								// Setting android:TextColor to #000 in the light theme results in black on black
 								// text on the Snackbar, set the text back to white,
@@ -495,8 +490,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				titel = getString(R.string.starredFeeds);
 		}
 
-		NewsReaderDetailFragment fragment = (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
-		fragment.setData(feedId,folderId,titel,updateListView);
+		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
+		fragment.setData(feedId, folderId, titel, updateListView);
 		return fragment;
 	}
 
@@ -504,7 +499,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     public void UpdateItemList()
     {
         try {
-            NewsReaderDetailFragment nrD = getDetailFragment();
+            NewsReaderDetailFragment nrD = getNewsReaderDetailFragment();
             if (nrD != null)
                 nrD.getRecyclerView().getAdapter().notifyDataSetChanged();
         } catch (Exception ex) {
@@ -572,7 +567,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		menuItemDownloadMoreItems.setEnabled(false);
 
-		NewsReaderDetailFragment ndf = getDetailFragment();
+		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if(ndf != null)
 			ndf.UpdateMenuItemsState();
 
@@ -652,7 +647,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				return true;
 
 			case R.id.menu_markAllAsRead:
-				NewsReaderDetailFragment ndf = getDetailFragment();
+				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 				if(ndf != null)
 				{
 					DatabaseConnectionOrm dbConn2 = new DatabaseConnectionOrm(this);
@@ -693,7 +688,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				API api = API.GetRightApiForVersion(appVersion, NewsReaderListActivity.this);
 				((OwnCloud_Reader) _Reader).setApi(api);
 
-				NewsReaderDetailFragment ndf = getDetailFragment();
+				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 				_Reader.Start_AsyncTask_GetOldItems(Constants.TaskID_GetItems, NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
 			}
 		}
@@ -702,7 +697,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			NewsReaderDetailFragment ndf = getDetailFragment();
+			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 			if(ndf != null)
 				ndf.UpdateCurrentRssView(NewsReaderListActivity.this, true);
 
@@ -713,7 +708,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK){
-            UpdateListView(this);
+            UpdateListView();
 
 			getSlidingListFragment().ListViewNotifyDataSetChanged();
         }
@@ -742,7 +737,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		return ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer));
 	}
 
-	private NewsReaderDetailFragment getDetailFragment() {
+	private NewsReaderDetailFragment getNewsReaderDetailFragment() {
 		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
 	}
 
@@ -761,9 +756,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
 
-	public static void UpdateListView(FragmentActivity act)
+	private void UpdateListView()
     {
-        ((NewsReaderDetailFragment) act.getSupportFragmentManager().findFragmentById(R.id.content_frame)).notifyDataSetChangedOnAdapter();
+        getNewsReaderDetailFragment().notifyDataSetChangedOnAdapter();
     }
 	@Override
 	public void onClick(ViewHolder vh, int position) {
