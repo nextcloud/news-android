@@ -104,11 +104,15 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public void setReadState(boolean isRead) {
         if(textViewSummary != null) {
-            if (isRead)
+            if (isRead) {
                 textViewSummary.setTypeface(Typeface.DEFAULT);
-            else
+                ((View)textViewSummary.getParent()).setAlpha(0.7f);
+            } else {
                 textViewSummary.setTypeface(Typeface.DEFAULT_BOLD);
-            textViewSummary.invalidate();
+                ((View)textViewSummary.getParent()).setAlpha(1f);
+            }
+            //itemView.invalidate();
+            //textViewSummary.invalidate();
         }
     }
 

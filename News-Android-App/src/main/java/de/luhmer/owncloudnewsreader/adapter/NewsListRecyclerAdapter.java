@@ -181,6 +181,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
             pDelayHandler.DelayTimer();
 
             viewHolder.setReadState(isChecked);
+            //notifyItemChanged(viewHolder.getAdapterPosition());
+
             stayUnreadItems.add(rssItem.getId());
         }
     }
