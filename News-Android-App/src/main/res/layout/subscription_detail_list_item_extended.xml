@@ -44,7 +44,7 @@
             android:id="@+id/imgViewFavIcon"
             tools:src="@drawable/default_feed_icon_light"
             android:layout_alignStart="@+id/summary"
-            android:layout_marginTop="@dimen/listview_row_margin_top"
+            android:layout_marginTop="3dp"
             android:layout_marginEnd="5dp"
             android:layout_alignParentStart="true" />
 
@@ -61,7 +61,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imgViewFavIcon"
             android:layout_toEndOf="@+id/imgViewFavIcon"
-            android:paddingTop="@dimen/listview_row_margin_top" />
+            android:layout_toLeftOf="@+id/tv_item_date" />
 
         <TextView
             android:id="@+id/tv_item_date"
@@ -73,8 +73,7 @@
             android:singleLine="true"
             android:textSize="15sp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/listview_row_margin_top" />
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/summary"
