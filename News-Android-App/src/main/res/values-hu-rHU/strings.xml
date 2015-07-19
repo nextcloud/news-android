@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">Képek letőltése</string>
   <string name="menu_downloadMoreItems">Több elem letőltése</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Konto importálás</string>
+  <string name="import_account">Konto importálás</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Forráskód - Hibajelentés</string>
   <string name="email_sendMail">Email küldése</string>
@@ -43,7 +43,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Felhasználónév</string>
   <string name="pref_title_password">Jelszó</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Belépés</string>

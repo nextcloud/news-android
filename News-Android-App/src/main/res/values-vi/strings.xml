@@ -28,7 +28,7 @@
   <string name="menu_StartImageCaching">Tải hình </string>
   <string name="menu_downloadMoreItems">Tải nhiều h</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Nhập vào tài khoản</string>
+  <string name="import_account">Nhập vào tài khoản</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Danh mục mã nguòn - Báo b</string>
   <string name="email_sendMail">Gởi th</string>
@@ -48,7 +48,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Tên đăng nhập</string>
   <string name="pref_title_password">Mật khẩu</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Đăng nh</string>

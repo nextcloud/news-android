@@ -18,7 +18,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">ឈ្មោះ​អ្នកប្រើ</string>
   <string name="pref_title_password">ពាក្យសម្ងាត់</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">ចុះឈ្មោះចូល</string>
   <string name="login_progress_signing_in">កំពុង​ចុះឈ្មោះចូល...</string>

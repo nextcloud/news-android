@@ -33,7 +33,7 @@
   <string name="menu_StartImageCaching">Downloaden afbeeldingen</string>
   <string name="menu_downloadMoreItems">Download meer berichten</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Import account</string>
+  <string name="import_account">Import account</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Sourcecode van het item - Bug melding</string>
   <string name="email_sendMail">Email versturen</string>
@@ -61,7 +61,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
   <string name="pref_title_password">Wachtwoord</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Inloggen</string>

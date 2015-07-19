@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">Ladda ner bilder</string>
   <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importera Konto</string>
+  <string name="import_account">Importera Konto</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Källkod av objekt - Buggrapport</string>
   <string name="email_sendMail">Skicka e-post</string>
@@ -44,7 +44,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Användarnamn</string>
   <string name="pref_title_password">Lösenord</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Logga in</string>

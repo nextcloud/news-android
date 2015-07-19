@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">Transferir as imagens</string>
   <string name="menu_downloadMoreItems">Transferir mais itens</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Conta Importar</string>
+  <string name="import_account">Conta Importar</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código Fonte do item: Relatório do Erro</string>
   <string name="email_sendMail">Enviar e-mail</string>
@@ -44,7 +44,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Palavra-passe:</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Iniciar Sessão</string>

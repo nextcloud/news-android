@@ -38,7 +38,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">प्रयोक्ता का नाम</string>
   <string name="pref_title_password">पासवर्ड</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">साइन इन </string>

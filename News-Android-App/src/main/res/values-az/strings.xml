@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">Şəkilləri endir</string>
   <string name="menu_downloadMoreItems">Çoxlu hissələri endir</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Hesabi idxal et</string>
+  <string name="import_account">Hesabi idxal et</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Mənbənin verilənlər kodu - xəta hesabatı</string>
   <string name="email_sendMail">EMail yolla</string>
@@ -44,7 +44,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">İstifadəçi adı</string>
   <string name="pref_title_password">Şifrə</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Daxil ol</string>

@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">下载图片</string>
   <string name="menu_downloadMoreItems">下载更多内容</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">导入帐号</string>
+  <string name="import_account">导入帐号</string>
   <!--EMAIL-->
   <string name="email_sourceCode">源代码-错误报告</string>
   <string name="email_sendMail">发送邮件</string>
@@ -44,7 +44,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">用户名</string>
   <string name="pref_title_password">密码</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">登录</string>

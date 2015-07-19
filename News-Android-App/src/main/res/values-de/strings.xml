@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">Lade Bilder herunter</string>
   <string name="menu_downloadMoreItems">Weitere Artikel herunterladen</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Benutzerkonto importieren</string>
+  <string name="import_account">Benutzerkonto importieren</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Quelltext des Artikels- Fehlerbericht</string>
   <string name="email_sendMail">E-Mail senden</string>
@@ -44,7 +44,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <string name="pref_title_password">Passwort</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Einloggen</string>

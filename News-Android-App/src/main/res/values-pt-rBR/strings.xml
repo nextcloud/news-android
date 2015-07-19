@@ -33,7 +33,7 @@
   <string name="menu_StartImageCaching">Baixar imagens</string>
   <string name="menu_downloadMoreItems">Fazer download de mais itens</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importar Conta</string>
+  <string name="import_account">Importar Conta</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-fonte do item - Relatório de Erros</string>
   <string name="email_sendMail">Enviar e-mail</string>
@@ -61,7 +61,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Entrar</string>

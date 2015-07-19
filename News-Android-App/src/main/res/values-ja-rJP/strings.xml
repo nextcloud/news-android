@@ -27,7 +27,7 @@
   <string name="menu_StartImageCaching">画像をダウンロード</string>
   <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">アカウントをインポート</string>
+  <string name="import_account">アカウントをインポート</string>
   <!--EMAIL-->
   <string name="email_sourceCode">アイテムのソースコード - バグ報告</string>
   <string name="email_sendMail">メールを送信</string>
@@ -47,7 +47,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">パスワード</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">ログイン</string>

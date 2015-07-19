@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">ইমেজ ডাউনলোড কর</string>
   <string name="menu_downloadMoreItems">আরো আইটেম ডাউনলোড কর</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">একাউন্ট আমদানি</string>
+  <string name="import_account">একাউন্ট আমদানি</string>
   <!--EMAIL-->
   <string name="email_sourceCode">আইটেমের সোর্স কোড - Bugreport</string>
   <string name="email_sendMail">ইমেইল পাঠাও</string>
@@ -43,7 +43,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">ব্যবহারকারী</string>
   <string name="pref_title_password">কূটশব্দ</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">সাইন ইন</string>

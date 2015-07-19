@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">Deskargatu irudiak</string>
   <string name="menu_downloadMoreItems">Deskargatu elementu gehiago</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Inportatu Kontua</string>
+  <string name="import_account">Inportatu Kontua</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Elementuaren kode-iturburua - Bugreport </string>
   <string name="email_sendMail">Bidali eposta</string>
@@ -44,7 +44,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Erabiltzaile izena</string>
   <string name="pref_title_password">Pasahitza</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Izena eman</string>

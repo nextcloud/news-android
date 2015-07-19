@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">Преузми слике</string>
   <string name="menu_downloadMoreItems">Преузми још ставки</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Увези налог</string>
+  <string name="import_account">Увези налог</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Изворни код ставке — Извештај о грешци</string>
   <string name="email_sendMail">Пошаљи е-пошту</string>
@@ -44,7 +44,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Пријави се</string>

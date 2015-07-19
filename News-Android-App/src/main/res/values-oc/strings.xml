@@ -24,7 +24,7 @@
   <string name="menu_StartImageCaching">Telecargar los imatges</string>
   <string name="menu_downloadMoreItems">+ d\'articles</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importar un compte</string>
+  <string name="import_account">Importar un compte</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Còde font de l\'article - Rapòrt de bug</string>
   <string name="email_sendMail">Mandar un corrièl</string>
@@ -44,7 +44,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilizaire</string>
   <string name="pref_title_password">Senhal</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">S\'identificar</string>

@@ -31,7 +31,6 @@
   <string name="menu_StartImageCaching">ดาวน์โหลดรูปภาพ</string>
   <string name="menu_downloadMoreItems">ดาวน์โหลดรายการอื่นๆ</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">นำเข้าบัญชี</string>
   <!--EMAIL-->
   <string name="email_sourceCode">รหัสต้นฉบับของรายการ - รายงานข้อผิดพลาด</string>
   <string name="email_sendMail">ส่งอีเมล</string>
@@ -57,7 +56,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">เข้าสู่ระบบ</string>

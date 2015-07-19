@@ -31,7 +31,7 @@
   <string name="menu_StartImageCaching">Unduh gambar</string>
   <string name="menu_downloadMoreItems">Unduh beberapa item</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Impor Akun</string>
+  <string name="import_account">Impor Akun</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Kode sumber item - laporanBug</string>
   <string name="email_sendMail">Kirim EMail</string>
@@ -57,7 +57,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Sandi</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Masuk</string>

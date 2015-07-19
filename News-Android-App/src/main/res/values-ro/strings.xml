@@ -29,7 +29,7 @@
   <string name="menu_StartImageCaching">Descarca imagini </string>
   <string name="menu_downloadMoreItems">Descarcă mai multe articole </string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importează cont</string>
+  <string name="import_account">Importează cont</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Cod Sursă al articolului - Bugreport</string>
   <string name="email_sendMail">Trimiteti e-mail
@@ -50,7 +50,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nume utilizator</string>
   <string name="pref_title_password">Parolă</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Înregistraţi-vă</string>
