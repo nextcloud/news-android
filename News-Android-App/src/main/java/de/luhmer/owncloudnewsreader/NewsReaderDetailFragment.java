@@ -135,6 +135,8 @@ public class NewsReaderDetailFragment extends Fragment {
 
         if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false)) {
             recyclerView.addOnScrollListener(ListScrollListener);
+        } else {
+            recyclerView.removeOnScrollListener(ListScrollListener);
         }
 
         //When the fragment is instantiated by the xml file, onResume will be called twice
@@ -168,11 +170,24 @@ public class NewsReaderDetailFragment extends Fragment {
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
             int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
             int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+            int visibleItemCount = lastVisibleItem - firstVisibleItem;
+            int totalItemCount = recyclerView.getAdapter().getItemCount();
 
-            for(int i=firstVisibleItem;i<=lastVisibleItem;i++) {
-                ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(i);
-                if(vh != null && !vh.shouldStayUnread()) {
-                    vh.setReadState(true);
+            NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
+
+            //Set the item at top to read
+            ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(firstVisibleItem);
+            if (vh != null && !vh.shouldStayUnread()) {
+                adapter.ChangeReadStateOfItem(vh, true);
+            }
+
+            //Check if Listview is scrolled to bottom
+            if (lastVisibleItem == (totalItemCount-1) && recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
+                for (int i = firstVisibleItem+1; i <= lastVisibleItem; i++) {
+                    vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(i);
+                    if (vh != null && !vh.shouldStayUnread()) {
+                        adapter.ChangeReadStateOfItem(vh, true);
+                    }
                 }
             }
         }

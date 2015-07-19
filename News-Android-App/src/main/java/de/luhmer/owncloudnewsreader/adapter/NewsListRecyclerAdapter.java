@@ -174,13 +174,15 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     public void ChangeReadStateOfItem(ViewHolder viewHolder, boolean isChecked) {
         RssItem rssItem = viewHolder.getRssItem();
-        rssItem.setRead_temp(isChecked);
-        dbConn.updateRssItem(rssItem);
+        if(rssItem.getRead_temp() != isChecked) { //Only perform database operations if really needed
+            rssItem.setRead_temp(isChecked);
+            dbConn.updateRssItem(rssItem);
 
-        pDelayHandler.DelayTimer();
+            pDelayHandler.DelayTimer();
 
-        viewHolder.setReadState(isChecked);
-        stayUnreadItems.add(rssItem.getId());
+            viewHolder.setReadState(isChecked);
+            stayUnreadItems.add(rssItem.getId());
+        }
     }
 
     public void toggleReadStateOfItem(ViewHolder viewHolder) {
