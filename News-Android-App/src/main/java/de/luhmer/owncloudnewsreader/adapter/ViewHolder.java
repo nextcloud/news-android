@@ -113,7 +113,6 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     }
 
     public void setStarred(boolean isStarred) {
-        // TODO: extended view
         if(isStarred)
             starImageView.setVisibility(View.VISIBLE);
         else
