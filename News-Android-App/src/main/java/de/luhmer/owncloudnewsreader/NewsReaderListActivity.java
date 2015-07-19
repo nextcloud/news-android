@@ -105,6 +105,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private static MenuItem menuItemDownloadMoreItems;
 	private static IReader _Reader;
 
+    //private Date mLastSyncDate = new Date(0);
+    private boolean mSyncOnStartupPerformed = false;
+
     @InjectView(R.id.toolbar) Toolbar toolbar;
 
 	private ServiceConnection mConnection = null;
@@ -329,10 +332,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 					//Start auto sync if enabled
 					SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
-					if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false))
-						startSync();
+					if(mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false)) {
+                        if(!mSyncOnStartupPerformed) {
+                            startSync();
+                            mSyncOnStartupPerformed = true;
+                        }
 
-						UpdateButtonLayout();
+                        /*
+                        long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(new Date().getTime() - mLastSyncDate.getTime());
+                        if(diffInMinutes >= 60) {
+                            startSync();
+                            mLastSyncDate = new Date();
+                        }*/
+                    }
+                    UpdateButtonLayout();
 				}
 				catch (Exception e) {
 					e.printStackTrace();
