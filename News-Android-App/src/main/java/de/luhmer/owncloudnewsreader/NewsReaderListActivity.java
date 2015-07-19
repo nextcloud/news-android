@@ -62,6 +62,7 @@ import butterknife.Optional;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
+import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
@@ -781,12 +782,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		if (mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
-            String currentUrl = vh.toString();
+            String currentUrl = vh.getRssItem().getLink();
 
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
             startActivity(browserIntent);
 
-            vh.setReadState(true);
+            ((NewsListRecyclerAdapter)getNewsReaderDetailFragment().getRecyclerView().getAdapter()).ChangeReadStateOfItem(vh, true);
 		} else {
 			Intent intentNewsDetailAct = new Intent(this, NewsDetailActivity.class);
 
