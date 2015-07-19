@@ -97,7 +97,6 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             tools:text="Body"
-            android:textColor="@color/extended_listview_item_body_text_color_light_theme"
             android:textSize="14sp"
             android:autoLink="none"
             android:layout_below="@+id/summary"
@@ -112,7 +111,7 @@
             layout="@layout/subscription_detail_list_item_podcast_wrapper"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_below="@+id/imgViewFavIcon"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:id="@+id/podcast_wrapper"
             android:layout_margin="5dp"/>

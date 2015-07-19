@@ -16,8 +16,8 @@
 
     <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
         android:id="@+id/podcastDownloadProgress"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
 
         app:stroke_width="2dp"
         app:progress_color="?attr/colorAccent"

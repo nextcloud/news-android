@@ -87,9 +87,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/summary"
-            android:id="@+id/podcast_wrapper"
-            android:layout_centerVertical="true" />
+            android:layout_marginTop="5dp"
+            android:id="@+id/podcast_wrapper" />
 
     </RelativeLayout>
 
