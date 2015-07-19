@@ -55,7 +55,8 @@
             android:layout_below="@+id/summary"
             android:layout_marginEnd="5dp"
             android:layout_alignParentStart="true"
-            tools:src="@drawable/default_feed_icon_light" />
+            tools:src="@drawable/default_feed_icon_light"
+            android:layout_marginTop="2dp" />
 
         <TextView
             android:id="@+id/tv_subscription"
