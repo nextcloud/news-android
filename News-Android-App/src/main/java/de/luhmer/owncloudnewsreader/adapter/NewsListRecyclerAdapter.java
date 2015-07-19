@@ -47,7 +47,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     private LazyList<RssItem> lazyList;
     private int titleLineCount;
     private DatabaseConnectionOrm dbConn;
-    private final int LengthBody = 400;
     private ForegroundColorSpan bodyForegroundColor;
     private PostDelayHandler pDelayHandler;
     private FragmentActivity activity;
@@ -147,14 +146,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                 holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
             }
         }
-    }
-
-    public static int DpToPx(Context context, int dp) {
-        Resources r = context.getResources();
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dp,
-                r.getDisplayMetrics());
     }
 
     public void setDownloadPodcastProgressbar(View view, RssItem rssItem) {
