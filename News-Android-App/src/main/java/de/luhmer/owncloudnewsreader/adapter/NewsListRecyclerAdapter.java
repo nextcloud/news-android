@@ -103,9 +103,9 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                 layout = R.layout.subscription_detail_list_item_extended_webview;
                 break;
         }
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(layout, parent, false);
-        return new ViewHolder(view,titleLineCount);
+        View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+
+        return new ViewHolder(view, titleLineCount, activity);
     }
 
     @Override

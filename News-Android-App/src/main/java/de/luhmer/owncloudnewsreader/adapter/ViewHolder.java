@@ -1,9 +1,13 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
+import android.app.Activity;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.format.DateUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -66,9 +70,14 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private RssItem rssItem;
     private boolean stayUnread = false;
     private static FavIconHandler favIconHandler = null;
+    private final int LengthBody = 400;
+    private ForegroundColorSpan bodyForegroundColor;
 
-    public ViewHolder(View itemView, int titleLineCount) {
+    public ViewHolder(View itemView, int titleLineCount, Activity activity) {
         super(itemView);
+
+        bodyForegroundColor = new ForegroundColorSpan(activity.getResources().getColor(android.R.color.secondary_text_dark));
+
         if(favIconHandler == null)
             favIconHandler = new FavIconHandler(itemView.getContext());
         ButterKnife.inject(this, itemView);
@@ -82,7 +91,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        clickListener.onClick(this,getLayoutPosition());
+        clickListener.onClick(this, getLayoutPosition());
     }
 
     public void setClickListener(RecyclerItemClickListener clickListener) {
@@ -137,7 +146,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         if(textViewBody != null)
             // Strip html from String
-            textViewBody.setText(Html.fromHtml(body).toString());
+            textViewBody.setText(getBodyText(body));
 
         if(textViewItemDate != null)
             textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
@@ -159,4 +168,19 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         this.stayUnread = shouldStayUnread;
     }
 
+    private String getBodyText(String body)
+    {
+        body = body.replaceAll("<img[^>]*>", "");
+        body = body.replaceAll("<video[^>]*>", "");
+
+        SpannableString bodyStringSpannable = new SpannableString(Html.fromHtml(body));
+        bodyStringSpannable.setSpan(bodyForegroundColor, 0, bodyStringSpannable.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
+        String bodyString = bodyStringSpannable.toString().trim();
+
+        if(bodyString.length() > LengthBody)
+            bodyString = bodyString.substring(0, LengthBody) + "...";
+
+        return bodyString;
+    }
 }
