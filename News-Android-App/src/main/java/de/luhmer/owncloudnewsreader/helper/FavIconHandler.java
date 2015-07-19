@@ -36,7 +36,7 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 
 public class FavIconHandler {
-    private static final String TAG = "FavIconHandler";
+    private static final String TAG = FavIconHandler.class.getCanonicalName();
     private final DisplayImageOptions displayImageOptions;
 
     private Context context;
