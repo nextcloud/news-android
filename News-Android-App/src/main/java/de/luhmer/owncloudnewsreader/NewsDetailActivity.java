@@ -187,6 +187,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		mCustomTabsSupported = bindCustomTabsService();
     }
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+
+        //TODO unbind service here.. Not implemented by google yet
+		//if(mCustomTabsSupported)
+            //unbindService();
+	}
 
     private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
 
@@ -212,11 +220,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             sDirection = SORT_DIRECTION.desc;
         return sDirection;
     }
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
 
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
