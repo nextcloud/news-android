@@ -358,14 +358,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	IOwnCloudSyncService _ownCloudSyncService;
 	private IOwnCloudSyncServiceCallback callback = new IOwnCloudSyncServiceCallback.Stub() {
-
-		@Override
-		public void throwException(AidlException ex) throws RemoteException {
-			// TODO: handle exception messages
-		}
-
-		@Override
-		public void startedSync(String sync_type) throws RemoteException {
+		private void UpdateButtonLayoutWithHandler() {
 			Handler refresh = new Handler(Looper.getMainLooper());
 			refresh.post(new Runnable() {
 				public void run() {
@@ -375,13 +368,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 
 		@Override
+		public void throwException(AidlException ex) throws RemoteException {
+			Toast.makeText(NewsReaderListActivity.this,ex.getmException().getLocalizedMessage(),Toast.LENGTH_LONG).show();
+
+			UpdateButtonLayoutWithHandler();
+		}
+
+		@Override
+		public void startedSync(String sync_type) throws RemoteException {
+			UpdateButtonLayoutWithHandler();
+		}
+
+		@Override
 		public void finishedSync(String sync_type) throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateButtonLayout();
-				}
-			});
+			UpdateButtonLayoutWithHandler();
 
 			Constants.SYNC_TYPES st = Constants.SYNC_TYPES.valueOf(sync_type);
 
@@ -397,7 +397,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				case SYNC_TYPE__ITEMS:
 
 					Log.d(TAG, "finished sync");
-					refresh = new Handler(Looper.getMainLooper());
+					Handler refresh = new Handler(Looper.getMainLooper());
 					refresh.post(new Runnable() {
 						public void run() {
 							NewsReaderListFragment newsReaderListFragment = (NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
