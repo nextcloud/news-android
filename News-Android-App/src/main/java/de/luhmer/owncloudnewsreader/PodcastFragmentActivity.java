@@ -220,7 +220,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             getSupportFragmentManager().beginTransaction().remove(mPodcastFragment).commitAllowingStateLoss();
         }
 
-        mPodcastFragment = PodcastFragment.newInstance(null, null);
+        mPodcastFragment = PodcastFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.podcast_frame, mPodcastFragment)
                 .commitAllowingStateLoss();
