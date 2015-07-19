@@ -20,7 +20,6 @@ public class NewsReaderApplication extends Application {
     }
 
     public void initImageLoader() {
-        // TODO: reinit when settings change
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         int diskCacheSize = Integer.parseInt(preferences.getString(SettingsActivity.SP_MAX_CACHE_SIZE,"1000"))*1024*1024;
         if(ImageLoader.getInstance().isInited())
