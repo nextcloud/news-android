@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "ROBOTO_REGULAR";
+    src: url('fonts/Roboto-Regular.ttf');
+}
+
 body#lightTheme {
     background-color:	#eee;
     color:				black;
@@ -36,6 +41,7 @@ body {
     font-weight:    	normal;
     margin: 0px;
     word-wrap: 		break-word !important;
+    font-family: 'ROBOTO_REGULAR';
 }
 
 div#content > p {
