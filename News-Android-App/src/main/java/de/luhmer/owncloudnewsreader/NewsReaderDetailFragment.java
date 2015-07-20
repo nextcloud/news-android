@@ -59,6 +59,7 @@ import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
@@ -237,7 +238,7 @@ public class NewsReaderDetailFragment extends Fragment {
      */
     public void UpdateCurrentRssView(Context context, boolean refreshCurrentRssView) {
         Log.v(TAG, "UpdateCurrentRssView");
-        new UpdateCurrentRssViewTask(context, refreshCurrentRssView).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context, refreshCurrentRssView));
     }
 
     public RecyclerView getRecyclerView() {

@@ -51,6 +51,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -127,7 +128,7 @@ public class NewsDetailFragment extends Fragment {
 	}
 
     public void startLoadRssItemToWebViewTask() {
-        new LoadRssItemToWebViewAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        AsyncTaskHelper.StartAsyncTask(new LoadRssItemToWebViewAsyncTask());
     }
 
     private class LoadRssItemToWebViewAsyncTask extends AsyncTask<Void, Void, String> {
