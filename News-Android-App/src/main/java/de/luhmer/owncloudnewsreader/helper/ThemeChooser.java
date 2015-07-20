@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader.helper;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -34,7 +33,6 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 
 public class ThemeChooser {
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static void chooseTheme(Activity act)
 	{
 

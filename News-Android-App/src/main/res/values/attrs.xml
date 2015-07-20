@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <bool name="two_pane">false</bool>
 
     <attr name="dividerLineColor" format="color" />
 
     <attr name="rssItemListBackground" format="color" />
+    <attr name="starredColor" format="color" />
+
+    <attr name="markasreadDrawable" format="reference" />
+    <attr name="starredDrawable" format="reference" />
+
+    <attr name="playpauseDrawable" format="reference" />
 
 </resources>

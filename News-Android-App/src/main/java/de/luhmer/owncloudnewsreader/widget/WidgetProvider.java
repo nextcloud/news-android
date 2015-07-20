@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader.widget;
 
-import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -95,9 +94,8 @@ public class WidgetProvider extends AppWidgetProvider {
                         //rssItem.setRead_temp(true);
 
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) //TODO this means updating the widget is only possible on newer devices..
-                            AppWidgetManager.getInstance(context)
-                                .notifyAppWidgetViewDataChanged(appWidgetId[i], R.id.list_view);
+                        AppWidgetManager.getInstance(context)
+                            .notifyAppWidgetViewDataChanged(appWidgetId[i], R.id.list_view);
 
                         Log.v(TAG, "I'm here!!! Widget update works!");
                     } else {
@@ -169,7 +167,6 @@ public class WidgetProvider extends AppWidgetProvider {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
     
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressWarnings("deprecation")
 	public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
     	RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_layout);

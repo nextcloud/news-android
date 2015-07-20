@@ -3,15 +3,19 @@
     android:layout_height="match_parent"
     android:background="?attr/rssItemListBackground" >
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <de.luhmer.owncloudnewsreader.ListView.BlockingListView
-	    android:id="@android:id/list"
-	    style="?android:attr/textAppearanceLarge"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:divider="@null"
-        android:visibility="gone"
-		android:dividerHeight="0dp" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/tv_no_items_available"
@@ -21,7 +25,6 @@
         android:text="@string/empty_view_content"
         android:visibility="gone"
         android:textSize="18sp" />
-
 
     <ProgressBar
         android:id="@+id/pb_loading"

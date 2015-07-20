@@ -26,7 +26,6 @@ import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.Arrays;
@@ -64,15 +63,11 @@ import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
  *
  */
 public class PodcastFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private static final String TAG = "PodcastFragment";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String TAG = PodcastFragment.class.getCanonicalName();
+
+    private UpdatePodcastStatusEvent podcast;
+    private int lastDrawableId;
 
     private OnFragmentInteractionListener mListener;
 
@@ -80,17 +75,10 @@ public class PodcastFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment PodcastFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static PodcastFragment newInstance(String param1, String param2) {
+    public static PodcastFragment newInstance() {
         PodcastFragment fragment = new PodcastFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
     public PodcastFragment() {
@@ -112,16 +100,7 @@ public class PodcastFragment extends Fragment {
 
         setRetainInstance(true);
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-
         eventBus = EventBus.getDefault();
-
-        // when initialize
-        //getActivity().registerReceiver(downloadCompleteReceiver, downloadCompleteIntentFilter);
     }
 
 
@@ -144,45 +123,6 @@ public class PodcastFragment extends Fragment {
         PodcastDownloadService.startPodcastDownload(getActivity(), podcast.podcast);//, new DownloadReceiver(new Handler(), new WeakReference<ProgressBar>(holder.pbDownloadPodcast)));
     }
 
-
-
-
-    /*
-    public void onEventMainThread(PodcastFeedClicked podcast) {
-        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
-        audioPodcasts = dbConn.getListOfAudioPodcastsForFeed(getActivity(), feedsWithAudioPodcasts.get(podcast.position).mFeed.getId());
-
-
-        for(int i = 0; i < audioPodcasts.size(); i++) {
-            PodcastItem podcastItem = audioPodcasts.get(i);
-
-            File podcastFile = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), podcastItem.link, false));
-            File podcastFileCache = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), podcastItem.link, false) + ".download");
-            if(podcastFile.exists())
-                podcastItem.downloadProgress = PodcastItem.DOWNLOAD_COMPLETED;
-            else if(podcastFileCache.exists())
-                podcastItem.downloadProgress = 0;
-            else
-                podcastItem.downloadProgress = PodcastItem.DOWNLOAD_NOT_STARTED;
-        }
-
-        PodcastArrayAdapter mArrayAdapter = new PodcastArrayAdapter(getActivity(), audioPodcasts.toArray(new PodcastItem[audioPodcasts.size()]));
-        if (podcastTitleGrid != null) {
-            podcastTitleGrid.setAdapter(mArrayAdapter);
-        }
-
-        podcastTitleGrid.setVisibility(View.VISIBLE);
-        podcastFeedList.setVisibility(View.GONE);
-
-
-        //eventBus.post(new OpenAudioPodcastEvent(FileUtils.getPathPodcasts(getActivity()) + "/Foxes.mp4", "Test Video"));
-        //eventBus.post(new OpenPodcastEvent(FileUtils.getPathPodcasts(getActivity()) + "/Aneta.mp4", "Test Video", true));
-
-        //PodcastDownloadService.startPodcastDownload(getActivity(), new PodcastItem("5", "Blaa", "http://www.youtube.com/v/wtLJPvx7-ys?version=3&f=playlists&app=youtube_gdata", "youtube"));
-    }
-    */
-
-
     public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
         PodcastArrayAdapter podcastArrayAdapter = (PodcastArrayAdapter) podcastTitleGrid.getAdapter();
 
@@ -202,21 +142,10 @@ public class PodcastFragment extends Fragment {
                 }
 
                 return;
-                /*
-                View v = podcastTitleGrid.getChildAt(i -
-                        podcastTitleGrid.getFirstVisiblePosition());
-                ((ProgressBar)v.findViewById(R.id.pbDownloadPodcast)).setProgress(downloadProgress.podcast.downloadProgress);
-
-                //podcastArrayAdapter.notifyDataSetChanged();
-                return;
-                */
             }
         }
     }
 
-
-    UpdatePodcastStatusEvent podcast;
-    int lastDrawableId;
     public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
         this.podcast = podcast;
 
@@ -357,14 +286,6 @@ public class PodcastFragment extends Fragment {
 
 
         PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), new PodcastFeedItem[0]);
-        /*
-        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
-        feedsWithAudioPodcasts = dbConn.getListOfFeedsWithAudioPodcasts();
-        PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), feedsWithAudioPodcasts.toArray(new PodcastFeedItem[feedsWithAudioPodcasts.size()]));
-        if (podcastFeedList != null) {
-            podcastFeedList.setAdapter(mArrayAdapter);
-        }
-        */
 
         if(mArrayAdapter.getCount() > 0) {
             view.findViewById(R.id.tv_no_podcasts_available).setVisibility(View.GONE);
@@ -389,14 +310,6 @@ public class PodcastFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        /*
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-        */
     }
 
     @Override
@@ -418,8 +331,7 @@ public class PodcastFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 
 
@@ -464,13 +376,13 @@ public class PodcastFragment extends Fragment {
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-            //Log.d(TAG, "onProgressChanged");
+            //Log.v(TAG, "onProgressChanged");
         }
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
             blockSeekbarUpdate = true;
-            Log.d(TAG, "onStartTrackingTouch");
+            Log.v(TAG, "onStartTrackingTouch");
         }
 
         @Override
@@ -481,7 +393,7 @@ public class PodcastFragment extends Fragment {
                 }});
                 blockSeekbarUpdate = false;
             }
-            Log.d(TAG, "onStopTrackingTouch");
+            Log.v(TAG, "onStopTrackingTouch");
         }
     };
 

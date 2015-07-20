@@ -24,6 +24,8 @@ package de.luhmer.owncloudnewsreader.helper;
 import android.content.Context;
 import android.os.Environment;
 
+import com.nostra13.universalimageloader.utils.StorageUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -67,29 +69,9 @@ public class FileUtils {
         }
     }
 
-
-
-
-
     public static String getPath(Context context) {
-        String url;
-        Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
-        if(isSDPresent)
-        {
-            url = Environment.getExternalStorageDirectory().getAbsolutePath();
-            if (android.os.Build.DEVICE.contains("Samsung") || android.os.Build.MANUFACTURER.contains("Samsung")) {
-                url = url + "/external_sd";
-            }
-            //url = url + "/" + context.getString(R.string.app_name);
-            url = url + "/ownCloud News Reader";
-        }
-        else
-            url = context.getCacheDir().getAbsolutePath();
-
-        return url;
+        return StorageUtils.getCacheDirectory(context).getPath();
     }
-
-
 
     public static boolean DeletePodcastFile(Context context, String url) {
         try {
@@ -106,15 +88,4 @@ public class FileUtils {
     {
         return getPath(context) + "/podcasts";
     }
-
-    public static String getPathFavIcons(Context context)
-    {
-        return getPath(context) + "/favIcons";
-    }
-
-    public static String getPathImageCache(Context context)
-    {
-        return getPath(context) + "/imgCache";
-    }
-
 }

@@ -63,13 +63,13 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         	if(feed_id != null)
         	{
                 RssItem rssItem = dbConn.getLowestRssItemIdByFeed(feed_id);
-        		offset = rssItem.getId();//TODO needs testing!
+        		offset = rssItem.getId();
         		id = feed_id;
         		type = "0";
         	}
         	else if(folder_id != null)
         	{
-        		if(folder_id == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())//TODO needs testing!
+        		if(folder_id == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
         		{
         			offset = dbConn.getLowestItemId(true);
         			id = 0L;

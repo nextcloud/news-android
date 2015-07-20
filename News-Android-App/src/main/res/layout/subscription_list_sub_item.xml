@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item_layout"
     android:layout_width="fill_parent"
     android:layout_height="@dimen/exp_listview_row_height"
-    android:layout_marginLeft="50dp"
-    android:orientation="horizontal">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:background="?attr/selectableItemBackground">
 
     <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_gravity="center_vertical"
-        android:id="@+id/iVFavicon"/>
+        android:layout_marginLeft="32dp"
+        android:id="@+id/iVFavicon"
+        tools:src="@drawable/default_feed_icon_light" />
 
     <TextView
         android:id="@+id/summary"
@@ -19,7 +23,11 @@
         android:gravity="center_vertical"
         android:singleLine="true"
         android:layout_weight="1"
-        android:textSize="20sp" />
+        android:textSize="14sp"
+        android:alpha=".87"
+        tools:text="Summary"
+        android:textStyle="bold"
+        android:focusable="false" />
 
     <TextView
         android:id="@+id/tv_unreadCount"
@@ -27,7 +35,10 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical|right"
         android:singleLine="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="12sp"
+        android:alpha=".54"
+        tools:text="13" />
 
 </LinearLayout>

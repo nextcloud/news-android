@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#171717" >
+        android:background="@color/owncloudBlueLight" >
 
         <TextView
             android:id="@+id/tV_widget_header"
@@ -16,7 +16,7 @@
             android:layout_weight="1.0"            
             android:padding="10dp"
             android:text="@string/widget_header"
-            android:textColor="#CBCBCB"
+            android:textColor="#FFF"
             android:textSize="17sp" />
 	 
     </LinearLayout>

@@ -11,7 +11,7 @@
 
     <dimen name="color_bar_of_feeds">4dp</dimen>
 
-    <dimen name="exp_listview_row_height">50dp</dimen>
+    <dimen name="exp_listview_row_height">48dp</dimen>
 
 
     <dimen name="listview_row_height_simple_view">80dp</dimen>

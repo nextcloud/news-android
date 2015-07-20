@@ -1,6 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <CheckBoxPreference
+    <SwitchPreference
         android:defaultValue="true"
         android:key="cb_showNotificationNewArticles"
         android:title="@string/pref_title_notification_new_articles_available" />
@@ -9,7 +9,7 @@
          A 'parent' preference, which enables/disables child preferences (below)
          when checked/unchecked.
     -->
-<!--    <CheckBoxPreference
+<!--    <SwitchPreference
         android:defaultValue="true"
         android:key="notifications_new_message"
         android:title="@string/pref_title_new_message_notifications" />
@@ -25,7 +25,7 @@
         android:title="@string/pref_title_ringtone" />
 -->
     <!-- NOTE: This preference will be enabled only when the checkbox above is checked. -->
-<!--    <CheckBoxPreference
+<!--    <SwitchPreference
         android:defaultValue="true"
         android:dependency="notifications_new_message"
         android:key="notifications_new_message_vibrate"

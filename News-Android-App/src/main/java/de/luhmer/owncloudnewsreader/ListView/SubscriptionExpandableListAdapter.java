@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader.ListView;
 
-import android.annotation.TargetApi;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -36,6 +35,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -54,7 +55,6 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.FontHelper;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.AbstractItem;
@@ -71,7 +71,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 	private Context mContext;
     private DatabaseConnectionOrm dbConn;
-    FontHelper fHelper;
 
     ListView listView;
 
@@ -108,16 +107,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private FavIconHandler favIconHandler;
 
     LayoutInflater inflater;
-    boolean mIsTwoPane;
-    public static boolean isTwoPane(Context context) {
-        return context.getResources().getBoolean(R.bool.two_pane);
-        //return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
-    }
 
     public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnectionOrm dbConn, ListView listView)
     {
-        mIsTwoPane = isTwoPane(mContext);
-
         favIconHandler = new FavIconHandler(mContext);
 
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -125,8 +117,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     	this.dbConn = dbConn;
 
         mTextColorLightTheme = mContext.getResources().getColor(R.color.slider_listview_text_color_light_theme);
-
-        fHelper = new FontHelper(mContext);
 
         unreadCountFeeds = new SparseArray<>();
         unreadCountFolders = new SparseArray<>();
@@ -198,15 +188,13 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	}
 
 	static class ChildHolder {
+        @InjectView(R.id.list_item_layout) View listItemLayout;
         @InjectView(R.id.summary) TextView tV_HeaderText;
         @InjectView(R.id.tv_unreadCount) TextView tV_UnreadCount;
         @InjectView(R.id.iVFavicon) ImageView imgView_FavIcon;
 
         public ChildHolder(View view, Context mContext) {
             ButterKnife.inject(this, view);
-
-            FontHelper fHelper = new FontHelper(mContext);
-            fHelper.setFontForAllChildren(view, fHelper.getFont());
         }
 	  }
 
@@ -248,9 +236,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         return GroupViewType.values().length;
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
-	public View getGroupView(int groupPosition, boolean isExpanded,
+	public View getGroupView(final int groupPosition, final boolean isExpanded,
 			View convertView, ViewGroup parent) {
 
 		GroupHolder viewHolder;
@@ -267,7 +254,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
         viewHolder.txt_Summary.setText(group.header);
-        viewHolder.txt_Summary.setOnClickListener(new OnClickListener() {
+        viewHolder.listItemLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -309,22 +296,27 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         //viewHolder.txt_UnreadCount.setText(group.unreadCount);
 
+
         if(group.idFolder != null)
         {
+            viewHolder.imgView.setVisibility(View.GONE);
 	        if(group.idFolder == ITEMS_WITHOUT_FOLDER.getValue())
 	        {
                 ConcreteFeedItem concreteFeedItem = ((ConcreteFeedItem) group);
-                favIconHandler.loadFavIconForFeed(concreteFeedItem.favIcon, viewHolder.imgView);
+                favIconHandler.loadFavIconForFeed(concreteFeedItem.favIcon, viewHolder.faviconView);
 	        }
         } else {
         	if(group.id_database == ALL_STARRED_ITEMS.getValue()) {
-        		viewHolder.imgView.setVisibility(View.VISIBLE);
-                rotation= 0;
-                viewHolder.imgView.setImageDrawable(getBtn_rating_star_off_normal_holo_light(mContext));
+                viewHolder.imgView.setVisibility(View.GONE);
+        		viewHolder.faviconView.setVisibility(View.VISIBLE);
+                rotation = 0;
+                viewHolder.faviconView.setImageDrawable(getBtn_rating_star_off_normal_holo_light(mContext));
         	} else if (getChildrenCount( groupPosition ) == 0 ) {
-	        	viewHolder.imgView.setVisibility(View.INVISIBLE);
+	        	viewHolder.imgView.setVisibility(View.GONE);
+                viewHolder.faviconView.setVisibility(View.INVISIBLE);
 	        } else {
 	        	viewHolder.imgView.setVisibility(View.VISIBLE);
+                viewHolder.faviconView.setVisibility(View.INVISIBLE);
                 viewHolder.imgView.setImageDrawable(getFolderIndicatorIcon(mContext));
 
 	        	if(isExpanded) {
@@ -332,26 +324,20 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        	} else {
                     rotation = 180;
                 }
-	        }
-
-
-            //On API LEVEL < 11 we can't use the rotate method.. so we have to set different bitmaps.
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                if(group.id_database != ALL_STARRED_ITEMS.getValue()) {
-                    if (rotation == 90) {
-                        viewHolder.imgView.setImageDrawable(getFolderIndicatorIcon(mContext));
-                    } else {
-                        viewHolder.imgView.setImageDrawable(getFolderIndicatorIconDown(mContext));
+        
+                viewHolder.imgView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isExpanded)
+                            ((ExpandableListView)listView).collapseGroup(groupPosition);
+                        else
+                            ((ExpandableListView)listView).expandGroup(groupPosition);
                     }
-                }
-            }
+                });
+	        }
         }
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            viewHolder.imgView.setRotation(rotation);
-        }
-
+        viewHolder.imgView.setRotation(rotation);
 
         return convertView;
 	}
@@ -361,7 +347,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
     Drawable folder_indicator_icon;
-    Drawable folder_indicator_icon_old_android; //Only used on Android API LEVEL < 11
     Drawable btn_rating_star_off_normal_holo_light;
 
     private Drawable getBtn_rating_star_off_normal_holo_light(Context context) {
@@ -385,30 +370,17 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         return folder_indicator_icon;
     }
 
-    private Drawable getFolderIndicatorIconDown(Context context) {
-        if(folder_indicator_icon_old_android == null) {
-            if(ThemeChooser.isDarkTheme(mContext))
-                folder_indicator_icon_old_android = context.getResources().getDrawable(R.drawable.ic_action_expand_more_dark);
-            else
-                folder_indicator_icon_old_android = context.getResources().getDrawable(R.drawable.ic_action_expand_more_light);
-        }
-        return folder_indicator_icon_old_android;
-    }
-
 
 	static class GroupHolder
 	{
+        @InjectView(R.id.list_item_layout) View listItemLayout;
         @InjectView(R.id.summary) TextView txt_Summary;
         @InjectView(R.id.tV_feedsCount) TextView txt_UnreadCount;
-        @InjectView(R.id.img_View_expandable_indicator) ImageView imgView;
+        @InjectView(R.id.img_View_expandable_indicator) ImageButton imgView;
+        @InjectView(R.id.img_view_favicon) ImageView faviconView;
 
         public GroupHolder(View view, Context mContext) {
             ButterKnife.inject(this, view);
-
-            txt_Summary.setClickable(true);
-
-            FontHelper fHelper = new FontHelper(mContext);
-            fHelper.setFontForAllChildren(view, fHelper.getFont());
         }
 	}
 
@@ -469,13 +441,17 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
     }
 
+    public void ReloadAdapterAsync() {
+        ReloadAdapterAsync(null);
+    }
+
     public void ReloadAdapterAsync(View progressBar) {
         new ReloadAdapterAsyncTask(progressBar).execute((Void) null);
     }
 
     private class ReloadAdapterAsyncTask extends AsyncTask<Void, Void, Tuple<ArrayList<AbstractItem>, SparseArray<SparseArray<ConcreteFeedItem>>>> {
 
-        View progressBar;
+        View progressBar = null;
 
         public ReloadAdapterAsyncTask(View progressBar) {
             this.progressBar = progressBar;
@@ -483,7 +459,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         @Override
         protected void onPreExecute() {
-            progressBar.setVisibility(View.VISIBLE);
+            if(progressBar != null) progressBar.setVisibility(View.VISIBLE);
             super.onPreExecute();
         }
 
@@ -511,7 +487,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             NotifyDataSetChangedAsync();
 
 
-            progressBar.setVisibility(View.GONE);
+            if(progressBar != null) progressBar.setVisibility(View.GONE);
 
             super.onPostExecute(arrayListSparseArrayTuple);
         }

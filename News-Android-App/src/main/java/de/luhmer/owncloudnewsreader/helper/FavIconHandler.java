@@ -21,22 +21,14 @@
 
 package de.luhmer.owncloudnewsreader.helper;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Build;
+import android.support.v7.graphics.Palette;
 import android.util.Log;
-import android.util.SparseArray;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
-import java.lang.ref.WeakReference;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
@@ -44,59 +36,26 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 
 public class FavIconHandler {
-    private static final String TAG = "FavIconHandler";
+    private static final String TAG = FavIconHandler.class.getCanonicalName();
+    private final DisplayImageOptions displayImageOptions;
 
     private Context context;
-    private final String favIconPath;
 
     public FavIconHandler(Context context) {
         this.context = context;
-        favIconPath = FileUtils.getPathFavIcons(context);
+        int placeHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon(context);
+        displayImageOptions = new DisplayImageOptions.Builder().
+                showImageOnLoading(placeHolder).
+                showImageForEmptyUri(placeHolder).
+                showImageOnFail(placeHolder).
+                cacheOnDisk(true).
+                cacheInMemory(true).
+                build();
     }
 
     public void loadFavIconForFeed(String favIconUrl, ImageView imgView) {
-        File cacheFile = ImageHandler.getFullPathOfCacheFileSafe(favIconUrl, favIconPath);
-        if(cacheFile != null && cacheFile.exists()) {
-            Picasso.with(context)
-                    .load(cacheFile)
-                    .placeholder(FavIconHandler.getResourceIdForRightDefaultFeedIcon(context))
-                    .into(imgView, null);
-        } else {
-            Picasso.with(context)
-                    .load(favIconUrl)
-                    .placeholder(FavIconHandler.getResourceIdForRightDefaultFeedIcon(context))
-                    .into(imgView, null);
-        }
+        ImageLoader.getInstance().displayImage(favIconUrl,imgView,displayImageOptions);
     }
-
-    public static Drawable GetFavIconFromCache(String URL_TO_PAGE, Context context, Long feedID)
-	{
-		try
-		{
-			File favIconFile = ImageHandler.getFullPathOfCacheFile(URL_TO_PAGE, FileUtils.getPathFavIcons(context));
-			if(favIconFile.isFile() && favIconFile.length() > 0)
-			{
-				if(feedID != null) {
-                	DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-                    Feed feed = dbConn.getFeedById(feedID);
-                    Bitmap bitmap = BitmapFactory.decodeFile(favIconFile.getAbsolutePath());
-                    String avg = ColourCalculator.ColourHexFromBitmap(bitmap);
-
-                    feed.setAvgColour(avg);
-                    dbConn.updateFeed(feed);
-                    //dbConn.setAvgColourOfFeedByDbId(feedID, avg);
-                }
-
-				return Drawable.createFromPath(favIconFile.getPath());
-			}
-		}
-		catch(Exception ex)
-		{
-            //Log.d(TAG, ex.getMessage());
-			ex.printStackTrace();
-		}
-		return null;
-	}
 
     public static int getResourceIdForRightDefaultFeedIcon(Context context)
 	{
@@ -113,10 +72,7 @@ public class FavIconHandler {
             return;
         }
 
-        GetImageThreaded giAsync = new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId(), favIconPath, context);
-        giAsync.scaleImage = true;
-        giAsync.dstHeight = 2*32;
-        giAsync.dstWidth = 2*32;
+        GetImageThreaded giAsync = new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId());
 
         giAsync.start();
     }
@@ -128,7 +84,10 @@ public class FavIconHandler {
             if(bitmap != null) {
                 DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
                 Feed feed = dbConn.getFeedById(AsynkTaskId);
-                String avg = ColourCalculator.ColourHexFromBitmap(bitmap);
+                Palette palette = Palette.from(bitmap).generate();
+                String avg = String.valueOf(
+                        palette.getVibrantColor(R.color.material_blue_grey_800)
+                );
                 feed.setAvgColour(avg);
                 dbConn.updateFeed(feed);
 

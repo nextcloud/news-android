@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -34,17 +33,17 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.TwoStatePreference;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
 import android.support.v7.widget.AppCompatEditText;
@@ -61,12 +60,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.text.DecimalFormat;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -138,43 +134,23 @@ public class SettingsActivity extends PreferenceActivity {
         }
         */
 
-		Toolbar toolbar;
+		AppBarLayout appBarLayout;
 
         // get the root container of the preferences list
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-			LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
-			toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
-			root.addView(toolbar, 0); // insert at top
-		} else { //Support for older devices
-			ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-			ListView content = (ListView) root.getChildAt(0);
+		LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
+		appBarLayout = (AppBarLayout) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
+		root.addView(appBarLayout, 0); // insert at top
 
-			toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
-
-			root.removeAllViews();
-
-			int height;
-			TypedValue tv = new TypedValue();
-			if(getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)) {
-				height = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-			} else {
-				height = toolbar.getHeight();
-			}
-
-			content.setPadding(0, height, 0, 0);
-
-			root.addView(content);
-			root.addView(toolbar);
-		}
+		Toolbar toolbar = (Toolbar)appBarLayout.getChildAt(0);
 
 		toolbar.setTitle(R.string.title_activity_settings);
 		toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					finish();
-				}
-			});
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 	}
 
 	@Override
@@ -248,6 +224,17 @@ public class SettingsActivity extends PreferenceActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Intent intent = getIntent();
+		intent.putExtra(
+				SettingsActivity.SP_FEED_LIST_LAYOUT,
+				PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0")
+		);
+		setResult(RESULT_OK,intent);
+	}
+
 	/** {@inheritDoc} */
 	@Override
 	public boolean onIsMultiPane() {
@@ -271,21 +258,17 @@ public class SettingsActivity extends PreferenceActivity {
 	 * "simplified" settings UI should be shown.
 	 */
 	private static boolean isSimplePreferences(Context context) {
-		return ALWAYS_SIMPLE_PREFS
-				|| Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB
-				|| !isXLargeTablet(context);
+		return !isXLargeTablet(context);
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void onBuildHeaders(List<Header> target) {
 		if (!isSimplePreferences(this)) {
 			loadHeadersFromResource(R.xml.pref_headers, target);
 		}
 	}
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected boolean isValidFragment(String fragmentName) {
         return true;
@@ -326,8 +309,8 @@ public class SettingsActivity extends PreferenceActivity {
     private static Preference.OnPreferenceChangeListener sBindPreferenceBooleanToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-            CheckBoxPreference cbPreference = ((CheckBoxPreference) preference);
-            cbPreference.setChecked((Boolean)newValue);
+            TwoStatePreference twoStatePreference = ((TwoStatePreference) preference);
+            twoStatePreference.setChecked((Boolean)newValue);
             return true;
         }
     };
@@ -399,7 +382,6 @@ public class SettingsActivity extends PreferenceActivity {
 	 * This fragment shows general preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class GeneralPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
@@ -433,7 +415,6 @@ public class SettingsActivity extends PreferenceActivity {
 	 * This fragment shows notification preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class NotificationPreferenceFragment extends
 			PreferenceFragment {
 		@Override
@@ -449,7 +430,6 @@ public class SettingsActivity extends PreferenceActivity {
 	 * This fragment shows data and sync preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class DataSyncPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
@@ -465,7 +445,6 @@ public class SettingsActivity extends PreferenceActivity {
 	 * This fragment shows data and sync preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class DisplayPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
@@ -479,7 +458,6 @@ public class SettingsActivity extends PreferenceActivity {
 
 
 	@SuppressWarnings("deprecation")
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindDisplayPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
 	{
 		if(prefFrag != null)
@@ -497,7 +475,6 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 
 	@SuppressWarnings("deprecation")
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindGeneralPreferences(PreferenceFragment prefFrag, final PreferenceActivity prefAct)
 	{
 		if(prefFrag != null)
@@ -533,7 +510,6 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 
 	@SuppressWarnings("deprecation")
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private static void bindDataSyncPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
 	{
         String[] authorities = { "de.luhmer.owncloudnewsreader" };
@@ -558,25 +534,20 @@ public class SettingsActivity extends PreferenceActivity {
 
 		}
 
-		//clearCache.setText("")
-		clearCachePref.setSummary(_mActivity.getString(R.string.calculating_cache_size));
-
-		new GetCacheSizeAsync().execute((Void)null);
-		clearCachePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+		clearCachePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 
 				((EditTextPreference) preference).getDialog().dismiss();
 
-                CheckForUnsycedChangesInDatabaseAndResetDatabase(_mActivity);
+				CheckForUnsycedChangesInDatabaseAndResetDatabase(_mActivity);
 				return false;
 			}
 		});
 	}
 
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private static void bindNotificationPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
     {
         if(prefFrag != null)
@@ -589,7 +560,6 @@ public class SettingsActivity extends PreferenceActivity {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private static void bindPodcastPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
     {
         if(prefFrag != null)
@@ -631,7 +601,7 @@ public class SettingsActivity extends PreferenceActivity {
 		}
 	}
 
-    public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Boolean> {
+    public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog pd;
         Context context;
@@ -653,72 +623,18 @@ public class SettingsActivity extends PreferenceActivity {
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(_mActivity);
             dbConn.resetDatabase();
-			return ImageHandler.clearCache(_mActivity);
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-			new GetCacheSizeAsync().execute((Void) null);
-			pd.dismiss();
-			String resultString;
-			if(result)
-                resultString = context.getString(R.string.cache_is_cleared);
-            else
-                resultString = context.getString(R.string.login_dialog_text_something_went_wrong);
-			Toast.makeText(context, resultString, Toast.LENGTH_SHORT).show();
-            super.onPostExecute(result);
-        };
-    }
-
-	public static class GetCacheSizeAsync extends AsyncTask<Void, Void, Void> {
-
-		private String mSize = "0MB";
-		private String mCount;
-		private int count = 0;
-		private long size = 0;
-		private DecimalFormat dcmFormat = new DecimalFormat("#.##");
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			try
-			{
-				getFolderSize(new File(FileUtils.getPath(_mActivity)));
-				mSize = dcmFormat.format(size / 1024d / 1024d) + "MB";
-			}
-			catch(Exception ex)
-			{
-				ex.printStackTrace();
-			} finally {
-				mCount = _mActivity.getResources().getQuantityString(R.plurals.number_of_files,count,count);
-			}
+			ImageHandler.clearCache();
 			return null;
 		}
 
-		@Override
-		protected void onPostExecute(Void result) {
-			if(clearCachePref != null)
-				clearCachePref.setSummary(mCount + " - " + mSize);
-			super.onPostExecute(result);
-		};
-
-		public long getFolderSize(File dir) {
-			if(dir.isDirectory())
-			{
-				for (File file : dir.listFiles()) {
-					//File file = new File(fileS);
-				    if (file.isFile()) {
-				        //System.out.println(file.getName() + " " + file.length());
-				        size += file.length();
-				        count++;
-				    }
-				    else
-				        getFolderSize(file);
-				}
-			}
-			return size;
-		}
-	}
+        @Override
+        protected void onPostExecute(Void result) {
+			pd.dismiss();
+			Toast.makeText(context, context.getString(R.string.cache_is_cleared), Toast.LENGTH_SHORT).show();
+            super.onPostExecute(result);
+        };
+    }
 }

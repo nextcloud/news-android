@@ -59,7 +59,6 @@ import de.luhmer.owncloudnewsreader.ssl.TLSSocketFactory;
 public class HttpJsonRequest {
 	//private static final String TAG = "HttpJsonRequest";
 
-	//@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@SuppressLint("DefaultLocale")
 	public static InputStream PerformJsonRequest(String urlString, HashMap<String,String> nameValuePairs, final String username, final String password, Context context) throws Exception
 	{

@@ -1,0 +1,136 @@
+@font-face {
+    font-family: "ROBOTO_REGULAR";
+    src: url('fonts/Roboto-Regular.ttf');
+}
+
+body#lightTheme {
+    background-color:	#eee;
+    color:				black;
+}
+
+body#darkTheme {
+    background-color:   #222;
+    color:              #eee;
+}
+
+/* For debugging */
+/*
+* {
+    border: 1px solid #F00;
+}
+*/
+
+body, blockquote, img, iframe, video, div, table, tbody, tr, td, pre, code, blockquote, p, em, b {
+    width:		auto !important;
+    height:		auto !important;
+    max-width:	100% !important;
+
+    margin-left:	4px;
+    margin-right:	4px;
+}
+
+span {
+    width:		auto !important;
+    height:		auto !important;
+    max-width:	100% !important;
+    display:block;
+}
+
+body {
+    font-size:			1.1em;
+    font-weight:    	normal;
+    margin: 0px;
+    word-wrap: 		break-word !important;
+    font-family: 'ROBOTO_REGULAR';
+}
+
+div#content > p {
+    margin-top: 0px;
+}
+
+pre, code, blockquote, p, em, b {
+    white-space:	-moz-pre-wrap	!important;
+    white-space:	-pre-wrap		!important;
+    white-space:	-o-pre-wrap		!important;
+    white-space:	pre-wrap		!important;
+    word-wrap: 		break-word		!important;
+}
+
+blockquote {
+    white-space:pre-line !important;
+    padding-left: 10px;
+    border-left: 3px solid #ccc;
+}
+
+a {
+    margin-left:    auto !important;
+    margin-right:   auto !important;
+}
+
+#content table {
+    width:100% !important;
+    table-layout:fixed;
+}
+
+#header {
+    font-size:		18px;
+    margin-bottom:	5px;
+    margin-top:     5px;
+
+    font-weight:	bold;
+}
+
+#header a:link, a:active, a:hover, a:visited {
+    color:				#DADADA !important;
+    text-decoration:	none !important;
+}
+
+#subscription, #datetime {
+    margin-bottom:3px;
+    font-size:13px;
+}
+
+#subscription {
+    float:left;
+}
+
+#datetime {
+    float:right;
+}
+
+#header_small_text {
+    overflow: auto;
+}
+
+#top_section {
+    padding: 2px;
+    padding-left: 6px;
+    margin: 0px;
+
+}
+
+#content {
+    margin-top:5px;
+    line-height: 1.5em !important;
+}
+
+#imgFavicon {
+    margin-left:-3px;
+    vertical-align:middle;
+    margin-bottom:2px;
+    width:16px !important;
+    height:16px !important;
+}
+
+body#lightTheme a:link, a:active, a:hover {
+    color: #333 !important;
+}
+body#lightTheme a:visited {
+    color: #000 !important;
+}
+body#darkTheme a:link, a:active, a:hover {
+    color: #dadada !important;
+}
+body#darkTheme a:visited {
+    color: #aeaeae !important;
+}

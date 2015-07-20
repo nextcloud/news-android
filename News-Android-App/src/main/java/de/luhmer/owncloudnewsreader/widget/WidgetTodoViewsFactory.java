@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader.widget;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -43,12 +42,11 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTIO
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFactory {
-	private static final String TAG = "WidgetTodoViewsFactory";
+	private static final String TAG = WidgetTodoViewsFactory.class.getCanonicalName();
 
-	DatabaseConnectionOrm dbConn;
-    List<RssItem> rssItems;
+    private DatabaseConnectionOrm dbConn;
+    private List<RssItem> rssItems;
 	private Context context = null;
 
 	private int appWidgetId;
@@ -126,7 +124,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             //Load it with whatever extra you want
             ei.putExtra(WidgetProvider.RSS_ITEM_ID, id);
             //Set it on the list remote view
-            rv.setOnClickFillInIntent(R.id.ll_root_view_widget_row, ei);
+            rv.setOnClickFillInIntent(R.id.cb_lv_item_read_wrapper, ei);
 
             //Get a fresh new intent
             Intent iCheck = new Intent();
@@ -170,6 +168,8 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 	public void onDataSetChanged() {
         Log.v(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
 
-        rssItems = dbConn.getListOfAllItemsForFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), false, SORT_DIRECTION.desc, 200);
+        rssItems = dbConn.getAllUnreadRssItemsForWidget();
+
+        Log.v(TAG, "DataSetChanged finished!");
 	}
 }

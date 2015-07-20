@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:orientation="horizontal"
     android:background="#8a000000"
     android:baselineAligned="false" >
@@ -12,76 +12,75 @@
 	    android:layout_width="4dip"
 	    android:layout_height="match_parent"
 	    android:orientation="horizontal" />
-    
-    <LinearLayout
-        android:id="@+id/ll_root_view_widget_row"
-        android:layout_width="0dip"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dip"
-        android:layout_marginTop="5dp"
-    	android:layout_marginBottom="5dp"
-        android:orientation="vertical" >
-    
-         <TextView
-	        android:id="@+id/feed_title"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:gravity="center_vertical"
-	        android:singleLine="true"
-	        android:textIsSelectable="false"
-	        android:text="Item title"
-	        android:ellipsize="end"
-	        android:textStyle="bold"
-	        android:textSize="18sp" />
-        
-	    <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:orientation="horizontal"
-            android:layout_marginTop="3dp" >
-	
-	        <TextView
-	            android:id="@+id/feed_author_source"
-	            android:layout_width="0dip"
-	            android:layout_height="wrap_content"
-	            android:layout_weight="1"
-	            android:gravity="center_vertical"
-	            android:singleLine="true"
-	            android:textIsSelectable="false"
-	            android:text="Feed name"
-	            android:textSize="16sp" />
-	
-	        <TextView
-	            android:id="@+id/feed_datetime"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:gravity="center_vertical|right"
-	            android:singleLine="true"
-	            android:textIsSelectable="false"
-	            android:text="07.08.14 19:00"
-	            android:textSize="16sp" />
 
-	    </LinearLayout>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/cb_lv_item_read_wrapper"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="right|center_vertical"
-        android:clickable="true"
-        android:paddingLeft="@dimen/listview_row_margin_left"
-        android:paddingRight="@dimen/listview_row_margin_right">
+	<RelativeLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="8dp" >
 
-        <ImageView
-            android:id="@+id/cb_lv_item_read"
+
+        <RelativeLayout
+            android:id="@+id/cb_lv_item_read_wrapper"
             android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:clickable="false"
-            android:background="@drawable/abc_btn_check_to_on_mtrl_000"/>
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_alignParentRight="true">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/cb_lv_item_read"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                android:background="@drawable/ic_check_box_white"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/feed_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/cb_lv_item_read_wrapper"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textIsSelectable="false"
+            android:text="Item title"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/feed_datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/feed_title"
+            android:layout_toLeftOf="@id/cb_lv_item_read_wrapper"
+            android:layout_marginRight="10dp"
+            android:singleLine="true"
+            android:textIsSelectable="false"
+            android:text="07.08.14 19:00"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/feed_author_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/feed_title"
+            android:layout_toLeftOf="@id/feed_datetime"
+            android:layout_alignParentLeft="true"
+            android:singleLine="true"
+            android:textIsSelectable="false"
+            android:text="Feed name"
+            android:textSize="14sp" />
+
+
+
+    </RelativeLayout>
 
 </LinearLayout>

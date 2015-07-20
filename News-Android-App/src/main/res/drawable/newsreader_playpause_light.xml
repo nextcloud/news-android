@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_active="true">
+        <bitmap android:src="@drawable/ic_action_pause" />
+    </item>
+    <item>
+        <bitmap android:src="@drawable/ic_action_play_arrow" />
+    </item>
+</selector>

@@ -1,166 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:layout_width="wrap_content"
+    android:background="?attr/selectableItemBackground">
 
-    <!--
-    android:background="@drawable/checkbox_background"
-        android:button="@drawable/checkbox"
-     -->
-
-	<View
+    <View
         android:id="@+id/color_line_feed"
-        android:layout_width="@dimen/color_bar_of_feeds"
         android:layout_height="match_parent"
-        android:background="@color/slider_listview_background_color_dark_theme"/>
+        android:layout_width="4dp"
+        android:background="?attr/dividerLineColor"
+        android:layout_marginEnd="@dimen/listview_row_margin_left"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star_imageview"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_action_star_light"
+        android:layout_marginEnd="@dimen/listview_row_margin_left"
+        android:tint="?attr/starredColor" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_marginEnd="@dimen/listview_row_margin_right"
+        android:layout_marginTop="@dimen/listview_row_margin_top"
+        android:layout_marginBottom="@dimen/listview_row_margin_bottom"
+        android:id="@+id/list_item_header">
+
+        <!--
+        android:background="@drawable/checkbox_background"
+            android:button="@drawable/checkbox"
+         -->
 
 
-	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-    	android:orientation="vertical" >
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:id="@+id/imgViewFavIcon"
+            tools:src="@drawable/default_feed_icon_light"
+            android:layout_alignStart="@+id/summary"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentStart="true" />
 
+        <TextView
+            android:id="@+id/tv_subscription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:layout_gravity="start"
+            android:singleLine="true"
+            tools:text="Subscription"
+            android:textSize="15sp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imgViewFavIcon"
+            android:layout_toEndOf="@+id/imgViewFavIcon"
+            android:layout_toLeftOf="@+id/tv_item_date" />
 
-	    <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="@dimen/listview_row_margin_left"
-	        android:layout_marginRight="@dimen/listview_row_margin_right"
-	        android:layout_marginTop="@dimen/listview_row_margin_top"
-	        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/tv_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_gravity="end"
+            tools:text="21.09.2013"
+            android:singleLine="true"
+            android:textSize="15sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
 
-			<ImageView
-				android:layout_width="15dp"
-				android:layout_height="15dp"
-				android:layout_marginTop="3dp"
-				android:layout_marginRight="5dp"
-				android:id="@+id/imgViewFavIcon"/>
+        <TextView
+            android:id="@+id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:textSize="17sp"
+            tools:text="Summary"
+            android:textStyle="bold"
+            android:layout_below="@+id/imgViewFavIcon"
+            android:layout_toStartOf="@+id/podcast_wrapper"
+            android:maxLines="4"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/podcast_wrapper"/>
 
-	        <TextView
-	            android:id="@+id/tv_subscription"
-	            android:layout_width="0dp"
-	            android:layout_height="wrap_content"
-	            android:ellipsize="end"
-	            android:gravity="center_vertical"
-	            android:layout_gravity="left"
-	            android:singleLine="true"
-	            android:text="Hdfsffsggfddsa"
-	            android:layout_weight="1"
-	            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="Body"
+            android:textSize="14sp"
+            android:autoLink="none"
+            android:layout_below="@+id/summary"
+            android:maxLines="4"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="@dimen/listview_row_margin_bottom"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/podcast_wrapper"
+            android:layout_toStartOf="@+id/podcast_wrapper"/>
 
-	        <TextView
-	            android:id="@+id/tv_item_date"
-	            android:layout_width="wrap_content"
-	            android:layout_height="match_parent"
-	            android:gravity="center_vertical"
-	            android:layout_gravity="right"
-	            android:text="21.09.2013"
-	            android:singleLine="true"
-	            android:textSize="15sp"  />
-	    </LinearLayout>
+        <include
+            layout="@layout/subscription_detail_list_item_podcast_wrapper"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/podcast_wrapper"
+            android:layout_margin="5dp"/>
 
-	    <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="@dimen/listview_row_margin_left"
-	        android:layout_marginBottom="@dimen/listview_row_margin_bottom"
-	        android:orientation="horizontal" >
-
-	        <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginRight="@dimen/listview_row_margin_right"
-                android:layout_weight="1" >
-
-				<TextView
-	                android:id="@+id/summary"
-	                android:layout_width="match_parent"
-	                android:layout_height="wrap_content"
-	                android:ellipsize="end"
-	                android:gravity="center_vertical"
-	                android:lines="4"
-	                android:textSize="17sp"
-	                android:text="-"
-	                android:textStyle="bold" />
-
-	            <TextView
-	                android:id="@+id/body"
-	                android:layout_marginTop="5dp"
-	                android:layout_width="match_parent"
-	                android:layout_height="wrap_content"
-	                android:ellipsize="end"
-	                android:lines="4"
-	                android:text="-"
-	                android:textColor="@color/extended_listview_item_body_text_color_dark_theme"
-	                android:textSize="14sp"
-	                android:autoLink="none" />
-	            <!-- android:gravity="center_vertical" -->
-	        </LinearLayout>
-
-
-            <FrameLayout
-                android:id="@+id/fl_playPausePodcastWrapper"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/listview_row_margin_left" >
-
-                <ImageView
-                    android:id="@+id/btn_playPausePodcast"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_action_play_arrow"/>
-
-                <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
-                    android:id="@+id/podcastDownloadProgress"
-                    android:layout_gravity="center"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-
-                    app:stroke_width="2dp"
-                    app:progress_color="@android:color/holo_blue_dark"
-                    app:progress_background_color="#cccccc"
-                    app:marker_visible="false"
-                    app:thumb_visible="false"/>
-            </FrameLayout>
-
-	        <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_gravity="right"
-                android:gravity="center_horizontal|center_vertical" >
-
-                <CheckBox
-                    android:id="@+id/cb_lv_item_starred"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:layout_gravity="center_horizontal"
-                    android:button="@drawable/checkbox_background_empty"
-                    android:background="@drawable/checkbox_background_holo_light" />
-
-	            <CheckBox
-	                android:id="@+id/cb_lv_item_read"
-	                android:layout_marginTop="20dp"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:clickable="false"
-	                android:focusable="false"
-                    android:layout_gravity="center_horizontal" />
-	            </LinearLayout>
-		</LinearLayout>
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_marginTop="-2.0dp"
-            android:background="?attr/dividerLineColor" />
-
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
