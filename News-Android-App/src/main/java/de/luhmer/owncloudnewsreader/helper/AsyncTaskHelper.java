@@ -15,6 +15,7 @@ public class AsyncTaskHelper {
             asyncTask.execute(params);
     }
 
+    @SafeVarargs
     public static <T> void StartAsyncTask(AsyncTask asyncTask, Void... params) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
             asyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, params);

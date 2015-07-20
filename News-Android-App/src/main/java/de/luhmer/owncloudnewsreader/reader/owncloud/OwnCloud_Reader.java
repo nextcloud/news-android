@@ -37,7 +37,7 @@ public class OwnCloud_Reader implements IReader {
 	SparseArray<AsyncTask_Reader> AsyncTasksRunning;
 	
 	public OwnCloud_Reader() {
-		AsyncTasksRunning = new SparseArray<AsyncTask_Reader>();
+		AsyncTasksRunning = new SparseArray<>();
 	}
 	
 	@Override

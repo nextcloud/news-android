@@ -27,33 +27,24 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
@@ -70,7 +61,7 @@ public class DownloadImagesService extends IntentService {
 	private int maxCount;
 	//private int total_size = 0;
 
-    List<String> linksToImages = new LinkedList<String>();
+    List<String> linksToImages = new LinkedList<>();
 
 	public DownloadImagesService() {
 		super(null);
@@ -123,7 +114,7 @@ public class DownloadImagesService extends IntentService {
         if(!downloadFavIconsExclusive) {
             long lastId = intent.getLongExtra(LAST_ITEM_ID, 0);
             List<RssItem> rssItemList = dbConn.getAllItemsWithIdHigher(lastId);
-            List<String> links = new ArrayList<String>();
+            List<String> links = new ArrayList<>();
             for(RssItem rssItem : rssItemList) {
                 String body = rssItem.getBody();
                 links.addAll(ImageHandler.getImageLinksFromText(body));

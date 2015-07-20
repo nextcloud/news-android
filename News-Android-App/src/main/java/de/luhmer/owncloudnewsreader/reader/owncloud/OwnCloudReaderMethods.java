@@ -172,7 +172,7 @@ public class OwnCloudReaderMethods {
 	 * @throws JSONException
 	 */
 	public static int[] readJsonStreamV2(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
-        List<String> allowedArrays = Arrays.asList(new String[] { "feeds", "folders", "items" });
+        List<String> allowedArrays = Arrays.asList("feeds", "folders", "items");
 
 		int count = 0;
         int newItemsCount = 0;
@@ -354,7 +354,7 @@ public class OwnCloudReaderMethods {
         } else {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
-            HashMap<String, String> items = new HashMap<String, String>();
+            HashMap<String, String> items = new HashMap<>();
             for(String idItem : itemIds)
             {
 	            RssItem rssItem = dbConn.getRssItemById(Long.parseLong(idItem));
@@ -389,10 +389,7 @@ public class OwnCloudReaderMethods {
         {
 		    int result = HttpJsonRequest.performTagChangeRequest(url, api.getUsername(), api.getPassword(), context, jsonIds);
 		    //if(result != -1 || result != 405)
-		    if(result == 200)
-    			return true;
-    		else
-    			return false;
+			return (result == 200);
         }
         catch (Exception ex)
         {
@@ -427,10 +424,7 @@ public class OwnCloudReaderMethods {
         try
         {
 		    int result = HttpJsonRequest.performTagChangeRequest(url, api.getUsername(), api.getPassword(), context, null);
-		    if(result == 200)
-    			return true;
-    		else
-    			return false;
+			return (result == 200);
         }
         catch (Exception ex)
         {

@@ -15,7 +15,6 @@ import java.util.List;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.WhereCondition;
 import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemView;
 import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemViewDao;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -110,7 +109,7 @@ public class DatabaseConnectionOrm {
     }
 
     public List<Feed> getListOfFeedsWithUnreadItems() {
-        List<Feed> feedsWithUnreadItems = new ArrayList<Feed>();
+        List<Feed> feedsWithUnreadItems = new ArrayList<>();
 
         for(Feed feed : getListOfFeeds()) {
             for(RssItem rssItem : feed.getRssItemList()) {
@@ -168,7 +167,7 @@ public class DatabaseConnectionOrm {
         WhereCondition whereCondition = new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.EnclosureMime.columnName + " IN(\"" + join(ALLOWED_PODCASTS_TYPES, "\",\"") + "\"))");
         List<Feed> feedsWithPodcast = daoSession.getFeedDao().queryBuilder().where(whereCondition).list();
 
-        List<PodcastFeedItem> podcastFeedItemsList = new ArrayList<PodcastFeedItem>(feedsWithPodcast.size());
+        List<PodcastFeedItem> podcastFeedItemsList = new ArrayList<>(feedsWithPodcast.size());
         for(Feed feed : feedsWithPodcast) {
             int podcastCount = 0;
             for(RssItem rssItem : feed.getRssItemList()) {
@@ -182,7 +181,7 @@ public class DatabaseConnectionOrm {
     }
 
     public List<PodcastItem> getListOfAudioPodcastsForFeed(Context context, long feedId) {
-        List<PodcastItem> result = new ArrayList<PodcastItem>();
+        List<PodcastItem> result = new ArrayList<>();
 
         for(RssItem rssItem : daoSession.getRssItemDao().queryBuilder()
                 .where(RssItemDao.Properties.EnclosureMime.in(ALLOWED_PODCASTS_TYPES), RssItemDao.Properties.FeedId.eq(feedId))
@@ -198,7 +197,7 @@ public class DatabaseConnectionOrm {
         long countUnreadRead = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.notEq(RssItemDao.Properties.Read)).count();
         long countStarredUnstarred = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Starred_temp.notEq(RssItemDao.Properties.Starred)).count();
 
-        return (countUnreadRead + countStarredUnstarred) > 0 ? true : false;
+        return (countUnreadRead + countStarredUnstarred) > 0;
     }
 
 
@@ -294,7 +293,7 @@ public class DatabaseConnectionOrm {
 
 
     public List<String> getRssItemsIdsFromList(List<RssItem> rssItemList) {
-        List<String> itemIds = new ArrayList<String>();
+        List<String> itemIds = new ArrayList<>();
         for(RssItem rssItem : rssItemList) {
             itemIds.add(String.valueOf(rssItem.getId()));
         }
@@ -343,7 +342,7 @@ public class DatabaseConnectionOrm {
 
 
     public SparseArray<String> getUrlsToFavIcons() {
-        SparseArray<String> favIconUrls = new SparseArray<String>();
+        SparseArray<String> favIconUrls = new SparseArray<>();
 
         for(Feed feed : getListOfFeeds())
             favIconUrls.put((int) feed.getId(), feed.getFaviconUrl());
@@ -606,7 +605,7 @@ public class DatabaseConnectionOrm {
     }
 
     public SparseArray<Integer> getIntegerSparseArrayFromSQL(String buildSQL, int indexKey, int indexValue) {
-        SparseArray<Integer> result = new SparseArray<Integer>();
+        SparseArray<Integer> result = new SparseArray<>();
 
         Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
         try
@@ -631,7 +630,7 @@ public class DatabaseConnectionOrm {
     }
 
     public SparseArray<String> getStringSparseArrayFromSQL(String buildSQL, int indexKey, int indexValue) {
-        SparseArray<String> result = new SparseArray<String>();
+        SparseArray<String> result = new SparseArray<>();
 
         Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
         try

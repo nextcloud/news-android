@@ -55,7 +55,7 @@ public class OwnCloudSyncService extends Service {
 	
 	protected static final String TAG = "OwnCloudSyncService";	
 	
-	private RemoteCallbackList<IOwnCloudSyncServiceCallback> callbacks = new RemoteCallbackList<IOwnCloudSyncServiceCallback>();
+	private RemoteCallbackList<IOwnCloudSyncServiceCallback> callbacks = new RemoteCallbackList<>();
 
 	private Stub mBinder = new IOwnCloudSyncService.Stub() {
 
@@ -284,10 +284,10 @@ public class OwnCloudSyncService extends Service {
 	
 	private List<IOwnCloudSyncServiceCallback> getCallBackItemsAndBeginBroadcast() {
 		// Broadcast to all clients the new value.
-		List<IOwnCloudSyncServiceCallback> callbackList = new ArrayList<IOwnCloudSyncServiceCallback>();
+		List<IOwnCloudSyncServiceCallback> callbackList = new ArrayList<>();
         final int N = callbacks.beginBroadcast();
         for (int i=0; i < N; i++) {
-            callbackList.add((IOwnCloudSyncServiceCallback) callbacks.getBroadcastItem(i));
+            callbackList.add(callbacks.getBroadcastItem(i));
         }
         return callbackList;
 	}	

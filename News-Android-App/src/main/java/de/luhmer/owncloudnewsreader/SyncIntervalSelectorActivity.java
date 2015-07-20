@@ -5,7 +5,6 @@ import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -141,7 +140,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
             lvItems.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_list_item_single_choice, android.R.id.text1, items);
 
 

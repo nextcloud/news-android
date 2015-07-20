@@ -22,8 +22,8 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -172,7 +172,12 @@ public class NewsDetailFragment extends Fragment {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static void SetSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+            return;
+        }
+
         if(htmlPage.contains(".gif")) {
             webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
             Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");

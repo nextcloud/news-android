@@ -1,16 +1,11 @@
 package de.luhmer.owncloudnewsreader.interfaces;
 
 import android.app.AlertDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.webkit.JavascriptInterface;
-import android.widget.Toast;
-
-import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
  * Created by David on 25.03.2014.

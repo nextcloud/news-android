@@ -119,7 +119,7 @@ public class JavaYoutubeDownloader {
 
     public String getDownloadUrl(String videoId, String encoding, String userAgent) throws Throwable {
               //Utils.log.fine("Retrieving " + videoId);
-        List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+        List<NameValuePair> qparams = new ArrayList<>();
         qparams.add(new BasicNameValuePair("video_id", videoId));
         URI uri = getUri("get_video_info", qparams);
 
@@ -138,7 +138,7 @@ public class JavaYoutubeDownloader {
             InputStream instream = entity.getContent();
             String videoInfo = getStringFromInputStream(encoding, instream);
             if (videoInfo != null && videoInfo.length() > 0) {
-                List<NameValuePair> infoMap = new ArrayList<NameValuePair>();
+                List<NameValuePair> infoMap = new ArrayList<>();
                 URLEncodedUtils.parse(infoMap, new Scanner(videoInfo), encoding);
                 String downloadUrl = null;
                 String filename = videoId;
@@ -313,7 +313,7 @@ public class JavaYoutubeDownloader {
      */
     public static Map<String, String> getVideoInfo(String youTubeId) throws IOException
     {
-        final Map<String, String> retval = new HashMap<String, String>();
+        final Map<String, String> retval = new HashMap<>();
         getVideoInfo(youTubeId, retval);
         return retval;
     }
@@ -327,7 +327,7 @@ public class JavaYoutubeDownloader {
     public static void getVideoInfo(String youTubeId, Map<String, String> map) throws IOException
     {
         final String host = "http://www.youtube.com";
-        final List<IKeyValuePair> params = new ArrayList<IKeyValuePair>();
+        final List<IKeyValuePair> params = new ArrayList<>();
         params.add(new KeyValuePair("video_id", youTubeId));
         final String urlString = host + "/get_video_info?&"+ URLParams.generateQueryString(params);
 

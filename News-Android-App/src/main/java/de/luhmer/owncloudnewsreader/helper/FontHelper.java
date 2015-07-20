@@ -22,18 +22,13 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.preference.PreferenceManager;
-import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import de.luhmer.owncloudnewsreader.SettingsActivity;
 
 public class FontHelper {
 	Context context;

@@ -1,9 +1,5 @@
 package de.luhmer.owncloudnewsreader.model;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-
 /**
  * Created by David on 27.03.2015.
  */

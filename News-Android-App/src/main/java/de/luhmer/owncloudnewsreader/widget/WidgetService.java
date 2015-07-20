@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader.widget;
 
 import android.content.Intent;
-import android.os.Build;
 import android.widget.RemoteViewsService;
 
 public class WidgetService extends RemoteViewsService {

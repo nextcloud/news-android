@@ -6,7 +6,6 @@ import android.graphics.Color;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
-import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
 /**
  * Created by daniel on 11.07.15.
