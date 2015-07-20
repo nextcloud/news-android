@@ -32,7 +32,7 @@ import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 public class InsertFolderIntoDatabase implements IHandleJsonObject{
 
     DatabaseConnectionOrm dbConn;
-	ArrayList<Folder> folders = new ArrayList<Folder>();
+	ArrayList<Folder> folders = new ArrayList<>();
 	
 	public InsertFolderIntoDatabase(DatabaseConnectionOrm dbConn) {
 		this.dbConn = dbConn;

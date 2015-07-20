@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
-import android.os.Environment;
 
 import com.nostra13.universalimageloader.utils.StorageUtils;
 

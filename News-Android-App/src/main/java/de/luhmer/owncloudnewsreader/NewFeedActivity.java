@@ -2,12 +2,9 @@ package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -76,7 +73,7 @@ public class NewFeedActivity extends AppCompatActivity {
             folderNames[i] = folders.get(i).getLabel();
         }
 
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
         mFolderView.setAdapter(spinnerArrayAdapter);
 
         mAddFeedButton.setOnClickListener(new OnClickListener() {

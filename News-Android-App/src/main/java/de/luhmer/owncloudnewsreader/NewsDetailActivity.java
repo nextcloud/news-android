@@ -29,7 +29,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -96,7 +95,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private MenuItem menuItem_Starred;
 	private MenuItem menuItem_Read;
 
-	private IReader _Reader;
 	private DatabaseConnectionOrm dbConn;
 	public LazyList<RssItem> rssItems;
 
@@ -121,7 +119,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		pDelayHandler = new PostDelayHandler(this);
 
-		_Reader = new OwnCloud_Reader();
 		dbConn = new DatabaseConnectionOrm(this);
 		Intent intent = getIntent();
 
@@ -397,7 +394,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 			case R.id.action_openInBrowser:
                 NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
-                String link = newsDetailFragment.mWebView.getUrl().toString();
+                String link = newsDetailFragment.mWebView.getUrl();
 
                 if(link.equals("about:blank"))
 				    link = rssItem.getLink();
@@ -497,8 +494,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		String packageName = CustomTabActivityManager.getInstance().getPackageNameToUse(this);
 		if (packageName == null)
 			return false;
-		boolean ok = CustomTabsClient.bindCustomTabsService(
-				this, packageName, new CustomTabsServiceConnection() {
+
+		return CustomTabsClient.bindCustomTabsService(
+                this, packageName, new CustomTabsServiceConnection() {
 					@Override
 					public void onCustomTabsServiceConnected(ComponentName name, CustomTabsClient client) {
 						mCustomTabsClient = client;
@@ -509,8 +507,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 						mCustomTabsClient = null;
 					}
 				});
-		//if (ok) {};
-		return ok;
 	}
 
 	private CustomTabsSession getSession() {

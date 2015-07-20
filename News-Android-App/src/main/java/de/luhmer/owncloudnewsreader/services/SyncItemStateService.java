@@ -35,8 +35,6 @@ import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public class SyncItemStateService extends IntentService {
 

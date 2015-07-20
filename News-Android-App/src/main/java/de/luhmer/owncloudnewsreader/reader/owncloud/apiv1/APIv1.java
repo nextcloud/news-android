@@ -66,14 +66,11 @@ public class APIv1 extends API {
 	public boolean PerformTagExecution(List<String> itemIds, TAGS tag,
 			Context context, API api) {
 		
-		List<Boolean> succeeded = new ArrayList<Boolean>();
+		List<Boolean> succeeded = new ArrayList<>();
 		for(String item : itemIds) {
 			succeeded.add(OwnCloudReaderMethods.PerformTagExecutionAPIv1(item, tag, context, api));
 		}
-		
-		if(succeeded.contains(false))
-			return false;
-		else
-			return true;
+
+		return !succeeded.contains(false);
 	}
 }

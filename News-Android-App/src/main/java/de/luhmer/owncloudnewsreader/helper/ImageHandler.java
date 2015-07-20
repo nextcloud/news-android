@@ -34,7 +34,7 @@ public class ImageHandler {
 
 	public static List<String> getImageLinksFromText(String text)
 	{
-		List<String> links = new ArrayList<String>();
+		List<String> links = new ArrayList<>();
 
 		Matcher matcher = patternImg.matcher(text);
 	    // Check all occurrences

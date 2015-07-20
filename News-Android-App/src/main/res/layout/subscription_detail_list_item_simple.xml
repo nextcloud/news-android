@@ -68,7 +68,9 @@
             tools:text="PortableApps.com"
             android:layout_below="@+id/summary"
             android:layout_toStartOf="@+id/tv_item_date"
-            android:layout_toEndOf="@+id/imgViewFavIcon" />
+            android:layout_toEndOf="@+id/imgViewFavIcon"
+            android:layout_toLeftOf="@+id/tv_item_date"
+            android:layout_toRightOf="@+id/imgViewFavIcon"/>
 
         <TextView
             android:id="@+id/tv_item_date"
@@ -80,6 +82,8 @@
             tools:text="vor 13 Stunden"
             android:layout_toStartOf="@+id/podcast_wrapper"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@+id/podcast_wrapper"
             android:layout_alignBaseline="@id/tv_subscription"/>
 
         <include
@@ -87,6 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
             android:id="@+id/podcast_wrapper" />
 

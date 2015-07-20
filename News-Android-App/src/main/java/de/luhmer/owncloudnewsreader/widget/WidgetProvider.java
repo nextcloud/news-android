@@ -28,7 +28,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -67,10 +66,10 @@ public class WidgetProvider extends AppWidgetProvider {
 
         Log.v(TAG, "onRecieve - WidgetID: " + appWidgetId + " - " + action);
 
-        for(int i = 0; i < appWidgetId.length; i++) {
+        for (int anAppWidgetId : appWidgetId) {
             if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(action)) {
-                if (appWidgetId[i] != AppWidgetManager.INVALID_APPWIDGET_ID) {
-                    this.onDeleted(context, new int[] { appWidgetId[i] });
+                if (anAppWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
+                    this.onDeleted(context, new int[]{anAppWidgetId});
                 }
             } /*else if (intent.getAction().equals(ACTION_WIDGET_RECEIVER)) {
 
@@ -81,13 +80,12 @@ public class WidgetProvider extends AppWidgetProvider {
                 intentRefresh.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[] { appWidgetId[i] });
                 context.sendBroadcast(intentRefresh);
 
-            } */else if (action.equals(ACTION_LIST_CLICK)) {
-                try
-                {
+            } */ else if (action.equals(ACTION_LIST_CLICK)) {
+                try {
                     Long rssItemId = intent.getExtras().getLong(RSS_ITEM_ID);
 
 
-                    if(intent.hasExtra(ACTION_CHECKED_CLICK)) {
+                    if (intent.hasExtra(ACTION_CHECKED_CLICK)) {
                         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
                         RssItem rssItem = dbConn.getRssItemById(rssItemId);
                         rssItem.setRead_temp(!rssItem.getRead_temp());
@@ -95,7 +93,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
 
                         AppWidgetManager.getInstance(context)
-                            .notifyAppWidgetViewDataChanged(appWidgetId[i], R.id.list_view);
+                                .notifyAppWidgetViewDataChanged(anAppWidgetId, R.id.list_view);
 
                         Log.v(TAG, "I'm here!!! Widget update works!");
                     } else {
@@ -107,9 +105,7 @@ public class WidgetProvider extends AppWidgetProvider {
                     }
 
                     Log.v(TAG, "ListItem Clicked Starting Activity for Item: " + rssItemId);
-                }
-                catch(Exception ex)
-                {
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             } /*else if(action.equals("android.appwidget.action.APPWIDGET_UPDATE") || action.equals(ACTION_WIDGET_RECEIVER)) {

@@ -69,7 +69,7 @@ public class PodcastDownloadService extends IntentService {
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_DOWNLOAD.equals(action)) {
-                ResultReceiver receiver = (ResultReceiver) intent.getParcelableExtra(EXTRA_RECEIVER);
+                //ResultReceiver receiver = intent.getParcelableExtra(EXTRA_RECEIVER);
                 PodcastItem podcast = (PodcastItem) intent.getSerializableExtra(EXTRA_URL);
                 //final String param2 = intent.getStringExtra(EXTRA_PARAM2);
                 //handleActionDownload(podcast);
@@ -134,9 +134,8 @@ public class PodcastDownloadService extends IntentService {
             m.update(WEB_URL_TO_FILE.trim().getBytes());
             byte[] digest = m.digest();
             BigInteger bigInt = new BigInteger(1,digest);
-            String hashtext = bigInt.toString(16);
 
-            return hashtext;
+            return bigInt.toString(16);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,8 +181,7 @@ public class PodcastDownloadService extends IntentService {
             while ((count = input.read(data)) != -1) {
                 total += count;
 
-                int progress = (int) (total * 100 / fileLength);
-                podcast.downloadProgress = progress;
+                podcast.downloadProgress = (int) (total * 100 / fileLength);
                 eventBus.post(new DownloadProgressUpdate(podcast));
 
                 output.write(data, 0, count);

@@ -34,68 +34,61 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 {
 	private API api;
-	
+
 	public AsyncTask_PerformItemStateChange(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
-		super(task_id, context, listener);		 
+		super(task_id, context, listener);
 		this.api = api;
-	}	
-	
+	}
+
 	@Override
 	protected Boolean doInBackground(Object... params) {
+		List<Boolean> succeeded = new ArrayList<>();
 
-		List<Boolean> succeeded = new ArrayList<Boolean>();
-		
 		try {
 			DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-			try {
-				//Mark as READ
-				List<String> itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewReadRssItems());
-				boolean result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_READ, context, api);
-				if(result)
-					dbConn.change_readUnreadStateOfItem(itemIds, true);
-				succeeded.add(result);
-				
-				//Mark as UNREAD
-				itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnreadRssItems());
-				result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNREAD, context, api);
-				if(result)
-					dbConn.change_readUnreadStateOfItem(itemIds, false);
-				succeeded.add(result);
-				
-				//Mark as STARRED
-				itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewStarredRssItems());
-				result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_STARRED, context, api);
-				if(result)
-					dbConn.change_starrUnstarrStateOfItem(itemIds, true);
-				succeeded.add(result);
-				
-				//Mark as UNSTARRED
-				itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnstarredRssItems());
-				result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNSTARRED, context, api);
-				if(result)
-					dbConn.change_starrUnstarrStateOfItem(itemIds, false);
-				succeeded.add(result);
-			} finally {
-				//dbConn.closeDatabase();
-			}
+
+			//Mark as READ
+			List<String> itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewReadRssItems());
+			boolean result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_READ, context, api);
+			if(result)
+				dbConn.change_readUnreadStateOfItem(itemIds, true);
+			succeeded.add(result);
+
+			//Mark as UNREAD
+			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnreadRssItems());
+			result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNREAD, context, api);
+			if(result)
+				dbConn.change_readUnreadStateOfItem(itemIds, false);
+			succeeded.add(result);
+
+			//Mark as STARRED
+			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewStarredRssItems());
+			result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_STARRED, context, api);
+			if(result)
+				dbConn.change_starrUnstarrStateOfItem(itemIds, true);
+			succeeded.add(result);
+
+			//Mark as UNSTARRED
+			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnstarredRssItems());
+			result = api.PerformTagExecution(itemIds, TAGS.MARK_ITEM_AS_UNSTARRED, context, api);
+			if(result)
+				dbConn.change_starrUnstarrStateOfItem(itemIds, false);
+			succeeded.add(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 			succeeded.add(false);
 		}
-		
-		if(succeeded.contains(false))
-			return false;
-		else
-			return true;
+
+        return !succeeded.contains(false);
 	}
-	
+
     @Override
-    protected void onPostExecute(Object values) {    	
+    protected void onPostExecute(Object values) {
      	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
     			listenerInstance.onAsyncTaskCompleted(task_id, values);	
 		}
-    	
+
 		detach();
     }
 }

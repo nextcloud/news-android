@@ -68,7 +68,7 @@ public class URLParams
      */
     public static List<KeyValuePair> parseQueryString(final String queryString)
     {
-        final List<KeyValuePair> retval = new ArrayList<KeyValuePair>();
+        final List<KeyValuePair> retval = new ArrayList<>();
         parseQueryString(queryString, retval);
         return retval;
     }
@@ -88,7 +88,7 @@ public class URLParams
     public static List<KeyValuePair> parseQueryString(final String queryString,
                                                       final String encoding) throws UnsupportedEncodingException
     {
-        final List<KeyValuePair> retval = new ArrayList<KeyValuePair>();
+        final List<KeyValuePair> retval = new ArrayList<>();
         parseQueryString(queryString, retval, encoding);
         return retval;
     }

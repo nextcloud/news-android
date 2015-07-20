@@ -99,7 +99,7 @@ public class MapUtils
     public static Map<String, String> listToMap(
             final List<? extends IKeyValuePair> list, final ListToMapMode mode)
     {
-        final Map<String, String> retval = new HashMap<String, String>();
+        final Map<String, String> retval = new HashMap<>();
         listToMap(list, retval, mode);
         return retval;
     }
@@ -134,7 +134,7 @@ public class MapUtils
      */
     public static List<IKeyValuePair> mapToList(final Map<String, String> map)
     {
-        final List<IKeyValuePair> retval = new ArrayList<IKeyValuePair>();
+        final List<IKeyValuePair> retval = new ArrayList<>();
         mapToList(map, retval);
         return retval;
     }

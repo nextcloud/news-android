@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.util.Locale;
 
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;

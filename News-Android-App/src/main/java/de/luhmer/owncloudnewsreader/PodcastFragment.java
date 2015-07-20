@@ -2,11 +2,8 @@ package de.luhmer.owncloudnewsreader;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -28,8 +25,6 @@ import android.widget.ViewSwitcher;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -37,11 +32,6 @@ import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
-import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
-import de.luhmer.owncloudnewsreader.events.podcast.PodcastFeedClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
@@ -49,7 +39,6 @@ import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
-import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 
 
@@ -78,8 +67,7 @@ public class PodcastFragment extends Fragment {
      * @return A new instance of fragment PodcastFragment.
      */
     public static PodcastFragment newInstance() {
-        PodcastFragment fragment = new PodcastFragment();
-        return fragment;
+        return new PodcastFragment();
     }
     public PodcastFragment() {
         // Required empty public constructor

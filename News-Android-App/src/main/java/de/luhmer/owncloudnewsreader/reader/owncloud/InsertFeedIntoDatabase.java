@@ -32,7 +32,7 @@ import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 public class InsertFeedIntoDatabase implements IHandleJsonObject{
 
 	DatabaseConnectionOrm dbConn;
-	ArrayList<Feed> feeds = new ArrayList<Feed>();
+	ArrayList<Feed> feeds = new ArrayList<>();
 
 	public InsertFeedIntoDatabase(DatabaseConnectionOrm dbConn) {
 		this.dbConn = dbConn;

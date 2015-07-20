@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader.reader;
 
-import android.app.Activity;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ import java.util.List;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
-import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
 /**
  * Created by David on 24.05.13.

@@ -2,6 +2,7 @@ package de.luhmer.owncloudnewsreader.adapter;
 
 import android.app.Activity;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
@@ -11,8 +12,6 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.CheckBox;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -104,12 +103,16 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public void setReadState(boolean isRead) {
         if(textViewSummary != null) {
+            float alpha = 1f;
             if (isRead) {
                 textViewSummary.setTypeface(Typeface.DEFAULT);
-                ((View)textViewSummary.getParent()).setAlpha(0.7f);
+                alpha = 0.7f;
             } else {
                 textViewSummary.setTypeface(Typeface.DEFAULT_BOLD);
-                ((View)textViewSummary.getParent()).setAlpha(1f);
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                ((View) textViewSummary.getParent()).setAlpha(alpha);
             }
             //itemView.invalidate();
             //textViewSummary.invalidate();

@@ -1,21 +1,16 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.SparseArray;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
@@ -41,7 +36,7 @@ import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     private static final String TAG = "NewsListRecyclerAdapter";
 
-    public static SparseArray<Integer> downloadProgressList = new SparseArray<Integer>();
+    public static SparseArray<Integer> downloadProgressList = new SparseArray<>();
     private long idOfCurrentlyPlayedPodcast = -1;
 
     private LazyList<RssItem> lazyList;

@@ -27,7 +27,7 @@ public class DatabaseOrmGenerator {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, Exception {
-        List<SchemaVersion> versions = new ArrayList<SchemaVersion>();
+        List<SchemaVersion> versions = new ArrayList<>();
 
         versions.add(new Version4(true));
 
@@ -52,7 +52,7 @@ public class DatabaseOrmGenerator {
     public static void validateSchemas(List<SchemaVersion> versions)
             throws IllegalArgumentException {
         int numCurrent = 0;
-        Set<Integer> versionNumbers = new HashSet<Integer>();
+        Set<Integer> versionNumbers = new HashSet<>();
 
         for (SchemaVersion version : versions) {
             if (version.isCurrent()) {

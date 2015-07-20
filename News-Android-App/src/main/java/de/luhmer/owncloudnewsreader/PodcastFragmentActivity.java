@@ -16,7 +16,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -33,14 +32,11 @@ import java.io.File;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -480,7 +476,10 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
             //int animationpos = 500;
             float xPosition = rlVideoPodcastSurfaceWrapper.getVideoXPosition();
-            view.animate().x(xPosition).y(absoluteYPosition).setDuration(animationTime);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {//TODO podcast video is only working for newer android versions
+                view.animate().x(xPosition).y(absoluteYPosition).setDuration(animationTime);
+            }
             //scaleX(scaleFactor).scaleY(scaleFactor)
         }
 
