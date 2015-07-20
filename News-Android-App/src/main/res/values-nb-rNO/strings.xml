@@ -61,6 +61,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Brukernavn</string>
   <string name="pref_title_password">Passord</string>
+  <string name="pref_title_owncloudRootPath">ownCloud rot-adresse</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Logg inn</string>
@@ -78,8 +79,17 @@
   <string name="pull_to_refresh_updateFolder">Synkroniserer mappe</string>
   <string name="pull_to_refresh_updateFeeds">Synkroniserer strøm</string>
   <string name="pull_to_refresh_updateItems">Synkroniserer elementer</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Hentet %d element så langt..</item>
+    <item quantity="other">Hentet %d elementer så langt..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Innstillinger</string>
+  <string name="cache_is_cleared">Mellomlager er nullstilt!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d fil</item>
+    <item quantity="other">%d filer</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Generelt</string>
   <string name="pref_title_general_sort_order">Sorteringsrekkefølge</string>

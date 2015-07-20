@@ -61,6 +61,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
   <string name="pref_title_password">Wachtwoord</string>
+  <string name="pref_title_owncloudRootPath">ownCloud root adres</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Inloggen</string>
@@ -78,8 +79,17 @@
   <string name="pull_to_refresh_updateFolder">Synchroniseren map</string>
   <string name="pull_to_refresh_updateFeeds">Synchroniseren feeds</string>
   <string name="pull_to_refresh_updateItems">Synchroniseren berichten</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Tot nu %d artikel opehaald.</item>
+    <item quantity="other">Tot nu %d artikelen opehaald.</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Instellingen</string>
+  <string name="cache_is_cleared">Cache is leeggemaakt!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d bestand</item>
+    <item quantity="other">%d bestanden</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Algemeen</string>
   <string name="pref_title_general_sort_order">Sorteervolgorde</string>

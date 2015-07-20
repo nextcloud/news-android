@@ -9,9 +9,13 @@
   <string name="title_newsreader_detail">ニュースリーダーの詳細</string>
   <string name="empty_view_header">情報</string>
   <string name="empty_view_content">ここにアイテムなし</string>
+  <string name="toast_GettingMoreItems">複数のアイテムをダウンロード中です... しばらくお待ちください。</string>
   <string name="tv_clickHereToOpenItem">項目を開くにはここをクリック</string>
   <string name="no_wifi_available">WiFi接続がありません</string>
   <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか？</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="other">%d 個のアイテムの上限に達しました</item>
+  </plurals>
   <string name="widget_header">ownCloudニュース</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="other">%d 個の新しいアイテムが利用可能です</item>
@@ -44,9 +48,16 @@
   <string name="action_sync_settings">設定の同期</string>
   <string name="action_add_new_feed">新しいフィードを追加</string>
   <string name="action_textToSpeech">音声読み上げ</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="other">%d 個の新しい未読アイテムがあります</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="other">%d 個の新しい未読アイテムが利用できます</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">パスワード</string>
+  <string name="pref_title_owncloudRootPath">ownCloud ルートアドレス</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">ログイン</string>
@@ -55,13 +66,23 @@
   <string name="error_field_required">このフィールドは必須です</string>
   <string name="error_invalid_url">このURLは不正確です</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="other">ダウンロードされた %d 個の古いアイテム</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">これ以上利用できるアイテムがありません</string>
   <string name="pull_to_refresh_updateTags">アイテムの状態を同期中</string>
   <string name="pull_to_refresh_updateFolder">フォルダーを同期中</string>
   <string name="pull_to_refresh_updateFeeds">フィードを同期中</string>
   <string name="pull_to_refresh_updateItems">アイテムを同期中</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="other">これまでに %d 個のアイテムを読み込みました..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">設定</string>
+  <string name="cache_is_cleared">キャッシュがクリアされます！</string>
+  <plurals name="number_of_files">
+    <item quantity="other">%d 個のファイル</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">一般</string>
   <string name="pref_title_general_sort_order">ソート順</string>
@@ -106,6 +127,7 @@
   <string name="pref_header_display">表示</string>
   <string name="pref_title_app_theme">アプリテーマ</string>
   <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
+  <string name="pref_display_title_lines_count">タイトルの行数</string>
   <string-array name="pref_display_apptheme">
     <item>ダーク</item>
     <item>ライト</item>
@@ -123,6 +145,18 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">エラー</string>

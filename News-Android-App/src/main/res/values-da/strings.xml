@@ -61,6 +61,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Brugernavn</string>
   <string name="pref_title_password">Kodeord</string>
+  <string name="pref_title_owncloudRootPath">rodadressen for ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Log ind</string>
@@ -78,8 +79,17 @@
   <string name="pull_to_refresh_updateFolder">Synkroniserer mappe</string>
   <string name="pull_to_refresh_updateFeeds">Synkroniserer feeds</string>
   <string name="pull_to_refresh_updateItems">Synkroniserer artikler</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Har hentet %d element indtil videre...</item>
+    <item quantity="other">Har hentet %d elementer indtil videre...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Indstillinger</string>
+  <string name="cache_is_cleared">Cachen er ryddet!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d fil</item>
+    <item quantity="other">%d filer</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Generelt</string>
   <string name="pref_title_general_sort_order">Rækkefølge for sortering</string>

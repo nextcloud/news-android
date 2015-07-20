@@ -31,6 +31,7 @@
   <string name="menu_StartImageCaching">ดาวน์โหลดรูปภาพ</string>
   <string name="menu_downloadMoreItems">ดาวน์โหลดรายการอื่นๆ</string>
   <!--Import Accounts-->
+  <string name="import_account">นำเข้าบัญชี</string>
   <!--EMAIL-->
   <string name="email_sourceCode">รหัสต้นฉบับของรายการ - รายงานข้อผิดพลาด</string>
   <string name="email_sendMail">ส่งอีเมล</string>

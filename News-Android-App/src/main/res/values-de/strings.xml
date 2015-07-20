@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">Detailansicht</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Keine Artikel vorhanden</string>
+  <string name="toast_GettingMoreItems">Herunterladen weiterer Elemente gestartet... Bitte warten.</string>
   <string name="tv_clickHereToOpenItem">Hier klicken, um Artikel zu öffnen</string>
   <string name="no_wifi_available">Keine WLAN-Verbindung</string>
   <string name="do_you_want_to_download_without_wifi">Willst du die Bilder ohne W-LAN-Verbindung herunterladen</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Du hast die maximale Größe von %d Element erreicht</item>
+    <item quantity="other">Du hast die maximale Größe von %d Elementen erreicht</item>
+  </plurals>
   <string name="widget_header">ownCloud-News</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d neuer Artikel verfügbar</item>
+    <item quantity="other">%d neue Artikel verfügbar</item>
+  </plurals>
   <string name="message_bar_reload">Aktualisieren</string>
   <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
   <string name="starredFeeds">Favorisierte Artikel</string>
@@ -41,9 +50,18 @@
   <string name="action_sync_settings">Einstellungen zur Synchronisation</string>
   <string name="action_add_new_feed">Einen neuen Feed hinzufügen</string>
   <string name="action_textToSpeech">Vorlesen</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Du hast %d neuen ungelesenen Eintrag</item>
+    <item quantity="other">Du hast %d neue ungelesene Einträge</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d neuen ungelesenen Eintrag verfügbar</item>
+    <item quantity="other">%d neue ungelesene Einträge verfügbar</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <string name="pref_title_password">Passwort</string>
+  <string name="pref_title_owncloudRootPath">ownCloud Wurzeladresse</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Einloggen</string>
@@ -52,13 +70,26 @@
   <string name="error_field_required">Dieses Feld ist erforderlich</string>
   <string name="error_invalid_url">Diese URL ist falsch</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">%d alter Artikel heruntergeladen</item>
+    <item quantity="other">%d alte Artikel heruntergeladen</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Keine weiteren Artikel verfügbar</string>
   <string name="pull_to_refresh_updateTags">Synchronisiere Artikelstatus</string>
   <string name="pull_to_refresh_updateFolder">Synchronisiere Ordner</string>
   <string name="pull_to_refresh_updateFeeds">Synchronisiere Feeds</string>
   <string name="pull_to_refresh_updateItems">Synchronisiere Artikel</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">%d Artikel bis jetzt heruntergeladen..</item>
+    <item quantity="other">%d Artikel bis jetzt heruntergeladen..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Einstellungen</string>
+  <string name="cache_is_cleared">Zwischenspeicher wurde gelöscht!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Datei</item>
+    <item quantity="other">%d Dateien</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Allgemein</string>
   <string name="pref_title_general_sort_order">Sortierung</string>
@@ -77,6 +108,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Cache löschen</string>
+  <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird geleert … Bitte warten.</string>
+  <string name="calculating_cache_size">Zwischenspeichergröße wird berechnet … Bitte warten.</string>
   <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchtest Du dennoch den Cache leeren?</string>
   <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Starten synchronisieren</string>
@@ -101,6 +134,7 @@
   <string name="pref_header_display">Anzeige</string>
   <string name="pref_title_app_theme">App-Thema</string>
   <string name="pref_title_feed_list_layout">Feed-Listen-Layout</string>
+  <string name="pref_display_title_lines_count">Zeilenanzahl des Titels</string>
   <string-array name="pref_display_apptheme">
     <item>Dunkel</item>
     <item>Hell</item>
@@ -118,6 +152,18 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fehler</string>

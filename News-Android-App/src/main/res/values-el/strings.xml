@@ -61,6 +61,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
   <string name="pref_title_password">Συνθηματικό</string>
+  <string name="pref_title_owncloudRootPath">Διεύθυνση ριζικού καταλόγου ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Είσοδος</string>
@@ -78,8 +79,17 @@
   <string name="pull_to_refresh_updateFolder">Συγχρονισμός φακέλου</string>
   <string name="pull_to_refresh_updateFeeds">Συγχρονισμός ροών</string>
   <string name="pull_to_refresh_updateItems">Συγχρονισμός αντικειμένων</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Λήφθηκε %d αντικείμενο ως τώρα..</item>
+    <item quantity="other">Λήφθηκαν %d αντικείμενα ως τώρα..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ρυθμίσεις</string>
+  <string name="cache_is_cleared">Η προσωρινή μνήμη εκκαθαρίστηκε!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Αρχείο</item>
+    <item quantity="other">%d Αρχεία</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Γενικά</string>
   <string name="pref_title_general_sort_order">Σειρά ταξινόμησης</string>

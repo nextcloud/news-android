@@ -61,6 +61,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>
+  <string name="pref_title_owncloudRootPath">Dirección de la raíz de OwnCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Registrarse</string>
@@ -80,6 +81,11 @@
   <string name="pull_to_refresh_updateItems">Sincronizando articulos</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ajustes</string>
+  <string name="cache_is_cleared">Caché está vaciado!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d archivo</item>
+    <item quantity="other">%d archivos</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">General</string>
   <string name="pref_title_general_sort_order">Ordenar</string>

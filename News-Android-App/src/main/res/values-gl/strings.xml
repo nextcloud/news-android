@@ -33,6 +33,7 @@
   <string name="menu_StartImageCaching">Descargar imaxes</string>
   <string name="menu_downloadMoreItems">Descargar máis elementos</string>
   <!--Import Accounts-->
+  <string name="import_account">Importar a conta</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código fonte do elemento - Informe de fallos</string>
   <string name="email_sendMail">Enviar correo</string>
@@ -60,6 +61,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de usuario</string>
   <string name="pref_title_password">Contrasinal</string>
+  <string name="pref_title_owncloudRootPath">Enderezo raíz do ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Rexistrarse</string>
@@ -77,8 +79,17 @@
   <string name="pull_to_refresh_updateFolder">Sincronizando o cartafol</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando as fontes</string>
   <string name="pull_to_refresh_updateItems">Sincronizando os elementos</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Atopado %d elemento polo de agora...</item>
+    <item quantity="other">Atopados %d elementos polo de agora...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Axustes</string>
+  <string name="cache_is_cleared">A cahé está limpa!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d ficheiro</item>
+    <item quantity="other">%d ficheiros</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Xeral</string>
   <string name="pref_title_general_sort_order">Reordenar</string>

@@ -62,8 +62,17 @@
   <string name="pull_to_refresh_updateFolder">Synkronoidaan kansiota</string>
   <string name="pull_to_refresh_updateFeeds">Synkronoidaan syötteitä</string>
   <string name="pull_to_refresh_updateItems">Synkronoidaan kohteita</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Noudettu %d kohde...</item>
+    <item quantity="other">Noudettu %d kohdetta...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Asetukset</string>
+  <string name="cache_is_cleared">Välimuisti on tyhjennetty!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d tiedosto</item>
+    <item quantity="other">%d tiedostoa</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Yleiset</string>
   <string name="pref_title_general_sort_order">Lajittelujärjestys</string>
