@@ -317,6 +317,10 @@ public class DatabaseConnectionOrm {
         return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Starred.eq(true), RssItemDao.Properties.Starred_temp.eq(false)).list();
     }
 
+    public LazyList<RssItem> getAllUnreadRssItemsForWidget() {
+        return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.eq(false)).limit(100).orderDesc(RssItemDao.Properties.PubDate).listLazy();
+    }
+
     public LazyList<RssItem> getAllItemsWithIdHigher(long id) {
         return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.ge(id)).listLazyUncached();
     }
@@ -412,12 +416,6 @@ public class DatabaseConnectionOrm {
         return (rssItem != null) ? rssItem.getId() : 0;
     }
 
-    public List<RssItem> getListOfAllItemsForFolder(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection, int limit) {
-        String whereStatement = getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, sortDirection);
-        whereStatement = whereStatement.replace("SELECT " + RssItemDao.Properties.Id.columnName + " FROM " + RssItemDao.TABLENAME, "");
-        whereStatement += " LIMIT " + limit;
-        return daoSession.getRssItemDao().queryRaw(whereStatement, (String)null);
-    }
 
     public String getAllItemsIdsForFolderSQL(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
         //If all starred items are requested always return them in desc. order
