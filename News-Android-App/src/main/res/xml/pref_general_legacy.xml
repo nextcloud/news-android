@@ -1,0 +1,32 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <CheckBoxPreference
+        android:key="cb_AutoSyncOnStart"
+        android:title="@string/pref_title_AutoSyncOnStart" />
+    
+    <CheckBoxPreference
+        android:key="cb_ShowOnlyUnread"
+        android:title="@string/pref_title_ShowOnlyUnread" />
+    
+    <CheckBoxPreference
+        android:key="cb_NavigateWithVolumeButtons"
+        android:title="@string/pref_title_NavigateWithVolumeButtons" />
+    
+    <CheckBoxPreference
+        android:key="cb_MarkAsReadWhileScrolling"
+        android:title="@string/pref_title_MarkAsReadWhileScrolling" />
+
+    <CheckBoxPreference
+        android:key="cb_openInBrowserDirectly"
+        android:title="@string/pref_title_OpenInBrowserDirectly" />
+
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_general_sort_order"
+        android:entryValues="@array/pref_general_sort_order_values_not_translated"
+        android:key="sp_sort_order"
+        android:title="@string/pref_title_general_sort_order" />
+
+</PreferenceScreen>

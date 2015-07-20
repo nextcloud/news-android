@@ -33,6 +33,7 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -51,13 +52,10 @@ import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -128,29 +126,31 @@ public class SettingsActivity extends PreferenceActivity {
 
 		super.onCreate(savedInstanceState);
 
+
         /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        */
+            //getActionBar().setDisplayHomeAsUpEnabled(true);
+        }*/
 
-		AppBarLayout appBarLayout;
+        AppBarLayout appBarLayout;
 
         // get the root container of the preferences list
-		LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
-		appBarLayout = (AppBarLayout) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
-		root.addView(appBarLayout, 0); // insert at top
+        LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
+        if(root != null) { //Some legacy devices may not be supported
+            appBarLayout = (AppBarLayout) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
+            root.addView(appBarLayout, 0); // insert at top
 
-		Toolbar toolbar = (Toolbar)appBarLayout.getChildAt(0);
+            Toolbar toolbar = (Toolbar) appBarLayout.getChildAt(0);
 
-		toolbar.setTitle(R.string.title_activity_settings);
-		toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
+            toolbar.setTitle(R.string.title_activity_settings);
+            toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
 	}
 
 	@Override
@@ -177,7 +177,12 @@ public class SettingsActivity extends PreferenceActivity {
 		// use the older PreferenceActivity APIs.
 
 		// Add 'general' preferences.
-		addPreferencesFromResource(R.xml.pref_general);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            addPreferencesFromResource(R.xml.pref_general);
+        } else {
+            addPreferencesFromResource(R.xml.pref_general_legacy);
+        }
 
 		PreferenceCategory header = new PreferenceCategory(this);
 		header.setTitle(R.string.pref_header_display);
@@ -193,7 +198,11 @@ public class SettingsActivity extends PreferenceActivity {
         header = new PreferenceCategory(this);
         header.setTitle(R.string.pref_header_notifications);
         getPreferenceScreen().addPreference(header);
-        addPreferencesFromResource(R.xml.pref_notification);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            addPreferencesFromResource(R.xml.pref_notification);
+        } else {
+            addPreferencesFromResource(R.xml.pref_notification_legacy);
+        }
 
         /*
         header = new PreferenceCategory(this);
@@ -309,8 +318,13 @@ public class SettingsActivity extends PreferenceActivity {
     private static Preference.OnPreferenceChangeListener sBindPreferenceBooleanToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-            TwoStatePreference twoStatePreference = ((TwoStatePreference) preference);
-            twoStatePreference.setChecked((Boolean)newValue);
+            if(preference instanceof CheckBoxPreference) { //For legacy Android support
+                CheckBoxPreference cbPreference = ((CheckBoxPreference) preference);
+                cbPreference.setChecked((Boolean) newValue);
+            } else {
+                TwoStatePreference twoStatePreference = ((TwoStatePreference) preference);
+                twoStatePreference.setChecked((Boolean) newValue);
+            }
             return true;
         }
     };
