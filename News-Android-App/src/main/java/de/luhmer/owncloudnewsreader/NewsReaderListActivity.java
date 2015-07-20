@@ -557,7 +557,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
 			NewsReaderDetailFragment newsReaderDetailFragment = getNewsReaderDetailFragment();
 
-			if(_ownCloudSyncService != null) {
+			if(newsReaderListFragment != null && newsReaderDetailFragment != null && _ownCloudSyncService != null) {
 				IOwnCloudSyncService _Reader = _ownCloudSyncService;
 
 				boolean isSyncRunning = _Reader.isSyncRunning();
