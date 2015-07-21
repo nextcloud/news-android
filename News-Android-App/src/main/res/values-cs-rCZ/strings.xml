@@ -65,6 +65,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Uživatelské jméno</string>
   <string name="pref_title_password">Heslo</string>
+  <string name="pref_title_owncloudRootPath">ownCloud kořenová adresa</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Přihlásit</string>
@@ -83,8 +84,19 @@
   <string name="pull_to_refresh_updateFolder">Synchronizuji složku</string>
   <string name="pull_to_refresh_updateFeeds">Synchronizuji kanály</string>
   <string name="pull_to_refresh_updateItems">Synchronizuji položky</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Načtena %d položka..</item>
+    <item quantity="few">Načteny %d položky..</item>
+    <item quantity="other">Načteno %d položek..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavení</string>
+  <string name="cache_is_cleared">Odkládací paměť vyčištěna!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d soubor</item>
+    <item quantity="few">%d soubory</item>
+    <item quantity="other">%d souborů</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Hlavní</string>
   <string name="pref_title_general_sort_order">Řazení</string>

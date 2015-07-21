@@ -79,6 +79,10 @@
   <string name="pull_to_refresh_updateFolder">Sincronizando archivos</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando fuentes</string>
   <string name="pull_to_refresh_updateItems">Sincronizando articulos</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Recolectó %d ítem hasta ahora...</item>
+    <item quantity="other">Recolectó %d ítems hasta ahora...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ajustes</string>
   <string name="cache_is_cleared">Caché está vaciado!</string>
