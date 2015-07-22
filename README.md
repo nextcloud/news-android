@@ -73,11 +73,20 @@ Contributors
 
 Updates
 ==================================
-0.9.5 (in development)
+0.9.6 (in development)
 ---------------------
 
 
-0.9.4 (Google Play)
+
+0.9.5 (Google Play)
+---------------------
+- UI-Redesign (special thanks to Daniel Schaal)
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/367">#367 Widget non-functional, crashes frequently</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/366">#366 "Sync on startup" option does not sync on startup only</a>
+- Bug fixes
+
+
+0.9.4 (Google Play - Beta)
 ---------------------
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/363">#363 Add support for Chrome Custom Tabs</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/361">#361 Pause podcast when receiving call</a>
