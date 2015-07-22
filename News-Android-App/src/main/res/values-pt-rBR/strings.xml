@@ -79,9 +79,17 @@
   <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
   <string name="pull_to_refresh_updateItems">Sincronizando itens</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Item buscado %d até agora..</item>
+    <item quantity="other">Itens buscados %d até agora..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Configurações</string>
   <string name="cache_is_cleared">O cache está limpo!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Arquivo</item>
+    <item quantity="other">%d Arquivos</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Geral</string>
   <string name="pref_title_general_sort_order">Ordem de Classificação</string>
