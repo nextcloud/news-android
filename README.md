@@ -77,6 +77,10 @@ Updates
 ---------------------
 
 
+0.9.5.1 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/371">#371 App crash since 0.9.4 at startup</a>
+
 
 0.9.5 (Google Play)
 ---------------------
