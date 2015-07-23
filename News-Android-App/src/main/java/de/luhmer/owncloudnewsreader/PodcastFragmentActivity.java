@@ -222,12 +222,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 .commitAllowingStateLoss();
 
         if(!currentlyPlaying)
-            sliding_layout.post(new Runnable() {
-                @Override
-                public void run() {
-                    sliding_layout.setPanelHeight(0);
-                }
-            });
+            sliding_layout.setPanelHeight(0);
     }
 
     boolean currentlyPlaying = false;
