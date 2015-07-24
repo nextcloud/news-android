@@ -24,9 +24,6 @@ body, blockquote, img, iframe, video, div, table, tbody, tr, td, pre, code, bloc
     width:		auto !important;
     height:		auto !important;
     max-width:	100% !important;
-
-    margin-left:	4px;
-    margin-right:	4px;
 }
 
 span {
@@ -105,17 +102,20 @@ a {
 #top_section {
     padding: 2px;
     padding-left: 6px;
+    padding-right: 6px;
     margin: 0px;
 
 }
 
 #content {
     margin-top:5px;
+    margin-left: 4px;
+    margin-right: 4px;
     line-height: 1.5em !important;
 }
 
 #imgFavicon {
-    margin-left:-3px;
+    margin-right: 4px;
     vertical-align:middle;
     margin-bottom:2px;
     width:16px !important;
