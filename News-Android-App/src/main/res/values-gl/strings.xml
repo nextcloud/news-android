@@ -17,7 +17,7 @@
     <item quantity="one">Acadou o tamaño máximo de %d elemento</item>
     <item quantity="other">Acadou o tamaño máximo de %d elementos</item>
   </plurals>
-  <string name="widget_header">Novas do </string>
+  <string name="widget_header">Novas do ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d elemento novo dispoñíbel</item>
     <item quantity="other">%d elementos novos dispoñíbeis</item>
