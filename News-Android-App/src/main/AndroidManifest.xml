@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="de.luhmer.owncloudnewsreader"
-    android:versionCode="89"
-    android:versionName="0.9.5.1"
+    android:versionCode="90"
+    android:versionName="0.9.5.2"
     android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET" />
