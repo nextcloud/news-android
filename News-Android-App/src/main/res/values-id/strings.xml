@@ -57,6 +57,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Sandi</string>
+  <string name="pref_title_owncloudRootPath">Alamat root ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Masuk</string>
@@ -73,8 +74,15 @@
   <string name="pull_to_refresh_updateFolder">Mensinkronisasi folder</string>
   <string name="pull_to_refresh_updateFeeds">Mensinkronisasi feed</string>
   <string name="pull_to_refresh_updateItems">Mensinkronisasi item</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="other">Terambil %d item pada saat ini...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Setelan</string>
+  <string name="cache_is_cleared">Cache dibersihkan!</string>
+  <plurals name="number_of_files">
+    <item quantity="other">%d Berkas</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Umum</string>
   <string name="pref_title_general_sort_order">Urutan</string>
