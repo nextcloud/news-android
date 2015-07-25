@@ -43,6 +43,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -55,6 +56,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -172,6 +175,25 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			};
 
 			drawerLayout.setDrawerListener(drawerToggle);
+
+            try {
+                // increase the size of the drag margin to prevent starting a star swipe when
+                // trying to open the drawer.
+                Field mDragger = drawerLayout.getClass().getDeclaredField(
+                        "mLeftDragger");
+                mDragger.setAccessible(true);
+                ViewDragHelper draggerObj = (ViewDragHelper) mDragger
+                        .get(drawerLayout);
+
+                Field mEdgeSize = draggerObj.getClass().getDeclaredField(
+                        "mEdgeSize");
+                mEdgeSize.setAccessible(true);
+                int edge = mEdgeSize.getInt(draggerObj);
+
+                mEdgeSize.setInt(draggerObj, edge * 3);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 		}
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
