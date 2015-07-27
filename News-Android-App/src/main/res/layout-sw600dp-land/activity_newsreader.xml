@@ -37,15 +37,9 @@
 
             </LinearLayout>
 
-            <android.support.design.widget.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <include
-                    android:id="@+id/toolbar_layout"
-                    layout="@layout/toolbar_layout" />
-
-            </android.support.design.widget.AppBarLayout>
+            <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/toolbar_layout" />
 
             <de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout
                 android:id="@+id/videoPodcastSurfaceWrapper"
