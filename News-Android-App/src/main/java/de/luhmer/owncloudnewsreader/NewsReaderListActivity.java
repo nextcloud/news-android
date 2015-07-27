@@ -624,6 +624,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				super.onBackPressed();
 			else
 				drawerLayout.openDrawer(GravityCompat.START);
+		} else {
+			super.onBackPressed();
 		}
 	}
 
