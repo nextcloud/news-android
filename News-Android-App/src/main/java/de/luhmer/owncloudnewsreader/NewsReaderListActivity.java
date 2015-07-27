@@ -618,14 +618,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public void onBackPressed() {
-        if(handlePodcastBackPressed());
-		if(drawerLayout != null) {
-			if (drawerLayout.isDrawerOpen(GravityCompat.START))
+        if(!handlePodcastBackPressed()) {
+			if (drawerLayout != null) {
+				if (drawerLayout.isDrawerOpen(GravityCompat.START))
+					super.onBackPressed();
+				else
+					drawerLayout.openDrawer(GravityCompat.START);
+			} else {
 				super.onBackPressed();
-			else
-				drawerLayout.openDrawer(GravityCompat.START);
-		} else {
-			super.onBackPressed();
+			}
 		}
 	}
 
@@ -636,11 +637,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(drawerToggle != null && drawerToggle.onOptionsItemSelected(item))
 			return true;
+
 		switch (item.getItemId()) {
 
 			case android.R.id.home:
-				if(handlePodcastBackPressed());
-				return true;
+				if(handlePodcastBackPressed())
+					return true;
+				break;
 
 			case R.id.action_settings:
 				Intent intent = new Intent(this, SettingsActivity.class);
