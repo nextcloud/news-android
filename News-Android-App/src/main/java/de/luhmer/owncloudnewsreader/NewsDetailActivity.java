@@ -448,7 +448,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
             case R.id.action_tts:
                 TTSItem ttsItem = new TTSItem(rssItem.getId(), rssItem.getTitle(), rssItem.getTitle() + "\n\n " + Html.fromHtml(rssItem.getBody()).toString(), rssItem.getFeed().getFaviconUrl());
-				openTTSItem(ttsItem);
+				openMediaItem(ttsItem);
                 break;
 
             case R.id.action_ShareItem:
