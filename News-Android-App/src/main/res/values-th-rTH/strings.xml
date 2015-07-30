@@ -57,6 +57,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>
+  <string name="pref_title_owncloudRootPath">ที่อยู่รากของ ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">เข้าสู่ระบบ</string>
@@ -73,8 +74,15 @@
   <string name="pull_to_refresh_updateFolder">กำลังผสานข้อมูลโฟลเดอร์</string>
   <string name="pull_to_refresh_updateFeeds">กำลังผสานข้อมูลฟีด</string>
   <string name="pull_to_refresh_updateItems">กำลังรายการผสานข้อมูล</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="other">เรียก %d รายการ จนถึงขณะนี้ ..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">ตั้งค่า</string>
+  <string name="cache_is_cleared">แคชจะถูกล้างออก!</string>
+  <plurals name="number_of_files">
+    <item quantity="other">%d ไฟล์</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">ทั่วไป</string>
   <string name="pref_title_general_sort_order">เรียงลำดับรายการ</string>
