@@ -79,6 +79,10 @@
   <string name="pull_to_refresh_updateFolder">Synchronisation du dossier</string>
   <string name="pull_to_refresh_updateFeeds">Synchronisation des flux</string>
   <string name="pull_to_refresh_updateItems">Synchronisation des articles</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">%d article trouvé pour l\'instant....</item>
+    <item quantity="other">%d articles trouvés pour l\'instant....</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Paramètres</string>
   <string name="cache_is_cleared">Cache nettoyé! </string>
