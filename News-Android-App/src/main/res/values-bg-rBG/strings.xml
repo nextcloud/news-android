@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">Детайли на Новинарската Емисия</string>
   <string name="empty_view_header">Информация</string>
   <string name="empty_view_content">Няма новини</string>
+  <string name="toast_GettingMoreItems">Започнло е сваляне на още елементи ... Моля, изчакайте.</string>
   <string name="tv_clickHereToOpenItem">Натисни тук, за да отвориш новина</string>
   <string name="no_wifi_available">Не си свързан с WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Искаш ли да изтеглиш изображенията без WiFi връзка?</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Достигнахте максимален обем от %d елемента</item>
+    <item quantity="other">Достигнахте максимален обем от %d елемента</item>
+  </plurals>
   <string name="widget_header">ownCloud Новини</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">Налични са %d нови елементи</item>
+    <item quantity="other">Налични са %d нови елементи</item>
+  </plurals>
   <string name="message_bar_reload">Презареди</string>
   <string name="allUnreadFeeds">Всички непрочетени</string>
   <string name="starredFeeds">Любими</string>
@@ -41,9 +50,18 @@
   <string name="action_sync_settings">Настройки на Синхронизацията</string>
   <string name="action_add_new_feed">Добави нов поток</string>
   <string name="action_textToSpeech">Прочита</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Имате %d нови непрочетени елементи</item>
+    <item quantity="other">Имате %d нови непрочетени елементи</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">Налични са %d нови непрочетени елементи</item>
+    <item quantity="other">Налични са %d нови непрочетени елементи</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Потребител</string>
   <string name="pref_title_password">Парола</string>
+  <string name="pref_title_owncloudRootPath">ownCloud root достъп</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Впиши се</string>
@@ -52,13 +70,26 @@
   <string name="error_field_required">Това поле е задължително</string>
   <string name="error_invalid_url">Сгрешен интернет адрес</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Свалени %d стари елементи</item>
+    <item quantity="other">Свалени %d стари елементи</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Няма други новини</string>
   <string name="pull_to_refresh_updateTags">Синхронизиране състоянието</string>
   <string name="pull_to_refresh_updateFolder">Синхронизиране на папка</string>
   <string name="pull_to_refresh_updateFeeds">Синхронизиране на потоците</string>
   <string name="pull_to_refresh_updateItems">Синхронизиране на новините</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Свалени %d елемента, остават още..</item>
+    <item quantity="other">Свалени %d елемента, остават още..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Настройки</string>
+  <string name="cache_is_cleared">Кеша е изчистен!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Файла</item>
+    <item quantity="other">%d Файла</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Общи</string>
   <string name="pref_title_general_sort_order">Ред на Подреждане</string>
@@ -77,6 +108,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Изчисти кеша</string>
+  <string name="dialog_clearing_cache_please_wait">Изчиства кеша… Моля изчакайте.</string>
+  <string name="calculating_cache_size">Калкулира размера на кеша… Моля изчакайте.</string>
   <string name="reset_cache_unsaved_changes">Има несизнхронизирани промени. Искаш ли да нулираш кеша въпреки това?</string>
   <string name="warning">Предупреждение</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизирай на стартиране</string>
@@ -101,6 +134,7 @@
   <string name="pref_header_display">Изглед</string>
   <string name="pref_title_app_theme">Визуална Тема</string>
   <string name="pref_title_feed_list_layout">Оформление на списъка с потоци</string>
+  <string name="pref_display_title_lines_count">Брой на редовете за заглавия</string>
   <string-array name="pref_display_apptheme">
     <item>Тъмна</item>
     <item>Светла</item>
@@ -118,6 +152,18 @@
     <item>0</item>
     <item>1</item>
     <item>2</item>
+  </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Грешка</string>
