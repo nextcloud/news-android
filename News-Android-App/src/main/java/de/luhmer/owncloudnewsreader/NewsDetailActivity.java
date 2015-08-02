@@ -346,8 +346,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if(handlePodcastBackPressed());
-        else
+        if(!handlePodcastBackPressed())
             super.onBackPressed();
     }
 
@@ -370,11 +369,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		switch (item.getItemId()) {
 			case android.R.id.home:
-                if(handlePodcastBackPressed());
-                else {
-                    super.onBackPressed();
-                }
-				break;
+				onBackPressed();
+				return true;
 
             case R.id.action_read:
                 markItemAsReadUnread(rssItem, !menuItem_Read.isChecked());

@@ -18,33 +18,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:orientation="horizontal">
 
-            <FrameLayout
-                android:id="@+id/left_drawer"
-                android:layout_width="@dimen/navigation_max_width"
-                android:layout_height="match_parent"
-                android:layout_gravity="start" />
+                <FrameLayout
+                    android:id="@+id/left_drawer"
+                    android:layout_width="@dimen/navigation_max_width"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start" />
 
-            <fragment
-                class="de.luhmer.owncloudnewsreader.NewsReaderDetailFragment"
-                android:id="@+id/content_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="?android:actionBarSize"
-                app:layout="@layout/fragment_newsreader_detail" />
+                <fragment
+                    class="de.luhmer.owncloudnewsreader.NewsReaderDetailFragment"
+                    android:id="@+id/content_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout="@layout/fragment_newsreader_detail" />
+
             </LinearLayout>
 
-            <android.support.design.widget.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <include
-                    android:id="@+id/toolbar_layout"
-                    layout="@layout/toolbar_layout" />
-
-            </android.support.design.widget.AppBarLayout>
+            <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/toolbar_layout" />
 
             <de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout
                 android:id="@+id/videoPodcastSurfaceWrapper"
