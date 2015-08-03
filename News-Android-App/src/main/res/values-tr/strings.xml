@@ -61,6 +61,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Kullanıcı Adı</string>
   <string name="pref_title_password">Parola</string>
+  <string name="pref_title_owncloudRootPath">ownCloud ana dizin adresi</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Oturum aç</string>
@@ -80,6 +81,7 @@
   <string name="pull_to_refresh_updateItems">Ögeler eşitleniyor</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ayarlar</string>
+  <string name="cache_is_cleared">Önbellek temizlendi!</string>
   <!--General settings-->
   <string name="pref_header_general">Genel</string>
   <string name="pref_title_general_sort_order">Sıralama Şekli</string>
