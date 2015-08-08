@@ -52,7 +52,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     protected View colorLineFeed;
 
     @InjectView(R.id.btn_playPausePodcast)
-    ImageView btnPlayPausePodcast;
+    protected ImageView btnPlayPausePodcast;
 
     @InjectView(R.id.podcast_wrapper)
     View flPlayPausePodcastWrapper;
@@ -126,6 +126,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             starImageView.setVisibility(View.GONE);
     }
 
+    public void setPlaying(boolean isPlaying) {
+        int[] state = new int[]{ (isPlaying ? 1 : -1)  * android.R.attr.state_active };
+        btnPlayPausePodcast.getDrawable().setState(state);
+    }
+
     public RssItem getRssItem() {
         return rssItem;
     }
@@ -141,6 +146,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         } else {
             Log.v(TAG, "Feed not found!!!");
         }
+
+        setReadState(rssItem.getRead_temp());
+        setStarred(rssItem.getStarred_temp());
 
         setFeedColor(ColorHelper.getFeedColor(itemView.getContext(), rssItem.getFeed()));
 

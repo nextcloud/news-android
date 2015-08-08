@@ -110,36 +110,31 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         holder.setStayUnread(stayUnreadItems.contains(item.getId()));
 
-        holder.setReadState(item.getRead_temp());
-        holder.setStarred(item.getStarred_temp());
-
         holder.setClickListener((RecyclerItemClickListener) activity);
 
         //Podcast stuff
-        if(holder.flPlayPausePodcastWrapper != null) {
-            if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(item.getEnclosureMime())) {
-                final boolean isPlaying = idOfCurrentlyPlayedPodcast == item.getId();
-                int state = (isPlaying ? 1 : -1) * android.R.attr.state_active;
-                //Enable podcast buttons in view
-                holder.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
+        if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(item.getEnclosureMime())) {
+            final boolean isPlaying = idOfCurrentlyPlayedPodcast == item.getId();
+            //Enable podcast buttons in view
+            holder.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
 
-                holder.btnPlayPausePodcast.getDrawable().setState(new int[]{state});
+            holder.setPlaying(isPlaying);
 
-                holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (isPlaying) {
-                            playPausePodcastClicked.pausePodcast();
-                        } else {
-                            playPausePodcastClicked.openPodcast(item);
-                        }
+            holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isPlaying) {
+                        playPausePodcastClicked.pausePodcast();
+                    } else {
+                        playPausePodcastClicked.openPodcast(item);
                     }
-                });
+                    holder.setPlaying(isPlaying);
+                }
+            });
 
-                setDownloadPodcastProgressbar(holder.itemView, item);
-            } else {
-                holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
-            }
+            setDownloadPodcastProgressbar(holder.itemView, item);
+        } else {
+            holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
         }
     }
 
