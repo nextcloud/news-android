@@ -99,7 +99,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
         View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
-        return new ViewHolder(view, titleLineCount, activity);
+        return new ViewHolder(view, titleLineCount);
     }
 
     @Override

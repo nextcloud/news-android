@@ -1,6 +1,5 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
@@ -72,10 +71,10 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private final int LengthBody = 400;
     private ForegroundColorSpan bodyForegroundColor;
 
-    public ViewHolder(View itemView, int titleLineCount, Activity activity) {
+    public ViewHolder(View itemView, int titleLineCount) {
         super(itemView);
 
-        bodyForegroundColor = new ForegroundColorSpan(activity.getResources().getColor(android.R.color.secondary_text_dark));
+        bodyForegroundColor = new ForegroundColorSpan(itemView.getContext().getResources().getColor(android.R.color.secondary_text_dark));
 
         if(favIconHandler == null)
             favIconHandler = new FavIconHandler(itemView.getContext());
