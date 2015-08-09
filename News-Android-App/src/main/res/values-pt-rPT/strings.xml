@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">NewsReader Detail</string>
   <string name="empty_view_header">Informação</string>
   <string name="empty_view_content">Sem itens aqui</string>
+  <string name="toast_GettingMoreItems">Foi iniciada a transferência de mais itens... Por favor, aguarde.</string>
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir o item</string>
   <string name="no_wifi_available">Sem ligação wi-fi</string>
   <string name="do_you_want_to_download_without_wifi">Deseja transferir as imagens sem uma ligação wi-fi?</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Atingiu o tamanho máximo de %d item</item>
+    <item quantity="other">Atingiu o tamanho máximo de %d itens</item>
+  </plurals>
   <string name="widget_header">Notícias da ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">Disponível %d novo item</item>
+    <item quantity="other">Disponíveis %d novos itens</item>
+  </plurals>
   <string name="message_bar_reload">Recarregar</string>
   <string name="allUnreadFeeds">Todos os itens não lidos</string>
   <string name="starredFeeds">Itens destacados</string>
@@ -41,9 +50,18 @@
   <string name="action_sync_settings">Definições da Sincronização </string>
   <string name="action_add_new_feed">Adicionar novo feed</string>
   <string name="action_textToSpeech">Leitura automática</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Tem %d novo item por ler</item>
+    <item quantity="other">Tem %d novos itens por ler</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">Tem disponível %d novo item por ler</item>
+    <item quantity="other">Tem disponível %d novos itens por ler</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Palavra-passe:</string>
+  <string name="pref_title_owncloudRootPath">Endereço raiz do ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Iniciar Sessão</string>
@@ -52,13 +70,26 @@
   <string name="error_field_required">Este campo é obrigatório</string>
   <string name="error_invalid_url">O url está incorreto</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Transferidos %d item antigo</item>
+    <item quantity="other">Transferidos %d itens antigos</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Não há mais itens disponíveis</string>
   <string name="pull_to_refresh_updateTags">A sincronizar o estado dos itens</string>
   <string name="pull_to_refresh_updateFolder">Pasta de \'a sincronizar\'</string>
   <string name="pull_to_refresh_updateFeeds">Feeds a sincronizar</string>
   <string name="pull_to_refresh_updateItems">Itens a sincronizar</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Até agora foi obtido %d item...</item>
+    <item quantity="other">Até agora foram obtidos %d itens...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Definições</string>
+  <string name="cache_is_cleared">A cache está limpa!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Ficheiro</item>
+    <item quantity="other">%d Ficheiros</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Geral</string>
   <string name="pref_title_general_sort_order">Ordem da ordenação</string>
@@ -77,6 +108,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Limpar cache</string>
+  <string name="dialog_clearing_cache_please_wait">A limpar a cache… Por favor, aguarde.</string>
+  <string name="calculating_cache_size">A calcular o tamanho da cache… Por favor, aguarde.</string>
   <string name="reset_cache_unsaved_changes">Há mudanças não sincronizadas. Gostaria de repor a cache na mesma?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar no arranque</string>

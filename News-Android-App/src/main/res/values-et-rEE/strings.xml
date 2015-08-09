@@ -61,6 +61,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
   <string name="pref_title_password">Parool</string>
+  <string name="pref_title_owncloudRootPath">ownCloud juur address</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Logi sisse</string>
@@ -78,8 +79,17 @@
   <string name="pull_to_refresh_updateFolder">Sünkroniseerin kataloogi</string>
   <string name="pull_to_refresh_updateFeeds">Voogude sünkroniseerimine</string>
   <string name="pull_to_refresh_updateItems">Kirjete sünkroniseerimine</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Siiamaani on tõmmatud %d kirje.</item>
+    <item quantity="other">Siiamaani on tõmmatud %d kirjet.</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Seaded</string>
+  <string name="cache_is_cleared">Vahemälu on tühjendatud!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d fail</item>
+    <item quantity="other">%d faili</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Üldine</string>
   <string name="pref_title_general_sort_order">Sorteerimise järjekord</string>
