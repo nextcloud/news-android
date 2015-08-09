@@ -118,7 +118,6 @@
   <string name="pref_title_DisableHostnameVerification">Изключи Проверката на Сървъра</string>
   <string name="pref_title_NavigateWithVolumeButtons">Използвай бутоните за контрол на звука за навигация</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Маркирай като прочетен, когато скролираш</string>
-  <string name="pref_title_OpenInBrowserDirectly">Прескочи детайлния изглед и отвори направо в браузъра</string>
   <string name="pref_title_notification_new_articles_available">Покажи известие, когато се появят нови артикули</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Приеми Непознат Сертификат?</string>

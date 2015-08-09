@@ -84,7 +84,6 @@
   <string name="pref_title_DisableHostnameVerification">হোস্টনেম প্রমাণ বন্ধ কর</string>
   <string name="pref_title_NavigateWithVolumeButtons">শব্দ নিয়ণ্ত্রক বোতামের সাহায্যে নেভিগেট কর</string>
   <string name="pref_title_MarkAsReadWhileScrolling">স্ক্রল করাকালে পঠিত হিসেবে চিহ্নিত কর</string>
-  <string name="pref_title_OpenInBrowserDirectly">বিস্তারিত প্রদর্শন এড়িয়ে যাও এবং ব্রাউজারে আর্টিকেল খোল</string>
   <string name="pref_title_notification_new_articles_available">নতুন লেখা পাওয়া গেলে বার্তা প্রদর্শন কর</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">অজানা প্রত্যয়নপত্র গ্রহণ করবো?</string>

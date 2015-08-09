@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Mark as read whilst scrolling</string>
-  <string name="pref_title_OpenInBrowserDirectly">Skip detail view and open article in the browser</string>
   <string name="pref_title_notification_new_articles_available">Show notification when new articles are available</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accept Unknown Certificate?</string>

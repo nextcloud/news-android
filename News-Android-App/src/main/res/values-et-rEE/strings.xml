@@ -118,7 +118,6 @@
   <string name="pref_title_DisableHostnameVerification">Keela serveri nime kontroll</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigeeri häälevaljuse nuppudega</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Märgi kerides loetuks</string>
-  <string name="pref_title_OpenInBrowserDirectly">Jäta vahele üksikasjalik vaade ja ava artikkel veebilehitsejas</string>
   <string name="pref_title_notification_new_articles_available">Näita teavitusi kui on saadaval uusi arikleid</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Nõustu tundmatu sertifikaadiga?</string>

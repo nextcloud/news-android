@@ -110,7 +110,6 @@
   <string name="pref_title_DisableHostnameVerification">Ana Makine Doğrulamayı Devre Dışı Bırak</string>
   <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezin</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu işaretle</string>
-  <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görümü atla ve makaleyi tarayıcıda aç</string>
   <string name="pref_title_notification_new_articles_available">Yeni makaleler kullanılabilir olduğunda bildirim göster</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>

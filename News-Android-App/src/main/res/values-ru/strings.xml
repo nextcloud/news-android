@@ -118,7 +118,6 @@
   <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
   <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
-  <string name="pref_title_OpenInBrowserDirectly">Пропустить просмотр деталей и открыть статью в браузере</string>
   <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>

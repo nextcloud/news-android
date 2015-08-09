@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Desactiva la verificació del nom del servidor</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navega amb els botons del volum</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
-  <string name="pref_title_OpenInBrowserDirectly">Omet la vista de detall i obre l\'article en el navegador</string>
   <string name="pref_title_notification_new_articles_available">Mostra notificacions quan hi hagi nous articles disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepta certificats de desconeguts?</string>

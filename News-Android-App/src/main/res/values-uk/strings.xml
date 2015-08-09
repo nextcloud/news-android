@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Вимкнути перевірку доменного ім\'я</string>
   <string name="pref_title_NavigateWithVolumeButtons">Керування кнопками гучності</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Помічати прочитаними при прокрутці</string>
-  <string name="pref_title_OpenInBrowserDirectly">Пропустити детальний перегляд та перейти в браузер</string>
   <string name="pref_title_notification_new_articles_available">Показати сповіщення коли доступна нова стаття</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Підтвердити невідомий сертифікат?</string>

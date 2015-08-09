@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Искључи проверу имена домаћина</string>
   <string name="pref_title_NavigateWithVolumeButtons">Навигација помоћу дугмади за јачину звука</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Означи као прочитано током клизања</string>
-  <string name="pref_title_OpenInBrowserDirectly">Прескочи детаљан приказ и отвори у прегледачу</string>
   <string name="pref_title_notification_new_articles_available">Прикажи обавештења о новим чланцима</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Прихватити непознати сертификат?</string>

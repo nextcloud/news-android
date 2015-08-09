@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Deshabilitar verificación de nome d\'agospiu</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar colos botones de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lleíu al desplazar</string>
-  <string name="pref_title_OpenInBrowserDirectly">Salir de la vista de detalle y abrir l\'artículu nel esplorador</string>
   <string name="pref_title_notification_new_articles_available">Amosar notificación cuando tean disponibles artículos nuevos</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">¿Aceutar certificáu desconocíu?</string>

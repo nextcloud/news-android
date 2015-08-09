@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Host adının yoxlanışını söndür</string>
   <string name="pref_title_NavigateWithVolumeButtons">Təyinatını səs düymələri ilə et</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Ötürüldükdə, oxunulmuş kimi qeydə al</string>
-  <string name="pref_title_OpenInBrowserDirectly">Detallı görüntünü ötür və məqaləni browserdə aç</string>
   <string name="pref_title_notification_new_articles_available">Yeni məqalə olduqda notifikasiyanı göstər</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Tanınmayan sertifikat qəbul edilsin? </string>

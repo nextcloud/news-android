@@ -125,7 +125,6 @@
   <string name="pref_title_DisableHostnameVerification">Vypnout ověřování názvu hostitele</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigace pomocí tlačítek hlasitosti</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Označit jako přečtené při rolování stránky</string>
-  <string name="pref_title_OpenInBrowserDirectly">Přeskočit detailní zobrazení a otevřít článek v prohlížeči</string>
   <string name="pref_title_notification_new_articles_available">Zobraz upozornění pokud jsou dostupné nové články</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>

@@ -118,7 +118,6 @@
   <string name="pref_title_DisableHostnameVerification">Deaktiver vertsnavnverifikasjon</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviger med volumknappene</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
-  <string name="pref_title_OpenInBrowserDirectly">Hopp over detaljert visning, og åpne artikkel i nettleseren</string>
   <string name="pref_title_notification_new_articles_available">Vis varsel når nye artikler er tilgjengelig</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>

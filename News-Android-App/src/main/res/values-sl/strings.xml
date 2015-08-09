@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Onemogoči overjanje imena gostitelja</string>
   <string name="pref_title_NavigateWithVolumeButtons">Pomikanje po zaslonu z uporabo gumbov za glasnost</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Označi kot prebrano med pomikanjem med predmeti</string>
-  <string name="pref_title_OpenInBrowserDirectly">Preskoči pregled povzetka in odpri prispevek v brskalniku</string>
   <string name="pref_title_notification_new_articles_available">Pokaži obvestilo, ko je na voljo nov prispevek</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>

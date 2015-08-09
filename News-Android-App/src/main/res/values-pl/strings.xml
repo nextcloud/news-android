@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Wyłącz weryfikację nazwy hosta</string>
   <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
-  <string name="pref_title_OpenInBrowserDirectly">Pomiń widok szczegółowy i otwórz w przeglądarce</string>
   <string name="pref_title_notification_new_articles_available">Pokaż powiadomienie, gdy pojawią się nowe artykuły</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Akceptować nieznane certyfikaty?</string>

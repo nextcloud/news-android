@@ -111,7 +111,6 @@
   <string name="pref_title_DisableHostnameVerification">Nonaktifkan Verifikasi Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigasi dengan tombol volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Tandai telah dibaca saat bergulir</string>
-  <string name="pref_title_OpenInBrowserDirectly">Lewati tampil rincian dan buka artikel di peramban web</string>
   <string name="pref_title_notification_new_articles_available">Tampilkan pemberitahuan ketika artikel baru tersedia</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Terima Sertifikat yang Tak Dikenal?</string>

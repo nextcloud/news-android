@@ -111,7 +111,6 @@
   <string name="pref_title_DisableHostnameVerification">ホスト名の検証を無効化</string>
   <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
   <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
-  <string name="pref_title_OpenInBrowserDirectly">詳細ビューをスキップして、ブラウザーで開く</string>
   <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>

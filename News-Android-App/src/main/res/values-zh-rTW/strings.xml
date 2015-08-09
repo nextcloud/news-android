@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">停用主機名稱檢驗</string>
   <string name="pref_title_NavigateWithVolumeButtons">用音量鍵瀏覽</string>
   <string name="pref_title_MarkAsReadWhileScrolling">當滾動時標註為已讀</string>
-  <string name="pref_title_OpenInBrowserDirectly">忽略詳細檢視和在瀏覽器開啟文章</string>
   <string name="pref_title_notification_new_articles_available">當有新文章時顯示通知</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">允許未知憑證?</string>

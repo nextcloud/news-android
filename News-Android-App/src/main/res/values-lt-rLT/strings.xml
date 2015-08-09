@@ -84,7 +84,6 @@
   <string name="pref_title_DisableHostnameVerification">Išjungti mazgo vardo patikrinimą</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naršyti su garso mygtukais</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Žymėti perskaitytu slenkant</string>
-  <string name="pref_title_OpenInBrowserDirectly">Praleisti informacijos peržiūrą ir atverti straipsnį naršyklėje</string>
   <string name="pref_title_notification_new_articles_available">Rodyti pranešimus kai galimi nauji straipsniai</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Priimti nežinomą sertifikatą?</string>

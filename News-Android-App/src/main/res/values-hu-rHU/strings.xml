@@ -84,7 +84,6 @@
   <string name="pref_title_DisableHostnameVerification">A \"Hostname Verification\" kikapcsolása</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigálj a hangerőszabályozó gombokkal</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben olvasottként legyen megjelőlve</string>
-  <string name="pref_title_OpenInBrowserDirectly">A részletes nézet kihagyása és a cikk megnyítása a böngészőben</string>
   <string name="pref_title_notification_new_articles_available">Értesítés megjelenítés amikor van elérhető új cikk </string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Elfogadod az ismeretlen tanusítványokat?</string>

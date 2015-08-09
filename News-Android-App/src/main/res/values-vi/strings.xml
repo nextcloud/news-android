@@ -89,7 +89,6 @@
   <string name="pref_title_DisableHostnameVerification">Tắt H</string>
   <string name="pref_title_NavigateWithVolumeButtons">Điều chỉnh m lượng</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Đánh dấu đã đọc trong khi di chuyển</string>
-  <string name="pref_title_OpenInBrowserDirectly">Bỏ qua xem chi tiết và mở bài biết trong trình duyệt</string>
   <string name="pref_title_notification_new_articles_available">Hiển thị thông báo khi bài viết mới có giá trị</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Chấp nhận Certificate không biết nguồn gốc ?</string>

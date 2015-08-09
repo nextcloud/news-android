@@ -85,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
-  <string name="pref_title_OpenInBrowserDirectly">Skippa detalj vyn och öppna artikeln i webbläsaren</string>
   <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
