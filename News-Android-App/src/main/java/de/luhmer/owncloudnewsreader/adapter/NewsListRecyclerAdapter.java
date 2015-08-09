@@ -99,7 +99,20 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
         View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
-        return new ViewHolder(view, titleLineCount);
+        final ViewHolder holder = new ViewHolder(view, titleLineCount);
+
+        holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.isPlaying()) {
+                    playPausePodcastClicked.pausePodcast();
+                } else {
+                    playPausePodcastClicked.openPodcast(holder.getRssItem());
+                }
+            }
+        });
+
+        return holder;
     }
 
     @Override
@@ -119,18 +132,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
             holder.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
 
             holder.setPlaying(isPlaying);
-
-            holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isPlaying) {
-                        playPausePodcastClicked.pausePodcast();
-                    } else {
-                        playPausePodcastClicked.openPodcast(item);
-                    }
-                    holder.setPlaying(isPlaying);
-                }
-            });
 
             setDownloadPodcastProgressbar(holder.itemView, item);
         } else {

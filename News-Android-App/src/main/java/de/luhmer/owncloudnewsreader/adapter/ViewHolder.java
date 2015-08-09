@@ -70,6 +70,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private static FavIconHandler favIconHandler = null;
     private final int LengthBody = 400;
     private ForegroundColorSpan bodyForegroundColor;
+    private boolean playing;
 
     public ViewHolder(View itemView, int titleLineCount) {
         super(itemView);
@@ -125,9 +126,14 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             starImageView.setVisibility(View.GONE);
     }
 
-    public void setPlaying(boolean isPlaying) {
-        int[] state = new int[]{ (isPlaying ? 1 : -1)  * android.R.attr.state_active };
+    public void setPlaying(boolean playing) {
+        this.playing = playing;
+        int[] state = new int[]{ (playing ? 1 : -1)  * android.R.attr.state_active };
         btnPlayPausePodcast.getDrawable().setState(state);
+    }
+
+    public boolean isPlaying() {
+        return playing;
     }
 
     public RssItem getRssItem() {
