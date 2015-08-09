@@ -219,4 +219,9 @@ public class PodcastDownloadService extends IntentService {
         }
         public PodcastItem podcast;
     }
+
+    public static boolean PodcastAlreadyCached(Context context, String podcastUrl) {
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastUrl, false));
+        return file.exists();
+    }
 }

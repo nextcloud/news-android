@@ -1,20 +1,15 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
-
-import java.io.File;
 import java.util.HashSet;
 
 import de.greenrobot.dao.query.LazyList;
@@ -26,9 +21,7 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
-import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
  * Created by daniel on 28.06.15.
@@ -36,7 +29,6 @@ import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     private static final String TAG = "NewsListRecyclerAdapter";
 
-    public static SparseArray<Integer> downloadProgressList = new SparseArray<>();
     private long idOfCurrentlyPlayedPodcast = -1;
 
     private LazyList<RssItem> lazyList;
@@ -133,34 +125,20 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
             holder.setPlaying(isPlaying);
 
-            setDownloadPodcastProgressbar(holder.itemView, item);
+            holder.setDownloadPodcastProgressbar();
         } else {
             holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
         }
     }
 
-    public void setDownloadPodcastProgressbar(View view, RssItem rssItem) {
-        HoloCircularProgressBar pbPodcastDownloadProgress = (HoloCircularProgressBar) view.findViewById(R.id.podcastDownloadProgress);
-
-        if(!ThemeChooser.isDarkTheme(activity)) {
-            pbPodcastDownloadProgress.setProgressBackgroundColor(view.getContext().getResources().getColor(R.color.slide_up_panel_header_background_color));
-        }
-
-        if(PodcastAlreadyCached(view.getContext(), rssItem.getEnclosureLink()))
-            pbPodcastDownloadProgress.setProgress(1);
-        else {
-            if(downloadProgressList.get(rssItem.getId().intValue()) != null) {
-                float progressInPercent = downloadProgressList.get(rssItem.getId().intValue()) / 100f;
-                pbPodcastDownloadProgress.setProgress(progressInPercent);
-            } else {
-                pbPodcastDownloadProgress.setProgress(0);
-            }
-        }
+    @Override
+    public void onViewDetachedFromWindow(ViewHolder holder) {
+        EventBus.getDefault().unregister(holder);
     }
 
-    public static boolean PodcastAlreadyCached(Context context, String podcastUrl) {
-        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastUrl, false));
-        return file.exists();
+    @Override
+    public void onViewAttachedToWindow(ViewHolder holder) {
+        EventBus.getDefault().register(holder);
     }
 
     public void ChangeReadStateOfItem(ViewHolder viewHolder, boolean isChecked) {

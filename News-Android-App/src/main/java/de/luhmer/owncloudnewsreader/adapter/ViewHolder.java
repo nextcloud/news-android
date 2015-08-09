@@ -9,10 +9,13 @@ import android.text.SpannableString;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -24,12 +27,15 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
  * Created by daniel on 28.06.15.
  */
 public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final static String TAG = "RecyclerView.ViewHolder";
+
+    private static SparseArray<Integer> downloadProgressList = new SparseArray<>();
 
     @Optional
     @InjectView(R.id.star_imageview)
@@ -52,6 +58,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     @InjectView(R.id.btn_playPausePodcast)
     protected ImageView btnPlayPausePodcast;
+
+    @InjectView(R.id.podcastDownloadProgress)
+    protected HoloCircularProgressBar pbPodcastDownloadProgress;
 
     @InjectView(R.id.podcast_wrapper)
     View flPlayPausePodcastWrapper;
@@ -86,6 +95,27 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         }
         if(textViewSummary != null) textViewSummary.setLines(titleLineCount);
         itemView.setOnClickListener(this);
+    }
+
+    public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
+        downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
+        if (rssItem.getId().equals(downloadProgress.podcast.itemId)) {
+            pbPodcastDownloadProgress.setProgress(downloadProgress.podcast.downloadProgress / 100f);
+        }
+    }
+
+    public void setDownloadPodcastProgressbar() {
+        float progress;
+        if(PodcastDownloadService.PodcastAlreadyCached(itemView.getContext(), rssItem.getEnclosureLink()))
+            progress = 1f;
+        else {
+            if(downloadProgressList.get(rssItem.getId().intValue()) != null) {
+                progress = downloadProgressList.get(rssItem.getId().intValue()) / 100f;
+            } else {
+                progress = 0;
+            }
+        }
+        pbPodcastDownloadProgress.setProgress(progress);
     }
 
     @Override

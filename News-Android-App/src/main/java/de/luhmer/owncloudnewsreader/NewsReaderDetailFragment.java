@@ -50,7 +50,6 @@ import org.apache.commons.lang3.time.StopWatch;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.dao.query.LazyList;
-import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.adapter.DividerItemDecoration;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
@@ -59,7 +58,6 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
-import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -129,8 +127,6 @@ public class NewsReaderDetailFragment extends Fragment {
     public void onResume() {
         Log.v(TAG, "onResume called!");
 
-        EventBus.getDefault().register(this);
-
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false)) {
@@ -146,12 +142,6 @@ public class NewsReaderDetailFragment extends Fragment {
         onResumeCount++;
 
         super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        EventBus.getDefault().unregister(this);
-        super.onPause();
     }
 
     private RecyclerView.OnScrollListener ListScrollListener = new RecyclerView.OnScrollListener() {
@@ -205,24 +195,6 @@ public class NewsReaderDetailFragment extends Fragment {
             }
 		}
 	}
-
-    public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
-        NewsListRecyclerAdapter nca = (NewsListRecyclerAdapter) recyclerView.getAdapter();
-        if(nca != null) {
-            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-            NewsListRecyclerAdapter.downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
-
-            RssItem currentRssItem;
-            for (int i = linearLayoutManager.findFirstVisibleItemPosition(); i < linearLayoutManager.findLastVisibleItemPosition(); i++) {
-                currentRssItem = nca.getItem(i);
-                if (currentRssItem.getId().equals(downloadProgress.podcast.itemId)) {
-                    int position = i - linearLayoutManager.findFirstVisibleItemPosition();
-                    nca.setDownloadPodcastProgressbar(linearLayoutManager.getChildAt(position), currentRssItem);
-                    break;
-                }
-            }
-        }
-    }
 
 	public void notifyDataSetChangedOnAdapter()
 	{
