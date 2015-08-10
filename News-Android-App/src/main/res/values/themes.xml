@@ -14,6 +14,8 @@
 
         <item name="playpauseDrawable">@drawable/newsreader_playpause</item>
 
+        <item name="extended_listview_item_body_text_color">@color/extended_listview_item_body_text_color_dark_theme</item>
+
         <item name="starredColor">@color/starredColorDark</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread</item>
         <item name="starredDrawable">@drawable/swipe_setstarred</item>
@@ -36,8 +38,9 @@
         <item name="dividerLineColor">#1e000000</item>
         <item name="rssItemListBackground">#ffdedede</item>
 
-
         <item name="playpauseDrawable">@drawable/newsreader_playpause_light</item>
+
+        <item name="extended_listview_item_body_text_color">@color/extended_listview_item_body_text_color_light_theme</item>
 
         <item name="starredColor">@color/starredColorLight</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread_light</item>

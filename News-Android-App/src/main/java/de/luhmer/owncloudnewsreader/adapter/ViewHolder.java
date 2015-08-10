@@ -26,7 +26,6 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
@@ -65,11 +64,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     @InjectView(R.id.podcast_wrapper)
     View flPlayPausePodcastWrapper;
 
-     // Only in extended with webview layout
+    // only in extended layout
     @Optional @InjectView(R.id.body)
     protected TextView textViewBody;
 
-    // only in extended layout
+    // Only in extended with webview layout
     @Optional @InjectView(R.id.webView_body)
     protected WebView webView_body;
 
@@ -89,10 +88,6 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         if(favIconHandler == null)
             favIconHandler = new FavIconHandler(itemView.getContext());
         ButterKnife.inject(this, itemView);
-        if(ThemeChooser.isDarkTheme(itemView.getContext())) {
-            if(textViewBody != null)
-                textViewBody.setTextColor(itemView.getResources().getColor(R.color.extended_listview_item_body_text_color_dark_theme));
-        }
         if(textViewSummary != null) textViewSummary.setLines(titleLineCount);
         itemView.setOnClickListener(this);
     }
