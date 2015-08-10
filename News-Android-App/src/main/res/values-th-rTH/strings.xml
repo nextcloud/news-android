@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="auto_sync_string">ผสานข้อมูลอัตโนมัติ</string>
+  <string name="auto_sync_string">ประสานข้อมูลอัตโนมัติ</string>
   <string name="app_name">ประกาศข่าว ownCloud</string>
-  <string name="title_activity_sync_interval_selector">เลือกช่วงเวลาการผสานข้อมูล</string>
+  <string name="title_activity_sync_interval_selector">เลือกช่วงเวลาการประสานข้อมูล</string>
   <string name="title_activity_news_detail">รายละเอียดกิจกรรม</string>
   <string name="title_activity_subscription">สมัครสมาชิกกิจกรรม</string>
   <string name="title_newsreader_list">ประกาศข่าว</string>
@@ -45,7 +45,7 @@
   <string name="action_login">ตั้งค่าเซิร์ฟเวอร์</string>
   <string name="action_save">บันทึก</string>
   <string name="action_settings">ตั้งค่า</string>
-  <string name="action_sync_settings">ตั้งค่าการผสานข้อมูล</string>
+  <string name="action_sync_settings">ตั้งค่าการประสานข้อมูล</string>
   <string name="action_add_new_feed">เพิ่ม feed ใหม่</string>
   <string name="action_textToSpeech">อ่านออก</string>
   <plurals name="notification_new_items_ticker">
@@ -70,10 +70,10 @@
     <item quantity="other">ดาวน์โหลด %d รายการเก่า</item>
   </plurals>
   <string name="toast_no_more_downloads_available">ไม่มีรายการที่ใช้ได้</string>
-  <string name="pull_to_refresh_updateTags">กำลังผสานข้อมูลรายการ</string>
-  <string name="pull_to_refresh_updateFolder">กำลังผสานข้อมูลโฟลเดอร์</string>
-  <string name="pull_to_refresh_updateFeeds">กำลังผสานข้อมูลฟีด</string>
-  <string name="pull_to_refresh_updateItems">กำลังรายการผสานข้อมูล</string>
+  <string name="pull_to_refresh_updateTags">กำลังประสานข้อมูลรายการ</string>
+  <string name="pull_to_refresh_updateFolder">กำลังประสานข้อมูลโฟลเดอร์</string>
+  <string name="pull_to_refresh_updateFeeds">กำลังประสานข้อมูลฟีด</string>
+  <string name="pull_to_refresh_updateItems">กำลังรายการประสานข้อมูล</string>
   <plurals name="fetched_items_so_far">
     <item quantity="other">เรียก %d รายการ จนถึงขณะนี้ ..</item>
   </plurals>
@@ -103,14 +103,15 @@
   <string name="dialog_clearing_cache">กำลังล้างแคช</string>
   <string name="dialog_clearing_cache_please_wait">กำลังล้างแคช ... โปรดรอสักครู่</string>
   <string name="calculating_cache_size">กำลังคำนวณขนาดแคช ... โปรดรอสักครู่</string>
-  <string name="reset_cache_unsaved_changes">มีการเปลี่ยนแปลงที่ไม่ได้ผสานข้อมูล คุณต้องการตั้งค่าแคชหรือไม่?</string>
+  <string name="reset_cache_unsaved_changes">มีการเปลี่ยนแปลงที่ไม่ได้ประสานข้อมูล คุณต้องการตั้งค่าแคชหรือไม่?</string>
   <string name="warning">คำเตือน</string>
-  <string name="pref_title_AutoSyncOnStart">ผสานข้อมูลเมื่อเริ่มต้น</string>
+  <string name="pref_title_AutoSyncOnStart">ประสานข้อมูลเมื่อเริ่มต้น</string>
   <string name="pref_title_ShowOnlyUnread">แสดงบทความที่ยังไม่ได้อ่านเท่านั้น</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">ปิดการใช้งานการตรวจสอบ Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">นำทางด้วยปุ่มปรับระดับเสียง</string>
   <string name="pref_title_MarkAsReadWhileScrolling">ทำเครื่องหมายว่าอ่านในขณะที่เลื่อน</string>
+  <string name="pref_title_OpenInBrowserDirectly">ใช้เบราว์เซอร์ภายนอกเพื่อดูบทความ</string>
   <string name="pref_title_notification_new_articles_available">แสดงการแจ้งเตือนเมื่อมีบทความใหม่</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">ยอมรับใบรับรองที่ไม่รู้จัก?</string>
@@ -164,7 +165,7 @@
   <string name="login_dialog_title_security_warning">คำเตือนเกี่ยวกับความปลอดภัย</string>
   <string name="login_dialog_text_security_warning">คุณไม่ได้ใช้ Https คุณอาจถูกดักแพคเกจเช่นรหัสผ่านของคุณดังนั้นจึงขอแนะนำให้ใช้ Https!</string>
   <!--Data & Sync-->
-  <string name="pref_header_data_sync">ข้อมูล &amp; ผสานข้อมูล</string>
+  <string name="pref_header_data_sync">ข้อมูล &amp; ประสานข้อมูล</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">ล้างแคช</string>
   <string name="pref_title_CacheImagesOffline">แคชรูปภาพออฟไลน์</string>

@@ -4,7 +4,9 @@
   <string name="app_name">ownCloud-uutislukija</string>
   <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
   <string name="title_newsreader_list">Uutislukija</string>
+  <string name="empty_view_header">Tiedot</string>
   <string name="empty_view_content">Ei kohteita</string>
+  <string name="toast_GettingMoreItems">Lisäkohteiden lataaminen aloitettu, odota hetki.</string>
   <string name="tv_clickHereToOpenItem">Avaa kohde painamalla tästä</string>
   <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
   <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman wifi-yhteyttä</string>
@@ -49,6 +51,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>
+  <string name="pref_title_owncloudRootPath">ownCloudin juuriosoite</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Kirjaudu</string>
@@ -99,6 +102,7 @@
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Liiku äänipainikkeilla</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
+  <string name="pref_title_OpenInBrowserDirectly">Käytä erillistä selainta artikkelien avaamiseen</string>
   <string name="pref_title_notification_new_articles_available">Näytä ilmoitus uusien kohteiden ollessa saatavilla</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
@@ -114,6 +118,7 @@
   <string name="pref_header_display">Näyttö</string>
   <string name="pref_title_app_theme">Sovelluksen teema</string>
   <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
+  <string name="pref_display_title_lines_count">Otsikon rivimäärä</string>
   <string-array name="pref_display_apptheme">
     <item>Tumma</item>
     <item>Vaalea</item>

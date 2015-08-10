@@ -118,6 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Deaktivér verifikation af værtsnavn</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigér med lydknapper</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markér som læst når der rulles</string>
+  <string name="pref_title_OpenInBrowserDirectly">Benyt en ekstern browser for at se artiklerne</string>
   <string name="pref_title_notification_new_articles_available">Vis notifikation når der er nye artikler tilgængelige</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Acceptér ukendt certifikat? </string>
