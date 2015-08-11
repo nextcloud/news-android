@@ -52,6 +52,14 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
         return mBinder;
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        if (mCurrentlyPlayingPodcast == null && mCurrentlyPlayingTTS == null) {
+            Log.v(TAG, "Stopping PodcastPlaybackService because of inactivity");
+            stopSelf();
+        }
+        return super.onUnbind(intent);
+    }
 
     public static final String PODCAST_ITEM = "PODCAST_ITEM";
     public static final String TTS_ITEM = "TTS_ITEM";
@@ -242,14 +250,18 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
     };
 
     public void onEvent(TogglePlayerStateEvent event) {
-        if ((mPlaybackType == PlaybackType.PODCAST && mMediaPlayer.isPlaying()) || //If podcast is running
-                mPlaybackType == PlaybackType.TTS && ttsController.isSpeaking()) { // or if tts is running
+        if (isPlaying()) {
             Log.v(TAG, "calling pause()");
             pause();
         } else {
             Log.v(TAG, "calling play()");
             play();
         }
+    }
+
+    private boolean isPlaying() {
+        return (mPlaybackType == PlaybackType.PODCAST && mMediaPlayer.isPlaying()) || //If podcast is running
+                mPlaybackType == PlaybackType.TTS && ttsController.isSpeaking(); // or if tts is running
     }
 
     public void onEvent(WindPodcast event) {
