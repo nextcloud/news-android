@@ -153,8 +153,10 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public void setPlaying(boolean playing) {
         this.playing = playing;
-        int[] state = new int[]{ (playing ? 1 : -1)  * android.R.attr.state_active };
-        btnPlayPausePodcast.getDrawable().setState(state);
+        if(playing)
+            btnPlayPausePodcast.setImageResource(R.drawable.ic_action_pause);
+        else
+            btnPlayPausePodcast.setImageResource(R.drawable.ic_action_play_arrow);
     }
 
     public boolean isPlaying() {
