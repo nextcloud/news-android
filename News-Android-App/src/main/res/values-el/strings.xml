@@ -118,6 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Απενεργοποίηση επαλήθευσης Ονόματος Υπολογιστή</string>
   <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
+  <string name="pref_title_OpenInBrowserDirectly">Χρήση εξωτερικού προγράμματος περιήγησης για θέαση άρθρων</string>
   <string name="pref_title_notification_new_articles_available">Προβολή ειδοποίησης όταν νέα άρθρα είναι διαθέσιμα</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Αποδοχή Άγνωστων Πιστοποιητικών;</string>
