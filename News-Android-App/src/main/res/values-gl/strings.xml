@@ -118,6 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Desactivar a verificación do nome da máquina/servidor</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar cos botóns de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido mentres se despraza</string>
+  <string name="pref_title_OpenInBrowserDirectly">Use un navegador externo para ver os artgos</string>
   <string name="pref_title_notification_new_articles_available">Amosar unha notificación cando estea dispoñíbel un novo artigo</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aceptar un certificado descoñecido?</string>

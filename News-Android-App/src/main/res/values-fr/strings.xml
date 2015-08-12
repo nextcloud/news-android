@@ -86,6 +86,10 @@
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Paramètres</string>
   <string name="cache_is_cleared">Cache nettoyé! </string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Fichier</item>
+    <item quantity="other">%d Fichiers</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Généraux</string>
   <string name="pref_title_general_sort_order">Ordre de tri</string>
@@ -114,6 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Désactiver la vérification du nom d\'hôte</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviguer avec les boutons de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu lors du défilement</string>
+  <string name="pref_title_OpenInBrowserDirectly">Afficher les articles dans un navigateur externe</string>
   <string name="pref_title_notification_new_articles_available">Afficher une notification lorsque de nouveaux articles sont disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepter les certificats non sûrs ?</string>
