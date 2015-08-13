@@ -69,6 +69,7 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
   <string name="pref_title_password">Пароль</string>
+  <string name="pref_title_owncloudRootPath">root адрес ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Войти</string>
@@ -88,8 +89,21 @@
   <string name="pull_to_refresh_updateFolder">Синхронизируется каталог</string>
   <string name="pull_to_refresh_updateFeeds">Синхронизируются ленты</string>
   <string name="pull_to_refresh_updateItems">Синхронизируется содержимое</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Обработан в настоящий момент %d объект..</item>
+    <item quantity="few">Обработано в настоящий момент %d объекта..</item>
+    <item quantity="many">Обработано в настоящий момент %d объектов..</item>
+    <item quantity="other">Обработано в настоящий момент %d объекта(ов)..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Настройки</string>
+  <string name="cache_is_cleared">Кеш очищен!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Файл</item>
+    <item quantity="few">%d Файла</item>
+    <item quantity="many">%d Файлов</item>
+    <item quantity="other">%d Файла(ов)</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Основные</string>
   <string name="pref_title_general_sort_order">Порядок сортировки</string>
@@ -118,6 +132,7 @@
   <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
   <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
+  <string name="pref_title_OpenInBrowserDirectly">Используйте внешний браузер для просмотра записей</string>
   <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
