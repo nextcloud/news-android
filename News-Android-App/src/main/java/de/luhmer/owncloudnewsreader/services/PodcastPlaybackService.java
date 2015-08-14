@@ -104,6 +104,8 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
             mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         }
 
+        podcastNotification.cancel();
+
         super.onDestroy();
     }
 
