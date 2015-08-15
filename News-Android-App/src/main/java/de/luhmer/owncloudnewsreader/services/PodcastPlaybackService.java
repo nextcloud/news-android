@@ -15,10 +15,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.NewPodcastPlaybackListener;
+import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
@@ -34,6 +36,10 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
 
     public PodcastItem getCurrentlyPlayingPodcast() {
         return mCurrentlyPlayingPodcast;
+    }
+
+    public boolean isActive() {
+        return mCurrentlyPlayingPodcast != null || mCurrentlyPlayingTTS != null;
     }
 
     /**
@@ -54,7 +60,7 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
 
     @Override
     public boolean onUnbind(Intent intent) {
-        if (mCurrentlyPlayingPodcast == null && mCurrentlyPlayingTTS == null) {
+        if (!isActive()) {
             Log.v(TAG, "Stopping PodcastPlaybackService because of inactivity");
             stopSelf();
         }
@@ -138,7 +144,7 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 pause();//Send the over signal
-                podcastNotification.cancel();
+                podcastCompleted();
             }
         });
 
@@ -184,13 +190,30 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
             isPreparing = true;
             mHandler.postDelayed(mUpdateTimeTask, 0);
 
-            if(ttsController == null)
+            if(ttsController == null) {
                 ttsController = new TextToSpeech(this, this);
+                ttsController.setOnUtteranceCompletedListener(new TextToSpeech.OnUtteranceCompletedListener() {
+                    @Override
+                    public void onUtteranceCompleted(String utteranceId) {
+                        podcastCompleted();
+                    }
+                });
+            }
             else
                 onInit(TextToSpeech.SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void podcastCompleted() {
+        Log.d(TAG, "Podcast completed, cleaning up");
+        mHandler.removeCallbacks(mUpdateTimeTask);
+        podcastNotification.cancel();
+        mCurrentlyPlayingPodcast = null;
+        mCurrentlyPlayingTTS = null;
+
+        EventBus.getDefault().post(new PodcastCompletedEvent());
     }
 
     @Override
@@ -206,7 +229,9 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
                 ttsController.speak(text, TextToSpeech.QUEUE_FLUSH, null);
             }*/
 
-            ttsController.speak(mCurrentlyPlayingTTS.text, TextToSpeech.QUEUE_FLUSH, null);
+            HashMap<String,String> ttsParams = new HashMap<>();
+            ttsParams.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,"dummyId");
+            ttsController.speak(mCurrentlyPlayingTTS.text, TextToSpeech.QUEUE_FLUSH, ttsParams);
 
             isPreparing = false;
 

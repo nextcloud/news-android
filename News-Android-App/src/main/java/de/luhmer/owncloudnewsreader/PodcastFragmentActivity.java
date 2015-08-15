@@ -34,6 +34,7 @@ import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
@@ -139,6 +140,11 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     @Override
     protected void onResume() {
         eventBus.register(this);
+
+        if(mPodcastPlaybackService != null && !mPodcastPlaybackService.isActive()) {
+            sliding_layout.setPanelHeight(0);
+            sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        }
 
         //eventBus.post(new RegisterVideoOutput(surfaceView));
         super.onResume();
@@ -279,6 +285,12 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             rlVideoPodcastSurfaceWrapper.removeAllViews();
         }
 
+    }
+
+    public void onEventMainThread(PodcastCompletedEvent podcastCompletedEvent) {
+        sliding_layout.setPanelHeight(0);
+        sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        currentlyPlaying = false;
     }
 
     /*

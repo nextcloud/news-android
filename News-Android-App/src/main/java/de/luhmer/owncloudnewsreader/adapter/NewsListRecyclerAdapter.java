@@ -19,6 +19,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
@@ -72,6 +73,13 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
             Log.v(TAG, "Updating Listview - Podcast paused");
         }
+    }
+
+    public void onEventMainThread(PodcastCompletedEvent podcastCompletedEvent) {
+        idOfCurrentlyPlayedPodcast = -1;
+        notifyDataSetChanged();
+
+        Log.v(TAG, "Updating Listview - Podcast completed");
     }
 
     @Override
