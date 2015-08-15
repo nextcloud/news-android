@@ -101,8 +101,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Membersihkan cache</string>
-  <string name="dialog_clearing_cache_please_wait">Membersihkan tembolok... Mohon tunggu.</string>
-  <string name="calculating_cache_size">Menghitung ukuran tembolok... Mohon tunggu.</string>
+  <string name="dialog_clearing_cache_please_wait">Membersihkan cache... Mohon tunggu.</string>
+  <string name="calculating_cache_size">Menghitung ukuran cache... Mohon tunggu.</string>
   <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
   <string name="warning">Peringatan</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>
@@ -111,6 +111,7 @@
   <string name="pref_title_DisableHostnameVerification">Nonaktifkan Verifikasi Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigasi dengan tombol volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Tandai telah dibaca saat bergulir</string>
+  <string name="pref_title_OpenInBrowserDirectly">Gunakan peramban eksternal untuk melihat artikel</string>
   <string name="pref_title_notification_new_articles_available">Tampilkan pemberitahuan ketika artikel baru tersedia</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Terima Sertifikat yang Tak Dikenal?</string>
