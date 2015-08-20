@@ -1,20 +1,15 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
-
-import java.io.File;
 import java.util.HashSet;
 
 import de.greenrobot.dao.query.LazyList;
@@ -24,11 +19,10 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
-import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
  * Created by daniel on 28.06.15.
@@ -36,7 +30,6 @@ import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     private static final String TAG = "NewsListRecyclerAdapter";
 
-    public static SparseArray<Integer> downloadProgressList = new SparseArray<>();
     private long idOfCurrentlyPlayedPodcast = -1;
 
     private LazyList<RssItem> lazyList;
@@ -82,6 +75,13 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
     }
 
+    public void onEventMainThread(PodcastCompletedEvent podcastCompletedEvent) {
+        idOfCurrentlyPlayedPodcast = -1;
+        notifyDataSetChanged();
+
+        Log.v(TAG, "Updating Listview - Podcast completed");
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
@@ -99,7 +99,20 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
         View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
-        return new ViewHolder(view, titleLineCount, activity);
+        final ViewHolder holder = new ViewHolder(view, titleLineCount);
+
+        holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.isPlaying()) {
+                    playPausePodcastClicked.pausePodcast();
+                } else {
+                    playPausePodcastClicked.openPodcast(holder.getRssItem());
+                }
+            }
+        });
+
+        return holder;
     }
 
     @Override
@@ -110,61 +123,30 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         holder.setStayUnread(stayUnreadItems.contains(item.getId()));
 
-        holder.setReadState(item.getRead_temp());
-        holder.setStarred(item.getStarred_temp());
-
         holder.setClickListener((RecyclerItemClickListener) activity);
 
         //Podcast stuff
-        if(holder.flPlayPausePodcastWrapper != null) {
-            if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(item.getEnclosureMime())) {
-                final boolean isPlaying = idOfCurrentlyPlayedPodcast == item.getId();
-                int state = (isPlaying ? 1 : -1) * android.R.attr.state_active;
-                //Enable podcast buttons in view
-                holder.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
+        if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(item.getEnclosureMime())) {
+            final boolean isPlaying = idOfCurrentlyPlayedPodcast == item.getId();
+            //Enable podcast buttons in view
+            holder.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
 
-                holder.btnPlayPausePodcast.getDrawable().setState(new int[]{state});
+            holder.setPlaying(isPlaying);
 
-                holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (isPlaying) {
-                            playPausePodcastClicked.pausePodcast();
-                        } else {
-                            playPausePodcastClicked.openPodcast(item);
-                        }
-                    }
-                });
-
-                setDownloadPodcastProgressbar(holder.itemView, item);
-            } else {
-                holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
-            }
+            holder.setDownloadPodcastProgressbar();
+        } else {
+            holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
         }
     }
 
-    public void setDownloadPodcastProgressbar(View view, RssItem rssItem) {
-        HoloCircularProgressBar pbPodcastDownloadProgress = (HoloCircularProgressBar) view.findViewById(R.id.podcastDownloadProgress);
-
-        if(!ThemeChooser.isDarkTheme(activity)) {
-            pbPodcastDownloadProgress.setProgressBackgroundColor(view.getContext().getResources().getColor(R.color.slide_up_panel_header_background_color));
-        }
-
-        if(PodcastAlreadyCached(view.getContext(), rssItem.getEnclosureLink()))
-            pbPodcastDownloadProgress.setProgress(1);
-        else {
-            if(downloadProgressList.get(rssItem.getId().intValue()) != null) {
-                float progressInPercent = downloadProgressList.get(rssItem.getId().intValue()) / 100f;
-                pbPodcastDownloadProgress.setProgress(progressInPercent);
-            } else {
-                pbPodcastDownloadProgress.setProgress(0);
-            }
-        }
+    @Override
+    public void onViewDetachedFromWindow(ViewHolder holder) {
+        EventBus.getDefault().unregister(holder);
     }
 
-    public static boolean PodcastAlreadyCached(Context context, String podcastUrl) {
-        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastUrl, false));
-        return file.exists();
+    @Override
+    public void onViewAttachedToWindow(ViewHolder holder) {
+        EventBus.getDefault().register(holder);
     }
 
     public void ChangeReadStateOfItem(ViewHolder viewHolder, boolean isChecked) {

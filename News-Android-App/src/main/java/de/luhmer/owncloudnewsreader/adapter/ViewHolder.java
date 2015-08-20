@@ -1,6 +1,5 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
@@ -10,10 +9,13 @@ import android.text.SpannableString;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -24,13 +26,15 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
  * Created by daniel on 28.06.15.
  */
 public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final static String TAG = "RecyclerView.ViewHolder";
+
+    private static SparseArray<Integer> downloadProgressList = new SparseArray<>();
 
     @Optional
     @InjectView(R.id.star_imageview)
@@ -52,16 +56,19 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     protected View colorLineFeed;
 
     @InjectView(R.id.btn_playPausePodcast)
-    ImageView btnPlayPausePodcast;
+    protected ImageView btnPlayPausePodcast;
+
+    @InjectView(R.id.podcastDownloadProgress)
+    protected HoloCircularProgressBar pbPodcastDownloadProgress;
 
     @InjectView(R.id.podcast_wrapper)
     View flPlayPausePodcastWrapper;
 
-     // Only in extended with webview layout
+    // only in extended layout
     @Optional @InjectView(R.id.body)
     protected TextView textViewBody;
 
-    // only in extended layout
+    // Only in extended with webview layout
     @Optional @InjectView(R.id.webView_body)
     protected WebView webView_body;
 
@@ -71,21 +78,39 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private static FavIconHandler favIconHandler = null;
     private final int LengthBody = 400;
     private ForegroundColorSpan bodyForegroundColor;
+    private boolean playing;
 
-    public ViewHolder(View itemView, int titleLineCount, Activity activity) {
+    public ViewHolder(View itemView, int titleLineCount) {
         super(itemView);
 
-        bodyForegroundColor = new ForegroundColorSpan(activity.getResources().getColor(android.R.color.secondary_text_dark));
+        bodyForegroundColor = new ForegroundColorSpan(itemView.getContext().getResources().getColor(android.R.color.secondary_text_dark));
 
         if(favIconHandler == null)
             favIconHandler = new FavIconHandler(itemView.getContext());
         ButterKnife.inject(this, itemView);
-        if(ThemeChooser.isDarkTheme(itemView.getContext())) {
-            if(textViewBody != null)
-                textViewBody.setTextColor(itemView.getResources().getColor(R.color.extended_listview_item_body_text_color_dark_theme));
-        }
         if(textViewSummary != null) textViewSummary.setLines(titleLineCount);
         itemView.setOnClickListener(this);
+    }
+
+    public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
+        downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
+        if (rssItem.getId().equals(downloadProgress.podcast.itemId)) {
+            pbPodcastDownloadProgress.setProgress(downloadProgress.podcast.downloadProgress / 100f);
+        }
+    }
+
+    public void setDownloadPodcastProgressbar() {
+        float progress;
+        if(PodcastDownloadService.PodcastAlreadyCached(itemView.getContext(), rssItem.getEnclosureLink()))
+            progress = 1f;
+        else {
+            if(downloadProgressList.get(rssItem.getId().intValue()) != null) {
+                progress = downloadProgressList.get(rssItem.getId().intValue()) / 100f;
+            } else {
+                progress = 0;
+            }
+        }
+        pbPodcastDownloadProgress.setProgress(progress);
     }
 
     @Override
@@ -126,6 +151,18 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             starImageView.setVisibility(View.GONE);
     }
 
+    public void setPlaying(boolean playing) {
+        this.playing = playing;
+        if(playing)
+            btnPlayPausePodcast.setImageResource(R.drawable.ic_action_pause);
+        else
+            btnPlayPausePodcast.setImageResource(R.drawable.ic_action_play_arrow);
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
     public RssItem getRssItem() {
         return rssItem;
     }
@@ -141,6 +178,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         } else {
             Log.v(TAG, "Feed not found!!!");
         }
+
+        setReadState(rssItem.getRead_temp());
+        setStarred(rssItem.getStarred_temp());
 
         setFeedColor(ColorHelper.getFeedColor(itemView.getContext(), rssItem.getFeed()));
 

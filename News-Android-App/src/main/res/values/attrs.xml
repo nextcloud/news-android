@@ -6,9 +6,11 @@
     <attr name="rssItemListBackground" format="color" />
     <attr name="starredColor" format="color" />
 
+    <attr name="extended_listview_item_body_text_color" format="color" />
+
     <attr name="markasreadDrawable" format="reference" />
     <attr name="starredDrawable" format="reference" />
 
-    <attr name="playpauseDrawable" format="reference" />
+    <attr name="tintColor" format="color" />
 
 </resources>

@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="?attr/playpauseDrawable" />
+        android:tint="?attr/tintColor"
+        android:src="@drawable/ic_action_pause" />
 
     <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
         android:id="@+id/podcastDownloadProgress"

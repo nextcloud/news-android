@@ -105,6 +105,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             tools:text="Body"
+            android:textColor="?attr/extended_listview_item_body_text_color"
             android:textSize="14sp"
             android:autoLink="none"
             android:layout_below="@+id/summary"

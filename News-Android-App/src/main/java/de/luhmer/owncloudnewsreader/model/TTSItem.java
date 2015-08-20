@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by David on 10.01.2015.
  */
-public class TTSItem implements Serializable {
+public class TTSItem extends MediaItem {
 
     public TTSItem() {
 
@@ -18,9 +18,5 @@ public class TTSItem implements Serializable {
         this.favIcon = favIcon;
     }
 
-    public long itemId;
-    public String title;
-    public String link;
     public String text;
-    public String favIcon;
 }

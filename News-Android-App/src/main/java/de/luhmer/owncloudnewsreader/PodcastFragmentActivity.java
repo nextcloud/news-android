@@ -34,11 +34,13 @@ import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
+import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
@@ -55,7 +57,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     boolean mBound = false;
 
 
-    private static final String TAG = "PodcastSherlockFragmentActivity";
+    private static final String TAG = "PodcastFragmentActivity";
     private PodcastFragment mPodcastFragment;
 
     private EventBus eventBus;
@@ -138,6 +140,11 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     @Override
     protected void onResume() {
         eventBus.register(this);
+
+        if(mPodcastPlaybackService != null && !mPodcastPlaybackService.isActive()) {
+            sliding_layout.setPanelHeight(0);
+            sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        }
 
         //eventBus.post(new RegisterVideoOutput(surfaceView));
         super.onResume();
@@ -278,6 +285,12 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             rlVideoPodcastSurfaceWrapper.removeAllViews();
         }
 
+    }
+
+    public void onEventMainThread(PodcastCompletedEvent podcastCompletedEvent) {
+        sliding_layout.setPanelHeight(0);
+        sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        currentlyPlaying = false;
     }
 
     /*
@@ -501,30 +514,13 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         return px;
     }
 
-    private void openPodcast(PodcastItem podcastItem) {
-        // Bind to LocalService
+    protected void openMediaItem(MediaItem mediaItem) {
         Intent intent = new Intent(this, PodcastPlaybackService.class);
-        if(!isMyServiceRunning(PodcastPlaybackService.class)) {
-            intent.putExtra(PodcastPlaybackService.PODCAST_ITEM, podcastItem);
-            startService(intent);
-        } else {
-            mPodcastPlaybackService.openFile(podcastItem);
-            loadPodcastFavIcon();
-        }
-
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-    }
-
-    protected void openTTSItem(TTSItem ttsItem) {
-        // Bind to LocalService
-        Intent intent = new Intent(this, PodcastPlaybackService.class);
-        if(!isMyServiceRunning(PodcastPlaybackService.class)) {
-            intent.putExtra(PodcastPlaybackService.TTS_ITEM, ttsItem);
-            startService(intent);
-        } else {
-            mPodcastPlaybackService.openTtsFeed(ttsItem);
-            loadPodcastFavIcon();
-        }
+        if(mediaItem instanceof TTSItem)
+            intent.putExtra(PodcastPlaybackService.TTS_ITEM, mediaItem);
+        else
+            intent.putExtra(PodcastPlaybackService.PODCAST_ITEM, mediaItem);
+        startService(intent);
 
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
@@ -537,7 +533,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         if(file.exists()) {
             podcastItem.link = file.getAbsolutePath();
 
-            openPodcast(podcastItem);
+            openMediaItem(podcastItem);
         } else if(!podcastItem.offlineCached) {
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
@@ -558,7 +554,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 alertDialog.setPositiveButton("Stream", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        openPodcast(podcastItem);
+                        openMediaItem(podcastItem);
                     }
                 });
             }
