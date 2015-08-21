@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.util.Log;
 import android.util.SparseArray;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +17,7 @@ import java.util.List;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.WhereCondition;
 import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemViewDao;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -350,15 +353,40 @@ public class DatabaseConnectionOrm {
         return favIconUrls;
     }
 
+    public long getCurrentRssItemViewCount() {
+        return daoSession.getCurrentRssItemViewDao().count();
 
-    public LazyList<RssItem> getCurrentRssItemView(SORT_DIRECTION sortDirection) {
-        WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.Id.columnName + " IN " +
+    }
+
+    public final static int PageSize = 100;
+
+    public List<RssItem> getCurrentRssItemView(int page, SORT_DIRECTION... sortDirection) {
+        WhereCondition whereCondition = new WhereCondition.PropertyCondition(RssItemDao.Properties.Id, " IN " +
                 "(SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")");
 
-        if(sortDirection.equals(SORT_DIRECTION.asc))
-            return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderAsc(RssItemDao.Properties.PubDate).listLazy();
-        else
-            return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderDesc(RssItemDao.Properties.PubDate).listLazy();
+        if(page != -1) {
+            String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
+                    + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
+                    + RssItemDao.Properties.Id.columnName
+                    + " AND C._id > " + page * PageSize + " AND c._id <= " + ((page+1) * PageSize);
+
+            //Log.v(TAG, where_clause);
+                    //+ " LIMIT " + PageSize + " OFFSET " + (page * PageSize);
+            return daoSession.getRssItemDao().queryRaw(where_clause);
+            /*
+
+            if (sortDirection.equals(SORT_DIRECTION.asc))
+                return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderAsc(RssItemDao.Properties.PubDate).offset(page * PageSize).limit(PageSize).list();
+            else
+                return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderDesc(RssItemDao.Properties.PubDate).offset(page * PageSize).limit(PageSize).list();
+                */
+        } else {
+            if(sortDirection.equals(SORT_DIRECTION.asc))
+                return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderAsc(RssItemDao.Properties.PubDate).listLazy();
+            else
+                return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderDesc(RssItemDao.Properties.PubDate).listLazy();
+            //return daoSession.getRssItemDao().queryBuilder().where(whereCondition).listLazy();
+        }
     }
 
     /*
@@ -448,6 +476,9 @@ public class DatabaseConnectionOrm {
     }
 
     public void insertIntoRssCurrentViewTable(String SQL_SELECT) {
+        StopWatch sw = new StopWatch();
+        sw.start();
+
         SQL_SELECT = "INSERT INTO " + CurrentRssItemViewDao.TABLENAME +
                 " (" + CurrentRssItemViewDao.Properties.RssItemId.columnName + ") " + SQL_SELECT;
 
@@ -460,6 +491,9 @@ public class DatabaseConnectionOrm {
                 daoSession.getDatabase().execSQL(SQL_INSERT_STATEMENT);
             }
         });
+
+        sw.stop();
+        Log.v(TAG, "Time needed for insert: " + sw.toString());
     }
 
     public SparseArray<String> getUnreadItemCountForFolder() {

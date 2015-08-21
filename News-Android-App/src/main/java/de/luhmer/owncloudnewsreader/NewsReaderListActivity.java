@@ -38,6 +38,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -49,6 +50,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -221,7 +224,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 			if(ndf != null) {
 				//ndf.reloadAdapterFromScratch();
-				ndf.UpdateCurrentRssView(NewsReaderListActivity.this, true);
+				ndf.UpdateCurrentRssView(NewsReaderListActivity.this);
 			}
 		}
 	};
@@ -229,6 +232,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private static final String ID_FEED_STRING = "ID_FEED_STRING";
 	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
 	private static final String OPTIONAL_FOLDER_ID ="OPTIONAL_FOLDER_ID";
+	private static final String LIST_ADAPTER_TOTAL_COUNT ="LIST_ADAPTER_TOTAL_COUNT";
+    private static final String LIST_ADAPTER_PAGE_COUNT ="LIST_ADAPTER_PAGE_COUNT";
+
 
 
 	/* (non-Javadoc)
@@ -271,6 +277,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
             outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
             outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
+
+            NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) ndf.getRecyclerView().getAdapter();
+			outState.putInt(LIST_ADAPTER_TOTAL_COUNT, adapter.getTotalItemCount());
+            outState.putInt(LIST_ADAPTER_PAGE_COUNT, adapter.getCachedPages());
         }
     }
 
@@ -279,6 +289,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
                 savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
 
+
+            NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this);
+
+			adapter.setTotalItemCount(savedInstanceState.getInt(LIST_ADAPTER_TOTAL_COUNT));
+            adapter.setCachedPages(savedInstanceState.getInt(LIST_ADAPTER_PAGE_COUNT));
+
+			getNewsReaderDetailFragment()
+					.getRecyclerView()
+					.setAdapter(adapter);
 
             StartDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
 					savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
@@ -695,7 +714,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					dbConn2.markAllItemsAsReadForCurrentView();
 
 					reloadCountNumbersOfSlidingPaneAdapter();
-					ndf.UpdateCurrentRssView(this, false);
+					ndf.RefreshCurrentRssView(this);
 				}
 				return true;
 
@@ -740,7 +759,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 			if(ndf != null)
-				ndf.UpdateCurrentRssView(NewsReaderListActivity.this, true);
+				ndf.UpdateCurrentRssView(NewsReaderListActivity.this);
 
 			Log.v(TAG, "Finished Download extra items..");
 		}

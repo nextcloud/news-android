@@ -30,6 +30,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -37,6 +38,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -47,9 +49,10 @@ import android.widget.ProgressBar;
 
 import org.apache.commons.lang3.time.StopWatch;
 
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.adapter.DividerItemDecoration;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
@@ -73,11 +76,13 @@ public class NewsReaderDetailFragment extends Fragment {
     private Drawable markAsReadDrawable;
     private Drawable starredDrawable;
     private int accentColor;
+    private Parcelable layoutManagerSavedState;
+
 
     /**
-	 * @return the idFeed
-	 */
-	public Long getIdFeed() {
+     * @return the idFeed
+     */
+    public Long getIdFeed() {
 		return idFeed;
 	}
 
@@ -106,8 +111,6 @@ public class NewsReaderDetailFragment extends Fragment {
     @InjectView(R.id.list) RecyclerView recyclerView;
     @InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
 
-
-
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
@@ -115,12 +118,19 @@ public class NewsReaderDetailFragment extends Fragment {
 	public NewsReaderDetailFragment() {
 	}
 
+
     public void setData(Long idFeed, Long idFolder, String titel, boolean updateListView) {
+        Log.v(TAG, "Creating new itstance");
+
         this.idFeed = idFeed;
         this.idFolder = idFolder;
         this.titel = titel;
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(titel);
-        UpdateCurrentRssView(getActivity(), updateListView);
+
+        if(updateListView)
+            UpdateCurrentRssView(getActivity());
+        else
+            RefreshCurrentRssView(getActivity());
     }
 
     @Override
@@ -137,15 +147,15 @@ public class NewsReaderDetailFragment extends Fragment {
 
         //When the fragment is instantiated by the xml file, onResume will be called twice
         if(onResumeCount >= 2) {
-            UpdateCurrentRssView(getActivity(), false);
+            RefreshCurrentRssView(getActivity());
         }
         onResumeCount++;
 
         super.onResume();
     }
 
-    private RecyclerView.OnScrollListener ListScrollListener = new RecyclerView.OnScrollListener() {
-            //CheckBox lastViewedArticleCheckbox = null;
+    private OnScrollListener ListScrollListener = new OnScrollListener() {
+        //CheckBox lastViewedArticleCheckbox = null;
 
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -204,12 +214,32 @@ public class NewsReaderDetailFragment extends Fragment {
 	}
 
     /**
+     * Refreshes the current RSS-View
+     * @param context
+     */
+    public void RefreshCurrentRssView(Context context) {
+        Log.v(TAG, "RefreshCurrentRssView");
+        NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
+
+        nra.refreshAdapterDataAsync(new NewsListRecyclerAdapter.IOnRefreshFinished() {
+            @Override
+            public void OnRefreshFinished() {
+                pbLoading.setVisibility(View.GONE);
+
+                if (layoutManagerSavedState != null) {
+                    recyclerView.getLayoutManager().onRestoreInstanceState(layoutManagerSavedState);
+                }
+            }
+        });
+    }
+
+    /**
      * Updates the current RSS-View
      * @param context
      */
-    public void UpdateCurrentRssView(Context context, boolean refreshCurrentRssView) {
+    public void UpdateCurrentRssView(Context context) {
         Log.v(TAG, "UpdateCurrentRssView");
-        AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context, refreshCurrentRssView));
+        AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context));
     }
 
     public RecyclerView getRecyclerView() {
@@ -221,15 +251,13 @@ public class NewsReaderDetailFragment extends Fragment {
         return (LinearLayoutManager) recyclerView.getLayoutManager();
     }
 
-    private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, LazyList<RssItem>> {
+    private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, List<RssItem>> {
 
         private Context context;
         private SORT_DIRECTION sortDirection;
-        private boolean refreshCurrentRssView;
 
-        public UpdateCurrentRssViewTask(Context context, boolean refreshCurrentRssView) {
+        public UpdateCurrentRssViewTask(Context context) {
             this.context = context;
-            this.refreshCurrentRssView = refreshCurrentRssView;
         }
 
         @Override
@@ -243,52 +271,50 @@ public class NewsReaderDetailFragment extends Fragment {
         }
 
         @Override
-        protected LazyList<RssItem> doInBackground(Void... urls) {
-            StopWatch stopWatch = new StopWatch();
-            stopWatch.start();
-
+        protected List<RssItem> doInBackground(Void... urls) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
-            if(refreshCurrentRssView) {
-                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-                boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
-                boolean onlyStarredItems = false;
-                if (idFolder != null)
-                    if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
-                        onlyStarredItems = true;
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
+            boolean onlyStarredItems = false;
+            if (idFolder != null)
+                if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
+                    onlyStarredItems = true;
 
-                String sqlSelectStatement = null;
-                if (idFeed != null)
-                    sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection);
-                else if (idFolder != null) {
-                    if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
-                        onlyUnreadItems = false;
-                    sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sortDirection);
-                }
-                if (sqlSelectStatement != null) {
-                    dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
-                }
+            String sqlSelectStatement = null;
+            if (idFeed != null)
+                sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection);
+            else if (idFolder != null) {
+                if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
+                    onlyUnreadItems = false;
+                sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sortDirection);
+            }
+            if (sqlSelectStatement != null) {
+                dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
             }
 
-            LazyList<RssItem> list = dbConn.getCurrentRssItemView(sortDirection);
+            StopWatch sw = new StopWatch();
+            sw.start();
 
-            stopWatch.stop();
-            Log.v(TAG, "Reloaded CurrentRssView - time taken: " + stopWatch.toString());
+            List<RssItem> items = dbConn.getCurrentRssItemView(0);
 
-            return list;
+            sw.stop();
+            Log.v(TAG, "Time needed (init loading): " + sw.toString());
+
+            return items;
         }
 
         @Override
-        protected void onPostExecute(LazyList<RssItem> rssItemLazyList) {
+        protected void onPostExecute(List<RssItem> rssItem) {
             try
             {
                 NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
-                if(nra != null) {
-                    nra.setLazyList(rssItemLazyList);
-                } else {
-                    nra = new NewsListRecyclerAdapter(getActivity(), rssItemLazyList, (PodcastFragmentActivity) getActivity());
+                if(nra == null) {
+                    nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity());
+
                     recyclerView.setAdapter(nra);
                 }
+                nra.updateAdapterData(rssItem);
 
                 pbLoading.setVisibility(View.GONE);
                 if(nra.getItemCount() <= 0) {
@@ -297,9 +323,8 @@ public class NewsReaderDetailFragment extends Fragment {
                     tvNoItemsAvailable.setVisibility(View.INVISIBLE);
                 }
 
-                if(refreshCurrentRssView) { //Scroll to top
-                    recyclerView.scrollToPosition(0);
-                }
+                recyclerView.scrollToPosition(0);
+
             }
             catch(Exception ex)
             {
@@ -331,6 +356,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         return rootView;
 	}
+
 
     @Override
     public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
@@ -400,16 +426,25 @@ public class NewsReaderDetailFragment extends Fragment {
         }
     }
 
+    /*
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         if(savedInstanceState != null)
             recyclerView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(LAYOUT_MANAGER_STATE));
+    }*/
+
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        if(savedInstanceState != null)
+            layoutManagerSavedState = savedInstanceState.getParcelable(LAYOUT_MANAGER_STATE);
+        super.onViewStateRestored(savedInstanceState);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
         outState.putParcelable(LAYOUT_MANAGER_STATE, getLayoutManager().onSaveInstanceState());
     }
 }

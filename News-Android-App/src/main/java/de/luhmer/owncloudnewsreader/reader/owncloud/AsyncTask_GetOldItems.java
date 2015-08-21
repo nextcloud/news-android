@@ -122,7 +122,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
             NewsReaderListActivity activity = (NewsReaderListActivity) context;
             NewsReaderDetailFragment nrD = (NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame);
             if(nrD != null)
-                nrD.UpdateCurrentRssView(context, true);
+                nrD.UpdateCurrentRssView(context);
         }
 
 		detach();

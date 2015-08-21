@@ -52,6 +52,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -96,7 +97,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private MenuItem menuItem_Read;
 
 	private DatabaseConnectionOrm dbConn;
-	public LazyList<RssItem> rssItems;
+	public List<RssItem> rssItems;
 
 	private CustomTabsSession mCustomTabsSession;
 	private CustomTabsClient mCustomTabsClient;
@@ -144,7 +145,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
 
 
-        rssItems = dbConn.getCurrentRssItemView(getSortDirectionFromSettings(this));
+        rssItems = dbConn.getCurrentRssItemView(-1, getSortDirectionFromSettings(this));
 
         //If the Activity gets started from the Widget, read the item id and get the selected index in the cursor.
         if(intent.hasExtra(WidgetProvider.RSS_ITEM_ID)) {
