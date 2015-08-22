@@ -73,8 +73,25 @@ Contributors
 
 Updates
 ==================================
-0.9.6 (in development)
+0.9.7 (in development)
 ---------------------
+
+
+0.9.6 (Google Play)
+---------------------
+- Performance improvements
+- Bug fixes
+
+
+0.9.5.4 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/388">#388 App crash when opening an article</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/386">#386 News always open in external browser</a>
+
+
+0.9.5.3 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/383">#383 Back button doesn't close the app on tablets</a>
 
 
 0.9.5.2 (Google Play)
