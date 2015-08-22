@@ -100,7 +100,7 @@ public class DatabaseConnectionOrm {
 
     public List<Folder> getListOfFoldersWithUnreadItems() {
         return daoSession.getFolderDao().queryBuilder().where(
-                new WhereCondition.StringCondition(FolderDao.Properties.Id.columnName + " IN "
+                new WhereCondition.PropertyCondition(FolderDao.Properties.Id, " IN "
                         + "(SELECT " + FeedDao.Properties.FolderId.columnName + " FROM " + FeedDao.TABLENAME + " feed "
                         + " JOIN " + RssItemDao.TABLENAME + " rss ON feed." + FeedDao.Properties.Id.columnName + " = rss." + RssItemDao.Properties.FeedId.columnName
                         + " WHERE rss." + RssItemDao.Properties.Read_temp.columnName + " != 1)")
@@ -147,18 +147,20 @@ public class DatabaseConnectionOrm {
     }
 
     public List<Feed> getAllFeedsWithUnreadRssItems() {
-        return daoSession.getFeedDao().queryBuilder().where(
-                new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1)")).list();
+        return daoSession.getFeedDao().queryRaw(", " + RssItemDao.TABLENAME + " R " +
+                " WHERE R." + RssItemDao.Properties.FeedId.columnName + " = T._id " +
+                " AND " + RssItemDao.Properties.Read_temp.columnName + " != 1 GROUP BY T._id");
     }
 
     public List<Feed> getAllFeedsWithUnreadRssItemsForFolder(long folderId, boolean onlyUnread) {
+        /*
         if(onlyUnread) {
             String whereConditionString = " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1)";
             WhereCondition whereCondition = new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + whereConditionString);
             return daoSession.getFeedDao().queryBuilder().where(whereCondition, FeedDao.Properties.FolderId.eq(folderId)).list();
-        } else {
+        } else {*/
             return daoSession.getFeedDao().queryBuilder().where(FeedDao.Properties.FolderId.eq(folderId)).list();
-        }
+        //}
     }
 
     public List<Feed> getAllFeedsWithStarredRssItems() {
@@ -497,7 +499,7 @@ public class DatabaseConnectionOrm {
     }
 
     public SparseArray<String> getUnreadItemCountForFolder() {
-        String buildSQL = "SELECT f." + FolderDao.Properties.Id.columnName + ", COUNT(rss." + RssItemDao.Properties.Id.columnName + ")" +
+        String buildSQL = "SELECT f." + FolderDao.Properties.Id.columnName + ", COUNT(1)" +
                 " FROM " + RssItemDao.TABLENAME + " rss " +
                 " JOIN " + FeedDao.TABLENAME + " feed ON rss." + RssItemDao.Properties.FeedId.columnName + " = feed." + FeedDao.Properties.Id.columnName +
                 " JOIN " + FolderDao.TABLENAME + " f ON feed." + FeedDao.Properties.FolderId.columnName + " = f." + FolderDao.Properties.Id.columnName +

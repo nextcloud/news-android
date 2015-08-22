@@ -77,7 +77,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     ExpListTextClicked eListTextClickHandler;
 
     private ArrayList<AbstractItem> mCategoriesArrayList;
-    private SparseArray<SparseArray<ConcreteFeedItem>> mItemsArrayList;
+    private SparseArray<ArrayList<ConcreteFeedItem>> mItemsArrayList;
 	private boolean showOnlyUnread = false;
 
     public enum SPECIAL_FOLDERS  {
@@ -131,7 +131,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	@SuppressWarnings("deprecation")
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
-
 		int parent_id = (int)getGroupId(groupPosition);
         return mItemsArrayList.get(parent_id).get(childPosition);
 	}
@@ -458,6 +457,37 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         @Override
         protected void onPostExecute(Void aVoid) {
+            if(showOnlyUnread) {
+                for (int i = 0; i < mCategoriesArrayList.size(); i++) {
+                    AbstractItem item = mCategoriesArrayList.get(i);
+
+                    if(item instanceof FolderSubscribtionItem &&
+                            unreadCountFoldersTemp.get(((Long) item.id_database).intValue()) == null) {
+                        Log.v(TAG, "Remove folder item!!!");
+                        mCategoriesArrayList.remove(i);
+                        i--;
+                    } else if(item instanceof ConcreteFeedItem &&
+                            unreadCountFeedsTemp.get(((Long) item.id_database).intValue()) == null) {
+                        Log.v(TAG, "Remove feed item!!!");
+                        mCategoriesArrayList.remove(i);
+                        i--;
+                    } else {
+                        //Log.v(TAG, "Keep.. " + unreadCountFoldersTemp.get(((Long) item.id_database).intValue()));
+                    }
+                }
+
+                for (int i = 0; i < mItemsArrayList.size(); i++) {
+                    ArrayList<ConcreteFeedItem> item = mItemsArrayList.valueAt(i);
+                    for (int x = 0; x < item.size(); x++) {
+                        if (unreadCountFeedsTemp.get((int) item.get(x).id_database) == null) {
+                            item.remove(x);
+                            x--;
+                            Log.v(TAG, "Remove sub feed!!");
+                        }
+                    }
+                }
+            }
+
             notifyCountDataSetChanged(unreadCountFoldersTemp, unreadCountFeedsTemp, urlsToFavIconsTemp, starredCountFeedsTemp);
             super.onPostExecute(aVoid);
         }
@@ -471,7 +501,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         new ReloadAdapterAsyncTask(progressBar).execute((Void) null);
     }
 
-    private class ReloadAdapterAsyncTask extends AsyncTask<Void, Void, Tuple<ArrayList<AbstractItem>, SparseArray<SparseArray<ConcreteFeedItem>>>> {
+    private class ReloadAdapterAsyncTask extends AsyncTask<Void, Void, Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>>> {
 
         View progressBar = null;
 
@@ -486,11 +516,11 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
 
         @Override
-        protected Tuple<ArrayList<AbstractItem>, SparseArray<SparseArray<ConcreteFeedItem>>> doInBackground(Void... voids) {
+        protected Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> doInBackground(Void... voids) {
             StopWatch stopWatch = new StopWatch();
             stopWatch.start();
 
-            Tuple<ArrayList<AbstractItem>, SparseArray<SparseArray<ConcreteFeedItem>>> ad = ReloadAdapter();
+            Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> ad = ReloadAdapter();
             //return ReloadAdapter();
 
             stopWatch.stop();
@@ -500,7 +530,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
 
         @Override
-        protected void onPostExecute(Tuple<ArrayList<AbstractItem>, SparseArray<SparseArray<ConcreteFeedItem>>> arrayListSparseArrayTuple) {
+        protected void onPostExecute(Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> arrayListSparseArrayTuple) {
             mCategoriesArrayList = arrayListSparseArrayTuple.key;
             mItemsArrayList = arrayListSparseArrayTuple.value;
 
@@ -509,14 +539,15 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             NotifyDataSetChangedAsync();
 
 
-            if(progressBar != null) progressBar.setVisibility(View.GONE);
+            if(progressBar != null)
+                progressBar.setVisibility(View.GONE);
 
             super.onPostExecute(arrayListSparseArrayTuple);
         }
 
     }
 
-    public Tuple<ArrayList<AbstractItem>, SparseArray<SparseArray<ConcreteFeedItem>>> ReloadAdapter()
+    public Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> ReloadAdapter()
     {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         showOnlyUnread = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
@@ -525,12 +556,19 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         mCategoriesArrayListAsync.add(new FolderSubscribtionItem(mContext.getString(R.string.allUnreadFeeds), null, ALL_UNREAD_ITEMS.getValue()));
         mCategoriesArrayListAsync.add(new FolderSubscribtionItem(mContext.getString(R.string.starredFeeds), null, ALL_STARRED_ITEMS.getValue()));
 
+
+        StopWatch sw = new StopWatch();
+        sw.start();
+
         List<Folder> folderList;
-        if(showOnlyUnread) {
-            folderList = dbConn.getListOfFoldersWithUnreadItems();
-        } else {
+        //if(showOnlyUnread) {
+        //    folderList = dbConn.getListOfFoldersWithUnreadItems();
+        //} else {
             folderList = dbConn.getListOfFolders();
-        }
+        //}
+
+        sw.stop();
+        Log.v(TAG, "Time needed (fetch folder list): " + sw.toString());
 
 
         for(Folder folder : folderList) {
@@ -541,14 +579,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             mCategoriesArrayListAsync.add(new ConcreteFeedItem(feed.getFeedTitle(), (long) ITEMS_WITHOUT_FOLDER.getValue(), feed.getId(), feed.getFaviconUrl(), feed.getId()));
         }
 
-        SparseArray<SparseArray<ConcreteFeedItem>> mItemsArrayListAsync = new SparseArray<>();
+        SparseArray<ArrayList<ConcreteFeedItem>> mItemsArrayListAsync = new SparseArray<>();
 
         for(int groupPosition = 0; groupPosition < mCategoriesArrayListAsync.size(); groupPosition++) {
             //int parent_id = (int)getGroupId(groupPosition);
             int parent_id = (int) mCategoriesArrayListAsync.get(groupPosition).id_database;
-            mItemsArrayListAsync.append(parent_id, new SparseArray<ConcreteFeedItem>());
-
-            int childPosTemp = 0;
+            mItemsArrayListAsync.append(parent_id, new ArrayList<ConcreteFeedItem>());
 
             List<Feed> feedItemList = null;
 
@@ -568,8 +604,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             if(feedItemList != null) {
                 for (Feed feed : feedItemList) {
                     ConcreteFeedItem newItem = new ConcreteFeedItem(feed.getFeedTitle(), (long) parent_id, feed.getId(), feed.getFaviconUrl(), feed.getId());
-                    mItemsArrayListAsync.get(parent_id).put(childPosTemp, newItem);
-                    childPosTemp++;
+                    mItemsArrayListAsync.get(parent_id).add(newItem);
                 }
             }
         }
