@@ -362,32 +362,22 @@ public class DatabaseConnectionOrm {
 
     public final static int PageSize = 100;
 
-    public List<RssItem> getCurrentRssItemView(int page, SORT_DIRECTION... sortDirection) {
-        WhereCondition whereCondition = new WhereCondition.PropertyCondition(RssItemDao.Properties.Id, " IN " +
-                "(SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")");
-
+    public List<RssItem> getCurrentRssItemView(int page) {
         if(page != -1) {
             String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
                     + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
                     + RssItemDao.Properties.Id.columnName
-                    + " AND C._id > " + page * PageSize + " AND c._id <= " + ((page+1) * PageSize);
+                    + " AND C._id > " + page * PageSize + " AND c._id <= " + ((page+1) * PageSize)
+                    + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
 
-            //Log.v(TAG, where_clause);
-                    //+ " LIMIT " + PageSize + " OFFSET " + (page * PageSize);
             return daoSession.getRssItemDao().queryRaw(where_clause);
-            /*
-
-            if (sortDirection.equals(SORT_DIRECTION.asc))
-                return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderAsc(RssItemDao.Properties.PubDate).offset(page * PageSize).limit(PageSize).list();
-            else
-                return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderDesc(RssItemDao.Properties.PubDate).offset(page * PageSize).limit(PageSize).list();
-                */
         } else {
-            if(sortDirection.equals(SORT_DIRECTION.asc))
-                return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderAsc(RssItemDao.Properties.PubDate).listLazy();
-            else
-                return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderDesc(RssItemDao.Properties.PubDate).listLazy();
-            //return daoSession.getRssItemDao().queryBuilder().where(whereCondition).listLazy();
+            String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
+                    + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
+                    + RssItemDao.Properties.Id.columnName
+                    + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
+
+            return daoSession.getRssItemDao().queryRawCreate(where_clause).listLazy();
         }
     }
 

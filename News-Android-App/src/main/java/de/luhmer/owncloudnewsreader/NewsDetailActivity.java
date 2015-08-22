@@ -145,7 +145,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
 
 
-        rssItems = dbConn.getCurrentRssItemView(-1, getSortDirectionFromSettings(this));
+        rssItems = dbConn.getCurrentRssItemView(-1);
 
         //If the Activity gets started from the Widget, read the item id and get the selected index in the cursor.
         if(intent.hasExtra(WidgetProvider.RSS_ITEM_ID)) {
