@@ -77,6 +77,12 @@ Updates
 ---------------------
 
 
+0.9.6.1 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/381">#381 Back button doesn't work correct in articles</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/392">#392 Wrong article is shown</a>
+
+
 0.9.6 (Google Play)
 ---------------------
 - Performance improvements
