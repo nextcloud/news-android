@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,8 +32,10 @@ import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -44,8 +47,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Stack;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -68,6 +73,8 @@ public class NewsDetailFragment extends Fragment {
     @InjectView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
 	@InjectView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
 	private int section_number;
+    public List<String> urls = new ArrayList<>();
+
 
     public NewsDetailFragment() {
         //setRetainInstance(true);
@@ -196,6 +203,8 @@ public class NewsDetailFragment extends Fragment {
     }
 
 
+    boolean changedUrl = false;
+
 	@SuppressLint("SetJavaScriptEnabled")
 	private void init_webView()
 	{
@@ -222,6 +231,13 @@ public class NewsDetailFragment extends Fragment {
         mWebView.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
 
         mWebView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onConsoleMessage(ConsoleMessage cm) {
+                Log.v(TAG, cm.message() + " at " + cm.sourceId() + ":" + cm.lineNumber());
+                return true;
+            }
+
+            @Override
             public void onProgressChanged(WebView view, int progress) {
                 if (progress < 100 && mProgressbarWebView.getVisibility() == ProgressBar.GONE) {
                     mProgressbarWebView.setVisibility(ProgressBar.VISIBLE);
@@ -231,12 +247,12 @@ public class NewsDetailFragment extends Fragment {
                     mProgressbarWebView.setVisibility(ProgressBar.GONE);
 
                     //The following three lines are a workaround for websites which don't use a background colour
-                    NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+                    NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
                     mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
                     ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
 
 
-                    if(ThemeChooser.isDarkTheme(getActivity())) {
+                    if (ThemeChooser.isDarkTheme(getActivity())) {
                         mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     }
 
@@ -246,9 +262,36 @@ public class NewsDetailFragment extends Fragment {
             }
         });
 
+
         mWebView.setWebViewClient(new WebViewClient() {
 
-	    });
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                if (changedUrl) {
+                    changedUrl = false;
+
+                    if (!url.equals("file:///android_asset/") && (urls.isEmpty() || !urls.get(0).equals(url))) {
+                        urls.add(0, url);
+
+                        Log.v(TAG, "Page finished (added): " + url);
+                    }
+                }
+
+                super.onPageStarted(view, url, favicon);
+            }
+        });
+
+        mWebView.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (v.getId() == R.id.webview && event.getAction() == MotionEvent.ACTION_DOWN) {
+                    changedUrl = true;
+                }
+
+                return false;
+            }
+        });
 	}
 
 
@@ -294,7 +337,7 @@ public class NewsDetailFragment extends Fragment {
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
         builder.append("<style type=\"text/css\">");
         builder.append(String.format(
-                "#top_section { border-left: 4px solid %s; border-bottom: 1px solid %s; background: %s }",
+                        "#top_section { border-left: 4px solid %s; border-bottom: 1px solid %s; background: %s }",
                         ColorHelper.getCssColor(feedColor),
                         ColorHelper.getCssColor(colors[0]),
                         ColorHelper.getCssColor(colors[1]))

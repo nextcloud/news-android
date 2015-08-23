@@ -248,14 +248,15 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 			if(ndf != null && ndf.mWebView != null)
 			{
-				if(ndf.mWebView.canGoBack())
-				{
-					ndf.mWebView.goBack();
-					if(!ndf.mWebView.canGoBack())//RssItem
-						ndf.startLoadRssItemToWebViewTask();
+				if (ndf.urls.size() > 1) {
+                    ndf.urls.remove(0);
+					ndf.mWebView.loadUrl(ndf.urls.get(0));
+				} else {
+                    ndf.startLoadRssItemToWebViewTask();
+                    Log.v(TAG, "Load rssitem to webview again");
+                }
 
-					return true;
-				}
+                return true;
 			}
 		}
 
