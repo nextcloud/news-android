@@ -47,5 +47,6 @@
     <color name="markasreadColorDark">@android:color/holo_green_light</color>
     <color name="swipeBackgroundDark">#aaa</color>
 
-
+    <color name="tintColorLight">@android:color/black</color>
+    <color name="tintColorDark">@android:color/white</color>
 </resources>
