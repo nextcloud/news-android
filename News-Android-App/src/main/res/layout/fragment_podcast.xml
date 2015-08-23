@@ -93,13 +93,16 @@
 
                 <ImageButton
                     android:id="@+id/btn_playPausePodcast"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:duplicateParentState="true"
                     android:clickable="false"
                     android:focusable="false"
                     android:layout_gravity="center_vertical"
-                    android:background="@android:drawable/ic_media_play" />
+                    android:src="@drawable/ic_action_play_arrow"
+                    android:tint="@color/tintColorDark"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="fitXY"/>
 
             </FrameLayout>
         </LinearLayout>
@@ -317,7 +320,11 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/ic_action_fast_rewind"/>
+                android:src="@drawable/ic_action_fast_rewind"
+                android:tint="@color/tintColorLight"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"/>
 
             <ImageButton
                 android:id="@+id/btn_playPausePodcastSlider"
@@ -325,14 +332,20 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/ic_action_play_arrow"/>
+                android:src="@drawable/ic_action_play_arrow"
+                android:tint="@color/tintColorLight"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitXY"/>
 
             <ImageButton
                 android:id="@+id/btn_nextPodcastSlider"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_action_fast_forward"/>
+                android:src="@drawable/ic_action_fast_forward"
+                android:tint="@color/tintColorLight"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitXY"/>
 
 
             <LinearLayout

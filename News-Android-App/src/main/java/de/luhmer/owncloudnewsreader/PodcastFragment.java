@@ -139,13 +139,12 @@ public class PodcastFragment extends Fragment {
 
         hasTitleInCache = true;
 
-        int drawableId = podcast.isPlaying() ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
-        int drawableIdDarkDesign = podcast.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play_arrow;
+        int drawableId = podcast.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play_arrow;
 
         if(lastDrawableId != drawableId) {
             lastDrawableId = drawableId;
-            btnPlayPausePodcast.setBackgroundResource(drawableId);
-            btnPlayPausePodcastSlider.setBackgroundResource(drawableIdDarkDesign);
+            btnPlayPausePodcast.setImageResource(drawableId);
+            btnPlayPausePodcastSlider.setImageResource(drawableId);
         }
 
         int hours = (int)(podcast.getCurrent() / (1000*60*60));
