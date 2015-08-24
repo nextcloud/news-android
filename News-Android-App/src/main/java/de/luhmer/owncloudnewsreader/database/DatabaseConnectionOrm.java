@@ -326,7 +326,7 @@ public class DatabaseConnectionOrm {
     }
 
     public LazyList<RssItem> getAllItemsWithIdHigher(long id) {
-        return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.ge(id)).listLazyUncached();
+        return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.ge(id)).listLazy();
     }
 
     public void updateRssItem(RssItem rssItem) {

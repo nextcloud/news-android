@@ -38,6 +38,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
@@ -101,9 +102,6 @@ public class DownloadImagesService extends IntentService {
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
         Notification notify = BuildNotification();
 
-        //if(linksFavIcons.size() > 0)
-            //notificationManager.notify(NOTIFICATION_ID, notify);
-
         List<Feed> feedList = dbConn.getListOfFeeds();
         FavIconHandler favIconHandler = new FavIconHandler(this);
         for(Feed feed : feedList) {
@@ -124,12 +122,13 @@ public class DownloadImagesService extends IntentService {
                     break;
                 }
             }
-
+            ((LazyList)rssItemList).close();
 
             maxCount = links.size();
 
-            if (maxCount > 0)
+            if (maxCount > 0) {
                 notificationManager.notify(NOTIFICATION_ID, notify);
+            }
 
             linksToImages.addAll(links);
 

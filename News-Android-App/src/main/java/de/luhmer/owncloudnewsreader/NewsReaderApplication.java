@@ -21,7 +21,7 @@ public class NewsReaderApplication extends Application {
 
     public void initImageLoader() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int diskCacheSize = Integer.parseInt(preferences.getString(SettingsActivity.SP_MAX_CACHE_SIZE,"1000"))*1024*1024;
+        int diskCacheSize = Integer.parseInt(preferences.getString(SettingsActivity.SP_MAX_CACHE_SIZE,"500"))*1024*1024;
         if(ImageLoader.getInstance().isInited())
             ImageLoader.getInstance().destroy();
         DisplayImageOptions imageOptions = new DisplayImageOptions.Builder().

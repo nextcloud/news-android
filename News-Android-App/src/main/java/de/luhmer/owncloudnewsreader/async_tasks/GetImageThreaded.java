@@ -34,7 +34,6 @@ import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 public class GetImageThreaded extends Thread
 {
 	private static final String TAG = "GetImageAsyncTask";
-	//private static int count = 0;
 
 	private URL WEB_URL_TO_FILE;
 	private ImageDownloadFinished imageDownloadFinished;
