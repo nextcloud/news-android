@@ -191,13 +191,11 @@ public class DownloadImagesService extends IntentService {
 
 		@Override
 		public void DownloadFinished(long ThreadId, Bitmap bitmap) {
-
             int count = maxCount - linksToImages.size();
-
 
             if(maxCount == count) {
             	notificationManager.cancel(NOTIFICATION_ID);
-                RemoveOldImages();
+                //RemoveOldImages();
             } else {
                 mNotificationDownloadImages
                         .setContentText("Downloading Images for offline usage - " + (count + 1) + "/" + maxCount)
