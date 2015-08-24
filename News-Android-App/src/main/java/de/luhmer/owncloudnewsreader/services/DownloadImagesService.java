@@ -38,6 +38,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
@@ -56,7 +57,7 @@ public class DownloadImagesService extends IntentService {
 
 	private int NOTIFICATION_ID = 1;
 	private NotificationManager notificationManager;
-	private NotificationCompat.Builder NotificationDownloadImages;
+	private NotificationCompat.Builder mNotificationDownloadImages;
 
 	private int maxCount;
 	//private int total_size = 0;
@@ -86,7 +87,7 @@ public class DownloadImagesService extends IntentService {
 
     @Override
 	public void onDestroy() {
-		if(NotificationDownloadImages != null)
+		if(mNotificationDownloadImages != null)
 		{
 			if(maxCount == 0)
 				notificationManager.cancel(NOTIFICATION_ID);
@@ -100,9 +101,6 @@ public class DownloadImagesService extends IntentService {
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
         Notification notify = BuildNotification();
-
-        //if(linksFavIcons.size() > 0)
-            //notificationManager.notify(NOTIFICATION_ID, notify);
 
         List<Feed> feedList = dbConn.getListOfFeeds();
         FavIconHandler favIconHandler = new FavIconHandler(this);
@@ -124,12 +122,13 @@ public class DownloadImagesService extends IntentService {
                     break;
                 }
             }
-
+            ((LazyList)rssItemList).close();
 
             maxCount = links.size();
 
-            if (maxCount > 0)
+            if (maxCount > 0) {
                 notificationManager.notify(NOTIFICATION_ID, notify);
+            }
 
             linksToImages.addAll(links);
 
@@ -169,13 +168,13 @@ public class DownloadImagesService extends IntentService {
         Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationDownloadImages = new NotificationCompat.Builder(this)
+        mNotificationDownloadImages = new NotificationCompat.Builder(this)
                 .setContentTitle("ownCloud News Reader")
                 .setContentText("Downloading Images for offline usage")
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent);
 
-        Notification notify = NotificationDownloadImages.build();
+        Notification notify = mNotificationDownloadImages.build();
 
         //Hide the notification after its selected
         notify.flags |= Notification.FLAG_AUTO_CANCEL;
@@ -200,9 +199,11 @@ public class DownloadImagesService extends IntentService {
             	notificationManager.cancel(NOTIFICATION_ID);
                 RemoveOldImages();
             } else {
-                NotificationDownloadImages.setProgress(maxCount, count+1, false);
-                NotificationDownloadImages.setContentText("Downloading Images for offline usage - " + (count+1) + "/" + maxCount);
-                notificationManager.notify(NOTIFICATION_ID, NotificationDownloadImages.build());
+                mNotificationDownloadImages
+                        .setContentText("Downloading Images for offline usage - " + (count + 1) + "/" + maxCount)
+                        .setProgress(maxCount, count + 1, false);
+
+                notificationManager.notify(NOTIFICATION_ID, mNotificationDownloadImages.build());
 
                 StartNextDownloadInQueue();
             }

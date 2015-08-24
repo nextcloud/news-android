@@ -555,7 +555,7 @@ public class SettingsActivity extends PreferenceActivity {
 
 				((EditTextPreference) preference).getDialog().dismiss();
 
-				CheckForUnsycedChangesInDatabaseAndResetDatabase(_mActivity);
+				checkForUnsycedChangesInDatabaseAndResetDatabase(_mActivity);
 				return false;
 			}
 		});
@@ -587,7 +587,7 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
 
-	public static void CheckForUnsycedChangesInDatabaseAndResetDatabase(final Context context) {
+	public static void checkForUnsycedChangesInDatabaseAndResetDatabase(final Context context) {
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 		boolean resetDatabase = true;
 		if(dbConn.areThereAnyUnsavedChangesInDatabase())
