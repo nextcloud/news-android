@@ -251,12 +251,13 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 				if (ndf.urls.size() > 1) {
                     ndf.urls.remove(0);
 					ndf.mWebView.loadUrl(ndf.urls.get(0));
-				} else {
+					return true;
+				} else if(ndf.urls.size() == 1) {
+					ndf.urls.remove(0);
                     ndf.startLoadRssItemToWebViewTask();
                     Log.v(TAG, "Load rssitem to webview again");
+					return true;
                 }
-
-                return true;
 			}
 		}
 
