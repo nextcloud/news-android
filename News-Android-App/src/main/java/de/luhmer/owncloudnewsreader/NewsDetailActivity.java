@@ -27,6 +27,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -400,7 +402,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 				if(link.length() > 0)
 				{
-					if(mCustomTabsSupported) {
+					if(isChromeDefaultBrowser() && mCustomTabsSupported) {
 						CustomTabActivityManager mCustomTabsManager = CustomTabActivityManager.getInstance();
 						mCustomTabsSession = getSession();
 						CustomTabUiBuilder uiBuilder = new CustomTabUiBuilder();
@@ -484,6 +486,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	private boolean isChromeDefaultBrowser() {
+		Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
+		ResolveInfo resolveInfo = getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        Log.v(TAG, "Default Browser is: " + resolveInfo.loadLabel(getPackageManager()).toString());
+		return (resolveInfo.loadLabel(getPackageManager()).toString().contains("Chrome"));
 	}
 
 	private boolean bindCustomTabsService() {
