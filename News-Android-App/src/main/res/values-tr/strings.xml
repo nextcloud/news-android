@@ -79,9 +79,17 @@
   <string name="pull_to_refresh_updateFolder">Klasör eşitleniyor</string>
   <string name="pull_to_refresh_updateFeeds">Beslemeler eşitleniyor</string>
   <string name="pull_to_refresh_updateItems">Ögeler eşitleniyor</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Şimdiye kadar %d öge eşlendi...</item>
+    <item quantity="other">Şimdiye kadar %d öge eşlendi...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ayarlar</string>
   <string name="cache_is_cleared">Önbellek temizlendi!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Dosya</item>
+    <item quantity="other">%d Dosya</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Genel</string>
   <string name="pref_title_general_sort_order">Sıralama Şekli</string>
@@ -110,6 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Ana Makine Doğrulamayı Devre Dışı Bırak</string>
   <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezin</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu işaretle</string>
+  <string name="pref_title_OpenInBrowserDirectly">Makaleleri görüntülemek için harici tarayıcı kullan</string>
   <string name="pref_title_notification_new_articles_available">Yeni makaleler kullanılabilir olduğunda bildirim göster</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>

@@ -5,8 +5,8 @@
   <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronização</string>
   <string name="title_activity_news_detail">NotíciasDetalheAtividade</string>
   <string name="title_activity_subscription">SubscriçãoAtividade</string>
-  <string name="title_newsreader_list">NewsReader</string>
-  <string name="title_newsreader_detail">NewsReader Detail</string>
+  <string name="title_newsreader_list">Leitor de Notícias</string>
+  <string name="title_newsreader_detail">Leitor de Notícias - Detalhe</string>
   <string name="empty_view_header">Informação</string>
   <string name="empty_view_content">Sem itens aqui</string>
   <string name="toast_GettingMoreItems">Foi iniciada a transferência de mais itens... Por favor, aguarde.</string>
@@ -118,6 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Desativar a Verificação do Nome do Hopsedeiro</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegue com os botões do volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto rolar com o rato</string>
+  <string name="pref_title_OpenInBrowserDirectly">Usar navegador externo para ver artigos</string>
   <string name="pref_title_notification_new_articles_available">Mostrar notificações quando existirem novos artigos</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aceitar os certificados desconhecidos?</string>
