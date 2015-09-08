@@ -77,6 +77,17 @@ Updates
 ---------------------
 
 
+0.9.6.3 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/399">#399 Missing scroll indicator in article list</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/401">#401 "Open in browser" not using default browser</a>
+
+
+0.9.6.2 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/394">#394 back button doesn't work correct</a>
+
+
 0.9.6.1 (Google Play)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/381">#381 Back button doesn't work correct in articles</a>
