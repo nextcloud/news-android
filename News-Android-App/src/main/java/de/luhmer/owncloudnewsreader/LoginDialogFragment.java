@@ -188,6 +188,8 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 						ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
 					}
 				});
+				// Limit button width to not push positive button out of view
+				neutralButton.setMaxEms(10);
 			}
 			Button positiveButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
 			positiveButton.setOnClickListener(new View.OnClickListener() {
