@@ -279,8 +279,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
 
             NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) ndf.getRecyclerView().getAdapter();
-			outState.putInt(LIST_ADAPTER_TOTAL_COUNT, adapter.getTotalItemCount());
-            outState.putInt(LIST_ADAPTER_PAGE_COUNT, adapter.getCachedPages());
+			if(adapter != null) {
+				outState.putInt(LIST_ADAPTER_TOTAL_COUNT, adapter.getTotalItemCount());
+				outState.putInt(LIST_ADAPTER_PAGE_COUNT, adapter.getCachedPages());
+			}
         }
     }
 
