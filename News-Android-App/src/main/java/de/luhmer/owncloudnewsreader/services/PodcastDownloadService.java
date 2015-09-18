@@ -21,7 +21,6 @@ import java.security.MessageDigest;
 
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
-import de.luhmer.owncloudnewsreader.helper.JavaYoutubeDownloader;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
 /**
@@ -105,9 +104,6 @@ public class PodcastDownloadService extends IntentService {
 
 
     public static String getUrlToPodcastFile(Context context, String WEB_URL_TO_FILE, boolean createDir) {
-        if(WEB_URL_TO_FILE.contains(JavaYoutubeDownloader.host))
-            return getUrlToYoutubePodcastFile(context, WEB_URL_TO_FILE, createDir);
-
         File file = new File(WEB_URL_TO_FILE);
 
         String path = FileUtils.getPathPodcasts(context) + "/" + getHashOfString(WEB_URL_TO_FILE) + "/";
@@ -116,15 +112,6 @@ public class PodcastDownloadService extends IntentService {
 
         return path + file.getName();
     }
-
-    private static String getUrlToYoutubePodcastFile(Context context, String WEB_URL_TO_FILE, boolean createDir) {
-        String path = FileUtils.getPathPodcasts(context) + "/" + getHashOfString(WEB_URL_TO_FILE) + "/";
-        if(createDir)
-            new File(path).mkdirs();
-
-        return path + "video.mp4";
-    }
-
 
     public static String getHashOfString(String WEB_URL_TO_FILE)
     {
@@ -148,17 +135,6 @@ public class PodcastDownloadService extends IntentService {
             String urlTemp = podcast.link;
             String path = getUrlToPodcastFile(this, urlTemp, true);
 
-            if(podcast.link.contains(JavaYoutubeDownloader.host)) {
-
-                path = getUrlToPodcastFile(context, urlTemp, true);
-
-                try {
-                    urlTemp = new JavaYoutubeDownloader().getDownloadUrl(podcast.link, context);
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }
-
-            }
             URL url = new URL(urlTemp);
             URLConnection connection = url.openConnection();
             connection.connect();
