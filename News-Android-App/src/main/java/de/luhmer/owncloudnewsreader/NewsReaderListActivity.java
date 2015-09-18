@@ -221,13 +221,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		{
 			//Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
 
-			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-			if(ndf != null) {
-				//ndf.reloadAdapterFromScratch();
-				ndf.UpdateCurrentRssView(NewsReaderListActivity.this);
-			}
+			updateCurrentRssView();
 		}
 	};
+
+
 
 	private static final String ID_FEED_STRING = "ID_FEED_STRING";
 	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
@@ -339,6 +337,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             nlf.ListViewNotifyDataSetChanged();
         }
     }
+
+	private void updateCurrentRssView() {
+		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+		if(ndf != null) {
+			//ndf.reloadAdapterFromScratch();
+			ndf.UpdateCurrentRssView(NewsReaderListActivity.this);
+		}
+	}
 
 	@Override
 	protected void onStart() {
@@ -452,33 +458,50 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					Handler refresh = new Handler(Looper.getMainLooper());
 					refresh.post(new Runnable() {
 						public void run() {
-							NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
-							newsReaderListFragment.ReloadAdapter();
-							UpdateItemList();
-							UpdatePodcastView();
-
-							SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
-							int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
-							if(newItemsCount > 0) {
-								Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
-										getResources().getQuantityString(R.plurals.message_bar_new_articles_available,newItemsCount,newItemsCount),
-										Snackbar.LENGTH_LONG);
-								snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
-								snackbar.setActionTextColor(getResources().getColor(R.color.accent_material_dark));
-								// Setting android:TextColor to #000 in the light theme results in black on black
-								// text on the Snackbar, set the text back to white,
-								// TODO: find a cleaner way to do this
-								TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-								textView.setTextColor(Color.WHITE);
-								snackbar.show();
-							}
+                            syncFinishedHandler();
 						}
 					});
 					break;
 			}
 		}
-
 	};
+
+    /**
+     *
+     * @return true if new items count was greater than 0
+     */
+    private boolean syncFinishedHandler() {
+        NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
+        newsReaderListFragment.ReloadAdapter();
+        UpdateItemList();
+        UpdatePodcastView();
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
+        int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
+
+        if(newItemsCount > 0) {
+            int firstVisiblePosition = getNewsReaderDetailFragment().getFirstVisibleScrollPosition();
+
+            //Only show the update snackbar if scrollposition is not top.
+            if(firstVisiblePosition == 0) {
+                updateCurrentRssView();
+            } else {
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
+                        getResources().getQuantityString(R.plurals.message_bar_new_articles_available, newItemsCount, newItemsCount),
+                        Snackbar.LENGTH_LONG);
+                snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
+                snackbar.setActionTextColor(getResources().getColor(R.color.accent_material_dark));
+                // Setting android:TextColor to #000 in the light theme results in black on black
+                // text on the Snackbar, set the text back to white,
+                // TODO: find a cleaner way to do this
+                TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+                textView.setTextColor(Color.WHITE);
+                snackbar.show();
+            }
+            return true;
+        }
+        return false;
+    }
 
 	@Override
 	protected void onResume() {
@@ -759,10 +782,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-			if(ndf != null)
-				ndf.UpdateCurrentRssView(NewsReaderListActivity.this);
-
+			updateCurrentRssView();
 			Log.v(TAG, "Finished Download extra items..");
 		}
 	};
@@ -825,7 +845,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     {
         getNewsReaderDetailFragment().notifyDataSetChangedOnAdapter();
     }
-	@Override
+
+    @Override
 	public void onClick(ViewHolder vh, int position) {
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -835,7 +856,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
             startActivity(browserIntent);
 
-            ((NewsListRecyclerAdapter)getNewsReaderDetailFragment().getRecyclerView().getAdapter()).ChangeReadStateOfItem(vh, true);
+            ((NewsListRecyclerAdapter) getNewsReaderDetailFragment().getRecyclerView().getAdapter()).ChangeReadStateOfItem(vh, true);
 		} else {
 			Intent intentNewsDetailAct = new Intent(this, NewsDetailActivity.class);
 

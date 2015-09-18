@@ -263,7 +263,7 @@ public class NewsReaderDetailFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             pbLoading.setVisibility(View.VISIBLE);
-            tvNoItemsAvailable.setVisibility(View.INVISIBLE);
+            tvNoItemsAvailable.setVisibility(View.GONE);
 
             sortDirection = getSortDirection(context);
 
@@ -320,7 +320,7 @@ public class NewsReaderDetailFragment extends Fragment {
                 if(nra.getItemCount() <= 0) {
                     tvNoItemsAvailable.setVisibility(View.VISIBLE);
                 } else {
-                    tvNoItemsAvailable.setVisibility(View.INVISIBLE);
+                    tvNoItemsAvailable.setVisibility(View.GONE);
                 }
 
                 recyclerView.scrollToPosition(0);
@@ -447,4 +447,13 @@ public class NewsReaderDetailFragment extends Fragment {
 
         outState.putParcelable(LAYOUT_MANAGER_STATE, getLayoutManager().onSaveInstanceState());
     }
+
+
+    public int getFirstVisibleScrollPosition() {
+        LinearLayoutManager layoutManager = ((LinearLayoutManager)recyclerView.getLayoutManager());
+        int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
+        return firstVisiblePosition;
+    }
+
+
 }
