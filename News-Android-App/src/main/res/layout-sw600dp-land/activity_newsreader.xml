@@ -24,7 +24,7 @@
 
                 <FrameLayout
                     android:id="@+id/left_drawer"
-                    android:layout_width="@dimen/navigation_max_width"
+                    android:layout_width="@dimen/design_navigation_max_width"
                     android:layout_height="match_parent"
                     android:layout_gravity="start" />
 
