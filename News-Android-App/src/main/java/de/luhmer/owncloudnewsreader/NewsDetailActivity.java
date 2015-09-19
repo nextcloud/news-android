@@ -406,25 +406,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 					if(isChromeDefaultBrowser() && mCustomTabsSupported) {
 						mCustomTabsSession = getSession();
 						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
-
 						builder.setToolbarColor(getResources().getColor(R.color.colorPrimaryDarkTheme));
 						builder.setShowTitle(true);
 						//builder.setCloseButtonIcon(CustomTabUiBuilder.CLOSE_BUTTON_ARROW);
 						builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
 						builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-
-						/*
-						CustomTabActivityManager mCustomTabsManager = CustomTabActivityManager.getInstance();
-						mCustomTabsSession = getSession();
-						CustomTabUiBuilder uiBuilder = new CustomTabUiBuilder();
-						uiBuilder.setToolbarColor(getResources().getColor(R.color.colorPrimaryDarkTheme));
-						uiBuilder.setShowTitle(true);
-						uiBuilder.setCloseButtonStyle(CustomTabUiBuilder.CLOSE_BUTTON_ARROW);
-						//prepareMenuItems(uiBuilder);
-						//prepareActionButton(uiBuilder);
-						uiBuilder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-						uiBuilder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-						*/
 						builder.build().launchUrl(this, Uri.parse(link));
 					} else {
 						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
