@@ -73,8 +73,15 @@ Contributors
 
 Updates
 ==================================
-0.9.7 (in development)
+0.9.8 (in development)
 ---------------------
+
+
+0.9.7 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/393">#393 Login button might get cropped / completely hidden</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/407">#407 Auto reload news after sync</a>
+- Bug fixes
 
 
 0.9.6.3 (Google Play)
