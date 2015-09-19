@@ -1,7 +1,9 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
@@ -22,6 +24,7 @@ import butterknife.InjectView;
 import butterknife.Optional;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
@@ -78,9 +81,13 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private final int LengthBody = 400;
     private ForegroundColorSpan bodyForegroundColor;
     private boolean playing;
+    private int selectedListLayout;
 
     public ViewHolder(View itemView, int titleLineCount) {
         super(itemView);
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(itemView.getContext());
+        selectedListLayout = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"));
 
         bodyForegroundColor = new ForegroundColorSpan(itemView.getContext().getResources().getColor(android.R.color.secondary_text_dark));
 
@@ -189,14 +196,21 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         if(textViewTitle != null)
             textViewTitle.setText(title);
 
-        if(textViewBody != null)
+        if(textViewBody != null) {
             // Strip html from String
-            textViewBody.setText(getBodyText(body));
+
+            if(selectedListLayout == 3) {
+                textViewBody.setMaxLines(200);
+                textViewBody.setText(getBodyText(body, false));
+            } else {
+                textViewBody.setText(getBodyText(body, true));
+            }
+        }
 
         if(textViewItemDate != null)
             textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
 
-        if(imgViewFavIcon != null)
+        if (imgViewFavIcon != null)
             favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon);
 
         if(webView_body != null) {
@@ -213,7 +227,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         this.stayUnread = shouldStayUnread;
     }
 
-    private String getBodyText(String body)
+    private String getBodyText(String body, boolean limitLength)
     {
         body = body.replaceAll("<img[^>]*>", "");
         body = body.replaceAll("<video[^>]*>", "");
@@ -223,7 +237,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         String bodyString = bodyStringSpannable.toString().trim();
 
-        if(bodyString.length() > LengthBody)
+
+        if(limitLength && bodyString.length() > LengthBody)
             bodyString = bodyString.substring(0, LengthBody) + "...";
 
         return bodyString;

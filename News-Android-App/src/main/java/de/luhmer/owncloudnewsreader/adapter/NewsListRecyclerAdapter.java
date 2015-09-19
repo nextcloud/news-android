@@ -158,8 +158,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
             return new ProgressViewHolder(v);
         } else {
-
-
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
             Integer layout = 0;
             switch (Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"))) {
@@ -167,6 +165,9 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                     layout = R.layout.subscription_detail_list_item_simple;
                     break;
                 case 1:
+                    layout = R.layout.subscription_detail_list_item_extended;
+                    break;
+                case 3:
                     layout = R.layout.subscription_detail_list_item_extended;
                     break;
                 case 2:
