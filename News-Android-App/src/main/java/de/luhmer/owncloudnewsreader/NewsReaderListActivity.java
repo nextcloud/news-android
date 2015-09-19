@@ -831,9 +831,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	   	LoginDialogFragment dialog = LoginDialogFragment.getInstance();
 	   	dialog.setActivity(activity);
 	   	dialog.setListener(new LoginSuccessfullListener() {
-
             @Override
             public void LoginSucceeded() {
+                ((NewsReaderListActivity) activity).getSlidingListFragment().ReloadAdapter();
+                ((NewsReaderListActivity) activity).updateCurrentRssView();
                 ((NewsReaderListActivity) activity).startSync();
             }
         });
