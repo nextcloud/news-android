@@ -65,23 +65,6 @@ public class CustomTabActivityManager {
         }
     }
 
-    /**
-     * Launches a CustomTabs activity with a given URL.
-     *
-     * @param context Activity context used to launch the CustomTabs activity.
-     * @param session As returned by {@link CustomTabsClient#newSession(CustomTabsCallback)}
-     * @param url URL to load in the CustomTabs activity
-     * @param uiBuilder UI customizations
-     */
-    public static void launchUrl(
-            Activity context, CustomTabsSession session, String url, CustomTabUiBuilder uiBuilder) {
-        Intent intent = session.getViewIntent(Uri.parse(url));
-        intent.putExtras(uiBuilder.getExtraBundle());
-        Intent keepAliveIntent = new Intent().setClassName(
-                context.getPackageName(), KeepAliveService.class.getCanonicalName());
-        intent.putExtra(EXTRA_CUSTOM_TABS_KEEP_ALIVE, keepAliveIntent);
-        context.startActivity(intent, uiBuilder.getStartBundle());
-    }
 
     /**
      * Goes through all apps that handle VIEW intents and have a warmup service. Picks

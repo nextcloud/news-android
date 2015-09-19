@@ -36,6 +36,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.customtabs.CustomTabsCallback;
 import android.support.customtabs.CustomTabsClient;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
 import android.support.v4.app.Fragment;
@@ -403,6 +404,16 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 				if(link.length() > 0)
 				{
 					if(isChromeDefaultBrowser() && mCustomTabsSupported) {
+						mCustomTabsSession = getSession();
+						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
+
+						builder.setToolbarColor(getResources().getColor(R.color.colorPrimaryDarkTheme));
+						builder.setShowTitle(true);
+						//builder.setCloseButtonIcon(CustomTabUiBuilder.CLOSE_BUTTON_ARROW);
+						builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+						builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+
+						/*
 						CustomTabActivityManager mCustomTabsManager = CustomTabActivityManager.getInstance();
 						mCustomTabsSession = getSession();
 						CustomTabUiBuilder uiBuilder = new CustomTabUiBuilder();
@@ -413,7 +424,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 						//prepareActionButton(uiBuilder);
 						uiBuilder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
 						uiBuilder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-						mCustomTabsManager.launchUrl(this, mCustomTabsSession, link, uiBuilder);
+						*/
+						builder.build().launchUrl(this, Uri.parse(link));
 					} else {
 						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
 						startActivity(browserIntent);
@@ -522,17 +534,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		if (mCustomTabsClient == null) {
 			mCustomTabsSession = null;
 		} else if (mCustomTabsSession == null) {
-			mCustomTabsSession = mCustomTabsClient.newSession(new CustomTabsCallback() {
-				@Override
-				public void onUserNavigationStarted(Uri url, Bundle extras) {
-					Log.w(TAG, "onUserNavigationStarted: url = " + url.toString());
-				}
-
-				@Override
-				public void onUserNavigationFinished(Uri url, Bundle extras) {
-					Log.w(TAG, "onUserNavigationFinished: url = " + url.toString());
-				}
-			});
+			mCustomTabsSession = mCustomTabsClient.newSession(new CustomTabsCallback());
 		}
 		return mCustomTabsSession;
 	}
