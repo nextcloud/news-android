@@ -24,7 +24,9 @@ package de.luhmer.owncloudnewsreader.reader;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
+import com.nostra13.universalimageloader.core.download.ImageDownloader;
 import com.squareup.okhttp.Credentials;
 import com.squareup.okhttp.HttpUrl;
 import com.squareup.okhttp.Interceptor;
@@ -70,11 +72,14 @@ public class HttpJsonRequest {
     }
 
     private final OkHttpClient client;
+    private final OkHttpClient imageClient;
+
     private String credentials;
     private HttpUrl oc_root_url;
 
     private HttpJsonRequest(Context context) {
         client = new OkHttpClient();
+
         // set location of the keystore
         MemorizingTrustManager.setKeyStoreFile("private", "sslkeys.bks");
 
@@ -103,6 +108,7 @@ public class HttpJsonRequest {
                     return true;
                 }
             });
+        imageClient = client.clone();
         client.interceptors().add(new AuthorizationInterceptor());
 
         setCredentials(sp.getString(SettingsActivity.EDT_USERNAME_STRING, null), sp.getString(SettingsActivity.EDT_PASSWORD_STRING, null), sp.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null));
@@ -135,7 +141,11 @@ public class HttpJsonRequest {
         }
     }
 
-	public InputStream PerformJsonRequest(String urlString, HashMap<String,String> nameValuePairs) throws Exception
+    public OkHttpClient getImageClient() {
+        return imageClient;
+    }
+
+    public InputStream PerformJsonRequest(String urlString, HashMap<String,String> nameValuePairs) throws Exception
 	{
         HttpUrl.Builder urlBuilder = HttpUrl.parse(API.validateURL(urlString)).newBuilder();
 

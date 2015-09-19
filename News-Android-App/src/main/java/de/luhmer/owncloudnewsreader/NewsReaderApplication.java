@@ -10,6 +10,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
+import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
 
 /**
  * Created by daniel on 12.07.15.
@@ -18,8 +19,8 @@ public class NewsReaderApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initImageLoader();
         HttpJsonRequest.init(this);
+        initImageLoader();
     }
 
     public void initImageLoader() {
@@ -36,6 +37,7 @@ public class NewsReaderApplication extends Application {
                 memoryCacheSize(10 * 1024 * 1024).
                 diskCacheFileNameGenerator(new Md5FileNameGenerator()).
                 defaultDisplayImageOptions(imageOptions).
+                imageDownloader(new OkHttpImageDownloader(this, HttpJsonRequest.getInstance().getImageClient())).
                 build();
         ImageLoader.getInstance().init(config);
     }
