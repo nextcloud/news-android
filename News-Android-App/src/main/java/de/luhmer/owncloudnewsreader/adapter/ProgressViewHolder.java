@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 public class ProgressViewHolder extends RecyclerView.ViewHolder {
     public ProgressBar progressBar;

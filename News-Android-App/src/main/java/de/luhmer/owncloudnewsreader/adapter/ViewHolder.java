@@ -20,7 +20,6 @@ import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.Optional;
-
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;

@@ -2,7 +2,6 @@ package de.luhmer.owncloudnewsreader.model;
 
 import java.util.List;
 
-import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
 /**

@@ -1,13 +1,8 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,8 +19,6 @@ import java.util.HashSet;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
-
-import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;

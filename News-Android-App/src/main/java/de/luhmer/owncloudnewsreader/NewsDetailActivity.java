@@ -59,7 +59,6 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.chrometabs.CustomTabActivityManager;
 import de.luhmer.owncloudnewsreader.chrometabs.CustomTabUiBuilder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -69,8 +68,6 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
-import de.luhmer.owncloudnewsreader.reader.IReader;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 public class NewsDetailActivity extends PodcastFragmentActivity {

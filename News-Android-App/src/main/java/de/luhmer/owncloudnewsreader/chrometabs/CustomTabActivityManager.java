@@ -14,16 +14,13 @@
 
 package de.luhmer.owncloudnewsreader.chrometabs;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.support.customtabs.CustomTabsCallback;
 import android.support.customtabs.CustomTabsService;
-import android.support.customtabs.CustomTabsSession;
 import android.text.TextUtils;
 import android.util.Log;
 
