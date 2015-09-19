@@ -14,15 +14,6 @@
         android:background="?attr/dividerLineColor"
         android:layout_marginEnd="@dimen/listview_row_margin_left"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/star_imageview"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_action_star_light"
-        android:layout_marginEnd="@dimen/listview_row_margin_left"
-        android:tint="?attr/starredColor" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,14 +77,27 @@
             android:layout_toLeftOf="@+id/podcast_wrapper"
             android:layout_alignBaseline="@id/tv_subscription"/>
 
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/star_imageview"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_action_star_dark"
+            android:tint="?attr/starredColor"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+
         <include
             layout="@layout/subscription_detail_list_item_podcast_wrapper"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:id="@+id/podcast_wrapper" />
+            android:layout_marginTop="6dp"
+            android:id="@+id/podcast_wrapper"
+            android:layout_toLeftOf="@id/star_imageview"/>
 
     </RelativeLayout>
 

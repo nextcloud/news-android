@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -178,14 +179,10 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
             final ViewHolder holder = new ViewHolder(view, titleLineCount);
 
-            holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
+            holder.starImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    if (holder.isPlaying()) {
-                        playPausePodcastClicked.pausePodcast();
-                    } else {
-                        playPausePodcastClicked.openPodcast(holder.getRssItem());
-                    }
+                public void onClick(View view) {
+                    toggleStarredStateOfItem(holder);
                 }
             });
 
@@ -198,8 +195,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
         if(viewHolder instanceof ProgressViewHolder) {
             ((ProgressViewHolder) viewHolder).progressBar.setIndeterminate(true);
         } else {
-            ViewHolder holder = (ViewHolder) viewHolder;
-            final RssItem item = lazyList.get(position);
+            final ViewHolder holder = (ViewHolder) viewHolder;
+            RssItem item = lazyList.get(position);
 
             holder.setRssItem(item);
 
@@ -216,6 +213,17 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                 holder.setPlaying(isPlaying);
 
                 holder.setDownloadPodcastProgressbar();
+
+                holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (holder.isPlaying()) {
+                            playPausePodcastClicked.pausePodcast();
+                        } else {
+                            playPausePodcastClicked.openPodcast(holder.getRssItem());
+                        }
+                    }
+                });
             } else {
                 holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
             }

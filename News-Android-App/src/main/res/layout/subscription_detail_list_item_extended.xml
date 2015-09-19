@@ -15,16 +15,6 @@
         android:layout_marginEnd="@dimen/listview_row_margin_left"
         android:layout_marginRight="@dimen/listview_row_margin_left"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/star_imageview"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_action_star_light"
-        android:layout_marginEnd="@dimen/listview_row_margin_left"
-        android:layout_marginRight="@dimen/listview_row_margin_left"
-        android:tint="?attr/starredColor" />
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,15 +107,30 @@
             android:layout_toLeftOf="@+id/podcast_wrapper"
             android:layout_toStartOf="@+id/podcast_wrapper"/>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/star_imageview"
+            android:layout_marginTop="15dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="8dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_action_star_light"
+            android:tint="?attr/starredColor"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+
         <include
             layout="@layout/subscription_detail_list_item_podcast_wrapper"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="32dp"
             android:id="@+id/podcast_wrapper"
-            android:layout_margin="5dp"/>
+            android:layout_toLeftOf="@id/star_imageview" />
 
     </RelativeLayout>
 </LinearLayout>

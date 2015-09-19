@@ -1,6 +1,8 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -12,6 +14,7 @@ import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -28,6 +31,7 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
@@ -40,7 +44,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     @Optional
     @InjectView(R.id.star_imageview)
-    protected View starImageView;
+    protected ImageView starImageView;
 
     @InjectView(R.id.summary)
     protected TextView textViewSummary;
@@ -94,7 +98,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         if(favIconHandler == null)
             favIconHandler = new FavIconHandler(itemView.getContext());
         ButterKnife.inject(this, itemView);
-        if(textViewSummary != null) textViewSummary.setLines(titleLineCount);
+        if(textViewSummary != null)
+            textViewSummary.setLines(titleLineCount);
+
         itemView.setOnClickListener(this);
     }
 
@@ -151,10 +157,15 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     }
 
     public void setStarred(boolean isStarred) {
-        if(isStarred)
-            starImageView.setVisibility(View.VISIBLE);
-        else
-            starImageView.setVisibility(View.GONE);
+        boolean isDarkTheme = ThemeChooser.isDarkTheme(starImageView.getContext());
+        int color = isDarkTheme ? Color.LTGRAY : Color.GRAY;
+        if(isStarred) {
+            int[] attribute = new int[]{ R.attr.starredColor };
+            TypedArray array = starImageView.getContext().getTheme().obtainStyledAttributes(attribute);
+            color = array.getColor(0, Color.TRANSPARENT);
+            array.recycle();
+        }
+        starImageView.setColorFilter(color);
     }
 
     public void setPlaying(boolean playing) {

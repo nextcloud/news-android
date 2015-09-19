@@ -387,10 +387,12 @@ public class NewsReaderDetailFragment extends Fragment {
         @Override
         public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int direction) {
             final NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
+
             if(direction == ItemTouchHelper.LEFT) {
                 adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
             } else if(direction == ItemTouchHelper.RIGHT) {
-                adapter.toggleStarredStateOfItem((ViewHolder) viewHolder);
+                //adapter.toggleStarredStateOfItem((ViewHolder) viewHolder);
+                adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
             }
             // Hack to reset view, see https://code.google.com/p/android/issues/detail?id=175798
             recyclerView.removeView(viewHolder.itemView);
@@ -410,7 +412,8 @@ public class NewsReaderDetailFragment extends Fragment {
                     drawable = markAsReadDrawable;
                     viewRect.left = (int) dX + viewRect.right;
                 } else {
-                    drawable = starredDrawable;
+                    //drawable = starredDrawable;
+                    drawable = markAsReadDrawable;
                     viewRect.right = (int) dX - viewRect.left;
                 }
 
