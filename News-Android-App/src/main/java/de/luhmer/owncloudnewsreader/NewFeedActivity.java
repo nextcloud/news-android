@@ -218,10 +218,7 @@ public class NewFeedActivity extends AppCompatActivity {
             API api = new APIv2(NewFeedActivity.this);
 
             try {
-                int status = HttpJsonRequest.performCreateFeedRequest(api.getFeedUrl(),
-                                api.getUsername(),
-                                api.getPassword(),
-                                NewFeedActivity.this,
+                int status = HttpJsonRequest.getInstance().performCreateFeedRequest(api.getFeedUrl(),
                                 mUrlToFeed, mFolderId);
 
                 if(status == 200) {

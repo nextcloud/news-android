@@ -21,27 +21,27 @@
 
 package de.luhmer.owncloudnewsreader.reader;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Base64;
+
+import com.squareup.okhttp.Credentials;
+import com.squareup.okhttp.HttpUrl;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
-import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 
@@ -51,32 +51,90 @@ import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.TLSSocketFactory;
 
 public class HttpJsonRequest {
-	//private static final String TAG = "HttpJsonRequest";
+    private static final String TAG = "HttpJsonRequest";
 
-	@SuppressLint("DefaultLocale")
-	public static InputStream PerformJsonRequest(String urlString, HashMap<String,String> nameValuePairs, final String username, final String password, Context context) throws Exception
-	{
-		if(nameValuePairs != null) {
-            urlString += getUrlEncodedString(nameValuePairs);
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+    private static HttpJsonRequest instance;
+
+    public static void init(Context context) {
+        if(instance != null)
+            throw new IllegalStateException("Already initialized");
+        instance = new HttpJsonRequest(context);
+    }
+
+    public static HttpJsonRequest getInstance() {
+        if(instance == null)
+            throw new IllegalStateException("Must be initialized first");
+        return instance;
+    }
+
+    private final OkHttpClient client;
+
+    private HttpJsonRequest(Context context) {
+        client = new OkHttpClient();
+        // set location of the keystore
+        MemorizingTrustManager.setKeyStoreFile("private", "sslkeys.bks");
+
+        // register MemorizingTrustManager for HTTPS
+        try {
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, MemorizingTrustManager.getInstanceList(context),
+                    new java.security.SecureRandom());
+            // enables TLSv1.1/1.2 for Jelly Bean Devices
+            TLSSocketFactory tlsSocketFactory = new TLSSocketFactory(sc);
+            client.setSslSocketFactory(tlsSocketFactory);
+        } catch (KeyManagementException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
 
-		URL url = new URL(API.validateURL(urlString));
+        client.setConnectTimeout(10000, TimeUnit.MILLISECONDS);
+        client.setReadTimeout(120, TimeUnit.SECONDS);
 
-		HttpURLConnection urlConnection = getUrlConnection(url, context, username, password);
-		//HttpsURLConnection urlConnection = null;
+        // disable hostname verification, when preference is set
+        // (this still shows a certification dialog, which requires user interaction!)
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        if(sp.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false))
+            client.setHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+        client.interceptors().add(new AuthorizationInterceptor(sp));
+    }
 
+    private class AuthorizationInterceptor implements Interceptor {
+        private SharedPreferences sp;
 
-		// Define an array of pins.  One of these must be present
-		// in the certificate chain you receive.  A pin is a hex-encoded
-		// hash of a X.509 certificate's SubjectPublicKeyInfo. A pin can
-		// be generated using the provided pin.py script:
-		// python ./tools/pin.py certificate_file.pem
+        public AuthorizationInterceptor(SharedPreferences sp) {
+            this.sp = sp;
+        }
 
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
 
-		//String[] pins                 = new String[] {"f30012bbc18c231ac1a44b788e410ce754182513"};
-		//HttpsURLConnection urlConnection = PinningHelper.getPinnedHttpsURLConnection(context, pins, url);
+            request = request.newBuilder()
+                .addHeader("Authorization",Credentials.basic(sp.getString(SettingsActivity.EDT_USERNAME_STRING, null),sp.getString(SettingsActivity.EDT_PASSWORD_STRING, null)))
+                .build();
+            return chain.proceed(request);
+        }
+    }
 
+	public InputStream PerformJsonRequest(String urlString, HashMap<String,String> nameValuePairs) throws Exception
+	{
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(API.validateURL(urlString)).newBuilder();
 
+		if(nameValuePairs != null) {
+            for(String key: nameValuePairs.keySet())
+                urlBuilder.addQueryParameter(key,nameValuePairs.get(key));
+        }
+
+        Request request = new Request.Builder()
+                .url(urlBuilder.build())
+                .get()
+                .build();
 
 		//http://nelenkov.blogspot.de/2011/12/using-custom-certificate-trust-store-on.html
 		//http://stackoverflow.com/questions/5947162/https-and-self-signed-certificate-issue
@@ -84,126 +142,45 @@ public class HttpJsonRequest {
 		//http://stackoverflow.com/questions/859111/how-do-i-accept-a-self-signed-certificate-with-a-java-httpsurlconnection
 		//http://developer.android.com/training/articles/security-ssl.html
 
-        urlConnection.setDoOutput(false);
-        urlConnection.setDoInput(true);
-        urlConnection.setRequestMethod("GET");
-        //urlConnection.setFollowRedirects(true);
-        urlConnection.setUseCaches(false);
-        urlConnection.setConnectTimeout(10000);
-        urlConnection.setReadTimeout(120000);//2min
-        urlConnection.setRequestProperty("Content-Type","application/json");
-
-
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
         //	CookieHandler.setDefault(new CookieManager());
 
+        Response response = client.newCall(request).execute();
 
-        urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:28.0) Gecko/20100101 Firefox/28.0");
-        //urlConnection.setRequestProperty("Host", "de.luhmer.ownCloudNewsReader");
-        urlConnection.connect();
-
-        int HttpResult = urlConnection.getResponseCode();
-        if(HttpResult == HttpURLConnection.HTTP_OK) {
-        	return urlConnection.getInputStream();
+        if(response.isSuccessful()) {
+        	return response.body().byteStream();
         } else {
-     		throw new Exception(urlConnection.getResponseMessage());
+            throw new Exception(response.message());
         }
 	}
 
-    private static String getUrlEncodedString(HashMap<String, String> nameValuePairs) throws UnsupportedEncodingException {
-        String urlString = "";
-        for(Entry<String,String> entry: nameValuePairs.entrySet()) {
-            urlString += String.format("&%s=%s", URLEncoder.encode(entry.getKey(), "UTF-8"), URLEncoder.encode(entry.getValue(), "UTF-8"));
-        }
-        return urlString;
+    public int performCreateFeedRequest(String urlString, String feedUrl, long folderId) throws Exception {
+        HttpUrl url = HttpUrl.parse(API.validateURL(urlString)).newBuilder()
+                .setQueryParameter("url", feedUrl)
+                .setQueryParameter("folderId", String.valueOf(folderId))
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(RequestBody.create(JSON, ""))
+                .build();
+
+        Response response = client.newCall(request).execute();
+
+        return response.code();
     }
 
-
-    private static HttpURLConnection getUrlConnection(URL url, Context context, String username, String password) throws IOException, KeyManagementException, NoSuchAlgorithmException {
-		URLConnection urlConnection = url.openConnection();
-
-		// If https is used, use MemorizingTrustManager for certificate verification
-		if (urlConnection instanceof HttpsURLConnection) {
-			HttpsURLConnection httpsURLConnection = (HttpsURLConnection) urlConnection;
-
-			// set location of the keystore
-			MemorizingTrustManager.setKeyStoreFile("private", "sslkeys.bks");
-
-			// register MemorizingTrustManager for HTTPS
-			SSLContext sc = SSLContext.getInstance("TLS");
-			sc.init(null, MemorizingTrustManager.getInstanceList(context),
-					new java.security.SecureRandom());
-
-            // enables TLSv1.1/1.2 for Jelly Bean Devices
-            TLSSocketFactory tlsSocketFactory = new TLSSocketFactory(sc);
-
-            httpsURLConnection.setSSLSocketFactory(tlsSocketFactory);
-
-
-			// disable redirects to reduce possible confusion
-			//httpsURLConnection.setFollowRedirects(false);
-
-			// disable hostname verification, when preference is set
-			// (this still shows a certification dialog, which requires user interaction!)
-			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-	        if(sp.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false))
-	        	httpsURLConnection.setHostnameVerifier(new HostnameVerifier() {
-                    @Override
-                    public boolean verify(String hostname, SSLSession session) {
-                        return true;
-                    }
-                });
-	        else
-	        	httpsURLConnection.setHostnameVerifier(HttpsURLConnection.getDefaultHostnameVerifier());
-		}
-
-		if(username != null && password != null) {
-            urlConnection.setRequestProperty("Authorization", "Basic " + Base64.encodeToString((username + ":" + password).getBytes(), Base64.NO_WRAP));
-        }
-
-		return (HttpURLConnection) urlConnection;
-	}
-
-    public static int performCreateFeedRequest(String urlString, String username, String password, Context context, String feedUrl, long folderId) throws Exception {
-        HashMap<String,String> nameValuePairs = new HashMap<>();
-        nameValuePairs.put("url", feedUrl);
-        nameValuePairs.put("folderId", String.valueOf(folderId));
-        urlString += getUrlEncodedString(nameValuePairs);
-
-
-        URL url = new URL(API.validateURL(urlString));
-        HttpURLConnection urlConnection = getUrlConnection(url, context, username, password);
-        urlConnection.setRequestMethod("POST");
-        urlConnection.setDoOutput(false);
-        urlConnection.setDoInput(true);
-        //urlConnection.setFollowRedirects(true);
-        urlConnection.setUseCaches(false);
-        urlConnection.setConnectTimeout(10000);
-        urlConnection.setReadTimeout(120000);//2min
-        urlConnection.setRequestProperty("Content-Type","application/json");
-
-
-        urlConnection.connect();
-
-        return urlConnection.getResponseCode();
-    }
-
-
-	@SuppressLint("DefaultLocale")
-	public static int performTagChangeRequest(String urlString, String username, String password, Context context, String content) throws Exception
+	public int performTagChangeRequest(String urlString, String content) throws Exception
 	{
-		URL url = new URL(API.validateURL(urlString));
-		HttpURLConnection urlConnection = getUrlConnection(url, context, username, password);
-		urlConnection.setDoOutput(true);
-		urlConnection.setRequestMethod("PUT");
-		urlConnection.setRequestProperty("Content-Type","application/json");
+		HttpUrl url = HttpUrl.parse(API.validateURL(urlString));
 
-		if(content != null) {
-			OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
-			out.write(content);
-			out.close();
-		}
+        Request request = new Request.Builder()
+                .url(url)
+                .put(RequestBody.create(JSON, content))
+                .build();
 
-		return urlConnection.getResponseCode();
+        Response response = client.newCall(request).execute();
+
+		return response.code();
 	}
 }

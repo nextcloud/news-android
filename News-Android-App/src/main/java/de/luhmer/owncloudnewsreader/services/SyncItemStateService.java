@@ -49,10 +49,7 @@ public class SyncItemStateService extends IntentService {
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-		_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTask_GetVersionFinished, username, password);
+		_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTask_GetVersionFinished);
     }
 
 	OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {

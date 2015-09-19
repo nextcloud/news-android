@@ -34,6 +34,8 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,11 +73,8 @@ public class OwnCloudSyncService extends Service {
 			if(!isSyncRunning()) {
 				// Only check for API version once
 				if(_Reader.getApi() == null) {
+					_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished);
 					startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
-					SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
-					String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-					String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-					_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished, username, password);
 				} else {
 					_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
 					startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);

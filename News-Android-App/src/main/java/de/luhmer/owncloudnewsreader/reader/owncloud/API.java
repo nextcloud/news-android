@@ -106,15 +106,6 @@ public abstract class API {
 		return oc_root_path;
 	}
 
-
-	public String getUsername() {
-		return mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-	}
-
-	public String getPassword() {
-		return mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
-	}
-
 	public int[] GetFeeds(Context cont, API api) throws Exception {
 		return OwnCloudReaderMethods.GetFeeds(cont, api);
 	}

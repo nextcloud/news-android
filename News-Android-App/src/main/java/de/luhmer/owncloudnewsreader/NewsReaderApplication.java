@@ -9,6 +9,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
+
 /**
  * Created by daniel on 12.07.15.
  */
@@ -17,6 +19,7 @@ public class NewsReaderApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initImageLoader();
+        HttpJsonRequest.init(this);
     }
 
     public void initImageLoader() {

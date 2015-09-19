@@ -68,9 +68,9 @@ public class OwnCloud_Reader {
 	
 	
 	public void Start_AsyncTask_GetVersion(int task_id,
-			Context context, OnAsyncTaskCompletedListener listener, String username, String password) {
+			Context context, OnAsyncTaskCompletedListener listener) {
 		setSyncRunning(true);
-		new AsyncTask_GetApiVersion(task_id, context, username, password, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }).execute();
+		new AsyncTask_GetApiVersion(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }).execute();
 	}
 
 	public boolean isSyncRunning() {

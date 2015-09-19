@@ -793,7 +793,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		if(username != null) {
 			_Reader = new OwnCloud_Reader();
-			_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTaskGetVersionFinished, username, password);
+			_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTaskGetVersionFinished);
 
 			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 		}

@@ -64,6 +64,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.jakewharton:butterknife:5.1.+'
     compile 'com.sothree.slidinguppanel:library:3.1.1'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'de.greenrobot:eventbus:2.2.1'
     compile 'de.greenrobot:greendao:2.0.0'
     compile 'de.greenrobot:greendao-generator:2.0.0'

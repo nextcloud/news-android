@@ -67,7 +67,7 @@ public class OwnCloudReaderMethods {
 		nVPairs.put("lastModified", String.valueOf(lastSync));
 
 
-    	InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUpdatedUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
+    	InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(api.getItemUpdatedUrl(), nVPairs);
 
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
         try
@@ -104,7 +104,7 @@ public class OwnCloudReaderMethods {
 			nVPairs.put("getRead", "false");
 
 
-		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getItemUrl(), nVPairs, api.getUsername(), api.getPassword(), cont);
+		InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(api.getItemUrl(), nVPairs);
 
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
         try
@@ -122,7 +122,7 @@ public class OwnCloudReaderMethods {
 
 	public static int GetFolderTags(Context cont, API api) throws Exception
 	{
-		InputStream is = HttpJsonRequest.PerformJsonRequest(api.getFolderUrl(), null, api.getUsername(), api.getPassword(), cont);
+		InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFolderUrl(), null);
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
 		int[] result = new int[2];
 		try
@@ -144,7 +144,7 @@ public class OwnCloudReaderMethods {
 
 	public static int[] GetFeeds(Context cont, API api) throws Exception
 	{
-		InputStream inputStream = HttpJsonRequest.PerformJsonRequest(api.getFeedUrl() , null, api.getUsername(), api.getPassword(), cont);
+		InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFeedUrl() , null);
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
 		int result[] = new int[2];
@@ -387,7 +387,7 @@ public class OwnCloudReaderMethods {
         }
         try
         {
-		    int result = HttpJsonRequest.performTagChangeRequest(url, api.getUsername(), api.getPassword(), context, jsonIds);
+		    int result = HttpJsonRequest.getInstance().performTagChangeRequest(url, jsonIds);
 		    //if(result != -1 || result != 405)
 			return (result == 200);
         }
@@ -423,7 +423,7 @@ public class OwnCloudReaderMethods {
         }
         try
         {
-		    int result = HttpJsonRequest.performTagChangeRequest(url, api.getUsername(), api.getPassword(), context, null);
+		    int result = HttpJsonRequest.getInstance().performTagChangeRequest(url, null);
 			return (result == 200);
         }
         catch (Exception ex)
@@ -434,13 +434,13 @@ public class OwnCloudReaderMethods {
 	}
 
 
-	public static String GetVersionNumber(Context cont, String username, String password, String oc_root_path) throws Exception
+	public static String GetVersionNumber(Context cont, String oc_root_path) throws Exception
 	{
 		//Try APIv2
 		try {
 			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv2 + OwnCloudConstants.VERSION_PATH;
             requestUrl = API.validateURL(requestUrl);
-			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);
+			InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl, null);
 			try {
 				GetVersion_v2 gv = new GetVersion_v2();
 				readJsonStreamSimple(is, gv);
@@ -451,7 +451,7 @@ public class OwnCloudReaderMethods {
 		} catch(Exception ex) {//TODO GET HERE THE RIGHT EXCEPTION
     		String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH + OwnCloudConstants.JSON_FORMAT;
             requestUrl = API.validateURL(requestUrl);
-			InputStream is = HttpJsonRequest.PerformJsonRequest(requestUrl, null, username, password, cont);
+			InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl, null);
 			try {
 				GetVersion_v1 gv = new GetVersion_v1();
 				readJsonStreamSimple(is, gv);

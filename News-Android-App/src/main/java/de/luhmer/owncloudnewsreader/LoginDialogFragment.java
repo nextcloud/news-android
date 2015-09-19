@@ -316,7 +316,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		protected Integer doInBackground(Void... params) {
 
 			try {
-				String _version = OwnCloudReaderMethods.GetVersionNumber(getActivity(), username, password, oc_root_path);
+				String _version = OwnCloudReaderMethods.GetVersionNumber(getActivity(), oc_root_path);
 				if(_version != null)
 				{
 					_version = _version.replace(".", "");
