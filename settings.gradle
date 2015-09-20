@@ -1,5 +1,6 @@
 include ':News-Android-App', ':ownCloud-Account-Importer'
 include ':Changeloglib:ChangeLogLibrary'
-
+include ':MaterialShowcaseView:library'
 include 'customtabs'
 project(':customtabs').projectDir = new File(settingsDir, './custom-tabs-client/customtabs')
+

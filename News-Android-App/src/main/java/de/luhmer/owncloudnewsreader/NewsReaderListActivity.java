@@ -34,6 +34,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -83,6 +84,9 @@ import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncServiceCallback;
 import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -171,6 +175,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					reloadCountNumbersOfSlidingPaneAdapter();
 
 					syncState();
+
+                    showTapLogoToSyncShowcaseView();
 				}
 			};
 
@@ -209,6 +215,21 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         //AppRater.rateNow(this);
 
 		UpdateButtonLayout();
+    }
+
+
+
+    private void showTapLogoToSyncShowcaseView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            NewsReaderListFragment nlf = getSlidingListFragment();
+            new MaterialShowcaseView.Builder(NewsReaderListActivity.this)
+                    .setTarget(nlf.headerLogo)
+                    .setDismissText("GOT IT")
+                    .setContentText("Tap this logo to sync with ownCloud")
+                    .setDelay(300) // optional but starting animations immediately in onCreate can make them choppy
+                    .singleUse("LOGO_SYNC") // provide a unique ID used to ensure it is only shown once
+                    .show();
+        }
     }
 
 	View.OnClickListener mSnackbarListener = new View.OnClickListener()
@@ -319,6 +340,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		super.onPostCreate(savedInstanceState);
 		if(drawerToggle != null)
 			drawerToggle.syncState();
+
+        boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
+        if (tabletSize) {
+            showTapLogoToSyncShowcaseView();
+        }
 	}
 
 	@Override
@@ -468,6 +494,19 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
      * @return true if new items count was greater than 0
      */
     private boolean syncFinishedHandler() {
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			ShowcaseConfig config = new ShowcaseConfig();
+			config.setDelay(300); // half second between each showcase view
+			MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SWIPE_LEFT_RIGHT_AND_PTR");
+			sequence.setConfig(config);
+			sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
+					"Pull-to-Refresh to sync with ownCloud", "GOT IT");
+			sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
+					"Swipe Left/Right to mark article as read", "GOT IT");
+			sequence.start();
+		}
+
         NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
         newsReaderListFragment.ReloadAdapter();
         UpdateItemList();

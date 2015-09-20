@@ -7,3 +7,6 @@
 [submodule "custom-tabs-client"]
 	path = custom-tabs-client
 	url = https://github.com/GoogleChrome/custom-tabs-client
+[submodule "MaterialShowcaseView"]
+	path = MaterialShowcaseView
+	url = https://github.com/David-Development/MaterialShowcaseView.git

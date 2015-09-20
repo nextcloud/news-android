@@ -434,10 +434,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
         if(sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) { //On Tablets
             animateToPosition(podcastMediaControlHeightDp);
-        } else if(isLeftSliderOpen)
+        } else if(isLeftSliderOpen) {
             animateToPosition(0);
-        else if(sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
-            animateToPosition(podcastMediaControlHeightDp);
         } else {
             animateToPosition(64);
         }
