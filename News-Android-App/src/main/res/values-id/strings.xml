@@ -136,16 +136,6 @@
     <item>0</item>
     <item>1</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Ringkas</item>
-    <item>Luas</item>
-    <item>Luas dengan Webview</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
   <string-array name="pref_title_lines_count">
     <item>1</item>
     <item>2</item>

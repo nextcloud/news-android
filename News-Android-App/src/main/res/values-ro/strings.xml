@@ -114,16 +114,6 @@
     <item>0</item>
     <item>1</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Simplu</item>
-    <item>Extins</item>
-    <item>Extins cu Webview</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Eroare</string>
   <string name="login_dialog_text_something_went_wrong">Undeva s-a comis o eroare :(</string>

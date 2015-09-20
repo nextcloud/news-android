@@ -112,16 +112,6 @@
     <item>0</item>
     <item>1</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Đơn giản</item>
-    <item>Mở rộng</item>
-    <item>Mở rộng  Webview</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Lỗi</string>
   <string name="login_dialog_text_something_went_wrong">Có một lỗi gì đó :(</string>

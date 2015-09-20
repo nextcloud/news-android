@@ -75,16 +75,6 @@
     <item>0</item>
     <item>1</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>ساده</item>
-    <item>تمدید شده</item>
-    <item>با Webview تمدید شده</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">خطا</string>
   <string name="login_dialog_text_something_went_wrong">چند چیز اشتباه شدند :(</string>

@@ -108,16 +108,6 @@
     <item>0</item>
     <item>1</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Simple</item>
-    <item>Espandit</item>
-    <item>Espandit amb WebView</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
   <string name="login_dialog_text_something_went_wrong">Un problèma s\'es produsit :-(</string>

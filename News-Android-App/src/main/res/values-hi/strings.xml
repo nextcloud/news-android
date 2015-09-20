@@ -96,16 +96,6 @@
     <item>0</item>
     <item>1</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>सामान्य</item>
-    <item>विस्तारित</item>
-    <item>वेबव्यू के साथ विस्तारित</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">त्रुटि</string>
   <string name="login_dialog_text_something_went_wrong">कोई त्रुटि हो गई है :(</string>
