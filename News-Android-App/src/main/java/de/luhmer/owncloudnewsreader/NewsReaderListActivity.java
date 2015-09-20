@@ -76,7 +76,6 @@ import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -111,7 +110,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private static MenuItem menuItemUpdater;
 	private static MenuItem menuItemDownloadMoreItems;
-	private static IReader _Reader;
+	private static OwnCloud_Reader _Reader;
 
     //private Date mLastSyncDate = new Date(0);
     private boolean mSyncOnStartupPerformed = false;
@@ -794,7 +793,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		if(username != null) {
 			_Reader = new OwnCloud_Reader();
-			((OwnCloud_Reader)_Reader).Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTaskGetVersionFinished, username, password);
+			_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTaskGetVersionFinished, username, password);
 
 			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 		}
@@ -807,7 +806,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			if(_Reader != null) {
 				String appVersion = task_result.toString();
 				API api = API.GetRightApiForVersion(appVersion, NewsReaderListActivity.this);
-				((OwnCloud_Reader) _Reader).setApi(api);
+				_Reader.setApi(api);
 
 				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 				_Reader.Start_AsyncTask_GetOldItems(Constants.TaskID_GetItems, NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());

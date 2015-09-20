@@ -31,14 +31,13 @@ import android.preference.PreferenceManager;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 public class SyncItemStateService extends IntentService {
 
-	IReader _Reader = new OwnCloud_Reader();
+	OwnCloud_Reader _Reader = new OwnCloud_Reader();
 	
 	public SyncItemStateService() {
 		super(null);
@@ -50,11 +49,10 @@ public class SyncItemStateService extends IntentService {
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		OwnCloud_Reader ocReader = (OwnCloud_Reader) _Reader;
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
 		String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-		ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTask_GetVersionFinished, username, password);
+		_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTask_GetVersionFinished, username, password);
     }
 
 	OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
@@ -67,7 +65,7 @@ public class SyncItemStateService extends IntentService {
 				String appVersion = task_result.toString();
                 API api = API.GetRightApiForVersion(appVersion, SyncItemStateService.this);
 
-				((OwnCloud_Reader)_Reader).setApi(api);
+				_Reader.setApi(api);
 				
 				_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange, SyncItemStateService.this, null);
 			}
