@@ -71,6 +71,7 @@ public class HttpJsonRequest {
 
     private final OkHttpClient client;
     private String credentials;
+    private HttpUrl oc_root_url;
 
     private HttpJsonRequest(Context context) {
         client = new OkHttpClient();
@@ -104,14 +105,17 @@ public class HttpJsonRequest {
             });
         client.interceptors().add(new AuthorizationInterceptor());
 
-        setCredentials(sp.getString(SettingsActivity.EDT_USERNAME_STRING, null), sp.getString(SettingsActivity.EDT_PASSWORD_STRING, null));
+        setCredentials(sp.getString(SettingsActivity.EDT_USERNAME_STRING, null), sp.getString(SettingsActivity.EDT_PASSWORD_STRING, null), sp.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null));
     }
 
-    public void setCredentials(String username, String password) {
+    public void setCredentials(final String username, final String password, final String oc_root_path) {
         if(username != null)
             credentials = Credentials.basic(username, password);
         else
             credentials = null;
+
+        if(oc_root_path != null)
+            oc_root_url = HttpUrl.parse(oc_root_path);
     }
 
     private class AuthorizationInterceptor implements Interceptor {
@@ -122,9 +126,11 @@ public class HttpJsonRequest {
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
 
-            request = request.newBuilder()
-                .addHeader("Authorization",credentials)
-                .build();
+            // only add Authorization header for urls on the configured owncloud host
+            if(oc_root_url.host().equals(request.httpUrl().host()))
+                request = request.newBuilder()
+                    .addHeader("Authorization",credentials)
+                    .build();
             return chain.proceed(request);
         }
     }
