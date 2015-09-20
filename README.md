@@ -77,6 +77,13 @@ Updates
 ---------------------
 
 
+0.9.7.1 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/359">#359 Feed view with full article content</a>
+- UI-Tweaks - <a href="https://github.com/owncloud/News-Android-App/issues/377">#377 read and star slide</a>
+- Add ShowcaseView
+
+
 0.9.7 (Google Play)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/393">#393 Login button might get cropped / completely hidden</a>
