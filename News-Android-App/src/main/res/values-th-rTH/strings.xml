@@ -136,6 +136,18 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>ปกติ</item>
+    <item>ขยาย</item>
+    <item>ขยาย (ฉบับเต็ม)</item>
+    <item>ขยายด้วย Webview</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>3</item>
+    <item>2</item>
+  </string-array>
   <string-array name="pref_title_lines_count">
     <item>1</item>
     <item>2</item>
