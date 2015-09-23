@@ -69,11 +69,17 @@ public class OwnCloudSyncService extends Service {
 		@Override
 		public void startSync() throws RemoteException {
 			if(!isSyncRunning()) {
-				startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
-				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
-				String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-				String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-				_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished, username, password);
+				// Only check for API version once
+				if(_Reader.getApi() == null) {
+					startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
+					SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
+					String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
+					String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
+					_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished, username, password);
+				} else {
+					_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
+					startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
+				}
 			}
 		}
 
