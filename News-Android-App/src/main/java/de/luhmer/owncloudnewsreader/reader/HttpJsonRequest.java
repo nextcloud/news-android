@@ -70,6 +70,7 @@ public class HttpJsonRequest {
     }
 
     private final OkHttpClient client;
+    private String credentials;
 
     private HttpJsonRequest(Context context) {
         client = new OkHttpClient();
@@ -101,14 +102,20 @@ public class HttpJsonRequest {
                     return true;
                 }
             });
-        client.interceptors().add(new AuthorizationInterceptor(sp));
+        client.interceptors().add(new AuthorizationInterceptor());
+
+        setCredentials(sp.getString(SettingsActivity.EDT_USERNAME_STRING, null), sp.getString(SettingsActivity.EDT_PASSWORD_STRING, null));
+    }
+
+    public void setCredentials(String username, String password) {
+        if(username != null)
+            credentials = Credentials.basic(username, password);
+        else
+            credentials = null;
     }
 
     private class AuthorizationInterceptor implements Interceptor {
-        private SharedPreferences sp;
-
-        public AuthorizationInterceptor(SharedPreferences sp) {
-            this.sp = sp;
+        public AuthorizationInterceptor() {
         }
 
         @Override
@@ -116,7 +123,7 @@ public class HttpJsonRequest {
             Request request = chain.request();
 
             request = request.newBuilder()
-                .addHeader("Authorization",Credentials.basic(sp.getString(SettingsActivity.EDT_USERNAME_STRING, null),sp.getString(SettingsActivity.EDT_PASSWORD_STRING, null)))
+                .addHeader("Authorization",credentials)
                 .build();
             return chain.proceed(request);
         }
