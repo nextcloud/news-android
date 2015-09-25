@@ -35,7 +35,6 @@ import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
@@ -112,13 +111,13 @@ public abstract class API {
 		return OwnCloudReaderMethods.GetFolderTags(cont, api);
 	}
 
-	public int GetItems(TAGS tag, Context cont, String offset, boolean getRead, int id, String type, API api) throws Exception {
+	public int GetItems(FeedItemTags tag, Context cont, String offset, boolean getRead, int id, String type, API api) throws Exception {
 		return OwnCloudReaderMethods.GetItems(tag, cont, offset, getRead, String.valueOf(id), type, api);
 	}
 
-	public int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception {
+	public int[] GetUpdatedItems(FeedItemTags tag, Context cont, long lastSync, API api) throws Exception {
 		return OwnCloudReaderMethods.GetUpdatedItems(tag, cont, lastSync, api);
 	}
 
-	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api);
+	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag, Context context, API api);
 }

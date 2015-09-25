@@ -45,7 +45,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -186,7 +186,7 @@ public class OwnCloudSyncService extends Service {
 			if(task_result != null)
 				ThrowException((Exception) task_result);
 			else {
-                _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, OwnCloudSyncService.this, onAsyncTask_GetItems, TAGS.ALL);//Recieve all unread Items
+                _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, OwnCloudSyncService.this, onAsyncTask_GetItems, FeedItemTags.ALL);//Recieve all unread Items
                 
                 startedSync(SYNC_TYPES.SYNC_TYPE__ITEMS);
             }

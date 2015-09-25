@@ -27,7 +27,7 @@ import com.squareup.okhttp.HttpUrl;
 
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudConstants;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
@@ -64,7 +64,7 @@ public class APIv2 extends API {
 	}
 
 	@Override
-	public boolean PerformTagExecution(List<String> itemIds, TAGS tag,
+	public boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag,
 			Context context, API api) {
 		if(itemIds.size() > 0)
 			return OwnCloudReaderMethods.PerformTagExecutionAPIv2(itemIds, tag, context, api);

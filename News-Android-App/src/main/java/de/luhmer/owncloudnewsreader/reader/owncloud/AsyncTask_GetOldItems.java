@@ -31,7 +31,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetOldItems extends AsyncTask_Reader {
@@ -82,7 +82,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         	}
 
 
-        	downloadedItemsCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id.intValue(), type, api);
+        	downloadedItemsCount = api.GetItems(FeedItemTags.ALL, context, String.valueOf(offset), true, id.intValue(), type, api);
 
             /*
             int totalCount = dbConn.getCountOfAllItems(false);

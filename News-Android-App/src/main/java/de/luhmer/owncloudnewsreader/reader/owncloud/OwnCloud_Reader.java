@@ -37,7 +37,7 @@ public class OwnCloud_Reader {
 	}
 	
 	public void Start_AsyncTask_GetItems(int task_id,
-			Context context, OnAsyncTaskCompletedListener listener, FeedItemTags.TAGS tag) {
+			Context context, OnAsyncTaskCompletedListener listener, FeedItemTags tag) {
 		setSyncRunning(true);
 		new AsyncTask_GetItems(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute(tag);
 	}

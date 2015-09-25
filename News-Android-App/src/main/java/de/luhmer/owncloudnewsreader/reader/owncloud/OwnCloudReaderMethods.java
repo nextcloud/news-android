@@ -43,7 +43,6 @@ import java.util.Map;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
@@ -52,16 +51,16 @@ public class OwnCloudReaderMethods {
 	private static final String TAG = "OwnCloudReaderMethods";
 	public static String maxSizePerSync = "300";
 
-	public static int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception
+	public static int[] GetUpdatedItems(FeedItemTags tag, Context cont, long lastSync, API api) throws Exception
 	{
 		HashMap<String,String> nVPairs = new HashMap<>();
 		//nVPairs.put("batchSize", maxSizePerSync));
-		if(tag.equals(TAGS.ALL_STARRED))
+		if(tag.equals(FeedItemTags.ALL_STARRED))
 		{
 			nVPairs.put("type", "2");
 			nVPairs.put("id", "0");
 		}
-		else if(tag.equals(TAGS.ALL))
+		else if(tag.equals(FeedItemTags.ALL))
 		{
 			nVPairs.put("type", "3");
 			nVPairs.put("id", "0");
@@ -85,16 +84,16 @@ public class OwnCloudReaderMethods {
 	}
 
 	//"type": 1, // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
-	public static int GetItems(TAGS tag, Context cont, String offset, boolean getRead, String id, String type, API api) throws Exception
+	public static int GetItems(FeedItemTags tag, Context cont, String offset, boolean getRead, String id, String type, API api) throws Exception
 	{
 		HashMap<String,String> nVPairs = new HashMap<>();
 		nVPairs.put("batchSize", maxSizePerSync);
-		if(tag.equals(TAGS.ALL_STARRED))
+		if(tag.equals(FeedItemTags.ALL_STARRED))
 		{
 			nVPairs.put("type", type);
 			nVPairs.put("id", id);
 		}
-		else if(tag.equals(TAGS.ALL))
+		else if(tag.equals(FeedItemTags.ALL))
 		{
 			nVPairs.put("type", type);
 			nVPairs.put("id", id);
@@ -339,21 +338,16 @@ public class OwnCloudReaderMethods {
 
 
 
-	public static boolean PerformTagExecutionAPIv2(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api)
+	public static boolean PerformTagExecutionAPIv2(List<String> itemIds, FeedItemTags tag, Context context, API api)
 	{
         String jsonIds;
 
 		HttpUrl.Builder urlBuilder = api.getTagBaseUrl().newBuilder();
-		if(tag.equals(TAGS.MARK_ITEM_AS_READ) || tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
+		if(tag.equals(FeedItemTags.MARK_ITEM_AS_READ) || tag.equals(FeedItemTags.MARK_ITEM_AS_UNREAD))
         {
 			jsonIds = buildIdsToJSONArray(itemIds);
 
-	        if(tag.equals(TAGS.MARK_ITEM_AS_READ))
-	        	urlBuilder.addPathSegment("read");
-	        else
-				urlBuilder.addPathSegment("unread");
-
-			urlBuilder.addPathSegment("multiple");
+        	urlBuilder.addPathSegment(tag.toString());
         } else {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
@@ -372,12 +366,8 @@ public class OwnCloudReaderMethods {
 	            nameValuePairs.put("itemIds", jsonIds));
 	        }*/
 
-            if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
-                urlBuilder.addPathSegment("star");
-            else if(tag.equals(TAGS.MARK_ITEM_AS_UNSTARRED))
-				urlBuilder.addPathSegment("unstar");
-
-			urlBuilder.addPathSegment("multiple");
+            if(tag.equals(FeedItemTags.MARK_ITEM_AS_STARRED) || tag.equals(FeedItemTags.MARK_ITEM_AS_UNSTARRED))
+				urlBuilder.addPathSegment(tag.toString());
 
             /*
             url += "/" + guidHash;
@@ -389,6 +379,9 @@ public class OwnCloudReaderMethods {
             */
 
         }
+
+		urlBuilder.addPathSegment("multiple");
+
         try
         {
 		    int result = HttpJsonRequest.getInstance().performTagChangeRequest(urlBuilder.build(), jsonIds);
@@ -402,16 +395,13 @@ public class OwnCloudReaderMethods {
         }
 	}
 
-	public static boolean PerformTagExecutionAPIv1(String itemId, FeedItemTags.TAGS tag, Context context, API api)
+	public static boolean PerformTagExecutionAPIv1(String itemId, FeedItemTags tag, Context context, API api)
 	{
 		HttpUrl.Builder urlBuilder = api.getTagBaseUrl().newBuilder();
-		if(tag.equals(TAGS.MARK_ITEM_AS_READ) || tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
-        {
-			urlBuilder.addPathSegment(itemId);
-			if(tag.equals(TAGS.MARK_ITEM_AS_READ))
-				urlBuilder.addPathSegment("read");
-			else
-				urlBuilder.addPathSegment("unread");
+		if(tag.equals(FeedItemTags.MARK_ITEM_AS_READ) || tag.equals(FeedItemTags.MARK_ITEM_AS_UNREAD)) {
+			urlBuilder
+					.addPathSegment(itemId)
+					.addPathSegment(tag.toString());
         } else {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
@@ -421,10 +411,8 @@ public class OwnCloudReaderMethods {
 
             urlBuilder.addPathSegment(rssItem.getGuidHash());
 
-            if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
-                urlBuilder.addPathSegment("star");
-            else if(tag.equals(TAGS.MARK_ITEM_AS_UNSTARRED))
-                urlBuilder.addPathSegment("unstar");
+            if(tag.equals(FeedItemTags.MARK_ITEM_AS_STARRED) || tag.equals(FeedItemTags.MARK_ITEM_AS_UNSTARRED))
+                urlBuilder.addPathSegment(tag.toString());
         }
         try
         {
