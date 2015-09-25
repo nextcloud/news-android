@@ -83,7 +83,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         	}
 
 
-        	downloadedItemsCount = api.GetItems(FeedItemTags.ALL, context, String.valueOf(offset), true, id.intValue(), type, api);
+        	downloadedItemsCount = api.GetItems(FeedItemTags.ALL, context, String.valueOf(offset), true, id.intValue(), type);
 
             /*
             int totalCount = dbConn.getCountOfAllItems(false);

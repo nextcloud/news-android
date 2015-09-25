@@ -66,11 +66,11 @@ public class APIv1 extends API {
 
 	@Override
 	public boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag,
-			Context context, API api) {
+			Context context) {
 		
 		List<Boolean> succeeded = new ArrayList<>();
 		for(String item : itemIds) {
-			succeeded.add(OwnCloudReaderMethods.PerformTagExecutionAPIv1(item, tag, context, api));
+			succeeded.add(OwnCloudReaderMethods.PerformTagExecutionAPIv1(item, tag, context, this));
 		}
 
 		return !succeeded.contains(false);

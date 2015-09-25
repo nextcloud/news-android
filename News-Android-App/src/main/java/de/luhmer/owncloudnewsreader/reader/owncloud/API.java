@@ -103,21 +103,21 @@ public abstract class API {
 		return apiUrlBuilder.build();
 	}
 
-	public int[] GetFeeds(Context cont, API api) throws Exception {
-		return OwnCloudReaderMethods.GetFeeds(cont, api);
+	public int[] GetFeeds(Context cont) throws Exception {
+		return OwnCloudReaderMethods.GetFeeds(cont, this);
 	}
 
-	public int GetFolderTags(Context cont, API api) throws Exception {
-		return OwnCloudReaderMethods.GetFolderTags(cont, api);
+	public int GetFolderTags(Context cont) throws Exception {
+		return OwnCloudReaderMethods.GetFolderTags(cont, this);
 	}
 
-	public int GetItems(FeedItemTags tag, Context cont, String offset, boolean getRead, int id, String type, API api) throws Exception {
-		return OwnCloudReaderMethods.GetItems(tag, cont, offset, getRead, String.valueOf(id), type, api);
+	public int GetItems(FeedItemTags tag, Context cont, String offset, boolean getRead, int id, String type) throws Exception {
+		return OwnCloudReaderMethods.GetItems(tag, cont, offset, getRead, String.valueOf(id), type, this);
 	}
 
-	public int[] GetUpdatedItems(FeedItemTags tag, Context cont, long lastSync, API api) throws Exception {
-		return OwnCloudReaderMethods.GetUpdatedItems(tag, cont, lastSync, api);
+	public int[] GetUpdatedItems(FeedItemTags tag, Context cont, long lastSync) throws Exception {
+		return OwnCloudReaderMethods.GetUpdatedItems(tag, cont, lastSync, this);
 	}
 
-	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag, Context context, API api);
+	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag, Context context);
 }

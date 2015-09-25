@@ -41,7 +41,7 @@ public class AsyncTask_GetFolderTags extends AsyncTask_Reader {
 		
         try {
 		    //OwnCloudReaderMethods.GetFolderTags(context, api);
-        	api.GetFolderTags(context, api);
+        	api.GetFolderTags(context);
         } catch(Exception ex) {
             return ex;
         }

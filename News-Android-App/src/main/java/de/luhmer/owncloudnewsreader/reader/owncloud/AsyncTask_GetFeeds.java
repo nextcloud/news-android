@@ -40,7 +40,7 @@ public class AsyncTask_GetFeeds extends AsyncTask_Reader {
     protected Exception doInBackground(Object... params) {
     	
         try {
-        	api.GetFeeds(context, api);
+        	api.GetFeeds(context);
         } catch (Exception ex) {
             return ex;
         }

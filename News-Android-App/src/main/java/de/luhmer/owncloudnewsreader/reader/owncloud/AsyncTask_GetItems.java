@@ -92,7 +92,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
                 int maxItemsInDatabase = Constants.maxItemsCount;
 
                 do {
-	        		requestCount = api.GetItems(FeedItemTags.ALL, context, String.valueOf(offset), false, 0, "3", api);
+	        		requestCount = api.GetItems(FeedItemTags.ALL, context, String.valueOf(offset), false, 0, "3");
 	        		if(requestCount > 0)
 	        			offset = dbConn.getLowestItemId(false);
 	        		totalCount += requestCount;
@@ -104,7 +104,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 
                 do {
 	        		offset = dbConn.getLowestItemId(true);
-	        		requestCount = api.GetItems(FeedItemTags.ALL_STARRED, context, String.valueOf(offset), true, 0, "2", api);
+	        		requestCount = api.GetItems(FeedItemTags.ALL_STARRED, context, String.valueOf(offset), true, 0, "2");
 	        		//if(requestCount > 0)
 	        		//	offset = dbConn.getLowestItemId(true);
 	        		totalCount += requestCount;
@@ -115,7 +115,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
                 //First reset the count of last updated items
                 mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0).commit();
                 //Get all updated items
-                int[] result = api.GetUpdatedItems(FeedItemTags.ALL, context, lastModified + 1, api);
+                int[] result = api.GetUpdatedItems(FeedItemTags.ALL, context, lastModified + 1);
                 //If no exception occurs, set the number of updated items
                 mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, result[1]).commit();
         	}
