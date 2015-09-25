@@ -73,10 +73,10 @@ public class OwnCloudSyncService extends Service {
 			if(!isSyncRunning()) {
 				// Only check for API version once
 				if(_Reader.getApi() == null) {
-					_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished);
+					_Reader.Start_AsyncTask_GetVersion(OwnCloudSyncService.this, onAsyncTask_GetVersionFinished);
 					startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
 				} else {
-					_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
+					_Reader.Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
 					startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
 				}
 			}
@@ -123,7 +123,7 @@ public class OwnCloudSyncService extends Service {
 				API api = API.GetRightApiForVersion(appVersion, OwnCloudSyncService.this);
 				_Reader.setApi(api);
 				
-				_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
+				_Reader.Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
 			
 				startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
 			}
@@ -144,7 +144,7 @@ public class OwnCloudSyncService extends Service {
             	if((Boolean) task_result)
             	{	
             		if(task_id == Constants.TaskID_PerformStateChange) {
-            			_Reader.Start_AsyncTask_GetFolder(Constants.TaskID_GetFolder,  OwnCloudSyncService.this, onAsyncTask_GetFolder);
+            			_Reader.Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTask_GetFolder);
             			
             			
             			startedSync(SYNC_TYPES.SYNC_TYPE__FOLDER);
@@ -166,7 +166,7 @@ public class OwnCloudSyncService extends Service {
 			if(task_result != null)
 				ThrowException((Exception) task_result);
 			else {
-                _Reader.Start_AsyncTask_GetFeeds(Constants.TaskID_GetFeeds, OwnCloudSyncService.this, onAsyncTask_GetFeed);
+                _Reader.Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTask_GetFeed);
                 
                 startedSync(SYNC_TYPES.SYNC_TYPE__FEEDS);
             }
@@ -186,7 +186,7 @@ public class OwnCloudSyncService extends Service {
 			if(task_result != null)
 				ThrowException((Exception) task_result);
 			else {
-                _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, OwnCloudSyncService.this, onAsyncTask_GetItems, FeedItemTags.ALL);//Recieve all unread Items
+                _Reader.Start_AsyncTask_GetItems(OwnCloudSyncService.this, onAsyncTask_GetItems, FeedItemTags.ALL);//Recieve all unread Items
                 
                 startedSync(SYNC_TYPES.SYNC_TYPE__ITEMS);
             }

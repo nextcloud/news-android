@@ -49,7 +49,7 @@ public class SyncItemStateService extends IntentService {
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTask_GetVersionFinished);
+		_Reader.Start_AsyncTask_GetVersion(this, onAsyncTask_GetVersionFinished);
     }
 
 	OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
@@ -64,7 +64,7 @@ public class SyncItemStateService extends IntentService {
 
 				_Reader.setApi(api);
 				
-				_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange, SyncItemStateService.this, null);
+				_Reader.Start_AsyncTask_PerformItemStateChange(SyncItemStateService.this, null);
 			}
 		}
 	};

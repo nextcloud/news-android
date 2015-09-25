@@ -36,41 +36,35 @@ public class OwnCloud_Reader {
 	public OwnCloud_Reader() {
 	}
 	
-	public void Start_AsyncTask_GetItems(int task_id,
-			Context context, OnAsyncTaskCompletedListener listener, FeedItemTags tag) {
+	public void Start_AsyncTask_GetItems(Context context, OnAsyncTaskCompletedListener listener, FeedItemTags tag) {
 		setSyncRunning(true);
-		new AsyncTask_GetItems(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute(tag);
+		new AsyncTask_GetItems(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute(tag);
 	}
 
-	public void Start_AsyncTask_GetOldItems(int task_id,
-			Context context, OnAsyncTaskCompletedListener listener, Long feed_id, Long folder_id) {
+	public void Start_AsyncTask_GetOldItems(Context context, OnAsyncTaskCompletedListener listener, Long feed_id, Long folder_id) {
 		setSyncRunning(true);
-		new AsyncTask_GetOldItems(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, feed_id, folder_id, api).execute();
+		new AsyncTask_GetOldItems(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, feed_id, folder_id, api).execute();
 	}
 	
-	public void Start_AsyncTask_GetFolder(int task_id,
-			Context context, OnAsyncTaskCompletedListener listener) {
+	public void Start_AsyncTask_GetFolder(Context context, OnAsyncTaskCompletedListener listener) {
 		setSyncRunning(true);
-		new AsyncTask_GetFolderTags(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
+		new AsyncTask_GetFolderTags(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
 	}
 	
-	public void Start_AsyncTask_GetFeeds(int task_id,
-			Context context, OnAsyncTaskCompletedListener listener) {
+	public void Start_AsyncTask_GetFeeds(Context context, OnAsyncTaskCompletedListener listener) {
 		setSyncRunning(true);
-		new AsyncTask_GetFeeds(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
+		new AsyncTask_GetFeeds(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
 	}
 
-	public void Start_AsyncTask_PerformItemStateChange(int task_id,
-			Context context, OnAsyncTaskCompletedListener listener) {
+	public void Start_AsyncTask_PerformItemStateChange(Context context, OnAsyncTaskCompletedListener listener) {
 		setSyncRunning(true);
-		new AsyncTask_PerformItemStateChange(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
+		new AsyncTask_PerformItemStateChange(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
 	}
 	
 	
-	public void Start_AsyncTask_GetVersion(int task_id,
-			Context context, OnAsyncTaskCompletedListener listener) {
+	public void Start_AsyncTask_GetVersion(Context context, OnAsyncTaskCompletedListener listener) {
 		setSyncRunning(true);
-		new AsyncTask_GetApiVersion(task_id, context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }).execute();
+		new AsyncTask_GetApiVersion(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }).execute();
 	}
 
 	public boolean isSyncRunning() {

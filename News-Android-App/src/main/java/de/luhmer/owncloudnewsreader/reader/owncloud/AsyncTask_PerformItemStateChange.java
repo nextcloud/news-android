@@ -26,6 +26,7 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
@@ -35,8 +36,8 @@ public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 {
 	private API api;
 
-	public AsyncTask_PerformItemStateChange(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
-		super(task_id, context, listener);
+	public AsyncTask_PerformItemStateChange(final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
+		super(Constants.TaskID_PerformStateChange, context, listener);
 		this.api = api;
 	}
 

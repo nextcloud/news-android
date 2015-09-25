@@ -25,13 +25,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetApiVersion extends AsyncTask_Reader {
-    public AsyncTask_GetApiVersion(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener) {
-          super(task_id, context, listener);
+    public AsyncTask_GetApiVersion(final Context context, final OnAsyncTaskCompletedListener[] listener) {
+          super(Constants.TaskID_GetVersion, context, listener);
     }
     
     @Override

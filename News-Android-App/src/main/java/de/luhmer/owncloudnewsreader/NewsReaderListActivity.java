@@ -793,7 +793,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		if(username != null) {
 			_Reader = new OwnCloud_Reader();
-			_Reader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, this, onAsyncTaskGetVersionFinished);
+			_Reader.Start_AsyncTask_GetVersion(this, onAsyncTaskGetVersionFinished);
 
 			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 		}
@@ -809,7 +809,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				_Reader.setApi(api);
 
 				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-				_Reader.Start_AsyncTask_GetOldItems(Constants.TaskID_GetItems, NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
+				_Reader.Start_AsyncTask_GetOldItems(NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
 			}
 		}
 	};
