@@ -53,22 +53,16 @@ public class OwnCloudReaderMethods {
 
 	public static int[] GetUpdatedItems(FeedItemTags tag, Context cont, long lastSync, API api) throws Exception
 	{
-		HashMap<String,String> nVPairs = new HashMap<>();
-		//nVPairs.put("batchSize", maxSizePerSync));
-		if(tag.equals(FeedItemTags.ALL_STARRED))
+		HttpUrl.Builder getItemUpdatedUrlBuilder = api.getItemUpdatedUrl().newBuilder();
+		if(tag.equals(FeedItemTags.ALL_STARRED) || tag.equals(FeedItemTags.ALL))
 		{
-			nVPairs.put("type", "2");
-			nVPairs.put("id", "0");
+			getItemUpdatedUrlBuilder.addQueryParameter("type", tag.toString())
+					.addQueryParameter("id", "0");
 		}
-		else if(tag.equals(FeedItemTags.ALL))
-		{
-			nVPairs.put("type", "3");
-			nVPairs.put("id", "0");
-		}
-		nVPairs.put("lastModified", String.valueOf(lastSync));
 
+		getItemUpdatedUrlBuilder.addQueryParameter("lastModified", String.valueOf(lastSync));
 
-    	InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(api.getItemUpdatedUrl(), nVPairs);
+    	InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(getItemUpdatedUrlBuilder.build());
 
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
         try
@@ -86,26 +80,19 @@ public class OwnCloudReaderMethods {
 	//"type": 1, // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
 	public static int GetItems(FeedItemTags tag, Context cont, String offset, boolean getRead, String id, String type, API api) throws Exception
 	{
-		HashMap<String,String> nVPairs = new HashMap<>();
-		nVPairs.put("batchSize", maxSizePerSync);
-		if(tag.equals(FeedItemTags.ALL_STARRED))
-		{
-			nVPairs.put("type", type);
-			nVPairs.put("id", id);
-		}
-		else if(tag.equals(FeedItemTags.ALL))
-		{
-			nVPairs.put("type", type);
-			nVPairs.put("id", id);
-		}
-		nVPairs.put("offset", offset);
-		if(getRead)
-			nVPairs.put("getRead", "true");
-		else
-			nVPairs.put("getRead", "false");
+		HttpUrl.Builder getItemsUrlBuilder = api.getItemUrl().newBuilder();
 
+		getItemsUrlBuilder.addQueryParameter("batchSize", maxSizePerSync)
+				.addQueryParameter("offset", offset)
+				.addQueryParameter("getRead", String.valueOf(getRead));
 
-		InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(api.getItemUrl(), nVPairs);
+		if(tag.equals(FeedItemTags.ALL_STARRED) ||tag.equals(FeedItemTags.ALL))
+		{
+			getItemsUrlBuilder.addQueryParameter("type",type)
+					.addQueryParameter("id", id);
+		}
+
+		InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(getItemsUrlBuilder.build());
 
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
         try
@@ -123,7 +110,7 @@ public class OwnCloudReaderMethods {
 
 	public static int GetFolderTags(Context cont, API api) throws Exception
 	{
-		InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFolderUrl(), null);
+		InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFolderUrl());
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
 		int[] result = new int[2];
 		try
@@ -145,7 +132,7 @@ public class OwnCloudReaderMethods {
 
 	public static int[] GetFeeds(Context cont, API api) throws Exception
 	{
-		InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFeedUrl(), null);
+		InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFeedUrl());
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
 		int result[] = new int[2];
@@ -436,7 +423,7 @@ public class OwnCloudReaderMethods {
 					.addPathSegment(OwnCloudConstants.VERSION_PATH)
 					.build();
 
-			InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl, null);
+			InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl);
 
 			try {
 				GetVersion_v2 gv = new GetVersion_v2();
@@ -451,7 +438,7 @@ public class OwnCloudReaderMethods {
 					.addQueryParameter("format", "json")
 					.build();
 
-			InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl, null);
+			InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl);
 
 			try {
 				GetVersion_v1 gv = new GetVersion_v1();

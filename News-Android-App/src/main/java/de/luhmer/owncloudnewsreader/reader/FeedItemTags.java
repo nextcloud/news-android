@@ -26,14 +26,10 @@ public enum FeedItemTags {
 	MARK_ITEM_AS_UNREAD("unread"),
 	MARK_ITEM_AS_STARRED("star"),
 	MARK_ITEM_AS_UNSTARRED("unstar"),
-	ALL_STARRED,
-	ALL;
+	ALL_STARRED("2"),
+	ALL("3");
 
 	private String segment;
-
-	FeedItemTags() {
-
-	}
 
 	FeedItemTags(String segment) {
 		this.segment = segment;
@@ -41,8 +37,6 @@ public enum FeedItemTags {
 
 	@Override
 	public String toString() {
-		if(this.segment != null)
-			return this.segment;
-		return super.toString();
+		return this.segment;
 	}
 }

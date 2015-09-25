@@ -145,17 +145,10 @@ public class HttpJsonRequest {
         return imageClient;
     }
 
-    public InputStream PerformJsonRequest(HttpUrl url, HashMap<String,String> nameValuePairs) throws Exception
+    public InputStream PerformJsonRequest(HttpUrl url) throws Exception
 	{
-        HttpUrl.Builder urlBuilder = url.newBuilder();
-
-		if(nameValuePairs != null) {
-            for(String key: nameValuePairs.keySet())
-                urlBuilder.addQueryParameter(key,nameValuePairs.get(key));
-        }
-
         Request request = new Request.Builder()
-                .url(urlBuilder.build())
+                .url(url)
                 .get()
                 .build();
 
