@@ -24,6 +24,11 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
+
+import com.squareup.okhttp.HttpUrl;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -36,9 +41,6 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public abstract class API {
 	protected SharedPreferences mPrefs;
-	//static final Pattern RemoveAllDoubleSlashes = Pattern.compile("[^:](\\/\\/)");
-	static final Pattern RemoveAllDoubleSlashes = Pattern.compile("(?<!:)\\/\\/");
-
 
 	public API(Context cont) {
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
@@ -83,27 +85,23 @@ public abstract class API {
 		return api;
 	}
 
-	protected abstract String getItemUrl();
-	protected abstract String getItemUpdatedUrl();
-	public abstract String getFeedUrl();
-	protected abstract String getFolderUrl();
+	public abstract HttpUrl getItemUrl();
+	public abstract HttpUrl getItemUpdatedUrl();
+	public abstract HttpUrl getFeedUrl();
+	public abstract HttpUrl getFolderUrl();
 
-	protected abstract String getTagBaseUrl();
+	public abstract HttpUrl getTagBaseUrl();
 
-	/**
-	 *
-	 * @return http(s)://url_to_server
-	 */
-	protected String getOcRootPath() {
+	protected HttpUrl getAPIUrl(String format, String... urlSegments) {
 		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-		oc_root_path = RemoveAllDoubleSlashes.matcher(oc_root_path).replaceAll("/");
+		HttpUrl basePath = HttpUrl.parse(oc_root_path);
 
-		//if(!oc_root_path.endsWith("/"))
-		//	oc_root_path += "/";
-		//while(oc_root_path.endsWith("/"))
-		//	oc_root_path += oc_root_path.substring(0, oc_root_path.length() - 2);
+		HttpUrl.Builder apiUrlBuilder = basePath.resolve(StringUtils.join(urlSegments, "/")).newBuilder();
 
-		return oc_root_path;
+		if(format != null)
+			apiUrlBuilder.addQueryParameter("format", format);
+
+		return apiUrlBuilder.build();
 	}
 
 	public int[] GetFeeds(Context cont, API api) throws Exception {
@@ -120,10 +118,6 @@ public abstract class API {
 
 	public int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception {
 		return OwnCloudReaderMethods.GetUpdatedItems(tag, cont, lastSync, api);
-	}
-
-	public static String validateURL(String url) {
-		return RemoveAllDoubleSlashes.matcher(url).replaceAll("/");
 	}
 
 	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api);

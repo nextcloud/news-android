@@ -23,6 +23,8 @@ package de.luhmer.owncloudnewsreader.reader.owncloud.apiv1;
 
 import android.content.Context;
 
+import com.squareup.okhttp.HttpUrl;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,28 +40,28 @@ public class APIv1 extends API {
 	}
 
 	@Override
-	public String getItemUrl() {
-		return getOcRootPath() + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.FEED_PATH + OwnCloudConstants.JSON_FORMAT;
+	public HttpUrl getItemUrl() {
+		return getAPIUrl(OwnCloudConstants.JSON_FORMAT, OwnCloudConstants.ROOT_PATH_APIv1, OwnCloudConstants.FEED_PATH);
 	}
 	
 	@Override
-	public String getItemUpdatedUrl() {
-		return getOcRootPath() + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.FEED_PATH_UPDATED_ITEMS + OwnCloudConstants.JSON_FORMAT;
+	public HttpUrl getItemUpdatedUrl() {
+		return getAPIUrl(OwnCloudConstants.JSON_FORMAT, OwnCloudConstants.ROOT_PATH_APIv1, OwnCloudConstants.FEED_PATH_UPDATED_ITEMS);
 	}
 
 	@Override
-	public String getFeedUrl() {		
-		return getOcRootPath() + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.SUBSCRIPTION_PATH + OwnCloudConstants.JSON_FORMAT;
+	public HttpUrl getFeedUrl() {
+		return getAPIUrl(OwnCloudConstants.JSON_FORMAT, OwnCloudConstants.ROOT_PATH_APIv1, OwnCloudConstants.SUBSCRIPTION_PATH);
 	}
 
 	@Override
-	public String getFolderUrl() {
-		return getOcRootPath() + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.FOLDER_PATH + OwnCloudConstants.JSON_FORMAT;
+	public HttpUrl getFolderUrl() {
+		return getAPIUrl(OwnCloudConstants.JSON_FORMAT, OwnCloudConstants.ROOT_PATH_APIv1, OwnCloudConstants.FOLDER_PATH);
 	}
 	
 	@Override
-	public String getTagBaseUrl() {
-		return getOcRootPath() + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.FEED_PATH + "/";
+	public HttpUrl getTagBaseUrl() {
+		return getAPIUrl(null, OwnCloudConstants.ROOT_PATH_APIv1, OwnCloudConstants.FEED_PATH);
 	}
 
 	@Override

@@ -22,9 +22,11 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
+import com.squareup.okhttp.HttpUrl;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +49,7 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public class OwnCloudReaderMethods {
-	//private static final String TAG = "OwnCloudReaderMethods";
+	private static final String TAG = "OwnCloudReaderMethods";
 	public static String maxSizePerSync = "300";
 
 	public static int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception
@@ -144,7 +146,7 @@ public class OwnCloudReaderMethods {
 
 	public static int[] GetFeeds(Context cont, API api) throws Exception
 	{
-		InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFeedUrl() , null);
+		InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFeedUrl(), null);
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(cont);
 		int result[] = new int[2];
@@ -341,16 +343,17 @@ public class OwnCloudReaderMethods {
 	{
         String jsonIds;
 
-
-		String url = api.getTagBaseUrl();
+		HttpUrl.Builder urlBuilder = api.getTagBaseUrl().newBuilder();
 		if(tag.equals(TAGS.MARK_ITEM_AS_READ) || tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
         {
 			jsonIds = buildIdsToJSONArray(itemIds);
 
 	        if(tag.equals(TAGS.MARK_ITEM_AS_READ))
-	        	url += "read/multiple";
+	        	urlBuilder.addPathSegment("read");
 	        else
-	        	url += "unread/multiple";
+				urlBuilder.addPathSegment("unread");
+
+			urlBuilder.addPathSegment("multiple");
         } else {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
@@ -370,10 +373,11 @@ public class OwnCloudReaderMethods {
 	        }*/
 
             if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
-                url += "star/multiple";
+                urlBuilder.addPathSegment("star");
             else if(tag.equals(TAGS.MARK_ITEM_AS_UNSTARRED))
-                url += "unstar/multiple";
+				urlBuilder.addPathSegment("unstar");
 
+			urlBuilder.addPathSegment("multiple");
 
             /*
             url += "/" + guidHash;
@@ -387,7 +391,7 @@ public class OwnCloudReaderMethods {
         }
         try
         {
-		    int result = HttpJsonRequest.getInstance().performTagChangeRequest(url, jsonIds);
+		    int result = HttpJsonRequest.getInstance().performTagChangeRequest(urlBuilder.build(), jsonIds);
 		    //if(result != -1 || result != 405)
 			return (result == 200);
         }
@@ -400,30 +404,31 @@ public class OwnCloudReaderMethods {
 
 	public static boolean PerformTagExecutionAPIv1(String itemId, FeedItemTags.TAGS tag, Context context, API api)
 	{
-		String url = api.getTagBaseUrl();
+		HttpUrl.Builder urlBuilder = api.getTagBaseUrl().newBuilder();
 		if(tag.equals(TAGS.MARK_ITEM_AS_READ) || tag.equals(TAGS.MARK_ITEM_AS_UNREAD))
         {
+			urlBuilder.addPathSegment(itemId);
 			if(tag.equals(TAGS.MARK_ITEM_AS_READ))
-				url += itemId + "/read";
+				urlBuilder.addPathSegment("read");
 			else
-				url += itemId + "/unread";
+				urlBuilder.addPathSegment("unread");
         } else {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
             RssItem rssItem = dbConn.getRssItemById(Long.parseLong(itemId));
 
-            url += rssItem.getFeedId();
+            urlBuilder.addPathSegment(String.valueOf(rssItem.getFeedId()));
 
+            urlBuilder.addPathSegment(rssItem.getGuidHash());
 
-            url += "/" + rssItem.getGuidHash();
             if(tag.equals(TAGS.MARK_ITEM_AS_STARRED))
-                url += "/star";
+                urlBuilder.addPathSegment("star");
             else if(tag.equals(TAGS.MARK_ITEM_AS_UNSTARRED))
-                url += "/unstar";
+                urlBuilder.addPathSegment("unstar");
         }
         try
         {
-		    int result = HttpJsonRequest.getInstance().performTagChangeRequest(url, null);
+		    int result = HttpJsonRequest.getInstance().performTagChangeRequest(urlBuilder.build(), null);
 			return (result == 200);
         }
         catch (Exception ex)
@@ -436,11 +441,15 @@ public class OwnCloudReaderMethods {
 
 	public static String GetVersionNumber(Context cont, String oc_root_path) throws Exception
 	{
+		HttpUrl basePath = HttpUrl.parse(oc_root_path);
 		//Try APIv2
 		try {
-			String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv2 + OwnCloudConstants.VERSION_PATH;
-            requestUrl = API.validateURL(requestUrl);
+			HttpUrl requestUrl = basePath.resolve(OwnCloudConstants.ROOT_PATH_APIv2).newBuilder()
+					.addPathSegment(OwnCloudConstants.VERSION_PATH)
+					.build();
+
 			InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl, null);
+
 			try {
 				GetVersion_v2 gv = new GetVersion_v2();
 				readJsonStreamSimple(is, gv);
@@ -449,9 +458,13 @@ public class OwnCloudReaderMethods {
 				is.close();
 			}
 		} catch(Exception ex) {//TODO GET HERE THE RIGHT EXCEPTION
-    		String requestUrl = oc_root_path + OwnCloudConstants.ROOT_PATH_APIv1 + OwnCloudConstants.VERSION_PATH + OwnCloudConstants.JSON_FORMAT;
-            requestUrl = API.validateURL(requestUrl);
+			HttpUrl requestUrl = basePath.resolve(OwnCloudConstants.ROOT_PATH_APIv1).newBuilder()
+					.addPathSegment(OwnCloudConstants.VERSION_PATH)
+					.addQueryParameter("format", "json")
+					.build();
+
 			InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl, null);
+
 			try {
 				GetVersion_v1 gv = new GetVersion_v1();
 				readJsonStreamSimple(is, gv);

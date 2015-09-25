@@ -145,9 +145,9 @@ public class HttpJsonRequest {
         return imageClient;
     }
 
-    public InputStream PerformJsonRequest(String urlString, HashMap<String,String> nameValuePairs) throws Exception
+    public InputStream PerformJsonRequest(HttpUrl url, HashMap<String,String> nameValuePairs) throws Exception
 	{
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(API.validateURL(urlString)).newBuilder();
+        HttpUrl.Builder urlBuilder = url.newBuilder();
 
 		if(nameValuePairs != null) {
             for(String key: nameValuePairs.keySet())
@@ -177,14 +177,14 @@ public class HttpJsonRequest {
         }
 	}
 
-    public int performCreateFeedRequest(String urlString, String feedUrl, long folderId) throws Exception {
-        HttpUrl url = HttpUrl.parse(API.validateURL(urlString)).newBuilder()
-                .setQueryParameter("url", feedUrl)
+    public int performCreateFeedRequest(HttpUrl url, String feedUrlString, long folderId) throws Exception {
+        HttpUrl feedUrl = url.newBuilder()
+                .setQueryParameter("url", feedUrlString)
                 .setQueryParameter("folderId", String.valueOf(folderId))
                 .build();
 
         Request request = new Request.Builder()
-                .url(url)
+                .url(feedUrl)
                 .post(RequestBody.create(JSON, ""))
                 .build();
 
@@ -193,10 +193,8 @@ public class HttpJsonRequest {
         return response.code();
     }
 
-	public int performTagChangeRequest(String urlString, String content) throws Exception
+	public int performTagChangeRequest(HttpUrl url, String content) throws Exception
 	{
-		HttpUrl url = HttpUrl.parse(API.validateURL(urlString));
-
         Request request = new Request.Builder()
                 .url(url)
                 .put(RequestBody.create(JSON, content))
