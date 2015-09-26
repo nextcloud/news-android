@@ -34,6 +34,8 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +45,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
-import de.luhmer.owncloudnewsreader.reader.IReader;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -70,12 +71,14 @@ public class OwnCloudSyncService extends Service {
 		@Override
 		public void startSync() throws RemoteException {
 			if(!isSyncRunning()) {
-				startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
-				OwnCloud_Reader ocReader = (OwnCloud_Reader) _Reader;
-				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
-				String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-				String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-				ocReader.Start_AsyncTask_GetVersion(Constants.TaskID_GetVersion, OwnCloudSyncService.this, onAsyncTask_GetVersionFinished, username, password);								
+				// Only check for API version once
+				if(_Reader.getApi() == null) {
+					_Reader.Start_AsyncTask_GetVersion(OwnCloudSyncService.this, onAsyncTask_GetVersionFinished);
+					startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
+				} else {
+					_Reader.Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
+					startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
+				}
 			}
 		}
 
@@ -86,8 +89,8 @@ public class OwnCloudSyncService extends Service {
 	};
 	
 	
-	static IReader _Reader;
-	
+	static OwnCloud_Reader _Reader;
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -118,9 +121,9 @@ public class OwnCloudSyncService extends Service {
 			{	
 				String appVersion = task_result.toString();
 				API api = API.GetRightApiForVersion(appVersion, OwnCloudSyncService.this);
-				((OwnCloud_Reader) _Reader).setApi(api);
+				_Reader.setApi(api);
 				
-				_Reader.Start_AsyncTask_PerformItemStateChange(Constants.TaskID_PerformStateChange,  OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
+				_Reader.Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
 			
 				startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
 			}
@@ -141,7 +144,7 @@ public class OwnCloudSyncService extends Service {
             	if((Boolean) task_result)
             	{	
             		if(task_id == Constants.TaskID_PerformStateChange) {
-            			_Reader.Start_AsyncTask_GetFolder(Constants.TaskID_GetFolder,  OwnCloudSyncService.this, onAsyncTask_GetFolder);
+            			_Reader.Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTask_GetFolder);
             			
             			
             			startedSync(SYNC_TYPES.SYNC_TYPE__FOLDER);
@@ -163,7 +166,7 @@ public class OwnCloudSyncService extends Service {
 			if(task_result != null)
 				ThrowException((Exception) task_result);
 			else {
-                _Reader.Start_AsyncTask_GetFeeds(Constants.TaskID_GetFeeds, OwnCloudSyncService.this, onAsyncTask_GetFeed);
+                _Reader.Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTask_GetFeed);
                 
                 startedSync(SYNC_TYPES.SYNC_TYPE__FEEDS);
             }
@@ -183,7 +186,7 @@ public class OwnCloudSyncService extends Service {
 			if(task_result != null)
 				ThrowException((Exception) task_result);
 			else {
-                _Reader.Start_AsyncTask_GetItems(Constants.TaskID_GetItems, OwnCloudSyncService.this, onAsyncTask_GetItems, TAGS.ALL);//Recieve all unread Items
+                _Reader.Start_AsyncTask_GetItems(OwnCloudSyncService.this, onAsyncTask_GetItems, FeedItemTags.ALL);//Recieve all unread Items
                 
                 startedSync(SYNC_TYPES.SYNC_TYPE__ITEMS);
             }

@@ -55,6 +55,7 @@ import de.luhmer.owncloud.accountimporter.helper.OwnCloudAccount;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 
 /**
@@ -316,7 +317,8 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		protected Integer doInBackground(Void... params) {
 
 			try {
-				String _version = OwnCloudReaderMethods.GetVersionNumber(getActivity(), username, password, oc_root_path);
+				HttpJsonRequest.getInstance().setCredentials(username, password, oc_root_path);
+				String _version = OwnCloudReaderMethods.GetVersionNumber(getActivity(), oc_root_path);
 				if(_version != null)
 				{
 					_version = _version.replace(".", "");

@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 import android.content.Context;
 import android.widget.Toast;
 
+import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
@@ -31,7 +32,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetOldItems extends AsyncTask_Reader {
@@ -42,8 +43,8 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
     private int downloadedItemsCount = 0;
     private API api;
 
-    public AsyncTask_GetOldItems(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener, Long feed_id, Long folder_id, API api) {
-    	super(task_id, context, listener);
+    public AsyncTask_GetOldItems(final Context context, final OnAsyncTaskCompletedListener[] listener, Long feed_id, Long folder_id, API api) {
+    	super(Constants.TaskID_GetItems, context, listener);
 
         this.feed_id = feed_id;
         this.folder_id = folder_id;
@@ -82,7 +83,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         	}
 
 
-        	downloadedItemsCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id.intValue(), type, api);
+        	downloadedItemsCount = api.GetItems(FeedItemTags.ALL, context, String.valueOf(offset), true, id.intValue(), type);
 
             /*
             int totalCount = dbConn.getCountOfAllItems(false);

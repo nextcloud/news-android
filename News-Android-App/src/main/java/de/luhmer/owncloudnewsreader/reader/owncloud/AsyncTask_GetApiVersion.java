@@ -25,20 +25,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetApiVersion extends AsyncTask_Reader {
-	    
-    private String username;
-    private String password;
-    
-    public AsyncTask_GetApiVersion(final int task_id, final Context context, String username, String password, final OnAsyncTaskCompletedListener[] listener) {
-          super(task_id, context, listener);
-
-          this.username = username;
-          this.password = password;
+    public AsyncTask_GetApiVersion(final Context context, final OnAsyncTaskCompletedListener[] listener) {
+          super(Constants.TaskID_GetVersion, context, listener);
     }
     
     @Override
@@ -46,7 +40,7 @@ public class AsyncTask_GetApiVersion extends AsyncTask_Reader {
         try {
         	SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
     		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-        	return OwnCloudReaderMethods.GetVersionNumber(context, username, password, oc_root_path);
+        	return OwnCloudReaderMethods.GetVersionNumber(context, oc_root_path);
         } catch (Exception ex) {
             return ex;
         }
