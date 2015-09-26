@@ -87,6 +87,7 @@ public abstract class API {
 	protected abstract String getItemUpdatedUrl();
 	public abstract String getFeedUrl();
 	protected abstract String getFolderUrl();
+	public abstract String getUserUrl() throws UnsupportedOperationException;
 
 	protected abstract String getTagBaseUrl();
 

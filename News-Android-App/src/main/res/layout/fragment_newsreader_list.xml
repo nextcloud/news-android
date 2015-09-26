@@ -33,6 +33,7 @@
             tools:text='https://url_to_owncloud.oc'
             android:textColor="@android:color/white"
             android:layout_alignParentBottom="true"
+            android:paddingBottom="5dp"
             android:layout_toRightOf="@+id/header_logo"
             android:layout_toEndOf="@+id/header_logo"
             android:singleLine="true"

@@ -63,6 +63,11 @@ public class APIv1 extends API {
 	}
 
 	@Override
+	public String getUserUrl() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public boolean PerformTagExecution(List<String> itemIds, TAGS tag,
 			Context context, API api) {
 		
