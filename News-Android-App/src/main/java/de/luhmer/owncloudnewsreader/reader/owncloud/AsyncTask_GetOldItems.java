@@ -43,7 +43,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
     private int downloadedItemsCount = 0;
     private API api;
 
-    public AsyncTask_GetOldItems(final Context context, final OnAsyncTaskCompletedListener[] listener, Long feed_id, Long folder_id, API api) {
+    public AsyncTask_GetOldItems(final Context context, Long feed_id, Long folder_id, API api, final OnAsyncTaskCompletedListener... listener) {
     	super(Constants.TaskID_GetItems, context, listener);
 
         this.feed_id = feed_id;

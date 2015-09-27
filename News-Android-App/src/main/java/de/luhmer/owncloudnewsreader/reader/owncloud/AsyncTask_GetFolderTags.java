@@ -31,7 +31,7 @@ public class AsyncTask_GetFolderTags extends AsyncTask_Reader {
 
 	private API api;
 	
-    public AsyncTask_GetFolderTags(final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
+    public AsyncTask_GetFolderTags(final Context context, API api, final OnAsyncTaskCompletedListener... listener) {
     	super(Constants.TaskID_GetFolder, context, listener);
     	this.api = api;
     }

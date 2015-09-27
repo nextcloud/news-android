@@ -31,7 +31,7 @@ public class AsyncTask_GetFeeds extends AsyncTask_Reader {
 
 	private API api;
 	
-    public AsyncTask_GetFeeds(final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
+    public AsyncTask_GetFeeds(final Context context, API api, final OnAsyncTaskCompletedListener... listener) {
     	super(Constants.TaskID_GetFeeds, context, listener);
     	this.api = api;
     }

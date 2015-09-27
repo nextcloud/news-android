@@ -34,34 +34,34 @@ public class OwnCloud_Reader {
 	}
 	
 	public void Start_AsyncTask_GetItems(Context context, OnAsyncTaskCompletedListener listener, FeedItemTags tag) {
-		setSyncRunning(true);
-		new AsyncTask_GetItems(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute(tag);
+		Start_AsyncTask(new AsyncTask_GetItems(context, api, AsyncTask_finished, listener),tag);
 	}
 
 	public void Start_AsyncTask_GetOldItems(Context context, OnAsyncTaskCompletedListener listener, Long feed_id, Long folder_id) {
-		setSyncRunning(true);
-		new AsyncTask_GetOldItems(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, feed_id, folder_id, api).execute();
+		Start_AsyncTask(new AsyncTask_GetOldItems(context, feed_id, folder_id, api, AsyncTask_finished, listener));
 	}
 	
 	public void Start_AsyncTask_GetFolder(Context context, OnAsyncTaskCompletedListener listener) {
-		setSyncRunning(true);
-		new AsyncTask_GetFolderTags(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
+		Start_AsyncTask(new AsyncTask_GetFolderTags(context, api, AsyncTask_finished, listener));
 	}
 	
 	public void Start_AsyncTask_GetFeeds(Context context, OnAsyncTaskCompletedListener listener) {
-		setSyncRunning(true);
-		new AsyncTask_GetFeeds(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
+		Start_AsyncTask(new AsyncTask_GetFeeds(context, api, AsyncTask_finished, listener));
 	}
 
 	public void Start_AsyncTask_PerformItemStateChange(Context context, OnAsyncTaskCompletedListener listener) {
-		setSyncRunning(true);
-		new AsyncTask_PerformItemStateChange(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
+		Start_AsyncTask(new AsyncTask_PerformItemStateChange(context, api, AsyncTask_finished, listener));
 	}
 	
 	
 	public void Start_AsyncTask_GetVersion(Context context, OnAsyncTaskCompletedListener listener) {
+		Start_AsyncTask(new AsyncTask_GetApiVersion(context, AsyncTask_finished, listener));
+	}
+
+	@SafeVarargs
+	private final <Params> void Start_AsyncTask(final AsyncTask_Reader asyncTask, final Params... params) {
 		setSyncRunning(true);
-		new AsyncTask_GetApiVersion(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }).execute();
+		asyncTask.execute(params);
 	}
 
 	public boolean isSyncRunning() {

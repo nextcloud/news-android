@@ -31,7 +31,7 @@ import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetApiVersion extends AsyncTask_Reader {
-    public AsyncTask_GetApiVersion(final Context context, final OnAsyncTaskCompletedListener[] listener) {
+    public AsyncTask_GetApiVersion(final Context context, final OnAsyncTaskCompletedListener... listener) {
           super(Constants.TaskID_GetVersion, context, listener);
     }
     

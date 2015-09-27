@@ -49,7 +49,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     private API api;
     int totalCount;
 
-    public AsyncTask_GetItems(final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
+    public AsyncTask_GetItems(final Context context, API api, final OnAsyncTaskCompletedListener... listener) {
     	super(Constants.TaskID_GetItems, context, listener);
     	this.api = api;
 
