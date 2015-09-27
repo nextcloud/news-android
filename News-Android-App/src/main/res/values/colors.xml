@@ -40,10 +40,12 @@
     <color name="colorSecondaryDark">@color/material_deep_teal_500</color>
 
     <color name="starredColorLight">@android:color/holo_orange_light</color>
+    <color name="unstarredColorLight">#ff888888</color>
     <color name="markasreadColorLight">@android:color/holo_green_light</color>
     <color name="swipeBackgroundLight">#aaa</color>
 
     <color name="starredColorDark">@android:color/holo_orange_light</color>
+    <color name="unstarredColorDark">#ffcccccc</color>
     <color name="markasreadColorDark">@android:color/holo_green_light</color>
     <color name="swipeBackgroundDark">#aaa</color>
 

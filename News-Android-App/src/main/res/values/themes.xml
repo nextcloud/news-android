@@ -17,6 +17,7 @@
         <item name="extended_listview_item_body_text_color">@color/extended_listview_item_body_text_color_dark_theme</item>
 
         <item name="starredColor">@color/starredColorDark</item>
+        <item name="unstarredColor">@color/unstarredColorDark</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread</item>
     </style>
 
@@ -42,6 +43,7 @@
         <item name="extended_listview_item_body_text_color">@color/extended_listview_item_body_text_color_light_theme</item>
 
         <item name="starredColor">@color/starredColorLight</item>
+        <item name="unstarredColor">@color/unstarredColorLight</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread_light</item>
     </style>
 
