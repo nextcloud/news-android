@@ -18,7 +18,6 @@
 
         <item name="starredColor">@color/starredColorDark</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread</item>
-        <item name="starredDrawable">@drawable/swipe_setstarred</item>
     </style>
 
 
@@ -44,7 +43,6 @@
 
         <item name="starredColor">@color/starredColorLight</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread_light</item>
-        <item name="starredDrawable">@drawable/swipe_setstarred_light</item>
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
