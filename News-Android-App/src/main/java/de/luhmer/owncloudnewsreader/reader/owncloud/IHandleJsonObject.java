@@ -24,5 +24,5 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 import org.json.JSONObject;
 
 public interface IHandleJsonObject {
-	public boolean performAction(JSONObject jObj);
+	boolean performAction(JSONObject jObj);
 }

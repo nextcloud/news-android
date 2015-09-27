@@ -326,7 +326,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     }
 
     public interface IOnRefreshFinished {
-        public void OnRefreshFinished();
+        void OnRefreshFinished();
     }
 
     public void refreshAdapterDataAsync(IOnRefreshFinished listener) {
