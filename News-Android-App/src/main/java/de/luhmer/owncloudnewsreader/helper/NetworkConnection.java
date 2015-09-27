@@ -36,7 +36,8 @@ public class NetworkConnection {
 	public static boolean isWLANConnected(Context context) {
 	    ConnectivityManager connectivityManager 
 	          = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo activeNetworkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI && activeNetworkInfo.isConnected();
 	}
 }
