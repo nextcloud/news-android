@@ -60,7 +60,6 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.chrometabs.CustomTabActivityManager;
-import de.luhmer.owncloudnewsreader.chrometabs.CustomTabUiBuilder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -521,30 +520,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 		return mCustomTabsSession;
 	}
-
-
-	private void prepareMenuItems(CustomTabUiBuilder uiBuilder) {
-		Intent menuIntent = new Intent();
-		menuIntent.setClass(getApplicationContext(), this.getClass());
-		// Optional animation configuration when the user clicks menu items.
-		Bundle menuBundle = ActivityOptions.makeCustomAnimation(this, android.R.anim.slide_in_left,
-				android.R.anim.slide_out_right).toBundle();
-		PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0, menuIntent, 0,
-				menuBundle);
-		uiBuilder.addMenuItem("Menu entry 1", pi);
-	}
-
-	private void prepareActionButton(CustomTabUiBuilder uiBuilder) {
-		// An example intent that sends an email.
-		Intent actionIntent = new Intent(Intent.ACTION_SEND);
-		actionIntent.setType("*/*");
-		actionIntent.putExtra(Intent.EXTRA_EMAIL, "example@example.com");
-		actionIntent.putExtra(Intent.EXTRA_SUBJECT, "example");
-		PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0, actionIntent, 0);
-		Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-		uiBuilder.setActionButton(icon, pi);
-	}
-
 
 	private void markItemAsReadUnread(RssItem item, boolean read) {
         item.setRead_temp(read);
