@@ -23,15 +23,18 @@ package de.luhmer.owncloudnewsreader.async_tasks;
 
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.View;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.net.URL;
 
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 
-public class GetImageThreaded extends Thread
+public class GetImageThreaded implements ImageLoadingListener
 {
 	private static final String TAG = "GetImageAsyncTask";
 
@@ -58,16 +61,29 @@ public class GetImageThreaded extends Thread
 		//this.imageViewReference = new WeakReference<ImageView>(imageView);
 	}
 
-
-    @Override
-    public void run() {
-        Bitmap bmp = ImageLoader.getInstance().loadImageSync(WEB_URL_TO_FILE.toString(), displayImageOptions);
-
-        if(imageDownloadFinished != null)
-            imageDownloadFinished.DownloadFinished(ThreadId, bmp);
-
-        super.run();
+    public void start() {
+        ImageLoader.getInstance().loadImage(WEB_URL_TO_FILE.toString(), displayImageOptions, this);
     }
 
 
+	@Override
+	public void onLoadingStarted(String imageUri, View view) {
+
+	}
+
+	@Override
+	public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+
+	}
+
+	@Override
+	public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+		if(imageDownloadFinished != null)
+			imageDownloadFinished.DownloadFinished(ThreadId, loadedImage);
+	}
+
+	@Override
+	public void onLoadingCancelled(String imageUri, View view) {
+
+	}
 }
