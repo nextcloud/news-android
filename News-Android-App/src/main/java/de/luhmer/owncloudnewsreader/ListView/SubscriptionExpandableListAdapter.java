@@ -313,7 +313,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        } else {
 	        	viewHolder.imgView.setVisibility(View.VISIBLE);
                 viewHolder.faviconView.setVisibility(View.INVISIBLE);
-                viewHolder.imgView.setImageResource(getFolderIndicatorIcon());
+                viewHolder.imgView.setImageResource(R.drawable.ic_action_expand_less);
 
 	        	if(isExpanded) {
                     rotation = 90;
@@ -336,9 +336,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
                 if(group.id_database != ALL_STARRED_ITEMS.getValue()) {
                     if (rotation == 90) {
-                        viewHolder.imgView.setImageResource(getFolderIndicatorIcon());
+                        viewHolder.imgView.setImageResource(R.drawable.ic_action_expand_less);
                     } else {
-                        viewHolder.imgView.setImageResource(getFolderIndicatorIconDown());
+                        viewHolder.imgView.setImageResource(R.drawable.ic_action_expand_more);
                     }
                 }
             }
@@ -356,8 +356,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
 
-    private Integer folder_indicator_icon;
-    private Integer folder_indicator_icon_old_android; //Only used on Android API LEVEL < 11
     private Integer btn_rating_star_off_normal_holo_light;
 
     private int getBtn_rating_star_off_normal_holo_light() {
@@ -369,26 +367,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             }
         }
         return btn_rating_star_off_normal_holo_light;
-    }
-
-    private int getFolderIndicatorIcon() {
-        if(folder_indicator_icon == null) {
-            if(ThemeChooser.isDarkTheme(mContext))
-                folder_indicator_icon = R.drawable.ic_action_expand_less_dark;
-            else
-                folder_indicator_icon = R.drawable.ic_action_expand_less_light;
-        }
-        return folder_indicator_icon;
-    }
-
-    private int getFolderIndicatorIconDown() {
-        if(folder_indicator_icon_old_android == null) {
-            if(ThemeChooser.isDarkTheme(mContext))
-                folder_indicator_icon_old_android = R.drawable.ic_action_expand_more_dark;
-            else
-                folder_indicator_icon_old_android = R.drawable.ic_action_expand_more_light;
-        }
-        return folder_indicator_icon_old_android;
     }
 
 	static class GroupHolder

@@ -86,7 +86,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	Activity foregroundAct;
 	NotificationManager notificationManager;
 	private static int decisionId = 0;
-	private static SparseArray<MTMDecision> openDecisions = new SparseArray<MTMDecision>();
+	private static final SparseArray<MTMDecision> openDecisions = new SparseArray<>();
 
 	Handler masterHandler;
 	private File keyStoreFile;
@@ -332,7 +332,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	}
 
 	private static String hexString(byte[] data) {
-		StringBuffer si = new StringBuffer();
+		StringBuilder si = new StringBuilder();
 		for (int i = 0; i < data.length; i++) {
 			si.append(String.format("%02x", data[i]));
 			if (i < data.length - 1)

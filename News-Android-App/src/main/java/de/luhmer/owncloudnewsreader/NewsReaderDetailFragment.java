@@ -359,12 +359,11 @@ public class NewsReaderDetailFragment extends Fragment {
 
 
     @Override
-    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
-        super.onInflate(activity, attrs, savedInstanceState);
-        TypedArray a = activity.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable,R.attr.starredDrawable,R.attr.colorAccent});
+    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+        super.onInflate(context, attrs, savedInstanceState);
+        TypedArray a = context.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable,R.attr.colorAccent});
         markAsReadDrawable = a.getDrawable(0);
-        starredDrawable = a.getDrawable(1);
-        accentColor = a.getColor(2,activity.getResources().getColor(R.color.owncloudBlueLight));
+        accentColor = a.getColor(1, context.getResources().getColor(R.color.owncloudBlueLight));
         a.recycle();
     }
 

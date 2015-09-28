@@ -86,6 +86,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private ForegroundColorSpan bodyForegroundColor;
     private boolean playing;
     private int selectedListLayout;
+    private int starColor;
+    private int inactiveStarColor;
 
     public ViewHolder(View itemView, int titleLineCount) {
         super(itemView);
@@ -100,6 +102,12 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         ButterKnife.inject(this, itemView);
         if(textViewSummary != null)
             textViewSummary.setLines(titleLineCount);
+
+        int[] attribute = new int[]{ R.attr.starredColor, R.attr.unstarredColor };
+        TypedArray array = starImageView.getContext().getTheme().obtainStyledAttributes(attribute);
+        starColor = array.getColor(0, Color.TRANSPARENT);
+        inactiveStarColor = array.getColor(1, Color.LTGRAY);
+        array.recycle();
 
         itemView.setOnClickListener(this);
     }
@@ -157,14 +165,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     }
 
     public void setStarred(boolean isStarred) {
-        boolean isDarkTheme = ThemeChooser.isDarkTheme(starImageView.getContext());
-        int color = isDarkTheme ? Color.LTGRAY : Color.GRAY;
-        if(isStarred) {
-            int[] attribute = new int[]{ R.attr.starredColor };
-            TypedArray array = starImageView.getContext().getTheme().obtainStyledAttributes(attribute);
-            color = array.getColor(0, Color.TRANSPARENT);
-            array.recycle();
-        }
+        int color = isStarred ? starColor : inactiveStarColor;
         starImageView.setColorFilter(color);
     }
 
