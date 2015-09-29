@@ -71,14 +71,8 @@ public class OwnCloudSyncService extends Service {
 		@Override
 		public void startSync() throws RemoteException {
 			if(!isSyncRunning()) {
-				// Only check for API version once
-				if(OwnCloud_Reader.getInstance().getApi() == null) {
-					OwnCloud_Reader.getInstance().Start_AsyncTask_GetVersion(OwnCloudSyncService.this, onAsyncTask_GetVersionFinished);
-					startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
-				} else {
-					OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
-					startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
-				}
+				OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
+				startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
 			}
 		}
 
@@ -105,30 +99,6 @@ public class OwnCloudSyncService extends Service {
         return super.onUnbind(intent);
     }
 
-    OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
-		
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			
-			finishedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
-			
-			if(!(task_result instanceof Exception))
-			{	
-				String appVersion = task_result.toString();
-				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
-				String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-				API api = API.GetRightApiForVersion(appVersion, baseUrl);
-				OwnCloud_Reader.getInstance().setApi(api);
-
-				OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
-			
-				startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
-			}
-			else 				
-				ThrowException((Exception) task_result);
-		}
-	};
-	
 	//Sync state of items e.g. read/unread/starred/unstarred
     OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
         @Override

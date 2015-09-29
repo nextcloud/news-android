@@ -413,13 +413,12 @@ public class OwnCloudReaderMethods {
         }
 	}
 
+	public static String GetVersionNumber(String basePath) throws Exception {
+		return GetVersionNumber(HttpUrl.parse(basePath));
+	}
 
-	public static String GetVersionNumber(Context cont, String oc_root_path) throws Exception
+	public static String GetVersionNumber(HttpUrl basePath) throws Exception
 	{
-        if(!oc_root_path.endsWith("/"))
-            oc_root_path = oc_root_path + "/";
-
-		HttpUrl basePath = HttpUrl.parse(oc_root_path);
 		//Try APIv2
 		try {
             HttpUrl requestUrl = basePath.resolve("." + OwnCloudConstants.ROOT_PATH_APIv2).newBuilder()

@@ -28,19 +28,15 @@ import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetFeeds extends AsyncTask_Reader {
-
-	private API api;
-	
-    public AsyncTask_GetFeeds(final Context context, API api, final OnAsyncTaskCompletedListener... listener) {
+    public AsyncTask_GetFeeds(final Context context, final OnAsyncTaskCompletedListener... listener) {
     	super(Constants.TaskID_GetFeeds, context, listener);
-    	this.api = api;
     }
 
     @Override
     protected Exception doInBackground(Object... params) {
     	
         try {
-        	api.GetFeeds(context);
+            apiFuture.get().GetFeeds(context);
         } catch (Exception ex) {
             return ex;
         }

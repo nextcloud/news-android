@@ -814,26 +814,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		String password = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_password", "");
 
 		if(username != null) {
-			OwnCloud_Reader.getInstance().getInstance().Start_AsyncTask_GetVersion(this, onAsyncTaskGetVersionFinished);
+			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+			OwnCloud_Reader.getInstance().Start_AsyncTask_GetOldItems(NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
 
 			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 		}
 	}
-
-	OnAsyncTaskCompletedListener onAsyncTaskGetVersionFinished = new OnAsyncTaskCompletedListener() {
-
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-				String appVersion = task_result.toString();
-				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
-				String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-				API api = API.GetRightApiForVersion(appVersion, baseUrl);
-				OwnCloud_Reader.getInstance().setApi(api);
-
-				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-				OwnCloud_Reader.getInstance().Start_AsyncTask_GetOldItems(NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
-		}
-	};
 
 	OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {
 		@Override

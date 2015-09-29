@@ -118,6 +118,10 @@ public class HttpJsonRequest {
             oc_root_url = HttpUrl.parse(oc_root_path);
     }
 
+    public HttpUrl getRootUrl() {
+        return oc_root_url;
+    }
+
     private class AuthorizationInterceptor implements Interceptor {
         public AuthorizationInterceptor() {
         }

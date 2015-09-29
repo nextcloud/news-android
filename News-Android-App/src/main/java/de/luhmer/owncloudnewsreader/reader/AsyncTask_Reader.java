@@ -25,10 +25,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import java.util.concurrent.Future;
+
+import de.luhmer.owncloudnewsreader.reader.owncloud.API;
+
 public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Object> {
 	protected Context context;
 	protected int task_id;
 	protected OnAsyncTaskCompletedListener[] listener;
+    protected Future<API> apiFuture;
 	
 	public AsyncTask_Reader(final int task_id, final Context context, final OnAsyncTaskCompletedListener... listener) {
 		this.context = context;
@@ -63,5 +68,9 @@ public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Object> {
         }
 
         detach();
+    }
+
+    public void setAPIFuture(Future<API> apiFuture) {
+        this.apiFuture = apiFuture;
     }
 }

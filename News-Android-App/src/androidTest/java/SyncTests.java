@@ -59,7 +59,7 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         // Schedule some responses.
         server.enqueue(new MockResponse().setBody(getSampleVersionInfoV2()));
 
-        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(mActivity, baseUrl.toString());
+        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl.toString());
         assertEquals("5.2.3", versionNumber);
 
         API api = API.GetRightApiForVersion(versionNumber, baseUrl.toString());
@@ -95,7 +95,7 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         server.enqueue(new MockResponse().setBody(getSampleVersionInfoV2()));
         server.enqueue(new MockResponse().setBody(jFeed.toString()));
 
-        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(mActivity, baseUrl.toString());
+        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl.toString());
         API api = API.GetRightApiForVersion(versionNumber, baseUrl.toString());
         assertTrue(api instanceof APIv2);
 
@@ -132,7 +132,7 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         server.enqueue(new MockResponse().setBody(getSampleVersionInfoV2()));
         server.enqueue(new MockResponse().setBody(jItem.toString()));
 
-        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(mActivity, baseUrl.toString());
+        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl.toString());
         API api = API.GetRightApiForVersion(versionNumber, baseUrl.toString());
         assertTrue(api instanceof APIv2);
 

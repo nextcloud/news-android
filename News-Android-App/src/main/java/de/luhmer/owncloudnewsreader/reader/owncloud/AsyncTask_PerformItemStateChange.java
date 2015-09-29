@@ -34,11 +34,8 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 {
-	private API api;
-
-	public AsyncTask_PerformItemStateChange(final Context context, API api, final OnAsyncTaskCompletedListener... listener) {
+	public AsyncTask_PerformItemStateChange(final Context context, final OnAsyncTaskCompletedListener... listener) {
 		super(Constants.TaskID_PerformStateChange, context, listener);
-		this.api = api;
 	}
 
 	@Override
@@ -50,28 +47,28 @@ public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 
 			//Mark as READ
 			List<String> itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewReadRssItems());
-			boolean result = api.PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_READ, context);
+			boolean result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_READ, context);
 			if(result)
 				dbConn.change_readUnreadStateOfItem(itemIds, true);
 			succeeded.add(result);
 
 			//Mark as UNREAD
 			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnreadRssItems());
-			result = api.PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNREAD, context);
+			result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNREAD, context);
 			if(result)
 				dbConn.change_readUnreadStateOfItem(itemIds, false);
 			succeeded.add(result);
 
 			//Mark as STARRED
 			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewStarredRssItems());
-			result = api.PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_STARRED, context);
+			result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_STARRED, context);
 			if(result)
 				dbConn.change_starrUnstarrStateOfItem(itemIds, true);
 			succeeded.add(result);
 
 			//Mark as UNSTARRED
 			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnstarredRssItems());
-			result = api.PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNSTARRED, context);
+			result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNSTARRED, context);
 			if(result)
 				dbConn.change_starrUnstarrStateOfItem(itemIds, false);
 			succeeded.add(result);

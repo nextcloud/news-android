@@ -41,14 +41,12 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
     public Long feed_id;
     public Long folder_id;
     private int downloadedItemsCount = 0;
-    private API api;
 
-    public AsyncTask_GetOldItems(final Context context, Long feed_id, Long folder_id, API api, final OnAsyncTaskCompletedListener... listener) {
+    public AsyncTask_GetOldItems(final Context context, Long feed_id, Long folder_id, final OnAsyncTaskCompletedListener... listener) {
     	super(Constants.TaskID_GetItems, context, listener);
 
         this.feed_id = feed_id;
         this.folder_id = folder_id;
-        this.api = api;
     }
 
 	@Override
@@ -83,7 +81,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         	}
 
 
-        	downloadedItemsCount = api.GetItems(FeedItemTags.ALL, context, String.valueOf(offset), true, id.intValue(), type);
+        	downloadedItemsCount = apiFuture.get().GetItems(FeedItemTags.ALL, context, String.valueOf(offset), true, id.intValue(), type);
 
             /*
             int totalCount = dbConn.getCountOfAllItems(false);
