@@ -70,8 +70,11 @@ dependencies {
     compile 'de.greenrobot:greendao-generator:2.0.0'
     //compile 'org.freemarker:freemarker:2.3.23' //Required for DAO generation
     compile 'org.apache.commons:commons-lang3:3.4'
+
     testCompile 'org.robolectric:robolectric:3.0-rc3'
     testCompile 'junit:junit:4.+'
+    androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
+
     androidTestCompile 'com.android.support:support-annotations:23.0.1'
     androidTestCompile 'com.android.support.test:runner:0.3'
     androidTestCompile 'com.android.support.test:rules:0.3'
