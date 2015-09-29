@@ -64,8 +64,8 @@ public class APIv2 extends API {
 	}
 
 	@Override
-	public String getUserUrl() {
-		return getOcRootPath() + OwnCloudConstants.ROOT_PATH_APIv2 + OwnCloudConstants.USER_PATH;
+	public HttpUrl getUserUrl() {
+		return getAPIUrl(null, OwnCloudConstants.ROOT_PATH_APIv2, OwnCloudConstants.USER_PATH);
 	}
 	
 	@Override

@@ -22,23 +22,14 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.squareup.okhttp.HttpUrl;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 
-import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
@@ -95,7 +86,7 @@ public abstract class API {
 	public abstract HttpUrl getItemUpdatedUrl();
 	public abstract HttpUrl getFeedUrl();
 	public abstract HttpUrl getFolderUrl();
-
+    public abstract HttpUrl getUserUrl();
 	public abstract HttpUrl getTagBaseUrl();
 
 	protected HttpUrl getAPIUrl(String format, String... urlSegments) {

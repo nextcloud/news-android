@@ -21,11 +21,8 @@
 
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
-import android.app.Activity;
 import android.content.Context;
-import android.util.SparseArray;
 
-import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 

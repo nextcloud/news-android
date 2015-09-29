@@ -32,8 +32,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,13 +55,26 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.stream.JsonReader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
@@ -73,10 +90,11 @@ import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
+import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.reader.IReader;
+import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -514,6 +532,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         UpdateItemList();
         UpdatePodcastView();
 
+        AsyncTaskHelper.StartAsyncTask(new AsyncTaskGetUserInfo());
+
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
         int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
 
@@ -910,11 +930,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     private class AsyncTaskGetUserInfo extends AsyncTask<Void, Void, UserInfo> {
         @Override
         protected UserInfo doInBackground(Void... voids) {
-            API api = API.GetRightApiForVersion("6.0.4", NewsReaderListActivity.this);
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
+            String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+            API api = API.GetRightApiForVersion("6.0.4", baseUrl);
 
             try {
                 UserInfo ui = new UserInfo();
-                InputStream inputStream = HttpJsonRequest.PerformJsonRequest(api.getUserUrl() , null, api.getUsername(), api.getPassword(), NewsReaderListActivity.this);
+                InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getUserUrl());
 
                 JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
                 reader.beginObject();
@@ -959,6 +981,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
                 return ui;
             } catch (Exception e) {
+                if(e.getMessage().equals("Method Not Allowed")) { //Remove if old version is used
+                    mPrefs.edit().remove("USER_INFO").commit();
+                }
                 e.printStackTrace();
             }
             return null;
@@ -1010,7 +1035,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     /** Read the object from Base64 string. */
-    private static Object fromString( String s ) throws IOException ,
+    private static Object fromString(String s) throws IOException ,
             ClassNotFoundException {
         byte [] data = Base64.decode(s, Base64.DEFAULT);
         ObjectInputStream ois = new ObjectInputStream(
@@ -1021,7 +1046,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     /** Write the object to a Base64 string. */
-    private static String toString( Serializable o ) throws IOException {
+    private static String toString(Serializable o) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream( baos );
         oos.writeObject(o);

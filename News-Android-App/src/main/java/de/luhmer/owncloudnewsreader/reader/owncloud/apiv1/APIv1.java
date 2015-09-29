@@ -65,7 +65,7 @@ public class APIv1 extends API {
 	}
 
 	@Override
-	public String getUserUrl() throws UnsupportedOperationException {
+	public HttpUrl getUserUrl() throws UnsupportedOperationException {
 		throw new UnsupportedOperationException();
 	}
 	
