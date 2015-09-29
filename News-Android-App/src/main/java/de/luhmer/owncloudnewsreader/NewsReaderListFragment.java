@@ -72,10 +72,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 	public void setRefreshing(boolean isRefreshing) {
 		if(isRefreshing) {
-			headerLogo.setImageResource(R.drawable.ic_launcher_background);
+			//headerLogo.setImageResource(R.drawable.ic_launcher_background);
+			headerLogo.setVisibility(View.INVISIBLE);
 			headerLogoProgress.setVisibility(View.VISIBLE);
 		} else {
-			headerLogo.setImageResource(R.drawable.ic_launcher);
+			//headerLogo.setImageResource(R.drawable.ic_launcher);
+			headerLogo.setVisibility(View.VISIBLE);
 			headerLogoProgress.setVisibility(View.INVISIBLE);
 		}
 	}

@@ -76,6 +76,7 @@ import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.reader.IReader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -214,6 +215,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         //AppRater.rateNow(this);
 
 		UpdateButtonLayout();
+
+        bindUserInfoToUI();
     }
 
 
@@ -903,4 +906,126 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
 		}
 	}
+
+    private class AsyncTaskGetUserInfo extends AsyncTask<Void, Void, UserInfo> {
+        @Override
+        protected UserInfo doInBackground(Void... voids) {
+            API api = API.GetRightApiForVersion("6.0.4", NewsReaderListActivity.this);
+
+            try {
+                UserInfo ui = new UserInfo();
+                InputStream inputStream = HttpJsonRequest.PerformJsonRequest(api.getUserUrl() , null, api.getUsername(), api.getPassword(), NewsReaderListActivity.this);
+
+                JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
+                reader.beginObject();
+
+                String currentName;
+                while(reader.hasNext() && (currentName = reader.nextName()) != null) {
+                    switch(currentName) {
+                        case "userId":
+                            ui.mUserId = reader.nextString();
+                            break;
+                        case "displayName":
+                            ui.mDisplayName = reader.nextString();
+                            break;
+                        case "avatar":
+                            com.google.gson.stream.JsonToken jt = reader.peek();
+                            if(jt == com.google.gson.stream.JsonToken.NULL) {
+                                Log.v(TAG, "No image available");
+                                reader.skipValue();
+                                //No image available
+                            } else {
+                                reader.beginObject();
+                                while (reader.hasNext()) {
+                                    currentName = reader.nextName();
+                                    if (currentName.equals("data")) {
+                                        String encodedImage = reader.nextString();
+                                        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+                                        ui.mAvatar = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                        Log.v(TAG, encodedImage);
+                                    } else {
+                                        reader.skipValue();
+                                    }
+                                }
+                            }
+                            break;
+                        default:
+                            Log.v(TAG, "Skipping value for: " + currentName);
+                            reader.skipValue();
+                            break;
+                    }
+                }
+                reader.close();
+
+                return ui;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(UserInfo userInfo) {
+            if(userInfo != null) {
+                try {
+                    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
+                    mPrefs.edit().putString("USER_INFO", NewsReaderListActivity.toString(userInfo)).commit();
+
+                    bindUserInfoToUI();
+                } catch(Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+            super.onPostExecute(userInfo);
+        }
+    }
+
+    private void bindUserInfoToUI() {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
+        String uInfo = mPrefs.getString("USER_INFO", null);
+        if(uInfo == null)
+            return;
+
+        try {
+            UserInfo userInfo = (UserInfo) fromString(uInfo);
+            if (userInfo.mDisplayName != null)
+                getSlidingListFragment().userTextView.setText(userInfo.mDisplayName);
+
+            if (userInfo.mAvatar != null) {
+                Resources r = getResources();
+                float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, r.getDisplayMetrics());
+                RoundedBitmapDisplayer.RoundedDrawable roundedAvatar =
+                        new RoundedBitmapDisplayer.RoundedDrawable(userInfo.mAvatar, (int) px, 0);
+                getSlidingListFragment().headerLogo.setImageDrawable(roundedAvatar);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private class UserInfo implements Serializable {
+        private String mUserId;
+        private String mDisplayName;
+        private Bitmap mAvatar;
+    }
+
+    /** Read the object from Base64 string. */
+    private static Object fromString( String s ) throws IOException ,
+            ClassNotFoundException {
+        byte [] data = Base64.decode(s, Base64.DEFAULT);
+        ObjectInputStream ois = new ObjectInputStream(
+                new ByteArrayInputStream(  data ) );
+        Object o  = ois.readObject();
+        ois.close();
+        return o;
+    }
+
+    /** Write the object to a Base64 string. */
+    private static String toString( Serializable o ) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream( baos );
+        oos.writeObject(o);
+        oos.close();
+        return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+    }
 }

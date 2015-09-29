@@ -38,6 +38,7 @@ import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
@@ -126,11 +127,4 @@ public abstract class API {
 	}
 
 	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag, Context context);
-
-
-    /*
-    static final Pattern RemoveAllDoubleSlashes = Pattern.compile("(?<!:)\\/\\/");
-    public static String validateURL(String url) {
-        return RemoveAllDoubleSlashes.matcher(url).replaceAll("/");
-    }   */
 }

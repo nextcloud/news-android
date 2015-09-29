@@ -64,6 +64,11 @@ public class APIv2 extends API {
 	}
 
 	@Override
+	public String getUserUrl() {
+		return getOcRootPath() + OwnCloudConstants.ROOT_PATH_APIv2 + OwnCloudConstants.USER_PATH;
+	}
+	
+	@Override
 	public boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag,
 			Context context) {
 		if(itemIds.size() > 0)
