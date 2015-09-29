@@ -36,9 +36,6 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 public class SyncItemStateService extends IntentService {
-
-	OwnCloud_Reader _Reader = new OwnCloud_Reader();
-	
 	public SyncItemStateService() {
 		super(null);
 	}	
@@ -49,7 +46,7 @@ public class SyncItemStateService extends IntentService {
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		_Reader.Start_AsyncTask_GetVersion(this, onAsyncTask_GetVersionFinished);
+		OwnCloud_Reader.getInstance().Start_AsyncTask_GetVersion(this, onAsyncTask_GetVersionFinished);
     }
 
 	OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
@@ -64,9 +61,9 @@ public class SyncItemStateService extends IntentService {
 				String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
                 API api = API.GetRightApiForVersion(appVersion, baseUrl);
 
-				_Reader.setApi(api);
+				OwnCloud_Reader.getInstance().setApi(api);
 				
-				_Reader.Start_AsyncTask_PerformItemStateChange(SyncItemStateService.this, null);
+				OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(SyncItemStateService.this, null);
 			}
 		}
 	};

@@ -23,14 +23,22 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
 
+import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class OwnCloud_Reader {
+	private static OwnCloud_Reader instance;
+	public static OwnCloud_Reader getInstance() {
+		if(instance == null)
+			instance = new OwnCloud_Reader();
+		return instance;
+	}
+
 	boolean isSyncRunning = false;
 	private API api = null;
 
-	public OwnCloud_Reader() {
+	private OwnCloud_Reader() {
 	}
 	
 	public void Start_AsyncTask_GetItems(Context context, OnAsyncTaskCompletedListener listener, FeedItemTags tag) {

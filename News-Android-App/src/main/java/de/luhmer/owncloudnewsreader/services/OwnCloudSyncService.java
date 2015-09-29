@@ -72,11 +72,11 @@ public class OwnCloudSyncService extends Service {
 		public void startSync() throws RemoteException {
 			if(!isSyncRunning()) {
 				// Only check for API version once
-				if(_Reader.getApi() == null) {
-					_Reader.Start_AsyncTask_GetVersion(OwnCloudSyncService.this, onAsyncTask_GetVersionFinished);
+				if(OwnCloud_Reader.getInstance().getApi() == null) {
+					OwnCloud_Reader.getInstance().Start_AsyncTask_GetVersion(OwnCloudSyncService.this, onAsyncTask_GetVersionFinished);
 					startedSync(SYNC_TYPES.SYNC_TYPE__GET_API);
 				} else {
-					_Reader.Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
+					OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
 					startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
 				}
 			}
@@ -84,25 +84,20 @@ public class OwnCloudSyncService extends Service {
 
 		@Override
 		public boolean isSyncRunning() throws RemoteException {
-			return _Reader.isSyncRunning();			
+			return OwnCloud_Reader.getInstance().isSyncRunning();			
 		}
 	};
-	
-	
-	static OwnCloud_Reader _Reader;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		if(_Reader == null)
-			_Reader = new OwnCloud_Reader();
 		Log.d(TAG, "onCreate() called");
 	}
 
     @Override
     public boolean onUnbind(Intent intent) {
         //Destroy service if no sync is running
-        if(!_Reader.isSyncRunning()) {
+        if(!OwnCloud_Reader.getInstance().isSyncRunning()) {
             Log.v(TAG, "Stopping service because of inactivity");
             stopSelf();
         }
@@ -123,9 +118,9 @@ public class OwnCloudSyncService extends Service {
 				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
 				String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
 				API api = API.GetRightApiForVersion(appVersion, baseUrl);
-				_Reader.setApi(api);
-				
-				_Reader.Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
+				OwnCloud_Reader.getInstance().setApi(api);
+
+				OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
 			
 				startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
 			}
@@ -146,13 +141,13 @@ public class OwnCloudSyncService extends Service {
             	if((Boolean) task_result)
             	{	
             		if(task_id == Constants.TaskID_PerformStateChange) {
-            			_Reader.Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTask_GetFolder);
+            			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTask_GetFolder);
             			
             			
             			startedSync(SYNC_TYPES.SYNC_TYPE__FOLDER);
             		}
             		else
-            			_Reader.setSyncRunning(true);
+            			OwnCloud_Reader.getInstance().setSyncRunning(true);
             	}
             }
         }
@@ -168,7 +163,7 @@ public class OwnCloudSyncService extends Service {
 			if(task_result != null)
 				ThrowException((Exception) task_result);
 			else {
-                _Reader.Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTask_GetFeed);
+                OwnCloud_Reader.getInstance().Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTask_GetFeed);
                 
                 startedSync(SYNC_TYPES.SYNC_TYPE__FEEDS);
             }
@@ -188,7 +183,7 @@ public class OwnCloudSyncService extends Service {
 			if(task_result != null)
 				ThrowException((Exception) task_result);
 			else {
-                _Reader.Start_AsyncTask_GetItems(OwnCloudSyncService.this, onAsyncTask_GetItems, FeedItemTags.ALL);//Recieve all unread Items
+                OwnCloud_Reader.getInstance().Start_AsyncTask_GetItems(OwnCloudSyncService.this, onAsyncTask_GetItems, FeedItemTags.ALL);//Recieve all unread Items
                 
                 startedSync(SYNC_TYPES.SYNC_TYPE__ITEMS);
             }
