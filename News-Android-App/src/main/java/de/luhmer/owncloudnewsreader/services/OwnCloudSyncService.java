@@ -28,26 +28,26 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.apache.commons.lang3.time.StopWatch;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.Constants.SYNC_TYPES;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService.Stub;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -57,6 +57,8 @@ public class OwnCloudSyncService extends Service {
 	protected static final String TAG = "OwnCloudSyncService";	
 	
 	private RemoteCallbackList<IOwnCloudSyncServiceCallback> callbacks = new RemoteCallbackList<>();
+
+	private CountDownLatch syncCompletedLatch;
 
 	private Stub mBinder = new IOwnCloudSyncService.Stub() {
 
@@ -71,8 +73,8 @@ public class OwnCloudSyncService extends Service {
 		@Override
 		public void startSync() throws RemoteException {
 			if(!isSyncRunning()) {
+				startedSync();
 				OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
-				startedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
 			}
 		}
 
@@ -103,41 +105,36 @@ public class OwnCloudSyncService extends Service {
     OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
         @Override
         public void onAsyncTaskCompleted(int task_id, Object task_result) {
-        	
-        	finishedSync(SYNC_TYPES.SYNC_TYPE__ITEM_STATES);
-        	
-            if(task_result != null)//task result is null if there was an error
-            {	
-            	if((Boolean) task_result)
-            	{	
-            		if(task_id == Constants.TaskID_PerformStateChange) {
-            			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTask_GetFolder);
-            			
-            			
-            			startedSync(SYNC_TYPES.SYNC_TYPE__FOLDER);
-            		}
-            		else
-            			OwnCloud_Reader.getInstance().setSyncRunning(true);
-            	}
-            }
-        }
+			syncCompletedLatch = new CountDownLatch(3);
+
+			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTask_GetFolder);
+			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTask_GetFeed);
+			OwnCloud_Reader.getInstance().Start_AsyncTask_GetItems(OwnCloudSyncService.this, onAsyncTask_GetItems, FeedItemTags.ALL); //Receive all unread Items
+			AsyncTask.execute(syncCompletionRunnable);
+		}
     };
-	
-    
+
+	private final Runnable syncCompletionRunnable = new Runnable() {
+		@Override
+		public void run() {
+			try {
+				syncCompletedLatch.await();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} finally {
+				new Handler(Looper.getMainLooper()).post(new Runnable() {
+					public void run() {
+						finishedSync();
+					}
+				});
+			}
+		}
+	};
+
 	OnAsyncTaskCompletedListener onAsyncTask_GetFolder = new OnAsyncTaskCompletedListener() {
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			
-			finishedSync(SYNC_TYPES.SYNC_TYPE__FOLDER);
-			
-			if(task_result != null)
-				ThrowException((Exception) task_result);
-			else {
-                OwnCloud_Reader.getInstance().Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTask_GetFeed);
-                
-                startedSync(SYNC_TYPES.SYNC_TYPE__FEEDS);
-            }
-
+			syncCompletedLatch.countDown();
             Log.d(TAG, "onAsyncTask_GetFolder Finished");
 		
 		}
@@ -147,16 +144,10 @@ public class OwnCloudSyncService extends Service {
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			
-			finishedSync(SYNC_TYPES.SYNC_TYPE__FEEDS);
-			
+			syncCompletedLatch.countDown();
+
 			if(task_result != null)
 				ThrowException((Exception) task_result);
-			else {
-                OwnCloud_Reader.getInstance().Start_AsyncTask_GetItems(OwnCloudSyncService.this, onAsyncTask_GetItems, FeedItemTags.ALL);//Recieve all unread Items
-                
-                startedSync(SYNC_TYPES.SYNC_TYPE__ITEMS);
-            }
 
             Log.d(TAG, "onAsyncTask_GetFeed Finished");
 		}
@@ -166,8 +157,8 @@ public class OwnCloudSyncService extends Service {
 		
 		@Override
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			finishedSync(SYNC_TYPES.SYNC_TYPE__ITEMS);
-			
+			syncCompletedLatch.countDown();
+
 			if(task_result != null)
             	ThrowException((Exception) task_result);
             else
@@ -224,11 +215,13 @@ public class OwnCloudSyncService extends Service {
 		callbacks.finishBroadcast();
 	}
 	
-	private void startedSync(SYNC_TYPES sync_type) {
+	private void startedSync() {
+		Log.v(TAG, "Synchronization started");
+
 		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
 		for(IOwnCloudSyncServiceCallback icb : callbackList) {
 			try {
-				icb.startedSync(sync_type.toString());
+				icb.startedSync();
 				//icb.finishedSyncOfItems();
 			} catch (RemoteException e) {						
 				e.printStackTrace();
@@ -237,13 +230,13 @@ public class OwnCloudSyncService extends Service {
 		callbacks.finishBroadcast();
 	}
 	
-	private void finishedSync(SYNC_TYPES sync_type) {
-        Log.v(TAG, "Finished Sync: " + sync_type.toString());
+	private void finishedSync() {
+        Log.v(TAG, "Synchronization finished");
 
 		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
 		for(IOwnCloudSyncServiceCallback icb : callbackList) {
 			try {
-				icb.finishedSync(sync_type.toString());
+				icb.finishedSync();
 				//icb.finishedSyncOfItems();
 			} catch (RemoteException e) {						
 				e.printStackTrace();

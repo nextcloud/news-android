@@ -475,36 +475,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 
 		@Override
-		public void startedSync(String sync_type) throws RemoteException {
+		public void startedSync() throws RemoteException {
 			UpdateButtonLayoutWithHandler();
 		}
 
 		@Override
-		public void finishedSync(String sync_type) throws RemoteException {
-			UpdateButtonLayoutWithHandler();
-
-			Constants.SYNC_TYPES st = Constants.SYNC_TYPES.valueOf(sync_type);
-
-			switch(st) {
-				case SYNC_TYPE__GET_API:
-					break;
-				case SYNC_TYPE__ITEM_STATES:
-					break;
-				case SYNC_TYPE__FOLDER:
-					break;
-				case SYNC_TYPE__FEEDS:
-					break;
-				case SYNC_TYPE__ITEMS:
-
-					Log.d(TAG, "finished sync");
-					Handler refresh = new Handler(Looper.getMainLooper());
-					refresh.post(new Runnable() {
-						public void run() {
-                            syncFinishedHandler();
-						}
-					});
-					break;
-			}
+		public void finishedSync() throws RemoteException {
+			Log.d(TAG, "finished sync");
+			Handler refresh = new Handler(Looper.getMainLooper());
+			refresh.post(new Runnable() {
+				public void run() {
+					UpdateButtonLayout();
+					syncFinishedHandler();
+				}
+			});
 		}
 	};
 

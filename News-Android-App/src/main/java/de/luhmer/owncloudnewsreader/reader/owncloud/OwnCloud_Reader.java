@@ -68,7 +68,7 @@ public class OwnCloud_Reader {
 	}
 	
 	public void Start_AsyncTask_GetItems(Context context, OnAsyncTaskCompletedListener listener, FeedItemTags tag) {
-		Start_AsyncTask(new AsyncTask_GetItems(context, AsyncTask_finished, listener),tag);
+		Start_AsyncTask(new AsyncTask_GetItems(context, AsyncTask_finished, listener), tag);
 	}
 
 	public void Start_AsyncTask_GetOldItems(Context context, OnAsyncTaskCompletedListener listener, Long feed_id, Long folder_id) {
@@ -93,7 +93,7 @@ public class OwnCloud_Reader {
 		if(apiFuture == null)
 			apiFuture = executor.submit(apiCallable);
 		asyncTask.setAPIFuture(apiFuture);
-		asyncTask.execute(params);
+		asyncTask.executeOnExecutor(executor, params);
 	}
 
 	public boolean isSyncRunning() {
