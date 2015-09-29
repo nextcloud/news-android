@@ -28,6 +28,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.squareup.okhttp.HttpUrl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +36,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -177,13 +180,11 @@ public class OwnCloudReaderMethods {
 
         reader.beginArray();
         while (reader.hasNext()) {
-        	//reader.beginObject();
-
         	JSONObject e = getJSONObjectFromReader(reader);
 
         	if(iJoBj.performAction(e))
                 newItemsCount++;
-    		//reader.endObject();
+
     		count++;
         }
 
@@ -201,7 +202,7 @@ public class OwnCloudReaderMethods {
 	 * can parse json like {"items":[{"id":6782}]}
 	 * @param in
 	 * @param iJoBj
-	 * @return
+	 * @return new int[] { count, newItemsCount }
 	 * @throws IOException
 	 * @throws JSONException
 	 */
@@ -302,6 +303,9 @@ public class OwnCloudReaderMethods {
 							jObj.put(name, getJSONObjectFromReader(jsonReader));
 							//jsonReader.endObject();
 							break;
+                        case BEGIN_ARRAY:
+                            jsonReader.skipValue();
+                            break;
 						default:
 							jObj.put(name, jsonReader.nextString());
 					}
@@ -416,14 +420,17 @@ public class OwnCloudReaderMethods {
 
 	public static String GetVersionNumber(Context cont, String oc_root_path) throws Exception
 	{
+        if(!oc_root_path.endsWith("/"))
+            oc_root_path = oc_root_path + "/";
+
 		HttpUrl basePath = HttpUrl.parse(oc_root_path);
 		//Try APIv2
 		try {
-			HttpUrl requestUrl = basePath.resolve(OwnCloudConstants.ROOT_PATH_APIv2).newBuilder()
+            HttpUrl requestUrl = basePath.resolve("." + OwnCloudConstants.ROOT_PATH_APIv2).newBuilder()
 					.addPathSegment(OwnCloudConstants.VERSION_PATH)
-					.build();
+                    .build();
 
-			InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl);
+            InputStream is = HttpJsonRequest.getInstance().PerformJsonRequest(requestUrl);
 
 			try {
 				GetVersion_v2 gv = new GetVersion_v2();
@@ -432,8 +439,8 @@ public class OwnCloudReaderMethods {
 			} finally {
 				is.close();
 			}
-		} catch(Exception ex) {//TODO GET HERE THE RIGHT EXCEPTION
-			HttpUrl requestUrl = basePath.resolve(OwnCloudConstants.ROOT_PATH_APIv1).newBuilder()
+		} catch(Exception ex) {
+			HttpUrl requestUrl = basePath.resolve("." + OwnCloudConstants.ROOT_PATH_APIv1).newBuilder()
 					.addPathSegment(OwnCloudConstants.VERSION_PATH)
 					.addQueryParameter("format", "json")
 					.build();

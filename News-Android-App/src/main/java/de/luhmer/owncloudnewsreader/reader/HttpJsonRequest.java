@@ -71,6 +71,16 @@ public class HttpJsonRequest {
         return instance;
     }
 
+    /**
+     * Destroys the current singleton and reinitialize the http-client e.g. if hostname verification changed
+     * @return Singleton Instance of HttpJsonRequest
+     */
+    public static HttpJsonRequest createNewInstance(Context context) {
+        instance = null;
+        init(context);
+        return getInstance();
+    }
+
     private final OkHttpClient client;
     private final OkHttpClient imageClient;
 

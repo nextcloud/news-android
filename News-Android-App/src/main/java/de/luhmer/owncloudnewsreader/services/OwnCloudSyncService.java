@@ -120,7 +120,9 @@ public class OwnCloudSyncService extends Service {
 			if(!(task_result instanceof Exception))
 			{	
 				String appVersion = task_result.toString();
-				API api = API.GetRightApiForVersion(appVersion, OwnCloudSyncService.this);
+				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
+				String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+				API api = API.GetRightApiForVersion(appVersion, baseUrl);
 				_Reader.setApi(api);
 				
 				_Reader.Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);

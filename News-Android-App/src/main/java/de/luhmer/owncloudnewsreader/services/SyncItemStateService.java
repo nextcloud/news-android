@@ -60,7 +60,9 @@ public class SyncItemStateService extends IntentService {
 			if(!(task_result instanceof Exception))
 			{
 				String appVersion = task_result.toString();
-                API api = API.GetRightApiForVersion(appVersion, SyncItemStateService.this);
+				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SyncItemStateService.this);
+				String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+                API api = API.GetRightApiForVersion(appVersion, baseUrl);
 
 				_Reader.setApi(api);
 				

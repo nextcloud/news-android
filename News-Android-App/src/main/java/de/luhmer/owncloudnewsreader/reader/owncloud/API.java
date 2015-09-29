@@ -30,6 +30,9 @@ import com.squareup.okhttp.HttpUrl;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -39,13 +42,16 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public abstract class API {
-	protected SharedPreferences mPrefs;
+	private String baseUrl;
 
-	public API(Context cont) {
-		mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
+	public API(String baseUrl) {
+        if(!baseUrl.endsWith("/"))
+            baseUrl = baseUrl + "/";
+
+		this.baseUrl = baseUrl;
 	}
 
-	public static API GetRightApiForVersion(String appVersion, Context context) {
+	public static API GetRightApiForVersion(String appVersion, String baseUrl) {
 		API api;
         int majorVersion = 0;
 		int minorVersion = 0;
@@ -61,23 +67,23 @@ public abstract class API {
         switch (majorVersion) {
             case 1:
                 if (minorVersion >= 101) {
-                    api = new APIv2(context);
+                    api = new APIv2(baseUrl);
                 } else {
-                    api = new APIv1(context);
+                    api = new APIv1(baseUrl);
                 }
                 break;
             case 2:
-                api = new APIv2(context);
+                api = new APIv2(baseUrl);
                 break;
             case 3:
-                api = new APIv2(context);
+                api = new APIv2(baseUrl);
                 break;
             case 4:
-                api = new APIv2(context);
+                api = new APIv2(baseUrl);
                 break;
             default:
                 //Api is not known. Fallback to APIv2
-                api = new APIv2(context);
+                api = new APIv2(baseUrl);
                 break;
         }
 
@@ -92,10 +98,10 @@ public abstract class API {
 	public abstract HttpUrl getTagBaseUrl();
 
 	protected HttpUrl getAPIUrl(String format, String... urlSegments) {
-		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-		HttpUrl basePath = HttpUrl.parse(oc_root_path);
+		HttpUrl basePath = HttpUrl.parse(baseUrl);
 
-		HttpUrl.Builder apiUrlBuilder = basePath.resolve(StringUtils.join(urlSegments, "/")).newBuilder();
+        String url = "." + StringUtils.join(urlSegments, "/");
+		HttpUrl.Builder apiUrlBuilder = basePath.resolve(url).newBuilder();
 
 		if(format != null)
 			apiUrlBuilder.addQueryParameter("format", format);
@@ -120,4 +126,11 @@ public abstract class API {
 	}
 
 	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag, Context context);
+
+
+    /*
+    static final Pattern RemoveAllDoubleSlashes = Pattern.compile("(?<!:)\\/\\/");
+    public static String validateURL(String url) {
+        return RemoveAllDoubleSlashes.matcher(url).replaceAll("/");
+    }   */
 }

@@ -805,7 +805,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			if(_Reader != null) {
 				String appVersion = task_result.toString();
-				API api = API.GetRightApiForVersion(appVersion, NewsReaderListActivity.this);
+				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
+				String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+				API api = API.GetRightApiForVersion(appVersion, baseUrl);
 				_Reader.setApi(api);
 
 				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();

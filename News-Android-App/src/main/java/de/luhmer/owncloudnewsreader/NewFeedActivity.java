@@ -4,8 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -215,7 +217,9 @@ public class NewFeedActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            API api = new APIv2(NewFeedActivity.this);
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewFeedActivity.this);
+            String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+            API api = new APIv2(baseUrl);
 
             try {
                 int status = HttpJsonRequest.getInstance().performCreateFeedRequest(api.getFeedUrl(),
