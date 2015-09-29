@@ -77,6 +77,12 @@ Updates
 ---------------------
 
 
+0.9.7.2 (Google Play)
+---------------------
+- Add profile picture support
+- Bug fixes
+
+
 0.9.7.1 (Google Play)
 ---------------------
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/359">#359 Feed view with full article content</a>
