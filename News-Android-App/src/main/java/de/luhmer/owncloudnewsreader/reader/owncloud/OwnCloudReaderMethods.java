@@ -417,7 +417,7 @@ public class OwnCloudReaderMethods {
 	{
 		//Try APIv2
 		try {
-            HttpUrl requestUrl = basePath.resolve("." + OwnCloudConstants.ROOT_PATH_APIv2).newBuilder()
+            HttpUrl requestUrl = basePath.resolve(OwnCloudConstants.ROOT_PATH_APIv2).newBuilder()
 					.addPathSegment(OwnCloudConstants.VERSION_PATH)
                     .build();
 
@@ -431,7 +431,7 @@ public class OwnCloudReaderMethods {
 				is.close();
 			}
 		} catch(Exception ex) {
-			HttpUrl requestUrl = basePath.resolve("." + OwnCloudConstants.ROOT_PATH_APIv1).newBuilder()
+			HttpUrl requestUrl = basePath.resolve(OwnCloudConstants.ROOT_PATH_APIv1).newBuilder()
 					.addPathSegment(OwnCloudConstants.VERSION_PATH)
 					.addQueryParameter("format", "json")
 					.build();

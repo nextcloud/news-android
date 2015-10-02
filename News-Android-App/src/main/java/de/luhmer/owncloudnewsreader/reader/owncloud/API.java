@@ -88,7 +88,7 @@ public abstract class API {
 	public abstract HttpUrl getTagBaseUrl();
 
 	protected HttpUrl getAPIUrl(String format, String... urlSegments) {
-        String url = "." + StringUtils.join(urlSegments, "/");
+        String url = StringUtils.join(urlSegments, "/");
 		HttpUrl.Builder apiUrlBuilder = baseUrl.resolve(url).newBuilder();
 
 		if(format != null)
