@@ -55,7 +55,7 @@ public class OwnCloud_Reader {
 		public API call() throws Exception {
 			HttpUrl oc_root_url = HttpJsonRequest.getInstance().getRootUrl();
 			String version = OwnCloudReaderMethods.GetVersionNumber(oc_root_url);
-			return API.GetRightApiForVersion(version, oc_root_url.toString());
+			return API.GetRightApiForVersion(version, oc_root_url);
 		}
 	};
 

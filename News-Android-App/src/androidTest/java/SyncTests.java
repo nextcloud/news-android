@@ -59,10 +59,10 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         // Schedule some responses.
         server.enqueue(new MockResponse().setBody(getSampleVersionInfoV2()));
 
-        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl.toString());
+        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl);
         assertEquals("5.2.3", versionNumber);
 
-        API api = API.GetRightApiForVersion(versionNumber, baseUrl.toString());
+        API api = API.GetRightApiForVersion(versionNumber, baseUrl);
         assertTrue(api instanceof APIv2);
     }
 
@@ -95,8 +95,8 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         server.enqueue(new MockResponse().setBody(getSampleVersionInfoV2()));
         server.enqueue(new MockResponse().setBody(jFeed.toString()));
 
-        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl.toString());
-        API api = API.GetRightApiForVersion(versionNumber, baseUrl.toString());
+        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl);
+        API api = API.GetRightApiForVersion(versionNumber, baseUrl);
         assertTrue(api instanceof APIv2);
 
         int[] res = OwnCloudReaderMethods.GetFeeds(mActivity, api);
@@ -132,8 +132,8 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         server.enqueue(new MockResponse().setBody(getSampleVersionInfoV2()));
         server.enqueue(new MockResponse().setBody(jItem.toString()));
 
-        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl.toString());
-        API api = API.GetRightApiForVersion(versionNumber, baseUrl.toString());
+        String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl);
+        API api = API.GetRightApiForVersion(versionNumber, baseUrl);
         assertTrue(api instanceof APIv2);
 
         int res2 = OwnCloudReaderMethods.GetItems(FeedItemTags.ALL, mActivity, "0", true, "0", "0", api); //TODO verify params

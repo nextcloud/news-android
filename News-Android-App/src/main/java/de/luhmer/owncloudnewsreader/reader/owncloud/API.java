@@ -35,16 +35,13 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public abstract class API {
-	private String baseUrl;
+	private HttpUrl baseUrl;
 
-	public API(String baseUrl) {
-        if(!baseUrl.endsWith("/"))
-            baseUrl = baseUrl + "/";
-
+	public API(HttpUrl baseUrl) {
 		this.baseUrl = baseUrl;
 	}
 
-	public static API GetRightApiForVersion(String appVersion, String baseUrl) {
+	public static API GetRightApiForVersion(String appVersion, HttpUrl baseUrl) {
 		API api;
         int majorVersion = 0;
 		int minorVersion = 0;
@@ -91,10 +88,8 @@ public abstract class API {
 	public abstract HttpUrl getTagBaseUrl();
 
 	protected HttpUrl getAPIUrl(String format, String... urlSegments) {
-		HttpUrl basePath = HttpUrl.parse(baseUrl);
-
         String url = "." + StringUtils.join(urlSegments, "/");
-		HttpUrl.Builder apiUrlBuilder = basePath.resolve(url).newBuilder();
+		HttpUrl.Builder apiUrlBuilder = baseUrl.resolve(url).newBuilder();
 
 		if(format != null)
 			apiUrlBuilder.addQueryParameter("format", format);

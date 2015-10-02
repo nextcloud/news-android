@@ -319,7 +319,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		protected Integer doInBackground(Void... params) {
 
 			try {
-				String _version = OwnCloudReaderMethods.GetVersionNumber(oc_root_path);
+				String _version = OwnCloudReaderMethods.GetVersionNumber(HttpJsonRequest.getInstance().getRootUrl());
 				if(_version != null)
 				{
 					_version = _version.replace(".", "");

@@ -34,7 +34,7 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 
 public class APIv2 extends API {
 	
-	public APIv2(String baseUrl) {
+	public APIv2(HttpUrl baseUrl) {
 		super(baseUrl);
 	}
 

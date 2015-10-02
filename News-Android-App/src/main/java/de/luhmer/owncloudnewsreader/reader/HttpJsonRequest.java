@@ -114,8 +114,10 @@ public class HttpJsonRequest {
         else
             credentials = null;
 
-        if(oc_root_path != null)
-            oc_root_url = HttpUrl.parse(oc_root_path);
+        if(oc_root_path != null) {
+            // Add empty path segment to ensure trailing slash
+            oc_root_url = HttpUrl.parse(oc_root_path).newBuilder().addPathSegment("").build();
+        }
     }
 
     public HttpUrl getRootUrl() {

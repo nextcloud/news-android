@@ -896,9 +896,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     private class AsyncTaskGetUserInfo extends AsyncTask<Void, Void, UserInfo> {
         @Override
         protected UserInfo doInBackground(Void... voids) {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
-            String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-            API api = API.GetRightApiForVersion("6.0.4", baseUrl);
+            API api = API.GetRightApiForVersion("6.0.4", HttpJsonRequest.getInstance().getRootUrl());
 
             try {
                 UserInfo ui = new UserInfo();
@@ -948,6 +946,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 return ui;
             } catch (Exception e) {
                 if(e.getMessage().equals("Method Not Allowed")) { //Remove if old version is used
+                    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
                     mPrefs.edit().remove("USER_INFO").commit();
                 }
                 e.printStackTrace();

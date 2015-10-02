@@ -413,10 +413,6 @@ public class OwnCloudReaderMethods {
         }
 	}
 
-	public static String GetVersionNumber(String basePath) throws Exception {
-		return GetVersionNumber(HttpUrl.parse(basePath));
-	}
-
 	public static String GetVersionNumber(HttpUrl basePath) throws Exception
 	{
 		//Try APIv2
