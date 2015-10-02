@@ -311,13 +311,14 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			this.username = username;
 			this.password = password;
 			this.oc_root_path = oc_root_path;
+			HttpJsonRequest.init(getActivity());
+			HttpJsonRequest.getInstance().setCredentials(username, password, oc_root_path);
 		}
 
 		@Override
 		protected Integer doInBackground(Void... params) {
 
 			try {
-				HttpJsonRequest.createNewInstance(getActivity()).setCredentials(username, password, oc_root_path);
 				String _version = OwnCloudReaderMethods.GetVersionNumber(getActivity(), oc_root_path);
 				if(_version != null)
 				{

@@ -56,8 +56,6 @@ public class HttpJsonRequest {
     private static HttpJsonRequest instance;
 
     public static void init(Context context) {
-        if(instance != null)
-            throw new IllegalStateException("Already initialized");
         instance = new HttpJsonRequest(context);
     }
 
@@ -65,16 +63,6 @@ public class HttpJsonRequest {
         if(instance == null)
             throw new IllegalStateException("Must be initialized first");
         return instance;
-    }
-
-    /**
-     * Destroys the current singleton and reinitialize the http-client e.g. if hostname verification changed
-     * @return Singleton Instance of HttpJsonRequest
-     */
-    public static HttpJsonRequest createNewInstance(Context context) {
-        instance = null;
-        init(context);
-        return getInstance();
     }
 
     private final OkHttpClient client;
