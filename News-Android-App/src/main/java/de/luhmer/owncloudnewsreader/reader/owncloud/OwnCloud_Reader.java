@@ -23,25 +23,30 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 
 import com.squareup.okhttp.HttpUrl;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class OwnCloud_Reader {
-	private static final String TAG = "OwnCloud_Reader";
+	private static final String TAG = OwnCloud_Reader.class.getCanonicalName();
 
+	private Future<API> apiFuture;
 	private static OwnCloud_Reader instance;
 
-	public static OwnCloud_Reader getInstance() {
+	public static synchronized OwnCloud_Reader getInstance() {
 		if(instance == null)
 			instance = new OwnCloud_Reader();
 		return instance;
@@ -55,10 +60,6 @@ public class OwnCloud_Reader {
 			return API.GetRightApiForVersion(version, oc_root_url);
 		}
 	};
-
-	private final ExecutorService executor = (ExecutorService) AsyncTask.THREAD_POOL_EXECUTOR;
-
-	private Future<API> apiFuture;
 
 	private OwnCloud_Reader() {
 	}
@@ -85,10 +86,33 @@ public class OwnCloud_Reader {
 
 	@SafeVarargs
 	private final <Params> void Start_AsyncTask(final AsyncTask_Reader asyncTask, final Params... params) {
-		if(apiFuture == null)
-			apiFuture = executor.submit(apiCallable);
+		if (apiFuture == null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                apiFuture = ((ExecutorService) AsyncTask.THREAD_POOL_EXECUTOR).submit(apiCallable);
+            } else { //Workaround for older Android Devices with no ExecutorService support
+                final CountDownLatch countDownLatch = new CountDownLatch(1);
+                new Thread() {
+                    public void run() {
+                        try {
+                            apiFuture = new CompatFuture<>(apiCallable.call());
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                        countDownLatch.countDown();
+                    }
+                }.start();
+
+                try {
+                    countDownLatch.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+		}
+
 		asyncTask.setAPIFuture(apiFuture);
-		asyncTask.executeOnExecutor(executor, params);
+
+		AsyncTaskHelper.StartAsyncTask(asyncTask, params);
 	}
 
 	public void resetApi() {

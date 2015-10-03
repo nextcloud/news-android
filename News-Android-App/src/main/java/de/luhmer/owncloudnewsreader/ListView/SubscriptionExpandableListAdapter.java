@@ -332,9 +332,22 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                 });
 	        }
 
+            //On API LEVEL < 11 we can't use the rotate method.. so we have to set different bitmaps.
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                if(group.id_database != ALL_STARRED_ITEMS.getValue()) {
+                    if (rotation == 90) {
+                        viewHolder.imgView.setImageResource(R.drawable.ic_action_expand_less);
+                    } else {
+                        viewHolder.imgView.setImageResource(R.drawable.ic_action_expand_more);
+                    }
+                }
+            }
         }
 
-        viewHolder.imgView.setRotation(rotation);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            viewHolder.imgView.setRotation(rotation);
+        }
 
         return convertView;
 	}

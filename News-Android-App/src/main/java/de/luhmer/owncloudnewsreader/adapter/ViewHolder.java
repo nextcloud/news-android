@@ -156,7 +156,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 textViewSummary.setTypeface(Typeface.DEFAULT_BOLD);
             }
 
-            ((View) textViewSummary.getParent()).setAlpha(alpha);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                ((View) textViewSummary.getParent()).setAlpha(alpha);
+            }
             //itemView.invalidate();
             //textViewSummary.invalidate();
         }

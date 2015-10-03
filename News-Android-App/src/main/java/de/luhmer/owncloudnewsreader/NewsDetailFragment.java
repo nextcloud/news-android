@@ -178,7 +178,17 @@ public class NewsDetailFragment extends Fragment {
         }
     }
 
+    /**
+     * This function has no effect on devices with api level < HONEYCOMB
+     * @param htmlPage
+     * @param webView
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static void SetSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+            return;
+        }
+
         if(htmlPage.contains(".gif")) {
             webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
             Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
