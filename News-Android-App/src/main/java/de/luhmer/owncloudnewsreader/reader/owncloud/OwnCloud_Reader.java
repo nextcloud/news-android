@@ -38,15 +38,9 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 public class OwnCloud_Reader {
 	private static OwnCloud_Reader instance;
 
-	public static void init(Context context) {
-		if(instance != null)
-			throw new IllegalStateException("Already initialized");
-		instance = new OwnCloud_Reader();
-	}
-
 	public static OwnCloud_Reader getInstance() {
 		if(instance == null)
-			throw new IllegalStateException("Must be initialized first");
+			instance = new OwnCloud_Reader();
 		return instance;
 	}
 

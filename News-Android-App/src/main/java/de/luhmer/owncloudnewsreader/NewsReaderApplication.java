@@ -21,7 +21,6 @@ public class NewsReaderApplication extends Application {
     public void onCreate() {
         super.onCreate();
         HttpJsonRequest.init(this);
-        OwnCloud_Reader.init(this);
         initImageLoader();
     }
 
