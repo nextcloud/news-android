@@ -104,7 +104,7 @@ public class OwnCloudSyncService extends Service {
 	//Sync state of items e.g. read/unread/starred/unstarred
     private final OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
         @Override
-        public void onAsyncTaskCompleted(int task_id, Object task_result) {
+        public void onAsyncTaskCompleted(Object task_result) {
 			syncCompletedLatch = new CountDownLatch(3);
 
 			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTaskFinished);
@@ -134,7 +134,7 @@ public class OwnCloudSyncService extends Service {
 	private final OnAsyncTaskCompletedListener onAsyncTaskFinished = new OnAsyncTaskCompletedListener() {
 
 		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
+		public void onAsyncTaskCompleted(Object task_result) {
 			if(task_result instanceof Exception)
 				ThrowException((Exception) task_result);
 			syncCompletedLatch.countDown();

@@ -64,7 +64,7 @@ public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Object> {
     protected void onPostExecute(Object ex) {
         for (OnAsyncTaskCompletedListener listenerInstance : listener) {
             if(listenerInstance != null)
-                listenerInstance.onAsyncTaskCompleted(task_id, ex);
+                listenerInstance.onAsyncTaskCompleted(ex);
         }
 
         detach();

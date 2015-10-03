@@ -104,7 +104,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
     protected void onPostExecute(Object ex) {
     	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
-    			listenerInstance.onAsyncTaskCompleted(task_id, ex);
+    			listenerInstance.onAsyncTaskCompleted(ex);
 		}
 
     	if(downloadedItemsCount == 0)

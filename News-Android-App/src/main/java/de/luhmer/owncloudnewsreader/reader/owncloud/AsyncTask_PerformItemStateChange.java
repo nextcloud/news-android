@@ -84,7 +84,7 @@ public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
     protected void onPostExecute(Object values) {
      	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
-    			listenerInstance.onAsyncTaskCompleted(task_id, values);	
+    			listenerInstance.onAsyncTaskCompleted(values);
 		}
 
 		detach();

@@ -31,10 +31,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 import android.widget.Toast;
-
-import java.util.concurrent.TimeUnit;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.DownloadImagesActivity;
@@ -134,7 +131,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     protected void onPostExecute(Object ex) {
     	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
-    			listenerInstance.onAsyncTaskCompleted(task_id, ex);
+    			listenerInstance.onAsyncTaskCompleted(ex);
 		}
 
         if(ex == null && NetworkConnection.isNetworkAvailable(context)) {
