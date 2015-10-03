@@ -41,18 +41,30 @@ public abstract class API {
 		this.baseUrl = baseUrl;
 	}
 
-	public static API GetRightApiForVersion(String appVersion, HttpUrl baseUrl) {
-		API api;
-        int majorVersion = 0;
+	/**
+	 * Input e.g. "6.0.4". Output [0] = 6, [1] = 4
+	 * @param appVersion
+	 * @return [0] = majorVersion, [1] = minorVersion
+	 */
+	public static int[] ExtractVersionNumberFromString(String appVersion) {
+		int majorVersion = 0;
 		int minorVersion = 0;
 		if(appVersion != null)
 		{
-            majorVersion = Integer.parseInt(appVersion.substring(0,1));
-            appVersion = appVersion.substring(2);
+			majorVersion = Integer.parseInt(appVersion.substring(0,1));
+			appVersion = appVersion.substring(2);
 
-            appVersion = appVersion.replace(".", "");
-            minorVersion = Integer.parseInt(appVersion);
+			appVersion = appVersion.replace(".", "");
+			minorVersion = Integer.parseInt(appVersion);
 		}
+		return new int[] {majorVersion, minorVersion};
+	}
+
+	public static API GetRightApiForVersion(String appVersion, HttpUrl baseUrl) {
+		API api;
+		int[] version = ExtractVersionNumberFromString(appVersion);
+        int majorVersion = version[0];
+		int minorVersion = version[1];
 
         switch (majorVersion) {
             case 1:
