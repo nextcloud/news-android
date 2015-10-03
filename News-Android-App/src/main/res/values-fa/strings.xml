@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">همگام‌سازی خودکار</string>
   <string name="app_name">خبر خوان ownCloud</string>
   <string name="title_activity_news_detail">فعالیت جزئیات اخبار</string>
   <string name="title_activity_subscription">فعالیت ثبت نام</string>
@@ -47,8 +48,12 @@
   <string name="pull_to_refresh_updateItems">همگام سازی آیتم ها</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">تنظیمات</string>
+  <plurals name="number_of_files">
+    <item quantity="other">%d فایل‌</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">عمومی</string>
+  <string name="pref_title_general_sort_order">ترتیب مرتب‌سازی</string>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
@@ -62,6 +67,7 @@
   <string name="pref_title_NavigateWithVolumeButtons">کنترل با دکمه های درجه صدا</string>
   <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری در حال پیمایش به عنوان خوانده شده </string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">همیشه</string>
   <string name="mtm_decision_abort">قطع عملیات</string>
   <!--Podcast-->
   <!--Settings for Display-->
