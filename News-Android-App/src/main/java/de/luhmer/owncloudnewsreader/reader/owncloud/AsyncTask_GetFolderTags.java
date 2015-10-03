@@ -23,13 +23,12 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
 
-import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetFolderTags extends AsyncTask_Reader {
     public AsyncTask_GetFolderTags(final Context context, final OnAsyncTaskCompletedListener... listener) {
-    	super(Constants.TaskID_GetFolder, context, listener);
+    	super(context, listener);
     }
 		
 	@Override

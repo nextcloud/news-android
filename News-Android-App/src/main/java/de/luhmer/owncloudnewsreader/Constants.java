@@ -7,20 +7,6 @@ public class Constants {
 
     public static final int maxItemsCount = 1500;
 
-
-    public static final int TaskID_GetVersion = -10;
-    public static final int TaskID_GetFolder = 1;
-    public static final int TaskID_GetFeeds = 2;
-    public static final int TaskID_GetItems = 3;
-    public static final int TaskID_PerformStateChange = -1;
-
-    public enum SYNC_TYPES { SYNC_TYPE__ITEM_STATES,
-    						SYNC_TYPE__FOLDER,
-    						SYNC_TYPE__FEEDS,
-    						SYNC_TYPE__ITEMS,
-    						SYNC_TYPE__GET_API};
-
-
     public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
 
     /*

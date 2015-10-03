@@ -51,7 +51,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
     int totalCount;
 
     public AsyncTask_GetItems(final Context context, final OnAsyncTaskCompletedListener... listener) {
-    	super(Constants.TaskID_GetItems, context, listener);
+    	super(context, listener);
 
         totalCount = 0;
     }

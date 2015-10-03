@@ -23,10 +23,8 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
@@ -35,7 +33,7 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 {
 	public AsyncTask_PerformItemStateChange(final Context context, final OnAsyncTaskCompletedListener... listener) {
-		super(Constants.TaskID_PerformStateChange, context, listener);
+		super(context, listener);
 	}
 
 	@Override

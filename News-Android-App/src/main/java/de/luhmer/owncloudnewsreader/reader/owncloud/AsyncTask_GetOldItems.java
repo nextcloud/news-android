@@ -24,7 +24,6 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 import android.content.Context;
 import android.widget.Toast;
 
-import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
@@ -43,7 +42,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
     private int downloadedItemsCount = 0;
 
     public AsyncTask_GetOldItems(final Context context, Long feed_id, Long folder_id, final OnAsyncTaskCompletedListener... listener) {
-    	super(Constants.TaskID_GetItems, context, listener);
+    	super(context, listener);
 
         this.feed_id = feed_id;
         this.folder_id = folder_id;
