@@ -45,10 +45,12 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -66,6 +68,7 @@ import android.widget.Toast;
 
 import com.google.gson.stream.JsonReader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.squareup.okhttp.HttpUrl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -97,6 +100,7 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
+import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
@@ -347,10 +351,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onRestoreInstanceState(android.os.Bundle)
 	 */
 	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		if(savedInstanceState != null) {
-			restoreInstanceState(savedInstanceState);
-		}
+	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        restoreInstanceState(savedInstanceState);
 		super.onRestoreInstanceState(savedInstanceState);
 	}
 
@@ -462,7 +464,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			Handler refresh = new Handler(Looper.getMainLooper());
 			refresh.post(new Runnable() {
 				public void run() {
-					UpdateButtonLayout();;
+					UpdateButtonLayout();
 				}
 			});
 		}
@@ -530,7 +532,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                         getResources().getQuantityString(R.plurals.message_bar_new_articles_available, newItemsCount, newItemsCount),
                         Snackbar.LENGTH_LONG);
                 snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
-                snackbar.setActionTextColor(getResources().getColor(R.color.accent_material_dark));
+                snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.accent_material_dark));
                 // Setting android:TextColor to #000 in the light theme results in black on black
                 // text on the Snackbar, set the text back to white,
                 // TODO: find a cleaner way to do this
@@ -793,8 +795,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private void DownloadMoreItems()
 	{
-		String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_username", "");
-		String password = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_password", "");
+		String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_username", null);
 
 		if(username != null) {
 			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
@@ -895,9 +896,17 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     private class AsyncTaskGetUserInfo extends AsyncTask<Void, Void, UserInfo> {
         @Override
         protected UserInfo doInBackground(Void... voids) {
-            API api = API.GetRightApiForVersion("6.0.4", HttpJsonRequest.getInstance().getRootUrl());
+			HttpUrl oc_root_url = HttpJsonRequest.getInstance().getRootUrl();
 
             try {
+				String appVersion = OwnCloudReaderMethods.GetVersionNumber(oc_root_url);
+				API api = API.GetRightApiForVersion(appVersion, HttpJsonRequest.getInstance().getRootUrl());
+
+				int[] version = API.ExtractVersionNumberFromString(appVersion);
+				if(version[0] < 6 || version[0] == 6 && version[1] <= 4) //Supported since 6.0.5
+					return null; //API NOT SUPPORTED!
+
+
                 UserInfo ui = new UserInfo();
                 InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getUserUrl());
 
