@@ -20,6 +20,7 @@ import java.net.URL;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
+import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
@@ -52,6 +53,8 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         server.start();
         // Ask the server for its URL. You'll need this to make HTTP requests.
         baseUrl = server.url("/");
+        HttpJsonRequest.init(mActivity);
+        HttpJsonRequest.getInstance().setCredentials("test", "test", baseUrl.toString());
     }
 
     @Test
