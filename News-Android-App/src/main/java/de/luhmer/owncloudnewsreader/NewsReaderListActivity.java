@@ -129,7 +129,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private static MenuItem menuItemUpdater;
 	private static MenuItem menuItemDownloadMoreItems;
-	private static OwnCloud_Reader _Reader;
 
     //private Date mLastSyncDate = new Date(0);
     private boolean mSyncOnStartupPerformed = false;
@@ -476,36 +475,19 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 
 		@Override
-		public void startedSync(String sync_type) throws RemoteException {
+		public void startedSync() throws RemoteException {
 			UpdateButtonLayoutWithHandler();
 		}
 
 		@Override
-		public void finishedSync(String sync_type) throws RemoteException {
-			UpdateButtonLayoutWithHandler();
-
-			Constants.SYNC_TYPES st = Constants.SYNC_TYPES.valueOf(sync_type);
-
-			switch(st) {
-				case SYNC_TYPE__GET_API:
-					break;
-				case SYNC_TYPE__ITEM_STATES:
-					break;
-				case SYNC_TYPE__FOLDER:
-					break;
-				case SYNC_TYPE__FEEDS:
-					break;
-				case SYNC_TYPE__ITEMS:
-
-					Log.d(TAG, "finished sync");
-					Handler refresh = new Handler(Looper.getMainLooper());
-					refresh.post(new Runnable() {
-						public void run() {
-                            syncFinishedHandler();
-						}
-					});
-					break;
-			}
+		public void finishedSync() throws RemoteException {
+			Handler refresh = new Handler(Looper.getMainLooper());
+			refresh.post(new Runnable() {
+				public void run() {
+					UpdateButtonLayout();
+					syncFinishedHandler();
+				}
+			});
 		}
 	};
 
@@ -815,33 +797,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		String password = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_password", "");
 
 		if(username != null) {
-			_Reader = new OwnCloud_Reader();
-			_Reader.Start_AsyncTask_GetVersion(this, onAsyncTaskGetVersionFinished);
+			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+			OwnCloud_Reader.getInstance().Start_AsyncTask_GetOldItems(NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
 
 			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 		}
 	}
 
-	OnAsyncTaskCompletedListener onAsyncTaskGetVersionFinished = new OnAsyncTaskCompletedListener() {
-
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			if(_Reader != null) {
-				String appVersion = task_result.toString();
-				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
-				String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-				API api = API.GetRightApiForVersion(appVersion, baseUrl);
-				_Reader.setApi(api);
-
-				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-				_Reader.Start_AsyncTask_GetOldItems(NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
-			}
-		}
-	};
-
 	OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {
 		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
+		public void onAsyncTaskCompleted(Exception task_result) {
 			updateCurrentRssView();
 			Log.v(TAG, "Finished Download extra items..");
 		}
@@ -930,9 +895,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     private class AsyncTaskGetUserInfo extends AsyncTask<Void, Void, UserInfo> {
         @Override
         protected UserInfo doInBackground(Void... voids) {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
-            String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-            API api = API.GetRightApiForVersion("6.0.4", baseUrl);
+            API api = API.GetRightApiForVersion("6.0.4", HttpJsonRequest.getInstance().getRootUrl());
 
             try {
                 UserInfo ui = new UserInfo();
@@ -982,6 +945,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 return ui;
             } catch (Exception e) {
                 if(e.getMessage().equals("Method Not Allowed")) { //Remove if old version is used
+                    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
                     mPrefs.edit().remove("USER_INFO").commit();
                 }
                 e.printStackTrace();

@@ -216,10 +216,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewFeedActivity.this);
-            String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-            API api = new APIv2(baseUrl);
+            API api = new APIv2(HttpJsonRequest.getInstance().getRootUrl());
 
             try {
                 int status = HttpJsonRequest.getInstance().performCreateFeedRequest(api.getFeedUrl(),

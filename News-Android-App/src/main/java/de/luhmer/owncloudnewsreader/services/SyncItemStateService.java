@@ -36,9 +36,6 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 public class SyncItemStateService extends IntentService {
-
-	OwnCloud_Reader _Reader = new OwnCloud_Reader();
-	
 	public SyncItemStateService() {
 		super(null);
 	}	
@@ -49,29 +46,9 @@ public class SyncItemStateService extends IntentService {
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		_Reader.Start_AsyncTask_GetVersion(this, onAsyncTask_GetVersionFinished);
+		OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(SyncItemStateService.this, null);
     }
 
-	OnAsyncTaskCompletedListener onAsyncTask_GetVersionFinished = new OnAsyncTaskCompletedListener() {
-
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			
-			if(!(task_result instanceof Exception))
-			{
-				String appVersion = task_result.toString();
-				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SyncItemStateService.this);
-				String baseUrl = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-                API api = API.GetRightApiForVersion(appVersion, baseUrl);
-
-				_Reader.setApi(api);
-				
-				_Reader.Start_AsyncTask_PerformItemStateChange(SyncItemStateService.this, null);
-			}
-		}
-	};
-	
-	
 	public static boolean isMyServiceRunning(Context context) {
 	    ActivityManager manager = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
 	    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {

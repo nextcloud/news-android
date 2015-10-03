@@ -413,16 +413,11 @@ public class OwnCloudReaderMethods {
         }
 	}
 
-
-	public static String GetVersionNumber(Context cont, String oc_root_path) throws Exception
+	public static String GetVersionNumber(HttpUrl basePath) throws Exception
 	{
-        if(!oc_root_path.endsWith("/"))
-            oc_root_path = oc_root_path + "/";
-
-		HttpUrl basePath = HttpUrl.parse(oc_root_path);
 		//Try APIv2
 		try {
-            HttpUrl requestUrl = basePath.resolve("." + OwnCloudConstants.ROOT_PATH_APIv2).newBuilder()
+            HttpUrl requestUrl = basePath.resolve(OwnCloudConstants.ROOT_PATH_APIv2).newBuilder()
 					.addPathSegment(OwnCloudConstants.VERSION_PATH)
                     .build();
 
@@ -436,7 +431,7 @@ public class OwnCloudReaderMethods {
 				is.close();
 			}
 		} catch(Exception ex) {
-			HttpUrl requestUrl = basePath.resolve("." + OwnCloudConstants.ROOT_PATH_APIv1).newBuilder()
+			HttpUrl requestUrl = basePath.resolve(OwnCloudConstants.ROOT_PATH_APIv1).newBuilder()
 					.addPathSegment(OwnCloudConstants.VERSION_PATH)
 					.addQueryParameter("format", "json")
 					.build();

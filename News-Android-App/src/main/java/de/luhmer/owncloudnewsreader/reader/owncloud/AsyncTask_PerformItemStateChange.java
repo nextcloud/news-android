@@ -23,10 +23,8 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
@@ -34,60 +32,59 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 {
-	private API api;
-
-	public AsyncTask_PerformItemStateChange(final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
-		super(Constants.TaskID_PerformStateChange, context, listener);
-		this.api = api;
+	public AsyncTask_PerformItemStateChange(final Context context, final OnAsyncTaskCompletedListener... listener) {
+		super(context, listener);
 	}
 
 	@Override
-	protected Boolean doInBackground(Object... params) {
-		List<Boolean> succeeded = new ArrayList<>();
+	protected Exception doInBackground(Object... params) {
+		boolean succeeded;
 
 		try {
 			DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
 
 			//Mark as READ
 			List<String> itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewReadRssItems());
-			boolean result = api.PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_READ, context);
+			boolean result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_READ, context);
 			if(result)
 				dbConn.change_readUnreadStateOfItem(itemIds, true);
-			succeeded.add(result);
+			succeeded = result;
 
 			//Mark as UNREAD
 			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnreadRssItems());
-			result = api.PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNREAD, context);
+			result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNREAD, context);
 			if(result)
 				dbConn.change_readUnreadStateOfItem(itemIds, false);
-			succeeded.add(result);
+			succeeded &= result;
 
 			//Mark as STARRED
 			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewStarredRssItems());
-			result = api.PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_STARRED, context);
+			result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_STARRED, context);
 			if(result)
 				dbConn.change_starrUnstarrStateOfItem(itemIds, true);
-			succeeded.add(result);
+			succeeded &= result;
 
 			//Mark as UNSTARRED
 			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnstarredRssItems());
-			result = api.PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNSTARRED, context);
+			result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNSTARRED, context);
 			if(result)
 				dbConn.change_starrUnstarrStateOfItem(itemIds, false);
-			succeeded.add(result);
+			succeeded &= result;
 		} catch (Exception e) {
-			e.printStackTrace();
-			succeeded.add(false);
+			return e;
 		}
 
-        return !succeeded.contains(false);
+		Exception e = null;
+		if(!succeeded)
+			e = new Exception("Performing item state change failed");
+        return e;
 	}
 
     @Override
-    protected void onPostExecute(Object values) {
+    protected void onPostExecute(Exception ex) {
      	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
-    			listenerInstance.onAsyncTaskCompleted(task_id, values);	
+    			listenerInstance.onAsyncTaskCompleted(ex);
 		}
 
 		detach();

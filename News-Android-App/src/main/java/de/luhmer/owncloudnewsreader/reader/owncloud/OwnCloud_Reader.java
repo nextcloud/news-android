@@ -22,69 +22,76 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 
+import com.squareup.okhttp.HttpUrl;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+
+import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
+import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class OwnCloud_Reader {
-	boolean isSyncRunning = false;
-	private API api = null;
+	private static final String TAG = "OwnCloud_Reader";
 
-	public OwnCloud_Reader() {
-	}
-	
-	public void Start_AsyncTask_GetItems(Context context, OnAsyncTaskCompletedListener listener, FeedItemTags tag) {
-		setSyncRunning(true);
-		new AsyncTask_GetItems(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute(tag);
-	}
+	private static OwnCloud_Reader instance;
 
-	public void Start_AsyncTask_GetOldItems(Context context, OnAsyncTaskCompletedListener listener, Long feed_id, Long folder_id) {
-		setSyncRunning(true);
-		new AsyncTask_GetOldItems(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, feed_id, folder_id, api).execute();
-	}
-	
-	public void Start_AsyncTask_GetFolder(Context context, OnAsyncTaskCompletedListener listener) {
-		setSyncRunning(true);
-		new AsyncTask_GetFolderTags(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
-	}
-	
-	public void Start_AsyncTask_GetFeeds(Context context, OnAsyncTaskCompletedListener listener) {
-		setSyncRunning(true);
-		new AsyncTask_GetFeeds(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
+	public static OwnCloud_Reader getInstance() {
+		if(instance == null)
+			instance = new OwnCloud_Reader();
+		return instance;
 	}
 
-	public void Start_AsyncTask_PerformItemStateChange(Context context, OnAsyncTaskCompletedListener listener) {
-		setSyncRunning(true);
-		new AsyncTask_PerformItemStateChange(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }, api).execute();
-	}
-	
-	
-	public void Start_AsyncTask_GetVersion(Context context, OnAsyncTaskCompletedListener listener) {
-		setSyncRunning(true);
-		new AsyncTask_GetApiVersion(context, new OnAsyncTaskCompletedListener[] { AsyncTask_finished, listener }).execute();
-	}
-
-	public boolean isSyncRunning() {
-		return isSyncRunning;
-	}
-	
-	public void setSyncRunning(boolean isSyncRunning) {
-		this.isSyncRunning = isSyncRunning;
-	}
-
-	OnAsyncTaskCompletedListener AsyncTask_finished = new OnAsyncTaskCompletedListener() {
-		
+	private final Callable<API> apiCallable = new Callable<API>() {
 		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			setSyncRunning(false);
+		public API call() throws Exception {
+			HttpUrl oc_root_url = HttpJsonRequest.getInstance().getRootUrl();
+			String version = OwnCloudReaderMethods.GetVersionNumber(oc_root_url);
+			return API.GetRightApiForVersion(version, oc_root_url);
 		}
 	};
 
-	public API getApi() {
-		return api;
+	private final ExecutorService executor = (ExecutorService) AsyncTask.THREAD_POOL_EXECUTOR;
+
+	private Future<API> apiFuture;
+
+	private OwnCloud_Reader() {
+	}
+	
+	public void Start_AsyncTask_GetItems(Context context, OnAsyncTaskCompletedListener listener, FeedItemTags tag) {
+		Start_AsyncTask(new AsyncTask_GetItems(context, listener), tag);
 	}
 
-	public void setApi(API api) {
-		this.api = api;
-	}	
+	public void Start_AsyncTask_GetOldItems(Context context, OnAsyncTaskCompletedListener listener, Long feed_id, Long folder_id) {
+		Start_AsyncTask(new AsyncTask_GetOldItems(context, feed_id, folder_id, listener));
+	}
+	
+	public void Start_AsyncTask_GetFolder(Context context, OnAsyncTaskCompletedListener listener) {
+		Start_AsyncTask(new AsyncTask_GetFolderTags(context, listener));
+	}
+	
+	public void Start_AsyncTask_GetFeeds(Context context, OnAsyncTaskCompletedListener listener) {
+		Start_AsyncTask(new AsyncTask_GetFeeds(context, listener));
+	}
+
+	public void Start_AsyncTask_PerformItemStateChange(Context context, OnAsyncTaskCompletedListener listener) {
+		Start_AsyncTask(new AsyncTask_PerformItemStateChange(context, listener));
+	}
+
+	@SafeVarargs
+	private final <Params> void Start_AsyncTask(final AsyncTask_Reader asyncTask, final Params... params) {
+		if(apiFuture == null)
+			apiFuture = executor.submit(apiCallable);
+		asyncTask.setAPIFuture(apiFuture);
+		asyncTask.executeOnExecutor(executor, params);
+	}
+
+	public void resetApi() {
+		apiFuture = null;
+	}
 }

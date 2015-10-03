@@ -25,14 +25,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Object> {
+import java.util.concurrent.Future;
+
+import de.luhmer.owncloudnewsreader.reader.owncloud.API;
+
+public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Exception> {
 	protected Context context;
-	protected int task_id;
 	protected OnAsyncTaskCompletedListener[] listener;
+    protected Future<API> apiFuture;
 	
-	public AsyncTask_Reader(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener) {
+	public AsyncTask_Reader(final Context context, final OnAsyncTaskCompletedListener... listener) {
 		this.context = context;
-		this.task_id = task_id;
 		this.listener = listener;
 	}
 	
@@ -56,12 +59,16 @@ public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Object> {
     }
        
     @Override
-    protected void onPostExecute(Object ex) {
+    protected void onPostExecute(Exception ex) {
         for (OnAsyncTaskCompletedListener listenerInstance : listener) {
             if(listenerInstance != null)
-                listenerInstance.onAsyncTaskCompleted(task_id, ex);
+                listenerInstance.onAsyncTaskCompleted(ex);
         }
 
         detach();
+    }
+
+    public void setAPIFuture(Future<API> apiFuture) {
+        this.apiFuture = apiFuture;
     }
 }

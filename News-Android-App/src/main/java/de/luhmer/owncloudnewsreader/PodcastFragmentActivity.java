@@ -483,7 +483,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             //int animationpos = 500;
             float xPosition = rlVideoPodcastSurfaceWrapper.getVideoXPosition();
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {//TODO podcast video is only working for newer android versions
+            if (Build.VERSION.SDK_INT >= 12) {//TODO podcast video is only working for newer android versions
                 view.animate().x(xPosition).y(absoluteYPosition).setDuration(animationTime);
             }
             //scaleX(scaleFactor).scaleY(scaleFactor)
