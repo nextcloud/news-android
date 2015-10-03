@@ -102,14 +102,14 @@ public class OwnCloudSyncService extends Service {
     }
 
 	//Sync state of items e.g. read/unread/starred/unstarred
-    OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
+    private final OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
         @Override
         public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			syncCompletedLatch = new CountDownLatch(3);
 
-			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTask_GetFolder);
-			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTask_GetFeed);
-			OwnCloud_Reader.getInstance().Start_AsyncTask_GetItems(OwnCloudSyncService.this, onAsyncTask_GetItems, FeedItemTags.ALL); //Receive all unread Items
+			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTaskFinished);
+			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTaskFinished);
+			OwnCloud_Reader.getInstance().Start_AsyncTask_GetItems(OwnCloudSyncService.this, onAsyncTaskFinished, FeedItemTags.ALL); //Receive all unread Items
 			AsyncTask.execute(syncCompletionRunnable);
 		}
     };
@@ -131,64 +131,15 @@ public class OwnCloudSyncService extends Service {
 		}
 	};
 
-	OnAsyncTaskCompletedListener onAsyncTask_GetFolder = new OnAsyncTaskCompletedListener() {
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			syncCompletedLatch.countDown();
-            Log.d(TAG, "onAsyncTask_GetFolder Finished");
-		
-		}
-	};
-	
-	OnAsyncTaskCompletedListener onAsyncTask_GetFeed = new OnAsyncTaskCompletedListener() {
-		
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
-			syncCompletedLatch.countDown();
+	private final OnAsyncTaskCompletedListener onAsyncTaskFinished = new OnAsyncTaskCompletedListener() {
 
-			if(task_result != null)
+		@Override
+		public void onAsyncTaskCompleted(int task_id, Object task_result) {
+			if(task_result instanceof Exception)
 				ThrowException((Exception) task_result);
-
-            Log.d(TAG, "onAsyncTask_GetFeed Finished");
-		}
-	};
-	
-	OnAsyncTaskCompletedListener onAsyncTask_GetItems = new OnAsyncTaskCompletedListener() {
-		
-		@Override
-		public void onAsyncTaskCompleted(int task_id, Object task_result) {
 			syncCompletedLatch.countDown();
-
-			if(task_result != null)
-            	ThrowException((Exception) task_result);
-            else
-            {
-                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
-                int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
-                if(newItemsCount > 0) {
-                    ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-                    List<ActivityManager.RunningTaskInfo> runningTaskInfo = am.getRunningTasks(1);
-
-                    ComponentName componentInfo = runningTaskInfo.get(0).topActivity;
-                    if(!componentInfo.getPackageName().equals("de.luhmer.owncloudnewsreader")) {
-						Resources res = getResources();
-                        String tickerText = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
-                        String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
-                        String title = getString(R.string.app_name);
-
-                        if(mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true))//Default is true
-                            NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
-                    }
-                    UpdateWidget();
-                }
-            }
-
-            Log.d(TAG, "onAsyncTask_GetItems Finished");
-			//fireUpdateFinishedClicked();
-			
 		}
 	};
-
 
     private void UpdateWidget()
     {
@@ -232,6 +183,25 @@ public class OwnCloudSyncService extends Service {
 	
 	private void finishedSync() {
         Log.v(TAG, "Synchronization finished");
+
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
+		int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
+		if(newItemsCount > 0) {
+			ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+			List<ActivityManager.RunningTaskInfo> runningTaskInfo = am.getRunningTasks(1);
+
+			ComponentName componentInfo = runningTaskInfo.get(0).topActivity;
+			if(!componentInfo.getPackageName().equals("de.luhmer.owncloudnewsreader")) {
+				Resources res = getResources();
+				String tickerText = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
+				String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
+				String title = getString(R.string.app_name);
+
+				if(mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true))//Default is true
+					NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
+			}
+			UpdateWidget();
+		}
 
 		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
 		for(IOwnCloudSyncServiceCallback icb : callbackList) {

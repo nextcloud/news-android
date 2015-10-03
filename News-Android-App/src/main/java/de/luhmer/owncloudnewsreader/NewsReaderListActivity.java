@@ -481,7 +481,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		@Override
 		public void finishedSync() throws RemoteException {
-			Log.d(TAG, "finished sync");
 			Handler refresh = new Handler(Looper.getMainLooper());
 			refresh.post(new Runnable() {
 				public void run() {
