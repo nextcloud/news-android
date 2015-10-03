@@ -23,6 +23,7 @@ package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.util.Log;
 import android.widget.ImageView;
@@ -86,7 +87,7 @@ public class FavIconHandler {
                 Feed feed = dbConn.getFeedById(AsynkTaskId);
                 Palette palette = Palette.from(bitmap).generate();
                 String avg = String.valueOf(
-                        palette.getVibrantColor(R.color.material_blue_grey_800)
+                        palette.getVibrantColor(ContextCompat.getColor(context, R.color.material_blue_grey_800))
                 );
                 feed.setAvgColour(avg);
                 dbConn.updateFeed(feed);
