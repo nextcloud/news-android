@@ -312,6 +312,8 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			this.username = username;
 			this.password = password;
 			this.oc_root_path = oc_root_path;
+
+			//Re-init client in order to set the hostname verifier correctly
 			HttpJsonRequest.init(getActivity());
 			HttpJsonRequest.getInstance().setCredentials(username, password, oc_root_path);
 			OwnCloud_Reader.getInstance().resetApi();
