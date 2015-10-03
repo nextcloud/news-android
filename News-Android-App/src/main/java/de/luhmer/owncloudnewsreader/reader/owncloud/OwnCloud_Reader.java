@@ -23,6 +23,7 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.squareup.okhttp.HttpUrl;
 
@@ -36,6 +37,8 @@ import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class OwnCloud_Reader {
+	private static final String TAG = "OwnCloud_Reader";
+
 	private static OwnCloud_Reader instance;
 
 	public static OwnCloud_Reader getInstance() {
@@ -55,35 +58,33 @@ public class OwnCloud_Reader {
 
 	private final ExecutorService executor = (ExecutorService) AsyncTask.THREAD_POOL_EXECUTOR;
 
-	private boolean isSyncRunning = false;
 	private Future<API> apiFuture;
 
 	private OwnCloud_Reader() {
 	}
 	
 	public void Start_AsyncTask_GetItems(Context context, OnAsyncTaskCompletedListener listener, FeedItemTags tag) {
-		Start_AsyncTask(new AsyncTask_GetItems(context, AsyncTask_finished, listener), tag);
+		Start_AsyncTask(new AsyncTask_GetItems(context, listener), tag);
 	}
 
 	public void Start_AsyncTask_GetOldItems(Context context, OnAsyncTaskCompletedListener listener, Long feed_id, Long folder_id) {
-		Start_AsyncTask(new AsyncTask_GetOldItems(context, feed_id, folder_id, AsyncTask_finished, listener));
+		Start_AsyncTask(new AsyncTask_GetOldItems(context, feed_id, folder_id, listener));
 	}
 	
 	public void Start_AsyncTask_GetFolder(Context context, OnAsyncTaskCompletedListener listener) {
-		Start_AsyncTask(new AsyncTask_GetFolderTags(context, AsyncTask_finished, listener));
+		Start_AsyncTask(new AsyncTask_GetFolderTags(context, listener));
 	}
 	
 	public void Start_AsyncTask_GetFeeds(Context context, OnAsyncTaskCompletedListener listener) {
-		Start_AsyncTask(new AsyncTask_GetFeeds(context, AsyncTask_finished, listener));
+		Start_AsyncTask(new AsyncTask_GetFeeds(context, listener));
 	}
 
 	public void Start_AsyncTask_PerformItemStateChange(Context context, OnAsyncTaskCompletedListener listener) {
-		Start_AsyncTask(new AsyncTask_PerformItemStateChange(context, AsyncTask_finished, listener));
+		Start_AsyncTask(new AsyncTask_PerformItemStateChange(context, listener));
 	}
 
 	@SafeVarargs
 	private final <Params> void Start_AsyncTask(final AsyncTask_Reader asyncTask, final Params... params) {
-		setSyncRunning(true);
 		if(apiFuture == null)
 			apiFuture = executor.submit(apiCallable);
 		asyncTask.setAPIFuture(apiFuture);
@@ -93,20 +94,4 @@ public class OwnCloud_Reader {
 	public void resetApi() {
 		apiFuture = null;
 	}
-
-	public boolean isSyncRunning() {
-		return isSyncRunning;
-	}
-	
-	public void setSyncRunning(boolean isSyncRunning) {
-		this.isSyncRunning = isSyncRunning;
-	}
-
-	OnAsyncTaskCompletedListener AsyncTask_finished = new OnAsyncTaskCompletedListener() {
-		
-		@Override
-		public void onAsyncTaskCompleted(Exception task_result) {
-			setSyncRunning(false);
-		}
-	};
 }

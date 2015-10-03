@@ -62,6 +62,7 @@ public class OwnCloudSyncService extends Service {
 
 	private CountDownLatch syncCompletedLatch;
 	private StopWatch syncStopWatch;
+	private boolean syncRunning;
 
 	private Stub mBinder = new IOwnCloudSyncService.Stub() {
 
@@ -83,7 +84,7 @@ public class OwnCloudSyncService extends Service {
 
 		@Override
 		public boolean isSyncRunning() throws RemoteException {
-			return OwnCloud_Reader.getInstance().isSyncRunning();			
+			return syncRunning;
 		}
 	};
 
@@ -96,7 +97,7 @@ public class OwnCloudSyncService extends Service {
     @Override
     public boolean onUnbind(Intent intent) {
         //Destroy service if no sync is running
-        if(!OwnCloud_Reader.getInstance().isSyncRunning()) {
+        if(!syncRunning) {
             Log.v(TAG, "Stopping service because of inactivity");
             stopSelf();
         }
@@ -172,6 +173,7 @@ public class OwnCloudSyncService extends Service {
 	}
 	
 	private void startedSync() {
+		syncRunning = true;
 		Log.v(TAG, "Synchronization started");
 
 		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
@@ -187,6 +189,7 @@ public class OwnCloudSyncService extends Service {
 	}
 	
 	private void finishedSync() {
+		syncRunning = false;
 		syncStopWatch.stop();
         Log.v(TAG, "Time needed (synchronization): " + syncStopWatch.toString());
 
