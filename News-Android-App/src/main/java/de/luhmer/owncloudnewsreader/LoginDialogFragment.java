@@ -57,6 +57,7 @@ import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
+import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -313,6 +314,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			this.oc_root_path = oc_root_path;
 			HttpJsonRequest.init(getActivity());
 			HttpJsonRequest.getInstance().setCredentials(username, password, oc_root_path);
+			OwnCloud_Reader.getInstance().resetApi();
 		}
 
 		@Override

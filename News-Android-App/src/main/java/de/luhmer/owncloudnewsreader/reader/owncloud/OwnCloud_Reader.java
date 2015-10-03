@@ -96,6 +96,10 @@ public class OwnCloud_Reader {
 		asyncTask.executeOnExecutor(executor, params);
 	}
 
+	public void resetApi() {
+		apiFuture = null;
+	}
+
 	public boolean isSyncRunning() {
 		return isSyncRunning;
 	}
