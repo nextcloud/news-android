@@ -101,7 +101,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
 	}
 
     @Override
-    protected void onPostExecute(Object ex) {
+    protected void onPostExecute(Exception ex) {
     	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
     			listenerInstance.onAsyncTaskCompleted(ex);

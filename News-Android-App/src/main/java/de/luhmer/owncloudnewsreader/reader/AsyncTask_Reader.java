@@ -29,7 +29,7 @@ import java.util.concurrent.Future;
 
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 
-public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Object> {
+public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Exception> {
 	protected Context context;
 	protected int task_id;
 	protected OnAsyncTaskCompletedListener[] listener;
@@ -61,7 +61,7 @@ public abstract class AsyncTask_Reader extends AsyncTask<Object, Void, Object> {
     }
        
     @Override
-    protected void onPostExecute(Object ex) {
+    protected void onPostExecute(Exception ex) {
         for (OnAsyncTaskCompletedListener listenerInstance : listener) {
             if(listenerInstance != null)
                 listenerInstance.onAsyncTaskCompleted(ex);

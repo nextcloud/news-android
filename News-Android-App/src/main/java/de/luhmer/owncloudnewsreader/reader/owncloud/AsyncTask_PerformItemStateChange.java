@@ -39,8 +39,8 @@ public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 	}
 
 	@Override
-	protected Boolean doInBackground(Object... params) {
-		List<Boolean> succeeded = new ArrayList<>();
+	protected Exception doInBackground(Object... params) {
+		boolean succeeded;
 
 		try {
 			DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
@@ -50,41 +50,43 @@ public class AsyncTask_PerformItemStateChange extends AsyncTask_Reader
 			boolean result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_READ, context);
 			if(result)
 				dbConn.change_readUnreadStateOfItem(itemIds, true);
-			succeeded.add(result);
+			succeeded = result;
 
 			//Mark as UNREAD
 			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnreadRssItems());
 			result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNREAD, context);
 			if(result)
 				dbConn.change_readUnreadStateOfItem(itemIds, false);
-			succeeded.add(result);
+			succeeded &= result;
 
 			//Mark as STARRED
 			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewStarredRssItems());
 			result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_STARRED, context);
 			if(result)
 				dbConn.change_starrUnstarrStateOfItem(itemIds, true);
-			succeeded.add(result);
+			succeeded &= result;
 
 			//Mark as UNSTARRED
 			itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnstarredRssItems());
 			result = apiFuture.get().PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNSTARRED, context);
 			if(result)
 				dbConn.change_starrUnstarrStateOfItem(itemIds, false);
-			succeeded.add(result);
+			succeeded &= result;
 		} catch (Exception e) {
-			e.printStackTrace();
-			succeeded.add(false);
+			return e;
 		}
 
-        return !succeeded.contains(false);
+		Exception e = null;
+		if(!succeeded)
+			e = new Exception("Performing item state change failed");
+        return e;
 	}
 
     @Override
-    protected void onPostExecute(Object values) {
+    protected void onPostExecute(Exception ex) {
      	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
-    			listenerInstance.onAsyncTaskCompleted(values);
+    			listenerInstance.onAsyncTaskCompleted(ex);
 		}
 
 		detach();

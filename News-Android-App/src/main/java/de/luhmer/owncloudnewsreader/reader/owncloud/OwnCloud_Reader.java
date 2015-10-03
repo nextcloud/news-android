@@ -107,7 +107,7 @@ public class OwnCloud_Reader {
 	OnAsyncTaskCompletedListener AsyncTask_finished = new OnAsyncTaskCompletedListener() {
 		
 		@Override
-		public void onAsyncTaskCompleted(Object task_result) {
+		public void onAsyncTaskCompleted(Exception task_result) {
 			setSyncRunning(false);
 		}
 	};

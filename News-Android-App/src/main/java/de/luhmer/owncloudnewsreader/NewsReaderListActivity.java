@@ -806,7 +806,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {
 		@Override
-		public void onAsyncTaskCompleted(Object task_result) {
+		public void onAsyncTaskCompleted(Exception task_result) {
 			updateCurrentRssView();
 			Log.v(TAG, "Finished Download extra items..");
 		}

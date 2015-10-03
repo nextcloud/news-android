@@ -23,5 +23,5 @@ package de.luhmer.owncloudnewsreader.reader;
 
 
 public interface OnAsyncTaskCompletedListener {
-	void onAsyncTaskCompleted(final Object task_result);
+	void onAsyncTaskCompleted(final Exception task_result);
 }
