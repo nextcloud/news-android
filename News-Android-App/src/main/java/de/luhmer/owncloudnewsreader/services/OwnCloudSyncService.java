@@ -37,6 +37,8 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -59,6 +61,7 @@ public class OwnCloudSyncService extends Service {
 	private RemoteCallbackList<IOwnCloudSyncServiceCallback> callbacks = new RemoteCallbackList<>();
 
 	private CountDownLatch syncCompletedLatch;
+	private StopWatch syncStopWatch;
 
 	private Stub mBinder = new IOwnCloudSyncService.Stub() {
 
@@ -106,6 +109,8 @@ public class OwnCloudSyncService extends Service {
         @Override
         public void onAsyncTaskCompleted(Exception task_result) {
 			syncCompletedLatch = new CountDownLatch(3);
+			syncStopWatch = new StopWatch();
+			syncStopWatch.start();
 
 			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTaskFinished);
 			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTaskFinished);
@@ -182,7 +187,8 @@ public class OwnCloudSyncService extends Service {
 	}
 	
 	private void finishedSync() {
-        Log.v(TAG, "Synchronization finished");
+		syncStopWatch.stop();
+        Log.v(TAG, "Time needed (synchronization): " + syncStopWatch.toString());
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
 		int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
