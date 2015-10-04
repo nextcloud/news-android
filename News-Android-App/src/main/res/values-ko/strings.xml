@@ -111,6 +111,7 @@
   <string name="pref_title_DisableHostnameVerification">호스트 이름 확인 사용 안함</string>
   <string name="pref_title_NavigateWithVolumeButtons">음량 단추로 탐색</string>
   <string name="pref_title_MarkAsReadWhileScrolling">스크롤 중 읽은 것으로 표시</string>
+  <string name="pref_title_OpenInBrowserDirectly">외부 브라우저로 글 읽기</string>
   <string name="pref_title_notification_new_articles_available">새 글이 있을 때 알림 표시</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">알 수 없는 인증서를 허용하시겠습니까?</string>
@@ -134,6 +135,16 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>간단히</item>
+    <item>자세히</item>
+    <item>자세히, 웹뷰 포함</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
   </string-array>
   <string-array name="pref_title_lines_count">
     <item>1</item>

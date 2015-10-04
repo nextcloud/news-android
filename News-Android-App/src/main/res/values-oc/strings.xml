@@ -59,6 +59,10 @@
   <string name="pull_to_refresh_updateItems">Sincronizacion dels articles</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Paramètres</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d fichièr</item>
+    <item quantity="other">%d fichièrs</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Generals</string>
   <string name="pref_title_general_sort_order">Òrdre de triada</string>
@@ -107,6 +111,24 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>3</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
