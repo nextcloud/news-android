@@ -4,10 +4,15 @@
   <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
+  <string name="action_Share">Teilen</string>
+  <string name="action_settings">Einstellungen</string>
   <!--Strings related to login-->
+  <string name="pref_title_username">Benutzername</string>
+  <string name="pref_title_password">Passwort</string>
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
+  <string name="title_activity_settings">Einstellungen</string>
   <!--General settings-->
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
@@ -41,6 +46,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">Benachrichtigungen</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>

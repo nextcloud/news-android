@@ -118,6 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Hostnamen-Nachweis deaktivieren</string>
   <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärketasten navigieren</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Beim Bildlauf als gelesen markieren</string>
+  <string name="pref_title_OpenInBrowserDirectly">Externen Browser zum Anzeigen der Artikel verwenden</string>
   <string name="pref_title_notification_new_articles_available">Benachrichtigungen anzeigen, wenn neue Artikel verfügbar sind</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Unbekanntes Zertifikat akzeptieren?</string>
@@ -141,6 +142,18 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Einfach</item>
+    <item>Erweitert</item>
+    <item>Erweitert (Volltext)</item>
+    <item>Erweitert mit Webansicht</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>3</item>
+    <item>2</item>
   </string-array>
   <string-array name="pref_title_lines_count">
     <item>1</item>
