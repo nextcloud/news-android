@@ -11,6 +11,10 @@
   <string name="tv_clickHereToOpenItem">برای باز کردن آیتم اینجا را کلیک کنید.</string>
   <string name="no_wifi_available">هیچ WiFi متصل نیست.</string>
   <string name="do_you_want_to_download_without_wifi">آیا میخواهید تصاویر را بدون هیچ اتصال WiFi  دریافت کنید؟</string>
+  <string name="widget_header">اخبار ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="other">%d مورد جدید در دسترس است</item>
+  </plurals>
   <string name="message_bar_reload">بازنگری</string>
   <string name="allUnreadFeeds">تمام آیتم های خوانده نشده</string>
   <string name="starredFeeds">آیتم های ستاره دار</string>
@@ -18,6 +22,7 @@
   <string name="menu_update">بازنمایی</string>
   <string name="menu_About_Changelog">درباره / تغییرات</string>
   <string name="menu_markAllAsRead">علامت همه به عنوان خوانده شده</string>
+  <string name="menu_StartImageCaching">دانلود تصاویر</string>
   <string name="menu_downloadMoreItems">دانلود آیتم های بیشتر</string>
   <!--Import Accounts-->
   <!--EMAIL-->
