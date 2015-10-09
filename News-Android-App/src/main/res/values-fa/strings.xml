@@ -77,7 +77,9 @@
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">نمایشی</string>
+  <string name="pref_title_app_theme">قالب برنامه</string>
   <string name="pref_title_feed_list_layout">طرح لسیت خوراک خوان</string>
+  <string name="pref_display_title_lines_count">تعداد خطوط عنوان</string>
   <string-array name="pref_display_apptheme">
     <item>تاریک</item>
     <item>روشن</item>
