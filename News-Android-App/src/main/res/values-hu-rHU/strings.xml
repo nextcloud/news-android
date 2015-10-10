@@ -9,6 +9,7 @@
   <string name="title_newsreader_detail">HírOlvasó Részletek</string>
   <string name="empty_view_header">Információ</string>
   <string name="empty_view_content">Itt nincs semmi</string>
+  <string name="toast_GettingMoreItems">Több elem letöltése elindítva... Kérjük, várj.</string>
   <string name="tv_clickHereToOpenItem">Klikkel ide az elem megnyitásához</string>
   <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Le szeretnéd tölteni a képeket WiFi kapcsolat nélkül?</string>
@@ -58,6 +59,7 @@
   <string name="pull_to_refresh_updateItems">Tartalom szinkronizálása</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Beállítások</string>
+  <string name="cache_is_cleared">Gyorsítótár kiürítve!</string>
   <!--General settings-->
   <string name="pref_header_general">Általános</string>
   <string name="pref_title_general_sort_order">Rendezés Iránya</string>
@@ -76,6 +78,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">A gyorsítótár törlése folyamatban</string>
+  <string name="dialog_clearing_cache_please_wait">Gyorsítótár ürítése... Kérjük, várj.</string>
   <string name="reset_cache_unsaved_changes">Vannak nem színkronizált változások. Bizots hogy alaphelyzetbe szeretnéd állítani a cache-t így is?</string>
   <string name="warning">Figyelmeztetés</string>
   <string name="pref_title_AutoSyncOnStart">Szinkronizáció induláskor</string>
