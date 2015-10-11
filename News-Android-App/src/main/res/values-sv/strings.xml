@@ -41,6 +41,10 @@
   <string name="action_sync_settings">Synk inställningar</string>
   <string name="action_add_new_feed">Lägg till flöde</string>
   <string name="action_textToSpeech">Läs upp</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Du har %d oläst sak</item>
+    <item quantity="other">Du har %d olästa saker</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Användarnamn</string>
   <string name="pref_title_password">Lösenord</string>
@@ -59,6 +63,10 @@
   <string name="pull_to_refresh_updateItems">Synkroniserar objekt</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Inställningar</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d fil</item>
+    <item quantity="other">%d filer</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Allmänt</string>
   <string name="pref_title_general_sort_order">Sorteringsordning</string>
@@ -77,6 +85,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Rensar cache</string>
+  <string name="dialog_clearing_cache_please_wait">Rensar cache, var god vänta...</string>
   <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
   <string name="warning">Varning</string>
   <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
@@ -85,6 +94,7 @@
   <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
+  <string name="pref_title_OpenInBrowserDirectly">Använd extern webbläsare för att visa artiklar</string>
   <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>

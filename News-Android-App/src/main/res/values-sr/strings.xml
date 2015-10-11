@@ -59,6 +59,12 @@
   <string name="pull_to_refresh_updateItems">Освежавам ставке</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Поставке</string>
+  <string name="cache_is_cleared">Кеш је очишћен!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d фајл</item>
+    <item quantity="few">%d фајла</item>
+    <item quantity="other">%d фајлова</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Опште</string>
   <string name="pref_title_general_sort_order">Сортирање</string>
@@ -77,6 +83,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Чистим кеш</string>
+  <string name="dialog_clearing_cache_please_wait">Чистим кеш… Сачекајте.</string>
+  <string name="calculating_cache_size">Израчунавам величину кеша… Сачекајте.</string>
   <string name="reset_cache_unsaved_changes">Постоје несинхронизоване измене. Да ипак обришем кеш?</string>
   <string name="warning">Упозорење</string>
   <string name="pref_title_AutoSyncOnStart">Освежи при покретању</string>
@@ -85,6 +93,7 @@
   <string name="pref_title_DisableHostnameVerification">Искључи проверу имена домаћина</string>
   <string name="pref_title_NavigateWithVolumeButtons">Навигација помоћу дугмади за јачину звука</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Означи као прочитано током клизања</string>
+  <string name="pref_title_OpenInBrowserDirectly">Користи спољашњи прегледач за приказ чланака</string>
   <string name="pref_title_notification_new_articles_available">Прикажи обавештења о новим чланцима</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Прихватити непознати сертификат?</string>
@@ -108,6 +117,18 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>једноставна</item>
+    <item>проширена</item>
+    <item>прочирена (цео текст)</item>
+    <item>проширена помоћу Webview</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>3</item>
+    <item>2</item>
   </string-array>
   <string-array name="pref_title_lines_count">
     <item>1</item>
