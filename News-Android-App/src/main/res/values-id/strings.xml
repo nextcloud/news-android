@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="auto_sync_string">Sync otmatis</string>
+  <string name="auto_sync_string">Sync otomatis</string>
   <string name="app_name">Pembaca Berita ownCloud</string>
   <string name="title_activity_sync_interval_selector">Pemilih Jeda Sync</string>
   <string name="title_activity_news_detail">AktivitasRinciBerita</string>
@@ -135,6 +135,18 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Sederhana</item>
+    <item>Diperluas</item>
+    <item>Diperluas (teks penuh)</item>
+    <item>Diperluas dengan Webview</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>3</item>
+    <item>2</item>
   </string-array>
   <string-array name="pref_title_lines_count">
     <item>1</item>
