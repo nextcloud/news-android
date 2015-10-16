@@ -143,6 +143,12 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simple</item>
+    <item>Etendue</item>
+    <item>Etendue (texte complet)</item>
+    <item>Etendue avec Webview</item>
+  </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
