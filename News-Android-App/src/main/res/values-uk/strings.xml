@@ -9,10 +9,16 @@
   <string name="title_newsreader_detail">Читання новин подробиці</string>
   <string name="empty_view_header">Інформація</string>
   <string name="empty_view_content">Нічого нема</string>
+  <string name="toast_GettingMoreItems">Почато завантаження більшої кількості елементів... Будь ласка, зачекайте.</string>
   <string name="tv_clickHereToOpenItem">Натисніть, щоб відкрити елемент</string>
   <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
   <string name="do_you_want_to_download_without_wifi">Бажаєте завантажувати зображення коли немає WiFi з\'єднання?</string>
   <string name="widget_header">Новини ownCloud </string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">Доступний %d новий елемент</item>
+    <item quantity="few">Доступно %d нових елементів</item>
+    <item quantity="other">Доступно %d нових елементів</item>
+  </plurals>
   <string name="message_bar_reload">Перезавантажити</string>
   <string name="allUnreadFeeds">Всі непрочитані</string>
   <string name="starredFeeds">Помічені</string>
