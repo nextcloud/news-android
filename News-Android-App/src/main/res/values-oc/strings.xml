@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">Detalh del lector de news</string>
   <string name="empty_view_header">Informacion</string>
   <string name="empty_view_content">Pas cap d\'article</string>
+  <string name="toast_GettingMoreItems">Telecargament d\'articles addicionals en cors... Pacientatz.</string>
   <string name="tv_clickHereToOpenItem">Legir</string>
   <string name="no_wifi_available">Pas cap de connexion Wi-Fi</string>
   <string name="do_you_want_to_download_without_wifi">Telecargar los imatges sens connexion Wi-Fi ?</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Avètz atench lo limit de %d article</item>
+    <item quantity="other">Avètz atench lo limit de %d articles</item>
+  </plurals>
   <string name="widget_header">Actualitats ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d article novèl disponible</item>
+    <item quantity="other">%d articles novèls disponibles</item>
+  </plurals>
   <string name="message_bar_reload">Recargar</string>
   <string name="allUnreadFeeds">Totes los articles pas legits</string>
   <string name="starredFeeds">Articles favorits</string>
@@ -41,9 +50,18 @@
   <string name="action_sync_settings">Paramètres de sincronizacion</string>
   <string name="action_add_new_feed">Apondre un flux novèl</string>
   <string name="action_textToSpeech">Legir a votz nauta</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">I a %d novèl article pas legit</item>
+    <item quantity="other">I a %d novèls articles pas legits</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d novèl article pas legit</item>
+    <item quantity="other">%d novèls articles pas legits</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilizaire</string>
   <string name="pref_title_password">Senhal</string>
+  <string name="pref_title_owncloudRootPath">adreça raiç d\'ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">S\'identificar</string>
@@ -52,13 +70,22 @@
   <string name="error_field_required">Aqueste camp es requesit</string>
   <string name="error_invalid_url">Aquesta URL es incorrècta</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">%d ancian article telecargat</item>
+    <item quantity="other">%d ancians articles telecargats</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Cap d\'article suplementari pas disponible</string>
   <string name="pull_to_refresh_updateTags">Sincronizacion de l’estat dels articles</string>
   <string name="pull_to_refresh_updateFolder">Sincronizacion del dorsièr</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizacion dels fluxes</string>
   <string name="pull_to_refresh_updateItems">Sincronizacion dels articles</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">%d article trobat pel moment....</item>
+    <item quantity="other">%d articles trobats pel moment....</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Paramètres</string>
+  <string name="cache_is_cleared">Escondedor netejat !</string>
   <plurals name="number_of_files">
     <item quantity="one">%d fichièr</item>
     <item quantity="other">%d fichièrs</item>
@@ -81,6 +108,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Voidar l\'escondedor</string>
+  <string name="dialog_clearing_cache_please_wait">Purga de l\'escondedor... Pacientatz.</string>
+  <string name="calculating_cache_size">Calcul de la talha de l\'escondedor... Pacientatz.</string>
   <string name="reset_cache_unsaved_changes">Certanas modificacions son pas sincronizadas. Volètz reïnicializar l\'escondedor malgrat tot ?</string>
   <string name="warning">Atencion</string>
   <string name="pref_title_AutoSyncOnStart">Sincro. a l\'aviada</string>
@@ -89,6 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Desactivar la verificacion del nom de maquina</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigar amb los botons de volum</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar coma legit tot en desfilant</string>
+  <string name="pref_title_OpenInBrowserDirectly">Afichar los articles dins un navigator extèrne</string>
   <string name="pref_title_notification_new_articles_available">Afichar una notificacion quand d\'articles novèls son disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Acceptar los certificats pas segurs ?</string>
@@ -104,6 +134,7 @@
   <string name="pref_header_display">Afichatge</string>
   <string name="pref_title_app_theme">Tèma de l\'app</string>
   <string name="pref_title_feed_list_layout">Disposicion de la lista dels fluxes</string>
+  <string name="pref_display_title_lines_count">Nombre de linhas pel títol</string>
   <string-array name="pref_display_apptheme">
     <item>Escur</item>
     <item>Clar</item>
@@ -111,6 +142,12 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simpla</item>
+    <item>Espandida</item>
+    <item>Espandida (tèxte complet)</item>
+    <item>Espandida amb Webview</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
@@ -142,6 +179,12 @@
   <string name="pref_title_clearCache">Voidar l\'escondedor</string>
   <string name="pref_title_CacheImagesOffline">Mesa en escondedor fòra linha dels imatges</string>
   <string name="pref_title_Max_Cache_Size">Talha maximala de l\'escondedor</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Pas jamais</item>
+    <item>En WiFi solament</item>
+    <item>En WiFi &amp; Mobil</item>
+    <item>Demandar quand pas connectat</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>
