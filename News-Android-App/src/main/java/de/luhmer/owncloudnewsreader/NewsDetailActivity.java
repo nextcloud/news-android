@@ -21,16 +21,12 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.app.ActivityOptions;
-import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -100,6 +96,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	private CustomTabsSession mCustomTabsSession;
 	private CustomTabsClient mCustomTabsClient;
+	private CustomTabsServiceConnection mCustomTabsConnection;
 
 	private boolean mCustomTabsSupported;
     //public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
@@ -187,10 +184,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-
-        //TODO unbind service here.. Not implemented by google yet
-		//if(mCustomTabsSupported)
-            //unbindService();
+		unbindCustomTabsService();
 	}
 
     private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
@@ -498,18 +492,29 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		if (packageName == null)
 			return false;
 
-		return CustomTabsClient.bindCustomTabsService(
-                this, packageName, new CustomTabsServiceConnection() {
-					@Override
-					public void onCustomTabsServiceConnected(ComponentName name, CustomTabsClient client) {
-						mCustomTabsClient = client;
-					}
+		mCustomTabsConnection = new CustomTabsServiceConnection() {
+			@Override
+			public void onCustomTabsServiceConnected(ComponentName name, CustomTabsClient client) {
+				mCustomTabsClient = client;
+			}
 
-					@Override
-					public void onServiceDisconnected(ComponentName name) {
-						mCustomTabsClient = null;
-					}
-				});
+			@Override
+			public void onServiceDisconnected(ComponentName name) {
+				mCustomTabsClient = null;
+			}
+		};
+
+		return CustomTabsClient.bindCustomTabsService(this, packageName, mCustomTabsConnection);
+	}
+
+	private void unbindCustomTabsService() {
+		if (mCustomTabsConnection == null)
+			return;
+
+		unbindService(mCustomTabsConnection);
+		mCustomTabsConnection = null;
+		mCustomTabsClient = null;
+		mCustomTabsSession = null;
 	}
 
 	private CustomTabsSession getSession() {
