@@ -249,19 +249,6 @@ public class NewsDetailFragment extends Fragment {
                 mProgressbarWebView.setProgress(progress);
                 if (progress == 100) {
                     mProgressbarWebView.setVisibility(ProgressBar.GONE);
-
-                    //The following three lines are a workaround for websites which don't use a background colour
-                    NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
-                    mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
-                    ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
-
-
-                    if (ThemeChooser.isDarkTheme(getActivity())) {
-                        mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    }
-
-                    String jsLinkLongClick = getTextFromAssets("LinkLongClick.js", getActivity());
-                    mWebView.loadUrl("javascript:(function(){ " + jsLinkLongClick + " })()");
                 }
             }
         });
@@ -282,6 +269,21 @@ public class NewsDetailFragment extends Fragment {
                 }
 
                 super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                //The following three lines are a workaround for websites which don't use a background colour
+                NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
+                mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
+                ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
+
+                if (ThemeChooser.isDarkTheme(getActivity())) {
+                    mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                }
+
+                String jsLinkLongClick = getTextFromAssets("LinkLongClick.js", getActivity());
+                mWebView.loadUrl("javascript:(function(){ " + jsLinkLongClick + " })()");
             }
         });
 
