@@ -212,6 +212,10 @@ public class NewsDetailFragment extends Fragment {
 	@SuppressLint("SetJavaScriptEnabled")
 	private void init_webView()
 	{
+        int backgroundColor = ColorHelper.getColorFromAttribute(getContext(),
+                R.attr.news_detail_background_color);
+        mWebView.setBackgroundColor(backgroundColor);
+
 		WebSettings webSettings = mWebView.getSettings();
 	    //webSettings.setPluginState(WebSettings.PluginState.ON);
 	    webSettings.setJavaScriptEnabled(true);
