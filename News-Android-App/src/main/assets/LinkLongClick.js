@@ -1,3 +1,9 @@
+/*
+ Enables long click functionality on links ('open in browser', etc.).
+ Loaded in NewsDetailFragment.
+ Don't use single line comments as they will break this javascript code.
+*/
+
 var links = document.getElementsByTagName('a');
 
 for (var i = 0; i < links.length; i++) {
@@ -5,36 +11,27 @@ for (var i = 0; i < links.length; i++) {
     (function (link) {
         var timer;
 
+        function clearTimer() {
+            clearTimeout(timer);
+        }
 
-        if(link.children.length > 0 && link.children[0].nodeName != "IMG ") {
-            //Do nothing
+        function onLongClickStart(e) {
+            clearTimer();
+            timer = window.setTimeout(function() {
+                e.preventDefault();
+                Android.openLinkInBrowser(link.getAttribute('href'));
+            }, 1000);
+        }
+
+        if(link.children.length > 0 && link.children[0].nodeName === 'IMG') {
+            /* disable for image links because title will be shown instead */
         } else {
-            link.addEventListener('mouseup', function() {
-                clearTimeout(timer);
-            });
+            link.addEventListener('mousedown', onLongClickStart);
+            link.addEventListener('mouseup', clearTimer);
 
-            link.addEventListener('mousedown', function (e) {
-                timer = window.setTimeout(function() {
-                    e.preventDefault();
-                    //alert(link.children[0].nodeName);
-                    Android.openLinkInBrowser(link.getAttribute('href'));
-                }, 1000);
-            });
-
-            link.addEventListener("touchstart", function(e){
-                timer = window.setTimeout(function() {
-                    e.preventDefault();
-                    Android.openLinkInBrowser(link.getAttribute('href'));
-                }, 1000);
-            });
-
-            link.addEventListener("touchmove", function(e){
-                clearTimeout(timer);
-            });
-
-            link.addEventListener('touchend', function() {
-                clearTimeout(timer);
-            });
+            link.addEventListener('touchstart', onLongClickStart);
+            link.addEventListener('touchmove', clearTimer);
+            link.addEventListener('touchend', clearTimer);
         }
     })(links[i]);
 
