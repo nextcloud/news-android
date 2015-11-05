@@ -23,15 +23,26 @@ package de.luhmer.owncloudnewsreader;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +52,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,6 +85,8 @@ public class NewsDetailFragment extends Fragment {
 	@InjectView(R.id.webview) WebView mWebView;
     @InjectView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
 	@InjectView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
+
+
 	private int section_number;
     public List<String> urls = new ArrayList<>();
 
@@ -101,6 +117,7 @@ public class NewsDetailFragment extends Fragment {
         if(mWebView != null) {
             mWebView.destroy();
         }
+        unregisterImageDownloadReceiver();
     }
 
     public void PauseCurrentPage()
@@ -111,6 +128,7 @@ public class NewsDetailFragment extends Fragment {
         }
     }
 
+
     public void ResumeCurrentPage()
     {
         if(mWebView != null) {
@@ -120,7 +138,8 @@ public class NewsDetailFragment extends Fragment {
     }
 
 
-	@Override
+
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_news_detail, container, false);
 
@@ -129,6 +148,7 @@ public class NewsDetailFragment extends Fragment {
         ButterKnife.inject(this, rootView);
 
         startLoadRssItemToWebViewTask();
+        registerImageDownloadReceiver();
 
 		return rootView;
 	}
@@ -232,6 +252,8 @@ public class NewsDetailFragment extends Fragment {
         //webSettings.setDatabaseEnabled(true);
         //webview.clearCache(true);
 
+        registerForContextMenu(mWebView);
+
         mWebView.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
 
         mWebView.setWebChromeClient(new WebChromeClient() {
@@ -300,7 +322,165 @@ public class NewsDetailFragment extends Fragment {
 
 
 
-	@SuppressLint("SimpleDateFormat")
+    /**
+     * =============================================================================================
+     */
+
+
+    private URL contextMenuSource;
+
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+        // Confirm the view is a webview
+        if (v instanceof WebView) {
+
+            WebView.HitTestResult result = ((WebView) v).getHitTestResult();
+
+            if (result != null) {
+                int type = result.getType();
+                // Confirm type is an image
+                if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
+                    String imageUrl = result.getExtra();
+                    // Confirm image is not local
+                    if (imageUrl.startsWith("http")) {
+
+                        try {
+                            contextMenuSource = new URL(imageUrl);
+                        } catch (MalformedURLException e) {
+                            //e.printStackTrace();
+                            return;
+                        }
+
+                        super.onCreateContextMenu(menu, v, menuInfo);
+                        MenuInflater inflater = getActivity().getMenuInflater();
+                        inflater.inflate(R.menu.news_detail_context_img, menu);
+
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if( !getUserVisibleHint() ) {
+            return false;
+        }
+
+        switch (item.getItemId()) {
+            case R.id.action_saveimg:
+                downloadImage(contextMenuSource);
+                return true;
+            case R.id.action_shareimg:
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+
+    private long downloadID;
+    private DownloadManager dl;
+    private BroadcastReceiver receiverDownloadComplete;
+
+    public void downloadImage(URL url) {
+
+        //File f = new File(Environment.getExternalStorageDirectory() + "/somedir");
+        //if(f.isDirectory()) {
+        //   ....
+
+        System.out.println("***************************" +PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString(SettingsActivity.EDT_DOWNLOADED_IMAGE_LOCATION,"0") );
+        System.out.println("***************************" +Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+
+        if(isExternalStorageWritable()) {
+            String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
+            dl = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
+            request.setTitle("Downloading image");
+            request.setDescription(filename);
+            request.setVisibleInDownloadsUi(false);
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+
+            downloadID = dl.enqueue(request);
+        } else {
+            //Toast @strings: notwriteable
+        }
+
+    }
+
+
+    private void unregisterImageDownloadReceiver() {
+        if (receiverDownloadComplete != null) {
+            getActivity().unregisterReceiver(receiverDownloadComplete);
+            receiverDownloadComplete = null;
+        }
+    }
+
+    private void registerImageDownloadReceiver() {
+        IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        if(receiverDownloadComplete != null) return;
+
+        receiverDownloadComplete = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                long refID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                if (downloadID == refID) {
+                    DownloadManager.Query query = new DownloadManager.Query();
+                    query.setFilterById(refID);
+                    Cursor cursor = dl.query(query);
+                    cursor.moveToFirst();
+                    int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                    int status = cursor.getInt(columnIndex);
+                    int fileNameIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME);
+                    String savedFilePath = cursor.getString(fileNameIndex);
+                    int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
+                    int reason = cursor.getInt(columnReason);
+
+                    switch (status) {
+                        case DownloadManager.STATUS_SUCCESSFUL:
+
+                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_imgsaved), Toast.LENGTH_LONG).show();
+                            break;
+                        case DownloadManager.STATUS_FAILED:
+                            Toast.makeText(getActivity().getApplicationContext(), "FAILED: " +reason, Toast.LENGTH_LONG).show();
+                            break;
+                    }
+                }
+            }
+        };
+        getActivity().registerReceiver(receiverDownloadComplete, intentFilter);
+    }
+
+
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+    /**
+     * END =========================================================================================
+     */
+
+
+
+
+
+
+
+
+
+    @SuppressLint("SimpleDateFormat")
 	public static String getHtmlPage(Context context, RssItem rssItem, boolean showHeader)
 	{
         String feedTitle = "Undefined";
