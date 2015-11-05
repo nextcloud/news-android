@@ -27,11 +27,8 @@ for (var i = 0; i < links.length; i++) {
             /* disable for image links because title will be shown instead */
         } else {
             link.addEventListener('mousedown', onLongClickStart);
+            link.addEventListener('mousemove', clearTimer);
             link.addEventListener('mouseup', clearTimer);
-
-            link.addEventListener('touchstart', onLongClickStart);
-            link.addEventListener('touchmove', clearTimer);
-            link.addEventListener('touchend', clearTimer);
         }
     })(links[i]);
 
