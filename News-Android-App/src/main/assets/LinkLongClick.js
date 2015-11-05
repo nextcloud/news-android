@@ -20,7 +20,7 @@ for (var i = 0; i < links.length; i++) {
             timer = window.setTimeout(function() {
                 e.preventDefault();
                 Android.openLinkInBrowser(link.getAttribute('href'));
-            }, 1000);
+            }, 500);
         }
 
         if(link.children.length > 0 && link.children[0].nodeName === 'IMG') {
