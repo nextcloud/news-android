@@ -1,42 +1,41 @@
-window.onload = function ()
-{
+/*
+  Enables long click functionality on images and shows their title text.
+  Loaded in NewsDetailFragment.
+*/
+
+window.onload = function () {
+
     var images = document.getElementsByTagName('img');
 
-    for (var i = 1; i < images.length; i++) {// i = 1 because of the feed image which has no caption
-        if(images[i].getAttribute('title') != "" &&
-                images[i].getAttribute('title') != null &&
-                images[i].getAttribute('title') != "null") {
-            (function (image) {
-                var timer;
-                image.addEventListener('mouseup', function() {
-                    clearTimeout(timer);
-                });
+    for (var i = 1; i < images.length; i++) { // i = 1 because of the feed image which has no caption
 
+        if(!images[i].getAttribute('title'))
+            continue;
 
-                image.addEventListener('mousedown', function (e) {
-                    timer = window.setTimeout(function() {
-                        e.preventDefault();
-                        alert(image.getAttribute('title'));
-                        //alert("fired - mousedown");
-                    }, 1000);
-                });
+        (function (image) {
 
-                image.addEventListener("touchstart", function(e){
-                    timer = window.setTimeout(function() {
-                        e.preventDefault();
-                        alert(image.getAttribute('title'));
-                        //alert("fired - touchstart");
-                    }, 1000);
-                });
+            var timer;
 
-                image.addEventListener("touchmove", function(e){
-                    clearTimeout(timer);
-                });
+            function clearTimer() {
+                clearTimeout(timer);
+            }
 
-                image.addEventListener('touchend', function() {
-                    clearTimeout(timer);
-                });
-            })(images[i]);
-        }
+            function onLongClickStart(e) {
+                clearTimer();
+                timer = window.setTimeout(function() {
+                    e.preventDefault();
+                    alert(image.getAttribute('title'));
+                }, 500);
+            }
+
+            image.addEventListener('mousedown', onLongClickStart);
+            image.addEventListener('mouseup', clearTimer);
+
+            image.addEventListener('touchstart', onLongClickStart);
+            image.addEventListener('touchmove', clearTimer);
+            image.addEventListener('touchend', clearTimer);
+
+        })(images[i]);
     }
+
 }
