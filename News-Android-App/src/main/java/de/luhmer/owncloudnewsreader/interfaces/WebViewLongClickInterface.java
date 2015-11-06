@@ -5,20 +5,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.view.ViewConfiguration;
 import android.webkit.JavascriptInterface;
 
 /**
  * Created by David on 25.03.2014.
  */
-public class WebViewLinkLongClickInterface {
+public class WebViewLongClickInterface {
     Context mContext;
 
     /** Instantiate the interface and set the context */
-    public WebViewLinkLongClickInterface(Context c) {
+    public WebViewLongClickInterface(Context c) {
         mContext = c;
     }
 
     /** Show a toast from the web page */
+    @SuppressWarnings("unused")
     @JavascriptInterface
     public void openLinkInBrowser(String urlTemp) {
         if (!urlTemp.startsWith("http://") && !urlTemp.startsWith("https://"))
@@ -55,5 +57,11 @@ public class WebViewLinkLongClickInterface {
 
         //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         //mContext.startActivity(browserIntent);
+    }
+
+    @SuppressWarnings("unused")
+    @JavascriptInterface
+    public int getLongPressTimeout() {
+        return ViewConfiguration.get(mContext).getLongPressTimeout();
     }
 }
