@@ -316,9 +316,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                 viewHolder.imgView.setImageResource(R.drawable.ic_action_expand_less);
 
 	        	if(isExpanded) {
-                    rotation = 90;
-	        	} else {
                     rotation = 180;
+	        	} else {
+                    rotation = 90;
                 }
         
                 viewHolder.imgView.setOnClickListener(new OnClickListener() {
