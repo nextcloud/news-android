@@ -33,9 +33,12 @@ var links = document.getElementsByTagName('a');
 for (var i = 0; i < links.length; i++) {
     var link = links[i];
 
-    /* disable for image links because title will be shown instead */
-    if (link.children.length > 0 && link.children[0].nodeName === 'IMG')
+    /* disable for image links with title because title will be shown instead */
+    if (link.children.length > 0 &&
+        link.children[0].nodeName === 'IMG' &&
+        (link.children[0].getAttribute('title') || link.children[0].getAttribute('alt'))) {
         continue;
+    }
 
     watchLongClicks(link, function (link) {
         Android.openLinkInBrowser(link.getAttribute('href'));
@@ -48,7 +51,7 @@ for (var i = 0; i < links.length; i++) {
 */
 var images = document.getElementsByTagName('img');
 
-for (var i = 1; i < images.length; i++) { /* i = 1 because of the feed image which has no caption */
+for (var i = 0; i < images.length; i++) {
     var image = images[i];
 
     watchLongClicks(image, function (image) {
