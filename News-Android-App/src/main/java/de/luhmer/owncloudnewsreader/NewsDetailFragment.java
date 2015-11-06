@@ -208,6 +208,7 @@ public class NewsDetailFragment extends Fragment {
 
 
     boolean changedUrl = false;
+    boolean onPageFinishedCalled = false;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	private void init_webView()
@@ -268,11 +269,15 @@ public class NewsDetailFragment extends Fragment {
                     }
                 }
 
+                onPageFinishedCalled = false;
                 super.onPageStarted(view, url, favicon);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
+                if (onPageFinishedCalled) // prevent callback from being executed multiple times
+                    return;
+
                 //The following three lines are a workaround for websites which don't use a background colour
                 NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
                 mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
@@ -284,6 +289,8 @@ public class NewsDetailFragment extends Fragment {
 
                 String jsLongClick = getTextFromAssets("LongClick.js", getActivity());
                 mWebView.loadUrl("javascript:(function(){ " + jsLongClick + " })()");
+
+                onPageFinishedCalled = true;
             }
         });
 
