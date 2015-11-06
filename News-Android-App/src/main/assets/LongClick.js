@@ -51,11 +51,10 @@ var images = document.getElementsByTagName('img');
 for (var i = 1; i < images.length; i++) { /* i = 1 because of the feed image which has no caption */
     var image = images[i];
 
-    /* no title, no popup */
-    if(!image.getAttribute('title'))
-        continue;
-
     watchLongClicks(image, function (image) {
-        alert(image.getAttribute('title'));
+        var title = image.getAttribute('title') || image.getAttribute('alt');
+        if (title) {
+            Android.showImage(title, image.getAttribute('src'));
+        }
     });
 }
