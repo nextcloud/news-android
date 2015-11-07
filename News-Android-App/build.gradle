@@ -1,17 +1,6 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'robolectric'
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.robolectric:robolectric-gradle-plugin:0.14.+'
-    }
-}
 
 android {
-
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
     buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
@@ -19,136 +8,84 @@ android {
         minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
 
-        testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
 
-
-    productFlavors {
-    }
-
-
-    sourceSets {
-        main {
-            aidl.srcDirs = ['src/main/java']
-        }
-
-
-        instrumentTest.setRoot('src/androidTest/java')
-
-        androidTest {
-            java.srcDir file('src/androidTest/java')
-            setRoot('src/androidTest/')
-        }
-    }
-
-
-
     lintOptions {
-        //checkReleaseBuilds false
+        checkReleaseBuilds false
 
         // Or, if you prefer, you can continue to check for errors in release builds,
         // but continue the build even when errors are found:
 
         abortOnError false
     }
-}
 
-configurations {
-    robolectricTests {
-        extendsFrom compile
+    sourceSets {
+        main {
+            aidl.srcDirs = ['src/main/java']
+        }
     }
-}
 
-apply plugin: 'android-unit-test'
 
-sourceSets {
-    robolectricTests {
-        java.srcDir file('src/androidTest/java')
-        resources.srcDir file('src/androidTest/resources')
-        compileClasspath += configurations.robolectricTests
-        runtimeClasspath += compileClasspath
-
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'LICENSE.txt'
     }
-}
-
-
-configurations.all {
-    resolutionStrategy {
-        force 'com.android.support:support-v4:21.+'
-        force 'com.android.support:appcompat-v7:21.+'
-    }
-}
-
-
-
-afterEvaluate {
-    tasks.findByName("assembleDebug").dependsOn("testDebugClasses")
 }
 
 dependencies {
     // core android studio module
     //compile project(':core')
-
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // compile 'com.google.android.gms:play-services:4.2.42'
-    compile files('src/main/libs/gson-2.2.4.jar')
-    compile files('src/main/libs/jsoup-1.7.2.jar')
     compile project(':Changeloglib:ChangeLogLibrary')
-    compile project(':MessageBar')
     compile project(':ownCloud-Account-Importer')
-    compile project(':ShowcaseView:library')
-    compile project(':android-HoloCircularProgressBar:library')
-    compile 'com.android.support:support-v4:21.+'
-    compile 'com.android.support:appcompat-v7:21.+'
+    compile 'com.android.support:support-v4:23.0.1'
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:design:23.0.1'
+    compile 'com.android.support:palette-v7:23.0.1'
+    compile 'com.android.support:recyclerview-v7:23.0.1'
+    compile 'com.android.support:customtabs:23.0.1'
+    compile 'de.mrmaffen:holocircularprogressbar:1.0.1'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+    compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.jakewharton:butterknife:5.1.+'
-    compile 'com.squareup.picasso:picasso:2.3.1@jar'
-    compile 'com.sothree.slidinguppanel:library:+'
+    compile 'com.sothree.slidinguppanel:library:3.1.1'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'de.greenrobot:eventbus:2.2.1'
-    compile 'de.greenrobot:greendao:1.3.7@jar'
-    compile 'de.greenrobot:greendao-generator:1.3.1@jar'
-    compile 'org.freemarker:freemarker:2.3.18@jar'
+    compile 'de.greenrobot:greendao:2.0.0'
+    compile 'de.greenrobot:greendao-generator:2.0.0'
+    //compile 'org.freemarker:freemarker:2.3.23' //Required for DAO generation
+    compile 'org.apache.commons:commons-lang3:3.4'
 
-
-
-
-    testCompile 'org.robolectric:robolectric:2.4'
+    testCompile 'org.robolectric:robolectric:3.0-rc3'
     testCompile 'junit:junit:4.+'
+    androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
 
-    // these aren’t getting used
-    //androidTestCompile 'some.other.library'
-    //instrumentTestCompile 'additional.library'
-}
-
-
-
-/*
-task robolectric(type: Test, dependsOn: assemble) {
-
-    workingDir 'src/main'
-
-    testClassesDir = sourceSets.robolectricTests.output.classesDir
-
-    android.sourceSets.main.java.srcDirs.each { dir ->
-        def buildDir = dir.getAbsolutePath().split('/')
-        buildDir = (buildDir[0..(buildDir.length - 4)] + ['build', 'classes', 'debug']).join('/')
-
-        project.getPlugins().getPlugin('android').prepareTaskMap.each {
-            sourceSets.robolectricTests.compileClasspath += files(it.value.explodedDir.getAbsolutePath() + '/classes.jar')
-            sourceSets.robolectricTests.runtimeClasspath += files(it.value.explodedDir.getAbsolutePath() + '/classes.jar')
-        }
-
-        sourceSets.robolectricTests.compileClasspath += files(buildDir)
-        sourceSets.robolectricTests.runtimeClasspath += files(buildDir)
+    androidTestCompile 'com.android.support:support-annotations:23.0.1'
+    androidTestCompile 'com.android.support.test:runner:0.3'
+    androidTestCompile 'com.android.support.test:rules:0.3'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2') {
+        // this library uses the newest app compat v22 but the espresso contrib still v21.
+        // you have to specifically exclude the older versions of the contrib library or
+        // there will be some conflicts
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
     }
-
-    classpath = sourceSets.robolectricTests.runtimeClasspath
+    compile project(':MaterialShowcaseView:library')
 }
-*/

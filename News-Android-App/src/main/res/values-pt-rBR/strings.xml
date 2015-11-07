@@ -9,13 +9,19 @@
   <string name="title_newsreader_detail">Detalhes do Leitor de Notícias</string>
   <string name="empty_view_header">Informações</string>
   <string name="empty_view_content">Este local está vazio</string>
-  <string name="toast_GettingMoreItems">Iniciado o download de mais itens... Por favor, aguarde.</string>
+  <string name="toast_GettingMoreItems">Começou a baixar mais itens ... Por favor, aguarde.</string>
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir um item</string>
   <string name="no_wifi_available">Nenhum WiFi conectado</string>
   <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
-  <string name="max_items_count_reached">Você já atingiu o tamanho máximo de itens XX</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Você atingiu o tamanho máximo de %d item</item>
+    <item quantity="other">Você atingiu o tamanho máximo de %d itens</item>
+  </plurals>
   <string name="widget_header">Notícias ownCloud</string>
-  <string name="message_bar_new_articles_available">Novos itens disponíveis</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d novo item disponível</item>
+    <item quantity="other">%d novos itens disponíveis</item>
+  </plurals>
   <string name="message_bar_reload">Recarregar</string>
   <string name="allUnreadFeeds">Todos itens não lidos</string>
   <string name="starredFeeds">Itens vistos</string>
@@ -27,7 +33,7 @@
   <string name="menu_StartImageCaching">Baixar imagens</string>
   <string name="menu_downloadMoreItems">Fazer download de mais itens</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importar Conta</string>
+  <string name="import_account">Importar Conta</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código-fonte do item - Relatório de Erros</string>
   <string name="email_sendMail">Enviar e-mail</string>
@@ -44,12 +50,18 @@
   <string name="action_sync_settings">Configurações de Sincronização</string>
   <string name="action_add_new_feed">Adicionar novo feed</string>
   <string name="action_textToSpeech">Leia</string>
-  <string name="notification_new_items_ticker">Você tem X itens não lidos</string>
-  <string name="notification_new_items_text">X novos itens não lidos disponíveis</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Você tem %d novo item não lido</item>
+    <item quantity="other">Você tem %d novos itens não lidos</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d novo item não lido disponível</item>
+    <item quantity="other">%d novos itens não lidos disponíveis</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">Endereço raiz do ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Entrar</string>
@@ -58,14 +70,26 @@
   <string name="error_field_required">Este campo é obrigatório</string>
   <string name="error_invalid_url">A URL está incorreta</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Foram baixados X itens antigos</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Transferido %d item antigo</item>
+    <item quantity="other">Transferidos %d itens antigos</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
   <string name="pull_to_refresh_updateTags">Sincronizando estados dos itens</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
   <string name="pull_to_refresh_updateItems">Sincronizando itens</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Item buscado %d até agora..</item>
+    <item quantity="other">Itens buscados %d até agora..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Configurações</string>
+  <string name="cache_is_cleared">O cache está limpo!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Arquivo</item>
+    <item quantity="other">%d Arquivos</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Geral</string>
   <string name="pref_title_general_sort_order">Ordem de Classificação</string>
@@ -84,8 +108,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Limpando o cache</string>
-  <string name="dialog_clearing_cache_please_wait">Limpando o cache.. Por favor aguarde.</string>
-  <string name="calculating_cache_size">Calculando o tamanho do cache .. Por favor, aguarde.</string>
+  <string name="dialog_clearing_cache_please_wait">Limpando o cache ... Por favor, aguarde.</string>
+  <string name="calculating_cache_size">Calcular o tamanho do cache ... Por favor, aguarde.</string>
   <string name="reset_cache_unsaved_changes">Há alterações não sincronizadas. Gostaria de redefinir o cache de qualquer maneira?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>
@@ -94,7 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Desabilitar Verificação de Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
-  <string name="pref_title_OpenInBrowserDirectly">Pular detalhes e abrir o artigo no navegador</string>
+  <string name="pref_title_OpenInBrowserDirectly">Usar um navegador externo para visualizar os artigos</string>
   <string name="pref_title_notification_new_articles_available">Mostrar notificações quando novos artigos estiverem disponíveis</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aceita Certificado Desconhecido?</string>
@@ -110,7 +134,7 @@
   <string name="pref_header_display">Exibir</string>
   <string name="pref_title_app_theme">Aplicativo tema</string>
   <string name="pref_title_feed_list_layout">Layout da lista de feeds</string>
-  <string name="pref_display_font_layout">Fonte (requer reinicialização para aplicar)</string>
+  <string name="pref_display_title_lines_count">Contagem de linha para o título</string>
   <string-array name="pref_display_apptheme">
     <item>Escuro</item>
     <item>Claro</item>
@@ -121,41 +145,27 @@
   </string-array>
   <string-array name="pref_display_feed_list_layout">
     <item>Simples</item>
-    <item>Estendido</item>
-    <item>Estendido com modo Webview</item>
+    <item>Extendido</item>
+    <item>Extendido (texto completo)</item>
+    <item>Extendid0 com visualização Web</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Fraco</item>
-    <item>Roboto Leve</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Médio</item>
-    <item>Roboto Negrito</item>
-    <item>Roboto Preto</item>
-    <item>Roboto Condençado</item>
-    <item>Roboto Negrito Condençado</item>
-    <item>Roboto Fina</item>
-    <item>Roboto Leve</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Negrito</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erro</string>

@@ -31,7 +31,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetOldItems extends AsyncTask_Reader {
@@ -40,14 +40,12 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
     public Long feed_id;
     public Long folder_id;
     private int downloadedItemsCount = 0;
-    private API api;
 
-    public AsyncTask_GetOldItems(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener, Long feed_id, Long folder_id, API api) {
-    	super(task_id, context, listener);
+    public AsyncTask_GetOldItems(final Context context, Long feed_id, Long folder_id, final OnAsyncTaskCompletedListener... listener) {
+    	super(context, listener);
 
         this.feed_id = feed_id;
         this.folder_id = folder_id;
-        this.api = api;
     }
 
 	@Override
@@ -63,13 +61,13 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         	if(feed_id != null)
         	{
                 RssItem rssItem = dbConn.getLowestRssItemIdByFeed(feed_id);
-        		offset = rssItem.getId();//TODO needs testing!
+        		offset = rssItem.getId();
         		id = feed_id;
         		type = "0";
         	}
         	else if(folder_id != null)
         	{
-        		if(folder_id == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())//TODO needs testing!
+        		if(folder_id == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
         		{
         			offset = dbConn.getLowestItemId(true);
         			id = 0L;
@@ -82,7 +80,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
         	}
 
 
-        	downloadedItemsCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), true, id.intValue(), type, api);
+        	downloadedItemsCount = apiFuture.get().GetItems(FeedItemTags.ALL, context, String.valueOf(offset), true, id.intValue(), type);
 
             /*
             int totalCount = dbConn.getCountOfAllItems(false);
@@ -102,17 +100,17 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
 	}
 
     @Override
-    protected void onPostExecute(Object ex) {
+    protected void onPostExecute(Exception ex) {
     	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
-    			listenerInstance.onAsyncTaskCompleted(task_id, ex);
+    			listenerInstance.onAsyncTaskCompleted(ex);
 		}
 
     	if(downloadedItemsCount == 0)
     		Toast.makeText(context, context.getString(R.string.toast_no_more_downloads_available), Toast.LENGTH_LONG).show();
     	else
     	{
-    		String text = context.getString(R.string.toast_downloaded_x_items).replace("X", String.valueOf(downloadedItemsCount));
+    		String text = context.getResources().getQuantityString(R.plurals.toast_downloaded_x_items, downloadedItemsCount, downloadedItemsCount);
     		Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     	}
 
@@ -122,7 +120,7 @@ public class AsyncTask_GetOldItems extends AsyncTask_Reader {
             NewsReaderListActivity activity = (NewsReaderListActivity) context;
             NewsReaderDetailFragment nrD = (NewsReaderDetailFragment) activity.getSupportFragmentManager().findFragmentById(R.id.content_frame);
             if(nrD != null)
-                nrD.UpdateCurrentRssView(context, true);
+                nrD.UpdateCurrentRssView(context);
         }
 
 		detach();

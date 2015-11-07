@@ -24,32 +24,39 @@ package de.luhmer.owncloudnewsreader;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.nostra13.universalimageloader.cache.disc.DiskCache;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
-import de.luhmer.owncloudnewsreader.helper.FontHelper;
+import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.WebViewLinkLongClickInterface;
@@ -57,25 +64,24 @@ import de.luhmer.owncloudnewsreader.interfaces.WebViewLinkLongClickInterface;
 public class NewsDetailFragment extends Fragment {
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
 
-	public static final String TAG = "NewsDetailFragment";
+	public final String TAG = getClass().getCanonicalName();
 
-	public static String web_template;
 	public static int background_color = Integer.MIN_VALUE;
 
 	@InjectView(R.id.webview) WebView mWebView;
     @InjectView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
 	@InjectView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
 	private int section_number;
+    public List<String> urls = new ArrayList<>();
+
 
     public NewsDetailFragment() {
-        setRetainInstance(true);
+        //setRetainInstance(true);
     }
 
-    /*
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		webview.saveState(outState);
-	}*/
+    public int getSectionNumber() {
+        return section_number;
+    }
 
     @Override
     public void onResume() {
@@ -97,32 +103,18 @@ public class NewsDetailFragment extends Fragment {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void PauseCurrentPage()
     {
-			/*
-	        Class.forName("android.webkit.WebView")
-	                .getMethod("onPause", (Class[]) null)
-	                            .invoke(webview, (Object[]) null);
-	        */
         if(mWebView != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
-                mWebView.onPause();
+            mWebView.onPause();
             mWebView.pauseTimers();
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void ResumeCurrentPage()
     {
-			/*
-	        Class.forName("android.webkit.WebView")
-	                .getMethod("onResume", (Class[]) null)
-	                            .invoke(webview, (Object[]) null);
-	 */
         if(mWebView != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
-                mWebView.onResume();
+            mWebView.onResume();
             mWebView.resumeTimers();
         }
     }
@@ -142,7 +134,7 @@ public class NewsDetailFragment extends Fragment {
 	}
 
     public void startLoadRssItemToWebViewTask() {
-        AsyncTaskHelper.StartAsyncTask(new LoadRssItemToWebViewAsyncTask(), ((Void) null));
+        AsyncTaskHelper.StartAsyncTask(new LoadRssItemToWebViewAsyncTask());
     }
 
     private class LoadRssItemToWebViewAsyncTask extends AsyncTask<Void, Void, String> {
@@ -169,9 +161,9 @@ public class NewsDetailFragment extends Fragment {
         protected String doInBackground(Void... voids) {
             NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
 
-            RssItem rssItem = ndActivity.rssItems.get(section_number - 1);
+            RssItem rssItem = ndActivity.rssItems.get(section_number);
 
-            return getHtmlPage(ndActivity, rssItem);
+            return getHtmlPage(ndActivity, rssItem, true);
         }
 
         @Override
@@ -179,11 +171,43 @@ public class NewsDetailFragment extends Fragment {
             mWebView.setVisibility(View.VISIBLE);
             mProgressBarLoading.setVisibility(View.GONE);
 
-            mWebView.loadDataWithBaseURL("", htmlPage, "text/html", "UTF-8", "");
+            SetSoftwareRenderModeForWebView(htmlPage, mWebView);
+
+            mWebView.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
             super.onPostExecute(htmlPage);
         }
     }
 
+    /**
+     * This function has no effect on devices with api level < HONEYCOMB
+     * @param htmlPage
+     * @param webView
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void SetSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+            return;
+        }
+
+        if(htmlPage.contains(".gif")) {
+            webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+            Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
+        } else {
+            //webView.setLayerType(WebView.LAYER_TYPE_HARDWARE, null);
+            //Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
+
+            if(webView.getLayerType() == WebView.LAYER_TYPE_HARDWARE) {
+                Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
+            } else if (webView.getLayerType() == WebView.LAYER_TYPE_SOFTWARE){
+                Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
+            } else {
+                Log.v("NewsDetailFragment", "Using LAYER_TYPE_DEFAULT");
+            }
+        }
+    }
+
+
+    boolean changedUrl = false;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	private void init_webView()
@@ -208,157 +232,182 @@ public class NewsDetailFragment extends Fragment {
         //webSettings.setDatabaseEnabled(true);
         //webview.clearCache(true);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            mWebView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
-
-
         mWebView.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
 
         mWebView.setWebChromeClient(new WebChromeClient() {
-	    	public void onProgressChanged(WebView view, int progress)
-	    	{
-	    		if(progress < 100 && mProgressbarWebView.getVisibility() == ProgressBar.GONE){
+            @Override
+            public boolean onConsoleMessage(ConsoleMessage cm) {
+                Log.v(TAG, cm.message() + " at " + cm.sourceId() + ":" + cm.lineNumber());
+                return true;
+            }
+
+            @Override
+            public void onProgressChanged(WebView view, int progress) {
+                if (progress < 100 && mProgressbarWebView.getVisibility() == ProgressBar.GONE) {
                     mProgressbarWebView.setVisibility(ProgressBar.VISIBLE);
-	    		}
+                }
                 mProgressbarWebView.setProgress(progress);
-	    		if(progress == 100) {
+                if (progress == 100) {
                     mProgressbarWebView.setVisibility(ProgressBar.GONE);
 
                     //The following three lines are a workaround for websites which don't use a background colour
-                    NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+                    NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
                     mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
                     ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
 
 
-                    if(ThemeChooser.isDarkTheme(getActivity())) {
+                    if (ThemeChooser.isDarkTheme(getActivity())) {
                         mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     }
 
-
-
                     String jsLinkLongClick = getTextFromAssets("LinkLongClick.js", getActivity());
-                    //webview.loadUrl("javascript:(function(){document.getElementById('buttonClick').click();})()");
                     mWebView.loadUrl("javascript:(function(){ " + jsLinkLongClick + " })()");
+                }
+            }
+        });
 
-
-
-
-
-                    /*
-                    image.addEventListener("touchstart", function(e){
-                        timer = window.setTimeout(function() {
-                            e.preventDefault();
-                            alert(image.getAttribute('title'));
-                            //alert("fired - touchstart");
-                        }, 1000);
-                    });
-
-                    image.addEventListener('touchend', function() {
-                        clearTimeout(timer);
-                    });
-                    */
-
-
-
-	    		}
-	    	}
-	    });
 
         mWebView.setWebViewClient(new WebViewClient() {
 
-	    });
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                if (changedUrl) {
+                    changedUrl = false;
+
+                    if (!url.equals("file:///android_asset/") && (urls.isEmpty() || !urls.get(0).equals(url))) {
+                        urls.add(0, url);
+
+                        Log.v(TAG, "Page finished (added): " + url);
+                    }
+                }
+
+                super.onPageStarted(view, url, favicon);
+            }
+        });
+
+        mWebView.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (v.getId() == R.id.webview && event.getAction() == MotionEvent.ACTION_DOWN) {
+                    changedUrl = true;
+                }
+
+                return false;
+            }
+        });
 	}
 
 
 
 	@SuppressLint("SimpleDateFormat")
-	public static String getHtmlPage(Context context, RssItem rssItem)
+	public static String getHtmlPage(Context context, RssItem rssItem, boolean showHeader)
 	{
-		init_webTemplate(context);
-		String htmlData = web_template;
+        String feedTitle = "Undefined";
+        String favIconUrl = null;
 
-        String favIconUrl = rssItem.getFeed().getFaviconUrl();
-
-		try {
-            if(favIconUrl != null)
-            {
-                File file = ImageHandler.getFullPathOfCacheFile(favIconUrl, FileUtils.getPathFavIcons(context));
-                if(file.isFile())
-                    favIconUrl = "file://" + file.getAbsolutePath().toString();
-            }
-            else {
-                favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
-            }
-        } catch(Exception ex) {
-            ex.printStackTrace();
+        Feed feed = rssItem.getFeed();
+        int[] colors = ColorHelper.getColorsFromAttributes(context,
+                R.attr.dividerLineColor,
+                R.attr.rssItemListBackground);
+        int feedColor = colors[0];
+        if(feed != null) {
+            feedTitle = feed.getFeedTitle();
+            favIconUrl = feed.getFaviconUrl();
+            if(feed.getAvgColour() != null)
+                feedColor = Integer.parseInt(feed.getAvgColour());
         }
 
-
-        String divHeader = "<div id=\"header\">";
-        StringBuilder sb = new StringBuilder(htmlData);
-        //htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), rssFile.getTitle().trim()).toString();
-        String title = rssItem.getTitle();
-        String linkToFeed = rssItem.getLink();
-        title = "<a href=\"" + linkToFeed + "\">" + title + "</a>";
-        htmlData = sb.insert(htmlData.indexOf(divHeader) + divHeader.length(), title.trim()).toString();
-
-
-        //String divSubscription = "<div id=\"subscription\">";
-        //htmlData = sb.insert(htmlData.indexOf(divSubscription) + divSubscription.length(), rssFile.getStreamID().trim()).toString();
-
-        Date date = rssItem.getPubDate();
-        if(date != null)
+        if(favIconUrl != null)
         {
-            String divDate = "<div id=\"datetime\">";
-            //SimpleDateFormat formater = new SimpleDateFormat();
-            //String dateString = formater.format(date);
-            String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
-            htmlData = sb.insert(htmlData.indexOf(divDate) + divDate.length(), dateString).toString();
+            DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
+            File file = diskCache.get(favIconUrl);
+            if(file != null)
+                favIconUrl = "file://" + file.getAbsolutePath();
+        } else {
+            favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
         }
 
+        String body_id;
+        if(ThemeChooser.isDarkTheme(context)) {
+            body_id = "darkTheme";
+        } else
+            body_id = "lightTheme";
 
-        //String subscription = ((NewsDetailActivity) getActivity()).dbConn.getTitleOfSubscriptionByRowID(String.valueOf(rssFile.getFeedID_Db()));
-        //String subscription = dbConn.getTitleOfSubscriptionByDBItemID(String.valueOf(idItem));
+        StringBuilder builder = new StringBuilder();
 
-        String feedTitle = rssItem.getFeed().getFeedTitle();
+        builder.append("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />");
+        builder.append("<script type=\"text/javascript\" src=\"web.js\"></script>");
+        builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
+        builder.append("<style type=\"text/css\">");
+        builder.append(String.format(
+                        "#top_section { border-left: 4px solid %s; border-bottom: 1px solid %s; background: %s }",
+                        ColorHelper.getCssColor(feedColor),
+                        ColorHelper.getCssColor(colors[0]),
+                        ColorHelper.getCssColor(colors[1]))
+        );
+        builder.append("</style>");
+        builder.append(String.format("</head><body id=\"%s\">",body_id));
 
+        if(showHeader) {
+            builder.append("<div id=\"top_section\">");
+            builder.append("<div id=\"header\">");
+            String title = rssItem.getTitle();
+            String linkToFeed = rssItem.getLink();
+            builder.append(String.format("<a href=\"%s\">%s</a>", linkToFeed, title));
+            builder.append("</div>");
 
-        String authorOfArticle = rssItem.getAuthor();
-        if(authorOfArticle != null)
-            if(!authorOfArticle.trim().equals(""))
-                feedTitle += " - " + authorOfArticle.trim();
+            String authorOfArticle = rssItem.getAuthor();
+            if (authorOfArticle != null)
+                if (!authorOfArticle.trim().equals(""))
+                    feedTitle += " - " + authorOfArticle.trim();
 
-        String divSubscription = "<div id=\"subscription\">";
-        int pos = htmlData.indexOf(divSubscription) + divSubscription.length();
-        pos = htmlData.indexOf("/>", pos) + 2;//Wegen des Favicon <img />
-        htmlData = sb.insert(pos, feedTitle.trim()).toString();
+            builder.append("<div id=\"header_small_text\">");
 
-        String divContent = "<div id=\"content\">";
+            builder.append("<div id=\"subscription\">");
+            builder.append(String.format("<img id=\"imgFavicon\" src=\"%s\" />", favIconUrl));
+            builder.append(feedTitle.trim());
+            builder.append("</div>");
+
+            Date date = rssItem.getPubDate();
+            if (date != null) {
+                String dateString = (String) DateUtils.getRelativeTimeSpanString(date.getTime());
+                builder.append("<div id=\"datetime\">");
+                builder.append(dateString);
+                builder.append("</div>");
+            }
+
+            builder.append("</div>");
+
+            builder.append("</div>");
+        }
+
         String description = rssItem.getBody();
-        htmlData = sb.insert(htmlData.indexOf(divContent) + divContent.length(), getDescriptionWithCachedImages(description, context).trim()).toString();
+        builder.append("<div id=\"content\">");
+        builder.append(getDescriptionWithCachedImages(description).trim());
+        builder.append("</div>");
 
-        String searchString = "<img id=\"imgFavicon\" src=";
-        htmlData = sb.insert(htmlData.indexOf(searchString) + searchString.length() + 1, favIconUrl).toString();
+        builder.append("</body></html>");
 
-
-        htmlData = htmlData.replaceAll("\"//", "\"https://");
+        String htmlData = builder.toString().replaceAll("\"//", "\"https://");
 
 		return htmlData;
 	}
 
 
-	private static String getDescriptionWithCachedImages(String text, Context context)
+	private static String getDescriptionWithCachedImages(String text)
 	{
 		List<String> links = ImageHandler.getImageLinksFromText(text);
+        DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
 
 		for(String link : links)
 		{
 			link = link.trim();
 			try
 			{
-				File file = ImageHandler.getFullPathOfCacheFile(link, FileUtils.getPathImageCache(context));
-				if(file.isFile())
-					text = text.replace(link, "file://" + file.getAbsolutePath().toString());
+				File file = diskCache.get(link);
+				if(file != null)
+					text = text.replace(link, "file://" + file.getAbsolutePath());
 			}
 			catch(Exception ex)
 			{
@@ -368,43 +417,6 @@ public class NewsDetailFragment extends Fragment {
 
 		return text;
 	}
-
-	/*
-	@Override
-	protected void onCreateContextMenu(ContextMenu menu) {
-	    super.onCreateContextMenu(menu);
-
-	    HitTestResult result = getHitTestResult();
-
-	    MenuItem.OnMenuItemClickListener handler = new MenuItem.OnMenuItemClickListener() {
-	        public boolean onMenuItemClick(MenuItem item) {
-	                // do the menu action
-	                return true;
-	        }
-	    };
-
-	    if (result.getType() == HitTestResult.IMAGE_TYPE ||
-	            result.getType() == HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
-	        // Menu options for an image.
-	        //set the header title to the image url
-	        menu.setHeaderTitle(result.getExtra());
-	        menu.add(0, ID_SAVEIMAGE, 0, "Save Image").setOnMenuItemClickListener(handler);
-	        menu.add(0, ID_VIEWIMAGE, 0, "View Image").setOnMenuItemClickListener(handler);
-	    } else if (result.getType() == HitTestResult.ANCHOR_TYPE ||
-	            result.getType() == HitTestResult.SRC_ANCHOR_TYPE) {
-	        // Menu options for a hyperlink.
-	        //set the header title to the link url
-	        menu.setHeaderTitle(result.getExtra());
-	        menu.add(0, ID_SAVELINK, 0, "Save Link").setOnMenuItemClickListener(handler);
-	        menu.add(0, ID_SHARELINK, 0, "Share Link").setOnMenuItemClickListener(handler);
-	    }
-	}*/
-
-
-
-
-
-
 
 
 
@@ -427,44 +439,6 @@ public class NewsDetailFragment extends Fragment {
         }
         return "";
     }
-
-    private static synchronized void init_webTemplate(Context context)
-	{
-		if(web_template == null)
-		{
-			try {
-		        web_template = getTextFromAssets("web_template.html", context);
-
-		        String background_color_string = SearchString(web_template, "background-color:", ";");
-
-		        if(background_color_string != null)
-				{
-					//if(background_color.matches("^#.{3,6}$"))
-					if(background_color_string.matches("^#.{3}$"))
-						background_color = Color.parseColor(convertHexColorFrom3To6Characters(background_color_string));
-					else if(background_color_string.matches("^#.{6}$"))
-						background_color = Color.parseColor(background_color_string);
-				}
-
-		        if(ThemeChooser.isDarkTheme(context))
-		        	web_template = web_template.replace("<body id=\"lightTheme\">", "<body id=\"darkTheme\">");
-
-
-	        	FontHelper fHelper = new FontHelper(context);
-
-	        	web_template = web_template.replace("ROBOTO_FONT_STYLE", "ROBOTO_REGULAR");
-
-		        /*
-		        DisplayMetrics displaymetrics = new DisplayMetrics();
-		        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-		        //int height = displaymetrics.heightPixels;
-		        int width = displaymetrics.widthPixels;
-		        */
-			} catch(Exception ex){
-				ex.printStackTrace();
-			}
-		}
-	}
 
 	private static String SearchString(String data, String startString, String endString)
 	{

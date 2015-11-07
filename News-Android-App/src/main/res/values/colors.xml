@@ -25,12 +25,30 @@
 
 
 
+    <color name="owncloudBlueLight">#35537A</color>
+    <color name="owncloudBlueDark">#1D2D44</color>
 
-    <color name="colorPrimary">@color/material_blue_grey_800</color>
-    <color name="colorPrimaryDark">@color/material_blue_grey_900</color>
+    <color name="colorPrimaryDarkTheme">@color/owncloudBlueDark</color>
+    <color name="colorPrimaryDarkDarkTheme">@color/owncloudBlueLight</color>
+    <color name="colorAccentDarkTheme">#8698af</color>
+
+    <color name="colorPrimaryLightTheme">@color/owncloudBlueLight</color>
+    <color name="colorPrimaryDarkLightTheme">@color/owncloudBlueDark</color>
+    <color name="colorAccentLightTheme">@color/colorPrimaryLightTheme</color>
 
     <color name="colorSecondary">@color/material_deep_teal_200</color>
     <color name="colorSecondaryDark">@color/material_deep_teal_500</color>
 
+    <color name="starredColorLight">@android:color/holo_orange_light</color>
+    <color name="unstarredColorLight">#ff888888</color>
+    <color name="markasreadColorLight">@android:color/holo_green_light</color>
+    <color name="swipeBackgroundLight">#aaa</color>
 
+    <color name="starredColorDark">@android:color/holo_orange_light</color>
+    <color name="unstarredColorDark">#ffcccccc</color>
+    <color name="markasreadColorDark">@android:color/holo_green_light</color>
+    <color name="swipeBackgroundDark">#aaa</color>
+
+    <color name="tintColorLight">@android:color/black</color>
+    <color name="tintColorDark">@android:color/white</color>
 </resources>

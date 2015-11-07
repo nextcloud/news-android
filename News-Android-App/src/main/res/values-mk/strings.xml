@@ -27,7 +27,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Најава</string>
@@ -50,7 +49,6 @@
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="calculating_cache_size">Ве молам причекајте. Ја пресметувам големината на кешот...</string>
   <string name="warning">Предупредување</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизирај при стартување</string>
   <string name="pref_title_ShowOnlyUnread">Прикажи само непрочитани</string>

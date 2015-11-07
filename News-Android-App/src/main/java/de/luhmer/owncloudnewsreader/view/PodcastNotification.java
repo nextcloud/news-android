@@ -10,17 +10,18 @@ import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.broadcastreceiver.PodcastNotificationToggle;
 
 /**
  * Created by David on 22.06.2014.
  */
 public class PodcastNotification {
 
-    Context context;
-    NotificationManager notificationManager;
-    EventBus eventBus;
-    NotificationCompat.Builder notificationBuilder;
-    PendingIntent resultPendingIntent;
+    private Context context;
+    private NotificationManager notificationManager;
+    private EventBus eventBus;
+    private NotificationCompat.Builder notificationBuilder;
+    private PendingIntent resultPendingIntent;
 
     private final static int NOTIFICATION_ID = 1111;
 
@@ -47,7 +48,7 @@ public class PodcastNotification {
 
         // Create the final Notification object.
         notificationBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setAutoCancel(true)
                 .setContentIntent(resultPendingIntent);
     }
@@ -67,7 +68,10 @@ public class PodcastNotification {
             lastDrawableId = drawableId;
 
             createNewNotificationBuilder();
-            //notificationBuilder.addAction(drawableId, actionText, resultPendingIntent);//TODO Pause/Play
+            notificationBuilder.setContentTitle(podcast.getTitle());
+            notificationBuilder.addAction(drawableId, actionText, PendingIntent.getBroadcast(context, 0, new Intent(context,
+                            PodcastNotificationToggle.class),
+                    PendingIntent.FLAG_ONE_SHOT));
         }
 
 
@@ -90,10 +94,8 @@ public class PodcastNotification {
 
 
         notificationBuilder
-                .setContentTitle(podcast.getTitle())
                 .setContentText(fromText + " - " + toText)
-                .setProgress(100, progress, podcast.isPreparingFile())
-                .build();
+                .setProgress(100, progress, podcast.isPreparingFile());
 
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
         //.setLargeIcon(R.drawable.ic_launcher)

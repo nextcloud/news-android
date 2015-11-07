@@ -9,13 +9,16 @@
   <string name="title_newsreader_detail">Читання новин подробиці</string>
   <string name="empty_view_header">Інформація</string>
   <string name="empty_view_content">Нічого нема</string>
-  <string name="toast_GettingMoreItems">Розпочато завантаження декількох елементів... Будь ласка, зачекайте</string>
+  <string name="toast_GettingMoreItems">Почато завантаження більшої кількості елементів... Будь ласка, зачекайте.</string>
   <string name="tv_clickHereToOpenItem">Натисніть, щоб відкрити елемент</string>
   <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
   <string name="do_you_want_to_download_without_wifi">Бажаєте завантажувати зображення коли немає WiFi з\'єднання?</string>
-  <string name="max_items_count_reached">Ви досягли максимального розміру в XX пунктів</string>
   <string name="widget_header">Новини ownCloud </string>
-  <string name="message_bar_new_articles_available">Є нові елементи</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">Доступний %d новий елемент</item>
+    <item quantity="few">Доступно %d нових елементів</item>
+    <item quantity="other">Доступно %d нових елементів</item>
+  </plurals>
   <string name="message_bar_reload">Перезавантажити</string>
   <string name="allUnreadFeeds">Всі непрочитані</string>
   <string name="starredFeeds">Помічені</string>
@@ -27,7 +30,7 @@
   <string name="menu_StartImageCaching">Завантажити зображення</string>
   <string name="menu_downloadMoreItems">Завантажити більше елементів</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Імпортувати обліковий запис</string>
+  <string name="import_account">Імпортувати обліковий запис</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Джерело елементу - Звіт про помилку</string>
   <string name="email_sendMail">Надіслати листа</string>
@@ -44,12 +47,9 @@
   <string name="action_sync_settings">Налаштування синхронізації</string>
   <string name="action_add_new_feed">Додати нову стрічку</string>
   <string name="action_textToSpeech">Читати</string>
-  <string name="notification_new_items_ticker">У вас X нових, непрочитаних елементів</string>
-  <string name="notification_new_items_text">Доступно X нових непрочитаних елемнтів </string>
   <!--Strings related to login-->
   <string name="pref_title_username">Ім\'я користувача</string>
   <string name="pref_title_password">Пароль</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Ввійти...</string>
@@ -58,7 +58,6 @@
   <string name="error_field_required">Обов\'язкове поле</string>
   <string name="error_invalid_url">Невірний url</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Завантажити X старих елементів</string>
   <string name="toast_no_more_downloads_available">Більше немає об\'єктів</string>
   <string name="pull_to_refresh_updateTags">Синхронізація елементів</string>
   <string name="pull_to_refresh_updateFolder">Синхронізується тека</string>
@@ -84,8 +83,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Очистити кеш</string>
-  <string name="dialog_clearing_cache_please_wait">Очищення кешу... Будь ласка, зачекайте.</string>
-  <string name="calculating_cache_size">Перелік розміру кеша... Будь ласка, зачекайте.</string>
   <string name="reset_cache_unsaved_changes">Є несинхронізовані зміни. Ви дійсно бажаєте очистити кеш?</string>
   <string name="warning">Попередження</string>
   <string name="pref_title_AutoSyncOnStart">Синхронізація при включені</string>
@@ -94,7 +91,6 @@
   <string name="pref_title_DisableHostnameVerification">Вимкнути перевірку доменного ім\'я</string>
   <string name="pref_title_NavigateWithVolumeButtons">Керування кнопками гучності</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Помічати прочитаними при прокрутці</string>
-  <string name="pref_title_OpenInBrowserDirectly">Пропустити детальний перегляд та перейти в браузер</string>
   <string name="pref_title_notification_new_articles_available">Показати сповіщення коли доступна нова стаття</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Підтвердити невідомий сертифікат?</string>
@@ -110,7 +106,6 @@
   <string name="pref_header_display">Показати</string>
   <string name="pref_title_app_theme">Тема додатку</string>
   <string name="pref_title_feed_list_layout">Поле списку стрічок</string>
-  <string name="pref_display_font_layout">Шрифт (для застосування необхідно перезавантажити)</string>
   <string-array name="pref_display_apptheme">
     <item>Темна</item>
     <item>Світла</item>
@@ -118,44 +113,6 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Проста</item>
-    <item>Розширена</item>
-    <item>Розширена з Webview</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Помилка</string>

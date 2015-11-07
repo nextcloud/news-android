@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Detail čítačky noviniek</string>
   <string name="empty_view_header">Informácie</string>
   <string name="empty_view_content">Žiadne položky</string>
-  <string name="toast_GettingMoreItems">Začínam sťahovanie viacerých položiek ... Prosím, počkajte.</string>
   <string name="tv_clickHereToOpenItem">Kliknite tu pre otvorenie položky</string>
   <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez WiFi pripojenia</string>
-  <string name="max_items_count_reached">Dosiahli ste maximálnu veľkosť XX položiek</string>
   <string name="widget_header">ownCloud Novinky</string>
-  <string name="message_bar_new_articles_available">Dostupné nové položky</string>
   <string name="message_bar_reload">Znovu načítať</string>
   <string name="allUnreadFeeds">Všetky neprečítané položky</string>
   <string name="starredFeeds">Položky s hviezdičkou</string>
@@ -27,7 +24,7 @@
   <string name="menu_StartImageCaching">Stiahnuť obrázky</string>
   <string name="menu_downloadMoreItems">Stiahnuť viac položiek</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importný účet</string>
+  <string name="import_account">Importný účet</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Zdrojový kód položky - Správa o chybe</string>
   <string name="email_sendMail">Odoslať email</string>
@@ -44,12 +41,9 @@
   <string name="action_sync_settings">Nastavenia synchronizácie</string>
   <string name="action_add_new_feed">Pridať nový kanál</string>
   <string name="action_textToSpeech">Prečítať</string>
-  <string name="notification_new_items_ticker">Máte X nových neprečítaných položiek</string>
-  <string name="notification_new_items_text">X nových neprečítaných položiek k dispozícii</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Meno používateľa</string>
   <string name="pref_title_password">Heslo</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Prihlásenie</string>
@@ -58,7 +52,6 @@
   <string name="error_field_required">Toto pole je povinné</string>
   <string name="error_invalid_url">URL je nesprávna</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Stiahnutých X starých položiek</string>
   <string name="toast_no_more_downloads_available">Žiadne ďalšie položky k dispozícii</string>
   <string name="pull_to_refresh_updateTags">Synchronizujem stav položiek</string>
   <string name="pull_to_refresh_updateFolder">Synchronizujem priečinok</string>
@@ -84,8 +77,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
-  <string name="dialog_clearing_cache_please_wait">Čistenie medzipamäte... Počkajte prosím.</string>
-  <string name="calculating_cache_size">Počítam veľkosť medzipamäte. Počkajte prosím.</string>
   <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
   <string name="warning">Varovanie</string>
   <string name="pref_title_AutoSyncOnStart">Synchronizovať pri spustení</string>
@@ -94,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Vypnúť overovanie názvu hostiteľa</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigácia pomocou tlačidiel hlasitosti</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Označiť ako prečítané pri rolovaní stránky</string>
-  <string name="pref_title_OpenInBrowserDirectly">Prejsť na podrobnosti a otvoriť článok v prehliadači</string>
   <string name="pref_title_notification_new_articles_available">Zobraziť oznámenie, keď sú k dispozícii nové články</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Prijať neznámy certifikát?</string>
@@ -110,7 +100,6 @@
   <string name="pref_header_display">Zobrazenie</string>
   <string name="pref_title_app_theme">Téma vzhľadu aplikácie</string>
   <string name="pref_title_feed_list_layout">Rozvrhnutie zoznamu kanálov</string>
-  <string name="pref_display_font_layout">Font (zmeny sa prejavia po reštarte)</string>
   <string-array name="pref_display_apptheme">
     <item>Tmavé</item>
     <item>Svetlé</item>
@@ -119,43 +108,17 @@
     <item>0</item>
     <item>1</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Jednoduché</item>
-    <item>Rozšírené</item>
-    <item>Rozšírené s webovým náhľadom</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
     <item>1</item>
     <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Chyba</string>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fl_playPausePodcastWrapper"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="visible"
+    tools:showIn="@layout/subscription_detail_list_item_simple">
+
+    <ImageView
+        android:id="@+id/btn_playPausePodcast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:tint="?attr/tintColor"
+        android:src="@drawable/ic_action_pause" />
+
+    <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
+        android:id="@+id/podcastDownloadProgress"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+
+        app:stroke_width="2dp"
+        app:progress_color="?attr/colorAccent"
+        app:progress_background_color="#cccccc"
+        app:marker_visible="false"
+        app:thumb_visible="false"
+        android:layout_gravity="center" />
+
+</FrameLayout>

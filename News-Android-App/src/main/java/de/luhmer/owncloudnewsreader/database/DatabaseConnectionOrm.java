@@ -2,7 +2,10 @@ package de.luhmer.owncloudnewsreader.database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.util.SparseArray;
+
+import org.apache.commons.lang3.time.StopWatch;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -49,6 +52,7 @@ public class DatabaseConnectionOrm {
     };
 
     public static final String[] VIDEO_FORMATS = { "youtube" };
+    private final String TAG = getClass().getCanonicalName();
 
     public enum SORT_DIRECTION { asc, desc }
 
@@ -95,7 +99,7 @@ public class DatabaseConnectionOrm {
 
     public List<Folder> getListOfFoldersWithUnreadItems() {
         return daoSession.getFolderDao().queryBuilder().where(
-                new WhereCondition.StringCondition(FolderDao.Properties.Id.columnName + " IN "
+                new WhereCondition.PropertyCondition(FolderDao.Properties.Id, " IN "
                         + "(SELECT " + FeedDao.Properties.FolderId.columnName + " FROM " + FeedDao.TABLENAME + " feed "
                         + " JOIN " + RssItemDao.TABLENAME + " rss ON feed." + FeedDao.Properties.Id.columnName + " = rss." + RssItemDao.Properties.FeedId.columnName
                         + " WHERE rss." + RssItemDao.Properties.Read_temp.columnName + " != 1)")
@@ -107,7 +111,7 @@ public class DatabaseConnectionOrm {
     }
 
     public List<Feed> getListOfFeedsWithUnreadItems() {
-        List<Feed> feedsWithUnreadItems = new ArrayList<Feed>();
+        List<Feed> feedsWithUnreadItems = new ArrayList<>();
 
         for(Feed feed : getListOfFeeds()) {
             for(RssItem rssItem : feed.getRssItemList()) {
@@ -142,18 +146,20 @@ public class DatabaseConnectionOrm {
     }
 
     public List<Feed> getAllFeedsWithUnreadRssItems() {
-        return daoSession.getFeedDao().queryBuilder().where(
-                new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1)")).list();
+        return daoSession.getFeedDao().queryRaw(", " + RssItemDao.TABLENAME + " R " +
+                " WHERE R." + RssItemDao.Properties.FeedId.columnName + " = T._id " +
+                " AND " + RssItemDao.Properties.Read_temp.columnName + " != 1 GROUP BY T._id");
     }
 
     public List<Feed> getAllFeedsWithUnreadRssItemsForFolder(long folderId, boolean onlyUnread) {
+        /*
         if(onlyUnread) {
             String whereConditionString = " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1)";
             WhereCondition whereCondition = new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + whereConditionString);
             return daoSession.getFeedDao().queryBuilder().where(whereCondition, FeedDao.Properties.FolderId.eq(folderId)).list();
-        } else {
+        } else {*/
             return daoSession.getFeedDao().queryBuilder().where(FeedDao.Properties.FolderId.eq(folderId)).list();
-        }
+        //}
     }
 
     public List<Feed> getAllFeedsWithStarredRssItems() {
@@ -165,7 +171,7 @@ public class DatabaseConnectionOrm {
         WhereCondition whereCondition = new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.EnclosureMime.columnName + " IN(\"" + join(ALLOWED_PODCASTS_TYPES, "\",\"") + "\"))");
         List<Feed> feedsWithPodcast = daoSession.getFeedDao().queryBuilder().where(whereCondition).list();
 
-        List<PodcastFeedItem> podcastFeedItemsList = new ArrayList<PodcastFeedItem>(feedsWithPodcast.size());
+        List<PodcastFeedItem> podcastFeedItemsList = new ArrayList<>(feedsWithPodcast.size());
         for(Feed feed : feedsWithPodcast) {
             int podcastCount = 0;
             for(RssItem rssItem : feed.getRssItemList()) {
@@ -179,7 +185,7 @@ public class DatabaseConnectionOrm {
     }
 
     public List<PodcastItem> getListOfAudioPodcastsForFeed(Context context, long feedId) {
-        List<PodcastItem> result = new ArrayList<PodcastItem>();
+        List<PodcastItem> result = new ArrayList<>();
 
         for(RssItem rssItem : daoSession.getRssItemDao().queryBuilder()
                 .where(RssItemDao.Properties.EnclosureMime.in(ALLOWED_PODCASTS_TYPES), RssItemDao.Properties.FeedId.eq(feedId))
@@ -195,7 +201,7 @@ public class DatabaseConnectionOrm {
         long countUnreadRead = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.notEq(RssItemDao.Properties.Read)).count();
         long countStarredUnstarred = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Starred_temp.notEq(RssItemDao.Properties.Starred)).count();
 
-        return (countUnreadRead + countStarredUnstarred) > 0 ? true : false;
+        return (countUnreadRead + countStarredUnstarred) > 0;
     }
 
 
@@ -263,8 +269,35 @@ public class DatabaseConnectionOrm {
         daoSession.getRssItemDao().update(rssItem);
     }
 
+    public void markAllItemsAsReadForCurrentView() {
+        /*
+        String sql = "UPDATE " + RssItemDao.TABLENAME + " SET " + RssItemDao.Properties.Read_temp.columnName + " = 1 " +
+                "WHERE " + RssItemDao.Properties.Id.columnName + " IN (SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")";
+        daoSession.getDatabase().execSQL(sql);
+        */
+
+        WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.Id.columnName + " IN " +
+                "(SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")");
+
+        int iterationCount = 0;
+        final int itemsPerIteration = 100;
+        List<RssItem> rssItemList;
+        do {
+            int offset = iterationCount * itemsPerIteration;
+            int limit = itemsPerIteration;
+            rssItemList = daoSession.getRssItemDao().queryBuilder().where(whereCondition).limit(limit).offset(offset).listLazy();
+            for (RssItem rssItem : rssItemList) {
+                rssItem.setRead_temp(true);
+            }
+            daoSession.getRssItemDao().updateInTx(rssItemList);
+
+            iterationCount++;
+        } while(rssItemList.size() == itemsPerIteration);
+    }
+
+
     public List<String> getRssItemsIdsFromList(List<RssItem> rssItemList) {
-        List<String> itemIds = new ArrayList<String>();
+        List<String> itemIds = new ArrayList<>();
         for(RssItem rssItem : rssItemList) {
             itemIds.add(String.valueOf(rssItem.getId()));
         }
@@ -287,21 +320,12 @@ public class DatabaseConnectionOrm {
         return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Starred.eq(true), RssItemDao.Properties.Starred_temp.eq(false)).list();
     }
 
-
-
-
-
-    public int getCountOfAllItems(boolean execludeStarred) {//TODO needs testing!
-        long count;
-        if(execludeStarred)
-            count = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Starred_temp.notEq(true)).count();
-        else
-            count = daoSession.getRssItemDao().count();
-        return (int) count;
+    public LazyList<RssItem> getAllUnreadRssItemsForWidget() {
+        return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.eq(false)).limit(100).orderDesc(RssItemDao.Properties.PubDate).listLazy();
     }
 
-    public LazyList<RssItem> getAllItemsWithIdHigher(long id) {//TODO needs testing!
-        return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.ge(id)).listLazyUncached();
+    public LazyList<RssItem> getAllItemsWithIdHigher(long id) {
+        return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.ge(id)).listLazy();
     }
 
     public void updateRssItem(RssItem rssItem) {
@@ -322,7 +346,7 @@ public class DatabaseConnectionOrm {
 
 
     public SparseArray<String> getUrlsToFavIcons() {
-        SparseArray<String> favIconUrls = new SparseArray<String>();
+        SparseArray<String> favIconUrls = new SparseArray<>();
 
         for(Feed feed : getListOfFeeds())
             favIconUrls.put((int) feed.getId(), feed.getFaviconUrl());
@@ -330,15 +354,30 @@ public class DatabaseConnectionOrm {
         return favIconUrls;
     }
 
+    public long getCurrentRssItemViewCount() {
+        return daoSession.getCurrentRssItemViewDao().count();
 
-    public LazyList<RssItem> getCurrentRssItemView(SORT_DIRECTION sortDirection) {
-        WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.Id.columnName + " IN " +
-                "(SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")");
+    }
 
-        if(sortDirection.equals(SORT_DIRECTION.asc))
-            return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderAsc(RssItemDao.Properties.PubDate).listLazy();
-        else
-            return daoSession.getRssItemDao().queryBuilder().where(whereCondition).orderDesc(RssItemDao.Properties.PubDate).listLazy();
+    public final static int PageSize = 100;
+
+    public List<RssItem> getCurrentRssItemView(int page) {
+        if(page != -1) {
+            String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
+                    + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
+                    + RssItemDao.Properties.Id.columnName
+                    + " AND C._id > " + page * PageSize + " AND c._id <= " + ((page+1) * PageSize)
+                    + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
+
+            return daoSession.getRssItemDao().queryRaw(where_clause);
+        } else {
+            String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
+                    + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
+                    + RssItemDao.Properties.Id.columnName
+                    + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
+
+            return daoSession.getRssItemDao().queryRawCreate(where_clause).listLazy();
+        }
     }
 
     /*
@@ -395,12 +434,6 @@ public class DatabaseConnectionOrm {
         return (rssItem != null) ? rssItem.getId() : 0;
     }
 
-    public List<RssItem> getListOfAllItemsForFolder(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection, int limit) {
-        String whereStatement = getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, sortDirection);
-        whereStatement = whereStatement.replace("SELECT " + RssItemDao.Properties.Id.columnName + " FROM " + RssItemDao.TABLENAME, "");
-        whereStatement += " LIMIT " + limit;
-        return daoSession.getRssItemDao().queryRaw(whereStatement, null);
-    }
 
     public String getAllItemsIdsForFolderSQL(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
         //If all starred items are requested always return them in desc. order
@@ -434,6 +467,9 @@ public class DatabaseConnectionOrm {
     }
 
     public void insertIntoRssCurrentViewTable(String SQL_SELECT) {
+        StopWatch sw = new StopWatch();
+        sw.start();
+
         SQL_SELECT = "INSERT INTO " + CurrentRssItemViewDao.TABLENAME +
                 " (" + CurrentRssItemViewDao.Properties.RssItemId.columnName + ") " + SQL_SELECT;
 
@@ -446,10 +482,13 @@ public class DatabaseConnectionOrm {
                 daoSession.getDatabase().execSQL(SQL_INSERT_STATEMENT);
             }
         });
+
+        sw.stop();
+        Log.v(TAG, "Time needed for insert: " + sw.toString());
     }
 
     public SparseArray<String> getUnreadItemCountForFolder() {
-        String buildSQL = "SELECT f." + FolderDao.Properties.Id.columnName + ", COUNT(rss." + RssItemDao.Properties.Id.columnName + ")" +
+        String buildSQL = "SELECT f." + FolderDao.Properties.Id.columnName + ", COUNT(1)" +
                 " FROM " + RssItemDao.TABLENAME + " rss " +
                 " JOIN " + FeedDao.TABLENAME + " feed ON rss." + RssItemDao.Properties.FeedId.columnName + " = feed." + FeedDao.Properties.Id.columnName +
                 " JOIN " + FolderDao.TABLENAME + " f ON feed." + FeedDao.Properties.FolderId.columnName + " = f." + FolderDao.Properties.Id.columnName +
@@ -513,6 +552,8 @@ public class DatabaseConnectionOrm {
 
         if(total > max)
         {
+            Log.v(TAG, "Clearing Database oversize");
+
             int overSize = total - max;
             //Soll verhindern, dass ungelesene Artikel gelöscht werden
             if(overSize > read)
@@ -521,9 +562,12 @@ public class DatabaseConnectionOrm {
             String sqlStatement = "DELETE FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Id.columnName +
                                     " IN (SELECT " + RssItemDao.Properties.Id.columnName + " FROM " + RssItemDao.TABLENAME +
                                     " WHERE " + RssItemDao.Properties.Read_temp.columnName + " = 1 AND " + RssItemDao.Properties.Starred_temp.columnName + " != 1 " +
+                                    " AND " + RssItemDao.Properties.Id.columnName + " NOT IN (SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")" +
                                     " ORDER BY " + RssItemDao.Properties.Id.columnName + " asc LIMIT " + overSize + ")";
             daoSession.getDatabase().execSQL(sqlStatement);
     		/* SELECT * FROM rss_item WHERE read_temp = 1 ORDER BY rowid asc LIMIT 3; */
+        } else {
+            Log.v(TAG, "Clearing Database oversize not necessary");
         }
     }
 
@@ -586,7 +630,7 @@ public class DatabaseConnectionOrm {
     }
 
     public SparseArray<Integer> getIntegerSparseArrayFromSQL(String buildSQL, int indexKey, int indexValue) {
-        SparseArray<Integer> result = new SparseArray<Integer>();
+        SparseArray<Integer> result = new SparseArray<>();
 
         Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
         try
@@ -611,7 +655,7 @@ public class DatabaseConnectionOrm {
     }
 
     public SparseArray<String> getStringSparseArrayFromSQL(String buildSQL, int indexKey, int indexValue) {
-        SparseArray<String> result = new SparseArray<String>();
+        SparseArray<String> result = new SparseArray<>();
 
         Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
         try

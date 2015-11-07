@@ -27,12 +27,8 @@ import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetFolderTags extends AsyncTask_Reader {
-
-	private API api;
-	
-    public AsyncTask_GetFolderTags(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
-    	super(task_id, context, listener);
-    	this.api = api;
+    public AsyncTask_GetFolderTags(final Context context, final OnAsyncTaskCompletedListener... listener) {
+    	super(context, listener);
     }
 		
 	@Override
@@ -40,7 +36,7 @@ public class AsyncTask_GetFolderTags extends AsyncTask_Reader {
 		
         try {
 		    //OwnCloudReaderMethods.GetFolderTags(context, api);
-        	api.GetFolderTags(context, api);
+        	apiFuture.get().GetFolderTags(context);
         } catch(Exception ex) {
             return ex;
         }

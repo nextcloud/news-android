@@ -21,12 +21,9 @@
 
 package de.luhmer.owncloudnewsreader.helper;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.os.Build;
 import android.preference.PreferenceManager;
 
 import de.luhmer.owncloudnewsreader.R;
@@ -34,42 +31,18 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 
 public class ThemeChooser {
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static void chooseTheme(Activity act)
 	{
-
-        if(isDarkTheme(act))
-        {
+        if(isDarkTheme(act)) {
             act.setTheme(R.style.AppTheme);
         } else {
             act.setTheme(R.style.AppThemeLight);
         }
-
-
-        /*
-		if(isDarkTheme(act))
-		{
-			//if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-			//	act.setTheme(android.R.style.Theme_Holo);
-			//else
-				//act.setTheme(R.style.Sherlock___Theme);
-			act.setTheme(R.style.Theme_AppCompat);
-		} else {
-			//if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-			//	act.setTheme(android.R.style.Theme_Holo_Light_DarkActionBar);
-			//else
-				//act.setTheme(R.style.Sherlock___Theme_DarkActionBar);
-			act.setTheme(R.style.Theme_AppCompat_Light_DarkActionBar);
-		}
-        */
 	}
 
 
     public static boolean ThemeRequiresRestartOfUI(Context context) {
-        if(mIsDarkTheme != null && mIsDarkTheme != isDarkTheme(context, true)) {
-            return true;
-        }
-        return false;
+        return mIsDarkTheme != null && mIsDarkTheme != isDarkTheme(context, true);
     }
 
     static Boolean mIsDarkTheme;
@@ -82,7 +55,7 @@ public class ThemeChooser {
         if(mIsDarkTheme == null || forceReloadCache) {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             String value = mPrefs.getString(SettingsActivity.SP_APP_THEME, "0");
-            mIsDarkTheme = value.equals("0") ? true : false;
+            mIsDarkTheme = value.equals("0");
         }
         return mIsDarkTheme;
     }

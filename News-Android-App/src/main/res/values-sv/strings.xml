@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Nyhetsläsare Detalj</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Inga objekt här</string>
-  <string name="toast_GettingMoreItems">Påbörjat nerladdning av fler objekt.. Var god vänta.</string>
   <string name="tv_clickHereToOpenItem">Klicka här för att öppna objekt</string>
   <string name="no_wifi_available">Ingen WIFI ansluten</string>
   <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>
-  <string name="max_items_count_reached">Du har nått maximal storlek av XX objekt</string>
   <string name="widget_header">ownCloud nyheter</string>
-  <string name="message_bar_new_articles_available">Nya saker tillgängliga</string>
   <string name="message_bar_reload">Ladda om</string>
   <string name="allUnreadFeeds">Alla olästa objekt</string>
   <string name="starredFeeds">Stjärnmärkta objekt</string>
@@ -27,7 +24,7 @@
   <string name="menu_StartImageCaching">Ladda ner bilder</string>
   <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importera Konto</string>
+  <string name="import_account">Importera Konto</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Källkod av objekt - Buggrapport</string>
   <string name="email_sendMail">Skicka e-post</string>
@@ -44,12 +41,13 @@
   <string name="action_sync_settings">Synk inställningar</string>
   <string name="action_add_new_feed">Lägg till flöde</string>
   <string name="action_textToSpeech">Läs upp</string>
-  <string name="notification_new_items_ticker">Du har X olästa saker</string>
-  <string name="notification_new_items_text">X nya olästa saker är tillgängliga</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Du har %d oläst sak</item>
+    <item quantity="other">Du har %d olästa saker</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Användarnamn</string>
   <string name="pref_title_password">Lösenord</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Logga in</string>
@@ -58,7 +56,6 @@
   <string name="error_field_required">Detta fält obligatoriskt</string>
   <string name="error_invalid_url">Felaktig URL</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Laddade ner X gamla objekt</string>
   <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
   <string name="pull_to_refresh_updateTags">Synkroniseringsstatus</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserar mapp</string>
@@ -66,6 +63,10 @@
   <string name="pull_to_refresh_updateItems">Synkroniserar objekt</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Inställningar</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d fil</item>
+    <item quantity="other">%d filer</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Allmänt</string>
   <string name="pref_title_general_sort_order">Sorteringsordning</string>
@@ -84,10 +85,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Rensar cache</string>
-  <string name="dialog_clearing_cache_please_wait">Rensar cache.. Var god vänta.</string>
-  <string name="calculating_cache_size">Beräknar cachestorlek.. Var god Vänta.
-
-</string>
+  <string name="dialog_clearing_cache_please_wait">Rensar cache, var god vänta...</string>
   <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
   <string name="warning">Varning</string>
   <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
@@ -96,7 +94,7 @@
   <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
-  <string name="pref_title_OpenInBrowserDirectly">Skippa detalj vyn och öppna artikeln i webbläsaren</string>
+  <string name="pref_title_OpenInBrowserDirectly">Använd extern webbläsare för att visa artiklar</string>
   <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
@@ -112,7 +110,6 @@
   <string name="pref_header_display">Visa</string>
   <string name="pref_title_app_theme">App tema</string>
   <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
-  <string name="pref_display_font_layout">Font (omstart krävs för att ändringarna ska börja gälla)</string>
   <string-array name="pref_display_apptheme">
     <item>Mörk</item>
     <item>Ljus</item>
@@ -120,44 +117,6 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Enkel</item>
-    <item>Utökad</item>
-    <item>Utökad med Webbvy</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fel</string>

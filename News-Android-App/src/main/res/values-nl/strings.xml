@@ -9,13 +9,19 @@
   <string name="title_newsreader_detail">NieuwsLezer Details</string>
   <string name="empty_view_header">Informatie</string>
   <string name="empty_view_content">Geen items hier</string>
-  <string name="toast_GettingMoreItems">Begonnen meer onderwerpen te downloaden... Even geduld a.u.b.</string>
+  <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>
   <string name="tv_clickHereToOpenItem">Klik hier om te openen</string>
   <string name="no_wifi_available">Geen wifi verbinding</string>
   <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
-  <string name="max_items_count_reached">U heeft de maximum grootte van XX berichten bereikt</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">U bereikte de maximale omvang van %d bericht</item>
+    <item quantity="other">U bereikte de maximale omvang van %d berichten</item>
+  </plurals>
   <string name="widget_header">ownCloud nieuws</string>
-  <string name="message_bar_new_articles_available">Nieuwe berichten aanwezig</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nieuw bericht beschikbaar</item>
+    <item quantity="other">%d nieuwe berichten beschikbaar</item>
+  </plurals>
   <string name="message_bar_reload">Herladen</string>
   <string name="allUnreadFeeds">Alle ongelezen berichten</string>
   <string name="starredFeeds">Gemarkeerde berichten</string>
@@ -27,7 +33,7 @@
   <string name="menu_StartImageCaching">Downloaden afbeeldingen</string>
   <string name="menu_downloadMoreItems">Download meer berichten</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Import account</string>
+  <string name="import_account">Import account</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Sourcecode van het item - Bug melding</string>
   <string name="email_sendMail">Email versturen</string>
@@ -44,12 +50,18 @@
   <string name="action_sync_settings">Sync Settings</string>
   <string name="action_add_new_feed">Voeg nieuwe feed toe</string>
   <string name="action_textToSpeech">Voorlezen</string>
-  <string name="notification_new_items_ticker">U hebt X nieuwe ongelezen artikelen</string>
-  <string name="notification_new_items_text">X nieuwe ongelezen artikelen beschikbaar</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">U hebt %d nieuw ongelezen bericht</item>
+    <item quantity="other">U hebt %d nieuwe ongelezen berichten</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d nieuw ongelezen bericht beschikbaar</item>
+    <item quantity="other">%d nieuwe ongelezen berichten beschikbaar</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
   <string name="pref_title_password">Wachtwoord</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">ownCloud root adres</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Inloggen</string>
@@ -58,14 +70,26 @@
   <string name="error_field_required">Dit veld is verplicht</string>
   <string name="error_invalid_url">De URL is ongeldig</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X oude berichten gedownload</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Downloaden %d oud bericht</item>
+    <item quantity="other">Downloaden %d oude berichten</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Geen berichten meer beschikbaar</string>
   <string name="pull_to_refresh_updateTags">Synchroniseren onderwerp statussen</string>
   <string name="pull_to_refresh_updateFolder">Synchroniseren map</string>
   <string name="pull_to_refresh_updateFeeds">Synchroniseren feeds</string>
   <string name="pull_to_refresh_updateItems">Synchroniseren berichten</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Tot nu %d artikel opehaald.</item>
+    <item quantity="other">Tot nu %d artikelen opehaald.</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Instellingen</string>
+  <string name="cache_is_cleared">Cache is leeggemaakt!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d bestand</item>
+    <item quantity="other">%d bestanden</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Algemeen</string>
   <string name="pref_title_general_sort_order">Sorteervolgorde</string>
@@ -84,8 +108,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Schoonmaken cache</string>
-  <string name="dialog_clearing_cache_please_wait">Schoonmaken cache. Even geduld.</string>
-  <string name="calculating_cache_size">Berekenen cacheomvang. Even geduld aub.</string>
+  <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
+  <string name="calculating_cache_size">Berekenen omvang cache... Even geduld.</string>
   <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wilt u de cache toch resetten?</string>
   <string name="warning">Waarschuwing</string>
   <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>
@@ -94,7 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Deactiveren Hostname verificatie</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigeren met volumeknoppen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
-  <string name="pref_title_OpenInBrowserDirectly">Sla detailoverzicht over en open het artikel in de browser.</string>
+  <string name="pref_title_OpenInBrowserDirectly">Gebruik een externe browser om artikelen te bekijken</string>
   <string name="pref_title_notification_new_articles_available">Toon meldingen als er nieuwe artikelen zijn</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Onbekend certificaat accepteren?</string>
@@ -110,7 +134,7 @@
   <string name="pref_header_display">Weergeven</string>
   <string name="pref_title_app_theme">App thema</string>
   <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
-  <string name="pref_display_font_layout">Lettertype (vereist herstarten)</string>
+  <string name="pref_display_title_lines_count">Regelteller voor titel</string>
   <string-array name="pref_display_apptheme">
     <item>Donker</item>
     <item>Licht</item>
@@ -122,40 +146,26 @@
   <string-array name="pref_display_feed_list_layout">
     <item>Simpel</item>
     <item>Uitgebreid</item>
+    <item>Uitgebreid (volledige tekst)</item>
     <item>Uitgebreid met Webview</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fout</string>

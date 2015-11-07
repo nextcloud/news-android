@@ -5,17 +5,23 @@
   <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronização</string>
   <string name="title_activity_news_detail">NotíciasDetalheAtividade</string>
   <string name="title_activity_subscription">SubscriçãoAtividade</string>
-  <string name="title_newsreader_list">NewsReader</string>
-  <string name="title_newsreader_detail">NewsReader Detail</string>
+  <string name="title_newsreader_list">Leitor de Notícias</string>
+  <string name="title_newsreader_detail">Leitor de Notícias - Detalhe</string>
   <string name="empty_view_header">Informação</string>
   <string name="empty_view_content">Sem itens aqui</string>
-  <string name="toast_GettingMoreItems">Começou a transferir mais itens... Por favor aguarde.</string>
+  <string name="toast_GettingMoreItems">Foi iniciada a transferência de mais itens... Por favor, aguarde.</string>
   <string name="tv_clickHereToOpenItem">Clique aqui para abrir o item</string>
   <string name="no_wifi_available">Sem ligação wi-fi</string>
   <string name="do_you_want_to_download_without_wifi">Deseja transferir as imagens sem uma ligação wi-fi?</string>
-  <string name="max_items_count_reached">Atingiu o tamanho máximo de XX itens</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Atingiu o tamanho máximo de %d item</item>
+    <item quantity="other">Atingiu o tamanho máximo de %d itens</item>
+  </plurals>
   <string name="widget_header">Notícias da ownCloud</string>
-  <string name="message_bar_new_articles_available">Novos itens disponíveis</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">Disponível %d novo item</item>
+    <item quantity="other">Disponíveis %d novos itens</item>
+  </plurals>
   <string name="message_bar_reload">Recarregar</string>
   <string name="allUnreadFeeds">Todos os itens não lidos</string>
   <string name="starredFeeds">Itens destacados</string>
@@ -27,7 +33,7 @@
   <string name="menu_StartImageCaching">Transferir as imagens</string>
   <string name="menu_downloadMoreItems">Transferir mais itens</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Conta Importar</string>
+  <string name="import_account">Conta Importar</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Código Fonte do item: Relatório do Erro</string>
   <string name="email_sendMail">Enviar e-mail</string>
@@ -44,12 +50,18 @@
   <string name="action_sync_settings">Definições da Sincronização </string>
   <string name="action_add_new_feed">Adicionar novo feed</string>
   <string name="action_textToSpeech">Leitura automática</string>
-  <string name="notification_new_items_ticker">Tem X novos itens por ler</string>
-  <string name="notification_new_items_text">X novos itens por ler disponíveis</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Tem %d novo item por ler</item>
+    <item quantity="other">Tem %d novos itens por ler</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">Tem disponível %d novo item por ler</item>
+    <item quantity="other">Tem disponível %d novos itens por ler</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Palavra-passe:</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">Endereço raiz do ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Iniciar Sessão</string>
@@ -58,14 +70,26 @@
   <string name="error_field_required">Este campo é obrigatório</string>
   <string name="error_invalid_url">O url está incorreto</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Transferidos X itens antigos</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Transferidos %d item antigo</item>
+    <item quantity="other">Transferidos %d itens antigos</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Não há mais itens disponíveis</string>
   <string name="pull_to_refresh_updateTags">A sincronizar o estado dos itens</string>
   <string name="pull_to_refresh_updateFolder">Pasta de \'a sincronizar\'</string>
   <string name="pull_to_refresh_updateFeeds">Feeds a sincronizar</string>
   <string name="pull_to_refresh_updateItems">Itens a sincronizar</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Até agora foi obtido %d item...</item>
+    <item quantity="other">Até agora foram obtidos %d itens...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Definições</string>
+  <string name="cache_is_cleared">A cache está limpa!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Ficheiro</item>
+    <item quantity="other">%d Ficheiros</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Geral</string>
   <string name="pref_title_general_sort_order">Ordem da ordenação</string>
@@ -84,8 +108,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Limpar cache</string>
-  <string name="dialog_clearing_cache_please_wait">A limpar a cache .. Por favor, aguarde.</string>
-  <string name="calculating_cache_size">A calcular o tamanho da cache ... Por favor, aguarde.</string>
+  <string name="dialog_clearing_cache_please_wait">A limpar a cache… Por favor, aguarde.</string>
+  <string name="calculating_cache_size">A calcular o tamanho da cache… Por favor, aguarde.</string>
   <string name="reset_cache_unsaved_changes">Há mudanças não sincronizadas. Gostaria de repor a cache na mesma?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar no arranque</string>
@@ -94,7 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Desativar a Verificação do Nome do Hopsedeiro</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegue com os botões do volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto rolar com o rato</string>
-  <string name="pref_title_OpenInBrowserDirectly">Passar a vista de detalhe e abrir artigo no navegador</string>
+  <string name="pref_title_OpenInBrowserDirectly">Usar navegador externo para ver artigos</string>
   <string name="pref_title_notification_new_articles_available">Mostrar notificações quando existirem novos artigos</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aceitar os certificados desconhecidos?</string>
@@ -110,7 +134,7 @@
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema da App</string>
   <string name="pref_title_feed_list_layout">Disposição da lista de feeds</string>
-  <string name="pref_display_font_layout">Tipo de letra (reiniciar para aplicar)</string>
+  <string name="pref_display_title_lines_count">Contagem de linhas para o titulo</string>
   <string-array name="pref_display_apptheme">
     <item>Escuro</item>
     <item>Claro</item>
@@ -122,40 +146,26 @@
   <string-array name="pref_display_feed_list_layout">
     <item>Simples</item>
     <item>Estendido</item>
-    <item>Estendido com visualização da Web</item>
+    <item>Estendido (texto completo)</item>
+    <item>Estendido com vista WebWebview</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erro</string>

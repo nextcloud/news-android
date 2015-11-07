@@ -20,11 +20,11 @@ public class OwnCloudSyncProvider extends ContentProvider {
      */
     
     public String getType() {
-        return new String();
+        return "";
     }
     @Override
 	public String getType(Uri uri) {
-		return new String();
+		return "";
 	}
     /*
      * query() always returns no results

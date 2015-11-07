@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <bool name="two_pane">false</bool>
 
     <attr name="dividerLineColor" format="color" />
 
     <attr name="rssItemListBackground" format="color" />
+    <attr name="starredColor" format="color" />
+    <attr name="unstarredColor" format="color" />
+
+    <attr name="extended_listview_item_body_text_color" format="color" />
+
+    <attr name="markasreadDrawable" format="reference" />
+
+    <attr name="tintColor" format="color" />
 
 </resources>

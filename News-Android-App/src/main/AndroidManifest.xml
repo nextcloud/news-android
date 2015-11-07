@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="de.luhmer.owncloudnewsreader"
-    android:versionCode="76"
-    android:versionName="0.8.4" >
+    android:versionCode="99"
+    android:versionName="0.9.7.2"
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
 
-    <uses-sdk android:targetSdkVersion="18" /> <!-- For Unit testing -->
+    <uses-sdk tools:overrideLibrary="android.support.customtabs" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".NewsReaderApplication">
         <activity
             android:name=".NewsReaderListActivity"
             android:label="@string/app_name"
@@ -77,6 +81,8 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle" />
 
         <!--
 		**********************************************************************
@@ -159,6 +165,15 @@
             android:name=".services.PodcastDownloadService"
             android:exported="false" >
         </service>
+
+
+
+
+        <service
+            android:name="org.chromium.customtabsclient.KeepAliveService"
+            android:exported="true"
+            android:process=":remote" />
+
     </application>
 
 </manifest>

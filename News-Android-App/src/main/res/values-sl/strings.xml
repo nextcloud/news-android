@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Podrobnosti bralnika novic</string>
   <string name="empty_view_header">Podrobnosti</string>
   <string name="empty_view_content">Ni vsebine</string>
-  <string name="toast_GettingMoreItems">Prenos vsebine je začet ... Počakajte.</string>
   <string name="tv_clickHereToOpenItem">Kliknite tu za odpiranje predmeta</string>
   <string name="no_wifi_available">Ni vzpostavljene povezave WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike brez vzpostavljene povezave WiFi?</string>
-  <string name="max_items_count_reached">Dosežena je največja dovoljena velikost XX predmetov</string>
   <string name="widget_header">Novice ownCloud</string>
-  <string name="message_bar_new_articles_available">Na voljo so novi predmeti</string>
   <string name="message_bar_reload">Ponovno naloži</string>
   <string name="allUnreadFeeds">Vsi neprebrani predmeti</string>
   <string name="starredFeeds">Označeni predmeti</string>
@@ -27,7 +24,7 @@
   <string name="menu_StartImageCaching">Prejmi slike</string>
   <string name="menu_downloadMoreItems">Prejmi več predmetov</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Uvozi račun</string>
+  <string name="import_account">Uvozi račun</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Pregled izvorne kode - Prijava napake</string>
   <string name="email_sendMail">Pošlji elektronsko sporočilo</string>
@@ -44,12 +41,9 @@
   <string name="action_sync_settings">Nastavitve usklajevanja</string>
   <string name="action_add_new_feed">Dodaj nov vir</string>
   <string name="action_textToSpeech">Preberi</string>
-  <string name="notification_new_items_ticker">Neprebranih je več prispevkov</string>
-  <string name="notification_new_items_text">Na voljo je več neprebranih predmetov</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uporabniško ime</string>
   <string name="pref_title_password">Geslo</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Prijava</string>
@@ -58,7 +52,6 @@
   <string name="error_field_required">Vpis v to polje je obvezno</string>
   <string name="error_invalid_url">Naslov URL ni veljaven</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Prejetih je X starih dokumentov</string>
   <string name="toast_no_more_downloads_available">Ni nadaljnjih predmetov</string>
   <string name="pull_to_refresh_updateTags">Usklajevanje stanj predmetov</string>
   <string name="pull_to_refresh_updateFolder">Usklajevanje mape</string>
@@ -84,8 +77,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Čiščenje predpomnilnika</string>
-  <string name="dialog_clearing_cache_please_wait">Poteka čiščenje predpomnilnika ...</string>
-  <string name="calculating_cache_size">Izračunavanje velikosti predpomnilnika. Počakajte ...</string>
   <string name="reset_cache_unsaved_changes">Obstajajo neusklajene spremembe. Ali želite vseeno počistiti predpomnilnik?</string>
   <string name="warning">Opozorilo</string>
   <string name="pref_title_AutoSyncOnStart">Uskladi ob zagonu</string>
@@ -94,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Onemogoči overjanje imena gostitelja</string>
   <string name="pref_title_NavigateWithVolumeButtons">Pomikanje po zaslonu z uporabo gumbov za glasnost</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Označi kot prebrano med pomikanjem med predmeti</string>
-  <string name="pref_title_OpenInBrowserDirectly">Preskoči pregled povzetka in odpri prispevek v brskalniku</string>
   <string name="pref_title_notification_new_articles_available">Pokaži obvestilo, ko je na voljo nov prispevek</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
@@ -110,7 +100,7 @@
   <string name="pref_header_display">Prikaz</string>
   <string name="pref_title_app_theme">Ime teme</string>
   <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
-  <string name="pref_display_font_layout">Pisava (pred uporabo je treba program znova zagnati)</string>
+  <string name="pref_display_title_lines_count">Vrstični števec za naslov</string>
   <string-array name="pref_display_apptheme">
     <item>Temna</item>
     <item>Svetla</item>
@@ -119,43 +109,17 @@
     <item>0</item>
     <item>1</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Enostavno</item>
-    <item>Napredno</item>
-    <item>Napredno z Webview</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
     <item>1</item>
     <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Ozka</item>
-    <item>Roboto Zožano</item>
-    <item>Roboto Običajna</item>
-    <item>Roboto Srednja</item>
-    <item>Roboto Krepka</item>
-    <item>Roboto Black</item>
-    <item>Roboto Stisnjeno</item>
-    <item>Roboto Stisnjeno Krepko</item>
-    <item>Roboto Slab Ozka</item>
-    <item>Roboto Slab Zožano</item>
-    <item>Roboto Slab Običajna</item>
-    <item>Roboto Slab Krepka</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Napaka</string>

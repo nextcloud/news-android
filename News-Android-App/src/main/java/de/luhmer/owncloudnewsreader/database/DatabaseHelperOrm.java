@@ -30,21 +30,23 @@ import de.luhmer.owncloudnewsreader.database.model.DaoSession;
 public class DatabaseHelperOrm {
     public static final String DATABASE_NAME_ORM = "OwncloudNewsReaderOrm.db";
 
+    private volatile static DaoSession daoSession;
 
-    private static DaoSession daoSession;
-
-
-    public static synchronized DaoSession getDaoSession(Context context)
+    public static DaoSession getDaoSession(Context context)
     {
         if(daoSession == null) {
-            // As we are in development we will use the DevOpenHelper which drops the database on a schema update
-            DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, DATABASE_NAME_ORM, null);
-            // Access the database using the helper
-            SQLiteDatabase db = helper.getWritableDatabase();
-            // Construct the DaoMaster which brokers DAOs for the Domain Objects
-            DaoMaster daoMaster = new DaoMaster(db);
-            // Create the session which is a container for the DAO layer and has a cache which will return handles to the same object across multiple queries
-            daoSession = daoMaster.newSession();
+            synchronized (DatabaseHelperOrm.class) {
+                if(daoSession == null) {
+                    // As we are in development we will use the DevOpenHelper which drops the database on a schema update
+                    DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, DATABASE_NAME_ORM, null);
+                    // Access the database using the helper
+                    SQLiteDatabase db = helper.getWritableDatabase();
+                    // Construct the DaoMaster which brokers DAOs for the Domain Objects
+                    DaoMaster daoMaster = new DaoMaster(db);
+                    // Create the session which is a container for the DAO layer and has a cache which will return handles to the same object across multiple queries
+                    daoSession = daoMaster.newSession();
+                }
+            }
         }
         return daoSession;
     }

@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">Naujienų skaityklės informacija</string>
   <string name="empty_view_header">Informacija</string>
   <string name="empty_view_content">Nėra elementų</string>
-  <string name="toast_GettingMoreItems">Atsiunčiama daugiau elementų.. Prašome palaukti.</string>
   <string name="tv_clickHereToOpenItem">Spauskite čia, kad atverti elementą</string>
   <string name="no_wifi_available">Nėra WiFi ryšio</string>
   <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslėlius be WiFi ryšio?</string>
-  <string name="max_items_count_reached">Jūs pasiekėt didžiausią elementų kiekį - XX</string>
   <string name="widget_header">ownCloud Naujienos</string>
-  <string name="message_bar_new_articles_available">Yra naujų elementų</string>
   <string name="message_bar_reload">Įkelti iš naujo</string>
   <string name="allUnreadFeeds">Visi neskaityti elementai</string>
   <string name="starredFeeds">Pažymėti elementai</string>
@@ -27,7 +24,7 @@
   <string name="menu_StartImageCaching">Atsisiųsti paveikslėlius</string>
   <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importuoti paskyrą</string>
+  <string name="import_account">Importuoti paskyrą</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Pirminis elemento kodas - Pranešti apie spragą</string>
   <string name="email_sendMail">Siųsti el. laišką</string>
@@ -43,12 +40,9 @@
   <string name="action_settings">Nustatymai</string>
   <string name="action_sync_settings">Sinchronizavimo nustatymai</string>
   <string name="action_add_new_feed">Pridėti naują srautą</string>
-  <string name="notification_new_items_ticker">Turite neperskaitytų X elementų</string>
-  <string name="notification_new_items_text">X nauji neperskaityti elementai pasiekiami</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Prisijungimo vardas</string>
   <string name="pref_title_password">Slaptažodis</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Prisijungti</string>
@@ -57,7 +51,6 @@
   <string name="error_field_required">Šis laukas privalomas</string>
   <string name="error_invalid_url">URL yra netinkamas</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Atsiųsta X senų elementų</string>
   <string name="toast_no_more_downloads_available">Daugiau elementų nėra</string>
   <string name="pull_to_refresh_updateTags">Sinchronizuojamos elementų būsenos</string>
   <string name="pull_to_refresh_updateFolder">Sinchronizuojamas aplankas</string>
@@ -83,8 +76,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Valoma talpykla</string>
-  <string name="dialog_clearing_cache_please_wait">Valoma talpykla. Prašome palaukti.</string>
-  <string name="calculating_cache_size">Skaičiuojamas talpyklos dydis.. Prašome palaukti.</string>
   <string name="reset_cache_unsaved_changes">Yra nesinchronizuotų pakitimų. Ar vis tiek norite atstatyti talpyklą?</string>
   <string name="warning">Įspėjimas</string>
   <string name="pref_title_AutoSyncOnStart">Sinchronizuoti pasileidžiant</string>
@@ -93,7 +84,6 @@
   <string name="pref_title_DisableHostnameVerification">Išjungti mazgo vardo patikrinimą</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naršyti su garso mygtukais</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Žymėti perskaitytu slenkant</string>
-  <string name="pref_title_OpenInBrowserDirectly">Praleisti informacijos peržiūrą ir atverti straipsnį naršyklėje</string>
   <string name="pref_title_notification_new_articles_available">Rodyti pranešimus kai galimi nauji straipsniai</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Priimti nežinomą sertifikatą?</string>
@@ -109,7 +99,6 @@
   <string name="pref_header_display">Ekranas</string>
   <string name="pref_title_app_theme">Programos tema</string>
   <string name="pref_title_feed_list_layout">Sklaikos kanalų sąrašo išdėstymas</string>
-  <string name="pref_display_font_layout">Šriftas (reikia paleisti iš naujo, kad pritaikyti)</string>
   <string-array name="pref_display_apptheme">
     <item>Tamsi</item>
     <item>Šviesi</item>
@@ -117,44 +106,6 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Paprasta</item>
-    <item>Išplėsta</item>
-    <item>Išplėsta su Webview</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Plona</item>
-    <item>Roboto Lengva</item>
-    <item>Roboto Eilinė</item>
-    <item>Roboto Vidutinė</item>
-    <item>Roboto Paryškinta</item>
-    <item>Roboto Juoda</item>
-    <item>Roboto Suspausta</item>
-    <item>Roboto Suspausta Paryškinta</item>
-    <item>Roboto Slab Plona</item>
-    <item>Roboto Slab Lengva</item>
-    <item>Roboto Slab Eilinė</item>
-    <item>Roboto Slab Paryškinta</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Klaida</string>

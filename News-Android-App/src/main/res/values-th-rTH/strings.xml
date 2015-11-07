@@ -1,43 +1,231 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">ประสานข้อมูลอัตโนมัติ</string>
+  <string name="app_name">ประกาศข่าว ownCloud</string>
+  <string name="title_activity_sync_interval_selector">เลือกช่วงเวลาการประสานข้อมูล</string>
+  <string name="title_activity_news_detail">รายละเอียดกิจกรรม</string>
+  <string name="title_activity_subscription">สมัครสมาชิกกิจกรรม</string>
+  <string name="title_newsreader_list">ประกาศข่าว</string>
+  <string name="title_newsreader_detail">ประกาศรายละเอียดข่าว</string>
+  <string name="empty_view_header">สารสนเทศ</string>
+  <string name="empty_view_content">ไม่มีรายการที่นี่</string>
+  <string name="toast_GettingMoreItems">กำลังเริ่มดาวน์โหลดรายการอื่นๆ ... โปรดรอสักครู่</string>
+  <string name="tv_clickHereToOpenItem">คลิกที่นี่เพื่อเปิดรายการ</string>
+  <string name="no_wifi_available">ไม่มีการเชื่อมต่อ Wifi</string>
+  <string name="do_you_want_to_download_without_wifi">คุณต้องการดาวน์โหลดรูปภาพได้โดยไม่ต้องเชื่อมต่อ WiFi</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="other">คุณใช้งานถึงรายการถึงขนาดสูงสุดจาก %d</item>
+  </plurals>
+  <string name="widget_header">ข่าว ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="other">%d รายการใหม่ที่สามารถใช้ได้</item>
+  </plurals>
+  <string name="message_bar_reload">โหลดใหม่อีกครั้ง</string>
+  <string name="allUnreadFeeds">ยังไม่ได้อ่านรายการทั้งหมด</string>
+  <string name="starredFeeds">รายการที่ติดดาว</string>
   <string name="title_activity_new_feed">เพิ่ม feed ใหม่</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">รีเฟรช</string>
+  <string name="menu_About_Changelog">เกี่ยวกับ/เปลี่ยนแปลง</string>
+  <string name="menu_markAllAsRead">เลือกอ่านทั้งหมด</string>
+  <string name="menu_StartImageCaching">ดาวน์โหลดรูปภาพ</string>
+  <string name="menu_downloadMoreItems">ดาวน์โหลดรายการอื่นๆ</string>
   <!--Import Accounts-->
+  <string name="import_account">นำเข้าบัญชี</string>
   <!--EMAIL-->
+  <string name="email_sourceCode">รหัสต้นฉบับของรายการ - รายงานข้อผิดพลาด</string>
+  <string name="email_sendMail">ส่งอีเมล</string>
   <!--Action Bar Items-->
   <string name="action_starred">ติดดาวแล้ว</string>
   <string name="action_read">อ่าน</string>
+  <string name="action_playPodacst">เล่นพอดคาสต์</string>
+  <string name="action_openInBrowser">เปิดในเบราว์เซอร์</string>
+  <string name="action_sendSourceCode">ส่งรายการไปให้นักพัฒนา</string>
   <string name="action_Share">แชร์</string>
+  <string name="action_login">ตั้งค่าเซิร์ฟเวอร์</string>
   <string name="action_save">บันทึก</string>
   <string name="action_settings">ตั้งค่า</string>
+  <string name="action_sync_settings">ตั้งค่าการประสานข้อมูล</string>
   <string name="action_add_new_feed">เพิ่ม feed ใหม่</string>
+  <string name="action_textToSpeech">อ่านออก</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="other">คุณมี %d รายการใหม่ที่ยังไม่ได้อ่าน</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="other">มี %d รายการใหม่ที่ยังไม่ได้อ่าน</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">ที่อยู่รากของ ownCloud</string>
+  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
+  <string name="action_sign_in_short">เข้าสู่ระบบ</string>
+  <string name="login_progress_signing_in">กำลังเข้าสู่ระบบ ...</string>
+  <string name="error_incorrect_password">รหัสผ่านนี้ไม่ถูกต้อง</string>
+  <string name="error_field_required">ต้องใส่ข้อมูลลงในช่องนี้</string>
+  <string name="error_invalid_url">URL นี้ไม่ถูกต้อง</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="other">ดาวน์โหลด %d รายการเก่า</item>
+  </plurals>
+  <string name="toast_no_more_downloads_available">ไม่มีรายการที่ใช้ได้</string>
+  <string name="pull_to_refresh_updateTags">กำลังประสานข้อมูลรายการ</string>
+  <string name="pull_to_refresh_updateFolder">กำลังประสานข้อมูลโฟลเดอร์</string>
+  <string name="pull_to_refresh_updateFeeds">กำลังประสานข้อมูลฟีด</string>
+  <string name="pull_to_refresh_updateItems">กำลังรายการประสานข้อมูล</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="other">เรียก %d รายการ จนถึงขณะนี้ ..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">ตั้งค่า</string>
+  <string name="cache_is_cleared">แคชจะถูกล้างออก!</string>
+  <plurals name="number_of_files">
+    <item quantity="other">%d ไฟล์</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">ทั่วไป</string>
+  <string name="pref_title_general_sort_order">เรียงลำดับรายการ</string>
+  <string-array name="pref_general_sort_order">
+    <item>ใหม่ -&gt; เก่า</item>
+    <item>เก่า -&gt; ใหม่</item>
+  </string-array>
+  <string-array name="pref_general_sort_order_values_not_translated">
+    <item>1</item>
+    <item>0</item>
+  </string-array>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
+  <string name="dialog_clearing_cache">กำลังล้างแคช</string>
+  <string name="dialog_clearing_cache_please_wait">กำลังล้างแคช ... โปรดรอสักครู่</string>
+  <string name="calculating_cache_size">กำลังคำนวณขนาดแคช ... โปรดรอสักครู่</string>
+  <string name="reset_cache_unsaved_changes">มีการเปลี่ยนแปลงที่ไม่ได้ประสานข้อมูล คุณต้องการตั้งค่าแคชหรือไม่?</string>
   <string name="warning">คำเตือน</string>
+  <string name="pref_title_AutoSyncOnStart">ประสานข้อมูลเมื่อเริ่มต้น</string>
+  <string name="pref_title_ShowOnlyUnread">แสดงบทความที่ยังไม่ได้อ่านเท่านั้น</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
+  <string name="pref_title_DisableHostnameVerification">ปิดการใช้งานการตรวจสอบ Hostname</string>
+  <string name="pref_title_NavigateWithVolumeButtons">นำทางด้วยปุ่มปรับระดับเสียง</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">ทำเครื่องหมายว่าอ่านในขณะที่เลื่อน</string>
+  <string name="pref_title_OpenInBrowserDirectly">ใช้เบราว์เซอร์ภายนอกเพื่อดูบทความ</string>
+  <string name="pref_title_notification_new_articles_available">แสดงการแจ้งเตือนเมื่อมีบทความใหม่</string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_accept_cert">ยอมรับใบรับรองที่ไม่รู้จัก?</string>
+  <string name="mtm_decision_always">เสมอ</string>
+  <string name="mtm_decision_once">ครั้งเดียว</string>
+  <string name="mtm_decision_abort">ยกเลิก</string>
+  <string name="mtm_notification">การตรวจสอบใบรับรอง</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">พอดคาสต์</string>
+  <string name="pref_enable_podcasts">เปิดใช้การสนับสนุนพอดคาสต์</string>
+  <string name="no_podcast_selected">ไม่ได้เลือกพอดคาสต์</string>
   <!--Settings for Display-->
+  <string name="pref_header_display">แสดงผล</string>
+  <string name="pref_title_app_theme">ธีมแอพฯ</string>
+  <string name="pref_title_feed_list_layout">รูปแบบรายการฟีด</string>
+  <string name="pref_display_title_lines_count">จำนวนบรรทัดสำหรับชื่อเรื่อง</string>
+  <string-array name="pref_display_apptheme">
+    <item>มืด</item>
+    <item>สว่าง</item>
+  </string-array>
+  <string-array name="pref_display_apptheme_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>ปกติ</item>
+    <item>ขยาย</item>
+    <item>ขยาย (ฉบับเต็ม)</item>
+    <item>ขยายด้วย Webview</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>3</item>
+    <item>2</item>
+  </string-array>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">ข้อผิดพลาด</string>
+  <string name="login_dialog_text_something_went_wrong">เกิดข้อผิดพลาดบางอย่าง :(</string>
+  <string name="login_dialog_text_not_compatible">แอพฯรุ่นนี้เข้ากันไม่ได้กับแอพฯข่าว ownCloud ของคุณ โปรดอัพเดตแอพฯข่าวและ appframework</string>
   <string name="login_dialog_title_security_warning">คำเตือนเกี่ยวกับความปลอดภัย</string>
+  <string name="login_dialog_text_security_warning">คุณไม่ได้ใช้ Https คุณอาจถูกดักแพคเกจเช่นรหัสผ่านของคุณดังนั้นจึงขอแนะนำให้ใช้ Https!</string>
   <!--Data & Sync-->
+  <string name="pref_header_data_sync">ข้อมูล &amp; ประสานข้อมูล</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
+  <string name="pref_title_clearCache">ล้างแคช</string>
+  <string name="pref_title_CacheImagesOffline">แคชรูปภาพออฟไลน์</string>
+  <string name="pref_title_Max_Cache_Size">ขนาดแคชสูงสุด</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>ไม่เคย</item>
+    <item>เฉพาะ WiFi เท่านั้น</item>
+    <item>เฉพาะ WiFi &amp; เคลือข่ายมือถือ</item>
+    <item>ถามเมื่อไม่ได้เชื่อมต่อกับ WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size">
+    <item>250 เมกะไบต์</item>
+    <item>500 เมกะไบต์</item>
+    <item>750 เมกะไบต์</item>
+    <item>1 กิกะไบต์</item>
+    <item>2 กิกะไบต์</item>
+    <item>5 กิกะไบต์</item>
+    <item>10 กิกะไบต์</item>
+  </string-array>
+  <string-array name="pref_data_sync_max_cache_size_values">
+    <item>250</item>
+    <item>500</item>
+    <item>750</item>
+    <item>1000</item>
+    <item>2000</item>
+    <item>5000</item>
+    <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 นาที</item>
+    <item>15 นาที</item>
+    <item>30 นาที</item>
+    <item>45 นาที</item>
+    <item>1 ชั่วโมง</item>
+    <item>2 ชั่วโมง</item>
+    <item>3 ชั่วโมง</item>
+    <item>6 ชั่วโมง</item>
+    <item>12 ชั่วโมง</item>
+    <item>24 ชั่วโมง</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
+  </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 
     <string-array name="pref_sync_frequency_titles">
@@ -57,6 +245,7 @@
         <item>-1</item>
     </string-array>-->
   <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+  <string name="pref_header_notifications">การแจ้งเตือน</string>
   <!--<string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>

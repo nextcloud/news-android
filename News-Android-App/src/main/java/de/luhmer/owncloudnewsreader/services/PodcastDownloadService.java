@@ -1,13 +1,10 @@
 package de.luhmer.owncloudnewsreader.services;
 
-import android.annotation.TargetApi;
 import android.app.DownloadManager;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
-import android.os.ResultReceiver;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -23,28 +20,23 @@ import java.security.MessageDigest;
 
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
-import de.luhmer.owncloudnewsreader.helper.JavaYoutubeDownloader;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
  * <p>
- * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
 public class PodcastDownloadService extends IntentService {
-    // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
     private static final String ACTION_DOWNLOAD = "de.luhmer.owncloudnewsreader.services.action.DOWNLOAD";
 
 
 
-    // TODO: Rename parameters
     private static final String EXTRA_RECEIVER = "de.luhmer.owncloudnewsreader.services.extra.RECEIVER";
     private static final String EXTRA_URL = "de.luhmer.owncloudnewsreader.services.extra.URL";
-    private static final String EXTRA_PARAM2 = "de.luhmer.owncloudnewsreader.services.extra.PARAM2";
-    private static final String TAG = "PodcastDownloadService";
+    private static final String TAG = PodcastDownloadService.class.getCanonicalName();
 
     private EventBus eventBus;
 
@@ -59,7 +51,6 @@ public class PodcastDownloadService extends IntentService {
         intent.setAction(ACTION_DOWNLOAD);
         intent.putExtra(EXTRA_URL, podcastItem);
         //intent.putExtra(EXTRA_RECEIVER, receiver);
-        //intent.putExtra(EXTRA_PARAM2, param2);
         context.startService(intent);
     }
 
@@ -76,7 +67,7 @@ public class PodcastDownloadService extends IntentService {
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_DOWNLOAD.equals(action)) {
-                ResultReceiver receiver = (ResultReceiver) intent.getParcelableExtra(EXTRA_RECEIVER);
+                //ResultReceiver receiver = intent.getParcelableExtra(EXTRA_RECEIVER);
                 PodcastItem podcast = (PodcastItem) intent.getSerializableExtra(EXTRA_URL);
                 //final String param2 = intent.getStringExtra(EXTRA_PARAM2);
                 //handleActionDownload(podcast);
@@ -84,11 +75,7 @@ public class PodcastDownloadService extends IntentService {
                 downloadPodcast(podcast, this);
 
 
-            }/* else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
-            }*/
+            }
         }
     }
 
@@ -96,18 +83,14 @@ public class PodcastDownloadService extends IntentService {
      * Handle action Foo in the provided background thread with the provided
      * parameters.
      */
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void handleActionDownload(PodcastItem podcast) {
         Uri uri = Uri.parse(podcast.link);
         DownloadManager.Request request = new DownloadManager.Request(uri);
         request.setDescription(podcast.mimeType);
         request.setTitle(podcast.title);
 
-        // in order for this if to run, you must use the android 3.2 to compile your app
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            request.allowScanningByMediaScanner();
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        }
+        request.allowScanningByMediaScanner();
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
         String path = "file://" + getUrlToPodcastFile(this, podcast.link, true);
         request.setDestinationUri(Uri.parse(path));
@@ -120,9 +103,6 @@ public class PodcastDownloadService extends IntentService {
 
 
     public static String getUrlToPodcastFile(Context context, String WEB_URL_TO_FILE, boolean createDir) {
-        if(WEB_URL_TO_FILE.contains(JavaYoutubeDownloader.host))
-            return getUrlToYoutubePodcastFile(context, WEB_URL_TO_FILE, createDir);
-
         File file = new File(WEB_URL_TO_FILE);
 
         String path = FileUtils.getPathPodcasts(context) + "/" + getHashOfString(WEB_URL_TO_FILE) + "/";
@@ -132,15 +112,6 @@ public class PodcastDownloadService extends IntentService {
         return path + file.getName();
     }
 
-    private static String getUrlToYoutubePodcastFile(Context context, String WEB_URL_TO_FILE, boolean createDir) {
-        String path = FileUtils.getPathPodcasts(context) + "/" + getHashOfString(WEB_URL_TO_FILE) + "/";
-        if(createDir)
-            new File(path).mkdirs();
-
-        return path + "video.mp4";
-    }
-
-
     public static String getHashOfString(String WEB_URL_TO_FILE)
     {
         try {
@@ -149,9 +120,8 @@ public class PodcastDownloadService extends IntentService {
             m.update(WEB_URL_TO_FILE.trim().getBytes());
             byte[] digest = m.digest();
             BigInteger bigInt = new BigInteger(1,digest);
-            String hashtext = bigInt.toString(16);
 
-            return hashtext;
+            return bigInt.toString(16);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,17 +134,6 @@ public class PodcastDownloadService extends IntentService {
             String urlTemp = podcast.link;
             String path = getUrlToPodcastFile(this, urlTemp, true);
 
-            if(podcast.link.contains(JavaYoutubeDownloader.host)) {
-
-                path = getUrlToPodcastFile(context, urlTemp, true);
-
-                try {
-                    urlTemp = new JavaYoutubeDownloader().getDownloadUrl(podcast.link, context);
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }
-
-            }
             URL url = new URL(urlTemp);
             URLConnection connection = url.openConnection();
             connection.connect();
@@ -197,8 +156,7 @@ public class PodcastDownloadService extends IntentService {
             while ((count = input.read(data)) != -1) {
                 total += count;
 
-                int progress = (int) (total * 100 / fileLength);
-                podcast.downloadProgress = progress;
+                podcast.downloadProgress = (int) (total * 100 / fileLength);
                 eventBus.post(new DownloadProgressUpdate(podcast));
 
                 output.write(data, 0, count);
@@ -227,15 +185,18 @@ public class PodcastDownloadService extends IntentService {
         */
     }
 
-    public static final int UPDATE_PROGRESS = 5555;
+    //public static final int UPDATE_PROGRESS = 5555;
 
 
     public class DownloadProgressUpdate {
-
         public DownloadProgressUpdate(PodcastItem podcast) {
             this.podcast = podcast;
         }
-
         public PodcastItem podcast;
+    }
+
+    public static boolean PodcastAlreadyCached(Context context, String podcastUrl) {
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastUrl, false));
+        return file.exists();
     }
 }

@@ -4,11 +4,16 @@
   <string name="app_name">ownCloud-uutislukija</string>
   <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
   <string name="title_newsreader_list">Uutislukija</string>
+  <string name="empty_view_header">Tiedot</string>
   <string name="empty_view_content">Ei kohteita</string>
-  <string name="toast_GettingMoreItems">Lisäkohteiden lataaminen aloitettiin, odota hetki...</string>
+  <string name="toast_GettingMoreItems">Lisäkohteiden lataaminen aloitettu, odota hetki.</string>
   <string name="tv_clickHereToOpenItem">Avaa kohde painamalla tästä</string>
   <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
-  <string name="message_bar_new_articles_available">Uusia kohteita saatavilla</string>
+  <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman wifi-yhteyttä</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d uusi kohde saatavilla</item>
+    <item quantity="other">%d uutta kohdetta saatavilla</item>
+  </plurals>
   <string name="message_bar_reload">Päivitä</string>
   <string name="allUnreadFeeds">Kaikki lukemattomat kohteet</string>
   <string name="starredFeeds">Tähdellä varustetut</string>
@@ -20,7 +25,7 @@
   <string name="menu_StartImageCaching">Lataa kuvat</string>
   <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Tuo tili</string>
+  <string name="import_account">Tuo tili</string>
   <!--EMAIL-->
   <string name="email_sendMail">Lähetä EMail</string>
   <!--Action Bar Items-->
@@ -35,11 +40,19 @@
   <string name="action_settings">Asetukset</string>
   <string name="action_sync_settings">Synkronointiasetukset</string>
   <string name="action_add_new_feed">Lisää uusi syöte</string>
-  <string name="notification_new_items_text">X uutta lukematonta kohdetta saatavilla</string>
+  <string name="action_textToSpeech">Lue ääneen</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">%d uusi lukematon kohde</item>
+    <item quantity="other">%d uutta lukematonta kohdetta</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d uusi lukematon kohde saatavilla</item>
+    <item quantity="other">%d uutta lukematonta kohdetta saatavilla</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">ownCloudin juuriosoite</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Kirjaudu</string>
@@ -48,13 +61,26 @@
   <string name="error_field_required">Tämä kenttä vaaditaan</string>
   <string name="error_invalid_url">Osoite on virheellinen</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Ladattiin %d vanha kohde</item>
+    <item quantity="other">Ladattiin %d vanhaa kohdetta</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Ei enempää kohteita saatavilla</string>
   <string name="pull_to_refresh_updateTags">Synkronoidaan kohteiden tiloja</string>
   <string name="pull_to_refresh_updateFolder">Synkronoidaan kansiota</string>
   <string name="pull_to_refresh_updateFeeds">Synkronoidaan syötteitä</string>
   <string name="pull_to_refresh_updateItems">Synkronoidaan kohteita</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Noudettu %d kohde...</item>
+    <item quantity="other">Noudettu %d kohdetta...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Asetukset</string>
+  <string name="cache_is_cleared">Välimuisti on tyhjennetty!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d tiedosto</item>
+    <item quantity="other">%d tiedostoa</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Yleiset</string>
   <string name="pref_title_general_sort_order">Lajittelujärjestys</string>
@@ -73,14 +99,16 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
-  <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki.</string>
-  <string name="calculating_cache_size">Lasketaan välimuistin kokoa... Odota hetki.</string>
+  <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
+  <string name="calculating_cache_size">Lasketaan välimuistin kokoa, odota hetki...</string>
+  <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
   <string name="warning">Varoitus</string>
   <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
   <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Liiku äänipainikkeilla</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
+  <string name="pref_title_OpenInBrowserDirectly">Käytä erillistä selainta artikkelien avaamiseen</string>
   <string name="pref_title_notification_new_articles_available">Näytä ilmoitus uusien kohteiden ollessa saatavilla</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
@@ -96,7 +124,7 @@
   <string name="pref_header_display">Näyttö</string>
   <string name="pref_title_app_theme">Sovelluksen teema</string>
   <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
-  <string name="pref_display_font_layout">Kirjasin (vaatii uudelleenkäynnistyksen tullakseen voimaan)</string>
+  <string name="pref_display_title_lines_count">Otsikon rivimäärä</string>
   <string-array name="pref_display_apptheme">
     <item>Tumma</item>
     <item>Vaalea</item>
@@ -108,21 +136,20 @@
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Virhe</string>
@@ -135,6 +162,12 @@
   <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
   <string name="pref_title_CacheImagesOffline">Varastoi kuvat yhteydetöntä tilaa varten</string>
   <string name="pref_title_Max_Cache_Size">Välimuistin enimmäiskoko</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Ei koskaan</item>
+    <item>Vain wifissä</item>
+    <item>Wifissä ja mobiiliyhteydessä</item>
+    <item>Kysy kun ei wifi-yhteyttä</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

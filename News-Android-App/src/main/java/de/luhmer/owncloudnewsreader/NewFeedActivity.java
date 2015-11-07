@@ -2,15 +2,13 @@ package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 
 import java.net.URL;
 import java.util.List;
@@ -36,7 +33,7 @@ import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
-public class NewFeedActivity extends ActionBarActivity {
+public class NewFeedActivity extends AppCompatActivity {
 
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -77,7 +74,7 @@ public class NewFeedActivity extends ActionBarActivity {
             folderNames[i] = folders.get(i).getLabel();
         }
 
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
         mFolderView.setAdapter(spinnerArrayAdapter);
 
         mAddFeedButton.setOnClickListener(new OnClickListener() {
@@ -174,12 +171,7 @@ public class NewFeedActivity extends ActionBarActivity {
     /**
      * Shows the progress UI and hides the login form.
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
@@ -199,12 +191,6 @@ public class NewFeedActivity extends ActionBarActivity {
                     mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
                 }
             });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
     }
 
     public final static String ADD_NEW_SUCCESS = "success";
@@ -230,14 +216,10 @@ public class NewFeedActivity extends ActionBarActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
-            API api = new APIv2(NewFeedActivity.this);
+            API api = new APIv2(HttpJsonRequest.getInstance().getRootUrl());
 
             try {
-                int status = HttpJsonRequest.performCreateFeedRequest(api.getFeedUrl(),
-                                api.getUsername(),
-                                api.getPassword(),
-                                NewFeedActivity.this,
+                int status = HttpJsonRequest.getInstance().performCreateFeedRequest(api.getFeedUrl(),
                                 mUrlToFeed, mFolderId);
 
                 if(status == 200) {

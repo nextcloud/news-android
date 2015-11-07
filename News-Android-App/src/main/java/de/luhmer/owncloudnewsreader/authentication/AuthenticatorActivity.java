@@ -1,13 +1,12 @@
 package de.luhmer.owncloudnewsreader.authentication;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-
+import android.support.v7.app.AppCompatActivity;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 
-public class AuthenticatorActivity extends ActionBarActivity {
+public class AuthenticatorActivity extends AppCompatActivity {
 
     public final static String ARG_ACCOUNT_TYPE = "ACCOUNT_TYPE";
     public final static String ARG_AUTH_TYPE = "AUTH_TYPE";

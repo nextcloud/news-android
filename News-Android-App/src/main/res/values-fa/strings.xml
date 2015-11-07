@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="auto_sync_string">همگام‌سازی خودکار</string>
   <string name="app_name">خبر خوان ownCloud</string>
   <string name="title_activity_news_detail">فعالیت جزئیات اخبار</string>
   <string name="title_activity_subscription">فعالیت ثبت نام</string>
@@ -10,6 +11,10 @@
   <string name="tv_clickHereToOpenItem">برای باز کردن آیتم اینجا را کلیک کنید.</string>
   <string name="no_wifi_available">هیچ WiFi متصل نیست.</string>
   <string name="do_you_want_to_download_without_wifi">آیا میخواهید تصاویر را بدون هیچ اتصال WiFi  دریافت کنید؟</string>
+  <string name="widget_header">اخبار ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="other">%d مورد جدید در دسترس است</item>
+  </plurals>
   <string name="message_bar_reload">بازنگری</string>
   <string name="allUnreadFeeds">تمام آیتم های خوانده نشده</string>
   <string name="starredFeeds">آیتم های ستاره دار</string>
@@ -17,6 +22,7 @@
   <string name="menu_update">بازنمایی</string>
   <string name="menu_About_Changelog">درباره / تغییرات</string>
   <string name="menu_markAllAsRead">علامت همه به عنوان خوانده شده</string>
+  <string name="menu_StartImageCaching">دانلود تصاویر</string>
   <string name="menu_downloadMoreItems">دانلود آیتم های بیشتر</string>
   <!--Import Accounts-->
   <!--EMAIL-->
@@ -33,7 +39,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">نام کاربری</string>
   <string name="pref_title_password">گذرواژه</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">ورود</string>
@@ -42,22 +47,24 @@
   <string name="error_field_required">این فیلد مورد نیاز است</string>
   <string name="error_invalid_url">این آدرس url  نادرست است.</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X آیتم های دانلود شده قدیمی</string>
   <string name="pull_to_refresh_updateTags">همگام سازی حالت های آیتم ها</string>
   <string name="pull_to_refresh_updateFolder">همگام سازی پوشه </string>
   <string name="pull_to_refresh_updateFeeds">همگام سازی خوراک خوان ها</string>
   <string name="pull_to_refresh_updateItems">همگام سازی آیتم ها</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">تنظیمات</string>
+  <plurals name="number_of_files">
+    <item quantity="other">%d فایل‌</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">عمومی</string>
+  <string name="pref_title_general_sort_order">ترتیب مرتب‌سازی</string>
   <!--<string-array name="pref_general_sort_order_values">
         <item>desc</item>
         <item>asc</item>
 	</string-array>-->
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
-  <string name="calculating_cache_size">محاسبه اندازه حافظه پنهان.. لطفا صبر کنید.</string>
   <string name="warning">اخطار</string>
   <string name="pref_title_AutoSyncOnStart">همگام سازی در هنگام راه اندازی</string>
   <string name="pref_title_ShowOnlyUnread">فقط نمایش مقالات خوانده نشده</string>
@@ -65,11 +72,14 @@
   <string name="pref_title_NavigateWithVolumeButtons">کنترل با دکمه های درجه صدا</string>
   <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری در حال پیمایش به عنوان خوانده شده </string>
   <!--MemorizingTrustManager-->
+  <string name="mtm_decision_always">همیشه</string>
   <string name="mtm_decision_abort">قطع عملیات</string>
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">نمایشی</string>
+  <string name="pref_title_app_theme">قالب برنامه</string>
   <string name="pref_title_feed_list_layout">طرح لسیت خوراک خوان</string>
+  <string name="pref_display_title_lines_count">تعداد خطوط عنوان</string>
   <string-array name="pref_display_apptheme">
     <item>تاریک</item>
     <item>روشن</item>
@@ -77,16 +87,6 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>ساده</item>
-    <item>تمدید شده</item>
-    <item>با Webview تمدید شده</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">خطا</string>

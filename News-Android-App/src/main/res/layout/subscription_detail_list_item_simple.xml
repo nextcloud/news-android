@@ -1,144 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="72dp"
-    android:orientation="horizontal" >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:background="?attr/selectableItemBackground">
 
     <View
         android:id="@+id/color_line_feed"
-        android:layout_width="@dimen/color_bar_of_feeds"
         android:layout_height="match_parent"
-        android:background="?attr/dividerLineColor"/>
+        android:layout_width="4dp"
+        android:background="?attr/dividerLineColor"
+        android:layout_marginEnd="@dimen/listview_row_margin_left"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_marginEnd="@dimen/listview_row_margin_right"
+        android:layout_marginTop="@dimen/listview_row_margin_top"
+        android:layout_marginBottom="@dimen/listview_row_margin_bottom"
+        android:id="@+id/list_item_header">
+
+        <TextView
+            android:id="@+id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="2"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            tools:text="Summary Text\nSecond Line"
+            android:layout_alignParentStart="true"
+            android:minLines="2"
+            android:maxLines="2"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/podcast_wrapper"
+            android:layout_toStartOf="@+id/podcast_wrapper"/>
+
+        <ImageView
+            android:id="@+id/imgViewFavIcon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_below="@+id/summary"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentStart="true"
+            tools:src="@drawable/default_feed_icon_light"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/tv_subscription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textSize="13sp"
+            tools:text="PortableApps.com"
+            android:layout_below="@+id/summary"
+            android:layout_toStartOf="@+id/tv_item_date"
+            android:layout_toEndOf="@+id/imgViewFavIcon"
+            android:layout_toLeftOf="@+id/tv_item_date"
+            android:layout_toRightOf="@+id/imgViewFavIcon"/>
+
+        <TextView
+            android:id="@+id/tv_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textSize="13sp"
+            tools:text="vor 13 Stunden"
+            android:layout_toStartOf="@+id/podcast_wrapper"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@+id/podcast_wrapper"
+            android:layout_alignBaseline="@id/tv_subscription"/>
 
 
-    	<LinearLayout
-    	    android:layout_width="match_parent"
-        	android:layout_height="65dp"
-        	android:orientation="horizontal" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/star_imageview"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_action_star_dark"
+            android:tint="?attr/starredColor"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
 
+        <include
+            layout="@layout/subscription_detail_list_item_podcast_wrapper"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="6dp"
+            android:id="@+id/podcast_wrapper"
+            android:layout_toLeftOf="@id/star_imageview"/>
 
-            <LinearLayout
-                android:id="@+id/ll_cb_starred_wrapper"
-                android:layout_width="50dp"
-                android:layout_height="match_parent">
+    </RelativeLayout>
 
-                <CheckBox
-                    android:id="@+id/cb_lv_item_starred"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:layout_marginLeft="@dimen/listview_row_margin_left"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:button="@drawable/checkbox_background_empty"
-                    android:background="@drawable/checkbox_background_holo_light" />
-            </LinearLayout>
-
-			<LinearLayout
-			    android:layout_width="0dip"
-			    android:layout_height="wrap_content"
-		        android:layout_marginTop="@dimen/listview_row_margin_top"
-		        android:layout_weight="1"
-			    android:orientation="vertical" >
-
-			    <!--
-			    android:background="@drawable/checkbox_background"
-			        android:button="@drawable/checkbox"
-			     -->
-
-				<TextView
-			        android:id="@+id/summary"
-			        android:layout_width="match_parent"
-			        android:layout_height="0dip"
-			        android:ellipsize="end"
-			        android:lines="2"
-			        android:textSize="17sp"
-			        android:text="Lenovo takes a dig at Apple, possibly hints at Android L with.."
-			        android:layout_weight="1"
-			        android:textStyle="bold" />
-
-			    <LinearLayout
-			        android:layout_width="match_parent"
-			        android:layout_height="match_parent"
-			        android:orientation="horizontal" >
-
-			        <TextView
-			            android:id="@+id/tv_subscription"
-			            android:layout_width="0dp"
-			            android:layout_height="wrap_content"
-			            android:ellipsize="end"
-			            android:gravity="center_vertical"
-			            android:layout_gravity="left"
-			            android:singleLine="true"
-			            android:text="PortableApps.com"
-			            android:layout_weight="1"
-			            android:textSize="13sp" />
-
-			        <TextView
-			            android:id="@+id/tv_item_date"
-			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
-			            android:ellipsize="end"
-			            android:gravity="center_vertical"
-			            android:layout_gravity="right"
-                        android:layout_marginLeft="5dp"
-			            android:text="vor 13 Stunden"
-			            android:singleLine="true"
-			            android:textSize="13sp" />
-			    </LinearLayout>
-			</LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/fl_playPausePodcastWrapper"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/listview_row_margin_left" >
-
-                <ImageView
-                    android:id="@+id/btn_playPausePodcast"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="2dp"
-                    android:background="@drawable/av_play"/>
-
-                <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
-                    android:id="@+id/podcastDownloadProgress"
-                    android:layout_gravity="center"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-
-                    app:stroke_width="2dp"
-                    app:progress_color="@android:color/holo_blue_dark"
-                    app:progress_background_color="#cccccc"
-                    app:marker_visible="false"
-                    app:thumb_visible="false"/>
-
-            </FrameLayout>
-
-            <CheckBox
-                android:id="@+id/cb_lv_item_read"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:clickable="false"
-                android:focusable="false" />
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_marginTop="5.0dp"
-            android:background="?attr/dividerLineColor" />
-    </LinearLayout>
 </LinearLayout>

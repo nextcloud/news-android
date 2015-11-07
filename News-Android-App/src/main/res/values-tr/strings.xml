@@ -9,13 +9,19 @@
   <string name="title_newsreader_detail">Haber Okuyucu Ayrıntıları</string>
   <string name="empty_view_header">Bilgi</string>
   <string name="empty_view_content">Burada öge yok</string>
-  <string name="toast_GettingMoreItems">Daha fazla öge indirme başlatıldı... Lütfen bekleyin.</string>
+  <string name="toast_GettingMoreItems">Daha fazla öge indirilmeye başlandı... Lütfen bekleyin.</string>
   <string name="tv_clickHereToOpenItem">Ögeyi açmak için buraya tıklayın</string>
   <string name="no_wifi_available">Kablosuz bağlı değil</string>
   <string name="do_you_want_to_download_without_wifi">Resimleri bir kablosuz bağlantı olmadan indirmek ister misiniz</string>
-  <string name="max_items_count_reached">XX ögenin azami sayısına ulaştınız</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">%d ögenin azami sayısına ulaştınız</item>
+    <item quantity="other">%d ögenin azami sayısına ulaştınız</item>
+  </plurals>
   <string name="widget_header">ownCloud Haberler</string>
-  <string name="message_bar_new_articles_available">Yeni öge mevcut</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d yeni öge mevcut</item>
+    <item quantity="other">%d yeni öge mevcut</item>
+  </plurals>
   <string name="message_bar_reload">Yeniden yükle</string>
   <string name="allUnreadFeeds">Tüm okunmamış ögeler</string>
   <string name="starredFeeds">Yıldızlı ögeler</string>
@@ -27,7 +33,7 @@
   <string name="menu_StartImageCaching">Resimleri indir</string>
   <string name="menu_downloadMoreItems">Daha fazla öge indir</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Hesabı İçe Aktar</string>
+  <string name="import_account">Hesabı İçe Aktar</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Ögenin kaynak kodu - Hata bildirimi</string>
   <string name="email_sendMail">E-posta Gönder</string>
@@ -44,12 +50,18 @@
   <string name="action_sync_settings">Eşitleme Ayarları</string>
   <string name="action_add_new_feed">Yeni besleme ekle</string>
   <string name="action_textToSpeech">Sesli oku</string>
-  <string name="notification_new_items_ticker">X adet okunmamış öge var</string>
-  <string name="notification_new_items_text">X yeni okunmamış öge var</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Yeni %d okunmamış ögeniz var</item>
+    <item quantity="other">Yeni %d okunmamış ögeniz var</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">Yeni %d okunmamış öge mevcut</item>
+    <item quantity="other">Yeni %d okunmamış öge mevcut</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Kullanıcı Adı</string>
   <string name="pref_title_password">Parola</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">ownCloud ana dizin adresi</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Oturum aç</string>
@@ -58,14 +70,26 @@
   <string name="error_field_required">Bu alan gerekli</string>
   <string name="error_invalid_url">Bu adres geçersiz</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X eski öge indirildi</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">%d eski öge indirildi</item>
+    <item quantity="other">%d eski öge indirildi</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Daha fazla öge yok</string>
   <string name="pull_to_refresh_updateTags">Öge durumları eşitleniyor</string>
   <string name="pull_to_refresh_updateFolder">Klasör eşitleniyor</string>
   <string name="pull_to_refresh_updateFeeds">Beslemeler eşitleniyor</string>
   <string name="pull_to_refresh_updateItems">Ögeler eşitleniyor</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Şimdiye kadar %d öge eşlendi...</item>
+    <item quantity="other">Şimdiye kadar %d öge eşlendi...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ayarlar</string>
+  <string name="cache_is_cleared">Önbellek temizlendi!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Dosya</item>
+    <item quantity="other">%d Dosya</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Genel</string>
   <string name="pref_title_general_sort_order">Sıralama Şekli</string>
@@ -94,7 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Ana Makine Doğrulamayı Devre Dışı Bırak</string>
   <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezin</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu işaretle</string>
-  <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görümü atla ve makaleyi tarayıcıda aç</string>
+  <string name="pref_title_OpenInBrowserDirectly">Makaleleri görüntülemek için harici tarayıcı kullan</string>
   <string name="pref_title_notification_new_articles_available">Yeni makaleler kullanılabilir olduğunda bildirim göster</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>
@@ -110,7 +134,7 @@
   <string name="pref_header_display">Görüntüle</string>
   <string name="pref_title_app_theme">Uyg. teması</string>
   <string name="pref_title_feed_list_layout">Besleme listesi yerleşimi</string>
-  <string name="pref_display_font_layout">Yazı Tipi (uygulanması için yeniden başlatma gerekiyor)</string>
+  <string name="pref_display_title_lines_count">Başlık için satır sayısı</string>
   <string-array name="pref_display_apptheme">
     <item>Koyu</item>
     <item>Açık</item>
@@ -122,40 +146,26 @@
   <string-array name="pref_display_feed_list_layout">
     <item>Basit</item>
     <item>Genişletilmiş</item>
-    <item>Web Görünümü ile Genişletilmiş</item>
+    <item>&gt;Genişletilmiş (tam metin)</item>
+    <item>Web görünümü ile genişletilmiş</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto İnce</item>
-    <item>Roboto Açık</item>
-    <item>Roboto Normal</item>
-    <item>Roboto Orta</item>
-    <item>Roboto Kalın</item>
-    <item>Roboto Siyah</item>
-    <item>Roboto Yoğun</item>
-    <item>Roboto Yoğun Kalın</item>
-    <item>Roboto Levha İnce</item>
-    <item>Roboto Levha Açık</item>
-    <item>Roboto Levha Normal</item>
-    <item>Roboto Levha Kalın</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Hata</string>

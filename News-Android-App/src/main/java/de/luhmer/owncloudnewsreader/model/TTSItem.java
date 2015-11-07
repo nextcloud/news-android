@@ -3,7 +3,7 @@ package de.luhmer.owncloudnewsreader.model;
 /**
  * Created by David on 10.01.2015.
  */
-public class TTSItem {
+public class TTSItem extends MediaItem {
 
     public TTSItem() {
 
@@ -16,9 +16,5 @@ public class TTSItem {
         this.favIcon = favIcon;
     }
 
-    public long itemId;
-    public String title;
-    public String link;
     public String text;
-    public String favIcon;
 }

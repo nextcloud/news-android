@@ -1,7 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
-import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.ComponentName;
@@ -13,8 +12,8 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.SurfaceView;
@@ -24,26 +23,26 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.nineoldandroids.view.ViewHelper;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
+import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
@@ -52,13 +51,13 @@ import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 /**
  * Created by David on 29.06.2014.
  */
-public class PodcastFragmentActivity extends ActionBarActivity implements IPlayPausePodcastClicked {
+public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
     PodcastPlaybackService mPodcastPlaybackService;
     boolean mBound = false;
 
 
-    private static final String TAG = "PodcastSherlockFragmentActivity";
+    private static final String TAG = "PodcastFragmentActivity";
     private PodcastFragment mPodcastFragment;
 
     private EventBus eventBus;
@@ -110,13 +109,6 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
     @Override
     protected void onStart() {
         super.onStart();
-        // Bind to LocalService
-        Intent intent = new Intent(this, PodcastPlaybackService.class);
-        if(!isMyServiceRunning(PodcastPlaybackService.class)) {
-            startService(intent);
-        }
-
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -149,6 +141,11 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
     protected void onResume() {
         eventBus.register(this);
 
+        if(mPodcastPlaybackService != null && !mPodcastPlaybackService.isActive()) {
+            sliding_layout.setPanelHeight(0);
+            sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        }
+
         //eventBus.post(new RegisterVideoOutput(surfaceView));
         super.onResume();
     }
@@ -162,7 +159,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
         super.onPause();
     }
 
-    private boolean isMyServiceRunning(Class<?> serviceClass) {
+    protected boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.getName().equals(service.service.getClassName())) {
@@ -198,18 +195,12 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
     public void loadPodcastFavIcon() {
         if(mPodcastPlaybackService.getCurrentlyPlayingPodcast() != null && mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon != null) {
             String favIconUrl = mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon;
-            File cacheFile = ImageHandler.getFullPathOfCacheFileSafe(favIconUrl, FileUtils.getPathFavIcons(this));
-            if(cacheFile != null && cacheFile.exists()) {
-                Picasso.with(PodcastFragmentActivity.this)
-                        .load(cacheFile)
-                        .placeholder(R.drawable.default_feed_icon_light)
-                        .into(mPodcastFragment.imgFavIcon);
-            } else {
-                Picasso.with(PodcastFragmentActivity.this)
-                        .load(favIconUrl)
-                        .placeholder(R.drawable.default_feed_icon_light)
-                        .into(mPodcastFragment.imgFavIcon);
-            }
+            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().
+                    showImageOnLoading(R.drawable.default_feed_icon_light).
+                    showImageForEmptyUri(R.drawable.default_feed_icon_light).
+                    showImageOnFail(R.drawable.default_feed_icon_light).
+                    build();
+            ImageLoader.getInstance().displayImage(favIconUrl,mPodcastFragment.imgFavIcon,displayImageOptions);
         }
     }
 
@@ -232,7 +223,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
             getSupportFragmentManager().beginTransaction().remove(mPodcastFragment).commitAllowingStateLoss();
         }
 
-        mPodcastFragment = PodcastFragment.newInstance(null, null);
+        mPodcastFragment = PodcastFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.podcast_frame, mPodcastFragment)
                 .commitAllowingStateLoss();
@@ -250,7 +241,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
         if((podcast.isFileLoaded() || podcast.isPreparingFile()) && !currentlyPlaying) {
             //Expand view
 
-            sliding_layout.setPanelHeight((int)dipToPx(68));
+            sliding_layout.setPanelHeight((int) dipToPx(68));
 
             currentlyPlaying = true;
 
@@ -296,6 +287,12 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
 
     }
 
+    public void onEventMainThread(PodcastCompletedEvent podcastCompletedEvent) {
+        sliding_layout.setPanelHeight(0);
+        sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        currentlyPlaying = false;
+    }
+
     /*
     // This snippet hides the system bars.
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -330,7 +327,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
     boolean isFullScreen = false;
     float scaleFactor = 1;
     boolean useAnimation = false;
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
+
     public void onEventMainThread(VideoDoubleClicked doubleClicked) {
         appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
         appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
@@ -429,22 +426,18 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
     public void togglePodcastVideoViewAnimation() {
         boolean isLeftSliderOpen = false;
 
-        if(this instanceof NewsReaderListActivity) {
-            isLeftSliderOpen = ((NewsReaderListActivity) this).mSlidingLayout.isOpen();
+        if(this instanceof NewsReaderListActivity && ((NewsReaderListActivity) this).drawerLayout != null) {
+            isLeftSliderOpen = ((NewsReaderListActivity) this).drawerLayout.isDrawerOpen(GravityCompat.START);
         }
-
-        boolean isTabletView = SubscriptionExpandableListAdapter.isTwoPane(this);
 
         int podcastMediaControlHeightDp = pxToDp((int) getResources().getDimension(R.dimen.podcast_media_control_height));
 
-        if(isTabletView && sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) { //On Tablets
-            animateToPositionTargetApiSafe(podcastMediaControlHeightDp);
-        } else if(!isTabletView && isLeftSliderOpen)
-            animateToPositionTargetApiSafe(0);
-        else if(sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
-            animateToPositionTargetApiSafe(podcastMediaControlHeightDp);
+        if(sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) { //On Tablets
+            animateToPosition(podcastMediaControlHeightDp);
+        } else if(isLeftSliderOpen) {
+            animateToPosition(0);
         } else {
-            animateToPositionTargetApiSafe(64);
+            animateToPosition(64);
         }
     }
 
@@ -453,42 +446,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 
-
-    public void animateToPositionTargetApiSafe(int yPosition) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1){
-            animateToPositionNewApi(yPosition);
-        } else{
-            animateToPositionOldApi(yPosition);
-        }
-    }
-
-    public void animateToPositionOldApi(final int yPosition) {
-        appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
-        appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
-
-        View view = rlVideoPodcastSurfaceWrapper; //surfaceView
-
-        if(scaleFactor != 1) {
-            int newHeight = view.getLayoutParams().height *= scaleFactor;
-            int newWidth = view.getLayoutParams().width *= scaleFactor;
-            scaleFactor = 1;
-
-            view.getLayoutParams().height = newHeight;
-            view.getLayoutParams().width = newWidth;
-
-            view.setLayoutParams(view.getLayoutParams());
-        }
-
-        int absoluteYPosition = appHeight - view.getHeight() - (int) getResources().getDimension(R.dimen.activity_vertical_margin) - (int) dipToPx(yPosition);
-        float xPosition = rlVideoPodcastSurfaceWrapper.getVideoXPosition();
-        ViewHelper.setTranslationX(view, xPosition);
-        ViewHelper.setTranslationY(view, absoluteYPosition);
-
-        oldScaleFactor = 1;
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
-    public void animateToPositionNewApi(final int yPosition) {
+    public void animateToPosition(final int yPosition) {
         appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
         appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
 
@@ -510,7 +468,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    animateToPositionTargetApiSafe(yPosition);
+                    animateToPosition(yPosition);
                 }
 
                 @Override
@@ -524,7 +482,10 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
 
             //int animationpos = 500;
             float xPosition = rlVideoPodcastSurfaceWrapper.getVideoXPosition();
-            view.animate().x(xPosition).y(absoluteYPosition).setDuration(animationTime);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {//TODO podcast video is only working for newer android versions
+                view.animate().x(xPosition).y(absoluteYPosition).setDuration(animationTime);
+            }
             //scaleX(scaleFactor).scaleY(scaleFactor)
         }
 
@@ -551,6 +512,17 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
         return px;
     }
 
+    protected void openMediaItem(MediaItem mediaItem) {
+        Intent intent = new Intent(this, PodcastPlaybackService.class);
+        if(mediaItem instanceof TTSItem)
+            intent.putExtra(PodcastPlaybackService.TTS_ITEM, mediaItem);
+        else
+            intent.putExtra(PodcastPlaybackService.PODCAST_ITEM, mediaItem);
+        startService(intent);
+
+        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+    }
+
     @Override
     public void openPodcast(final RssItem rssItem) {
         final PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
@@ -559,8 +531,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
         if(file.exists()) {
             podcastItem.link = file.getAbsolutePath();
 
-            mPodcastPlaybackService.openFile(podcastItem);
-            loadPodcastFavIcon();// Picasso.with(this).load(rssItem.getFeed().getFaviconUrl()).into(mPodcastFragment.imgFavIcon);
+            openMediaItem(podcastItem);
         } else if(!podcastItem.offlineCached) {
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
@@ -581,9 +552,7 @@ public class PodcastFragmentActivity extends ActionBarActivity implements IPlayP
                 alertDialog.setPositiveButton("Stream", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        mPodcastPlaybackService.openFile(podcastItem);
-                        //Picasso.with(PodcastFragmentActivity.this).load(rssItem.getFeed().getFaviconUrl()).into(mPodcastFragment.imgFavIcon);
-                        loadPodcastFavIcon();
+                        openMediaItem(podcastItem);
                     }
                 });
             }

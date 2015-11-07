@@ -22,11 +22,9 @@
 package de.luhmer.owncloudnewsreader.widget;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.text.Html;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -37,18 +35,15 @@ import java.util.Date;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFactory {
-	private static final String TAG = "WidgetTodoViewsFactory";
+	private static final String TAG = WidgetTodoViewsFactory.class.getCanonicalName();
 
-	DatabaseConnectionOrm dbConn;
-    List<RssItem> rssItems;
+    private DatabaseConnectionOrm dbConn;
+    private List<RssItem> rssItems;
 	private Context context = null;
 
 	private int appWidgetId;
@@ -67,17 +62,16 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 			Log.d(TAG, "onCreate");
 
 		dbConn = new DatabaseConnectionOrm(context);
-		//onDataSetChanged();
 	}
 
 	@Override
 	public void onDestroy() {
-		//if(dbConn != null)
-			//dbConn.closeDatabase();
 	}
 
 	@Override
 	public int getCount() {
+        Log.v(TAG, "getCount");
+
 		return rssItems.size();
 	}
 
@@ -85,18 +79,12 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
     // combination with the app widget item XML file to construct a RemoteViews object.
     @SuppressLint("SimpleDateFormat")
 	public RemoteViews getViewAt(int position) {
+        if(Constants.debugModeWidget)
+            Log.d(TAG, "getViewAt: " + position);
+
         RssItem rssItem = rssItems.get(position);
 
-    	//RemoteViews rv = new RemoteViews(context.getPackageName(), android.R.layout.simple_list_item_2);
     	RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
-
-        /*
-        if(rssItem.getRead_temp())
-            rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
-        else
-            rv = new RemoteViews(context.getPackageName(), R.layout.widget_item_unread);
-        */
-
 
         try
         {
@@ -121,28 +109,19 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             rv.setTextViewText(R.id.feed_title, title);
 
 
-
-            if(rssItem.getRead_temp()) {
-                rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", R.drawable.btn_check_on_holo_dark);
-            }
-            else {
-                rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", R.drawable.btn_check_off_holo_dark);
-            }
-
-
+            int resId = rssItem.getRead_temp() ? R.drawable.ic_check_box_white : R.drawable.ic_check_box_outline_blank_white;
+            rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", resId);
 
             //View viewColor = view.findViewById(R.id.color_line_feed);
             if(colorString != null)
                 rv.setInt(R.id.color_line_feed, "setBackgroundColor", Integer.parseInt(colorString));
-
-
 
             //Get a fresh new intent
             Intent ei = new Intent();
             //Load it with whatever extra you want
             ei.putExtra(WidgetProvider.RSS_ITEM_ID, id);
             //Set it on the list remote view
-            rv.setOnClickFillInIntent(R.id.ll_root_view_widget_row, ei);
+            rv.setOnClickFillInIntent(R.id.cb_lv_item_read_wrapper, ei);
 
             //Get a fresh new intent
             Intent iCheck = new Intent();
@@ -150,11 +129,8 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             iCheck.putExtra(WidgetProvider.RSS_ITEM_ID, id);
             iCheck.putExtra(WidgetProvider.ACTION_CHECKED_CLICK, true);
             rv.setOnClickFillInIntent(R.id.cb_lv_item_read, iCheck);
-
-
-
         } catch(Exception ex) {
-            Log.d(TAG, "Error: " + ex.getLocalizedMessage());
+            Log.e(TAG, "Error: " + ex.getLocalizedMessage());
         }
 
         // Return the RemoteViews object.
@@ -163,6 +139,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 
 	@Override
 	public RemoteViews getLoadingView() {
+        Log.v(TAG, "getLoadingView");
 		return(null);
 	}
 
@@ -173,21 +150,23 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 
 	@Override
 	public long getItemId(int position) {
+        Log.v(TAG, "getItemId: " + position);
 		return(position);
 	}
 
 	@Override
 	public boolean hasStableIds() {
+        Log.v(TAG, "hasStableIds: " + appWidgetId);
 		return(true);
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onDataSetChanged() {
-		if(Constants.debugModeWidget)
-			Log.d(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
+        Log.v(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
 
+        rssItems = dbConn.getAllUnreadRssItemsForWidget();
 
-        rssItems = dbConn.getListOfAllItemsForFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), false, SORT_DIRECTION.desc, 200);
+        Log.v(TAG, "DataSetChanged finished!");
 	}
 }

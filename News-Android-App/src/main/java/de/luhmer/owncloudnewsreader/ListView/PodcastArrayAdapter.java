@@ -17,7 +17,6 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
-import de.luhmer.owncloudnewsreader.helper.JavaYoutubeDownloader;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
 /**
@@ -100,15 +99,7 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         }
 
 
-        if(podcastItem.link.contains(JavaYoutubeDownloader.host)) {
-            if(podcastItem.downloadProgress == PodcastItem.DOWNLOAD_NOT_STARTED) {
-                holder.flPlayPodcast.setVisibility(View.GONE);//Youtube Videos can't be streamed
-                holder.flDownloadPodcast.setVisibility(View.VISIBLE);
-            } else {
-                holder.flPlayPodcast.setVisibility(View.VISIBLE);
-                holder.flDownloadPodcast.setVisibility(View.GONE);
-            }
-        } else if(podcastItem.downloadProgress == PodcastItem.DOWNLOAD_NOT_STARTED) {
+        if(podcastItem.downloadProgress == PodcastItem.DOWNLOAD_NOT_STARTED) {
             holder.flDownloadPodcast.setVisibility(View.VISIBLE);
         } else {
             holder.flDownloadPodcast.setVisibility(View.GONE);

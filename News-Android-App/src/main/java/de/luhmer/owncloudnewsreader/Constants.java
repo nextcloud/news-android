@@ -1,35 +1,13 @@
 package de.luhmer.owncloudnewsreader;
 
 public class Constants {
-	public static final Boolean DEBUG_MODE = true;
-	public static final Boolean debugModeWidget = true;
-
-
-    public static final String _TAG_LABEL_UNREAD = "stream/contents/user/-/state/com.google/reading-list?n=1000&r=n&xt=user/-/state/com.google/read";
-    public static final String _TAG_LABEL_STARRED = "stream/contents/user/-/state/com.google/starred?n=20";
+	public static final Boolean debugModeWidget = false;
 
     //public static final String LAST_SYNC = "LAST_SYNC";
 
     public static final int maxItemsCount = 1500;
 
-
-    public static final int TaskID_GetVersion = -10;
-    public static final int TaskID_GetFolder = 1;
-    public static final int TaskID_GetFeeds = 2;
-    public static final int TaskID_GetItems = 3;
-    public static final int TaskID_PerformStateChange = -1;
-
-    public enum SYNC_TYPES { SYNC_TYPE__ITEM_STATES,
-    						SYNC_TYPE__FOLDER,
-    						SYNC_TYPE__FEEDS,
-    						SYNC_TYPE__ITEMS,
-    						SYNC_TYPE__GET_API};
-
-
     public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
-
-
-    public static final String SHOW_CASE_APP_STARTED_SHOWN_BOOLEAN = "FIRST_TIME_APP_STARTED_BOOLEAN";
 
     /*
     private static final String _P_KEY_PART1 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNmCsMj6M4zkjpKRG8MG5+yIAyqSQE2etVkZsc3s";

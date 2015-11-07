@@ -86,7 +86,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	Activity foregroundAct;
 	NotificationManager notificationManager;
 	private static int decisionId = 0;
-	private static SparseArray<MTMDecision> openDecisions = new SparseArray<MTMDecision>();
+	private static final SparseArray<MTMDecision> openDecisions = new SparseArray<>();
 
 	Handler masterHandler;
 	private File keyStoreFile;
@@ -220,9 +220,9 @@ public class MemorizingTrustManager implements X509TrustManager {
 		}
 		try {
 			ks.load(null, null);
-			ks.load(new java.io.FileInputStream(keyStoreFile), "MTM".toCharArray());
-		} catch (java.io.FileNotFoundException e) {
-			Log.i(TAG, "getAppKeyStore(" + keyStoreFile + ") - file does not exist");
+			if(keyStoreFile.canRead()) {
+				ks.load(new java.io.FileInputStream(keyStoreFile), "MTM".toCharArray());
+			}
 		} catch (Exception e) {
 			Log.e(TAG, "getAppKeyStore(" + keyStoreFile + ")", e);
 		}
@@ -275,29 +275,28 @@ public class MemorizingTrustManager implements X509TrustManager {
 	{
 		Log.d(TAG, "checkCertTrusted(" + chain + ", " + authType + ", " + isServer + ")");
 		try {
-			Log.d(TAG, "checkCertTrusted: trying appTrustManager");
+			Log.d(TAG, "checkCertTrusted: trying defaultTrustManager");
 			if (isServer)
-				appTrustManager.checkServerTrusted(chain, authType);
+				defaultTrustManager.checkServerTrusted(chain, authType);
 			else
-				appTrustManager.checkClientTrusted(chain, authType);
+				defaultTrustManager.checkClientTrusted(chain, authType);
 		} catch (CertificateException ae) {
-			// if the cert is stored in our appTrustManager, we ignore expiredness
-			ae.printStackTrace();
-			if (isExpiredException(ae)) {
-				Log.i(TAG, "checkCertTrusted: accepting expired certificate from keystore");
-				return;
-			}
-			if (isCertKnown(chain[0])) {
-				Log.i(TAG, "checkCertTrusted: accepting cert already stored in keystore");
-				return;
-			}
 			try {
-				Log.d(TAG, "checkCertTrusted: trying defaultTrustManager");
+				Log.d(TAG, "checkCertTrusted: trying appTrustManager");
 				if (isServer)
-					defaultTrustManager.checkServerTrusted(chain, authType);
+					appTrustManager.checkServerTrusted(chain, authType);
 				else
-					defaultTrustManager.checkClientTrusted(chain, authType);
+					appTrustManager.checkClientTrusted(chain, authType);
 			} catch (CertificateException e) {
+				// if the cert is stored in our appTrustManager, we ignore expiredness
+				if (isExpiredException(e)) {
+					Log.i(TAG, "checkCertTrusted: accepting expired certificate from keystore");
+					return;
+				}
+				if (isCertKnown(chain[0])) {
+					Log.i(TAG, "checkCertTrusted: accepting cert already stored in keystore");
+					return;
+				}
 				e.printStackTrace();
 				interact(chain, authType, e);
 			}
@@ -333,7 +332,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	}
 
 	private static String hexString(byte[] data) {
-		StringBuffer si = new StringBuffer();
+		StringBuilder si = new StringBuilder();
 		for (int i = 0; i < data.length; i++) {
 			si.append(String.format("%02x", data[i]));
 			if (i < data.length - 1)
@@ -376,16 +375,15 @@ public class MemorizingTrustManager implements X509TrustManager {
 		return si.toString();
 	}
 
-	@SuppressWarnings("deprecation")
+
 	void startActivityNotification(Intent intent, String certName) {
+		PendingIntent call = PendingIntent.getActivity(mContext, 0, intent, 0);
 		Notification n = new NotificationCompat.Builder(mContext)
 				.setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), android.R.drawable.ic_lock_lock))
-				.setContentText(mContext.getString(R.string.mtm_notification)).build();
-		
-		PendingIntent call = PendingIntent.getActivity(mContext, 0, intent, 0);
-		n.setLatestEventInfo(mContext.getApplicationContext(),
-				mContext.getString(R.string.mtm_notification),
-				certName, call);
+				.setContentText(mContext.getString(R.string.mtm_notification))
+				.setStyle(new NotificationCompat.BigTextStyle().bigText(certName))
+				.setContentIntent(call).build();
+
 		n.flags |= Notification.FLAG_AUTO_CANCEL;
 
 		notificationManager.notify(NOTIFICATION_ID, n);

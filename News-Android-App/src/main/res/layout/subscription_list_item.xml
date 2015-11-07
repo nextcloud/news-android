@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item_layout"
     android:layout_width="fill_parent"
     android:layout_height="@dimen/exp_listview_row_height"
-    android:layout_marginLeft="10dp"
-    android:orientation="horizontal"  >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:background="?attr/selectableItemBackground">
 
-    <ImageView
-        android:id="@+id/img_View_expandable_indicator"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:src="@drawable/ic_find_next_holo_dark" />
-
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/img_View_expandable_indicator"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/ic_action_expand_less"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="12dp"
+            android:tint="?attr/tintColor" />
+        <ImageView
+            android:id="@+id/img_view_favicon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:clickable="false"
+            android:focusable="false"
+            android:padding="12dp" />
+    </FrameLayout>
 
     <TextView
 		android:id="@+id/summary"
@@ -20,10 +38,14 @@
        	android:layout_marginLeft="10dp"
        	android:gravity="center_vertical"
        	android:singleLine="true"
-       	android:textSize="20sp"
+       	android:textSize="14sp"
        	android:textStyle="bold"
        	android:layout_weight="1"
-       	android:textIsSelectable="false" />
+       	android:textIsSelectable="false"
+        tools:text="Summary"
+        android:alpha=".87"
+        android:focusable="false"
+        android:clickable="false" />
     <!--app:typeface="roboto_thin" -->
 
 
@@ -34,7 +56,10 @@
         android:gravity="center_vertical|right"
         android:singleLine="true"
         android:textIsSelectable="false"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="12sp"
+        tools:text="13"
+        android:alpha=".54" />
 
 </LinearLayout>

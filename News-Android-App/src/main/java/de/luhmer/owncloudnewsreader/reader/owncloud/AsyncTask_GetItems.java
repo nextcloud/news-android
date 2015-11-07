@@ -40,25 +40,25 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.NetworkConnection;
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 
 public class AsyncTask_GetItems extends AsyncTask_Reader {
+    private static final String TAG = "AsyncTask_GetItems";
+
     private long highestItemIdBeforeSync;
-    private API api;
     int totalCount;
 
-    public AsyncTask_GetItems(final int task_id, final Context context, final OnAsyncTaskCompletedListener[] listener, API api) {
-    	super(task_id, context, listener);
-    	this.api = api;
+    public AsyncTask_GetItems(final Context context, final OnAsyncTaskCompletedListener... listener) {
+    	super(context, listener);
 
         totalCount = 0;
     }
 
     @Override
     protected void onProgressUpdate(Void... values) {
-        Toast.makeText(context, "Fetched " + totalCount + " items so far..", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getResources().getQuantityString(R.plurals.fetched_items_so_far,totalCount,totalCount), Toast.LENGTH_SHORT).show();
 
         super.onProgressUpdate(values);
     }
@@ -92,7 +92,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
                 int maxItemsInDatabase = Constants.maxItemsCount;
 
                 do {
-	        		requestCount = api.GetItems(TAGS.ALL, context, String.valueOf(offset), false, 0, "3", api);
+	        		requestCount = apiFuture.get().GetItems(FeedItemTags.ALL, context, String.valueOf(offset), false, 0, "3");
 	        		if(requestCount > 0)
 	        			offset = dbConn.getLowestItemId(false);
 	        		totalCount += requestCount;
@@ -104,7 +104,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 
                 do {
 	        		offset = dbConn.getLowestItemId(true);
-	        		requestCount = api.GetItems(TAGS.ALL_STARRED, context, String.valueOf(offset), true, 0, "2", api);
+	        		requestCount = apiFuture.get().GetItems(FeedItemTags.ALL_STARRED, context, String.valueOf(offset), true, 0, "2");
 	        		//if(requestCount > 0)
 	        		//	offset = dbConn.getLowestItemId(true);
 	        		totalCount += requestCount;
@@ -115,10 +115,11 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
                 //First reset the count of last updated items
                 mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0).commit();
                 //Get all updated items
-                int[] result = api.GetUpdatedItems(TAGS.ALL, context, lastModified + 1, api);
+                int[] result = apiFuture.get().GetUpdatedItems(FeedItemTags.ALL, context, lastModified + 1);
                 //If no exception occurs, set the number of updated items
                 mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, result[1]).commit();
         	}
+
         } catch (Exception ex) {
             ex.printStackTrace();
             return ex;
@@ -127,10 +128,10 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 	}
 
     @Override
-    protected void onPostExecute(Object ex) {
+    protected void onPostExecute(Exception ex) {
     	for (OnAsyncTaskCompletedListener listenerInstance : listener) {
     		if(listenerInstance != null)
-    			listenerInstance.onAsyncTaskCompleted(task_id, ex);
+    			listenerInstance.onAsyncTaskCompleted(ex);
 		}
 
         if(ex == null && NetworkConnection.isNetworkAvailable(context)) {
@@ -196,7 +197,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
         Notification notification = new NotificationCompat.Builder(context)
                 .setContentTitle(context.getString(R.string.no_wifi_available))
                 .setContentText(context.getString(R.string.do_you_want_to_download_without_wifi))
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setLargeIcon(bm)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)

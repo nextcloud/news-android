@@ -21,31 +21,42 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.customtabs.CustomTabsCallback;
+import android.support.customtabs.CustomTabsClient;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.customtabs.CustomTabsServiceConnection;
+import android.support.customtabs.CustomTabsSession;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import java.lang.ref.WeakReference;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import de.greenrobot.dao.query.LazyList;
+import de.luhmer.owncloudnewsreader.chrometabs.CustomTabActivityManager;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -53,12 +64,11 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
-import de.luhmer.owncloudnewsreader.reader.IReader;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 public class NewsDetailActivity extends PodcastFragmentActivity {
 
+	private static final String TAG = NewsDetailActivity.class.getCanonicalName();
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
 	 * fragments for each of the sections. We use a
@@ -77,19 +87,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	public ViewPager mViewPager;
 	private int currentPosition;
 
-	PostDelayHandler pDelayHandler;
+	private PostDelayHandler pDelayHandler;
 
-    MenuItem menuItem_PlayPodcast;
-	MenuItem menuItem_Starred;
-	MenuItem menuItem_Read;
+	private MenuItem menuItem_PlayPodcast;
+	private MenuItem menuItem_Starred;
+	private MenuItem menuItem_Read;
 
-    IReader _Reader;
-    //ArrayList<Integer> databaseItemIds;
-    DatabaseConnectionOrm dbConn;
-	//public List<RssFile> rssFiles;
-    LazyList<RssItem> rssItems;
+	private DatabaseConnectionOrm dbConn;
+	public List<RssItem> rssItems;
 
-    public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
+	private CustomTabsSession mCustomTabsSession;
+	private CustomTabsClient mCustomTabsClient;
+
+	private boolean mCustomTabsSupported;
+    //public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +117,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		pDelayHandler = new PostDelayHandler(this);
 
-		_Reader = new OwnCloud_Reader();
 		dbConn = new DatabaseConnectionOrm(this);
 		Intent intent = getIntent();
 
@@ -132,7 +142,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
 
 
-        rssItems = dbConn.getCurrentRssItemView(getSortDirectionFromSettings(this));
+        rssItems = dbConn.getCurrentRssItemView(-1);
 
         //If the Activity gets started from the Widget, read the item id and get the selected index in the cursor.
         if(intent.hasExtra(WidgetProvider.RSS_ITEM_ID)) {
@@ -168,22 +178,36 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			ex.printStackTrace();
 		}
 
-		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(onPageChangeListener);
 
-			@Override
-			public void onPageSelected(int pos) {
-				PageChanged(pos);
-			}
-
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-		});
+		//Init ChromeCustomTabs
+		mCustomTabsSupported = bindCustomTabsService();
     }
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+
+        //TODO unbind service here.. Not implemented by google yet
+		//if(mCustomTabsSupported)
+            //unbindService();
+	}
+
+    private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
+
+        @Override
+        public void onPageSelected(int pos) {
+            PageChanged(pos);
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+        }
+    };
 
     public static SORT_DIRECTION getSortDirectionFromSettings(Context context) {
         SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
@@ -193,11 +217,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             sDirection = SORT_DIRECTION.desc;
         return sDirection;
     }
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
 
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -224,22 +243,34 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 		if(keyCode == KeyEvent.KEYCODE_BACK)
 		{
-			NewsDetailFragment ndf = (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+			NewsDetailFragment ndf = getNewsDetailFragmentAtPosition(currentPosition);//(NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
+
 			if(ndf != null && ndf.mWebView != null)
 			{
-				if(ndf.mWebView.canGoBack())
-				{
-					ndf.mWebView.goBack();
-					if(!ndf.mWebView.canGoBack())//RssItem
-						ndf.startLoadRssItemToWebViewTask();
-
+				if (ndf.urls.size() > 1) {
+                    ndf.urls.remove(0);
+					ndf.mWebView.loadUrl(ndf.urls.get(0));
 					return true;
-				}
+				} else if(ndf.urls.size() == 1) {
+					ndf.urls.remove(0);
+                    ndf.startLoadRssItemToWebViewTask();
+                    Log.v(TAG, "Load rssitem to webview again");
+					return true;
+                }
 			}
 		}
 
 		return super.onKeyDown(keyCode, event);
     }
+
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP) || (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+			// capture event to suppress android system sound
+			return true;
+		}
+		return super.onKeyUp(keyCode, event);
+	}
 
 	private void PageChanged(int position)
 	{
@@ -262,7 +293,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 
     private NewsDetailFragment getNewsDetailFragmentAtPosition(int position) {
-        return (NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
+		if(mSectionsPagerAdapter.items.get(position) != null)
+			return mSectionsPagerAdapter.items.get(position).get();
+		return null;
     }
 
 	private void ResumeVideoPlayersOnCurrentPage()
@@ -282,13 +315,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	public void UpdateActionBarIcons()
 	{
-        /*
-        if(menuItem_PlayPodcast == null
-                || menuItem_Read == null
-                || menuItem_Starred == null)
-            return;
-        */
-
         RssItem rssItem = rssItems.get(currentPosition);
 
         boolean isStarred = rssItem.getStarred_temp();
@@ -303,65 +329,33 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             menuItem_PlayPodcast.setVisible(podcastAvailable);
 
 
-
-        //if(rssFiles.get(currentPosition).getStarred() && menuItem_Starred != null)
         if(isStarred && menuItem_Starred != null)
-            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_on_normal_holo_dark));
-            //menuItem_Starred.setIcon(R.drawable.btn_rating_star_on_normal_holo_light);
+            menuItem_Starred.setIcon(R.drawable.ic_action_star_dark);
         else if(menuItem_Starred != null)
-            menuItem_Starred.setIcon(getSmallVersionOfActionbarIcon(R.drawable.btn_rating_star_off_normal_holo_dark));
-            //menuItem_Starred.setIcon(R.drawable.btn_rating_star_off_normal_holo_light);
+            menuItem_Starred.setIcon(R.drawable.ic_action_star_border_dark);
 
 
 
         if(isRead && menuItem_Read != null) {
-            menuItem_Read.setIcon(R.drawable.btn_check_on_holo_dark);
+            menuItem_Read.setIcon(R.drawable.ic_check_box_white);
             menuItem_Read.setChecked(true);
         }
         else if(menuItem_Read != null) {
-            menuItem_Read.setIcon(R.drawable.btn_check_off_holo_dark);
+            menuItem_Read.setIcon(R.drawable.ic_check_box_outline_blank_white);
             menuItem_Read.setChecked(false);
         }
 	}
 
-    public Drawable getSmallVersionOfActionbarIcon(int res_id) {
-        Bitmap b = ((BitmapDrawable)getResources().getDrawable(res_id)).getBitmap();
-        Bitmap bitmapResized;
-
-        float density = getResources().getDisplayMetrics().density;
-        //int density = getResources().getDisplayMetrics().densityDpi;
-
-        bitmapResized = Bitmap.createScaledBitmap(b, (int)(48f * density), (int)(48f * density), false);
-
-        /*
-        if(density <= DisplayMetrics.DENSITY_LOW)
-            bitmapResized = Bitmap.createScaledBitmap(b, 32, 32, false);
-        else if(density <= DisplayMetrics.DENSITY_MEDIUM)
-            bitmapResized = Bitmap.createScaledBitmap(b, 48, 48, false);
-        else if(density <= DisplayMetrics.DENSITY_HIGH)
-            bitmapResized = Bitmap.createScaledBitmap(b, 64, 64, false);
-        else if(density <= DisplayMetrics.DENSITY_XHIGH)
-            bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false);
-        else if(density <= DisplayMetrics.DENSITY_XXHIGH)
-            bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false); //We need here something more!!!
-        else
-            bitmapResized = Bitmap.createScaledBitmap(b, 96, 96, false);
-        */
-        //Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 32, 32, false);
-        return new BitmapDrawable(bitmapResized);
-    }
 
     @Override
     public void onBackPressed() {
-        if(handlePodcastBackPressed());
-        else
+        if(!handlePodcastBackPressed())
             super.onBackPressed();
     }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.news_detail, menu);
 		getMenuInflater().inflate(R.menu.news_detail, menu);
 
 		menuItem_Starred = menu.findItem(R.id.action_starred);
@@ -378,11 +372,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		switch (item.getItemId()) {
 			case android.R.id.home:
-                if(handlePodcastBackPressed());
-                else {
-                    super.onBackPressed();
-                }
-				break;
+				onBackPressed();
+				return true;
 
             case R.id.action_read:
                 markItemAsReadUnread(rssItem, !menuItem_Read.isChecked());
@@ -402,15 +393,26 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 			case R.id.action_openInBrowser:
                 NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
-                String link = newsDetailFragment.mWebView.getUrl().toString();
+                String link = newsDetailFragment.mWebView.getUrl();
 
                 if(link.equals("about:blank"))
 				    link = rssItem.getLink();
 
 				if(link.length() > 0)
 				{
-					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-					startActivity(browserIntent);
+					if(isChromeDefaultBrowser() && mCustomTabsSupported) {
+						mCustomTabsSession = getSession();
+						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
+						builder.setToolbarColor(getResources().getColor(R.color.colorPrimaryDarkTheme));
+						builder.setShowTitle(true);
+						//builder.setCloseButtonIcon(CustomTabUiBuilder.CLOSE_BUTTON_ARROW);
+						builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+						builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+						builder.build().launchUrl(this, Uri.parse(link));
+					} else {
+						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+						startActivity(browserIntent);
+					}
 				}
 				break;
 
@@ -446,7 +448,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
             case R.id.action_tts:
                 TTSItem ttsItem = new TTSItem(rssItem.getId(), rssItem.getTitle(), rssItem.getTitle() + "\n\n " + Html.fromHtml(rssItem.getBody()).toString(), rssItem.getFeed().getFaviconUrl());
-                mPodcastPlaybackService.openTtsFeed(ttsItem);
+				openMediaItem(ttsItem);
                 break;
 
             case R.id.action_ShareItem:
@@ -465,8 +467,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
                 //Fix for #257
                 content = title + " - " + content;
 
-				//content += "<br/><br/>Send via <a href=\"https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader\">ownCloud News Reader</a>";
-
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
                 //share.putExtra(Intent.EXTRA_SUBJECT, rssFiles.get(currentPosition).getTitle());
@@ -483,6 +483,44 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	private boolean isChromeDefaultBrowser() {
+		Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
+		ResolveInfo resolveInfo = getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        Log.v(TAG, "Default Browser is: " + resolveInfo.loadLabel(getPackageManager()).toString());
+		return (resolveInfo.loadLabel(getPackageManager()).toString().contains("Chrome"));
+	}
+
+	private boolean bindCustomTabsService() {
+		if (mCustomTabsClient != null)
+			return true;
+
+		String packageName = CustomTabActivityManager.getInstance().getPackageNameToUse(this);
+		if (packageName == null)
+			return false;
+
+		return CustomTabsClient.bindCustomTabsService(
+                this, packageName, new CustomTabsServiceConnection() {
+					@Override
+					public void onCustomTabsServiceConnected(ComponentName name, CustomTabsClient client) {
+						mCustomTabsClient = client;
+					}
+
+					@Override
+					public void onServiceDisconnected(ComponentName name) {
+						mCustomTabsClient = null;
+					}
+				});
+	}
+
+	private CustomTabsSession getSession() {
+		if (mCustomTabsClient == null) {
+			mCustomTabsSession = null;
+		} else if (mCustomTabsSession == null) {
+			mCustomTabsSession = mCustomTabsClient.newSession(new CustomTabsCallback());
+		}
+		return mCustomTabsSession;
+	}
 
 	private void markItemAsReadUnread(RssItem item, boolean read) {
         item.setRead_temp(read);
@@ -502,26 +540,50 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
-	//public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+	//public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
+		SparseArray<WeakReference<NewsDetailFragment>> items = new SparseArray<>();
 
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
+
+			if(fm.getFragments() != null) {
+				for (Fragment fragment : fm.getFragments()) {
+					if (fragment instanceof NewsDetailFragment) {
+						int id = ((NewsDetailFragment) fragment).getSectionNumber();
+						items.put(id, new WeakReference<>((NewsDetailFragment) fragment));
+					}
+				}
+			}
 		}
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			Fragment fragment = new NewsDetailFragment();
-			Bundle args = new Bundle();
-			args.putInt(NewsDetailFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
+			NewsDetailFragment fragment = null;
+
+			if(items.get(position) != null) {
+				fragment = items.get(position).get();
+			}
+
+			if(fragment == null) {
+				fragment = new NewsDetailFragment();
+				Bundle args = new Bundle();
+				args.putInt(NewsDetailFragment.ARG_SECTION_NUMBER, position);
+				fragment.setArguments(args);
+				items.put(position, new WeakReference<>(fragment));
+			}
+
 			return fragment;
 		}
 
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object)
+		{
+			items.remove(position);
+
+			super.destroyItem(container, position, object);
+		}
 
 		@Override
 		public int getCount() {

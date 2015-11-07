@@ -9,13 +9,21 @@
   <string name="title_newsreader_detail">Detail čtečky zpráv</string>
   <string name="empty_view_header">Informace</string>
   <string name="empty_view_content">Žádné položky</string>
-  <string name="toast_GettingMoreItems">Spuštěno stahování více položek... Chvíli strpení.</string>
+  <string name="toast_GettingMoreItems">Probíhá stahování dalších položek... Chvíli strpení.</string>
   <string name="tv_clickHereToOpenItem">Klikněte zde pro otevření položky</string>
   <string name="no_wifi_available">Wi-Fi není připojeno</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
-  <string name="max_items_count_reached">Dosáhli jste maximální velikosti XX položek</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Dosáhli jste maximální velikosti %d položky</item>
+    <item quantity="few">Dosáhli jste maximální velikosti %d položek</item>
+    <item quantity="other">Dosáhli jste maximální velikosti %d položek</item>
+  </plurals>
   <string name="widget_header">ownCloud Novinky</string>
-  <string name="message_bar_new_articles_available">Jsou k dispozici nové položky</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nová položka k dispozici</item>
+    <item quantity="few">%d nové položky k dispozici</item>
+    <item quantity="other">%d nových položek k dispozici</item>
+  </plurals>
   <string name="message_bar_reload">Obnovit</string>
   <string name="allUnreadFeeds">Všechny nepřečtené položky</string>
   <string name="starredFeeds">Položky s hvězdičkou</string>
@@ -27,7 +35,7 @@
   <string name="menu_StartImageCaching">Stáhnout obrázky</string>
   <string name="menu_downloadMoreItems">Stáhnout další položky</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importovat účet</string>
+  <string name="import_account">Importovat účet</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Zdrojový kód položky - Chybová zpráva</string>
   <string name="email_sendMail">Odeslat email</string>
@@ -44,12 +52,20 @@
   <string name="action_sync_settings">Nastavení synchronizace</string>
   <string name="action_add_new_feed">Přidat nový kanál</string>
   <string name="action_textToSpeech">Přečíst</string>
-  <string name="notification_new_items_ticker">Máte X nových nepřečtených položek</string>
-  <string name="notification_new_items_text">X nových položek k dispozici</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Máte %d novou nepřečtenou položku</item>
+    <item quantity="few">Máte %d nové nepřečtené položky</item>
+    <item quantity="other">Máte %d nových nepřečtených položek</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d nová nepřečtená položka k dispozici</item>
+    <item quantity="few">%d nové nepřečtené položky k dispozici</item>
+    <item quantity="other">%d nových nepřečtených položek k dispozici</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Uživatelské jméno</string>
   <string name="pref_title_password">Heslo</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">ownCloud kořenová adresa</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Přihlásit</string>
@@ -58,14 +74,29 @@
   <string name="error_field_required">Tato položka je povinná</string>
   <string name="error_invalid_url">Tato URL je nesprávná</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Staženo X starých položek</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Stažena %d stará položka</item>
+    <item quantity="few">Staženo %d staré položky</item>
+    <item quantity="other">Staženo %d starých položek</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">K dispozici nejsou žádné další položky</string>
   <string name="pull_to_refresh_updateTags">Synchronizuji stav položek</string>
   <string name="pull_to_refresh_updateFolder">Synchronizuji složku</string>
   <string name="pull_to_refresh_updateFeeds">Synchronizuji kanály</string>
   <string name="pull_to_refresh_updateItems">Synchronizuji položky</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Načtena %d položka..</item>
+    <item quantity="few">Načteny %d položky..</item>
+    <item quantity="other">Načteno %d položek..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavení</string>
+  <string name="cache_is_cleared">Odkládací paměť vyčištěna!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d soubor</item>
+    <item quantity="few">%d soubory</item>
+    <item quantity="other">%d souborů</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Hlavní</string>
   <string name="pref_title_general_sort_order">Řazení</string>
@@ -84,8 +115,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
-  <string name="dialog_clearing_cache_please_wait">Vyprazdňování mezipaměťi ... Počkejte prosím. </string>
-  <string name="calculating_cache_size">Počítám velikost mezipaměti... Počkejte prosím.</string>
+  <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti... Chvíli strpení.</string>
+  <string name="calculating_cache_size">Probíhá výpočet odkládací paměti... Chvíli strpení.</string>
   <string name="reset_cache_unsaved_changes">Existují nesesynchronizované změny. Přejete si přesto vyprázdnit mezipaměť?</string>
   <string name="warning">Varování</string>
   <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>
@@ -94,7 +125,7 @@
   <string name="pref_title_DisableHostnameVerification">Vypnout ověřování názvu hostitele</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigace pomocí tlačítek hlasitosti</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Označit jako přečtené při rolování stránky</string>
-  <string name="pref_title_OpenInBrowserDirectly">Přeskočit detailní zobrazení a otevřít článek v prohlížeči</string>
+  <string name="pref_title_OpenInBrowserDirectly">Použít externí prohlížeč pro zobrazení článků</string>
   <string name="pref_title_notification_new_articles_available">Zobraz upozornění pokud jsou dostupné nové články</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>
@@ -110,7 +141,7 @@
   <string name="pref_header_display">Zobrazení</string>
   <string name="pref_title_app_theme">Vzhled aplikace</string>
   <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
-  <string name="pref_display_font_layout">Font (změna se projeví po restartu)</string>
+  <string name="pref_display_title_lines_count">Počet řádek pro nadpis</string>
   <string-array name="pref_display_apptheme">
     <item>Tmavý</item>
     <item>Světlý</item>
@@ -120,42 +151,28 @@
     <item>1</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout">
-    <item>Jednoduché</item>
-    <item>Rozšířené</item>
-    <item>Rozšířené s webovým náhledem</item>
+    <item>Jednoduchý</item>
+    <item>Rozšířený</item>
+    <item>Rozšířený (plný text)</item>
+    <item>Rozšířený s webview</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Chyba</string>

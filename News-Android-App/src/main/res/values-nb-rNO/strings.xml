@@ -2,20 +2,26 @@
 <resources>
   <string name="auto_sync_string">Autosynk</string>
   <string name="app_name">ownClouds Nyhetsleser</string>
-  <string name="title_activity_sync_interval_selector">Velger for sync-intervall</string>
+  <string name="title_activity_sync_interval_selector">Velger for synkroniseringsintervall</string>
   <string name="title_activity_news_detail">NyhetsDetaljAktivitet</string>
   <string name="title_activity_subscription">Abonnementsaktivitet</string>
   <string name="title_newsreader_list">Nyhetsleser</string>
   <string name="title_newsreader_detail">Nyhetsleser detaljer</string>
   <string name="empty_view_header">Informasjon</string>
   <string name="empty_view_content">Ingenting her</string>
-  <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet... Vennligst vent.</string>
+  <string name="toast_GettingMoreItems">Startet nedlasting av flere elementer... Vennligst vent.</string>
   <string name="tv_clickHereToOpenItem">Klikk her for å åpne element</string>
   <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
   <string name="do_you_want_to_download_without_wifi">Vil du laste ned bildene uten WiFi tilkobling?</string>
-  <string name="max_items_count_reached">Du har nådd maksimal størrelse på XX elementer</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Du har nådd maksimal størrelse på %d element</item>
+    <item quantity="other">Du har nådd maksimal størrelse på %d elementer</item>
+  </plurals>
   <string name="widget_header">ownCloud Nyheter</string>
-  <string name="message_bar_new_articles_available">Nye elementer tilgjengelig</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nytt element tilgjengelig</item>
+    <item quantity="other">%d nye elementer tilgjengelig</item>
+  </plurals>
   <string name="message_bar_reload">Last på nytt</string>
   <string name="allUnreadFeeds">Alle uleste elementer</string>
   <string name="starredFeeds">Stjernemerkede elementer</string>
@@ -27,7 +33,7 @@
   <string name="menu_StartImageCaching">Last ned bilder</string>
   <string name="menu_downloadMoreItems">Last ned flere elementer</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importer konto</string>
+  <string name="import_account">Importer konto</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Kildekode til element - feilrapport</string>
   <string name="email_sendMail">Send e-post</string>
@@ -41,15 +47,21 @@
   <string name="action_login">Serverinnstillinger</string>
   <string name="action_save">Lagre</string>
   <string name="action_settings">Innstillinger</string>
-  <string name="action_sync_settings">Sync-innstillinger</string>
+  <string name="action_sync_settings">Innstillinger for synkronisering</string>
   <string name="action_add_new_feed">Legg til ny strøm</string>
   <string name="action_textToSpeech">Les opp</string>
-  <string name="notification_new_items_ticker">Du har X nye uleste elementer</string>
-  <string name="notification_new_items_text">X nye uleste elementer tilgjengelig</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Du har %d nytt ulest element</item>
+    <item quantity="other">Du har %d nye uleste elementer</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d nytt ulest element tilgjengelig</item>
+    <item quantity="other">%d nye uleste elementer tilgjengelig</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Brukernavn</string>
   <string name="pref_title_password">Passord</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">ownCloud rot-adresse</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Logg inn</string>
@@ -58,14 +70,26 @@
   <string name="error_field_required">Dette feltet er påkrevd</string>
   <string name="error_invalid_url">Denne adressen er feil</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Lastet ned X gamle elementer</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Lastet ned %d gammelt element</item>
+    <item quantity="other">Lastet ned %d gamle elementer</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Ingen flere elemeter tilgjengelig</string>
   <string name="pull_to_refresh_updateTags">Synkroniserer elementtilstander</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserer mappe</string>
-  <string name="pull_to_refresh_updateFeeds">Synkroniserer feed</string>
+  <string name="pull_to_refresh_updateFeeds">Synkroniserer strøm</string>
   <string name="pull_to_refresh_updateItems">Synkroniserer elementer</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Hentet %d element så langt..</item>
+    <item quantity="other">Hentet %d elementer så langt..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Innstillinger</string>
+  <string name="cache_is_cleared">Mellomlager er nullstilt!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d fil</item>
+    <item quantity="other">%d filer</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Generelt</string>
   <string name="pref_title_general_sort_order">Sorteringsrekkefølge</string>
@@ -84,7 +108,7 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Sletter hurtiglager</string>
-  <string name="dialog_clearing_cache_please_wait">Sletter hurtiglager... Vennligst vent</string>
+  <string name="dialog_clearing_cache_please_wait">Nullstiller hurtiglager... Vennligst vent.</string>
   <string name="calculating_cache_size">Beregner størrelse på hurtiglager... Vennligst vent.</string>
   <string name="reset_cache_unsaved_changes">Det er usynkroniserte forandringer. Vil du resette hurtilageret likevel?</string>
   <string name="warning">Advarsel</string>
@@ -94,7 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Deaktiver vertsnavnverifikasjon</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviger med volumknappene</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
-  <string name="pref_title_OpenInBrowserDirectly">Hopp over detaljert visning, og åpne artikkel i nettleseren</string>
+  <string name="pref_title_OpenInBrowserDirectly">Bruk ekstern nettleser til å vise artikler</string>
   <string name="pref_title_notification_new_articles_available">Vis varsel når nye artikler er tilgjengelig</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
@@ -109,8 +133,8 @@
   <!--Settings for Display-->
   <string name="pref_header_display">Vis</string>
   <string name="pref_title_app_theme">App-tema</string>
-  <string name="pref_title_feed_list_layout">Feedliostens oppsett</string>
-  <string name="pref_display_font_layout">Font (krever omstart)</string>
+  <string name="pref_title_feed_list_layout">Oppsett for strømlisten</string>
+  <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
   <string-array name="pref_display_apptheme">
     <item>Mørk</item>
     <item>Lys</item>
@@ -122,40 +146,26 @@
   <string-array name="pref_display_feed_list_layout">
     <item>Enkel</item>
     <item>Utvidet</item>
+    <item>Utvidet (fulltekst)</item>
     <item>Utvidet med Nettvisning</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Feil</string>

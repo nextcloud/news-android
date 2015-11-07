@@ -37,7 +37,7 @@ public class NotificationManagerNewsReader {
     {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context)
-                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setSmallIcon(R.drawable.ic_notification)
                         .setTicker(tickerMessage)
                         .setContentTitle(title)
                                 //.setDefaults(Notification.DEFAULT_ALL)

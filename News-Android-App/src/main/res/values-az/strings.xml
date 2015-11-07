@@ -9,13 +9,10 @@
   <string name="title_newsreader_detail">XəbərlərOxuyucu Detallı</string>
   <string name="empty_view_header">İnformasiya</string>
   <string name="empty_view_content">Burda heş bir məlumat yoxdur</string>
-  <string name="toast_GettingMoreItems">Çoxlu hisseler yüklənməyə başlamışdır. Xahiş olunur gözləyəsiniz.</string>
   <string name="tv_clickHereToOpenItem">Burda sıxın ki, bölməni açasınız</string>
   <string name="no_wifi_available">Qoşulmuş WiFi yoxdur</string>
   <string name="do_you_want_to_download_without_wifi">WiFi qoşulması olmadan, şəkilləri yükləmək istəyirsiniz?</string>
-  <string name="max_items_count_reached">Siz XX hissələrin maksimum həcminə çatmısınız.</string>
   <string name="widget_header">ownCloud xəbərlər</string>
-  <string name="message_bar_new_articles_available">Yeni ihssələr mövcuddur</string>
   <string name="message_bar_reload">Yenidən yüklə</string>
   <string name="allUnreadFeeds">Bütün oxunmayan hissələr</string>
   <string name="starredFeeds">Ulduzlanmış elementlər</string>
@@ -27,7 +24,7 @@
   <string name="menu_StartImageCaching">Şəkilləri endir</string>
   <string name="menu_downloadMoreItems">Çoxlu hissələri endir</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Hesabi idxal et</string>
+  <string name="import_account">Hesabi idxal et</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Mənbənin verilənlər kodu - xəta hesabatı</string>
   <string name="email_sendMail">EMail yolla</string>
@@ -44,12 +41,9 @@
   <string name="action_sync_settings">Sync quraşdırmaları</string>
   <string name="action_add_new_feed">Yeni kanalı əlavə et</string>
   <string name="action_textToSpeech">Oxuyun</string>
-  <string name="notification_new_items_ticker">Sizin X yeni oxunulmamış mənbələriniz mövcuddur </string>
-  <string name="notification_new_items_text">X yeni mənbələr mövcuddur</string>
   <!--Strings related to login-->
   <string name="pref_title_username">İstifadəçi adı</string>
   <string name="pref_title_password">Şifrə</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Daxil ol</string>
@@ -58,7 +52,6 @@
   <string name="error_field_required">Bu sütun tələb edilir</string>
   <string name="error_invalid_url">Bu URL yalnışdır</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X köhnə mənbələr yüklənmişdir</string>
   <string name="toast_no_more_downloads_available">Heç bir əlavə mənbələr yoxdur</string>
   <string name="pull_to_refresh_updateTags">Mənbələrin statusları sinxronizasiya olunur</string>
   <string name="pull_to_refresh_updateFolder">Qovluq sinxronizasiya edilir</string>
@@ -84,8 +77,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Keş təmizlənir</string>
-  <string name="dialog_clearing_cache_please_wait">Keş təmizlənir.. Xahiş olunur gözləyəsiniz.</string>
-  <string name="calculating_cache_size">Keş həcmi hesablanır.. Xahiş olunur gözləyəsiniz.</string>
   <string name="reset_cache_unsaved_changes">Orda sinxronizasiya edilməmiş dəyişikliklər var. Siz keşi istənilən halda sifirlamaq isteəyirsiniz?</string>
   <string name="warning">Xəbərdarlıq</string>
   <string name="pref_title_AutoSyncOnStart">İşə düşəndə sinxronizasiya elə</string>
@@ -94,7 +85,6 @@
   <string name="pref_title_DisableHostnameVerification">Host adının yoxlanışını söndür</string>
   <string name="pref_title_NavigateWithVolumeButtons">Təyinatını səs düymələri ilə et</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Ötürüldükdə, oxunulmuş kimi qeydə al</string>
-  <string name="pref_title_OpenInBrowserDirectly">Detallı görüntünü ötür və məqaləni browserdə aç</string>
   <string name="pref_title_notification_new_articles_available">Yeni məqalə olduqda notifikasiyanı göstər</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Tanınmayan sertifikat qəbul edilsin? </string>
@@ -110,7 +100,6 @@
   <string name="pref_header_display">Ekran</string>
   <string name="pref_title_app_theme">Proqram mövzusu</string>
   <string name="pref_title_feed_list_layout">Axın siyahısının görünüşü</string>
-  <string name="pref_display_font_layout">Yazı(Mənimsədilməsi üçün təkrər işə salınılması tələb edilir)</string>
   <string-array name="pref_display_apptheme">
     <item>Qaranlıq</item>
     <item>İşıqlı</item>
@@ -118,44 +107,6 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Adi</item>
-    <item>Genişlənmiş</item>
-    <item>Web görünüşlü genişlənmiş</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto incə</item>
-    <item>Roboto İşıqlı</item>
-    <item>Roboto Normal</item>
-    <item>Roboto Orta</item>
-    <item>Roboto Qalın</item>
-    <item>Roboto Qara</item>
-    <item>Roboto Qatılaşdırılmış</item>
-    <item>Roboto Qatılaşdırılmış Qalın</item>
-    <item>Roboto Lövhələr İncə</item>
-    <item>Roboto Lövhələr İşıqlı</item>
-    <item>Roboto Lövhələr Adi</item>
-    <item>Roboto Lövhələr Qalın</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Səhv</string>

@@ -93,13 +93,16 @@
 
                 <ImageButton
                     android:id="@+id/btn_playPausePodcast"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:duplicateParentState="true"
                     android:clickable="false"
                     android:focusable="false"
                     android:layout_gravity="center_vertical"
-                    android:background="@android:drawable/ic_media_play" />
+                    android:src="@drawable/ic_action_play_arrow"
+                    android:tint="@color/tintColorDark"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="fitXY"/>
 
             </FrameLayout>
         </LinearLayout>
@@ -287,29 +290,6 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textStyle="normal"
-                    android:textSize="20sp"
-                    android:text="10"/>
-
-                <TextView
-                    android:layout_marginTop="-7dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="secs"/>
-
-            </LinearLayout>
-
 
             <ImageButton
                 android:id="@+id/btn_previousPodcastSlider"
@@ -317,7 +297,11 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/av_rewind"/>
+                android:src="@drawable/ic_action_replay_10"
+                android:tint="@color/tintColorLight"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"/>
 
             <ImageButton
                 android:id="@+id/btn_playPausePodcastSlider"
@@ -325,38 +309,22 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/av_play"/>
+                android:src="@drawable/ic_action_play_arrow"
+                android:tint="@color/tintColorLight"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitXY"/>
 
             <ImageButton
                 android:id="@+id/btn_nextPodcastSlider"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:background="@drawable/av_fast_forward"/>
+                android:src="@drawable/ic_action_forward_30"
+                android:tint="@color/tintColorLight"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitXY"/>
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textStyle="normal"
-                    android:textSize="20sp"
-                    android:text="30"/>
-
-                <TextView
-                    android:layout_marginTop="-7dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="secs"/>
-
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

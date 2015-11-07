@@ -2,17 +2,21 @@
 <resources>
   <string name="auto_sync_string">Tự đồng b</string>
   <string name="app_name">Tin tức ownCloud </string>
+  <string name="title_activity_sync_interval_selector">Đồng bộ khoảng thời gian đã chọn</string>
   <string name="title_activity_news_detail">Chi tiết hoạt </string>
   <string name="title_activity_subscription">Hoạt động đăng k</string>
   <string name="title_newsreader_list">Đọc t</string>
   <string name="title_newsreader_detail">Tin chi </string>
   <string name="empty_view_header">Thông tin</string>
   <string name="empty_view_content">Không có mục nào ở đây</string>
+  <string name="toast_GettingMoreItems">Bắt đầu tải thêm các tin khác ... Xin vui lòng chờ đợi.</string>
   <string name="tv_clickHereToOpenItem">Bấm ở đây để mở danh mục</string>
   <string name="no_wifi_available">Không có </string>
   <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải về những hình ảnh mà không c kết nối WiFi</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="other">Bạn đã đạt đến kích thước tối đa của %d mục</item>
+  </plurals>
   <string name="widget_header">ownCloud News</string>
-  <string name="message_bar_new_articles_available">Những mục mới có giá trị</string>
   <string name="message_bar_reload">Tải </string>
   <string name="allUnreadFeeds">Tất cả các mục chưa đọc</string>
   <string name="starredFeeds">Những mục được đánh dấu</string>
@@ -24,25 +28,26 @@
   <string name="menu_StartImageCaching">Tải hình </string>
   <string name="menu_downloadMoreItems">Tải nhiều h</string>
   <!--Import Accounts-->
+  <string name="import_account">Nhập vào tài khoản</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Danh mục mã nguòn - Báo b</string>
   <string name="email_sendMail">Gởi th</string>
   <!--Action Bar Items-->
   <string name="action_starred">Starred</string>
   <string name="action_read">Đọc</string>
+  <string name="action_playPodacst">Chơi Podcast</string>
   <string name="action_openInBrowser">Mở trong trình </string>
   <string name="action_sendSourceCode">Gởi tới nhà phát tr</string>
   <string name="action_Share">Chia sẻ</string>
   <string name="action_login">Cài </string>
   <string name="action_save">Lưu</string>
   <string name="action_settings">Cài đặt</string>
+  <string name="action_sync_settings">Đồng bộ cài đặt</string>
   <string name="action_add_new_feed">Thêm feed mới</string>
-  <string name="notification_new_items_ticker">Bạn có X mục mới chưa đọc</string>
-  <string name="notification_new_items_text">X mục mới chưa đọc có giá trị</string>
+  <string name="action_textToSpeech">Đọc</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Tên đăng nhập</string>
   <string name="pref_title_password">Mật khẩu</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Đăng nh</string>
@@ -51,7 +56,6 @@
   <string name="error_field_required">Những mục cần th</string>
   <string name="error_invalid_url">URL không </string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Tải về mục cũ X</string>
   <string name="toast_no_more_downloads_available">Không có thư mục </string>
   <string name="pull_to_refresh_updateTags">Đồng bộ với vị trí của b</string>
   <string name="pull_to_refresh_updateFolder">Đồng bộ thư mục</string>
@@ -77,8 +81,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Xóa bộ </string>
-  <string name="dialog_clearing_cache_please_wait">Bộ đệm đang được xóa..</string>
-  <string name="calculating_cache_size">Tính toán kích thước bộ nhớ đệm .. Chờ trong giây  .</string>
   <string name="reset_cache_unsaved_changes">Có sự thay đổi đồng bộ. Bạn muốn thiết lập lại bộ nhớ đệm ?</string>
   <string name="warning">Cảnh báo</string>
   <string name="pref_title_AutoSyncOnStart">Đồng bộ khi khởi </string>
@@ -87,7 +89,6 @@
   <string name="pref_title_DisableHostnameVerification">Tắt H</string>
   <string name="pref_title_NavigateWithVolumeButtons">Điều chỉnh m lượng</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Đánh dấu đã đọc trong khi di chuyển</string>
-  <string name="pref_title_OpenInBrowserDirectly">Bỏ qua xem chi tiết và mở bài biết trong trình duyệt</string>
   <string name="pref_title_notification_new_articles_available">Hiển thị thông báo khi bài viết mới có giá trị</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Chấp nhận Certificate không biết nguồn gốc ?</string>
@@ -96,10 +97,13 @@
   <string name="mtm_decision_abort">Hủy bỏ</string>
   <string name="mtm_notification">Xác nhận C</string>
   <!--Podcast-->
+  <string name="pref_header_podcast">Podcast</string>
+  <string name="pref_enable_podcasts">Kích hoạt tính năng hỗ trợ Podcast</string>
+  <string name="no_podcast_selected">Khôngc có podcast nào được chọn</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Hiển th</string>
+  <string name="pref_title_app_theme">Chủ để ứng dụng</string>
   <string name="pref_title_feed_list_layout">Danh sách bố trí F</string>
-  <string name="pref_display_font_layout">Font (vui lòng khởi động lại)</string>
   <string-array name="pref_display_apptheme">
     <item>Tối</item>
     <item>Sáng</item>
@@ -107,44 +111,6 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Đơn giản</item>
-    <item>Mở rộng</item>
-    <item>Mở rộng  Webview</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Lỗi</string>
@@ -158,6 +124,18 @@
   <string name="pref_title_clearCache">Xóa bộ nhớ </string>
   <string name="pref_title_CacheImagesOffline">Bộ đệm hình ảnh ẩn</string>
   <string name="pref_title_Max_Cache_Size">Kích cỡ tối đa bộ </string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Không bao giờ</item>
+    <item>Chỉ qua Wifi</item>
+    <item>Qua Wifi và mạng di động</item>
+    <item>Hỏi khi không kết nối WiFi</item>
+  </string-array>
+  <string-array name="pref_data_sync_image_cache_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -175,6 +153,30 @@
     <item>2000</item>
     <item>5000</item>
     <item>10000</item>
+  </string-array>
+  <string-array name="array_sync_interval">
+    <item>5 Minutes</item>
+    <item>15 Minutes</item>
+    <item>30 Minutes</item>
+    <item>45 Minutes</item>
+    <item>1 Hour</item>
+    <item>2 Hours</item>
+    <item>3 Hours</item>
+    <item>6 Hours</item>
+    <item>12 Hours</item>
+    <item>24 Hours</item>
+  </string-array>
+  <string-array name="array_sync_interval_values">
+    <item>5</item>
+    <item>15</item>
+    <item>30</item>
+    <item>45</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>360</item>
+    <item>720</item>
+    <item>1440</item>
   </string-array>
   <!--<string name="pref_title_sync_frequency">Sync frequency</string>
 

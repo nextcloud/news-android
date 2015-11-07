@@ -13,9 +13,15 @@
   <string name="tv_clickHereToOpenItem">Πατήστε εδώ για να ανοίξει το αντικείμενο</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
   <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
-  <string name="max_items_count_reached">Έφτασες το μέγιστο μέγεθος από XX στοιχεία</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Έχετε φτάσει το μέγιστο μέγεθος του %d αντικειμένου</item>
+    <item quantity="other">Έχετε φτάσει το μέγιστο μέγεθος των %d αντικειμένων</item>
+  </plurals>
   <string name="widget_header">Νέα ownCloud</string>
-  <string name="message_bar_new_articles_available">Διαθέσιμα νέα αντικείμενα</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d νέο αντικείμενο διαθέσιμο</item>
+    <item quantity="other">%d νέα αντικείμενα διαθέσιμα</item>
+  </plurals>
   <string name="message_bar_reload">Επαναφόρτωση</string>
   <string name="allUnreadFeeds">Όλα τα μη ανεγνωσμένα</string>
   <string name="starredFeeds">Επισημασμένα αντικείμενα</string>
@@ -27,7 +33,7 @@
   <string name="menu_StartImageCaching">Λήψη εικόνων</string>
   <string name="menu_downloadMoreItems">Λήψη περισσότερων αντικειμένων</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Εισαγωγή λογαριασμού</string>
+  <string name="import_account">Εισαγωγή λογαριασμού</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Πρωτογενής κώδικας στοιχείου - Αναφορά σφάλματος</string>
   <string name="email_sendMail">Αποστολή Αλληλογραφίας</string>
@@ -44,12 +50,18 @@
   <string name="action_sync_settings">Επιλογές συγχρονισμού</string>
   <string name="action_add_new_feed">Προσθήκη νέας ροής</string>
   <string name="action_textToSpeech">Ανάγνωση από</string>
-  <string name="notification_new_items_ticker">Έχετε Χ νέα αδιάβαστα στοιχεία</string>
-  <string name="notification_new_items_text">Χ νέα αδιάβαστα στοιχεία διαθέσιμα</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Έχετε %d νέο αδιάβαστο αντικείμενο</item>
+    <item quantity="other">Έχετε %d νέα αδιάβαστα αντικείμενα</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d νέο αντικείμενο διαθέσιμο</item>
+    <item quantity="other">%d νέα αδιάβαστα αντικείμενα διαθέσιμα</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
   <string name="pref_title_password">Συνθηματικό</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">Διεύθυνση ριζικού καταλόγου ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Είσοδος</string>
@@ -58,14 +70,26 @@
   <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
   <string name="error_invalid_url">Αυτός ο σύνδεσμος είναι εσφαλμένος</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Κατέβηκαν Χ παλαιά στοιχεία</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Λήφθηκε %d παλαιό αντικείμενο</item>
+    <item quantity="other">Λήφθηκαν %d παλαιά αντικείμενα</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Δεν υπάρχουν επιπλέον στοιχεία διαθέσιμα</string>
   <string name="pull_to_refresh_updateTags">Συγχρονισμός κατάστασης στοιχείων</string>
   <string name="pull_to_refresh_updateFolder">Συγχρονισμός φακέλου</string>
   <string name="pull_to_refresh_updateFeeds">Συγχρονισμός ροών</string>
   <string name="pull_to_refresh_updateItems">Συγχρονισμός αντικειμένων</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Λήφθηκε %d αντικείμενο ως τώρα..</item>
+    <item quantity="other">Λήφθηκαν %d αντικείμενα ως τώρα..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ρυθμίσεις</string>
+  <string name="cache_is_cleared">Η προσωρινή μνήμη εκκαθαρίστηκε!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Αρχείο</item>
+    <item quantity="other">%d Αρχεία</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Γενικά</string>
   <string name="pref_title_general_sort_order">Σειρά ταξινόμησης</string>
@@ -84,8 +108,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Εκκαθάριση προσωρινής μνήμης</string>
-  <string name="dialog_clearing_cache_please_wait">Εκκαθάριση προσωρινής μνήμης σε εξέλιξη.. Παρακαλώ περιμένετε.</string>
-  <string name="calculating_cache_size">Υπολογισμός μεγέθους στοιχείων σε εξέλιξη.. Παρακαλώ περιμένετε.</string>
+  <string name="dialog_clearing_cache_please_wait">Εκκαθάριση προσωρινής μνήμης... Παρακαλώ περιμένετε.</string>
+  <string name="calculating_cache_size">Υπολογισμός μεγέθους προσωρινής μνήμης... Παρακαλώ περιμένετε.</string>
   <string name="reset_cache_unsaved_changes">Υπάρχουν αλλαγές που δεν έχουν συγχρονιστεί. Θα θέλατε να επαναφέρετε τα αποθηκευμένα στοιχεία ούτως ή άλλως;</string>
   <string name="warning">Προειδοποίηση</string>
   <string name="pref_title_AutoSyncOnStart">Συγχρονισμός κατά την έναρξη</string>
@@ -94,7 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Απενεργοποίηση επαλήθευσης Ονόματος Υπολογιστή</string>
   <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
-  <string name="pref_title_OpenInBrowserDirectly">Παράλειψη λεπτομερούς προβολής και άνοιγμα αντικειμένου στο πρόγραμμα περιήγησης</string>
+  <string name="pref_title_OpenInBrowserDirectly">Χρήση εξωτερικού προγράμματος περιήγησης για θέαση άρθρων</string>
   <string name="pref_title_notification_new_articles_available">Προβολή ειδοποίησης όταν νέα άρθρα είναι διαθέσιμα</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Αποδοχή Άγνωστων Πιστοποιητικών;</string>
@@ -110,7 +134,7 @@
   <string name="pref_header_display">Εμφάνιση</string>
   <string name="pref_title_app_theme">Θέμα εφαρμογής</string>
   <string name="pref_title_feed_list_layout">Προβολή λίστας ροών</string>
-  <string name="pref_display_font_layout">Γραμματοσειρά (απαιτεί επανεκκίνηση για εφαρμογή)</string>
+  <string name="pref_display_title_lines_count">Απαρίθμηση Γραμμών για τίτλο</string>
   <string-array name="pref_display_apptheme">
     <item>Σκοτεινό</item>
     <item>Φωτεινό</item>
@@ -122,40 +146,26 @@
   <string-array name="pref_display_feed_list_layout">
     <item>Απλή</item>
     <item>Εκτεταμένη</item>
-    <item>Εκτεταμένη με απευθείας προβολή</item>
+    <item>Εκτεταμένη (πλήρες κείμενο)</item>
+    <item>Εκτεταμένη με προβολή ιστού</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Σφάλμα</string>

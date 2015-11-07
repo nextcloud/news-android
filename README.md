@@ -64,10 +64,158 @@ git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
 >That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
 
 
+Contributors
+==================================
+* [David Luhmer](https://github.com/David-Development) (Maintainer)
+* [Daniel Schaal](https://github.com/schaal)
+* [otrichet] (https://github.com/otrichet)
+
+
 Updates
 ==================================
-0.8.5 (in development)
+0.9.8 (in development)
 ---------------------
+
+
+0.9.7.2 (Google Play)
+---------------------
+- Add profile picture support
+- Bug fixes
+
+
+0.9.7.1 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/359">#359 Feed view with full article content</a>
+- UI-Tweaks - <a href="https://github.com/owncloud/News-Android-App/issues/377">#377 read and star slide</a>
+- Add ShowcaseView
+
+
+0.9.7 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/393">#393 Login button might get cropped / completely hidden</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/407">#407 Auto reload news after sync</a>
+- Bug fixes
+
+
+0.9.6.3 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/399">#399 Missing scroll indicator in article list</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/401">#401 "Open in browser" not using default browser</a>
+
+
+0.9.6.2 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/394">#394 back button doesn't work correct</a>
+
+
+0.9.6.1 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/381">#381 Back button doesn't work correct in articles</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/392">#392 Wrong article is shown</a>
+
+
+0.9.6 (Google Play)
+---------------------
+- Performance improvements
+- Bug fixes
+
+
+0.9.5.4 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/388">#388 App crash when opening an article</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/386">#386 News always open in external browser</a>
+
+
+0.9.5.3 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/383">#383 Back button doesn't close the app on tablets</a>
+
+
+0.9.5.2 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/376">#376 Design improvements</a>
+
+
+0.9.5.1 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/371">#371 App crash since 0.9.4 at startup</a>
+
+
+0.9.5 (Google Play)
+---------------------
+- UI-Redesign (special thanks to Daniel Schaal)
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/367">#367 Widget non-functional, crashes frequently</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/366">#366 "Sync on startup" option does not sync on startup only</a>
+- Bug fixes
+
+
+0.9.4 (Google Play - Beta)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/363">#363 Add support for Chrome Custom Tabs</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/361">#361 Pause podcast when receiving call</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/362">#362 Redesign of the login dialog (special thanks to Daniel Schaal)</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/360">#360 Fix app crash</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/364">#364 App crash on Android < 4.1</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/258">#258 login fails with long passwords</a>
+- Bug fixes
+
+
+0.9.3 (Google Play)
+---------------------
+- Several UI-Improvements (special thanks to Daniel Schaal)
+
+
+0.9.2 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/350">#350 option to set lines-count of title</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/318">#318 Image in advanced News item</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/342">#342 Low contrast checkboxes in settings (pre Lollipop)</a>
+
+
+0.9.1 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/343">#343 Mark as read only when scrolling past article</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/345">#345 Pause support for podcast streams</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/348">#348 Notification icon in Android 5.0 is just a white square</a>
+
+
+0.9.0 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/339">#339 Does not remember position in article listing</a> 
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/338">#338 Allow App to be installed on SD-Card</a>
+
+
+0.8.9.5 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/334">#334 Display error since 0.8.6 - white screen after swiping to next article</a>
+
+
+0.8.8 (Google Play - Beta)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/329">#329 "Mark all as read" freezes UI for long lists.</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/333">#333 Crash when opening Settings on Android 2.3</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/332">#332 [0.8.7] Crash when opening article after mark newer item as read</a>
+
+
+0.8.7 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/331">#331 Bug in 0.8.6: App crashs by opening an article in external browser</a>
+
+
+0.8.6 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/303">#303 List Item opens wrong Article (off by one)</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/308">#308 Allow feeds being checked as "keep unread" instead of "read" when "mark as read while scrolling" feature is used</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/324">#324 when I read the last unread news the news are not marked as read</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/327">#327 Scrolling with volume keys produces sound...</a> (Thanks @cemrich)
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/321">#321 Disabled options menu item not greyed out in actionbar</a> (Thanks @cemrich)
+- Bug fixes
+
+
+0.8.5 (Google Play - Beta)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/311">#311 Android 5.0.2 performance</a>
+- Bug fixes
 
 
 0.8.4 (Google Play)

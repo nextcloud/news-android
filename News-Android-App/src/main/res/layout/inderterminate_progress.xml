@@ -9,5 +9,6 @@
                  android:layout_marginRight="10dp"                 
                  android:layout_gravity="center"
                  android:indeterminate="true"
+                 android:id="@+id/circularProgress"
                  style="?android:attr/progressBarStyleInverse"/>
 </FrameLayout>

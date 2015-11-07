@@ -21,7 +21,22 @@
 
 package de.luhmer.owncloudnewsreader.reader;
 
-public class FeedItemTags {
-	public static enum TAGS { MARK_ITEM_AS_READ, MARK_ITEM_AS_UNREAD, MARK_ITEM_AS_STARRED, MARK_ITEM_AS_UNSTARRED, ALL_STARRED, ALL };
-	
+public enum FeedItemTags {
+	MARK_ITEM_AS_READ("read"),
+	MARK_ITEM_AS_UNREAD("unread"),
+	MARK_ITEM_AS_STARRED("star"),
+	MARK_ITEM_AS_UNSTARRED("unstar"),
+	ALL_STARRED("2"),
+	ALL("3");
+
+	private String segment;
+
+	FeedItemTags(String segment) {
+		this.segment = segment;
+	}
+
+	@Override
+	public String toString() {
+		return this.segment;
+	}
 }

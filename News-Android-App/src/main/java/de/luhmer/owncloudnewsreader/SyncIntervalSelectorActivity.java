@@ -2,16 +2,13 @@ package de.luhmer.owncloudnewsreader;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,13 +18,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 
 
-public class SyncIntervalSelectorActivity extends ActionBarActivity {
+public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
     SharedPreferences mPrefs;
     PlaceholderFragment mFragment;
@@ -66,7 +62,6 @@ public class SyncIntervalSelectorActivity extends ActionBarActivity {
         return true;
     }
 
-    @TargetApi(Build.VERSION_CODES.FROYO)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -144,7 +139,7 @@ public class SyncIntervalSelectorActivity extends ActionBarActivity {
             lvItems.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_list_item_single_choice, android.R.id.text1, items);
 
 

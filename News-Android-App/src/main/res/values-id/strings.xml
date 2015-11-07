@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="auto_sync_string">Sync otmatis</string>
+  <string name="auto_sync_string">Sync otomatis</string>
   <string name="app_name">Pembaca Berita ownCloud</string>
   <string name="title_activity_sync_interval_selector">Pemilih Jeda Sync</string>
   <string name="title_activity_news_detail">AktivitasRinciBerita</string>
@@ -9,24 +9,29 @@
   <string name="title_newsreader_detail">Rincian PembacaBerita</string>
   <string name="empty_view_header">Informasi</string>
   <string name="empty_view_content">Tak ada item disini</string>
+  <string name="toast_GettingMoreItems">Mulai mengunduh lebih banyak item... Mohon tunggu.</string>
   <string name="tv_clickHereToOpenItem">Klik disini untuk membuka item</string>
   <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
   <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
-  <string name="max_items_count_reached">Anda melampaui ukuran maksimal item XX</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="other">Anda telah mencapai ukuran maksimum %d item</item>
+  </plurals>
   <string name="widget_header">Berita ownCloud</string>
-  <string name="message_bar_new_articles_available">Item baru tersedia</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="other">%d item baru tersedia</item>
+  </plurals>
   <string name="message_bar_reload">Muat ulang</string>
   <string name="allUnreadFeeds">Semua item yang belum dibaca</string>
   <string name="starredFeeds">Item yang dibintangi</string>
   <string name="title_activity_new_feed">Tambah feed baru</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Segarkan</string>
-  <string name="menu_About_Changelog">About / Changelog</string>
+  <string name="menu_About_Changelog">Tentang / Catatan perubahan</string>
   <string name="menu_markAllAsRead">Tandai semua telah dibaca</string>
   <string name="menu_StartImageCaching">Unduh gambar</string>
   <string name="menu_downloadMoreItems">Unduh beberapa item</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Impor Akun</string>
+  <string name="import_account">Impor Akun</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Kode sumber item - laporanBug</string>
   <string name="email_sendMail">Kirim EMail</string>
@@ -42,12 +47,17 @@
   <string name="action_settings">Setelan</string>
   <string name="action_sync_settings">Setelan Sync</string>
   <string name="action_add_new_feed">Tambah feed baru</string>
-  <string name="notification_new_items_ticker">Anda memiliki X item baru yang belum dibaca</string>
-  <string name="notification_new_items_text">X item baru yang belum dibaca tersedia</string>
+  <string name="action_textToSpeech">Bacalah</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="other">Anda memiliki %d item baru yang belum dibaca</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="other">Terdapat %d item baru yang belum dibaca </item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Sandi</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">Alamat root ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Masuk</string>
@@ -56,14 +66,23 @@
   <string name="error_field_required">Bidang wajib diisi</string>
   <string name="error_invalid_url">URL salah</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Item X lama terunduh</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="other">Mengunduh %d item lama</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Tidak ada item lain yang tersedia</string>
   <string name="pull_to_refresh_updateTags">Status Sinkronisasi Item</string>
-  <string name="pull_to_refresh_updateFolder">Menyelaraskan folder</string>
+  <string name="pull_to_refresh_updateFolder">Mensinkronisasi folder</string>
   <string name="pull_to_refresh_updateFeeds">Mensinkronisasi feed</string>
-  <string name="pull_to_refresh_updateItems">Menyelaraskan item</string>
+  <string name="pull_to_refresh_updateItems">Mensinkronisasi item</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="other">Terambil %d item pada saat ini...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Setelan</string>
+  <string name="cache_is_cleared">Cache dibersihkan!</string>
+  <plurals name="number_of_files">
+    <item quantity="other">%d Berkas</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Umum</string>
   <string name="pref_title_general_sort_order">Urutan</string>
@@ -82,8 +101,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Membersihkan cache</string>
-  <string name="dialog_clearing_cache_please_wait">Membersihkan cache.. Silakan tunggu.</string>
-  <string name="calculating_cache_size">Menghitung ukuran cache.. Silakan tunggu.</string>
+  <string name="dialog_clearing_cache_please_wait">Membersihkan cache... Mohon tunggu.</string>
+  <string name="calculating_cache_size">Menghitung ukuran cache... Mohon tunggu.</string>
   <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
   <string name="warning">Peringatan</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>
@@ -92,7 +111,7 @@
   <string name="pref_title_DisableHostnameVerification">Nonaktifkan Verifikasi Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigasi dengan tombol volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Tandai telah dibaca saat bergulir</string>
-  <string name="pref_title_OpenInBrowserDirectly">Lewati tampil rincian dan buka artikel di peramban web</string>
+  <string name="pref_title_OpenInBrowserDirectly">Gunakan peramban eksternal untuk melihat artikel</string>
   <string name="pref_title_notification_new_articles_available">Tampilkan pemberitahuan ketika artikel baru tersedia</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Terima Sertifikat yang Tak Dikenal?</string>
@@ -108,7 +127,7 @@
   <string name="pref_header_display">Tampilkan</string>
   <string name="pref_title_app_theme">Tema aplikasi</string>
   <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
-  <string name="pref_display_font_layout">Huruf (memerlukan restart untuk menerapkan)</string>
+  <string name="pref_display_title_lines_count">Jumlah Baris untuk judul</string>
   <string-array name="pref_display_apptheme">
     <item>Gelap</item>
     <item>Terang</item>
@@ -118,42 +137,28 @@
     <item>1</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout">
-    <item>Ringkas</item>
-    <item>Luas</item>
-    <item>Luas dengan Webview</item>
+    <item>Sederhana</item>
+    <item>Diperluas</item>
+    <item>Diperluas (teks penuh)</item>
+    <item>Diperluas dengan Webview</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Kesalahan</string>
@@ -167,6 +172,12 @@
   <string name="pref_title_clearCache">Bersihkan cache</string>
   <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
   <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>Jangan pernah</item>
+    <item>Hanya melalui WiFi</item>
+    <item>Melalui WiFi &amp; Mobile</item>
+    <item>Tanya ketika tidak tersambung ke WiFi</item>
+  </string-array>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>

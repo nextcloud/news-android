@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
+  <string name="menu_update">Refrescar</string>
   <!--Import Accounts-->
   <!--EMAIL-->
   <!--Action Bar Items-->
@@ -11,7 +12,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nomine de usator</string>
   <string name="pref_title_password">Contrasigno</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->

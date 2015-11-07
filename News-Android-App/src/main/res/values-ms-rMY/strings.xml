@@ -11,7 +11,6 @@
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Kata laluan</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->

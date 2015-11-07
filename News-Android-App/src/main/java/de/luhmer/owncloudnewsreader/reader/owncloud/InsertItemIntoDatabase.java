@@ -42,7 +42,7 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
 	public InsertItemIntoDatabase(DatabaseConnectionOrm dbConn) {
 		this.dbConn = dbConn;
         //buffer = new RssItem[bufferSize];
-        buffer = new ArrayList<RssItem>(bufferSize);
+        buffer = new ArrayList<>(bufferSize);
 
         //feeds = dbConn.getListOfFeeds();
 	}

@@ -1,21 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">Automatisk synkronisering </string>
-  <string name="app_name">ownCloud News Reader</string>
-  <string name="title_activity_sync_interval_selector">Synkroniseringsinterval</string>
-  <string name="title_activity_news_detail">NewsDetailActivity</string>
+  <string name="app_name">ownCloud Nyheds Læser</string>
+  <string name="title_activity_sync_interval_selector">Synkroniseringsinterval vælger</string>
+  <string name="title_activity_news_detail">DetaljeretNyhedsAktivitet</string>
   <string name="title_activity_subscription">AbonnementAktivitet</string>
-  <string name="title_newsreader_list">NewsReader</string>
-  <string name="title_newsreader_detail">NewsReader Oplysninger</string>
+  <string name="title_newsreader_list">NyhedsLæser</string>
+  <string name="title_newsreader_detail">NyhedsLæser Oplysninger</string>
   <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Her er ingen artikler</string>
-  <string name="toast_GettingMoreItems">Startede med at downloade flere artikler... Vent venligst.</string>
+  <string name="toast_GettingMoreItems">Påbegyndte download af flere elementer... Vent venligst.</string>
   <string name="tv_clickHereToOpenItem">Klik her for at åbne artikel</string>
   <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
   <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden brug af WiFi-forbindelse</string>
-  <string name="max_items_count_reached">Du har nået den maksimale størrelse på XX poster</string>
-  <string name="widget_header">ownCloud News</string>
-  <string name="message_bar_new_articles_available">Nye artikler er tilgængelige</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Du har nået den maksimale størrelse på %d element</item>
+    <item quantity="other">Du har nået den maksimale størrelse på %d elementer</item>
+  </plurals>
+  <string name="widget_header">ownCloud Nyheder</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nyt element er tilgængeligt</item>
+    <item quantity="other">%d nye elementer er tilgængelige</item>
+  </plurals>
   <string name="message_bar_reload">Genindlæs</string>
   <string name="allUnreadFeeds">Alle ulæste artikler</string>
   <string name="starredFeeds">Markerede artikler</string>
@@ -27,7 +33,7 @@
   <string name="menu_StartImageCaching">Hent billeder</string>
   <string name="menu_downloadMoreItems">Hent flere artikler</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Importér brugerkonto</string>
+  <string name="import_account">Importér brugerkonto</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Artiklens kildekode - Fejlrapport</string>
   <string name="email_sendMail">Send e-mail</string>
@@ -44,12 +50,18 @@
   <string name="action_sync_settings">Synkroniseringsindstillinger</string>
   <string name="action_add_new_feed">Tilføj nyt feed</string>
   <string name="action_textToSpeech">Læs højt</string>
-  <string name="notification_new_items_ticker">Du har X nye, ulæste emner</string>
-  <string name="notification_new_items_text">X nye, ulæste poster til rådighed</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Du har %d nyt, ulæst element</item>
+    <item quantity="other">Du har %d nye, ulæste elementer</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d nyt, ulæst element er tilgængeligt</item>
+    <item quantity="other">%d nye, ulæste elementer er tilgængelige</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Brugernavn</string>
   <string name="pref_title_password">Kodeord</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">rodadressen for ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Log ind</string>
@@ -58,14 +70,26 @@
   <string name="error_field_required">Dette felt er påkrævet</string>
   <string name="error_invalid_url">Denne URL er ikke korrekt</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Hent X gamle artikler</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Hentede %d gammelt element</item>
+    <item quantity="other">Hentede %d gamle elementer</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelig</string>
   <string name="pull_to_refresh_updateTags">Synkroniserer status for artikler</string>
   <string name="pull_to_refresh_updateFolder">Synkroniserer mappe</string>
   <string name="pull_to_refresh_updateFeeds">Synkroniserer feeds</string>
   <string name="pull_to_refresh_updateItems">Synkroniserer artikler</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Har hentet %d element indtil videre...</item>
+    <item quantity="other">Har hentet %d elementer indtil videre...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Indstillinger</string>
+  <string name="cache_is_cleared">Cachen er ryddet!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d fil</item>
+    <item quantity="other">%d filer</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Generelt</string>
   <string name="pref_title_general_sort_order">Rækkefølge for sortering</string>
@@ -84,9 +108,9 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Nulstil mellemlager</string>
-  <string name="dialog_clearing_cache_please_wait">Nulstiller mellemlageret... Vent venligst.</string>
-  <string name="calculating_cache_size">Beregner cachestørrelse... Vent venligst.</string>
-  <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille cachen alligevel?</string>
+  <string name="dialog_clearing_cache_please_wait">Rydder mellemlageret... Vent venligst.</string>
+  <string name="calculating_cache_size">Beregner størrelse på mellemlager... Vent venligst.</string>
+  <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
   <string name="warning">Advarsel</string>
   <string name="pref_title_AutoSyncOnStart">Synkroniserer ved opstart</string>
   <string name="pref_title_ShowOnlyUnread">Vis kun ulæste artikler</string>
@@ -94,7 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Deaktivér verifikation af værtsnavn</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigér med lydknapper</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markér som læst når der rulles</string>
-  <string name="pref_title_OpenInBrowserDirectly">Spring visning af detaljer over, og åbn artiklen i browseren</string>
+  <string name="pref_title_OpenInBrowserDirectly">Benyt en ekstern browser for at se artiklerne</string>
   <string name="pref_title_notification_new_articles_available">Vis notifikation når der er nye artikler tilgængelige</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Acceptér ukendt certifikat? </string>
@@ -110,7 +134,7 @@
   <string name="pref_header_display">Vis</string>
   <string name="pref_title_app_theme">App-tema</string>
   <string name="pref_title_feed_list_layout">Layout for feed-liste</string>
-  <string name="pref_display_font_layout">Skrifttype (kræver genstart for at tage effekt)</string>
+  <string name="pref_display_title_lines_count">Linjeantal for titel</string>
   <string-array name="pref_display_apptheme">
     <item>Mørk</item>
     <item>Lys</item>
@@ -122,53 +146,39 @@
   <string-array name="pref_display_feed_list_layout">
     <item>Simpel</item>
     <item>Udvidet</item>
-    <item>Udvidet med Webview</item>
+    <item>Udvidet (fuld tekst)</item>
+    <item>Udvidet med Webvisning</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fejl</string>
   <string name="login_dialog_text_something_went_wrong">Noget gik galt :(</string>
-  <string name="login_dialog_text_not_compatible">Denne app-version er ikke kompatibel med din ownCloud News App. Opdatér venligst news-app\'en og appframeworket.</string>
+  <string name="login_dialog_text_not_compatible">Denne app-version er ikke kompatibel med din ownCloud News App. Opdatér venligst nyheds-app\'en og appframework.</string>
   <string name="login_dialog_title_security_warning">Sikkerhedsadvarsel</string>
   <string name="login_dialog_text_security_warning">Du benytter ikke https. En ondsindet person kan opsnappe din trafik og få adgang til følsomme data (f.eks. dit kodeord). Derfor er det stærkt anbefalet at bruge https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; sync</string>
   <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
-  <string name="pref_title_clearCache">Ryd cache</string>
+  <string name="pref_title_clearCache">Ryd mellemlageret</string>
   <string name="pref_title_CacheImagesOffline">Foretag mellemlagring af billeder offline</string>
-  <string name="pref_title_Max_Cache_Size">Maksimumstørrelse på cache</string>
+  <string name="pref_title_Max_Cache_Size">Maksimumstørrelse på mellemlageret</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Aldrig</item>
     <item>Kun via wifi</item>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">自动同步</string>
-  <string name="app_name">ownCloud新闻阅读器</string>
+  <string name="app_name">ownCloud 新闻阅读器</string>
   <string name="title_activity_sync_interval_selector">同步间隔选择器</string>
   <string name="title_activity_news_detail">新闻详细活动</string>
   <string name="title_activity_subscription">订阅活动</string>
@@ -9,13 +9,17 @@
   <string name="title_newsreader_detail">新闻读者详情</string>
   <string name="empty_view_header">信息</string>
   <string name="empty_view_content">无内容</string>
-  <string name="toast_GettingMoreItems">正在下载更多内容...请稍候.</string>
+  <string name="toast_GettingMoreItems">开始下载更多内容，请稍后。</string>
   <string name="tv_clickHereToOpenItem">点击此处打开</string>
   <string name="no_wifi_available">没有连接到WiFi</string>
   <string name="do_you_want_to_download_without_wifi">您是否想在无 WiFi 连接时下载图片</string>
-  <string name="max_items_count_reached">你已经到达 XX 条目的上限</string>
-  <string name="widget_header">ownCloud新闻</string>
-  <string name="message_bar_new_articles_available">新项目可用</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="other">您已达到最多 %d 条内容的上限</item>
+  </plurals>
+  <string name="widget_header">ownCloud 新闻</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="other">%d 条新内容</item>
+  </plurals>
   <string name="message_bar_reload">刷新</string>
   <string name="allUnreadFeeds">所有未读内容</string>
   <string name="starredFeeds">标星内容</string>
@@ -27,7 +31,7 @@
   <string name="menu_StartImageCaching">下载图片</string>
   <string name="menu_downloadMoreItems">下载更多内容</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">导入帐号</string>
+  <string name="import_account">导入帐号</string>
   <!--EMAIL-->
   <string name="email_sourceCode">源代码-错误报告</string>
   <string name="email_sendMail">发送邮件</string>
@@ -44,12 +48,16 @@
   <string name="action_sync_settings">同步设置</string>
   <string name="action_add_new_feed">增加新 Feed</string>
   <string name="action_textToSpeech">朗读</string>
-  <string name="notification_new_items_ticker">你有X条未读消息</string>
-  <string name="notification_new_items_text">有X条未读消息</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="other">您还有 %d 条未读内容</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="other">%d 条新内容</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">用户名</string>
   <string name="pref_title_password">密码</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">ownCloud 根目录地址</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">登录</string>
@@ -58,14 +66,23 @@
   <string name="error_field_required">这个字段是必填的</string>
   <string name="error_invalid_url">这个网址是错误的</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">下载的 X 的老内容</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="other">已下载 %d 条旧内容</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">没有更多的选项了</string>
   <string name="pull_to_refresh_updateTags">同步内容的状态</string>
   <string name="pull_to_refresh_updateFolder">同步文件夹</string>
   <string name="pull_to_refresh_updateFeeds">同步源</string>
   <string name="pull_to_refresh_updateItems">同步条目</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="other">目前已获取 %d 条内容…</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">设置</string>
+  <string name="cache_is_cleared">缓存已清空！</string>
+  <plurals name="number_of_files">
+    <item quantity="other">%d 个文件</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">常规</string>
   <string name="pref_title_general_sort_order">排序</string>
@@ -84,8 +101,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">清除缓存</string>
-  <string name="dialog_clearing_cache_please_wait">清理缓存中，请稍候。</string>
-  <string name="calculating_cache_size">计算缓存大小...请稍候。</string>
+  <string name="dialog_clearing_cache_please_wait">清理缓存中，请稍候</string>
+  <string name="calculating_cache_size">正在计算缓存大小，请稍候。</string>
   <string name="reset_cache_unsaved_changes">有一部分文件未同步，你确定仍然清空缓存吗？</string>
   <string name="warning">警告</string>
   <string name="pref_title_AutoSyncOnStart">启动后就同步</string>
@@ -94,7 +111,7 @@
   <string name="pref_title_DisableHostnameVerification">禁用主机名校验</string>
   <string name="pref_title_NavigateWithVolumeButtons">用音量键导航</string>
   <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
-  <string name="pref_title_OpenInBrowserDirectly">跳过明细直接在浏览器中打开该标题</string>
+  <string name="pref_title_OpenInBrowserDirectly">使用外部浏览器浏览文章</string>
   <string name="pref_title_notification_new_articles_available">有新消息时显示通知</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">接受未知认证？</string>
@@ -110,7 +127,7 @@
   <string name="pref_header_display">显示</string>
   <string name="pref_title_app_theme">应用主题</string>
   <string name="pref_title_feed_list_layout">源清单布局</string>
-  <string name="pref_display_font_layout">字体( 需要重启生效 )</string>
+  <string name="pref_display_title_lines_count">标题行数计数</string>
   <string-array name="pref_display_apptheme">
     <item>深色</item>
     <item>浅色</item>
@@ -120,42 +137,28 @@
     <item>1</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout">
-    <item>简洁</item>
+    <item>简单</item>
     <item>扩展</item>
-    <item>网页视图扩展</item>
+    <item>扩展(全部文本)</item>
+    <item>扩展,使用网页浏览器</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">错误</string>

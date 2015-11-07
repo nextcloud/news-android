@@ -1,17 +1,11 @@
 package de.luhmer.owncloudnewsreader.interfaces;
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.webkit.JavascriptInterface;
-import android.widget.Toast;
-
-import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 /**
  * Created by David on 25.03.2014.
@@ -48,18 +42,11 @@ public class WebViewLinkLongClickInterface {
 
 
         alertDialog.setPositiveButton("Copy link", new DialogInterface.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                int sdk = android.os.Build.VERSION.SDK_INT;
-                if(sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
-                    android.text.ClipboardManager clipboard = (android.text.ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-                    clipboard.setText(url);
-                } else {
-                    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-                    android.content.ClipData clip = android.content.ClipData.newPlainText(url, url);
-                    clipboard.setPrimaryClip(clip);
-                }
+                android.content.ClipboardManager clipboard = (android.content.ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                android.content.ClipData clip = android.content.ClipData.newPlainText(url, url);
+                clipboard.setPrimaryClip(clip);
             }
         });
 

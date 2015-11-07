@@ -27,31 +27,25 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
-import java.io.File;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
@@ -63,37 +57,37 @@ public class DownloadImagesService extends IntentService {
 
 	private int NOTIFICATION_ID = 1;
 	private NotificationManager notificationManager;
-	private NotificationCompat.Builder NotificationDownloadImages;
+	private NotificationCompat.Builder mNotificationDownloadImages;
 
 	private int maxCount;
 	//private int total_size = 0;
 
-    private String pathToImageCache;
-    List<String> linksToImages = new LinkedList<String>();
+    List<String> linksToImages = new LinkedList<>();
 
 	public DownloadImagesService() {
 		super(null);
-		initService();
 	}
 
 	public DownloadImagesService(String name) {
 		super(name);
-		initService();
 	}
 
-	private void initService()
-	{
-        pathToImageCache = FileUtils.getPathImageCache(this);
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        try {
+            maxCount = 0;
+            if (random == null)
+                random = new Random();
+            NOTIFICATION_ID = random.nextInt();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
-		maxCount = 0;
-		if(random == null)
-			random = new Random();
-		NOTIFICATION_ID = random.nextInt();
-	}
-
-	@Override
+    @Override
 	public void onDestroy() {
-		if(NotificationDownloadImages != null)
+		if(mNotificationDownloadImages != null)
 		{
 			if(maxCount == 0)
 				notificationManager.cancel(NOTIFICATION_ID);
@@ -108,9 +102,6 @@ public class DownloadImagesService extends IntentService {
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
         Notification notify = BuildNotification();
 
-        //if(linksFavIcons.size() > 0)
-            //notificationManager.notify(NOTIFICATION_ID, notify);
-
         List<Feed> feedList = dbConn.getListOfFeeds();
         FavIconHandler favIconHandler = new FavIconHandler(this);
         for(Feed feed : feedList) {
@@ -121,7 +112,7 @@ public class DownloadImagesService extends IntentService {
         if(!downloadFavIconsExclusive) {
             long lastId = intent.getLongExtra(LAST_ITEM_ID, 0);
             List<RssItem> rssItemList = dbConn.getAllItemsWithIdHigher(lastId);
-            List<String> links = new ArrayList<String>();
+            List<String> links = new ArrayList<>();
             for(RssItem rssItem : rssItemList) {
                 String body = rssItem.getBody();
                 links.addAll(ImageHandler.getImageLinksFromText(body));
@@ -131,12 +122,13 @@ public class DownloadImagesService extends IntentService {
                     break;
                 }
             }
-
+            ((LazyList)rssItemList).close();
 
             maxCount = links.size();
 
-            if (maxCount > 0)
+            if (maxCount > 0) {
                 notificationManager.notify(NOTIFICATION_ID, notify);
+            }
 
             linksToImages.addAll(links);
 
@@ -148,7 +140,7 @@ public class DownloadImagesService extends IntentService {
         try {
             if(linksToImages.size() > 0) {
                 String link = linksToImages.remove(0);
-                new GetImageThreaded(link, imgDownloadFinished, 999, pathToImageCache, this).start();
+                new GetImageThreaded(link, imgDownloadFinished, 999).start();
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -162,7 +154,7 @@ public class DownloadImagesService extends IntentService {
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this)
                 .setContentTitle("ownCloud News Reader")
                 .setContentText("Only " + limit + " images can be cached at once")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent);
 
         Notification notify = notifyBuilder.build();
@@ -176,13 +168,13 @@ public class DownloadImagesService extends IntentService {
         Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationDownloadImages = new NotificationCompat.Builder(this)
+        mNotificationDownloadImages = new NotificationCompat.Builder(this)
                 .setContentTitle("ownCloud News Reader")
                 .setContentText("Downloading Images for offline usage")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent);
 
-        Notification notify = NotificationDownloadImages.build();
+        Notification notify = mNotificationDownloadImages.build();
 
         //Hide the notification after its selected
         notify.flags |= Notification.FLAG_AUTO_CANCEL;
@@ -191,77 +183,25 @@ public class DownloadImagesService extends IntentService {
         return notify;
     }
 
-    private void RemoveOldImages(Context context) {
-        HashMap<File, Long> files;
-        long size = ImageHandler.getFolderSize(new File(FileUtils.getPath(context)));
-
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        int max_allowed_size = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, "1000"));//Default is 1Gb --> 1000mb
-        max_allowed_size *= 1024 * 1024; // convert to byte
-        if(size > max_allowed_size)
-        {
-            files = new HashMap<>();
-            for(File file : ImageHandler.getFilesFromDir(new File(FileUtils.getPathImageCache(context))))
-            {
-                files.put(file, file.lastModified());
-            }
-
-            for(Object itemObj : sortHashMapByValuesD(files).keySet())
-            {
-                File file = (File) itemObj;
-                size -= file.length();
-                file.delete();
-                if(size < max_allowed_size)
-                    break;
-            }
-        }
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static LinkedHashMap sortHashMapByValuesD(HashMap passedMap) {
-        List mapKeys = new ArrayList(passedMap.keySet());
-        List mapValues = new ArrayList(passedMap.values());
-        Collections.sort(mapValues);
-        Collections.sort(mapKeys);
-
-        LinkedHashMap sortedMap = new LinkedHashMap();
-
-        Iterator valueIt = mapValues.iterator();
-        while (valueIt.hasNext()) {
-            Object val = valueIt.next();
-            Iterator keyIt = mapKeys.iterator();
-
-            while (keyIt.hasNext()) {
-                Object key = keyIt.next();
-                String comp1 = passedMap.get(key).toString();
-                String comp2 = val.toString();
-
-                if (comp1.equals(comp2)){
-                    passedMap.remove(key);
-                    mapKeys.remove(key);
-                    sortedMap.put(key, val);
-                    break;
-                }
-            }
-        }
-        return sortedMap;
+    private void RemoveOldImages() {
+        ImageLoader.getInstance().clearDiskCache();
     }
 
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
 		public void DownloadFinished(long ThreadId, Bitmap bitmap) {
-
             int count = maxCount - linksToImages.size();
-
 
             if(maxCount == count) {
             	notificationManager.cancel(NOTIFICATION_ID);
-                RemoveOldImages(DownloadImagesService.this);
+                //RemoveOldImages();
             } else {
-                NotificationDownloadImages.setProgress(maxCount, count+1, false);
-                NotificationDownloadImages.setContentText("Downloading Images for offline usage - " + (count+1) + "/" + maxCount);
-                notificationManager.notify(NOTIFICATION_ID, NotificationDownloadImages.build());
+                mNotificationDownloadImages
+                        .setContentText("Downloading Images for offline usage - " + (count + 1) + "/" + maxCount)
+                        .setProgress(maxCount, count + 1, false);
+
+                notificationManager.notify(NOTIFICATION_ID, mNotificationDownloadImages.build());
 
                 StartNextDownloadInQueue();
             }

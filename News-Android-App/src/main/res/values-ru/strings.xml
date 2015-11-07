@@ -9,13 +9,23 @@
   <string name="title_newsreader_detail">Чтение новостей - подробнее</string>
   <string name="empty_view_header">Информация</string>
   <string name="empty_view_content">Здесь нет элементов</string>
-  <string name="toast_GettingMoreItems">Началась загрузка новых элементов... Пожалуйста, подождите.</string>
+  <string name="toast_GettingMoreItems">Началось скачивание элементов... Пожалуйста подождите.</string>
   <string name="tv_clickHereToOpenItem">Нажмите здесь, чтобы открыть элемент</string>
   <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
   <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
-  <string name="max_items_count_reached">Вы достигли максимального размера в XX элемента</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Достигнуто максимальное количество в %d элемент</item>
+    <item quantity="few">Достигнуто максимальное количество в %d элемента</item>
+    <item quantity="many">Достигнуто максимальное количество в %d элементов</item>
+    <item quantity="other">Достигнуто максимальное количество в %d элементов</item>
+  </plurals>
   <string name="widget_header">Новости ownCloud</string>
-  <string name="message_bar_new_articles_available">Доступны новые элементы</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">доступен %d новый элемент</item>
+    <item quantity="few">доступно %d новых элемента</item>
+    <item quantity="many">доступно %d новых элементов</item>
+    <item quantity="other">доступно %d новых элементов</item>
+  </plurals>
   <string name="message_bar_reload">Обновить</string>
   <string name="allUnreadFeeds">Все непрочитанные</string>
   <string name="starredFeeds">Избранные элементы</string>
@@ -25,9 +35,9 @@
   <string name="menu_About_Changelog">О программе / Изменения</string>
   <string name="menu_markAllAsRead">Пометить всё как прочитанное</string>
   <string name="menu_StartImageCaching">Скачать изображения</string>
-  <string name="menu_downloadMoreItems">Загрузить еще</string>
+  <string name="menu_downloadMoreItems">Скачать ещё</string>
   <!--Import Accounts-->
-  <string name="import_account_dialog_title">Импортировать аккаунт</string>
+  <string name="import_account">Импортировать учётную запись</string>
   <!--EMAIL-->
   <string name="email_sourceCode">Исходный код элемента - Отчет об ошибке</string>
   <string name="email_sendMail">Отправить сообщение</string>
@@ -44,12 +54,22 @@
   <string name="action_sync_settings">Настройки синхронизации</string>
   <string name="action_add_new_feed">Добавить новую ленту</string>
   <string name="action_textToSpeech">Зачитать вслух</string>
-  <string name="notification_new_items_ticker">У вас X новых непрочитанных элементов</string>
-  <string name="notification_new_items_text">Доступно X новых непрочитанных элементов</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">У Вас есть %d новый элемент</item>
+    <item quantity="few">У Вас есть %d новых элемента</item>
+    <item quantity="many">У Вас есть %d новых элементов</item>
+    <item quantity="other">У Вас есть %d новых элементов</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">доступен %d непрочинатнный элемент</item>
+    <item quantity="few">доступно %d непрочинатнных элемента</item>
+    <item quantity="many">доступно %d непрочинатнных элементов</item>
+    <item quantity="other">доступно %d непрочинатнных элементов</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
   <string name="pref_title_password">Пароль</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
+  <string name="pref_title_owncloudRootPath">root адрес ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Войти</string>
@@ -58,14 +78,32 @@
   <string name="error_field_required">Это поле обязательно для заполнения</string>
   <string name="error_invalid_url">Неверный url адрес</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">Скачано Х старых элементов</string>
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Скачан %d старый элемент</item>
+    <item quantity="few">Скачано %d старых элемента</item>
+    <item quantity="many">Скачано %d старых элементов</item>
+    <item quantity="other">Скачано %d старых элементов</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Доступных объектов больше нет</string>
   <string name="pull_to_refresh_updateTags">Синхронизация элементов</string>
   <string name="pull_to_refresh_updateFolder">Синхронизируется каталог</string>
   <string name="pull_to_refresh_updateFeeds">Синхронизируются ленты</string>
   <string name="pull_to_refresh_updateItems">Синхронизируется содержимое</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Обработан в настоящий момент %d объект..</item>
+    <item quantity="few">Обработано в настоящий момент %d объекта..</item>
+    <item quantity="many">Обработано в настоящий момент %d объектов..</item>
+    <item quantity="other">Обработано в настоящий момент %d объекта(ов)..</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Настройки</string>
+  <string name="cache_is_cleared">Кеш очищен!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Файл</item>
+    <item quantity="few">%d Файла</item>
+    <item quantity="many">%d Файлов</item>
+    <item quantity="other">%d Файла(ов)</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Основные</string>
   <string name="pref_title_general_sort_order">Порядок сортировки</string>
@@ -84,8 +122,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Очистить кеш.</string>
-  <string name="dialog_clearing_cache_please_wait">Идет очистка кэша... Пожалуйста, подождите.</string>
-  <string name="calculating_cache_size">Расчет размера кэша... Пожалуйста, подождите.</string>
+  <string name="dialog_clearing_cache_please_wait">Очистка кеша... Пожалуйста подождите.</string>
+  <string name="calculating_cache_size">Вычисление размера кеша... Пожалуйста подождите.</string>
   <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
   <string name="warning">Предупреждение</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>
@@ -94,7 +132,7 @@
   <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
   <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
-  <string name="pref_title_OpenInBrowserDirectly">Пропустить просмотр деталей и открыть статью в браузере</string>
+  <string name="pref_title_OpenInBrowserDirectly">Используйте внешний браузер для просмотра записей</string>
   <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
@@ -110,7 +148,7 @@
   <string name="pref_header_display">Экран</string>
   <string name="pref_title_app_theme">Тема приложения</string>
   <string name="pref_title_feed_list_layout">Макет списка лент</string>
-  <string name="pref_display_font_layout">Шрифт (для применения необходима перезагрузка)</string>
+  <string name="pref_display_title_lines_count">Количество строк для заголовка</string>
   <string-array name="pref_display_apptheme">
     <item>Темная</item>
     <item>Светлая</item>
@@ -120,42 +158,28 @@
     <item>1</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout">
-    <item>Простая</item>
-    <item>Расширенная</item>
-    <item>Расширенная с Webview</item>
+    <item>Простой</item>
+    <item>Расширенный</item>
+    <item>Расширенный (полный текст)</item>
+    <item>Расширенный с Webview</item>
   </string-array>
   <string-array name="pref_display_feed_list_layout_values">
     <item>0</item>
     <item>1</item>
+    <item>3</item>
     <item>2</item>
   </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
+  <string-array name="pref_title_lines_count">
+    <item>1</item>
     <item>2</item>
+    <item>3</item>
     <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
+  </string-array>
+  <string-array name="pref_title_lines_count_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Ошибка</string>

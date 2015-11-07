@@ -29,8 +29,11 @@ public class GetVersion_v1 implements IHandleJsonObject {
 	
 	@Override
 	public boolean performAction(JSONObject jObj) {
-		this.version = jObj.optJSONObject("ocs").optJSONObject("data").optString("version");
-        return true;
+		if(jObj.has("ocs")) {
+			this.version = jObj.optJSONObject("ocs").optJSONObject("data").optString("version");
+			return true;
+		}
+		return false;
 	}
 
 	/**

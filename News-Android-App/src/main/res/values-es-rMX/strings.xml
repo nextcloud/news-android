@@ -12,7 +12,6 @@
   <string name="no_wifi_available">No hay una conexión WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Desea descargar las imágenes sin conexión WiFi</string>
   <string name="widget_header">Noticias de ownCloud</string>
-  <string name="message_bar_new_articles_available">Nuevos elementos disponibles</string>
   <string name="message_bar_reload">Recargar</string>
   <string name="allUnreadFeeds">Todos los artículos sin leer</string>
   <string name="starredFeeds">Artículos destacados</string>
@@ -35,12 +34,9 @@
   <string name="action_login">Ajustes del Servidor</string>
   <string name="action_save">Guardar</string>
   <string name="action_settings">Ajustes</string>
-  <string name="notification_new_items_ticker">Tiene X artículos nuevos sin leer</string>
-  <string name="notification_new_items_text">X nuevos artículos sin leer disponibles</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>
-  <!--<string name="pref_title_owncloudRootPath">ownCloud root address</string>-->
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Registrarse</string>
@@ -49,7 +45,6 @@
   <string name="error_field_required">Este campo es necesario</string>
   <string name="error_invalid_url">Esta url es incorrecta</string>
   <!--Toast Messages-->
-  <string name="toast_downloaded_x_items">X elementos antiguos descargados</string>
   <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
   <string name="pull_to_refresh_updateTags">Sincronizando estado de elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando archivos</string>
@@ -75,8 +70,6 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Vaciando el caché</string>
-  <string name="dialog_clearing_cache_please_wait">Vaciando el caché... Espere.</string>
-  <string name="calculating_cache_size">Calculando tamaño de cache... Por favor espere.</string>
   <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quieres vaciar la caché igualmente?</string>
   <string name="warning">Precaución</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar al inicio</string>
@@ -85,7 +78,6 @@
   <string name="pref_title_DisableHostnameVerification">Deshabilitar verificación del hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído mientras se desplaza</string>
-  <string name="pref_title_OpenInBrowserDirectly">Salir de la vista de detalle y abrir el artículo en el explorador.</string>
   <string name="pref_title_notification_new_articles_available">Mostrar notificación cuando nuevos artículos estén disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">¿Aceptar certificados desconocidos?</string>
@@ -97,7 +89,6 @@
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_feed_list_layout">Lista de fuentes</string>
-  <string name="pref_display_font_layout">Fuente (es necesario reiniciar)</string>
   <string-array name="pref_display_apptheme">
     <item>Oscuro</item>
     <item>Brillante</item>
@@ -105,44 +96,6 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Simple</item>
-    <item>Extendido</item>
-    <item>Extendido con vista web</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-  </string-array>
-  <string-array name="pref_display_font">
-    <item>Roboto Thin</item>
-    <item>Roboto Light</item>
-    <item>Roboto Regular</item>
-    <item>Roboto Medium</item>
-    <item>Roboto Bold</item>
-    <item>Roboto Black</item>
-    <item>Roboto Condensed</item>
-    <item>Roboto Condensed Bold</item>
-    <item>Roboto Slab Thin</item>
-    <item>Roboto Slab Light</item>
-    <item>Roboto Slab Regular</item>
-    <item>Roboto Slab Bold</item>
-  </string-array>
-  <string-array name="pref_display_font_values">
-    <item>0</item>
-    <item>2</item>
-    <item>4</item>
-    <item>6</item>
-    <item>8</item>
-    <item>10</item>
-    <item>12</item>
-    <item>14</item>
-    <item>16</item>
-    <item>17</item>
-    <item>18</item>
-    <item>19</item>
   </string-array>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>

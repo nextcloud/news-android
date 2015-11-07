@@ -22,118 +22,108 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import com.squareup.okhttp.HttpUrl;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
-import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags.TAGS;
+import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public abstract class API {
-	protected SharedPreferences mPrefs;
-	//static final Pattern RemoveAllDoubleSlashes = Pattern.compile("[^:](\\/\\/)");
-	static final Pattern RemoveAllDoubleSlashes = Pattern.compile("(?<!:)\\/\\/");
+	private HttpUrl baseUrl;
 
-
-	public API(Context cont) {
-		mPrefs = PreferenceManager.getDefaultSharedPreferences(cont);
+	public API(HttpUrl baseUrl) {
+		this.baseUrl = baseUrl;
 	}
 
-	public static API GetRightApiForVersion(String appVersion, Context context) {
-		API api;
-        int majorVersion = 0;
+	/**
+	 * Input e.g. "6.0.4". Output [0] = 6, [1] = 4
+	 * @param appVersion
+	 * @return [0] = majorVersion, [1] = minorVersion
+	 */
+	public static int[] ExtractVersionNumberFromString(String appVersion) {
+		int majorVersion = 0;
 		int minorVersion = 0;
 		if(appVersion != null)
 		{
-            majorVersion = Integer.parseInt(appVersion.substring(0,1));
-            appVersion = appVersion.substring(2);
+			majorVersion = Integer.parseInt(appVersion.substring(0,1));
+			appVersion = appVersion.substring(2);
 
-            appVersion = appVersion.replace(".", "");
-            minorVersion = Integer.parseInt(appVersion);
+			appVersion = appVersion.replace(".", "");
+			minorVersion = Integer.parseInt(appVersion);
 		}
+		return new int[] {majorVersion, minorVersion};
+	}
+
+	public static API GetRightApiForVersion(String appVersion, HttpUrl baseUrl) {
+		API api;
+		int[] version = ExtractVersionNumberFromString(appVersion);
+        int majorVersion = version[0];
+		int minorVersion = version[1];
 
         switch (majorVersion) {
             case 1:
                 if (minorVersion >= 101) {
-                    api = new APIv2(context);
+                    api = new APIv2(baseUrl);
                 } else {
-                    api = new APIv1(context);
+                    api = new APIv1(baseUrl);
                 }
                 break;
             case 2:
-                api = new APIv2(context);
+                api = new APIv2(baseUrl);
                 break;
             case 3:
-                api = new APIv2(context);
+                api = new APIv2(baseUrl);
                 break;
             case 4:
-                api = new APIv2(context);
+                api = new APIv2(baseUrl);
                 break;
             default:
                 //Api is not known. Fallback to APIv2
-                api = new APIv2(context);
+                api = new APIv2(baseUrl);
                 break;
         }
 
 		return api;
 	}
 
-	protected abstract String getItemUrl();
-	protected abstract String getItemUpdatedUrl();
-	public abstract String getFeedUrl();
-	protected abstract String getFolderUrl();
+	public abstract HttpUrl getItemUrl();
+	public abstract HttpUrl getItemUpdatedUrl();
+	public abstract HttpUrl getFeedUrl();
+	public abstract HttpUrl getFolderUrl();
+    public abstract HttpUrl getUserUrl();
+	public abstract HttpUrl getTagBaseUrl();
 
-	protected abstract String getTagBaseUrl();
+	protected HttpUrl getAPIUrl(String format, String... urlSegments) {
+        String url = StringUtils.join(urlSegments, "/");
+		HttpUrl.Builder apiUrlBuilder = baseUrl.resolve(url).newBuilder();
 
-	/**
-	 *
-	 * @return http(s)://url_to_server
-	 */
-	protected String getOcRootPath() {
-		String oc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-		oc_root_path = RemoveAllDoubleSlashes.matcher(oc_root_path).replaceAll("/");
+		if(format != null)
+			apiUrlBuilder.addQueryParameter("format", format);
 
-		//if(!oc_root_path.endsWith("/"))
-		//	oc_root_path += "/";
-		//while(oc_root_path.endsWith("/"))
-		//	oc_root_path += oc_root_path.substring(0, oc_root_path.length() - 2);
-
-		return oc_root_path;
+		return apiUrlBuilder.build();
 	}
 
-
-	public String getUsername() {
-		return mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
+	public int[] GetFeeds(Context cont) throws Exception {
+		return OwnCloudReaderMethods.GetFeeds(cont, this);
 	}
 
-	public String getPassword() {
-		return mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
+	public int GetFolderTags(Context cont) throws Exception {
+		return OwnCloudReaderMethods.GetFolderTags(cont, this);
 	}
 
-	public int[] GetFeeds(Context cont, API api) throws Exception {
-		return OwnCloudReaderMethods.GetFeeds(cont, api);
+	public int GetItems(FeedItemTags tag, Context cont, String offset, boolean getRead, int id, String type) throws Exception {
+		return OwnCloudReaderMethods.GetItems(tag, cont, offset, getRead, String.valueOf(id), type, this);
 	}
 
-	public int GetFolderTags(Context cont, API api) throws Exception {
-		return OwnCloudReaderMethods.GetFolderTags(cont, api);
+	public int[] GetUpdatedItems(FeedItemTags tag, Context cont, long lastSync) throws Exception {
+		return OwnCloudReaderMethods.GetUpdatedItems(tag, cont, lastSync, this);
 	}
 
-	public int GetItems(TAGS tag, Context cont, String offset, boolean getRead, int id, String type, API api) throws Exception {
-		return OwnCloudReaderMethods.GetItems(tag, cont, offset, getRead, String.valueOf(id), type, api);
-	}
-
-	public int[] GetUpdatedItems(TAGS tag, Context cont, long lastSync, API api) throws Exception {
-		return OwnCloudReaderMethods.GetUpdatedItems(tag, cont, lastSync, api);
-	}
-
-	public static String validateURL(String url) {
-		return RemoveAllDoubleSlashes.matcher(url).replaceAll("/");
-	}
-
-	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags.TAGS tag, Context context, API api);
+	public abstract boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag, Context context);
 }
