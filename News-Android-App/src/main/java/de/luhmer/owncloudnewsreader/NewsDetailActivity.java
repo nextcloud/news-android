@@ -228,8 +228,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	        	if(currentPosition < rssItems.size()-1)
 	        	{
 	        		mViewPager.setCurrentItem(currentPosition + 1, true);
-	        		return true;
 	        	}
+				// capture event to avoid volume change at end of feed
+				return true;
 	        }
 
 	        else if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP))
@@ -237,8 +238,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	        	if(currentPosition > 0)
 	        	{
 	        		mViewPager.setCurrentItem(currentPosition - 1, true);
-	        		return true;
 	        	}
+				// capture event to avoid volume change at beginning of feed
+				return true;
 	        }
 		}
 		if(keyCode == KeyEvent.KEYCODE_BACK)
