@@ -91,9 +91,6 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
             BufferedReader in = new BufferedReader(new InputStreamReader(isTemp));
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
-                if(inputLine.startsWith("- "))
-                    inputLine = inputLine.substring(2);
-
                 changelogArr.add(inputLine.replace("<", "[").replace(">", "]"));
             }
             in.close();
@@ -105,57 +102,40 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
     }
 
     private String convertToXML(ArrayList<String> changelogArr) {
-        for(int i = 0; i < changelogArr.size(); i++) {
-            if(changelogArr.get(i).equals("Updates")) {
-                if(changelogArr.get(i + 1).equals("==================================")) {
-                    changelogArr.subList(0, i+1).clear();
-                    break;
+        // use changelog section exclusively
+        int changelogStartIndex = changelogArr.indexOf("Updates") + 2;
+        changelogArr.subList(0, changelogStartIndex).clear();
+        changelogArr.add("");
+
+        // create xml nodes
+        StringBuilder builder = new StringBuilder();
+        builder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+        builder.append("<changelog bulletedList=\"true\">");
+
+        boolean versionStarted = false;
+
+        for (String line : changelogArr) {
+            if (line.startsWith("- ")) {
+                // change entry
+                builder.append("<changelogtext>");
+                builder.append(line.substring(2).trim());
+                builder.append("</changelogtext>");
+            } else if (line.equals("")) {
+                // version end
+                if (versionStarted) {
+                    versionStarted = false;
+                    builder.append("</changelogversion>");
                 }
+            } else if (!line.contains("---------------------")) {
+                // version start
+                versionStarted = true;
+                builder.append("<changelogversion versionName=\"" + line + "\">");
             }
         }
 
-        for(int i = 0; i < changelogArr.size() - 1; i++) {
-            if(i < changelogArr.size()) {
-                if(changelogArr.get(i + 1).contains("---------------------")) {
-                    changelogArr.set(i, "<changelogversion versionName=\"" + changelogArr.get(i) + "\">");
-                    changelogArr.set(i + 1, "");
-                } else if(!changelogArr.get(i).equals("==================================")) {
-                    changelogArr.set(i, "<changelogtext>" + changelogArr.get(i).trim() +  "</changelogtext>");
-                } else {
-                    changelogArr.remove(i);
-                    i--;
-                }
+        builder.append("</changelog>");
 
-            }
-        }
-
-        boolean firstOccurence = true;
-        for(int i = 0; i < changelogArr.size(); i++) {
-            if(changelogArr.get(i).equals("<changelogtext></changelogtext>")) {
-                changelogArr.remove(i);
-                i--;
-            } else if(changelogArr.get(i).contains("<changelogversion")) {
-                if(!firstOccurence) {
-                    changelogArr.add(i, "</changelogversion>");
-                    i++;
-                }
-
-                firstOccurence = false;
-            }
-        }
-        changelogArr.add("</changelogversion>");
-
-        String changelog = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-                "<changelog bulletedList=\"true\">";
-
-        StringBuilder builder = new StringBuilder(changelog);
-        for (String value : changelogArr) {
-            builder.append(value);
-        }
-        changelog = builder.toString();
-        changelog += "</changelog>";
-
-        return changelog;
+        return builder.toString();
     }
 
     private String saveToTempFile(String content, String fileName) throws IOException {
