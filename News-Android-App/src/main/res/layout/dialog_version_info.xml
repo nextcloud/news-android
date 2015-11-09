@@ -33,6 +33,7 @@
     <de.luhmer.owncloudnewsreader.view.ChangeLogFileListView
         android:id="@+id/changelog_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

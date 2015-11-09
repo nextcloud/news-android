@@ -51,4 +51,7 @@
 
     <color name="tintColorLight">@android:color/black</color>
     <color name="tintColorDark">@android:color/white</color>
+
+    <!-- override libs -->
+    <color name="chglib_background_default_divider_color">#00000000</color>
 </resources>
