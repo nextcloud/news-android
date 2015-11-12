@@ -66,8 +66,9 @@
 
     <!-- ContextMenu Items -->
     <string name="action_saveimg">Save Image...</string>
-    <string name="action_shareimg">Share Image</string>
-    <string name="toast_imgsaved">Image saved</string>
+    <string name="toast_imgsaved">Image saved.</string>
+    <string name="toast_notwriteable">Failed to write Image.</string>
+
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>

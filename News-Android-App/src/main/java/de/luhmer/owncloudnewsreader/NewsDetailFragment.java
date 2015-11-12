@@ -35,7 +35,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -230,8 +229,7 @@ public class NewsDetailFragment extends Fragment {
     boolean changedUrl = false;
 
 	@SuppressLint("SetJavaScriptEnabled")
-	private void init_webView()
-	{
+	private void init_webView() {
 		WebSettings webSettings = mWebView.getSettings();
 	    //webSettings.setPluginState(WebSettings.PluginState.ON);
 	    webSettings.setJavaScriptEnabled(true);
@@ -321,43 +319,34 @@ public class NewsDetailFragment extends Fragment {
 	}
 
 
-
-    /**
-     * =============================================================================================
-     */
-
-
-    private URL contextMenuSource;
-
+    private URL downloadUrl;
+    private long downloadID;
+    private DownloadManager dlManager;
+    private BroadcastReceiver downloadCompleteReceiver;
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-
-        // Confirm the view is a webview
         if (v instanceof WebView) {
-
             WebView.HitTestResult result = ((WebView) v).getHitTestResult();
-
             if (result != null) {
                 int type = result.getType();
-                // Confirm type is an image
                 if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
                     String imageUrl = result.getExtra();
-                    // Confirm image is not local
                     if (imageUrl.startsWith("http")) {
-
                         try {
-                            contextMenuSource = new URL(imageUrl);
+                            downloadUrl = new URL(imageUrl);
                         } catch (MalformedURLException e) {
-                            //e.printStackTrace();
                             return;
                         }
-
                         super.onCreateContextMenu(menu, v, menuInfo);
                         MenuInflater inflater = getActivity().getMenuInflater();
                         inflater.inflate(R.menu.news_detail_context_img, menu);
-
                     }
                 }
+                //else if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE) { }
+                //else if (type == WebView.HitTestResult.EMAIL_TYPE) { }
+                //else if (type == WebView.HitTestResult.GEO_TYPE) { }
+                //else if (type == WebView.HitTestResult.PHONE_TYPE) { }
+                //else if (type == WebView.HitTestResult.EDIT_TEXT_TYPE) { }
             }
         }
     }
@@ -367,12 +356,9 @@ public class NewsDetailFragment extends Fragment {
         if( !getUserVisibleHint() ) {
             return false;
         }
-
         switch (item.getItemId()) {
             case R.id.action_saveimg:
-                downloadImage(contextMenuSource);
-                return true;
-            case R.id.action_shareimg:
+                downloadImage(downloadUrl);
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -380,67 +366,52 @@ public class NewsDetailFragment extends Fragment {
     }
 
 
-    private long downloadID;
-    private DownloadManager dl;
-    private BroadcastReceiver receiverDownloadComplete;
 
     public void downloadImage(URL url) {
-
-        //File f = new File(Environment.getExternalStorageDirectory() + "/somedir");
-        //if(f.isDirectory()) {
-        //   ....
-
-        System.out.println("***************************" +PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getString(SettingsActivity.EDT_DOWNLOADED_IMAGE_LOCATION,"0") );
-        System.out.println("***************************" +Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-
         if(isExternalStorageWritable()) {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
-            dl = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            dlManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
             request.setTitle("Downloading image");
             request.setDescription(filename);
             request.setVisibleInDownloadsUi(false);
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
-
-            downloadID = dl.enqueue(request);
+            downloadID = dlManager.enqueue(request);
         } else {
-            //Toast @strings: notwriteable
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_notwriteable), Toast.LENGTH_LONG).show();
         }
-
     }
 
-
     private void unregisterImageDownloadReceiver() {
-        if (receiverDownloadComplete != null) {
-            getActivity().unregisterReceiver(receiverDownloadComplete);
-            receiverDownloadComplete = null;
+        if (downloadCompleteReceiver != null) {
+            getActivity().unregisterReceiver(downloadCompleteReceiver);
+            downloadCompleteReceiver = null;
         }
     }
 
     private void registerImageDownloadReceiver() {
         IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
-        if(receiverDownloadComplete != null) return;
+        if(downloadCompleteReceiver != null) return;
 
-        receiverDownloadComplete = new BroadcastReceiver() {
+        downloadCompleteReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 long refID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
                 if (downloadID == refID) {
                     DownloadManager.Query query = new DownloadManager.Query();
                     query.setFilterById(refID);
-                    Cursor cursor = dl.query(query);
+                    Cursor cursor = dlManager.query(query);
                     cursor.moveToFirst();
                     int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
                     int status = cursor.getInt(columnIndex);
-                    int fileNameIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME);
-                    String savedFilePath = cursor.getString(fileNameIndex);
+                    //int fileNameIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME);
+                    //String savedFilePath = cursor.getString(fileNameIndex);
                     int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
                     int reason = cursor.getInt(columnReason);
 
                     switch (status) {
                         case DownloadManager.STATUS_SUCCESSFUL:
-
                             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_imgsaved), Toast.LENGTH_LONG).show();
                             break;
                         case DownloadManager.STATUS_FAILED:
@@ -450,33 +421,13 @@ public class NewsDetailFragment extends Fragment {
                 }
             }
         };
-        getActivity().registerReceiver(receiverDownloadComplete, intentFilter);
+        getActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
     }
-
 
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
-
-
-
-
-
-
-
-    /**
-     * END =========================================================================================
-     */
-
-
-
-
-
-
 
 
 

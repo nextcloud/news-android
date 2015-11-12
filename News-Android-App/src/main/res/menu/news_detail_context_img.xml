@@ -4,13 +4,6 @@
 
     <item
         android:id="@+id/action_saveimg"
-        android:icon="@drawable/checkbox_background_holo_dark"
         android:title="@string/action_saveimg"/>
-    <!-- android:icon="@drawable/btn_rating_star_off_normal_holo_light" -->
-
-    <item
-        android:id="@+id/action_shareimg"
-        android:checkable="true"
-        android:title="@string/action_shareimg" />
 
 </menu>
