@@ -92,6 +92,17 @@
         <item quantity="other">Fetched %d items so far..</item>
     </plurals>
 
+    <!-- Dialog messages -->
+    <string-array name="dialog_share_link_items">
+        <item>Open in browser</item>
+        <item>Share link</item>
+        <item>Copy link</item>
+    </string-array>
+    <string-array name="dialog_share_image_items">
+        <item>Open in browser</item>
+        <item>Share image</item>
+    </string-array>
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Settings</string>
     <string name="cache_is_cleared">Cache is cleared!</string>

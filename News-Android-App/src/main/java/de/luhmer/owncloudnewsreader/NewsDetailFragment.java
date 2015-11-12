@@ -59,7 +59,7 @@ import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.interfaces.WebViewLinkLongClickInterface;
+import de.luhmer.owncloudnewsreader.interfaces.WebViewLongClickInterface;
 
 public class NewsDetailFragment extends Fragment {
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
@@ -208,6 +208,7 @@ public class NewsDetailFragment extends Fragment {
 
 
     boolean changedUrl = false;
+    boolean onPageFinishedCalled = false;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	private void init_webView()
@@ -232,7 +233,7 @@ public class NewsDetailFragment extends Fragment {
         //webSettings.setDatabaseEnabled(true);
         //webview.clearCache(true);
 
-        mWebView.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
+        mWebView.addJavascriptInterface(new WebViewLongClickInterface(getActivity()), "Android");
 
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -249,19 +250,6 @@ public class NewsDetailFragment extends Fragment {
                 mProgressbarWebView.setProgress(progress);
                 if (progress == 100) {
                     mProgressbarWebView.setVisibility(ProgressBar.GONE);
-
-                    //The following three lines are a workaround for websites which don't use a background colour
-                    NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
-                    mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
-                    ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
-
-
-                    if (ThemeChooser.isDarkTheme(getActivity())) {
-                        mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    }
-
-                    String jsLinkLongClick = getTextFromAssets("LinkLongClick.js", getActivity());
-                    mWebView.loadUrl("javascript:(function(){ " + jsLinkLongClick + " })()");
                 }
             }
         });
@@ -281,7 +269,28 @@ public class NewsDetailFragment extends Fragment {
                     }
                 }
 
+                onPageFinishedCalled = false;
                 super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                if (onPageFinishedCalled) // prevent callback from being executed multiple times
+                    return;
+
+                //The following three lines are a workaround for websites which don't use a background colour
+                NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
+                mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
+                ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
+
+                if (ThemeChooser.isDarkTheme(getActivity())) {
+                    mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                }
+
+                String jsLongClick = getTextFromAssets("LongClick.js", getActivity());
+                mWebView.loadUrl("javascript:(function(){ " + jsLongClick + " })()");
+
+                onPageFinishedCalled = true;
             }
         });
 
@@ -337,7 +346,6 @@ public class NewsDetailFragment extends Fragment {
         StringBuilder builder = new StringBuilder();
 
         builder.append("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />");
-        builder.append("<script type=\"text/javascript\" src=\"web.js\"></script>");
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
         builder.append("<style type=\"text/css\">");
         builder.append(String.format(
