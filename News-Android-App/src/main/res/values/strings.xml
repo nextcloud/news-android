@@ -18,6 +18,7 @@
         <item quantity="one">You\'ve reached the maximum size of %d item</item>
         <item quantity="other">You\'ve reached the maximum size of %d items</item>
     </plurals>
+    <string name="current_version">You\'re using Version %s</string>
     <string name="widget_header">ownCloud News</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d new item available</item>

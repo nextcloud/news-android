@@ -9,10 +9,19 @@
   <string name="title_newsreader_detail">Detalle del Llector de noticies</string>
   <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Nun hai nengún elementu equí</string>
+  <string name="toast_GettingMoreItems">Descarga de más elementos aniciada ... Por favor espera.</string>
   <string name="tv_clickHereToOpenItem">Clic equí p\'abrir l\'artículu</string>
   <string name="no_wifi_available">Nun hai conexón WiFi</string>
   <string name="do_you_want_to_download_without_wifi">¿Quies baxar les semeyes ensin una conexón WiFi?</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">Algamasti\'l tamañu máximu d\'elementos %d</item>
+    <item quantity="other">Algamasti\'l tamañu máximu d\'elementos %d</item>
+  </plurals>
   <string name="widget_header">Noticies ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d elementos nuevos disponibles</item>
+    <item quantity="other">%d elementos nuevos disponibles</item>
+  </plurals>
   <string name="message_bar_reload">Recargar</string>
   <string name="allUnreadFeeds">Tolos temes ensin lleer</string>
   <string name="starredFeeds">Artículos destacaos</string>
@@ -41,9 +50,18 @@
   <string name="action_sync_settings">Axustes de sincronización</string>
   <string name="action_add_new_feed">Amestar feed nuevu</string>
   <string name="action_textToSpeech">Axuntar información</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">Tienes %d elementos nuevos ensin lleer</item>
+    <item quantity="other">Tienes %d elementos nuevos ensin lleer</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d elementos nuevos disponibles</item>
+    <item quantity="other">%d elementos nuevos disponibles</item>
+  </plurals>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome d\'usuariu</string>
   <string name="pref_title_password">Contraseña</string>
+  <string name="pref_title_owncloudRootPath">direición root d\'ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Aniciar sesión</string>
@@ -52,13 +70,26 @@
   <string name="error_field_required">Requierse esti campu</string>
   <string name="error_invalid_url">La url ye incorreuta</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Descargaos %d elementos vieyos</item>
+    <item quantity="other">Descargaos %d elementos vieyos</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Nun hai elementos disponibles</string>
   <string name="pull_to_refresh_updateTags">Sincronizando l\'estáu de los elementos</string>
   <string name="pull_to_refresh_updateFolder">Sincronizando carpeta</string>
   <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
   <string name="pull_to_refresh_updateItems">Sincronizando oxetos</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Averaos %d elementos alloñaos...</item>
+    <item quantity="other">Averaos %d elementos alloñaos...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Axustes</string>
+  <string name="cache_is_cleared">¡Llimpióse la Cache!</string>
+  <plurals name="number_of_files">
+    <item quantity="one">%d Ficheros</item>
+    <item quantity="other">%d Ficheros</item>
+  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Xeneral</string>
   <string name="pref_title_general_sort_order">Ordenar</string>
@@ -77,6 +108,8 @@
   <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Llimpiando caché</string>
+  <string name="dialog_clearing_cache_please_wait">Llimpiando cache... Por favor espera</string>
+  <string name="calculating_cache_size">Calculando tamañu de cache... Por favor espera</string>
   <string name="reset_cache_unsaved_changes">Hai cambeos non sincronizaos. ¿Quies vaciar la caché de toes formes?</string>
   <string name="warning">Avisu</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar nel aniciu</string>
@@ -85,6 +118,7 @@
   <string name="pref_title_DisableHostnameVerification">Deshabilitar verificación de nome d\'agospiu</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegar colos botones de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lleíu al desplazar</string>
+  <string name="pref_title_OpenInBrowserDirectly">Usa restolador esternu pa ver los artículos</string>
   <string name="pref_title_notification_new_articles_available">Amosar notificación cuando tean disponibles artículos nuevos</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">¿Aceutar certificáu desconocíu?</string>
@@ -108,6 +142,18 @@
   <string-array name="pref_display_apptheme_values">
     <item>0</item>
     <item>1</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Simple</item>
+    <item>Estendíu</item>
+    <item>Estendíu (too\'l testu)</item>
+    <item>Estendiu con Visor Web</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout_values">
+    <item>0</item>
+    <item>1</item>
+    <item>3</item>
+    <item>2</item>
   </string-array>
   <string-array name="pref_title_lines_count">
     <item>1</item>

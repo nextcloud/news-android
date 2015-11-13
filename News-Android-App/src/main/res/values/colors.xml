@@ -23,6 +23,10 @@
 
     <color name="material_blue_900">#0d47a1</color>
 
+    <!-- see also assets/web.css -->
+    <color name="news_detail_background_color_light_theme">#eeeeee</color>
+    <color name="news_detail_background_color_dark_theme">#222222</color>
+
 
 
     <color name="owncloudBlueLight">#35537A</color>
@@ -51,4 +55,7 @@
 
     <color name="tintColorLight">@android:color/black</color>
     <color name="tintColorDark">@android:color/white</color>
+
+    <!-- override libs -->
+    <color name="chglib_background_default_divider_color">#00000000</color>
 </resources>

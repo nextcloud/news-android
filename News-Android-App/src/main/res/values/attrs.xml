@@ -13,4 +13,6 @@
 
     <attr name="tintColor" format="color" />
 
+    <attr name="news_detail_background_color" format="color" />
+
 </resources>

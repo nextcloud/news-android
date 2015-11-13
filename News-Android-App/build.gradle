@@ -51,7 +51,6 @@ dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // compile 'com.google.android.gms:play-services:4.2.42'
-    compile project(':Changeloglib:ChangeLogLibrary')
     compile project(':ownCloud-Account-Importer')
     compile 'com.android.support:support-v4:23.0.1'
     compile 'com.android.support:appcompat-v7:23.0.1'
@@ -70,6 +69,7 @@ dependencies {
     compile 'de.greenrobot:greendao-generator:2.0.0'
     //compile 'org.freemarker:freemarker:2.3.23' //Required for DAO generation
     compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.0'
     compile 'org.jsoup:jsoup:1.7.2'
 
     testCompile 'org.robolectric:robolectric:3.0-rc3'
