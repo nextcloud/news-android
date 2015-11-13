@@ -21,51 +21,49 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager.LayoutParams;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import it.gmariotti.changelibs.library.view.ChangeLogListView;
+import java.io.IOException;
+import java.util.Formatter;
+
+import de.luhmer.owncloudnewsreader.async_tasks.DownloadChangelogTask;
+import de.luhmer.owncloudnewsreader.view.ChangeLogFileListView;
 
 /**
- * Activity which displays a login screen to the user, offering registration as
- * well.
+ * Displays current app version and changelog.
  */
 public class VersionInfoDialogFragment extends DialogFragment {
 
-	@SuppressLint("SetJavaScriptEnabled")
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Build the dialog and set up the button click handlers
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        // load views
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View view = inflater.inflate(R.layout.dialog_version_info, null);
-        builder.setView(view).setTitle(getString(R.string.menu_About_Changelog));
+        View view = inflater.inflate(R.layout.dialog_version_info, null);
 
-        try {
-            PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            String version = pInfo.versionName;
-            ((TextView)view.findViewById(R.id.tv_androidAppVersion)).setText("You're using Version " + version);
+        ChangeLogFileListView clListView = (ChangeLogFileListView) view.findViewById(R.id.changelog_listview);
+        final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.changeLogLoadingProgressBar);
+        TextView versionTextView = (TextView) view.findViewById(R.id.tv_androidAppVersion);
 
+        // build dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                .setView(view)
+                .setTitle(getString(R.string.menu_About_Changelog));
 
-            ChangeLogListView clListView = (ChangeLogListView) view.findViewById(R.id.changelog_listview);
-            clListView.setCallback(new ChangeLogListView.FinishedLoadingCallback() {
-                @Override
-                public void FinishedLoading() {
-                     view.findViewById(R.id.changeLogLoadingProgressBar).setVisibility(View.GONE);
-                }
-            });
+        // set current version
+        versionTextView.setText(getVersionString());
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        // load changelog into view
+        loadChangeLog(clListView, progressBar);
 
         return builder.create();
     }
@@ -83,4 +81,37 @@ public class VersionInfoDialogFragment extends DialogFragment {
         
 		super.onStart();
 	}
+
+    private String getVersionString() {
+        String version = "?";
+
+        try {
+            PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            version = pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e){
+            e.printStackTrace();
+        }
+
+        Formatter formatter = new Formatter();
+        String versionString = getString(R.string.current_version);
+        return formatter.format(versionString, version).toString();
+    }
+
+    /**
+     * Loads changelog into the given view and hides progress bar when done.
+     */
+    private void loadChangeLog(ChangeLogFileListView clListView, final ProgressBar progressBar) {
+        new DownloadChangelogTask(getContext(), clListView, new DownloadChangelogTask.Listener() {
+            @Override
+            public void onSuccess() {
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onError(IOException e) {
+                progressBar.setVisibility(View.GONE);
+                e.printStackTrace();
+            }
+        }).execute();
+    }
 }
