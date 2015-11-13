@@ -65,7 +65,10 @@
     </plurals>
 
     <!-- ContextMenu Items -->
-    <string name="action_saveimg">Save Image...</string>
+    <string name="action_downloadimg">Download Image</string>
+    <string name="action_shareimg">Share Image</string>
+    <string name="action_openimg">Open Image in browser</string>
+
     <string name="toast_imgsaved">Image saved.</string>
     <string name="toast_notwriteable">Failed to write Image.</string>
 

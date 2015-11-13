@@ -35,6 +35,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -43,6 +44,7 @@ import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
@@ -55,6 +57,11 @@ import android.widget.Toast;
 
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.InputStream;
@@ -88,6 +95,7 @@ public class NewsDetailFragment extends Fragment {
 
 	private int section_number;
     public List<String> urls = new ArrayList<>();
+    protected String html;
 
 
     public NewsDetailFragment() {
@@ -192,6 +200,7 @@ public class NewsDetailFragment extends Fragment {
 
             SetSoftwareRenderModeForWebView(htmlPage, mWebView);
 
+            html = htmlPage;
             mWebView.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
             super.onPostExecute(htmlPage);
         }
@@ -323,21 +332,37 @@ public class NewsDetailFragment extends Fragment {
     private long downloadID;
     private DownloadManager dlManager;
     private BroadcastReceiver downloadCompleteReceiver;
-
+    
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         if (v instanceof WebView) {
             WebView.HitTestResult result = ((WebView) v).getHitTestResult();
             if (result != null) {
                 int type = result.getType();
+
+                Document htmldoc = Jsoup.parse(html);
+
                 if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
                     String imageUrl = result.getExtra();
                     if (imageUrl.startsWith("http")) {
+
+                        String imgaltval = "";
+                        String imgsrcval = "";
+
                         try {
+                            Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
+                            imgaltval = imgtag.first().attr("alt");
+                            imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
                             downloadUrl = new URL(imageUrl);
                         } catch (MalformedURLException e) {
                             return;
                         }
+
                         super.onCreateContextMenu(menu, v, menuInfo);
+                        menu.setHeaderTitle(imgsrcval);
+                        menu.setHeaderIcon(android.R.drawable.ic_menu_gallery);
+                        if( !imgsrcval.equals(imgaltval) && imgaltval.length() > 0  ) {
+                            menu.add(imgaltval).setEnabled(false).setIcon(android.R.drawable.ic_menu_info_details);
+                        }
                         MenuInflater inflater = getActivity().getMenuInflater();
                         inflater.inflate(R.menu.news_detail_context_img, menu);
                     }
@@ -349,6 +374,10 @@ public class NewsDetailFragment extends Fragment {
                 //else if (type == WebView.HitTestResult.EDIT_TEXT_TYPE) { }
             }
         }
+
+
+
+
     }
 
     @Override
@@ -357,8 +386,14 @@ public class NewsDetailFragment extends Fragment {
             return false;
         }
         switch (item.getItemId()) {
-            case R.id.action_saveimg:
+            case R.id.action_downloadimg:
                 downloadImage(downloadUrl);
+                return true;
+            case R.id.action_shareimg:
+                //Intent Share
+                return true;
+            case R.id.action_openimg:
+                //Intent OpenInBrowser
                 return true;
             default:
                 return super.onContextItemSelected(item);

@@ -3,7 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_saveimg"
-        android:title="@string/action_saveimg"/>
+        android:id="@+id/action_downloadimg"
+        android:title="@string/action_downloadimg"
+        android:icon="@drawable/ic_action_save"/>
+    <item
+        android:id="@+id/action_shareimg"
+        android:title="@string/action_shareimg"
+        android:icon="@android:drawable/ic_menu_share"/>
+    <item
+        android:id="@+id/action_openimg"
+        android:title="@string/action_openimg"
+        android:icon="@drawable/ic_action_open_in_browser"/>
 
 </menu>
