@@ -35,7 +35,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -44,7 +43,6 @@ import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
@@ -60,7 +58,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.File;
@@ -328,11 +325,11 @@ public class NewsDetailFragment extends Fragment {
 	}
 
 
-    private URL downloadUrl;
+    private URL imageUrl;
     private long downloadID;
     private DownloadManager dlManager;
     private BroadcastReceiver downloadCompleteReceiver;
-    
+
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         if (v instanceof WebView) {
             WebView.HitTestResult result = ((WebView) v).getHitTestResult();
@@ -352,7 +349,7 @@ public class NewsDetailFragment extends Fragment {
                             Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
                             imgaltval = imgtag.first().attr("alt");
                             imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
-                            downloadUrl = new URL(imageUrl);
+                            this.imageUrl = new URL(imageUrl);
                         } catch (MalformedURLException e) {
                             return;
                         }
@@ -387,22 +384,26 @@ public class NewsDetailFragment extends Fragment {
         }
         switch (item.getItemId()) {
             case R.id.action_downloadimg:
-                downloadImage(downloadUrl);
+                downloadImage(imageUrl);
                 return true;
             case R.id.action_shareimg:
                 //Intent Share
                 return true;
             case R.id.action_openimg:
-                //Intent OpenInBrowser
+                openImageInBrowser(imageUrl);
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
     }
 
+    private void openImageInBrowser(URL url) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url.toString()));
+        startActivity(i);
+    }
 
-
-    public void downloadImage(URL url) {
+    private void downloadImage(URL url) {
         if(isExternalStorageWritable()) {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
             dlManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
