@@ -41,9 +41,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.ConsoleMessage;
 import android.webkit.WebBackForwardList;
-import android.webkit.WebChromeClient;
 import android.webkit.WebHistoryItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -60,12 +58,12 @@ import java.net.URL;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import de.luhmer.owncloudnewsreader.adapter.ProgressBarWebChromeClient;
 import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Listener {
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
@@ -245,38 +243,19 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         registerForContextMenu(mWebView);
 
-        mWebView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public boolean onConsoleMessage(ConsoleMessage cm) {
-                Log.v(TAG, cm.message() + " at " + cm.sourceId() + ":" + cm.lineNumber());
-                return true;
-            }
-
-            @Override
-            public void onProgressChanged(WebView view, int progress) {
-                if (progress < 100 && mProgressbarWebView.getVisibility() == ProgressBar.GONE) {
-                    mProgressbarWebView.setVisibility(ProgressBar.VISIBLE);
-                }
-                mProgressbarWebView.setProgress(progress);
-                if (progress == 100) {
-                    mProgressbarWebView.setVisibility(ProgressBar.GONE);
-                }
-            }
-        });
+        mWebView.setWebChromeClient(new ProgressBarWebChromeClient(mProgressbarWebView));
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                //The following three lines are a workaround for websites which don't use a background colour
+                // the following lines are a workaround for websites which don't use a background color
                 NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
-                mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
-                ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
-
-                if (ThemeChooser.isDarkTheme(getActivity())) {
-                    mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                }
+                int backgroundColor = ColorHelper.getColorFromAttribute(getContext(),
+                        R.attr.news_detail_background_color);
+                mWebView.setBackgroundColor(backgroundColor);
+                ndActivity.mViewPager.setBackgroundColor(backgroundColor);
             }
         });
 	}
@@ -387,33 +366,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
         if(downloadCompleteReceiver != null) return;
 
-        downloadCompleteReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                long refID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-                if (downloadID == refID) {
-                    DownloadManager.Query query = new DownloadManager.Query();
-                    query.setFilterById(refID);
-                    Cursor cursor = dlManager.query(query);
-                    cursor.moveToFirst();
-                    int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
-                    int status = cursor.getInt(columnIndex);
-                    //int fileNameIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME);
-                    //String savedFilePath = cursor.getString(fileNameIndex);
-                    int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
-                    int reason = cursor.getInt(columnReason);
-
-                    switch (status) {
-                        case DownloadManager.STATUS_SUCCESSFUL:
-                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_imgsaved), Toast.LENGTH_LONG).show();
-                            break;
-                        case DownloadManager.STATUS_FAILED:
-                            Toast.makeText(getActivity().getApplicationContext(), "FAILED: " +reason, Toast.LENGTH_LONG).show();
-                            break;
-                    }
-                }
-            }
-        };
+        downloadCompleteReceiver = new ImageDownloadReceiver();
         getActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
     }
 
@@ -434,5 +387,36 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     private boolean isCurrentPageRssItem() {
         String currentPageUrl = mWebView.copyBackForwardList().getCurrentItem().getUrl();
         return currentPageUrl.equals(RSS_ITEM_PAGE_URL);
+    }
+
+
+    private class ImageDownloadReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            long refID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+
+            if (downloadID == refID) {
+                DownloadManager.Query query = new DownloadManager.Query();
+                query.setFilterById(refID);
+                Cursor cursor = dlManager.query(query);
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                int status = cursor.getInt(columnIndex);
+                int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
+                int reason = cursor.getInt(columnReason);
+
+                switch (status) {
+                    case DownloadManager.STATUS_SUCCESSFUL:
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_imgsaved), Toast.LENGTH_LONG).show();
+                        break;
+                    case DownloadManager.STATUS_FAILED:
+                        Toast.makeText(getActivity().getApplicationContext(), "FAILED: " + reason, Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+        }
+
     }
 }
