@@ -23,15 +23,25 @@ package de.luhmer.owncloudnewsreader;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +51,19 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
 import java.io.File;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -59,7 +76,6 @@ import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.interfaces.WebViewLinkLongClickInterface;
 
 public class NewsDetailFragment extends Fragment {
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
@@ -71,8 +87,11 @@ public class NewsDetailFragment extends Fragment {
 	@InjectView(R.id.webview) WebView mWebView;
     @InjectView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
 	@InjectView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
+
+
 	private int section_number;
     public List<String> urls = new ArrayList<>();
+    protected String html;
 
 
     public NewsDetailFragment() {
@@ -101,6 +120,7 @@ public class NewsDetailFragment extends Fragment {
         if(mWebView != null) {
             mWebView.destroy();
         }
+        unregisterImageDownloadReceiver();
     }
 
     public void PauseCurrentPage()
@@ -111,6 +131,7 @@ public class NewsDetailFragment extends Fragment {
         }
     }
 
+
     public void ResumeCurrentPage()
     {
         if(mWebView != null) {
@@ -120,7 +141,8 @@ public class NewsDetailFragment extends Fragment {
     }
 
 
-	@Override
+
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_news_detail, container, false);
 
@@ -129,6 +151,7 @@ public class NewsDetailFragment extends Fragment {
         ButterKnife.inject(this, rootView);
 
         startLoadRssItemToWebViewTask();
+        registerImageDownloadReceiver();
 
 		return rootView;
 	}
@@ -173,6 +196,7 @@ public class NewsDetailFragment extends Fragment {
 
             SetSoftwareRenderModeForWebView(htmlPage, mWebView);
 
+            html = htmlPage;
             mWebView.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
             super.onPostExecute(htmlPage);
         }
@@ -210,8 +234,7 @@ public class NewsDetailFragment extends Fragment {
     boolean changedUrl = false;
 
 	@SuppressLint("SetJavaScriptEnabled")
-	private void init_webView()
-	{
+	private void init_webView() {
         int backgroundColor = ColorHelper.getColorFromAttribute(getContext(),
                 R.attr.news_detail_background_color);
         mWebView.setBackgroundColor(backgroundColor);
@@ -236,7 +259,7 @@ public class NewsDetailFragment extends Fragment {
         //webSettings.setDatabaseEnabled(true);
         //webview.clearCache(true);
 
-        mWebView.addJavascriptInterface(new WebViewLinkLongClickInterface(getActivity()), "Android");
+        registerForContextMenu(mWebView);
 
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -263,9 +286,6 @@ public class NewsDetailFragment extends Fragment {
                     if (ThemeChooser.isDarkTheme(getActivity())) {
                         mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     }
-
-                    String jsLinkLongClick = getTextFromAssets("LinkLongClick.js", getActivity());
-                    mWebView.loadUrl("javascript:(function(){ " + jsLinkLongClick + " })()");
                 }
             }
         });
@@ -303,8 +323,149 @@ public class NewsDetailFragment extends Fragment {
 	}
 
 
+    private URL imageUrl;
+    private long downloadID;
+    private DownloadManager dlManager;
+    private BroadcastReceiver downloadCompleteReceiver;
 
-	@SuppressLint("SimpleDateFormat")
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        if (v instanceof WebView) {
+            WebView.HitTestResult result = ((WebView) v).getHitTestResult();
+            if (result != null) {
+                int type = result.getType();
+
+                Document htmldoc = Jsoup.parse(html);
+
+                if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
+                    String imageUrl = result.getExtra();
+                    if (imageUrl.startsWith("http")) {
+
+                        String imgaltval = "";
+                        String imgsrcval = "";
+
+                        try {
+                            Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
+                            imgaltval = imgtag.first().attr("alt");
+                            imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
+                            this.imageUrl = new URL(imageUrl);
+                        } catch (MalformedURLException e) {
+                            return;
+                        }
+
+                        super.onCreateContextMenu(menu, v, menuInfo);
+                        menu.setHeaderTitle(imgsrcval);
+                        menu.setHeaderIcon(android.R.drawable.ic_menu_gallery);
+                        if( !imgsrcval.equals(imgaltval) && imgaltval.length() > 0  ) {
+                            menu.add(imgaltval).setEnabled(false).setIcon(android.R.drawable.ic_menu_info_details);
+                        }
+                        MenuInflater inflater = getActivity().getMenuInflater();
+                        inflater.inflate(R.menu.news_detail_context_img, menu);
+                    }
+                }
+                //else if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE) { }
+                //else if (type == WebView.HitTestResult.EMAIL_TYPE) { }
+                //else if (type == WebView.HitTestResult.GEO_TYPE) { }
+                //else if (type == WebView.HitTestResult.PHONE_TYPE) { }
+                //else if (type == WebView.HitTestResult.EDIT_TEXT_TYPE) { }
+            }
+        }
+
+
+
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if( !getUserVisibleHint() ) {
+            return false;
+        }
+        switch (item.getItemId()) {
+            case R.id.action_downloadimg:
+                downloadImage(imageUrl);
+                return true;
+            case R.id.action_shareimg:
+                //Intent Share
+                return true;
+            case R.id.action_openimg:
+                openImageInBrowser(imageUrl);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void openImageInBrowser(URL url) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url.toString()));
+        startActivity(i);
+    }
+
+    private void downloadImage(URL url) {
+        if(isExternalStorageWritable()) {
+            String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
+            dlManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
+            request.setTitle("Downloading image");
+            request.setDescription(filename);
+            request.setVisibleInDownloadsUi(false);
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+            downloadID = dlManager.enqueue(request);
+        } else {
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_notwriteable), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void unregisterImageDownloadReceiver() {
+        if (downloadCompleteReceiver != null) {
+            getActivity().unregisterReceiver(downloadCompleteReceiver);
+            downloadCompleteReceiver = null;
+        }
+    }
+
+    private void registerImageDownloadReceiver() {
+        IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        if(downloadCompleteReceiver != null) return;
+
+        downloadCompleteReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                long refID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                if (downloadID == refID) {
+                    DownloadManager.Query query = new DownloadManager.Query();
+                    query.setFilterById(refID);
+                    Cursor cursor = dlManager.query(query);
+                    cursor.moveToFirst();
+                    int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                    int status = cursor.getInt(columnIndex);
+                    //int fileNameIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME);
+                    //String savedFilePath = cursor.getString(fileNameIndex);
+                    int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
+                    int reason = cursor.getInt(columnReason);
+
+                    switch (status) {
+                        case DownloadManager.STATUS_SUCCESSFUL:
+                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_imgsaved), Toast.LENGTH_LONG).show();
+                            break;
+                        case DownloadManager.STATUS_FAILED:
+                            Toast.makeText(getActivity().getApplicationContext(), "FAILED: " +reason, Toast.LENGTH_LONG).show();
+                            break;
+                    }
+                }
+            }
+        };
+        getActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
+    }
+
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+
+
+    @SuppressLint("SimpleDateFormat")
 	public static String getHtmlPage(Context context, RssItem rssItem, boolean showHeader)
 	{
         String feedTitle = "Undefined";
@@ -341,7 +502,6 @@ public class NewsDetailFragment extends Fragment {
         StringBuilder builder = new StringBuilder();
 
         builder.append("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />");
-        builder.append("<script type=\"text/javascript\" src=\"web.js\"></script>");
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
         builder.append("<style type=\"text/css\">");
         builder.append(String.format(

@@ -65,6 +65,15 @@
         <item quantity="other">%d new unread items available</item>
     </plurals>
 
+    <!-- ContextMenu Items -->
+    <string name="action_downloadimg">Download Image</string>
+    <string name="action_shareimg">Share Image</string>
+    <string name="action_openimg">Open Image in browser</string>
+
+    <string name="toast_imgsaved">Image saved.</string>
+    <string name="toast_notwriteable">Failed to write Image.</string>
+
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>
     <string name="pref_title_password">Password</string>
@@ -207,6 +216,7 @@
     <string name="pref_title_clearCache">Clear cache</string>
     <string name="pref_title_CacheImagesOffline">Cache images offline</string>
     <string name="pref_title_Max_Cache_Size">Max Cache Size</string>
+    <string name="pref_title_DownloadedImageLocation">Save downloaded images to:</string>
 
 
     <string-array name="pref_data_sync_image_cache">
