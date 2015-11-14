@@ -64,6 +64,7 @@ import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
+import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Listener {
@@ -360,7 +361,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     }
 
     private void downloadImage(URL url) {
-        if(isExternalStorageWritable()) {
+        if(FileUtils.isExternalStorageWritable()) {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
             dlManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
@@ -414,11 +415,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             }
         };
         getActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
-    }
-
-    public boolean isExternalStorageWritable() {
-        String state = Environment.getExternalStorageState();
-        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     /**
