@@ -79,11 +79,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 	private int section_number;
     protected String html;
 
-
-    public NewsDetailFragment() {
-        //setRetainInstance(true);
-    }
-
     public int getSectionNumber() {
         return section_number;
     }
@@ -181,7 +176,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         mWebView.setVisibility(View.VISIBLE);
         mProgressBarLoading.setVisibility(View.GONE);
 
-        SetSoftwareRenderModeForWebView(htmlPage, mWebView);
+        setSoftwareRenderModeForWebView(htmlPage, mWebView);
 
         html = htmlPage;
         mWebView.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", RSS_ITEM_PAGE_URL);
@@ -193,21 +188,18 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
      * @param webView
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static void SetSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
+    private void setSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             return;
         }
 
-        if(htmlPage.contains(".gif")) {
+        if (htmlPage.contains(".gif")) {
             webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
             Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
         } else {
-            //webView.setLayerType(WebView.LAYER_TYPE_HARDWARE, null);
-            //Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
-
-            if(webView.getLayerType() == WebView.LAYER_TYPE_HARDWARE) {
+            if (webView.getLayerType() == WebView.LAYER_TYPE_HARDWARE) {
                 Log.v("NewsDetailFragment", "Using LAYER_TYPE_HARDWARE");
-            } else if (webView.getLayerType() == WebView.LAYER_TYPE_SOFTWARE){
+            } else if (webView.getLayerType() == WebView.LAYER_TYPE_SOFTWARE) {
                 Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
             } else {
                 Log.v("NewsDetailFragment", "Using LAYER_TYPE_DEFAULT");
@@ -222,24 +214,12 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         mWebView.setBackgroundColor(backgroundColor);
 
 		WebSettings webSettings = mWebView.getSettings();
-	    //webSettings.setPluginState(WebSettings.PluginState.ON);
 	    webSettings.setJavaScriptEnabled(true);
 	    webSettings.setAllowFileAccess(true);
-	    //webSettings.setPluginsEnabled(true);
-	    //webSettings.setDomStorageEnabled(true);
-
 	    webSettings.setJavaScriptCanOpenWindowsAutomatically(false);
 	    webSettings.setSupportMultipleWindows(false);
 	    webSettings.setSupportZoom(false);
-	    //webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
-	    //webSettings.setSavePassword(false);
-	    //webview.setVerticalScrollBarEnabled(false);
-	    //webview.setHorizontalScrollBarEnabled(false);
         webSettings.setAppCacheEnabled(true);
-        //webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        //webSettings.setAppCacheMaxSize(200);
-        //webSettings.setDatabaseEnabled(true);
-        //webview.clearCache(true);
 
         registerForContextMenu(mWebView);
 
@@ -266,51 +246,46 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     private DownloadManager dlManager;
     private BroadcastReceiver downloadCompleteReceiver;
 
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (v instanceof WebView) {
-            WebView.HitTestResult result = ((WebView) v).getHitTestResult();
-            if (result != null) {
-                int type = result.getType();
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        if (!(view instanceof WebView))
+            return;
 
-                Document htmldoc = Jsoup.parse(html);
+        WebView.HitTestResult result = ((WebView) view).getHitTestResult();
+        if (result == null)
+            return;
 
-                if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
-                    String imageUrl = result.getExtra();
-                    if (imageUrl.startsWith("http")) {
+        int type = result.getType();
+        Document htmlDoc = Jsoup.parse(html);
 
-                        String imgaltval = "";
-                        String imgsrcval = "";
+        switch (type) {
+            case WebView.HitTestResult.IMAGE_TYPE:
+            case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
+                String imageUrl = result.getExtra();
 
-                        try {
-                            Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
-                            imgaltval = imgtag.first().attr("alt");
-                            imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
-                            this.imageUrl = new URL(imageUrl);
-                        } catch (MalformedURLException e) {
-                            return;
-                        }
+                if (!imageUrl.startsWith("http"))
+                    return;
 
-                        super.onCreateContextMenu(menu, v, menuInfo);
-                        menu.setHeaderTitle(imgsrcval);
-                        menu.setHeaderIcon(android.R.drawable.ic_menu_gallery);
-                        if( !imgsrcval.equals(imgaltval) && imgaltval.length() > 0  ) {
-                            menu.add(imgaltval).setEnabled(false).setIcon(android.R.drawable.ic_menu_info_details);
-                        }
-                        MenuInflater inflater = getActivity().getMenuInflater();
-                        inflater.inflate(R.menu.news_detail_context_img, menu);
-                    }
+                Elements imgTag = htmlDoc.getElementsByAttributeValueContaining("src", imageUrl);
+                String imgAltVal = imgTag.first().attr("alt");
+                String imgSrcVal = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
+
+                try {
+                    this.imageUrl = new URL(imageUrl);
+                } catch (MalformedURLException e) {
+                    return;
                 }
-                //else if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE) { }
-                //else if (type == WebView.HitTestResult.EMAIL_TYPE) { }
-                //else if (type == WebView.HitTestResult.GEO_TYPE) { }
-                //else if (type == WebView.HitTestResult.PHONE_TYPE) { }
-                //else if (type == WebView.HitTestResult.EDIT_TEXT_TYPE) { }
-            }
+
+                super.onCreateContextMenu(menu, view, menuInfo);
+                createImageContextMenu(menu, imgSrcVal, imgAltVal);
+                break;
+
+            case WebView.HitTestResult.SRC_ANCHOR_TYPE:
+            case WebView.HitTestResult.EMAIL_TYPE:
+            case WebView.HitTestResult.GEO_TYPE:
+            case WebView.HitTestResult.PHONE_TYPE:
+            case WebView.HitTestResult.EDIT_TEXT_TYPE:
+                break;
         }
-
-
-
-
     }
 
     @Override
@@ -333,6 +308,18 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         }
     }
 
+    private void createImageContextMenu(ContextMenu menu, String imageSrc, String imageAlt) {
+        menu.setHeaderTitle(imageSrc);
+        menu.setHeaderIcon(android.R.drawable.ic_menu_gallery);
+        if(!imageSrc.equals(imageAlt) && imageAlt.length() > 0 ) {
+            menu.add(imageAlt)
+                    .setEnabled(false)
+                    .setIcon(android.R.drawable.ic_menu_info_details);
+        }
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.news_detail_context_img, menu);
+    }
+
     private void openImageInBrowser(URL url) {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url.toString()));
@@ -340,7 +327,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     }
 
     private void downloadImage(URL url) {
-        if(FileUtils.isExternalStorageWritable()) {
+        if (FileUtils.isExternalStorageWritable()) {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
             dlManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
@@ -364,7 +351,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
     private void registerImageDownloadReceiver() {
         IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
-        if(downloadCompleteReceiver != null) return;
+        if (downloadCompleteReceiver != null) return;
 
         downloadCompleteReceiver = new ImageDownloadReceiver();
         getActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
