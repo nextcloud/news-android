@@ -69,6 +69,8 @@ Contributors
 * [David Luhmer](https://github.com/David-Development) (Maintainer)
 * [Daniel Schaal](https://github.com/schaal)
 * [otrichet] (https://github.com/otrichet)
+* [cemrich] (https://github.com/cemrich)
+* [Benjamin Stephan] (https://github.com/b3nson)
 
 
 Updates
