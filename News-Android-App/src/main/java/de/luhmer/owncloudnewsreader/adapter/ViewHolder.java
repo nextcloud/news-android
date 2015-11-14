@@ -28,6 +28,7 @@ import butterknife.Optional;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
@@ -226,7 +227,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon);
 
         if(webView_body != null) {
-            String htmlPage = NewsDetailFragment.getHtmlPage(itemView.getContext(),rssItem,false);
+            String htmlPage = RssItemToHtmlTask.getHtmlPage(itemView.getContext(), rssItem, false);
             webView_body.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
         }
     }
