@@ -29,57 +29,46 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
+import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
+import android.webkit.WebHistoryItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.nostra13.universalimageloader.cache.disc.DiskCache;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.io.File;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
-import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
-import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Listener {
 	public static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
+    private static final String RSS_ITEM_PAGE_URL = "about:blank";
 
 	public final String TAG = getClass().getCanonicalName();
 
@@ -89,7 +78,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
 
 	private int section_number;
-    public List<String> urls = new ArrayList<>();
     protected String html;
 
 
@@ -139,11 +127,32 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         }
     }
 
+    /**
+     * @return true when calls to NewsDetailFragment#navigateBack()
+     * can be processed right now
+     * @see NewsDetailFragment#navigateBack()
+     */
+    public boolean canNavigateBack() {
+        return !isCurrentPageRssItem();
+    }
 
+    /**
+     * Navigates back to the last displayed page. Call NewsDetailFragment#canNavigateBack()
+     * to check if back navigation is possible right now. Use e.g. for back button handling.
+     * @see NewsDetailFragment#navigateBack()
+     */
+    public void navigateBack() {
+        if (isLastPageRssItem()) {
+            mWebView.clearHistory();
+            startLoadRssItemToWebViewTask();
+        } else if (!isCurrentPageRssItem()){
+            mWebView.goBack();
+        }
+    }
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_news_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_news_detail, container, false);
 
 		section_number = (Integer) getArguments().get(ARG_SECTION_NUMBER);
 
@@ -155,7 +164,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 		return rootView;
 	}
 
-    public void startLoadRssItemToWebViewTask() {
+    private void startLoadRssItemToWebViewTask() {
         mWebView.setVisibility(View.GONE);
         mProgressBarLoading.setVisibility(View.VISIBLE);
 
@@ -176,7 +185,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         SetSoftwareRenderModeForWebView(htmlPage, mWebView);
 
         html = htmlPage;
-        mWebView.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
+        mWebView.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", RSS_ITEM_PAGE_URL);
     }
 
     /**
@@ -206,9 +215,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             }
         }
     }
-
-
-    boolean changedUrl = false;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	private void init_webView() {
@@ -253,48 +259,23 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                 mProgressbarWebView.setProgress(progress);
                 if (progress == 100) {
                     mProgressbarWebView.setVisibility(ProgressBar.GONE);
-
-                    //The following three lines are a workaround for websites which don't use a background colour
-                    NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
-                    mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
-                    ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
-
-
-                    if (ThemeChooser.isDarkTheme(getActivity())) {
-                        mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    }
                 }
             }
         });
-
 
         mWebView.setWebViewClient(new WebViewClient() {
-
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                if (changedUrl) {
-                    changedUrl = false;
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
 
-                    if (!url.equals("file:///android_asset/") && (urls.isEmpty() || !urls.get(0).equals(url))) {
-                        urls.add(0, url);
+                //The following three lines are a workaround for websites which don't use a background colour
+                NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
+                mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
+                ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
 
-                        Log.v(TAG, "Page finished (added): " + url);
-                    }
+                if (ThemeChooser.isDarkTheme(getActivity())) {
+                    mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                 }
-
-                super.onPageStarted(view, url, favicon);
-            }
-        });
-
-        mWebView.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (v.getId() == R.id.webview && event.getAction() == MotionEvent.ACTION_DOWN) {
-                    changedUrl = true;
-                }
-
-                return false;
             }
         });
 	}
@@ -438,5 +419,24 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+    /**
+     * @return true when the last page on the webview's history stack is
+     * the original rss item page
+     */
+    private boolean isLastPageRssItem() {
+        WebBackForwardList list = mWebView.copyBackForwardList();
+        WebHistoryItem lastItem = list.getItemAtIndex(list.getCurrentIndex() - 1);
+        return lastItem != null && lastItem.getUrl().equals(RSS_ITEM_PAGE_URL);
+    }
+
+    /**
+     * @return true when the current page on the webview's history stack is
+     * the original rss item page
+     */
+    private boolean isCurrentPageRssItem() {
+        String currentPageUrl = mWebView.copyBackForwardList().getCurrentItem().getUrl();
+        return currentPageUrl.equals(RSS_ITEM_PAGE_URL);
     }
 }

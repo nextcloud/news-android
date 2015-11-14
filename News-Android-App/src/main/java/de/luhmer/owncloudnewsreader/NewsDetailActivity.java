@@ -245,18 +245,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		{
 			NewsDetailFragment ndf = getNewsDetailFragmentAtPosition(currentPosition);//(NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 
-			if(ndf != null && ndf.mWebView != null)
-			{
-				if (ndf.urls.size() > 1) {
-                    ndf.urls.remove(0);
-					ndf.mWebView.loadUrl(ndf.urls.get(0));
-					return true;
-				} else if(ndf.urls.size() == 1) {
-					ndf.urls.remove(0);
-                    ndf.startLoadRssItemToWebViewTask();
-                    Log.v(TAG, "Load rssitem to webview again");
-					return true;
-                }
+			if(ndf != null && ndf.canNavigateBack()) {
+				ndf.navigateBack();
+				return true;
 			}
 		}
 
