@@ -54,6 +54,7 @@
   <plurals name="notification_new_items_text">
     <item quantity="other">%d 個の新しい未読アイテムが利用できます</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">パスワード</string>

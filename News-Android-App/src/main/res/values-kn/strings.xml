@@ -7,6 +7,7 @@
   <string name="action_Share">﻿ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="action_save">﻿ಉಳಿಸಿ</string>
   <string name="action_settings">ಆಯ್ಕೆ</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">﻿ಬಳಕೆಯ ಹೆಸರು</string>
   <string name="pref_title_password">ಗುಪ್ತ ಪದ</string>

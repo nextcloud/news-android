@@ -10,6 +10,7 @@
   <string name="action_save">சேமிக்க </string>
   <string name="action_settings">அமைப்புகள்</string>
   <string name="action_add_new_feed">புதிய ஊட்டை சேர்க்க</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">பயனாளர் பெயர்</string>
   <string name="pref_title_password">கடவுச்சொல்</string>

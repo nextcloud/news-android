@@ -10,6 +10,11 @@
   <string name="tv_clickHereToOpenItem">Avaa kohde painamalla tästä</string>
   <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
   <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman wifi-yhteyttä</string>
+  <plurals name="max_items_count_reached">
+    <item quantity="one">%d enimmäiskohteen määrä on täynnä</item>
+    <item quantity="other">%d enimmäiskohteen määrä on täynnä</item>
+  </plurals>
+  <string name="current_version">Käytössäsi on versio %s</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d uusi kohde saatavilla</item>
     <item quantity="other">%d uutta kohdetta saatavilla</item>
@@ -49,6 +54,7 @@
     <item quantity="one">%d uusi lukematon kohde saatavilla</item>
     <item quantity="other">%d uutta lukematonta kohdetta saatavilla</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>

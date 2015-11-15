@@ -54,6 +54,7 @@
   <plurals name="notification_new_items_text">
     <item quantity="other">Terdapat %d item baru yang belum dibaca </item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Sandi</string>

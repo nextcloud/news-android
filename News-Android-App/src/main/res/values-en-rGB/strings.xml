@@ -41,6 +41,7 @@
   <string name="action_sync_settings">Sync Settings</string>
   <string name="action_add_new_feed">Add new feed</string>
   <string name="action_textToSpeech">Read out</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Username</string>
   <string name="pref_title_password">Password</string>

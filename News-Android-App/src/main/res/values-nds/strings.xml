@@ -6,6 +6,7 @@
   <!--Action Bar Items-->
   <string name="action_Share">Teilen</string>
   <string name="action_settings">Einstellungen</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <string name="pref_title_password">Passwort</string>

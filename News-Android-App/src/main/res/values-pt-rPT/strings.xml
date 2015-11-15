@@ -58,6 +58,7 @@
     <item quantity="one">Tem disponível %d novo item por ler</item>
     <item quantity="other">Tem disponível %d novos itens por ler</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Palavra-passe:</string>

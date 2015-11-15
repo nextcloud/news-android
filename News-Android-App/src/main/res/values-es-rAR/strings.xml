@@ -38,6 +38,7 @@
   <string name="action_settings">Configuración</string>
   <string name="action_sync_settings">Configuración de sincro. </string>
   <string name="action_add_new_feed">Agregar nueva fuente</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>

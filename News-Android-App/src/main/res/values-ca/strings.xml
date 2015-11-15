@@ -41,6 +41,7 @@
   <string name="action_sync_settings">Arranjament de sincronització</string>
   <string name="action_add_new_feed">Afegeix una font nova</string>
   <string name="action_textToSpeech">De lectura</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'usuari</string>
   <string name="pref_title_password">Contrasenya</string>

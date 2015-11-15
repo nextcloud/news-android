@@ -24,6 +24,7 @@
   <string name="action_save">Сними</string>
   <string name="action_settings">Подесувања</string>
   <string name="action_add_new_feed">Додади нов канал</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>

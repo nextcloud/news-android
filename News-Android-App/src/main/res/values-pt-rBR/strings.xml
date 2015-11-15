@@ -17,6 +17,7 @@
     <item quantity="one">Você atingiu o tamanho máximo de %d item</item>
     <item quantity="other">Você atingiu o tamanho máximo de %d itens</item>
   </plurals>
+  <string name="current_version">Você está usando a versão %s</string>
   <string name="widget_header">Notícias ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d novo item disponível</item>
@@ -58,6 +59,7 @@
     <item quantity="one">%d novo item não lido disponível</item>
     <item quantity="other">%d novos itens não lidos disponíveis</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>

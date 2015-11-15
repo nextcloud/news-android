@@ -58,6 +58,7 @@
     <item quantity="one">%d nieuw ongelezen bericht beschikbaar</item>
     <item quantity="other">%d nieuwe ongelezen berichten beschikbaar</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
   <string name="pref_title_password">Wachtwoord</string>

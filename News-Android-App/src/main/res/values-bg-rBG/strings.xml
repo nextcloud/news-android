@@ -58,6 +58,7 @@
     <item quantity="one">Налични са %d нови непрочетени елементи</item>
     <item quantity="other">Налични са %d нови непрочетени елементи</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Потребител</string>
   <string name="pref_title_password">Парола</string>

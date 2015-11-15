@@ -18,6 +18,7 @@
     <item quantity="few">Dosáhli jste maximální velikosti %d položek</item>
     <item quantity="other">Dosáhli jste maximální velikosti %d položek</item>
   </plurals>
+  <string name="current_version">Používáte verzi %s</string>
   <string name="widget_header">ownCloud Novinky</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d nová položka k dispozici</item>
@@ -62,6 +63,7 @@
     <item quantity="few">%d nové nepřečtené položky k dispozici</item>
     <item quantity="other">%d nových nepřečtených položek k dispozici</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Uživatelské jméno</string>
   <string name="pref_title_password">Heslo</string>

@@ -45,6 +45,7 @@
     <item quantity="one">Du har %d oläst sak</item>
     <item quantity="other">Du har %d olästa saker</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Användarnamn</string>
   <string name="pref_title_password">Lösenord</string>

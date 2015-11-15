@@ -40,6 +40,7 @@
   <string name="action_settings">নিয়ামকসমূহ</string>
   <string name="action_sync_settings">Sync নিয়ামকসমূহ</string>
   <string name="action_add_new_feed">নতুন feed যোগ কর</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">ব্যবহারকারী</string>
   <string name="pref_title_password">কূটশব্দ</string>
