@@ -17,15 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -33,94 +33,180 @@ import java.util.List;
  */
 public class NewsDetailImageDialogFragment extends DialogFragment {
 
-    static NewsDetailImageDialogFragment newInstance(String title, int titleIcon, String text, URL imageUrl) {
+    public enum TYPE { IMAGE, URL }
+
+    static NewsDetailImageDialogFragment newInstanceImage(String dialogTitle, Integer titleIcon, String dialogText, URL imageUrl) {
         NewsDetailImageDialogFragment f = new NewsDetailImageDialogFragment();
+
+        if(titleIcon == null) {
+            titleIcon = android.R.drawable.ic_menu_info_details;
+        }
+
         Bundle args = new Bundle();
+        args.putSerializable("dialogType", TYPE.IMAGE);
         args.putInt("titleIcon", titleIcon);
-        args.putString("title", title);
-        args.putString("text", text);
+        args.putString("title", dialogTitle);
+        args.putString("text", dialogText);
         args.putSerializable("imageUrl", imageUrl);
         f.setArguments(args);
         return f;
     }
 
-    private int mTitleIcon;
-    private String mTitle;
-    private String mText;
+    static NewsDetailImageDialogFragment newInstanceUrl(String dialogTitle, String dialogText) {
+        NewsDetailImageDialogFragment f = new NewsDetailImageDialogFragment();
+
+        Bundle args = new Bundle();
+        args.putSerializable("dialogType", TYPE.URL);
+        args.putInt("titleIcon", android.R.drawable.ic_menu_info_details);
+        args.putString("title", dialogTitle);
+        args.putString("text", dialogText);
+        f.setArguments(args);
+        return f;
+    }
+
+    private int mDialogIcon;
+    private String mDialogTitle;
+    private String mDialogText;
     private URL mImageUrl;
+    private TYPE mDialogType;
 
     private long downloadID;
     private DownloadManager dlManager;
     private BroadcastReceiver downloadCompleteReceiver;
 
+    private HashMap<String, MenuAction> mMenuItems;
 
     @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            mTitleIcon = getArguments().getInt("titleIcon");
-            mTitle = getArguments().getString("title");
-            mText = getArguments().getString("text");
-            mImageUrl = (URL) getArguments().getSerializable("imageUrl");
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mDialogIcon = getArguments().getInt("titleIcon");
+        mDialogTitle = getArguments().getString("title");
+        mDialogText = getArguments().getString("text");
+        mImageUrl = (URL) getArguments().getSerializable("imageUrl");
+        mDialogType = (TYPE) getArguments().getSerializable("dialogType");
 
-            int style = DialogFragment.STYLE_NO_TITLE;
-            int theme = android.R.style.Theme_Holo_Dialog;
-            setStyle(style, theme);
-        }
+        mMenuItems = new HashMap<>();
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            registerImageDownloadReceiver();
-
-            View v = inflater.inflate(R.layout.fragment_dialog_image, container, false);
-
-            TextView tvTitle = (TextView) v.findViewById(R.id.ic_menu_title);
-            TextView tvText = (TextView) v.findViewById(R.id.ic_menu_item_text);
-            ImageView imgTitle = (ImageView) v.findViewById(R.id.ic_menu_gallery);
-
-            tvTitle.setText(mTitle);
-            tvText.setText(mText);
-            imgTitle.setImageResource(mTitleIcon);
-
-            ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
-
-            List<String> menuItem = new ArrayList<>();
-            menuItem.add("Download Image");
-            menuItem.add("Share Image");
-            menuItem.add("Open Image in browser");
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
-                    getActivity(),
-                    android.R.layout.simple_list_item_1,
-                    menuItem );
-
-            mListView.setAdapter(arrayAdapter);
-
-            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    switch (i) {
-                        case 0:
-                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
-                            getDialog().setCancelable(false);
+        //Build the menu
+        switch(mDialogType) {
+            case IMAGE:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                    mMenuItems.put("Download Image", new MenuAction() {
+                        @Override
+                        public void execute() {
                             downloadImage(mImageUrl);
-                            break;
-                        case 1:
-                            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                            sharingIntent.setType("text/plain");
-                            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mText);
-                            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mImageUrl.toString());
-                            startActivity(Intent.createChooser(sharingIntent, "Share via"));
-                            getDialog().dismiss();
-                            break;
-                        case 2:
-                            openImageInBrowser(mImageUrl);
-                            getDialog().dismiss();
-                            break;
-                    }
+                        }
+                    });
                 }
-            });
-            return v;
+                mMenuItems.put("Share Image", new MenuAction() {
+                    @Override
+                    public void execute() {
+                        shareImage();
+                    }
+                });
+                mMenuItems.put("Open Image in browser", new MenuAction() {
+                    @Override
+                    public void execute() {
+                        openLinkInBrowser(mImageUrl);
+                    }
+                });
+                break;
+            case URL:
+                mMenuItems.put("Share Link", new MenuAction() {
+                    @Override
+                    public void execute() {
+                        shareLink();
+                    }
+                });
+                mMenuItems.put("Open Link in browser", new MenuAction() {
+                    @Override
+                    public void execute() {
+                        try {
+                            openLinkInBrowser(new URL(mDialogText));
+                        } catch (MalformedURLException e) {
+                            Toast.makeText(getActivity(), "Can not parse url!", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                break;
         }
+
+
+        int style = DialogFragment.STYLE_NO_TITLE;
+        int theme = android.R.style.Theme_Holo_Dialog;
+        setStyle(style, theme);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        registerImageDownloadReceiver();
+
+        View v = inflater.inflate(R.layout.fragment_dialog_image, container, false);
+
+        TextView tvTitle = (TextView) v.findViewById(R.id.ic_menu_title);
+        TextView tvText = (TextView) v.findViewById(R.id.ic_menu_item_text);
+        ImageView imgTitle = (ImageView) v.findViewById(R.id.ic_menu_gallery);
+
+        /*
+        //Hide the header (title and image) for urls
+        if(mDialogType == TYPE.URL) {
+            tvTitle.setVisibility(View.GONE);
+            imgTitle.setVisibility(View.GONE);
+        }*/
+
+        tvTitle.setText(mDialogTitle);
+        tvText.setText(mDialogText);
+        imgTitle.setImageResource(mDialogIcon);
+
+        ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
+        List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                menuItemsList);
+
+        mListView.setAdapter(arrayAdapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String key = arrayAdapter.getItem(i);
+                MenuAction mAction = mMenuItems.get(key);
+                mAction.execute();
+            }
+        });
+        return v;
+    }
+
+
+    private void shareImage() {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mDialogText);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mImageUrl.toString());
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        getDialog().dismiss();
+    }
+
+    private void shareLink() {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mDialogTitle);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mDialogText);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        getDialog().dismiss();
+    }
+
+
+    private void openLinkInBrowser(URL url) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url.toString()));
+        startActivity(i);
+        getDialog().dismiss();
+    }
 
     @Override
     public void onDestroyView() {
@@ -128,14 +214,11 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         super.onDestroyView();
     }
 
-    private void openImageInBrowser(URL url) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url.toString()));
-        startActivity(i);
-    }
-
-
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void downloadImage(URL url) {
+        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
+        getDialog().setCancelable(false);
+
         if(isExternalStorageWritable()) {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
             dlManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
@@ -144,7 +227,9 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             request.setTitle("Downloading image");
             request.setDescription(filename);
             request.setVisibleInDownloadsUi(false);
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+            }
             downloadID = dlManager.enqueue(request);
         } else {
             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_notwriteable), Toast.LENGTH_LONG).show();
@@ -163,6 +248,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         if(downloadCompleteReceiver != null) return;
 
         downloadCompleteReceiver = new BroadcastReceiver() {
+            @TargetApi(Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onReceive(Context context, Intent intent) {
                 long refID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
@@ -198,4 +284,8 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         return Environment.MEDIA_MOUNTED.equals(state);
     }
 
+
+    interface MenuAction {
+        void execute();
+    }
 }

@@ -332,6 +332,17 @@ public class NewsDetailFragment extends Fragment {
 
                 Document htmldoc = Jsoup.parse(html);
 
+                // DialogFragment.show() will take care of adding the fragment
+                // in a transaction.  We also want to remove any currently showing
+                // dialog, so make our own transaction and take care of that here.
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                Fragment prev = getFragmentManager().findFragmentByTag("menu_fragment_dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+
+
                 if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
                     String imageUrl = result.getExtra();
                     if (imageUrl.startsWith("http")) {
@@ -356,35 +367,31 @@ public class NewsDetailFragment extends Fragment {
                         //}
                         String text = imgaltval;
 
-                        /*
-                        super.onCreateContextMenu(menu, v, menuInfo);
-                        menu.setHeaderTitle(imgsrcval);
-                        menu.setHeaderIcon(android.R.drawable.ic_menu_gallery);
-                        if( !imgsrcval.equals(imgaltval) && imgaltval.length() > 0  ) {
-                            menu.add(imgaltval).setEnabled(false).setIcon(android.R.drawable.ic_menu_info_details);
-                        }
-                        MenuInflater inflater = getActivity().getMenuInflater();
-                        inflater.inflate(R.menu.news_detail_context_img, menu);
-                        */
-
-                        // DialogFragment.show() will take care of adding the fragment
-                        // in a transaction.  We also want to remove any currently showing
-                        // dialog, so make our own transaction and take care of that here.
-                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        Fragment prev = getFragmentManager().findFragmentByTag("image_fragment_dialog");
-                        if (prev != null) {
-                            ft.remove(prev);
-                        }
-                        ft.addToBackStack(null);
 
                         // Create and show the dialog.
                         DialogFragment newFragment =
-                                NewsDetailImageDialogFragment.newInstance(title, titleIcon, text, mImageUrl);
-                        newFragment.show(ft, "image_fragment_dialog");
+                                NewsDetailImageDialogFragment.newInstanceImage(title, titleIcon, text, mImageUrl);
+                        newFragment.show(ft, "menu_fragment_dialog");
 
                     }
                 }
-                //else if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE) { }
+                else if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE) {
+                    String url = result.getExtra();
+                    URL mUrl;
+                    String text = "";
+                    try {
+                        Elements urltag = htmldoc.getElementsByAttributeValueContaining("href", url);
+                        text = urltag.text();
+                        mUrl = new URL(url);
+                    } catch (MalformedURLException e) {
+                        return;
+                    }
+
+                    // Create and show the dialog.
+                    DialogFragment newFragment =
+                            NewsDetailImageDialogFragment.newInstanceUrl(text, mUrl.toString());
+                    newFragment.show(ft, "menu_fragment_dialog");
+                }
                 //else if (type == WebView.HitTestResult.EMAIL_TYPE) { }
                 //else if (type == WebView.HitTestResult.GEO_TYPE) { }
                 //else if (type == WebView.HitTestResult.PHONE_TYPE) { }

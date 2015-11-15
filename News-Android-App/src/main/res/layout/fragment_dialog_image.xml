@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/ic_menu_title"
         android:layout_marginLeft="5dp"
-        android:text="blaaa"
+        android:text="Sample1"
         android:layout_centerVertical="true"
         android:textSize="17sp"
         android:textColor="@color/slider_listview_text_color_dark_theme"
@@ -38,10 +38,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/ic_menu_item_text"
         android:layout_marginTop="10dp"
-        android:text="Windows 10 dskjf h\ndfdsjkf shkjf hsdfkj dskj"
+        android:text="Sample2"
         android:textSize="18sp"
         android:textColor="@color/options_menu_item_text"
         android:layout_below="@+id/title_wrapper" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#50ffffff"
+        android:layout_below="@+id/ic_menu_item_text"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        />
 
     <ListView
         android:layout_marginTop="10dp"
