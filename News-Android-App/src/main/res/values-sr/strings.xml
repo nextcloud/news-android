@@ -41,6 +41,7 @@
   <string name="action_sync_settings">Поставке освежавања</string>
   <string name="action_add_new_feed">Додај довод</string>
   <string name="action_textToSpeech">Ишчитај</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>

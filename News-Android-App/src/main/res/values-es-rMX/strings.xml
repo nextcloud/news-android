@@ -34,6 +34,7 @@
   <string name="action_login">Ajustes del Servidor</string>
   <string name="action_save">Guardar</string>
   <string name="action_settings">Ajustes</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>

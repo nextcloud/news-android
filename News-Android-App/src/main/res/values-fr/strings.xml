@@ -17,6 +17,7 @@
     <item quantity="one">Vous avez atteint la limite de %d article</item>
     <item quantity="other">Vous avez atteint la limite de %d articles</item>
   </plurals>
+  <string name="current_version">Vous utilisez la Version %s</string>
   <string name="widget_header">Actualités ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d nouvel article disponible</item>
@@ -58,6 +59,7 @@
     <item quantity="one">%d nouvel article non lu</item>
     <item quantity="other">%d nouveaux articles non lus</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilisateur</string>
   <string name="pref_title_password">Mot de passe</string>

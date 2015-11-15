@@ -54,6 +54,7 @@
   <plurals name="notification_new_items_text">
     <item quantity="other">%d 個新的未讀項目</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">使用者名稱：</string>
   <string name="pref_title_password">密碼</string>

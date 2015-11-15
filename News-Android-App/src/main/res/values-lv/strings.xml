@@ -9,6 +9,7 @@
   <string name="action_Share">Dalīties</string>
   <string name="action_save">Saglabāt</string>
   <string name="action_settings">Iestatījumi</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Lietotājvārds</string>
   <string name="pref_title_password">Parole</string>

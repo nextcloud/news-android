@@ -7,6 +7,7 @@
   <string name="action_Share">Deelen</string>
   <string name="action_save">Späicheren</string>
   <string name="action_settings">Astellungen</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Benotzernumm</string>
   <string name="pref_title_password">Passwuert</string>

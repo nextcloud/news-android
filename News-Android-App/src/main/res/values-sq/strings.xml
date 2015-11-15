@@ -17,6 +17,7 @@
     <item quantity="one">Keni mbërritur në madhësinë maksimum prej %d zëri</item>
     <item quantity="other">Keni mbërritur në madhësinë maksimum prej %d zërash</item>
   </plurals>
+  <string name="current_version">Po përdorni Versionin %s</string>
   <string name="widget_header">Lajme ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d zë i ri gati</item>
@@ -58,6 +59,7 @@
     <item quantity="one">Ka të gatshëm %d zë të palexuar</item>
     <item quantity="other">Ka të gatshëm %d zëra të palexuar</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Emër përdoruesi</string>
   <string name="pref_title_password">Fjalëkalim</string>

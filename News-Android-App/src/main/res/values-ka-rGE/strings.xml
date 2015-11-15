@@ -10,6 +10,7 @@
   <string name="action_Share">გაზიარება</string>
   <string name="action_save">შენახვა</string>
   <string name="action_settings">პარამეტრები</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">მომხმარებლის სახელი</string>
   <string name="pref_title_password">პაროლი</string>

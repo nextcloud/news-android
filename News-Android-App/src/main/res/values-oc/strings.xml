@@ -58,6 +58,7 @@
     <item quantity="one">%d novèl article pas legit</item>
     <item quantity="other">%d novèls articles pas legits</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilizaire</string>
   <string name="pref_title_password">Senhal</string>

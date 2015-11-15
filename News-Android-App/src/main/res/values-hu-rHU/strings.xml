@@ -41,6 +41,7 @@
   <string name="action_settings">Beállítások</string>
   <string name="action_sync_settings">Szinkronizációs beállítások</string>
   <string name="action_add_new_feed">Új hírcsatorna hozzáadása</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Felhasználónév</string>
   <string name="pref_title_password">Jelszó</string>

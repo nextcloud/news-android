@@ -17,6 +17,7 @@
   <string name="action_Share">שיתוף</string>
   <string name="action_save">שמירה</string>
   <string name="action_settings">הגדרות</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">שם משתמש</string>
   <string name="pref_title_password">סיסמא</string>

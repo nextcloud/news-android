@@ -41,6 +41,7 @@
   <string name="action_sync_settings">Ustawienia synchronizacji</string>
   <string name="action_add_new_feed">Dodaj nowy kanał</string>
   <string name="action_textToSpeech">Przeczytane</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nazwa użytkownika</string>
   <string name="pref_title_password">Hasło</string>

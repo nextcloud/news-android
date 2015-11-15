@@ -7,6 +7,7 @@
   <string name="action_Share">تقسیم</string>
   <string name="action_save">حفظ</string>
   <string name="action_settings">سیٹینگز</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">یوزر نیم</string>
   <string name="pref_title_password">پاسورڈ</string>

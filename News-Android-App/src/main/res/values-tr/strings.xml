@@ -58,6 +58,7 @@
     <item quantity="one">Yeni %d okunmamış öge mevcut</item>
     <item quantity="other">Yeni %d okunmamış öge mevcut</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Kullanıcı Adı</string>
   <string name="pref_title_password">Parola</string>

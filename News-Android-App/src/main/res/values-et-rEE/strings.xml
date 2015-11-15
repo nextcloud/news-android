@@ -58,6 +58,7 @@
     <item quantity="one">Saadaval on %d uus lugemata kirje</item>
     <item quantity="other">Saadaval on %d uut lugemata kirjet</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
   <string name="pref_title_password">Parool</string>

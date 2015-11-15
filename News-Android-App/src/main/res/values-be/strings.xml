@@ -5,6 +5,7 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_settings">Налады</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->

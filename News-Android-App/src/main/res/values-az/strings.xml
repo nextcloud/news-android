@@ -41,6 +41,7 @@
   <string name="action_sync_settings">Sync quraşdırmaları</string>
   <string name="action_add_new_feed">Yeni kanalı əlavə et</string>
   <string name="action_textToSpeech">Oxuyun</string>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">İstifadəçi adı</string>
   <string name="pref_title_password">Şifrə</string>

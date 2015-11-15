@@ -58,6 +58,7 @@
     <item quantity="one">%d nytt ulest element tilgjengelig</item>
     <item quantity="other">%d nye uleste elementer tilgjengelig</item>
   </plurals>
+  <!--ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Brukernavn</string>
   <string name="pref_title_password">Passord</string>
