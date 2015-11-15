@@ -35,7 +35,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -120,7 +122,6 @@ public class NewsDetailFragment extends Fragment {
         if(mWebView != null) {
             mWebView.destroy();
         }
-        unregisterImageDownloadReceiver();
     }
 
     public void PauseCurrentPage()
@@ -151,7 +152,6 @@ public class NewsDetailFragment extends Fragment {
         ButterKnife.inject(this, rootView);
 
         startLoadRssItemToWebViewTask();
-        registerImageDownloadReceiver();
 
 		return rootView;
 	}
@@ -323,10 +323,6 @@ public class NewsDetailFragment extends Fragment {
 	}
 
 
-    private URL imageUrl;
-    private long downloadID;
-    private DownloadManager dlManager;
-    private BroadcastReceiver downloadCompleteReceiver;
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         if (v instanceof WebView) {
@@ -340,6 +336,7 @@ public class NewsDetailFragment extends Fragment {
                     String imageUrl = result.getExtra();
                     if (imageUrl.startsWith("http")) {
 
+                        URL mImageUrl;
                         String imgaltval = "";
                         String imgsrcval = "";
 
@@ -347,11 +344,19 @@ public class NewsDetailFragment extends Fragment {
                             Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
                             imgaltval = imgtag.first().attr("alt");
                             imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
-                            this.imageUrl = new URL(imageUrl);
+                            mImageUrl = new URL(imageUrl);
                         } catch (MalformedURLException e) {
                             return;
                         }
 
+                        String title = imgsrcval;
+                        int titleIcon = android.R.drawable.ic_menu_gallery;
+                        //if(!imgsrcval.equals(imgaltval) && imgaltval.length() > 0) {
+                        //    titleIcon = android.R.drawable.ic_menu_info_details;
+                        //}
+                        String text = imgaltval;
+
+                        /*
                         super.onCreateContextMenu(menu, v, menuInfo);
                         menu.setHeaderTitle(imgsrcval);
                         menu.setHeaderIcon(android.R.drawable.ic_menu_gallery);
@@ -360,6 +365,23 @@ public class NewsDetailFragment extends Fragment {
                         }
                         MenuInflater inflater = getActivity().getMenuInflater();
                         inflater.inflate(R.menu.news_detail_context_img, menu);
+                        */
+
+                        // DialogFragment.show() will take care of adding the fragment
+                        // in a transaction.  We also want to remove any currently showing
+                        // dialog, so make our own transaction and take care of that here.
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        Fragment prev = getFragmentManager().findFragmentByTag("image_fragment_dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+
+                        // Create and show the dialog.
+                        DialogFragment newFragment =
+                                NewsDetailImageDialogFragment.newInstance(title, titleIcon, text, mImageUrl);
+                        newFragment.show(ft, "image_fragment_dialog");
+
                     }
                 }
                 //else if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE) { }
@@ -375,12 +397,14 @@ public class NewsDetailFragment extends Fragment {
 
     }
 
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         if( !getUserVisibleHint() ) {
             return false;
         }
         switch (item.getItemId()) {
+            /*
             case R.id.action_downloadimg:
                 downloadImage(imageUrl);
                 return true;
@@ -390,78 +414,12 @@ public class NewsDetailFragment extends Fragment {
             case R.id.action_openimg:
                 openImageInBrowser(imageUrl);
                 return true;
+                */
             default:
                 return super.onContextItemSelected(item);
         }
     }
 
-    private void openImageInBrowser(URL url) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url.toString()));
-        startActivity(i);
-    }
-
-    private void downloadImage(URL url) {
-        if(isExternalStorageWritable()) {
-            String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
-            dlManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
-            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
-            request.setTitle("Downloading image");
-            request.setDescription(filename);
-            request.setVisibleInDownloadsUi(false);
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
-            downloadID = dlManager.enqueue(request);
-        } else {
-            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_notwriteable), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void unregisterImageDownloadReceiver() {
-        if (downloadCompleteReceiver != null) {
-            getActivity().unregisterReceiver(downloadCompleteReceiver);
-            downloadCompleteReceiver = null;
-        }
-    }
-
-    private void registerImageDownloadReceiver() {
-        IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
-        if(downloadCompleteReceiver != null) return;
-
-        downloadCompleteReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                long refID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-                if (downloadID == refID) {
-                    DownloadManager.Query query = new DownloadManager.Query();
-                    query.setFilterById(refID);
-                    Cursor cursor = dlManager.query(query);
-                    cursor.moveToFirst();
-                    int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
-                    int status = cursor.getInt(columnIndex);
-                    //int fileNameIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME);
-                    //String savedFilePath = cursor.getString(fileNameIndex);
-                    int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
-                    int reason = cursor.getInt(columnReason);
-
-                    switch (status) {
-                        case DownloadManager.STATUS_SUCCESSFUL:
-                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_imgsaved), Toast.LENGTH_LONG).show();
-                            break;
-                        case DownloadManager.STATUS_FAILED:
-                            Toast.makeText(getActivity().getApplicationContext(), "FAILED: " +reason, Toast.LENGTH_LONG).show();
-                            break;
-                    }
-                }
-            }
-        };
-        getActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
-    }
-
-    public boolean isExternalStorageWritable() {
-        String state = Environment.getExternalStorageState();
-        return Environment.MEDIA_MOUNTED.equals(state);
-    }
 
 
 
