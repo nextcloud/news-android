@@ -1,8 +1,11 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -110,6 +113,14 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                         openLinkInBrowser(mImageUrl);
                     }
                 });
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+                    mMenuItems.put("Copy Link", new MenuAction() {
+                        @Override
+                        public void execute() {
+                            copyToCipboard(mDialogTitle, mImageUrl.toString());
+                        }
+                    });
+                }
                 break;
             case URL:
                 mMenuItems.put("Share Link", new MenuAction() {
@@ -129,6 +140,14 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                         }
                     }
                 });
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+                    mMenuItems.put("Copy Link", new MenuAction() {
+                        @Override
+                        public void execute() {
+                            copyToCipboard(mDialogTitle, mDialogText);
+                        }
+                    });
+                }
                 break;
         }
 
@@ -181,6 +200,14 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         return v;
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void copyToCipboard(String label, String text) {
+        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Activity.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(label, text);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(getActivity(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
+        getDialog().dismiss();
+    }
 
     private void shareImage() {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
