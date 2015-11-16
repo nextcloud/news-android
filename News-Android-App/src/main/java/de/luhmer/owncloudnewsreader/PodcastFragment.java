@@ -1,6 +1,5 @@
 package de.luhmer.owncloudnewsreader;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;

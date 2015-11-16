@@ -1,6 +1,5 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;

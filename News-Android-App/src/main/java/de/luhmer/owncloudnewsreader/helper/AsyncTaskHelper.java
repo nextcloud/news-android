@@ -3,9 +3,6 @@ package de.luhmer.owncloudnewsreader.helper;
 import android.os.AsyncTask;
 import android.os.Build;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-
 /**
  * Created by David on 20.07.2015.
  */
