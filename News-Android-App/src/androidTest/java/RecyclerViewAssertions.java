@@ -20,9 +20,8 @@ public class RecyclerViewAssertions implements ViewAssertion {
         RecyclerView recyclerView = (RecyclerView) view;
         LinearLayoutManager layoutManager = ((LinearLayoutManager)recyclerView.getLayoutManager());
         int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
-        if(firstVisiblePosition == mExpectedPos)
-            return;
-        else
+
+        if(firstVisiblePosition != mExpectedPos)
             throw new RuntimeException("Wrong position! Expected: " + mExpectedPos + " but was: " + firstVisiblePosition);
     }
 }

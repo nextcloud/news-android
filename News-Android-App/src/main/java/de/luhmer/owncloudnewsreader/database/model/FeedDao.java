@@ -33,7 +33,7 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         public final static Property FaviconUrl = new Property(3, String.class, "faviconUrl", false, "FAVICON_URL");
         public final static Property Link = new Property(4, String.class, "link", false, "LINK");
         public final static Property AvgColour = new Property(5, String.class, "avgColour", false, "AVG_COLOUR");
-    };
+    }
 
     private DaoSession daoSession;
 
@@ -227,7 +227,7 @@ public class FeedDao extends AbstractDao<Feed, Long> {
     /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
     public List<Feed> loadAllDeepFromCursor(Cursor cursor) {
         int count = cursor.getCount();
-        List<Feed> list = new ArrayList<Feed>(count);
+        List<Feed> list = new ArrayList<>(count);
         
         if (cursor.moveToFirst()) {
             if (identityScope != null) {

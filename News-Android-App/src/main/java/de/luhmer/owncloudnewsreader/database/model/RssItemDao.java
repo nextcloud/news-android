@@ -43,7 +43,7 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         public final static Property PubDate = new Property(13, java.util.Date.class, "pubDate", false, "PUB_DATE");
         public final static Property EnclosureLink = new Property(14, String.class, "enclosureLink", false, "ENCLOSURE_LINK");
         public final static Property EnclosureMime = new Property(15, String.class, "enclosureMime", false, "ENCLOSURE_MIME");
-    };
+    }
 
     private DaoSession daoSession;
 
@@ -307,7 +307,7 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
     /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
     public List<RssItem> loadAllDeepFromCursor(Cursor cursor) {
         int count = cursor.getCount();
-        List<RssItem> list = new ArrayList<RssItem>(count);
+        List<RssItem> list = new ArrayList<>(count);
         
         if (cursor.moveToFirst()) {
             if (identityScope != null) {

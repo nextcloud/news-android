@@ -23,7 +23,7 @@ public class CurrentRssItemViewDao extends AbstractDao<CurrentRssItemView, Long>
     public static class Properties {
         public final static Property Id = new Property(0, long.class, "id", true, "_id");
         public final static Property RssItemId = new Property(1, long.class, "rssItemId", false, "RSS_ITEM_ID");
-    };
+    }
 
 
     public CurrentRssItemViewDao(DaoConfig config) {

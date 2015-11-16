@@ -23,7 +23,7 @@ public class FolderDao extends AbstractDao<Folder, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, long.class, "id", true, "_id");
         public final static Property Label = new Property(1, String.class, "label", false, "LABEL");
-    };
+    }
 
     private DaoSession daoSession;
 
