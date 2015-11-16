@@ -79,6 +79,14 @@ Updates
 ---------------------
 
 
+0.9.7.3 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/431">#431 Avoid volume change at beginning and end of feed</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/430">#430 Switched collapse folder icons</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/438">#438 context menu "save image" in detail view</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/410">#410 Latest release on google play does not sync</a>
+
+
 0.9.7.2 (Google Play)
 ---------------------
 - Add profile picture support
