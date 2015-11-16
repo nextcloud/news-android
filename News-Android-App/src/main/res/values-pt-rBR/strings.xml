@@ -60,6 +60,12 @@
     <item quantity="other">%d novos itens não lidos disponíveis</item>
   </plurals>
   <!--ContextMenu Items-->
+  <string name="action_downloadimg">Baixar Imagem</string>
+  <string name="action_shareimg">Compartilhar Imagem</string>
+  <string name="action_openimg">Abrir Imagem no Navegador</string>
+  <string name="toast_img_download_wait">Baixando... por favor aguarde</string>
+  <string name="toast_imgsaved">Imagem salva.</string>
+  <string name="toast_notwriteable">Falhou ao salvar Imagem</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>
@@ -181,6 +187,7 @@
   <string name="pref_title_clearCache">Limpar cache</string>
   <string name="pref_title_CacheImagesOffline">Armazenar imagens offline</string>
   <string name="pref_title_Max_Cache_Size">Tamanho Máximo do Cache</string>
+  <string name="pref_title_DownloadedImageLocation">Salvar imagens baixadas para:</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Nunca</item>
     <item>Somente WiFi</item>

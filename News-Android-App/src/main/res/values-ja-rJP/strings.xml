@@ -16,6 +16,7 @@
   <plurals name="max_items_count_reached">
     <item quantity="other">%d 個のアイテムの上限に達しました</item>
   </plurals>
+  <string name="current_version">使用中のバージョンは %s です</string>
   <string name="widget_header">ownCloudニュース</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="other">%d 個の新しいアイテムが利用可能です</item>
@@ -55,6 +56,12 @@
     <item quantity="other">%d 個の新しい未読アイテムが利用できます</item>
   </plurals>
   <!--ContextMenu Items-->
+  <string name="action_downloadimg">画像をダウンロード</string>
+  <string name="action_shareimg">画像を共有</string>
+  <string name="action_openimg">画像をブラウザーで開く</string>
+  <string name="toast_img_download_wait">ダウンロード中...しばらくお待ちください</string>
+  <string name="toast_imgsaved">画像を保存しました。</string>
+  <string name="toast_notwriteable">画像の書き込みに失敗しました。</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">パスワード</string>
@@ -173,6 +180,7 @@
   <string name="pref_title_clearCache">キャッシュをクリア</string>
   <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
   <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
+  <string name="pref_title_DownloadedImageLocation">ダウンロードした画像を次の場所に保存する:</string>
   <string-array name="pref_data_sync_image_cache">
     <item>なし</item>
     <item>WiFiのみ</item>

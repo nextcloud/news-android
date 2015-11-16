@@ -55,6 +55,12 @@
     <item quantity="other">%d uutta lukematonta kohdetta saatavilla</item>
   </plurals>
   <!--ContextMenu Items-->
+  <string name="action_downloadimg">Lataa kuva</string>
+  <string name="action_shareimg">Jaa kuva</string>
+  <string name="action_openimg">Avaa kuva selaimessa</string>
+  <string name="toast_img_download_wait">Ladataan, odota hetki...</string>
+  <string name="toast_imgsaved">Kuva tallennettu.</string>
+  <string name="toast_notwriteable">Kuvan tallennus epäonnistui.</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>
@@ -168,6 +174,7 @@
   <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
   <string name="pref_title_CacheImagesOffline">Varastoi kuvat yhteydetöntä tilaa varten</string>
   <string name="pref_title_Max_Cache_Size">Välimuistin enimmäiskoko</string>
+  <string name="pref_title_DownloadedImageLocation">Lataa kuvat sijaintiin:</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Ei koskaan</item>
     <item>Vain wifissä</item>

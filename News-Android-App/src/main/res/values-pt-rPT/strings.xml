@@ -17,6 +17,7 @@
     <item quantity="one">Atingiu o tamanho máximo de %d item</item>
     <item quantity="other">Atingiu o tamanho máximo de %d itens</item>
   </plurals>
+  <string name="current_version">Está a usar a Versão %s</string>
   <string name="widget_header">Notícias da ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">Disponível %d novo item</item>
@@ -59,6 +60,8 @@
     <item quantity="other">Tem disponível %d novos itens por ler</item>
   </plurals>
   <!--ContextMenu Items-->
+  <string name="action_shareimg">Partilhar imagem</string>
+  <string name="toast_imgsaved">Imagem guardada.</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Palavra-passe:</string>

@@ -60,6 +60,12 @@
     <item quantity="other">Ka të gatshëm %d zëra të palexuar</item>
   </plurals>
   <!--ContextMenu Items-->
+  <string name="action_downloadimg">Shkarko Figurën</string>
+  <string name="action_shareimg">Ndajeni Figurën Me të Tjerë</string>
+  <string name="action_openimg">Hapeni Figurën në shfletues</string>
+  <string name="toast_img_download_wait">Po shkarkohet… ju lutemi, pritni</string>
+  <string name="toast_imgsaved">Figura u ruajt.</string>
+  <string name="toast_notwriteable">Dështoi shkrimi i Figurës.</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Emër përdoruesi</string>
   <string name="pref_title_password">Fjalëkalim</string>
@@ -181,6 +187,7 @@
   <string name="pref_title_clearCache">Pastroje fshehtinën</string>
   <string name="pref_title_CacheImagesOffline">Ruajio figurat në fshehtinë</string>
   <string name="pref_title_Max_Cache_Size">Madhësi Maksimum Fshehtine</string>
+  <string name="pref_title_DownloadedImageLocation">Ruaji figurat e shkarkuara te:</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Kurrë</item>
     <item>Vetëm përmes WiFi-ji</item>
