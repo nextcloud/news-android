@@ -649,6 +649,6 @@ public class SettingsActivity extends PreferenceActivity {
 			pd.dismiss();
 			Toast.makeText(context, context.getString(R.string.cache_is_cleared), Toast.LENGTH_SHORT).show();
             super.onPostExecute(result);
-        };
+        }
     }
 }
