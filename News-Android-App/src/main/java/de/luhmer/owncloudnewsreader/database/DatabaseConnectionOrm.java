@@ -334,7 +334,7 @@ public class DatabaseConnectionOrm {
 
     public boolean doesRssItemAlreadyExsists (long feedId) {
         List<RssItem> feeds = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.eq(feedId)).list();
-        return (feeds.size() <= 0) ? false : true;
+        return feeds.size() > 0;
     }
 
 
