@@ -549,7 +549,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	protected void onResume() {
 		ThemeChooser.chooseTheme(this);
 
-		reloadCountNumbersOfSlidingPaneAdapter();
+		//reloadCountNumbersOfSlidingPaneAdapter();
+
+        //reload adapter - a sync could have been finished
+        NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
+        if(newsReaderListFragment != null) {
+            newsReaderListFragment.ReloadAdapter();
+        }
 
 		invalidateOptionsMenu();
 

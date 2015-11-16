@@ -58,7 +58,7 @@ public class OwnCloudSyncService extends Service {
 	
 	protected static final String TAG = "OwnCloudSyncService";	
 	
-	private RemoteCallbackList<IOwnCloudSyncServiceCallback> callbacks = new RemoteCallbackList<>();
+	private static RemoteCallbackList<IOwnCloudSyncServiceCallback> callbacks = new RemoteCallbackList<>();
 
 	private CountDownLatch syncCompletedLatch;
 	private StopWatch syncStopWatch;
