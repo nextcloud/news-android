@@ -227,7 +227,7 @@ public class FeedDao extends AbstractDao<Feed, Long> {
     /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
     public List<Feed> loadAllDeepFromCursor(Cursor cursor) {
         int count = cursor.getCount();
-        List<Feed> list = new ArrayList<Feed>(count);
+        List<Feed> list = new ArrayList<>(count);
         
         if (cursor.moveToFirst()) {
             if (identityScope != null) {
