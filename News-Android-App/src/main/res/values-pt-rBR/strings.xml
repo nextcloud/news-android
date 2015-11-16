@@ -64,8 +64,8 @@
   <string name="action_shareimg">Compartilhar Imagem</string>
   <string name="action_openimg">Abrir Imagem no Navegador</string>
   <string name="toast_img_download_wait">Baixando... por favor aguarde</string>
-  <string name="toast_imgsaved">Imagem salva.</string>
-  <string name="toast_notwriteable">Falhou ao salvar Imagem</string>
+  <string name="toast_img_saved">Imagem salva.</string>
+  <string name="toast_img_notwriteable">Falhou ao salvar Imagem</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>

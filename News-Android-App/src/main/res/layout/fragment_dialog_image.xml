@@ -1,65 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--  -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin">
+    android:paddingBottom="6dp"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin">
 
     <RelativeLayout
-        android:paddingLeft="@dimen/activity_horizontal_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="0dp"
+        android:layout_marginBottom="4dp"
         android:id="@+id/title_wrapper">
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/ic_menu_gallery"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ic_menu_gallery"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ic_menu_title"
-        android:layout_marginLeft="5dp"
-        android:text="Sample1"
-        android:layout_centerVertical="true"
-        android:textSize="17sp"
-        android:textColor="@color/slider_listview_text_color_dark_theme"
-        android:layout_toRightOf="@+id/ic_menu_gallery"
-        android:layout_toEndOf="@+id/ic_menu_gallery"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/ic_menu_title"
+            android:text="Sample1"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:layout_toRightOf="@+id/ic_menu_gallery"
+            android:layout_toEndOf="@+id/ic_menu_gallery"/>
 
     </RelativeLayout>
 
     <TextView
-        android:paddingLeft="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
         android:id="@+id/ic_menu_item_text"
-        android:layout_marginTop="10dp"
-        android:text="Sample2"
-        android:textSize="18sp"
-        android:textColor="@color/options_menu_item_text"
-        android:layout_below="@+id/title_wrapper" />
+        android:text="Sample1"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp"
+        android:layout_below="@+id/title_wrapper"
+        android:textStyle="normal"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#50ffffff"
-        android:layout_below="@+id/ic_menu_item_text"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        />
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="#c8ababab"
+        android:layout_below="@+id/ic_menu_item_text"/>
 
     <ListView
-        android:layout_marginTop="10dp"
-        android:divider="#0000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:divider="@null"
         android:id="@+id/ic_menu_item_list"
         android:layout_below="@+id/ic_menu_item_text">
-
     </ListView>
 
 </RelativeLayout>

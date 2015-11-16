@@ -61,7 +61,7 @@
   </plurals>
   <!--ContextMenu Items-->
   <string name="action_shareimg">Partilhar imagem</string>
-  <string name="toast_imgsaved">Imagem guardada.</string>
+  <string name="toast_img_saved">Imagem guardada.</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Palavra-passe:</string>

@@ -64,8 +64,8 @@
   <string name="action_shareimg">Partager l\'Image</string>
   <string name="action_openimg">Ouvrir l\'Image dans le navigateur</string>
   <string name="toast_img_download_wait">Téléchargement... Veuillez patienter</string>
-  <string name="toast_imgsaved">Image sauvegardée.</string>
-  <string name="toast_notwriteable">Erreur d\'écriture de l\'Image.</string>
+  <string name="toast_img_saved">Image sauvegardée.</string>
+  <string name="toast_img_notwriteable">Erreur d\'écriture de l\'Image.</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilisateur</string>
   <string name="pref_title_password">Mot de passe</string>

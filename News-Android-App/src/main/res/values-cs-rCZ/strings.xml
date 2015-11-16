@@ -68,8 +68,8 @@
   <string name="action_shareimg">Sdílet obrázek</string>
   <string name="action_openimg">Otevřít obrázek v prohlížeči</string>
   <string name="toast_img_download_wait">Stahuji... chvíli strpení</string>
-  <string name="toast_imgsaved">Obrázek uložen.</string>
-  <string name="toast_notwriteable">Selhalo zapsání obrázku.</string>
+  <string name="toast_img_saved">Obrázek uložen.</string>
+  <string name="toast_img_notwriteable">Selhalo zapsání obrázku.</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uživatelské jméno</string>
   <string name="pref_title_password">Heslo</string>
