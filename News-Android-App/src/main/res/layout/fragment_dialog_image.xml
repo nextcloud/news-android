@@ -25,12 +25,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="5dp"
             android:id="@+id/ic_menu_title"
             android:text="Sample1"
             android:layout_centerVertical="true"
             android:textSize="16sp"
-            android:textColor="@color/slider_listview_text_color_dark_theme"
             android:layout_toRightOf="@+id/ic_menu_gallery"
             android:layout_toEndOf="@+id/ic_menu_gallery"/>
 
@@ -43,7 +42,7 @@
         android:id="@+id/ic_menu_item_text"
         android:text="Sample1"
         android:textSize="14sp"
-        android:textColor="@color/options_menu_item_text"
+        android:layout_marginTop="2dp"
         android:layout_below="@+id/title_wrapper"
         android:textStyle="normal"/>
 
@@ -53,15 +52,14 @@
         android:layout_marginTop="12dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:background="#50ffffff"
+        android:background="#c8ababab"
         android:layout_below="@+id/ic_menu_item_text"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-1dp"
         android:layout_marginTop="12dp"
-        android:paddingLeft="0dp"
+        android:divider="@null"
         android:id="@+id/ic_menu_item_list"
         android:layout_below="@+id/ic_menu_item_text">
     </ListView>

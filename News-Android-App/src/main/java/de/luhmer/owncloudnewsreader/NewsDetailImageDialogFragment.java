@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+
 /**
  * Created by david on 15.11.15.
  */
@@ -154,7 +156,9 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
 
         int style = DialogFragment.STYLE_NO_TITLE;
-        int theme = android.R.style.Theme_Holo_Dialog;
+        int theme = ThemeChooser.isDarkTheme(getActivity())
+                ? android.R.style.Theme_Material_Dialog
+                : android.R.style.Theme_Material_Light_Dialog;
         setStyle(style, theme);
     }
 
@@ -174,7 +178,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         imgTitle.setImageResource(mDialogIcon);
 
         if(mDialogType == TYPE.IMAGE) {
-            if(mDialogText.equals(mDialogTitle) || mDialogText.isEmpty()) {
+            if(mDialogText.equals(mDialogTitle) || mDialogText.equals("")) {
                 tvText.setVisibility(View.GONE);
             }
         }
