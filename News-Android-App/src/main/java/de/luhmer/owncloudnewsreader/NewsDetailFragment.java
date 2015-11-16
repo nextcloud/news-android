@@ -351,20 +351,19 @@ public class NewsDetailFragment extends Fragment {
                         String imgaltval = "";
                         String imgsrcval = "";
 
+                        Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
                         try {
-                            Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
                             imgaltval = imgtag.first().attr("alt");
                             imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
                             mImageUrl = new URL(imageUrl);
                         } catch (MalformedURLException e) {
                             return;
+                        } catch (NullPointerException e) {
+                            return;
                         }
 
                         String title = imgsrcval;
                         int titleIcon = android.R.drawable.ic_menu_gallery;
-                        //if(!imgsrcval.equals(imgaltval) && imgaltval.length() > 0) {
-                        //    titleIcon = android.R.drawable.ic_menu_info_details;
-                        //}
                         String text = imgaltval;
 
 

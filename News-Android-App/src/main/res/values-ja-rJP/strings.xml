@@ -60,8 +60,8 @@
   <string name="action_shareimg">画像を共有</string>
   <string name="action_openimg">画像をブラウザーで開く</string>
   <string name="toast_img_download_wait">ダウンロード中...しばらくお待ちください</string>
-  <string name="toast_imgsaved">画像を保存しました。</string>
-  <string name="toast_notwriteable">画像の書き込みに失敗しました。</string>
+  <string name="toast_img_saved">画像を保存しました。</string>
+  <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">パスワード</string>

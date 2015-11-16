@@ -29,6 +29,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -74,7 +75,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     private TYPE mDialogType;
 
     private long downloadID;
-    private DownloadManager dlManager;
+    private DownloadManager downloadManager;
     private BroadcastReceiver downloadCompleteReceiver;
 
     private HashMap<String, MenuAction> mMenuItems;
@@ -88,33 +89,33 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         mImageUrl = (URL) getArguments().getSerializable("imageUrl");
         mDialogType = (TYPE) getArguments().getSerializable("dialogType");
 
-        mMenuItems = new HashMap<>();
+        mMenuItems = new LinkedHashMap<>();
 
         //Build the menu
         switch(mDialogType) {
             case IMAGE:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-                    mMenuItems.put("Download Image", new MenuAction() {
+                    mMenuItems.put(getString(R.string.action_img_download), new MenuAction() {
                         @Override
                         public void execute() {
                             downloadImage(mImageUrl);
                         }
                     });
                 }
-                mMenuItems.put("Share Image", new MenuAction() {
-                    @Override
-                    public void execute() {
-                        shareImage();
-                    }
-                });
-                mMenuItems.put("Open Image in browser", new MenuAction() {
+                mMenuItems.put(getString(R.string.action_img_open), new MenuAction() {
                     @Override
                     public void execute() {
                         openLinkInBrowser(mImageUrl);
                     }
                 });
+                mMenuItems.put(getString(R.string.action_img_sharelink), new MenuAction() {
+                    @Override
+                    public void execute() {
+                        shareImage();
+                    }
+                });
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-                    mMenuItems.put("Copy Link", new MenuAction() {
+                    mMenuItems.put(getString(R.string.action_img_copylink), new MenuAction() {
                         @Override
                         public void execute() {
                             copyToCipboard(mDialogTitle, mImageUrl.toString());
@@ -123,25 +124,25 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 }
                 break;
             case URL:
-                mMenuItems.put("Share Link", new MenuAction() {
-                    @Override
-                    public void execute() {
-                        shareLink();
-                    }
-                });
-                mMenuItems.put("Open Link in browser", new MenuAction() {
+                mMenuItems.put(getString(R.string.action_link_open), new MenuAction() {
                     @Override
                     public void execute() {
                         try {
                             openLinkInBrowser(new URL(mDialogText));
                         } catch (MalformedURLException e) {
-                            Toast.makeText(getActivity(), "Can not parse url!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.error_invalid_url), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
                 });
+                mMenuItems.put(getString(R.string.action_link_share), new MenuAction() {
+                    @Override
+                    public void execute() {
+                        shareLink();
+                    }
+                });
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-                    mMenuItems.put("Copy Link", new MenuAction() {
+                    mMenuItems.put(getString(R.string.action_link_copy), new MenuAction() {
                         @Override
                         public void execute() {
                             copyToCipboard(mDialogTitle, mDialogText);
@@ -168,16 +169,15 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         TextView tvText = (TextView) v.findViewById(R.id.ic_menu_item_text);
         ImageView imgTitle = (ImageView) v.findViewById(R.id.ic_menu_gallery);
 
-        /*
-        //Hide the header (title and image) for urls
-        if(mDialogType == TYPE.URL) {
-            tvTitle.setVisibility(View.GONE);
-            imgTitle.setVisibility(View.GONE);
-        }*/
-
         tvTitle.setText(mDialogTitle);
         tvText.setText(mDialogText);
         imgTitle.setImageResource(mDialogIcon);
+
+        if(mDialogType == TYPE.IMAGE) {
+            if(mDialogText.equals(mDialogTitle) || mDialogText.isEmpty()) {
+                tvText.setVisibility(View.GONE);
+            }
+        }
 
         ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
         List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
@@ -200,12 +200,19 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         return v;
     }
 
+    @Override
+    public void onDestroyView() {
+        unregisterImageDownloadReceiver();
+        super.onDestroyView();
+    }
+
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void copyToCipboard(String label, String text) {
         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Activity.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText(label, text);
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(getActivity(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), getString(R.string.toast_copied_to_clipboard), Toast.LENGTH_SHORT).show();
         getDialog().dismiss();
     }
 
@@ -214,7 +221,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mDialogText);
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mImageUrl.toString());
-        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        startActivity(Intent.createChooser(sharingIntent, getString(R.string.intent_title_share)));
         getDialog().dismiss();
     }
 
@@ -223,7 +230,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mDialogTitle);
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mDialogText);
-        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        startActivity(Intent.createChooser(sharingIntent, getString(R.string.intent_title_share)));
         getDialog().dismiss();
     }
 
@@ -235,20 +242,13 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         getDialog().dismiss();
     }
 
-    @Override
-    public void onDestroyView() {
-        unregisterImageDownloadReceiver();
-        super.onDestroyView();
-    }
-
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void downloadImage(URL url) {
         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
-        getDialog().setCancelable(false);
 
         if(isExternalStorageWritable()) {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
-            dlManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
             request.setTitle("Downloading image");
@@ -257,9 +257,11 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
             }
-            downloadID = dlManager.enqueue(request);
+            downloadID = downloadManager.enqueue(request);
+            getDialog().hide();
         } else {
-            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_notwriteable), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
+            getDialog().dismiss();
         }
     }
 
@@ -282,22 +284,21 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 if (downloadID == refID) {
                     DownloadManager.Query query = new DownloadManager.Query();
                     query.setFilterById(refID);
-                    Cursor cursor = dlManager.query(query);
+                    Cursor cursor = downloadManager.query(query);
                     cursor.moveToFirst();
                     int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
                     int status = cursor.getInt(columnIndex);
-                    //int fileNameIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME);
-                    //String savedFilePath = cursor.getString(fileNameIndex);
                     int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
                     int reason = cursor.getInt(columnReason);
 
                     switch (status) {
                         case DownloadManager.STATUS_SUCCESSFUL:
-                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_imgsaved), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_saved), Toast.LENGTH_LONG).show();
                             getDialog().dismiss();
                             break;
                         case DownloadManager.STATUS_FAILED:
-                            Toast.makeText(getActivity().getApplicationContext(), "FAILED: " +reason, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_download_failed) +": " +reason, Toast.LENGTH_LONG).show();
+                            getDialog().dismiss();
                             break;
                     }
                 }
