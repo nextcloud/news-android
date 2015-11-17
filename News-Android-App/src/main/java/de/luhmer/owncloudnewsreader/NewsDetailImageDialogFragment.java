@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -8,8 +9,10 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.DialogFragment;
@@ -23,10 +26,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.nononsenseapps.filepicker.FilePickerActivity;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -78,7 +83,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     private DownloadManager downloadManager;
     private BroadcastReceiver downloadCompleteReceiver;
 
-    private HashMap<String, MenuAction> mMenuItems;
+    private LinkedHashMap<String, MenuAction> mMenuItems;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,10 +99,13 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         //Build the menu
         switch(mDialogType) {
             case IMAGE:
-                mMenuItems.put(getString(R.string.action_img_download), new MenuAction() {
+                mMenuItems.put(getString(R.string.action_img_download), new MenuActionLongClick() {
                     @Override
                     public void execute() {
                         downloadImage(mImageUrl);
+                    }
+                    public void executeLongClick() {
+                        configureDownloadPath(mImageUrl);
                     }
                 });
                 mMenuItems.put(getString(R.string.action_img_open), new MenuAction() {
@@ -175,7 +183,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             }
         }
 
-        ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
+        final ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
         List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
@@ -184,6 +192,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 menuItemsList);
 
         mListView.setAdapter(arrayAdapter);
+        mListView.setLongClickable(true);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -193,6 +202,21 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 mAction.execute();
             }
         });
+
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String key = arrayAdapter.getItem(position);
+                try {
+                    MenuActionLongClick mAction = (MenuActionLongClick) mMenuItems.get(key);
+                    mAction.executeLongClick();
+                } catch (ClassCastException e) {
+                    return false;
+                }
+                return true;
+            }
+        });
+
         return v;
     }
 
@@ -238,13 +262,15 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     private void downloadImage(URL url) {
+        System.out.println("DOWNLOADDIR DOWNLOADDIR DOWNLOADDIR DOWNLOADDIR");
         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
 
         if(isExternalStorageWritable()) {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
             downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
+            //request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
+            request.setDestinationUri(getDownloadDir(filename));
             request.setTitle("Downloading image");
             request.setDescription(filename);
             request.setVisibleInDownloadsUi(false);
@@ -256,6 +282,62 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             getDialog().dismiss();
         }
     }
+
+    private Uri getDownloadDir(String filename) {
+        System.out.println("*************************************: getDownloadDir");
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String savedDir = sharedPref.getString("manualImageDownloadLocation", "");
+        String def = "";
+        if(savedDir == "") {
+            def = Environment.getExternalStorageDirectory().toString();//.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString();
+            System.out.println("********************************EMPTY: " +def);
+        } else {
+            def = savedDir;
+            System.out.println("********************************FULL: " +def);
+        }
+        String tmp = "file://" +def +"/" +filename;
+        System.out.println("********************************return: " +tmp);
+        return Uri.parse(tmp);
+    }
+
+    private void configureDownloadPath(URL url) {
+        //getDialog().hide();
+        Intent i = new Intent(getContext(), FilePickerActivity.class);
+        // This works if you defined the intent filter
+         //Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
+        i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR);
+        //i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
+        i.putExtra(FilePickerActivity.EXTRA_START_PATH, getActivity().getPreferences(Context.MODE_PRIVATE).getString("manualImageDownloadLocation", ""));
+
+
+        startActivityForResult(i, 1000);
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("§§§§§§§§§§§§§§§§§§§§§§0: onActivityResult" );
+        if (requestCode == 1000 && resultCode == Activity.RESULT_OK) {
+            System.out.println("§§§§§§§§§§§§§§§§§§§§§§1: onActivityResult");
+
+            Uri uri = data.getData();
+            System.out.println("§§§§§§§§§§§§§§§§§§§§§§3 uri: " +uri.getPath() );
+
+            SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("manualImageDownloadLocation", uri.getPath());
+            editor.commit();
+
+
+
+
+        }
+        //downloadImage(mImageUrl);
+    }
+
 
     private void unregisterImageDownloadReceiver() {
         if (downloadCompleteReceiver != null) {
@@ -306,5 +388,8 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
     interface MenuAction {
         void execute();
+    }
+    interface MenuActionLongClick extends MenuAction {
+        void executeLongClick();
     }
 }

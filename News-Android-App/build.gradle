@@ -71,6 +71,7 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.0'
     compile 'org.jsoup:jsoup:1.7.2'
+    compile 'com.nononsenseapps:filepicker:2.4.2'
 
     testCompile 'org.robolectric:robolectric:3.0-rc3'
     testCompile 'junit:junit:4.+'
