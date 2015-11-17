@@ -14,9 +14,6 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastFeedClicked;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 
-/**
- * Created by David on 21.06.2014.
- */
 public class PodcastFeedArrayAdapter extends ArrayAdapter<PodcastFeedItem> {
     LayoutInflater inflater;
     EventBus eventBus;

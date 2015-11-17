@@ -34,9 +34,6 @@ import java.util.List;
 
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
-/**
- * Created by david on 15.11.15.
- */
 public class NewsDetailImageDialogFragment extends DialogFragment {
 
     public enum TYPE { IMAGE, URL }

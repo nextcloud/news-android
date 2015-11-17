@@ -12,9 +12,6 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.broadcastreceiver.PodcastNotificationToggle;
 
-/**
- * Created by David on 22.06.2014.
- */
 public class PodcastNotification {
 
     private Context context;

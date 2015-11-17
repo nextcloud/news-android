@@ -48,9 +48,6 @@ import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 
-/**
- * Created by David on 29.06.2014.
- */
 public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
     PodcastPlaybackService mPodcastPlaybackService;

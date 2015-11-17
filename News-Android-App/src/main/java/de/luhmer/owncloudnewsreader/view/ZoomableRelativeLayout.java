@@ -11,9 +11,6 @@ import android.widget.RelativeLayout;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 
-/**
- * Created by David on 30.06.2014.
- */
 //http://stackoverflow.com/questions/10013906/android-zoom-in-out-relativelayout-with-spread-pinch
 public class ZoomableRelativeLayout extends RelativeLayout {
     private static final int INVALID_POINTER_ID = -1;

@@ -1,8 +1,5 @@
 package de.luhmer.owncloudnewsreader.model;
 
-/**
- * Created by David on 10.01.2015.
- */
 public class TTSItem extends MediaItem {
 
     public TTSItem() {

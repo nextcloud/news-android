@@ -1,9 +1,5 @@
 package de.luhmer.owncloudnewsreader.database.generator;
 
-/**
- * Created by David on 18.07.2014.
- */
-
 import de.greenrobot.daogenerator.Entity;
 import de.greenrobot.daogenerator.Property;
 import de.greenrobot.daogenerator.Schema;

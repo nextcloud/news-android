@@ -19,9 +19,6 @@ import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
-/**
- * Created by David on 21.06.2014.
- */
 public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
     LayoutInflater inflater;
     EventBus eventBus;

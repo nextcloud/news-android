@@ -9,9 +9,6 @@ import android.view.animation.Transformation;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-/**
- * Created by David on 21.06.2014.
- */
 public class PodcastSlidingUpPanelLayout extends SlidingUpPanelLayout {
     public PodcastSlidingUpPanelLayout(Context context) {
         super(context);

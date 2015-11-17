@@ -4,9 +4,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-/**
- * Created by David on 30.06.2014.
- */
 public class SizeAnimator {
 
     public SizeAnimator(View view, float mWidth, float mHeight, float oldWidth, float oldHeight, int duration) {

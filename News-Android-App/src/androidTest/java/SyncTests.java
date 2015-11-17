@@ -21,10 +21,6 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
-/**
- * Created by david on 26.09.15.
- */
-
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListActivity> {

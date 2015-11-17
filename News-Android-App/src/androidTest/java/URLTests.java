@@ -19,10 +19,6 @@ import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 
-/**
- * Created by david on 26.09.15.
- */
-
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class URLTests extends ActivityInstrumentationTestCase2<NewsReaderListActivity> {

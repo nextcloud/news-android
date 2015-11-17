@@ -34,9 +34,6 @@ import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAd
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
 
-/**
- * Created by David on 15.07.2014.
- */
 public class DatabaseConnectionOrm {
 
     public static final List<String> ALLOWED_PODCASTS_TYPES = new ArrayList<String>() {

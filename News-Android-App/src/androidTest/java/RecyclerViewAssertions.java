@@ -4,9 +4,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * Created by david on 18.09.15.
- */
 public class RecyclerViewAssertions implements ViewAssertion {
 
     private int mExpectedPos;

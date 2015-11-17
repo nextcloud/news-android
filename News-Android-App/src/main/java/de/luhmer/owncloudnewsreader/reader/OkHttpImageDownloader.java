@@ -12,9 +12,6 @@ import com.squareup.okhttp.ResponseBody;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * Created by daniel on 19.09.15.
- */
 public class OkHttpImageDownloader extends BaseImageDownloader {
     private static final String TAG = "OkHttpImageDownloader";
 

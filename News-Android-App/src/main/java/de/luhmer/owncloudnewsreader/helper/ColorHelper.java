@@ -7,9 +7,6 @@ import android.graphics.Color;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 
-/**
- * Created by daniel on 11.07.15.
- */
 public class ColorHelper {
     public static String getCssColor(int color) {
         // using %f for the double value would result in a localized string, e.g. 0,12 which

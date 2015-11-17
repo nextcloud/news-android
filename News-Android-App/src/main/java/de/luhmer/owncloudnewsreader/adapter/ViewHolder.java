@@ -32,9 +32,6 @@ import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
-/**
- * Created by daniel on 28.06.15.
- */
 public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final static String TAG = "RecyclerView.ViewHolder";
 
