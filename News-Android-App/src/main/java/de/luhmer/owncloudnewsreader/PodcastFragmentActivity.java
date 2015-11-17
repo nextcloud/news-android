@@ -104,11 +104,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
     protected void onStop() {
         super.onStop();
         // Unbind from the service

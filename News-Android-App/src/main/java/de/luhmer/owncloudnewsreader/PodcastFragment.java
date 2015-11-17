@@ -294,11 +294,6 @@ public class PodcastFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;

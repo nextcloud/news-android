@@ -399,11 +399,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     SparseArray<String> unreadCountFeeds;
     SparseArray<String> urlsToFavIcons;
 
-    @Deprecated
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
-    }
 
     public void NotifyDataSetChangedAsync() {
         new NotifyDataSetChangedAsyncTask().execute((Void) null);

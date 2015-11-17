@@ -22,12 +22,6 @@ public class PodcastSlidingUpPanelLayout extends SlidingUpPanelLayout {
         super(context, attrs, defStyle);
     }
 
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return super.onInterceptTouchEvent(ev);
-        //return isDragViewHit((int)ev.getX(), (int)ev.getY());
-    }
-
     private View mDragView;
     private View mSlideableView;
 
