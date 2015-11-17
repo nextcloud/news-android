@@ -168,7 +168,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	 * Removes an Activity from the MTM display stack.
 	 *
 	 * Always call this function when the Activity added with
-	 * @see bindDisplayActivity is hidden.
+	 * @see #bindDisplayActivity is hidden.
 	 *
 	 * @param act Activity to be unbound
 	 */
