@@ -28,7 +28,6 @@ import com.google.gson.stream.JsonToken;
 import com.squareup.okhttp.HttpUrl;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;

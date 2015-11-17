@@ -574,7 +574,7 @@ public class SettingsActivity extends PreferenceActivity {
         }
     }
 
-    private static void bindPodcastPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
+    private static void bindPodcastPreferences(PreferenceFragment prefFrag)
     {
         if(prefFrag != null)
         {

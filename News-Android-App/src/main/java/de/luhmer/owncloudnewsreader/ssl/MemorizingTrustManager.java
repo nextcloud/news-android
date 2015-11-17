@@ -298,7 +298,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 					return;
 				}
 				e.printStackTrace();
-				interact(chain, authType, e);
+				interact(chain, e);
 			}
 		}
 	}
@@ -398,7 +398,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 		return (foregroundAct != null) ? foregroundAct : mContext;
 	}
 
-	void interact(final X509Certificate[] chain, String authType, CertificateException cause)
+	void interact(final X509Certificate[] chain, CertificateException cause)
 		throws CertificateException
 	{
 		/* prepare the MTMDecision blocker object */
@@ -428,19 +428,6 @@ public class MemorizingTrustManager implements X509TrustManager {
 					Log.e(TAG, "startActivity: " + ex);
 					startActivityNotification(ni, certMessage);					
 				}
-				
-				/*
-				
-
-				// we try to directly start the activity and fall back to
-				// making a notification
-				try {
-					getUI().startActivity(ni);
-				} catch (Exception e) {
-					Log.e(TAG, "startActivity: " + e);
-					startActivityNotification(ni, certMessage);
-				}
-				*/
 			}
 		});
 

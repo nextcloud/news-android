@@ -148,15 +148,8 @@ public class DatabaseConnectionOrm {
                 " AND " + RssItemDao.Properties.Read_temp.columnName + " != 1 GROUP BY T._id");
     }
 
-    public List<Feed> getAllFeedsWithUnreadRssItemsForFolder(long folderId, boolean onlyUnread) {
-        /*
-        if(onlyUnread) {
-            String whereConditionString = " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1)";
-            WhereCondition whereCondition = new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + whereConditionString);
-            return daoSession.getFeedDao().queryBuilder().where(whereCondition, FeedDao.Properties.FolderId.eq(folderId)).list();
-        } else {*/
-            return daoSession.getFeedDao().queryBuilder().where(FeedDao.Properties.FolderId.eq(folderId)).list();
-        //}
+    public List<Feed> getAllFeedsWithUnreadRssItemsForFolder(long folderId) {
+        return daoSession.getFeedDao().queryBuilder().where(FeedDao.Properties.FolderId.eq(folderId)).list();
     }
 
     public List<Feed> getAllFeedsWithStarredRssItems() {

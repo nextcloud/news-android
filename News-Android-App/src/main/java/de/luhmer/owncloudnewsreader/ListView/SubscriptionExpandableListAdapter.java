@@ -150,7 +150,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         } else {
             LinearLayout view = new LinearLayout(mContext);
             convertView = inflater.inflate(R.layout.subscription_list_sub_item, view, true);
-            viewHolder = new ChildHolder(convertView, mContext);
+            viewHolder = new ChildHolder(convertView);
             convertView.setTag(viewHolder);
         }
 
@@ -191,7 +191,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         @InjectView(R.id.tv_unreadCount) TextView tV_UnreadCount;
         @InjectView(R.id.iVFavicon) ImageView imgView_FavIcon;
 
-        public ChildHolder(View view, Context mContext) {
+        public ChildHolder(View view) {
             ButterKnife.inject(this, view);
         }
 	  }
@@ -244,7 +244,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         if (convertView == null) {
             LinearLayout view = new LinearLayout(mContext);
             convertView = inflater.inflate(R.layout.subscription_list_item, view, true);
-            viewHolder = new GroupHolder(convertView, mContext);
+            viewHolder = new GroupHolder(convertView);
             view.setTag(viewHolder);
         } else {
         	viewHolder = (GroupHolder) convertView.getTag();
@@ -261,12 +261,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 				boolean skipFireEvent = false;
 
                 if(group instanceof ConcreteFeedItem) {
-                    fireListTextClicked(idFeed, mContext, false, (long) ITEMS_WITHOUT_FOLDER.getValue());
+                    fireListTextClicked(idFeed, false, (long) ITEMS_WITHOUT_FOLDER.getValue());
                     skipFireEvent = true;
 				}
 
 				if(!skipFireEvent)
-					fireListTextClicked(idFeed, mContext, true, ((FolderSubscribtionItem) group).idFolder);
+					fireListTextClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
 			}
 		});
 
@@ -377,7 +377,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         @InjectView(R.id.img_View_expandable_indicator) ImageButton imgView;
         @InjectView(R.id.img_view_favicon) ImageView faviconView;
 
-        public GroupHolder(View view, Context mContext) {
+        public GroupHolder(View view) {
             ButterKnife.inject(this, view);
         }
 	}
@@ -567,7 +567,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             } else {
                 for(Folder folder : folderList) {//Find the current selected folder
                     if (folder.getId() == parent_id) {//Current item
-                        feedItemList = dbConn.getAllFeedsWithUnreadRssItemsForFolder(folder.getId(), showOnlyUnread);// folder.getFeedList();
+                        feedItemList = dbConn.getAllFeedsWithUnreadRssItemsForFolder(folder.getId());
                         break;
                     }
                 }
@@ -615,9 +615,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	{
 		eListTextClickHandler = listener;
 	}
-	protected void fireListTextClicked(long idFeed, Context context, boolean isFolder, Long optional_folder_id)
+	protected void fireListTextClicked(long idFeed, boolean isFolder, Long optional_folder_id)
 	{
 		if(eListTextClickHandler != null)
-			eListTextClickHandler.onTextClicked(idFeed, context, isFolder, optional_folder_id);
+			eListTextClickHandler.onTextClicked(idFeed, isFolder, optional_folder_id);
 	}
 }

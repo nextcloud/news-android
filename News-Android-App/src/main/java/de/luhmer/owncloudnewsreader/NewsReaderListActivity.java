@@ -787,7 +787,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					dbConn2.markAllItemsAsReadForCurrentView();
 
 					reloadCountNumbersOfSlidingPaneAdapter();
-					ndf.RefreshCurrentRssView(this);
+					ndf.RefreshCurrentRssView();
 				}
 				return true;
 
