@@ -342,14 +342,17 @@ public class NewsDetailFragment extends Fragment {
                         String imgaltval = "";
                         String imgsrcval = "";
 
+                        imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
                         Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
+
                         try {
                             imgaltval = imgtag.first().attr("alt");
-                            imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
+                        } catch (NullPointerException e) {
+                            imgaltval = "";
+                        }
+                        try {
                             mImageUrl = new URL(imageUrl);
                         } catch (MalformedURLException e) {
-                            return;
-                        } catch (NullPointerException e) {
                             return;
                         }
 
@@ -357,12 +360,10 @@ public class NewsDetailFragment extends Fragment {
                         int titleIcon = android.R.drawable.ic_menu_gallery;
                         String text = imgaltval;
 
-
                         // Create and show the dialog.
                         DialogFragment newFragment =
                                 NewsDetailImageDialogFragment.newInstanceImage(title, titleIcon, text, mImageUrl);
                         newFragment.show(ft, "menu_fragment_dialog");
-
                     }
                 }
                 else if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE) {
