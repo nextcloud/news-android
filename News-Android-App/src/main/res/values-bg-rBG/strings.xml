@@ -58,7 +58,9 @@
     <item quantity="one">Налични са %d нови непрочетени елементи</item>
     <item quantity="other">Налични са %d нови непрочетени елементи</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Копирана</string>
+  <string name="error_download_failed">Изтеглянето е неуспешно.</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Потребител</string>
   <string name="pref_title_password">Парола</string>

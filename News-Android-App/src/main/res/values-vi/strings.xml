@@ -45,7 +45,8 @@
   <string name="action_sync_settings">Đồng bộ cài đặt</string>
   <string name="action_add_new_feed">Thêm feed mới</string>
   <string name="action_textToSpeech">Đọc</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="error_download_failed">Tải về thất bại</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Tên đăng nhập</string>
   <string name="pref_title_password">Mật khẩu</string>

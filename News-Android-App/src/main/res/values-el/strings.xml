@@ -58,7 +58,9 @@
     <item quantity="one">%d νέο αντικείμενο διαθέσιμο</item>
     <item quantity="other">%d νέα αδιάβαστα αντικείμενα διαθέσιμα</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
+  <string name="error_download_failed">Η λήψη απέτυχε</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
   <string name="pref_title_password">Συνθηματικό</string>

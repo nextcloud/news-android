@@ -15,7 +15,8 @@
   <string name="action_save">រក្សាទុក</string>
   <string name="action_settings">ការកំណត់</string>
   <string name="action_add_new_feed">បន្ថែមមតិព័ត៌មានថ្មី</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="error_download_failed">ការទាញយក​បានបរាជ័យ</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ឈ្មោះ​អ្នកប្រើ</string>
   <string name="pref_title_password">ពាក្យសម្ងាត់</string>

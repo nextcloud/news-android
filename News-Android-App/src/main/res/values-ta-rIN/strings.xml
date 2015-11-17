@@ -5,7 +5,7 @@
   <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_settings">அமைப்புகள்</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
   <!--Strings related to login-->
   <!--<string name="pref_default_username">admin</string>-->
   <!--Toast Messages-->

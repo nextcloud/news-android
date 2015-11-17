@@ -8,7 +8,7 @@
   <string name="action_Share">Podijeli</string>
   <string name="action_save">Spasi</string>
   <string name="action_settings">Postavke</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Korisničko ime</string>
   <string name="pref_title_password">Lozinka</string>

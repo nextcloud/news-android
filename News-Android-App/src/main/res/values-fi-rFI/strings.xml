@@ -54,13 +54,13 @@
     <item quantity="one">%d uusi lukematon kohde saatavilla</item>
     <item quantity="other">%d uutta lukematonta kohdetta saatavilla</item>
   </plurals>
-  <!--ContextMenu Items-->
-  <string name="action_downloadimg">Lataa kuva</string>
-  <string name="action_shareimg">Jaa kuva</string>
-  <string name="action_openimg">Avaa kuva selaimessa</string>
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Lataa kuva</string>
   <string name="toast_img_download_wait">Ladataan, odota hetki...</string>
   <string name="toast_img_saved">Kuva tallennettu.</string>
   <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
+  <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
+  <string name="error_download_failed">Lataus epäonnistui</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>

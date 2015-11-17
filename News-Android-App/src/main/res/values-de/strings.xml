@@ -58,7 +58,9 @@
     <item quantity="one">%d neuen ungelesenen Eintrag verfügbar</item>
     <item quantity="other">%d neue ungelesene Einträge verfügbar</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">In die Zwischenablage kopiert</string>
+  <string name="error_download_failed">Herunterladen fehlgeschlagen</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <string name="pref_title_password">Passwort</string>

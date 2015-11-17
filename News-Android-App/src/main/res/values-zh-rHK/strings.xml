@@ -9,7 +9,8 @@
   <string name="action_Share">分享</string>
   <string name="action_save">儲存</string>
   <string name="action_settings">設定</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="error_download_failed">下載失敗</string>
   <!--Strings related to login-->
   <string name="pref_title_username">用戶名稱</string>
   <string name="pref_title_password">密碼</string>

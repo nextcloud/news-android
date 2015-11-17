@@ -41,7 +41,9 @@
   <string name="action_sync_settings">Arranjament de sincronització</string>
   <string name="action_add_new_feed">Afegeix una font nova</string>
   <string name="action_textToSpeech">De lectura</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
+  <string name="error_download_failed">La baixada ha fallat</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'usuari</string>
   <string name="pref_title_password">Contrasenya</string>

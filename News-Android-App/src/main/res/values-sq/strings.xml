@@ -59,13 +59,13 @@
     <item quantity="one">Ka të gatshëm %d zë të palexuar</item>
     <item quantity="other">Ka të gatshëm %d zëra të palexuar</item>
   </plurals>
-  <!--ContextMenu Items-->
-  <string name="action_downloadimg">Shkarko Figurën</string>
-  <string name="action_shareimg">Ndajeni Figurën Me të Tjerë</string>
-  <string name="action_openimg">Hapeni Figurën në shfletues</string>
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Shkarko Figurën</string>
   <string name="toast_img_download_wait">Po shkarkohet… ju lutemi, pritni</string>
   <string name="toast_img_saved">Figura u ruajt.</string>
   <string name="toast_img_notwriteable">Dështoi shkrimi i Figurës.</string>
+  <string name="toast_copied_to_clipboard">U kopjua në të papastër</string>
+  <string name="error_download_failed">Shkarkimi dështoi</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Emër përdoruesi</string>
   <string name="pref_title_password">Fjalëkalim</string>

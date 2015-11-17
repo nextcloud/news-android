@@ -47,7 +47,9 @@
   <string name="action_sync_settings">Setări Sincronizare</string>
   <string name="action_add_new_feed">Adaugă flux nou</string>
   <string name="action_textToSpeech">Citit</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Copiat în clipboard</string>
+  <string name="error_download_failed">Descărcarea a eșuat</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nume utilizator</string>
   <string name="pref_title_password">Parolă</string>

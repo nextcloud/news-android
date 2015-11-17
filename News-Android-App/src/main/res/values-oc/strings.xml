@@ -58,7 +58,9 @@
     <item quantity="one">%d novèl article pas legit</item>
     <item quantity="other">%d novèls articles pas legits</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Copiat dins lo quichapapièrs</string>
+  <string name="error_download_failed">Lo telecargament a fracassat</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilizaire</string>
   <string name="pref_title_password">Senhal</string>

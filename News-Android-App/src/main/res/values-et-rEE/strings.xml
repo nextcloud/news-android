@@ -58,7 +58,9 @@
     <item quantity="one">Saadaval on %d uus lugemata kirje</item>
     <item quantity="other">Saadaval on %d uut lugemata kirjet</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
+  <string name="error_download_failed">Allalaadimine ebaõnnestus</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
   <string name="pref_title_password">Parool</string>

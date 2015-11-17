@@ -58,7 +58,9 @@
     <item quantity="one">%d elementos nuevos disponibles</item>
     <item quantity="other">%d elementos nuevos disponibles</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Copiáu al cartafueyu</string>
+  <string name="error_download_failed">Descarga fallida</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome d\'usuariu</string>
   <string name="pref_title_password">Contraseña</string>

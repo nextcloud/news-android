@@ -58,7 +58,7 @@
     <item quantity="one">Dispón de %d elemento novo sen ler</item>
     <item quantity="other">Dispón de %d elementos novos sen ler</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de usuario</string>
   <string name="pref_title_password">Contrasinal</string>

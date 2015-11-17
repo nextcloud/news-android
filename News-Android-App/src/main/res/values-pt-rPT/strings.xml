@@ -59,9 +59,10 @@
     <item quantity="one">Tem disponível %d novo item por ler</item>
     <item quantity="other">Tem disponível %d novos itens por ler</item>
   </plurals>
-  <!--ContextMenu Items-->
-  <string name="action_shareimg">Partilhar imagem</string>
+  <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_img_saved">Imagem guardada.</string>
+  <string name="toast_copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="error_download_failed">Transferência falhada</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Palavra-passe:</string>

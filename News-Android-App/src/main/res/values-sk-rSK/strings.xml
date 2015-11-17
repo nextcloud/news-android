@@ -41,7 +41,9 @@
   <string name="action_sync_settings">Nastavenia synchronizácie</string>
   <string name="action_add_new_feed">Pridať nový kanál</string>
   <string name="action_textToSpeech">Prečítať</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
+  <string name="error_download_failed">Stiahnutie zlyhalo</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Meno používateľa</string>
   <string name="pref_title_password">Heslo</string>

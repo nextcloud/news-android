@@ -30,7 +30,9 @@
   <string name="action_settings">Agordo</string>
   <string name="action_sync_settings">Sinkroniga agordo</string>
   <string name="action_add_new_feed">Aldoni novan fluon</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Kopiita en la tondejon</string>
+  <string name="error_download_failed">Elŝuto malsukcesis</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uzantonomo</string>
   <string name="pref_title_password">Pasvorto</string>

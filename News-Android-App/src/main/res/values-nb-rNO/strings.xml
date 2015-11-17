@@ -58,7 +58,9 @@
     <item quantity="one">%d nytt ulest element tilgjengelig</item>
     <item quantity="other">%d nye uleste elementer tilgjengelig</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
+  <string name="error_download_failed">Nedlasting feilet</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brukernavn</string>
   <string name="pref_title_password">Passord</string>

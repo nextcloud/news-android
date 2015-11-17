@@ -29,7 +29,9 @@
   <string name="action_login">إعدادات الخادم.</string>
   <string name="action_save">حفظ</string>
   <string name="action_settings">إعدادات</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">تم النسخ للحافظة</string>
+  <string name="error_download_failed">فشل التحميل</string>
   <!--Strings related to login-->
   <string name="pref_title_username">إسم المستخدم</string>
   <string name="pref_title_password">كلمة المرور</string>

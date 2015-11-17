@@ -58,7 +58,9 @@
     <item quantity="one">%d nyt, ulæst element er tilgængeligt</item>
     <item quantity="other">%d nye, ulæste elementer er tilgængelige</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
+  <string name="error_download_failed">Download fejlede</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brugernavn</string>
   <string name="pref_title_password">Kodeord</string>

@@ -59,13 +59,13 @@
     <item quantity="one">%d novo item não lido disponível</item>
     <item quantity="other">%d novos itens não lidos disponíveis</item>
   </plurals>
-  <!--ContextMenu Items-->
-  <string name="action_downloadimg">Baixar Imagem</string>
-  <string name="action_shareimg">Compartilhar Imagem</string>
-  <string name="action_openimg">Abrir Imagem no Navegador</string>
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Baixar Imagem</string>
   <string name="toast_img_download_wait">Baixando... por favor aguarde</string>
   <string name="toast_img_saved">Imagem salva.</string>
   <string name="toast_img_notwriteable">Falhou ao salvar Imagem</string>
+  <string name="toast_copied_to_clipboard">Copiado para área de transferência</string>
+  <string name="error_download_failed">Download falhou</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>

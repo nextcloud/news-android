@@ -41,7 +41,9 @@
   <string name="action_sync_settings">Sync Settings</string>
   <string name="action_add_new_feed">Add new feed</string>
   <string name="action_textToSpeech">Read out</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Copied to clipboard</string>
+  <string name="error_download_failed">Download failed</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Username</string>
   <string name="pref_title_password">Password</string>

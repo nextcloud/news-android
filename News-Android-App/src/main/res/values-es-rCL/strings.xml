@@ -6,7 +6,8 @@
   <!--Action Bar Items-->
   <string name="action_Share">Compartir</string>
   <string name="action_settings">Configuración</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="error_download_failed">Descarga fallida</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Usuario</string>
   <string name="pref_title_password">Clave</string>

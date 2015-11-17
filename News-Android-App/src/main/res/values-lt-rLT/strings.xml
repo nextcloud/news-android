@@ -40,7 +40,9 @@
   <string name="action_settings">Nustatymai</string>
   <string name="action_sync_settings">Sinchronizavimo nustatymai</string>
   <string name="action_add_new_feed">Pridėti naują srautą</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Nukopijuota į talpyklę</string>
+  <string name="error_download_failed">Atsiuntimas nepavyko</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Prisijungimo vardas</string>
   <string name="pref_title_password">Slaptažodis</string>

@@ -6,7 +6,7 @@
   <!--Action Bar Items-->
   <string name="action_Share">Կիսվել</string>
   <string name="action_save">Պահպանել</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_password">Գաղտնաբառ</string>
   <!--<string name="pref_default_username">admin</string>-->

@@ -59,13 +59,13 @@
     <item quantity="one">%d nieuw ongelezen bericht beschikbaar</item>
     <item quantity="other">%d nieuwe ongelezen berichten beschikbaar</item>
   </plurals>
-  <!--ContextMenu Items-->
-  <string name="action_downloadimg">Downloaden afbeelding</string>
-  <string name="action_shareimg">Delen afbeelding</string>
-  <string name="action_openimg">Open afbeelding in browser</string>
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Downloaden afbeelding</string>
   <string name="toast_img_download_wait">Downloaden... even geduld</string>
   <string name="toast_img_saved">Afbeelding opgeslagen</string>
   <string name="toast_img_notwriteable">Opslaan afbeelding mislukt</string>
+  <string name="toast_copied_to_clipboard">Gekopieerd naar het klembord</string>
+  <string name="error_download_failed">Downloaden mislukt</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
   <string name="pref_title_password">Wachtwoord</string>

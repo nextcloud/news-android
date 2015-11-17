@@ -41,7 +41,9 @@
   <string name="action_sync_settings">Sinkronizazio Ezarpenak</string>
   <string name="action_add_new_feed">Gehitu iturburu  berria</string>
   <string name="action_textToSpeech">Iraukurri ozenki</string>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Arbelera kopiatua</string>
+  <string name="error_download_failed">Deskargak huts egin du</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Erabiltzaile izena</string>
   <string name="pref_title_password">Pasahitza</string>

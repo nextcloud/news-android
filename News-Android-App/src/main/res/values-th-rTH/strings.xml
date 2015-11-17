@@ -54,7 +54,7 @@
   <plurals name="notification_new_items_text">
     <item quantity="other">มี %d รายการใหม่ที่ยังไม่ได้อ่าน</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>

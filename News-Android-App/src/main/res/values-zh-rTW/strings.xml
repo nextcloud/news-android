@@ -54,7 +54,9 @@
   <plurals name="notification_new_items_text">
     <item quantity="other">%d 個新的未讀項目</item>
   </plurals>
-  <!--ContextMenu Items-->
+  <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">複製至剪貼簿中</string>
+  <string name="error_download_failed">下載失敗</string>
   <!--Strings related to login-->
   <string name="pref_title_username">使用者名稱：</string>
   <string name="pref_title_password">密碼</string>
