@@ -23,12 +23,10 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Build;
 
 import com.squareup.okhttp.HttpUrl;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
@@ -87,27 +85,7 @@ public class OwnCloud_Reader {
 	@SafeVarargs
 	private final <Params> void Start_AsyncTask(final AsyncTask_Reader asyncTask, final Params... params) {
 		if (apiFuture == null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                apiFuture = ((ExecutorService) AsyncTask.THREAD_POOL_EXECUTOR).submit(apiCallable);
-            } else { //Workaround for older Android Devices with no ExecutorService support
-                final CountDownLatch countDownLatch = new CountDownLatch(1);
-                new Thread() {
-                    public void run() {
-                        try {
-                            apiFuture = new CompatFuture<>(apiCallable.call());
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-                        countDownLatch.countDown();
-                    }
-                }.start();
-
-                try {
-                    countDownLatch.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+			apiFuture = ((ExecutorService) AsyncTask.THREAD_POOL_EXECUTOR).submit(apiCallable);
 		}
 
 		asyncTask.setAPIFuture(apiFuture);

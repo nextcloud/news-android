@@ -160,8 +160,7 @@ public class HttpJsonRequest {
 		//http://stackoverflow.com/questions/859111/how-do-i-accept-a-self-signed-certificate-with-a-java-httpsurlconnection
 		//http://developer.android.com/training/articles/security-ssl.html
 
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
-        //	CookieHandler.setDefault(new CookieManager());
+        // CookieHandler.setDefault(new CookieManager());
 
         Response response = client.newCall(request).execute();
 

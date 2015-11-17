@@ -38,7 +38,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -243,16 +242,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 
     private void showTapLogoToSyncShowcaseView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            NewsReaderListFragment nlf = getSlidingListFragment();
-            new MaterialShowcaseView.Builder(NewsReaderListActivity.this)
-                    .setTarget(nlf.headerLogo)
-                    .setDismissText("GOT IT")
-                    .setContentText("Tap this logo to sync with ownCloud")
-                    .setDelay(300) // optional but starting animations immediately in onCreate can make them choppy
-                    .singleUse("LOGO_SYNC") // provide a unique ID used to ensure it is only shown once
-                    .show();
-        }
+		NewsReaderListFragment nlf = getSlidingListFragment();
+		new MaterialShowcaseView.Builder(NewsReaderListActivity.this)
+				.setTarget(nlf.headerLogo)
+				.setDismissText("GOT IT")
+				.setContentText("Tap this logo to sync with ownCloud")
+				.setDelay(300) // optional but starting animations immediately in onCreate can make them choppy
+				.singleUse("LOGO_SYNC") // provide a unique ID used to ensure it is only shown once
+				.show();
     }
 
 	View.OnClickListener mSnackbarListener = new View.OnClickListener()
@@ -499,17 +496,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
      */
     private boolean syncFinishedHandler() {
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-			ShowcaseConfig config = new ShowcaseConfig();
-			config.setDelay(300); // half second between each showcase view
-			MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SWIPE_LEFT_RIGHT_AND_PTR");
-			sequence.setConfig(config);
-			sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
-					"Pull-to-Refresh to sync with ownCloud", "GOT IT");
-			sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
-					"Swipe Left/Right to mark article as read", "GOT IT");
-			sequence.start();
-		}
+		ShowcaseConfig config = new ShowcaseConfig();
+		config.setDelay(300); // half second between each showcase view
+		MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SWIPE_LEFT_RIGHT_AND_PTR");
+		sequence.setConfig(config);
+		sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
+				"Pull-to-Refresh to sync with ownCloud", "GOT IT");
+		sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
+				"Swipe Left/Right to mark article as read", "GOT IT");
+		sequence.start();
 
         NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
         newsReaderListFragment.ReloadAdapter();

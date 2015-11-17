@@ -126,11 +126,7 @@ public class SettingsActivity extends PreferenceActivity {
 
 		super.onCreate(savedInstanceState);
 
-
-        /*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            //getActionBar().setDisplayHomeAsUpEnabled(true);
-        }*/
+		//getActionBar().setDisplayHomeAsUpEnabled(true);
 
         AppBarLayout appBarLayout;
 
@@ -177,12 +173,7 @@ public class SettingsActivity extends PreferenceActivity {
 		// use the older PreferenceActivity APIs.
 
 		// Add 'general' preferences.
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            addPreferencesFromResource(R.xml.pref_general);
-        } else {
-            addPreferencesFromResource(R.xml.pref_general_legacy);
-        }
+		addPreferencesFromResource(R.xml.pref_general);
 
 		PreferenceCategory header = new PreferenceCategory(this);
 		header.setTitle(R.string.pref_header_display);
@@ -198,11 +189,7 @@ public class SettingsActivity extends PreferenceActivity {
         header = new PreferenceCategory(this);
         header.setTitle(R.string.pref_header_notifications);
         getPreferenceScreen().addPreference(header);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            addPreferencesFromResource(R.xml.pref_notification);
-        } else {
-            addPreferencesFromResource(R.xml.pref_notification_legacy);
-        }
+		addPreferencesFromResource(R.xml.pref_notification);
 
         /*
         header = new PreferenceCategory(this);

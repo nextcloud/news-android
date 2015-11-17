@@ -470,14 +470,10 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             view.startAnimation(animator);
         } else {
             int absoluteYPosition = appHeight - view.getHeight() - (int) getResources().getDimension(R.dimen.activity_vertical_margin) - (int) dipToPx(yPosition);
-
-            //int animationpos = 500;
             float xPosition = rlVideoPodcastSurfaceWrapper.getVideoXPosition();
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {//TODO podcast video is only working for newer android versions
-                view.animate().x(xPosition).y(absoluteYPosition).setDuration(animationTime);
-            }
-            //scaleX(scaleFactor).scaleY(scaleFactor)
+            //TODO podcast video is only working for newer android versions
+            view.animate().x(xPosition).y(absoluteYPosition).setDuration(animationTime);
         }
 
 

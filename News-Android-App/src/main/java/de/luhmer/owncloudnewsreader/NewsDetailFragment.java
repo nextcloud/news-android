@@ -22,11 +22,9 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -198,13 +196,8 @@ public class NewsDetailFragment extends Fragment {
      * @param htmlPage
      * @param webView
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static void SetSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            return;
-        }
-
-        if(htmlPage.contains(".gif")) {
+        if (htmlPage.contains(".gif")) {
             webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
             Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
         } else {
@@ -342,14 +335,17 @@ public class NewsDetailFragment extends Fragment {
                         String imgaltval;
                         String imgsrcval;
 
+                        imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
                         Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
+
                         try {
                             imgaltval = imgtag.first().attr("alt");
-                            imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
+                        } catch (NullPointerException e) {
+                            imgaltval = "";
+                        }
+                        try {
                             mImageUrl = new URL(imageUrl);
                         } catch (MalformedURLException e) {
-                            return;
-                        } catch (NullPointerException e) {
                             return;
                         }
 
@@ -357,12 +353,10 @@ public class NewsDetailFragment extends Fragment {
                         int titleIcon = android.R.drawable.ic_menu_gallery;
                         String text = imgaltval;
 
-
                         // Create and show the dialog.
                         DialogFragment newFragment =
                                 NewsDetailImageDialogFragment.newInstanceImage(title, titleIcon, text, mImageUrl);
                         newFragment.show(ft, "menu_fragment_dialog");
-
                     }
                 }
                 else if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE) {

@@ -1,9 +1,7 @@
 package de.luhmer.owncloudnewsreader.view;
 
 import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -76,10 +74,9 @@ public class AnimatingProgressBar extends ProgressBar {
         return super.getSecondaryProgress() / RESOLUTION;
     }
 
-    @TargetApi(11)
     @Override
     public synchronized void setProgress(int progress) {
-        if (!animate || android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+        if (!animate) {
             super.setProgress(progress);
             return;
         }
@@ -102,10 +99,9 @@ public class AnimatingProgressBar extends ProgressBar {
         animator.start();
     }
 
-    @TargetApi(11)
     @Override
     public synchronized void setSecondaryProgress(int secondaryProgress) {
-        if (!animate || android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+        if (!animate) {
             super.setSecondaryProgress(secondaryProgress);
             return;
         }
@@ -128,18 +124,15 @@ public class AnimatingProgressBar extends ProgressBar {
         animatorSecondary.start();
     }
 
-    @TargetApi(11)
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (animator != null) {
-                animator.cancel();
-            }
-            if (animatorSecondary != null) {
-                animatorSecondary.cancel();
-            }
+        if (animator != null) {
+            animator.cancel();
+        }
+        if (animatorSecondary != null) {
+            animatorSecondary.cancel();
         }
     }
 }

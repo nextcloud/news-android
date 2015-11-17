@@ -1,6 +1,5 @@
 package de.luhmer.owncloudnewsreader;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -11,7 +10,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.DialogFragment;
@@ -93,14 +91,12 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         //Build the menu
         switch(mDialogType) {
             case IMAGE:
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-                    mMenuItems.put(getString(R.string.action_img_download), new MenuAction() {
-                        @Override
-                        public void execute() {
-                            downloadImage(mImageUrl);
-                        }
-                    });
-                }
+                mMenuItems.put(getString(R.string.action_img_download), new MenuAction() {
+                    @Override
+                    public void execute() {
+                        downloadImage(mImageUrl);
+                    }
+                });
                 mMenuItems.put(getString(R.string.action_img_open), new MenuAction() {
                     @Override
                     public void execute() {
@@ -113,14 +109,12 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                         shareImage();
                     }
                 });
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-                    mMenuItems.put(getString(R.string.action_img_copylink), new MenuAction() {
-                        @Override
-                        public void execute() {
-                            copyToCipboard(mDialogTitle, mImageUrl.toString());
-                        }
-                    });
-                }
+                mMenuItems.put(getString(R.string.action_img_copylink), new MenuAction() {
+                    @Override
+                    public void execute() {
+                        copyToCipboard(mDialogTitle, mImageUrl.toString());
+                    }
+                });
                 break;
             case URL:
                 mMenuItems.put(getString(R.string.action_link_open), new MenuAction() {
@@ -140,28 +134,26 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                         shareLink();
                     }
                 });
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-                    mMenuItems.put(getString(R.string.action_link_copy), new MenuAction() {
-                        @Override
-                        public void execute() {
-                            copyToCipboard(mDialogTitle, mDialogText);
-                        }
-                    });
-                }
+                mMenuItems.put(getString(R.string.action_link_copy), new MenuAction() {
+                    @Override
+                    public void execute() {
+                        copyToCipboard(mDialogTitle, mDialogText);
+                    }
+                });
                 break;
         }
 
-
         int style = DialogFragment.STYLE_NO_TITLE;
         int theme = ThemeChooser.isDarkTheme(getActivity())
-                ? android.R.style.Theme_Material_Dialog
-                : android.R.style.Theme_Material_Light_Dialog;
+                ? R.style.Theme_Material_Dialog_Floating
+                : R.style.Theme_Material_Light_Dialog_Floating;
         setStyle(style, theme);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         registerImageDownloadReceiver();
 
         View v = inflater.inflate(R.layout.fragment_dialog_image, container, false);
@@ -185,7 +177,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                 getActivity(),
-                android.R.layout.simple_list_item_1,
+                R.layout.fragment_dialog_listviewitem,
                 menuItemsList);
 
         mListView.setAdapter(arrayAdapter);
@@ -208,7 +200,6 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void copyToCipboard(String label, String text) {
         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Activity.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText(label, text);
@@ -243,7 +234,6 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         getDialog().dismiss();
     }
 
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void downloadImage(URL url) {
         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
 
@@ -255,9 +245,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             request.setTitle("Downloading image");
             request.setDescription(filename);
             request.setVisibleInDownloadsUi(false);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
-            }
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
             downloadID = downloadManager.enqueue(request);
             getDialog().hide();
         } else {
@@ -278,7 +266,6 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         if(downloadCompleteReceiver != null) return;
 
         downloadCompleteReceiver = new BroadcastReceiver() {
-            @TargetApi(Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onReceive(Context context, Intent intent) {
                 long refID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);

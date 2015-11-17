@@ -30,6 +30,7 @@
             android:text="Sample1"
             android:layout_centerVertical="true"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_toRightOf="@+id/ic_menu_gallery"
             android:layout_toEndOf="@+id/ic_menu_gallery"/>
 
@@ -58,7 +59,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="13dp"
         android:divider="@null"
         android:id="@+id/ic_menu_item_list"
         android:layout_below="@+id/ic_menu_item_text">
