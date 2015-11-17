@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -154,11 +153,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 textViewSummary.setTypeface(Typeface.DEFAULT_BOLD);
             }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                ((View) textViewSummary.getParent()).setAlpha(alpha);
-            }
-            //itemView.invalidate();
-            //textViewSummary.invalidate();
+            ((View) textViewSummary.getParent()).setAlpha(alpha);
         }
     }
 
