@@ -154,17 +154,17 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 break;
         }
 
-
         int style = DialogFragment.STYLE_NO_TITLE;
         int theme = ThemeChooser.isDarkTheme(getActivity())
-                ? android.R.style.Theme_Material_Dialog
-                : android.R.style.Theme_Material_Light_Dialog;
+                ? R.style.Theme_Material_Dialog_Floating
+                : R.style.Theme_Material_Light_Dialog_Floating;
         setStyle(style, theme);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         registerImageDownloadReceiver();
 
         View v = inflater.inflate(R.layout.fragment_dialog_image, container, false);
@@ -188,7 +188,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                 getActivity(),
-                android.R.layout.simple_list_item_1,
+                R.layout.fragment_dialog_listviewitem,
                 menuItemsList);
 
         mListView.setAdapter(arrayAdapter);
