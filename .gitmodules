@@ -1,6 +1,3 @@
-[submodule "Changeloglib"]
-	path = Changeloglib
-	url = https://github.com/David-Development/changeloglib.git
 [submodule "ownCloud-Account-Importer"]
 	path = ownCloud-Account-Importer
 	url = https://github.com/David-Development/ownCloud-Account-Importer.git
