@@ -96,13 +96,13 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         }
 
 
-        if(podcastItem.downloadProgress == PodcastItem.DOWNLOAD_NOT_STARTED) {
+        if(podcastItem.downloadProgress.equals(PodcastItem.DOWNLOAD_NOT_STARTED)) {
             holder.flDownloadPodcast.setVisibility(View.VISIBLE);
         } else {
             holder.flDownloadPodcast.setVisibility(View.GONE);
         }
 
-        holder.flDeletePodcast.setVisibility((podcastItem.downloadProgress == PodcastItem.DOWNLOAD_COMPLETED) ? View.VISIBLE : View.GONE );
+        holder.flDeletePodcast.setVisibility((podcastItem.downloadProgress.equals(PodcastItem.DOWNLOAD_COMPLETED)) ? View.VISIBLE : View.GONE );
 
         /*
         File podcastFile = new File(PodcastDownloadService.getUrlToPodcastFile(getContext(), podcastItem.link, true));

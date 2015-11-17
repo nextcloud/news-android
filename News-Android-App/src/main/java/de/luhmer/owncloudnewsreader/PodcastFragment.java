@@ -116,7 +116,7 @@ public class PodcastFragment extends Fragment {
         for(int i = 0; i < podcastTitleGrid.getCount(); i++) {
             if(podcastArrayAdapter.getItem(i).link.equals(downloadProgress.podcast.link)) {
 
-                if(podcastArrayAdapter.getItem(i).downloadProgress != downloadProgress.podcast.downloadProgress) { //If Progress changed
+                if(!podcastArrayAdapter.getItem(i).downloadProgress.equals(downloadProgress.podcast.downloadProgress)) { //If Progress changed
                     PodcastItem pItem = podcastArrayAdapter.getItem(i);
 
                     if (downloadProgress.podcast.downloadProgress == 100) {
