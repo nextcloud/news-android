@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class OkHttpImageDownloader extends BaseImageDownloader {
+
+    @SuppressWarnings("unused")
     private static final String TAG = "OkHttpImageDownloader";
 
     private OkHttpClient imageClient;

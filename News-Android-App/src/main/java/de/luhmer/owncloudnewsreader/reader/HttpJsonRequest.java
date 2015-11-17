@@ -49,6 +49,8 @@ import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.TLSSocketFactory;
 
 public class HttpJsonRequest {
+
+    @SuppressWarnings("unused")
     private static final String TAG = "HttpJsonRequest";
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");

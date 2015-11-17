@@ -45,6 +45,8 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 
 public class AsyncTask_GetItems extends AsyncTask_Reader {
+
+    @SuppressWarnings("unused")
     private static final String TAG = "AsyncTask_GetItems";
 
     private long highestItemIdBeforeSync;

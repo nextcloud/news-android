@@ -53,6 +53,8 @@ import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
  * interface.
  */
 public class NewsReaderListFragment extends Fragment implements OnCreateContextMenuListener {
+
+	@SuppressWarnings("unused")
 	protected static final String TAG = "NewsReaderListFragment";
 
     public void ListViewNotifyDataSetChanged()  {

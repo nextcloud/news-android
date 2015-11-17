@@ -39,6 +39,8 @@ import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class OwnCloud_Reader {
+
+	@SuppressWarnings("unused")
 	private static final String TAG = OwnCloud_Reader.class.getCanonicalName();
 
 	private Future<API> apiFuture;

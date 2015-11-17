@@ -46,6 +46,8 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public class OwnCloudReaderMethods {
+
+	@SuppressWarnings("unused")
 	private static final String TAG = "OwnCloudReaderMethods";
 	public static String maxSizePerSync = "300";
 
