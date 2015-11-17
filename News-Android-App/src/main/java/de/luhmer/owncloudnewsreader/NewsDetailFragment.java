@@ -339,8 +339,8 @@ public class NewsDetailFragment extends Fragment {
                     if (imageUrl.startsWith("http")) {
 
                         URL mImageUrl;
-                        String imgaltval = "";
-                        String imgsrcval = "";
+                        String imgaltval;
+                        String imgsrcval;
 
                         Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
                         try {
@@ -368,7 +368,7 @@ public class NewsDetailFragment extends Fragment {
                 else if (type == WebView.HitTestResult.SRC_ANCHOR_TYPE) {
                     String url = result.getExtra();
                     URL mUrl;
-                    String text = "";
+                    String text;
                     try {
                         Elements urltag = htmldoc.getElementsByAttributeValueContaining("href", url);
                         text = urltag.text();
