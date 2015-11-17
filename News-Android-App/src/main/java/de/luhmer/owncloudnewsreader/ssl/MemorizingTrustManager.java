@@ -54,6 +54,7 @@ import java.security.MessageDigest;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateExpiredException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
@@ -235,7 +236,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 			for (X509Certificate c : chain)
 				appKeyStore.setCertificateEntry(c.getSubjectDN().toString(), c);
 		} catch (KeyStoreException e) {
-			Log.e(TAG, "storeCert(" + chain + ")", e);
+			Log.e(TAG, "storeCert(" + Arrays.toString(chain) + ")", e);
 			return;
 		}
 
@@ -273,7 +274,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	public void checkCertTrusted(X509Certificate[] chain, String authType, boolean isServer)
 		throws CertificateException
 	{
-		Log.d(TAG, "checkCertTrusted(" + chain + ", " + authType + ", " + isServer + ")");
+		Log.d(TAG, "checkCertTrusted(" + Arrays.toString(chain) + ", " + authType + ", " + isServer + ")");
 		try {
 			Log.d(TAG, "checkCertTrusted: trying defaultTrustManager");
 			if (isServer)
