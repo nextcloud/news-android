@@ -31,14 +31,17 @@ public class Version4 extends SchemaVersion {
         return 4;
     }
 
+    @SuppressWarnings("unused") // id properties (folderId, etc.) need to be in database
     private static void addEntitysToSchema(Schema schema) {
 
         /* Folder */
         Entity folder = schema.addEntity("Folder");
+        Property folderId = folder.addIdProperty().notNull().getProperty();
         folder.addStringProperty("label").notNull();
 
         /* Feed */
         Entity feed = schema.addEntity("Feed");
+        Property feedId = feed.addIdProperty().notNull().getProperty();
         Property folderIdProperty = feed.addLongProperty("folderId").index().getProperty();
 
         feed.addStringProperty("feedTitle").notNull();
@@ -50,6 +53,7 @@ public class Version4 extends SchemaVersion {
 
         /* RSS Item */
         Entity rssItem = schema.addEntity("RssItem");
+        Property rssItemId = rssItem.addIdProperty().notNull().getProperty();
         Property rssItemFeedId = rssItem.addLongProperty("feedId").notNull().index().getProperty();
 
         rssItem.addStringProperty("link");
