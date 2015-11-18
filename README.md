@@ -1,8 +1,6 @@
 ownCloud News Reader - Android App
 ==================================
-The ownCloud News Reader Android App is under AGPLv3 License terms.
-Status: Beta
-Bugs and enhancements can be reported under: https://github.com/owncloud/News-Android-App/issues
+The ownCloud News Reader Android App is under [AGPLv3](https://www.gnu.org/licenses/license-list.html#AGPLv3.0) License terms.
 
 <p>
 <a href="https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader" alt="Download from Google Play">
@@ -14,6 +12,10 @@ Bugs and enhancements can be reported under: https://github.com/owncloud/News-An
 </a>
 </p>
 
+*Status*: Beta
+
+*Bugs and enhancements can be reported under*: https://github.com/owncloud/News-Android-App/issues
+
 
 Donate
 ==================================
@@ -24,44 +26,42 @@ How to use the Beta App via Google Play ?
 ==================================
 Join the following Google Group:
 https://groups.google.com/d/forum/owncloud-news-android-app
-there you can find a link (after I accepted you in the group) to Google Play for registering as beta tester of the app.
+
+There you can find a link (after I accepted you in the group) to Google Play for registering as beta tester of the app.
 
 
 
 FAQ:
 ==================================
-The app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen)
-- Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3 (via Google Play or GitHub <a href="https://github.com/owncloud/News-Android-App/commits/master/News-Android-App.apk">Choose version</a>).
+The app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen).
+---------------------
+Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3 (via Google Play or GitHub <a href="https://github.com/owncloud/News-Android-App/commits/master/News-Android-App.apk">Choose version</a>).
 
 
 How to compile the App
 ==================================
 Requirements:
 -----------------------
->1) Android Studio
->2) Git installed (you can do the following stuff without git but I'm not going to show how).
+  1. Android Studio
+  1. Git installed (you can do the following stuff without git but I'm not going to show how).
 
 Download and install:
 -----------------------
->1) Open cmd/terminal
->2) Navigate to your workspace
->3) Then type in:
-><pre>
-git clone --recursive https://github.com/owncloud/News-Android-App.git
-></pre>
+  1. Open cmd/terminal
+  2. Navigate to your workspace
+  3. Then type in:
+    ```
+    git clone --recursive https://github.com/owncloud/News-Android-App.git
+    ```
+    for the dev branch:
+    ```
+    git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
+    ```
 
-for the dev branch:
-><pre>
-git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
-></pre>
+  4. Run the following script `News-Android-App/remove_invalid_languages.sh`
+  5. Import the Project and start coding!
 
->Run the following script "remove_invalid_languages.sh"
-
->Import the Project and start coding!
-
-
-
->That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
+That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
 
 
 Contributors
@@ -191,7 +191,7 @@ Updates
 
 0.9.0 (Google Play)
 ---------------------
-- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/339">#339 Does not remember position in article listing</a> 
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/339">#339 Does not remember position in article listing</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/338">#338 Allow App to be installed on SD-Card</a>
 
 
@@ -300,7 +300,7 @@ Updates
 
 0.7.2 (Google Play - Beta)
 ---------------------
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/252">#252 "Open in Browser" should open current page.</a> 
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/252">#252 "Open in Browser" should open current page.</a>
 - New feature - <a href="https://github.com/owncloud/News-Android-App/issues/182">#182 »Read« checkbox in widget</a>
 - Move "Sync Settings" option from Actionbar to Settings
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/212">#212 sort order of starred items</a>
@@ -337,7 +337,7 @@ Updates
 
 0.6.9.7 (Google Play - Beta)
 ---------------------
-- Rewrite backend - **IMPORTANT** All your data will be deleted. You'll have to make a full-sync after the update. 
+- Rewrite backend - **IMPORTANT** All your data will be deleted. You'll have to make a full-sync after the update.
 - Lot of bug fixes/improvements
 - Performance improvements
 - Add sorting podcasts by pub-date (descending)
