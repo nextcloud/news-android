@@ -56,11 +56,18 @@
   </plurals>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Lataa kuva</string>
+  <string name="action_img_sharelink">Jaa kuvan linkki</string>
+  <string name="action_img_open">Avaa kuva selaimessa</string>
+  <string name="action_img_copylink">Kopioi kuvan linkki</string>
+  <string name="action_link_share">Jaa linkki</string>
+  <string name="action_link_open">Avaa linkki selaimessa</string>
+  <string name="action_link_copy">Kopioi linkki</string>
   <string name="toast_img_download_wait">Ladataan, odota hetki...</string>
   <string name="toast_img_saved">Kuva tallennettu.</string>
   <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
   <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="error_download_failed">Lataus epäonnistui</string>
+  <string name="intent_title_share">Jaa käyttäen</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>

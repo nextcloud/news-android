@@ -55,6 +55,8 @@
     <item quantity="other">มี %d รายการใหม่ที่ยังไม่ได้อ่าน</item>
   </plurals>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
+  <string name="error_download_failed">ดาวน์โหลดล้มเหลว</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>

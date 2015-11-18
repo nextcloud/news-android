@@ -61,11 +61,18 @@
   </plurals>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Downloaden afbeelding</string>
+  <string name="action_img_sharelink">Delen afbeeldingslink</string>
+  <string name="action_img_open">Open afbeelding in browser</string>
+  <string name="action_img_copylink">Kopiëren afbeeldingslink</string>
+  <string name="action_link_share">Delen link</string>
+  <string name="action_link_open">Openen link in browser</string>
+  <string name="action_link_copy">Kopiëren link </string>
   <string name="toast_img_download_wait">Downloaden... even geduld</string>
   <string name="toast_img_saved">Afbeelding opgeslagen</string>
   <string name="toast_img_notwriteable">Opslaan afbeelding mislukt</string>
   <string name="toast_copied_to_clipboard">Gekopieerd naar het klembord</string>
   <string name="error_download_failed">Downloaden mislukt</string>
+  <string name="intent_title_share">Delen via</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
   <string name="pref_title_password">Wachtwoord</string>

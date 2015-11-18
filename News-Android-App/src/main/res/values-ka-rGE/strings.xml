@@ -11,6 +11,8 @@
   <string name="action_save">შენახვა</string>
   <string name="action_settings">პარამეტრები</string>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">კოპირებულია კლიპბორდში</string>
+  <string name="error_download_failed">ჩამოტვირთვა ვერ განხორციელდა</string>
   <!--Strings related to login-->
   <string name="pref_title_username">მომხმარებლის სახელი</string>
   <string name="pref_title_password">პაროლი</string>

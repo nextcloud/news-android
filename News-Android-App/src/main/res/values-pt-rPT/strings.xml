@@ -60,6 +60,7 @@
     <item quantity="other">Tem disponível %d novos itens por ler</item>
   </plurals>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_link_copy">Copiar hiperligação</string>
   <string name="toast_img_saved">Imagem guardada.</string>
   <string name="toast_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="error_download_failed">Transferência falhada</string>

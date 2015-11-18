@@ -59,6 +59,8 @@
     <item quantity="other">Yeni %d okunmamış öge mevcut</item>
   </plurals>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="toast_copied_to_clipboard">Panoya kopyalandı</string>
+  <string name="error_download_failed">İndirme başarısız</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Kullanıcı Adı</string>
   <string name="pref_title_password">Parola</string>

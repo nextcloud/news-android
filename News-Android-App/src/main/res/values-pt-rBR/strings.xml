@@ -61,11 +61,18 @@
   </plurals>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Baixar Imagem</string>
+  <string name="action_img_sharelink">Link de Compartilhamento de Imagem</string>
+  <string name="action_img_open">Abrir a Imagem no Navegador</string>
+  <string name="action_img_copylink">Copiar o Link da Imagem</string>
+  <string name="action_link_share">Link de Compartilhamento</string>
+  <string name="action_link_open">Abrir o Link no Navegador</string>
+  <string name="action_link_copy">Copiar o Link</string>
   <string name="toast_img_download_wait">Baixando... por favor aguarde</string>
   <string name="toast_img_saved">Imagem salva.</string>
   <string name="toast_img_notwriteable">Falhou ao salvar Imagem</string>
   <string name="toast_copied_to_clipboard">Copiado para área de transferência</string>
-  <string name="error_download_failed">Download falhou</string>
+  <string name="error_download_failed">A transferência falhou</string>
+  <string name="intent_title_share">Compartilhar via</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de Usuário</string>
   <string name="pref_title_password">Senha</string>
