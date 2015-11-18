@@ -11,13 +11,15 @@
         android:layout_height="match_parent"
         android:layout_width="4dp"
         android:background="?attr/dividerLineColor"
-        android:layout_marginEnd="@dimen/listview_row_margin_left"/>
+        android:layout_marginEnd="@dimen/listview_row_margin_left"
+        android:layout_marginRight="@dimen/listview_row_margin_left"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:descendantFocusability="blocksDescendants"
         android:layout_marginEnd="@dimen/listview_row_margin_right"
+        android:layout_marginRight="@dimen/listview_row_margin_right"
         android:layout_marginTop="@dimen/listview_row_margin_top"
         android:layout_marginBottom="@dimen/listview_row_margin_bottom"
         android:id="@+id/list_item_header">
@@ -32,6 +34,7 @@
             android:textStyle="bold"
             tools:text="Summary Text\nSecond Line"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:minLines="2"
             android:maxLines="2"
             android:layout_alignParentTop="true"
@@ -44,7 +47,9 @@
             android:layout_height="15dp"
             android:layout_below="@+id/summary"
             android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             tools:src="@drawable/default_feed_icon_light"
             android:layout_marginTop="2dp" />
 

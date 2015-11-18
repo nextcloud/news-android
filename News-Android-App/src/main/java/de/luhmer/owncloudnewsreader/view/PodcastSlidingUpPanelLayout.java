@@ -2,16 +2,12 @@ package de.luhmer.owncloudnewsreader.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-/**
- * Created by David on 21.06.2014.
- */
 public class PodcastSlidingUpPanelLayout extends SlidingUpPanelLayout {
     public PodcastSlidingUpPanelLayout(Context context) {
         super(context);
@@ -23,12 +19,6 @@ public class PodcastSlidingUpPanelLayout extends SlidingUpPanelLayout {
 
     public PodcastSlidingUpPanelLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return super.onInterceptTouchEvent(ev);
-        //return isDragViewHit((int)ev.getX(), (int)ev.getY());
     }
 
     private View mDragView;

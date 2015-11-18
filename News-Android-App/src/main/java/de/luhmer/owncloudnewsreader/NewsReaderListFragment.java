@@ -53,6 +53,8 @@ import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
  * interface.
  */
 public class NewsReaderListFragment extends Fragment implements OnCreateContextMenuListener {
+
+	@SuppressWarnings("unused")
 	protected static final String TAG = "NewsReaderListFragment";
 
     public void ListViewNotifyDataSetChanged()  {
@@ -175,7 +177,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	ExpListTextClicked expListTextClickedListener = new ExpListTextClicked() {
 
 		@Override
-		public void onTextClicked(long idFeed, Context context, boolean isFolder, Long optional_folder_id) {
+		public void onTextClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
             mCallbacks.onTopItemClicked(idFeed, isFolder, optional_folder_id);
 		}
     };

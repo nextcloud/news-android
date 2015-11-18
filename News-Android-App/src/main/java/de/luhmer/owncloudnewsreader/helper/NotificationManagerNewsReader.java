@@ -9,9 +9,6 @@ import android.support.v4.app.NotificationCompat;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 
-/**
- * Created by david on 29.10.13.
- */
 public class NotificationManagerNewsReader {
     private static NotificationManagerNewsReader instance;
     private final int NOTIFICATION_ID = 0;

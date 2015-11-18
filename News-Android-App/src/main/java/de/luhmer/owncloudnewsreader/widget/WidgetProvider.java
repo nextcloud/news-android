@@ -32,6 +32,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import java.util.Arrays;
+
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
@@ -64,7 +66,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
         String action = intent.getAction();
 
-        Log.v(TAG, "onRecieve - WidgetID: " + appWidgetId + " - " + action);
+        Log.v(TAG, "onRecieve - WidgetID: " + Arrays.toString(appWidgetId) + " - " + action);
 
         for (int anAppWidgetId : appWidgetId) {
             if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(action)) {

@@ -36,7 +36,9 @@ import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 
 public class AsyncTask_GetOldItems extends AsyncTask_Reader {
 
+	@SuppressWarnings("unused")
     private static final String TAG = "AsyncTask_GetOldItems";
+
     public Long feed_id;
     public Long folder_id;
     private int downloadedItemsCount = 0;

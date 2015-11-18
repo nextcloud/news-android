@@ -29,14 +29,15 @@ import de.luhmer.owncloudnewsreader.model.PodcastItem;
  * helper methods.
  */
 public class PodcastDownloadService extends IntentService {
+
+    @SuppressWarnings("unused")
+    private static final String TAG = PodcastDownloadService.class.getCanonicalName();
+
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
     private static final String ACTION_DOWNLOAD = "de.luhmer.owncloudnewsreader.services.action.DOWNLOAD";
 
-
-
     private static final String EXTRA_RECEIVER = "de.luhmer.owncloudnewsreader.services.extra.RECEIVER";
     private static final String EXTRA_URL = "de.luhmer.owncloudnewsreader.services.extra.URL";
-    private static final String TAG = PodcastDownloadService.class.getCanonicalName();
 
     private EventBus eventBus;
 

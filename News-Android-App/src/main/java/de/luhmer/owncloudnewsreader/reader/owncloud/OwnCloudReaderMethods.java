@@ -28,7 +28,6 @@ import com.google.gson.stream.JsonToken;
 import com.squareup.okhttp.HttpUrl;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -47,6 +46,8 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public class OwnCloudReaderMethods {
+
+	@SuppressWarnings("unused")
 	private static final String TAG = "OwnCloudReaderMethods";
 	public static String maxSizePerSync = "300";
 
@@ -156,9 +157,8 @@ public class OwnCloudReaderMethods {
 	 * @param iJoBj
 	 * @return count all, count new items
 	 * @throws IOException
-	 * @throws JSONException
 	 */
-	public static int[] readJsonStreamV2(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
+	public static int[] readJsonStreamV2(InputStream in, IHandleJsonObject iJoBj) throws IOException {
         List<String> allowedArrays = Arrays.asList("feeds", "folders", "items");
 
 		int count = 0;
@@ -200,9 +200,8 @@ public class OwnCloudReaderMethods {
 	 * @param iJoBj
 	 * @return new int[] { count, newItemsCount }
 	 * @throws IOException
-	 * @throws JSONException
 	 */
-	public static int[] readJsonStreamV1(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
+	public static int[] readJsonStreamV1(InputStream in, IHandleJsonObject iJoBj) throws IOException {
 		int count = 0;
         int newItemsCount = 0;
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
@@ -246,9 +245,8 @@ public class OwnCloudReaderMethods {
 	 * @param iJoBj
 	 * @return
 	 * @throws IOException
-	 * @throws JSONException
 	 */
-	private static int readJsonStreamSimple(InputStream in, IHandleJsonObject iJoBj) throws IOException, JSONException {
+	private static int readJsonStreamSimple(InputStream in, IHandleJsonObject iJoBj) throws IOException {
 		int count = 0;
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         //reader.setLenient(true);

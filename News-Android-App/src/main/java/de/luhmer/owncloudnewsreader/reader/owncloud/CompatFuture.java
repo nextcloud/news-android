@@ -5,9 +5,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-/**
- * Created by david on 03.10.15.
- */
 public class CompatFuture<T> implements Future<T> {
     private T result;
 

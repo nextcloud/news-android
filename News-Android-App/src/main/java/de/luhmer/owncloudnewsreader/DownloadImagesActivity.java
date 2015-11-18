@@ -7,9 +7,6 @@ import android.os.Bundle;
 
 import de.luhmer.owncloudnewsreader.reader.owncloud.AsyncTask_GetItems;
 
-/**
- * Created by david on 14.10.13.
- */
 public class DownloadImagesActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

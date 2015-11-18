@@ -12,9 +12,6 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
 
-/**
- * Created by daniel on 12.07.15.
- */
 public class NewsReaderApplication extends Application {
     @Override
     public void onCreate() {

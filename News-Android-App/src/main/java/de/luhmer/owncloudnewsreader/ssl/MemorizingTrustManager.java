@@ -54,6 +54,7 @@ import java.security.MessageDigest;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateExpiredException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
@@ -168,7 +169,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	 * Removes an Activity from the MTM display stack.
 	 *
 	 * Always call this function when the Activity added with
-	 * @see bindDisplayActivity is hidden.
+	 * @see #bindDisplayActivity is hidden.
 	 *
 	 * @param act Activity to be unbound
 	 */
@@ -235,7 +236,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 			for (X509Certificate c : chain)
 				appKeyStore.setCertificateEntry(c.getSubjectDN().toString(), c);
 		} catch (KeyStoreException e) {
-			Log.e(TAG, "storeCert(" + chain + ")", e);
+			Log.e(TAG, "storeCert(" + Arrays.toString(chain) + ")", e);
 			return;
 		}
 
@@ -273,7 +274,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	public void checkCertTrusted(X509Certificate[] chain, String authType, boolean isServer)
 		throws CertificateException
 	{
-		Log.d(TAG, "checkCertTrusted(" + chain + ", " + authType + ", " + isServer + ")");
+		Log.d(TAG, "checkCertTrusted(" + Arrays.toString(chain) + ", " + authType + ", " + isServer + ")");
 		try {
 			Log.d(TAG, "checkCertTrusted: trying defaultTrustManager");
 			if (isServer)
@@ -298,7 +299,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 					return;
 				}
 				e.printStackTrace();
-				interact(chain, authType, e);
+				interact(chain, e);
 			}
 		}
 	}
@@ -398,7 +399,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 		return (foregroundAct != null) ? foregroundAct : mContext;
 	}
 
-	void interact(final X509Certificate[] chain, String authType, CertificateException cause)
+	void interact(final X509Certificate[] chain, CertificateException cause)
 		throws CertificateException
 	{
 		/* prepare the MTMDecision blocker object */
@@ -428,19 +429,6 @@ public class MemorizingTrustManager implements X509TrustManager {
 					Log.e(TAG, "startActivity: " + ex);
 					startActivityNotification(ni, certMessage);					
 				}
-				
-				/*
-				
-
-				// we try to directly start the activity and fall back to
-				// making a notification
-				try {
-					getUI().startActivity(ni);
-				} catch (Exception e) {
-					Log.e(TAG, "startActivity: " + e);
-					startActivityNotification(ni, certMessage);
-				}
-				*/
 			}
 		});
 

@@ -8,9 +8,6 @@ import java.util.Set;
 
 import de.greenrobot.daogenerator.DaoGenerator;
 
-/**
- * Created by David on 15.07.2014.
- */
 public class DatabaseOrmGenerator {
     private static final String SCHEMA_OUTPUT_DIR = "./News-Android-App/src/main/java/";
 
@@ -26,7 +23,7 @@ public class DatabaseOrmGenerator {
      * @throws Exception
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException, Exception {
+    public static void main(String[] args) throws Exception {
         List<SchemaVersion> versions = new ArrayList<>();
 
         versions.add(new Version4(true));

@@ -129,7 +129,7 @@ public class NewsReaderDetailFragment extends Fragment {
         if(updateListView)
             UpdateCurrentRssView(getActivity());
         else
-            RefreshCurrentRssView(getActivity());
+            RefreshCurrentRssView();
     }
 
     @Override
@@ -146,7 +146,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         //When the fragment is instantiated by the xml file, onResume will be called twice
         if(onResumeCount >= 2) {
-            RefreshCurrentRssView(getActivity());
+            RefreshCurrentRssView();
         }
         onResumeCount++;
 
@@ -217,9 +217,8 @@ public class NewsReaderDetailFragment extends Fragment {
 
     /**
      * Refreshes the current RSS-View
-     * @param context
      */
-    public void RefreshCurrentRssView(Context context) {
+    public void RefreshCurrentRssView() {
         Log.v(TAG, "RefreshCurrentRssView");
         NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
 

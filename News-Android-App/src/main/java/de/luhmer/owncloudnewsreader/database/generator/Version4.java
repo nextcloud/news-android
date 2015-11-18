@@ -1,9 +1,5 @@
 package de.luhmer.owncloudnewsreader.database.generator;
 
-/**
- * Created by David on 18.07.2014.
- */
-
 import de.greenrobot.daogenerator.Entity;
 import de.greenrobot.daogenerator.Property;
 import de.greenrobot.daogenerator.Schema;
@@ -35,6 +31,7 @@ public class Version4 extends SchemaVersion {
         return 4;
     }
 
+    @SuppressWarnings("unused") // id properties (folderId, etc.) need to be in database
     private static void addEntitysToSchema(Schema schema) {
 
         /* Folder */

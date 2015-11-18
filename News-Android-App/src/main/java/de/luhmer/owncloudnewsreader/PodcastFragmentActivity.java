@@ -37,7 +37,6 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
-import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
@@ -48,9 +47,6 @@ import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 
-/**
- * Created by David on 29.06.2014.
- */
 public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
     PodcastPlaybackService mPodcastPlaybackService;
@@ -104,11 +100,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         */
 
         super.onPostCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 
     @Override
@@ -328,7 +319,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     float scaleFactor = 1;
     boolean useAnimation = false;
 
-    public void onEventMainThread(VideoDoubleClicked doubleClicked) {
+    public void onEventMainThread() {
         appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
         appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
 

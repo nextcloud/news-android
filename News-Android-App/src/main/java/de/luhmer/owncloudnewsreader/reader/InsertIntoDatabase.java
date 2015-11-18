@@ -30,9 +30,6 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 
-/**
- * Created by David on 24.05.13.
- */
 public class InsertIntoDatabase {
     private static final String TAG = "InsertIntoDatabase";
 

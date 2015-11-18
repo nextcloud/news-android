@@ -21,8 +21,6 @@
 
 package de.luhmer.owncloudnewsreader.interfaces;
 
-import android.content.Context;
-
 public interface ExpListTextClicked {
-	void onTextClicked(long idFeed, Context context, boolean isFolder, Long optional_folder_id);
+	void onTextClicked(long idFeed, boolean isFolder, Long optional_folder_id);
 }

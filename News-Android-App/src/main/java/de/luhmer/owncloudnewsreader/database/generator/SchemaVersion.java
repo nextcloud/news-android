@@ -2,9 +2,6 @@ package de.luhmer.owncloudnewsreader.database.generator;
 
 import de.greenrobot.daogenerator.Schema;
 
-/**
- * Created by David on 18.07.2014.
- */
 public abstract class SchemaVersion {
 
     public static final String CURRENT_SCHEMA_PACKAGE = "de.luhmer.owncloudnewsreader.database.model";

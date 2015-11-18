@@ -30,9 +30,6 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.CurrentRssViewDataHolder;
 
-/**
- * Created by daniel on 28.06.15.
- */
 public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     private static final String TAG = "NewsListRecyclerAdapter";
 
