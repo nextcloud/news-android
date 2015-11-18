@@ -22,7 +22,7 @@ Donate
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=david-dev&url=https://github.com/owncloud/News-Android-App&title=News-Android-App&language=JAVA&tags=github&category=software)
 
 
-How to use the Beta App via Google Play ?
+How to use the Beta App via Google Play?
 ==================================
 Join the following Google Group:
 https://groups.google.com/d/forum/owncloud-news-android-app
@@ -36,6 +36,14 @@ FAQ:
 The app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen).
 ---------------------
 Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3 (via Google Play or GitHub <a href="https://github.com/owncloud/News-Android-App/commits/master/News-Android-App.apk">Choose version</a>).
+
+
+Help to translate
+==================================
+Have you found a translation error? Or would you like to use ownCloud News Reader in your
+native language?
+
+You can [join the translation team](https://www.transifex.com/owncloud_robot/owncloud/android-news/) and improve one of over 100 languages.
 
 
 How to compile the App
