@@ -1,6 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.TargetApi;
+
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -27,7 +28,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.nononsenseapps.filepicker.FilePickerActivity;
+import net.rdrei.android.dirchooser.DirectoryChooserActivity;
+import net.rdrei.android.dirchooser.DirectoryChooserConfig;
+import net.rdrei.android.dirchooser.DirectoryChooserFragment;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -37,6 +40,9 @@ import java.util.List;
 
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
+/**
+ * Created by david on 15.11.15.
+ */
 public class NewsDetailImageDialogFragment extends DialogFragment {
 
     public enum TYPE { IMAGE, URL }
@@ -259,7 +265,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     private void downloadImage(URL url) {
-        System.out.println("DOWNLOADDIR DOWNLOADDIR DOWNLOADDIR DOWNLOADDIR");
+        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%downloadimage(): " + url);
         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
 
         if(isExternalStorageWritable()) {
@@ -280,60 +286,71 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         }
     }
 
-    private Uri getDownloadDir(String filename) {
-        System.out.println("*************************************: getDownloadDir");
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        String savedDir = sharedPref.getString("manualImageDownloadLocation", "");
-        String def = "";
-        if(savedDir == "") {
-            def = Environment.getExternalStorageDirectory().toString();//.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString();
-            System.out.println("********************************EMPTY: " +def);
-        } else {
-            def = savedDir;
-            System.out.println("********************************FULL: " +def);
-        }
-        String tmp = "file://" +def +"/" +filename;
-        System.out.println("********************************return: " +tmp);
-        return Uri.parse(tmp);
-    }
+
+    private DirectoryChooserFragment mDialog;
 
     private void configureDownloadPath(URL url) {
-        //getDialog().hide();
-        Intent i = new Intent(getContext(), FilePickerActivity.class);
-        // This works if you defined the intent filter
-         //Intent i = new Intent(Intent.ACTION_GET_CONTENT);
 
-        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
-        i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR);
-        //i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
-        i.putExtra(FilePickerActivity.EXTRA_START_PATH, getActivity().getPreferences(Context.MODE_PRIVATE).getString("manualImageDownloadLocation", ""));
+        final Intent chooserIntent = new Intent(getActivity(), DirectoryChooserActivity.class);
+        final DirectoryChooserConfig config = DirectoryChooserConfig.builder()
+                .initialDirectory(getActivity().getPreferences(Context.MODE_PRIVATE).getString("manualImageDownloadLocation", ""))
+                .newDirectoryName("new folder")
+                .allowNewDirectoryNameModification(true)
+                .allowReadOnlyDirectory(false)
+                .build();
 
-
-        startActivityForResult(i, 1000);
-
+        chooserIntent.putExtra(DirectoryChooserActivity.EXTRA_CONFIG, config);
+        startActivityForResult(chooserIntent, 1000);
     }
+
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("§§§§§§§§§§§§§§§§§§§§§§0: onActivityResult" );
-        if (requestCode == 1000 && resultCode == Activity.RESULT_OK) {
-            System.out.println("§§§§§§§§§§§§§§§§§§§§§§1: onActivityResult");
 
-            Uri uri = data.getData();
-            System.out.println("§§§§§§§§§§§§§§§§§§§§§§3 uri: " +uri.getPath() );
+        super.onActivityResult(requestCode, resultCode, data);
 
-            SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString("manualImageDownloadLocation", uri.getPath());
-            editor.commit();
+        if (requestCode == 1000) {
+            if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
+                String dir = data.getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);
 
+                System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%: " +dir);
+                setDownloadDir(dir);
 
-
-
+            } else {
+                // Nothing selected
+            }
         }
-        //downloadImage(mImageUrl);
     }
+
+
+
+    private void setDownloadDir(String path) {
+        if(path.equals("")) {
+            path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        }
+
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("manualImageDownloadLocation", path);
+        editor.commit();
+    }
+
+
+    private Uri getDownloadDir(String filename) {
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String dir = sharedPref.getString("manualImageDownloadLocation", "");
+
+        if(dir.equals("")) { //sharedPref has never been set
+            setDownloadDir(""); //set to default public download dir
+            return getDownloadDir(filename);
+        }
+
+        String tmp = "file://" +dir +"/" +filename;
+        return Uri.parse(tmp);
+    }
+
+
 
 
     private void unregisterImageDownloadReceiver() {

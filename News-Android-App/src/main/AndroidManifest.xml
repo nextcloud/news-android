@@ -20,13 +20,13 @@
 
     <uses-sdk tools:overrideLibrary="android.support.customtabs"/>
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name=".NewsReaderApplication">
+        android:name=".NewsReaderApplication"
+        tools:replace="android:icon, android:label, android:theme, android:name">
         <activity
             android:name=".NewsReaderListActivity"
             android:label="@string/app_name"
@@ -84,15 +84,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.nononsenseapps.filepicker.FilePickerActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.GET_CONTENT" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name="net.rdrei.android.dirchooser.DirectoryChooserActivity" />
 
         <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle" />
 
