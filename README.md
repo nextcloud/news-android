@@ -1,4 +1,4 @@
-ownCloud News Reader - Android App
+ownCloud News Reader – Android App
 ==================================
 The ownCloud News Reader Android App is under [AGPLv3](https://www.gnu.org/licenses/license-list.html#AGPLv3.0) License terms.
 
@@ -51,12 +51,15 @@ How to compile the App
 Requirements:
 -----------------------
   1. Android Studio
+
   1. Git installed (you can do the following stuff without git but I'm not going to show how).
 
 Download and install:
 -----------------------
   1. Open cmd/terminal
+
   2. Navigate to your workspace
+
   3. Then type in:
     ```
     git clone --recursive https://github.com/owncloud/News-Android-App.git
@@ -67,7 +70,15 @@ Download and install:
     ```
 
   4. Run the following script `News-Android-App/remove_invalid_languages.sh`
+
   5. Import the Project and start coding!
+
+  6. If you should ever get a Gradle error `Configuration with name 'default' not found`
+    while building, execute following commands in the projects root directory:
+    ```
+    git submodule init
+    git submodule update
+    ```
 
 That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
 
