@@ -55,8 +55,19 @@
     <item quantity="other">มี %d รายการใหม่ที่ยังไม่ได้อ่าน</item>
   </plurals>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">ดาวน์โหลดรูปภาพ</string>
+  <string name="action_img_sharelink">แชร์ลิงค์รูปภาพ</string>
+  <string name="action_img_open">เปิดรูปในบราวเซอร์</string>
+  <string name="action_img_copylink">คัดลอกลิงค์รูปภาพ</string>
+  <string name="action_link_share">แชร์ลิงค์</string>
+  <string name="action_link_open">เปิดลิงค์ในบราวเซอร์</string>
+  <string name="action_link_copy">คัดลอกลิงค์</string>
+  <string name="toast_img_download_wait">กำลังดาวน์โหลด... กรุณารอซักครู่</string>
+  <string name="toast_img_saved">บันทึกรูปภาพแล้ว</string>
+  <string name="toast_img_notwriteable">บันทึกรูปภาพล้มเหลว</string>
   <string name="toast_copied_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
   <string name="error_download_failed">ดาวน์โหลดล้มเหลว</string>
+  <string name="intent_title_share">แชร์ผ่าน</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>
