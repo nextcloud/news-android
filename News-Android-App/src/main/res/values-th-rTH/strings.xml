@@ -16,6 +16,7 @@
   <plurals name="max_items_count_reached">
     <item quantity="other">คุณใช้งานถึงรายการถึงขนาดสูงสุดจาก %d</item>
   </plurals>
+  <string name="current_version">คุณกำลังใช้รุ่น %s</string>
   <string name="widget_header">ข่าว ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="other">%d รายการใหม่ที่สามารถใช้ได้</item>
@@ -186,6 +187,7 @@
   <string name="pref_title_clearCache">ล้างแคช</string>
   <string name="pref_title_CacheImagesOffline">แคชรูปภาพออฟไลน์</string>
   <string name="pref_title_Max_Cache_Size">ขนาดแคชสูงสุด</string>
+  <string name="pref_title_DownloadedImageLocation">บันทึกรูปภาพที่ดาวน์โหลดมาแล้วไปยัง:</string>
   <string-array name="pref_data_sync_image_cache">
     <item>ไม่เคย</item>
     <item>เฉพาะ WiFi เท่านั้น</item>
