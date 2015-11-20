@@ -31,13 +31,6 @@ There you can find a link (after I accepted you in the group) to Google Play for
 
 
 
-FAQ:
-==================================
-The app shows an empty Toast when trying to sync or sign-in (little dark box at the button of the screen).
----------------------
-Make sure you're using the latest version of the news app and the appframework from GitHub. Otherwise you can use the Android version <= 0.3.3 (via Google Play or GitHub <a href="https://github.com/owncloud/News-Android-App/commits/master/News-Android-App.apk">Choose version</a>).
-
-
 Help to translate
 ==================================
 Have you found a translation error? Or would you like to use ownCloud News Reader in your
