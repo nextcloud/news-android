@@ -68,6 +68,7 @@
   <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
   <string name="toast_copied_to_clipboard">クリップボードにコピー</string>
   <string name="error_download_failed">ダウンロードに失敗</string>
+  <string name="intent_title_share">次のものでシェア</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">パスワード</string>
