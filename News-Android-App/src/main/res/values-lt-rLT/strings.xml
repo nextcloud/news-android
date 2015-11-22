@@ -40,7 +40,14 @@
   <string name="action_settings">Nustatymai</string>
   <string name="action_sync_settings">Sinchronizavimo nustatymai</string>
   <string name="action_add_new_feed">Pridėti naują srautą</string>
+  <string name="action_textToSpeech">Perskaityk</string>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d neperskaitytas įrašas</item>
+    <item quantity="few">%d neperskaityti įrašai</item>
+    <item quantity="other">%d neperskaityti įrašai</item>
+  </plurals>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Parsiųsti paveikslėlį</string>
   <string name="toast_copied_to_clipboard">Nukopijuota į talpyklę</string>
   <string name="error_download_failed">Atsiuntimas nepavyko</string>
   <!--Strings related to login-->
