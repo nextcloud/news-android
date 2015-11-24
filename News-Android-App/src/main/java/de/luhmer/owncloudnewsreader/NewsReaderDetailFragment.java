@@ -361,9 +361,9 @@ public class NewsReaderDetailFragment extends Fragment {
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(context, attrs, savedInstanceState);
-        TypedArray a = context.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable,R.attr.colorAccent});
+        TypedArray a = context.obtainStyledAttributes(attrs, new int[]{ R.attr.markasreadDrawable, R.attr.colorAccent });
         markAsReadDrawable = a.getDrawable(0);
-        accentColor = ContextCompat.getColor(getContext(), R.color.owncloudBlueLight);
+        accentColor = ContextCompat.getColor(context, R.color.owncloudBlueLight);
         a.recycle();
     }
 

@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.style.ForegroundColorSpan;
@@ -78,7 +79,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
         pDelayHandler = new PostDelayHandler(activity);
 
-        bodyForegroundColor = new ForegroundColorSpan(activity.getResources().getColor(android.R.color.secondary_text_dark));
+        bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(activity, android.R.color.secondary_text_dark));
 
         dbConn = new DatabaseConnectionOrm(activity);
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);

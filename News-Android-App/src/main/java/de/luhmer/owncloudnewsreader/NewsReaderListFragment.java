@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
@@ -119,7 +120,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		View view = inflater.inflate(R.layout.fragment_newsreader_list, container, false);
 
         if(!ThemeChooser.isDarkTheme(getActivity())) {
-            view.setBackgroundColor(getResources().getColor(R.color.slider_listview_background_color_light_theme));
+            view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.slider_listview_background_color_light_theme));
         }
 
         ButterKnife.inject(this, view);
@@ -130,7 +131,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		eListView.setGroupIndicator(null);
 
 		eListView.setOnChildClickListener(onChildClickListener);
-		//eListView.setSmoothScrollbarEnabled(true);
 
 		eListView.setClickable(true);
 		eListView.setAdapter(lvAdapter);

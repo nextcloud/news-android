@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
@@ -89,7 +90,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(itemView.getContext());
         selectedListLayout = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"));
 
-        bodyForegroundColor = new ForegroundColorSpan(itemView.getContext().getResources().getColor(android.R.color.secondary_text_dark));
+        bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(itemView.getContext(), android.R.color.secondary_text_dark));
 
         if(favIconHandler == null)
             favIconHandler = new FavIconHandler(itemView.getContext());

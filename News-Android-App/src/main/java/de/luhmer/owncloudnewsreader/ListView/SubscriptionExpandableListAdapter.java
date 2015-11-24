@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -114,7 +115,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     	this.mContext = mContext;
     	this.dbConn = dbConn;
 
-        mTextColorLightTheme = mContext.getResources().getColor(R.color.slider_listview_text_color_light_theme);
+        mTextColorLightTheme = ContextCompat.getColor(mContext, R.color.slider_listview_text_color_light_theme);
 
         unreadCountFeeds = new SparseArray<>();
         unreadCountFolders = new SparseArray<>();
@@ -126,7 +127,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         this.listView = listView;
     }
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
 		int parent_id = (int)getGroupId(groupPosition);
