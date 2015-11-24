@@ -17,7 +17,7 @@
     <color name="slide_up_panel_header_background_color">#ff343434</color>
     <color name="slide_up_panel_slider_background_color">#ffdcdcdc</color>
 
-    <color name="options_menu_item_text">@drawable/options_menu_item_color</color>
+    <color name="options_menu_item_text">@color/options_menu_item</color>
 
     <color name="material_grey_900">#212121</color>
 
