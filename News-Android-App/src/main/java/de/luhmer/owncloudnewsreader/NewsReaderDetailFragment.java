@@ -229,6 +229,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
                 if (layoutManagerSavedState != null) {
                     recyclerView.getLayoutManager().onRestoreInstanceState(layoutManagerSavedState);
+                    layoutManagerSavedState = null;
                 }
             }
         });
