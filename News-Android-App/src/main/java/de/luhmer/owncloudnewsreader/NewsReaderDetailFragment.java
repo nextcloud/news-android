@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -73,7 +74,6 @@ public class NewsReaderDetailFragment extends Fragment {
 	private Long idFeed;
 
     private Drawable markAsReadDrawable;
-    private Drawable starredDrawable;
     private int accentColor;
     private Parcelable layoutManagerSavedState;
 
@@ -154,8 +154,6 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     private OnScrollListener ListScrollListener = new OnScrollListener() {
-        //CheckBox lastViewedArticleCheckbox = null;
-
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 
@@ -229,6 +227,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
                 if (layoutManagerSavedState != null) {
                     recyclerView.getLayoutManager().onRestoreInstanceState(layoutManagerSavedState);
+                    layoutManagerSavedState = null;
                 }
             }
         });
@@ -364,7 +363,7 @@ public class NewsReaderDetailFragment extends Fragment {
         super.onInflate(context, attrs, savedInstanceState);
         TypedArray a = context.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable,R.attr.colorAccent});
         markAsReadDrawable = a.getDrawable(0);
-        accentColor = a.getColor(1, context.getResources().getColor(R.color.owncloudBlueLight));
+        accentColor = ContextCompat.getColor(getContext(), R.color.owncloudBlueLight);
         a.recycle();
     }
 
@@ -412,7 +411,6 @@ public class NewsReaderDetailFragment extends Fragment {
                     drawable = markAsReadDrawable;
                     viewRect.left = (int) dX + viewRect.right;
                 } else {
-                    //drawable = starredDrawable;
                     drawable = markAsReadDrawable;
                     viewRect.right = (int) dX - viewRect.left;
                 }
@@ -428,14 +426,6 @@ public class NewsReaderDetailFragment extends Fragment {
             }
         }
     }
-
-    /*
-    @Override
-    public void onViewStateRestored(Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        if(savedInstanceState != null)
-            recyclerView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(LAYOUT_MANAGER_STATE));
-    }*/
 
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
@@ -454,8 +444,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
     public int getFirstVisibleScrollPosition() {
         LinearLayoutManager layoutManager = ((LinearLayoutManager)recyclerView.getLayoutManager());
-        int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
-        return firstVisiblePosition;
+        return layoutManager.findFirstVisibleItemPosition();
     }
 
 
