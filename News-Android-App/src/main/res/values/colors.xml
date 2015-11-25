@@ -9,7 +9,6 @@
     <color name="slider_listview_text_color_light_theme">#ff101010</color>
 
     <color name="divider_row_color_dark_theme">#292929</color>
-    <color name="divider_row_color_light_theme">#ffcdcdcd</color>
 
     <color name="extended_listview_item_body_text_color_dark_theme">#ffaaaaaa</color>
     <color name="extended_listview_item_body_text_color_light_theme">#ff393939</color>
@@ -20,8 +19,6 @@
     <color name="options_menu_item_text">@color/options_menu_item</color>
 
     <color name="material_grey_900">#212121</color>
-
-    <color name="material_blue_900">#0d47a1</color>
 
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color_light_theme">#eeeeee</color>
@@ -39,9 +36,6 @@
     <color name="colorPrimaryLightTheme">@color/owncloudBlueLight</color>
     <color name="colorPrimaryDarkLightTheme">@color/owncloudBlueDark</color>
     <color name="colorAccentLightTheme">@color/colorPrimaryLightTheme</color>
-
-    <color name="colorSecondary">@color/material_deep_teal_200</color>
-    <color name="colorSecondaryDark">@color/material_deep_teal_500</color>
 
     <color name="starredColorLight">@android:color/holo_orange_light</color>
     <color name="unstarredColorLight">#ff888888</color>
