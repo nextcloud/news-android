@@ -1,7 +1,5 @@
 package de.luhmer.owncloudnewsreader;
 
-import android.annotation.TargetApi;
-
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -13,7 +11,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.DialogFragment;
@@ -27,10 +24,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import net.rdrei.android.dirchooser.DirectoryChooserActivity;
 import net.rdrei.android.dirchooser.DirectoryChooserConfig;
-import net.rdrei.android.dirchooser.DirectoryChooserFragment;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,6 +39,7 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
  */
 public class NewsDetailImageDialogFragment extends DialogFragment {
 
+    private static final int REQUEST_DIRECTORY = 0;
     public enum TYPE { IMAGE, URL }
 
     static NewsDetailImageDialogFragment newInstanceImage(String dialogTitle, Integer titleIcon, String dialogText, URL imageUrl) {
@@ -107,9 +102,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                     public void execute() {
                         downloadImage(mImageUrl);
                     }
-                    public void executeLongClick() {
-                        configureDownloadPath(mImageUrl);
-                    }
+                    public void executeLongClick() { changeDownloadDir(); }
                 });
                 mMenuItems.put(getString(R.string.action_img_open), new MenuAction() {
                     @Override
@@ -265,14 +258,12 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     private void downloadImage(URL url) {
-        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%downloadimage(): " + url);
         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
 
         if(isExternalStorageWritable()) {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
             downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
-            //request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
             request.setDestinationUri(getDownloadDir(filename));
             request.setTitle("Downloading image");
             request.setDescription(filename);
@@ -287,10 +278,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
 
-    private DirectoryChooserFragment mDialog;
-
-    private void configureDownloadPath(URL url) {
-
+    private void changeDownloadDir() {
         final Intent chooserIntent = new Intent(getActivity(), DirectoryChooserActivity.class);
         final DirectoryChooserConfig config = DirectoryChooserConfig.builder()
                 .initialDirectory(getActivity().getPreferences(Context.MODE_PRIVATE).getString("manualImageDownloadLocation", ""))
@@ -300,58 +288,41 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 .build();
 
         chooserIntent.putExtra(DirectoryChooserActivity.EXTRA_CONFIG, config);
-        startActivityForResult(chooserIntent, 1000);
+        startActivityForResult(chooserIntent, REQUEST_DIRECTORY);
     }
 
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1000) {
-            if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
-                String dir = data.getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);
-
-                System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%: " +dir);
-                setDownloadDir(dir);
-
-            } else {
-                // Nothing selected
-            }
-        }
-    }
-
-
-
-    private void setDownloadDir(String path) {
+    private void setNewDownloadDir(String path) {
         if(path.equals("")) {
             path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         }
-
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("manualImageDownloadLocation", path);
         editor.commit();
     }
 
-
     private Uri getDownloadDir(String filename) {
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         String dir = sharedPref.getString("manualImageDownloadLocation", "");
-
         if(dir.equals("")) { //sharedPref has never been set
-            setDownloadDir(""); //set to default public download dir
+            setNewDownloadDir(""); //set to default public download dir
             return getDownloadDir(filename);
         }
-
         String tmp = "file://" +dir +"/" +filename;
         return Uri.parse(tmp);
     }
 
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == REQUEST_DIRECTORY) {
+            if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
+                String dir = data.getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);
+                setNewDownloadDir(dir);
+            }
+        }
+    }
 
     private void unregisterImageDownloadReceiver() {
         if (downloadCompleteReceiver != null) {

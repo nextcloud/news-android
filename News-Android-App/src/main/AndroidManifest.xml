@@ -84,7 +84,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="net.rdrei.android.dirchooser.DirectoryChooserActivity" />
+        <activity android:name="DirectoryChooserActivity" />
 
         <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle" />
 
