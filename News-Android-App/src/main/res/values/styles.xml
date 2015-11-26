@@ -56,11 +56,11 @@
     </style>
 	-->
 
-    <style name="Theme.Material.Dialog.Floating" parent="@android:style/Theme.Material.Dialog" >
+    <style name="FloatingDialog" parent="AppTheme" >
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
-    <style name="Theme.Material.Light.Dialog.Floating" parent="@android:style/Theme.Material.Light.Dialog" >
+    <style name="FloatingDialogLight" parent="AppThemeLight" >
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
