@@ -8,6 +8,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,17 +24,22 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.rdrei.android.dirchooser.DirectoryChooserConfig;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
+/**
+ * Created by david on 15.11.15.
+ */
 public class NewsDetailImageDialogFragment extends DialogFragment {
 
+    private static final int REQUEST_DIRECTORY = 0;
     public enum TYPE { IMAGE, URL }
 
     static NewsDetailImageDialogFragment newInstanceImage(String dialogTitle, Integer titleIcon, String dialogText, URL imageUrl) {
@@ -75,7 +81,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     private DownloadManager downloadManager;
     private BroadcastReceiver downloadCompleteReceiver;
 
-    private HashMap<String, MenuAction> mMenuItems;
+    private LinkedHashMap<String, MenuAction> mMenuItems;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,11 +97,12 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         //Build the menu
         switch(mDialogType) {
             case IMAGE:
-                mMenuItems.put(getString(R.string.action_img_download), new MenuAction() {
+                mMenuItems.put(getString(R.string.action_img_download), new MenuActionLongClick() {
                     @Override
                     public void execute() {
                         downloadImage(mImageUrl);
                     }
+                    public void executeLongClick() { changeDownloadDir(); }
                 });
                 mMenuItems.put(getString(R.string.action_img_open), new MenuAction() {
                     @Override
@@ -172,7 +179,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             }
         }
 
-        ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
+        final ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
         List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
@@ -181,6 +188,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 menuItemsList);
 
         mListView.setAdapter(arrayAdapter);
+        mListView.setLongClickable(true);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -190,6 +198,21 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 mAction.execute();
             }
         });
+
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String key = arrayAdapter.getItem(position);
+                try {
+                    MenuActionLongClick mAction = (MenuActionLongClick) mMenuItems.get(key);
+                    mAction.executeLongClick();
+                } catch (ClassCastException e) {
+                    return false;
+                }
+                return true;
+            }
+        });
+
         return v;
     }
 
@@ -241,7 +264,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
             downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
+            request.setDestinationUri(getDownloadDir(filename));
             request.setTitle("Downloading image");
             request.setDescription(filename);
             request.setVisibleInDownloadsUi(false);
@@ -251,6 +274,53 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         } else {
             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
             getDialog().dismiss();
+        }
+    }
+
+
+    private void changeDownloadDir() {
+        final Intent chooserIntent = new Intent(getActivity(), DirectoryChooserActivity.class);
+        final DirectoryChooserConfig config = DirectoryChooserConfig.builder()
+                .initialDirectory(getActivity().getPreferences(Context.MODE_PRIVATE).getString("manualImageDownloadLocation", ""))
+                .newDirectoryName("new folder")
+                .allowNewDirectoryNameModification(true)
+                .allowReadOnlyDirectory(false)
+                .build();
+
+        chooserIntent.putExtra(DirectoryChooserActivity.EXTRA_CONFIG, config);
+        startActivityForResult(chooserIntent, REQUEST_DIRECTORY);
+    }
+
+    private void setNewDownloadDir(String path) {
+        if(path.equals("")) {
+            path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        }
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("manualImageDownloadLocation", path);
+        editor.commit();
+    }
+
+    private Uri getDownloadDir(String filename) {
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String dir = sharedPref.getString("manualImageDownloadLocation", "");
+        if(dir.equals("")) { //sharedPref has never been set
+            setNewDownloadDir(""); //set to default public download dir
+            return getDownloadDir(filename);
+        }
+        String tmp = "file://" +dir +"/" +filename;
+        return Uri.parse(tmp);
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_DIRECTORY) {
+            if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
+                String dir = data.getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);
+                setNewDownloadDir(dir);
+            }
         }
     }
 
@@ -303,5 +373,8 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
     interface MenuAction {
         void execute();
+    }
+    interface MenuActionLongClick extends MenuAction {
+        void executeLongClick();
     }
 }

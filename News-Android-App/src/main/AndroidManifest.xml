@@ -18,14 +18,15 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
-    <uses-sdk tools:overrideLibrary="android.support.customtabs" />
+    <uses-sdk tools:overrideLibrary="android.support.customtabs"/>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name=".NewsReaderApplication">
+        android:name=".NewsReaderApplication"
+        tools:replace="android:icon, android:label, android:theme, android:name">
         <activity
             android:name=".NewsReaderListActivity"
             android:label="@string/app_name"
@@ -83,7 +84,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="DirectoryChooserActivity" />
+
         <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle" />
+
 
         <!--
 		**********************************************************************
