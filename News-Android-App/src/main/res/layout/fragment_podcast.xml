@@ -32,7 +32,8 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/podcast_horizontal_margin"
                 android:layout_marginRight="@dimen/podcast_horizontal_margin"
-                android:src="@drawable/default_feed_icon_light"/>
+                android:src="@drawable/default_feed_icon_light"
+                android:contentDescription="@string/content_desc_none"/>
 
             <LinearLayout
                 android:id="@+id/ll_podcast_header"
@@ -102,7 +103,8 @@
                     android:src="@drawable/ic_action_play_arrow"
                     android:tint="@color/tintColorDark"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:scaleType="fitXY"/>
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/content_desc_none"/>
 
             </FrameLayout>
         </LinearLayout>
@@ -301,7 +303,8 @@
                 android:tint="@color/tintColorLight"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:cropToPadding="false"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:contentDescription="@string/content_desc_rewind"/>
 
             <ImageButton
                 android:id="@+id/btn_playPausePodcastSlider"
@@ -312,7 +315,8 @@
                 android:src="@drawable/ic_action_play_arrow"
                 android:tint="@color/tintColorLight"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:contentDescription="@string/content_desc_play"/>
 
             <ImageButton
                 android:id="@+id/btn_nextPodcastSlider"
@@ -322,7 +326,8 @@
                 android:src="@drawable/ic_action_forward_30"
                 android:tint="@color/tintColorLight"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:contentDescription="@string/content_desc_forward"/>
 
 
         </LinearLayout>

@@ -35,7 +35,8 @@
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:clickable="false"
-                android:background="@drawable/ic_check_box_white"/>
+                android:background="@drawable/ic_check_box_white"
+                android:contentDescription="@string/content_desc_mark_as_read"/>
 
         </RelativeLayout>
 

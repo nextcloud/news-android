@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:tint="?attr/tintColor"
+        android:contentDescription="@string/content_desc_pause"
         android:src="@drawable/ic_action_pause" />
 
     <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar

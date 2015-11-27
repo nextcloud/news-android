@@ -78,7 +78,8 @@
             android:clickable="false"
             android:focusable="false"
             android:layout_gravity="center"
-            android:background="@drawable/ic_action_delete" />
+            android:background="@drawable/ic_action_delete"
+            android:contentDescription="@string/content_desc_delete"/>
 
     </FrameLayout>
 
@@ -97,7 +98,8 @@
             android:clickable="false"
             android:focusable="false"
             android:layout_gravity="center"
-            android:background="@drawable/ic_action_file_download" />
+            android:background="@drawable/ic_action_file_download"
+            android:contentDescription="@string/content_desc_download"/>
 
     </FrameLayout>
 
@@ -117,7 +119,8 @@
             android:clickable="false"
             android:focusable="false"
             android:layout_gravity="center"
-            android:background="@drawable/ic_action_play_arrow" />
+            android:background="@drawable/ic_action_play_arrow"
+            android:contentDescription="@string/content_desc_play"/>
 
     </FrameLayout>
 

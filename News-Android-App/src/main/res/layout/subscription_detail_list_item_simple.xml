@@ -51,7 +51,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             tools:src="@drawable/default_feed_icon_light"
-            android:layout_marginTop="2dp" />
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/content_desc_none"/>
 
         <TextView
             android:id="@+id/tv_subscription"
@@ -93,7 +94,8 @@
             android:src="@drawable/ic_action_star_dark"
             android:tint="?attr/starredColor"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/content_desc_add_to_favorites"/>
 
         <include
             layout="@layout/subscription_detail_list_item_podcast_wrapper"

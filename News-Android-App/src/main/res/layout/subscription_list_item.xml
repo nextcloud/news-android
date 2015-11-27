@@ -20,7 +20,8 @@
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="12dp"
-            android:tint="?attr/tintColor" />
+            android:tint="?attr/tintColor"
+            android:contentDescription="@string/content_desc_expand"/>
         <ImageView
             android:id="@+id/img_view_favicon"
             android:layout_width="48dp"
@@ -28,7 +29,8 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:clickable="false"
             android:focusable="false"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:contentDescription="@string/content_desc_none"/>
     </FrameLayout>
 
     <TextView

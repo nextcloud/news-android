@@ -285,4 +285,21 @@
     <string name="pref_title_vibrate">Vibrate</string>
     -->
 
+    <!-- content description for images and icons -->
+    <string name="content_desc_none">@null</string>
+    <string name="content_desc_feed_icon">feed icon</string>
+    <string name="content_desc_play">play</string>
+    <string name="content_desc_pause">pause</string>
+    <string name="content_desc_rewind">rewind</string>
+    <string name="content_desc_forward">forward</string>
+    <string name="content_desc_expand">expand</string>
+    <string name="content_desc_collapse">collapse</string>
+    <string name="content_desc_mark_as_read">mark as read</string>
+    <string name="content_desc_mark_as_unread">mark as unread</string>
+    <string name="content_desc_tap_to_refresh">tap to refresh</string>
+    <string name="content_desc_add_to_favorites">add to favorites</string>
+    <string name="content_desc_remove_from_favorites">remove from favorites</string>
+    <string name="content_desc_show_password">show password</string>
+    <string name="content_desc_delete">delete</string>
+    <string name="content_desc_download">download</string>
 </resources>

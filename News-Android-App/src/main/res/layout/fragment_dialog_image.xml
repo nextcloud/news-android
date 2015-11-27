@@ -20,7 +20,8 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/ic_menu_gallery"/>
+            android:id="@+id/ic_menu_gallery"
+            android:contentDescription="@string/content_desc_none"/>
 
         <TextView
             android:layout_width="match_parent"

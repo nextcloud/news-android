@@ -290,6 +290,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
         int rotation = 0;
+        int contentDescriptionId = R.string.content_desc_none;
 
 
         if(group.idFolder != null)
@@ -316,8 +317,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 	        	if(isExpanded) {
                     rotation = 180;
+                    contentDescriptionId = R.string.content_desc_collapse;
 	        	} else {
                     rotation = 90;
+                    contentDescriptionId = R.string.content_desc_expand;
                 }
         
                 viewHolder.imgView.setOnClickListener(new OnClickListener() {
@@ -333,6 +336,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
 
         viewHolder.imgView.setRotation(rotation);
+        viewHolder.imgView.setContentDescription(viewHolder.imgView.getContext().getString(contentDescriptionId));
 
         return convertView;
 	}
