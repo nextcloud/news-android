@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
@@ -89,7 +90,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(itemView.getContext());
         selectedListLayout = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"));
 
-        bodyForegroundColor = new ForegroundColorSpan(itemView.getContext().getResources().getColor(android.R.color.secondary_text_dark));
+        bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(itemView.getContext(), android.R.color.secondary_text_dark));
 
         if(favIconHandler == null)
             favIconHandler = new FavIconHandler(itemView.getContext());
@@ -156,15 +157,22 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public void setStarred(boolean isStarred) {
         int color = isStarred ? starColor : inactiveStarColor;
+        int contentDescriptionId = isStarred ?
+                R.string.content_desc_remove_from_favorites :
+                R.string.content_desc_add_to_favorites;
         starImageView.setColorFilter(color);
+        starImageView.setContentDescription(starImageView.getContext().getString(contentDescriptionId));
     }
 
     public void setPlaying(boolean playing) {
         this.playing = playing;
-        if(playing)
-            btnPlayPausePodcast.setImageResource(R.drawable.ic_action_pause);
-        else
-            btnPlayPausePodcast.setImageResource(R.drawable.ic_action_play_arrow);
+        
+        int imageId = playing ? R.drawable.ic_action_pause : R.drawable.ic_action_play_arrow;
+        int contentDescriptionId = playing ? R.string.content_desc_pause : R.string.content_desc_play;
+
+        String contentDescription = btnPlayPausePodcast.getContext().getString(contentDescriptionId);
+        btnPlayPausePodcast.setContentDescription(contentDescription);
+        btnPlayPausePodcast.setImageResource(imageId);
     }
 
     public boolean isPlaying() {

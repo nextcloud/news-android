@@ -23,6 +23,13 @@ android {
     }
 
     lintOptions {
+        // translations are imported from transifex, so no need to check here
+        disable 'MissingTranslation'
+        disable 'ExtraTranslation'
+        disable 'MissingQuantity'
+        disable 'InconsistentArrays'
+        disable 'TypographyEllipsis'
+
         checkReleaseBuilds false
 
         // Or, if you prefer, you can continue to check for errors in release builds,

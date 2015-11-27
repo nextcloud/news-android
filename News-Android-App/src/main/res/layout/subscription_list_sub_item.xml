@@ -13,6 +13,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="32dp"
         android:id="@+id/iVFavicon"
+        android:contentDescription="@string/content_desc_none"
         tools:src="@drawable/default_feed_icon_light" />
 
     <TextView

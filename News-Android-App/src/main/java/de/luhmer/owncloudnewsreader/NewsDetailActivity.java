@@ -39,6 +39,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.Toolbar;
@@ -403,9 +404,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 					if(isChromeDefaultBrowser() && mCustomTabsSupported) {
 						mCustomTabsSession = getSession();
 						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
-						builder.setToolbarColor(getResources().getColor(R.color.colorPrimaryDarkTheme));
+						builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimaryDarkTheme));
 						builder.setShowTitle(true);
-						//builder.setCloseButtonIcon(CustomTabUiBuilder.CLOSE_BUTTON_ARROW);
 						builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
 						builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
 						builder.build().launchUrl(this, Uri.parse(link));

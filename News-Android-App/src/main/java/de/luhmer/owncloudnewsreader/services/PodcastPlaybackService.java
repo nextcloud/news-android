@@ -7,6 +7,7 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -192,11 +193,14 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
 
             if(ttsController == null) {
                 ttsController = new TextToSpeech(this, this);
-                ttsController.setOnUtteranceCompletedListener(new TextToSpeech.OnUtteranceCompletedListener() {
+                ttsController.setOnUtteranceProgressListener(new UtteranceProgressListener() {
                     @Override
-                    public void onUtteranceCompleted(String utteranceId) {
+                    public void onDone(String utteranceId) {
                         podcastCompleted();
                     }
+
+                    @Override public void onStart(String utteranceId) {}
+                    @Override public void onError(String utteranceId) {}
                 });
             }
             else

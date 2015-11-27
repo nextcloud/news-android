@@ -171,7 +171,7 @@
 
 
         <service
-            android:name="org.chromium.customtabsclient.KeepAliveService"
+            android:name="de.luhmer.owncloudnewsreader.chrometabs.KeepAliveService"
             android:exported="true"
             android:process=":remote" />
 

@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -114,7 +115,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     	this.mContext = mContext;
     	this.dbConn = dbConn;
 
-        mTextColorLightTheme = mContext.getResources().getColor(R.color.slider_listview_text_color_light_theme);
+        mTextColorLightTheme = ContextCompat.getColor(mContext, R.color.slider_listview_text_color_light_theme);
 
         unreadCountFeeds = new SparseArray<>();
         unreadCountFolders = new SparseArray<>();
@@ -126,7 +127,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         this.listView = listView;
     }
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
 		int parent_id = (int)getGroupId(groupPosition);
@@ -290,6 +290,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
         int rotation = 0;
+        int contentDescriptionId = R.string.content_desc_none;
 
 
         if(group.idFolder != null)
@@ -316,8 +317,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 	        	if(isExpanded) {
                     rotation = 180;
+                    contentDescriptionId = R.string.content_desc_collapse;
 	        	} else {
                     rotation = 90;
+                    contentDescriptionId = R.string.content_desc_expand;
                 }
         
                 viewHolder.imgView.setOnClickListener(new OnClickListener() {
@@ -333,6 +336,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
 
         viewHolder.imgView.setRotation(rotation);
+        viewHolder.imgView.setContentDescription(viewHolder.imgView.getContext().getString(contentDescriptionId));
 
         return convertView;
 	}

@@ -110,9 +110,10 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 
 
             int resId = rssItem.getRead_temp() ? R.drawable.ic_check_box_white : R.drawable.ic_check_box_outline_blank_white;
+            int contentDescriptionId = rssItem.getRead_temp() ? R.string.content_desc_mark_as_unread : R.string.content_desc_mark_as_read;
             rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", resId);
+            rv.setContentDescription(R.id.cb_lv_item_read, context.getString(contentDescriptionId));
 
-            //View viewColor = view.findViewById(R.id.color_line_feed);
             if(colorString != null)
                 rv.setInt(R.id.color_line_feed, "setBackgroundColor", Integer.parseInt(colorString));
 

@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -261,14 +262,15 @@ public class NewsDetailFragment extends Fragment {
                 if (progress == 100) {
                     mProgressbarWebView.setVisibility(ProgressBar.GONE);
 
-                    //The following three lines are a workaround for websites which don't use a background colour
+                    //The following three lines are a workaround for websites which don't use a background color
+                    int bgColor = ContextCompat.getColor(getContext(), R.color.slider_listview_text_color_dark_theme);
                     NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
-                    mWebView.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
-                    ndActivity.mViewPager.setBackgroundColor(getResources().getColor(R.color.slider_listview_text_color_dark_theme));
+                    mWebView.setBackgroundColor(bgColor);
+                    ndActivity.mViewPager.setBackgroundColor(bgColor);
 
 
                     if (ThemeChooser.isDarkTheme(getActivity())) {
-                        mWebView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                        mWebView.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
                     }
                 }
             }

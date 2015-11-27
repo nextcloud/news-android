@@ -139,10 +139,12 @@ public class PodcastFragment extends Fragment {
         hasTitleInCache = true;
 
         int drawableId = podcast.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play_arrow;
+        int contentDescriptionId = podcast.isPlaying() ? R.string.content_desc_pause : R.string.content_desc_play;
 
         if(lastDrawableId != drawableId) {
             lastDrawableId = drawableId;
             btnPlayPausePodcast.setImageResource(drawableId);
+            btnPlayPausePodcast.setContentDescription(getString(contentDescriptionId));
             btnPlayPausePodcastSlider.setImageResource(drawableId);
         }
 

@@ -47,7 +47,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:src="@drawable/ic_launcher"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/content_desc_tap_to_refresh"/>
 
         <ProgressBar android:layout_width="48dp"
             android:layout_height="48dp"
