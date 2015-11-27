@@ -17,6 +17,7 @@
     <item quantity="one">Sie haben die maximale Größe von %d Element erreicht</item>
     <item quantity="other">Sie haben die maximale Größe von %d Elementen erreicht</item>
   </plurals>
+  <string name="current_version">Sie benutzen die Version %s</string>
   <string name="widget_header">ownCloud-News</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d neuer Artikel verfügbar</item>

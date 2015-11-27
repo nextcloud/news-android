@@ -17,6 +17,7 @@
     <item quantity="one">Avètz atench lo limit de %d article</item>
     <item quantity="other">Avètz atench lo limit de %d articles</item>
   </plurals>
+  <string name="current_version">Utilizatz la Version %s</string>
   <string name="widget_header">Actualitats ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d article novèl disponible</item>
@@ -59,8 +60,19 @@
     <item quantity="other">%d novèls articles pas legits</item>
   </plurals>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Telecargar l\'Imatge</string>
+  <string name="action_img_sharelink">Partejar lo Ligam cap a l\'Imatge</string>
+  <string name="action_img_open">Dobrir l\'Imatge dins lo Navigador</string>
+  <string name="action_img_copylink">Copiar lo Ligam cap a l\'Imatge</string>
+  <string name="action_link_share">Partejar per un Ligam</string>
+  <string name="action_link_open">Dobrir lo Ligam dins lo Navigador</string>
+  <string name="action_link_copy">Copiar lo Ligam</string>
+  <string name="toast_img_download_wait">Telecargament... Pacientatz</string>
+  <string name="toast_img_saved">Imatge enregistrat.</string>
+  <string name="toast_img_notwriteable">Error d\'escritura de l\'Imatge.</string>
   <string name="toast_copied_to_clipboard">Copiat dins lo quichapapièrs</string>
   <string name="error_download_failed">Lo telecargament a fracassat</string>
+  <string name="intent_title_share">Partejar via</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'utilizaire</string>
   <string name="pref_title_password">Senhal</string>
@@ -182,6 +194,7 @@
   <string name="pref_title_clearCache">Voidar l\'escondedor</string>
   <string name="pref_title_CacheImagesOffline">Mesa en escondedor fòra linha dels imatges</string>
   <string name="pref_title_Max_Cache_Size">Talha maximala de l\'escondedor</string>
+  <string name="pref_title_DownloadedImageLocation">Salvar los Imatges telecargats cap a :</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Pas jamais</item>
     <item>En WiFi solament</item>
