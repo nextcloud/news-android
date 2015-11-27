@@ -583,6 +583,21 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		StartDetailFragment(idFeed, false, optional_folder_id, true);
 	}
 
+	@Override
+	public void onTopItemLongClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
+		if(isFolder) {
+			//top-folder long-clicked
+		} else {
+			//top-item long-clicked
+		}
+	}
+
+	@Override
+	public void onChildItemLongClicked(long idFeed, Long optional_folder_id) {
+		//child-item long-clicked
+
+	}
+
 	private NewsReaderDetailFragment StartDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView)
 	{
 		if(menuItemDownloadMoreItems != null) {

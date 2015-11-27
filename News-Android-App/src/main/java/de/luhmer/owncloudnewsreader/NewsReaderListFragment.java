@@ -31,6 +31,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
@@ -95,6 +96,8 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		 */
 		void onChildItemClicked(long idFeed, Long optional_folder_id);
 		void onTopItemClicked(long idFeed, boolean isFolder, Long optional_folder_id);
+		void onChildItemLongClicked(long idFeed, Long optional_folder_id);
+		void onTopItemLongClicked(long idFeed, boolean isFolder, Long optional_folder_id);
 	}
 
 
@@ -131,8 +134,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		eListView.setGroupIndicator(null);
 
 		eListView.setOnChildClickListener(onChildClickListener);
+		eListView.setOnItemLongClickListener(onItemLongClickListener);
 
 		eListView.setClickable(true);
+		eListView.setLongClickable(true);
 		eListView.setAdapter(lvAdapter);
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -178,9 +183,15 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 		@Override
 		public void onTextClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
-            mCallbacks.onTopItemClicked(idFeed, isFolder, optional_folder_id);
+			mCallbacks.onTopItemClicked(idFeed, isFolder, optional_folder_id);
 		}
-    };
+
+		@Override
+		public void onTextLongClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
+			mCallbacks.onTopItemLongClicked(idFeed, isFolder, optional_folder_id);
+		}
+
+	};
 
 	OnChildClickListener onChildClickListener = new OnChildClickListener() {
 
@@ -200,4 +211,28 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 			return false;
 		}
 	};
+
+	AdapterView.OnItemLongClickListener onItemLongClickListener = new AdapterView.OnItemLongClickListener() {
+
+		@Override
+		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+			if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+
+				int groupPosition = ExpandableListView.getPackedPositionGroup(id);
+				int childPosition = ExpandableListView.getPackedPositionChild(id);
+
+				long idItem = lvAdapter.getChildId(groupPosition, childPosition);
+
+				Long optional_id_folder = null;
+				FolderSubscribtionItem groupItem = (FolderSubscribtionItem) lvAdapter.getGroup(groupPosition);
+				if(groupItem != null)
+					optional_id_folder = groupItem.id_database;
+
+				mCallbacks.onChildItemLongClicked(idItem, optional_id_folder);
+			}
+
+			return false;
+		}
+	};
+
 }
