@@ -2,10 +2,7 @@
 <resources>
   <string name="auto_sync_string">مزامنة أوتوماتيكية</string>
   <string name="app_name">قارئ أخبار ownCloud</string>
-  <string name="title_newsreader_list">قارئ الأخبار</string>
-  <string name="empty_view_header">المعلومات</string>
   <string name="empty_view_content">لا يوجد عناصر هنا</string>
-  <string name="tv_clickHereToOpenItem">إضغط هنا لفتح العنصر</string>
   <string name="no_wifi_available">لم يتم الاتصال بشبكة الواي فاي</string>
   <string name="do_you_want_to_download_without_wifi">هل ترغب بتحميل الصورة على الرغم من عدم وجود اتصال واي فاي؟</string>
   <string name="widget_header">أخبار ownCloud</string>
@@ -19,8 +16,6 @@
   <string name="menu_StartImageCaching">تحميل الصور</string>
   <string name="menu_downloadMoreItems">تحميل المزيد من العناصر</string>
   <!--Import Accounts-->
-  <!--EMAIL-->
-  <string name="email_sendMail">إرسال بريد إلكتروني</string>
   <!--Action Bar Items-->
   <string name="action_starred">معلّم بنجمة.</string>
   <string name="action_read">قراءة</string>
@@ -39,15 +34,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">تسجيل الدخول</string>
   <string name="login_progress_signing_in">يقوم بتسجيل الدخول</string>
-  <string name="error_incorrect_password">كلمة المرور غير صحيحة</string>
   <string name="error_field_required">هذا الحقل مطلوب</string>
   <string name="error_invalid_url">رابط URL غير صحيح</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">لا يوجد عناصر أخرى متوفرة</string>
-  <string name="pull_to_refresh_updateTags">مزامنة حالة العناصر</string>
-  <string name="pull_to_refresh_updateFolder">مزامنة المجلد</string>
-  <string name="pull_to_refresh_updateFeeds">مزامنة التغذية</string>
-  <string name="pull_to_refresh_updateItems">مزامنة العناصر</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">إعدادات</string>
   <!--General settings-->
@@ -67,7 +57,6 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">هل ترغب بقبول شهادة غير معروفه؟</string>
   <string name="mtm_decision_always">دائماً</string>
-  <string name="mtm_decision_once">مرة واحدة</string>
   <string name="mtm_decision_abort">إلغاء.</string>
   <string name="mtm_notification">التحقق من الشهادة</string>
   <!--Podcast-->
@@ -106,4 +95,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

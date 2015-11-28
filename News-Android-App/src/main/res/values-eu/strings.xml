@@ -4,12 +4,7 @@
   <string name="app_name">ownCloud berri rakurlea</string>
   <string name="title_activity_sync_interval_selector">Sinkronizazio Tartearen Hautatzailea</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="title_activity_subscription">SubscriptionActivity</string>
-  <string name="title_newsreader_list">BerriIrakurlea</string>
-  <string name="title_newsreader_detail">BerriIrakurle xehetasuna</string>
-  <string name="empty_view_header">Informazioa</string>
   <string name="empty_view_content">Ez dago elementurik hemen</string>
-  <string name="tv_clickHereToOpenItem">Klikatu hemen elementua irekitzeko</string>
   <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
   <string name="do_you_want_to_download_without_wifi">Irudiak WiFi konexioa gabe deskargatu nahi dituzu</string>
   <string name="widget_header">ownCloud Berriak</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">Deskargatu elementu gehiago</string>
   <!--Import Accounts-->
   <string name="import_account">Inportatu Kontua</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Elementuaren kode-iturburua - Bugreport </string>
-  <string name="email_sendMail">Bidali eposta</string>
   <!--Action Bar Items-->
   <string name="action_starred">Izarduna</string>
   <string name="action_read">Irakurri</string>
   <string name="action_playPodacst">Erreproduzitu podcasta</string>
   <string name="action_openInBrowser">Ireki nabigatzailean</string>
-  <string name="action_sendSourceCode">Bidali elementu agaratzaileari</string>
   <string name="action_Share">Partekatu</string>
   <string name="action_login">Zerbitzariaren ezarpenak</string>
   <string name="action_save">Gorde</string>
@@ -51,15 +42,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Izena eman</string>
   <string name="login_progress_signing_in">Izena ematen...</string>
-  <string name="error_incorrect_password">Pasahitza okerra da</string>
   <string name="error_field_required">Eremu hau beharrezkoa da</string>
   <string name="error_invalid_url">URL-a baliogabea da</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Ez dago datu gehigarri eskuragarririk</string>
-  <string name="pull_to_refresh_updateTags">Elementuen egoera sinkronizatzen</string>
-  <string name="pull_to_refresh_updateFolder">Karpeta sinkronizatzen</string>
-  <string name="pull_to_refresh_updateFeeds">Jarioak sinkronizatzen</string>
-  <string name="pull_to_refresh_updateItems">Elementuak sinkronizatzen</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ezarpenak</string>
   <!--General settings-->
@@ -92,12 +78,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Onartu Ziurtagiri Ezezaguna</string>
   <string name="mtm_decision_always">Beti</string>
-  <string name="mtm_decision_once">Behin</string>
   <string name="mtm_decision_abort">Bertan-behera utzi</string>
   <string name="mtm_notification">Ziurtagiriaren Egiaztapena</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Gaitu Podcastak</string>
   <string name="no_podcast_selected">Ez dago podcast hautatua</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Bistaratzea</string>
@@ -195,4 +178,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

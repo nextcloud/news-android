@@ -2,7 +2,6 @@
 <resources>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <!--Import Accounts-->
-  <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_Share">Կիսվել</string>
   <string name="action_save">Պահպանել</string>
@@ -52,4 +51,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

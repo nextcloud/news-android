@@ -4,12 +4,7 @@
   <string name="app_name">ownCloud সংবাদপাঠক</string>
   <string name="title_activity_sync_interval_selector">Sync Interval নির্বাচনকারী</string>
   <string name="title_activity_news_detail">বিস্তারিত সংবাদ কার্যক্রম</string>
-  <string name="title_activity_subscription">গ্রাহক কার্যক্রম</string>
-  <string name="title_newsreader_list">সংবাদপাঠক</string>
-  <string name="title_newsreader_detail">সংবাদপাঠক সম্পর্কিত বিস্তারিত</string>
-  <string name="empty_view_header">তথ্য</string>
   <string name="empty_view_content">এখানে কিছু নেই</string>
-  <string name="tv_clickHereToOpenItem">আইটেম খুলতে একানে ক্লিক করুন</string>
   <string name="no_wifi_available">WiFi সংযুক্ত নয়</string>
   <string name="do_you_want_to_download_without_wifi">আপনি কি WiFi সংযোগ ছাড়াই ইমেজ ডা্‌উনলোড করতে চান </string>
   <string name="widget_header">ownCloud সংবাদ</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">আরো আইটেম ডাউনলোড কর</string>
   <!--Import Accounts-->
   <string name="import_account">একাউন্ট আমদানি</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">আইটেমের সোর্স কোড - Bugreport</string>
-  <string name="email_sendMail">ইমেইল পাঠাও</string>
   <!--Action Bar Items-->
   <string name="action_starred">তারা চিহ্নিত</string>
   <string name="action_read">পড়</string>
   <string name="action_playPodacst">পডকাস্ট চালাও</string>
   <string name="action_openInBrowser">ব্রাউজারে খোল</string>
-  <string name="action_sendSourceCode">ডেভলপারকে পাঠাও</string>
   <string name="action_Share">ভাগাভাগি কর</string>
   <string name="action_login">সার্ভার নিয়ামকসমূহ</string>
   <string name="action_save">সংরক্ষণ</string>
@@ -50,15 +41,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">সাইন ইন</string>
   <string name="login_progress_signing_in">সাইনিং ইন</string>
-  <string name="error_incorrect_password">ভুল কুটশব্দ </string>
   <string name="error_field_required">এই ফিল্ডটি প্রয়োজন</string>
   <string name="error_invalid_url">ভুল url</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">আর কোন আইটেম নেই </string>
-  <string name="pull_to_refresh_updateTags">আইটেমসমূহের সমন্বয়করণ চলছে</string>
-  <string name="pull_to_refresh_updateFolder">ফোল্ডার সমন্বয়করণ করা হচ্ছে</string>
-  <string name="pull_to_refresh_updateFeeds">ফীড সমন্বয়করণ করা হচ্ছে</string>
-  <string name="pull_to_refresh_updateItems">আইটেম সমন্বয়করণ করা হচ্ছে</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">নিয়ামকসমূহ</string>
   <!--General settings-->
@@ -91,12 +77,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">অজানা প্রত্যয়নপত্র গ্রহণ করবো?</string>
   <string name="mtm_decision_always">সর্বদা</string>
-  <string name="mtm_decision_once">একবার</string>
   <string name="mtm_decision_abort">বাতিল কর</string>
   <string name="mtm_notification">প্রত্যয়নপত্র প্রমাণ</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">পডকাস্ট</string>
-  <string name="pref_enable_podcasts">পডকাস্ট সমর্থন চালু কর</string>
   <string name="no_podcast_selected">কোন পডকাস্ট নির্বাচন করা হয়নি</string>
   <!--Settings for Display-->
   <string name="pref_header_display">প্রদর্শন কর</string>
@@ -188,4 +171,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

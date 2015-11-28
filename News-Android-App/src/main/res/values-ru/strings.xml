@@ -4,21 +4,10 @@
   <string name="app_name">Чтение новостей ownCloud</string>
   <string name="title_activity_sync_interval_selector">Переключатель интервала синхронизации</string>
   <string name="title_activity_news_detail">Последние новости</string>
-  <string name="title_activity_subscription">Активные подписки</string>
-  <string name="title_newsreader_list">Чтение новостей</string>
-  <string name="title_newsreader_detail">Чтение новостей - подробнее</string>
-  <string name="empty_view_header">Информация</string>
   <string name="empty_view_content">Здесь нет элементов</string>
   <string name="toast_GettingMoreItems">Началось скачивание элементов... Пожалуйста подождите.</string>
-  <string name="tv_clickHereToOpenItem">Нажмите здесь, чтобы открыть элемент</string>
   <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
   <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">Достигнуто максимальное количество в %d элемент</item>
-    <item quantity="few">Достигнуто максимальное количество в %d элемента</item>
-    <item quantity="many">Достигнуто максимальное количество в %d элементов</item>
-    <item quantity="other">Достигнуто максимальное количество в %d элементов</item>
-  </plurals>
   <string name="widget_header">Новости ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">доступен %d новый элемент</item>
@@ -38,15 +27,11 @@
   <string name="menu_downloadMoreItems">Скачать ещё</string>
   <!--Import Accounts-->
   <string name="import_account">Импортировать учётную запись</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Исходный код элемента - Отчет об ошибке</string>
-  <string name="email_sendMail">Отправить сообщение</string>
   <!--Action Bar Items-->
   <string name="action_starred">Избранное</string>
   <string name="action_read">Читать</string>
   <string name="action_playPodacst">Воспроизвести Подкаст</string>
   <string name="action_openInBrowser">Открыть в браузере</string>
-  <string name="action_sendSourceCode">Отправить элемент разработчикам</string>
   <string name="action_Share">Поделиться</string>
   <string name="action_login">Параметры сервера</string>
   <string name="action_save">Сохранить</string>
@@ -77,7 +62,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Войти</string>
   <string name="login_progress_signing_in">Авторизация...</string>
-  <string name="error_incorrect_password">Это неверный пароль</string>
   <string name="error_field_required">Это поле обязательно для заполнения</string>
   <string name="error_invalid_url">Неверный url адрес</string>
   <!--Toast Messages-->
@@ -88,25 +72,9 @@
     <item quantity="other">Скачано %d старых элементов</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Доступных объектов больше нет</string>
-  <string name="pull_to_refresh_updateTags">Синхронизация элементов</string>
-  <string name="pull_to_refresh_updateFolder">Синхронизируется каталог</string>
-  <string name="pull_to_refresh_updateFeeds">Синхронизируются ленты</string>
-  <string name="pull_to_refresh_updateItems">Синхронизируется содержимое</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Обработан в настоящий момент %d объект..</item>
-    <item quantity="few">Обработано в настоящий момент %d объекта..</item>
-    <item quantity="many">Обработано в настоящий момент %d объектов..</item>
-    <item quantity="other">Обработано в настоящий момент %d объекта(ов)..</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Настройки</string>
   <string name="cache_is_cleared">Кеш очищен!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d Файл</item>
-    <item quantity="few">%d Файла</item>
-    <item quantity="many">%d Файлов</item>
-    <item quantity="other">%d Файла(ов)</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Основные</string>
   <string name="pref_title_general_sort_order">Порядок сортировки</string>
@@ -126,7 +94,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Очистить кеш.</string>
   <string name="dialog_clearing_cache_please_wait">Очистка кеша... Пожалуйста подождите.</string>
-  <string name="calculating_cache_size">Вычисление размера кеша... Пожалуйста подождите.</string>
   <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
   <string name="warning">Предупреждение</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>
@@ -140,12 +107,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
   <string name="mtm_decision_always">Всегда</string>
-  <string name="mtm_decision_once">Один раз</string>
   <string name="mtm_decision_abort">Отмена</string>
   <string name="mtm_notification">Проверка сертификата</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Подкаст</string>
-  <string name="pref_enable_podcasts">Включить поддержку Подкастов</string>
   <string name="no_podcast_selected">Нет выбранных подкастов</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Экран</string>
@@ -274,4 +238,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

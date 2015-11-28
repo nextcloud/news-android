@@ -3,12 +3,7 @@
   <string name="auto_sync_string">همگام‌سازی خودکار</string>
   <string name="app_name">خبر خوان ownCloud</string>
   <string name="title_activity_news_detail">فعالیت جزئیات اخبار</string>
-  <string name="title_activity_subscription">فعالیت ثبت نام</string>
-  <string name="title_newsreader_list">خبر خوان</string>
-  <string name="title_newsreader_detail">جزئیات خبر خوان</string>
-  <string name="empty_view_header">اطلاعات</string>
   <string name="empty_view_content">هیچ آیتمی اینجا نیست.</string>
-  <string name="tv_clickHereToOpenItem">برای باز کردن آیتم اینجا را کلیک کنید.</string>
   <string name="no_wifi_available">هیچ WiFi متصل نیست.</string>
   <string name="do_you_want_to_download_without_wifi">آیا میخواهید تصاویر را بدون هیچ اتصال WiFi  دریافت کنید؟</string>
   <string name="widget_header">اخبار ownCloud</string>
@@ -25,13 +20,9 @@
   <string name="menu_StartImageCaching">دانلود تصاویر</string>
   <string name="menu_downloadMoreItems">دانلود آیتم های بیشتر</string>
   <!--Import Accounts-->
-  <!--EMAIL-->
-  <string name="email_sourceCode">کد منبع از آیتم - گزارش اشکالات</string>
-  <string name="email_sendMail">فرستادن ایمیل</string>
   <!--Action Bar Items-->
   <string name="action_starred">ستاره دار</string>
   <string name="action_openInBrowser">در مرورگر باز کن</string>
-  <string name="action_sendSourceCode">ارسال آیتم به برنامه نویس</string>
   <string name="action_Share">اشتراک‌گذاری</string>
   <string name="action_login">تنظیمات سرور</string>
   <string name="action_save">ذخیره</string>
@@ -46,19 +37,11 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">ورود</string>
   <string name="login_progress_signing_in">ورود به سیستم ...</string>
-  <string name="error_incorrect_password">رمز عبور نادرست است</string>
   <string name="error_field_required">این فیلد مورد نیاز است</string>
   <string name="error_invalid_url">این آدرس url  نادرست است.</string>
   <!--Toast Messages-->
-  <string name="pull_to_refresh_updateTags">همگام سازی حالت های آیتم ها</string>
-  <string name="pull_to_refresh_updateFolder">همگام سازی پوشه </string>
-  <string name="pull_to_refresh_updateFeeds">همگام سازی خوراک خوان ها</string>
-  <string name="pull_to_refresh_updateItems">همگام سازی آیتم ها</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">تنظیمات</string>
-  <plurals name="number_of_files">
-    <item quantity="other">%d فایل‌</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">عمومی</string>
   <string name="pref_title_general_sort_order">ترتیب مرتب‌سازی</string>
@@ -145,4 +128,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

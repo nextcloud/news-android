@@ -1,19 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">מציג החדשות של </string>
-  <string name="empty_view_header">פרטים</string>
   <string name="empty_view_content">אין כאן פריטים</string>
   <string name="allUnreadFeeds">כל הפריטים שלא נקראו</string>
   <string name="starredFeeds">פריטים שמסומנים בכוכב</string>
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">רענון</string>
   <!--Import Accounts-->
-  <!--EMAIL-->
-  <string name="email_sendMail">שליחת הודעה בדוא״ל</string>
   <!--Action Bar Items-->
   <string name="action_starred">מסומן בכוכב</string>
   <string name="action_openInBrowser">פתיחה בדפדפן</string>
-  <string name="action_sendSourceCode">שליחת הפריט למתכנת</string>
   <string name="action_Share">שיתוף</string>
   <string name="action_save">שמירה</string>
   <string name="action_settings">הגדרות</string>
@@ -69,4 +65,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

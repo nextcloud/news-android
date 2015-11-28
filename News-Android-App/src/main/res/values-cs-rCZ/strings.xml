@@ -4,20 +4,10 @@
   <string name="app_name">Čtečka zpráv ownCloud</string>
   <string name="title_activity_sync_interval_selector">Volba intervalu synchronizace</string>
   <string name="title_activity_news_detail">Podrobná aktivita zpráv</string>
-  <string name="title_activity_subscription">Aktivita odběru</string>
-  <string name="title_newsreader_list">Čtečka zpráv</string>
-  <string name="title_newsreader_detail">Detail čtečky zpráv</string>
-  <string name="empty_view_header">Informace</string>
   <string name="empty_view_content">Žádné položky</string>
   <string name="toast_GettingMoreItems">Probíhá stahování dalších položek... Chvíli strpení.</string>
-  <string name="tv_clickHereToOpenItem">Klikněte zde pro otevření položky</string>
   <string name="no_wifi_available">Wi-Fi není připojeno</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez použití Wi-Fi připojení</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">Dosáhli jste maximální velikosti %d položky</item>
-    <item quantity="few">Dosáhli jste maximální velikosti %d položek</item>
-    <item quantity="other">Dosáhli jste maximální velikosti %d položek</item>
-  </plurals>
   <string name="current_version">Používáte verzi %s</string>
   <string name="widget_header">ownCloud Novinky</string>
   <plurals name="message_bar_new_articles_available">
@@ -37,15 +27,11 @@
   <string name="menu_downloadMoreItems">Stáhnout další položky</string>
   <!--Import Accounts-->
   <string name="import_account">Importovat účet</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Zdrojový kód položky - Chybová zpráva</string>
-  <string name="email_sendMail">Odeslat email</string>
   <!--Action Bar Items-->
   <string name="action_starred">S hvězdičkou</string>
   <string name="action_read">Číst</string>
   <string name="action_playPodacst">Přehrát podcast</string>
   <string name="action_openInBrowser">Otevřít v prohlížeči</string>
-  <string name="action_sendSourceCode">Odeslat položku vývojáři</string>
   <string name="action_Share">Sdílet</string>
   <string name="action_login">Nastavení serveru</string>
   <string name="action_save">Uložit</string>
@@ -71,7 +57,6 @@
   <string name="action_link_share">Sdílet odkaz</string>
   <string name="action_link_open">Otevřít odkaz v prohlížeči</string>
   <string name="action_link_copy">Zkopírovat odkaz</string>
-  <string name="toast_img_download_wait">Stahuji... chvíli strpení</string>
   <string name="toast_img_saved">Obrázek uložen.</string>
   <string name="toast_img_notwriteable">Selhalo zapsání obrázku.</string>
   <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
@@ -85,7 +70,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Přihlásit</string>
   <string name="login_progress_signing_in">Přihlašuji...</string>
-  <string name="error_incorrect_password">Toto heslo není správné</string>
   <string name="error_field_required">Tato položka je povinná</string>
   <string name="error_invalid_url">Tato URL je nesprávná</string>
   <!--Toast Messages-->
@@ -95,23 +79,9 @@
     <item quantity="other">Staženo %d starých položek</item>
   </plurals>
   <string name="toast_no_more_downloads_available">K dispozici nejsou žádné další položky</string>
-  <string name="pull_to_refresh_updateTags">Synchronizuji stav položek</string>
-  <string name="pull_to_refresh_updateFolder">Synchronizuji složku</string>
-  <string name="pull_to_refresh_updateFeeds">Synchronizuji kanály</string>
-  <string name="pull_to_refresh_updateItems">Synchronizuji položky</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Načtena %d položka..</item>
-    <item quantity="few">Načteny %d položky..</item>
-    <item quantity="other">Načteno %d položek..</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavení</string>
   <string name="cache_is_cleared">Odkládací paměť vyčištěna!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d soubor</item>
-    <item quantity="few">%d soubory</item>
-    <item quantity="other">%d souborů</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Hlavní</string>
   <string name="pref_title_general_sort_order">Řazení</string>
@@ -131,7 +101,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
   <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti... Chvíli strpení.</string>
-  <string name="calculating_cache_size">Probíhá výpočet odkládací paměti... Chvíli strpení.</string>
   <string name="reset_cache_unsaved_changes">Existují nesesynchronizované změny. Přejete si přesto vyprázdnit mezipaměť?</string>
   <string name="warning">Varování</string>
   <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>
@@ -145,12 +114,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>
   <string name="mtm_decision_always">Vždy</string>
-  <string name="mtm_decision_once">Jednou</string>
   <string name="mtm_decision_abort">Přerušit</string>
   <string name="mtm_notification">Ověření certifikátu</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Povolit podporu Podcast</string>
   <string name="no_podcast_selected">Nebyl vybrán žádný podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Zobrazení</string>
@@ -201,7 +167,6 @@
   <string name="pref_title_clearCache">Vyprázdnit mezipaměť</string>
   <string name="pref_title_CacheImagesOffline">Ukládat obrázky do offline mezipaměti</string>
   <string name="pref_title_Max_Cache_Size">Maximální velikost mezipaměti</string>
-  <string name="pref_title_DownloadedImageLocation">Uložit uložené obrázky do:</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Nikdy</item>
     <item>Pouze přes WiFi</item>
@@ -280,4 +245,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

@@ -1,11 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Abonflulegilo de ownCloud</string>
-  <string name="title_newsreader_list">Abonflulegilo</string>
-  <string name="title_newsreader_detail">Detaloj de Abonflulegilo</string>
-  <string name="empty_view_header">Informo</string>
   <string name="empty_view_content">Neniu ero estas ĉi tie</string>
-  <string name="tv_clickHereToOpenItem">Klaku ĉi tie por malfermi la eron</string>
   <string name="message_bar_reload">Reŝargi</string>
   <string name="allUnreadFeeds">Ĉiuj nelegitaj eroj</string>
   <string name="starredFeeds">Markitaj eroj</string>
@@ -17,13 +13,10 @@
   <string name="menu_downloadMoreItems">Elŝuti pli da eroj</string>
   <!--Import Accounts-->
   <string name="import_account">Enporti konton</string>
-  <!--EMAIL-->
-  <string name="email_sendMail">Sendi retpoŝton</string>
   <!--Action Bar Items-->
   <string name="action_starred">Markita</string>
   <string name="action_read">Legi</string>
   <string name="action_openInBrowser">Malfermi en TTT-legilo</string>
-  <string name="action_sendSourceCode">Sendi eron al ellaboranto</string>
   <string name="action_Share">Kunhavigi</string>
   <string name="action_login">Servila agordaro</string>
   <string name="action_save">Konservi</string>
@@ -40,15 +33,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Ensaluti</string>
   <string name="login_progress_signing_in">Ensalutante...</string>
-  <string name="error_incorrect_password">Ĉi tiu pasvorto malĝustas</string>
   <string name="error_field_required">Ĉi tiu kampo nepras</string>
   <string name="error_invalid_url">Ĉi tiu URL malĝustas</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Ne pli da eroj disponeblas</string>
-  <string name="pull_to_refresh_updateTags">Sinkronigante statojn de eroj</string>
-  <string name="pull_to_refresh_updateFolder">Sinkroniĝas dosierujo</string>
-  <string name="pull_to_refresh_updateFeeds">Sinkroniĝas fluoj</string>
-  <string name="pull_to_refresh_updateItems">Sinkroniĝas eroj</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Agordo</string>
   <!--General settings-->
@@ -69,7 +57,6 @@
   <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <string name="mtm_decision_always">Ĉiam</string>
-  <string name="mtm_decision_once">Unufoje</string>
   <!--Podcast-->
   <!--Settings for Display-->
   <string name="pref_header_display">Montrilo</string>
@@ -113,4 +100,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

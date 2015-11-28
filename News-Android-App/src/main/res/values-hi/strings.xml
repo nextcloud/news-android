@@ -4,12 +4,7 @@
   <string name="app_name">ownCloud समाचार वाचक </string>
   <string name="title_activity_sync_interval_selector">सिंक स्तर चयनकर्ता</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="title_activity_subscription">SubscriptionActivity</string>
-  <string name="title_newsreader_list">NewsReader</string>
-  <string name="title_newsreader_detail">NewsReader का विवरण </string>
-  <string name="empty_view_header">जानकारी </string>
   <string name="empty_view_content">यहाँ कोई मदें नहीं हैं </string>
-  <string name="tv_clickHereToOpenItem">मद को खोलने के लिए यहाँ क्लिक करें </string>
   <string name="no_wifi_available">कोई WiFi कनेक्ट नहीं है </string>
   <string name="do_you_want_to_download_without_wifi">क्या आप बिना किसी WiFi कनेक्शन के तस्वीरों को डाउनलोड करना चाहते हैं </string>
   <string name="widget_header">ownCloud समाचार </string>
@@ -23,14 +18,10 @@
   <string name="menu_StartImageCaching">तस्वीरें डाउनलोड करें </string>
   <string name="menu_downloadMoreItems">और मदों को डाउनलोड करें </string>
   <!--Import Accounts-->
-  <!--EMAIL-->
-  <string name="email_sourceCode">मद का सोर्सकोड - बगरिपोर्ट </string>
-  <string name="email_sendMail">ईमेल भेजें </string>
   <!--Action Bar Items-->
   <string name="action_starred">तारांकित </string>
   <string name="action_read">पढ़े </string>
   <string name="action_openInBrowser">ब्राउज़र में खुला </string>
-  <string name="action_sendSourceCode">मद को डिवेलपर को भेजें </string>
   <string name="action_Share">साझा करें</string>
   <string name="action_login">सर्वर सेटिंग्स </string>
   <string name="action_save">सहेजें</string>
@@ -43,15 +34,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">साइन इन </string>
   <string name="login_progress_signing_in">साइन इन कर रहा है... </string>
-  <string name="error_incorrect_password">यह पासवर्ड गलत है </string>
   <string name="error_field_required">इस क्षेत्र को भरना ज़रूरी है </string>
   <string name="error_invalid_url">यह url गलत है </string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">आगे कोई मदें उपलब्ध नहीं हैं </string>
-  <string name="pull_to_refresh_updateTags">मदों का संकालन करना दर्शाता है </string>
-  <string name="pull_to_refresh_updateFolder">फोल्डर का संकालन करना</string>
-  <string name="pull_to_refresh_updateFeeds">फीड्स का संकालन करना</string>
-  <string name="pull_to_refresh_updateItems">मदों का संकालन करना</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">सेटिंग्स</string>
   <!--General settings-->
@@ -82,7 +68,6 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">अज्ञात प्रमाणपत्र को स्वीकार करें? </string>
   <string name="mtm_decision_always">हमेशा</string>
-  <string name="mtm_decision_once">एक बार </string>
   <string name="mtm_decision_abort">रद्द करना </string>
   <string name="mtm_notification">प्रमाणपत्र का सत्यापन </string>
   <!--Podcast-->
@@ -150,4 +135,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

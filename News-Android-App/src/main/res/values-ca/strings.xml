@@ -4,12 +4,7 @@
   <string name="app_name">Lector de notícies d\'ownCloud</string>
   <string name="title_activity_sync_interval_selector">Selector d\'interval de sincronització</string>
   <string name="title_activity_news_detail">DetallActivitatNotícies</string>
-  <string name="title_activity_subscription">ActivitatSubscripció</string>
-  <string name="title_newsreader_list">LectorNotícies</string>
-  <string name="title_newsreader_detail">Detall de LectorNotícies</string>
-  <string name="empty_view_header">Informació</string>
   <string name="empty_view_content">Cap element</string>
-  <string name="tv_clickHereToOpenItem">Feu clic aquí per obrir l\'element</string>
   <string name="no_wifi_available">Sense connexió WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Voleu baixar les imatges sense una connexió WiFi</string>
   <string name="widget_header">Notícies ownCloud</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">Baixa més elements</string>
   <!--Import Accounts-->
   <string name="import_account">Importa compte</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Codi font de l\'element - Informe d\'errades</string>
-  <string name="email_sendMail">Envia correu electrónic</string>
   <!--Action Bar Items-->
   <string name="action_starred">Estrellat</string>
   <string name="action_read">Llegeix</string>
   <string name="action_playPodacst">Reprodueix el Podcast</string>
   <string name="action_openInBrowser">Obre al navegador</string>
-  <string name="action_sendSourceCode">Envia element al desenvolupador</string>
   <string name="action_Share">Comparteix</string>
   <string name="action_login">Arranjament del sevidor</string>
   <string name="action_save">Desa</string>
@@ -51,15 +42,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Inicia la sessió</string>
   <string name="login_progress_signing_in">Iniciant la sessió...</string>
-  <string name="error_incorrect_password">La contrasenya és incorrecta</string>
   <string name="error_field_required">Es requereix aquest camp</string>
   <string name="error_invalid_url">La URL és incorrecta</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
-  <string name="pull_to_refresh_updateTags">Estat de sincronització de serveis</string>
-  <string name="pull_to_refresh_updateFolder">Sincronitzant carpetes</string>
-  <string name="pull_to_refresh_updateFeeds">Sincronitzant fonts</string>
-  <string name="pull_to_refresh_updateItems">Sincronitzant elements</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Arranjament</string>
   <!--General settings-->
@@ -92,12 +78,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepta certificats de desconeguts?</string>
   <string name="mtm_decision_always">Sempre</string>
-  <string name="mtm_decision_once">Una vegada</string>
   <string name="mtm_decision_abort">Cancel·la</string>
   <string name="mtm_notification">Verificació del certificat</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Activa suport per podcast</string>
   <string name="no_podcast_selected">No heu seleccionat cap podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Pantalla</string>
@@ -201,4 +184,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

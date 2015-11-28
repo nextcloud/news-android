@@ -4,12 +4,7 @@
   <string name="app_name">ownCloud Nyhetsläsare</string>
   <string name="title_activity_sync_interval_selector">Synkronisera intervallväljaren</string>
   <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
-  <string name="title_activity_subscription">PrenumerationAktivitet</string>
-  <string name="title_newsreader_list">Nyhetsläsare</string>
-  <string name="title_newsreader_detail">Nyhetsläsare Detalj</string>
-  <string name="empty_view_header">Information</string>
   <string name="empty_view_content">Inga objekt här</string>
-  <string name="tv_clickHereToOpenItem">Klicka här för att öppna objekt</string>
   <string name="no_wifi_available">Ingen WIFI ansluten</string>
   <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>
   <string name="widget_header">ownCloud nyheter</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
   <!--Import Accounts-->
   <string name="import_account">Importera Konto</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Källkod av objekt - Buggrapport</string>
-  <string name="email_sendMail">Skicka e-post</string>
   <!--Action Bar Items-->
   <string name="action_starred">Stjärnmärkt</string>
   <string name="action_read">Läsa</string>
   <string name="action_playPodacst">Spela Podcast</string>
   <string name="action_openInBrowser">Öppna i webbläsaren</string>
-  <string name="action_sendSourceCode">Skicka objekt till utvecklaren</string>
   <string name="action_Share">Dela</string>
   <string name="action_login">Serverinställningar</string>
   <string name="action_save">Spara</string>
@@ -55,21 +46,12 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Logga in</string>
   <string name="login_progress_signing_in">Logga in...</string>
-  <string name="error_incorrect_password">Felaktigt lösenord</string>
   <string name="error_field_required">Detta fält obligatoriskt</string>
   <string name="error_invalid_url">Felaktig URL</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
-  <string name="pull_to_refresh_updateTags">Synkroniseringsstatus</string>
-  <string name="pull_to_refresh_updateFolder">Synkroniserar mapp</string>
-  <string name="pull_to_refresh_updateFeeds">Synkroniserar feeds</string>
-  <string name="pull_to_refresh_updateItems">Synkroniserar objekt</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Inställningar</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d fil</item>
-    <item quantity="other">%d filer</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Allmänt</string>
   <string name="pref_title_general_sort_order">Sorteringsordning</string>
@@ -102,12 +84,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
   <string name="mtm_decision_always">Alltid</string>
-  <string name="mtm_decision_once">En gång</string>
   <string name="mtm_decision_abort">Avbryt</string>
   <string name="mtm_notification">Verifikation av certifikat</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Aktivera Podcast support</string>
   <string name="no_podcast_selected">Ingen podcast vald</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Visa</string>
@@ -211,4 +190,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

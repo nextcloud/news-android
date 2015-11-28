@@ -4,12 +4,7 @@
   <string name="app_name">оунКлауд читач вести</string>
   <string name="title_activity_sync_interval_selector">Период освежавања</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="title_activity_subscription">SubscriptionActivity</string>
-  <string name="title_newsreader_list">Читач новости</string>
-  <string name="title_newsreader_detail">Детаљи читача</string>
-  <string name="empty_view_header">Подаци</string>
   <string name="empty_view_content">Овде нема ничега</string>
-  <string name="tv_clickHereToOpenItem">Кликните овде да отворите ставку</string>
   <string name="no_wifi_available">Нема бежичне везе</string>
   <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе?</string>
   <string name="widget_header">оунКлауд новости</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">Преузми још ставки</string>
   <!--Import Accounts-->
   <string name="import_account">Увези налог</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Изворни код ставке — Извештај о грешци</string>
-  <string name="email_sendMail">Пошаљи е-пошту</string>
   <!--Action Bar Items-->
   <string name="action_starred">Озвездано</string>
   <string name="action_read">Читај</string>
   <string name="action_playPodacst">Пусти подемисију</string>
   <string name="action_openInBrowser">Отвори у прегледачу</string>
-  <string name="action_sendSourceCode">Пошаљи ставку програмеру</string>
   <string name="action_Share">Дели</string>
   <string name="action_login">Поставке сервера</string>
   <string name="action_save">Сачувај</string>
@@ -51,23 +42,13 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Пријави се</string>
   <string name="login_progress_signing_in">Пријављујем се...</string>
-  <string name="error_incorrect_password">Лозинка је неисправна</string>
   <string name="error_field_required">Ово поље је неопходно</string>
   <string name="error_invalid_url">УРЛ је неисправан</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Нема више доступних ставки</string>
-  <string name="pull_to_refresh_updateTags">Освежавам стања ставки</string>
-  <string name="pull_to_refresh_updateFolder">Освежавам фасцикле</string>
-  <string name="pull_to_refresh_updateFeeds">Освежавам доводе</string>
-  <string name="pull_to_refresh_updateItems">Освежавам ставке</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Поставке</string>
   <string name="cache_is_cleared">Кеш је очишћен!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d фајл</item>
-    <item quantity="few">%d фајла</item>
-    <item quantity="other">%d фајлова</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Опште</string>
   <string name="pref_title_general_sort_order">Сортирање</string>
@@ -87,7 +68,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Чистим кеш</string>
   <string name="dialog_clearing_cache_please_wait">Чистим кеш… Сачекајте.</string>
-  <string name="calculating_cache_size">Израчунавам величину кеша… Сачекајте.</string>
   <string name="reset_cache_unsaved_changes">Постоје несинхронизоване измене. Да ипак обришем кеш?</string>
   <string name="warning">Упозорење</string>
   <string name="pref_title_AutoSyncOnStart">Освежи при покретању</string>
@@ -101,12 +81,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Прихватити непознати сертификат?</string>
   <string name="mtm_decision_always">Увек</string>
-  <string name="mtm_decision_once">Једном</string>
   <string name="mtm_decision_abort">Прекини</string>
   <string name="mtm_notification">Провера сертификата</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Подемисија</string>
-  <string name="pref_enable_podcasts">Укључи подршку за подемисију</string>
   <string name="no_podcast_selected">Није изабрана подемисија</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Приказ</string>
@@ -235,4 +212,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

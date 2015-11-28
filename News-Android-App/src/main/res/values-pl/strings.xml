@@ -4,12 +4,7 @@
   <string name="app_name">ownCloud News Reader</string>
   <string name="title_activity_sync_interval_selector">Wybór interwału synchronizacji</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="title_activity_subscription">SubscriptionActivity</string>
-  <string name="title_newsreader_list">Aktualności</string>
-  <string name="title_newsreader_detail">Szczegóły Aktualności</string>
-  <string name="empty_view_header">informacje</string>
   <string name="empty_view_content">Nic tu nie ma</string>
-  <string name="tv_clickHereToOpenItem">Kliknij tutaj aby otworzyć element</string>
   <string name="no_wifi_available">Brak połączenia WIFI</string>
   <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
   <string name="widget_header">ownCloud News</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">Pobierz więcej elementów</string>
   <!--Import Accounts-->
   <string name="import_account">Konto importu</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Kodu źródłowego elementu - raport błędu</string>
-  <string name="email_sendMail">Wyślij Email</string>
   <!--Action Bar Items-->
   <string name="action_starred">Oznaczone</string>
   <string name="action_read">Odczyt</string>
   <string name="action_playPodacst">Odtwórz Podcast</string>
   <string name="action_openInBrowser">Otwórz w przeglądarce</string>
-  <string name="action_sendSourceCode">Wyślij element do autora</string>
   <string name="action_Share">Udostępnij</string>
   <string name="action_login">Ustawienia serwera</string>
   <string name="action_save">Zapisz</string>
@@ -51,15 +42,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Zaloguj</string>
   <string name="login_progress_signing_in">Loguję...</string>
-  <string name="error_incorrect_password">To hasło jest niepoprawne</string>
   <string name="error_field_required">Ten element jest wymagany</string>
   <string name="error_invalid_url">Ten adres jest niepoprawny</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych elementów</string>
-  <string name="pull_to_refresh_updateTags">Synchronizowanie elementów stanów</string>
-  <string name="pull_to_refresh_updateFolder">Synchronizowanie folder</string>
-  <string name="pull_to_refresh_updateFeeds">Synchronizowanie kanałów</string>
-  <string name="pull_to_refresh_updateItems">Synchronizowanie elementów</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ustawienia</string>
   <!--General settings-->
@@ -92,12 +78,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Akceptować nieznane certyfikaty?</string>
   <string name="mtm_decision_always">Zawsze</string>
-  <string name="mtm_decision_once">Raz</string>
   <string name="mtm_decision_abort">Anuluj</string>
   <string name="mtm_notification">Certyfikat weryfikacji</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Włącz obsługę Podcastów</string>
   <string name="no_podcast_selected">Brak wybranego podcastu</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Wygląd</string>
@@ -214,4 +197,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

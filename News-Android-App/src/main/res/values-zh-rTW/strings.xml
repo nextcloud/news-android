@@ -4,18 +4,10 @@
   <string name="app_name">ownCloud新聞閱讀器</string>
   <string name="title_activity_sync_interval_selector">同步時間間隔選擇</string>
   <string name="title_activity_news_detail">新聞內容活動</string>
-  <string name="title_activity_subscription">訂閱活動</string>
-  <string name="title_newsreader_list">新聞閱讀器</string>
-  <string name="title_newsreader_detail">新聞閱讀器內容</string>
-  <string name="empty_view_header">資訊</string>
   <string name="empty_view_content">無任何項目。</string>
   <string name="toast_GettingMoreItems">正在下載更多的項目... 請稍後.</string>
-  <string name="tv_clickHereToOpenItem">點這裡來開啟項目</string>
   <string name="no_wifi_available">沒有連到無線網路</string>
   <string name="do_you_want_to_download_without_wifi">您要在不使用無線網路連線的情形下來下載圖片</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="other">您已經達到 %d 項目中最大的容量</item>
-  </plurals>
   <string name="widget_header">ownCloud 新聞</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="other">%d 個新的項目</item>
@@ -32,15 +24,11 @@
   <string name="menu_downloadMoreItems">下載更多項目</string>
   <!--Import Accounts-->
   <string name="import_account">匯入帳戶</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">項目中的原始碼 - 錯誤回報</string>
-  <string name="email_sendMail">送出電郵</string>
   <!--Action Bar Items-->
   <string name="action_starred">星號</string>
   <string name="action_read">讀取</string>
   <string name="action_playPodacst">撥放 Podcast</string>
   <string name="action_openInBrowser">開啟瀏覽器</string>
-  <string name="action_sendSourceCode">寄送項目到開發者</string>
   <string name="action_Share">分享</string>
   <string name="action_login">伺服器設定</string>
   <string name="action_save">儲存</string>
@@ -65,7 +53,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">登入</string>
   <string name="login_progress_signing_in">登入中...</string>
-  <string name="error_incorrect_password">密碼不正確</string>
   <string name="error_field_required">此欄位是必須的</string>
   <string name="error_invalid_url">網址不正確</string>
   <!--Toast Messages-->
@@ -73,19 +60,9 @@
     <item quantity="other">已下載 %d 個舊項目</item>
   </plurals>
   <string name="toast_no_more_downloads_available">沒有更多有效的項目</string>
-  <string name="pull_to_refresh_updateTags">同步項目狀態中</string>
-  <string name="pull_to_refresh_updateFolder">正在同步資料夾</string>
-  <string name="pull_to_refresh_updateFeeds">同步來源</string>
-  <string name="pull_to_refresh_updateItems">同步項目中</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="other">目前已抓取 %d 項目...</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">設定</string>
   <string name="cache_is_cleared">快取已清除</string>
-  <plurals name="number_of_files">
-    <item quantity="other">%d 個檔案</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">一般</string>
   <string name="pref_title_general_sort_order">排列依據</string>
@@ -105,7 +82,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">正在清除快取</string>
   <string name="dialog_clearing_cache_please_wait">正在清除快取... 請稍後.</string>
-  <string name="calculating_cache_size">正在計算快取大小... 請稍後.</string>
   <string name="reset_cache_unsaved_changes">這些未同步變更。您想要強制重設快取嗎?</string>
   <string name="warning">警告</string>
   <string name="pref_title_AutoSyncOnStart">啟用時同步</string>
@@ -119,12 +95,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">允許未知憑證?</string>
   <string name="mtm_decision_always">總是</string>
-  <string name="mtm_decision_once">這一次</string>
   <string name="mtm_decision_abort">中斷</string>
   <string name="mtm_notification">憑證驗證</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">啟用 Podcast 支援</string>
   <string name="no_podcast_selected">沒有選擇 podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">顯示</string>
@@ -235,4 +208,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

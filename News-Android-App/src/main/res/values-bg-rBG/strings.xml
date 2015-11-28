@@ -4,19 +4,10 @@
   <string name="app_name">ownCloud Новинарска Емисия</string>
   <string name="title_activity_sync_interval_selector">Sync Interval Selector</string>
   <string name="title_activity_news_detail">Детайли на Новината</string>
-  <string name="title_activity_subscription">Абонамент</string>
-  <string name="title_newsreader_list">Новинарска Емисия</string>
-  <string name="title_newsreader_detail">Детайли на Новинарската Емисия</string>
-  <string name="empty_view_header">Информация</string>
   <string name="empty_view_content">Няма новини</string>
   <string name="toast_GettingMoreItems">Започнло е сваляне на още елементи ... Моля, изчакайте.</string>
-  <string name="tv_clickHereToOpenItem">Натисни тук, за да отвориш новина</string>
   <string name="no_wifi_available">Не си свързан с WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Искаш ли да изтеглиш изображенията без WiFi връзка?</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">Достигнахте максимален обем от %d елемента</item>
-    <item quantity="other">Достигнахте максимален обем от %d елемента</item>
-  </plurals>
   <string name="widget_header">ownCloud Новини</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">Налични са %d нови елементи</item>
@@ -34,15 +25,11 @@
   <string name="menu_downloadMoreItems">Изтегли допълнителни новини</string>
   <!--Import Accounts-->
   <string name="import_account">Внеси Профил</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Сорс код на новината - Доклад</string>
-  <string name="email_sendMail">Изпрати Имейл</string>
   <!--Action Bar Items-->
   <string name="action_starred">Отбелязана</string>
   <string name="action_read">Прочети</string>
   <string name="action_playPodacst">Пусни Podcast-а</string>
   <string name="action_openInBrowser">Отвори в Браузър</string>
-  <string name="action_sendSourceCode">Изпрати на Разработчика</string>
   <string name="action_Share">Сподели</string>
   <string name="action_login">Настройки на Сървъра</string>
   <string name="action_save">Запис</string>
@@ -69,7 +56,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Впиши се</string>
   <string name="login_progress_signing_in">Вписване...</string>
-  <string name="error_incorrect_password">Грешна парола</string>
   <string name="error_field_required">Това поле е задължително</string>
   <string name="error_invalid_url">Сгрешен интернет адрес</string>
   <!--Toast Messages-->
@@ -78,21 +64,9 @@
     <item quantity="other">Свалени %d стари елементи</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Няма други новини</string>
-  <string name="pull_to_refresh_updateTags">Синхронизиране състоянието</string>
-  <string name="pull_to_refresh_updateFolder">Синхронизиране на папка</string>
-  <string name="pull_to_refresh_updateFeeds">Синхронизиране на потоците</string>
-  <string name="pull_to_refresh_updateItems">Синхронизиране на новините</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Свалени %d елемента, остават още..</item>
-    <item quantity="other">Свалени %d елемента, остават още..</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Настройки</string>
   <string name="cache_is_cleared">Кеша е изчистен!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d Файла</item>
-    <item quantity="other">%d Файла</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Общи</string>
   <string name="pref_title_general_sort_order">Ред на Подреждане</string>
@@ -112,7 +86,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Изчисти кеша</string>
   <string name="dialog_clearing_cache_please_wait">Изчиства кеша… Моля изчакайте.</string>
-  <string name="calculating_cache_size">Калкулира размера на кеша… Моля изчакайте.</string>
   <string name="reset_cache_unsaved_changes">Има несизнхронизирани промени. Искаш ли да нулираш кеша въпреки това?</string>
   <string name="warning">Предупреждение</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизирай на стартиране</string>
@@ -125,12 +98,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Приеми Непознат Сертификат?</string>
   <string name="mtm_decision_always">Винаги</string>
-  <string name="mtm_decision_once">Веднъж</string>
   <string name="mtm_decision_abort">Прекрати</string>
   <string name="mtm_notification">Проверка на Сертификата</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Включи подръжката на Podcast-атове</string>
   <string name="no_podcast_selected">Няма избран podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Изглед</string>
@@ -247,4 +217,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

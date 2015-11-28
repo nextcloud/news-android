@@ -4,12 +4,7 @@
   <string name="app_name">ownCloud xəbərlərinin oxuyucusu</string>
   <string name="title_activity_sync_interval_selector">Seçici İnterval Sinxronizasiyası</string>
   <string name="title_activity_news_detail">XəbərlərDetallıFəaliyyəti</string>
-  <string name="title_activity_subscription">QeydiyyatFəaliyyəti</string>
-  <string name="title_newsreader_list">XəbərlərOxuyucu</string>
-  <string name="title_newsreader_detail">XəbərlərOxuyucu Detallı</string>
-  <string name="empty_view_header">İnformasiya</string>
   <string name="empty_view_content">Burda heş bir məlumat yoxdur</string>
-  <string name="tv_clickHereToOpenItem">Burda sıxın ki, bölməni açasınız</string>
   <string name="no_wifi_available">Qoşulmuş WiFi yoxdur</string>
   <string name="do_you_want_to_download_without_wifi">WiFi qoşulması olmadan, şəkilləri yükləmək istəyirsiniz?</string>
   <string name="widget_header">ownCloud xəbərlər</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">Çoxlu hissələri endir</string>
   <!--Import Accounts-->
   <string name="import_account">Hesabi idxal et</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Mənbənin verilənlər kodu - xəta hesabatı</string>
-  <string name="email_sendMail">EMail yolla</string>
   <!--Action Bar Items-->
   <string name="action_starred">Ulduzlu</string>
   <string name="action_read">Oxu</string>
   <string name="action_playPodacst">Podcast oyna</string>
   <string name="action_openInBrowser">Browser-də aç</string>
-  <string name="action_sendSourceCode">Verilənləri Developer-ə göndər</string>
   <string name="action_Share">Paylaş</string>
   <string name="action_login">Server quraşdırmaları</string>
   <string name="action_save">Saxlamaq</string>
@@ -51,15 +42,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Daxil ol</string>
   <string name="login_progress_signing_in">Daxil olunur...</string>
-  <string name="error_incorrect_password">Bu şifrə yalnışdır</string>
   <string name="error_field_required">Bu sütun tələb edilir</string>
   <string name="error_invalid_url">Bu URL yalnışdır</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Heç bir əlavə mənbələr yoxdur</string>
-  <string name="pull_to_refresh_updateTags">Mənbələrin statusları sinxronizasiya olunur</string>
-  <string name="pull_to_refresh_updateFolder">Qovluq sinxronizasiya edilir</string>
-  <string name="pull_to_refresh_updateFeeds">Kanallar sinxronizasiya edilir</string>
-  <string name="pull_to_refresh_updateItems">Elementler sinxronizasiya edilir</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Quraşdırmalar</string>
   <!--General settings-->
@@ -92,12 +78,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Tanınmayan sertifikat qəbul edilsin? </string>
   <string name="mtm_decision_always">Həmişə</string>
-  <string name="mtm_decision_once">Bir dəfə</string>
   <string name="mtm_decision_abort">Durdur</string>
   <string name="mtm_notification">Sertifikat yoxlanışı</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Podcast dəstəyini işə sal</string>
   <string name="no_podcast_selected">Heç bir podcast seçilməyib</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Ekran</string>
@@ -201,4 +184,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

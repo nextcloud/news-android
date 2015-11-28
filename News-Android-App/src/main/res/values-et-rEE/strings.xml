@@ -4,19 +4,10 @@
   <string name="app_name">ownCloud Uudiste Lugeja</string>
   <string name="title_activity_sync_interval_selector">Sync sageduse valik</string>
   <string name="title_activity_news_detail">UudisteÜksikasjadeTegevused</string>
-  <string name="title_activity_subscription">TellimusteTegevused</string>
-  <string name="title_newsreader_list">UudisteLugeja</string>
-  <string name="title_newsreader_detail">Uudistelugeja üksikasjad</string>
-  <string name="empty_view_header">Info</string>
   <string name="empty_view_content">Siin pole üksusi</string>
   <string name="toast_GettingMoreItems">Rohkemate kirjete allaladaimist on alustatud... Palun oota.</string>
-  <string name="tv_clickHereToOpenItem">Kliki siia üksuse avamiseks</string>
   <string name="no_wifi_available">WiFi pole ühendatud</string>
   <string name="do_you_want_to_download_without_wifi">Kas soovid pildid alla laadida WiFi ühendust kasutamata</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">Sa jõudsid %d kirje maksimaalse suuruseni</item>
-    <item quantity="other">Sa jõudsid %d kirje maksimaalse suuruseni</item>
-  </plurals>
   <string name="widget_header">ownCloud Uudised</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">Saadaval on %d uus kirjet</item>
@@ -34,15 +25,11 @@
   <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
   <!--Import Accounts-->
   <string name="import_account">Impordi konto</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Lähtekoodi üksus - vearaport</string>
-  <string name="email_sendMail">Saada e-mail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Tärniga märgitud</string>
   <string name="action_read">Lugemine</string>
   <string name="action_playPodacst">Mängi podcast</string>
   <string name="action_openInBrowser">Ava veebilehitsejas</string>
-  <string name="action_sendSourceCode">Saada üksus arendajale</string>
   <string name="action_Share">Jaga</string>
   <string name="action_login">Serveri seaded</string>
   <string name="action_save">Salvesta</string>
@@ -69,7 +56,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Logi sisse</string>
   <string name="login_progress_signing_in">Sisselogimine...</string>
-  <string name="error_incorrect_password">Parool on vale</string>
   <string name="error_field_required">See väli on kohustuslik</string>
   <string name="error_invalid_url">URL pole korrektne</string>
   <!--Toast Messages-->
@@ -78,21 +64,9 @@
     <item quantity="other">Alla on laaditud %d vana kirjet</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Rohkem üksusi pole saadaval</string>
-  <string name="pull_to_refresh_updateTags">Sünkroniseerin üksuste seisu</string>
-  <string name="pull_to_refresh_updateFolder">Sünkroniseerin kataloogi</string>
-  <string name="pull_to_refresh_updateFeeds">Voogude sünkroniseerimine</string>
-  <string name="pull_to_refresh_updateItems">Kirjete sünkroniseerimine</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Siiamaani on tõmmatud %d kirje.</item>
-    <item quantity="other">Siiamaani on tõmmatud %d kirjet.</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Seaded</string>
   <string name="cache_is_cleared">Vahemälu on tühjendatud!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d fail</item>
-    <item quantity="other">%d faili</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Üldine</string>
   <string name="pref_title_general_sort_order">Sorteerimise järjekord</string>
@@ -112,7 +86,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
   <string name="dialog_clearing_cache_please_wait">Vahemälu tühjendamine... palun oota</string>
-  <string name="calculating_cache_size">Vahemälu suuruse arvutamine... Palun oota.</string>
   <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
   <string name="warning">Hoiatus</string>
   <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
@@ -126,12 +99,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Nõustu tundmatu sertifikaadiga?</string>
   <string name="mtm_decision_always">Alati</string>
-  <string name="mtm_decision_once">Üks kord</string>
   <string name="mtm_decision_abort">Katkesta</string>
   <string name="mtm_notification">Sertifikaadi kontroll</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Luba podcasti tugi</string>
   <string name="no_podcast_selected">Ühtegi podcasti pole valitud</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Vaade</string>
@@ -248,4 +218,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

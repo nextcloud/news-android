@@ -4,19 +4,10 @@
   <string name="app_name">Lexues Lajmesh ownCloud</string>
   <string name="title_activity_sync_interval_selector">Përzgjedhës Intervali Njëkohësimesh</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="title_activity_subscription">SubscriptionActivity</string>
-  <string name="title_newsreader_list">Lexues Lajmesh</string>
-  <string name="title_newsreader_detail">Hollësi Lexuesi Lajmesh-i</string>
-  <string name="empty_view_header">Të dhëna</string>
   <string name="empty_view_content">S\’ka gjë këtu</string>
   <string name="toast_GettingMoreItems">Filloi të shkarkojë më tepër zëra… Ju lutemi, pritni.</string>
-  <string name="tv_clickHereToOpenItem">Klikoni këtu që të hapet zëri</string>
   <string name="no_wifi_available">Pa lidhje WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Doni të shkarkohen figurat pa një lidhje WiFi</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">Keni mbërritur në madhësinë maksimum prej %d zëri</item>
-    <item quantity="other">Keni mbërritur në madhësinë maksimum prej %d zërash</item>
-  </plurals>
   <string name="current_version">Po përdorni Versionin %s</string>
   <string name="widget_header">Lajme ownCloud</string>
   <plurals name="message_bar_new_articles_available">
@@ -35,15 +26,11 @@
   <string name="menu_downloadMoreItems">Shkarko më tepër zëra</string>
   <!--Import Accounts-->
   <string name="import_account">Importoni Llogari</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Sourcecode of item - Bugreport</string>
-  <string name="email_sendMail">Dërgoni Email</string>
   <!--Action Bar Items-->
   <string name="action_starred">Me yll</string>
   <string name="action_read">Lexoni</string>
   <string name="action_playPodacst">Luani Podcast</string>
   <string name="action_openInBrowser">Hape në Shfletues</string>
-  <string name="action_sendSourceCode">Dërgojeni zërin te Programuesi</string>
   <string name="action_Share">Ndajeni me të tjerët</string>
   <string name="action_login">Rregullime Shërbyesi</string>
   <string name="action_save">Ruaje</string>
@@ -67,7 +54,6 @@
   <string name="action_link_share">Ndani Lidhjen</string>
   <string name="action_link_open">Hapeni Lidhjen në Shfletues</string>
   <string name="action_link_copy">Kopjoje Lidhjen</string>
-  <string name="toast_img_download_wait">Po shkarkohet… ju lutemi, pritni</string>
   <string name="toast_img_saved">Figura u ruajt.</string>
   <string name="toast_img_notwriteable">Dështoi shkrimi i Figurës.</string>
   <string name="toast_copied_to_clipboard">U kopjua në të papastër</string>
@@ -81,7 +67,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Hyni</string>
   <string name="login_progress_signing_in">Po hyhet…</string>
-  <string name="error_incorrect_password">Ky fjalim është i pasaktë</string>
   <string name="error_field_required">Kjo fushë është e domosdoshme</string>
   <string name="error_invalid_url">Kjo URL është e pasaktë</string>
   <!--Toast Messages-->
@@ -90,21 +75,9 @@
     <item quantity="other">U shkarkua %d objekte të vjetër</item>
   </plurals>
   <string name="toast_no_more_downloads_available">S\’ka objekte të tjerë gati</string>
-  <string name="pull_to_refresh_updateTags">Gjendje njëkohësimi objektesh</string>
-  <string name="pull_to_refresh_updateFolder">Po njëkohësohet dosje</string>
-  <string name="pull_to_refresh_updateFeeds">Po njëkohësohet prurje</string>
-  <string name="pull_to_refresh_updateItems">Po njëkohësohen objekte</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Deri tani është prurë %d objekt…</item>
-    <item quantity="other">Deri tani janë prurë %d objekte…</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Rregullime</string>
   <string name="cache_is_cleared">Fshehtina u pastrua!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d kartelë</item>
-    <item quantity="other">%d kartela</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Të përgjithshme</string>
   <string name="pref_title_general_sort_order">Radhë Renditjeje</string>
@@ -124,7 +97,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Pastrim fshehtine</string>
   <string name="dialog_clearing_cache_please_wait">Fshehtina po pastrohet… Ju lutemi, pritni.</string>
-  <string name="calculating_cache_size">Po përllogaritet madhësia e fshehtinës… Ju lutemi, pritni.</string>
   <string name="reset_cache_unsaved_changes">Ka ndryshime të panjëkohësuara. Doni ta ktheni fshehtinën në gjendjen fillestare sido qoftë?</string>
   <string name="warning">Kujdes</string>
   <string name="pref_title_AutoSyncOnStart">Njëkohësoji gjatë nisjes</string>
@@ -138,12 +110,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Të pranohet Dëshmi e Panjohur?</string>
   <string name="mtm_decision_always">Përherë</string>
-  <string name="mtm_decision_once">Vetëm Për Atë Herë</string>
   <string name="mtm_decision_abort">Ndërprite</string>
   <string name="mtm_notification">Verifikim Dëshmish</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Aktivizo mbulim Podcast-esh</string>
   <string name="no_podcast_selected">S\’u përzgjodh podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Ekran</string>
@@ -194,7 +163,6 @@
   <string name="pref_title_clearCache">Pastroje fshehtinën</string>
   <string name="pref_title_CacheImagesOffline">Ruajio figurat në fshehtinë</string>
   <string name="pref_title_Max_Cache_Size">Madhësi Maksimum Fshehtine</string>
-  <string name="pref_title_DownloadedImageLocation">Ruaji figurat e shkarkuara te:</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Kurrë</item>
     <item>Vetëm përmes WiFi-ji</item>
@@ -273,4 +241,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

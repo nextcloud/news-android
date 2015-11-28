@@ -4,12 +4,7 @@
   <string name="app_name">Bralnik novic ownCloud</string>
   <string name="title_activity_sync_interval_selector">Izbirnik razmika usklajevanja</string>
   <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
-  <string name="title_activity_subscription">Pregled naročnine</string>
-  <string name="title_newsreader_list">Bralnik novic</string>
-  <string name="title_newsreader_detail">Podrobnosti bralnika novic</string>
-  <string name="empty_view_header">Podrobnosti</string>
   <string name="empty_view_content">Ni vsebine</string>
-  <string name="tv_clickHereToOpenItem">Kliknite tu za odpiranje predmeta</string>
   <string name="no_wifi_available">Ni vzpostavljene povezave WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike brez vzpostavljene povezave WiFi?</string>
   <string name="widget_header">Novice ownCloud</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">Prejmi več predmetov</string>
   <!--Import Accounts-->
   <string name="import_account">Uvozi račun</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Pregled izvorne kode - Prijava napake</string>
-  <string name="email_sendMail">Pošlji elektronsko sporočilo</string>
   <!--Action Bar Items-->
   <string name="action_starred">Označeno</string>
   <string name="action_read">Branje</string>
   <string name="action_playPodacst">Predvajaj podcast</string>
   <string name="action_openInBrowser">Odpri v brskalniku</string>
-  <string name="action_sendSourceCode">Pošlji predmet razvijalcem</string>
   <string name="action_Share">Souporaba</string>
   <string name="action_login">Nastavitve strežnika</string>
   <string name="action_save">Shrani</string>
@@ -51,15 +42,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Prijava</string>
   <string name="login_progress_signing_in">Prijavljanje ...</string>
-  <string name="error_incorrect_password">Geslo ni veljavno</string>
   <string name="error_field_required">Vpis v to polje je obvezno</string>
   <string name="error_invalid_url">Naslov URL ni veljaven</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Ni nadaljnjih predmetov</string>
-  <string name="pull_to_refresh_updateTags">Usklajevanje stanj predmetov</string>
-  <string name="pull_to_refresh_updateFolder">Usklajevanje mape</string>
-  <string name="pull_to_refresh_updateFeeds">Usklajevanje virov</string>
-  <string name="pull_to_refresh_updateItems">Usklajevanje predmetov</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavitve</string>
   <!--General settings-->
@@ -92,12 +78,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
   <string name="mtm_decision_always">Vedno</string>
-  <string name="mtm_decision_once">Enkrat</string>
   <string name="mtm_decision_abort">Prekini</string>
   <string name="mtm_notification">Overitev digitalnih potrdil</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Omogoči podporo protokolu podcast</string>
   <string name="no_podcast_selected">Ni izbranega podcasta</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Prikaz</string>
@@ -214,4 +197,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

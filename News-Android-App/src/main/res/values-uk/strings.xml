@@ -4,13 +4,8 @@
   <string name="app_name">Читати Новини в ownCloud </string>
   <string name="title_activity_sync_interval_selector">Перемикач Інтервалу Синхронізації</string>
   <string name="title_activity_news_detail">Останні Новини</string>
-  <string name="title_activity_subscription">Активні піписки</string>
-  <string name="title_newsreader_list">Читати Новини</string>
-  <string name="title_newsreader_detail">Читання новин подробиці</string>
-  <string name="empty_view_header">Інформація</string>
   <string name="empty_view_content">Нічого нема</string>
   <string name="toast_GettingMoreItems">Почато завантаження більшої кількості елементів... Будь ласка, зачекайте.</string>
-  <string name="tv_clickHereToOpenItem">Натисніть, щоб відкрити елемент</string>
   <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
   <string name="do_you_want_to_download_without_wifi">Бажаєте завантажувати зображення коли немає WiFi з\'єднання?</string>
   <string name="widget_header">Новини ownCloud </string>
@@ -31,15 +26,11 @@
   <string name="menu_downloadMoreItems">Завантажити більше елементів</string>
   <!--Import Accounts-->
   <string name="import_account">Імпортувати обліковий запис</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Джерело елементу - Звіт про помилку</string>
-  <string name="email_sendMail">Надіслати листа</string>
   <!--Action Bar Items-->
   <string name="action_starred">Помічені зірочкою</string>
   <string name="action_read">Читати</string>
   <string name="action_playPodacst">Відтворити Подкаст</string>
   <string name="action_openInBrowser">Відкрити у переглядачі</string>
-  <string name="action_sendSourceCode">Надіслати повідомлення розробникам</string>
   <string name="action_Share">Поділитися</string>
   <string name="action_login">Налаштування Серверу</string>
   <string name="action_save">Зберегти</string>
@@ -57,15 +48,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Ввійти...</string>
   <string name="login_progress_signing_in">Вхід...</string>
-  <string name="error_incorrect_password">Це невірний пароль</string>
   <string name="error_field_required">Обов\'язкове поле</string>
   <string name="error_invalid_url">Невірний url</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Більше немає об\'єктів</string>
-  <string name="pull_to_refresh_updateTags">Синхронізація елементів</string>
-  <string name="pull_to_refresh_updateFolder">Синхронізується тека</string>
-  <string name="pull_to_refresh_updateFeeds">Синхронізуються стрічки</string>
-  <string name="pull_to_refresh_updateItems">Синхронізуються елементи</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Налаштування</string>
   <!--General settings-->
@@ -98,12 +84,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Підтвердити невідомий сертифікат?</string>
   <string name="mtm_decision_always">Завжди</string>
-  <string name="mtm_decision_once">Один раз</string>
   <string name="mtm_decision_abort">Відміна</string>
   <string name="mtm_notification">Перевірка сертифікату</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Подкаст</string>
-  <string name="pref_enable_podcasts">Ввімкнути підтримку Подкастів</string>
   <string name="no_podcast_selected">Жодного Подкасту не обрано</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Показати</string>
@@ -201,4 +184,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

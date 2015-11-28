@@ -4,18 +4,10 @@
   <string name="app_name">ownCloudニュースリーダー</string>
   <string name="title_activity_sync_interval_selector">同期間隔を指定</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="title_activity_subscription">SubscriptionActivity</string>
-  <string name="title_newsreader_list">ニュースリーダー</string>
-  <string name="title_newsreader_detail">ニュースリーダーの詳細</string>
-  <string name="empty_view_header">情報</string>
   <string name="empty_view_content">ここにアイテムなし</string>
   <string name="toast_GettingMoreItems">複数のアイテムをダウンロード中です... しばらくお待ちください。</string>
-  <string name="tv_clickHereToOpenItem">項目を開くにはここをクリック</string>
   <string name="no_wifi_available">WiFi接続がありません</string>
   <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか？</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="other">%d 個のアイテムの上限に達しました</item>
-  </plurals>
   <string name="current_version">使用中のバージョンは %s です</string>
   <string name="widget_header">ownCloudニュース</string>
   <plurals name="message_bar_new_articles_available">
@@ -33,15 +25,11 @@
   <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
   <!--Import Accounts-->
   <string name="import_account">アカウントをインポート</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">アイテムのソースコード - バグ報告</string>
-  <string name="email_sendMail">メールを送信</string>
   <!--Action Bar Items-->
   <string name="action_starred">共有</string>
   <string name="action_read">読込</string>
   <string name="action_playPodacst">Podcast を再生</string>
   <string name="action_openInBrowser">ブラウザーで開く</string>
-  <string name="action_sendSourceCode">開発者にアイテムを送る</string>
   <string name="action_Share">共有</string>
   <string name="action_login">サーバー設定</string>
   <string name="action_save">保存</string>
@@ -63,7 +51,6 @@
   <string name="action_link_share">共有リンク</string>
   <string name="action_link_open">リンクをブラウザで開く</string>
   <string name="action_link_copy">リンクをコピー</string>
-  <string name="toast_img_download_wait">ダウンロード中...しばらくお待ちください</string>
   <string name="toast_img_saved">画像を保存しました。</string>
   <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
   <string name="toast_copied_to_clipboard">クリップボードにコピー</string>
@@ -77,7 +64,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">ログイン</string>
   <string name="login_progress_signing_in">ログイン中...</string>
-  <string name="error_incorrect_password">このパスワードは間違っています</string>
   <string name="error_field_required">このフィールドは必須です</string>
   <string name="error_invalid_url">このURLは不正確です</string>
   <!--Toast Messages-->
@@ -85,19 +71,9 @@
     <item quantity="other">ダウンロードされた %d 個の古いアイテム</item>
   </plurals>
   <string name="toast_no_more_downloads_available">これ以上利用できるアイテムがありません</string>
-  <string name="pull_to_refresh_updateTags">アイテムの状態を同期中</string>
-  <string name="pull_to_refresh_updateFolder">フォルダーを同期中</string>
-  <string name="pull_to_refresh_updateFeeds">フィードを同期中</string>
-  <string name="pull_to_refresh_updateItems">アイテムを同期中</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="other">これまでに %d 個のアイテムを読み込みました..</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">設定</string>
   <string name="cache_is_cleared">キャッシュがクリアされます！</string>
-  <plurals name="number_of_files">
-    <item quantity="other">%d 個のファイル</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">一般</string>
   <string name="pref_title_general_sort_order">ソート順</string>
@@ -117,7 +93,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
   <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています…しばらくお待ちください。</string>
-  <string name="calculating_cache_size">キャッシュサイズを計算しています…しばらくお待ちください。</string>
   <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
   <string name="warning">警告</string>
   <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
@@ -131,12 +106,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
   <string name="mtm_decision_always">常に</string>
-  <string name="mtm_decision_once">一度だけ</string>
   <string name="mtm_decision_abort">中止</string>
   <string name="mtm_notification">証明書の検証</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Podcast のサポートを有効にする</string>
   <string name="no_podcast_selected">Podcast が選択されていません</string>
   <!--Settings for Display-->
   <string name="pref_header_display">表示</string>
@@ -187,7 +159,6 @@
   <string name="pref_title_clearCache">キャッシュをクリア</string>
   <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
   <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
-  <string name="pref_title_DownloadedImageLocation">ダウンロードした画像を次の場所に保存する:</string>
   <string-array name="pref_data_sync_image_cache">
     <item>なし</item>
     <item>WiFiのみ</item>
@@ -266,4 +237,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

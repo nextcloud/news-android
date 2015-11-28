@@ -4,12 +4,7 @@
   <string name="app_name">ownCloud naujienų skaitymo programa</string>
   <string name="title_activity_sync_interval_selector">Sinchronizavimo intervalas</string>
   <string name="title_activity_news_detail">NaujienosInformacijaVeikla</string>
-  <string name="title_activity_subscription">PrenumerataVeikla</string>
-  <string name="title_newsreader_list">Naujienų skaitymas</string>
-  <string name="title_newsreader_detail">Naujienų skaityklės informacija</string>
-  <string name="empty_view_header">Informacija</string>
   <string name="empty_view_content">Nėra elementų</string>
-  <string name="tv_clickHereToOpenItem">Spauskite čia, kad atverti elementą</string>
   <string name="no_wifi_available">Nėra WiFi ryšio</string>
   <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslėlius be WiFi ryšio?</string>
   <string name="widget_header">ownCloud Naujienos</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
   <!--Import Accounts-->
   <string name="import_account">Importuoti paskyrą</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Pirminis elemento kodas - Pranešti apie spragą</string>
-  <string name="email_sendMail">Siųsti el. laišką</string>
   <!--Action Bar Items-->
   <string name="action_starred">Pažymėti</string>
   <string name="action_read">Skaityti</string>
   <string name="action_playPodacst">Groti Podcast</string>
   <string name="action_openInBrowser">Atverti naršyklėje</string>
-  <string name="action_sendSourceCode">Nusiųstas elementas kūrėjui</string>
   <string name="action_Share">Dalintis</string>
   <string name="action_login">Serverio nustatymai</string>
   <string name="action_save">Išsaugoti</string>
@@ -57,15 +48,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Prisijungti</string>
   <string name="login_progress_signing_in">Prisijungiama...</string>
-  <string name="error_incorrect_password">Slaptažodis netinka</string>
   <string name="error_field_required">Šis laukas privalomas</string>
   <string name="error_invalid_url">URL yra netinkamas</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Daugiau elementų nėra</string>
-  <string name="pull_to_refresh_updateTags">Sinchronizuojamos elementų būsenos</string>
-  <string name="pull_to_refresh_updateFolder">Sinchronizuojamas aplankas</string>
-  <string name="pull_to_refresh_updateFeeds">Sinchronizuojami sklaidos kanalai</string>
-  <string name="pull_to_refresh_updateItems">Sinchronizuojami elementai</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nustatymai</string>
   <!--General settings-->
@@ -98,12 +84,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Priimti nežinomą sertifikatą?</string>
   <string name="mtm_decision_always">Visada</string>
-  <string name="mtm_decision_once">Tik kartą</string>
   <string name="mtm_decision_abort">Atšaukti</string>
   <string name="mtm_notification">Sertifikato patikrinimas</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Įjungti Podcast palaikymą</string>
   <string name="no_podcast_selected">Nepasirinktos joks podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Ekranas</string>
@@ -207,4 +190,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

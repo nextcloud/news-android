@@ -4,13 +4,8 @@
   <string name="app_name">ownCloud Hírolvasó</string>
   <string name="title_activity_sync_interval_selector">A szinkronizáció gyakoriságának kiválasztása</string>
   <string name="title_activity_news_detail">HírekRészletTevékenység</string>
-  <string name="title_activity_subscription">ElőfizetésiTevékenység</string>
-  <string name="title_newsreader_list">Hírolvasó</string>
-  <string name="title_newsreader_detail">HírOlvasó Részletek</string>
-  <string name="empty_view_header">Információ</string>
   <string name="empty_view_content">Itt nincs semmi</string>
   <string name="toast_GettingMoreItems">Több elem letöltése elindítva... Kérjük, várj.</string>
-  <string name="tv_clickHereToOpenItem">Klikkel ide az elem megnyitásához</string>
   <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Le szeretnéd tölteni a képeket WiFi kapcsolat nélkül?</string>
   <string name="widget_header">ownCloud Hírek</string>
@@ -26,15 +21,11 @@
   <string name="menu_downloadMoreItems">Több elem letőltése</string>
   <!--Import Accounts-->
   <string name="import_account">Konto importálás</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Forráskód - Hibajelentés</string>
-  <string name="email_sendMail">Email küldése</string>
   <!--Action Bar Items-->
   <string name="action_starred">Csillagozott</string>
   <string name="action_read">Olvas</string>
   <string name="action_playPodacst">Podcast lejatszás</string>
   <string name="action_openInBrowser">Megnyitás böngészőben</string>
-  <string name="action_sendSourceCode">Küldjük el a fejlesztőnek</string>
   <string name="action_Share">Megosztás</string>
   <string name="action_login">Szerver Beállítások</string>
   <string name="action_save">Mentés</string>
@@ -51,15 +42,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Belépés</string>
   <string name="login_progress_signing_in">Belépés...</string>
-  <string name="error_incorrect_password">Ez a jelszó érvénytelen</string>
   <string name="error_field_required">Ez a mező szükséges</string>
   <string name="error_invalid_url">Ez az url hibás</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Nincs elérhető további elem</string>
-  <string name="pull_to_refresh_updateTags">Elemek állapotának szinkronizácíója</string>
-  <string name="pull_to_refresh_updateFolder">Mappa szinkronizálása</string>
-  <string name="pull_to_refresh_updateFeeds">Hírcsatornák szinkronizálása</string>
-  <string name="pull_to_refresh_updateItems">Tartalom szinkronizálása</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Beállítások</string>
   <string name="cache_is_cleared">Gyorsítótár kiürítve!</string>
@@ -94,12 +80,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Elfogadod az ismeretlen tanusítványokat?</string>
   <string name="mtm_decision_always">Mindig</string>
-  <string name="mtm_decision_once">Egyszer</string>
   <string name="mtm_decision_abort">Megszakítás</string>
   <string name="mtm_notification">Tanusítvány Ellenörzés</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Podcast támogatás engedélyezve</string>
   <string name="no_podcast_selected">Nincs Podcast kiválasztva</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Kijelző</string>
@@ -197,4 +180,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

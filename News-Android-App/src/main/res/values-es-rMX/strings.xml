@@ -3,12 +3,7 @@
   <string name="auto_sync_string">Autosincronizar</string>
   <string name="app_name">Lector de Noticias ownCloud</string>
   <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
-  <string name="title_activity_subscription">ActividadSuscripción</string>
-  <string name="title_newsreader_list">Lector de noticias</string>
-  <string name="title_newsreader_detail">Detalle del lector de noticias</string>
-  <string name="empty_view_header">Información</string>
   <string name="empty_view_content">No hay artículos aquí</string>
-  <string name="tv_clickHereToOpenItem">Click aquí para abrir artículo</string>
   <string name="no_wifi_available">No hay una conexión WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Desea descargar las imágenes sin conexión WiFi</string>
   <string name="widget_header">Noticias de ownCloud</string>
@@ -22,14 +17,10 @@
   <string name="menu_StartImageCaching">Descargar imágenes</string>
   <string name="menu_downloadMoreItems">Descargar más artículos</string>
   <!--Import Accounts-->
-  <!--EMAIL-->
-  <string name="email_sourceCode">Código fuente del artículo - Bugreport</string>
-  <string name="email_sendMail">Enviar email</string>
   <!--Action Bar Items-->
   <string name="action_starred">Destacado</string>
   <string name="action_read">Leer</string>
   <string name="action_openInBrowser">Abrir en Navegador</string>
-  <string name="action_sendSourceCode">Enviar artículo al Desarrollador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Ajustes del Servidor</string>
   <string name="action_save">Guardar</string>
@@ -44,15 +35,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Registrarse</string>
   <string name="login_progress_signing_in">Registrándose...</string>
-  <string name="error_incorrect_password">La contraseña es incorrecta</string>
   <string name="error_field_required">Este campo es necesario</string>
   <string name="error_invalid_url">Esta url es incorrecta</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
-  <string name="pull_to_refresh_updateTags">Sincronizando estado de elementos</string>
-  <string name="pull_to_refresh_updateFolder">Sincronizando archivos</string>
-  <string name="pull_to_refresh_updateFeeds">Sincronizando fuentes</string>
-  <string name="pull_to_refresh_updateItems">Sincronizando articulos</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ajustes</string>
   <!--General settings-->
@@ -85,7 +71,6 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">¿Aceptar certificados desconocidos?</string>
   <string name="mtm_decision_always">Siempre</string>
-  <string name="mtm_decision_once">Una vez</string>
   <string name="mtm_decision_abort">Abortar</string>
   <string name="mtm_notification">Verificación del certificado</string>
   <!--Podcast-->
@@ -154,4 +139,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

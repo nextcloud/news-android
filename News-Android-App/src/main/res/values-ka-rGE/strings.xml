@@ -4,7 +4,6 @@
   <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">განახლება</string>
   <!--Import Accounts-->
-  <!--EMAIL-->
   <!--Action Bar Items-->
   <string name="action_starred">ვარსკვლავმინიჭებული</string>
   <string name="action_Share">გაზიარება</string>
@@ -62,4 +61,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

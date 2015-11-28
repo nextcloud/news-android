@@ -4,18 +4,10 @@
   <string name="app_name">Pembaca Berita ownCloud</string>
   <string name="title_activity_sync_interval_selector">Pemilih Jeda Sync</string>
   <string name="title_activity_news_detail">AktivitasRinciBerita</string>
-  <string name="title_activity_subscription">AktivitasLangganan</string>
-  <string name="title_newsreader_list">PembacaBerita</string>
-  <string name="title_newsreader_detail">Rincian PembacaBerita</string>
-  <string name="empty_view_header">Informasi</string>
   <string name="empty_view_content">Tak ada item disini</string>
   <string name="toast_GettingMoreItems">Mulai mengunduh lebih banyak item... Mohon tunggu.</string>
-  <string name="tv_clickHereToOpenItem">Klik disini untuk membuka item</string>
   <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
   <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="other">Anda telah mencapai ukuran maksimum %d item</item>
-  </plurals>
   <string name="widget_header">Berita ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="other">%d item baru tersedia</item>
@@ -32,15 +24,11 @@
   <string name="menu_downloadMoreItems">Unduh beberapa item</string>
   <!--Import Accounts-->
   <string name="import_account">Impor Akun</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Kode sumber item - laporanBug</string>
-  <string name="email_sendMail">Kirim EMail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Dibintangi</string>
   <string name="action_read">Baca</string>
   <string name="action_playPodacst">Putar Siniar</string>
   <string name="action_openInBrowser">Buka di Peramban</string>
-  <string name="action_sendSourceCode">Kirim item kepada Pengembang</string>
   <string name="action_Share">Bagikan</string>
   <string name="action_login">Pengaturan Server</string>
   <string name="action_save">Simpan</string>
@@ -65,7 +53,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Masuk</string>
   <string name="login_progress_signing_in">Sedang masuk...</string>
-  <string name="error_incorrect_password">Sandi salah</string>
   <string name="error_field_required">Bidang wajib diisi</string>
   <string name="error_invalid_url">URL salah</string>
   <!--Toast Messages-->
@@ -73,19 +60,9 @@
     <item quantity="other">Mengunduh %d item lama</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Tidak ada item lain yang tersedia</string>
-  <string name="pull_to_refresh_updateTags">Status Sinkronisasi Item</string>
-  <string name="pull_to_refresh_updateFolder">Mensinkronisasi folder</string>
-  <string name="pull_to_refresh_updateFeeds">Mensinkronisasi feed</string>
-  <string name="pull_to_refresh_updateItems">Mensinkronisasi item</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="other">Terambil %d item pada saat ini...</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Setelan</string>
   <string name="cache_is_cleared">Cache dibersihkan!</string>
-  <plurals name="number_of_files">
-    <item quantity="other">%d Berkas</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Umum</string>
   <string name="pref_title_general_sort_order">Urutan</string>
@@ -105,7 +82,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Membersihkan cache</string>
   <string name="dialog_clearing_cache_please_wait">Membersihkan cache... Mohon tunggu.</string>
-  <string name="calculating_cache_size">Menghitung ukuran cache... Mohon tunggu.</string>
   <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
   <string name="warning">Peringatan</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>
@@ -119,12 +95,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Terima Sertifikat yang Tak Dikenal?</string>
   <string name="mtm_decision_always">Selalu</string>
-  <string name="mtm_decision_once">Sekali saja</string>
   <string name="mtm_decision_abort">Batal</string>
   <string name="mtm_notification">Verifikasi Sertifikat</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Siniar</string>
-  <string name="pref_enable_podcasts">Aktifkan dukungan Siniar</string>
   <string name="no_podcast_selected">Tidak ada siniar yang dipilih</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Tampilkan</string>
@@ -253,4 +226,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

@@ -4,19 +4,10 @@
   <string name="app_name">ownCloud News Reader</string>
   <string name="title_activity_sync_interval_selector">Selector d\'interval de sincronizacion</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="title_activity_subscription">SubscriptionActivity</string>
-  <string name="title_newsreader_list">Lector de news</string>
-  <string name="title_newsreader_detail">Detalh del lector de news</string>
-  <string name="empty_view_header">Informacion</string>
   <string name="empty_view_content">Pas cap d\'article</string>
   <string name="toast_GettingMoreItems">Telecargament d\'articles addicionals en cors... Pacientatz.</string>
-  <string name="tv_clickHereToOpenItem">Legir</string>
   <string name="no_wifi_available">Pas cap de connexion Wi-Fi</string>
   <string name="do_you_want_to_download_without_wifi">Telecargar los imatges sens connexion Wi-Fi ?</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">Avètz atench lo limit de %d article</item>
-    <item quantity="other">Avètz atench lo limit de %d articles</item>
-  </plurals>
   <string name="current_version">Utilizatz la Version %s</string>
   <string name="widget_header">Actualitats ownCloud</string>
   <plurals name="message_bar_new_articles_available">
@@ -35,15 +26,11 @@
   <string name="menu_downloadMoreItems">+ d\'articles</string>
   <!--Import Accounts-->
   <string name="import_account">Importar un compte</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Còde font de l\'article - Rapòrt de bug</string>
-  <string name="email_sendMail">Mandar un corrièl</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favorit</string>
   <string name="action_read">Legit</string>
   <string name="action_playPodacst">Legir lo Podcast</string>
   <string name="action_openInBrowser">Afichar dins lo navigador</string>
-  <string name="action_sendSourceCode">Mandar l\'article al desvolopaire</string>
   <string name="action_Share">Partejar</string>
   <string name="action_login">Paramètres del servidor</string>
   <string name="action_save">Salvar</string>
@@ -67,7 +54,6 @@
   <string name="action_link_share">Partejar per un Ligam</string>
   <string name="action_link_open">Dobrir lo Ligam dins lo Navigador</string>
   <string name="action_link_copy">Copiar lo Ligam</string>
-  <string name="toast_img_download_wait">Telecargament... Pacientatz</string>
   <string name="toast_img_saved">Imatge enregistrat.</string>
   <string name="toast_img_notwriteable">Error d\'escritura de l\'Imatge.</string>
   <string name="toast_copied_to_clipboard">Copiat dins lo quichapapièrs</string>
@@ -81,7 +67,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">S\'identificar</string>
   <string name="login_progress_signing_in">Connexion en cors…</string>
-  <string name="error_incorrect_password">Lo senhal es incorrècte</string>
   <string name="error_field_required">Aqueste camp es requesit</string>
   <string name="error_invalid_url">Aquesta URL es incorrècta</string>
   <!--Toast Messages-->
@@ -90,21 +75,9 @@
     <item quantity="other">%d ancians articles telecargats</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Cap d\'article suplementari pas disponible</string>
-  <string name="pull_to_refresh_updateTags">Sincronizacion de l’estat dels articles</string>
-  <string name="pull_to_refresh_updateFolder">Sincronizacion del dorsièr</string>
-  <string name="pull_to_refresh_updateFeeds">Sincronizacion dels fluxes</string>
-  <string name="pull_to_refresh_updateItems">Sincronizacion dels articles</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">%d article trobat pel moment....</item>
-    <item quantity="other">%d articles trobats pel moment....</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Paramètres</string>
   <string name="cache_is_cleared">Escondedor netejat !</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d fichièr</item>
-    <item quantity="other">%d fichièrs</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Generals</string>
   <string name="pref_title_general_sort_order">Òrdre de triada</string>
@@ -124,7 +97,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Voidar l\'escondedor</string>
   <string name="dialog_clearing_cache_please_wait">Purga de l\'escondedor... Pacientatz.</string>
-  <string name="calculating_cache_size">Calcul de la talha de l\'escondedor... Pacientatz.</string>
   <string name="reset_cache_unsaved_changes">Certanas modificacions son pas sincronizadas. Volètz reïnicializar l\'escondedor malgrat tot ?</string>
   <string name="warning">Atencion</string>
   <string name="pref_title_AutoSyncOnStart">Sincro. a l\'aviada</string>
@@ -138,12 +110,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Acceptar los certificats pas segurs ?</string>
   <string name="mtm_decision_always">Totjorn</string>
-  <string name="mtm_decision_once">Aqueste còp</string>
   <string name="mtm_decision_abort">Anullar</string>
   <string name="mtm_notification">Verificacion del certificat</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Activar la presa en carga dels Podcasts</string>
   <string name="no_podcast_selected">Cap de podcast pas seleccionat</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Afichatge</string>
@@ -194,7 +163,6 @@
   <string name="pref_title_clearCache">Voidar l\'escondedor</string>
   <string name="pref_title_CacheImagesOffline">Mesa en escondedor fòra linha dels imatges</string>
   <string name="pref_title_Max_Cache_Size">Talha maximala de l\'escondedor</string>
-  <string name="pref_title_DownloadedImageLocation">Salvar los Imatges telecargats cap a :</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Pas jamais</item>
     <item>En WiFi solament</item>
@@ -273,4 +241,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

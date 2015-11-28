@@ -4,12 +4,7 @@
   <string name="app_name">ownCloud čítačka noviniek</string>
   <string name="title_activity_sync_interval_selector">Voľba intervalu synchronizácie</string>
   <string name="title_activity_news_detail">Podrobná aktivita noviniek</string>
-  <string name="title_activity_subscription">Aktivita odberu</string>
-  <string name="title_newsreader_list">Čítačka noviniek</string>
-  <string name="title_newsreader_detail">Detail čítačky noviniek</string>
-  <string name="empty_view_header">Informácie</string>
   <string name="empty_view_content">Žiadne položky</string>
-  <string name="tv_clickHereToOpenItem">Kliknite tu pre otvorenie položky</string>
   <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez WiFi pripojenia</string>
   <string name="widget_header">ownCloud Novinky</string>
@@ -25,15 +20,11 @@
   <string name="menu_downloadMoreItems">Stiahnuť viac položiek</string>
   <!--Import Accounts-->
   <string name="import_account">Importný účet</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Zdrojový kód položky - Správa o chybe</string>
-  <string name="email_sendMail">Odoslať email</string>
   <!--Action Bar Items-->
   <string name="action_starred">S hviezdičkou</string>
   <string name="action_read">Čítať</string>
   <string name="action_playPodacst">Prehrať podcast</string>
   <string name="action_openInBrowser">Otvoriť v prehliadači</string>
-  <string name="action_sendSourceCode">Odoslať položku vývojárovi</string>
   <string name="action_Share">Zdieľať</string>
   <string name="action_login">Nastavenia servera</string>
   <string name="action_save">Uložiť</string>
@@ -51,15 +42,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Prihlásenie</string>
   <string name="login_progress_signing_in">Prihlasujem vás...</string>
-  <string name="error_incorrect_password">Heslo nie je správne</string>
   <string name="error_field_required">Toto pole je povinné</string>
   <string name="error_invalid_url">URL je nesprávna</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Žiadne ďalšie položky k dispozícii</string>
-  <string name="pull_to_refresh_updateTags">Synchronizujem stav položiek</string>
-  <string name="pull_to_refresh_updateFolder">Synchronizujem priečinok</string>
-  <string name="pull_to_refresh_updateFeeds">Synchronizujem kanály</string>
-  <string name="pull_to_refresh_updateItems">Synchronizujem položky</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavenia</string>
   <!--General settings-->
@@ -92,12 +78,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Prijať neznámy certifikát?</string>
   <string name="mtm_decision_always">Vždy</string>
-  <string name="mtm_decision_once">Jedenkrát</string>
   <string name="mtm_decision_abort">Prerušiť</string>
   <string name="mtm_notification">Overenie certifikátu</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Zapnúť podporu podcastov</string>
   <string name="no_podcast_selected">Nebol vybraný žiaden podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Zobrazenie</string>
@@ -213,4 +196,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

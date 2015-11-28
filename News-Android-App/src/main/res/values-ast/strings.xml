@@ -4,19 +4,10 @@
   <string name="app_name">Llector de noticies ownCloud</string>
   <string name="title_activity_sync_interval_selector">Seleutor d\'intervalu de sincronizaciones</string>
   <string name="title_activity_news_detail">ActividáDetallesNoticies</string>
-  <string name="title_activity_subscription">ActividáSoscripción</string>
-  <string name="title_newsreader_list">Llector de noticies</string>
-  <string name="title_newsreader_detail">Detalle del Llector de noticies</string>
-  <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Nun hai nengún elementu equí</string>
   <string name="toast_GettingMoreItems">Descarga de más elementos aniciada ... Por favor espera.</string>
-  <string name="tv_clickHereToOpenItem">Clic equí p\'abrir l\'artículu</string>
   <string name="no_wifi_available">Nun hai conexón WiFi</string>
   <string name="do_you_want_to_download_without_wifi">¿Quies baxar les semeyes ensin una conexón WiFi?</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">Algamasti\'l tamañu máximu d\'elementos %d</item>
-    <item quantity="other">Algamasti\'l tamañu máximu d\'elementos %d</item>
-  </plurals>
   <string name="widget_header">Noticies ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d elementos nuevos disponibles</item>
@@ -34,15 +25,11 @@
   <string name="menu_downloadMoreItems">Baxar más oxetos</string>
   <!--Import Accounts-->
   <string name="import_account">Importar Cuenta</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Códigu fonte del artículu - Bugreport</string>
-  <string name="email_sendMail">Unviar corréu</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favoritos</string>
   <string name="action_read">Lleer</string>
   <string name="action_playPodacst">Reproducir podcast</string>
   <string name="action_openInBrowser">Abrir nel restolador</string>
-  <string name="action_sendSourceCode">Unviar oxetu al desendolcador</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Axustes del sirvidor</string>
   <string name="action_save">Guardar</string>
@@ -69,7 +56,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Aniciar sesión</string>
   <string name="login_progress_signing_in">Aniciando sesión...</string>
-  <string name="error_incorrect_password">Esta contraseña ye incorreuta</string>
   <string name="error_field_required">Requierse esti campu</string>
   <string name="error_invalid_url">La url ye incorreuta</string>
   <!--Toast Messages-->
@@ -78,21 +64,9 @@
     <item quantity="other">Descargaos %d elementos vieyos</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Nun hai elementos disponibles</string>
-  <string name="pull_to_refresh_updateTags">Sincronizando l\'estáu de los elementos</string>
-  <string name="pull_to_refresh_updateFolder">Sincronizando carpeta</string>
-  <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
-  <string name="pull_to_refresh_updateItems">Sincronizando oxetos</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Averaos %d elementos alloñaos...</item>
-    <item quantity="other">Averaos %d elementos alloñaos...</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Axustes</string>
   <string name="cache_is_cleared">¡Llimpióse la Cache!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d Ficheros</item>
-    <item quantity="other">%d Ficheros</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Xeneral</string>
   <string name="pref_title_general_sort_order">Ordenar</string>
@@ -112,7 +86,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Llimpiando caché</string>
   <string name="dialog_clearing_cache_please_wait">Llimpiando cache... Por favor espera</string>
-  <string name="calculating_cache_size">Calculando tamañu de cache... Por favor espera</string>
   <string name="reset_cache_unsaved_changes">Hai cambeos non sincronizaos. ¿Quies vaciar la caché de toes formes?</string>
   <string name="warning">Avisu</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar nel aniciu</string>
@@ -126,12 +99,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">¿Aceutar certificáu desconocíu?</string>
   <string name="mtm_decision_always">Siempres</string>
-  <string name="mtm_decision_once">Una vegada</string>
   <string name="mtm_decision_abort">Albortar</string>
   <string name="mtm_notification">Verificación del certificáu</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Habilitar sofitu de Podcast</string>
   <string name="no_podcast_selected">Nun s\'esbillaron podcast</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Amosar</string>
@@ -260,4 +230,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

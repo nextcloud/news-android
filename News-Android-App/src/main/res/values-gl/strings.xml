@@ -4,19 +4,10 @@
   <string name="app_name">Lector de novas do ownCloud</string>
   <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronización</string>
   <string name="title_activity_news_detail">Detalle da actividade das novas</string>
-  <string name="title_activity_subscription">Actividade da subscrición</string>
-  <string name="title_newsreader_list">Lector de novas</string>
-  <string name="title_newsreader_detail">Detalle do lector de novas</string>
-  <string name="empty_view_header">Información</string>
   <string name="empty_view_content">Non hai elementos aquí</string>
   <string name="toast_GettingMoreItems">Iniciada a descarga de máis elementos... Agarde.</string>
-  <string name="tv_clickHereToOpenItem">Prema aquí para abrir o elemento</string>
   <string name="no_wifi_available">Non está conectado á WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi?</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">Acadou o tamaño máximo de %d elemento</item>
-    <item quantity="other">Acadou o tamaño máximo de %d elementos</item>
-  </plurals>
   <string name="widget_header">Novas do ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d elemento novo dispoñíbel</item>
@@ -34,15 +25,11 @@
   <string name="menu_downloadMoreItems">Descargar máis elementos</string>
   <!--Import Accounts-->
   <string name="import_account">Importar a conta</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Código fonte do elemento - Informe de fallos</string>
-  <string name="email_sendMail">Enviar correo</string>
   <!--Action Bar Items-->
   <string name="action_starred">Destacado</string>
   <string name="action_read">Ler</string>
   <string name="action_playPodacst">Reproducir o Podcast</string>
   <string name="action_openInBrowser">Abrir no navegador</string>
-  <string name="action_sendSourceCode">Enviar o elemento ao desenvolvedor</string>
   <string name="action_Share">Compartir</string>
   <string name="action_login">Axustes do servidor</string>
   <string name="action_save">Gardar</string>
@@ -69,7 +56,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Rexistrarse</string>
   <string name="login_progress_signing_in">Rexistrándose en...</string>
-  <string name="error_incorrect_password">Este contrasinal é incorrecto</string>
   <string name="error_field_required">Este campo é obrigatorio</string>
   <string name="error_invalid_url">Este URL é incorrecto</string>
   <!--Toast Messages-->
@@ -78,21 +64,9 @@
     <item quantity="other">Descargados %d elementos antigos</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
-  <string name="pull_to_refresh_updateTags">Sincronizando o estado dos elementos</string>
-  <string name="pull_to_refresh_updateFolder">Sincronizando o cartafol</string>
-  <string name="pull_to_refresh_updateFeeds">Sincronizando as fontes</string>
-  <string name="pull_to_refresh_updateItems">Sincronizando os elementos</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Atopado %d elemento polo de agora...</item>
-    <item quantity="other">Atopados %d elementos polo de agora...</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Axustes</string>
   <string name="cache_is_cleared">A cahé está limpa!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d ficheiro</item>
-    <item quantity="other">%d ficheiros</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Xeral</string>
   <string name="pref_title_general_sort_order">Reordenar</string>
@@ -112,7 +86,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Limpando a caché</string>
   <string name="dialog_clearing_cache_please_wait">Limpando a caché. Agarde.</string>
-  <string name="calculating_cache_size">Calculando o tamaño da caché. Agarde.</string>
   <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
@@ -126,12 +99,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aceptar un certificado descoñecido?</string>
   <string name="mtm_decision_always">Sempre</string>
-  <string name="mtm_decision_once">Unha vez</string>
   <string name="mtm_decision_abort">Interromper</string>
   <string name="mtm_notification">Verificación do certificado</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Activar a compatibilidade cos podcast</string>
   <string name="no_podcast_selected">Non hai ningún podcast seleccionadp</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Presentar</string>
@@ -248,4 +218,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

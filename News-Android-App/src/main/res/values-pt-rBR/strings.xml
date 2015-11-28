@@ -4,19 +4,10 @@
   <string name="app_name">Leitor de Notícias do ownCloud</string>
   <string name="title_activity_sync_interval_selector">Seletor de Intervalo de Sincronização</string>
   <string name="title_activity_news_detail">Detalhes da notícia</string>
-  <string name="title_activity_subscription">Ativar subscrição</string>
-  <string name="title_newsreader_list">Leitor de Notícias</string>
-  <string name="title_newsreader_detail">Detalhes do Leitor de Notícias</string>
-  <string name="empty_view_header">Informações</string>
   <string name="empty_view_content">Este local está vazio</string>
   <string name="toast_GettingMoreItems">Começou a baixar mais itens ... Por favor, aguarde.</string>
-  <string name="tv_clickHereToOpenItem">Clique aqui para abrir um item</string>
   <string name="no_wifi_available">Nenhum WiFi conectado</string>
   <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">Você atingiu o tamanho máximo de %d item</item>
-    <item quantity="other">Você atingiu o tamanho máximo de %d itens</item>
-  </plurals>
   <string name="current_version">Você está usando a versão %s</string>
   <string name="widget_header">Notícias ownCloud</string>
   <plurals name="message_bar_new_articles_available">
@@ -35,15 +26,11 @@
   <string name="menu_downloadMoreItems">Fazer download de mais itens</string>
   <!--Import Accounts-->
   <string name="import_account">Importar Conta</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Código-fonte do item - Relatório de Erros</string>
-  <string name="email_sendMail">Enviar e-mail</string>
   <!--Action Bar Items-->
   <string name="action_starred">Vistos</string>
   <string name="action_read">Ler</string>
   <string name="action_playPodacst">Ouvir o Podcast</string>
   <string name="action_openInBrowser">Abrir no Navegador</string>
-  <string name="action_sendSourceCode">Enviar item ao Desenvolvedor</string>
   <string name="action_Share">Compartilhar</string>
   <string name="action_login">Configurações do servidor</string>
   <string name="action_save">Salvar</string>
@@ -67,7 +54,6 @@
   <string name="action_link_share">Link de Compartilhamento</string>
   <string name="action_link_open">Abrir o Link no Navegador</string>
   <string name="action_link_copy">Copiar o Link</string>
-  <string name="toast_img_download_wait">Baixando... por favor aguarde</string>
   <string name="toast_img_saved">Imagem salva.</string>
   <string name="toast_img_notwriteable">Falhou ao salvar Imagem</string>
   <string name="toast_copied_to_clipboard">Copiado para área de transferência</string>
@@ -81,7 +67,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Entrar</string>
   <string name="login_progress_signing_in">Fazendo login...</string>
-  <string name="error_incorrect_password">A senha está incorreta</string>
   <string name="error_field_required">Este campo é obrigatório</string>
   <string name="error_invalid_url">A URL está incorreta</string>
   <!--Toast Messages-->
@@ -90,21 +75,9 @@
     <item quantity="other">Transferidos %d itens antigos</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
-  <string name="pull_to_refresh_updateTags">Sincronizando estados dos itens</string>
-  <string name="pull_to_refresh_updateFolder">Sincronizando pastas</string>
-  <string name="pull_to_refresh_updateFeeds">Sincronizando feeds</string>
-  <string name="pull_to_refresh_updateItems">Sincronizando itens</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Item buscado %d até agora..</item>
-    <item quantity="other">Itens buscados %d até agora..</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Configurações</string>
   <string name="cache_is_cleared">O cache está limpo!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d Arquivo</item>
-    <item quantity="other">%d Arquivos</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Geral</string>
   <string name="pref_title_general_sort_order">Ordem de Classificação</string>
@@ -124,7 +97,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Limpando o cache</string>
   <string name="dialog_clearing_cache_please_wait">Limpando o cache ... Por favor, aguarde.</string>
-  <string name="calculating_cache_size">Calcular o tamanho do cache ... Por favor, aguarde.</string>
   <string name="reset_cache_unsaved_changes">Há alterações não sincronizadas. Gostaria de redefinir o cache de qualquer maneira?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>
@@ -138,12 +110,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aceita Certificado Desconhecido?</string>
   <string name="mtm_decision_always">Sempre</string>
-  <string name="mtm_decision_once">Uma vez</string>
   <string name="mtm_decision_abort">Abortar</string>
   <string name="mtm_notification">Verificação de Certificado</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Ativar o suporte Podcast</string>
   <string name="no_podcast_selected">Nenhum podcast selecionado</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Exibir</string>
@@ -194,7 +163,6 @@
   <string name="pref_title_clearCache">Limpar cache</string>
   <string name="pref_title_CacheImagesOffline">Armazenar imagens offline</string>
   <string name="pref_title_Max_Cache_Size">Tamanho Máximo do Cache</string>
-  <string name="pref_title_DownloadedImageLocation">Salvar imagens baixadas para:</string>
   <string-array name="pref_data_sync_image_cache">
     <item>Nunca</item>
     <item>Somente WiFi</item>
@@ -273,4 +241,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

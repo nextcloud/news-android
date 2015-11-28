@@ -4,19 +4,10 @@
   <string name="app_name">ownCloud Nieuwslezer</string>
   <string name="title_activity_sync_interval_selector">Sync interval selector</string>
   <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
-  <string name="title_activity_subscription">AbonnementActiviteit</string>
-  <string name="title_newsreader_list">NieuwsLezer</string>
-  <string name="title_newsreader_detail">NieuwsLezer Details</string>
-  <string name="empty_view_header">Informatie</string>
   <string name="empty_view_content">Geen items hier</string>
   <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>
-  <string name="tv_clickHereToOpenItem">Klik hier om te openen</string>
   <string name="no_wifi_available">Geen wifi verbinding</string>
   <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
-  <plurals name="max_items_count_reached">
-    <item quantity="one">U bereikte de maximale omvang van %d bericht</item>
-    <item quantity="other">U bereikte de maximale omvang van %d berichten</item>
-  </plurals>
   <string name="current_version">U gebruikt versie %s</string>
   <string name="widget_header">ownCloud nieuws</string>
   <plurals name="message_bar_new_articles_available">
@@ -35,15 +26,11 @@
   <string name="menu_downloadMoreItems">Download meer berichten</string>
   <!--Import Accounts-->
   <string name="import_account">Import account</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Sourcecode van het item - Bug melding</string>
-  <string name="email_sendMail">Email versturen</string>
   <!--Action Bar Items-->
   <string name="action_starred">Gemarkeerd</string>
   <string name="action_read">Lees</string>
   <string name="action_playPodacst">Afspelen Podcast</string>
   <string name="action_openInBrowser">Openen in browser</string>
-  <string name="action_sendSourceCode">Verzend item naar ontwikkelaar</string>
   <string name="action_Share">Delen</string>
   <string name="action_login">Serverinstellingen</string>
   <string name="action_save">Bewaren</string>
@@ -67,7 +54,6 @@
   <string name="action_link_share">Delen link</string>
   <string name="action_link_open">Openen link in browser</string>
   <string name="action_link_copy">Kopiëren link </string>
-  <string name="toast_img_download_wait">Downloaden... even geduld</string>
   <string name="toast_img_saved">Afbeelding opgeslagen</string>
   <string name="toast_img_notwriteable">Opslaan afbeelding mislukt</string>
   <string name="toast_copied_to_clipboard">Gekopieerd naar het klembord</string>
@@ -81,7 +67,6 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Inloggen</string>
   <string name="login_progress_signing_in">Inloggen...</string>
-  <string name="error_incorrect_password">Het wachtwoord is onjuist</string>
   <string name="error_field_required">Dit veld is verplicht</string>
   <string name="error_invalid_url">De URL is ongeldig</string>
   <!--Toast Messages-->
@@ -90,21 +75,9 @@
     <item quantity="other">Downloaden %d oude berichten</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Geen berichten meer beschikbaar</string>
-  <string name="pull_to_refresh_updateTags">Synchroniseren onderwerp statussen</string>
-  <string name="pull_to_refresh_updateFolder">Synchroniseren map</string>
-  <string name="pull_to_refresh_updateFeeds">Synchroniseren feeds</string>
-  <string name="pull_to_refresh_updateItems">Synchroniseren berichten</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Tot nu %d artikel opehaald.</item>
-    <item quantity="other">Tot nu %d artikelen opehaald.</item>
-  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Instellingen</string>
   <string name="cache_is_cleared">Cache is leeggemaakt!</string>
-  <plurals name="number_of_files">
-    <item quantity="one">%d bestand</item>
-    <item quantity="other">%d bestanden</item>
-  </plurals>
   <!--General settings-->
   <string name="pref_header_general">Algemeen</string>
   <string name="pref_title_general_sort_order">Sorteervolgorde</string>
@@ -124,7 +97,6 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Schoonmaken cache</string>
   <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
-  <string name="calculating_cache_size">Berekenen omvang cache... Even geduld.</string>
   <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wilt u de cache toch resetten?</string>
   <string name="warning">Waarschuwing</string>
   <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>
@@ -138,12 +110,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Onbekend certificaat accepteren?</string>
   <string name="mtm_decision_always">Altijd</string>
-  <string name="mtm_decision_once">Eenmalig</string>
   <string name="mtm_decision_abort">Afbreken</string>
   <string name="mtm_notification">Certificaat verificatie</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Activeren Podcast ondersteuning</string>
   <string name="no_podcast_selected">Geen podcast geselecteerd</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Weergeven</string>
@@ -194,7 +163,6 @@
   <string name="pref_title_clearCache">Leegmaken cache</string>
   <string name="pref_title_CacheImagesOffline">Afbeeldingen offline cachen</string>
   <string name="pref_title_Max_Cache_Size">Max cache grootte</string>
-  <string name="pref_title_DownloadedImageLocation">Opslaan gedownloade afbeeldingen in:</string>
   <string-array name="pref_data_sync_image_cache_values">
     <item>0</item>
     <item>1</item>
@@ -267,4 +235,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>

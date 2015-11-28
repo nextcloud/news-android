@@ -4,12 +4,7 @@
   <string name="app_name">Cititor de Știri ownCloud</string>
   <string name="title_activity_sync_interval_selector">Interval de sincronizare</string>
   <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="title_activity_subscription">SubscriptionActivity</string>
-  <string name="title_newsreader_list">NewsReader</string>
-  <string name="title_newsreader_detail">Detaliu de NewsReader</string>
-  <string name="empty_view_header">Informaţii</string>
   <string name="empty_view_content">Nici un articol aici</string>
-  <string name="tv_clickHereToOpenItem">Apăsați aici pentru a deschide fișierul</string>
   <string name="no_wifi_available">Nu exista conexiune WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Doriti descarcarea imaginilor fara conexiune WiFi</string>
   <string name="widget_header">Știri ownCloud</string>
@@ -30,16 +25,11 @@
   <string name="menu_downloadMoreItems">Descarcă mai multe articole </string>
   <!--Import Accounts-->
   <string name="import_account">Importează cont</string>
-  <!--EMAIL-->
-  <string name="email_sourceCode">Cod Sursă al articolului - Bugreport</string>
-  <string name="email_sendMail">Trimiteti e-mail
-</string>
   <!--Action Bar Items-->
   <string name="action_starred">Marcat</string>
   <string name="action_read">Citeşte</string>
   <string name="action_playPodacst">Inițiază Podcast</string>
   <string name="action_openInBrowser">Deschide in Browser</string>
-  <string name="action_sendSourceCode">Trimite articolul unui Dezvoltator</string>
   <string name="action_Share">Partajează</string>
   <string name="action_login">Setările serverului</string>
   <string name="action_save">Salvează</string>
@@ -57,15 +47,10 @@
   <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Înregistraţi-vă</string>
   <string name="login_progress_signing_in">Înregistrare</string>
-  <string name="error_incorrect_password">Aceasta parola este incorecta </string>
   <string name="error_field_required">Acest câmp este obligatoriu </string>
   <string name="error_invalid_url">Acest url este incorect</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Nici un articol disponibil.</string>
-  <string name="pull_to_refresh_updateTags">Sincronizez stările articolelor</string>
-  <string name="pull_to_refresh_updateFolder">Sincronizarea dosarului</string>
-  <string name="pull_to_refresh_updateFeeds">Sincronizez fluxurile</string>
-  <string name="pull_to_refresh_updateItems">Sincronizez articolele</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Setări</string>
   <!--General settings-->
@@ -98,12 +83,9 @@
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepta Certificat Necunoscut?</string>
   <string name="mtm_decision_always">Întotdeauna</string>
-  <string name="mtm_decision_once">O data</string>
   <string name="mtm_decision_abort">Anuleaza</string>
   <string name="mtm_notification">Verificare certificat</string>
   <!--Podcast-->
-  <string name="pref_header_podcast">Podcast</string>
-  <string name="pref_enable_podcasts">Activează suportul Podcast</string>
   <string name="no_podcast_selected">Nu a fost selectat podcastul</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Display</string>
@@ -202,4 +184,5 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
+  <!--content description for images and icons-->
 </resources>
