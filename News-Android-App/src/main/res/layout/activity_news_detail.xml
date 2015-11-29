@@ -71,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginBottom="-7dp"
+        android:layoutDirection="ltr"
         style="?android:attr/progressBarStyleHorizontal" />
 
 </android.support.design.widget.CoordinatorLayout>

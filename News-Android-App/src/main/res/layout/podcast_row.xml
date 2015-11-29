@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- media playback ui should always use ltr direction -->
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
                 android:id="@+id/pbDownloadPodcast"
@@ -50,7 +51,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:max="100"
-                android:progress="0"/>
+                android:progress="0"
+                android:layoutDirection="ltr"/>
 
             <TextView
                 android:id="@+id/tvDownloadPodcastProgress"

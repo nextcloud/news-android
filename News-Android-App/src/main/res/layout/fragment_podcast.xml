@@ -56,18 +56,21 @@
                     android:singleLine="true"
                     android:textColor="@color/slider_listview_text_color_dark_theme" />
 
+                <!-- media playback ui should always use ltr direction -->
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
                     android:id="@+id/pb_progress"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:progress="0"
-                    android:max="100" />
+                    android:max="100"
+                    android:layoutDirection="ltr" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layoutDirection="ltr">
 
                     <TextView
                         android:id="@+id/tv_from"
@@ -231,13 +234,15 @@
         android:rotation="180"
         android:background="@drawable/background_with_shadow" />
 
+    <!-- media playback ui should always use ltr direction -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/podcast_media_control_height"
         android:paddingLeft="@dimen/podcast_horizontal_margin"
         android:paddingRight="@dimen/podcast_horizontal_margin"
         android:background="@color/slide_up_panel_slider_background_color"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layoutDirection="ltr">
 
         <LinearLayout
             android:layout_width="match_parent"
