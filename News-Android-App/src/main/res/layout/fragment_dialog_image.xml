@@ -2,6 +2,7 @@
 
 <!--  -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -29,11 +30,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:gravity="start"
             android:id="@+id/ic_menu_title"
             android:text="Sample1"
             android:layout_centerVertical="true"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textAlignment="viewStart"
             android:layout_toRightOf="@+id/ic_menu_gallery"
             android:layout_toEndOf="@+id/ic_menu_gallery"/>
 
@@ -42,9 +45,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="start"
         android:paddingLeft="6dp"
         android:paddingStart="6dp"
         android:id="@+id/ic_menu_item_text"
+        android:textAlignment="viewStart"
         android:text="Sample1"
         android:textSize="14sp"
         android:layout_marginTop="2dp"
@@ -66,7 +71,8 @@
         android:layout_marginTop="13dp"
         android:divider="@null"
         android:id="@+id/ic_menu_item_list"
-        android:layout_below="@+id/ic_menu_item_text">
+        android:layout_below="@+id/ic_menu_item_text"
+        tools:listitem="@layout/fragment_dialog_listviewitem">
     </ListView>
 
 </RelativeLayout>
