@@ -54,6 +54,7 @@
   <string name="action_link_share">Ndani Lidhjen</string>
   <string name="action_link_open">Hapeni Lidhjen në Shfletues</string>
   <string name="action_link_copy">Kopjoje Lidhjen</string>
+  <string name="toast_img_download_wait">Po shkarkohet… Ju lutemi, pritni</string>
   <string name="toast_img_saved">Figura u ruajt.</string>
   <string name="toast_img_notwriteable">Dështoi shkrimi i Figurës.</string>
   <string name="toast_copied_to_clipboard">U kopjua në të papastër</string>
@@ -75,6 +76,10 @@
     <item quantity="other">U shkarkua %d objekte të vjetër</item>
   </plurals>
   <string name="toast_no_more_downloads_available">S\’ka objekte të tjerë gati</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Deri tani është sjellë %d objekt…</item>
+    <item quantity="other">Deri tani janë sjellë %d objekte…</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Rregullime</string>
   <string name="cache_is_cleared">Fshehtina u pastrua!</string>
@@ -242,4 +247,20 @@
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
+  <string name="content_desc_none">@null</string>
+  <string name="content_desc_feed_icon">ikonë prurjesh</string>
+  <string name="content_desc_play">luaje</string>
+  <string name="content_desc_pause">pushoje</string>
+  <string name="content_desc_rewind">mbrapsht</string>
+  <string name="content_desc_forward">përpara</string>
+  <string name="content_desc_expand">zgjeroje</string>
+  <string name="content_desc_collapse">tkurre</string>
+  <string name="content_desc_mark_as_read">shënoje si të lexuar</string>
+  <string name="content_desc_mark_as_unread">shënoje si të palexuar</string>
+  <string name="content_desc_tap_to_refresh">prekeni që të rifreskohet</string>
+  <string name="content_desc_add_to_favorites">shtojeni te të parapëlqyerat</string>
+  <string name="content_desc_remove_from_favorites">hiqe prej të parapëlqyerave</string>
+  <string name="content_desc_show_password">shfaqe fjalëkalimin</string>
+  <string name="content_desc_delete">fshi</string>
+  <string name="content_desc_download">shkarkoje</string>
 </resources>

@@ -52,6 +52,7 @@
   <string name="action_link_share">Jaa linkki</string>
   <string name="action_link_open">Avaa linkki selaimessa</string>
   <string name="action_link_copy">Kopioi linkki</string>
+  <string name="toast_img_download_wait">Ladataan, odota hetki…</string>
   <string name="toast_img_saved">Kuva tallennettu.</string>
   <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
   <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
@@ -73,6 +74,10 @@
     <item quantity="other">Ladattiin %d vanhaa kohdetta</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Ei enempää kohteita saatavilla</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Toistaiseksi noudettu %d artikkeli…</item>
+    <item quantity="other">Toistaiseksi noudettu %d artikkelia…</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Asetukset</string>
   <string name="cache_is_cleared">Välimuisti on tyhjennetty!</string>
@@ -232,4 +237,15 @@
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
+  <string name="content_desc_feed_icon">syötekuvake</string>
+  <string name="content_desc_play">toistsa</string>
+  <string name="content_desc_pause">keskeytä</string>
+  <string name="content_desc_mark_as_read">merkitse luetuksi</string>
+  <string name="content_desc_mark_as_unread">merkitse lukemattomaksi</string>
+  <string name="content_desc_tap_to_refresh">napauta päivittääksesi</string>
+  <string name="content_desc_add_to_favorites">lisää suosikkeihin</string>
+  <string name="content_desc_remove_from_favorites">poista suosikeista</string>
+  <string name="content_desc_show_password">näytä salasana</string>
+  <string name="content_desc_delete">poista</string>
+  <string name="content_desc_download">lataa</string>
 </resources>

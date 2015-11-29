@@ -57,6 +57,7 @@
   <string name="action_link_share">Sdílet odkaz</string>
   <string name="action_link_open">Otevřít odkaz v prohlížeči</string>
   <string name="action_link_copy">Zkopírovat odkaz</string>
+  <string name="toast_img_download_wait">Stahování... chvíli strpení</string>
   <string name="toast_img_saved">Obrázek uložen.</string>
   <string name="toast_img_notwriteable">Selhalo zapsání obrázku.</string>
   <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
@@ -79,6 +80,11 @@
     <item quantity="other">Staženo %d starých položek</item>
   </plurals>
   <string name="toast_no_more_downloads_available">K dispozici nejsou žádné další položky</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Stažena %d položka...</item>
+    <item quantity="few">Staženy %d položky...</item>
+    <item quantity="other">Staženo %d položek...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavení</string>
   <string name="cache_is_cleared">Odkládací paměť vyčištěna!</string>
@@ -246,4 +252,20 @@
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
+  <string name="content_desc_none">@null</string>
+  <string name="content_desc_feed_icon">ikona kanálu</string>
+  <string name="content_desc_play">přehrát</string>
+  <string name="content_desc_pause">pozastavit</string>
+  <string name="content_desc_rewind">přetočit</string>
+  <string name="content_desc_forward">vpřed</string>
+  <string name="content_desc_expand">rozbalit</string>
+  <string name="content_desc_collapse">sbalit</string>
+  <string name="content_desc_mark_as_read">označit jako přečtené</string>
+  <string name="content_desc_mark_as_unread">označit jako nepřečtené</string>
+  <string name="content_desc_tap_to_refresh">ťuknout pro obnovení</string>
+  <string name="content_desc_add_to_favorites">přidat k obíbeným</string>
+  <string name="content_desc_remove_from_favorites">odstranit z oblíbených</string>
+  <string name="content_desc_show_password">zobrazit heslo</string>
+  <string name="content_desc_delete">smazat</string>
+  <string name="content_desc_download">stažené</string>
 </resources>

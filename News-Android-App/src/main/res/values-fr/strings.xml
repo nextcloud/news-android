@@ -54,6 +54,7 @@
   <string name="action_link_share">Partager par un Lien</string>
   <string name="action_link_open">Ouvrir le Lien dans le Navigateur</string>
   <string name="action_link_copy">Copier le Lien</string>
+  <string name="toast_img_download_wait">Téléchargement... Veuillez patienter</string>
   <string name="toast_img_saved">Image sauvegardée.</string>
   <string name="toast_img_notwriteable">Erreur d\'écriture de l\'Image.</string>
   <string name="toast_copied_to_clipboard">Copié dans le presse-papier</string>
@@ -75,6 +76,10 @@
     <item quantity="other">%d anciens articles téléchargés</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Aucun article supplémentaire disponible</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">%d article trouvé pour l\'instant...</item>
+    <item quantity="other">%d articles trouvés pour l\'instant....</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Paramètres</string>
   <string name="cache_is_cleared">Cache nettoyé! </string>
@@ -236,4 +241,13 @@
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
+  <string name="content_desc_play">lire</string>
+  <string name="content_desc_pause">pause</string>
+  <string name="content_desc_mark_as_read">marqué comme lu</string>
+  <string name="content_desc_mark_as_unread">marqué comme non-lu</string>
+  <string name="content_desc_add_to_favorites">ajouter aux favoris</string>
+  <string name="content_desc_remove_from_favorites">retirer des favoris</string>
+  <string name="content_desc_show_password">montrer le mot de passe</string>
+  <string name="content_desc_delete">suppression</string>
+  <string name="content_desc_download">télécharger</string>
 </resources>
