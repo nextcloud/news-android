@@ -72,13 +72,14 @@
             android:id="@+id/imgView_ShowPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:src="@drawable/ic_action_visibility"
             android:layout_alignTop="@+id/password_container"
             android:layout_alignBottom="@+id/password_container"
             android:layout_alignRight="@+id/password_container"
+            android:layout_alignEnd="@+id/password_container"
             android:contentDescription="@string/content_desc_show_password"/>
 
         <CheckBox

@@ -41,6 +41,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
@@ -90,7 +91,8 @@
                 android:id="@+id/fl_playPausePodcastWrapper"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingRight="@dimen/podcast_horizontal_margin">
+                android:paddingRight="@dimen/podcast_horizontal_margin"
+                android:paddingEnd="@dimen/podcast_horizontal_margin">
 
                 <ImageButton
                     android:id="@+id/btn_playPausePodcast"
@@ -299,6 +301,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_action_replay_10"
                 android:tint="@color/tintColorLight"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -312,6 +315,7 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_action_play_arrow"
                 android:tint="@color/tintColorLight"
                 android:background="?attr/selectableItemBackgroundBorderless"

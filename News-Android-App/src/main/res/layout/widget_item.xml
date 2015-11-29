@@ -19,15 +19,17 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="8dp" >
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp" >
 
 
         <RelativeLayout
             android:id="@+id/cb_lv_item_read_wrapper"
             android:layout_width="35dp"
             android:layout_height="50dp"
-            android:layout_gravity="right"
-            android:layout_alignParentRight="true">
+            android:layout_gravity="end"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
 
             <ImageView
                 android:id="@+id/cb_lv_item_read"
@@ -45,7 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/cb_lv_item_read_wrapper"
+            android:layout_toStartOf="@id/cb_lv_item_read_wrapper"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:textIsSelectable="false"
@@ -54,6 +58,7 @@
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="5dp" />
 
         <TextView
@@ -62,7 +67,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/feed_title"
             android:layout_toLeftOf="@id/cb_lv_item_read_wrapper"
+            android:layout_toStartOf="@id/cb_lv_item_read_wrapper"
             android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:singleLine="true"
             android:textIsSelectable="false"
             android:text="07.08.14 19:00"
@@ -74,7 +81,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/feed_title"
             android:layout_toLeftOf="@id/feed_datetime"
+            android:layout_toStartOf="@id/feed_datetime"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:singleLine="true"
             android:textIsSelectable="false"
             android:text="Feed name"

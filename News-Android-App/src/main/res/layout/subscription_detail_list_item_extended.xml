@@ -57,7 +57,8 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imgViewFavIcon"
             android:layout_toEndOf="@+id/imgViewFavIcon"
-            android:layout_toLeftOf="@+id/tv_item_date" />
+            android:layout_toLeftOf="@+id/tv_item_date"
+            android:layout_toStartOf="@+id/tv_item_date"  />
 
         <TextView
             android:id="@+id/tv_item_date"
@@ -115,6 +116,7 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:paddingLeft="8dp"
+            android:paddingStart="8dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_action_star_light"
             android:tint="?attr/starredColor"
@@ -131,7 +133,8 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="32dp"
             android:id="@+id/podcast_wrapper"
-            android:layout_toLeftOf="@id/star_imageview" />
+            android:layout_toLeftOf="@id/star_imageview"
+            android:layout_toStartOf="@id/star_imageview" />
 
     </RelativeLayout>
 </LinearLayout>
