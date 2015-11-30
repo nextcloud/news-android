@@ -54,6 +54,7 @@
   <string name="action_link_share">Delen link</string>
   <string name="action_link_open">Openen link in browser</string>
   <string name="action_link_copy">Kopiëren link </string>
+  <string name="toast_img_download_wait">Downloaden... even geduld...</string>
   <string name="toast_img_saved">Afbeelding opgeslagen</string>
   <string name="toast_img_notwriteable">Opslaan afbeelding mislukt</string>
   <string name="toast_copied_to_clipboard">Gekopieerd naar het klembord</string>
@@ -75,6 +76,10 @@
     <item quantity="other">Downloaden %d oude berichten</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Geen berichten meer beschikbaar</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Tot nu %d onderwerp opgehaald</item>
+    <item quantity="other">Tot nu %d onderwerpen opgehaald</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Instellingen</string>
   <string name="cache_is_cleared">Cache is leeggemaakt!</string>
@@ -236,5 +241,20 @@
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
+  <string name="content_desc_none">@null</string>
+  <string name="content_desc_feed_icon">feed pictogram</string>
+  <string name="content_desc_play">afspelen</string>
+  <string name="content_desc_pause">pauze</string>
+  <string name="content_desc_rewind">terugspoelen</string>
+  <string name="content_desc_forward">vooruit spoelen</string>
+  <string name="content_desc_expand">uitbreiden</string>
+  <string name="content_desc_collapse">inklappen</string>
+  <string name="content_desc_mark_as_read">markeren als gelezen</string>
+  <string name="content_desc_mark_as_unread">markeren als ongelezen</string>
+  <string name="content_desc_tap_to_refresh">tik om te verversen</string>
+  <string name="content_desc_add_to_favorites">toevoegen aan favorieten</string>
+  <string name="content_desc_remove_from_favorites">verwijderen uit favorieten</string>
+  <string name="content_desc_show_password">tonen wachtwoord</string>
   <string name="content_desc_delete">verwijderen</string>
+  <string name="content_desc_download">downloaden</string>
 </resources>

@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:hint="Feed URL"
+                    android:hint="@string/hint_feed_url"
                     android:inputType="textUri"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -61,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Add feed"
+                    android:text="@string/action_add_feed"
                     android:textStyle="bold"/>
 
             </LinearLayout>

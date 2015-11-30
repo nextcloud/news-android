@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -23,7 +24,7 @@
             android:layout_height="40dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="Large Tex dfs hysjd kfhsakj lfhjdaksl fh"
+            tools:text="Large text - this is a very long line of text and may break."
             android:textColor="#ff161616"
             android:ellipsize="end"
             android:maxLines="2" />
@@ -34,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="3 Podcasts verfügbar!"
+            tools:text="3 podcasts available!"
             android:textColor="#ff161616" />
 
 
@@ -60,7 +61,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
-                android:text="100%"
+                tools:text="100%"
                 android:gravity="center_vertical"
                 android:textColor="#ff161616"/>
         </LinearLayout>

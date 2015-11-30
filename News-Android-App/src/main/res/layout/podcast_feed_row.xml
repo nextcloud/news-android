@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="70dp"
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:text="Large Text"
+        tools:text="Large Text"
         android:singleLine="true"
         android:textColor="#ff161616"
         android:ellipsize="end" />
@@ -26,6 +27,6 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textColor="#ff161616"
-        android:text="3 Podcasts verfügbar!" />
+        tools:text="3 Podcasts verfügbar!" />
 
 </LinearLayout>
