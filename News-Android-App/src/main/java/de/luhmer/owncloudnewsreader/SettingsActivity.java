@@ -30,6 +30,8 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,6 +47,7 @@ import android.preference.TwoStatePreference;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
 import android.support.v7.widget.AppCompatEditText;
@@ -138,9 +141,12 @@ public class SettingsActivity extends PreferenceActivity {
 
             Toolbar toolbar = (Toolbar) appBarLayout.getChildAt(0);
 
-            toolbar.setTitle(R.string.title_activity_settings);
-            toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+			final Drawable backarrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+			backarrow.setColorFilter(ContextCompat.getColor(this, R.color.tintColorDark), PorterDuff.Mode.SRC_ATOP);
+			toolbar.setNavigationIcon(backarrow);
+			toolbar.setTitle(R.string.title_activity_settings);
+			toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.tintColorDark));
+			toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finish();
