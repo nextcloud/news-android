@@ -12,14 +12,11 @@
   <string name="allUnreadFeeds">অপঠিত সকল আইটেম</string>
   <string name="starredFeeds">তারকাচিহ্নিত আইটেম</string>
   <string name="title_activity_new_feed">নতুন feed যোগ কর</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">নবোদ্যম</string>
   <string name="menu_About_Changelog">সম্পর্কে / লগপরিবর্তন</string>
   <string name="menu_markAllAsRead">সব পঠিত হিসেবে চিহ্নিত কর</string>
   <string name="menu_StartImageCaching">ইমেজ ডাউনলোড কর</string>
   <string name="menu_downloadMoreItems">আরো আইটেম ডাউনলোড কর</string>
-  <!--Import Accounts-->
-  <string name="import_account">একাউন্ট আমদানি</string>
   <!--Action Bar Items-->
   <string name="action_starred">তারা চিহ্নিত</string>
   <string name="action_read">পড়</string>
@@ -31,6 +28,8 @@
   <string name="action_settings">নিয়ামকসমূহ</string>
   <string name="action_sync_settings">Sync নিয়ামকসমূহ</string>
   <string name="action_add_new_feed">নতুন feed যোগ কর</string>
+  <!--Add new feed-->
+  <string name="action_add_feed">ফিড যোগ কর</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">ক্লিপবোর্ডে কপি করা হলো</string>
   <string name="error_download_failed">ডাউনলোড হয়নি</string>
@@ -38,11 +37,12 @@
   <string name="pref_title_username">ব্যবহারকারী</string>
   <string name="pref_title_password">কূটশব্দ</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">সাইন ইন</string>
   <string name="login_progress_signing_in">সাইনিং ইন</string>
   <string name="error_field_required">এই ফিল্ডটি প্রয়োজন</string>
   <string name="error_invalid_url">ভুল url</string>
+  <!--Import Accounts-->
+  <string name="import_account">একাউন্ট আমদানি</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">আর কোন আইটেম নেই </string>
   <!--Strings related to Settings-->
@@ -58,22 +58,14 @@
     <item>১</item>
     <item>০</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">ক্যাশে খালি করা হচ্ছে</string>
   <string name="reset_cache_unsaved_changes">সমন্বয়হীন পরিবর্তন রয়েছে। আপনি কি তবু ক্যাশে রিসেট করতে চান?</string>
   <string name="warning">সতর্কবাণী</string>
   <string name="pref_title_AutoSyncOnStart">শুরুতেই সমন্বয় কর</string>
   <string name="pref_title_ShowOnlyUnread">শুধু অপঠিত লেখা প্রদর্শন করুন</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">হোস্টনেম প্রমাণ বন্ধ কর</string>
   <string name="pref_title_NavigateWithVolumeButtons">শব্দ নিয়ণ্ত্রক বোতামের সাহায্যে নেভিগেট কর</string>
   <string name="pref_title_MarkAsReadWhileScrolling">স্ক্রল করাকালে পঠিত হিসেবে চিহ্নিত কর</string>
-  <string name="pref_title_notification_new_articles_available">নতুন লেখা পাওয়া গেলে বার্তা প্রদর্শন কর</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">অজানা প্রত্যয়নপত্র গ্রহণ করবো?</string>
   <string name="mtm_decision_always">সর্বদা</string>
@@ -93,6 +85,9 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">বার্তাসমূহ</string>
+  <string name="pref_title_notification_new_articles_available">নতুন লেখা পাওয়া গেলে বার্তা প্রদর্শন কর</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">সমস্যা</string>
   <string name="login_dialog_text_something_went_wrong">কিছু একটা ভুল হয়েছে :(</string>
@@ -101,7 +96,6 @@
   <string name="login_dialog_text_security_warning">আপনি https ব্যবহার করছেননা। কোন আক্রমণকারী আপনার ডাটাপথে প্রবেশ করে আপনার গুরুত্বপূর্ণ ডাটা পেয়ে যাবে যেমন: আপনার কুটশব্দ)। এজন্য আপনাকে https ব্যবহারের জন্য জোর সুপারিশ করা হলো!  </string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">ডাটা &amp; sync</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">ক্যাশে পরিষ্কার কর</string>
   <string name="pref_title_CacheImagesOffline">অফলাইনে ইমেজ ক্যাশে কর</string>
   <string name="pref_title_Max_Cache_Size">সর্বোচ্চ ক্যাশে আকার</string>
@@ -147,30 +141,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">বার্তাসমূহ</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">মুছে ফেল</string>
 </resources>

@@ -17,14 +17,11 @@
   <string name="allUnreadFeeds">すべての未読アイテム</string>
   <string name="starredFeeds">共有アイテム</string>
   <string name="title_activity_new_feed">新しいフィードを追加</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">同期</string>
   <string name="menu_About_Changelog">ownCloudについて / 変更点</string>
   <string name="menu_markAllAsRead">すべて既読にする</string>
   <string name="menu_StartImageCaching">画像をダウンロード</string>
   <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
-  <!--Import Accounts-->
-  <string name="import_account">アカウントをインポート</string>
   <!--Action Bar Items-->
   <string name="action_starred">共有</string>
   <string name="action_read">読込</string>
@@ -43,6 +40,8 @@
   <plurals name="notification_new_items_text">
     <item quantity="other">%d 個の新しい未読アイテムが利用できます</item>
   </plurals>
+  <!--Add new feed-->
+  <string name="action_add_feed">フィードを追加</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">画像をダウンロード</string>
   <string name="action_img_sharelink">画像リンクを共有</string>
@@ -51,6 +50,7 @@
   <string name="action_link_share">共有リンク</string>
   <string name="action_link_open">リンクをブラウザで開く</string>
   <string name="action_link_copy">リンクをコピー</string>
+  <string name="toast_img_download_wait">ダウンロード中... しばらくお待ちください</string>
   <string name="toast_img_saved">画像を保存しました。</string>
   <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
   <string name="toast_copied_to_clipboard">クリップボードにコピー</string>
@@ -61,11 +61,12 @@
   <string name="pref_title_password">パスワード</string>
   <string name="pref_title_owncloudRootPath">ownCloud ルートアドレス</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">ログイン</string>
   <string name="login_progress_signing_in">ログイン中...</string>
   <string name="error_field_required">このフィールドは必須です</string>
   <string name="error_invalid_url">このURLは不正確です</string>
+  <!--Import Accounts-->
+  <string name="import_account">アカウントをインポート</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="other">ダウンロードされた %d 個の古いアイテム</item>
@@ -85,24 +86,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
   <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています…しばらくお待ちください。</string>
   <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
   <string name="warning">警告</string>
   <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
   <string name="pref_title_ShowOnlyUnread">未読の記事のみ表示</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">ホスト名の検証を無効化</string>
   <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
   <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
   <string name="pref_title_OpenInBrowserDirectly">この記事を外部ブラウザーで開く</string>
-  <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
   <string name="mtm_decision_always">常に</string>
@@ -147,6 +140,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">通知</string>
+  <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">エラー</string>
   <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
@@ -155,7 +151,6 @@
   <string name="login_dialog_text_security_warning">httpsを使用していません。攻撃者があなたのトラフィックに干渉し、一部の機密データ(例えば、パスワード)にアクセスする恐れがあります。そのため、httpsを利用することを強くお勧めします！</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">データと同期</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">キャッシュをクリア</string>
   <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
   <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
@@ -213,30 +208,19 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">通知</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
+  <string name="content_desc_play">再生</string>
+  <string name="content_desc_pause">一時停止</string>
+  <string name="content_desc_rewind">巻戻し</string>
+  <string name="content_desc_forward">早送り</string>
+  <string name="content_desc_expand">展開</string>
+  <string name="content_desc_collapse">折りたたみ</string>
+  <string name="content_desc_mark_as_read">既読としてマーク</string>
+  <string name="content_desc_mark_as_unread">未読としてマーク</string>
+  <string name="content_desc_tap_to_refresh">タップして更新</string>
+  <string name="content_desc_add_to_favorites">お気に入りに追加</string>
+  <string name="content_desc_remove_from_favorites">お気に入りから削除</string>
+  <string name="content_desc_show_password">パスワードを表示</string>
   <string name="content_desc_delete">削除</string>
+  <string name="content_desc_download">ダウンロード</string>
 </resources>

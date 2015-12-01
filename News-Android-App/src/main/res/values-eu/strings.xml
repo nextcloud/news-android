@@ -12,14 +12,11 @@
   <string name="allUnreadFeeds">Irakurri gabeko elementu guztiak</string>
   <string name="starredFeeds">Izardun elementuak</string>
   <string name="title_activity_new_feed">Gehitu iturburu  berria</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Birkargatu</string>
   <string name="menu_About_Changelog">Honi Buruz / Aldaketak</string>
   <string name="menu_markAllAsRead">Markatu guztiak irakurria gisa</string>
   <string name="menu_StartImageCaching">Deskargatu irudiak</string>
   <string name="menu_downloadMoreItems">Deskargatu elementu gehiago</string>
-  <!--Import Accounts-->
-  <string name="import_account">Inportatu Kontua</string>
   <!--Action Bar Items-->
   <string name="action_starred">Izarduna</string>
   <string name="action_read">Irakurri</string>
@@ -32,6 +29,7 @@
   <string name="action_sync_settings">Sinkronizazio Ezarpenak</string>
   <string name="action_add_new_feed">Gehitu iturburu  berria</string>
   <string name="action_textToSpeech">Iraukurri ozenki</string>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Arbelera kopiatua</string>
   <string name="error_download_failed">Deskargak huts egin du</string>
@@ -39,11 +37,12 @@
   <string name="pref_title_username">Erabiltzaile izena</string>
   <string name="pref_title_password">Pasahitza</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Izena eman</string>
   <string name="login_progress_signing_in">Izena ematen...</string>
   <string name="error_field_required">Eremu hau beharrezkoa da</string>
   <string name="error_invalid_url">URL-a baliogabea da</string>
+  <!--Import Accounts-->
+  <string name="import_account">Inportatu Kontua</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Ez dago datu gehigarri eskuragarririk</string>
   <!--Strings related to Settings-->
@@ -59,22 +58,14 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Cachea garbitzen</string>
   <string name="reset_cache_unsaved_changes">Sinkronizatu gabeko datuak daude. Nahi duzu hala ere cachea berrabiaraztea?</string>
   <string name="warning">Abisua</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronizatu abioan</string>
   <string name="pref_title_ShowOnlyUnread">Erakutsi irakurri gabeko artikuluak bakarrik</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Ezgaitu Hostalari Izenaren Egiaztapena</string>
   <string name="pref_title_NavigateWithVolumeButtons">Mugitu bolumen botoiekin</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markatu irakurrita gisa korritzean</string>
-  <string name="pref_title_notification_new_articles_available">Bistaratu jakinarazpenak artikulu berriak daudenean</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Onartu Ziurtagiri Ezezaguna</string>
   <string name="mtm_decision_always">Beti</string>
@@ -94,6 +85,9 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Jakinarazpenak</string>
+  <string name="pref_title_notification_new_articles_available">Bistaratu jakinarazpenak artikulu berriak daudenean</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Errorea</string>
   <string name="login_dialog_text_something_went_wrong">Zerbait oker joan da :(</string>
@@ -102,7 +96,6 @@
   <string name="login_dialog_text_security_warning">Ez zaude https erabiltzen. Edozein erasotzailek zure trafikoa eskuratu eta datu sentsibleei sarrera eduki dezake (adib. pasahitza). Beraz https erabiltzea gomendatzen da!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; sink</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Garbitu cachea</string>
   <string name="pref_title_CacheImagesOffline">Irudiak sare-kanporako cacheatu</string>
   <string name="pref_title_Max_Cache_Size">Cache tamaina maximoa</string>
@@ -154,30 +147,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Jakinarazpenak</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">ezabatu</string>
 </resources>

@@ -13,14 +13,11 @@
   <string name="allUnreadFeeds">Az összes olvasatlan</string>
   <string name="starredFeeds">Csillagozottak</string>
   <string name="title_activity_new_feed">Új hírcsatorna hozzáadása</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Frissítés</string>
   <string name="menu_About_Changelog">Névjegy / Változtatások</string>
   <string name="menu_markAllAsRead">Jelöljük meg az összeset olvasottként</string>
   <string name="menu_StartImageCaching">Képek letőltése</string>
   <string name="menu_downloadMoreItems">Több elem letőltése</string>
-  <!--Import Accounts-->
-  <string name="import_account">Konto importálás</string>
   <!--Action Bar Items-->
   <string name="action_starred">Csillagozott</string>
   <string name="action_read">Olvas</string>
@@ -32,6 +29,8 @@
   <string name="action_settings">Beállítások</string>
   <string name="action_sync_settings">Szinkronizációs beállítások</string>
   <string name="action_add_new_feed">Új hírcsatorna hozzáadása</string>
+  <!--Add new feed-->
+  <string name="action_add_feed">Hírcsatorna hozzáadása</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Bemásolva a vágólapra</string>
   <string name="error_download_failed">A letöltés sikertelen</string>
@@ -39,11 +38,12 @@
   <string name="pref_title_username">Felhasználónév</string>
   <string name="pref_title_password">Jelszó</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Belépés</string>
   <string name="login_progress_signing_in">Belépés...</string>
   <string name="error_field_required">Ez a mező szükséges</string>
   <string name="error_invalid_url">Ez az url hibás</string>
+  <!--Import Accounts-->
+  <string name="import_account">Konto importálás</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Nincs elérhető további elem</string>
   <!--Strings related to Settings-->
@@ -60,23 +60,15 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">A gyorsítótár törlése folyamatban</string>
   <string name="dialog_clearing_cache_please_wait">Gyorsítótár ürítése... Kérjük, várj.</string>
   <string name="reset_cache_unsaved_changes">Vannak nem színkronizált változások. Bizots hogy alaphelyzetbe szeretnéd állítani a cache-t így is?</string>
   <string name="warning">Figyelmeztetés</string>
   <string name="pref_title_AutoSyncOnStart">Szinkronizáció induláskor</string>
   <string name="pref_title_ShowOnlyUnread">Csak olvasatlan cikkek megjelenítése</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">A \"Hostname Verification\" kikapcsolása</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigálj a hangerőszabályozó gombokkal</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben olvasottként legyen megjelőlve</string>
-  <string name="pref_title_notification_new_articles_available">Értesítés megjelenítés amikor van elérhető új cikk </string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Elfogadod az ismeretlen tanusítványokat?</string>
   <string name="mtm_decision_always">Mindig</string>
@@ -96,6 +88,9 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Értesítések</string>
+  <string name="pref_title_notification_new_articles_available">Értesítés megjelenítés amikor van elérhető új cikk </string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Hiba</string>
   <string name="login_dialog_text_something_went_wrong">Valami balul sült el :(</string>
@@ -104,7 +99,6 @@
   <string name="login_dialog_text_security_warning">Jelenleg nem használsz https-t. Egy támadó beépülhet és lehalgathatja a forgalmat és ez által hozzáférhetet kényes adatokhoz(pl jelszó). Nagyon ajánlott, hogy használj https-t!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Adatok &amp; szinkronizáció</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Átmeneti tár(cache) tisztitása</string>
   <string name="pref_title_CacheImagesOffline">Képek offline tárolása ideglenesen</string>
   <string name="pref_title_Max_Cache_Size">Maximum Cache Méret</string>
@@ -156,30 +150,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Értesítések</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">törlés</string>
 </resources>

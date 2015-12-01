@@ -12,14 +12,11 @@
   <string name="allUnreadFeeds">Tots els elements no llegits</string>
   <string name="starredFeeds">Elements amb estrelles</string>
   <string name="title_activity_new_feed">Afegeix una font nova</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Refresca</string>
   <string name="menu_About_Changelog">Quant a / Registre de canvis</string>
   <string name="menu_markAllAsRead">Marca-ho tot com a llegit</string>
   <string name="menu_StartImageCaching">Baixa imatges</string>
   <string name="menu_downloadMoreItems">Baixa més elements</string>
-  <!--Import Accounts-->
-  <string name="import_account">Importa compte</string>
   <!--Action Bar Items-->
   <string name="action_starred">Estrellat</string>
   <string name="action_read">Llegeix</string>
@@ -32,6 +29,7 @@
   <string name="action_sync_settings">Arranjament de sincronització</string>
   <string name="action_add_new_feed">Afegeix una font nova</string>
   <string name="action_textToSpeech">De lectura</string>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
   <string name="error_download_failed">La baixada ha fallat</string>
@@ -39,11 +37,12 @@
   <string name="pref_title_username">Nom d\'usuari</string>
   <string name="pref_title_password">Contrasenya</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Inicia la sessió</string>
   <string name="login_progress_signing_in">Iniciant la sessió...</string>
   <string name="error_field_required">Es requereix aquest camp</string>
   <string name="error_invalid_url">La URL és incorrecta</string>
+  <!--Import Accounts-->
+  <string name="import_account">Importa compte</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
   <!--Strings related to Settings-->
@@ -59,22 +58,14 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">S\'està esborrant la memòria cau</string>
   <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu eliminar la memòria cau igualment?</string>
   <string name="warning">Avís</string>
   <string name="pref_title_AutoSyncOnStart">Sincronitza en inicialitzar</string>
   <string name="pref_title_ShowOnlyUnread">Mostra només articles sense llegir</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Desactiva la verificació del nom del servidor</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navega amb els botons del volum</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
-  <string name="pref_title_notification_new_articles_available">Mostra notificacions quan hi hagi nous articles disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepta certificats de desconeguts?</string>
   <string name="mtm_decision_always">Sempre</string>
@@ -94,6 +85,9 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Notificacions</string>
+  <string name="pref_title_notification_new_articles_available">Mostra notificacions quan hi hagi nous articles disponibles</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Error</string>
   <string name="login_dialog_text_something_went_wrong">Alguna cosa ha fallat :(</string>
@@ -102,7 +96,6 @@
   <string name="login_dialog_text_security_warning">No esteu usant https. Un atacant podria interceptar el transit i guanyar accés a dades sensibles (Per exemple la vostra contrasenya). Es recomana usar https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Sincronització &amp; de dades </string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Esborra la memòria cau</string>
   <string name="pref_title_CacheImagesOffline">Comprimeix imatges fora de línia</string>
   <string name="pref_title_Max_Cache_Size">Memòria cau màxima</string>
@@ -160,30 +153,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Notificacions</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">elimina</string>
 </resources>

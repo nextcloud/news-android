@@ -17,14 +17,11 @@
   <string name="allUnreadFeeds">Toate articolele necitite</string>
   <string name="starredFeeds">Articole selectate</string>
   <string name="title_activity_new_feed">Adaugă flux nou</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Împrospătare</string>
   <string name="menu_About_Changelog">Despre / Modificări</string>
   <string name="menu_markAllAsRead">Marcaţi tot ca fiind citit</string>
   <string name="menu_StartImageCaching">Descarca imagini </string>
   <string name="menu_downloadMoreItems">Descarcă mai multe articole </string>
-  <!--Import Accounts-->
-  <string name="import_account">Importează cont</string>
   <!--Action Bar Items-->
   <string name="action_starred">Marcat</string>
   <string name="action_read">Citeşte</string>
@@ -37,6 +34,8 @@
   <string name="action_sync_settings">Setări Sincronizare</string>
   <string name="action_add_new_feed">Adaugă flux nou</string>
   <string name="action_textToSpeech">Citit</string>
+  <!--Add new feed-->
+  <string name="action_add_feed">Adăugare flux</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Copiat în clipboard</string>
   <string name="error_download_failed">Descărcarea a eșuat</string>
@@ -44,11 +43,12 @@
   <string name="pref_title_username">Nume utilizator</string>
   <string name="pref_title_password">Parolă</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Înregistraţi-vă</string>
   <string name="login_progress_signing_in">Înregistrare</string>
   <string name="error_field_required">Acest câmp este obligatoriu </string>
   <string name="error_invalid_url">Acest url este incorect</string>
+  <!--Import Accounts-->
+  <string name="import_account">Importează cont</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Nici un articol disponibil.</string>
   <!--Strings related to Settings-->
@@ -64,22 +64,14 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Ștergere cache</string>
   <string name="reset_cache_unsaved_changes">Există modificări nesincronizate. Dorești totuși să ștergi cache-ul?</string>
   <string name="warning">Atenție</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizare la pornire</string>
   <string name="pref_title_ShowOnlyUnread">Arata doar articolele necitite </string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Dezactivează Verificarea Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigheaza cu tastele de volum </string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marchează ca citit in timpul derulării</string>
-  <string name="pref_title_notification_new_articles_available">Arată notificarea cînd apar articole noi</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepta Certificat Necunoscut?</string>
   <string name="mtm_decision_always">Întotdeauna</string>
@@ -99,6 +91,9 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Notificari</string>
+  <string name="pref_title_notification_new_articles_available">Arată notificarea cînd apar articole noi</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Eroare</string>
   <string name="login_dialog_text_something_went_wrong">Undeva s-a comis o eroare :(</string>
@@ -107,7 +102,6 @@
   <string name="login_dialog_text_security_warning">Nu ați folosit https. Un hacker ar putea intercepta conținutul și obține acces la informație privată (ex.: parola). Se recomandă folosirea https-ului!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Sincronizare &amp; date</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Șterge cache</string>
   <string name="pref_title_CacheImagesOffline">Imagini Cache offline</string>
   <string name="pref_title_Max_Cache_Size">Mărime maximă Cache</string>
@@ -160,30 +154,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Notificari</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">ștergere</string>
 </resources>

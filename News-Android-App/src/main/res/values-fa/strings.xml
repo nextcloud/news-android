@@ -13,13 +13,11 @@
   <string name="message_bar_reload">بازنگری</string>
   <string name="allUnreadFeeds">تمام آیتم های خوانده نشده</string>
   <string name="starredFeeds">آیتم های ستاره دار</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">بازنمایی</string>
   <string name="menu_About_Changelog">درباره / تغییرات</string>
   <string name="menu_markAllAsRead">علامت همه به عنوان خوانده شده</string>
   <string name="menu_StartImageCaching">دانلود تصاویر</string>
   <string name="menu_downloadMoreItems">دانلود آیتم های بیشتر</string>
-  <!--Import Accounts-->
   <!--Action Bar Items-->
   <string name="action_starred">ستاره دار</string>
   <string name="action_openInBrowser">در مرورگر باز کن</string>
@@ -27,6 +25,7 @@
   <string name="action_login">تنظیمات سرور</string>
   <string name="action_save">ذخیره</string>
   <string name="action_settings">تنظیمات</string>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">کپی به کلیپ بورد</string>
   <string name="error_download_failed">بارگیری ناموفق بود</string>
@@ -34,27 +33,20 @@
   <string name="pref_title_username">نام کاربری</string>
   <string name="pref_title_password">گذرواژه</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">ورود</string>
   <string name="login_progress_signing_in">ورود به سیستم ...</string>
   <string name="error_field_required">این فیلد مورد نیاز است</string>
   <string name="error_invalid_url">این آدرس url  نادرست است.</string>
+  <!--Import Accounts-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">تنظیمات</string>
   <!--General settings-->
   <string name="pref_header_general">عمومی</string>
   <string name="pref_title_general_sort_order">ترتیب مرتب‌سازی</string>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="warning">اخطار</string>
   <string name="pref_title_AutoSyncOnStart">همگام سازی در هنگام راه اندازی</string>
   <string name="pref_title_ShowOnlyUnread">فقط نمایش مقالات خوانده نشده</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">کنترل با دکمه های درجه صدا</string>
   <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری در حال پیمایش به عنوان خوانده شده </string>
   <!--MemorizingTrustManager-->
@@ -74,6 +66,8 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">هشدارها</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">خطا</string>
   <string name="login_dialog_text_something_went_wrong">چند چیز اشتباه شدند :(</string>
@@ -82,7 +76,6 @@
   <string name="login_dialog_text_security_warning">شما از https استفاده نمی کنید. یک مهاجم می تواند ترافیک شما را رهگیری و به برخی از اطلاعات حساس دسترسی پیدا کند(به عنوان مثال، رمزعبور شما). پس شه شدت توصیه می شود که از https استفاده کنید.</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">داده ها و همگام سازی</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">پاک کردن حافظه موقتی</string>
   <string name="pref_title_CacheImagesOffline">تصاویر را کش کن</string>
   <string name="pref_title_Max_Cache_Size">حداکثر اندازه حافظه پنهان</string>
@@ -104,30 +97,6 @@
     <item>5000</item>
     <item>10000</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">هشدارها</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">حذف</string>
 </resources>

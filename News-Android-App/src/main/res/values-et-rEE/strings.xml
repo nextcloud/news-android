@@ -17,14 +17,11 @@
   <string name="allUnreadFeeds">Kõik lugemata üksused</string>
   <string name="starredFeeds">Tärniga märgitud üksused</string>
   <string name="title_activity_new_feed">Lisa uudisvoog</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Värskenda</string>
   <string name="menu_About_Changelog">Teave / Muudatused</string>
   <string name="menu_markAllAsRead">Märgi loetuks</string>
   <string name="menu_StartImageCaching">Laadi pildid alla</string>
   <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
-  <!--Import Accounts-->
-  <string name="import_account">Impordi konto</string>
   <!--Action Bar Items-->
   <string name="action_starred">Tärniga märgitud</string>
   <string name="action_read">Lugemine</string>
@@ -45,6 +42,7 @@
     <item quantity="one">Saadaval on %d uus lugemata kirje</item>
     <item quantity="other">Saadaval on %d uut lugemata kirjet</item>
   </plurals>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
   <string name="error_download_failed">Allalaadimine ebaõnnestus</string>
@@ -53,11 +51,12 @@
   <string name="pref_title_password">Parool</string>
   <string name="pref_title_owncloudRootPath">ownCloud juur address</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Logi sisse</string>
   <string name="login_progress_signing_in">Sisselogimine...</string>
   <string name="error_field_required">See väli on kohustuslik</string>
   <string name="error_invalid_url">URL pole korrektne</string>
+  <!--Import Accounts-->
+  <string name="import_account">Impordi konto</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="one">Alla on laaditud %d vana kirje</item>
@@ -78,24 +77,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
   <string name="dialog_clearing_cache_please_wait">Vahemälu tühjendamine... palun oota</string>
   <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
   <string name="warning">Hoiatus</string>
   <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
   <string name="pref_title_ShowOnlyUnread">Näita ainult lugemata artikleid</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Keela serveri nime kontroll</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigeeri häälevaljuse nuppudega</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Märgi kerides loetuks</string>
   <string name="pref_title_OpenInBrowserDirectly">Kasuta artiklite vaatamiseks välist lehitsejat</string>
-  <string name="pref_title_notification_new_articles_available">Näita teavitusi kui on saadaval uusi arikleid</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Nõustu tundmatu sertifikaadiga?</string>
   <string name="mtm_decision_always">Alati</string>
@@ -128,6 +119,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Teavitused</string>
+  <string name="pref_title_notification_new_articles_available">Näita teavitusi kui on saadaval uusi arikleid</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Viga</string>
   <string name="login_dialog_text_something_went_wrong">Midagi läks valesti :(</string>
@@ -136,7 +130,6 @@
   <string name="login_dialog_text_security_warning">Sa ei kasuta https-i. Ründaja võib jälgida sinu liiklust ning saavutada ligipääsu tundlikele andmetele (näiteks sinu parooli). Seega on tungivalt soovitatav https kasutamine!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Andmed &amp; sünkroniseerimine</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Tühjenda puhver</string>
   <string name="pref_title_CacheImagesOffline">Puhverda pildid võrguta seisu</string>
   <string name="pref_title_Max_Cache_Size">Maksimaalne puhvri suurus</string>
@@ -194,30 +187,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Teavitused</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">kustuta</string>
 </resources>

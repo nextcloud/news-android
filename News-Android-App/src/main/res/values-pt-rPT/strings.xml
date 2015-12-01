@@ -18,14 +18,11 @@
   <string name="allUnreadFeeds">Todos os itens não lidos</string>
   <string name="starredFeeds">Itens destacados</string>
   <string name="title_activity_new_feed">Adicionar nova feed</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Atualizar</string>
   <string name="menu_About_Changelog">Sobre / Registo de Alteraçãoes</string>
   <string name="menu_markAllAsRead">Marcar tudo como lido</string>
   <string name="menu_StartImageCaching">Transferir as imagens</string>
   <string name="menu_downloadMoreItems">Transferir mais itens</string>
-  <!--Import Accounts-->
-  <string name="import_account">Conta Importar</string>
   <!--Action Bar Items-->
   <string name="action_starred">Marcado</string>
   <string name="action_read">Lido</string>
@@ -46,6 +43,8 @@
     <item quantity="one">Tem disponível %d novo item por ler</item>
     <item quantity="other">Tem disponível %d novos itens por ler</item>
   </plurals>
+  <!--Add new feed-->
+  <string name="action_add_feed">Adicionar feed de notícias.</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_link_copy">Copiar hiperligação</string>
   <string name="toast_img_saved">Imagem guardada.</string>
@@ -56,11 +55,12 @@
   <string name="pref_title_password">Palavra-passe:</string>
   <string name="pref_title_owncloudRootPath">Endereço raiz do ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Iniciar Sessão</string>
   <string name="login_progress_signing_in">A iniciar a sessão ...</string>
   <string name="error_field_required">Este campo é obrigatório</string>
   <string name="error_invalid_url">O url está incorreto</string>
+  <!--Import Accounts-->
+  <string name="import_account">Conta Importar</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="one">Transferidos %d item antigo</item>
@@ -81,24 +81,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Limpar cache</string>
   <string name="dialog_clearing_cache_please_wait">A limpar a cache… Por favor, aguarde.</string>
   <string name="reset_cache_unsaved_changes">Há mudanças não sincronizadas. Gostaria de repor a cache na mesma?</string>
   <string name="warning">Aviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizar no arranque</string>
   <string name="pref_title_ShowOnlyUnread">Só mostrar os artigos não lidos</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Desativar a Verificação do Nome do Hopsedeiro</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navegue com os botões do volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto rolar com o rato</string>
   <string name="pref_title_OpenInBrowserDirectly">Usar navegador externo para ver artigos</string>
-  <string name="pref_title_notification_new_articles_available">Mostrar notificações quando existirem novos artigos</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aceitar os certificados desconhecidos?</string>
   <string name="mtm_decision_always">Sempre</string>
@@ -143,6 +135,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Notificações</string>
+  <string name="pref_title_notification_new_articles_available">Mostrar notificações quando existirem novos artigos</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erro</string>
   <string name="login_dialog_text_something_went_wrong">Ocorreu algo de errado :(</string>
@@ -151,7 +146,6 @@
   <string name="login_dialog_text_security_warning">Não está a usar https. Um atacante poderá intercetar o seu tráfego e ganhar acesso a alguns dados sensíveis (por ex.: a sua senha). Recomenda-se vivamente usar https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Dados &amp; sincronização</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Limpar a cache</string>
   <string name="pref_title_CacheImagesOffline">Imagens offline da cache</string>
   <string name="pref_title_Max_Cache_Size">Tamanho Máximo da Cache</string>
@@ -209,30 +203,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Notificações</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">eliminar</string>
 </resources>

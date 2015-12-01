@@ -17,14 +17,11 @@
   <string name="allUnreadFeeds">Alle uleste elementer</string>
   <string name="starredFeeds">Stjernemerkede elementer</string>
   <string name="title_activity_new_feed">Legg til ny strøm</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Oppdater</string>
   <string name="menu_About_Changelog">Om / Endringslogg</string>
   <string name="menu_markAllAsRead">Marker alle som lest</string>
   <string name="menu_StartImageCaching">Last ned bilder</string>
   <string name="menu_downloadMoreItems">Last ned flere elementer</string>
-  <!--Import Accounts-->
-  <string name="import_account">Importer konto</string>
   <!--Action Bar Items-->
   <string name="action_starred">Merket</string>
   <string name="action_read">Les</string>
@@ -45,6 +42,8 @@
     <item quantity="one">%d nytt ulest element tilgjengelig</item>
     <item quantity="other">%d nye uleste elementer tilgjengelig</item>
   </plurals>
+  <!--Add new feed-->
+  <string name="action_add_feed">Legg til nyhetskilde</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
   <string name="error_download_failed">Nedlasting feilet</string>
@@ -53,11 +52,12 @@
   <string name="pref_title_password">Passord</string>
   <string name="pref_title_owncloudRootPath">ownCloud rot-adresse</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Logg inn</string>
   <string name="login_progress_signing_in">Logger inn...</string>
   <string name="error_field_required">Dette feltet er påkrevd</string>
   <string name="error_invalid_url">Denne adressen er feil</string>
+  <!--Import Accounts-->
+  <string name="import_account">Importer konto</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="one">Lastet ned %d gammelt element</item>
@@ -78,24 +78,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Sletter hurtiglager</string>
   <string name="dialog_clearing_cache_please_wait">Nullstiller hurtiglager... Vennligst vent.</string>
   <string name="reset_cache_unsaved_changes">Det er usynkroniserte forandringer. Vil du resette hurtilageret likevel?</string>
   <string name="warning">Advarsel</string>
   <string name="pref_title_AutoSyncOnStart">Synkroniser under oppstart</string>
   <string name="pref_title_ShowOnlyUnread">Vis kun uleste artikler</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Deaktiver vertsnavnverifikasjon</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviger med volumknappene</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
   <string name="pref_title_OpenInBrowserDirectly">Bruk ekstern nettleser til å vise artikler</string>
-  <string name="pref_title_notification_new_articles_available">Vis varsel når nye artikler er tilgjengelig</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
   <string name="mtm_decision_always">Alltid</string>
@@ -140,6 +132,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Varsler</string>
+  <string name="pref_title_notification_new_articles_available">Vis varsel når nye artikler er tilgjengelig</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Feil</string>
   <string name="login_dialog_text_something_went_wrong">Noe gikk galt :-(</string>
@@ -148,7 +143,6 @@
   <string name="login_dialog_text_security_warning">Du bruker ikke https. En angriper kan fange opp trafikken og få tilgang til noen sensitive data (f.eks passordet ditt). Så det er det sterkt anbefalt å bruke https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; synk.</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Slett hurtiglager</string>
   <string name="pref_title_CacheImagesOffline">Bildehurtiglager er offline</string>
   <string name="pref_title_Max_Cache_Size">Maks hurtiglagerstørrelse</string>
@@ -206,30 +200,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Varsler</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">slett</string>
 </resources>

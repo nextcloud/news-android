@@ -16,14 +16,11 @@
   <string name="allUnreadFeeds">Semua item yang belum dibaca</string>
   <string name="starredFeeds">Item yang dibintangi</string>
   <string name="title_activity_new_feed">Tambah feed baru</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Segarkan</string>
   <string name="menu_About_Changelog">Tentang / Catatan perubahan</string>
   <string name="menu_markAllAsRead">Tandai semua telah dibaca</string>
   <string name="menu_StartImageCaching">Unduh gambar</string>
   <string name="menu_downloadMoreItems">Unduh beberapa item</string>
-  <!--Import Accounts-->
-  <string name="import_account">Impor Akun</string>
   <!--Action Bar Items-->
   <string name="action_starred">Dibintangi</string>
   <string name="action_read">Baca</string>
@@ -42,6 +39,7 @@
   <plurals name="notification_new_items_text">
     <item quantity="other">Terdapat %d item baru yang belum dibaca </item>
   </plurals>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Disalin ke papan klip</string>
   <string name="error_download_failed">Gagal Mengunduh</string>
@@ -50,11 +48,12 @@
   <string name="pref_title_password">Sandi</string>
   <string name="pref_title_owncloudRootPath">Alamat root ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Masuk</string>
   <string name="login_progress_signing_in">Sedang masuk...</string>
   <string name="error_field_required">Bidang wajib diisi</string>
   <string name="error_invalid_url">URL salah</string>
+  <!--Import Accounts-->
+  <string name="import_account">Impor Akun</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="other">Mengunduh %d item lama</item>
@@ -74,24 +73,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Membersihkan cache</string>
   <string name="dialog_clearing_cache_please_wait">Membersihkan cache... Mohon tunggu.</string>
   <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
   <string name="warning">Peringatan</string>
   <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>
   <string name="pref_title_ShowOnlyUnread">Tampilkan hanya artikel yang belum dibaca</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Nonaktifkan Verifikasi Hostname</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigasi dengan tombol volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Tandai telah dibaca saat bergulir</string>
   <string name="pref_title_OpenInBrowserDirectly">Gunakan peramban eksternal untuk melihat artikel</string>
-  <string name="pref_title_notification_new_articles_available">Tampilkan pemberitahuan ketika artikel baru tersedia</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Terima Sertifikat yang Tak Dikenal?</string>
   <string name="mtm_decision_always">Selalu</string>
@@ -136,6 +127,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Pemberitahuan</string>
+  <string name="pref_title_notification_new_articles_available">Tampilkan pemberitahuan ketika artikel baru tersedia</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Kesalahan</string>
   <string name="login_dialog_text_something_went_wrong">Ada yang tidak beres :(</string>
@@ -144,7 +138,6 @@
   <string name="login_dialog_text_security_warning">Anda tidak menggunakan https. Peratas bisa saja mencegat lalu lintas jaringan dan mendapatkan akses ke beberapa data sensitif (misalnya kata sandi Anda). Jadi sangat disarankan menggunakan https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; sync</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Bersihkan cache</string>
   <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
   <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
@@ -202,30 +195,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Pemberitahuan</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">hapus</string>
 </resources>

@@ -1,66 +1,35 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="message_bar_reload">გადატვირთვა</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">განახლება</string>
-  <!--Import Accounts-->
   <!--Action Bar Items-->
   <string name="action_starred">ვარსკვლავმინიჭებული</string>
   <string name="action_Share">გაზიარება</string>
   <string name="action_save">შენახვა</string>
   <string name="action_settings">პარამეტრები</string>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">კოპირებულია კლიპბორდში</string>
   <string name="error_download_failed">ჩამოტვირთვა ვერ განხორციელდა</string>
   <!--Strings related to login-->
   <string name="pref_title_username">მომხმარებლის სახელი</string>
   <string name="pref_title_password">პაროლი</string>
-  <!--<string name="pref_default_username">admin</string>-->
+  <!--Import Accounts-->
   <!--Toast Messages-->
   <!--Strings related to Settings-->
   <string name="title_activity_settings">პარამეტრები</string>
   <!--General settings-->
   <string name="pref_header_general">ზოგადი</string>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="warning">გაფრთხილება</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <!--MemorizingTrustManager-->
   <!--Podcast-->
   <!--Settings for Display-->
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">შეტყობინებები</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">შეცდომა</string>
   <string name="login_dialog_title_security_warning">უსაფრთხოების გაფრთხილება</string>
   <!--Data & Sync-->
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">შეტყობინებები</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">წაშლა</string>
 </resources>

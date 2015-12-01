@@ -11,13 +11,11 @@
   <string name="message_bar_reload">रिलोड</string>
   <string name="allUnreadFeeds">सभी अपठित मदें </string>
   <string name="starredFeeds">तारांकित की गई मदें </string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">रीफ्रैश </string>
   <string name="menu_About_Changelog">के बारे में / चेंज लॉग</string>
   <string name="menu_markAllAsRead">सभी को पढ़े हुओं की तरह चिन्हित करें </string>
   <string name="menu_StartImageCaching">तस्वीरें डाउनलोड करें </string>
   <string name="menu_downloadMoreItems">और मदों को डाउनलोड करें </string>
-  <!--Import Accounts-->
   <!--Action Bar Items-->
   <string name="action_starred">तारांकित </string>
   <string name="action_read">पढ़े </string>
@@ -26,16 +24,17 @@
   <string name="action_login">सर्वर सेटिंग्स </string>
   <string name="action_save">सहेजें</string>
   <string name="action_settings">सेटिंग्स</string>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">प्रयोक्ता का नाम</string>
   <string name="pref_title_password">पासवर्ड</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">साइन इन </string>
   <string name="login_progress_signing_in">साइन इन कर रहा है... </string>
   <string name="error_field_required">इस क्षेत्र को भरना ज़रूरी है </string>
   <string name="error_invalid_url">यह url गलत है </string>
+  <!--Import Accounts-->
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">आगे कोई मदें उपलब्ध नहीं हैं </string>
   <!--Strings related to Settings-->
@@ -51,17 +50,10 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="reset_cache_unsaved_changes">एक साथ न होने वाले बदलाव मौजूद हैं। क्या आप फिर भी कैश रीसेट करना चाहेंगे?</string>
   <string name="warning">चेतावनी </string>
   <string name="pref_title_AutoSyncOnStart">स्टार्टअप पर समन्वयित</string>
   <string name="pref_title_ShowOnlyUnread">केवल अपठित लेख दिखाएँ</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">होस्टनाम के सत्यापन को अक्षम करें</string>
   <string name="pref_title_NavigateWithVolumeButtons">वॉल्यूम बटनों के साथ नेवीगेट करें </string>
   <string name="pref_title_MarkAsReadWhileScrolling">स्क्रोलिंग के दौरान पठित की तरह चिन्हांकित करें </string>
@@ -82,6 +74,7 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <!--Settings for Notifications-->
   <!--Login Dialog-->
   <string name="login_dialog_title_error">त्रुटि</string>
   <string name="login_dialog_text_something_went_wrong">कोई त्रुटि हो गई है :(</string>
@@ -90,7 +83,6 @@
   <string name="login_dialog_text_security_warning">आप https का उपयोग नहीं कर रहे हैं। कोई हमलावर आपका ट्रैफिक रोकने और कुछ संवेदनशील डेटा (जैसे कि आपका पासवर्ड) तक पहुंच प्राप्त कर सकता है। इसलिए https का उपयोग करने की पुरजोर सलाह दी जाती है! </string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">डेटा &amp; सिंक</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">कैश को हटाएँ </string>
   <string name="pref_title_CacheImagesOffline">ऑफलाइन तस्वीरों को स्टोर करें </string>
   <string name="pref_title_Max_Cache_Size">कैश का अधिकतम साइज़ </string>
@@ -112,28 +104,5 @@
     <item>5000</item>
     <item>10000</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
 </resources>

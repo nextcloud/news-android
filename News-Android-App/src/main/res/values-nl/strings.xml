@@ -18,14 +18,11 @@
   <string name="allUnreadFeeds">Alle ongelezen berichten</string>
   <string name="starredFeeds">Gemarkeerde berichten</string>
   <string name="title_activity_new_feed">Voeg nieuwe feed toe</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Vernieuwen</string>
   <string name="menu_About_Changelog">Over / Wijzigingen</string>
   <string name="menu_markAllAsRead">Alles als gelezen markeren</string>
   <string name="menu_StartImageCaching">Downloaden afbeeldingen</string>
   <string name="menu_downloadMoreItems">Download meer berichten</string>
-  <!--Import Accounts-->
-  <string name="import_account">Import account</string>
   <!--Action Bar Items-->
   <string name="action_starred">Gemarkeerd</string>
   <string name="action_read">Lees</string>
@@ -46,6 +43,8 @@
     <item quantity="one">%d nieuw ongelezen bericht beschikbaar</item>
     <item quantity="other">%d nieuwe ongelezen berichten beschikbaar</item>
   </plurals>
+  <!--Add new feed-->
+  <string name="action_add_feed">Voeg feed toe</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Downloaden afbeelding</string>
   <string name="action_img_sharelink">Delen afbeeldingslink</string>
@@ -65,11 +64,12 @@
   <string name="pref_title_password">Wachtwoord</string>
   <string name="pref_title_owncloudRootPath">ownCloud root adres</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Inloggen</string>
   <string name="login_progress_signing_in">Inloggen...</string>
   <string name="error_field_required">Dit veld is verplicht</string>
   <string name="error_invalid_url">De URL is ongeldig</string>
+  <!--Import Accounts-->
+  <string name="import_account">Import account</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="one">Downloaden %d oud bericht</item>
@@ -94,24 +94,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Schoonmaken cache</string>
   <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
   <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wilt u de cache toch resetten?</string>
   <string name="warning">Waarschuwing</string>
   <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>
   <string name="pref_title_ShowOnlyUnread">Toon alleen ongelezen artikelen</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Deactiveren Hostname verificatie</string>
   <string name="pref_title_NavigateWithVolumeButtons">Navigeren met volumeknoppen</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
   <string name="pref_title_OpenInBrowserDirectly">Gebruik een externe browser om artikelen te bekijken</string>
-  <string name="pref_title_notification_new_articles_available">Toon meldingen als er nieuwe artikelen zijn</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Onbekend certificaat accepteren?</string>
   <string name="mtm_decision_always">Altijd</string>
@@ -156,6 +148,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Meldingen</string>
+  <string name="pref_title_notification_new_articles_available">Toon meldingen als er nieuwe artikelen zijn</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fout</string>
   <string name="login_dialog_text_something_went_wrong">Er ging iets verkeerd :(</string>
@@ -164,7 +159,6 @@
   <string name="login_dialog_text_security_warning">U gebruikt geen https. Een aanvaller zou het niet versleutelde verkeer kunnen onderscheppen en toegang krijgen tot gevoelige gegevens (bijv. uw wachtwoord). We adviseren om https te gebruiken!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; synch</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Leegmaken cache</string>
   <string name="pref_title_CacheImagesOffline">Afbeeldingen offline cachen</string>
   <string name="pref_title_Max_Cache_Size">Max cache grootte</string>
@@ -216,33 +210,8 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Meldingen</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_none">@null</string>
-  <string name="content_desc_feed_icon">feed pictogram</string>
   <string name="content_desc_play">afspelen</string>
   <string name="content_desc_pause">pauze</string>
   <string name="content_desc_rewind">terugspoelen</string>

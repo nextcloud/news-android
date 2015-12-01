@@ -17,14 +17,11 @@
   <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
   <string name="starredFeeds">Favorisierte Artikel</string>
   <string name="title_activity_new_feed">Einen neuen Feed hinzufügen</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aktualisieren</string>
   <string name="menu_About_Changelog">Über / Änderungen</string>
   <string name="menu_markAllAsRead">Alle als gelesen markieren</string>
   <string name="menu_StartImageCaching">Lade Bilder herunter</string>
   <string name="menu_downloadMoreItems">Weitere Artikel herunterladen</string>
-  <!--Import Accounts-->
-  <string name="import_account">Benutzerkonto importieren</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favorisiert</string>
   <string name="action_read">Gelesen</string>
@@ -45,6 +42,7 @@
     <item quantity="one">%d neuen ungelesenen Eintrag verfügbar</item>
     <item quantity="other">%d neue ungelesene Einträge verfügbar</item>
   </plurals>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">In die Zwischenablage kopiert</string>
   <string name="error_download_failed">Herunterladen fehlgeschlagen</string>
@@ -53,11 +51,12 @@
   <string name="pref_title_password">Passwort</string>
   <string name="pref_title_owncloudRootPath">ownCloud Wurzeladresse</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Einloggen</string>
   <string name="login_progress_signing_in">Anmeldung…</string>
   <string name="error_field_required">Dieses Feld ist erforderlich</string>
   <string name="error_invalid_url">Diese URL ist falsch</string>
+  <!--Import Accounts-->
+  <string name="import_account">Benutzerkonto importieren</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="one">%d alter Artikel heruntergeladen</item>
@@ -78,24 +77,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Cache löschen</string>
   <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird geleert … Bitte warten.</string>
   <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchtest Du dennoch den Cache leeren?</string>
   <string name="warning">Warnung</string>
   <string name="pref_title_AutoSyncOnStart">Beim Starten synchronisieren</string>
   <string name="pref_title_ShowOnlyUnread">Nur ungelesene Artikel anzeigen</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Hostnamen-Nachweis deaktivieren</string>
   <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärketasten navigieren</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Während des Scrollens als gelesen markieren</string>
   <string name="pref_title_OpenInBrowserDirectly">Externen Browser zum Anzeigen der Artikel verwenden</string>
-  <string name="pref_title_notification_new_articles_available">Benachrichtigungen anzeigen, wenn neue Artikel verfügbar sind</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Unbekanntes Zertifikat akzeptieren?</string>
   <string name="mtm_decision_always">Immer</string>
@@ -140,6 +131,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Benachrichtigungen</string>
+  <string name="pref_title_notification_new_articles_available">Benachrichtigungen anzeigen, wenn neue Artikel verfügbar sind</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Fehler</string>
   <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
@@ -148,7 +142,6 @@
   <string name="login_dialog_text_security_warning">Du nutzt kein https. Ein Angreifer könnte Deinen Datenverkehr mitschneiden und dadurch Zugang zu sensiblen Daten (z.B. Deinem Passwort) erhalten. Wir empfehlen dringend die Nutzung von https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Cache leeren</string>
   <string name="pref_title_CacheImagesOffline">Bilder offline zwischenspeichern</string>
   <string name="pref_title_Max_Cache_Size">Maximale Cachegröße</string>
@@ -206,30 +199,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Benachrichtigungen</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">löschen</string>
 </resources>

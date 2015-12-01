@@ -18,14 +18,11 @@
   <string name="allUnreadFeeds">Tous les articles non lus</string>
   <string name="starredFeeds">Articles favoris</string>
   <string name="title_activity_new_feed">Ajouter un flux</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Rafraîchir</string>
   <string name="menu_About_Changelog">À propos / Journal des modifications</string>
   <string name="menu_markAllAsRead">Marquer tous comme lus</string>
   <string name="menu_StartImageCaching">Télécharger les images</string>
   <string name="menu_downloadMoreItems">+ d\'articles</string>
-  <!--Import Accounts-->
-  <string name="import_account">Importer un compte</string>
   <!--Action Bar Items-->
   <string name="action_starred">Favori</string>
   <string name="action_read">Lu</string>
@@ -46,6 +43,8 @@
     <item quantity="one">%d nouvel article non lu</item>
     <item quantity="other">%d nouveaux articles non lus</item>
   </plurals>
+  <!--Add new feed-->
+  <string name="action_add_feed">Ajouter un flux</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Télécharger l\'Image</string>
   <string name="action_img_sharelink">Partager le Lien vers l\'Image</string>
@@ -65,11 +64,12 @@
   <string name="pref_title_password">Mot de passe</string>
   <string name="pref_title_owncloudRootPath">adresse racine d\'ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">S\'identifier</string>
   <string name="login_progress_signing_in">Connexion en cours…</string>
   <string name="error_field_required">Ce champs est requis</string>
   <string name="error_invalid_url">Cette URL est incorrecte</string>
+  <!--Import Accounts-->
+  <string name="import_account">Importer un compte</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="one">%d ancien article téléchargé</item>
@@ -94,24 +94,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Vider le cache</string>
   <string name="dialog_clearing_cache_please_wait">Purge du cache... Veuillez patienter.</string>
   <string name="reset_cache_unsaved_changes">Certaines modifications ne sont pas synchronisées. Voulez-vous tout de même réinitialiser le cache ?</string>
   <string name="warning">Attention</string>
   <string name="pref_title_AutoSyncOnStart">Synchro. au démarrage</string>
   <string name="pref_title_ShowOnlyUnread">Masquer les articles lus</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Désactiver la vérification du nom d\'hôte</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviguer avec les boutons de volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu lors du défilement</string>
   <string name="pref_title_OpenInBrowserDirectly">Afficher les articles dans un navigateur externe</string>
-  <string name="pref_title_notification_new_articles_available">Afficher une notification lorsque de nouveaux articles sont disponibles</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accepter les certificats non sûrs ?</string>
   <string name="mtm_decision_always">Toujours</string>
@@ -156,6 +148,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Notifications</string>
+  <string name="pref_title_notification_new_articles_available">Afficher une notification lorsque de nouveaux articles sont disponibles</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Erreur</string>
   <string name="login_dialog_text_something_went_wrong">Quelque chose s\'est mal passé :(</string>
@@ -164,7 +159,6 @@
   <string name="login_dialog_text_security_warning">Vous n\'utilisez pas HTTPS. Une personne malveillante pourrait intercepter votre trafic et obtenir des données sensibles (ex. votre mot de passe). Il est fortement recommandé d\'utiliser HTTPS !</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Données &amp; synchronisation</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Vider le cache</string>
   <string name="pref_title_CacheImagesOffline">Mise en cache hors-ligne des images</string>
   <string name="pref_title_Max_Cache_Size">Taille maximale du cache</string>
@@ -216,30 +210,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Notifications</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_play">lire</string>
   <string name="content_desc_pause">pause</string>

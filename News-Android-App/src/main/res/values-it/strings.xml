@@ -18,14 +18,11 @@
   <string name="allUnreadFeeds">Tutti gli elementi non letti</string>
   <string name="starredFeeds">Elementi preferiti</string>
   <string name="title_activity_new_feed">Aggiungi una nuova fonte</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Aggiorna</string>
   <string name="menu_About_Changelog">Informazioni / Novità</string>
   <string name="menu_markAllAsRead">Marca tutti come letti</string>
   <string name="menu_StartImageCaching">Scarica le immagini</string>
   <string name="menu_downloadMoreItems">Scarica altri elementi</string>
-  <!--Import Accounts-->
-  <string name="import_account">Importa account</string>
   <!--Action Bar Items-->
   <string name="action_starred">Preferiti</string>
   <string name="action_read">Lettura</string>
@@ -46,6 +43,8 @@
     <item quantity="one">%d nuovo elemento non letto disponibile</item>
     <item quantity="other">%d nuovi elementi non letti disponibili</item>
   </plurals>
+  <!--Add new feed-->
+  <string name="action_add_feed">Aggiungi flusso</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Scarica immagine</string>
   <string name="action_img_sharelink">Condividi collegamento immagine</string>
@@ -65,11 +64,12 @@
   <string name="pref_title_password">Password</string>
   <string name="pref_title_owncloudRootPath">Indirizzo radice di ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Accedi</string>
   <string name="login_progress_signing_in">Accesso in corso...</string>
   <string name="error_field_required">Questo campo è obbligatorio</string>
   <string name="error_invalid_url">Questo URL non è corretto</string>
+  <!--Import Accounts-->
+  <string name="import_account">Importa account</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="one">Scaricato %d vecchio elemento</item>
@@ -94,24 +94,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Svuotamento cache</string>
   <string name="dialog_clearing_cache_please_wait">Svuotamento cache... Attendi.</string>
   <string name="reset_cache_unsaved_changes">Ci sono modifiche non sincronizzate. Vuoi ripristinare comunque la cache?</string>
   <string name="warning">Avviso</string>
   <string name="pref_title_AutoSyncOnStart">Sincronizza all\'avvio</string>
   <string name="pref_title_ShowOnlyUnread">Mostra solo gli articoli non letti</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Disabilita la verifica del nome host</string>
   <string name="pref_title_NavigateWithVolumeButtons">Naviga con i pulsanti del volume</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Segna come letto durante lo scorrimento</string>
   <string name="pref_title_OpenInBrowserDirectly">Usa un browser esterno per visualizzare gli articoli</string>
-  <string name="pref_title_notification_new_articles_available">Mostra una notifica quando nuovi articoli sono disponibili</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Accettare un certificato sconosciuto?</string>
   <string name="mtm_decision_always">Sempre</string>
@@ -156,6 +148,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Notifiche</string>
+  <string name="pref_title_notification_new_articles_available">Mostra una notifica quando nuovi articoli sono disponibili</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Errore</string>
   <string name="login_dialog_text_something_went_wrong">Qualcosa non ha funzionato :(</string>
@@ -164,7 +159,6 @@
   <string name="login_dialog_text_security_warning">Non stai usando https. Un malintenzionato potrebbe intercettare il tuo traffico e ottenere accesso a dati sensibili (ad esempio la tua password). Per questo motivo è vivamente consigliato l\'utilizzo di https!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Dati e sincronizzazione</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Svuota la cache</string>
   <string name="pref_title_CacheImagesOffline">Memorizza le immagini nella cache </string>
   <string name="pref_title_Max_Cache_Size">Dimensione massima della cache</string>
@@ -222,33 +216,8 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Notifiche</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_none">@null</string>
-  <string name="content_desc_feed_icon">icona della fonte</string>
   <string name="content_desc_play">riproduci</string>
   <string name="content_desc_pause">pausa</string>
   <string name="content_desc_rewind">riavvolgi</string>

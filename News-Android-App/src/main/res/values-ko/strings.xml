@@ -16,14 +16,11 @@
   <string name="allUnreadFeeds">모든 읽지 않은 항목</string>
   <string name="starredFeeds">별표한 항목</string>
   <string name="title_activity_new_feed">새 피드 추가</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">새로 고침</string>
   <string name="menu_About_Changelog">정보 / 변경 사항</string>
   <string name="menu_markAllAsRead">모두 읽은 것으로 표시</string>
   <string name="menu_StartImageCaching">사진 다운로드</string>
   <string name="menu_downloadMoreItems">더 많은 항목 다운로드</string>
-  <!--Import Accounts-->
-  <string name="import_account">계정 가져오기</string>
   <!--Action Bar Items-->
   <string name="action_starred">별표</string>
   <string name="action_read">읽기</string>
@@ -42,6 +39,8 @@
   <plurals name="notification_new_items_text">
     <item quantity="other">새 항목이 %d개 있습니다</item>
   </plurals>
+  <!--Add new feed-->
+  <string name="action_add_feed">피드 추가</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">클립보드로 복사됨</string>
   <string name="error_download_failed">다운로드 실패</string>
@@ -50,11 +49,12 @@
   <string name="pref_title_password">암호</string>
   <string name="pref_title_owncloudRootPath">ownCloud 루트 주소</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">로그인</string>
   <string name="login_progress_signing_in">로그인 중...</string>
   <string name="error_field_required">이 항목은 필수 사항입니다</string>
   <string name="error_invalid_url">URL이 잘못되었습니다</string>
+  <!--Import Accounts-->
+  <string name="import_account">계정 가져오기</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="other">오래된 항목 %d개 다운로드됨</item>
@@ -74,24 +74,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">캐시 비우는 중</string>
   <string name="dialog_clearing_cache_please_wait">캐시를 비우고 있습니다... 잠시 기다려 주십시오.</string>
   <string name="reset_cache_unsaved_changes">동기화되지 않은 변경 사항이 있습니다. 캐시를 비우시겠습니까?</string>
   <string name="warning">경고</string>
   <string name="pref_title_AutoSyncOnStart">시작할 때 동기화</string>
   <string name="pref_title_ShowOnlyUnread">읽지 않은 항목만 보기</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">호스트 이름 확인 사용 안함</string>
   <string name="pref_title_NavigateWithVolumeButtons">음량 단추로 탐색</string>
   <string name="pref_title_MarkAsReadWhileScrolling">스크롤 중 읽은 것으로 표시</string>
   <string name="pref_title_OpenInBrowserDirectly">외부 브라우저로 글 읽기</string>
-  <string name="pref_title_notification_new_articles_available">새 글이 있을 때 알림 표시</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">알 수 없는 인증서를 허용하시겠습니까?</string>
   <string name="mtm_decision_always">항상</string>
@@ -134,6 +126,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">알림</string>
+  <string name="pref_title_notification_new_articles_available">새 글이 있을 때 알림 표시</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">오류</string>
   <string name="login_dialog_text_something_went_wrong">무언가 잘못되었습니다 :(</string>
@@ -142,7 +137,6 @@
   <string name="login_dialog_text_security_warning">HTTPS를 사용하고 있지 않습니다. 공격자가 트래픽을 감청하여 암호와 같은 민감한 데이터에 접근할 수 있습니다. HTTPS 사용을 적극 권장합니다!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">데이터 및 동기화</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">캐시 비우기</string>
   <string name="pref_title_CacheImagesOffline">오프라인 사용을 위하여 사진 저장</string>
   <string name="pref_title_Max_Cache_Size">최대 캐시 크기</string>
@@ -200,30 +194,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">알림</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">삭제</string>
 </resources>

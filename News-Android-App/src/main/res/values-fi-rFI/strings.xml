@@ -16,14 +16,11 @@
   <string name="allUnreadFeeds">Kaikki lukemattomat kohteet</string>
   <string name="starredFeeds">Tähdellä varustetut</string>
   <string name="title_activity_new_feed">Lisää uusi syöte</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Päivitä</string>
   <string name="menu_About_Changelog">Tietoja / muutosloki</string>
   <string name="menu_markAllAsRead">Merkitse kaikki luetuiksi</string>
   <string name="menu_StartImageCaching">Lataa kuvat</string>
   <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
-  <!--Import Accounts-->
-  <string name="import_account">Tuo tili</string>
   <!--Action Bar Items-->
   <string name="action_starred">Varustettu tähdellä</string>
   <string name="action_read">Luku</string>
@@ -44,6 +41,7 @@
     <item quantity="one">%d uusi lukematon kohde saatavilla</item>
     <item quantity="other">%d uutta lukematonta kohdetta saatavilla</item>
   </plurals>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Lataa kuva</string>
   <string name="action_img_sharelink">Jaa kuvan linkki</string>
@@ -63,11 +61,12 @@
   <string name="pref_title_password">Salasana</string>
   <string name="pref_title_owncloudRootPath">ownCloudin juuriosoite</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Kirjaudu</string>
   <string name="login_progress_signing_in">Kirjaudutaan…</string>
   <string name="error_field_required">Tämä kenttä vaaditaan</string>
   <string name="error_invalid_url">Osoite on virheellinen</string>
+  <!--Import Accounts-->
+  <string name="import_account">Tuo tili</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="one">Ladattiin %d vanha kohde</item>
@@ -92,23 +91,15 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
   <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
   <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
   <string name="warning">Varoitus</string>
   <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
   <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_NavigateWithVolumeButtons">Liiku äänipainikkeilla</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
   <string name="pref_title_OpenInBrowserDirectly">Käytä erillistä selainta artikkelien avaamiseen</string>
-  <string name="pref_title_notification_new_articles_available">Näytä ilmoitus uusien kohteiden ollessa saatavilla</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
   <string name="mtm_decision_always">Aina</string>
@@ -147,6 +138,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Ilmoitukset</string>
+  <string name="pref_title_notification_new_articles_available">Näytä ilmoitus uusien kohteiden ollessa saatavilla</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Virhe</string>
   <string name="login_dialog_text_something_went_wrong">Jokin meni pieleen :(</string>
@@ -154,7 +148,6 @@
   <string name="login_dialog_text_security_warning">Yhteytesi ei ole salattu. Hyökkääjä voi siepata yhteyden ja saada tärkeää tietoa (esim. salasanasi). Suosittelemme ehdottomasti käyttämään https-yhteyttä!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; synkronointi</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
   <string name="pref_title_CacheImagesOffline">Varastoi kuvat yhteydetöntä tilaa varten</string>
   <string name="pref_title_Max_Cache_Size">Välimuistin enimmäiskoko</string>
@@ -212,32 +205,7 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Ilmoitukset</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
-  <string name="content_desc_feed_icon">syötekuvake</string>
   <string name="content_desc_play">toistsa</string>
   <string name="content_desc_pause">keskeytä</string>
   <string name="content_desc_mark_as_read">merkitse luetuksi</string>

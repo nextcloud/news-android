@@ -12,14 +12,11 @@
   <string name="allUnreadFeeds">Bütün oxunmayan hissələr</string>
   <string name="starredFeeds">Ulduzlanmış elementlər</string>
   <string name="title_activity_new_feed">Yeni kanalı əlavə et</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Yenilə</string>
   <string name="menu_About_Changelog">Haqqında / Dəyişikliklər</string>
   <string name="menu_markAllAsRead">Hamısını oxunulmuş kimi qeydə al</string>
   <string name="menu_StartImageCaching">Şəkilləri endir</string>
   <string name="menu_downloadMoreItems">Çoxlu hissələri endir</string>
-  <!--Import Accounts-->
-  <string name="import_account">Hesabi idxal et</string>
   <!--Action Bar Items-->
   <string name="action_starred">Ulduzlu</string>
   <string name="action_read">Oxu</string>
@@ -32,6 +29,7 @@
   <string name="action_sync_settings">Sync quraşdırmaları</string>
   <string name="action_add_new_feed">Yeni kanalı əlavə et</string>
   <string name="action_textToSpeech">Oxuyun</string>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Mübadilə buferinə nüsxələndi</string>
   <string name="error_download_failed">Endirim olmadı</string>
@@ -39,11 +37,12 @@
   <string name="pref_title_username">İstifadəçi adı</string>
   <string name="pref_title_password">Şifrə</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Daxil ol</string>
   <string name="login_progress_signing_in">Daxil olunur...</string>
   <string name="error_field_required">Bu sütun tələb edilir</string>
   <string name="error_invalid_url">Bu URL yalnışdır</string>
+  <!--Import Accounts-->
+  <string name="import_account">Hesabi idxal et</string>
   <!--Toast Messages-->
   <string name="toast_no_more_downloads_available">Heç bir əlavə mənbələr yoxdur</string>
   <!--Strings related to Settings-->
@@ -59,22 +58,14 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Keş təmizlənir</string>
   <string name="reset_cache_unsaved_changes">Orda sinxronizasiya edilməmiş dəyişikliklər var. Siz keşi istənilən halda sifirlamaq isteəyirsiniz?</string>
   <string name="warning">Xəbərdarlıq</string>
   <string name="pref_title_AutoSyncOnStart">İşə düşəndə sinxronizasiya elə</string>
   <string name="pref_title_ShowOnlyUnread">Yalnız oxunmamış məqalələri göstər</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Host adının yoxlanışını söndür</string>
   <string name="pref_title_NavigateWithVolumeButtons">Təyinatını səs düymələri ilə et</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Ötürüldükdə, oxunulmuş kimi qeydə al</string>
-  <string name="pref_title_notification_new_articles_available">Yeni məqalə olduqda notifikasiyanı göstər</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Tanınmayan sertifikat qəbul edilsin? </string>
   <string name="mtm_decision_always">Həmişə</string>
@@ -94,6 +85,9 @@
     <item>0</item>
     <item>1</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Xəbərdarlıqlar</string>
+  <string name="pref_title_notification_new_articles_available">Yeni məqalə olduqda notifikasiyanı göstər</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Səhv</string>
   <string name="login_dialog_text_something_went_wrong">Nə isə düzgün getmədi :(</string>
@@ -102,7 +96,6 @@
   <string name="login_dialog_text_security_warning">Siz HTTPS istifadə etmirsiniz. Hücumçu sizin gizli məlumatlarınızı ələ keçirə bilər(misal üçün şifrəniz). Bunun üçündə mütləq şəkildə HTTPS-dən istifadə etməniz məsləhət görülür.</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Data &amp; sync</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Keşi təmizlə</string>
   <string name="pref_title_CacheImagesOffline">Keş şəkilləri offlinedır</string>
   <string name="pref_title_Max_Cache_Size">Maksimal keş həcmi</string>
@@ -160,30 +153,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Xəbərdarlıqlar</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">sil</string>
 </resources>

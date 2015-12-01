@@ -8,6 +8,7 @@
   <string name="toast_GettingMoreItems">Началось скачивание элементов... Пожалуйста подождите.</string>
   <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
   <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
+  <string name="current_version">Вы используете версию %s</string>
   <string name="widget_header">Новости ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">доступен %d новый элемент</item>
@@ -19,14 +20,11 @@
   <string name="allUnreadFeeds">Все непрочитанные</string>
   <string name="starredFeeds">Избранные элементы</string>
   <string name="title_activity_new_feed">Добавить новую ленту</string>
-  <!--<string name="non_sorted_articles">Nicht zugeordnete Artikel</string>-->
   <string name="menu_update">Обновить</string>
   <string name="menu_About_Changelog">О программе / Изменения</string>
   <string name="menu_markAllAsRead">Пометить всё как прочитанное</string>
   <string name="menu_StartImageCaching">Скачать изображения</string>
   <string name="menu_downloadMoreItems">Скачать ещё</string>
-  <!--Import Accounts-->
-  <string name="import_account">Импортировать учётную запись</string>
   <!--Action Bar Items-->
   <string name="action_starred">Избранное</string>
   <string name="action_read">Читать</string>
@@ -51,7 +49,9 @@
     <item quantity="many">доступно %d непрочинатнных элементов</item>
     <item quantity="other">доступно %d непрочинатнных элементов</item>
   </plurals>
+  <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Скачать изображение</string>
   <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>
   <string name="error_download_failed">Скачивание не удалось</string>
   <!--Strings related to login-->
@@ -59,11 +59,12 @@
   <string name="pref_title_password">Пароль</string>
   <string name="pref_title_owncloudRootPath">root адрес ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <!--<string name="pref_default_username">admin</string>-->
   <string name="action_sign_in_short">Войти</string>
   <string name="login_progress_signing_in">Авторизация...</string>
   <string name="error_field_required">Это поле обязательно для заполнения</string>
   <string name="error_invalid_url">Неверный url адрес</string>
+  <!--Import Accounts-->
+  <string name="import_account">Импортировать учётную запись</string>
   <!--Toast Messages-->
   <plurals name="toast_downloaded_x_items">
     <item quantity="one">Скачан %d старый элемент</item>
@@ -86,24 +87,16 @@
     <item>1</item>
     <item>0</item>
   </string-array>
-  <!--<string-array name="pref_general_sort_order_values">
-        <item>desc</item>
-        <item>asc</item>
-	</string-array>-->
-  <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message history</string>-->
   <string name="dialog_clearing_cache">Очистить кеш.</string>
   <string name="dialog_clearing_cache_please_wait">Очистка кеша... Пожалуйста подождите.</string>
   <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
   <string name="warning">Предупреждение</string>
   <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>
   <string name="pref_title_ShowOnlyUnread">Показать только непрочитанные статьи</string>
-  <!--<string name="pref_title_AllowAllSSLCertificates">Allow all SSL Certificates</string>-->
   <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
   <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
   <string name="pref_title_OpenInBrowserDirectly">Используйте внешний браузер для просмотра записей</string>
-  <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
   <string name="mtm_decision_always">Всегда</string>
@@ -148,6 +141,9 @@
     <item>3</item>
     <item>4</item>
   </string-array>
+  <!--Settings for Notifications-->
+  <string name="pref_header_notifications">Уведомления</string>
+  <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">Ошибка</string>
   <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
@@ -156,7 +152,6 @@
   <string name="login_dialog_text_security_warning">Вы не используете HTTPS. Злоумышленники могут перехватить трафик и получить доступ к некоторым конфиденциальным данным (например, пароль). Мы настоятельно рекомендуем использовать HTTPS!</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">Данные и синхронизация</string>
-  <!--<string name="pref_title_data_sync_max_items">Max number of items to sync</string>-->
   <string name="pref_title_clearCache">Очистить кэш</string>
   <string name="pref_title_CacheImagesOffline">Кэшировать изображения вне сети</string>
   <string name="pref_title_Max_Cache_Size">Максимальный размер кэша</string>
@@ -214,30 +209,6 @@
     <item>720</item>
     <item>1440</item>
   </string-array>
-  <!--<string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>-->
-  <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
-  <string name="pref_header_notifications">Уведомления</string>
-  <!--<string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_vibrate">Vibrate</string>-->
   <!--content description for images and icons-->
   <string name="content_desc_delete">удалить</string>
 </resources>
