@@ -5,6 +5,7 @@
   <string name="action_save">Späicheren</string>
   <string name="action_settings">Astellungen</string>
   <!--Add new feed-->
+  <string name="action_add_feed">Feed bäisetzen</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">An d\'Tëschenoflag kopéiert</string>
   <string name="error_download_failed">Erofluede feelgeschloen</string>

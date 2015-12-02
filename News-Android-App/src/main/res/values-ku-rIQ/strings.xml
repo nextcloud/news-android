@@ -8,6 +8,7 @@
   <string name="action_settings">ده‌ستكاری</string>
   <string name="action_add_new_feed">زیادکردنی خوردێکی نوێ</string>
   <!--Add new feed-->
+  <string name="action_add_feed">زیادکردنی خورد</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <!--Strings related to login-->
   <string name="pref_title_username">ناوی به‌کارهێنه‌ر</string>

@@ -44,6 +44,8 @@
     <item quantity="other">Ka të gatshëm %d zëra të palexuar</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">URL Prurjeje</string>
+  <string name="action_add_feed">Shtoni prurje</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Shkarko Figurën</string>
   <string name="action_img_sharelink">Ndani Lidhje Figure</string>
@@ -110,6 +112,7 @@
   <string name="mtm_notification">Verifikim Dëshmish</string>
   <!--Podcast-->
   <string name="no_podcast_selected">S\’u përzgjodh podcast</string>
+  <string name="no_chapters_available">S’ka kapituj gati</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Ekran</string>
   <string name="pref_title_app_theme">Temë aplikacioni</string>

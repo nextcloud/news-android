@@ -44,7 +44,8 @@
     <item quantity="other">%d novos itens não lidos disponíveis</item>
   </plurals>
   <!--Add new feed-->
-  <string name="action_add_feed">Adicionar feed</string>
+  <string name="hint_feed_url">Alimentar URL</string>
+  <string name="action_add_feed">Adicionar alimentador</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Baixar Imagem</string>
   <string name="action_img_sharelink">Link de Compartilhamento de Imagem</string>
@@ -107,6 +108,7 @@
   <string name="mtm_notification">Verificação de Certificado</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Nenhum podcast selecionado</string>
+  <string name="no_chapters_available">Nenhum capítulo disponível</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Exibir</string>
   <string name="pref_title_app_theme">Aplicativo tema</string>
@@ -213,7 +215,7 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
-  <string name="content_desc_none">@null</string>
+  <string name="content_desc_none">@nulo</string>
   <string name="content_desc_play">executar</string>
   <string name="content_desc_pause">pausa</string>
   <string name="content_desc_rewind">recarregar</string>

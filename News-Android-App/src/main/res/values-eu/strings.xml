@@ -30,6 +30,7 @@
   <string name="action_add_new_feed">Gehitu iturburu  berria</string>
   <string name="action_textToSpeech">Iraukurri ozenki</string>
   <!--Add new feed-->
+  <string name="action_add_feed">Gehitu iturburua</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Arbelera kopiatua</string>
   <string name="error_download_failed">Deskargak huts egin du</string>

@@ -47,6 +47,7 @@
     <item quantity="other">%d nových nepřečtených položek k dispozici</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">URL kanálu</string>
   <string name="action_add_feed">Přidat kanál</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Stáhnout obrázek</string>
@@ -116,6 +117,7 @@
   <string name="mtm_notification">Ověření certifikátu</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Nebyl vybrán žádný podcast</string>
+  <string name="no_chapters_available">Žádné dostupné kapitoly</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Zobrazení</string>
   <string name="pref_title_app_theme">Vzhled aplikace</string>

@@ -8,6 +8,7 @@
   <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε.</string>
   <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
   <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
+  <string name="current_version">Χρησιμοποιείτε την έκδοση %s</string>
   <string name="widget_header">Νέα ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d νέο αντικείμενο διαθέσιμο</item>
@@ -43,7 +44,10 @@
     <item quantity="other">%d νέα αδιάβαστα αντικείμενα διαθέσιμα</item>
   </plurals>
   <!--Add new feed-->
+  <string name="action_add_feed">Προσθήκη ροής</string>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_link_share">Διαμοιρασμός συνδέσμου</string>
+  <string name="action_link_copy">Αντιγραφή συνδέσμου</string>
   <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="error_download_failed">Η λήψη απέτυχε</string>
   <!--Strings related to login-->
@@ -194,5 +198,7 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_play">αναπαραγωγή</string>
+  <string name="content_desc_pause">παύση</string>
   <string name="content_desc_delete">διαγραφή</string>
 </resources>

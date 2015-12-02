@@ -21,6 +21,7 @@
   <string name="action_sync_settings">Sinkroniga agordo</string>
   <string name="action_add_new_feed">Aldoni novan fluon</string>
   <!--Add new feed-->
+  <string name="action_add_feed">Aldoni fluon</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Kopiita en la tondejon</string>
   <string name="error_download_failed">Elŝuto malsukcesis</string>

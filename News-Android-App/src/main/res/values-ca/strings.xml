@@ -30,6 +30,7 @@
   <string name="action_add_new_feed">Afegeix una font nova</string>
   <string name="action_textToSpeech">De lectura</string>
   <!--Add new feed-->
+  <string name="action_add_feed">Afegeix font</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
   <string name="error_download_failed">La baixada ha fallat</string>

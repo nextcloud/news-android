@@ -50,6 +50,7 @@
     <item quantity="other">доступно %d непрочинатнных элементов</item>
   </plurals>
   <!--Add new feed-->
+  <string name="action_add_feed">Добавить ленту</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Скачать изображение</string>
   <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>

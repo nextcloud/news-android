@@ -30,6 +30,7 @@
   <string name="action_add_new_feed">Pridať nový kanál</string>
   <string name="action_textToSpeech">Prečítať</string>
   <!--Add new feed-->
+  <string name="action_add_feed">Pridať kanál</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
   <string name="error_download_failed">Stiahnutie zlyhalo</string>

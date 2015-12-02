@@ -44,6 +44,7 @@
     <item quantity="other">%d nuovi elementi non letti disponibili</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">URL fonte</string>
   <string name="action_add_feed">Aggiungi flusso</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Scarica immagine</string>
@@ -111,6 +112,7 @@
   <string name="mtm_notification">Verifica certificato</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Nessun podcast selezionato</string>
+  <string name="no_chapters_available">Nessun capitolo disponibile</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Schermo</string>
   <string name="pref_title_app_theme">Tema applicazione</string>

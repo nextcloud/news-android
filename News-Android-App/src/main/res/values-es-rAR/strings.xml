@@ -28,6 +28,7 @@
   <string name="action_sync_settings">Configuración de sincro. </string>
   <string name="action_add_new_feed">Agregar nueva fuente</string>
   <!--Add new feed-->
+  <string name="action_add_feed">Agregar fuente</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
   <string name="error_download_failed">Error al descargar</string>

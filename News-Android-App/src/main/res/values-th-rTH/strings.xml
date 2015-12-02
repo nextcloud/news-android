@@ -41,6 +41,7 @@
     <item quantity="other">มี %d รายการใหม่ที่ยังไม่ได้อ่าน</item>
   </plurals>
   <!--Add new feed-->
+  <string name="action_add_feed">เพิ่ม feed</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">ดาวน์โหลดรูปภาพ</string>
   <string name="action_img_sharelink">แชร์ลิงค์รูปภาพ</string>

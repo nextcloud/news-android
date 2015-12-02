@@ -43,6 +43,7 @@
     <item quantity="other">%d neue ungelesene Einträge verfügbar</item>
   </plurals>
   <!--Add new feed-->
+  <string name="action_add_feed">Feed hinzufügen</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">In die Zwischenablage kopiert</string>
   <string name="error_download_failed">Herunterladen fehlgeschlagen</string>

@@ -43,6 +43,7 @@
     <item quantity="other">Dispón de %d elementos novos sen ler</item>
   </plurals>
   <!--Add new feed-->
+  <string name="action_add_feed">Engadir fonte</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Copiado no portapapeis.</string>
   <string name="error_download_failed">Produciuse un fallo na descarga</string>
