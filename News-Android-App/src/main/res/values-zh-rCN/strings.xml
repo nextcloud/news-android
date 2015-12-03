@@ -212,5 +212,8 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_pause">暂停</string>
+  <string name="content_desc_mark_as_read">标记为已读</string>
+  <string name="content_desc_mark_as_unread">标记为未读</string>
   <string name="content_desc_delete">删除</string>
 </resources>

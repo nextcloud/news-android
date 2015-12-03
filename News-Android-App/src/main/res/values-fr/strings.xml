@@ -44,6 +44,7 @@
     <item quantity="other">%d nouveaux articles non lus</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">Adresse du flux</string>
   <string name="action_add_feed">Ajouter un flux</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Télécharger l\'Image</string>
@@ -111,6 +112,7 @@
   <string name="mtm_notification">Vérification du certificat</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Aucun podcast sélectionné</string>
+  <string name="no_chapters_available">Aucun chapitre disponible</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Affichage</string>
   <string name="pref_title_app_theme">Thème de l\'app</string>
@@ -213,6 +215,7 @@
   <!--content description for images and icons-->
   <string name="content_desc_play">lire</string>
   <string name="content_desc_pause">pause</string>
+  <string name="content_desc_collapse">replier</string>
   <string name="content_desc_mark_as_read">marqué comme lu</string>
   <string name="content_desc_mark_as_unread">marqué comme non-lu</string>
   <string name="content_desc_add_to_favorites">ajouter aux favoris</string>

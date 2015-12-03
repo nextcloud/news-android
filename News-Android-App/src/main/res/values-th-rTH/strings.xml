@@ -41,6 +41,7 @@
     <item quantity="other">มี %d รายการใหม่ที่ยังไม่ได้อ่าน</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">ฟีด URL</string>
   <string name="action_add_feed">เพิ่ม feed</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">ดาวน์โหลดรูปภาพ</string>
@@ -50,6 +51,7 @@
   <string name="action_link_share">แชร์ลิงค์</string>
   <string name="action_link_open">เปิดลิงค์ในบราวเซอร์</string>
   <string name="action_link_copy">คัดลอกลิงค์</string>
+  <string name="toast_img_download_wait">กำลังดาวน์โหลด... โปรดรอสักครู่</string>
   <string name="toast_img_saved">บันทึกรูปภาพแล้ว</string>
   <string name="toast_img_notwriteable">บันทึกรูปภาพล้มเหลว</string>
   <string name="toast_copied_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
@@ -71,6 +73,9 @@
     <item quantity="other">ดาวน์โหลด %d รายการเก่า</item>
   </plurals>
   <string name="toast_no_more_downloads_available">ไม่มีรายการที่ใช้ได้</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="other">%d ที่ถูกเรียก...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">ตั้งค่า</string>
   <string name="cache_is_cleared">แคชจะถูกล้างออก!</string>
@@ -102,6 +107,7 @@
   <string name="mtm_notification">การตรวจสอบใบรับรอง</string>
   <!--Podcast-->
   <string name="no_podcast_selected">ไม่ได้เลือกพอดคาสต์</string>
+  <string name="no_chapters_available">ไม่มีเรื่องที่สามารถใช้ได้</string>
   <!--Settings for Display-->
   <string name="pref_header_display">แสดงผล</string>
   <string name="pref_title_app_theme">ธีมแอพฯ</string>
@@ -208,5 +214,19 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_none">@null</string>
+  <string name="content_desc_play">เล่น</string>
+  <string name="content_desc_pause">หยุดชั่วคราว</string>
+  <string name="content_desc_rewind">กรอกลับ</string>
+  <string name="content_desc_forward">เลื่อนไปข้างหน้า</string>
+  <string name="content_desc_expand">ขยาย</string>
+  <string name="content_desc_collapse">ย่อ</string>
+  <string name="content_desc_mark_as_read">ทำเครื่องหมายว่าอ่านแล้ว</string>
+  <string name="content_desc_mark_as_unread">ทำเครื่องหมายว่ายังไม่ได้อ่าน</string>
+  <string name="content_desc_tap_to_refresh">แตะเพื่อรีเฟรช</string>
+  <string name="content_desc_add_to_favorites">เพิ่มในรายการโปรด</string>
+  <string name="content_desc_remove_from_favorites">ลบออกจากรายการโปรด</string>
+  <string name="content_desc_show_password">แสดงรหัสผ่าน</string>
   <string name="content_desc_delete">ลบ</string>
+  <string name="content_desc_download">ดาวน์โหลด</string>
 </resources>
