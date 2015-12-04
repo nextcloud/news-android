@@ -2,12 +2,13 @@
 <resources>
   <string name="auto_sync_string">Autosincronizar</string>
   <string name="app_name">Lector de noticias ownCloud</string>
-  <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronización</string>
+  <string name="title_activity_sync_interval_selector">Sincronizar intervalo Selector</string>
   <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
   <string name="empty_view_content">No hay artículos aquí</string>
   <string name="toast_GettingMoreItems">Inició la descarga de más elementos... Por favor espere.</string>
   <string name="no_wifi_available">No hay una conexión WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Desea descargar las imágenes sin conexión WiFi</string>
+  <string name="current_version">Está utilizando la versión %s</string>
   <string name="widget_header">Noticias de ownCloud</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d nuevo elemento disponible</item>
@@ -31,7 +32,7 @@
   <string name="action_login">Ajustes del Servidor</string>
   <string name="action_save">Guardar</string>
   <string name="action_settings">Ajustes</string>
-  <string name="action_sync_settings">Ajustes de sincronización</string>
+  <string name="action_sync_settings">Ajustes de Sincronización</string>
   <string name="action_add_new_feed">Añadir nueva fuente</string>
   <string name="action_textToSpeech">Recopilar información</string>
   <plurals name="notification_new_items_ticker">
@@ -43,10 +44,22 @@
     <item quantity="other">%d elementos nuevos sin leer</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">URL para el canal</string>
   <string name="action_add_feed">Añadir fuente</string>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Descargar imagen</string>
+  <string name="action_img_sharelink">Compartir enlace de imagen</string>
+  <string name="action_img_open">Abrir imagen en el navegador de internet</string>
+  <string name="action_img_copylink">Copiar imagen enlace</string>
+  <string name="action_link_share">Compartir enlace</string>
+  <string name="action_link_open">Abrir enlace en el navegador de internet</string>
+  <string name="action_link_copy">Copiar enlace</string>
+  <string name="toast_img_download_wait">Descargando... Por favor espera</string>
+  <string name="toast_img_saved">Imagen guardada</string>
+  <string name="toast_img_notwriteable">Error al escribir Imagen.</string>
   <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
   <string name="error_download_failed">Falló la descarga</string>
+  <string name="intent_title_share">Compartir vía</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>
@@ -64,6 +77,10 @@
     <item quantity="other">Descargó %d antiguos elementos</item>
   </plurals>
   <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Descabellada %d artículo hasta ahora</item>
+    <item quantity="other">Descabellada %d artículo hasta ahora</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Ajustes</string>
   <string name="cache_is_cleared">¡La caché está vacía!</string>
@@ -95,6 +112,7 @@
   <string name="mtm_notification">Verificación del certificado</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Ningún podcast seleccionado</string>
+  <string name="no_chapters_available">No hay capítulos disponibles</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema de la aplicación</string>
@@ -201,5 +219,19 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_none">@null</string>
+  <string name="content_desc_play">reproducir</string>
+  <string name="content_desc_pause">pausar</string>
+  <string name="content_desc_rewind">rebobinar</string>
+  <string name="content_desc_forward">avance</string>
+  <string name="content_desc_expand">expandir</string>
+  <string name="content_desc_collapse">colapsar</string>
+  <string name="content_desc_mark_as_read">marcar como leído</string>
+  <string name="content_desc_mark_as_unread">marcar como no leído</string>
+  <string name="content_desc_tap_to_refresh">toque para refrescar</string>
+  <string name="content_desc_add_to_favorites">agregar a los favoritos</string>
+  <string name="content_desc_remove_from_favorites">eliminarlo de favoritos</string>
+  <string name="content_desc_show_password">mostrar contraseña</string>
   <string name="content_desc_delete">borrar</string>
+  <string name="content_desc_download">descargar</string>
 </resources>
