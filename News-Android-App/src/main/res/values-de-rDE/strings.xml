@@ -209,5 +209,14 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_forward">weiterleiten</string>
+  <string name="content_desc_expand">erweitern</string>
+  <string name="content_desc_mark_as_read">als gelesen markieren</string>
+  <string name="content_desc_mark_as_unread">als ungelesen markieren</string>
+  <string name="content_desc_tap_to_refresh">zum aktualisieren antippen</string>
+  <string name="content_desc_add_to_favorites">zu Favoriten hinzufügen</string>
+  <string name="content_desc_remove_from_favorites">von Favoriten entfernen</string>
+  <string name="content_desc_show_password">Passwort anzeigen</string>
   <string name="content_desc_delete">löschen</string>
+  <string name="content_desc_download">runterladen</string>
 </resources>
