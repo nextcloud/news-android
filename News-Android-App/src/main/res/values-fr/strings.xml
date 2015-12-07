@@ -215,9 +215,13 @@
   <!--content description for images and icons-->
   <string name="content_desc_play">lire</string>
   <string name="content_desc_pause">pause</string>
+  <string name="content_desc_rewind">rembobiner</string>
+  <string name="content_desc_forward">avancer</string>
+  <string name="content_desc_expand">étendre</string>
   <string name="content_desc_collapse">replier</string>
   <string name="content_desc_mark_as_read">marqué comme lu</string>
   <string name="content_desc_mark_as_unread">marqué comme non-lu</string>
+  <string name="content_desc_tap_to_refresh">Tapoter pour rafraîchir</string>
   <string name="content_desc_add_to_favorites">ajouter aux favoris</string>
   <string name="content_desc_remove_from_favorites">retirer des favoris</string>
   <string name="content_desc_show_password">montrer le mot de passe</string>
