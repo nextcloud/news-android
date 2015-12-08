@@ -213,6 +213,7 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_none">@null</string>
   <string name="content_desc_play">lire</string>
   <string name="content_desc_pause">pause</string>
   <string name="content_desc_rewind">rembobiner</string>
