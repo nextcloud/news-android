@@ -209,6 +209,7 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_none">@null</string>
   <string name="content_desc_play">再生</string>
   <string name="content_desc_pause">一時停止</string>
   <string name="content_desc_rewind">巻戻し</string>
