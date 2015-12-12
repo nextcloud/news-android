@@ -108,6 +108,7 @@
   <string name="mtm_notification">Zertifikatsnachweis</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Kein Podcast ausgewählt</string>
+  <string name="no_chapters_available">Es sind keine Kapitel verfügbar</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Anzeige</string>
   <string name="pref_title_app_theme">App-Thema</string>
@@ -214,6 +215,7 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_none">@null</string>
   <string name="content_desc_play">spielen</string>
   <string name="content_desc_pause">Pause</string>
   <string name="content_desc_rewind">rückwärts</string>
