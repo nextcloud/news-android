@@ -61,6 +61,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -372,6 +373,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			drawerToggle.onConfigurationChanged(newConfig);
 	}
 
+	public void switchToAllUnreadItems() {
+		StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+	}
 	public void reloadCountNumbersOfSlidingPaneAdapter() {
 		NewsReaderListFragment nlf = getSlidingListFragment();
 		if (nlf != null) {
@@ -379,7 +383,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 	}
 
-	private void updateCurrentRssView() {
+	public void updateCurrentRssView() {
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if (ndf != null) {
 			//ndf.reloadAdapterFromScratch();
@@ -615,8 +619,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			String iconurl = dbConn.getFeedById(idFeed).getFaviconUrl();
 			String feedurl = dbConn.getFeedById(idFeed).getLink();
 
-			System.out.println("***********************: " + dbConn.getFeedById(idFeed).getLink());
-			DialogFragment fragment = NewsReaderListDialogFragment.newInstance(titel, iconurl, feedurl);
+			NewsReaderListDialogFragment fragment = NewsReaderListDialogFragment.newInstance(idFeed, titel, iconurl, feedurl);
+			fragment.setActivity(this);
 			fragment.show(ft, "news_reader_list_dialog");
 		}
 	}
@@ -855,8 +859,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK){
-            UpdateListView();
+		if(resultCode == RESULT_OK){
+
+			UpdateListView();
 
 			getSlidingListFragment().ListViewNotifyDataSetChanged();
         }
@@ -884,11 +889,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
     }
 
-	private NewsReaderListFragment getSlidingListFragment() {
+	public /*private*/ NewsReaderListFragment getSlidingListFragment() {
 		return ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer));
 	}
 
-	private NewsReaderDetailFragment getNewsReaderDetailFragment() {
+	public NewsReaderDetailFragment getNewsReaderDetailFragment() {
 		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
 	}
 
@@ -897,18 +902,18 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	   	LoginDialogFragment dialog = LoginDialogFragment.getInstance();
 	   	dialog.setActivity(activity);
 	   	dialog.setListener(new LoginSuccessfullListener() {
-            @Override
-            public void LoginSucceeded() {
-                ((NewsReaderListActivity) activity).getSlidingListFragment().ReloadAdapter();
-                ((NewsReaderListActivity) activity).updateCurrentRssView();
-                ((NewsReaderListActivity) activity).startSync();
-            }
-        });
+			@Override
+			public void LoginSucceeded() {
+				((NewsReaderListActivity) activity).getSlidingListFragment().ReloadAdapter();
+				((NewsReaderListActivity) activity).updateCurrentRssView();
+				((NewsReaderListActivity) activity).startSync();
+			}
+		});
 	    dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
     }
 
 
-	private void UpdateListView()
+	public /*private*/ void UpdateListView()
     {
         getNewsReaderDetailFragment().notifyDataSetChangedOnAdapter();
     }
@@ -1041,7 +1046,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
     }
 
-    private class UserInfo implements Serializable {
+
+	private class UserInfo implements Serializable {
         private String mUserId;
         private String mDisplayName;
         private Bitmap mAvatar;

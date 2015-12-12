@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--  -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="6dp"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/title_wrapper">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/ic_menu_feedicon"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/ic_menu_title"
+            tools:text="Sample1"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/ic_menu_feedicon"
+            android:layout_toEndOf="@+id/ic_menu_feedicon"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:id="@+id/ic_menu_item_text"
+        tools:text="Sample1"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp"
+        android:layout_below="@+id/title_wrapper"
+        android:textStyle="normal"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="#c8ababab"
+        android:layout_below="@+id/ic_menu_item_text"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:divider="@null"
+        android:id="@+id/xx_menu_item_list"
+        android:layout_below="@+id/ic_menu_item_text">
+    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/remove_feed_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ic_menu_item_text"
+        android:layout_marginTop="13dp"
+        android:visibility="gone">
+        <TextView
+            android:layout_marginTop="13dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="6dp"
+            android:paddingLeft="6dp"
+            android:textSize="18sp"
+            android:id="@+id/textView"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="true"
+            android:text="Do you really want to remove this Feed?
+            This cannot be undone!"
+            android:layout_marginBottom="13dp"></TextView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp">
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:id="@+id/button_remove_cancel"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginLeft="0dp" />
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_height="wrap_content"
+                android:text="Remove"
+                android:id="@+id/button_remove_confirm"
+                android:layout_toEndOf="@id/button_remove_confirm"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginRight="0dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rename_feed_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ic_menu_item_text"
+        android:layout_marginTop="13dp"
+        android:visibility="gone">
+        <EditText
+            android:layout_marginTop="13dp"
+            android:paddingRight="6dp"
+            android:paddingLeft="6dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/renamefeed_feedname"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="true"
+            android:textSize="18sp"
+            android:text="Do you really want to remove this Feed? This cannot be undone!"
+            android:layout_marginBottom="13dp"
+            android:singleLine="true"
+            android:lines="1"
+            android:imeOptions="actionDone"
+            android:inputType="textVisiblePassword"></EditText>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/renamefeed_feedname"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp">
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:id="@+id/button_rename_cancel"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginLeft="0dp" />
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_height="wrap_content"
+                android:text="Rename"
+                android:id="@+id/button_rename_confirm"
+                android:layout_toEndOf="@id/button_rename_cancel"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginRight="0dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/progressView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ic_menu_item_text"
+        android:layout_marginTop="13dp"
+        android:visibility="gone">
+        <ProgressBar
+            android:id="@+id/alter_feedSource_progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -70,6 +70,11 @@
     <string name="intent_title_share">Share via</string>
 
 
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Remove Feed</string>
+    <string name="action_feed_rename">Rename Feed</string>
+
+    
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>
     <string name="pref_title_password">Password</string>

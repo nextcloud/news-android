@@ -218,16 +218,8 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		@Override
 		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 			if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
-
-				int groupPosition = ExpandableListView.getPackedPositionGroup(id);
 				int childPosition = ExpandableListView.getPackedPositionChild(id);
-
-				Long optional_id_folder = null;
-				FolderSubscribtionItem groupItem = (FolderSubscribtionItem) lvAdapter.getGroup(groupPosition);
-				if(groupItem != null)
-					optional_id_folder = groupItem.id_database;
-
-				mCallbacks.onChildItemLongClicked(childPosition, optional_id_folder);
+				mCallbacks.onChildItemLongClicked(childPosition, null);
 			}
 
 			return true;
