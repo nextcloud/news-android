@@ -2,7 +2,7 @@
 <resources>
   <string name="auto_sync_string">Autosincronizar</string>
   <string name="app_name">Lector de noticias ownCloud</string>
-  <string name="title_activity_sync_interval_selector">Sincronizar intervalo Selector</string>
+  <string name="title_activity_sync_interval_selector">Sincronizar Selector de Intervalo</string>
   <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
   <string name="empty_view_content">No hay artículos aquí</string>
   <string name="toast_GettingMoreItems">Inició la descarga de más elementos... Por favor espere.</string>
