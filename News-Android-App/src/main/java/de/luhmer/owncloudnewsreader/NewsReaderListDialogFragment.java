@@ -35,9 +35,6 @@ import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 
-/**
- * Created by benson on 27/11/15.
- */
 public class NewsReaderListDialogFragment extends DialogFragment{
 
     static NewsReaderListDialogFragment newInstance(long feedId, String dialogTitle, String iconurl, String feedurl) {
@@ -59,7 +56,6 @@ public class NewsReaderListDialogFragment extends DialogFragment{
     private String mDialogText;
     private String mDialogIconUrl;
 
-    private FavIconHandler favIconHandler;
     private RemoveFeedTask mRemoveFeedTask = null;
     private RenameFeedTask mRenameFeedTask = null;
     private LinkedHashMap<String, MenuAction> mMenuItems;
@@ -85,14 +81,14 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         mMenuItems.put(getString(R.string.action_feed_rename), new MenuAction() {
             @Override
             public void execute() {
-                attemptRenameFeed(mFeedId, mDialogTitle);
+                showRenameFeedView(mFeedId, mDialogTitle);
             }
         });
 
         mMenuItems.put(getString(R.string.action_feed_remove), new MenuAction() {
             @Override
             public void execute() {
-                attemptRemoveFeed(mFeedId);
+                showRemoveFeedView(mFeedId);
             }
         });
 
@@ -110,8 +106,8 @@ public class NewsReaderListDialogFragment extends DialogFragment{
 
         View v = inflater.inflate(R.layout.fragment_dialog_feedoptions, container, false);
 
-        TextView tvTitle = (TextView) v.findViewById(R.id.ic_menu_title);
-        TextView tvText = (TextView) v.findViewById(R.id.ic_menu_item_text);
+        TextView tvTitle = (TextView) v.findViewById(R.id.tv_menu_title);
+        TextView tvText = (TextView) v.findViewById(R.id.tv_menu_text);
         ImageView imgTitle = (ImageView) v.findViewById(R.id.ic_menu_feedicon);
 
         mRemoveFeedDialogView = (RelativeLayout) v.findViewById(R.id.remove_feed_dialog);
@@ -123,13 +119,16 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         mButtonRenameCancel = (Button) v.findViewById(R.id.button_rename_cancel);
         mFeedName = (EditText) v.findViewById(R.id.renamefeed_feedname);
 
+        FavIconHandler favIconHandler = new FavIconHandler(getContext());
+        favIconHandler.loadFavIconForFeed(mDialogIconUrl, imgTitle);
+
         tvTitle.setText(mDialogTitle);
         tvText.setText(mDialogText);
 
         tvText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mDialogText != null) {
+                if (mDialogText != null) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(mDialogText));
                     startActivity(i);
@@ -137,10 +136,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
             }
         });
 
-        favIconHandler = new FavIconHandler(getContext());
-        favIconHandler.loadFavIconForFeed(mDialogIconUrl, imgTitle);
-
-        mListView = (ListView) v.findViewById(R.id.xx_menu_item_list);
+        mListView = (ListView) v.findViewById(R.id.lv_menu_list);
         List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
@@ -158,8 +154,6 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                 mAction.execute();
             }
         });
-
-
         return v;
     }
 
@@ -183,8 +177,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
     }
 
 
-    private void attemptRenameFeed(final long feedId, final String feedName) {
-
+    private void showRenameFeedView(final long feedId, final String feedName) {
         mFeedName.setText(feedName);
         mButtonRenameConfirm.setEnabled(false);
 
@@ -192,7 +185,6 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         mRenameFeedDialogView.setVisibility(View.VISIBLE);
 
         mFeedName.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void afterTextChanged(Editable s) {}
 
@@ -211,7 +203,6 @@ public class NewsReaderListDialogFragment extends DialogFragment{
             }
         });
 
-
         mButtonRenameCancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dismiss();
@@ -223,14 +214,14 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                 showProgress(true);
                 setCancelable(false);
                 getDialog().setCanceledOnTouchOutside(false);
-                mRenameFeedTask = new RenameFeedTask(feedId, mFeedName.getText().toString() ); //TODO needs testing!
+                mRenameFeedTask = new RenameFeedTask(feedId, mFeedName.getText().toString() );
                 mRenameFeedTask.execute((Void) null);
             }
         });
     }
 
-    private void attemptRemoveFeed(final long feedId) {
 
+    private void showRemoveFeedView(final long feedId) {
         mListView.setVisibility(View.GONE);
         mRemoveFeedDialogView.setVisibility(View.VISIBLE);
 
@@ -245,17 +236,11 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                 showProgress(true);
                 setCancelable(false);
                 getDialog().setCanceledOnTouchOutside(false);
-                mRemoveFeedTask = new RemoveFeedTask(feedId); //TODO needs testing!
+                mRemoveFeedTask = new RemoveFeedTask(feedId);
                 mRemoveFeedTask.execute((Void) null);
             }
         });
     }
-
-
-    interface MenuAction {
-        void execute();
-    }
-
 
 
     public class RemoveFeedTask extends AsyncTask<Void, Void, Boolean> {
@@ -294,15 +279,10 @@ public class NewsReaderListDialogFragment extends DialogFragment{
 
                 Long currentFeedId = parentActivity.getNewsReaderDetailFragment().getIdFeed();
                 if(currentFeedId != null && currentFeedId == mFeedId) {
-                    parentActivity.switchToAllUnreadItems();
+                    parentActivity.switchToAllUnreadItemsFolder();
                 }
                 parentActivity.getSlidingListFragment().ReloadAdapter();
                 parentActivity.updateCurrentRssView();
-
-                //parentActivity.UpdateItemList();
-                //parentActivity.UpdateListView();
-                //parentActivity.getSlidingListFragment().ListViewNotifyDataSetChanged();
-                //parentActivity.startSync();
             } else {
                 Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong), Toast.LENGTH_LONG).show();
             }
@@ -353,7 +333,6 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                 dbConn.renameFeedById(mFeedId, mFeedName);
 
                 parentActivity.getSlidingListFragment().ReloadAdapter();
-                //parentActivity.updateCurrentRssView();
                 parentActivity.startSync();
             } else {
                 Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong), Toast.LENGTH_LONG).show();
@@ -366,5 +345,10 @@ public class NewsReaderListDialogFragment extends DialogFragment{
             mRenameFeedTask = null;
             dismiss();
         }
+    }
+
+
+    interface MenuAction {
+        void execute();
     }
 }

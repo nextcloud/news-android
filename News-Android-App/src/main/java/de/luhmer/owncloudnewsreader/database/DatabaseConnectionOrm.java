@@ -327,27 +327,18 @@ public class DatabaseConnectionOrm {
         return feeds.size() > 0;
     }
 
-
     public void removeFeedById(long feedId) {
         daoSession.getFeedDao().deleteByKey(feedId);
 
         List<RssItem> list = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.FeedId.eq(feedId)).list();
         for (RssItem rssItem : list) {
-            //if(!rssItem.getStarred() && !rssItem.getStarred_temp()) {
-                daoSession.getRssItemDao().delete(rssItem);
-            //}
+            daoSession.getRssItemDao().delete(rssItem);
         }
     }
 
     public void renameFeedById(long feedId, String newTitle) {
         Feed feed = daoSession.getFeedDao().queryBuilder().where(FeedDao.Properties.Id.eq(feedId)).unique();
         feed.setFeedTitle(newTitle);
-        /*
-        List<RssItem> list = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.FeedId.eq(feedId)).list();
-        for (RssItem rssItem : list) {
-            rssItem.setFeed(feed);
-        }
-        */
         daoSession.getFeedDao().update(feed);
     }
 

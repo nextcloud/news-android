@@ -50,8 +50,8 @@ public class InsertFeedIntoDatabase implements IHandleJsonObject{
         feed.setFeedTitle(e.optString("title"));
         feed.setFolderId(e.optLong("folderId"));
         feed.setFaviconUrl(faviconLink);
-		//feed.setLink(e.optString("link"));
 		feed.setLink(e.optString("url"));
+		//feed.setLink(e.optString("link"));
 
         return feed;
 	}

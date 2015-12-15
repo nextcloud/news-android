@@ -41,10 +41,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
-import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 
 /**

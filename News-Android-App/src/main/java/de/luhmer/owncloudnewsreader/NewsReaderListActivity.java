@@ -139,13 +139,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	//private Date mLastSyncDate = new Date(0);
 	private boolean mSyncOnStartupPerformed = false;
 
-	@InjectView(R.id.toolbar)
-	Toolbar toolbar;
+	@InjectView(R.id.toolbar) Toolbar toolbar;
 
 	private ServiceConnection mConnection = null;
 
-	@Optional
-	@InjectView(R.id.drawer_layout)
+	@Optional @InjectView(R.id.drawer_layout)
 	protected DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
@@ -373,9 +371,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			drawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	public void switchToAllUnreadItems() {
-		StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
-	}
 	public void reloadCountNumbersOfSlidingPaneAdapter() {
 		NewsReaderListFragment nlf = getSlidingListFragment();
 		if (nlf != null) {
@@ -383,12 +378,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 	}
 
-	public void updateCurrentRssView() {
+	protected void updateCurrentRssView() {
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if (ndf != null) {
 			//ndf.reloadAdapterFromScratch();
 			ndf.UpdateCurrentRssView(NewsReaderListActivity.this);
 		}
+	}
+
+	public void switchToAllUnreadItemsFolder() {
+		StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
 	}
 
 	@Override
@@ -580,7 +579,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 
-		//StartDetailFragment(idSubscription, false, optional_folder_id);
 		StartDetailFragment(idFeed, false, optional_folder_id, true);
 	}
 
@@ -596,28 +594,24 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 
 	private void StartDialogFragment(long idFeed, Boolean isFolder, Long optional_folder_id) {
-
-		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-		Fragment prev = getSupportFragmentManager().findFragmentByTag("news_reader_list_dialog");
-		if (prev != null) {
-			ft.remove(prev);
-		}
-		ft.addToBackStack(null);
-
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
 		if (isFolder) {
-			//top-folder long-clicked
 			if(idFeed >= 0) {
-				String titel = dbConn.getFolderById(idFeed).getLabel();
-				System.out.println("*************************folderlongclicked: " +titel);
+				//currently no actions for folders
+				//String titel = dbConn.getFolderById(idFeed).getLabel();
 			}
-
 		} else {
-			//top-item long-clicked
 			String titel = dbConn.getFeedById(idFeed).getFeedTitle();
 			String iconurl = dbConn.getFeedById(idFeed).getFaviconUrl();
 			String feedurl = dbConn.getFeedById(idFeed).getLink();
+
+			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+			Fragment prev = getSupportFragmentManager().findFragmentByTag("news_reader_list_dialog");
+			if (prev != null) {
+				ft.remove(prev);
+			}
+			ft.addToBackStack(null);
 
 			NewsReaderListDialogFragment fragment = NewsReaderListDialogFragment.newInstance(idFeed, titel, iconurl, feedurl);
 			fragment.setActivity(this);
@@ -674,7 +668,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
 
-    void startSync()
+    public void startSync()
     {
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -889,11 +883,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
     }
 
-	public /*private*/ NewsReaderListFragment getSlidingListFragment() {
+	protected NewsReaderListFragment getSlidingListFragment() {
 		return ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer));
 	}
 
-	public NewsReaderDetailFragment getNewsReaderDetailFragment() {
+	protected NewsReaderDetailFragment getNewsReaderDetailFragment() {
 		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
 	}
 
@@ -913,7 +907,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
 
-	public /*private*/ void UpdateListView()
+	private void UpdateListView()
     {
         getNewsReaderDetailFragment().notifyDataSetChangedOnAdapter();
     }

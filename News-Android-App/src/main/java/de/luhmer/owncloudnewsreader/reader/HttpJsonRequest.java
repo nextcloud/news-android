@@ -189,7 +189,6 @@ public class HttpJsonRequest {
         return response.code();
     }
 
-
     public int performRemoveFeedRequest(HttpUrl url, long feedId) throws Exception {
         HttpUrl feedUrl = url.newBuilder()
                 .addPathSegment(String.valueOf(feedId))
@@ -204,7 +203,6 @@ public class HttpJsonRequest {
 
         return response.code();
     }
-
 
     public int performRenameFeedRequest(HttpUrl url, long feedId, String newFeedName) throws Exception {
         HttpUrl feedUrl = url.newBuilder()
@@ -221,8 +219,6 @@ public class HttpJsonRequest {
 
         return response.code();
     }
-
-
 
 	public int performTagChangeRequest(HttpUrl url, String content) throws Exception
 	{
