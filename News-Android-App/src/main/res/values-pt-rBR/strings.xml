@@ -77,6 +77,10 @@
     <item quantity="other">Transferidos %d itens antigos</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">%d item já foi buscado...</item>
+    <item quantity="other">%d itens já foram buscados...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Configurações</string>
   <string name="cache_is_cleared">O cache está limpo!</string>
