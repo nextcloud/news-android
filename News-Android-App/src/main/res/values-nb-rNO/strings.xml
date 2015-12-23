@@ -8,6 +8,7 @@
   <string name="toast_GettingMoreItems">Startet nedlasting av flere elementer... Vennligst vent.</string>
   <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
   <string name="do_you_want_to_download_without_wifi">Vil du laste ned bildene uten WiFi tilkobling?</string>
+  <string name="current_version">Du bruker versjon %s</string>
   <string name="widget_header">ownCloud Nyheter</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">%d nytt element tilgjengelig</item>
