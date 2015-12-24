@@ -79,7 +79,7 @@
   <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
   <plurals name="fetched_items_so_far">
     <item quantity="one">%d item já foi buscado...</item>
-    <item quantity="other">%d itens já foram buscados...</item>
+    <item quantity="other">Já foram buscados %d itens até agora...</item>
   </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Configurações</string>
