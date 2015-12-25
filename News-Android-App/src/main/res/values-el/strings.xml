@@ -46,8 +46,13 @@
   <!--Add new feed-->
   <string name="action_add_feed">Προσθήκη ροής</string>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Λήψη εικόνας</string>
+  <string name="action_img_open">Άνοιγμα εικόνας στον περιηγητή</string>
+  <string name="action_img_copylink">Αντιγραφή συνδέσμου εικόνας</string>
   <string name="action_link_share">Διαμοιρασμός συνδέσμου</string>
+  <string name="action_link_open">Άνοιγμα συνδέσμου στον περιηγητή</string>
   <string name="action_link_copy">Αντιγραφή συνδέσμου</string>
+  <string name="toast_img_saved">Η εικόνα αποθηκεύτηκε.</string>
   <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="error_download_failed">Η λήψη απέτυχε</string>
   <!--Strings related to login-->
@@ -200,5 +205,9 @@
   <!--content description for images and icons-->
   <string name="content_desc_play">αναπαραγωγή</string>
   <string name="content_desc_pause">παύση</string>
+  <string name="content_desc_add_to_favorites">προσθήκη στα αγαπημένα</string>
+  <string name="content_desc_remove_from_favorites">αφαίρεση από τα αγαπημένα</string>
+  <string name="content_desc_show_password">εμφάνιση συνθηματικού</string>
   <string name="content_desc_delete">διαγραφή</string>
+  <string name="content_desc_download">λήψη</string>
 </resources>
