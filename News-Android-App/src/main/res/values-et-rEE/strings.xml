@@ -8,6 +8,7 @@
   <string name="toast_GettingMoreItems">Rohkemate kirjete allaladaimist on alustatud... Palun oota.</string>
   <string name="no_wifi_available">WiFi pole ühendatud</string>
   <string name="do_you_want_to_download_without_wifi">Kas soovid pildid alla laadida WiFi ühendust kasutamata</string>
+  <string name="current_version">Sa kasutad versioon %s</string>
   <string name="widget_header">ownCloud Uudised</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="one">Saadaval on %d uus kirjet</item>
@@ -43,10 +44,22 @@
     <item quantity="other">Saadaval on %d uut lugemata kirjet</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">Uudisvoo URL</string>
   <string name="action_add_feed">Lisa uudivoog</string>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Laadi pilt alla</string>
+  <string name="action_img_sharelink">Jaga pildi linki</string>
+  <string name="action_img_open">Ava pilt veebilehitsejas</string>
+  <string name="action_img_copylink">Kopeeri pildi link</string>
+  <string name="action_link_share">Jaga linki</string>
+  <string name="action_link_open">Ava link veebilehitsejas</string>
+  <string name="action_link_copy">Kopeeri link</string>
+  <string name="toast_img_download_wait">Allalaadimine... palun oota</string>
+  <string name="toast_img_saved">Pilt on salvestatud.</string>
+  <string name="toast_img_notwriteable">Pildi kirjutamine ebaõnnestus.</string>
   <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
   <string name="error_download_failed">Allalaadimine ebaõnnestus</string>
+  <string name="intent_title_share">Jaga kasutades</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Kasutajanimi</string>
   <string name="pref_title_password">Parool</string>
@@ -95,6 +108,7 @@
   <string name="mtm_notification">Sertifikaadi kontroll</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Ühtegi podcasti pole valitud</string>
+  <string name="no_chapters_available">Ühtegi peatükki pole saadaval</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Vaade</string>
   <string name="pref_title_app_theme">Rakendi teema</string>
@@ -189,5 +203,19 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_none">@null</string>
+  <string name="content_desc_play">esita</string>
+  <string name="content_desc_pause">peata</string>
+  <string name="content_desc_rewind">keri tagasi</string>
+  <string name="content_desc_forward">edasi</string>
+  <string name="content_desc_expand">laienda</string>
+  <string name="content_desc_collapse">sulge</string>
+  <string name="content_desc_mark_as_read">märgi loetuks</string>
+  <string name="content_desc_mark_as_unread">märgi mitteloetuks</string>
+  <string name="content_desc_tap_to_refresh">värskendamiseks vajuta</string>
+  <string name="content_desc_add_to_favorites">lisa lemmikutesse</string>
+  <string name="content_desc_remove_from_favorites">eelamda lemmikutest</string>
+  <string name="content_desc_show_password">näita parooli</string>
   <string name="content_desc_delete">kustuta</string>
+  <string name="content_desc_download">laadi alla</string>
 </resources>
