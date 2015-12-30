@@ -219,7 +219,6 @@
     <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
-  <string name="content_desc_none">@nulo</string>
   <string name="content_desc_play">executar</string>
   <string name="content_desc_pause">pausa</string>
   <string name="content_desc_rewind">recarregar</string>
