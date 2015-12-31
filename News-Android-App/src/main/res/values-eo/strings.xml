@@ -41,10 +41,6 @@
   <string name="title_activity_settings">Agordo</string>
   <!--General settings-->
   <string name="pref_header_general">Ĝenerala</string>
-  <string-array name="pref_general_sort_order_values_not_translated">
-    <item>1</item>
-    <item>0</item>
-  </string-array>
   <string name="dialog_clearing_cache">Forviŝante kaŝmemoron</string>
   <string name="warning">Averto</string>
   <string name="pref_title_ShowOnlyUnread">Montri nur nelegitajn artikolojn</string>
@@ -56,10 +52,6 @@
   <string-array name="pref_display_apptheme">
     <item>Malklara</item>
     <item>Klara</item>
-  </string-array>
-  <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
   </string-array>
   <!--Settings for Notifications-->
   <string name="pref_header_notifications">Sciigoj</string>

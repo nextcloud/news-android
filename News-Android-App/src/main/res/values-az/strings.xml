@@ -54,10 +54,6 @@
     <item>Yeni -&gt; Köhnə</item>
     <item>Köhnə -&gt; Yeni</item>
   </string-array>
-  <string-array name="pref_general_sort_order_values_not_translated">
-    <item>1</item>
-    <item>0</item>
-  </string-array>
   <string name="dialog_clearing_cache">Keş təmizlənir</string>
   <string name="reset_cache_unsaved_changes">Orda sinxronizasiya edilməmiş dəyişikliklər var. Siz keşi istənilən halda sifirlamaq isteəyirsiniz?</string>
   <string name="warning">Xəbərdarlıq</string>
@@ -81,10 +77,6 @@
     <item>Qaranlıq</item>
     <item>İşıqlı</item>
   </string-array>
-  <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
   <!--Settings for Notifications-->
   <string name="pref_header_notifications">Xəbərdarlıqlar</string>
   <string name="pref_title_notification_new_articles_available">Yeni məqalə olduqda notifikasiyanı göstər</string>
@@ -105,12 +97,6 @@
     <item>Yalnız WiFi &amp; Mobile</item>
     <item>WiFi-a qoşulu olmayanda soruş</item>
   </string-array>
-  <string-array name="pref_data_sync_image_cache_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -119,15 +105,6 @@
     <item>2 GB</item>
     <item>5 GB</item>
     <item>10 GB</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size_values">
-    <item>250</item>
-    <item>500</item>
-    <item>750</item>
-    <item>1000</item>
-    <item>2000</item>
-    <item>5000</item>
-    <item>10000</item>
   </string-array>
   <string-array name="array_sync_interval">
     <item>5 Dəqiqqə</item>
@@ -140,18 +117,6 @@
     <item>6 Saat</item>
     <item>12 Saat</item>
     <item>24 Saat</item>
-  </string-array>
-  <string-array name="array_sync_interval_values">
-    <item>5</item>
-    <item>15</item>
-    <item>30</item>
-    <item>45</item>
-    <item>60</item>
-    <item>120</item>
-    <item>180</item>
-    <item>360</item>
-    <item>720</item>
-    <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
   <string name="content_desc_delete">sil</string>

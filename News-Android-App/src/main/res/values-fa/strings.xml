@@ -62,10 +62,6 @@
     <item>تاریک</item>
     <item>روشن</item>
   </string-array>
-  <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
   <!--Settings for Notifications-->
   <string name="pref_header_notifications">هشدارها</string>
   <!--Login Dialog-->
@@ -87,15 +83,6 @@
     <item>2 GB</item>
     <item>5 GB</item>
     <item>10 GB</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size_values">
-    <item>250</item>
-    <item>500</item>
-    <item>750</item>
-    <item>1000</item>
-    <item>2000</item>
-    <item>5000</item>
-    <item>10000</item>
   </string-array>
   <!--content description for images and icons-->
   <string name="content_desc_delete">حذف</string>

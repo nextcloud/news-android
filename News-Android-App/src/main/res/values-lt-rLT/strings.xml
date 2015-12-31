@@ -61,10 +61,6 @@
     <item>Naujas -&gt; Senas</item>
     <item>Senas -&gt; Naujas</item>
   </string-array>
-  <string-array name="pref_general_sort_order_values_not_translated">
-    <item>1</item>
-    <item>0</item>
-  </string-array>
   <string name="dialog_clearing_cache">Valoma talpykla</string>
   <string name="reset_cache_unsaved_changes">Yra nesinchronizuotų pakitimų. Ar vis tiek norite atstatyti talpyklą?</string>
   <string name="warning">Įspėjimas</string>
@@ -88,10 +84,6 @@
     <item>Tamsi</item>
     <item>Šviesi</item>
   </string-array>
-  <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
   <!--Settings for Notifications-->
   <string name="pref_header_notifications">Pranešimai</string>
   <string name="pref_title_notification_new_articles_available">Rodyti pranešimus kai galimi nauji straipsniai</string>
@@ -112,12 +104,6 @@
     <item>Per WiFi &amp; Mobilų tinklą</item>
     <item>Klausti kai neprisijungta prie WiFi</item>
   </string-array>
-  <string-array name="pref_data_sync_image_cache_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -126,15 +112,6 @@
     <item>2 GB</item>
     <item>5 GB</item>
     <item>10 GB</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size_values">
-    <item>250</item>
-    <item>500</item>
-    <item>750</item>
-    <item>1000</item>
-    <item>2000</item>
-    <item>5000</item>
-    <item>10000</item>
   </string-array>
   <string-array name="array_sync_interval">
     <item>5 min.</item>
@@ -147,18 +124,6 @@
     <item>6 val.</item>
     <item>12 val.</item>
     <item>24 val.</item>
-  </string-array>
-  <string-array name="array_sync_interval_values">
-    <item>5</item>
-    <item>15</item>
-    <item>30</item>
-    <item>45</item>
-    <item>60</item>
-    <item>120</item>
-    <item>180</item>
-    <item>360</item>
-    <item>720</item>
-    <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
   <string name="content_desc_delete">ištrinti</string>

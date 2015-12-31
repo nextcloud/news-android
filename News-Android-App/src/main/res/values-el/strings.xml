@@ -82,10 +82,6 @@
     <item>Νέα-&gt; Παλιά</item>
     <item>Παλιά -&gt; Νέα</item>
   </string-array>
-  <string-array name="pref_general_sort_order_values_not_translated">
-    <item>1</item>
-    <item>0</item>
-  </string-array>
   <string name="dialog_clearing_cache">Εκκαθάριση προσωρινής μνήμης</string>
   <string name="dialog_clearing_cache_please_wait">Εκκαθάριση προσωρινής μνήμης... Παρακαλώ περιμένετε.</string>
   <string name="reset_cache_unsaved_changes">Υπάρχουν αλλαγές που δεν έχουν συγχρονιστεί. Θα θέλατε να επαναφέρετε τα αποθηκευμένα στοιχεία ούτως ή άλλως;</string>
@@ -112,29 +108,13 @@
     <item>Σκοτεινό</item>
     <item>Φωτεινό</item>
   </string-array>
-  <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
   <string-array name="pref_display_feed_list_layout">
     <item>Απλή</item>
     <item>Εκτεταμένη</item>
     <item>Εκτεταμένη (πλήρες κείμενο)</item>
     <item>Εκτεταμένη με προβολή ιστού</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>3</item>
-    <item>2</item>
-  </string-array>
   <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <string-array name="pref_title_lines_count_values">
     <item>1</item>
     <item>2</item>
     <item>3</item>
@@ -154,12 +134,6 @@
   <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
   <string name="pref_title_CacheImagesOffline">Αποθήκευση εικόνων για χρήση χωρίς σύνδεση</string>
   <string name="pref_title_Max_Cache_Size">Μέγιστο μέγεθος στοιχείων προς αποθήκευση</string>
-  <string-array name="pref_data_sync_image_cache_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -168,15 +142,6 @@
     <item>2 GB</item>
     <item>5 GB</item>
     <item>10 GB</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size_values">
-    <item>250</item>
-    <item>500</item>
-    <item>750</item>
-    <item>1000</item>
-    <item>2000</item>
-    <item>5000</item>
-    <item>10000</item>
   </string-array>
   <string-array name="array_sync_interval">
     <item>5 Λεπτά</item>
@@ -189,18 +154,6 @@
     <item>6 Ώρες</item>
     <item>12 Ώρες</item>
     <item>24 Ώρες</item>
-  </string-array>
-  <string-array name="array_sync_interval_values">
-    <item>5</item>
-    <item>15</item>
-    <item>30</item>
-    <item>45</item>
-    <item>60</item>
-    <item>120</item>
-    <item>180</item>
-    <item>360</item>
-    <item>720</item>
-    <item>1440</item>
   </string-array>
   <!--content description for images and icons-->
   <string name="content_desc_play">αναπαραγωγή</string>

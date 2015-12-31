@@ -83,10 +83,6 @@
     <item>新 -&gt; 旧</item>
     <item>旧 -&gt; 新</item>
   </string-array>
-  <string-array name="pref_general_sort_order_values_not_translated">
-    <item>1</item>
-    <item>0</item>
-  </string-array>
   <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
   <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています…しばらくお待ちください。</string>
   <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
@@ -113,29 +109,13 @@
     <item>ダーク</item>
     <item>ライト</item>
   </string-array>
-  <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
   <string-array name="pref_display_feed_list_layout">
     <item>基本</item>
     <item>拡張</item>
     <item>拡張 (全文)</item>
     <item>拡張ウェブ表示</item>
   </string-array>
-  <string-array name="pref_display_feed_list_layout_values">
-    <item>0</item>
-    <item>1</item>
-    <item>3</item>
-    <item>2</item>
-  </string-array>
   <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <string-array name="pref_title_lines_count_values">
     <item>1</item>
     <item>2</item>
     <item>3</item>
@@ -161,12 +141,6 @@
     <item>WiFi &amp; モバイル</item>
     <item>WiFi接続がない場合は尋ねる</item>
   </string-array>
-  <string-array name="pref_data_sync_image_cache_values">
-    <item>0</item>
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -175,15 +149,6 @@
     <item>2 GB</item>
     <item>5 GB</item>
     <item>10 GB</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size_values">
-    <item>250</item>
-    <item>500</item>
-    <item>750</item>
-    <item>1000</item>
-    <item>2000</item>
-    <item>5000</item>
-    <item>10000</item>
   </string-array>
   <string-array name="array_sync_interval">
     <item>5 分</item>
@@ -197,20 +162,7 @@
     <item>12 時間</item>
     <item>24 時間</item>
   </string-array>
-  <string-array name="array_sync_interval_values">
-    <item>5</item>
-    <item>15</item>
-    <item>30</item>
-    <item>45</item>
-    <item>60</item>
-    <item>120</item>
-    <item>180</item>
-    <item>360</item>
-    <item>720</item>
-    <item>1440</item>
-  </string-array>
   <!--content description for images and icons-->
-  <string name="content_desc_none">@null</string>
   <string name="content_desc_play">再生</string>
   <string name="content_desc_pause">一時停止</string>
   <string name="content_desc_rewind">巻戻し</string>

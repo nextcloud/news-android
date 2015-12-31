@@ -46,10 +46,6 @@
     <item>नई -&gt; पुरानी</item>
     <item>पुरानी -&gt; नई</item>
   </string-array>
-  <string-array name="pref_general_sort_order_values_not_translated">
-    <item>1</item>
-    <item>0</item>
-  </string-array>
   <string name="reset_cache_unsaved_changes">एक साथ न होने वाले बदलाव मौजूद हैं। क्या आप फिर भी कैश रीसेट करना चाहेंगे?</string>
   <string name="warning">चेतावनी </string>
   <string name="pref_title_AutoSyncOnStart">स्टार्टअप पर समन्वयित</string>
@@ -69,10 +65,6 @@
   <string-array name="pref_display_apptheme">
     <item>गहरा</item>
     <item>हल्का</item>
-  </string-array>
-  <string-array name="pref_display_apptheme_values">
-    <item>0</item>
-    <item>1</item>
   </string-array>
   <!--Settings for Notifications-->
   <!--Login Dialog-->
@@ -94,15 +86,6 @@
     <item>2 GB</item>
     <item>5 GB</item>
     <item>10 GB</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size_values">
-    <item>250</item>
-    <item>500</item>
-    <item>750</item>
-    <item>1000</item>
-    <item>2000</item>
-    <item>5000</item>
-    <item>10000</item>
   </string-array>
   <!--content description for images and icons-->
 </resources>
