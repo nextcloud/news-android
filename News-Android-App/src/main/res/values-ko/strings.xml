@@ -8,6 +8,7 @@
   <string name="toast_GettingMoreItems">더 많은 항목을 다운로드하고 있습니다... 잠시 기다려 주십시오.</string>
   <string name="no_wifi_available">Wi-Fi에 연결되지 않았음</string>
   <string name="do_you_want_to_download_without_wifi">Wi-Fi에 연결되지 않은 상태에서 사진을 다운로드하시겠습니까?</string>
+  <string name="current_version">현재 %s 버전을 사용 중입니다.</string>
   <string name="widget_header">ownCloud 뉴스</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="other">새 항목 %d개 있음</item>
@@ -40,10 +41,21 @@
     <item quantity="other">새 항목이 %d개 있습니다</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">피드 링크</string>
   <string name="action_add_feed">피드 추가</string>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_sharelink">사진 공유 링크</string>
+  <string name="action_img_open">브라우저에서 사진 열기</string>
+  <string name="action_img_copylink">사진 링크 복사</string>
+  <string name="action_link_share">링크 공유</string>
+  <string name="action_link_open">브라우저에서 링크 열기</string>
+  <string name="action_link_copy">링크 복사</string>
+  <string name="toast_img_download_wait">다운로드 중입니다... 잠시 기다려 주십시오.</string>
+  <string name="toast_img_saved">사진이 저장되었습니다.</string>
+  <string name="toast_img_notwriteable">이미지를 쓰지 못했습니다.</string>
   <string name="toast_copied_to_clipboard">클립보드로 복사됨</string>
   <string name="error_download_failed">다운로드 실패</string>
+  <string name="intent_title_share">다음으로 공유</string>
   <!--Strings related to login-->
   <string name="pref_title_username">사용자 이름</string>
   <string name="pref_title_password">암호</string>
@@ -149,5 +161,8 @@
     <item>24시간</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_play">재생</string>
+  <string name="content_desc_pause">일시정지</string>
+  <string name="content_desc_rewind">되감기</string>
   <string name="content_desc_delete">삭제</string>
 </resources>

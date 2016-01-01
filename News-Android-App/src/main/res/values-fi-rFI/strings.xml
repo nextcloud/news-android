@@ -42,6 +42,7 @@
     <item quantity="other">%d uutta lukematonta kohdetta saatavilla</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">Syötteen osoite</string>
   <string name="action_add_feed">Lisää syöte</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="action_img_download">Lataa kuva</string>
