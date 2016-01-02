@@ -73,6 +73,9 @@
     <item quantity="other">ダウンロードされた %d 個の古いアイテム</item>
   </plurals>
   <string name="toast_no_more_downloads_available">これ以上利用できるアイテムがありません</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="other">これまでに %d 個のアイテムを読み込みました...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">設定</string>
   <string name="cache_is_cleared">キャッシュがクリアされます！</string>
@@ -100,6 +103,7 @@
   <string name="mtm_notification">証明書の検証</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Podcast が選択されていません</string>
+  <string name="no_chapters_available">チャプターがありません</string>
   <!--Settings for Display-->
   <string name="pref_header_display">表示</string>
   <string name="pref_title_app_theme">アプリテーマ</string>
