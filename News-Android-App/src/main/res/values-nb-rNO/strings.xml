@@ -44,10 +44,22 @@
     <item quantity="other">%d nye uleste elementer tilgjengelig</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">Nyhets-URL</string>
   <string name="action_add_feed">Legg til nyhetskilde</string>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Last ned bilde</string>
+  <string name="action_img_sharelink">Del bildelenke</string>
+  <string name="action_img_open">Åpne bilde i nettleser</string>
+  <string name="action_img_copylink">Kopier bildelenke</string>
+  <string name="action_link_share">Del lenke</string>
+  <string name="action_link_open">Åpne lenke i nettleser</string>
+  <string name="action_link_copy">Kopier lenke</string>
+  <string name="toast_img_download_wait">Laster ned... Vennligst vent</string>
+  <string name="toast_img_saved">Bilde lagret.</string>
+  <string name="toast_img_notwriteable">Klarte ikke å skrive bilde.</string>
   <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
   <string name="error_download_failed">Nedlasting feilet</string>
+  <string name="intent_title_share">Del via</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brukernavn</string>
   <string name="pref_title_password">Passord</string>
@@ -65,6 +77,10 @@
     <item quantity="other">Lastet ned %d gamle elementer</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Ingen flere elemeter tilgjengelig</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Hentet %d element så langt...</item>
+    <item quantity="other">Hentet %d elementer så langt...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Innstillinger</string>
   <string name="cache_is_cleared">Mellomlager er nullstilt!</string>
@@ -92,6 +108,7 @@
   <string name="mtm_notification">Sertifikatverifikasjon</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Ingen podcast valgt</string>
+  <string name="no_chapters_available">Ingen kapitler tilgjengelig</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Vis</string>
   <string name="pref_title_app_theme">App-tema</string>
@@ -155,5 +172,18 @@
     <item>24 timer</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_play">spil</string>
+  <string name="content_desc_pause">pause</string>
+  <string name="content_desc_rewind">bakover</string>
+  <string name="content_desc_forward">framover</string>
+  <string name="content_desc_expand">utvid</string>
+  <string name="content_desc_collapse">skjul</string>
+  <string name="content_desc_mark_as_read">merk som lest</string>
+  <string name="content_desc_mark_as_unread">merk som ulest</string>
+  <string name="content_desc_tap_to_refresh">trykk for å oppfiske</string>
+  <string name="content_desc_add_to_favorites">legg til i favoritter</string>
+  <string name="content_desc_remove_from_favorites">fjern fra favoritter</string>
+  <string name="content_desc_show_password">vis passord</string>
   <string name="content_desc_delete">slett</string>
+  <string name="content_desc_download">last ned</string>
 </resources>
