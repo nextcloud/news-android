@@ -25,7 +25,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name=".NewsReaderApplication">
+        android:name=".NewsReaderApplication"
+        android:supportsRtl="true">
         <activity
             android:name=".NewsReaderListActivity"
             android:label="@string/app_name"

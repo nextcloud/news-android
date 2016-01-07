@@ -41,15 +41,19 @@
                     android:id="@+id/et_feed_url"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:hint="@string/hint_feed_url"
                     android:inputType="textUri"
                     android:maxLines="1"
-                    android:singleLine="true"/>
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"/>
 
                 <Spinner
                     android:id="@+id/sp_folder"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"/>
+                    android:layout_height="45dp"
+                    android:layout_gravity="start"
+                    android:textAlignment="viewStart"/>
 
                 <Button
                     android:id="@+id/btn_addFeed"

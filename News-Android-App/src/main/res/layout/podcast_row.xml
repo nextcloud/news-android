@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="10dp"
+    android:paddingStart="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:gravity="center_vertical">
@@ -42,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- media playback ui should always use ltr direction -->
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
                 android:id="@+id/pbDownloadPodcast"
@@ -50,13 +52,15 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:max="100"
-                android:progress="0"/>
+                android:progress="0"
+                android:layoutDirection="ltr"/>
 
             <TextView
                 android:id="@+id/tvDownloadPodcastProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 tools:text="100%"
                 android:gravity="center_vertical"
                 android:textColor="#ff161616"/>
@@ -69,7 +73,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:paddingRight="@dimen/podcast_horizontal_margin">
+        android:paddingRight="@dimen/podcast_horizontal_margin"
+        android:paddingEnd="@dimen/podcast_horizontal_margin">
 
         <ImageButton
             android:id="@+id/btn_deletePodcast"
@@ -89,7 +94,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:paddingRight="@dimen/podcast_horizontal_margin">
+        android:paddingRight="@dimen/podcast_horizontal_margin"
+        android:paddingEnd="@dimen/podcast_horizontal_margin">
 
         <ImageButton
             android:id="@+id/btn_downloadPodcast"
@@ -110,7 +116,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:paddingRight="@dimen/podcast_horizontal_margin">
+        android:paddingRight="@dimen/podcast_horizontal_margin"
+        android:paddingEnd="@dimen/podcast_horizontal_margin">
 
         <ImageButton
             android:id="@+id/btn_playPodcast"

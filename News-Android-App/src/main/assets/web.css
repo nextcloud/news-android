@@ -90,9 +90,15 @@ a {
 #subscription {
     float:left;
 }
+.rtl #subscription {
+    float: right;
+}
 
 #datetime {
     float:right;
+}
+.rtl #datetime {
+    float: left;
 }
 
 #header_small_text {
@@ -105,6 +111,9 @@ a {
     padding-right: 6px;
     margin: 0px;
 
+}
+.rtl #top_section {
+    text-align: right;
 }
 
 #content {
@@ -120,6 +129,11 @@ a {
     margin-bottom:2px;
     width:16px !important;
     height:16px !important;
+}
+.rtl #imgFavicon {
+    float: right;
+    margin-right: 0;
+    margin-left: 4px;
 }
 
 body#lightTheme a:link, a:active, a:hover {

@@ -21,6 +21,8 @@
 
             <EditText
                 android:id="@+id/username"
+                android:gravity="start"
+                android:textAlignment="viewStart"
                 android:inputType="textEmailAddress"
                 android:hint="@string/pref_title_username"
                 android:layout_width="match_parent"
@@ -38,6 +40,8 @@
 
             <EditText
                 android:id="@+id/password"
+                android:gravity="start"
+                android:textAlignment="viewStart"
                 android:hint="@string/pref_title_password"
                 android:inputType="textPassword"
                 android:maxLines="1"
@@ -57,6 +61,8 @@
 
             <EditText
                 android:id="@+id/edt_owncloudRootPath"
+                android:gravity="start"
+                android:textAlignment="viewStart"
                 android:hint="@string/pref_title_owncloudRootPath"
                 android:inputType="textUri"
                 android:maxLines="1"
@@ -72,13 +78,14 @@
             android:id="@+id/imgView_ShowPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:src="@drawable/ic_action_visibility"
             android:layout_alignTop="@+id/password_container"
             android:layout_alignBottom="@+id/password_container"
             android:layout_alignRight="@+id/password_container"
+            android:layout_alignEnd="@+id/password_container"
             android:contentDescription="@string/content_desc_show_password"/>
 
         <CheckBox

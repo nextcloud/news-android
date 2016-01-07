@@ -39,8 +39,9 @@
                 android:layout_height="100dp"
                 android:background="#ff7c7c7c"
                 android:padding="2dp"
-                android:layout_gravity="bottom|right"
+                android:layout_gravity="bottom|end"
                 android:layout_marginRight="@dimen/podcast_horizontal_margin"
+                android:layout_marginEnd="@dimen/podcast_horizontal_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin" >
 
             </de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout>
