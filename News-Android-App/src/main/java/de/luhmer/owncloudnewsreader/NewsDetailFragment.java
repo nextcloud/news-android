@@ -225,24 +225,13 @@ public class NewsDetailFragment extends Fragment {
         mWebView.setBackgroundColor(backgroundColor);
 
 		WebSettings webSettings = mWebView.getSettings();
-	    //webSettings.setPluginState(WebSettings.PluginState.ON);
 	    webSettings.setJavaScriptEnabled(true);
 	    webSettings.setAllowFileAccess(true);
-	    //webSettings.setPluginsEnabled(true);
-	    //webSettings.setDomStorageEnabled(true);
-
+	    webSettings.setDomStorageEnabled(true);
 	    webSettings.setJavaScriptCanOpenWindowsAutomatically(false);
 	    webSettings.setSupportMultipleWindows(false);
 	    webSettings.setSupportZoom(false);
-	    //webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
-	    //webSettings.setSavePassword(false);
-	    //webview.setVerticalScrollBarEnabled(false);
-	    //webview.setHorizontalScrollBarEnabled(false);
         webSettings.setAppCacheEnabled(true);
-        //webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        //webSettings.setAppCacheMaxSize(200);
-        //webSettings.setDatabaseEnabled(true);
-        //webview.clearCache(true);
 
         registerForContextMenu(mWebView);
 
