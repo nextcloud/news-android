@@ -250,25 +250,40 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         	viewHolder = (GroupHolder) convertView.getTag();
         }
 
-
         viewHolder.txt_Summary.setText(group.header);
         viewHolder.listItemLayout.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-				long idFeed = group.id_database;
-				boolean skipFireEvent = false;
+                long idFeed = group.id_database;
+                boolean skipFireEvent = false;
 
-                if(group instanceof ConcreteFeedItem) {
+                if (group instanceof ConcreteFeedItem) {
                     fireListTextClicked(idFeed, false, (long) ITEMS_WITHOUT_FOLDER.getValue());
                     skipFireEvent = true;
-				}
+                }
 
-				if(!skipFireEvent)
-					fireListTextClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
-			}
-		});
+                if (!skipFireEvent)
+                    fireListTextClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
+            }
+        });
+
+        viewHolder.listItemLayout.setOnLongClickListener(new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+
+                long idFeed = group.id_database;
+
+                if (group instanceof ConcreteFeedItem) {
+                    fireListTextLongClicked(idFeed, false, (long) ITEMS_WITHOUT_FOLDER.getValue());
+                } else {
+                    fireListTextLongClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
+                }
+                return true; //consume event
+            }
+        });
 
 
         viewHolder.txt_UnreadCount.setText("");
@@ -613,4 +628,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		if(eListTextClickHandler != null)
 			eListTextClickHandler.onTextClicked(idFeed, isFolder, optional_folder_id);
 	}
+    protected void fireListTextLongClicked(long idFeed, boolean isFolder, Long optional_folder_id)
+    {
+        if(eListTextClickHandler != null)
+            eListTextClickHandler.onTextLongClicked(idFeed, isFolder, optional_folder_id);
+    }
 }

@@ -23,4 +23,5 @@ package de.luhmer.owncloudnewsreader.interfaces;
 
 public interface ExpListTextClicked {
 	void onTextClicked(long idFeed, boolean isFolder, Long optional_folder_id);
+	void onTextLongClicked(long idFeed, boolean isFolder, Long optional_folder_id);
 }

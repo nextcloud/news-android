@@ -34,6 +34,8 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyManagementException;
@@ -180,6 +182,37 @@ public class HttpJsonRequest {
         Request request = new Request.Builder()
                 .url(feedUrl)
                 .post(RequestBody.create(JSON, ""))
+                .build();
+
+        Response response = client.newCall(request).execute();
+
+        return response.code();
+    }
+
+    public int performRemoveFeedRequest(HttpUrl url, long feedId) throws Exception {
+        HttpUrl feedUrl = url.newBuilder()
+                .addPathSegment(String.valueOf(feedId))
+                .build();
+
+        Request request = new Request.Builder()
+                .url(feedUrl)
+                .delete()
+                .build();
+
+        Response response = client.newCall(request).execute();
+
+        return response.code();
+    }
+
+    public int performRenameFeedRequest(HttpUrl url, long feedId, String newFeedName) throws Exception {
+        HttpUrl feedUrl = url.newBuilder()
+                .addPathSegment(String.valueOf(feedId))
+                .addPathSegment("rename")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(feedUrl)
+                .put(RequestBody.create(JSON, new JSONObject().put("feedTitle", newFeedName).toString()))
                 .build();
 
         Response response = client.newCall(request).execute();
