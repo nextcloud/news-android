@@ -6,6 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:visibility="visible"
+    android:padding="10dp"
     tools:showIn="@layout/subscription_detail_list_item_simple">
 
     <ImageView

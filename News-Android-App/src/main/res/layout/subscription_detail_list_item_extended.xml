@@ -18,8 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:descendantFocusability="blocksDescendants"
-        android:layout_marginEnd="@dimen/listview_row_margin_right"
-        android:layout_marginRight="@dimen/listview_row_margin_left"
         android:layout_marginTop="@dimen/listview_row_margin_top"
         android:layout_marginBottom="@dimen/listview_row_margin_bottom"
         android:id="@+id/list_item_header">
@@ -69,6 +67,8 @@
             tools:text="21.09.2013"
             android:singleLine="true"
             android:textSize="15sp"
+            android:layout_marginEnd="@dimen/listview_row_margin_right"
+            android:layout_marginRight="@dimen/listview_row_margin_left"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"/>
@@ -125,6 +125,8 @@
             android:tint="?attr/starredColor"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:paddingEnd="@dimen/listview_row_margin_left"
+            android:paddingRight="@dimen/listview_row_margin_left"
             android:contentDescription="@string/content_desc_add_to_favorites"/>
 
         <include
@@ -134,7 +136,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="22dp"
             android:id="@+id/podcast_wrapper"
             android:layout_toLeftOf="@id/star_imageview"
             android:layout_toStartOf="@id/star_imageview" />
