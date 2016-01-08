@@ -91,6 +91,11 @@ Updates
 ---------------------
 
 
+0.9.7.5 (Google Play)
+---------------------
+- Bug fix
+
+
 0.9.7.4 (Google Play)
 ---------------------
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/474">#474 New Feature: Rename and remove feeds </a>
