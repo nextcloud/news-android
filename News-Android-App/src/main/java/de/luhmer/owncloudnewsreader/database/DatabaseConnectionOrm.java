@@ -327,13 +327,17 @@ public class DatabaseConnectionOrm {
         return feeds.size() > 0;
     }
 
-    public void removeFeedById(long feedId) {
-        daoSession.getFeedDao().deleteByKey(feedId);
+    public void removeFeedById(final long feedId) {
+        daoSession.runInTx(new Runnable() {
+            @Override
+            public void run() {
+                daoSession.getFeedDao().deleteByKey(feedId);
 
-        List<RssItem> list = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.FeedId.eq(feedId)).list();
-        for (RssItem rssItem : list) {
-            daoSession.getRssItemDao().delete(rssItem);
-        }
+                List<RssItem> list = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.FeedId.eq(feedId)).list();
+                for (RssItem rssItem : list) {
+                    daoSession.getRssItemDao().delete(rssItem);
+                }
+            }});
     }
 
     public void renameFeedById(long feedId, String newTitle) {
