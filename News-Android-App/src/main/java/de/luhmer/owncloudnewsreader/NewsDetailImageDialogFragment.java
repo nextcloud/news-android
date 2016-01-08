@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +32,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class NewsDetailImageDialogFragment extends DialogFragment {
 
     public enum TYPE { IMAGE, URL }
+    private static final String TAG = NewsDetailImageDialogFragment.class.getCanonicalName();
 
     static NewsDetailImageDialogFragment newInstanceImage(String dialogTitle, Integer titleIcon, String dialogText, URL imageUrl) {
         NewsDetailImageDialogFragment f = new NewsDetailImageDialogFragment();
@@ -70,6 +73,8 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     private String mDialogText;
     private URL mImageUrl;
     private TYPE mDialogType;
+
+    private ListView mListView;
 
     private long downloadID;
     private DownloadManager downloadManager;
@@ -151,6 +156,30 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     @Override
+    public void onStart() {
+        showDownloadShowcase();
+        super.onStart();
+    }
+
+    private void showDownloadShowcase() {
+        if(mMenuItems.containsKey(getActivity().getString(R.string.action_img_download))) {
+            List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
+            int position = menuItemsList.indexOf(getActivity().getString(R.string.action_img_download));
+            Log.v(TAG, "Position of Download Menu: " + position);
+            /*
+            // Bug in the Library.. ShowcaseView is rendered behind the DialogFragment //TODO check https://github.com/deano2390/MaterialShowcaseView/issues/51 for updates
+            new MaterialShowcaseView.Builder(getActivity())
+                    .setTarget(mListView /*.getChildAt(position) *//*)
+                    .setDismissText("GOT IT")
+                    .setContentText("Long press to change the target download directory")
+                    .setDelay(300) // optional but starting animations immediately in onCreate can make them choppy
+                    .singleUse("LONG_PRESS_DOWNLOAD_TARGET_DIR") // provide a unique ID used to ensure it is only shown once
+                    .show();
+            */
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -172,7 +201,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             }
         }
 
-        ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
+        mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
         List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
