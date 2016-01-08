@@ -153,8 +153,8 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
         int style = DialogFragment.STYLE_NO_TITLE;
         int theme = ThemeChooser.isDarkTheme(getActivity())
-                ? R.style.Theme_Material_Dialog_Floating
-                : R.style.Theme_Material_Light_Dialog_Floating;
+                ? R.style.FloatingDialog
+                : R.style.FloatingDialogLight;
         setStyle(style, theme);
     }
 
