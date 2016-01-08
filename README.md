@@ -91,6 +91,14 @@ Updates
 ---------------------
 
 
+0.9.7.4 (Google Play)
+---------------------
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/474">#474 New Feature: Rename and remove feeds </a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/465">#465 Support for right-to-left languages</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/456">#456 Download-Directory-Chooser for images in webview</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/466">#466 Articles are displayed in desktop view</a>
+
+
 0.9.7.3 (Google Play)
 ---------------------
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/pull/431">#431 Avoid volume change at beginning and end of feed</a>
