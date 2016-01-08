@@ -27,6 +27,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.internal.widget.ViewUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -288,7 +289,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
 
 
-
         int rotation = 0;
         int contentDescriptionId = R.string.content_desc_none;
 
@@ -319,7 +319,11 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                     rotation = 180;
                     contentDescriptionId = R.string.content_desc_collapse;
 	        	} else {
-                    rotation = 90;
+                    if (ViewUtils.isLayoutRtl(listView)) {
+                        rotation = -90; // mirror for rtl layout
+                    } else {
+                        rotation = 90;
+                    }
                     contentDescriptionId = R.string.content_desc_expand;
                 }
         

@@ -28,6 +28,8 @@
             android:id="@+id/summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textAlignment="viewStart"
             android:ellipsize="end"
             android:lines="2"
             android:textSize="17sp"
@@ -58,6 +60,8 @@
             android:id="@+id/tv_subscription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textAlignment="viewStart"
             android:ellipsize="end"
             android:singleLine="true"
             android:textSize="13sp"
@@ -90,6 +94,7 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:paddingLeft="8dp"
+            android:paddingStart="8dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_action_star_dark"
             android:tint="?attr/starredColor"
@@ -103,7 +108,8 @@
             android:layout_width="wrap_content"
             android:layout_marginTop="6dp"
             android:id="@+id/podcast_wrapper"
-            android:layout_toLeftOf="@id/star_imageview"/>
+            android:layout_toLeftOf="@id/star_imageview"
+            android:layout_toStartOf="@id/star_imageview"/>
 
     </RelativeLayout>
 

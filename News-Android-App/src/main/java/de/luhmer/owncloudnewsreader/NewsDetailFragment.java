@@ -439,19 +439,24 @@ public class NewsDetailFragment extends Fragment {
         } else
             body_id = "lightTheme";
 
+        boolean isRightToLeft = context.getResources().getBoolean(R.bool.is_right_to_left);
+        String rtlClass = isRightToLeft ? "rtl" : "";
+        String borderSide = isRightToLeft ? "right" : "left";
+
         StringBuilder builder = new StringBuilder();
 
         builder.append("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />");
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
         builder.append("<style type=\"text/css\">");
         builder.append(String.format(
-                        "#top_section { border-left: 4px solid %s; border-bottom: 1px solid %s; background: %s }",
+                        "#top_section { border-%s: 4px solid %s; border-bottom: 1px solid %s; background: %s }",
+                        borderSide,
                         ColorHelper.getCssColor(feedColor),
                         ColorHelper.getCssColor(colors[0]),
                         ColorHelper.getCssColor(colors[1]))
         );
         builder.append("</style>");
-        builder.append(String.format("</head><body id=\"%s\">",body_id));
+        builder.append(String.format("</head><body id=\"%s\" class=\"%s\">", body_id, rtlClass));
 
         if(showHeader) {
             builder.append("<div id=\"top_section\">");

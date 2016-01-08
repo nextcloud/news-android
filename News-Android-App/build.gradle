@@ -15,6 +15,7 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            pseudoLocalesEnabled true
         }
         release {
             minifyEnabled false

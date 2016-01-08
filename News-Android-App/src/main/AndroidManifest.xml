@@ -26,6 +26,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name=".NewsReaderApplication"
+        android:supportsRtl="true"
         tools:replace="android:icon, android:label, android:theme, android:name">
         <activity
             android:name=".NewsReaderListActivity"
@@ -87,7 +88,6 @@
         <activity android:name="DirectoryChooserActivity" />
 
         <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle" />
-
 
         <!--
 		**********************************************************************
