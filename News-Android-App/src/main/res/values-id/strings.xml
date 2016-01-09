@@ -43,6 +43,7 @@
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Disalin ke papan klip</string>
   <string name="error_download_failed">Gagal Mengunduh</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nama pengguna</string>
   <string name="pref_title_password">Sandi</string>

@@ -33,6 +33,7 @@
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">ক্লিপবোর্ডে কপি করা হলো</string>
   <string name="error_download_failed">ডাউনলোড হয়নি</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">ব্যবহারকারী</string>
   <string name="pref_title_password">কূটশব্দ</string>

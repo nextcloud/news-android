@@ -27,6 +27,7 @@
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
   <string name="error_download_failed">Falló la descarga</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>

@@ -63,6 +63,7 @@
   <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
   <string name="error_download_failed">Stažení selhalo</string>
   <string name="intent_title_share">Sdílet pomocí</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">Uživatelské jméno</string>
   <string name="pref_title_password">Heslo</string>

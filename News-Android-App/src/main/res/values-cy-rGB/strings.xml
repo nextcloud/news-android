@@ -8,6 +8,7 @@
   <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="error_download_failed">Methwyd llwytho i lawr</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">Enw defnyddiwr</string>
   <string name="pref_title_password">Cyfrinair</string>

@@ -6,6 +6,7 @@
   <string name="action_settings">ಆಯ್ಕೆ</string>
   <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">﻿ಬಳಕೆಯ ಹೆಸರು</string>
   <string name="pref_title_password">ಗುಪ್ತ ಪದ</string>

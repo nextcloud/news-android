@@ -60,6 +60,7 @@
   <string name="toast_copied_to_clipboard">Copiato negli appunti</string>
   <string name="error_download_failed">Scaricamento non riuscito</string>
   <string name="intent_title_share">Condividi tramite</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nome utente</string>
   <string name="pref_title_password">Password</string>

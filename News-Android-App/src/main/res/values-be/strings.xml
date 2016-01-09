@@ -4,6 +4,7 @@
   <string name="action_settings">Налады</string>
   <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <!--Import Accounts-->
   <!--Toast Messages-->

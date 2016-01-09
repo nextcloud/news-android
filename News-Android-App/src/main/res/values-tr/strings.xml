@@ -58,6 +58,7 @@
   <string name="toast_copied_to_clipboard">Panoya kopyalandı</string>
   <string name="error_download_failed">İndirme başarısız</string>
   <string name="intent_title_share">... ile Paylaş</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">Kullanıcı Adı</string>
   <string name="pref_title_password">Parola</string>

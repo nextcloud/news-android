@@ -11,6 +11,7 @@
   <string name="action_add_feed">ஊட்டை சேர்க்க</string>
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="error_download_failed">பதிவிறக்கல் தோல்வியுற்றது</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">பயனாளர் பெயர்</string>
   <string name="pref_title_password">கடவுச்சொல்</string>

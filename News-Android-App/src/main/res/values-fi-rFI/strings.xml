@@ -58,6 +58,7 @@
   <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="error_download_failed">Lataus epäonnistui</string>
   <string name="intent_title_share">Jaa käyttäen</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>

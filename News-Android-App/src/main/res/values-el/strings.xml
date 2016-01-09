@@ -55,6 +55,7 @@
   <string name="toast_img_saved">Η εικόνα αποθηκεύτηκε.</string>
   <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="error_download_failed">Η λήψη απέτυχε</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">Όνομα χρήστη</string>
   <string name="pref_title_password">Συνθηματικό</string>

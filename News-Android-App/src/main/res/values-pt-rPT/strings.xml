@@ -44,12 +44,19 @@
     <item quantity="other">Tem disponível %d novos itens por ler</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">Feed</string>
   <string name="action_add_feed">Adicionar feed de notícias.</string>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Transferir Imagem</string>
+  <string name="action_img_sharelink">Partilhar hiperligação de imagem</string>
+  <string name="action_img_open">Abrir imagem no browser</string>
+  <string name="action_img_copylink">Copiar hiperligação</string>
+  <string name="action_link_share">Partilhar hiperligação</string>
   <string name="action_link_copy">Copiar hiperligação</string>
   <string name="toast_img_saved">Imagem guardada.</string>
   <string name="toast_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="error_download_failed">Transferência falhada</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Palavra-passe:</string>

@@ -15,6 +15,7 @@
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="toast_copied_to_clipboard">הועתק ללוח הגזירים - clipboard</string>
   <string name="error_download_failed">ההורדה נכשלה</string>
+  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <!--Strings related to login-->
   <string name="pref_title_username">שם משתמש</string>
   <string name="pref_title_password">סיסמא</string>
