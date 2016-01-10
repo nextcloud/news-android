@@ -10,6 +10,8 @@
   <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">چىقىرىۋەت</string>
+  <string name="feed_rename_button">ئات ئۆزگەرت</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ئىشلەتكۈچى ئاتى</string>
   <string name="pref_title_password">ئىم</string>

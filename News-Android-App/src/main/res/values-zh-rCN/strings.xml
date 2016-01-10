@@ -57,6 +57,8 @@
   <string name="error_download_failed">下载失败</string>
   <string name="intent_title_share">分享途径</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">移除</string>
+  <string name="feed_rename_button">重命名</string>
   <!--Strings related to login-->
   <string name="pref_title_username">用户名</string>
   <string name="pref_title_password">密码</string>

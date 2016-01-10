@@ -58,6 +58,8 @@
   <string name="error_download_failed">ดาวน์โหลดล้มเหลว</string>
   <string name="intent_title_share">แชร์ผ่าน</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">ลบออก</string>
+  <string name="feed_rename_button">เปลี่ยนชื่อ</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>

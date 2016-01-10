@@ -34,6 +34,8 @@
   <string name="toast_copied_to_clipboard">Copied to clipboard</string>
   <string name="error_download_failed">Download failed</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Remove</string>
+  <string name="feed_rename_button">Rename</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Username</string>
   <string name="pref_title_password">Password</string>

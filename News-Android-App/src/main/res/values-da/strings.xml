@@ -48,6 +48,8 @@
   <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
   <string name="error_download_failed">Download fejlede</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Fjern</string>
+  <string name="feed_rename_button">Omdøb</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brugernavn</string>
   <string name="pref_title_password">Kodeord</string>

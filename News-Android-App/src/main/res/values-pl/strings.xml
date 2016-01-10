@@ -35,6 +35,8 @@
   <string name="toast_copied_to_clipboard">Skopiuj do schowka</string>
   <string name="error_download_failed">Pobieranie nieudane</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Usuń</string>
+  <string name="feed_rename_button">Zmień nazwę</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nazwa użytkownika</string>
   <string name="pref_title_password">Hasło</string>

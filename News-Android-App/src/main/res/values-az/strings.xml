@@ -34,6 +34,8 @@
   <string name="toast_copied_to_clipboard">Mübadilə buferinə nüsxələndi</string>
   <string name="error_download_failed">Endirim olmadı</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Sil</string>
+  <string name="feed_rename_button">Adı dəyiş</string>
   <!--Strings related to login-->
   <string name="pref_title_username">İstifadəçi adı</string>
   <string name="pref_title_password">Şifrə</string>

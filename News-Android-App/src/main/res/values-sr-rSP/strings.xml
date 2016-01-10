@@ -10,6 +10,8 @@
   <string name="toast_copied_to_clipboard">Kopirano u klipbord</string>
   <string name="error_download_failed">Preuzimanje nije uspelo</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Ukloni</string>
+  <string name="feed_rename_button">Preimenuj</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Korisničko ime</string>
   <string name="pref_title_password">Lozinka</string>

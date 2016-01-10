@@ -35,6 +35,8 @@
   <string name="toast_copied_to_clipboard">Kopirano v odložišče</string>
   <string name="error_download_failed">Prejemanje je spodletelo</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Odstrani</string>
+  <string name="feed_rename_button">Preimenuj</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uporabniško ime</string>
   <string name="pref_title_password">Geslo</string>

@@ -27,6 +27,8 @@
   <string name="toast_copied_to_clipboard">تم النسخ للحافظة</string>
   <string name="error_download_failed">فشل التحميل</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">حذف</string>
+  <string name="feed_rename_button">إعادة التسمية</string>
   <!--Strings related to login-->
   <string name="pref_title_username">إسم المستخدم</string>
   <string name="pref_title_password">كلمة المرور</string>

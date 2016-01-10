@@ -1,30 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="auto_sync_string">自動同步</string>
-  <string name="app_name">ownCloud新聞閱讀器</string>
+  <string name="app_name">ownCloud 新聞閱讀器</string>
   <string name="title_activity_sync_interval_selector">同步時間間隔選擇</string>
   <string name="title_activity_news_detail">新聞內容活動</string>
-  <string name="empty_view_content">無任何項目。</string>
-  <string name="toast_GettingMoreItems">正在下載更多的項目... 請稍後.</string>
-  <string name="no_wifi_available">沒有連到無線網路</string>
-  <string name="do_you_want_to_download_without_wifi">您要在不使用無線網路連線的情形下來下載圖片</string>
+  <string name="empty_view_content">無任何項目</string>
+  <string name="toast_GettingMoreItems">正在下載更多的項目，請稍候</string>
+  <string name="no_wifi_available">WiFi 未連線</string>
+  <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖片</string>
+  <string name="current_version">您在使用版本 %s</string>
   <string name="widget_header">ownCloud 新聞</string>
   <plurals name="message_bar_new_articles_available">
     <item quantity="other">%d 個新的項目</item>
   </plurals>
   <string name="message_bar_reload">重新載入</string>
-  <string name="allUnreadFeeds">所有未閱讀項目。</string>
-  <string name="starredFeeds">演示項目</string>
+  <string name="allUnreadFeeds">所有未閱讀項目</string>
+  <string name="starredFeeds">星號項目</string>
   <string name="title_activity_new_feed">加入新訂閱</string>
   <string name="menu_update">重新整理</string>
   <string name="menu_About_Changelog">關於 / 更新日誌</string>
-  <string name="menu_markAllAsRead">全部標示已閱讀</string>
+  <string name="menu_markAllAsRead">全部標示為已閱讀</string>
   <string name="menu_StartImageCaching">下載圖片</string>
   <string name="menu_downloadMoreItems">下載更多項目</string>
   <!--Action Bar Items-->
   <string name="action_starred">星號</string>
-  <string name="action_read">讀取</string>
-  <string name="action_playPodacst">撥放 Podcast</string>
+  <string name="action_read">已讀</string>
+  <string name="action_playPodacst">播放 Podcast</string>
   <string name="action_openInBrowser">開啟瀏覽器</string>
   <string name="action_Share">分享</string>
   <string name="action_login">伺服器設定</string>
@@ -40,19 +41,36 @@
     <item quantity="other">%d 個新的未讀項目</item>
   </plurals>
   <!--Add new feed-->
+  <string name="hint_feed_url">Feed URL</string>
   <string name="action_add_feed">新增訂閱</string>
   <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="toast_copied_to_clipboard">複製至剪貼簿中</string>
+  <string name="action_img_download">下載圖片</string>
+  <string name="action_img_sharelink">分享圖片連結</string>
+  <string name="action_img_open">在瀏覽器中開啟圖片</string>
+  <string name="action_img_copylink">複製圖片連結</string>
+  <string name="action_link_share">分享連結</string>
+  <string name="action_link_open">在瀏覽器中打開連結</string>
+  <string name="action_link_copy">複製連結</string>
+  <string name="toast_img_download_wait">下載中…請稍候</string>
+  <string name="toast_img_saved">圖片已儲存</string>
+  <string name="toast_img_notwriteable">寫入圖片失敗</string>
+  <string name="toast_copied_to_clipboard">複製至剪貼簿</string>
   <string name="error_download_failed">下載失敗</string>
+  <string name="intent_title_share">分享到</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">移除 Feed</string>
+  <string name="action_feed_rename">重新命名 Feed</string>
+  <string name="feed_remove_button">移除</string>
+  <string name="feed_rename_button">重新命名</string>
+  <string name="confirm_feed_remove">您真的要移除這個 Feed 嗎？此動作無法復原</string>
   <!--Strings related to login-->
-  <string name="pref_title_username">使用者名稱：</string>
+  <string name="pref_title_username">使用者名稱</string>
   <string name="pref_title_password">密碼</string>
-  <string name="pref_title_owncloudRootPath">ownCloud 根目錄位址</string>
+  <string name="pref_title_owncloudRootPath">ownCloud 最上層位址</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <string name="action_sign_in_short">登入</string>
-  <string name="login_progress_signing_in">登入中...</string>
-  <string name="error_field_required">此欄位是必須的</string>
+  <string name="login_progress_signing_in">登入中…</string>
+  <string name="error_field_required">此欄位為必填</string>
   <string name="error_invalid_url">網址不正確</string>
   <!--Import Accounts-->
   <string name="import_account">匯入帳戶</string>
@@ -60,42 +78,52 @@
   <plurals name="toast_downloaded_x_items">
     <item quantity="other">已下載 %d 個舊項目</item>
   </plurals>
-  <string name="toast_no_more_downloads_available">沒有更多有效的項目</string>
+  <string name="toast_no_more_downloads_available">已經載入所有項目</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="other">目前已抓取 %d 項…</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">設定</string>
   <string name="cache_is_cleared">快取已清除</string>
   <!--General settings-->
   <string name="pref_header_general">一般</string>
-  <string name="pref_title_general_sort_order">排列依據</string>
+  <string name="pref_title_general_sort_order">排序依據</string>
   <string-array name="pref_general_sort_order">
     <item>新 -&gt; 舊</item>
     <item>舊 -&gt; 新</item>
   </string-array>
   <string name="dialog_clearing_cache">正在清除快取</string>
-  <string name="dialog_clearing_cache_please_wait">正在清除快取... 請稍後.</string>
-  <string name="reset_cache_unsaved_changes">這些未同步變更。您想要強制重設快取嗎?</string>
+  <string name="dialog_clearing_cache_please_wait">正在清除快取…請稍候</string>
+  <string name="reset_cache_unsaved_changes">有未同步的更動，您仍然要重設快取嗎？</string>
   <string name="warning">警告</string>
-  <string name="pref_title_AutoSyncOnStart">啟用時同步</string>
-  <string name="pref_title_ShowOnlyUnread">只顯示未讀的主題</string>
+  <string name="pref_title_AutoSyncOnStart">啟動時同步</string>
+  <string name="pref_title_ShowOnlyUnread">只顯示未讀的條目</string>
   <string name="pref_title_DisableHostnameVerification">停用主機名稱檢驗</string>
   <string name="pref_title_NavigateWithVolumeButtons">用音量鍵瀏覽</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">當滾動時標註為已讀</string>
-  <string name="pref_title_OpenInBrowserDirectly">使用外部的瀏覽器來觀看文件</string>
+  <string name="pref_title_MarkAsReadWhileScrolling">當滾動時標為已讀</string>
+  <string name="pref_title_OpenInBrowserDirectly">使用外部瀏覽器來閱讀條目</string>
   <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">允許未知憑證?</string>
+  <string name="mtm_accept_cert">允許未知憑證？</string>
   <string name="mtm_decision_always">總是</string>
   <string name="mtm_decision_abort">中斷</string>
   <string name="mtm_notification">憑證驗證</string>
   <!--Podcast-->
   <string name="no_podcast_selected">沒有選擇 podcast</string>
+  <string name="no_chapters_available">沒有章節</string>
   <!--Settings for Display-->
   <string name="pref_header_display">顯示</string>
   <string name="pref_title_app_theme">App 主題</string>
-  <string name="pref_title_feed_list_layout">來源列表版型</string>
+  <string name="pref_title_feed_list_layout">Feed 清單版型</string>
   <string name="pref_display_title_lines_count">標題的行數</string>
   <string-array name="pref_display_apptheme">
-    <item>黑暗</item>
-    <item>光亮</item>
+    <item>暗色</item>
+    <item>亮色</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>簡單</item>
+    <item>完整</item>
+    <item>完整（全文）</item>
+    <item>完整（使用內嵌式網頁瀏覽器）</item>
   </string-array>
   <string-array name="pref_title_lines_count">
     <item>1</item>
@@ -105,18 +133,24 @@
   </string-array>
   <!--Settings for Notifications-->
   <string name="pref_header_notifications">通知</string>
-  <string name="pref_title_notification_new_articles_available">當有新文章時顯示通知</string>
+  <string name="pref_title_notification_new_articles_available">當有新條目時顯示通知</string>
   <!--Login Dialog-->
   <string name="login_dialog_title_error">錯誤</string>
-  <string name="login_dialog_text_something_went_wrong">有些是錯的 :(</string>
-  <string name="login_dialog_text_not_compatible">此軟體版本不相容您的ownCloud 新聞軟體。請更新新聞軟體和appframework。</string>
+  <string name="login_dialog_text_something_went_wrong">發生錯誤了 :(</string>
+  <string name="login_dialog_text_not_compatible">此 App 版本不相容您的 ownCloud 新聞應用程式，請更新 ownCloud 新聞應用程式和 appframework</string>
   <string name="login_dialog_title_security_warning">安全性警告</string>
-  <string name="login_dialog_text_security_warning">您不是使用https。駭客可能攔截您的流量和存取一些敏感資料 (例如:您的密碼)。所以強烈建議使用https!</string>
+  <string name="login_dialog_text_security_warning">您不是使用 HTTPS，攻擊者可能攔截您的通訊，進而取得敏感資料（例如您的密碼），因此強烈建議使用 HTTPS！</string>
   <!--Data & Sync-->
   <string name="pref_header_data_sync">資料 &amp; 同步</string>
   <string name="pref_title_clearCache">清除快取</string>
-  <string name="pref_title_CacheImagesOffline">離線圖片快取</string>
+  <string name="pref_title_CacheImagesOffline">暫存離線圖片</string>
   <string name="pref_title_Max_Cache_Size">最大快取容量</string>
+  <string-array name="pref_data_sync_image_cache">
+    <item>從不</item>
+    <item>只透過 WiFi</item>
+    <item>透過 WiFi 和行動網路</item>
+    <item>當未連接到 WiFi 時詢問</item>
+  </string-array>
   <string-array name="pref_data_sync_max_cache_size">
     <item>250 MB</item>
     <item>500 MB</item>
@@ -139,5 +173,18 @@
     <item>24 小時</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_play">播放</string>
+  <string name="content_desc_pause">暫停</string>
+  <string name="content_desc_rewind">倒帶</string>
+  <string name="content_desc_forward">快進</string>
+  <string name="content_desc_expand">展開</string>
+  <string name="content_desc_collapse">收合</string>
+  <string name="content_desc_mark_as_read">標為已讀</string>
+  <string name="content_desc_mark_as_unread">標為未讀</string>
+  <string name="content_desc_tap_to_refresh">輕觸以更新</string>
+  <string name="content_desc_add_to_favorites">加到最愛</string>
+  <string name="content_desc_remove_from_favorites">從最愛移除</string>
+  <string name="content_desc_show_password">顯示密碼</string>
   <string name="content_desc_delete">刪除</string>
+  <string name="content_desc_download">下載</string>
 </resources>

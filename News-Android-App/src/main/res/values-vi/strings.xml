@@ -35,6 +35,8 @@
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="error_download_failed">Tải về thất bại</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Xóa</string>
+  <string name="feed_rename_button">Sửa tên</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Tên đăng nhập</string>
   <string name="pref_title_password">Mật khẩu</string>

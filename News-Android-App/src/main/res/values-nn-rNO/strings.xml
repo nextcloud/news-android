@@ -9,6 +9,8 @@
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="error_download_failed">Feil ved nedlasting</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Fjern</string>
+  <string name="feed_rename_button">Endra namn</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brukarnamn</string>
   <string name="pref_title_password">Passord</string>

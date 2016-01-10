@@ -59,6 +59,8 @@
   <string name="error_download_failed">İndirme başarısız</string>
   <string name="intent_title_share">... ile Paylaş</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Kaldır</string>
+  <string name="feed_rename_button">Yeniden adlandır</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Kullanıcı Adı</string>
   <string name="pref_title_password">Parola</string>

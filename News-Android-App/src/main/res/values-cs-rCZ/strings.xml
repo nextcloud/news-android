@@ -64,6 +64,11 @@
   <string name="error_download_failed">Stažení selhalo</string>
   <string name="intent_title_share">Sdílet pomocí</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">Odstranit kanál</string>
+  <string name="action_feed_rename">Přejmenovat kanál</string>
+  <string name="feed_remove_button">Odstranit</string>
+  <string name="feed_rename_button">Přejmenovat</string>
+  <string name="confirm_feed_remove">Opravdu chcete odstranit tento kanál? Toto nelze vrátit zpět!</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uživatelské jméno</string>
   <string name="pref_title_password">Heslo</string>

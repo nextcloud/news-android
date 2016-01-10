@@ -10,6 +10,8 @@
   <string name="toast_copied_to_clipboard">An d\'Tëschenoflag kopéiert</string>
   <string name="error_download_failed">Erofluede feelgeschloen</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Läschen</string>
+  <string name="feed_rename_button">Ëmbenennen</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Benotzernumm</string>
   <string name="pref_title_password">Passwuert</string>

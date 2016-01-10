@@ -47,6 +47,8 @@
   <string name="toast_copied_to_clipboard">Copiáu al cartafueyu</string>
   <string name="error_download_failed">Descarga fallida</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Desaniciar</string>
+  <string name="feed_rename_button">Renomar</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome d\'usuariu</string>
   <string name="pref_title_password">Contraseña</string>

@@ -61,6 +61,11 @@
   <string name="error_download_failed">Shkarkimi dështoi</string>
   <string name="intent_title_share">Ndajeni përmes</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">Hiqe Prurjen</string>
+  <string name="action_feed_rename">Riemërtojeni Prurjen</string>
+  <string name="feed_remove_button">Hiqe</string>
+  <string name="feed_rename_button">Riemërtoje</string>
+  <string name="confirm_feed_remove">Doni vërtet të hiqet kjo Prurje? Kjo s’mund të zhbëhet!</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Emër përdoruesi</string>
   <string name="pref_title_password">Fjalëkalim</string>

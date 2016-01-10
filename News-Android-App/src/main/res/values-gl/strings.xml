@@ -48,6 +48,8 @@
   <string name="toast_copied_to_clipboard">Copiado no portapapeis.</string>
   <string name="error_download_failed">Produciuse un fallo na descarga</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Retirar</string>
+  <string name="feed_rename_button">Renomear</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de usuario</string>
   <string name="pref_title_password">Contrasinal</string>

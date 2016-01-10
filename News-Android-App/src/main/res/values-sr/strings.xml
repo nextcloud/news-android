@@ -34,6 +34,8 @@
   <string name="toast_copied_to_clipboard">Копирано у клипборд</string>
   <string name="error_download_failed">Преузимање није успело</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Уклони</string>
+  <string name="feed_rename_button">Преименуј</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Корисничко име</string>
   <string name="pref_title_password">Лозинка</string>

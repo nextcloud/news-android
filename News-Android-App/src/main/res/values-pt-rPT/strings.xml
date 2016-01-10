@@ -52,11 +52,20 @@
   <string name="action_img_open">Abrir imagem no browser</string>
   <string name="action_img_copylink">Copiar hiperligação</string>
   <string name="action_link_share">Partilhar hiperligação</string>
+  <string name="action_link_open">Abrir ligação num explorador</string>
   <string name="action_link_copy">Copiar hiperligação</string>
+  <string name="toast_img_download_wait">A descarregar... por favor, aguarde</string>
   <string name="toast_img_saved">Imagem guardada.</string>
+  <string name="toast_img_notwriteable">Falhou ao guardar a imagem</string>
   <string name="toast_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="error_download_failed">Transferência falhada</string>
+  <string name="intent_title_share">Partilhar por</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">Remover <em>Feed</em></string>
+  <string name="action_feed_rename">Renomear <em>Feed</em></string>
+  <string name="feed_remove_button">Remover</string>
+  <string name="feed_rename_button">Renomear</string>
+  <string name="confirm_feed_remove">Tem a certeza que pretende remover este <em>Feed</em>? A operação não pode ser revertida!</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nome de utilizador</string>
   <string name="pref_title_password">Palavra-passe:</string>
@@ -74,6 +83,10 @@
     <item quantity="other">Transferidos %d itens antigos</item>
   </plurals>
   <string name="toast_no_more_downloads_available">Não há mais itens disponíveis</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Descarregados %d itens até agora...</item>
+    <item quantity="other">Descarregados %d items até agora...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Definições</string>
   <string name="cache_is_cleared">A cache está limpa!</string>
@@ -101,11 +114,12 @@
   <string name="mtm_notification">Verificação do certificado</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Nenhum podcast selecionado</string>
+  <string name="no_chapters_available">Sem capítulos disponíveis</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Mostrar</string>
   <string name="pref_title_app_theme">Tema da App</string>
   <string name="pref_title_feed_list_layout">Disposição da lista de feeds</string>
-  <string name="pref_display_title_lines_count">Contagem de linhas para o titulo</string>
+  <string name="pref_display_title_lines_count">Contagem de linhas para o título</string>
   <string-array name="pref_display_apptheme">
     <item>Escuro</item>
     <item>Claro</item>
@@ -164,5 +178,18 @@
     <item>24 Horas</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_play">reproduzir</string>
+  <string name="content_desc_pause">pausa</string>
+  <string name="content_desc_rewind">rebobinar</string>
+  <string name="content_desc_forward">avançar</string>
+  <string name="content_desc_expand">expandir</string>
+  <string name="content_desc_collapse">colapsar</string>
+  <string name="content_desc_mark_as_read">marcar como lido</string>
+  <string name="content_desc_mark_as_unread">marcar por lêr</string>
+  <string name="content_desc_tap_to_refresh">Toque para refrescar</string>
+  <string name="content_desc_add_to_favorites">Adicionar aos favoritos</string>
+  <string name="content_desc_remove_from_favorites">Remover dos favoritos</string>
+  <string name="content_desc_show_password">Mostrar senha</string>
   <string name="content_desc_delete">eliminar</string>
+  <string name="content_desc_download">descarregar</string>
 </resources>

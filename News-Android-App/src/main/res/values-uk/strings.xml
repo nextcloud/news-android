@@ -41,6 +41,8 @@
   <string name="toast_copied_to_clipboard">Скопійовано в буфер обміну</string>
   <string name="error_download_failed">Завантаження не вдалося</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Видалити</string>
+  <string name="feed_rename_button">Перейменувати</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Ім\'я користувача</string>
   <string name="pref_title_password">Пароль</string>

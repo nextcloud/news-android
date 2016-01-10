@@ -33,6 +33,8 @@
   <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
   <string name="error_download_failed">Error al descargar</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Borrar</string>
+  <string name="feed_rename_button">Cambiar nombre</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nombre de usuario</string>
   <string name="pref_title_password">Contraseña</string>

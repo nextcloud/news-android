@@ -35,6 +35,8 @@
   <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
   <string name="error_download_failed">La baixada ha fallat</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Elimina</string>
+  <string name="feed_rename_button">Reanomena</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Nom d\'usuari</string>
   <string name="pref_title_password">Contrasenya</string>

@@ -61,6 +61,8 @@
   <string name="error_download_failed">Misslyckad nedladdning</string>
   <string name="intent_title_share">Dela via</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Radera</string>
+  <string name="feed_rename_button">Byt namn</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Användarnamn</string>
   <string name="pref_title_password">Lösenord</string>

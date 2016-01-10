@@ -41,6 +41,8 @@
   <string name="toast_copied_to_clipboard">Nukopijuota į talpyklę</string>
   <string name="error_download_failed">Atsiuntimas nepavyko</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Pašalinti</string>
+  <string name="feed_rename_button">Pervadinti</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Prisijungimo vardas</string>
   <string name="pref_title_password">Slaptažodis</string>

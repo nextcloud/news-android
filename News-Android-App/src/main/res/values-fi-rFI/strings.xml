@@ -59,6 +59,11 @@
   <string name="error_download_failed">Lataus epäonnistui</string>
   <string name="intent_title_share">Jaa käyttäen</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">Poista syöte</string>
+  <string name="action_feed_rename">Nimeä syöte uudelleen</string>
+  <string name="feed_remove_button">Poista</string>
+  <string name="feed_rename_button">Nimeä uudelleen</string>
+  <string name="confirm_feed_remove">Haluatko varmasti poistaa tämän syötteen? Toimintoa ei voi perua!</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Käyttäjätunnus</string>
   <string name="pref_title_password">Salasana</string>

@@ -8,6 +8,8 @@
   <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">সরান</string>
+  <string name="feed_rename_button">পুনঃনামকরণ</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ইউজারনেম</string>
   <!--Import Accounts-->

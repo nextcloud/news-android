@@ -12,6 +12,8 @@
   <!--String related to NewsDetail-ContextMenu Items-->
   <string name="error_download_failed">பதிவிறக்கல் தோல்வியுற்றது</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">அகற்றுக</string>
+  <string name="feed_rename_button">பெயர்மாற்றம்</string>
   <!--Strings related to login-->
   <string name="pref_title_username">பயனாளர் பெயர்</string>
   <string name="pref_title_password">கடவுச்சொல்</string>

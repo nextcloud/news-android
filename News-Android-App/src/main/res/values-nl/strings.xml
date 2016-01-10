@@ -61,6 +61,8 @@
   <string name="error_download_failed">Downloaden mislukt</string>
   <string name="intent_title_share">Delen via</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Verwijder</string>
+  <string name="feed_rename_button">Naam wijzigen</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Gebruikersnaam</string>
   <string name="pref_title_password">Wachtwoord</string>

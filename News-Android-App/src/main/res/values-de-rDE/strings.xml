@@ -56,6 +56,8 @@
   <string name="error_download_failed">Herunterladen fehlgeschlagen</string>
   <string name="intent_title_share">Teilen mittels</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="feed_remove_button">Entfernen</string>
+  <string name="feed_rename_button">Umbenennen</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Benutzername</string>
   <string name="pref_title_password">Passwort</string>
