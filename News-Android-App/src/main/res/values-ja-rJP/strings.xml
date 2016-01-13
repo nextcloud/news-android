@@ -58,8 +58,11 @@
   <string name="error_download_failed">ダウンロードに失敗</string>
   <string name="intent_title_share">次のものでシェア</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">フィードの削除</string>
+  <string name="action_feed_rename">フィードの名前を変更</string>
   <string name="feed_remove_button">削除</string>
   <string name="feed_rename_button">名前の変更</string>
+  <string name="confirm_feed_remove">本当にこのフィードを削除してよろしいですか？この操作は元に戻せません！</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ユーザー名</string>
   <string name="pref_title_password">パスワード</string>
