@@ -74,6 +74,7 @@ public class NewsReaderDetailFragment extends Fragment {
 	private Long idFeed;
 
     private Drawable markAsReadDrawable;
+    private Drawable starredDrawable;
     private int accentColor;
     private Parcelable layoutManagerSavedState;
 
@@ -361,9 +362,10 @@ public class NewsReaderDetailFragment extends Fragment {
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(context, attrs, savedInstanceState);
-        TypedArray a = context.obtainStyledAttributes(attrs, new int[]{ R.attr.markasreadDrawable, R.attr.colorAccent });
+        TypedArray a = context.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable, R.attr.starredDrawable, R.attr.colorAccent});
         markAsReadDrawable = a.getDrawable(0);
-        accentColor = ContextCompat.getColor(context, R.color.owncloudBlueLight);
+        starredDrawable = a.getDrawable(1);
+        accentColor = a.getColor(2, ContextCompat.getColor(context, R.color.owncloudBlueLight));
         a.recycle();
     }
 
@@ -390,8 +392,8 @@ public class NewsReaderDetailFragment extends Fragment {
             if(direction == ItemTouchHelper.LEFT) {
                 adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
             } else if(direction == ItemTouchHelper.RIGHT) {
-                //adapter.toggleStarredStateOfItem((ViewHolder) viewHolder);
-                adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
+                adapter.toggleStarredStateOfItem((ViewHolder) viewHolder);
+                //adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
             }
             // Hack to reset view, see https://code.google.com/p/android/issues/detail?id=175798
             recyclerView.removeView(viewHolder.itemView);
@@ -411,7 +413,7 @@ public class NewsReaderDetailFragment extends Fragment {
                     drawable = markAsReadDrawable;
                     viewRect.left = (int) dX + viewRect.right;
                 } else {
-                    drawable = markAsReadDrawable;
+                    drawable = starredDrawable;
                     viewRect.right = (int) dX - viewRect.left;
                 }
 
