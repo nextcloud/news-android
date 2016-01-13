@@ -61,7 +61,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -93,6 +92,7 @@ import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
@@ -931,6 +931,22 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
 		}
 	}
+
+	@Override
+	public boolean onLongClick(ViewHolder vh, int position) {
+        RssItem rssItem = vh.getRssItem();
+        DialogFragment newFragment =
+                NewsDetailImageDialogFragment.newInstanceUrl(rssItem.getTitle(), rssItem.getLink());
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("menu_fragment_dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        newFragment.show(ft, "menu_fragment_dialog");
+        return true;
+	}
+
 
     private class AsyncTaskGetUserInfo extends AsyncTask<Void, Void, UserInfo> {
         @Override

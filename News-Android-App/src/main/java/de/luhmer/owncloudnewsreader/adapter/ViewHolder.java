@@ -32,7 +32,7 @@ import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
-public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     private final static String TAG = "RecyclerView.ViewHolder";
 
     private static SparseArray<Integer> downloadProgressList = new SparseArray<>();
@@ -105,6 +105,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         array.recycle();
 
         itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
     public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
@@ -135,6 +136,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public void setClickListener(RecyclerItemClickListener clickListener) {
         this.clickListener = clickListener;
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        return clickListener.onLongClick(this, getLayoutPosition());
     }
 
     public void setFeedColor(int color) {
