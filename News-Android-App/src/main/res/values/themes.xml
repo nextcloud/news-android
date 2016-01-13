@@ -19,6 +19,7 @@
         <item name="starredColor">@color/starredColorDark</item>
         <item name="unstarredColor">@color/unstarredColorDark</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread</item>
+        <item name="starredDrawable">@drawable/swipe_setstarred</item>
 
         <item name="news_detail_background_color">@color/news_detail_background_color_dark_theme</item>
     </style>
@@ -47,6 +48,7 @@
         <item name="starredColor">@color/starredColorLight</item>
         <item name="unstarredColor">@color/unstarredColorLight</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread_light</item>
+        <item name="starredDrawable">@drawable/swipe_setstarred_light</item>
 
         <item name="news_detail_background_color">@color/news_detail_background_color_light_theme</item>
     </style>

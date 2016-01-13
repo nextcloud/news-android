@@ -6,6 +6,7 @@
     <attr name="rssItemListBackground" format="color" />
     <attr name="starredColor" format="color" />
     <attr name="unstarredColor" format="color" />
+    <attr name="starredDrawable" format="reference" />
 
     <attr name="extended_listview_item_body_text_color" format="color" />
 

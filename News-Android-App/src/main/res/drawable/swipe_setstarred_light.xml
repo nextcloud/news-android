@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <selector>
+            <item android:state_above_anchor="false"><color android:color="@color/swipeBackgroundLight" /></item>
+            <item android:state_above_anchor="true"><color android:color="@color/starredColorLight" /></item>
+        </selector>
+    </item>
+    <item android:right="5dp">
+        <bitmap android:src="@drawable/ic_action_star_dark" android:gravity="center_vertical|right" />
+    </item>
+</layer-list>
