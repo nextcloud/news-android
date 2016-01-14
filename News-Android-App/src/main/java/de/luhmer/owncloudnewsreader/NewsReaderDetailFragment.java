@@ -33,16 +33,18 @@ import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -105,6 +107,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
     private int onResumeCount = 0;
     private static final String LAYOUT_MANAGER_STATE = "LAYOUT_MANAGER_STATE";
+    private boolean mMarkAsReadWhileScrollingEnabled;
 
     @InjectView(R.id.pb_loading) ProgressBar pbLoading;
     @InjectView(R.id.tv_no_items_available) View tvNoItemsAvailable;
@@ -139,11 +142,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        if(mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false)) {
-            recyclerView.addOnScrollListener(ListScrollListener);
-        } else {
-            recyclerView.removeOnScrollListener(ListScrollListener);
-        }
+        mMarkAsReadWhileScrollingEnabled = mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false);
 
         //When the fragment is instantiated by the xml file, onResume will be called twice
         if(onResumeCount >= 2) {
@@ -154,45 +153,34 @@ public class NewsReaderDetailFragment extends Fragment {
         super.onResume();
     }
 
-    private OnScrollListener ListScrollListener = new OnScrollListener() {
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+    private void handleMarkAsReadScrollEvent() {
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+        int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+        int visibleItemCount = lastVisibleItem - firstVisibleItem;
+        int totalItemCount = recyclerView.getAdapter().getItemCount();
 
+        NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
+
+        //Set the item at top to read
+        ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(firstVisibleItem);
+        if (vh != null && !vh.shouldStayUnread()) {
+            adapter.ChangeReadStateOfItem(vh, true);
         }
 
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            if(dy == 0 || recyclerView.getChildCount() <= 0)
-                return;
-
-            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-            int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
-            int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-            int visibleItemCount = lastVisibleItem - firstVisibleItem;
-            int totalItemCount = recyclerView.getAdapter().getItemCount();
-
-            NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
-
-            //Set the item at top to read
-            ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(firstVisibleItem);
-            if (vh != null && !vh.shouldStayUnread()) {
-                adapter.ChangeReadStateOfItem(vh, true);
-            }
-
-            //Check if Listview is scrolled to bottom
-            if (lastVisibleItem == (totalItemCount-1) && recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
-                for (int i = firstVisibleItem+1; i <= lastVisibleItem; i++) {
-                    RecyclerView.ViewHolder vhTemp = recyclerView.findViewHolderForLayoutPosition(i);
-                    if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
-                        vh = (ViewHolder) vhTemp;
-                        if (vh != null && !vh.shouldStayUnread()) {
-                            adapter.ChangeReadStateOfItem(vh, true);
-                        }
+        //Check if Listview is scrolled to bottom
+        if (lastVisibleItem == (totalItemCount-1) && recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
+            for (int i = firstVisibleItem; i <= lastVisibleItem; i++) {
+                RecyclerView.ViewHolder vhTemp = recyclerView.findViewHolderForLayoutPosition(i);
+                if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
+                    vh = (ViewHolder) vhTemp;
+                    if (vh != null && !vh.shouldStayUnread()) {
+                        adapter.ChangeReadStateOfItem(vh, true);
                     }
                 }
             }
         }
-    };
+    }
 
     public void UpdateMenuItemsState()
 	{
@@ -355,8 +343,37 @@ public class NewsReaderDetailFragment extends Fragment {
         swipeRefresh.setColorSchemeColors(accentColor);
         swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) getActivity());
 
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            GestureDetectorCompat detector = new GestureDetectorCompat(getActivity(), new RecyclerViewOnGestureListener());
+
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                detector.onTouchEvent(e);
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+            }
+        });
+
+
         return rootView;
 	}
+
+    private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            if(mMarkAsReadWhileScrollingEnabled && (e2.getY() - e1.getY()) < 0) { // (distance < 0) => scroll up
+                handleMarkAsReadScrollEvent();
+            }
+            return super.onScroll(e1, e2, distanceX, distanceY);
+        }
+    }
 
 
     @Override
