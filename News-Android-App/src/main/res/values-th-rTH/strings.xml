@@ -58,8 +58,11 @@
   <string name="error_download_failed">ดาวน์โหลดล้มเหลว</string>
   <string name="intent_title_share">แชร์ผ่าน</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">ลบฟีด</string>
+  <string name="action_feed_rename">เปลี่ยนชื่อฟีด</string>
   <string name="feed_remove_button">ลบออก</string>
   <string name="feed_rename_button">เปลี่ยนชื่อ</string>
+  <string name="confirm_feed_remove">คุณต้องการลบฟีดนี้หรือไม่? หากลบแล้วจะกู้คืนไม่ได้!</string>
   <!--Strings related to login-->
   <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
   <string name="pref_title_password">รหัสผ่าน</string>
