@@ -2,31 +2,57 @@ package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Xml;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
+import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
+import de.luhmer.owncloudnewsreader.helper.FileUtils;
+import de.luhmer.owncloudnewsreader.helper.OpmlXmlParser;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.helper.URLConnectionReader;
+import de.luhmer.owncloudnewsreader.model.Tuple;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
@@ -75,21 +101,6 @@ public class NewFeedActivity extends AppCompatActivity {
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
         mFolderView.setAdapter(spinnerArrayAdapter);
 
-        mAddFeedButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //Hide keyboard
-                InputMethodManager imm = (InputMethodManager)getSystemService(
-                        Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(mFeedUrlView.getWindowToken(), 0);
-
-
-                attemptAddNewFeed();
-            }
-        });
-
-
         Intent intent = getIntent();
         String action = intent.getAction();
 
@@ -101,6 +112,10 @@ public class NewFeedActivity extends AppCompatActivity {
                 url = intent.getStringExtra(Intent.EXTRA_TEXT);
             }
 
+            if(url.endsWith(".opml")) {
+                AsyncTaskHelper.StartAsyncTask(new ImportOpmlSubscriptionsTask(url, NewFeedActivity.this));
+            }
+
             //String scheme = intent.getScheme();
             //ContentResolver resolver = getContentResolver();
 
@@ -109,6 +124,179 @@ public class NewFeedActivity extends AppCompatActivity {
             mFeedUrlView.setText(url);
         }
     }
+
+    @OnClick(R.id.btn_addFeed)
+    public void btnAddFeedClick() {
+        //Hide keyboard
+        InputMethodManager imm = (InputMethodManager)getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mFeedUrlView.getWindowToken(), 0);
+
+
+        attemptAddNewFeed();
+    }
+
+    @OnClick(R.id.btn_import_opml)
+    public void importOpml() {
+        Intent intentFilePicker = new Intent(this, FilePickerActivity.class);
+        startActivityForResult(intentFilePicker, 1);
+    }
+
+    @OnClick(R.id.btn_export_opml)
+    public void exportOpml() {
+        String xml = OpmlXmlParser.GenerateOPML(this);
+
+        String path = FileUtils.getPath(this) + "/../subscriptions.opml";
+
+        try {
+            FileOutputStream fos = new FileOutputStream(new File(path));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
+            outputStreamWriter.write(xml);
+            outputStreamWriter.close();
+            fos.close();
+
+            new AlertDialog.Builder(this)
+                    .setMessage("Successfully exported to: " + path)
+                    .setTitle("OPML Export")
+                    .setNeutralButton("Ok", null)
+                    .create()
+                    .show();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+
+            AsyncTaskHelper.StartAsyncTask(new ImportOpmlSubscriptionsTask(filePath, NewFeedActivity.this));
+        }
+    }
+
+    public static class ImportOpmlSubscriptionsTask extends AsyncTask<Void, Void, Boolean> {
+
+        private final String mUrlToFile;
+        private HashMap<String, String> extractedUrls;
+        private ProgressDialog pd;
+        private Context mContext;
+
+        ImportOpmlSubscriptionsTask(String urlToFile, Context context) {
+            this.mUrlToFile = urlToFile;
+            this.mContext = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pd = new ProgressDialog(mContext);
+            pd.setTitle("Parsing OMPL...");
+            pd.setMessage("Please wait.");
+            pd.setCancelable(false);
+            pd.setIndeterminate(true);
+            pd.show();
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            String opmlContent;
+            try {
+                if(mUrlToFile.startsWith("http")) {//http[s]
+                    opmlContent = URLConnectionReader.getText(mUrlToFile.toString());
+                } else {
+                    opmlContent = getStringFromFile(mUrlToFile);
+                }
+
+                InputStream is = new ByteArrayInputStream(opmlContent.getBytes());
+                XmlPullParser parser = Xml.newPullParser();
+                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+                parser.setInput(is, null);
+                parser.nextTag();
+                extractedUrls = OpmlXmlParser.ReadFeed(parser);
+
+                publishProgress();
+
+                API api = new APIv2(HttpJsonRequest.getInstance().getRootUrl());
+
+                HashMap<String, Long> existingFolders = new HashMap<>();
+                InputStream isFolder = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFolderUrl());
+                String folderJSON = convertStreamToString(isFolder);
+                JSONArray jArrFolder = new JSONObject(folderJSON).getJSONArray("folders");
+                for(int i = 0; i < jArrFolder.length(); i++) {
+                    JSONObject folder = ((JSONObject) jArrFolder.get(i));
+                    long folderId = folder.getLong("id");
+                    String folderName = folder.getString("name");
+
+                    existingFolders.put(folderName, folderId);
+                }
+
+
+                for(String feedUrl : extractedUrls.keySet()) {
+                    long folderId = 0; //id of the parent folder, 0 for root
+                    String folderName = extractedUrls.get(feedUrl);
+                    if(folderName != null) { //Get Folder ID (create folder if not exists)
+                        if(existingFolders.containsKey(folderName)) { //Check if folder exists
+                            folderId = existingFolders.get(folderName);
+                        } else { //If not, create a new one on the server
+                            Tuple<Integer, String> status = HttpJsonRequest.getInstance().performCreateFolderRequest(api.getFolderUrl(), folderName);
+                            if (status.key == 200 || status.key == 409) { //200 = Ok, 409 = If the folder exists already
+                                JSONObject jObj = new JSONObject(status.value).getJSONArray("folders").getJSONObject(0);
+                                folderId = jObj.getLong("id");
+                                existingFolders.put(folderName, folderId); //Add folder to list of existing folder in order to prevent that the method tries to create it multiple times
+                            } else {
+                                throw new Exception("Failed to create folder on server!");
+                            }
+                        }
+                    }
+
+
+                    int status = HttpJsonRequest.getInstance().performCreateFeedRequest(api.getFeedUrl(), feedUrl, folderId);
+                    if(status == 200 || status == 409) {
+
+                    } else {
+                        throw new Exception("Failed to create feed on server!");
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            String text = "Extracted the following feeds:\n";
+            for (String url : extractedUrls.keySet()) {
+                text += "\n" + url;
+            }
+            pd.setMessage(text);
+
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (pd != null) {
+                pd.dismiss();
+            }
+
+            if(!result) {
+                Toast.makeText(mContext, "Failed to parse OPML file", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(mContext, "Successfully imported OPML!", Toast.LENGTH_LONG).show();
+            }
+
+            super.onPostExecute(result);
+        }
+    }
+
 
 
     /**
@@ -195,8 +383,6 @@ public class NewFeedActivity extends AppCompatActivity {
 
 
 
-
-
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -215,20 +401,14 @@ public class NewFeedActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             API api = new APIv2(HttpJsonRequest.getInstance().getRootUrl());
-
             try {
-                int status = HttpJsonRequest.getInstance().performCreateFeedRequest(api.getFeedUrl(),
-                                mUrlToFeed, mFolderId);
-
+                int status = HttpJsonRequest.getInstance().performCreateFeedRequest(api.getFeedUrl(), mUrlToFeed, mFolderId);
                 if(status == 200) {
                     return true;
                 }
-
-                Log.d("NewFeedActivity", "Status: " + status);
             } catch(Exception ex) {
                 ex.printStackTrace();
             }
-
             return false;
         }
 
@@ -270,6 +450,29 @@ public class NewFeedActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+    @NonNull public static String convertStreamToString(InputStream is) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        reader.close();
+        return sb.toString();
+    }
+
+    public static String getStringFromFile (String filePath) throws Exception {
+        File fl = new File(filePath);
+        FileInputStream fin = new FileInputStream(fl);
+        String ret = convertStreamToString(fin);
+        //Make sure you close all streams.
+        fin.close();
+        return ret;
     }
 }
 

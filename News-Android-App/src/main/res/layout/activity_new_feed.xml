@@ -64,6 +64,32 @@
                     android:text="@string/action_add_feed"
                     android:textStyle="bold"/>
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        style="?android:textAppearanceSmall"
+                        android:id="@+id/btn_import_opml"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Import OPML"
+                        android:textStyle="bold" />
+
+                    <Button
+                        style="?android:textAppearanceSmall"
+                        android:id="@+id/btn_export_opml"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Export OPML"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>

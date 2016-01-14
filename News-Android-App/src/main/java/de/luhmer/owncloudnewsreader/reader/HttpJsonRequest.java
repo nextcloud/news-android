@@ -47,6 +47,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.model.Tuple;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.TLSSocketFactory;
 
@@ -231,4 +232,15 @@ public class HttpJsonRequest {
 
 		return response.code();
 	}
+
+    public Tuple<Integer, String> performCreateFolderRequest(HttpUrl url, String folderName) throws Exception {
+        Request request = new Request.Builder()
+                .url(url)
+                .post(RequestBody.create(JSON, new JSONObject().put("name", folderName).toString()))
+                .build();
+
+        Response response = client.newCall(request).execute();
+        String body = response.body().string();
+        return new Tuple<>(response.code(), body);
+    }
 }

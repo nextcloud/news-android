@@ -76,6 +76,15 @@
                 <data android:pathPattern=".*\\atom.xml" />
                 <data android:pathPattern=".*\\rss.xml" />
                 <data android:pathPattern=".*\\.rss" />
+
+                <data android:scheme="http" android:host="*"
+                    android:pathPattern=".*\\.opml" />
+                <data android:scheme="https" android:host="*"
+                    android:pathPattern=".*\\.opml" />
+                <data android:scheme="content" android:host="*"
+                    android:pathPattern=".*\\.opml" />
+                <data android:scheme="file" android:host="*"
+                    android:pathPattern=".*\\.opml" />
             </intent-filter>
 
             <intent-filter>
