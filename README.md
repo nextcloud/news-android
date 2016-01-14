@@ -12,8 +12,6 @@ The ownCloud News Reader Android App is under [AGPLv3](https://www.gnu.org/licen
 </a>
 </p>
 
-*Status*: Beta
-
 *Bugs and enhancements can be reported under*: https://github.com/owncloud/News-Android-App/issues
 
 
@@ -89,6 +87,17 @@ Updates
 ==================================
 0.9.8 (in development)
 ---------------------
+
+
+0.9.7.6 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/349">#349 Widget always empty</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/472">#472 Starring is broken (add swipe to star again)</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/146">#146 add context menu on pressing long on an item</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/239">#239 Add support for OPML files import/export</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/343">#343 Mark as read only when scrolling past article</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/374">#374 unread badge - teslaunread-api</a>
+- Security improvement (Prevent XSS)
 
 
 0.9.7.5 (Google Play)
