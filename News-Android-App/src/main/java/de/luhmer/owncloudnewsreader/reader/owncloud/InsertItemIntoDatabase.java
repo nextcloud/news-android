@@ -21,6 +21,7 @@
 
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,20 +70,22 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
         RssItem rssItem = new RssItem();
         rssItem.setId(e.getLong("id"));
         rssItem.setFeedId(e.optLong("feedId"));
-        rssItem.setLink(url);
-        rssItem.setTitle(e.optString("title"));
         rssItem.setGuid(guid);
         rssItem.setGuidHash(e.optString("guidHash"));
         rssItem.setBody(content);
-        rssItem.setAuthor(e.optString("author"));
         rssItem.setLastModified(new Date(e.optLong("lastModified")));
-        rssItem.setEnclosureLink(enclosureLink);
-        rssItem.setEnclosureMime(enclosureMime);
         rssItem.setRead(!e.optBoolean("unread"));
         rssItem.setRead_temp(rssItem.getRead());
         rssItem.setStarred(e.optBoolean("starred"));
         rssItem.setStarred_temp(rssItem.getStarred());
         rssItem.setPubDate(pubDate);
+
+        //Possible XSS fields
+        rssItem.setTitle(StringEscapeUtils.escapeHtml4(e.optString("title")));
+        rssItem.setAuthor(StringEscapeUtils.escapeHtml4(e.optString("author")));
+        rssItem.setLink(StringEscapeUtils.escapeHtml4(url));
+        rssItem.setEnclosureLink(StringEscapeUtils.escapeHtml4(enclosureLink));
+        rssItem.setEnclosureMime(StringEscapeUtils.escapeHtml4(enclosureMime));
 
         return rssItem;
         /*

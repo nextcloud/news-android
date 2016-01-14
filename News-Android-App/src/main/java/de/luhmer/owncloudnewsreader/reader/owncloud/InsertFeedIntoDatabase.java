@@ -21,6 +21,7 @@
 
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -47,10 +48,12 @@ public class InsertFeedIntoDatabase implements IHandleJsonObject{
 
         Feed feed = new Feed();
         feed.setId(e.optLong("id"));
-        feed.setFeedTitle(e.optString("title"));
         feed.setFolderId(e.optLong("folderId"));
         feed.setFaviconUrl(faviconLink);
-		feed.setLink(e.optString("url"));
+
+		//Possible XSS fields
+		feed.setFeedTitle(StringEscapeUtils.escapeHtml4(e.optString("title")));
+		feed.setLink(StringEscapeUtils.escapeHtml4(e.optString("url")));
 		//feed.setLink(e.optString("link"));
 
         return feed;
