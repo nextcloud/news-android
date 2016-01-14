@@ -47,6 +47,7 @@ import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
+import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
@@ -149,6 +150,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         eventBus.post(new RegisterVideoOutput(null, null));
 
         TeslaUnreadManager.PublishUnreadCount(this);
+        WidgetProvider.UpdateWidget(this);
 
         super.onPause();
     }

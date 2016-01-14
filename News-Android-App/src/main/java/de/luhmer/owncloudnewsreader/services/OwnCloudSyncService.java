@@ -23,7 +23,6 @@ package de.luhmer.owncloudnewsreader.services;
 
 import android.app.ActivityManager;
 import android.app.Service;
-import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -148,20 +147,7 @@ public class OwnCloudSyncService extends Service {
 		}
 	};
 
-    private void UpdateWidget()
-    {
-        Intent intent = new Intent(this, WidgetProvider.class);
-        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-        // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
-        // since it seems the onUpdate() is only fired on that:
-
-        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,ids);
-        sendBroadcast(intent);
-    }
-
-	private void ThrowException(Exception ex) {
+    private void ThrowException(Exception ex) {
 		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
 		for (IOwnCloudSyncServiceCallback icb : callbackList) {
 			try {
@@ -191,6 +177,7 @@ public class OwnCloudSyncService extends Service {
 	
 	private void finishedSync() {
 		TeslaUnreadManager.PublishUnreadCount(this);
+		WidgetProvider.UpdateWidget(this);
 
 		syncRunning = false;
 		syncStopWatch.stop();
@@ -212,7 +199,6 @@ public class OwnCloudSyncService extends Service {
 				if(mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true))//Default is true
 					NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
 			}
-			UpdateWidget();
 		}
 
 		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();

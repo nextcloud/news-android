@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -53,7 +54,21 @@ public class WidgetProvider extends AppWidgetProvider {
     
     public static final String EXTRA_ITEM = null;
 	private static final String TAG = "WidgetProvider";
-	    
+
+
+    public static void UpdateWidget(Context context)
+    {
+        Intent intent = new Intent(context, WidgetProvider.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
+        // since it seems the onUpdate() is only fired on that:
+
+        int ids[] = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,ids);
+        context.sendBroadcast(intent);
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
     	final int appWidgetId[];
