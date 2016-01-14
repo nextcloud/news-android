@@ -38,6 +38,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
+import de.luhmer.owncloudnewsreader.helper.TeslaUnreadManager;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -146,6 +147,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         Log.d(TAG, "onPause");
         eventBus.unregister(this);
         eventBus.post(new RegisterVideoOutput(null, null));
+
+        TeslaUnreadManager.PublishUnreadCount(this);
 
         super.onPause();
     }

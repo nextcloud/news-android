@@ -48,6 +48,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
+import de.luhmer.owncloudnewsreader.helper.TeslaUnreadManager;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
@@ -189,6 +190,8 @@ public class OwnCloudSyncService extends Service {
 	}
 	
 	private void finishedSync() {
+		TeslaUnreadManager.PublishUnreadCount(this);
+
 		syncRunning = false;
 		syncStopWatch.stop();
         Log.v(TAG, "Time needed (synchronization): " + syncStopWatch.toString());
@@ -217,7 +220,7 @@ public class OwnCloudSyncService extends Service {
 			try {
 				icb.finishedSync();
 				//icb.finishedSyncOfItems();
-			} catch (RemoteException e) {						
+			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 		}
