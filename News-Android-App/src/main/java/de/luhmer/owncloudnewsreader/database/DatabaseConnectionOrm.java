@@ -82,8 +82,8 @@ public class DatabaseConnectionOrm {
 
     }
 
-    public void insertNewFeed (Feed feed) {
-        daoSession.getFeedDao().insertOrReplace(feed);
+    public void insertNewFeed (Feed... feeds) {
+        daoSession.getFeedDao().insertOrReplaceInTx(feeds);
     }
 
     public void insertNewItems(RssItem... items) {

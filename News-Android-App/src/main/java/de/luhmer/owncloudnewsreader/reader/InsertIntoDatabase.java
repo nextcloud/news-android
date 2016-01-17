@@ -65,38 +65,50 @@ public class InsertIntoDatabase {
     */
     }
 
-    public static void InsertFeedsIntoDatabase(ArrayList<Feed> newFeeds, DatabaseConnectionOrm dbConn)
+    public static void InsertFeedsIntoDatabase(ArrayList<Feed> feeds, DatabaseConnectionOrm dbConn)
     {
         List<Feed> oldFeeds = dbConn.getListOfFeeds();
 
-        if(newFeeds != null)
+        if(feeds != null)
         {
-            for(Feed feed : newFeeds)
-                dbConn.insertNewFeed(feed);
+            dbConn.insertNewFeed(feeds.toArray(new Feed[feeds.size()]));
+            //for(Feed feed : newFeeds)
+            //    dbConn.insertNewFeed(feed);
 
-            for(Feed feed : oldFeeds)
+            for(Feed oldFeed : oldFeeds)
             {
                 boolean found = false;
-                for(int i = 0; i < newFeeds.size(); i++)
+                for(Feed newFeed : feeds)
                 {
-                    if(newFeeds.get(i).getLink().equals(feed.getLink()))
+                    if(oldFeed.getId() == newFeed.getId()) {
+                        found = true;
+
+                        //Set the avg color after sync again.
+                        newFeed.setAvgColour(oldFeed.getAvgColour());
+                        dbConn.updateFeed(newFeed);
+                        break;
+                    }
+
+                    /*
+                    if(feeds.get(i).getLink().equals(oldFeed.getLink()))
                     {
-                        if(!newFeeds.get(i).getFeedTitle().equals(feed.getFeedTitle()))
+                        if(!feeds.get(i).getFeedTitle().equals(oldFeed.getFeedTitle()))
                         {
-                            feed.setFeedTitle(newFeeds.get(i).getFeedTitle());
+                            oldFeed.setFeedTitle(feeds.get(i).getFeedTitle());
                         }
                         //Set the avg color after sync again.
-                        feed.setAvgColour(oldFeeds.get(i).getAvgColour());
-                        dbConn.updateFeed(feed);
+                        oldFeed.setAvgColour(oldFeeds.get(i).getAvgColour());
+                        dbConn.updateFeed(oldFeed);
 
                         found = true;
                         break;
                     }
+                    */
                 }
                 if(!found)
                 {
-                    dbConn.removeFeedById(feed.getId());
-                    Log.d(TAG, "Remove Subscription: " + feed.getFeedTitle());
+                    dbConn.removeFeedById(oldFeed.getId());
+                    Log.d(TAG, "Remove Subscription: " + oldFeed.getFeedTitle());
                 }
             }
         }
