@@ -52,7 +52,8 @@ import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 public class DownloadImagesService extends IntentService {
 
 	public static final String LAST_ITEM_ID = "LAST_ITEM_ID";
-    public static final String DOWNLOAD_FAVICONS_EXCLUSIVE = "DOWNLOAD_FAVICONS_EXCLUSIVE";
+    public enum DownloadMode { FAVICONS_ONLY, PICTURES_ONLY, FAVICONS_AND_PICTURES }
+    public static final String DOWNLOAD_MODE_STRING = "DOWNLOAD_MODE";
 	private static Random random;
 
 	private int NOTIFICATION_ID = 1;
@@ -97,19 +98,19 @@ public class DownloadImagesService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
-        boolean downloadFavIconsExclusive = intent.getBooleanExtra(DOWNLOAD_FAVICONS_EXCLUSIVE, false);
+        DownloadMode downloadMode = (DownloadMode) intent.getSerializableExtra(DOWNLOAD_MODE_STRING);
+
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
         Notification notify = BuildNotification();
 
-        List<Feed> feedList = dbConn.getListOfFeeds();
-        FavIconHandler favIconHandler = new FavIconHandler(this);
-        for(Feed feed : feedList) {
-            favIconHandler.PreCacheFavIcon(feed);
-        }
-
-
-        if(!downloadFavIconsExclusive) {
+        if(downloadMode.equals(DownloadMode.FAVICONS_ONLY)) {
+            List<Feed> feedList = dbConn.getListOfFeeds();
+            FavIconHandler favIconHandler = new FavIconHandler(this);
+            for(Feed feed : feedList) {
+                favIconHandler.PreCacheFavIcon(feed);
+            }
+        } else if(downloadMode.equals(DownloadMode.FAVICONS_AND_PICTURES) || downloadMode.equals(DownloadMode.PICTURES_ONLY)) {
             long lastId = intent.getLongExtra(LAST_ITEM_ID, 0);
             List<RssItem> rssItemList = dbConn.getAllItemsWithIdHigher(lastId);
             List<String> links = new ArrayList<>();

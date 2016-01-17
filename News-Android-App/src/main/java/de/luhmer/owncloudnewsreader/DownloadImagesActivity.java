@@ -3,9 +3,10 @@ package de.luhmer.owncloudnewsreader;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
-import de.luhmer.owncloudnewsreader.reader.owncloud.AsyncTask_GetItems;
+import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 
 public class DownloadImagesActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,11 @@ public class DownloadImagesActivity extends Activity {
                 .setCancelable(true)
                 .setPositiveButton(getString(android.R.string.yes) ,new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
-                        AsyncTask_GetItems.StartDownloadingImages(DownloadImagesActivity.this, highestItemIdBeforeSync, false);
+                        Intent service = new Intent(DownloadImagesActivity.this, DownloadImagesService.class);
+                        service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemIdBeforeSync);
+                        service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
+                        DownloadImagesActivity.this.startService(service);
+
                         DownloadImagesActivity.this.finish();
                     }
                 })

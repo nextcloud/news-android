@@ -161,32 +161,16 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
                     break;
             }
 
-            if(downloadImages) //If images should be cached
-                StartDownloadingImages(context, highestItemIdBeforeSync, false);
-            else //Download favIcons
-                StartDownloadingImages(context, highestItemIdBeforeSync, true);
+            if(downloadImages) { //If images should be cached
+                Intent service = new Intent(context, DownloadImagesService.class);
+                service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemIdBeforeSync);
+                service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY); //Pictures only, Favions are getting cached by the @AsyncTask_GetFeeds class
+                context.startService(service);
+            }
         }
 
 		detach();
     }
-
-    /**
-     *
-     * @param context
-     * @param highestItemIdBeforeSync
-     * @param favIconsExclusive indicates if only favIcons should be downloaded
-     */
-    public static void StartDownloadingImages(Context context, long highestItemIdBeforeSync, boolean favIconsExclusive)
-    {
-        Intent service = new Intent(context, DownloadImagesService.class);
-        service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemIdBeforeSync);
-
-        if(favIconsExclusive)
-            service.putExtra(DownloadImagesService.DOWNLOAD_FAVICONS_EXCLUSIVE, true);
-
-        context.startService(service);
-    }
-
 
     private void ShowDownloadImageWithoutWifiQuestion()
     {

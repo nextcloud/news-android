@@ -22,9 +22,11 @@
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
+import android.content.Intent;
 
 import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
+import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 
 public class AsyncTask_GetFeeds extends AsyncTask_Reader {
     public AsyncTask_GetFeeds(final Context context, final OnAsyncTaskCompletedListener... listener) {
@@ -40,5 +42,16 @@ public class AsyncTask_GetFeeds extends AsyncTask_Reader {
             return ex;
         }
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Exception ex) {
+
+        //Download favIcons
+        Intent service = new Intent(context, DownloadImagesService.class);
+        service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.FAVICONS_ONLY);
+        context.startService(service);
+
+        super.onPostExecute(ex);
     }
 }

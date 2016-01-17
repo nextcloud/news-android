@@ -793,6 +793,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				long highestItemId = dbConn.getLowestRssItemIdUnread();
 				Intent service = new Intent(this, DownloadImagesService.class);
 				service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
+				service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
 				startService(service);
 
 				break;
