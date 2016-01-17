@@ -17,7 +17,7 @@
   <string name="message_bar_reload">Last på nytt</string>
   <string name="allUnreadFeeds">Alle uleste elementer</string>
   <string name="starredFeeds">Stjernemerkede elementer</string>
-  <string name="title_activity_new_feed">Legg til ny strøm</string>
+  <string name="title_activity_new_feed">Legg til ny kilde</string>
   <string name="menu_update">Oppdater</string>
   <string name="menu_About_Changelog">Om / Endringslogg</string>
   <string name="menu_markAllAsRead">Marker alle som lest</string>
@@ -33,7 +33,7 @@
   <string name="action_save">Lagre</string>
   <string name="action_settings">Innstillinger</string>
   <string name="action_sync_settings">Innstillinger for synkronisering</string>
-  <string name="action_add_new_feed">Legg til ny strøm</string>
+  <string name="action_add_new_feed">Legg til ny kilde</string>
   <string name="action_textToSpeech">Les opp</string>
   <plurals name="notification_new_items_ticker">
     <item quantity="one">Du har %d nytt ulest element</item>
@@ -61,8 +61,11 @@
   <string name="error_download_failed">Nedlasting feilet</string>
   <string name="intent_title_share">Del via</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">Fjern nyhetskilde</string>
+  <string name="action_feed_rename">Omdøp nyhetskilde</string>
   <string name="feed_remove_button">Fjern</string>
   <string name="feed_rename_button">Gi nytt navn</string>
+  <string name="confirm_feed_remove">Vil du virkelig fjerne denne nyhetskilden? Dette kan ikke angres!</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Brukernavn</string>
   <string name="pref_title_password">Passord</string>
@@ -115,7 +118,7 @@
   <!--Settings for Display-->
   <string name="pref_header_display">Vis</string>
   <string name="pref_title_app_theme">App-tema</string>
-  <string name="pref_title_feed_list_layout">Oppsett for strømlisten</string>
+  <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
   <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
   <string-array name="pref_display_apptheme">
     <item>Mørk</item>
