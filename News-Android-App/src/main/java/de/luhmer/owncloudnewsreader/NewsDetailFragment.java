@@ -48,6 +48,7 @@ import android.widget.ProgressBar;
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -417,7 +418,7 @@ public class NewsDetailFragment extends Fragment {
                 R.attr.rssItemListBackground);
         int feedColor = colors[0];
         if(feed != null) {
-            feedTitle = feed.getFeedTitle();
+            feedTitle = StringEscapeUtils.escapeHtml4(feed.getFeedTitle());
             favIconUrl = feed.getFaviconUrl();
             if(feed.getAvgColour() != null)
                 feedColor = Integer.parseInt(feed.getAvgColour());
@@ -461,12 +462,12 @@ public class NewsDetailFragment extends Fragment {
         if(showHeader) {
             builder.append("<div id=\"top_section\">");
             builder.append("<div id=\"header\">");
-            String title = rssItem.getTitle();
-            String linkToFeed = rssItem.getLink();
+            String title = StringEscapeUtils.escapeHtml4(rssItem.getTitle());
+            String linkToFeed = StringEscapeUtils.escapeHtml4(rssItem.getLink());
             builder.append(String.format("<a href=\"%s\">%s</a>", linkToFeed, title));
             builder.append("</div>");
 
-            String authorOfArticle = rssItem.getAuthor();
+            String authorOfArticle = StringEscapeUtils.escapeHtml4(rssItem.getAuthor());
             if (authorOfArticle != null)
                 if (!authorOfArticle.trim().equals(""))
                     feedTitle += " - " + authorOfArticle.trim();

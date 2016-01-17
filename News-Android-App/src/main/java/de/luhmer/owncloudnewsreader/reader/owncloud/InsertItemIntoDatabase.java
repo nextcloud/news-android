@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader.reader.owncloud;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -81,11 +80,11 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
         rssItem.setPubDate(pubDate);
 
         //Possible XSS fields
-        rssItem.setTitle(StringEscapeUtils.escapeHtml4(e.optString("title")));
-        rssItem.setAuthor(StringEscapeUtils.escapeHtml4(e.optString("author")));
-        rssItem.setLink(StringEscapeUtils.escapeHtml4(url));
-        rssItem.setEnclosureLink(StringEscapeUtils.escapeHtml4(enclosureLink));
-        rssItem.setEnclosureMime(StringEscapeUtils.escapeHtml4(enclosureMime));
+        rssItem.setTitle(e.optString("title"));
+        rssItem.setAuthor(e.optString("author"));
+        rssItem.setLink(url);
+        rssItem.setEnclosureLink(enclosureLink);
+        rssItem.setEnclosureMime(enclosureMime);
 
         return rssItem;
         /*
