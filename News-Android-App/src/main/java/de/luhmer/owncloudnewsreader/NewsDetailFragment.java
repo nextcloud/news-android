@@ -324,12 +324,18 @@ public class NewsDetailFragment extends Fragment {
                     if (imageUrl.startsWith("http")) {
 
                         URL mImageUrl;
+                        String imgtitle;
                         String imgaltval;
                         String imgsrcval;
 
                         imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
                         Elements imgtag = htmldoc.getElementsByAttributeValueContaining("src", imageUrl);
 
+                        try {
+                            imgtitle = imgtag.first().attr("title");
+                        } catch (NullPointerException e) {
+                            imgtitle = "";
+                        }
                         try {
                             imgaltval = imgtag.first().attr("alt");
                         } catch (NullPointerException e) {
@@ -343,7 +349,7 @@ public class NewsDetailFragment extends Fragment {
 
                         String title = imgsrcval;
                         int titleIcon = android.R.drawable.ic_menu_gallery;
-                        String text = imgaltval;
+                        String text = (imgtitle.isEmpty()) ? imgaltval : imgtitle;
 
                         // Create and show the dialog.
                         DialogFragment newFragment =
