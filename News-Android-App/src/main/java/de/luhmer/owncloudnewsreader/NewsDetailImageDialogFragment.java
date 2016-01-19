@@ -186,8 +186,6 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        registerImageDownloadReceiver();
-
         View v = inflater.inflate(R.layout.fragment_dialog_image, container, false);
 
         TextView tvTitle = (TextView) v.findViewById(R.id.ic_menu_title);
@@ -199,6 +197,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         imgTitle.setImageResource(mDialogIcon);
 
         if(mDialogType == TYPE.IMAGE) {
+            registerImageDownloadReceiver();
             if(mDialogText.equals(mDialogTitle) || mDialogText.equals("")) {
                 tvText.setVisibility(View.GONE);
             }
