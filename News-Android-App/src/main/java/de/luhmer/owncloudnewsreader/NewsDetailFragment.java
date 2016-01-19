@@ -371,38 +371,10 @@ public class NewsDetailFragment extends Fragment {
                 //else if (type == WebView.HitTestResult.EDIT_TEXT_TYPE) { }
             }
         }
-
-
-
-
     }
 
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        if( !getUserVisibleHint() ) {
-            return false;
-        }
-        switch (item.getItemId()) {
-            /*
-            case R.id.action_downloadimg:
-                downloadImage(imageUrl);
-                return true;
-            case R.id.action_shareimg:
-                //Intent Share
-                return true;
-            case R.id.action_openimg:
-                openImageInBrowser(imageUrl);
-                return true;
-                */
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-
-
-
+    
     @SuppressLint("SimpleDateFormat")
 	public static String getHtmlPage(Context context, RssItem rssItem, boolean showHeader)
 	{
