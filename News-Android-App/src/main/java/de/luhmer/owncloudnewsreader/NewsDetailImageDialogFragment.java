@@ -375,11 +375,13 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                     switch (status) {
                         case DownloadManager.STATUS_SUCCESSFUL:
                             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_saved), Toast.LENGTH_LONG).show();
-                            dismiss();
+                            try { dismiss(); }
+                            catch (Exception e) {}
                             break;
                         case DownloadManager.STATUS_FAILED:
                             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_download_failed) + ": " + reason, Toast.LENGTH_LONG).show();
-                            dismiss();
+                            try { dismiss(); }
+                            catch (Exception e) {}
                             break;
                     }
                 }
