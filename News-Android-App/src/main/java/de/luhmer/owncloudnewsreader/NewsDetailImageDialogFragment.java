@@ -120,7 +120,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 mMenuItems.put(getString(R.string.action_img_copylink), new MenuAction() {
                     @Override
                     public void execute() {
-                        copyToCipboard(mDialogTitle, mImageUrl.toString());
+                        copyToClipboard(mDialogTitle, mImageUrl.toString());
                     }
                 });
                 break;
@@ -145,7 +145,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 mMenuItems.put(getString(R.string.action_link_copy), new MenuAction() {
                     @Override
                     public void execute() {
-                        copyToCipboard(mDialogTitle, mDialogText);
+                        copyToClipboard(mDialogTitle, mDialogText);
                     }
                 });
                 break;
@@ -247,7 +247,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
 
-    private void copyToCipboard(String label, String text) {
+    private void copyToClipboard(String label, String text) {
         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Activity.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText(label, text);
         clipboard.setPrimaryClip(clip);
