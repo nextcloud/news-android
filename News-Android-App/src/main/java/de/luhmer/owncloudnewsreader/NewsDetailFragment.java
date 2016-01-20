@@ -308,16 +308,7 @@ public class NewsDetailFragment extends Fragment {
 
                 Document htmldoc = Jsoup.parse(html);
 
-                // DialogFragment.show() will take care of adding the fragment
-                // in a transaction.  We also want to remove any currently showing
-                // dialog, so make our own transaction and take care of that here.
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                Fragment prev = getFragmentManager().findFragmentByTag("menu_fragment_dialog");
-                if (prev != null) {
-                    ft.remove(prev);
-                }
-                ft.addToBackStack(null);
-
 
                 if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
                     String imageUrl = result.getExtra();
@@ -380,38 +371,10 @@ public class NewsDetailFragment extends Fragment {
                 //else if (type == WebView.HitTestResult.EDIT_TEXT_TYPE) { }
             }
         }
-
-
-
-
     }
 
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        if( !getUserVisibleHint() ) {
-            return false;
-        }
-        switch (item.getItemId()) {
-            /*
-            case R.id.action_downloadimg:
-                downloadImage(imageUrl);
-                return true;
-            case R.id.action_shareimg:
-                //Intent Share
-                return true;
-            case R.id.action_openimg:
-                openImageInBrowser(imageUrl);
-                return true;
-                */
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-
-
-
+    
     @SuppressLint("SimpleDateFormat")
 	public static String getHtmlPage(Context context, RssItem rssItem, boolean showHeader)
 	{

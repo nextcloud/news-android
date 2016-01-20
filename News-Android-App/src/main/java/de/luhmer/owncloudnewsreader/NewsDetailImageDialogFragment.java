@@ -120,7 +120,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 mMenuItems.put(getString(R.string.action_img_copylink), new MenuAction() {
                     @Override
                     public void execute() {
-                        copyToCipboard(mDialogTitle, mImageUrl.toString());
+                        copyToClipboard(mDialogTitle, mImageUrl.toString());
                     }
                 });
                 break;
@@ -145,7 +145,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 mMenuItems.put(getString(R.string.action_link_copy), new MenuAction() {
                     @Override
                     public void execute() {
-                        copyToCipboard(mDialogTitle, mDialogText);
+                        copyToClipboard(mDialogTitle, mDialogText);
                     }
                 });
                 break;
@@ -186,8 +186,6 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        registerImageDownloadReceiver();
-
         View v = inflater.inflate(R.layout.fragment_dialog_image, container, false);
 
         TextView tvTitle = (TextView) v.findViewById(R.id.ic_menu_title);
@@ -199,6 +197,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         imgTitle.setImageResource(mDialogIcon);
 
         if(mDialogType == TYPE.IMAGE) {
+            registerImageDownloadReceiver();
             if(mDialogText.equals(mDialogTitle) || mDialogText.equals("")) {
                 tvText.setVisibility(View.GONE);
             }
@@ -248,12 +247,12 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
 
-    private void copyToCipboard(String label, String text) {
+    private void copyToClipboard(String label, String text) {
         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Activity.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText(label, text);
         clipboard.setPrimaryClip(clip);
         Toast.makeText(getActivity(), getString(R.string.toast_copied_to_clipboard), Toast.LENGTH_SHORT).show();
-        getDialog().dismiss();
+        dismiss();
     }
 
     private void shareImage() {
@@ -262,7 +261,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mDialogText);
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mImageUrl.toString());
         startActivity(Intent.createChooser(sharingIntent, getString(R.string.intent_title_share)));
-        getDialog().dismiss();
+        dismiss();
     }
 
     private void shareLink() {
@@ -271,7 +270,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mDialogTitle);
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mDialogText);
         startActivity(Intent.createChooser(sharingIntent, getString(R.string.intent_title_share)));
-        getDialog().dismiss();
+        dismiss();
     }
 
 
@@ -279,7 +278,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url.toString()));
         startActivity(i);
-        getDialog().dismiss();
+        dismiss();
     }
 
     private void downloadImage(URL url) {
@@ -298,7 +297,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             getDialog().hide();
         } else {
             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
-            getDialog().dismiss();
+            dismiss();
         }
     }
 
@@ -357,7 +356,6 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     private void registerImageDownloadReceiver() {
-        IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
         if(downloadCompleteReceiver != null) return;
 
         downloadCompleteReceiver = new BroadcastReceiver() {
@@ -377,16 +375,19 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                     switch (status) {
                         case DownloadManager.STATUS_SUCCESSFUL:
                             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_saved), Toast.LENGTH_LONG).show();
-                            getDialog().dismiss();
+                            try { dismiss(); }
+                            catch (Exception e) {}
                             break;
                         case DownloadManager.STATUS_FAILED:
-                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_download_failed) +": " +reason, Toast.LENGTH_LONG).show();
-                            getDialog().dismiss();
+                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_download_failed) + ": " + reason, Toast.LENGTH_LONG).show();
+                            try { dismiss(); }
+                            catch (Exception e) {}
                             break;
                     }
                 }
             }
         };
+        IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
         getActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
     }
 
