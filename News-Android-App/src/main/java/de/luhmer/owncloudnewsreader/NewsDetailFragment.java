@@ -34,7 +34,6 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -312,7 +311,7 @@ public class NewsDetailFragment extends Fragment {
 
                 if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
                     String imageUrl = result.getExtra();
-                    if (imageUrl.startsWith("http")) {
+                    if (imageUrl.startsWith("http") || imageUrl.startsWith("file")) {
 
                         URL mImageUrl;
                         String imgtitle;
