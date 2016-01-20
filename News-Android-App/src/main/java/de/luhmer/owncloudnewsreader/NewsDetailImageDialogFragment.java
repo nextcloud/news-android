@@ -98,31 +98,38 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         //Build the menu
         switch(mDialogType) {
             case IMAGE:
-                mMenuItems.put(getString(R.string.action_img_download), new MenuActionLongClick() {
-                    @Override
-                    public void execute() {
-                        downloadImage(mImageUrl);
-                    }
-                    public void executeLongClick() { changeDownloadDir(); }
-                });
-                mMenuItems.put(getString(R.string.action_img_open), new MenuAction() {
-                    @Override
-                    public void execute() {
-                        openLinkInBrowser(mImageUrl);
-                    }
-                });
-                mMenuItems.put(getString(R.string.action_img_sharelink), new MenuAction() {
-                    @Override
-                    public void execute() {
-                        shareImage();
-                    }
-                });
-                mMenuItems.put(getString(R.string.action_img_copylink), new MenuAction() {
-                    @Override
-                    public void execute() {
-                        copyToClipboard(mDialogTitle, mImageUrl.toString());
-                    }
-                });
+                if(mImageUrl.toString().startsWith("http")) { //Only allow download for http[s] images (prevent download of cached images)
+                    mMenuItems.put(getString(R.string.action_img_download), new MenuActionLongClick() {
+                        @Override
+                        public void execute() {
+                            downloadImage(mImageUrl);
+                        }
+
+                        public void executeLongClick() {
+                            changeDownloadDir();
+                        }
+                    });
+                    mMenuItems.put(getString(R.string.action_img_open), new MenuAction() {
+                        @Override
+                        public void execute() {
+                            openLinkInBrowser(mImageUrl);
+                        }
+                    });
+                    mMenuItems.put(getString(R.string.action_img_sharelink), new MenuAction() {
+                        @Override
+                        public void execute() {
+                            shareImage();
+                        }
+                    });
+                    mMenuItems.put(getString(R.string.action_img_copylink), new MenuAction() {
+                        @Override
+                        public void execute() {
+                            copyToClipboard(mDialogTitle, mImageUrl.toString());
+                        }
+                    });
+                } else {
+                    mDialogTitle = "Cached image";
+                }
                 break;
             case URL:
                 mMenuItems.put(getString(R.string.action_link_open), new MenuAction() {
