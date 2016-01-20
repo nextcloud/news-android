@@ -5,9 +5,17 @@
   <string name="title_activity_sync_interval_selector">Izbirnik razmika usklajevanja</string>
   <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
   <string name="empty_view_content">Ni vsebine</string>
+  <string name="toast_GettingMoreItems">Začeto je prejemanje večjega števila predmetov ... Počakajte.</string>
   <string name="no_wifi_available">Ni vzpostavljene povezave WiFi</string>
   <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike brez vzpostavljene povezave WiFi?</string>
+  <string name="current_version">V uporabi je različica %s</string>
   <string name="widget_header">Novice ownCloud</string>
+  <plurals name="message_bar_new_articles_available">
+    <item quantity="one">%d nov predmet je na voljo</item>
+    <item quantity="two">%d nova predmeta sta na voljo</item>
+    <item quantity="few">%d novi predmeti so na voljo</item>
+    <item quantity="other">%d novih predmetov je na voljo</item>
+  </plurals>
   <string name="message_bar_reload">Ponovno naloži</string>
   <string name="allUnreadFeeds">Vsi neprebrani predmeti</string>
   <string name="starredFeeds">Označeni predmeti</string>
@@ -30,16 +38,31 @@
   <string name="action_add_new_feed">Dodaj nov vir</string>
   <string name="action_textToSpeech">Preberi</string>
   <!--Add new feed-->
+  <string name="hint_feed_url">Naslov URL vira</string>
   <string name="action_add_feed">Dodaj vir</string>
   <!--String related to NewsDetail-ContextMenu Items-->
+  <string name="action_img_download">Prejmi sliko</string>
+  <string name="action_img_sharelink">Omogoči souporabo povezave do slike</string>
+  <string name="action_img_open">Pokaži sliko v brskalniku</string>
+  <string name="action_img_copylink">Kopiraj povezavo do slike</string>
+  <string name="action_link_share">Omogoči souporabo povezave</string>
+  <string name="action_link_open">Odpri povezavo v brskalniku</string>
+  <string name="action_link_copy">Kopiraj povezavo</string>
+  <string name="toast_img_download_wait">Poteka prejemanje ...</string>
+  <string name="toast_img_saved">Slika je shranjena.</string>
+  <string name="toast_img_notwriteable">Zapisovanje slike je spodletelo.</string>
   <string name="toast_copied_to_clipboard">Kopirano v odložišče</string>
   <string name="error_download_failed">Prejemanje je spodletelo</string>
+  <string name="intent_title_share">Omogoči souporabo prek</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">Odstrani vir</string>
+  <string name="action_feed_rename">Preimenuj vir</string>
   <string name="feed_remove_button">Odstrani</string>
   <string name="feed_rename_button">Preimenuj</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uporabniško ime</string>
   <string name="pref_title_password">Geslo</string>
+  <string name="pref_title_owncloudRootPath">korenski naslov oblaka ownCloud</string>
   <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
   <string name="action_sign_in_short">Prijava</string>
   <string name="login_progress_signing_in">Prijavljanje ...</string>
@@ -51,6 +74,7 @@
   <string name="toast_no_more_downloads_available">Ni nadaljnjih predmetov</string>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavitve</string>
+  <string name="cache_is_cleared">Predpomnilnik je počiščen!</string>
   <!--General settings-->
   <string name="pref_header_general">Splošno</string>
   <string name="pref_title_general_sort_order">Način razvrščanja</string>
@@ -59,6 +83,7 @@
     <item>Staro -&gt; Novo</item>
   </string-array>
   <string name="dialog_clearing_cache">Čiščenje predpomnilnika</string>
+  <string name="dialog_clearing_cache_please_wait">Poteka čiščenje predpomnilnika ...</string>
   <string name="reset_cache_unsaved_changes">Obstajajo neusklajene spremembe. Ali želite vseeno počistiti predpomnilnik?</string>
   <string name="warning">Opozorilo</string>
   <string name="pref_title_AutoSyncOnStart">Uskladi ob zagonu</string>
@@ -130,5 +155,16 @@
     <item>24 ur</item>
   </string-array>
   <!--content description for images and icons-->
+  <string name="content_desc_play">predvajaj</string>
+  <string name="content_desc_pause">premor</string>
+  <string name="content_desc_rewind">skoči nazaj</string>
+  <string name="content_desc_forward">skoči naprej</string>
+  <string name="content_desc_expand">razširi</string>
+  <string name="content_desc_mark_as_read">označi kot prebrano</string>
+  <string name="content_desc_mark_as_unread">označi kot neprebrano</string>
+  <string name="content_desc_add_to_favorites">dodaj med priljubljene</string>
+  <string name="content_desc_remove_from_favorites">odstrani iz priljubljenih</string>
+  <string name="content_desc_show_password">pokaži geslo</string>
   <string name="content_desc_delete">izbriši</string>
+  <string name="content_desc_download">prejmi</string>
 </resources>
