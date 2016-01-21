@@ -67,8 +67,11 @@
   <string name="error_download_failed">Скачивание не удалось</string>
   <string name="intent_title_share">Поделиться в</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
+  <string name="action_feed_remove">Удалить Новостную ленту</string>
+  <string name="action_feed_rename">Переименовать Новостную ленту</string>
   <string name="feed_remove_button">Удалить</string>
   <string name="feed_rename_button">Переименовать</string>
+  <string name="confirm_feed_remove">Вы действительно хотите удалить эту Новостную ленту? Это не действие необратимо!</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Имя пользователя</string>
   <string name="pref_title_password">Пароль</string>
