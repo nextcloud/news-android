@@ -37,6 +37,18 @@
   <string name="action_sync_settings">Nastavitve usklajevanja</string>
   <string name="action_add_new_feed">Dodaj nov vir</string>
   <string name="action_textToSpeech">Preberi</string>
+  <plurals name="notification_new_items_ticker">
+    <item quantity="one">V dohodni mapi je %d neprebrano sporočilo</item>
+    <item quantity="two">V dohodni mapi sta %d neprebrani sporoči</item>
+    <item quantity="few">V dohodni mapi so %d neprebrana sporočila</item>
+    <item quantity="other">V dohodni mapi je %d neprebranih sporočil</item>
+  </plurals>
+  <plurals name="notification_new_items_text">
+    <item quantity="one">%d novo sporočilo je na voljo</item>
+    <item quantity="two">%d novi sporočili sta na voljo</item>
+    <item quantity="few">%d nova sporočila so na voljo</item>
+    <item quantity="other">%d novih sporočil je na voljo</item>
+  </plurals>
   <!--Add new feed-->
   <string name="hint_feed_url">Naslov URL vira</string>
   <string name="action_add_feed">Dodaj vir</string>
@@ -59,6 +71,7 @@
   <string name="action_feed_rename">Preimenuj vir</string>
   <string name="feed_remove_button">Odstrani</string>
   <string name="feed_rename_button">Preimenuj</string>
+  <string name="confirm_feed_remove">Ali res želite odstraniti ta vir? Dejanjaa ni mogoče povrniti!</string>
   <!--Strings related to login-->
   <string name="pref_title_username">Uporabniško ime</string>
   <string name="pref_title_password">Geslo</string>
@@ -71,7 +84,19 @@
   <!--Import Accounts-->
   <string name="import_account">Uvozi račun</string>
   <!--Toast Messages-->
+  <plurals name="toast_downloaded_x_items">
+    <item quantity="one">Prejet je %d stari predmeti</item>
+    <item quantity="two">Prejeta sta %d stara predmeta</item>
+    <item quantity="few">Prejeti so %d stari predmeti</item>
+    <item quantity="other">Prejetih je %d starih predmetov</item>
+  </plurals>
   <string name="toast_no_more_downloads_available">Ni nadaljnjih predmetov</string>
+  <plurals name="fetched_items_so_far">
+    <item quantity="one">Do sedaj je prejet %d predmet ...</item>
+    <item quantity="two">Do sedaj sta prejeta %d predmeta ...</item>
+    <item quantity="few">Do sedaj so prejeti %d predmeti ...</item>
+    <item quantity="other">Do sedaj je prejetih %d predmetov ...</item>
+  </plurals>
   <!--Strings related to Settings-->
   <string name="title_activity_settings">Nastavitve</string>
   <string name="cache_is_cleared">Predpomnilnik je počiščen!</string>
@@ -91,6 +116,7 @@
   <string name="pref_title_DisableHostnameVerification">Onemogoči overjanje imena gostitelja</string>
   <string name="pref_title_NavigateWithVolumeButtons">Pomikanje po zaslonu z uporabo gumbov za glasnost</string>
   <string name="pref_title_MarkAsReadWhileScrolling">Označi kot prebrano med pomikanjem med predmeti</string>
+  <string name="pref_title_OpenInBrowserDirectly">Uporabi zunanji brskalnik za ogled prispevkov</string>
   <!--MemorizingTrustManager-->
   <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
   <string name="mtm_decision_always">Vedno</string>
@@ -98,6 +124,7 @@
   <string name="mtm_notification">Overitev digitalnih potrdil</string>
   <!--Podcast-->
   <string name="no_podcast_selected">Ni izbranega podcasta</string>
+  <string name="no_chapters_available">V prispevku ni poglavij</string>
   <!--Settings for Display-->
   <string name="pref_header_display">Prikaz</string>
   <string name="pref_title_app_theme">Ime teme</string>
@@ -106,6 +133,12 @@
   <string-array name="pref_display_apptheme">
     <item>Temna</item>
     <item>Svetla</item>
+  </string-array>
+  <string-array name="pref_display_feed_list_layout">
+    <item>Enostavno</item>
+    <item>Razširjeno</item>
+    <item>Razširjeno (polno besedilo)</item>
+    <item>Razširjeno z Webview</item>
   </string-array>
   <string-array name="pref_title_lines_count">
     <item>1</item>
@@ -160,8 +193,10 @@
   <string name="content_desc_rewind">skoči nazaj</string>
   <string name="content_desc_forward">skoči naprej</string>
   <string name="content_desc_expand">razširi</string>
+  <string name="content_desc_collapse">zloži</string>
   <string name="content_desc_mark_as_read">označi kot prebrano</string>
   <string name="content_desc_mark_as_unread">označi kot neprebrano</string>
+  <string name="content_desc_tap_to_refresh">s pritiskom osveži</string>
   <string name="content_desc_add_to_favorites">dodaj med priljubljene</string>
   <string name="content_desc_remove_from_favorites">odstrani iz priljubljenih</string>
   <string name="content_desc_show_password">pokaži geslo</string>
