@@ -45,19 +45,19 @@
   </plurals>
   <!--Add new feed-->
   <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="action_img_download">Resmi indir</string>
-  <string name="action_img_sharelink">Resim bağlantısını paylaş</string>
-  <string name="action_img_open">Resmi tarayıcıda aç</string>
-  <string name="action_img_copylink">Resim bağlatısını kopyala</string>
-  <string name="action_link_share">Bağlantıyı paylaş</string>
-  <string name="action_link_open">Bağlantıyı tarayıcıda aç</string>
-  <string name="action_link_copy">Bağlantıyı kopyala</string>
-  <string name="toast_img_download_wait">İndiriliyor...Lütfen Bekleyin</string>
+  <string name="action_img_download">Resmi İndir</string>
+  <string name="action_img_sharelink">Resim Bağlantısını Paylaş</string>
+  <string name="action_img_open">Resmi Tarayıcıda Aç</string>
+  <string name="action_img_copylink">Resim Bağlantısını Kopyala</string>
+  <string name="action_link_share">Bağlantıyı Paylaş</string>
+  <string name="action_link_open">Bağlantıyı Tarayıcıda Aç</string>
+  <string name="action_link_copy">Bağlantıyı Kopyala</string>
+  <string name="toast_img_download_wait">İndiriliyor... Lütfen bekleyin</string>
   <string name="toast_img_saved">Resim kaydedildi.</string>
   <string name="toast_img_notwriteable">Resim diske yazılamadı.</string>
   <string name="toast_copied_to_clipboard">Panoya kopyalandı</string>
   <string name="error_download_failed">İndirme başarısız</string>
-  <string name="intent_title_share">... ile Paylaş</string>
+  <string name="intent_title_share">Şununla paylaş</string>
   <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
   <string name="feed_remove_button">Kaldır</string>
   <string name="feed_rename_button">Yeniden adlandır</string>
@@ -168,17 +168,17 @@
     <item>24 Saat</item>
   </string-array>
   <!--content description for images and icons-->
-  <string name="content_desc_play">Oynat</string>
-  <string name="content_desc_pause">Duraklat</string>
-  <string name="content_desc_rewind">Geri</string>
-  <string name="content_desc_forward">İleri</string>
-  <string name="content_desc_expand">Genişlet</string>
-  <string name="content_desc_collapse">Daralt</string>
-  <string name="content_desc_mark_as_read">Okundu olarak işaretle.</string>
-  <string name="content_desc_mark_as_unread">Okunmadı olarak işaretle.</string>
-  <string name="content_desc_add_to_favorites">Sık Kullanılanlara ekle</string>
-  <string name="content_desc_remove_from_favorites">Sık Kullanılanlardan çıkart</string>
-  <string name="content_desc_show_password">Şifre göster</string>
+  <string name="content_desc_play">oynat</string>
+  <string name="content_desc_pause">duraklat</string>
+  <string name="content_desc_rewind">geri</string>
+  <string name="content_desc_forward">ileri</string>
+  <string name="content_desc_expand">genişlet</string>
+  <string name="content_desc_collapse">daralt</string>
+  <string name="content_desc_mark_as_read">okundu olarak işaretle</string>
+  <string name="content_desc_mark_as_unread">okunmadı olarak işaretle</string>
+  <string name="content_desc_add_to_favorites">sık kullanılanlara ekle</string>
+  <string name="content_desc_remove_from_favorites">sık kullanılanlardan çıkart</string>
+  <string name="content_desc_show_password">şifre göster</string>
   <string name="content_desc_delete">sil</string>
-  <string name="content_desc_download">İndir</string>
+  <string name="content_desc_download">indir</string>
 </resources>
