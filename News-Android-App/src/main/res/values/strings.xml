@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Auto sync</string>
-    <string name="app_name">ownCloud News Reader</string>
+    <string name="app_name">ownCloud News</string>
     <string name="title_activity_sync_interval_selector">Sync Interval Selector</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">No items here</string>
