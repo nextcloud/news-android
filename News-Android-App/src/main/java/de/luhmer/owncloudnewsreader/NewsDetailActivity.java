@@ -53,7 +53,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import java.lang.ref.WeakReference;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -362,6 +364,27 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		menuItem_Starred = menu.findItem(R.id.action_starred);
 		menuItem_Read = menu.findItem(R.id.action_read);
         menuItem_PlayPodcast = menu.findItem(R.id.action_playPodcast);
+
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		Set<String> selections = preferences.getStringSet("sp_news_detail_actionbar_icons", new HashSet<String>());
+		String[] selected = selections.toArray(new String[] {});
+		for(String selection : selected) {
+            switch(selection) {
+                case "open_in_browser":
+                    menu.findItem(R.id.action_openInBrowser).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                    break;
+                case "share":
+                    menu.findItem(R.id.action_ShareItem).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                    break;
+                case "podcast":
+                    menu.findItem(R.id.action_playPodcast).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                    break;
+                //case "tts":
+                //    menu.findItem(R.id.action_tts).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                //    break;
+            }
+		}
+
         UpdateActionBarIcons();
 
 		return true;

@@ -153,6 +153,21 @@
     <string name="pref_title_feed_list_layout">Feed list layout</string>
     <string name="pref_display_title_lines_count">Line Count for title</string>
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
+    <string-array name="pref_display_news_detail_actionbar_icons" translatable="false">
+        <item>@string/action_openInBrowser</item>
+        <item>@string/action_Share</item>
+        <item>@string/action_playPodacst</item>
+        <!-- <item>@string/action_textToSpeech</item> -->
+    </string-array>
+    <string-array name="pref_display_news_detail_actionbar_icons_values" translatable="false">
+        <item>open_in_browser</item>
+        <item>share</item>
+        <item>podcast</item>
+        <!-- <item>tts</item> -->
+    </string-array>
+
+
     <string-array name="pref_display_apptheme">
         <item>Dark</item>
         <item>Light</item>
