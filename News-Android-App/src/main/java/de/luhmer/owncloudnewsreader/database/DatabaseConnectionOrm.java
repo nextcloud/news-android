@@ -39,6 +39,7 @@ public class DatabaseConnectionOrm {
     public static final List<String> ALLOWED_PODCASTS_TYPES = new ArrayList<String>() {
         {
             this.add("audio/mp3");
+            this.add("audio/mp4");
             this.add("audio/mpeg");
             this.add("audio/ogg");
             this.add("audio/opus");
