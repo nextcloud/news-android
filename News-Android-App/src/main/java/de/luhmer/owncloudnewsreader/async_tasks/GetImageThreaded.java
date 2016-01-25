@@ -73,17 +73,23 @@ public class GetImageThreaded implements ImageLoadingListener
 
 	@Override
 	public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
+		NotifyDownloadFinished();
+		Log.d(TAG, "Failed to load file: " + imageUri);
 	}
 
 	@Override
 	public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-		if(imageDownloadFinished != null)
-			imageDownloadFinished.DownloadFinished(ThreadId, loadedImage);
+		NotifyDownloadFinished();
 	}
 
 	@Override
 	public void onLoadingCancelled(String imageUri, View view) {
+		NotifyDownloadFinished();
+		Log.d(TAG, "Cancelled: " + imageUri);
+	}
 
+	private void NotifyDownloadFinished() {
+		if(imageDownloadFinished != null)
+			imageDownloadFinished.DownloadFinished(ThreadId);
 	}
 }

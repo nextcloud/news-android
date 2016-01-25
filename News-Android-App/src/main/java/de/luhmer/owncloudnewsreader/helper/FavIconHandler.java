@@ -81,6 +81,11 @@ public class FavIconHandler {
     ImageDownloadFinished favIconDownloadFinished = new ImageDownloadFinished() {
 
         @Override
+        public void DownloadFinished(long AsynkTaskId) {
+            DownloadFinished(AsynkTaskId, null);
+        }
+
+        @Override
         public void DownloadFinished(long AsynkTaskId, Bitmap bitmap) {
             if(bitmap != null) {
                 DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);

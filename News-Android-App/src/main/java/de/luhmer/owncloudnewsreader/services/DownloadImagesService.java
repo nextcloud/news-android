@@ -170,16 +170,17 @@ public class DownloadImagesService extends IntentService {
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationDownloadImages = new NotificationCompat.Builder(this)
-                .setContentTitle("ownCloud News Reader")
-                .setContentText("Downloading Images for offline usage")
+                .setContentTitle(getResources().getString(R.string.app_name))
+                .setContentText("Downloading images for offline usage")
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentIntent(pIntent);
+                .setContentIntent(pIntent)
+                .setOngoing(true);
 
         Notification notify = mNotificationDownloadImages.build();
 
         //Hide the notification after its selected
         notify.flags |= Notification.FLAG_AUTO_CANCEL;
-        //notify.flags |= Notification.FLAG_NO_CLEAR;
+        notify.flags |= Notification.FLAG_NO_CLEAR;
 
         return notify;
     }
@@ -191,7 +192,7 @@ public class DownloadImagesService extends IntentService {
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
 		@Override
-		public void DownloadFinished(long ThreadId, Bitmap bitmap) {
+		public void DownloadFinished(long ThreadId) {
             int count = maxCount - linksToImages.size();
 
             if(maxCount == count) {
@@ -207,5 +208,10 @@ public class DownloadImagesService extends IntentService {
                 StartNextDownloadInQueue();
             }
 		}
-	};
+
+        @Override
+        public void DownloadFinished(long AsynkTaskId, Bitmap bitmap) {
+            DownloadFinished(AsynkTaskId);
+        }
+    };
 }
