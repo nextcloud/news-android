@@ -24,8 +24,8 @@
         android:layout_height="30dp"
 
         app:stroke_width="2dp"
-        app:progress_color="?attr/colorAccent"
-        app:progress_background_color="#cccccc"
+        app:progress_color="@color/colorPrimaryDarkDarkTheme"
+        app:progress_background_color="#8e8e8e"
         app:marker_visible="false"
         app:thumb_visible="false"
         android:layout_gravity="center" />

@@ -2,9 +2,13 @@ package de.luhmer.owncloudnewsreader.services;
 
 import android.app.DownloadManager;
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -19,6 +23,8 @@ import java.net.URLConnection;
 import java.security.MessageDigest;
 
 import de.greenrobot.event.EventBus;
+import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
+import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
@@ -42,7 +48,7 @@ public class PodcastDownloadService extends IntentService {
     private EventBus eventBus;
 
     /**
-     * Starts this service to perform action Foo with the given parameters. If
+     * Starts this service to download a podcast. If
      * the service is already performing a task this action will be queued.
      *
      * @see IntentService
@@ -64,18 +70,13 @@ public class PodcastDownloadService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_DOWNLOAD.equals(action)) {
                 //ResultReceiver receiver = intent.getParcelableExtra(EXTRA_RECEIVER);
                 PodcastItem podcast = (PodcastItem) intent.getSerializableExtra(EXTRA_URL);
-                //final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                //handleActionDownload(podcast);
 
                 downloadPodcast(podcast, this);
-
-
             }
         }
     }
@@ -131,6 +132,25 @@ public class PodcastDownloadService extends IntentService {
 
 
     private void downloadPodcast(PodcastItem podcast, Context context) {
+        Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder mNotificationDownloadPodcast = new NotificationCompat.Builder(this)
+                .setContentTitle(getResources().getString(R.string.app_name))
+                .setContentText("Downloading podcast")
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentIntent(pIntent)
+                .setOngoing(true);
+        Notification notify = mNotificationDownloadPodcast.build();
+        //Hide the notification after its selected
+        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+        notify.flags |= Notification.FLAG_NO_CLEAR;
+
+        int NOTIFICATION_ID = 543226;
+        notificationManager.notify(NOTIFICATION_ID, notify);
+
+
+
         try {
             String urlTemp = podcast.link;
             String path = getUrlToPodcastFile(this, urlTemp, true);
@@ -154,11 +174,20 @@ public class PodcastDownloadService extends IntentService {
             byte data[] = new byte[1024];
             long total = 0;
             int count;
+            int lastProgress = -1;
             while ((count = input.read(data)) != -1) {
                 total += count;
 
                 podcast.downloadProgress = (int) (total * 100 / fileLength);
-                eventBus.post(new DownloadProgressUpdate(podcast));
+
+                //Only update the ui/notification if the progress changed (e.g. from 1% to 2%)
+                if(lastProgress != podcast.downloadProgress) {
+                    lastProgress = podcast.downloadProgress;
+                    eventBus.post(new DownloadProgressUpdate(podcast));
+
+                    mNotificationDownloadPodcast.setProgress(100, podcast.downloadProgress, false);
+                    notificationManager.notify(NOTIFICATION_ID, mNotificationDownloadPodcast.build());
+                }
 
                 output.write(data, 0, count);
             }
@@ -178,6 +207,8 @@ public class PodcastDownloadService extends IntentService {
 
         podcast.downloadProgress = 100;
         eventBus.post(new DownloadProgressUpdate(podcast));
+
+        notificationManager.cancel(NOTIFICATION_ID);
 
         /*
         Bundle resultData = new Bundle();
