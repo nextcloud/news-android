@@ -103,6 +103,14 @@ public class PodcastNotification {
                     PendingIntent.FLAG_ONE_SHOT));
 
 
+            if(podcast.isPlaying()) {
+                //Prevent the Podcast Player from getting killed because of low memory
+                //For more info see: http://developer.android.com/reference/android/app/Service.html#startForeground(int, android.app.Notification)
+                ((PodcastPlaybackService)mContext).startForeground(NOTIFICATION_ID, notificationBuilder.build());
+            } else {
+                ((PodcastPlaybackService)mContext).stopForeground(false);
+            }
+
             //Lock screen notification
             /*
             mSession.setMetadata(new MediaMetadataCompat.Builder()
