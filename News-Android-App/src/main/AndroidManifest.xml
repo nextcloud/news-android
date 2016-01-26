@@ -17,6 +17,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+
 
     <uses-sdk tools:overrideLibrary="android.support.customtabs"/>
 
@@ -96,7 +98,13 @@
 
         <activity android:name="DirectoryChooserActivity" />
 
-        <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle" />
+        <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+
 
         <!--
 		**********************************************************************

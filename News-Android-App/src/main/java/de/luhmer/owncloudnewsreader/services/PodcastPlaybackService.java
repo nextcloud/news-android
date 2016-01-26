@@ -65,6 +65,9 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
             Log.v(TAG, "Stopping PodcastPlaybackService because of inactivity");
             stopSelf();
         }
+
+        podcastNotification.unbind();
+
         return super.onUnbind(intent);
     }
 
@@ -80,6 +83,8 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
     private EventBus eventBus;
     private Handler mHandler;
     private MediaPlayer mMediaPlayer;
+
+
     private TextToSpeech ttsController;
     private String mediaTitle;
     private PlaybackType mPlaybackType;
@@ -91,7 +96,6 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
     public void onCreate() {
         Log.v(TAG, "onCreate PodcastPlaybackService");
 
-        podcastNotification = new PodcastNotification(this);
         mediaTitle = getString(R.string.no_podcast_selected);
 
         TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
@@ -99,25 +103,8 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
             mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
 
-        super.onCreate();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.v(TAG, "onDestroy PodcastPlaybackService");
-
-        TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        if(mgr != null) {
-            mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
-        }
-
-        podcastNotification.cancel();
-
-        super.onDestroy();
-    }
-
-    public PodcastPlaybackService() {
         mMediaPlayer = new MediaPlayer();
+        podcastNotification = new PodcastNotification(this);
         mHandler = new Handler();
         eventBus = EventBus.getDefault();
 
@@ -153,6 +140,22 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
         eventBus.post(new PodcastPlaybackServiceStarted());
 
         mHandler.postDelayed(mUpdateTimeTask, 0);
+
+        super.onCreate();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.v(TAG, "onDestroy PodcastPlaybackService");
+
+        TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        if (mgr != null) {
+            mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
+
+        podcastNotification.cancel();
+
+        super.onDestroy();
     }
 
 
@@ -165,6 +168,7 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
                 openTtsFeed((TTSItem) intent.getSerializableExtra(TTS_ITEM));
             }
         }
+
         return Service.START_STICKY;
     }
 
@@ -267,6 +271,8 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
             e.printStackTrace();
             isPreparing = false;
         }
+
+        podcastNotification.podcastChanged();
     }
 
     /**
@@ -467,6 +473,4 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
             Log.d(TAG, "surfaceDestroyed");
         }
     };
-
-
 }
