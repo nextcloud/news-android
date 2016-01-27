@@ -23,10 +23,17 @@ package de.luhmer.owncloudnewsreader;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Base64;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
@@ -37,13 +44,31 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.stream.JsonReader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.squareup.okhttp.HttpUrl;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
+import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
+import de.luhmer.owncloudnewsreader.reader.owncloud.API;
+import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
@@ -103,7 +128,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 	private SubscriptionExpandableListAdapter lvAdapter;
 
-    @InjectView(R.id.expandableListView) ExpandableListView eListView;
+    @InjectView(R.id.expandableListView) protected ExpandableListView eListView;
 	@InjectView(R.id.urlTextView) protected TextView urlTextView;
 	@InjectView(R.id.userTextView) protected TextView userTextView;
 	@InjectView(R.id.header_view) protected ViewGroup headerView;
@@ -140,12 +165,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		eListView.setLongClickable(true);
 		eListView.setAdapter(lvAdapter);
 
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-		String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, getString(R.string.app_name));
-
-		userTextView.setText(mUsername);
-		urlTextView.setText(mOc_root_path);
 		headerView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -224,4 +243,166 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		}
 	};
 
+
+
+
+
+
+
+
+
+    protected void showTapLogoToSyncShowcaseView() {
+        new MaterialShowcaseView.Builder(getActivity())
+                .setTarget(headerLogo)
+                .setDismissText("GOT IT")
+                .setContentText("Tap this logo to sync with ownCloud")
+                .setDelay(300) // optional but starting animations immediately in onCreate can make them choppy
+                .singleUse("LOGO_SYNC") // provide a unique ID used to ensure it is only shown once
+                .show();
+    }
+
+    public void startAsyncTaskGetUserInfo() {
+        AsyncTaskHelper.StartAsyncTask(new AsyncTaskGetUserInfo());
+    }
+
+    private class AsyncTaskGetUserInfo extends AsyncTask<Void, Void, UserInfo> {
+        @Override
+        protected UserInfo doInBackground(Void... voids) {
+            HttpUrl oc_root_url = HttpJsonRequest.getInstance().getRootUrl();
+
+            try {
+                String appVersion = OwnCloudReaderMethods.GetVersionNumber(oc_root_url);
+                API api = API.GetRightApiForVersion(appVersion, HttpJsonRequest.getInstance().getRootUrl());
+
+                int[] version = API.ExtractVersionNumberFromString(appVersion);
+                if(version[0] < 6 || version[0] == 6 && version[1] <= 4) //Supported since 6.0.5
+                    return null; //API NOT SUPPORTED!
+
+
+                UserInfo ui = new UserInfo();
+                InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getUserUrl());
+
+                JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
+                reader.beginObject();
+
+                String currentName;
+                while(reader.hasNext() && (currentName = reader.nextName()) != null) {
+                    switch(currentName) {
+                        case "userId":
+                            ui.mUserId = reader.nextString();
+                            break;
+                        case "displayName":
+                            ui.mDisplayName = reader.nextString();
+                            break;
+                        case "avatar":
+                            com.google.gson.stream.JsonToken jt = reader.peek();
+                            if(jt == com.google.gson.stream.JsonToken.NULL) {
+                                Log.v(TAG, "No image available");
+                                reader.skipValue();
+                                //No image available
+                            } else {
+                                reader.beginObject();
+                                while (reader.hasNext()) {
+                                    currentName = reader.nextName();
+                                    if (currentName.equals("data")) {
+                                        String encodedImage = reader.nextString();
+                                        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+                                        ui.mAvatar = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                        Log.v(TAG, encodedImage);
+                                    } else {
+                                        reader.skipValue();
+                                    }
+                                }
+                            }
+                            break;
+                        default:
+                            Log.v(TAG, "Skipping value for: " + currentName);
+                            reader.skipValue();
+                            break;
+                    }
+                }
+                reader.close();
+
+                return ui;
+            } catch (Exception e) {
+                if(e.getMessage().equals("Method Not Allowed")) { //Remove if old version is used
+                    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    mPrefs.edit().remove("USER_INFO").commit();
+                }
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(UserInfo userInfo) {
+            if(userInfo != null) {
+                try {
+                    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    mPrefs.edit().putString("USER_INFO", NewsReaderListFragment.toString(userInfo)).commit();
+
+                    bindUserInfoToUI();
+                } catch(Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+            super.onPostExecute(userInfo);
+        }
+    }
+
+    protected void bindUserInfoToUI() {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
+        String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, getString(R.string.app_name));
+
+        userTextView.setText(mUsername);
+        urlTextView.setText(mOc_root_path);
+
+        String uInfo = mPrefs.getString("USER_INFO", null);
+        if(uInfo == null)
+            return;
+
+        try {
+            UserInfo userInfo = (UserInfo) fromString(uInfo);
+            if (userInfo.mDisplayName != null)
+                userTextView.setText(userInfo.mDisplayName);
+
+            if (userInfo.mAvatar != null) {
+                Resources r = getResources();
+                float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, r.getDisplayMetrics());
+                RoundedBitmapDisplayer.RoundedDrawable roundedAvatar =
+                        new RoundedBitmapDisplayer.RoundedDrawable(userInfo.mAvatar, (int) px, 0);
+                headerLogo.setImageDrawable(roundedAvatar);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    private class UserInfo implements Serializable {
+        private String mUserId;
+        private String mDisplayName;
+        private Bitmap mAvatar;
+    }
+
+    /** Read the object from Base64 string. */
+    private static Object fromString(String s) throws IOException,
+            ClassNotFoundException {
+        byte [] data = Base64.decode(s, Base64.DEFAULT);
+        ObjectInputStream ois = new ObjectInputStream(
+                new ByteArrayInputStream(  data ) );
+        Object o  = ois.readObject();
+        ois.close();
+        return o;
+    }
+
+    /** Write the object to a Base64 string. */
+    private static String toString(Serializable o) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream( baos );
+        oos.writeObject(o);
+        oos.close();
+        return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+    }
 }
