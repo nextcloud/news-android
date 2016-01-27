@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.File;
@@ -133,6 +135,7 @@ public class PodcastFragment extends Fragment {
         }
     }
 
+    long lastPodcastRssItemId = -1;
     public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
         this.podcast = podcast;
 
@@ -146,6 +149,12 @@ public class PodcastFragment extends Fragment {
             btnPlayPausePodcast.setImageResource(drawableId);
             btnPlayPausePodcast.setContentDescription(getString(contentDescriptionId));
             btnPlayPausePodcastSlider.setImageResource(drawableId);
+        }
+
+        if(lastPodcastRssItemId != podcast.getRssItemId() && imgFavIcon != null) {
+            if(loadPodcastFavIcon()) { //Returns false if PodcastItem is not found (e.g. Service is not connected to Activity yet)
+                lastPodcastRssItemId = podcast.getRssItemId();
+            }
         }
 
         int hours = (int)(podcast.getCurrent() / (1000*60*60));
@@ -183,6 +192,21 @@ public class PodcastFragment extends Fragment {
             pb_progress.setProgress((int) progress);
         }
     }
+
+    private boolean loadPodcastFavIcon() {
+        PodcastItem podcastItem = ((PodcastFragmentActivity) getActivity()).getCurrentPlayingPodcast();
+        if(podcastItem != null) {
+            String favIconUrl = podcastItem.favIcon;
+            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().
+                    showImageOnLoading(R.drawable.default_feed_icon_light).
+                    showImageForEmptyUri(R.drawable.default_feed_icon_light).
+                    showImageOnFail(R.drawable.default_feed_icon_light).
+                    build();
+            ImageLoader.getInstance().displayImage(favIconUrl, imgFavIcon, displayImageOptions);
+        }
+        return podcastItem != null;
+    }
+
 
 
     @InjectView(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
@@ -245,8 +269,6 @@ public class PodcastFragment extends Fragment {
     PodcastSlidingUpPanelLayout sliding_layout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
         // create ContextThemeWrapper from the original Activity Context with the custom theme
         Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_AppCompat_Light_DarkActionBar);
         // clone the inflater using the ContextThemeWrapper

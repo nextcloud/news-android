@@ -23,8 +23,6 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.File;
@@ -51,7 +49,7 @@ import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
-    PodcastPlaybackService mPodcastPlaybackService;
+    private PodcastPlaybackService mPodcastPlaybackService;
     boolean mBound = false;
 
 
@@ -80,7 +78,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             public void onGlobalLayout() {
                 rlVideoPodcastSurfaceWrapper.readVideoPosition();
 
-                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
                     rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 } else {
                     rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -101,12 +99,22 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         };
         */
 
+        if(isMyServiceRunning(PodcastPlaybackService.class)) {
+            Intent intent = new Intent(this, PodcastPlaybackService.class);
+            bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+        }
+
         super.onPostCreate(savedInstanceState);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+
+        unbindPodcastService();
+    }
+
+    private void unbindPodcastService() {
         // Unbind from the service
         if (mBound) {
             unbindService(mConnection);
@@ -175,9 +183,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             // We've bound to LocalService, cast the IBinder and get LocalService instance
             PodcastPlaybackService.LocalBinder binder = (PodcastPlaybackService.LocalBinder) service;
             mPodcastPlaybackService = binder.getService();
-
-            loadPodcastFavIcon();
-
             mBound = true;
         }
 
@@ -187,17 +192,10 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         }
     };
 
-
-    public void loadPodcastFavIcon() {
-        if(mPodcastPlaybackService.getCurrentlyPlayingPodcast() != null && mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon != null) {
-            String favIconUrl = mPodcastPlaybackService.getCurrentlyPlayingPodcast().favIcon;
-            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().
-                    showImageOnLoading(R.drawable.default_feed_icon_light).
-                    showImageForEmptyUri(R.drawable.default_feed_icon_light).
-                    showImageOnFail(R.drawable.default_feed_icon_light).
-                    build();
-            ImageLoader.getInstance().displayImage(favIconUrl,mPodcastFragment.imgFavIcon,displayImageOptions);
-        }
+    public PodcastItem getCurrentPlayingPodcast() {
+        if(mPodcastPlaybackService != null)
+            return mPodcastPlaybackService.getCurrentlyPlayingPodcast();
+        return null;
     }
 
     public PodcastSlidingUpPanelLayout getSlidingLayout() {
