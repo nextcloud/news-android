@@ -166,11 +166,11 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		eListView.setAdapter(lvAdapter);
 
 		headerView.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				((NewsReaderListActivity)getActivity()).startSync();
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                ((NewsReaderListActivity) getActivity()).startSync();
+            }
+        });
 
         lvAdapter.notifyDataSetChanged();
         ReloadAdapter();
