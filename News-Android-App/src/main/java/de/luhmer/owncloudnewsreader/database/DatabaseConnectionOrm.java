@@ -338,7 +338,8 @@ public class DatabaseConnectionOrm {
                 for (RssItem rssItem : list) {
                     daoSession.getRssItemDao().delete(rssItem);
                 }
-            }});
+            }
+        });
     }
 
     public void renameFeedById(long feedId, String newTitle) {
@@ -489,23 +490,6 @@ public class DatabaseConnectionOrm {
         Log.v(TAG, "Time needed for insert: " + sw.toString());
     }
 
-    public SparseArray<String> getUnreadItemCountForFolder() {
-        String buildSQL = "SELECT f." + FolderDao.Properties.Id.columnName + ", COUNT(1)" +
-                " FROM " + RssItemDao.TABLENAME + " rss " +
-                " JOIN " + FeedDao.TABLENAME + " feed ON rss." + RssItemDao.Properties.FeedId.columnName + " = feed." + FeedDao.Properties.Id.columnName +
-                " JOIN " + FolderDao.TABLENAME + " f ON feed." + FeedDao.Properties.FolderId.columnName + " = f." + FolderDao.Properties.Id.columnName +
-                " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1 " +
-                " GROUP BY f." + FolderDao.Properties.Id.columnName;
-
-        SparseArray<String> values = getStringSparseArrayFromSQL(buildSQL, 0, 1);
-
-        values.put(SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), getUnreadItemsCountForSpecificFolder(SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
-        values.put(SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue(), getUnreadItemsCountForSpecificFolder(SPECIAL_FOLDERS.ALL_STARRED_ITEMS));
-
-
-        return values;
-    }
-
     public String getUnreadItemsCountForSpecificFolder(SPECIAL_FOLDERS specialFolder) {
         String buildSQL = "SELECT COUNT(1)" +
                 " FROM " + RssItemDao.TABLENAME + " rss ";
@@ -520,16 +504,66 @@ public class DatabaseConnectionOrm {
         return values.valueAt(0);
     }
 
-    public SparseArray<String> getUnreadItemCountForFeed() {
-        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(1)" + // rowid as _id,
-                " FROM " + RssItemDao.TABLENAME +
-                " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1 " +
-                " GROUP BY " + RssItemDao.Properties.FeedId.columnName;
+    /**
+     *
+     * @return [0] = unread items count for folders, [1] = unread items count for feeds
+     */
+    public SparseArray<String>[] getUnreadItemCountFeedFolder() {
+        SparseArray<String>[] values = new SparseArray[2];
 
-        return getStringSparseArrayFromSQL(buildSQL, 0, 1);
+        String buildSQL = "SELECT f." + FolderDao.Properties.Id.columnName + ", feed." + FeedDao.Properties.Id.columnName + ", COUNT(1)" +
+                " FROM " + RssItemDao.TABLENAME + " rss " +
+                " JOIN " + FeedDao.TABLENAME + " feed ON rss." + RssItemDao.Properties.FeedId.columnName + " = feed." + FeedDao.Properties.Id.columnName +
+                " LEFT OUTER JOIN " + FolderDao.TABLENAME + " f ON feed." + FeedDao.Properties.FolderId.columnName + " = f." + FolderDao.Properties.Id.columnName +
+                " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1 " +
+                " GROUP BY f." + FolderDao.Properties.Id.columnName + ", feed." + FeedDao.Properties.Id.columnName;
+                //" GROUP BY (case when f." + FolderDao.Properties.Id.columnName + " IS NULL then feed." + FeedDao.Properties.Id.columnName + " ELSE f." + FolderDao.Properties.Id.columnName + " end)";
+
+        values[0] = new SparseArray<>();
+        values[1] = new SparseArray<>();
+
+        int totalUnreadItemsCount = 0;
+
+        Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
+        try
+        {
+            if(cursor != null)
+            {
+                if(cursor.getCount() > 0)
+                {
+                    cursor.moveToFirst();
+                    do {
+                        int folderId = cursor.getInt(0);
+                        int feedId = cursor.getInt(1);
+                        int unreadCount = cursor.getInt(2);
+
+                        totalUnreadItemsCount += unreadCount;
+
+                        values[1].put(feedId, String.valueOf(unreadCount));
+                        if(folderId != 0) {
+                            if(values[0].get(folderId) != null) {
+                                unreadCount += Integer.parseInt(values[0].get(folderId));
+                            }
+
+                            values[0].put(folderId, String.valueOf(unreadCount));
+                        }
+                    } while(cursor.moveToNext());
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+
+
+        values[0].put(SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), String.valueOf(totalUnreadItemsCount));
+        values[0].put(SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue(), getUnreadItemsCountForSpecificFolder(SPECIAL_FOLDERS.ALL_STARRED_ITEMS));
+
+
+        return values;
+
     }
 
-    public SparseArray<String> getStarredItemCountForFeed() {
+    public SparseArray<String> getStarredItemCount() {
         String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(1)" + // rowid as _id,
                 " FROM " + RssItemDao.TABLENAME +
                 " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1 " +

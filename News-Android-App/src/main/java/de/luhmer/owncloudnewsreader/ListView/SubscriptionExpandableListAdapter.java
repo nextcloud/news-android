@@ -424,10 +424,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             StopWatch stopwatch = new StopWatch();
             stopwatch.start();
 
-            unreadCountFoldersTemp = dbConn.getUnreadItemCountForFolder();
-            unreadCountFeedsTemp = dbConn.getUnreadItemCountForFeed();
-            starredCountFeedsTemp = dbConn.getStarredItemCountForFeed();
+            SparseArray<String>[] temp = dbConn.getUnreadItemCountFeedFolder();
 
+            unreadCountFoldersTemp = temp[0];// dbConn.getUnreadItemCountForFolder();
+            unreadCountFeedsTemp = temp[1]; // dbConn.getUnreadItemCountForFeed();
+
+            starredCountFeedsTemp = dbConn.getStarredItemCount();
             urlsToFavIconsTemp = dbConn.getUrlsToFavIcons();
 
             stopwatch.stop();

@@ -508,20 +508,27 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		return false;
 	}
 
+
+	private int onResumeCount = 0;
 	@Override
 	protected void onResume() {
-		ThemeChooser.chooseTheme(this);
+        ThemeChooser.chooseTheme(this); // Causes onResume to be called twice
 
-		//reloadCountNumbersOfSlidingPaneAdapter();
+		if(onResumeCount > 1) {
+			//reloadCountNumbersOfSlidingPaneAdapter();
 
-		//reload adapter - a sync could have been finished
-		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
-		if (newsReaderListFragment != null) {
-			newsReaderListFragment.ReloadAdapter();
-            newsReaderListFragment.bindUserInfoToUI();
-		}
+			//reload adapter - a sync could have been finished
+			NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
+			if (newsReaderListFragment != null) {
+				newsReaderListFragment.ReloadAdapter();
+				newsReaderListFragment.bindUserInfoToUI();
+			}
 
-		invalidateOptionsMenu();
+			invalidateOptionsMenu();
+		} else {
+            onResumeCount++;
+        }
+
 
 		super.onResume();
 	}
@@ -834,8 +841,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         {
             //Update settings of image Loader
             ((NewsReaderApplication)getApplication()).initImageLoader();
-
-			getSlidingListFragment().ReloadAdapter();
 
 			String oldLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
 			String newLayout = PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
