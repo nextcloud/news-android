@@ -474,25 +474,13 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     }
 
     public void ReloadAdapterAsync() {
-        ReloadAdapterAsync(null);
-    }
-
-    public void ReloadAdapterAsync(View progressBar) {
-        new ReloadAdapterAsyncTask(progressBar).execute((Void) null);
+        new ReloadAdapterAsyncTask().execute((Void) null);
     }
 
     private class ReloadAdapterAsyncTask extends AsyncTask<Void, Void, Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>>> {
 
-        View progressBar = null;
+        public ReloadAdapterAsyncTask() {
 
-        public ReloadAdapterAsyncTask(View progressBar) {
-            this.progressBar = progressBar;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            if(progressBar != null) progressBar.setVisibility(View.VISIBLE);
-            super.onPreExecute();
         }
 
         @Override
@@ -517,10 +505,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             notifyDataSetChanged();
 
             NotifyDataSetChangedAsync();
-
-
-            if(progressBar != null)
-                progressBar.setVisibility(View.GONE);
 
             super.onPostExecute(arrayListSparseArrayTuple);
         }
