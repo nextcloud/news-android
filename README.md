@@ -85,8 +85,24 @@ Contributors
 
 Updates
 ==================================
-0.9.8 (in development)
+0.9.9 (in development)
 ---------------------
+
+
+0.9.8 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/435">#435 Audio podcasts: icon disappears in detailed view</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/396">#396 podcasts stop playing, maybe high memory usage</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/463">#463 "Download images" stops after a few images</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/480">#480 Show ALT text (and TITLE) in image long-click menu</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/481">#481 Error with special characters in the title of feed</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/479">#479 Add a button to share article</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/445">#445 Audio Podcast: Download progress</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/434">#434 Audio Podcast: use androids media control elements</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/436">#436 Audio podcast: highlight them in detailed view</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/485">#485 Rename to "ownCloud News"</a>
+- Performance improvement
+- Several Bug fixes and improvements 
 
 
 0.9.7.6 (Google Play)
