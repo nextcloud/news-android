@@ -166,6 +166,8 @@
         <item>podcast</item>
         <!-- <item>tts</item> -->
     </string-array>
+    <string-array name="pref_display_news_detail_actionbar_icons_default_values" translatable="false">
+    </string-array>
 
 
     <string-array name="pref_display_apptheme">

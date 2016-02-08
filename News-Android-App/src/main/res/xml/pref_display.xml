@@ -34,6 +34,7 @@
         android:entries="@array/pref_display_news_detail_actionbar_icons"
         android:entryValues="@array/pref_display_news_detail_actionbar_icons_values"
         android:key="sp_news_detail_actionbar_icons"
+        android:defaultValue="@array/pref_display_news_detail_actionbar_icons_default_values"
         android:title="@string/pref_display_news_detail_actionbar_icons_title" />
     
     <!--
