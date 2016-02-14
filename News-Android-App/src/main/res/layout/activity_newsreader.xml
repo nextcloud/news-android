@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="bottom"
     sothree:umanoPanelHeight="68dp"
-    sothree:umanoParalaxOffset="100dp"
+    sothree:umanoParallaxOffset="100dp"
     sothree:umanoShadowHeight="4dp"> <!-- sothree:dragView="@+id/name" -->
 
     <android.support.v4.widget.DrawerLayout

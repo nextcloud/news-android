@@ -49,21 +49,17 @@ import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
+    private static final String TAG = PodcastFragmentActivity.class.getCanonicalName();
+
     private PodcastPlaybackService mPodcastPlaybackService;
-    boolean mBound = false;
-
-
-    private static final String TAG = "PodcastFragmentActivity";
-    private PodcastFragment mPodcastFragment;
-
+    private boolean mBound = false;
     private EventBus eventBus;
+    private PodcastFragment mPodcastFragment;
+    private int appHeight;
+    private int appWidth;
 
     @InjectView(R.id.videoPodcastSurfaceWrapper) ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
-    //@InjectView(R.id.videoPodcastSurface) SurfaceView surfaceView;
     @InjectView(R.id.sliding_layout) PodcastSlidingUpPanelLayout sliding_layout;
-
-    int appHeight;
-    int appWidth;
 
 
     @Override
@@ -89,15 +85,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         rlVideoPodcastSurfaceWrapper.setVisibility(View.INVISIBLE);
 
         UpdatePodcastView();
-
-        /*
-        new OrientationEventListener(this, SensorManager.SENSOR_DELAY_UI) {
-            @Override
-            public void onOrientationChanged(int i) {
-                sliding_layout.collapsePanel();
-            }
-        };
-        */
 
         if(isMyServiceRunning(PodcastPlaybackService.class)) {
             Intent intent = new Intent(this, PodcastPlaybackService.class);
@@ -147,7 +134,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         }
 
-        //eventBus.post(new RegisterVideoOutput(surfaceView));
         super.onResume();
     }
 
@@ -234,19 +220,13 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         //If file is loaded or preparing and podcast is paused/not running expand the view
         if((podcast.isFileLoaded() || podcast.isPreparingFile()) && !currentlyPlaying) {
             //Expand view
-
             sliding_layout.setPanelHeight((int) dipToPx(68));
-
             currentlyPlaying = true;
-
             Log.v(TAG, "expanding podcast view!");
         } else if(!(podcast.isPreparingFile() || podcast.isFileLoaded()) && currentlyPlaying) { //If file is not loaded or podcast is not preparing file and is playing
             //Hide view
-
             sliding_layout.setPanelHeight(0);
-
             currentlyPlaying = false;
-
             Log.v(TAG, "collapsing podcast view!");
         }
 

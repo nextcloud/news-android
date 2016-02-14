@@ -79,7 +79,7 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.jakewharton:butterknife:5.1.+'
-    compile 'com.sothree.slidinguppanel:library:3.1.1'
+    compile 'com.sothree.slidinguppanel:library:3.2.1'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'de.greenrobot:eventbus:2.2.1'
     compile 'de.greenrobot:greendao:2.0.0'
@@ -94,7 +94,7 @@ dependencies {
     testCompile 'junit:junit:4.+'
     androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
 
-    androidTestCompile 'com.android.support:support-annotations:23.0.1'
+    androidTestCompile 'com.android.support:support-annotations:23.1.1'
     androidTestCompile 'com.android.support.test:runner:0.3'
     androidTestCompile 'com.android.support.test:rules:0.3'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
