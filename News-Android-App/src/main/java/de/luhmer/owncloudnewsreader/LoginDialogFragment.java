@@ -32,8 +32,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -146,12 +148,17 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		}
 
         mImageViewShowPwd.setOnClickListener(ImgViewShowPasswordListener);
+		mPasswordView.addTextChangedListener(PasswordTextChangedListener);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
         mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
         mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
         mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
+
+		if(!mPassword.isEmpty()) {
+            mImageViewShowPwd.setVisibility(View.GONE);
+        }
 
     	// Set up the login form.
  		mUsernameView.setText(mUsername);
@@ -209,6 +216,25 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		if(mActivity instanceof AuthenticatorActivity)
 			mActivity.finish();
 	}
+
+	private TextWatcher PasswordTextChangedListener = new TextWatcher() {
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+		}
+
+		@Override
+		public void afterTextChanged(Editable s) {
+            if(s.toString().isEmpty()) {
+                mImageViewShowPwd.setVisibility(View.VISIBLE);
+            }
+		}
+	};
 
 	private View.OnClickListener ImgViewShowPasswordListener = new View.OnClickListener() {
         @Override
