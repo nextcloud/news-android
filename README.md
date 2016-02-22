@@ -89,6 +89,11 @@ Updates
 ---------------------
 
 
+0.9.8.2 (Google Play)
+---------------------
+- Critical bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/492">#492 App crashes on start</a>
+
+
 0.9.8.1 (Google Play)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/487">#487 App crashes when entering "Settings" on Android 4.4.4</a>
