@@ -151,9 +151,9 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		mPasswordView.addTextChangedListener(PasswordTextChangedListener);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-        mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, null);
-        mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
+        mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
+        mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
+        mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
         mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
 
 		if(!mPassword.isEmpty()) {
