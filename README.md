@@ -34,7 +34,7 @@ Help to translate
 Have you found a translation error? Or would you like to use ownCloud News Reader in your
 native language?
 
-You can [join the translation team](https://www.transifex.com/owncloud_robot/owncloud/android-news/) and improve one of over 100 languages.
+You can [join the translation team](https://www.transifex.com/owncloud-org/owncloud/) and improve one of over 100 languages (it's the android-news app).
 
 
 How to compile the App
