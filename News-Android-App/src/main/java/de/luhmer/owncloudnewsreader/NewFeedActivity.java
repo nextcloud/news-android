@@ -42,8 +42,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
@@ -65,12 +65,12 @@ public class NewFeedActivity extends AppCompatActivity {
     private AddNewFeedTask mAddFeedTask = null;
 
     // UI references.
-    @InjectView(R.id.et_feed_url) EditText mFeedUrlView;
-    @InjectView(R.id.sp_folder) Spinner mFolderView;
-    @InjectView(R.id.new_feed_progress) View mProgressView;
-    @InjectView(R.id.new_feed_form) View mLoginFormView;
-    @InjectView(R.id.btn_addFeed) Button mAddFeedButton;
-    @InjectView(R.id.toolbar) Toolbar toolbar;
+    @Bind(R.id.et_feed_url) EditText mFeedUrlView;
+    @Bind(R.id.sp_folder) Spinner mFolderView;
+    @Bind(R.id.new_feed_progress) View mProgressView;
+    @Bind(R.id.new_feed_form) View mLoginFormView;
+    @Bind(R.id.btn_addFeed) Button mAddFeedButton;
+    @Bind(R.id.toolbar) Toolbar toolbar;
 
     List<Folder> folders;
 
@@ -80,7 +80,7 @@ public class NewFeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_feed);
 
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);

@@ -18,8 +18,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 
 
@@ -28,14 +28,14 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
     SharedPreferences mPrefs;
     PlaceholderFragment mFragment;
     String[] items_values;
-    @InjectView(R.id.toolbar) Toolbar toolbar;
+    @Bind(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sync_interval_selector);
 
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);

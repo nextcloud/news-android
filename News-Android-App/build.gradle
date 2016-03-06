@@ -62,6 +62,8 @@ repositories {
 
 }
 
+final SUPPORT_VERSION = '23.2.0'
+
 dependencies {
     // core android studio module
     //compile project(':core')
@@ -69,16 +71,16 @@ dependencies {
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // compile 'com.google.android.gms:play-services:4.2.42'
     compile project(':ownCloud-Account-Importer')
-    compile 'com.android.support:support-v4:23.0.1'
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.android.support:design:23.0.1'
-    compile 'com.android.support:palette-v7:23.0.1'
-    compile 'com.android.support:recyclerview-v7:23.0.1'
-    compile 'com.android.support:customtabs:23.0.1'
+    compile "com.android.support:support-v4:${SUPPORT_VERSION}"
+    compile "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
+    compile "com.android.support:design:${SUPPORT_VERSION}"
+    compile "com.android.support:palette-v7:${SUPPORT_VERSION}"
+    compile "com.android.support:recyclerview-v7:${SUPPORT_VERSION}"
+    compile "com.android.support:customtabs:${SUPPORT_VERSION}"
     compile 'de.mrmaffen:holocircularprogressbar:1.0.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-    compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.jakewharton:butterknife:5.1.+'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.sothree.slidinguppanel:library:3.2.1'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'de.greenrobot:eventbus:2.2.1'
@@ -91,12 +93,12 @@ dependencies {
     compile ('net.rdrei.android.dirchooser:library:3.0@aar') { transitive = true; }
 
     testCompile 'org.robolectric:robolectric:3.0-rc3'
-    testCompile 'junit:junit:4.+'
+    testCompile 'junit:junit:4.1'
     androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
 
-    androidTestCompile 'com.android.support:support-annotations:23.1.1'
-    androidTestCompile 'com.android.support.test:runner:0.3'
-    androidTestCompile 'com.android.support.test:rules:0.3'
+    androidTestCompile "com.android.support:support-annotations:${SUPPORT_VERSION}"
+    androidTestCompile 'com.android.support.test:runner:0.4'
+    androidTestCompile 'com.android.support.test:rules:0.4'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
     androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2') {
         // this library uses the newest app compat v22 but the espresso contrib still v21.

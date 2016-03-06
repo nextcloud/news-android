@@ -49,8 +49,8 @@ import android.widget.ImageView;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.luhmer.owncloud.accountimporter.ImportAccountsDialogFragment;
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
 import de.luhmer.owncloud.accountimporter.helper.OwnCloudAccount;
@@ -89,11 +89,11 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	private boolean showImportAccountButton;
 
 	// UI references.
-	@InjectView(R.id.username) EditText mUsernameView;
-	@InjectView(R.id.password) EditText mPasswordView;
-	@InjectView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
-	@InjectView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
-    @InjectView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
+	@Bind(R.id.username) EditText mUsernameView;
+	@Bind(R.id.password) EditText mPasswordView;
+	@Bind(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
+	@Bind(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
+    @Bind(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
 
     boolean mPasswordVisible = false;
 	ProgressDialog mDialogLogin;
@@ -136,7 +136,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_signin, null);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         builder.setView(view);
 		builder.setTitle(getString(R.string.action_sign_in_short));

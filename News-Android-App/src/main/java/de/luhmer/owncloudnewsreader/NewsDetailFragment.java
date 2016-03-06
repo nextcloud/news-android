@@ -60,8 +60,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
@@ -76,9 +76,9 @@ public class NewsDetailFragment extends Fragment {
 
 	public static int background_color = Integer.MIN_VALUE;
 
-	@InjectView(R.id.webview) WebView mWebView;
-    @InjectView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
-	@InjectView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
+	@Bind(R.id.webview) WebView mWebView;
+    @Bind(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
+	@Bind(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
 
 
 	private int section_number;
@@ -139,7 +139,7 @@ public class NewsDetailFragment extends Fragment {
 
 		section_number = (Integer) getArguments().get(ARG_SECTION_NUMBER);
 
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
 
         startLoadRssItemToWebViewTask();
 

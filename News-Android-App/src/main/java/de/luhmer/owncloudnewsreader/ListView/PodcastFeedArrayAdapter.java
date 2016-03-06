@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastFeedClicked;
@@ -54,11 +54,11 @@ public class PodcastFeedArrayAdapter extends ArrayAdapter<PodcastFeedItem> {
 
 
     static class ViewHolder {
-        @InjectView(R.id.tv_title) TextView tvTitle;
-        @InjectView(R.id.tv_body) TextView tvBody;
+        @Bind(R.id.tv_title) TextView tvTitle;
+        @Bind(R.id.tv_body) TextView tvBody;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

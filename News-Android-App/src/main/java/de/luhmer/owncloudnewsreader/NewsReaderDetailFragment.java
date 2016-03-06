@@ -53,8 +53,8 @@ import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.adapter.DividerItemDecoration;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
@@ -109,10 +109,10 @@ public class NewsReaderDetailFragment extends Fragment {
     private static final String LAYOUT_MANAGER_STATE = "LAYOUT_MANAGER_STATE";
     private boolean mMarkAsReadWhileScrollingEnabled;
 
-    @InjectView(R.id.pb_loading) ProgressBar pbLoading;
-    @InjectView(R.id.tv_no_items_available) View tvNoItemsAvailable;
-    @InjectView(R.id.list) RecyclerView recyclerView;
-    @InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
+    @Bind(R.id.pb_loading) ProgressBar pbLoading;
+    @Bind(R.id.tv_no_items_available) View tvNoItemsAvailable;
+    @Bind(R.id.list) RecyclerView recyclerView;
+    @Bind(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -331,7 +331,7 @@ public class NewsReaderDetailFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_newsreader_detail, container, false);
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
 
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());

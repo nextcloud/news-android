@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -21,9 +22,8 @@ import android.widget.TextView;
 
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.Optional;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
@@ -37,40 +37,40 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     private static SparseArray<Integer> downloadProgressList = new SparseArray<>();
 
-    @Optional
-    @InjectView(R.id.star_imageview)
+    @Nullable
+    @Bind(R.id.star_imageview)
     protected ImageView starImageView;
 
-    @InjectView(R.id.summary)
+    @Bind(R.id.summary)
     protected TextView textViewSummary;
 
-    @InjectView(R.id.tv_item_date)
+    @Bind(R.id.tv_item_date)
     protected TextView textViewItemDate;
 
-    @InjectView(R.id.tv_subscription)
+    @Bind(R.id.tv_subscription)
     protected TextView textViewTitle;
 
-    @InjectView(R.id.imgViewFavIcon)
+    @Bind(R.id.imgViewFavIcon)
     protected ImageView imgViewFavIcon;
 
-    @InjectView(R.id.color_line_feed)
+    @Bind(R.id.color_line_feed)
     protected View colorLineFeed;
 
-    @InjectView(R.id.btn_playPausePodcast)
+    @Bind(R.id.btn_playPausePodcast)
     protected ImageView btnPlayPausePodcast;
 
-    @InjectView(R.id.podcastDownloadProgress)
+    @Bind(R.id.podcastDownloadProgress)
     protected HoloCircularProgressBar pbPodcastDownloadProgress;
 
-    @InjectView(R.id.podcast_wrapper)
+    @Bind(R.id.podcast_wrapper)
     View flPlayPausePodcastWrapper;
 
     // only in extended layout
-    @Optional @InjectView(R.id.body)
+    @Nullable @Bind(R.id.body)
     protected TextView textViewBody;
 
     // Only in extended with webview layout
-    @Optional @InjectView(R.id.webView_body)
+    @Nullable @Bind(R.id.webView_body)
     protected WebView webView_body;
 
     private RecyclerItemClickListener clickListener;
@@ -94,7 +94,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         if(favIconHandler == null)
             favIconHandler = new FavIconHandler(itemView.getContext());
-        ButterKnife.inject(this, itemView);
+        ButterKnife.bind(this, itemView);
         if(textViewSummary != null)
             textViewSummary.setLines(titleLineCount);
 

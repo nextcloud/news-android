@@ -27,7 +27,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.internal.widget.ViewUtils;
+import android.support.v7.widget.ViewUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -47,8 +47,8 @@ import org.apache.commons.lang3.time.StopWatch;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -186,13 +186,13 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	}
 
 	static class ChildHolder {
-        @InjectView(R.id.list_item_layout) View listItemLayout;
-        @InjectView(R.id.summary) TextView tV_HeaderText;
-        @InjectView(R.id.tv_unreadCount) TextView tV_UnreadCount;
-        @InjectView(R.id.iVFavicon) ImageView imgView_FavIcon;
+        @Bind(R.id.list_item_layout) View listItemLayout;
+        @Bind(R.id.summary) TextView tV_HeaderText;
+        @Bind(R.id.tv_unreadCount) TextView tV_UnreadCount;
+        @Bind(R.id.iVFavicon) ImageView imgView_FavIcon;
 
         public ChildHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
 	  }
 
@@ -379,14 +379,14 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 	static class GroupHolder
 	{
-        @InjectView(R.id.list_item_layout) View listItemLayout;
-        @InjectView(R.id.summary) TextView txt_Summary;
-        @InjectView(R.id.tV_feedsCount) TextView txt_UnreadCount;
-        @InjectView(R.id.img_View_expandable_indicator) ImageButton imgView;
-        @InjectView(R.id.img_view_favicon) ImageView faviconView;
+        @Bind(R.id.list_item_layout) View listItemLayout;
+        @Bind(R.id.summary) TextView txt_Summary;
+        @Bind(R.id.tV_feedsCount) TextView txt_UnreadCount;
+        @Bind(R.id.img_View_expandable_indicator) ImageButton imgView;
+        @Bind(R.id.img_view_favicon) ImageView faviconView;
 
         public GroupHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
 	}
 

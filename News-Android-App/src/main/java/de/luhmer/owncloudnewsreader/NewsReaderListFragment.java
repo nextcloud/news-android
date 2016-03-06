@@ -57,8 +57,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
@@ -128,12 +128,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 	private SubscriptionExpandableListAdapter lvAdapter;
 
-    @InjectView(R.id.expandableListView) protected ExpandableListView eListView;
-	@InjectView(R.id.urlTextView) protected TextView urlTextView;
-	@InjectView(R.id.userTextView) protected TextView userTextView;
-	@InjectView(R.id.header_view) protected ViewGroup headerView;
-	@InjectView(R.id.header_logo) protected ImageView headerLogo;
-	@InjectView(R.id.header_logo_progress) protected View headerLogoProgress;
+    @Bind(R.id.expandableListView) protected ExpandableListView eListView;
+	@Bind(R.id.urlTextView) protected TextView urlTextView;
+	@Bind(R.id.userTextView) protected TextView userTextView;
+	@Bind(R.id.header_view) protected ViewGroup headerView;
+	@Bind(R.id.header_logo) protected ImageView headerLogo;
+	@Bind(R.id.header_logo_progress) protected View headerLogoProgress;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -151,7 +151,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
             view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.slider_listview_background_color_light_theme));
         }
 
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), eListView);
         lvAdapter.setHandlerListener(expListTextClickedListener);

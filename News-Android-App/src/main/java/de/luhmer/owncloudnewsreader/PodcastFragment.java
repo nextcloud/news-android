@@ -27,8 +27,8 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.File;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
@@ -209,34 +209,34 @@ public class PodcastFragment extends Fragment {
 
 
 
-    @InjectView(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
-    @InjectView(R.id.btn_playPausePodcastSlider) ImageButton btnPlayPausePodcastSlider;
-    @InjectView(R.id.btn_nextPodcastSlider) ImageButton btnNextPodcastSlider;
-    @InjectView(R.id.btn_previousPodcastSlider) ImageButton btnPreviousPodcastSlider;
+    @Bind(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
+    @Bind(R.id.btn_playPausePodcastSlider) ImageButton btnPlayPausePodcastSlider;
+    @Bind(R.id.btn_nextPodcastSlider) ImageButton btnNextPodcastSlider;
+    @Bind(R.id.btn_previousPodcastSlider) ImageButton btnPreviousPodcastSlider;
 
-    @InjectView(R.id.img_feed_favicon) ImageView imgFavIcon;
+    @Bind(R.id.img_feed_favicon) ImageView imgFavIcon;
 
-    @InjectView(R.id.tv_title) TextView tvTitle;
-    @InjectView(R.id.tv_titleSlider) TextView tvTitleSlider;
-
-
-    @InjectView(R.id.tv_from) TextView tvFrom;
-    @InjectView(R.id.tv_to) TextView tvTo;
-    @InjectView(R.id.tv_fromSlider) TextView tvFromSlider;
-    @InjectView(R.id.tv_ToSlider) TextView tvToSlider;
-
-    @InjectView(R.id.sb_progress) SeekBar sb_progress;
-    @InjectView(R.id.pb_progress) ProgressBar pb_progress;
-    @InjectView(R.id.pb_progress2) ProgressBar pb_progress2;
+    @Bind(R.id.tv_title) TextView tvTitle;
+    @Bind(R.id.tv_titleSlider) TextView tvTitleSlider;
 
 
-    @InjectView(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
-    @InjectView(R.id.rlPodcast) RelativeLayout rlPodcast;
-    @InjectView(R.id.ll_podcast_header) LinearLayout rlPodcastHeader;
-    @InjectView(R.id.fl_playPausePodcastWrapper) FrameLayout playPausePodcastWrapper;
-    @InjectView(R.id.podcastTitleGrid) ListView /*CardGridView*/ podcastTitleGrid;
+    @Bind(R.id.tv_from) TextView tvFrom;
+    @Bind(R.id.tv_to) TextView tvTo;
+    @Bind(R.id.tv_fromSlider) TextView tvFromSlider;
+    @Bind(R.id.tv_ToSlider) TextView tvToSlider;
 
-    @InjectView(R.id.viewSwitcherProgress) ViewSwitcher /*CardGridView*/ viewSwitcherProgress;
+    @Bind(R.id.sb_progress) SeekBar sb_progress;
+    @Bind(R.id.pb_progress) ProgressBar pb_progress;
+    @Bind(R.id.pb_progress2) ProgressBar pb_progress2;
+
+
+    @Bind(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
+    @Bind(R.id.rlPodcast) RelativeLayout rlPodcast;
+    @Bind(R.id.ll_podcast_header) LinearLayout rlPodcastHeader;
+    @Bind(R.id.fl_playPausePodcastWrapper) FrameLayout playPausePodcastWrapper;
+    @Bind(R.id.podcastTitleGrid) ListView /*CardGridView*/ podcastTitleGrid;
+
+    @Bind(R.id.viewSwitcherProgress) ViewSwitcher /*CardGridView*/ viewSwitcherProgress;
 
 
     boolean hasTitleInCache = false;
@@ -278,7 +278,7 @@ public class PodcastFragment extends Fragment {
 
 
         //View view = inflater.inflate(R.layout.fragment_podcast, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
 
         if(getActivity() instanceof PodcastFragmentActivity) {

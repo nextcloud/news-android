@@ -41,6 +41,7 @@ import android.os.Looper;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -63,9 +64,8 @@ import android.widget.Toast;
 
 import java.lang.reflect.Field;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.Optional;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
@@ -116,11 +116,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	//private Date mLastSyncDate = new Date(0);
 	private boolean mSyncOnStartupPerformed = false;
 
-	@InjectView(R.id.toolbar) Toolbar toolbar;
+	@Bind(R.id.toolbar) Toolbar toolbar;
 
 	private ServiceConnection mConnection = null;
 
-	@Optional @InjectView(R.id.drawer_layout)
+	@Nullable @Bind(R.id.drawer_layout)
 	protected DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
@@ -132,7 +132,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
 
-		ButterKnife.inject(this);
+		ButterKnife.bind(this);
 
 		if (toolbar != null) {
 			setSupportActionBar(toolbar);

@@ -10,8 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
@@ -130,18 +130,18 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
 
 
     static class ViewHolder {
-        @InjectView(R.id.tv_title) TextView tvTitle;
-        @InjectView(R.id.tv_body) TextView tvBody;
-        @InjectView(R.id.fl_downloadPodcastWrapper) FrameLayout flDownloadPodcast;
-        @InjectView(R.id.fl_PlayPodcastWrapper) FrameLayout flPlayPodcast;
-        @InjectView(R.id.fl_deletePodcastWrapper) FrameLayout flDeletePodcast;
-        @InjectView(R.id.pbDownloadPodcast) ProgressBar pbDownloadPodcast;
-        @InjectView(R.id.tvDownloadPodcastProgress) TextView tvDownloadPodcastProgress;
+        @Bind(R.id.tv_title) TextView tvTitle;
+        @Bind(R.id.tv_body) TextView tvBody;
+        @Bind(R.id.fl_downloadPodcastWrapper) FrameLayout flDownloadPodcast;
+        @Bind(R.id.fl_PlayPodcastWrapper) FrameLayout flPlayPodcast;
+        @Bind(R.id.fl_deletePodcastWrapper) FrameLayout flDeletePodcast;
+        @Bind(R.id.pbDownloadPodcast) ProgressBar pbDownloadPodcast;
+        @Bind(R.id.tvDownloadPodcastProgress) TextView tvDownloadPodcastProgress;
 
 
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

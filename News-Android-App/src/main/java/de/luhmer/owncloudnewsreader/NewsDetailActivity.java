@@ -57,8 +57,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.luhmer.owncloudnewsreader.chrometabs.CustomTabActivityManager;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
@@ -81,8 +81,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
-    @InjectView(R.id.toolbar) Toolbar toolbar;
-	@InjectView(R.id.progressIndicator) ProgressBar progressIndicator;
+    @Bind(R.id.toolbar) Toolbar toolbar;
+	@Bind(R.id.progressIndicator) ProgressBar progressIndicator;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -113,7 +113,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
 
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);

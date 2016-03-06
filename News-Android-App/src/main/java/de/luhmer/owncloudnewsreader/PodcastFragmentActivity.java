@@ -27,8 +27,8 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.File;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -58,15 +58,15 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     private int appHeight;
     private int appWidth;
 
-    @InjectView(R.id.videoPodcastSurfaceWrapper) ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
-    @InjectView(R.id.sliding_layout) PodcastSlidingUpPanelLayout sliding_layout;
+    @Bind(R.id.videoPodcastSurfaceWrapper) ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
+    @Bind(R.id.sliding_layout) PodcastSlidingUpPanelLayout sliding_layout;
 
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         eventBus = EventBus.getDefault();
 
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         ViewTreeObserver vto = rlVideoPodcastSurfaceWrapper.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
