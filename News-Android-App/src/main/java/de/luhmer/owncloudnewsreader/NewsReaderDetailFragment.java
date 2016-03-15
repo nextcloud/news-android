@@ -168,8 +168,12 @@ public class NewsReaderDetailFragment extends Fragment {
             adapter.ChangeReadStateOfItem(vh, true);
         }
 
+
+
         //Check if Listview is scrolled to bottom
-        if (lastVisibleItem == (totalItemCount-1) && recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
+        if (lastVisibleItem == (totalItemCount-1) &&
+                visibleItemCount != 0 && //Check if list is empty
+                recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
             for (int i = firstVisibleItem; i <= lastVisibleItem; i++) {
                 RecyclerView.ViewHolder vhTemp = recyclerView.findViewHolderForLayoutPosition(i);
                 if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
