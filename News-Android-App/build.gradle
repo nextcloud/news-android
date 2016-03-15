@@ -110,4 +110,7 @@ dependencies {
     }
     compile project(':MaterialShowcaseView:library')
     compile 'com.nbsp:library:1.02'
+
+
+    //androidTestCompile 'tools:fastlane:screengrab:0.3.0'
 }

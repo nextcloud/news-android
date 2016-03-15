@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="de.luhmer.owncloudnewsreader"
+    android:versionCode="106"
+    android:versionName="0.9.8.2"
+    android:installLocation="auto">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+
+    <!-- Debug for Screengrab -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+
+
+    <uses-sdk tools:overrideLibrary="android.support.customtabs"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name=".NewsReaderApplication"
+        android:supportsRtl="true"
+        tools:replace="android:icon, android:label, android:theme, android:name">
+        <activity
+            android:name=".NewsReaderListActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop">
+
+            <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".NewsDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_news_detail" >
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+
+        <activity android:name=".DownloadImagesActivity">
+        </activity>
+
+        <activity
+            android:name=".SyncIntervalSelectorActivity"
+            android:label="@string/title_activity_sync_interval_selector" >
+        </activity>
+
+        <activity
+            android:name=".NewFeedActivity"
+            android:label="@string/title_activity_new_feed"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+                <data android:host="*" />
+                <data android:pathPattern=".*\\atom.xml" />
+                <data android:pathPattern=".*\\rss.xml" />
+                <data android:pathPattern=".*\\.rss" />
+
+                <data android:scheme="http" android:host="*"
+                    android:pathPattern=".*\\.opml" />
+                <data android:scheme="https" android:host="*"
+                    android:pathPattern=".*\\.opml" />
+                <data android:scheme="content" android:host="*"
+                    android:pathPattern=".*\\.opml" />
+                <data android:scheme="file" android:host="*"
+                    android:pathPattern=".*\\.opml" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="DirectoryChooserActivity" />
+
+        <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+
+
+        <!--
+		**********************************************************************
+		* Sync Adapter and Service
+		**********************************************************************
+        -->
+
+        <service android:name=".services.DownloadImagesService" />
+        <service android:name=".services.SyncItemStateService" />
+
+        <service
+            android:name=".services.OwnCloudAuthenticatorService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <service android:name=".services.OwnCloudSyncService" />
+        <service
+            android:name=".services.OwnCloudSettingsSyncService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+        <provider
+            android:name=".providers.OwnCloudSyncProvider"
+            android:authorities="de.luhmer.owncloudnewsreader"
+            android:label="@string/auto_sync_string"
+            android:syncable="true" >
+        </provider>
+
+        <!--
+        <activity
+            android:name=".authentication.AuthenticatorActivity"
+            android:label="@string/title_activity_settings"
+            android:launchMode="singleTask" >
+        -->
+        <!-- android:theme="@style/Theme.Transparent" > -->
+        <!-- </activity> -->
+
+
+        <!--
+		**********************************************************************
+		* Widget Provider Receiver
+		**********************************************************************
+        -->
+        <receiver android:name=".widget.WidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+        <service
+            android:name=".widget.WidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+
+        <service
+            android:name=".services.PodcastPlaybackService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+        <service
+            android:name=".services.PodcastDownloadService"
+            android:exported="false" >
+        </service>
+
+
+
+
+        <service
+            android:name="de.luhmer.owncloudnewsreader.chrometabs.KeepAliveService"
+            android:exported="true"
+            android:process=":remote" />
+
+    </application>
+
+</manifest>
