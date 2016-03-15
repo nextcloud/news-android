@@ -509,27 +509,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 
-	private int onResumeCount = 0;
 	@Override
 	protected void onResume() {
-        ThemeChooser.chooseTheme(this); // Causes onResume to be called twice
-
-		if(onResumeCount > 1) {
-			//reloadCountNumbersOfSlidingPaneAdapter();
-
-			//reload adapter - a sync could have been finished
-			NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
-			if (newsReaderListFragment != null) {
-				newsReaderListFragment.ReloadAdapter();
-				newsReaderListFragment.bindUserInfoToUI();
-			}
-
-			invalidateOptionsMenu();
-		} else {
-            onResumeCount++;
-        }
-
-
+		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
+		if (newsReaderListFragment != null) {
+            newsReaderListFragment.ReloadAdapter();
+			newsReaderListFragment.bindUserInfoToUI();
+		}
+        invalidateOptionsMenu();
 		super.onResume();
 	}
 
