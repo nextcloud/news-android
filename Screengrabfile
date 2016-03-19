@@ -1,0 +1,16 @@
+# remove the leading '#' to uncomment lines
+
+app_package_name 'de.luhmer.owncloudnewsreader'
+ use_tests_in_packages ['screengrab']
+# use_tests_in_classes ['ScreenshotTest']
+
+app_apk_path 'News-Android-App/build/outputs/apk/News-Android-App-debug-unaligned.apk'
+tests_apk_path 'News-Android-App/build/outputs/apk/News-Android-App-debug-androidTest-unaligned.apk'
+
+locales ['en-US', 'fr-FR', 'it-IT']
+
+# clear all previously generated screenshots in your local output directory before creating new ones
+clear_previous_screenshots true
+
+# For more information about all available options run
+#   screengrab --help

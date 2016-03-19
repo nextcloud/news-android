@@ -12,6 +12,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.VisibleForTesting;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -482,7 +483,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         return px;
     }
 
-    protected void openMediaItem(MediaItem mediaItem) {
+    @VisibleForTesting
+    public void openMediaItem(MediaItem mediaItem) {
         Intent intent = new Intent(this, PodcastPlaybackService.class);
         if(mediaItem instanceof TTSItem)
             intent.putExtra(PodcastPlaybackService.TTS_ITEM, mediaItem);
