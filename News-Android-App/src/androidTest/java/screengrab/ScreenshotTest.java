@@ -204,6 +204,61 @@ public class ScreenshotTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
 
+
+
+    @Test
+    public void testVideoPodcast() {
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                //Set url to mock
+                nrlf.bindUserInfoToUI(true);
+
+                mActivityRule.getActivity().onOptionsItemSelected(menuItem); //Open Drawer
+
+
+
+                nrlf.onChildClickListener.onChildClick(null, null, 0, 7, 0); //Click on Android Central Podcast
+            }
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(1));
+
+                PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(activity, vh.getRssItem());
+                activity.openMediaItem(podcastItem);
+            }
+        });
+
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Screengrab.screenshot("video_podcast_running");
+
+
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                activity.pausePodcast();
+            }
+        });
+
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

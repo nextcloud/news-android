@@ -46,10 +46,11 @@ public class DatabaseConnectionOrm {
             this.add("audio/ogg;codecs=opus");
             this.add("audio/x-m4a");
             this.add("youtube");
+            this.add("video/mp4");
         }
     };
 
-    public static final String[] VIDEO_FORMATS = { "youtube" };
+    public static final String[] VIDEO_FORMATS = { "youtube", "video/mp4" };
     private final String TAG = getClass().getCanonicalName();
 
     public enum SORT_DIRECTION { asc, desc }
