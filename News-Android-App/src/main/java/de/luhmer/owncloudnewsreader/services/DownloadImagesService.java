@@ -191,12 +191,12 @@ public class DownloadImagesService extends IntentService {
 
 	ImageDownloadFinished imgDownloadFinished = new ImageDownloadFinished() {
 
-		@Override
-		public void DownloadFinished(long ThreadId) {
+        @Override
+        public void DownloadFinished(long AsynkTaskId, Bitmap bitmap) {
             int count = maxCount - linksToImages.size();
 
             if(maxCount == count) {
-            	notificationManager.cancel(NOTIFICATION_ID);
+                notificationManager.cancel(NOTIFICATION_ID);
                 //RemoveOldImages();
             } else {
                 mNotificationDownloadImages
@@ -207,11 +207,6 @@ public class DownloadImagesService extends IntentService {
 
                 StartNextDownloadInQueue();
             }
-		}
-
-        @Override
-        public void DownloadFinished(long AsynkTaskId, Bitmap bitmap) {
-            DownloadFinished(AsynkTaskId);
         }
     };
 }

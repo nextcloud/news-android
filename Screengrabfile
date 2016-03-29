@@ -7,7 +7,7 @@ app_package_name 'de.luhmer.owncloudnewsreader'
 app_apk_path 'News-Android-App/build/outputs/apk/News-Android-App-debug-unaligned.apk'
 tests_apk_path 'News-Android-App/build/outputs/apk/News-Android-App-debug-androidTest-unaligned.apk'
 
-locales ['en-US', 'fr-FR', 'it-IT']
+locales ['en-US', 'de-DE', 'fr-FR', 'it-IT']
 
 # clear all previously generated screenshots in your local output directory before creating new ones
 clear_previous_screenshots true

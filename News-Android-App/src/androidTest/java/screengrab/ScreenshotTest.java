@@ -60,7 +60,7 @@ public class ScreenshotTest {
     private NewsReaderListActivity activity;
     private NewsReaderListFragment nrlf;
     private NewsReaderDetailFragment nrdf;
-    private int itemPos = 5;
+    private int itemPos = 0;
 
     @Before
     public void setup() {

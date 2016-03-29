@@ -73,17 +73,10 @@ public class FavIconHandler {
             return;
         }
 
-        GetImageThreaded giAsync = new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId());
-
-        giAsync.start();
+        new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId()).start();
     }
 
     ImageDownloadFinished favIconDownloadFinished = new ImageDownloadFinished() {
-
-        @Override
-        public void DownloadFinished(long AsynkTaskId) {
-            DownloadFinished(AsynkTaskId, null);
-        }
 
         @Override
         public void DownloadFinished(long AsynkTaskId, Bitmap bitmap) {
