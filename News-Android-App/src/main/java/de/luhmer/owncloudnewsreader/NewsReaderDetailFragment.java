@@ -62,6 +62,7 @@ import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 
 /**
@@ -283,6 +284,11 @@ public class NewsReaderDetailFragment extends Fragment {
                 sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sortDirection);
             }
             if (sqlSelectStatement != null) {
+                int index = sqlSelectStatement.indexOf("ORDER BY");
+                if(index == -1) {
+                    index = sqlSelectStatement.length();
+                }
+                sqlSelectStatement = new StringBuilder(sqlSelectStatement).insert(index, " GROUP BY " + RssItemDao.Properties.Fingerprint.columnName + " ").toString();
                 dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
             }
 
