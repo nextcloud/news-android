@@ -45,13 +45,13 @@ public class FavIconHandler {
     public FavIconHandler(Context context) {
         this.context = context;
         int placeHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon(context);
-        displayImageOptions = new DisplayImageOptions.Builder().
-                showImageOnLoading(placeHolder).
-                showImageForEmptyUri(placeHolder).
-                showImageOnFail(placeHolder).
-                cacheOnDisk(true).
-                cacheInMemory(true).
-                build();
+        displayImageOptions = new DisplayImageOptions.Builder()
+                .showImageOnLoading(placeHolder)
+                .showImageForEmptyUri(placeHolder)
+                .showImageOnFail(placeHolder)
+                .cacheOnDisk(true)
+                .cacheInMemory(true)
+                .build();
     }
 
     public void loadFavIconForFeed(String favIconUrl, ImageView imgView) {
@@ -64,7 +64,6 @@ public class FavIconHandler {
 			return R.drawable.default_feed_icon_light;
 		else
 			return R.drawable.default_feed_icon_dark;
-
 	}
 
 	public void PreCacheFavIcon(Feed feed) {
