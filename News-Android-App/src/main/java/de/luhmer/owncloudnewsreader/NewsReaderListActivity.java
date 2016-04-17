@@ -42,6 +42,7 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -845,11 +846,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
     }
 
-	protected NewsReaderListFragment getSlidingListFragment() {
+    @VisibleForTesting
+	public NewsReaderListFragment getSlidingListFragment() {
 		return ((NewsReaderListFragment) getSupportFragmentManager().findFragmentById(R.id.left_drawer));
 	}
 
-	protected NewsReaderDetailFragment getNewsReaderDetailFragment() {
+    @VisibleForTesting
+    public NewsReaderDetailFragment getNewsReaderDetailFragment() {
 		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
 	}
 

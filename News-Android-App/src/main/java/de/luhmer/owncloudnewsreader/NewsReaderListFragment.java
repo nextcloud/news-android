@@ -24,13 +24,13 @@ package de.luhmer.owncloudnewsreader;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
@@ -65,6 +65,7 @@ import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
+import de.luhmer.owncloudnewsreader.model.UserInfo;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
@@ -212,7 +213,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 	};
 
-	OnChildClickListener onChildClickListener = new OnChildClickListener() {
+	public OnChildClickListener onChildClickListener = new OnChildClickListener() {
 
 		@Override
 		public boolean onChildClick(ExpandableListView parent, View v,
@@ -248,7 +249,9 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 
 
-
+    public ExpandableListView getListView() {
+        return eListView;
+    }
 
 
     protected void showTapLogoToSyncShowcaseView() {
@@ -279,7 +282,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                     return null; //API NOT SUPPORTED!
 
 
-                UserInfo ui = new UserInfo();
+                UserInfo.Builder ui = new UserInfo.Builder();
                 InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getUserUrl());
 
                 JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
@@ -289,10 +292,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 while(reader.hasNext() && (currentName = reader.nextName()) != null) {
                     switch(currentName) {
                         case "userId":
-                            ui.mUserId = reader.nextString();
+                            ui.setUserId(reader.nextString());
                             break;
                         case "displayName":
-                            ui.mDisplayName = reader.nextString();
+                            ui.setDisplayName(reader.nextString());
                             break;
                         case "avatar":
                             com.google.gson.stream.JsonToken jt = reader.peek();
@@ -307,7 +310,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                                     if (currentName.equals("data")) {
                                         String encodedImage = reader.nextString();
                                         byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-                                        ui.mAvatar = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                        ui.setAvatar(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
                                         Log.v(TAG, encodedImage);
                                     } else {
                                         reader.skipValue();
@@ -323,7 +326,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 }
                 reader.close();
 
-                return ui;
+                return ui.build();
             } catch (Exception e) {
                 if(e.getMessage().equals("Method Not Allowed")) { //Remove if old version is used
                     SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -351,12 +354,20 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     }
 
     protected void bindUserInfoToUI() {
+        bindUserInfoToUI(false);
+    }
+
+    public void bindUserInfoToUI(boolean testMode) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
         String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, getString(R.string.app_name));
 
         userTextView.setText(mUsername);
         urlTextView.setText(mOc_root_path);
+
+        if(testMode) { //Hide real url in test mode
+            urlTextView.setText("https://example.com/owncloud");
+        }
 
         String uInfo = mPrefs.getString("USER_INFO", null);
         if(uInfo == null)
@@ -380,14 +391,8 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     }
 
 
-    private class UserInfo implements Serializable {
-        private String mUserId;
-        private String mDisplayName;
-        private Bitmap mAvatar;
-    }
-
     /** Read the object from Base64 string. */
-    private static Object fromString(String s) throws IOException,
+    public static Object fromString(String s) throws IOException,
             ClassNotFoundException {
         byte [] data = Base64.decode(s, Base64.DEFAULT);
         ObjectInputStream ois = new ObjectInputStream(
@@ -398,7 +403,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     }
 
     /** Write the object to a Base64 string. */
-    private static String toString(Serializable o) throws IOException {
+    public static String toString(Serializable o) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream( baos );
         oos.writeObject(o);

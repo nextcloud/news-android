@@ -94,6 +94,13 @@ dependencies {
 
     testCompile 'org.robolectric:robolectric:3.0-rc3'
     testCompile 'junit:junit:4.1'
+    testCompile("org.mockito:mockito-core:1.10.19") {
+        exclude group: 'org.hamcrest'
+    }
+    testCompile 'com.google.dexmaker:dexmaker:1.2'
+    testCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+
+
     androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
 
     androidTestCompile "com.android.support:support-annotations:${SUPPORT_VERSION}"
@@ -112,5 +119,10 @@ dependencies {
     compile 'com.nbsp:library:1.02'
 
 
-    //androidTestCompile 'tools:fastlane:screengrab:0.3.0'
+    androidTestCompile 'tools.fastlane:screengrab:0.3.1'
+    androidTestCompile("org.mockito:mockito-core:1.10.19") {
+        exclude group: 'org.hamcrest'
+    }
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
 }

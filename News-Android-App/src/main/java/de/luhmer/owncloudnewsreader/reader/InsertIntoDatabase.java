@@ -89,21 +89,6 @@ public class InsertIntoDatabase {
                         break;
                     }
 
-                    /*
-                    if(feeds.get(i).getLink().equals(oldFeed.getLink()))
-                    {
-                        if(!feeds.get(i).getFeedTitle().equals(oldFeed.getFeedTitle()))
-                        {
-                            oldFeed.setFeedTitle(feeds.get(i).getFeedTitle());
-                        }
-                        //Set the avg color after sync again.
-                        oldFeed.setAvgColour(oldFeeds.get(i).getAvgColour());
-                        dbConn.updateFeed(oldFeed);
-
-                        found = true;
-                        break;
-                    }
-                    */
                 }
                 if(!found)
                 {
