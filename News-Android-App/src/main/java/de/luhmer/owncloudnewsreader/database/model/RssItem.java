@@ -8,7 +8,7 @@ import de.luhmer.owncloudnewsreader.adapter.HasId;
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
 /**
- * Entity mapped to table RSS_ITEM.
+ * Entity mapped to table "RSS_ITEM".
  */
 public class RssItem implements HasId<Long> {
 
@@ -25,6 +25,7 @@ public class RssItem implements HasId<Long> {
     private String guid;
     /** Not-null value. */
     private String guidHash;
+    private String fingerprint;
     private Boolean read_temp;
     private Boolean starred_temp;
     private java.util.Date lastModified;
@@ -52,7 +53,7 @@ public class RssItem implements HasId<Long> {
         this.id = id;
     }
 
-    public RssItem(long id, long feedId, String link, String title, String body, Boolean read, Boolean starred, String author, String guid, String guidHash, Boolean read_temp, Boolean starred_temp, java.util.Date lastModified, java.util.Date pubDate, String enclosureLink, String enclosureMime) {
+    public RssItem(long id, long feedId, String link, String title, String body, Boolean read, Boolean starred, String author, String guid, String guidHash, String fingerprint, Boolean read_temp, Boolean starred_temp, java.util.Date lastModified, java.util.Date pubDate, String enclosureLink, String enclosureMime) {
         this.id = id;
         this.feedId = feedId;
         this.link = link;
@@ -63,6 +64,7 @@ public class RssItem implements HasId<Long> {
         this.author = author;
         this.guid = guid;
         this.guidHash = guidHash;
+        this.fingerprint = fingerprint;
         this.read_temp = read_temp;
         this.starred_temp = starred_temp;
         this.lastModified = lastModified;
@@ -163,6 +165,14 @@ public class RssItem implements HasId<Long> {
         this.guidHash = guidHash;
     }
 
+    public String getFingerprint() {
+        return fingerprint;
+    }
+
+    public void setFingerprint(String fingerprint) {
+        this.fingerprint = fingerprint;
+    }
+
     public Boolean getRead_temp() {
         return read_temp;
     }
@@ -239,10 +249,7 @@ public class RssItem implements HasId<Long> {
         }
     }
 
-    /**
-     * Convenient call for {@link de.greenrobot.dao.AbstractDao#delete(Object)}.
-     * Entity must attached to an entity context.
-     */
+    /** Convenient call for {@link AbstractDao#delete(Object)}. Entity must attached to an entity context. */
     public void delete() {
         if (myDao == null) {
             throw new DaoException("Entity is detached from DAO context");
@@ -250,10 +257,7 @@ public class RssItem implements HasId<Long> {
         myDao.delete(this);
     }
 
-    /**
-     * Convenient call for {@link de.greenrobot.dao.AbstractDao#update(Object)}.
-     * Entity must attached to an entity context.
-     */
+    /** Convenient call for {@link AbstractDao#update(Object)}. Entity must attached to an entity context. */
     public void update() {
         if (myDao == null) {
             throw new DaoException("Entity is detached from DAO context");
@@ -261,10 +265,7 @@ public class RssItem implements HasId<Long> {
         myDao.update(this);
     }
 
-    /**
-     * Convenient call for {@link de.greenrobot.dao.AbstractDao#refresh(Object)}.
-     * Entity must attached to an entity context.
-     */
+    /** Convenient call for {@link AbstractDao#refresh(Object)}. Entity must attached to an entity context. */
     public void refresh() {
         if (myDao == null) {
             throw new DaoException("Entity is detached from DAO context");

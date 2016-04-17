@@ -71,6 +71,7 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
         rssItem.setFeedId(e.optLong("feedId"));
         rssItem.setGuid(guid);
         rssItem.setGuidHash(e.optString("guidHash"));
+        rssItem.setFingerprint(e.optString("fingerprint"));
         rssItem.setBody(content);
         rssItem.setLastModified(new Date(e.optLong("lastModified")));
         rssItem.setRead(!e.optBoolean("unread"));

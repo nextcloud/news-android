@@ -5,7 +5,7 @@ package de.luhmer.owncloudnewsreader.database.model;
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
 /**
- * Entity mapped to table CURRENT_RSS_ITEM_VIEW.
+ * Entity mapped to table "CURRENT_RSS_ITEM_VIEW".
  */
 public class CurrentRssItemView {
 

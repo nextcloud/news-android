@@ -9,7 +9,7 @@ import de.greenrobot.dao.DaoException;
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
 /**
- * Entity mapped to table FEED.
+ * Entity mapped to table "FEED".
  */
 public class Feed {
 
@@ -154,10 +154,7 @@ public class Feed {
         rssItemList = null;
     }
 
-    /**
-     * Convenient call for {@link de.greenrobot.dao.AbstractDao#delete(Object)}.
-     * Entity must attached to an entity context.
-     */
+    /** Convenient call for {@link AbstractDao#delete(Object)}. Entity must attached to an entity context. */
     public void delete() {
         if (myDao == null) {
             throw new DaoException("Entity is detached from DAO context");
@@ -165,10 +162,7 @@ public class Feed {
         myDao.delete(this);
     }
 
-    /**
-     * Convenient call for {@link de.greenrobot.dao.AbstractDao#update(Object)}.
-     * Entity must attached to an entity context.
-     */
+    /** Convenient call for {@link AbstractDao#update(Object)}. Entity must attached to an entity context. */
     public void update() {
         if (myDao == null) {
             throw new DaoException("Entity is detached from DAO context");
@@ -176,10 +170,7 @@ public class Feed {
         myDao.update(this);
     }
 
-    /**
-     * Convenient call for {@link de.greenrobot.dao.AbstractDao#refresh(Object)}.
-     * Entity must attached to an entity context.
-     */
+    /** Convenient call for {@link AbstractDao#refresh(Object)}. Entity must attached to an entity context. */
     public void refresh() {
         if (myDao == null) {
             throw new DaoException("Entity is detached from DAO context");
