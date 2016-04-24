@@ -89,6 +89,18 @@ Updates
 ---------------------
 
 
+0.9.8.3 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/502">#502 App crash when scrolling on empty list</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/509">#509 Sharing links duplicates titles</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/493">#493 Server and Username disappears</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/498">#498 Server and Username disappears</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/515">#515 Increase the padding for article content</a>
+- Feature - <a href="https://github.com/owncloud/News-Android-App/issues/513">#513 Deduplicate articles</a>
+- Feature - add support for video/mp4 podcasts
+- Several Bug fixes and improvements 
+
+
 0.9.8.2 (Google Play)
 ---------------------
 - Critical bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/492">#492 App crashes on start</a>
