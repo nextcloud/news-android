@@ -192,7 +192,6 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     public void setRssItem(RssItem rssItem) {
         this.rssItem = rssItem;
         String title = null;
-        String body = rssItem.getBody();
         String favIconUrl = null;
         if(rssItem.getFeed() != null) {
             title = rssItem.getFeed().getFeedTitle();
@@ -206,21 +205,32 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         setFeedColor(ColorHelper.getFeedColor(itemView.getContext(), rssItem.getFeed()));
 
-        if(textViewSummary != null)
-            textViewSummary.setText(Html.fromHtml(rssItem.getTitle()).toString());
+        if(textViewSummary != null) {
+            try {
+                //byte[] arrByteForSpanish = rssItem.getTitle().getBytes("ISO-8859-1");
+                //String spanish = new String(arrByteForSpanish);//.getBytes("UTF-8");
+                //textViewSummary.setText(Html.fromHtml(spanish));
 
-        if(textViewTitle != null)
-            textViewTitle.setText(title);
+                textViewSummary.setText(Html.fromHtml(rssItem.getTitle()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(textViewTitle != null) {
+            textViewTitle.setText(Html.fromHtml(title));
+        }
 
         if(textViewBody != null) {
+            String body = rssItem.getBody();
             // Strip html from String
-
             if(selectedListLayout == 3) {
                 textViewBody.setMaxLines(200);
-                textViewBody.setText(getBodyText(body, false));
+                body = getBodyText(body, false);
             } else {
-                textViewBody.setText(getBodyText(body, true));
+                body = getBodyText(body, true);
             }
+            textViewBody.setText(Html.fromHtml(body));
         }
 
         if(textViewItemDate != null)
