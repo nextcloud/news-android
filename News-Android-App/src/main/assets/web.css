@@ -21,24 +21,24 @@ body#darkTheme {
 */
 
 body, blockquote, img, iframe, video, div, table, tbody, tr, td, pre, code, blockquote, p, em, b {
-    width:		auto !important;
-    height:		auto !important;
-    max-width:	100% !important;
+    width:      auto !important;
+    height:     auto !important;
+    max-width:  100% !important;
 }
 
 span {
-    width:		auto !important;
-    height:		auto !important;
-    max-width:	100% !important;
-    display:block;
+    width:      auto !important;
+    height:     auto !important;
+    max-width:  100% !important;
+    display:    block;
 }
 
 body {
-    font-size:			1.1em;
-    font-weight:    	normal;
-    margin: 0px;
-    word-wrap: 		break-word !important;
-    font-family: 'ROBOTO_REGULAR';
+    font-size:  1.1em;
+    font-weight:normal;
+    margin:     0px;
+    word-wrap:  break-word !important;
+    font-family:'ROBOTO_REGULAR';
 }
 
 div#content > p {
@@ -106,10 +106,9 @@ a {
 }
 
 #top_section {
-    padding: 2px;
-    padding-left: 6px;
-    padding-right: 6px;
-    margin: 0px;
+    padding:        0.5rem;
+    padding-left:   1rem;
+    padding-right:  1rem;
 
 }
 .rtl #top_section {
@@ -117,10 +116,10 @@ a {
 }
 
 #content {
-    margin-top:5px;
-    margin-left: 4px;
-    margin-right: 4px;
-    line-height: 1.5em !important;
+    margin-top:     1rem;
+    margin-left:    1rem;
+    margin-right:   1rem;
+    line-height:    1.5em !important;
 }
 
 #imgFavicon {
