@@ -487,9 +487,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 					}
 				}
 
-                //Fix for #257
-                content = title + " - " + content;
-
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
                 //share.putExtra(Intent.EXTRA_SUBJECT, rssFiles.get(currentPosition).getTitle());
