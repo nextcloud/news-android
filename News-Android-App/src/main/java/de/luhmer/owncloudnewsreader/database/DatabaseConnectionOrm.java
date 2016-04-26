@@ -322,13 +322,15 @@ public class DatabaseConnectionOrm {
 
     public void updateRssItem(RssItem rssItem) {
         daoSession.getRssItemDao().update(rssItem);
-        for(RssItem rssItem1 : daoSession.getRssItemDao().queryBuilder().where(
-                RssItemDao.Properties.Fingerprint.eq(rssItem.getFingerprint()),
-                RssItemDao.Properties.Id.notEq(rssItem.getId()))
-                .list()) {
-            rssItem1.setRead_temp(rssItem.getRead_temp());
-            rssItem1.setStarred_temp(rssItem.getStarred_temp());
-            daoSession.getRssItemDao().update(rssItem1);
+        if(rssItem.getRead_temp()) {
+            for (RssItem rssItem1 : daoSession.getRssItemDao().queryBuilder().where(
+                    RssItemDao.Properties.Fingerprint.eq(rssItem.getFingerprint()),
+                    RssItemDao.Properties.Id.notEq(rssItem.getId()))
+                    .list()) {
+                rssItem1.setRead_temp(rssItem.getRead_temp());
+                //rssItem1.setStarred_temp(rssItem.getStarred_temp());
+                daoSession.getRssItemDao().update(rssItem1);
+            }
         }
     }
 
