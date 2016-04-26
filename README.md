@@ -89,7 +89,12 @@ Updates
 ---------------------
 
 
-0.9.8.4 (Google Play)
+0.9.8.5 (Google Play)
+---------------------
+- Critical bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/518">#518 Bug in 0.9.8.3: Using the app caused marking all articles as read and starred articles are lost</a>
+
+
+0.9.8.4
 ---------------------
 - Critical bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/518">#518 Bug in 0.9.8.3: Using the app caused marking all articles as read and starred articles are lost</a>
 
