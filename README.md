@@ -89,7 +89,12 @@ Updates
 ---------------------
 
 
-0.9.8.3 (Google Play)
+0.9.8.4 (Google Play)
+---------------------
+- Critical bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/518">#518 Bug in 0.9.8.3: Using the app caused marking all articles as read and starred articles are lost</a>
+
+
+0.9.8.3
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/502">#502 App crash when scrolling on empty list</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/509">#509 Sharing links duplicates titles</a>
