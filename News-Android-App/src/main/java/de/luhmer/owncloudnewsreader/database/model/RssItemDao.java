@@ -73,7 +73,7 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
                 "\"AUTHOR\" TEXT NOT NULL ," + // 7: author
                 "\"GUID\" TEXT NOT NULL ," + // 8: guid
                 "\"GUID_HASH\" TEXT NOT NULL ," + // 9: guidHash
-                "\"FINGERPRINT\" TEXT," + // 10: fingerprint
+                "\"FINGERPRINT\" TEXT NOT NULL ," + // 10: fingerprint
                 "\"READ_TEMP\" INTEGER," + // 11: read_temp
                 "\"STARRED_TEMP\" INTEGER," + // 12: starred_temp
                 "\"LAST_MODIFIED\" INTEGER," + // 13: lastModified
@@ -125,11 +125,7 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         stmt.bindString(8, entity.getAuthor());
         stmt.bindString(9, entity.getGuid());
         stmt.bindString(10, entity.getGuidHash());
- 
-        String fingerprint = entity.getFingerprint();
-        if (fingerprint != null) {
-            stmt.bindString(11, fingerprint);
-        }
+        stmt.bindString(11, entity.getFingerprint());
  
         Boolean read_temp = entity.getRead_temp();
         if (read_temp != null) {
@@ -188,7 +184,7 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
             cursor.getString(offset + 7), // author
             cursor.getString(offset + 8), // guid
             cursor.getString(offset + 9), // guidHash
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // fingerprint
+            cursor.getString(offset + 10), // fingerprint
             cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0, // read_temp
             cursor.isNull(offset + 12) ? null : cursor.getShort(offset + 12) != 0, // starred_temp
             cursor.isNull(offset + 13) ? null : new java.util.Date(cursor.getLong(offset + 13)), // lastModified
@@ -212,7 +208,7 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         entity.setAuthor(cursor.getString(offset + 7));
         entity.setGuid(cursor.getString(offset + 8));
         entity.setGuidHash(cursor.getString(offset + 9));
-        entity.setFingerprint(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setFingerprint(cursor.getString(offset + 10));
         entity.setRead_temp(cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0);
         entity.setStarred_temp(cursor.isNull(offset + 12) ? null : cursor.getShort(offset + 12) != 0);
         entity.setLastModified(cursor.isNull(offset + 13) ? null : new java.util.Date(cursor.getLong(offset + 13)));

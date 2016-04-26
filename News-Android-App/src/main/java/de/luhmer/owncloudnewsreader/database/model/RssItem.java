@@ -25,6 +25,7 @@ public class RssItem implements HasId<Long> {
     private String guid;
     /** Not-null value. */
     private String guidHash;
+    /** Not-null value. */
     private String fingerprint;
     private Boolean read_temp;
     private Boolean starred_temp;
@@ -165,10 +166,12 @@ public class RssItem implements HasId<Long> {
         this.guidHash = guidHash;
     }
 
+    /** Not-null value. */
     public String getFingerprint() {
         return fingerprint;
     }
 
+    /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setFingerprint(String fingerprint) {
         this.fingerprint = fingerprint;
     }
