@@ -27,6 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -86,6 +87,10 @@ public class InsertItemIntoDatabase implements IHandleJsonObject {
         rssItem.setLink(url);
         rssItem.setEnclosureLink(enclosureLink);
         rssItem.setEnclosureMime(enclosureMime);
+
+        if(rssItem.getFingerprint() == null) {
+            rssItem.setFingerprint(UUID.randomUUID().toString());
+        }
 
         return rssItem;
         /*
