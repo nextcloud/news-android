@@ -62,7 +62,7 @@ repositories {
 
 }
 
-final SUPPORT_VERSION = '23.2.0'
+final SUPPORT_VERSION = '23.4.0'
 
 dependencies {
     // core android studio module
