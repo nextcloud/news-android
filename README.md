@@ -89,6 +89,11 @@ Updates
 ---------------------
 
 
+0.9.8.7 (Google Play)
+---------------------
+- Fix app crash - <a href="https://github.com/owncloud/News-Android-App/issues/519">#519 New versions force quit on CM11</a>
+
+
 0.9.8.6 (Google Play)
 ---------------------
 - Fix app crash - <a href="https://github.com/owncloud/News-Android-App/issues/519">#519 New versions force quit on CM11</a>

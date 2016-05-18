@@ -141,7 +141,7 @@ public class SettingsActivity extends PreferenceActivity {
 
             Toolbar toolbar = (Toolbar) appBarLayout.getChildAt(0);
 
-			final Drawable backarrow = ContextCompat.getDrawable(this, R.drawable.ic_ab_back_material);
+			final Drawable backarrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 			backarrow.setColorFilter(ContextCompat.getColor(this, R.color.tintColorDark), PorterDuff.Mode.SRC_ATOP);
 			toolbar.setNavigationIcon(backarrow);
 			toolbar.setTitle(R.string.title_activity_settings);
