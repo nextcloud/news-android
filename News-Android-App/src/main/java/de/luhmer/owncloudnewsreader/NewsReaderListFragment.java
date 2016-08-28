@@ -361,6 +361,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
         String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, getString(R.string.app_name));
+        mOc_root_path = mOc_root_path.replace("http://", "").replace("https://", ""); //Remove http:// or https://
 
         userTextView.setText(mUsername);
         urlTextView.setText(mOc_root_path);
