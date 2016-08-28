@@ -68,7 +68,9 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
             stopSelf();
         }
 
-        podcastNotification.unbind();
+        if(podcastNotification != null) {
+            podcastNotification.unbind();
+        }
 
         return super.onUnbind(intent);
     }
