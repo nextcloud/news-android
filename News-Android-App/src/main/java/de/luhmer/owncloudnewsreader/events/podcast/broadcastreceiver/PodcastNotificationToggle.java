@@ -4,7 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 
 public class PodcastNotificationToggle extends BroadcastReceiver {

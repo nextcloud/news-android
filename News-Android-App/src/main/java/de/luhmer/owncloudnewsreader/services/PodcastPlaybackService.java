@@ -15,10 +15,12 @@ import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.io.IOException;
 import java.util.HashMap;
 
-import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.NewPodcastPlaybackListener;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
@@ -286,6 +288,7 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
         }
     };
 
+    @Subscribe
     public void onEvent(TogglePlayerStateEvent event) {
         if (isPlaying()) {
             Log.v(TAG, "calling pause()");
@@ -301,6 +304,7 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
                 mPlaybackType == PlaybackType.TTS && ttsController.isSpeaking(); // or if tts is running
     }
 
+    @Subscribe
     public void onEvent(WindPodcast event) {
         if(mMediaPlayer != null) {
             double totalDuration = mMediaPlayer.getDuration();
@@ -316,6 +320,7 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
     }
     */
 
+    @Subscribe
     public void onEvent(RegisterVideoOutput videoOutput) {
         if(mMediaPlayer != null) {
             if(videoOutput.surfaceView == null) {
@@ -338,6 +343,7 @@ public class PodcastPlaybackService extends Service implements TextToSpeech.OnIn
         }
     }
 
+    @Subscribe
     public void onEvent(NewPodcastPlaybackListener newListener) {
         sendMediaStatus();
     }

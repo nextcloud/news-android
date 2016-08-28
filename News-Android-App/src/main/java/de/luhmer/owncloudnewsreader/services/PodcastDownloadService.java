@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,7 +24,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
 
-import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;

@@ -18,7 +18,9 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
@@ -85,6 +87,7 @@ public class PodcastNotification {
 
     int lastDrawableId = -1;
 
+    @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
         if(!podcast.isFileLoaded())
             return;

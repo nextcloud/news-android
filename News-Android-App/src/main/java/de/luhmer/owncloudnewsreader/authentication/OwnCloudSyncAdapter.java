@@ -12,40 +12,35 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 
 public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
-        
+
     public OwnCloudSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
     }
-    
-    ServiceConnection mConnection = null;
-    
- 
+
+    private ServiceConnection mConnection = null;
+
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         Log.d("udinic", "onPerformSync for account[" + account.name + "]");
-        try {        	
-        	
-        	Intent serviceIntent = new Intent(getContext(), OwnCloudSyncService.class);
-        	mConnection = generateServiceConnection();
-        	getContext().bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);        	
-        	//getContext().unbindService(mConnection);
-	        
+        try {
+			Intent serviceIntent = new Intent(getContext(), OwnCloudSyncService.class);
+			mConnection = generateServiceConnection();
+			getContext().bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     private ServiceConnection generateServiceConnection() {
     	return new ServiceConnection() {
-        	
-        	public void onServiceConnected(ComponentName name, IBinder binder) {        	
-        		IOwnCloudSyncService _ownCloadSyncService = IOwnCloudSyncService.Stub.asInterface(binder);
+
+        	public void onServiceConnected(ComponentName name, IBinder binder) {
         		try {
-        			_ownCloadSyncService.startSync();
+					OwnCloudSyncService ownCloudSyncService = ((OwnCloudSyncService.OwnCloudSyncServiceBinder) binder).getService();
+					ownCloudSyncService.startSync();
         			getContext().unbindService(mConnection);
         			mConnection = null;
         		}
@@ -55,7 +50,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         	}
 
     		@Override
-    		public void onServiceDisconnected(ComponentName name) {					
+    		public void onServiceDisconnected(ComponentName name) {
     		}
     	};
     }

@@ -25,12 +25,14 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.io.File;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
@@ -108,11 +110,13 @@ public class PodcastFragment extends Fragment {
         super.onPause();
     }
 
-    public void onEventMainThread(StartDownloadPodcast podcast) {
+    @Subscribe
+    public void onEvent(StartDownloadPodcast podcast) {
         PodcastDownloadService.startPodcastDownload(getActivity(), podcast.podcast);//, new DownloadReceiver(new Handler(), new WeakReference<ProgressBar>(holder.pbDownloadPodcast)));
     }
 
-    public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
+    @Subscribe
+    public void onEvent(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
         PodcastArrayAdapter podcastArrayAdapter = (PodcastArrayAdapter) podcastTitleGrid.getAdapter();
 
         for(int i = 0; i < podcastTitleGrid.getCount(); i++) {
@@ -136,7 +140,8 @@ public class PodcastFragment extends Fragment {
     }
 
     long lastPodcastRssItemId = -1;
-    public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
+    @Subscribe
+    public void onEvent(UpdatePodcastStatusEvent podcast) {
         this.podcast = podcast;
 
         hasTitleInCache = true;

@@ -26,11 +26,13 @@ import android.widget.Toast;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.io.File;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
@@ -87,7 +89,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
         UpdatePodcastView();
 
-        if(isMyServiceRunning(PodcastPlaybackService.class)) {
+        if(isMyServiceRunning(PodcastPlaybackService.class, this)) {
             Intent intent = new Intent(this, PodcastPlaybackService.class);
             bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         }
@@ -150,8 +152,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         super.onPause();
     }
 
-    protected boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+    public static boolean isMyServiceRunning(Class<?> serviceClass, Context context) {
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.getName().equals(service.service.getClassName())) {
                 return true;
@@ -217,7 +219,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     boolean surfaceInitialized = false;
     boolean isVideoViewVisible = true;
-    public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
+    @Subscribe
+    public void onEvent(UpdatePodcastStatusEvent podcast) {
         //If file is loaded or preparing and podcast is paused/not running expand the view
         if((podcast.isFileLoaded() || podcast.isPreparingFile()) && !currentlyPlaying) {
             //Expand view
@@ -262,7 +265,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     }
 
-    public void onEventMainThread(PodcastCompletedEvent podcastCompletedEvent) {
+    @Subscribe
+    public void onEvent(PodcastCompletedEvent podcastCompletedEvent) {
         sliding_layout.setPanelHeight(0);
         sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         currentlyPlaying = false;
@@ -303,7 +307,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     float scaleFactor = 1;
     boolean useAnimation = false;
 
-    public void onEventMainThread() {
+    @Subscribe
+    public void onEvent() {
         appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
         appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
 

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
@@ -83,7 +84,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.sothree.slidinguppanel:library:3.2.1'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
-    compile 'de.greenrobot:eventbus:2.2.1'
+    compile 'org.greenrobot:eventbus:3.0.0'
     compile 'de.greenrobot:greendao:2.0.0'
     compile 'de.greenrobot:greendao-generator:2.0.0'
     //compile 'org.freemarker:freemarker:2.3.23' //Required for DAO generation
@@ -91,6 +92,9 @@ dependencies {
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.0'
     compile 'org.jsoup:jsoup:1.7.2'
     compile ('net.rdrei.android.dirchooser:library:3.0@aar') { transitive = true; }
+
+    provided 'com.google.auto.value:auto-value:1.2'
+    apt 'com.google.auto.value:auto-value:1.2'
 
     testCompile 'org.robolectric:robolectric:3.0-rc3'
     testCompile 'junit:junit:4.1'

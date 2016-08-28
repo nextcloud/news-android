@@ -38,7 +38,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -63,11 +62,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.lang.reflect.Field;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
@@ -77,16 +78,16 @@ import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
-import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
-import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService;
-import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncServiceCallback;
 import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
+import de.luhmer.owncloudnewsreader.services.events.SyncFailedEvent;
+import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
+import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
@@ -363,7 +364,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	protected void onStart() {
 		Intent serviceIntent = new Intent(this, OwnCloudSyncService.class);
 		mConnection = generateServiceConnection();
-		if (!isMyServiceRunning(OwnCloudSyncService.class)) {
+		if (!isMyServiceRunning(OwnCloudSyncService.class, this)) {
 			startService(serviceIntent);
 		}
 		bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
@@ -372,27 +373,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	protected void onStop() {
-		if (_ownCloudSyncService != null) {
-			try {
-				_ownCloudSyncService.unregisterCallback(callback);
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-		}
 		unbindService(mConnection);
 		mConnection = null;
 		super.onStop();
 	}
 
+	private OwnCloudSyncService ownCloudSyncService;
 	private ServiceConnection generateServiceConnection() {
 		return new ServiceConnection() {
 
 			@Override
 			public void onServiceConnected(ComponentName name, IBinder binder) {
-				_ownCloudSyncService = IOwnCloudSyncService.Stub.asInterface(binder);
-				try {
-					_ownCloudSyncService.registerCallback(callback);
+				ownCloudSyncService = ((OwnCloudSyncService.OwnCloudSyncServiceBinder)binder).getService();
 
+				try {
 					//Start auto sync if enabled
 					SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
 					if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false)) {
@@ -416,49 +410,43 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 			@Override
 			public void onServiceDisconnected(ComponentName name) {
-				try {
-					_ownCloudSyncService.unregisterCallback(callback);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 			}
 		};
 	}
 
-	IOwnCloudSyncService _ownCloudSyncService;
-	private IOwnCloudSyncServiceCallback callback = new IOwnCloudSyncServiceCallback.Stub() {
-		private void UpdateButtonLayoutWithHandler() {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
+
+
+	private void UpdateButtonLayoutWithHandler() {
+		Handler refresh = new Handler(Looper.getMainLooper());
+		refresh.post(new Runnable() {
 				public void run() {
 					UpdateButtonLayout();
 				}
 			});
-		}
+	}
 
-		@Override
-		public void throwException(AidlException ex) throws RemoteException {
-			Toast.makeText(NewsReaderListActivity.this, ex.getmException().getLocalizedMessage(), Toast.LENGTH_LONG).show();
+	@Subscribe
+	public void onEvent(SyncFailedEvent event) {
+		Toast.makeText(NewsReaderListActivity.this, event.exception().getLocalizedMessage(), Toast.LENGTH_LONG).show();
 
-			UpdateButtonLayoutWithHandler();
-		}
+		UpdateButtonLayoutWithHandler();
+	}
 
-		@Override
-		public void startedSync() throws RemoteException {
-			UpdateButtonLayoutWithHandler();
-		}
+	@Subscribe
+	public void onEvent(SyncStartedEvent event) {
+		UpdateButtonLayoutWithHandler();
+	}
 
-		@Override
-		public void finishedSync() throws RemoteException {
-			Handler refresh = new Handler(Looper.getMainLooper());
-			refresh.post(new Runnable() {
-				public void run() {
-					UpdateButtonLayout();
-					syncFinishedHandler();
-				}
-			});
-		}
-	};
+	@Subscribe
+	public void onEvent(SyncFinishedEvent event) {
+		Handler refresh = new Handler(Looper.getMainLooper());
+		refresh.post(new Runnable() {
+			public void run() {
+				UpdateButtonLayout();
+				syncFinishedHandler();
+			}
+		});
+	}
 
 	/**
 	 * @return true if new items count was greater than 0
@@ -639,44 +627,34 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
 			StartLoginFragment(this);
 		else {
-			try {
-				if (!_ownCloudSyncService.isSyncRunning())
-				{
-					new PostDelayHandler(this).stopRunningPostDelayHandler();//Stop pending sync handler
+			if (!ownCloudSyncService.isSyncRunning())
+			{
+				new PostDelayHandler(this).stopRunningPostDelayHandler();//Stop pending sync handler
 
-					Bundle accBundle = new Bundle();
-					accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-					AccountManager mAccountManager = AccountManager.get(this);
-					Account[] accounts = mAccountManager.getAccounts();
-					for(Account acc : accounts)
-						if(acc.type.equals(AccountGeneral.ACCOUNT_TYPE))
-							ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
-					//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
-				} else {
-					UpdateButtonLayout();
-				}
-			} catch (RemoteException e) {
-				e.printStackTrace();
+				Bundle accBundle = new Bundle();
+				accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+				AccountManager mAccountManager = AccountManager.get(this);
+				Account[] accounts = mAccountManager.getAccounts();
+				for(Account acc : accounts)
+					if(acc.type.equals(AccountGeneral.ACCOUNT_TYPE))
+						ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
+				//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
+			} else {
+				UpdateButtonLayout();
 			}
+
 		}
     }
 
 	public void UpdateButtonLayout()
     {
-		try {
-			NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
-			NewsReaderDetailFragment newsReaderDetailFragment = getNewsReaderDetailFragment();
+		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
+		NewsReaderDetailFragment newsReaderDetailFragment = getNewsReaderDetailFragment();
 
-			if(newsReaderListFragment != null && newsReaderDetailFragment != null && _ownCloudSyncService != null) {
-				IOwnCloudSyncService _Reader = _ownCloudSyncService;
-
-				boolean isSyncRunning = _Reader.isSyncRunning();
-
-				newsReaderListFragment.setRefreshing(isSyncRunning);
-				newsReaderDetailFragment.swipeRefresh.setRefreshing(isSyncRunning);
-			}
-		} catch (RemoteException e) {
-			e.printStackTrace();
+		if(newsReaderListFragment != null && newsReaderDetailFragment != null && ownCloudSyncService != null) {
+			boolean isSyncRunning = ownCloudSyncService.isSyncRunning();
+			newsReaderListFragment.setRefreshing(isSyncRunning);
+			newsReaderDetailFragment.swipeRefresh.setRefreshing(isSyncRunning);
 		}
     }
 

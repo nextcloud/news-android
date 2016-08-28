@@ -28,65 +28,68 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.RemoteCallbackList;
-import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.apache.commons.lang3.time.StopWatch;
+import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.helper.AidlException;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
 import de.luhmer.owncloudnewsreader.helper.TeslaUnreadManager;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
-import de.luhmer.owncloudnewsreader.services.IOwnCloudSyncService.Stub;
+import de.luhmer.owncloudnewsreader.services.events.SyncFailedEvent;
+import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
+import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 public class OwnCloudSyncService extends Service {
-	
-	protected static final String TAG = "OwnCloudSyncService";	
-	
-	private static RemoteCallbackList<IOwnCloudSyncServiceCallback> callbacks = new RemoteCallbackList<>();
+
+	// This is the object that receives interactions from clients.  See
+	// RemoteService for a more complete example.
+	private final IBinder mBinder = new OwnCloudSyncServiceBinder();
+
+	/**
+	 * Class for clients to access.  Because we know this service always
+	 * runs in the same process as its clients, we don't need to deal with
+	 * IPC.
+	 */
+	public class OwnCloudSyncServiceBinder extends Binder {
+		public OwnCloudSyncService getService() {
+			return OwnCloudSyncService.this;
+		}
+	}
+
+	protected static final String TAG = "OwnCloudSyncService";
 
 	private CountDownLatch syncCompletedLatch;
 	private StopWatch syncStopWatch;
 	private boolean syncRunning;
 
-	private Stub mBinder = new IOwnCloudSyncService.Stub() {
 
-		public void registerCallback(IOwnCloudSyncServiceCallback callback) {
-			callbacks.register(callback);
-		}
 
-		public void unregisterCallback(IOwnCloudSyncServiceCallback callback) {
-			callbacks.unregister(callback);
+	public void startSync() {
+		if(!isSyncRunning()) {
+			startedSync();
+			OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
 		}
+	}
 
-		@Override
-		public void startSync() throws RemoteException {
-			if(!isSyncRunning()) {
-				startedSync();
-				OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
-			}
-		}
-
-		@Override
-		public boolean isSyncRunning() throws RemoteException {
-			return syncRunning;
-		}
-	};
+	public boolean isSyncRunning() {
+		return syncRunning;
+	}
 
 	@Override
 	public void onCreate() {
@@ -94,7 +97,13 @@ public class OwnCloudSyncService extends Service {
 		Log.d(TAG, "onCreate() called");
 	}
 
-    @Override
+	@Nullable
+	@Override
+	public IBinder onBind(Intent intent) {
+		return mBinder;
+	}
+
+	@Override
     public boolean onUnbind(Intent intent) {
         //Destroy service if no sync is running
         if(!syncRunning) {
@@ -148,33 +157,16 @@ public class OwnCloudSyncService extends Service {
 	};
 
     private void ThrowException(Exception ex) {
-		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
-		for (IOwnCloudSyncServiceCallback icb : callbackList) {
-			try {
-				icb.throwException(new AidlException(ex));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-		}
-		callbacks.finishBroadcast();
+		EventBus.getDefault().post(SyncFailedEvent.create(ex));
 	}
-	
+
 	private void startedSync() {
 		syncRunning = true;
 		Log.v(TAG, "Synchronization started");
 
-		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
-		for(IOwnCloudSyncServiceCallback icb : callbackList) {
-			try {
-				icb.startedSync();
-				//icb.finishedSyncOfItems();
-			} catch (RemoteException e) {						
-				e.printStackTrace();
-			}
-		}
-		callbacks.finishBroadcast();
+		EventBus.getDefault().post(new SyncStartedEvent());
 	}
-	
+
 	private void finishedSync() {
 		TeslaUnreadManager.PublishUnreadCount(this);
 		WidgetProvider.UpdateWidget(this);
@@ -201,31 +193,7 @@ public class OwnCloudSyncService extends Service {
 			}
 		}
 
-		List<IOwnCloudSyncServiceCallback> callbackList = getCallBackItemsAndBeginBroadcast();
-		for(IOwnCloudSyncServiceCallback icb : callbackList) {
-			try {
-				icb.finishedSync();
-				//icb.finishedSyncOfItems();
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-		}
-		callbacks.finishBroadcast();
+		EventBus.getDefault().post(new SyncFinishedEvent());
 	}
-	
-	private List<IOwnCloudSyncServiceCallback> getCallBackItemsAndBeginBroadcast() {
-		// Broadcast to all clients the new value.
-		List<IOwnCloudSyncServiceCallback> callbackList = new ArrayList<>();
-        final int N = callbacks.beginBroadcast();
-        for (int i=0; i < N; i++) {
-            callbackList.add(callbacks.getBroadcastItem(i));
-        }
-        return callbackList;
-	}	
-	
 
-	@Override
-	public IBinder onBind(Intent intent) {
-		return mBinder;
-	}
 }

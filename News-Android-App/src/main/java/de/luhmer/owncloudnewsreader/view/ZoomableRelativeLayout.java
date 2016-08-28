@@ -8,7 +8,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.widget.RelativeLayout;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 
 //http://stackoverflow.com/questions/10013906/android-zoom-in-out-relativelayout-with-spread-pinch

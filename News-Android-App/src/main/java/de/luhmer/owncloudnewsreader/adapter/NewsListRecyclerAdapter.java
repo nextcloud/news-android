@@ -14,12 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.apache.commons.lang3.time.StopWatch;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -125,7 +126,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void onEventMainThread(UpdatePodcastStatusEvent podcast) {
+    @Subscribe
+    public void onEvent(UpdatePodcastStatusEvent podcast) {
         if (podcast.isPlaying()) {
             if (podcast.getRssItemId() != idOfCurrentlyPlayedPodcast) {
                 idOfCurrentlyPlayedPodcast = podcast.getRssItemId();
@@ -141,7 +143,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void onEventMainThread(PodcastCompletedEvent podcastCompletedEvent) {
+    @Subscribe
+    public void onEvent(PodcastCompletedEvent podcastCompletedEvent) {
         idOfCurrentlyPlayedPodcast = -1;
         notifyDataSetChanged();
 

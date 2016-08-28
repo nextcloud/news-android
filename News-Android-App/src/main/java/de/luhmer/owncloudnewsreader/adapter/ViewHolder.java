@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
@@ -108,7 +110,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         itemView.setOnLongClickListener(this);
     }
 
-    public void onEventMainThread(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
+    @Subscribe
+    public void onEvent(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
         downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
         if (rssItem.getId().equals(downloadProgress.podcast.itemId)) {
             pbPodcastDownloadProgress.setProgress(downloadProgress.podcast.downloadProgress / 100f);
