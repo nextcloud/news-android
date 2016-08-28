@@ -174,7 +174,7 @@ public class AsyncTask_GetItems extends AsyncTask_Reader {
 
     private void ShowDownloadImageWithoutWifiQuestion()
     {
-        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher);
+        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
 
         Intent intent = new Intent(context, DownloadImagesActivity.class);
         intent.putExtra("highestItemIdBeforeSync", highestItemIdBeforeSync);

@@ -3,6 +3,8 @@
     <style name="AppTheme" parent="AppTheme.Base"/>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+
         <item name="colorPrimary">@color/colorPrimaryDarkTheme</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkDarkTheme</item>
         <item name="colorAccent">@color/colorAccentDarkTheme</item>
@@ -28,6 +30,8 @@
     <style name="AppThemeLight" parent="AppThemeLight.Base"/>
 
     <style name="AppThemeLight.Base" parent="Theme.AppCompat.Light">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+
         <item name="colorPrimary">@color/colorPrimaryLightTheme</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkLightTheme</item>
         <item name="colorAccent">@color/colorAccentLightTheme</item>
