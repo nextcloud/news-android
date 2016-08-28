@@ -30,7 +30,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
@@ -367,7 +366,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         urlTextView.setText(mOc_root_path);
 
         if(testMode) { //Hide real url in test mode
-            urlTextView.setText("https://example.com/owncloud");
+            urlTextView.setText("example.com/ownCloud");
         }
 
         String uInfo = mPrefs.getString("USER_INFO", null);
