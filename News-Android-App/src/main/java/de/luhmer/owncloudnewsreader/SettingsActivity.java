@@ -30,6 +30,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -55,6 +56,7 @@ import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -153,6 +155,12 @@ public class SettingsActivity extends PreferenceActivity {
                 }
             });
         }
+
+		TypedValue typedValue = new TypedValue();
+		Resources.Theme theme = getTheme();
+		theme.resolveAttribute(R.attr.rssItemListBackground, typedValue, true);
+		int color = typedValue.data;
+		getWindow().getDecorView().setBackgroundColor(color);
 	}
 
 	@Override
