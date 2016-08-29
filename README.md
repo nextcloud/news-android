@@ -85,8 +85,15 @@ Contributors
 
 Updates
 ==================================
-0.9.9 (in development)
+1.0 (in development)
 ---------------------
+
+
+0.9.9.0 (Google Play)
+---------------------
+- Improvement - Better error handling if API returns wrong version code
+- Feature - Add Splash Screen
+- Several Bug fixes and improvements
 
 
 0.9.8.7 (Google Play)
