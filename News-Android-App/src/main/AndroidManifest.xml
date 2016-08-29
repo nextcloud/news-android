@@ -78,6 +78,8 @@
                 <data android:pathPattern=".*\\atom.xml" />
                 <data android:pathPattern=".*\\rss.xml" />
                 <data android:pathPattern=".*\\.rss" />
+                <data android:pathPattern=".*/feed" />
+                <data android:pathPattern=".*feed/*" />
 
                 <data android:scheme="http" android:host="*"
                     android:pathPattern=".*\\.opml" />
