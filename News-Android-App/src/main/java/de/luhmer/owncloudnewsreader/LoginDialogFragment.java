@@ -34,8 +34,11 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -45,6 +48,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -375,14 +379,17 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			mDialogLogin.dismiss();
 
 			if(versionCode == -1 && exception_message.equals("Value <!DOCTYPE of type java.lang.String cannot be converted to JSONObject")) {
-				if(isAdded())
+				if(isAdded()) {
 					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_not_compatible), getActivity());
+				}
 			} else if(versionCode == -1) {
-				if(isAdded())
+				if(isAdded()) {
 					ShowAlertDialog(getString(R.string.login_dialog_title_error), exception_message, getActivity());
+				}
 			} else if(versionCode == 0){
-				if(isAdded())
-					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_something_went_wrong), getActivity());
+				if(isAdded()) {
+					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_zero_version_code), getActivity());
+				}
 			} else {
 				//Reset Database
 				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
@@ -414,10 +421,18 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 
 	public static void ShowAlertDialog(String title, String text, Activity activity)
 	{
-		AlertDialog.Builder aDialog = new AlertDialog.Builder(activity);
-		aDialog.setTitle(title);
-		aDialog.setMessage(text);
-		aDialog.setPositiveButton(activity.getString(android.R.string.ok) , null);
-		aDialog.create().show();
+		// Linkify the message
+		final SpannableString s = new SpannableString(text);
+		Linkify.addLinks(s, Linkify.ALL);
+
+		AlertDialog aDialog = new AlertDialog.Builder(activity)
+				.setTitle(title)
+				.setMessage(s)
+				.setPositiveButton(activity.getString(android.R.string.ok) , null)
+				.create();
+		aDialog.show();
+
+		// Make the textview clickable. Must be called after show()
+		((TextView)aDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
 	}
 }

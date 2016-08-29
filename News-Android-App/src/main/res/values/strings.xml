@@ -212,6 +212,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_something_went_wrong">Something went wrong :(</string>
+    <string name="login_dialog_text_zero_version_code">The Web News App returned Version "0". Please take a look at the following bug report: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">This App version is not compatible with your ownCloud News App. Please update the news app and the appframework.</string>
     <string name="login_dialog_title_security_warning">Security Warning</string>
     <string name="login_dialog_text_security_warning">You\'re not using https. An attacker could intercept your traffic and gain access to some sensitive data (e.g. your password). So it\'s strongly recommend to use https!</string>
