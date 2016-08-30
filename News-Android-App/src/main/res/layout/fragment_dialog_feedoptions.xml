@@ -9,7 +9,8 @@
     android:paddingBottom="6dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="?attr/rssItemListBackground">
 
     <RelativeLayout
         android:id="@+id/title_wrapper"
