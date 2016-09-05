@@ -89,10 +89,15 @@ Updates
 ---------------------
 
 
+0.9.9.2 (Google Play)
+---------------------
+- Partial bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/532">#532 Graphical bug in landscape mode 10.1"</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/530">#530 App crashes when trying to launch "Settings"</a>
+
+
 0.9.9.1 (Google Play)
 ---------------------
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/531">#531 Design issues with longclick-dialogs</a>
-- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/530">#530 App crashes when trying to launch "Settings"</a>
 
 
 0.9.9.0 (Google Play)
