@@ -51,6 +51,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
+import android.support.v7.widget.AppCompatDrawableManager;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.AppCompatSpinner;
@@ -117,12 +118,13 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String SP_SORT_ORDER = "sp_sort_order";
 
 
-    static //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
+    //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
 
 
     //public static final String SP_MAX_ITEMS_SYNC = "sync_max_items";
 
-    EditTextPreference clearCachePref;
+
+	static EditTextPreference clearCachePref;
     static Activity _mActivity;
 
     @Override
@@ -143,7 +145,8 @@ public class SettingsActivity extends PreferenceActivity {
 
             Toolbar toolbar = (Toolbar) appBarLayout.getChildAt(0);
 
-			final Drawable backarrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+
+			final Drawable backarrow = AppCompatDrawableManager.get().getDrawable(this, R.drawable.ic_arrow_back_black_24dp);
 			backarrow.setColorFilter(ContextCompat.getColor(this, R.color.tintColorDark), PorterDuff.Mode.SRC_ATOP);
 			toolbar.setNavigationIcon(backarrow);
 			toolbar.setTitle(R.string.title_activity_settings);
