@@ -25,8 +25,8 @@
 
 
 
-    <color name="owncloudBlueLight">#35537A</color>
-    <color name="owncloudBlueDark">#1D2D44</color>
+    <color name="owncloudBlueLight">#0082C9</color>
+    <color name="owncloudBlueDark">#006AA3</color>
 
     <color name="colorPrimaryDarkTheme">@color/owncloudBlueDark</color>
     <color name="colorPrimaryDarkDarkTheme">@color/owncloudBlueLight</color>
