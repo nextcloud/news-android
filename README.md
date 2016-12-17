@@ -89,6 +89,11 @@ Updates
 ---------------------
 
 
+0.9.9.3 (Google Play)
+---------------------
+- Critical bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/539">#539 Can not sync with Nextcloud 11 beta 1</a>
+
+
 0.9.9.2 (Google Play)
 ---------------------
 - Partial bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/532">#532 Graphical bug in landscape mode 10.1"</a>
