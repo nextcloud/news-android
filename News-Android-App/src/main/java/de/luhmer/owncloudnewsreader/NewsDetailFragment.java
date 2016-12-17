@@ -59,6 +59,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -405,8 +407,9 @@ public class NewsDetailFragment extends Fragment {
         String body_id;
         if(ThemeChooser.isDarkTheme(context)) {
             body_id = "darkTheme";
-        } else
+        } else {
             body_id = "lightTheme";
+        }
 
         boolean isRightToLeft = context.getResources().getBoolean(R.bool.is_right_to_left);
         String rtlClass = isRightToLeft ? "rtl" : "";
@@ -461,8 +464,15 @@ public class NewsDetailFragment extends Fragment {
         }
 
         String description = rssItem.getBody();
+        description = getDescriptionWithCachedImages(description).trim();
+        //StopWatch stopWatch = new StopWatch();
+        // stopWatch.start();
+        description = removePreloadAttributeFromVideos(description);
+        //stopWatch.stop();
+        //Log.d("NewsDetailFragment", "Time needed for removing preload attribute: " + stopWatch.toString() + " - " + feedTitle);
+
         builder.append("<div id=\"content\">");
-        builder.append(getDescriptionWithCachedImages(description).trim());
+        builder.append(description);
         builder.append("</div>");
 
         builder.append("</body></html>");
@@ -472,6 +482,21 @@ public class NewsDetailFragment extends Fragment {
 		return htmlData;
 	}
 
+
+    private static Pattern PATTERN_PRELOAD_VIDEOS = Pattern.compile("(<video[^>]*)(preload=\".*?\")");
+    private static String removePreloadAttributeFromVideos(String text) {
+        Matcher m = PATTERN_PRELOAD_VIDEOS.matcher(text);
+        if(m.find()) {
+            StringBuffer sb = new StringBuffer();
+            do {
+                //$1 represents the 1st group
+                m.appendReplacement(sb, "$1" + "preload=\"none\"");
+            } while (m.find());
+            m.appendTail(sb);
+            text = sb.toString();
+        }
+        return text;
+    }
 
 	private static String getDescriptionWithCachedImages(String text)
 	{
