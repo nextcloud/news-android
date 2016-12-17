@@ -28,9 +28,10 @@ import com.squareup.okhttp.HttpUrl;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
 
 public abstract class API {
@@ -41,52 +42,28 @@ public abstract class API {
 	}
 
 	/**
-	 * Input e.g. "6.0.4". Output [0] = 6, [1] = 4
-	 * @param appVersion
-	 * @return [0] = majorVersion, [1] = minorVersion
+	 * @param appVersion e.g. "6.0.4".
+	 * @return e.g. [0] = 6, [1] = 0, [2] = 4
 	 */
 	public static int[] ExtractVersionNumberFromString(String appVersion) {
-		int majorVersion = 0;
-		int minorVersion = 0;
-		if(appVersion != null)
-		{
-			majorVersion = Integer.parseInt(appVersion.substring(0,1));
-			appVersion = appVersion.substring(2);
+		Pattern p = Pattern.compile("(\\d+).(\\d+).(\\d+)");
+		Matcher m = p.matcher(appVersion);
 
-			appVersion = appVersion.replace(".", "");
-			minorVersion = Integer.parseInt(appVersion);
+		int version[] = new int[] { 0, 0, 0 };
+		if (m.matches()) {
+			version[0] = Integer.parseInt(m.group(1));
+			version[1] = Integer.parseInt(m.group(2));
+			version[2] = Integer.parseInt(m.group(3));
 		}
-		return new int[] {majorVersion, minorVersion};
+		return version;
 	}
 
 	public static API GetRightApiForVersion(String appVersion, HttpUrl baseUrl) {
 		API api;
 		int[] version = ExtractVersionNumberFromString(appVersion);
-        int majorVersion = version[0];
-		int minorVersion = version[1];
 
-        switch (majorVersion) {
-            case 1:
-                if (minorVersion >= 101) {
-                    api = new APIv2(baseUrl);
-                } else {
-                    api = new APIv1(baseUrl);
-                }
-                break;
-            case 2:
-                api = new APIv2(baseUrl);
-                break;
-            case 3:
-                api = new APIv2(baseUrl);
-                break;
-            case 4:
-                api = new APIv2(baseUrl);
-                break;
-            default:
-                //Api is not known. Fallback to APIv2
-                api = new APIv2(baseUrl);
-                break;
-        }
+        //TODO do some version checks here (when API v2.0 gets released)
+        api = new APIv2(baseUrl);
 
 		return api;
 	}
