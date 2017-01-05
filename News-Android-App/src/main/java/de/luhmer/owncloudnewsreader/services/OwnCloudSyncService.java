@@ -43,8 +43,10 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
 import de.luhmer.owncloudnewsreader.helper.TeslaUnreadManager;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
@@ -176,7 +178,11 @@ public class OwnCloudSyncService extends Service {
         Log.v(TAG, "Time needed (synchronization): " + syncStopWatch.toString());
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
-		int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
+
+		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
+		int newItemsCount = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
+		//int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
+
 		if(newItemsCount > 0) {
 			ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
 			List<ActivityManager.RunningTaskInfo> runningTaskInfo = am.getRunningTasks(1);
