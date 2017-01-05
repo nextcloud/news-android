@@ -46,11 +46,11 @@
         android:showAsAction="never"        
         android:title="@string/action_sendSourceCode"/>
 	-->
-    
+
     <item
         android:id="@+id/action_ShareItem"
         app:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_menu_share"
+        android:icon="@drawable/ic_action_share"
         android:title="@string/action_Share" />
 
 </menu>
