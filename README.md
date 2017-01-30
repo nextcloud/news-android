@@ -94,6 +94,7 @@ Updates
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/546">#546 Share button has wrong color</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/540">#540 Dialog disappears on device rotation</a>
 - Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/538">#538 Display total number of new items instead of last fetched in the notification</a>
+- UI-Update - <a href="https://github.com/owncloud/News-Android-App/pull/542">#542 Nextcloud Theme</a>
 
 
 0.9.9.3 (Google Play)
