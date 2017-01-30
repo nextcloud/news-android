@@ -153,7 +153,7 @@ public class DownloadImagesService extends IntentService {
         Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this)
-                .setContentTitle("ownCloud News Reader")
+                .setContentTitle("Nextcloud News")
                 .setContentText("Only " + limit + " images can be cached at once")
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent);

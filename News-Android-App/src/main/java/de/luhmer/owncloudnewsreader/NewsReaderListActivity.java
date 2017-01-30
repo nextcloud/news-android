@@ -458,7 +458,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SWIPE_LEFT_RIGHT_AND_PTR");
 		sequence.setConfig(config);
 		sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
-                "Pull-to-Refresh to sync with ownCloud", "GOT IT");
+                "Pull-to-Refresh to sync with server", "GOT IT");
 		sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
                 "Swipe Left/Right to mark article as read", "GOT IT");
 		sequence.start();
