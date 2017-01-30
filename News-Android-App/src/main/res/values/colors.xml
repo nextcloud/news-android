@@ -25,11 +25,14 @@
 
 
 
-    <color name="owncloudBlueLight">#0082C9</color>
-    <color name="owncloudBlueDark">#006AA3</color>
+    <color name="owncloudBlueLight">#35537A</color>
+    <color name="owncloudBlueDark">#1D2D44</color>
 
-    <color name="colorPrimaryDarkTheme">@color/owncloudBlueDark</color>
-    <color name="colorPrimaryDarkDarkTheme">@color/owncloudBlueLight</color>
+    <color name="nextcloudBlueLight">#0082C9</color>
+    <color name="nextcloudBlueDark">#006AA3</color>
+
+    <color name="colorPrimaryDarkTheme">@color/nextcloudBlueDark</color>
+    <color name="colorPrimaryDarkDarkTheme">@color/nextcloudBlueLight</color>
     <color name="colorAccentDarkTheme">#8698af</color>
 
     <color name="colorPrimaryLightTheme">@color/owncloudBlueLight</color>

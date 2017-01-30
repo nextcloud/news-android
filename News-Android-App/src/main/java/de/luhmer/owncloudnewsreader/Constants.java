@@ -1,5 +1,13 @@
 package de.luhmer.owncloudnewsreader;
 
+import android.content.ContentProvider;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.icu.text.DateFormat;
+import android.preference.PreferenceManager;
+
+import de.luhmer.owncloudnewsreader.reader.owncloud.API;
+
 public class Constants {
 	public static final Boolean debugModeWidget = false;
 
@@ -8,6 +16,19 @@ public class Constants {
     public static final int maxItemsCount = 1500;
 
     public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
+
+
+    public static final String NEWS_WEB_VERSION_NUMBER_STRING = "NewsWebVersionNumber";
+
+
+    public static boolean IsNextCloud(Context context) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        int[] version = API.ExtractVersionNumberFromString(mPrefs.getString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, ""));
+        if(version[0] >= 9) {
+            return true;
+        }
+        return false;
+    }
 
     /*
     private static final String _P_KEY_PART1 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNmCsMj6M4zkjpKRG8MG5+yIAyqSQE2etVkZsc3s";

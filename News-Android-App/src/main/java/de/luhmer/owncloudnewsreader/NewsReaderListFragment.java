@@ -153,6 +153,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
         ButterKnife.bind(this, view);
 
+
+        if(!Constants.IsNextCloud(getContext())) {
+            // Set ownCloud view
+            headerView.setBackgroundResource(R.drawable.left_drawer_header_background);
+        }
+
         lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), eListView);
         lvAdapter.setHandlerListener(expListTextClickedListener);
 
@@ -280,6 +286,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 if(version[0] < 6 || version[0] == 6 && version[1] <= 4) //Supported since 6.0.5
                     return null; //API NOT SUPPORTED!
 
+
+                // Update shared prefs
+                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                mPrefs.edit().putString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, appVersion).apply();
 
                 UserInfo.Builder ui = new UserInfo.Builder();
                 InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getUserUrl());

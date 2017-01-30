@@ -392,7 +392,8 @@ public class NewsReaderDetailFragment extends Fragment {
         TypedArray a = context.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable, R.attr.starredDrawable, R.attr.colorAccent});
         markAsReadDrawable = a.getDrawable(0);
         starredDrawable = a.getDrawable(1);
-        accentColor = a.getColor(2, ContextCompat.getColor(context, R.color.owncloudBlueLight));
+        int color = Constants.IsNextCloud(getContext()) ? R.color.nextcloudBlueLight : R.color.owncloudBlueLight;
+        accentColor = a.getColor(2, ContextCompat.getColor(context, color));
         a.recycle();
     }
 
