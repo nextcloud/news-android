@@ -89,6 +89,13 @@ Updates
 ---------------------
 
 
+0.9.9.4 (in development)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/546">#546 Share button has wrong color</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/540">#540 Dialog disappears on device rotation</a>
+- Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/538">#538 Display total number of new items instead of last fetched in the notification</a>
+
+
 0.9.9.3 (Google Play)
 ---------------------
 - Critical bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/539">#539 Can not sync with Nextcloud 11 beta 1</a>
