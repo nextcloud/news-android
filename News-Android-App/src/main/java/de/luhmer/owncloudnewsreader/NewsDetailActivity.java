@@ -282,6 +282,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		ResumeVideoPlayersOnCurrentPage();
 		progressIndicator.setProgress(position + 1);
 
+        getSupportActionBar().setTitle(rssItems.get(position).getTitle());
+
 		if(!rssItems.get(position).getRead_temp())
 		{
 			markItemAsReadUnread(rssItems.get(position), true);
@@ -290,8 +292,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 			Log.v("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
 		}
-		else //Only in else because the function markItemAsReas updates the ActionBar items as well
-			UpdateActionBarIcons();
+		else { //Only in else because the function markItemAsReas updates the ActionBar items as well
+            UpdateActionBarIcons();
+        }
 	}
 
 
