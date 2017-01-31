@@ -1,9 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
-import android.content.ContentProvider;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.icu.text.DateFormat;
 import android.preference.PreferenceManager;
 
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;

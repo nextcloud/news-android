@@ -26,8 +26,9 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.broadcastreceiver.PodcastNotificationToggle;
-import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
+import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 
 public class PodcastNotification {
 
@@ -89,7 +90,7 @@ public class PodcastNotification {
 
     @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
-        if(!podcast.isFileLoaded())
+        if(podcast.getStatus() != PlaybackService.Status.NOT_INITIALIZED)
             return;
 
         int drawableId = podcast.isPlaying() ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
@@ -153,7 +154,7 @@ public class PodcastNotification {
 
         notificationBuilder
                 .setContentText(fromText + " - " + toText)
-                .setProgress(100, progress, podcast.isPreparingFile());
+                .setProgress(100, progress, podcast.getStatus() == PlaybackService.Status.PREPARING);
 
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
@@ -180,7 +181,7 @@ public class PodcastNotification {
                 .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE).build());
 
 
-        PodcastItem podcastItem = ((PodcastPlaybackService)mContext).getCurrentlyPlayingPodcast();
+        MediaItem podcastItem = ((PodcastPlaybackService)mContext).getCurrentlyPlayingPodcast();
 
         String favIconUrl = podcastItem.favIcon;
         DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().

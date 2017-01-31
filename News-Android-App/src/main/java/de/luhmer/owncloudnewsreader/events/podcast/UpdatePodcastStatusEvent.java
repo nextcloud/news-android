@@ -1,14 +1,14 @@
 package de.luhmer.owncloudnewsreader.events.podcast;
 
+import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
+
 public class UpdatePodcastStatusEvent {
 
     private long current;
     private long max;
     private String title;
-    private boolean playing;
-    private boolean preparingFile;
-    private boolean fileLoaded;
-    private boolean isVideoFile;
+    private PlaybackService.Status status;
+    private PlaybackService.VideoType videoType;
     private long rssItemId;
 
     public long getRssItemId() {
@@ -19,8 +19,12 @@ public class UpdatePodcastStatusEvent {
         return title;
     }
 
+    public PlaybackService.Status getStatus() {
+        return status;
+    }
+
     public boolean isPlaying() {
-        return playing;
+        return status == PlaybackService.Status.PLAYING;
     }
 
     public long getCurrent() {
@@ -31,24 +35,16 @@ public class UpdatePodcastStatusEvent {
         return max;
     }
 
-    public boolean isPreparingFile() {
-        return preparingFile;
-    }
+    public PlaybackService.VideoType getVideoType() { return videoType; }
 
-    public boolean isFileLoaded() {
-        return fileLoaded;
-    }
+    public boolean isVideoFile() { return !(videoType == PlaybackService.VideoType.None); }
 
-    public boolean isVideoFile() { return isVideoFile; }
-
-    public UpdatePodcastStatusEvent(long current, long max, boolean playing, String title, boolean preparingFile, boolean fileLoaded, boolean isVideoFile, long rssItemId) {
+    public UpdatePodcastStatusEvent(long current, long max, PlaybackService.Status status, String title, PlaybackService.VideoType videoType, long rssItemId) {
         this.current = current;
         this.max = max;
-        this.playing = playing;
+        this.status = status;
         this.title = title;
-        this.preparingFile = preparingFile;
-        this.fileLoaded = fileLoaded;
-        this.isVideoFile = isVideoFile;
+        this.videoType = videoType;
         this.rssItemId = rssItemId;
     }
 

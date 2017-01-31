@@ -34,10 +34,11 @@
                 android:id="@+id/toolbar_layout"
                 layout="@layout/toolbar_layout" />
 
+
             <de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout
                 android:id="@+id/videoPodcastSurfaceWrapper"
                 android:layout_width="@dimen/podcast_video_player_width"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/podcast_video_player_height"
                 android:background="#ff7c7c7c"
                 android:padding="2dp"
                 android:layout_gravity="bottom|end"
@@ -45,7 +46,23 @@
                 android:layout_marginEnd="@dimen/podcast_horizontal_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin" >
 
+                <!--
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ff7c7c7c">
+                    <fragment
+                        android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+                        android:id="@+id/youtubeplayerfragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </FrameLayout>
+                -->
+
+
             </de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout>
+
+
 
         </android.support.design.widget.CoordinatorLayout>
 

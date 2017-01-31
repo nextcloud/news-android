@@ -12,7 +12,8 @@
     <dimen name="exp_listview_row_height">48dp</dimen>
 
 
-    <dimen name="podcast_video_player_width">170dp</dimen>
+    <dimen name="podcast_video_player_width">210dp</dimen>
+    <dimen name="podcast_video_player_height">120dp</dimen>
 
     <dimen name="podcast_horizontal_margin">16dp</dimen>
 

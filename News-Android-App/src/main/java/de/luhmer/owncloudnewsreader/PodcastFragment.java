@@ -39,9 +39,11 @@ import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
+import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
+import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 
 
@@ -179,7 +181,7 @@ public class PodcastFragment extends Fragment {
         tvTitle.setText(podcast.getTitle());
         tvTitleSlider.setText(podcast.getTitle());
 
-        if(podcast.isPreparingFile()) {
+        if(podcast.getStatus() == PlaybackService.Status.PREPARING) {
             sb_progress.setVisibility(View.INVISIBLE);
             pb_progress2.setVisibility(View.VISIBLE);
 
@@ -199,7 +201,7 @@ public class PodcastFragment extends Fragment {
     }
 
     private boolean loadPodcastFavIcon() {
-        PodcastItem podcastItem = ((PodcastFragmentActivity) getActivity()).getCurrentPlayingPodcast();
+        MediaItem podcastItem = ((PodcastFragmentActivity) getActivity()).getCurrentPlayingPodcast();
         if(podcastItem != null) {
             String favIconUrl = podcastItem.favIcon;
             DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().

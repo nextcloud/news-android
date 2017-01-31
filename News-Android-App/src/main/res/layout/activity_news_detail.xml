@@ -56,7 +56,7 @@
     <de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout
         android:id="@+id/videoPodcastSurfaceWrapper"
         android:layout_width="@dimen/podcast_video_player_width"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/podcast_video_player_height"
         android:background="#ff7c7c7c"
         android:padding="2dp"
         android:layout_gravity="bottom|end"

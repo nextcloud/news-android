@@ -3,6 +3,7 @@ package de.luhmer.owncloudnewsreader;
 import android.animation.Animator;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.app.FragmentTransaction;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,9 +22,13 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -37,15 +42,17 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
+import de.luhmer.owncloudnewsreader.events.podcast.RegisterYoutubeOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.helper.TeslaUnreadManager;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
-import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
+import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -63,6 +70,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Bind(R.id.videoPodcastSurfaceWrapper) ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
     @Bind(R.id.sliding_layout) PodcastSlidingUpPanelLayout sliding_layout;
+    //YouTubePlayerFragment youtubeplayerfragment;
 
 
     @Override
@@ -70,6 +78,9 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         eventBus = EventBus.getDefault();
 
         ButterKnife.bind(this);
+
+        //youtubeplayerfragment = (YouTubePlayerFragment)getFragmentManager().findFragmentById(R.id.youtubeplayerfragment);
+
 
         ViewTreeObserver vto = rlVideoPodcastSurfaceWrapper.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -144,7 +155,18 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     protected void onPause() {
         Log.d(TAG, "onPause");
         eventBus.unregister(this);
+
+
+        //TODO THIS IS NEVER REACHED!
+        isVideoViewVisible = false;
+        videoViewInitialized = false;
+
         eventBus.post(new RegisterVideoOutput(null, null));
+        eventBus.post(new RegisterYoutubeOutput(null, false));
+
+        rlVideoPodcastSurfaceWrapper.setVisibility(View.GONE);
+        rlVideoPodcastSurfaceWrapper.removeAllViews();
+
 
         TeslaUnreadManager.PublishUnreadCount(this);
         WidgetProvider.UpdateWidget(this);
@@ -181,7 +203,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         }
     };
 
-    public PodcastItem getCurrentPlayingPodcast() {
+    public MediaItem getCurrentPlayingPodcast() {
         if(mPodcastPlaybackService != null)
             return mPodcastPlaybackService.getCurrentlyPlayingPodcast();
         return null;
@@ -217,26 +239,38 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     boolean currentlyPlaying = false;
 
-    boolean surfaceInitialized = false;
+    boolean videoViewInitialized = false;
     boolean isVideoViewVisible = true;
     @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
+        boolean playStateChanged = currentlyPlaying;
         //If file is loaded or preparing and podcast is paused/not running expand the view
-        if((podcast.isFileLoaded() || podcast.isPreparingFile()) && !currentlyPlaying) {
+        currentlyPlaying = podcast.getStatus() == PlaybackService.Status.PLAYING
+                            || podcast.getStatus() == PlaybackService.Status.PAUSED;
+
+        //Check if state was changed
+        playStateChanged = playStateChanged != currentlyPlaying;
+
+        // If preparing or state changed and is now playing or paused
+        if(podcast.getStatus() == PlaybackService.Status.PREPARING
+                || (playStateChanged
+                    && (podcast.getStatus() == PlaybackService.Status.PLAYING
+                        || podcast.getStatus() == PlaybackService.Status.PAUSED
+                        || podcast.getStatus() == PlaybackService.Status.STOPPED))) {
             //Expand view
             sliding_layout.setPanelHeight((int) dipToPx(68));
-            currentlyPlaying = true;
             Log.v(TAG, "expanding podcast view!");
-        } else if(!(podcast.isPreparingFile() || podcast.isFileLoaded()) && currentlyPlaying) { //If file is not loaded or podcast is not preparing file and is playing
+        } else if(playStateChanged) {
             //Hide view
             sliding_layout.setPanelHeight(0);
             currentlyPlaying = false;
             Log.v(TAG, "collapsing podcast view!");
         }
 
-        if (podcast.isVideoFile()) {
-            if((!isVideoViewVisible || !surfaceInitialized) && rlVideoPodcastSurfaceWrapper.isPositionReady()) {
-                surfaceInitialized = true;
+        if (podcast.isVideoFile() && podcast.getVideoType() == PlaybackService.VideoType.Video) {
+            if ((!isVideoViewVisible || !videoViewInitialized) && rlVideoPodcastSurfaceWrapper.isPositionReady()) {
+                rlVideoPodcastSurfaceWrapper.removeAllViews();
+                videoViewInitialized = true;
                 isVideoViewVisible = true;
 
                 rlVideoPodcastSurfaceWrapper.setVisibility(View.VISIBLE);
@@ -252,10 +286,46 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 eventBus.post(new RegisterVideoOutput(surfaceView, rlVideoPodcastSurfaceWrapper));
                 togglePodcastVideoViewAnimation();
             }
-        } else if(isVideoViewVisible) {
+        } else if(podcast.getVideoType() == PlaybackService.VideoType.YouTube){
+            if(!videoViewInitialized) {
+                isVideoViewVisible = true;
+                videoViewInitialized = true;
+                rlVideoPodcastSurfaceWrapper.removeAllViews();
+
+                rlVideoPodcastSurfaceWrapper.setVisibility(View.VISIBLE);
+
+                togglePodcastVideoViewAnimation();
+
+                final int YOUTUBE_CONTENT_VIEW_ID = 10101010;
+                FrameLayout frame = new FrameLayout(this);
+                frame.setId(YOUTUBE_CONTENT_VIEW_ID);
+                rlVideoPodcastSurfaceWrapper.addView(frame);
+                //setContentView(frame, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+
+
+
+                YouTubePlayerFragment youTubePlayerFragment = YouTubePlayerFragment.newInstance();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.add(YOUTUBE_CONTENT_VIEW_ID, youTubePlayerFragment).commit();
+                youTubePlayerFragment.initialize("AIzaSyA2OHKWvF_hRVtPmLcwnO8yF6-iah2hjbk", new YouTubePlayer.OnInitializedListener() {
+                    @Override
+                    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
+                        eventBus.post(new RegisterYoutubeOutput(youTubePlayer, wasRestored));
+                        togglePodcastVideoViewAnimation();
+                    }
+
+                    @Override
+                    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                        Toast.makeText(PodcastFragmentActivity.this, "Error while playing youtube video! (InitializationFailure)", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        } else {
             isVideoViewVisible = false;
+            videoViewInitialized = false;
 
             eventBus.post(new RegisterVideoOutput(null, null));
+            eventBus.post(new RegisterYoutubeOutput(null, false));
 
             rlVideoPodcastSurfaceWrapper.setVisibility(View.GONE);
             //AlphaAnimator.AnimateVisibilityChange(rlVideoPodcastSurfaceWrapper, View.GONE);
@@ -272,34 +342,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         currentlyPlaying = false;
     }
 
-    /*
-    // This snippet hides the system bars.
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void hideSystemUI() {
-        // Set the IMMERSIVE flag.
-        // Set the content to appear under the system bars so that the content
-        // doesn't resize when the system bars hide and show.
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-                        //| View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE
-        );
-    }
 
-    // This snippet shows the system bars. It does this by removing all the flags
-    // except for the ones that make the content appear under the system bars.
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void showSystemUI() {
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        );
-    }
-    */
 
     private static final int animationTime = 300; //Milliseconds
     float oldScaleFactor = 1;
@@ -308,7 +351,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     boolean useAnimation = false;
 
     @Subscribe
-    public void onEvent() {
+    public void onEvent(VideoDoubleClicked videoDoubleClicked) {
         appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
         appWidth = getWindow().getDecorView().findViewById(android.R.id.content).getWidth();
 
@@ -489,14 +532,10 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     }
 
     @VisibleForTesting
-    public void openMediaItem(MediaItem mediaItem) {
+    public void openMediaItem(final MediaItem mediaItem) {
         Intent intent = new Intent(this, PodcastPlaybackService.class);
-        if(mediaItem instanceof TTSItem)
-            intent.putExtra(PodcastPlaybackService.TTS_ITEM, mediaItem);
-        else
-            intent.putExtra(PodcastPlaybackService.PODCAST_ITEM, mediaItem);
+        intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, mediaItem);
         startService(intent);
-
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -525,14 +564,13 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                     .setMessage("Choose if you want to download or stream the selected podcast");
 
 
-            if(!podcastItem.mimeType.equals("youtube")) {
-                alertDialog.setPositiveButton("Stream", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        openMediaItem(podcastItem);
-                    }
-                });
-            }
+
+            alertDialog.setPositiveButton("Stream", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    openMediaItem(podcastItem);
+                }
+            });
 
             alertDialog.show();
         }

@@ -42,7 +42,6 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;

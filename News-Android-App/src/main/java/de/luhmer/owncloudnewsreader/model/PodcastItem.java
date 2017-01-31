@@ -24,4 +24,9 @@ public class PodcastItem extends MediaItem {
 
     public static Integer DOWNLOAD_COMPLETED = -1;
     public static Integer DOWNLOAD_NOT_STARTED = -2;
+
+
+    public boolean isYoutubeVideo() {
+        return link.matches("^https?://(www.)?youtube.com/.*");
+    }
 }
