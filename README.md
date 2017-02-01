@@ -89,7 +89,11 @@ Updates
 ---------------------
 
 
-0.9.9.4 (in development)
+0.9.9.5 (in development)
+---------------------
+
+
+0.9.9.4 (Google Play)
 ---------------------
 - Feature - <a href="https://github.com/owncloud/News-Android-App/issues/549">#549 Native YouTube video support</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/497">#497 Starts playing podcast when headphones are removed</a>
