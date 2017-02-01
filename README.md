@@ -95,6 +95,7 @@ Updates
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/497">#497 Starts playing podcast when headphones are removed</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/546">#546 Share button has wrong color</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/540">#540 Dialog disappears on device rotation</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/532">#532 Graphical bug in landscape mode 10.1"</a>
 - Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/538">#538 Display total number of new items instead of last fetched in the notification</a>
 - Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/537">#537 display news title instead of "unread articles"</a>
 - UI-Update - <a href="https://github.com/owncloud/News-Android-App/pull/542">#542 Nextcloud Theme - Thank you @stefan-niedermann</a>
