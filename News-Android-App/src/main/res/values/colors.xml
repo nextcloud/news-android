@@ -35,8 +35,8 @@
     <color name="colorPrimaryDarkDarkTheme">@color/nextcloudBlueLight</color>
     <color name="colorAccentDarkTheme">#8698af</color>
 
-    <color name="colorPrimaryLightTheme">@color/owncloudBlueLight</color>
-    <color name="colorPrimaryDarkLightTheme">@color/owncloudBlueDark</color>
+    <color name="colorPrimaryLightTheme">@color/nextcloudBlueLight</color>
+    <color name="colorPrimaryDarkLightTheme">@color/nextcloudBlueDark</color>
     <color name="colorAccentLightTheme">@color/colorPrimaryLightTheme</color>
 
     <color name="starredColorLight">@android:color/holo_orange_light</color>
