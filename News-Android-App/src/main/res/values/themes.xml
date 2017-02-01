@@ -26,8 +26,11 @@
         <item name="news_detail_background_color">@color/news_detail_background_color_dark_theme</item>
     </style>
 
-
     <style name="AppThemeLight" parent="AppThemeLight.Base"/>
+
+    <style name="AppThemeSettings" parent="AppThemeLight">
+        <item name="android:windowBackground">@color/slider_listview_background_color_light_theme</item>
+    </style>
 
     <style name="AppThemeLight.Base" parent="Theme.AppCompat.Light">
         <item name="android:windowBackground">@drawable/splash_screen</item>

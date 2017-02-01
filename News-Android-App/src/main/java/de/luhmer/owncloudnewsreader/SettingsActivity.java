@@ -129,7 +129,11 @@ public class SettingsActivity extends PreferenceActivity {
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.chooseTheme(this);
+		if(isXLargeTablet(this)) {
+			setTheme(R.style.AppThemeSettings);
+		} else {
+			ThemeChooser.chooseTheme(this);
+		}
 
 		super.onCreate(savedInstanceState);
 
