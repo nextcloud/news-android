@@ -8,7 +8,6 @@ import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.View;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -84,8 +83,6 @@ public class PodcastPlaybackService extends Service {
     private Handler mHandler;
 
     private PlaybackService mPlaybackService;
-    private View parentResizableView;
-
 
 
     @Override
@@ -96,7 +93,6 @@ public class PodcastPlaybackService extends Service {
         if(mgr != null) {
             mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
-
 
         podcastNotification = new PodcastNotification(this);
         mHandler = new Handler();
@@ -144,8 +140,8 @@ public class PodcastPlaybackService extends Service {
                 mPlaybackService = new TTSPlaybackService(this, podcastStatusListener, mediaItem);
             }
 
-            sendMediaStatus();
             podcastNotification.podcastChanged();
+            sendMediaStatus();
         }
 
         return Service.START_STICKY;
@@ -179,19 +175,26 @@ public class PodcastPlaybackService extends Service {
     private Runnable mUpdateTimeTask = new Runnable() {
         public void run() {
             sendMediaStatus();
-
             mHandler.postDelayed(this, delay);
         }
     };
 
     @Subscribe
     public void onEvent(TogglePlayerStateEvent event) {
-        if (isPlaying()) {
-            Log.v(TAG, "calling pause()");
-            pause();
-        } else {
+        if(event.getState() == TogglePlayerStateEvent.State.Toggle) {
+            if (isPlaying()) {
+                Log.v(TAG, "calling pause()");
+                pause();
+            } else {
+                Log.v(TAG, "calling play()");
+                play();
+            }
+        } else if(event.getState() == TogglePlayerStateEvent.State.Play) {
             Log.v(TAG, "calling play()");
             play();
+        } else if(event.getState() == TogglePlayerStateEvent.State.Pause) {
+            Log.v(TAG, "calling pause()");
+            pause();
         }
     }
 

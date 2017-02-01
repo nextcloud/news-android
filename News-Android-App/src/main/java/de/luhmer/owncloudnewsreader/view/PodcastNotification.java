@@ -90,7 +90,7 @@ public class PodcastNotification {
 
     @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
-        if(podcast.getStatus() != PlaybackService.Status.NOT_INITIALIZED)
+        if(mSession == null)
             return;
 
         int drawableId = podcast.isPlaying() ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
@@ -162,7 +162,6 @@ public class PodcastNotification {
     public void cancel()
     {
         notificationManager.cancel(NOTIFICATION_ID);
-
         mSession.setActive(false);
     }
 
@@ -215,8 +214,7 @@ public class PodcastNotification {
             }
         }, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
 
-        MediaControllerCompat controller = mSession.getController();
-
+        //MediaControllerCompat controller = mSession.getController();
 
         mSession.setActive(true);
     }

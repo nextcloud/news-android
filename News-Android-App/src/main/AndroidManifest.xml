@@ -102,7 +102,7 @@
         <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
-                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+                <action android:name="android.intent.action.HEADSET_PLUG" />
             </intent-filter>
         </receiver>
 
