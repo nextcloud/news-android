@@ -59,7 +59,7 @@ public class PodcastNotification {
     }
 
     public void unbind() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && mSession != null) {
             mSession.release();
         }
     }
