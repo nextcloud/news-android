@@ -25,7 +25,6 @@ import android.content.Context;
 
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import com.squareup.okhttp.HttpUrl;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,6 +43,7 @@ import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv1.APIv1;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
+import okhttp3.HttpUrl;
 
 public class OwnCloudReaderMethods {
 

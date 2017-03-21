@@ -63,7 +63,7 @@ repositories {
 
 }
 
-final SUPPORT_VERSION = '25.1.0'
+final SUPPORT_VERSION = '25.3.0'
 
 dependencies {
     // core android studio module
@@ -80,10 +80,12 @@ dependencies {
     compile "com.android.support:customtabs:${SUPPORT_VERSION}"
     compile 'de.mrmaffen:holocircularprogressbar:1.0.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.jakewharton:butterknife:7.0.1'
+    //compile group: 'com.jakewharton', name: 'butterknife', version: '8.5.1'
     compile 'com.sothree.slidinguppanel:library:3.2.1'
-    compile 'com.squareup.okhttp:okhttp:2.5.0'
+    //compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'de.greenrobot:greendao:2.0.0'
     compile 'de.greenrobot:greendao-generator:2.0.0'
@@ -105,12 +107,15 @@ dependencies {
     testCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
 
 
-    androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
+    //androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/mockwebserver
+    androidTestCompile group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.6.0'
+
 
     androidTestCompile "com.android.support:support-annotations:${SUPPORT_VERSION}"
-    androidTestCompile 'com.android.support.test:runner:0.4'
-    androidTestCompile 'com.android.support.test:rules:0.4'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2') {
         // this library uses the newest app compat v22 but the espresso contrib still v21.
         // you have to specifically exclude the older versions of the contrib library or

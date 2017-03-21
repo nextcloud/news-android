@@ -4,13 +4,14 @@ import android.content.Context;
 
 import com.nostra13.universalimageloader.core.assist.ContentLengthInputStream;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
-import com.squareup.okhttp.HttpUrl;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.ResponseBody;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
 
 public class OkHttpImageDownloader extends BaseImageDownloader {
 

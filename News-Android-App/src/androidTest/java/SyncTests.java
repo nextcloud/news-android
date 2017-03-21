@@ -5,9 +5,6 @@ import android.test.suitebuilder.annotation.LargeTest;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.squareup.okhttp.HttpUrl;
-import com.squareup.okhttp.mockwebserver.MockResponse;
-import com.squareup.okhttp.mockwebserver.MockWebServer;
 
 import org.junit.After;
 import org.junit.Before;
@@ -20,6 +17,9 @@ import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
+import okhttp3.HttpUrl;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest

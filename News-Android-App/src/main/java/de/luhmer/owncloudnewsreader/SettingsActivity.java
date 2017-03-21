@@ -51,7 +51,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
-import android.support.v7.widget.AppCompatDrawableManager;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.AppCompatSpinner;
@@ -150,7 +149,7 @@ public class SettingsActivity extends PreferenceActivity {
             Toolbar toolbar = (Toolbar) appBarLayout.getChildAt(0);
 
 
-			final Drawable backarrow = AppCompatDrawableManager.get().getDrawable(this, R.drawable.ic_arrow_back_black_24dp);
+			final Drawable backarrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp);
 			backarrow.setColorFilter(ContextCompat.getColor(this, R.color.tintColorDark), PorterDuff.Mode.SRC_ATOP);
 			toolbar.setNavigationIcon(backarrow);
 			toolbar.setTitle(R.string.title_activity_settings);

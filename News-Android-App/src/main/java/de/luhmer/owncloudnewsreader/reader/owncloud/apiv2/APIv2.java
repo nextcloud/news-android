@@ -23,14 +23,13 @@ package de.luhmer.owncloudnewsreader.reader.owncloud.apiv2;
 
 import android.content.Context;
 
-import com.squareup.okhttp.HttpUrl;
-
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudConstants;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
+import okhttp3.HttpUrl;
 
 public class APIv2 extends API {
 	

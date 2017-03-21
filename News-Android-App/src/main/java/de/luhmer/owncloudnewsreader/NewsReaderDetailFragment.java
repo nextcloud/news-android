@@ -214,17 +214,19 @@ public class NewsReaderDetailFragment extends Fragment {
         Log.v(TAG, "RefreshCurrentRssView");
         NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
 
-        nra.refreshAdapterDataAsync(new NewsListRecyclerAdapter.IOnRefreshFinished() {
-            @Override
-            public void OnRefreshFinished() {
-                pbLoading.setVisibility(View.GONE);
+        if(nra != null) {
+            nra.refreshAdapterDataAsync(new NewsListRecyclerAdapter.IOnRefreshFinished() {
+                @Override
+                public void OnRefreshFinished() {
+                    pbLoading.setVisibility(View.GONE);
 
-                if (layoutManagerSavedState != null) {
-                    recyclerView.getLayoutManager().onRestoreInstanceState(layoutManagerSavedState);
-                    layoutManagerSavedState = null;
+                    if (layoutManagerSavedState != null) {
+                        recyclerView.getLayoutManager().onRestoreInstanceState(layoutManagerSavedState);
+                        layoutManagerSavedState = null;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     /**

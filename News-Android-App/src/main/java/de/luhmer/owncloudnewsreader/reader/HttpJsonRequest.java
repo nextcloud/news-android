@@ -25,31 +25,36 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.squareup.okhttp.Credentials;
-import com.squareup.okhttp.HttpUrl;
-import com.squareup.okhttp.Interceptor;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.GeneralSecurityException;
 import java.security.KeyManagementException;
+import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
 
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.model.Tuple;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.TLSSocketFactory;
+import okhttp3.Credentials;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class HttpJsonRequest {
 
@@ -76,8 +81,24 @@ public class HttpJsonRequest {
     private String credentials;
     private HttpUrl oc_root_url;
 
+
+    private X509TrustManager systemDefaultTrustManager() {
+        try {
+            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+            trustManagerFactory.init((KeyStore) null);
+            TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+            if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+                throw new IllegalStateException("Unexpected default trust managers:"
+                        + Arrays.toString(trustManagers));
+            }
+            return (X509TrustManager) trustManagers[0];
+        } catch (GeneralSecurityException e) {
+            throw new AssertionError(); // The system has no TLS. Just give up.
+        }
+    }
+
     private HttpJsonRequest(Context context) {
-        client = new OkHttpClient();
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
 
         // set location of the keystore
         MemorizingTrustManager.setKeyStoreFile("private", "sslkeys.bks");
@@ -85,30 +106,32 @@ public class HttpJsonRequest {
         // register MemorizingTrustManager for HTTPS
         try {
             SSLContext sc = SSLContext.getInstance("TLS");
-            sc.init(null, MemorizingTrustManager.getInstanceList(context),
-                    new java.security.SecureRandom());
+            sc.init(null, MemorizingTrustManager.getInstanceList(context), new java.security.SecureRandom());
             // enables TLSv1.1/1.2 for Jelly Bean Devices
             TLSSocketFactory tlsSocketFactory = new TLSSocketFactory(sc);
-            client.setSslSocketFactory(tlsSocketFactory);
+            clientBuilder.sslSocketFactory(tlsSocketFactory, systemDefaultTrustManager());
         } catch (KeyManagementException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
-        client.setConnectTimeout(10000, TimeUnit.MILLISECONDS);
-        client.setReadTimeout(120, TimeUnit.SECONDS);
+        clientBuilder.connectTimeout(10, TimeUnit.SECONDS);
+        clientBuilder.readTimeout(120, TimeUnit.SECONDS);
 
         // disable hostname verification, when preference is set
         // (this still shows a certification dialog, which requires user interaction!)
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if(sp.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false))
-            client.setHostnameVerifier(new HostnameVerifier() {
+            clientBuilder.hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
                     return true;
                 }
             });
-        imageClient = client.clone();
-        client.interceptors().add(new AuthorizationInterceptor());
+
+
+        clientBuilder.interceptors().add(new AuthorizationInterceptor());
+        imageClient = clientBuilder.build();
+        client = clientBuilder.build();
 
         setCredentials(sp.getString(SettingsActivity.EDT_USERNAME_STRING, null), sp.getString(SettingsActivity.EDT_PASSWORD_STRING, null), sp.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null));
     }
@@ -138,7 +161,7 @@ public class HttpJsonRequest {
             Request request = chain.request();
 
             // only add Authorization header for urls on the configured owncloud host
-            if(oc_root_url.host().equals(request.httpUrl().host()))
+            if(oc_root_url.host().equals(request.url().host()))
                 request = request.newBuilder()
                     .addHeader("Authorization",credentials)
                     .build();

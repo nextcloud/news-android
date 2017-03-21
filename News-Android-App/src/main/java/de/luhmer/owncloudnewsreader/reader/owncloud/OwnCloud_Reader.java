@@ -24,8 +24,6 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.squareup.okhttp.HttpUrl;
-
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -35,6 +33,7 @@ import de.luhmer.owncloudnewsreader.reader.AsyncTask_Reader;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
+import okhttp3.HttpUrl;
 
 public class OwnCloud_Reader {
 

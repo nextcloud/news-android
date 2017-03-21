@@ -23,8 +23,6 @@ package de.luhmer.owncloudnewsreader.reader.owncloud;
 
 import android.content.Context;
 
-import com.squareup.okhttp.HttpUrl;
-
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -33,6 +31,7 @@ import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
+import okhttp3.HttpUrl;
 
 public abstract class API {
 	private HttpUrl baseUrl;

@@ -45,7 +45,6 @@ import android.widget.TextView;
 
 import com.google.gson.stream.JsonReader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.squareup.okhttp.HttpUrl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -68,6 +67,7 @@ import de.luhmer.owncloudnewsreader.model.UserInfo;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
+import okhttp3.HttpUrl;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 /**
