@@ -89,11 +89,14 @@ Updates
 ---------------------
 
 
-0.9.9.6 (in development)
+0.9.9.7 (in development)
+
+
+0.9.9.6 (Google Play)
 ---------------------
 - Rewrite of sync backend (use Retrofit, Dagger, OkHttp)
 - Fix app crash (when using self signed ssl certificates)
-- Serveral other fixes and improvements
+- Several other fixes and improvements
 
 
 0.9.9.5 (Google Play)
