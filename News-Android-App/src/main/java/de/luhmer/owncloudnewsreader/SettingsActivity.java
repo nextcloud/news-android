@@ -112,6 +112,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
+    public static final String CACHE_CLEARED = "CACHE_CLEARED";
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
     public static final String SP_TITLE_LINES_COUNT = "sp_title_lines_count";
     public static final String SP_SORT_ORDER = "sp_sort_order";
@@ -653,6 +654,13 @@ public class SettingsActivity extends PreferenceActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            if(context instanceof Activity) {
+                Intent intent = ((Activity) context).getIntent();
+                intent.putExtra(SettingsActivity.CACHE_CLEARED, true);
+                ((Activity) context).setResult(RESULT_OK,intent);
+            }
+
 			pd.dismiss();
 			Toast.makeText(context, context.getString(R.string.cache_is_cleared), Toast.LENGTH_SHORT).show();
             super.onPostExecute(result);

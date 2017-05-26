@@ -796,10 +796,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(resultCode == RESULT_OK){
-
+		if(resultCode == RESULT_OK) {
 			UpdateListView();
-
 			getSlidingListFragment().ListViewNotifyDataSetChanged();
         }
 
@@ -814,6 +812,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             if(ThemeChooser.ThemeRequiresRestartOfUI(this) || !newLayout.equals(oldLayout)) {
                 finish();
                 startActivity(getIntent());
+            } else if(data.hasExtra(SettingsActivity.CACHE_CLEARED)) {
+                resetUiAndStartSync();
             }
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
             if(data != null) {
@@ -841,13 +841,17 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	   	dialog.setListener(new LoginSuccessfullListener() {
             @Override
             public void LoginSucceeded() {
-                ((NewsReaderListActivity) activity).getSlidingListFragment().ReloadAdapter();
-                ((NewsReaderListActivity) activity).updateCurrentRssView();
-                ((NewsReaderListActivity) activity).startSync();
-                ((NewsReaderListActivity) activity).getSlidingListFragment().bindUserInfoToUI();
+                ((NewsReaderListActivity) activity).resetUiAndStartSync();
 			}
 		});
 	    dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
+    }
+
+    private void resetUiAndStartSync() {
+        getSlidingListFragment().ReloadAdapter();
+        updateCurrentRssView();
+        startSync();
+        getSlidingListFragment().bindUserInfoToUI();
     }
 
 	private void UpdateListView()
