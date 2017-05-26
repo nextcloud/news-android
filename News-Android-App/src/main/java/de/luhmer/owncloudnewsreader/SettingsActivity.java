@@ -531,7 +531,7 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 
 	@SuppressWarnings("deprecation")
-	private static void bindDataSyncPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
+	private static void bindDataSyncPreferences(final PreferenceFragment prefFrag, final PreferenceActivity prefAct)
 	{
         String[] authorities = { "de.luhmer.owncloudnewsreader" };
         Intent intentSyncSettings = new Intent(Settings.ACTION_SYNC_SETTINGS);
@@ -559,9 +559,9 @@ public class SettingsActivity extends PreferenceActivity {
 
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-
 				((EditTextPreference) preference).getDialog().dismiss();
 
+				PreferenceManager.getDefaultSharedPreferences(prefFrag != null ? prefFrag.getActivity() : prefAct).edit().remove("USER_INFO").apply();
 				checkForUnsycedChangesInDatabaseAndResetDatabase(_mActivity);
 				return false;
 			}
