@@ -89,8 +89,16 @@ Updates
 ---------------------
 
 
-0.9.9.5 (in development)
+0.9.9.6 (in development)
 ---------------------
+- Rewrite of sync backend (use Retrofit, Dagger, OkHttp)
+- Fix app crash (when using self signed ssl certificates)
+- Serveral other fixes and improvements
+
+
+0.9.9.5 (Google Play)
+---------------------
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/559">#559 Sync is slow</a>
 
 
 0.9.9.4 (Google Play)
