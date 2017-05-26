@@ -28,7 +28,7 @@ import java.util.UUID;
 
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
-public class InsertItemIntoDatabase {
+public class InsertRssItemIntoDatabase {
 
     public static RssItem parseItem(JsonObject e) {
 		Date pubDate = new Date(e.get("pubDate").getAsLong() * 1000);

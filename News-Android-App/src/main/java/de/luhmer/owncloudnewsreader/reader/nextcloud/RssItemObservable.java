@@ -201,7 +201,7 @@ public class RssItemObservable extends Observable<Integer> {
                         reader.beginArray();
                         while (reader.hasNext()) {
                             JsonObject jsonObj = getJsonObjectFromReader(reader);
-                            RssItem item = InsertItemIntoDatabase.parseItem(jsonObj);
+                            RssItem item = InsertRssItemIntoDatabase.parseItem(jsonObj);
                             e.onNext(item);
                         }
                         reader.endArray();

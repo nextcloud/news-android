@@ -52,6 +52,7 @@ import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
 import de.luhmer.owncloudnewsreader.helper.TeslaUnreadManager;
+import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.ItemStateSync;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.events.SyncFailedEvent;
@@ -180,8 +181,8 @@ public class OwnCloudSyncService extends Service {
             public void accept(@NonNull SyncResult syncResult) throws Exception {
                 Log.v(TAG, "onNext() called with: syncResult = [" + syncResult + "]");
 
-                dbConn.deleteOldAndInsertNewFolders(syncResult.folders);
-                dbConn.insertNewFeed(syncResult.feeds);
+                InsertIntoDatabase.InsertFoldersIntoDatabase(syncResult.folders, dbConn);
+                InsertIntoDatabase.InsertFeedsIntoDatabase(syncResult.feeds, dbConn);
 
                 // Start the sync (Rss Items)
                 syncRssItems(dbConn);
@@ -275,6 +276,10 @@ public class OwnCloudSyncService extends Service {
 					NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
 			}
 		}
+
+        Intent service = new Intent(this, DownloadImagesService.class);
+        service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.FAVICONS_ONLY);
+        startService(service);
 
         EventBus.getDefault().post(new SyncFinishedEvent());
 	}

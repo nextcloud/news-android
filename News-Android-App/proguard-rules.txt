@@ -65,9 +65,17 @@
 -keepattributes Signature
 # Retain declared checked exceptions for use by a Proxy instance.
 -keepattributes Exceptions
+-dontwarn javax.annotation.**
 
 
 
+# Other Libraries
+-dontwarn org.apache.velocity.**
+-dontwarn freemarker.**
+-dontwarn com.google.auto.value.**
+-dontwarn autovalue.shaded.**
+
+-keep class de.luhmer.** { *; }
 
 
 ###############
@@ -78,5 +86,7 @@
 -keepnames interface ** { *; }
 -keepnames enum ** { *; }
 
-
+-keep class de.greenrobot.** { *; }
 -dontwarn de.greenrobot.daogenerator.DaoGenerator
+
+-keepclassmembers class * extends de.greenrobot.dao.AbstractDao { *; }

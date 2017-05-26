@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
-import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.owncloud.API;
 import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
 import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;

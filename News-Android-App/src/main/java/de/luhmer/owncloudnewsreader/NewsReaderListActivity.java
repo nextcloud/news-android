@@ -818,7 +818,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         if(requestCode == RESULT_SETTINGS)
         {
             //Update settings of image Loader
-            ((NewsReaderApplication)getApplication()).initImageLoader();
+            mApi.initApi();
 
 			String oldLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
 			String newLayout = PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");

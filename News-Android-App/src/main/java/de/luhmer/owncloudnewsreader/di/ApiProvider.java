@@ -1,7 +1,9 @@
 package de.luhmer.owncloudnewsreader.di;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
@@ -13,6 +15,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -22,6 +28,7 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
+import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.NextcloudDeserializer;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.Types;
@@ -42,10 +49,12 @@ public class ApiProvider {
     private final MemorizingTrustManager mMemorizingTrustManager;
     private final SharedPreferences mPrefs;
     private API mApi;
+    private Context context;
 
-    public ApiProvider(MemorizingTrustManager mtm, SharedPreferences sp) {
+    public ApiProvider(MemorizingTrustManager mtm, SharedPreferences sp, Context context) {
         this.mMemorizingTrustManager = mtm;
         this.mPrefs = sp;
+        this.context = context;
         initApi();
     }
 
@@ -100,8 +109,30 @@ public class ApiProvider {
                 .client(client)
                 .build();
 
-        //return retrofit;
+        initImageLoader(mPrefs, client, context);
+
         mApi = retrofit.create(API.class);
+    }
+
+    private void initImageLoader(SharedPreferences mPrefs, OkHttpClient okHttpClient, Context context) {
+        int diskCacheSize = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE,"500"))*1024*1024;
+        if(ImageLoader.getInstance().isInited()) {
+            ImageLoader.getInstance().destroy();
+        }
+        DisplayImageOptions imageOptions = new DisplayImageOptions.Builder()
+                .cacheOnDisk(true)
+                .cacheInMemory(true)
+                .build();
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+                .diskCacheSize(diskCacheSize)
+                .memoryCacheSize(10 * 1024 * 1024)
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .defaultDisplayImageOptions(imageOptions)
+                .imageDownloader(new OkHttpImageDownloader(context, okHttpClient))
+                .build();
+
+        ImageLoader.getInstance().init(config);
     }
 
     public API getAPI() {

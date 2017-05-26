@@ -31,11 +31,11 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 
 public class InsertIntoDatabase {
-    private static final String TAG = "InsertItemIntoDatabase";
+    private static final String TAG = "InsertRssItemIntoDb";
 
     public static void InsertFoldersIntoDatabase(List<Folder> folderList, DatabaseConnectionOrm dbConn)
     {
-        dbConn.deleteOldAndInsertNewFolders(folderList.toArray(new Folder[folderList.size()]));
+        dbConn.deleteOldAndInsertNewFolders(folderList);
 
         /*
         List<Feed> feeds = dbConn.getListOfFeeds();
@@ -65,15 +65,13 @@ public class InsertIntoDatabase {
     */
     }
 
-    public static void InsertFeedsIntoDatabase(ArrayList<Feed> feeds, DatabaseConnectionOrm dbConn)
+    public static void InsertFeedsIntoDatabase(List<Feed> feeds, DatabaseConnectionOrm dbConn)
     {
         List<Feed> oldFeeds = dbConn.getListOfFeeds();
 
         if(feeds != null)
         {
-            dbConn.insertNewFeed(feeds.toArray(new Feed[feeds.size()]));
-            //for(Feed feed : newFeeds)
-            //    dbConn.insertNewFeed(feed);
+            dbConn.insertNewFeed(feeds);
 
             for(Feed oldFeed : oldFeeds)
             {
@@ -93,7 +91,7 @@ public class InsertIntoDatabase {
                 if(!found)
                 {
                     dbConn.removeFeedById(oldFeed.getId());
-                    Log.d(TAG, "Remove Subscription: " + oldFeed.getFeedTitle());
+                    Log.v(TAG, "Remove Subscription: " + oldFeed.getFeedTitle());
                 }
             }
         }

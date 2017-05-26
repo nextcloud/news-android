@@ -26,10 +26,13 @@ import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
@@ -49,13 +52,13 @@ public class FavIconHandler {
                 .showImageOnLoading(placeHolder)
                 .showImageForEmptyUri(placeHolder)
                 .showImageOnFail(placeHolder)
-                .cacheOnDisk(true)
-                .cacheInMemory(true)
+                .cacheOnDisk(false)
+                .cacheInMemory(false)
                 .build();
     }
 
     public void loadFavIconForFeed(String favIconUrl, ImageView imgView) {
-        ImageLoader.getInstance().displayImage(favIconUrl,imgView,displayImageOptions);
+        ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
     }
 
     public static int getResourceIdForRightDefaultFeedIcon(Context context)
@@ -66,33 +69,49 @@ public class FavIconHandler {
 			return R.drawable.default_feed_icon_dark;
 	}
 
-	public void PreCacheFavIcon(Feed feed) {
+	public void PreCacheFavIcon(final Feed feed) {
         if(feed.getFaviconUrl() == null) {
             Log.v(TAG, "No favicon for "+feed.getFeedTitle());
             return;
         }
 
-        new GetImageThreaded(feed.getFaviconUrl(), favIconDownloadFinished, feed.getId()).start();
+        ImageLoader.getInstance().loadImage(feed.getFaviconUrl(), displayImageOptions, new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String imageUri, View view) {
+
+            }
+
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+
+            }
+
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                DownloadFinished(feed.getId(), loadedImage);
+            }
+
+            @Override
+            public void onLoadingCancelled(String imageUri, View view) {
+
+            }
+        });
     }
 
-    ImageDownloadFinished favIconDownloadFinished = new ImageDownloadFinished() {
+    public void DownloadFinished(long feedId, Bitmap bitmap) {
+        if(bitmap != null) {
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
+            Feed feed = dbConn.getFeedById(feedId);
+            Palette palette = Palette.from(bitmap).generate();
+            String avg = String.valueOf(
+                    palette.getVibrantColor(ContextCompat.getColor(context, R.color.material_blue_grey_800))
+            );
+            feed.setAvgColour(avg);
+            dbConn.updateFeed(feed);
 
-        @Override
-        public void DownloadFinished(long AsynkTaskId, Bitmap bitmap) {
-            if(bitmap != null) {
-                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-                Feed feed = dbConn.getFeedById(AsynkTaskId);
-                Palette palette = Palette.from(bitmap).generate();
-                String avg = String.valueOf(
-                        palette.getVibrantColor(ContextCompat.getColor(context, R.color.material_blue_grey_800))
-                );
-                feed.setAvgColour(avg);
-                dbConn.updateFeed(feed);
-
-                Log.v(TAG, "Updating AVG color of feed: " + feed.getFeedTitle() + " - Color: " + avg);
-            } else {
-                Log.v(TAG, "Failed to update AVG color of feed: " + AsynkTaskId);
-            }
+            Log.v(TAG, "Updating AVG color of feed: " + feed.getFeedTitle() + " - Color: " + avg);
+        } else {
+            Log.v(TAG, "Failed to update AVG color of feed: " + feedId);
         }
-    };
+    }
 }

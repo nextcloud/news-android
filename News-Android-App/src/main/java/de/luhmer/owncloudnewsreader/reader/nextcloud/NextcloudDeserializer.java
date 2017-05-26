@@ -44,7 +44,7 @@ public class NextcloudDeserializer<T> implements JsonDeserializer<List<T>> {
             } else if(mType == Feed.class) {
                 items.add((T) parseFeed(jArr.get(i).getAsJsonObject()));
             } else if(mType == RssItem.class) {
-                items.add((T) InsertItemIntoDatabase.parseItem(jArr.get(i).getAsJsonObject()));
+                items.add((T) InsertRssItemIntoDatabase.parseItem(jArr.get(i).getAsJsonObject()));
             }
 
             //items.add(gson.fromJson(jArr.get(i), mType));

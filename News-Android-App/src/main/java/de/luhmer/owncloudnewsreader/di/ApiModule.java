@@ -92,7 +92,7 @@ public class ApiModule {
     @Provides
     @Singleton
     ApiProvider provideAPI(MemorizingTrustManager mtm, SharedPreferences sp) {
-        return new ApiProvider(mtm, sp);
+        return new ApiProvider(mtm, sp, mApplication);
     }
 
 }
