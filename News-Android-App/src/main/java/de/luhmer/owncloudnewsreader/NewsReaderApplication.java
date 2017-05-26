@@ -9,15 +9,38 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import de.luhmer.owncloudnewsreader.di.ApiModule;
+import de.luhmer.owncloudnewsreader.di.AppComponent;
+import de.luhmer.owncloudnewsreader.di.DaggerAppComponent;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
 
 public class NewsReaderApplication extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        initDaggerAppComponent();
+
+
+        //TODO check stuff below.. is this really required?
         HttpJsonRequest.init(this);
         initImageLoader();
+
+
+    }
+
+    public void initDaggerAppComponent() {
+        // Dagger%COMPONENT_NAME%
+
+        mAppComponent = DaggerAppComponent.builder()
+                .apiModule(new ApiModule(this))
+                .build();
+
+        // If a Dagger 2 component does not have any constructor arguments for any of its modules,
+        // then we can use .create() as a shortcut instead:
+        //mAppComponent = DaggerAppComponent.create();
     }
 
     public void initImageLoader() {
@@ -37,5 +60,11 @@ public class NewsReaderApplication extends Application {
                 imageDownloader(new OkHttpImageDownloader(this, HttpJsonRequest.getInstance().getImageClient())).
                 build();
         ImageLoader.getInstance().init(config);
+    }
+
+    private AppComponent mAppComponent;
+
+    public AppComponent getAppComponent() {
+        return mAppComponent;
     }
 }

@@ -38,7 +38,7 @@ import de.luhmer.owncloudnewsreader.R;
 
 public class MemorizingDialogFragment extends DialogFragment
 		implements OnClickListener,OnCancelListener {
-	final static String TAG = "MemorizingDialogFragment";
+	final static String TAG = "MemorizingDialogFrg";
 
 	int decisionId;
 	String app;
@@ -69,7 +69,6 @@ public class MemorizingDialogFragment extends DialogFragment
 		new AlertDialog.Builder(getActivity()).setTitle(R.string.mtm_accept_cert)
 			.setMessage(cert)
 			.setPositiveButton(R.string.mtm_decision_always, this)
-			//.setNeutralButton(R.string.mtm_decision_once, this)
 			.setNegativeButton(R.string.mtm_decision_abort, this)
 			.setOnCancelListener(this)
 			.create().show();

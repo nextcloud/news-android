@@ -9,10 +9,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -36,10 +38,13 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterYoutubeOutput;
@@ -53,6 +58,7 @@ import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
+import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -60,6 +66,12 @@ import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
     private static final String TAG = PodcastFragmentActivity.class.getCanonicalName();
+
+
+    @Inject SharedPreferences mPrefs;
+    @Inject ApiProvider mApi;
+    @Inject public MemorizingTrustManager mMTM;
+
 
     private PodcastPlaybackService mPodcastPlaybackService;
     private boolean mBound = false;
@@ -72,6 +84,33 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     @Bind(R.id.sliding_layout) PodcastSlidingUpPanelLayout sliding_layout;
     //YouTubePlayerFragment youtubeplayerfragment;
 
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+
+        //Delete all pinned/stored SSL Certificates
+        /*
+        final ArrayList<String> aliases = Collections.list(mMTM.getCertificates());
+        for(int i = 0; i < aliases.size(); i++) {
+            try {
+                mMTM.deleteCertificate(aliases.get(i));
+            } catch (KeyStoreException e) {
+                e.printStackTrace();
+            }
+        }*/
+        mMTM.bindDisplayActivity(this);
+
+
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        mMTM.unbindDisplayActivity(this);
+
+        super.onDestroy();
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

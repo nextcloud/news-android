@@ -35,9 +35,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -64,8 +62,13 @@ import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
+import java.util.List;
+import java.util.concurrent.Callable;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -81,13 +84,20 @@ import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.events.SyncFailedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
+import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
+import io.reactivex.Completable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
@@ -126,7 +136,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	protected DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -414,38 +423,22 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		};
 	}
 
-
-
-	private void UpdateButtonLayoutWithHandler() {
-		Handler refresh = new Handler(Looper.getMainLooper());
-		refresh.post(new Runnable() {
-				public void run() {
-					UpdateButtonLayout();
-				}
-			});
-	}
-
-	@Subscribe
-	public void onEvent(SyncFailedEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+	public void onEventMainThread(SyncFailedEvent event) {
 		Toast.makeText(NewsReaderListActivity.this, event.exception().getLocalizedMessage(), Toast.LENGTH_LONG).show();
-
-		UpdateButtonLayoutWithHandler();
+        UpdateButtonLayout();
+        syncFinishedHandler();
 	}
 
-	@Subscribe
-	public void onEvent(SyncStartedEvent event) {
-		UpdateButtonLayoutWithHandler();
+    @Subscribe(threadMode = ThreadMode.MAIN)
+	public void onEventMainThread(SyncStartedEvent event) {
+        UpdateButtonLayout();
 	}
 
-	@Subscribe
-	public void onEvent(SyncFinishedEvent event) {
-		Handler refresh = new Handler(Looper.getMainLooper());
-		refresh.post(new Runnable() {
-			public void run() {
-				UpdateButtonLayout();
-				syncFinishedHandler();
-			}
-		});
+    @Subscribe(threadMode = ThreadMode.MAIN)
+	public void onEventMainThread(SyncFinishedEvent event) {
+        UpdateButtonLayout();
+        syncFinishedHandler();
 	}
 
 	/**
@@ -779,20 +772,41 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_username", null);
 
 		if(username != null) {
-			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-			OwnCloud_Reader.getInstance().Start_AsyncTask_GetOldItems(NewsReaderListActivity.this, onAsyncTaskComplete, ndf.getIdFeed(), ndf.getIdFolder());
+			final NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+
+
+            Completable.fromAction(new Action() {
+                @Override
+                public void run() throws Exception {
+                    DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(NewsReaderListActivity.this);
+                    RssItem rssItem = dbConn.getLowestRssItemIdByFeed(ndf.getIdFeed());
+                    long offset = rssItem.getId();
+                    long id = rssItem.getFeedId();
+                    int type = 0; // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
+
+                    List<RssItem> buffer = mApi.getAPI().items(100, offset, type, id, true, false).execute().body();
+                    RssItemObservable.performDatabaseBatchInsert(dbConn, buffer);
+                }
+            }).subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action() {
+                        @Override
+                        public void run() throws Exception {
+                            updateCurrentRssView();
+                            Log.v(TAG, "Finished Download extra items..");
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(@io.reactivex.annotations.NonNull Throwable throwable) throws Exception {
+                            throwable.printStackTrace();
+                            Throwable e = OkHttpSSLClient.HandleExceptions(throwable);
+                            Toast.makeText(NewsReaderListActivity.this, getString(R.string.login_dialog_text_something_went_wrong) + " - " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
 			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 		}
 	}
-
-	OnAsyncTaskCompletedListener onAsyncTaskComplete = new OnAsyncTaskCompletedListener() {
-		@Override
-		public void onAsyncTaskCompleted(Exception task_result) {
-			updateCurrentRssView();
-			Log.v(TAG, "Finished Download extra items..");
-		}
-	};
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

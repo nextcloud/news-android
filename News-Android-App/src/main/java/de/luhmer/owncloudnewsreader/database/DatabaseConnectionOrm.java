@@ -81,6 +81,16 @@ public class DatabaseConnectionOrm {
                 daoSession.getFolderDao().insertInTx(folder);
             }
         });
+    }
+
+    public void deleteOldAndInsertNewFolders (final Iterable<Folder> folder) {
+        daoSession.runInTx(new Runnable() {
+            @Override
+            public void run() {
+                daoSession.getFolderDao().deleteAll();
+                daoSession.getFolderDao().insertInTx(folder);
+            }
+        });
 
     }
 
@@ -88,7 +98,15 @@ public class DatabaseConnectionOrm {
         daoSession.getFeedDao().insertOrReplaceInTx(feeds);
     }
 
+    public void insertNewFeed (Iterable<Feed> feeds) {
+        daoSession.getFeedDao().insertOrReplaceInTx(feeds);
+    }
+
     public void insertNewItems(RssItem... items) {
+        daoSession.getRssItemDao().insertOrReplaceInTx(items);
+    }
+
+    public void insertNewItems(Iterable<RssItem> items) {
         daoSession.getRssItemDao().insertOrReplaceInTx(items);
     }
 

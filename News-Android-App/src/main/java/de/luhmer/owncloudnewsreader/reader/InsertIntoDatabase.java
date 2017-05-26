@@ -31,7 +31,7 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 
 public class InsertIntoDatabase {
-    private static final String TAG = "InsertIntoDatabase";
+    private static final String TAG = "InsertItemIntoDatabase";
 
     public static void InsertFoldersIntoDatabase(List<Folder> folderList, DatabaseConnectionOrm dbConn)
     {

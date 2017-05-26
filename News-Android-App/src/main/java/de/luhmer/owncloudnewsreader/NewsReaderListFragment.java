@@ -24,8 +24,6 @@ package de.luhmer.owncloudnewsreader;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -43,31 +41,31 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.stream.JsonReader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
-import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
-import de.luhmer.owncloudnewsreader.reader.owncloud.API;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
-import okhttp3.HttpUrl;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 /**
@@ -80,6 +78,10 @@ import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
  * interface.
  */
 public class NewsReaderListFragment extends Fragment implements OnCreateContextMenuListener {
+
+    @Inject ApiProvider mApi;
+    @Inject SharedPreferences mPrefs;
+
 
 	@SuppressWarnings("unused")
 	protected static final String TAG = "NewsReaderListFragment";
@@ -141,6 +143,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	 */
 	public NewsReaderListFragment() {
 	}
+
+    @Override
+    public void onCreate(Bundle savedInstance) {
+        super.onCreate(savedInstance);
+        ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -270,97 +278,45 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     }
 
     public void startAsyncTaskGetUserInfo() {
-        AsyncTaskHelper.StartAsyncTask(new AsyncTaskGetUserInfo());
-    }
+        mApi.getAPI().user()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UserInfo>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
 
-    private class AsyncTaskGetUserInfo extends AsyncTask<Void, Void, UserInfo> {
-        @Override
-        protected UserInfo doInBackground(Void... voids) {
-            HttpUrl oc_root_url = HttpJsonRequest.getInstance().getRootUrl();
-
-            try {
-                String appVersion = OwnCloudReaderMethods.GetVersionNumber(oc_root_url);
-                API api = API.GetRightApiForVersion(appVersion, HttpJsonRequest.getInstance().getRootUrl());
-
-                int[] version = API.ExtractVersionNumberFromString(appVersion);
-                if(version[0] < 6 || version[0] == 6 && version[1] <= 4) //Supported since 6.0.5
-                    return null; //API NOT SUPPORTED!
-
-
-                // Update shared prefs
-                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                mPrefs.edit().putString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, appVersion).apply();
-
-                UserInfo.Builder ui = new UserInfo.Builder();
-                InputStream inputStream = HttpJsonRequest.getInstance().PerformJsonRequest(api.getUserUrl());
-
-                JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
-                reader.beginObject();
-
-                String currentName;
-                while(reader.hasNext() && (currentName = reader.nextName()) != null) {
-                    switch(currentName) {
-                        case "userId":
-                            ui.setUserId(reader.nextString());
-                            break;
-                        case "displayName":
-                            ui.setDisplayName(reader.nextString());
-                            break;
-                        case "avatar":
-                            com.google.gson.stream.JsonToken jt = reader.peek();
-                            if(jt == com.google.gson.stream.JsonToken.NULL) {
-                                Log.v(TAG, "No image available");
-                                reader.skipValue();
-                                //No image available
-                            } else {
-                                reader.beginObject();
-                                while (reader.hasNext()) {
-                                    currentName = reader.nextName();
-                                    if (currentName.equals("data")) {
-                                        String encodedImage = reader.nextString();
-                                        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-                                        ui.setAvatar(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
-                                        Log.v(TAG, encodedImage);
-                                    } else {
-                                        reader.skipValue();
-                                    }
-                                }
-                            }
-                            break;
-                        default:
-                            Log.v(TAG, "Skipping value for: " + currentName);
-                            reader.skipValue();
-                            break;
                     }
-                }
-                reader.close();
 
-                return ui.build();
-            } catch (Exception e) {
-                if(e.getMessage().equals("Method Not Allowed")) { //Remove if old version is used
-                    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    mPrefs.edit().remove("USER_INFO").commit();
-                }
-                e.printStackTrace();
-            }
-            return null;
-        }
+                    @Override
+                    public void onNext(@NonNull UserInfo userInfo) {
+                        Log.d(TAG, "onNext() called with: userInfo = [" + userInfo + "]");
 
-        @Override
-        protected void onPostExecute(UserInfo userInfo) {
-            if(userInfo != null) {
-                try {
-                    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    mPrefs.edit().putString("USER_INFO", NewsReaderListFragment.toString(userInfo)).commit();
+                        try {
+                            mPrefs.edit().putString("USER_INFO", NewsReaderListFragment.toString(userInfo)).apply();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-                    bindUserInfoToUI();
-                } catch(Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-            super.onPostExecute(userInfo);
-        }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError() called with: e = [" + e + "]");
+                        e.printStackTrace();
+
+                        if(e.getMessage().equals("Method Not Allowed")) { //Remove if old version is used
+                            mPrefs.edit().remove("USER_INFO").apply();
+                        }
+
+                        bindUserInfoToUI();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        bindUserInfoToUI();
+                    }
+                });
     }
+
 
     protected void bindUserInfoToUI() {
         bindUserInfoToUI(false);
@@ -385,14 +341,14 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
         try {
             UserInfo userInfo = (UserInfo) fromString(uInfo);
-            if (userInfo.mDisplayName != null)
-                userTextView.setText(userInfo.mDisplayName);
+            if (userInfo.displayName != null)
+                userTextView.setText(userInfo.displayName);
 
-            if (userInfo.mAvatar != null) {
+            if (userInfo.avatar != null) {
                 Resources r = getResources();
                 float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, r.getDisplayMetrics());
                 RoundedBitmapDisplayer.RoundedDrawable roundedAvatar =
-                        new RoundedBitmapDisplayer.RoundedDrawable(userInfo.mAvatar, (int) px, 0);
+                        new RoundedBitmapDisplayer.RoundedDrawable(userInfo.avatar, (int) px, 0);
                 headerLogo.setImageDrawable(roundedAvatar);
             }
         } catch (Exception ex) {

@@ -26,13 +26,24 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Callable;
+
+import javax.inject.Inject;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
-import de.luhmer.owncloudnewsreader.reader.owncloud.API;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
+import io.reactivex.Completable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.internal.subscriptions.BooleanSubscription;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class NewsReaderListDialogFragment extends DialogFragment{
@@ -51,13 +62,13 @@ public class NewsReaderListDialogFragment extends DialogFragment{
     }
 
 
+    @Inject ApiProvider mApi;
+
     private long mFeedId;
     private String mDialogTitle;
     private String mDialogText;
     private String mDialogIconUrl;
 
-    private RemoveFeedTask mRemoveFeedTask = null;
-    private RenameFeedTask mRenameFeedTask = null;
     private LinkedHashMap<String, MenuAction> mMenuItems;
 
     private NewsReaderListActivity parentActivity;
@@ -71,6 +82,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
 
         mFeedId = getArguments().getLong("feedid");
         mDialogTitle = getArguments().getString("title");
@@ -214,8 +226,36 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                 showProgress(true);
                 setCancelable(false);
                 getDialog().setCanceledOnTouchOutside(false);
-                mRenameFeedTask = new RenameFeedTask(feedId, mFeedName.getText().toString() );
-                mRenameFeedTask.execute((Void) null);
+
+                Completable.fromCallable(new Callable<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        Map<String, String> feedTitleMap = new LinkedHashMap<>();
+                        feedTitleMap.put("feedTitle", mFeedName.getText().toString());
+                        mApi.getAPI().renameFeed(feedId, feedTitleMap);
+                        return true;
+                    }
+                })
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Action() {
+                            @Override
+                            public void run() throws Exception {
+                                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
+                                dbConn.renameFeedById(mFeedId, mFeedName.getText().toString());
+
+                                parentActivity.getSlidingListFragment().ReloadAdapter();
+                                parentActivity.startSync();
+
+                                dismiss();
+                            }
+                        }, new Consumer<Throwable>() {
+                            @Override
+                            public void accept(@NonNull Throwable throwable) throws Exception {
+                                Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong) + " - " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                                dismiss();
+                            }
+                        });
             }
         });
     }
@@ -236,117 +276,45 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                 showProgress(true);
                 setCancelable(false);
                 getDialog().setCanceledOnTouchOutside(false);
-                mRemoveFeedTask = new RemoveFeedTask(feedId);
-                mRemoveFeedTask.execute((Void) null);
+
+
+                Completable.fromCallable(new Callable<Boolean>() {
+                            @Override
+                            public Boolean call() throws Exception {
+                                mApi.getAPI().deleteFeed(feedId);
+                                return true;
+                            }
+                        })
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Action() {
+                            @Override
+                            public void run() throws Exception {
+                                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
+                                dbConn.removeFeedById(mFeedId);
+
+                                Long currentFeedId = parentActivity.getNewsReaderDetailFragment().getIdFeed();
+                                if(currentFeedId != null && currentFeedId == mFeedId) {
+                                    parentActivity.switchToAllUnreadItemsFolder();
+                                }
+                                parentActivity.getSlidingListFragment().ReloadAdapter();
+                                parentActivity.updateCurrentRssView();
+
+                                dismiss();
+                            }
+                        }, new Consumer<Throwable>() {
+                            @Override
+                            public void accept(@NonNull Throwable throwable) throws Exception {
+                                Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong) + " - " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                                dismiss();
+                            }
+                        });
+
+
+
             }
         });
     }
-
-
-    public class RemoveFeedTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final long mFeedId;
-
-        RemoveFeedTask(long feedId) {
-            this.mFeedId = feedId;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            API api = new APIv2(HttpJsonRequest.getInstance().getRootUrl());
-
-            try {
-                int status = HttpJsonRequest.getInstance().performRemoveFeedRequest(api.getFeedUrl(),
-                        mFeedId);
-                if(status == 200) {
-                    return true;
-                }
-
-                Log.d("NewFeedActivity", "Status: " + status);
-            } catch(Exception ex) {
-                ex.printStackTrace();
-            }
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mRemoveFeedTask = null;
-
-            if (success) {
-                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
-                dbConn.removeFeedById(mFeedId);
-
-                Long currentFeedId = parentActivity.getNewsReaderDetailFragment().getIdFeed();
-                if(currentFeedId != null && currentFeedId == mFeedId) {
-                    parentActivity.switchToAllUnreadItemsFolder();
-                }
-                parentActivity.getSlidingListFragment().ReloadAdapter();
-                parentActivity.updateCurrentRssView();
-            } else {
-                Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong), Toast.LENGTH_LONG).show();
-            }
-            dismiss();
-        }
-
-        @Override
-        protected void onCancelled() {
-            mRemoveFeedTask = null;
-            dismiss();
-        }
-    }
-
-
-    public class RenameFeedTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final long mFeedId;
-        private final String mFeedName;
-
-        RenameFeedTask(long feedId, String newName) {
-            mFeedId = feedId;
-            mFeedName = newName;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            API api = new APIv2(HttpJsonRequest.getInstance().getRootUrl());
-
-            try {
-                int status = HttpJsonRequest.getInstance().performRenameFeedRequest(api.getFeedUrl(),
-                        mFeedId, mFeedName);
-                if(status == 200) {
-                    return true;
-                }
-                Log.d("NewFeedActivity", "Status: " + status);
-            } catch(Exception ex) {
-                ex.printStackTrace();
-            }
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mRenameFeedTask = null;
-
-            if (success) {
-                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
-                dbConn.renameFeedById(mFeedId, mFeedName);
-
-                parentActivity.getSlidingListFragment().ReloadAdapter();
-                parentActivity.startSync();
-            } else {
-                Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong), Toast.LENGTH_LONG).show();
-            }
-            dismiss();
-        }
-
-        @Override
-        protected void onCancelled() {
-            mRenameFeedTask = null;
-            dismiss();
-        }
-    }
-
 
     interface MenuAction {
         void execute();

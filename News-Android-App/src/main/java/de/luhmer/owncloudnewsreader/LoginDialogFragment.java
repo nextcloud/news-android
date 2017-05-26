@@ -27,7 +27,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
@@ -39,6 +38,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -53,6 +53,8 @@ import android.widget.TextView;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.luhmer.owncloud.accountimporter.ImportAccountsDialogFragment;
@@ -61,9 +63,14 @@ import de.luhmer.owncloud.accountimporter.helper.OwnCloudAccount;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloudReaderMethods;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
+import de.luhmer.owncloudnewsreader.model.NextcloudNewsVersion;
+import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -81,7 +88,9 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
-	private UserLoginTask mAuthTask = null;
+	@Inject ApiProvider mApi;
+    @Inject SharedPreferences mPrefs;
+	//private UserLoginTask mAuthTask = null;
 
 	private Activity mActivity;
 
@@ -100,7 +109,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
     @Bind(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
 
     boolean mPasswordVisible = false;
-	ProgressDialog mDialogLogin;
 
     @Override
     public void accountAccessGranted(OwnCloudAccount account) {
@@ -131,6 +139,19 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	}
 
 	@Override
+	public void onCreate(Bundle savedInstance) {
+		super.onCreate(savedInstance);
+		((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+	}
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+
+    }
+
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 		showImportAccountButton = AccountImporter.findAccounts(getActivity()).size() > 0;
 
@@ -266,9 +287,9 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	 * errors are presented and no actual login attempt is made.
 	 */
 	public void attemptLogin() {
-		if (mAuthTask != null) {
-			return;
-		}
+		//if (mAuthTask != null) {
+		//	return;
+		//}
 
 		// Reset errors.
 		mUsernameView.setError(null);
@@ -319,103 +340,76 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
-			mAuthTask = new UserLoginTask(mUsername, mPassword, mOc_root_path);
-			mAuthTask.execute((Void) null);
 
-			mDialogLogin = BuildPendingDialogWhileLoggingIn();
-     	   	mDialogLogin.show();
-		}
-	}
+            Editor editor = mPrefs.edit();
+            editor.putString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, mOc_root_path);
+            editor.putString(SettingsActivity.EDT_PASSWORD_STRING, mPassword);
+            editor.putString(SettingsActivity.EDT_USERNAME_STRING, mUsername);
+            editor.commit();
+
+            // Re-init API
+            mApi.initApi();
+
+            //((NewsReaderApplication) getActivity().getApplication()).initDaggerAppComponent();
+            //((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
 
 
-	/**
-	 * Represents an asynchronous login/registration task used to authenticate
-	 * the user.
-	 */
-	public class UserLoginTask extends AsyncTask<Void, Void, Integer> {
-		String username;
-		String password;
-		String oc_root_path;
-		String exception_message = "";
+			final String TAG = LoginDialogFragment.class.getCanonicalName();
+            final ProgressDialog mDialogLogin = BuildPendingDialogWhileLoggingIn();
+            mDialogLogin.show();
 
-		public UserLoginTask(String username, String password, String oc_root_path) {
-			this.username = username;
-			this.password = password;
-			this.oc_root_path = oc_root_path;
 
-			//Re-init client in order to set the hostname verifier correctly
-			HttpJsonRequest.init(getActivity());
-			HttpJsonRequest.getInstance().setCredentials(username, password, oc_root_path);
-			OwnCloud_Reader.getInstance().resetApi();
-		}
+			mApi.getAPI().version()
+					.subscribeOn(Schedulers.newThread())
+					.observeOn(AndroidSchedulers.mainThread())
+					.subscribe(new Observer<NextcloudNewsVersion>() {
+                                boolean loginSuccessful = false;
 
-		@Override
-		protected Integer doInBackground(Void... params) {
+								   @Override
+								   public void onSubscribe(@NonNull Disposable d) {
+									   Log.v(TAG, "onSubscribe() called with: d = [" + d + "]");
+								   }
 
-			try {
-				String _version = OwnCloudReaderMethods.GetVersionNumber(HttpJsonRequest.getInstance().getRootUrl());
-				if(_version != null)
-				{
-					_version = _version.replace(".", "");
-					return  Integer.parseInt(_version);
-				}
+								   @Override
+								   public void onNext(@NonNull NextcloudNewsVersion version) {
+									   Log.v(TAG, "onNext() called with: status = [" + version + "]");
 
-			} catch (Exception e) {
-				if(e.getLocalizedMessage() != null)
-					exception_message = e.getLocalizedMessage();
-				else if(e instanceof NullPointerException)
-					exception_message = getString(R.string.login_dialog_text_something_went_wrong);
+                                       loginSuccessful = true;
+                                       mPrefs.edit().putString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, version.version).apply();
 
-				return -1;
-			}
+                                       if(version.version.equals("0")) {
+                                           ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_zero_version_code), getActivity());
+                                           loginSuccessful = false;
+                                       }
+								   }
 
-			return 0;
-		}
+								   @Override
+								   public void onError(@NonNull Throwable e) {
+                                       mDialogLogin.dismiss();
+									   Log.v(TAG, "onError() called with: e = [" + e + "]");
 
-		@Override
-		protected void onPostExecute(final Integer versionCode) {
-			mAuthTask = null;
+                                       Throwable t = OkHttpSSLClient.HandleExceptions(e);
+                                       ShowAlertDialog(getString(R.string.login_dialog_title_error), t.getMessage(), getActivity());
+								   }
 
-			mDialogLogin.dismiss();
+								   @Override
+								   public void onComplete() {
+                                       mDialogLogin.dismiss();
 
-			if(versionCode == -1 && exception_message.equals("Value <!DOCTYPE of type java.lang.String cannot be converted to JSONObject")) {
-				if(isAdded()) {
-					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_not_compatible), getActivity());
-				}
-			} else if(versionCode == -1) {
-				if(isAdded()) {
-					ShowAlertDialog(getString(R.string.login_dialog_title_error), exception_message, getActivity());
-				}
-			} else if(versionCode == 0){
-				if(isAdded()) {
-					ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_zero_version_code), getActivity());
-				}
-			} else {
-				//Reset Database
-				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
-				dbConn.resetDatabase();
-				//dbConn.closeDatabase();
+									   Log.v(TAG, "onComplete() called");
 
-				//LoginFragment.this.dismiss();
-				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-				Editor editor = mPrefs.edit();
-				editor.putString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, oc_root_path);
-				editor.putString(SettingsActivity.EDT_PASSWORD_STRING, password);
-				editor.putString(SettingsActivity.EDT_USERNAME_STRING, username);
-				editor.commit();
+                                       if(loginSuccessful) {
+                                           //Reset Database
+                                           DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
+                                           dbConn.resetDatabase();
 
-				if(listener != null)
-					listener.LoginSucceeded();
-
-				LoginDialogFragment.this.getDialog().cancel();
-				if(mActivity instanceof AuthenticatorActivity)
-					mActivity.finish();
-			}
-		}
-
-		@Override
-		protected void onCancelled() {
-			mAuthTask = null;
+                                           listener.LoginSucceeded();
+                                           LoginDialogFragment.this.getDialog().cancel();
+                                           if(mActivity instanceof AuthenticatorActivity)
+                                               mActivity.finish();
+                                       }
+                                   }
+							   });
 		}
 	}
 

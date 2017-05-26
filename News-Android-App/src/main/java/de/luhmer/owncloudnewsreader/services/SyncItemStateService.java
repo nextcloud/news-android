@@ -27,20 +27,43 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
+import java.io.IOException;
+
+import javax.inject.Inject;
+
+import de.luhmer.owncloudnewsreader.NewsReaderApplication;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.ItemStateSync;
 
 public class SyncItemStateService extends IntentService {
+
+	@Inject ApiProvider mApi;
+
 	public SyncItemStateService() {
 		super(null);
 	}	
 	
 	public SyncItemStateService(String name) {
 		super(name);
-	}	
-	
+	}
+
+	@Override
+	public void onCreate() {
+		((NewsReaderApplication) getApplication()).getAppComponent().injectService(this);
+		super.onCreate();
+	}
+
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(SyncItemStateService.this, null);
+        final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
+
+        try {
+            ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 	public static boolean isMyServiceRunning(Context context) {

@@ -25,8 +25,6 @@ import android.widget.Toast;
 
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.BufferedReader;
@@ -41,28 +39,29 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.helper.OpmlXmlParser;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.helper.URLConnectionReader;
-import de.luhmer.owncloudnewsreader.model.Tuple;
-import de.luhmer.owncloudnewsreader.reader.HttpJsonRequest;
-import de.luhmer.owncloudnewsreader.reader.owncloud.API;
-import de.luhmer.owncloudnewsreader.reader.owncloud.apiv2.APIv2;
+import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
+import io.reactivex.functions.Consumer;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NewFeedActivity extends AppCompatActivity {
-
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private AddNewFeedTask mAddFeedTask = null;
 
     // UI references.
     @Bind(R.id.et_feed_url) EditText mFeedUrlView;
@@ -72,10 +71,13 @@ public class NewFeedActivity extends AppCompatActivity {
     @Bind(R.id.btn_addFeed) Button mAddFeedButton;
     @Bind(R.id.toolbar) Toolbar toolbar;
 
-    List<Folder> folders;
+    private List<Folder> folders;
+    @Inject ApiProvider mApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+
         ThemeChooser.chooseTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_feed);
@@ -178,7 +180,7 @@ public class NewFeedActivity extends AppCompatActivity {
         }
     }
 
-    public static class ImportOpmlSubscriptionsTask extends AsyncTask<Void, Void, Boolean> {
+    public class ImportOpmlSubscriptionsTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mUrlToFile;
         private HashMap<String, String> extractedUrls;
@@ -221,20 +223,16 @@ public class NewFeedActivity extends AppCompatActivity {
 
                 publishProgress();
 
-                API api = new APIv2(HttpJsonRequest.getInstance().getRootUrl());
+                final HashMap<String, Long> existingFolders = new HashMap<>();
 
-                HashMap<String, Long> existingFolders = new HashMap<>();
-                InputStream isFolder = HttpJsonRequest.getInstance().PerformJsonRequest(api.getFolderUrl());
-                String folderJSON = convertStreamToString(isFolder);
-                JSONArray jArrFolder = new JSONObject(folderJSON).getJSONArray("folders");
-                for(int i = 0; i < jArrFolder.length(); i++) {
-                    JSONObject folder = ((JSONObject) jArrFolder.get(i));
-                    long folderId = folder.getLong("id");
-                    String folderName = folder.getString("name");
-
-                    existingFolders.put(folderName, folderId);
-                }
-
+                mApi.getAPI().folders().blockingSubscribe(new Consumer<List<Folder>>() {
+                    @Override
+                    public void accept(@io.reactivex.annotations.NonNull List<Folder> folders) throws Exception {
+                        for(Folder folder : folders) {
+                            existingFolders.put(folder.getLabel(), folder.getId());
+                        }
+                    }
+                });
 
                 for(String feedUrl : extractedUrls.keySet()) {
                     long folderId = 0; //id of the parent folder, 0 for root
@@ -243,26 +241,21 @@ public class NewFeedActivity extends AppCompatActivity {
                         if(existingFolders.containsKey(folderName)) { //Check if folder exists
                             folderId = existingFolders.get(folderName);
                         } else { //If not, create a new one on the server
-                            Tuple<Integer, String> status = HttpJsonRequest.getInstance().performCreateFolderRequest(api.getFolderUrl(), folderName);
-                            if (status.key == 200 || status.key == 409) { //200 = Ok, 409 = If the folder exists already
-                                JSONObject jObj = new JSONObject(status.value).getJSONArray("folders").getJSONObject(0);
-                                folderId = jObj.getLong("id");
-                                existingFolders.put(folderName, folderId); //Add folder to list of existing folder in order to prevent that the method tries to create it multiple times
-                            } else {
-                                throw new Exception("Failed to create folder on server!");
-                            }
+                            //mApi.getAPI().createFolder(foldername) // HttpJsonRequest.getInstance().performCreateFolderRequest(api.getFolderUrl(), folderName);
+                            final Map<String, Object> folderMap = new HashMap<>(2);
+                            folderMap.put("name", folderName);
+                            Folder folder = mApi.getAPI().createFolder(folderMap).execute().body().get(0);
+                            //TODO test this!!!
+                            existingFolders.put(folder.getLabel(), folder.getId()); //Add folder to list of existing folder in order to prevent that the method tries to create it multiple times
                         }
                     }
 
-
-                    int status = HttpJsonRequest.getInstance().performCreateFeedRequest(api.getFeedUrl(), feedUrl, folderId);
-                    if(status == 200 || status == 409) {
-
-                    } else {
-                        throw new Exception("Failed to create feed on server!");
-                    }
+                    final Map<String, Object> feedMap = new HashMap<>(2);
+                    feedMap.put("url", feedUrl);
+                    feedMap.put("folderId", folderId);
+                    Feed feed = mApi.getAPI().createFeed(feedMap).execute().body().get(0);
+                    //TODO check above!
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
@@ -305,10 +298,6 @@ public class NewFeedActivity extends AppCompatActivity {
      * errors are presented and no actual login attempt is made.
      */
     public void attemptAddNewFeed() {
-        if (mAddFeedTask != null) {
-            return;
-        }
-
         Folder folder = folders.get(mFolderView.getSelectedItemPosition());
 
         // Reset errors.
@@ -340,8 +329,35 @@ public class NewFeedActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAddFeedTask = new AddNewFeedTask(urlToFeed, folder.getId());//TODO needs testing!
-            mAddFeedTask.execute((Void) null);
+
+            final Map<String, Object> feedMap = new HashMap<>(2);
+            feedMap.put("url", urlToFeed);
+            feedMap.put("folderId", folder.getId());
+            mApi.getAPI().createFeed(feedMap).enqueue(new Callback<List<Feed>>() {
+                @Override
+                public void onResponse(Call<List<Feed>> call, Response<List<Feed>> response) {
+                    showProgress(false);
+
+                    if (response.isSuccessful()) {
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("success", true);
+                        setResult(RESULT_OK,returnIntent);
+
+                        finish();
+                    } else {
+                        mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
+                        mFeedUrlView.requestFocus();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Feed>> call, Throwable t) {
+                    showProgress(false);
+
+                    mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
+                    mFeedUrlView.requestFocus();
+                }
+            });
         }
     }
     private boolean isUrlValid(String url) {
@@ -382,69 +398,11 @@ public class NewFeedActivity extends AppCompatActivity {
     public final static String ADD_NEW_SUCCESS = "success";
 
 
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class AddNewFeedTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mUrlToFeed;
-        private final long mFolderId;
-
-
-        AddNewFeedTask(String urlToFeed, long folderId) {
-            this.mUrlToFeed = urlToFeed;
-            this.mFolderId = folderId;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            API api = new APIv2(HttpJsonRequest.getInstance().getRootUrl());
-            try {
-                int status = HttpJsonRequest.getInstance().performCreateFeedRequest(api.getFeedUrl(), mUrlToFeed, mFolderId);
-                if(status == 200) {
-                    return true;
-                }
-            } catch(Exception ex) {
-                ex.printStackTrace();
-            }
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAddFeedTask = null;
-            showProgress(false);
-
-            if (success) {
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("success", true);
-                setResult(RESULT_OK,returnIntent);
-
-                finish();
-            } else {
-                mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
-                mFeedUrlView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAddFeedTask = null;
-            showProgress(false);
-        }
-    }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                if(mAddFeedTask != null)
-                    mAddFeedTask.cancel(true);
-
                 //NavUtils.navigateUpFromSameTask(this);
                 finish();
                 return true;

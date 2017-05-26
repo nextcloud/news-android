@@ -8,9 +8,9 @@ import com.google.auto.value.AutoValue;
 @AutoValue
 public abstract class SyncFailedEvent {
 
-    public abstract Exception exception();
+    public abstract Throwable exception();
 
-    public static SyncFailedEvent create(Exception exception) {
+    public static SyncFailedEvent create(Throwable exception) {
         return new AutoValue_SyncFailedEvent(exception);
     }
 

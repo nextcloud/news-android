@@ -84,8 +84,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     //compile group: 'com.jakewharton', name: 'butterknife', version: '8.5.1'
     compile 'com.sothree.slidinguppanel:library:3.2.1'
-    //compile 'com.squareup.okhttp:okhttp:2.7.5'
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'de.greenrobot:greendao:2.0.0'
     compile 'de.greenrobot:greendao-generator:2.0.0'
@@ -94,6 +93,23 @@ dependencies {
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.0'
     compile 'org.jsoup:jsoup:1.7.2'
     compile ('net.rdrei.android.dirchooser:library:3.0@aar') { transitive = true; }
+
+
+    compile 'com.google.dagger:dagger:2.9'
+    apt "com.google.dagger:dagger-compiler:2.9"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.9"
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
     provided 'com.google.auto.value:auto-value:1.2'
     apt 'com.google.auto.value:auto-value:1.2'
@@ -105,11 +121,11 @@ dependencies {
     }
     testCompile 'com.google.dexmaker:dexmaker:1.2'
     testCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
-
+    testCompile 'com.squareup.okhttp3:mockwebserver:3.8.0'
 
     //androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/mockwebserver
-    androidTestCompile group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.6.0'
+    androidTestCompile group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.8.0'
 
 
     androidTestCompile "com.android.support:support-annotations:${SUPPORT_VERSION}"

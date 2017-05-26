@@ -13,6 +13,7 @@ public class UserInfo implements Serializable {
         private String userId;
         private String displayName;
         private Bitmap avatar;
+        private Long lastLoginTimestamp;
 
         public Builder setUserId(String userId) {
             this.userId = userId;
@@ -29,18 +30,25 @@ public class UserInfo implements Serializable {
             return this;
         }
 
+        public Builder setLastLoginTimestamp(Long lastLoginTimestamp) {
+            this.lastLoginTimestamp = lastLoginTimestamp;
+            return this;
+        }
+
         public UserInfo build() {
-            return new UserInfo(userId, displayName, avatar);
+            return new UserInfo(userId, displayName, avatar, lastLoginTimestamp);
         }
     }
 
-    private UserInfo(String userId, String displayName, Bitmap avatar) {
-        this.mUserId = userId;
-        this.mDisplayName = displayName;
-        this.mAvatar = avatar;
+    private UserInfo(String userId, String displayName, Bitmap avatar, Long lastLoginTimestamp) {
+        this.userId = userId;
+        this.displayName = displayName;
+        this.avatar = avatar;
+        this.lastLoginTimestamp = lastLoginTimestamp;
     }
 
-    public final String mUserId;
-    public final String mDisplayName;
-    public final Bitmap mAvatar;
+    public final String userId;
+    public final String displayName;
+    public final Bitmap avatar;
+    public final Long lastLoginTimestamp;
 }

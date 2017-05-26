@@ -27,37 +27,50 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Binder;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Callable;
+
+import javax.inject.Inject;
 
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
+import de.luhmer.owncloudnewsreader.NewsReaderApplication;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
+import de.luhmer.owncloudnewsreader.database.model.Folder;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
 import de.luhmer.owncloudnewsreader.helper.TeslaUnreadManager;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
-import de.luhmer.owncloudnewsreader.reader.OnAsyncTaskCompletedListener;
-import de.luhmer.owncloudnewsreader.reader.owncloud.OwnCloud_Reader;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.ItemStateSync;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.events.SyncFailedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
+import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function3;
+import io.reactivex.schedulers.Schedulers;
 
 public class OwnCloudSyncService extends Service {
 
+    StopWatch syncStopWatch;
 	// This is the object that receives interactions from clients.  See
 	// RemoteService for a more complete example.
 	private final IBinder mBinder = new OwnCloudSyncServiceBinder();
@@ -75,16 +88,18 @@ public class OwnCloudSyncService extends Service {
 
 	protected static final String TAG = "OwnCloudSyncService";
 
-	private CountDownLatch syncCompletedLatch;
-	private StopWatch syncStopWatch;
+
 	private boolean syncRunning;
 
+    @Inject SharedPreferences mPrefs;
+	@Inject ApiProvider mApi;
 
 
 	public void startSync() {
 		if(!isSyncRunning()) {
 			startedSync();
-			OwnCloud_Reader.getInstance().Start_AsyncTask_PerformItemStateChange(OwnCloudSyncService.this, onAsyncTask_PerformTagExecute);
+
+            start();
 		}
 	}
 
@@ -94,8 +109,9 @@ public class OwnCloudSyncService extends Service {
 
 	@Override
 	public void onCreate() {
+        ((NewsReaderApplication) getApplication()).getAppComponent().injectService(this);
 		super.onCreate();
-		Log.d(TAG, "onCreate() called");
+		Log.v(TAG, "onCreate() called");
 	}
 
 	@Nullable
@@ -115,56 +131,117 @@ public class OwnCloudSyncService extends Service {
         return super.onUnbind(intent);
     }
 
+    private class SyncResult {
+        SyncResult(List<Folder> folders, List<Feed> feeds) {
+            this.folders = folders;
+            this.feeds = feeds;
+        }
+        List<Folder> folders;
+        List<Feed>   feeds;
+    }
+
 	//Sync state of items e.g. read/unread/starred/unstarred
-    private final OnAsyncTaskCompletedListener onAsyncTask_PerformTagExecute = new OnAsyncTaskCompletedListener() {
-        @Override
-        public void onAsyncTaskCompleted(Exception task_result) {
-			syncCompletedLatch = new CountDownLatch(3);
-			syncStopWatch = new StopWatch();
-			syncStopWatch.start();
+    private void start() {
+        syncStopWatch = new StopWatch();
+        syncStopWatch.start();
 
-			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFolder(OwnCloudSyncService.this, onAsyncTaskFinished);
-			OwnCloud_Reader.getInstance().Start_AsyncTask_GetFeeds(OwnCloudSyncService.this, onAsyncTaskFinished);
-			OwnCloud_Reader.getInstance().Start_AsyncTask_GetItems(OwnCloudSyncService.this, onAsyncTaskFinished, FeedItemTags.ALL); //Receive all unread Items
-			AsyncTask.execute(syncCompletionRunnable);
-		}
-    };
+        final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(OwnCloudSyncService.this);
 
-	private final Runnable syncCompletionRunnable = new Runnable() {
-		@Override
-		public void run() {
-			try {
-				syncCompletedLatch.await();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} finally {
-				new Handler(Looper.getMainLooper()).post(new Runnable() {
-					public void run() {
-						finishedSync();
-					}
-				});
-			}
-		}
-	};
+        Observable rssStateSync = Observable.fromCallable(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
+                return true;
+            }
+        }).subscribeOn(Schedulers.newThread());
 
-	private final OnAsyncTaskCompletedListener onAsyncTaskFinished = new OnAsyncTaskCompletedListener() {
+        // First sync Feeds and Folders and rss item states (in parallel)
+        Observable<List<Folder>> folderObservable = mApi
+                .getAPI()
+                .folders()
+                .subscribeOn(Schedulers.newThread());
 
-		@Override
-		public void onAsyncTaskCompleted(Exception task_result) {
-			if(task_result != null)
-				ThrowException(task_result);
-			syncCompletedLatch.countDown();
-		}
-	};
+        Observable<List<Feed>> feedsObservable = mApi
+                .getAPI()
+                .feeds()
+                .subscribeOn(Schedulers.newThread());
 
-    private void ThrowException(Exception ex) {
-		EventBus.getDefault().post(SyncFailedEvent.create(ex));
+        // Wait for both results
+        Observable<SyncResult> combined = Observable.zip(folderObservable, feedsObservable, rssStateSync, new Function3<List<Folder>, List<Feed>, Boolean, SyncResult>() {
+            @Override
+            public SyncResult apply(@NonNull List<Folder> folders, @NonNull List<Feed> feeds, @NonNull Boolean mRes) throws Exception {
+                return new SyncResult(folders, feeds);
+            }
+        });
+
+        // Insert them into the database
+        combined.subscribe(new Consumer<SyncResult>() {
+            @Override
+            public void accept(@NonNull SyncResult syncResult) throws Exception {
+                Log.v(TAG, "onNext() called with: syncResult = [" + syncResult + "]");
+
+                dbConn.deleteOldAndInsertNewFolders(syncResult.folders);
+                dbConn.insertNewFeed(syncResult.feeds);
+
+                // Start the sync (Rss Items)
+                syncRssItems(dbConn);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable e) throws Exception {
+                Log.v(TAG, "onError() called with: e = [" + e + "]");
+                ThrowException(e);
+            }
+        });
+    }
+
+
+    private void syncRssItems(final DatabaseConnectionOrm dbConn) {
+        new RssItemObservable(dbConn, mApi.getAPI(), mPrefs)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<Integer>() {
+                @Override
+                public void onSubscribe(@NonNull Disposable d) {
+
+                }
+
+                @Override
+                public void onNext(@NonNull Integer totalCount) {
+                    Log.v(TAG, "onNext() called with: totalCount = [" + totalCount + "]");
+                    Toast.makeText(
+                            OwnCloudSyncService.this,
+                            OwnCloudSyncService.this.getResources().getQuantityString(R.plurals.fetched_items_so_far, totalCount, totalCount),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onError(@NonNull Throwable e) {
+                    Log.v(TAG, "onError() called with: throwable = [" + e + "]");
+                    ThrowException(e);
+                }
+
+                @Override
+                public void onComplete() {
+                    Log.v(TAG, "onComplete() called");
+                    finishedSync();
+                }
+            });
+    }
+
+
+    private void ThrowException(Throwable ex) {
+        syncRunning = false;
+        if(ex instanceof Exception) {
+            EventBus.getDefault().post(SyncFailedEvent.create(OkHttpSSLClient.HandleExceptions((Exception) ex)));
+        } else {
+            EventBus.getDefault().post(SyncFailedEvent.create(ex));
+        }
 	}
 
 	private void startedSync() {
 		syncRunning = true;
 		Log.v(TAG, "Synchronization started");
-
 		EventBus.getDefault().post(new SyncStartedEvent());
 	}
 
@@ -173,7 +250,8 @@ public class OwnCloudSyncService extends Service {
 		WidgetProvider.UpdateWidget(this);
 
 		syncRunning = false;
-		syncStopWatch.stop();
+
+        syncStopWatch.stop();
         Log.v(TAG, "Time needed (synchronization): " + syncStopWatch.toString());
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(OwnCloudSyncService.this);
@@ -198,7 +276,6 @@ public class OwnCloudSyncService extends Service {
 			}
 		}
 
-		EventBus.getDefault().post(new SyncFinishedEvent());
+        EventBus.getDefault().post(new SyncFinishedEvent());
 	}
-
 }
