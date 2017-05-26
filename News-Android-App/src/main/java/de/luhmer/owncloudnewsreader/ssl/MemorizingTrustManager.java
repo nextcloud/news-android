@@ -48,13 +48,17 @@ import android.util.Log;
 import android.util.SparseArray;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.MessageDigest;
+import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateExpiredException;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
+import java.util.Enumeration;
 
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
@@ -84,7 +88,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	static String KEYSTORE_DIR = "KeyStore";
 	static String KEYSTORE_FILE = "KeyStore.bks";
 	
-	Activity foregroundAct;
+	WeakReference<Activity> foregroundAct;
 	NotificationManager notificationManager;
 	private static int decisionId = 0;
 	private static final SparseArray<MTMDecision> openDecisions = new SparseArray<>();
@@ -162,7 +166,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	 * @param act Activity to be bound
 	 */
 	public void bindDisplayActivity(Activity act) {
-		foregroundAct = act;
+		foregroundAct = new WeakReference<>(act);
 	}
 
 	/**
@@ -175,7 +179,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	 */
 	public void unbindDisplayActivity(Activity act) {
 		// do not remove if it was overridden by a different activity
-		if (foregroundAct == act)
+		if (foregroundAct.get() == act)
 			foregroundAct = null;
 	}
 
@@ -192,6 +196,84 @@ public class MemorizingTrustManager implements X509TrustManager {
 		KEYSTORE_DIR = dirname;
 		KEYSTORE_FILE = filename;
 	}
+
+
+	/**
+	 * Get a list of all certificate aliases stored in MTM.
+	 *
+	 * @return an {@link Enumeration} of all certificates
+	 */
+	public Enumeration<String> getCertificates() {
+		try {
+			return appKeyStore.aliases();
+		} catch (KeyStoreException e) {
+			// this should never happen, however...
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * Get a certificate for a given alias.
+	 *
+	 * @param alias the certificate's alias as returned by {@link #getCertificates()}.
+	 *
+	 * @return the certificate associated with the alias or <tt>null</tt> if none found.
+	 */
+	public Certificate getCertificate(String alias) {
+		try {
+			return appKeyStore.getCertificate(alias);
+		} catch (KeyStoreException e) {
+			// this should never happen, however...
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * Removes the given certificate from MTMs key store.
+	 *
+	 * <p>
+	 * <b>WARNING</b>: this does not immediately invalidate the certificate. It is
+	 * well possible that (a) data is transmitted over still existing connections or
+	 * (b) new connections are created using TLS renegotiation, without a new cert
+	 * check.
+	 * </p>
+	 * @param alias the certificate's alias as returned by {@link #getCertificates()}.
+	 *
+	 * @throws KeyStoreException if the certificate could not be deleted.
+	 */
+	public void deleteCertificate(String alias) throws KeyStoreException {
+		appKeyStore.deleteEntry(alias);
+		keyStoreUpdated();
+	}
+
+	void keyStoreUpdated() {
+		// reload appTrustManager
+		appTrustManager = getTrustManager(appKeyStore);
+
+		// store KeyStore to file
+		java.io.FileOutputStream fos = null;
+		try {
+			fos = new java.io.FileOutputStream(keyStoreFile);
+			appKeyStore.store(fos, "MTM".toCharArray());
+		} catch (Exception e) {
+			e.printStackTrace();
+			//LOGGER.log(Level.SEVERE, "storeCert(" + keyStoreFile + ")", e);
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+					//LOGGER.log(Level.SEVERE, "storeCert(" + keyStoreFile + ")", e);
+				}
+			}
+		}
+	}
+
+
+
+
+
 
 	X509TrustManager getTrustManager(KeyStore ks) {
 		try {
@@ -274,7 +356,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	public void checkCertTrusted(X509Certificate[] chain, String authType, boolean isServer)
 		throws CertificateException
 	{
-		Log.d(TAG, "checkCertTrusted(" + Arrays.toString(chain) + ", " + authType + ", " + isServer + ")");
+		//Log.d(TAG, "checkCertTrusted(" + Arrays.toString(chain) + ", " + authType + ", " + isServer + ")");
 		try {
 			Log.d(TAG, "checkCertTrusted: trying defaultTrustManager");
 			if (isServer)
@@ -398,7 +480,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 	 * @return the Context of the currently bound UI or the master context if none is bound
 	 */
 	Context getUI() {
-		return (foregroundAct != null) ? foregroundAct : mContext;
+		return (foregroundAct != null && foregroundAct.get() != null) ? foregroundAct.get() : mContext;
 	}
 
 	void interact(final X509Certificate[] chain, CertificateException cause)
@@ -475,3 +557,6 @@ public class MemorizingTrustManager implements X509TrustManager {
 	}
 
 }
+
+
+
