@@ -99,17 +99,15 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 e.printStackTrace();
             }
         }*/
-        mMTM.bindDisplayActivity(this);
-
 
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    protected void onDestroy() {
-        mMTM.unbindDisplayActivity(this);
+    protected void onStart() {
+        super.onStart();
 
-        super.onDestroy();
+        mMTM.bindDisplayActivity(this);
     }
 
     @Override
@@ -149,6 +147,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Override
     protected void onStop() {
+        mMTM.unbindDisplayActivity(this);
+
         super.onStop();
 
         unbindPodcastService();

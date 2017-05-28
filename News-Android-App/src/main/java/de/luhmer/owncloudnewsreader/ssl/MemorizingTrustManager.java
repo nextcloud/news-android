@@ -179,8 +179,9 @@ public class MemorizingTrustManager implements X509TrustManager {
 	 */
 	public void unbindDisplayActivity(Activity act) {
 		// do not remove if it was overridden by a different activity
-		if (foregroundAct.get() == act)
+		if (foregroundAct != null && foregroundAct.get() == act) {
 			foregroundAct = null;
+		}
 	}
 
 	/**
