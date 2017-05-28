@@ -787,7 +787,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     List<RssItem> buffer = mApi.getAPI().items(100, offset, type, id, true, false).execute().body();
                     RssItemObservable.performDatabaseBatchInsert(dbConn, buffer);
                 }
-            }).subscribeOn(Schedulers.newThread())
+            })
+					.subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Action() {
                         @Override
