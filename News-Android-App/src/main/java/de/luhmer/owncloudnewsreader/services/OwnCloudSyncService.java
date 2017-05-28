@@ -36,9 +36,10 @@ import android.widget.Toast;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.greenrobot.eventbus.EventBus;
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
@@ -58,6 +59,7 @@ import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.events.SyncFailedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
+import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 import io.reactivex.Observable;
@@ -94,6 +96,7 @@ public class OwnCloudSyncService extends Service {
 
     @Inject SharedPreferences mPrefs;
 	@Inject ApiProvider mApi;
+    @Inject MemorizingTrustManager mMTM;
 
 
 	public void startSync() {
@@ -133,12 +136,14 @@ public class OwnCloudSyncService extends Service {
     }
 
     private class SyncResult {
-        SyncResult(List<Folder> folders, List<Feed> feeds) {
+        SyncResult(List<Folder> folders, List<Feed> feeds, Boolean stateSyncSuccessful) {
             this.folders = folders;
             this.feeds = feeds;
+            this.stateSyncSuccessful = stateSyncSuccessful;
         }
         List<Folder> folders;
         List<Feed>   feeds;
+        boolean      stateSyncSuccessful;
     }
 
 	//Sync state of items e.g. read/unread/starred/unstarred
@@ -146,15 +151,41 @@ public class OwnCloudSyncService extends Service {
         syncStopWatch = new StopWatch();
         syncStopWatch.start();
 
+
+
+        //Delete all pinned/stored SSL Certificates
+        /*
+        final ArrayList<String> aliases = Collections.list(mMTM.getCertificates());
+        for(int i = 0; i < aliases.size(); i++) {
+            try {
+                mMTM.deleteCertificate(aliases.get(i));
+            } catch (KeyStoreException e) {
+                e.printStackTrace();
+            }
+        }*/
+
+
+
+
+
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(OwnCloudSyncService.this);
 
-        Observable rssStateSync = Observable.fromCallable(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
-                return true;
-            }
-        }).subscribeOn(Schedulers.newThread());
+
+
+
+        Observable rssStateSync = Observable.fromPublisher(
+                new Publisher() {
+                   @Override
+                   public void subscribe(Subscriber s) {
+                       try {
+                           ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
+                           s.onNext(true);
+                           s.onComplete();
+                       } catch(Exception ex) {
+                           s.onError(ex);
+                       }
+                   }
+               }).subscribeOn(Schedulers.newThread());
 
         // First sync Feeds and Folders and rss item states (in parallel)
         Observable<List<Folder>> folderObservable = mApi
@@ -171,7 +202,8 @@ public class OwnCloudSyncService extends Service {
         Observable<SyncResult> combined = Observable.zip(folderObservable, feedsObservable, rssStateSync, new Function3<List<Folder>, List<Feed>, Boolean, SyncResult>() {
             @Override
             public SyncResult apply(@NonNull List<Folder> folders, @NonNull List<Feed> feeds, @NonNull Boolean mRes) throws Exception {
-                return new SyncResult(folders, feeds);
+                Log.v(TAG, "apply() called with: folders = [" + folders + "], feeds = [" + feeds + "], mRes = [" + mRes + "]");
+                return new SyncResult(folders, feeds, mRes);
             }
         });
 
@@ -198,7 +230,7 @@ public class OwnCloudSyncService extends Service {
 
 
     private void syncRssItems(final DatabaseConnectionOrm dbConn) {
-        new RssItemObservable(dbConn, mApi.getAPI(), mPrefs)
+        Observable.fromPublisher(new RssItemObservable(dbConn, mApi.getAPI(), mPrefs))
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Observer<Integer>() {
