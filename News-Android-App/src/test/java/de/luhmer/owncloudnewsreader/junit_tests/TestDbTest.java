@@ -1,8 +1,5 @@
 package de.luhmer.owncloudnewsreader.junit_tests;
 
-import android.database.Cursor;
-
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,16 +7,10 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.List;
-
 import de.luhmer.owncloudnewsreader.BuildConfig;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.database.DatabaseHelperOrm;
-import de.luhmer.owncloudnewsreader.database.model.DaoSession;
-import de.luhmer.owncloudnewsreader.database.model.Feed;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)

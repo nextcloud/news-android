@@ -3,7 +3,6 @@ package de.luhmer.owncloudnewsreader.di;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
-import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 

@@ -1,38 +1,23 @@
 package screengrab;
 
-import android.app.Instrumentation;
 import android.content.SharedPreferences;
-import android.graphics.Point;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v4.content.SharedPreferencesCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.test.UiThreadTest;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.mockito.Mockito;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
-import de.luhmer.owncloudnewsreader.R;
-
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
@@ -41,9 +26,6 @@ import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
 import tools.fastlane.screengrab.Screengrab;
 import tools.fastlane.screengrab.locale.LocaleTestRule;
-
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
  * Created by David on 06.03.2016.

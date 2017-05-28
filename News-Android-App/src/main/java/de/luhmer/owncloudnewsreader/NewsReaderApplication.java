@@ -1,18 +1,10 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.app.Application;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import de.luhmer.owncloudnewsreader.di.ApiModule;
 import de.luhmer.owncloudnewsreader.di.AppComponent;
 import de.luhmer.owncloudnewsreader.di.DaggerAppComponent;
-import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
 
 public class NewsReaderApplication extends Application {
 

@@ -23,7 +23,6 @@ package de.luhmer.owncloudnewsreader.reader;
 
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;

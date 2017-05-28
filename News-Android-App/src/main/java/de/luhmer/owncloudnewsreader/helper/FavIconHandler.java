@@ -35,7 +35,6 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.async_tasks.GetImageThreaded;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 
