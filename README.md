@@ -52,13 +52,14 @@ Download and install:
   2. Navigate to your workspace
 
   3. Then type in:
-    ```
+
+    
     git clone --recursive https://github.com/owncloud/News-Android-App.git
-    ```
+    
     for the dev branch:
-    ```
+    
     git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
-    ```
+    
 
   4. Run the following script `News-Android-App/remove_invalid_languages.sh`
 
@@ -66,10 +67,11 @@ Download and install:
 
   6. If you should ever get a Gradle error `Configuration with name 'default' not found`
     while building, execute following commands in the projects root directory:
-    ```
+
+   
     git submodule init
     git submodule update
-    ```
+   
 
 That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
 
@@ -89,8 +91,13 @@ Updates
 ---------------------
 
 
-0.9.9.7 (in development)
+0.9.9.8 (in development)
 ---------------------
+
+
+0.9.9.7 (Google Play)
+---------------------
+- Fix several app crashes
 
 
 0.9.9.6 (Google Play)
