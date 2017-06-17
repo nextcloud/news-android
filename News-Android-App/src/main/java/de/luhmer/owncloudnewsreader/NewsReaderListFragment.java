@@ -322,6 +322,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     }
 
     public void bindUserInfoToUI(boolean testMode) {
+        if(getActivity() == null) { // e.g. Activity is closed
+            return;
+        }
+
         SharedPreferences mPrefs = ((PodcastFragmentActivity) getActivity()).mPrefs;
         String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
         String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, getString(R.string.app_name));
