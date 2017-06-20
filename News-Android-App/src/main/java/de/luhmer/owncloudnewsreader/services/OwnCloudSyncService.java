@@ -310,6 +310,7 @@ public class OwnCloudSyncService extends Service {
 		}
 
         Intent service = new Intent(this, DownloadImagesService.class);
+        service.setPackage(getPackageName());
         service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.FAVICONS_ONLY);
         startService(service);
 
