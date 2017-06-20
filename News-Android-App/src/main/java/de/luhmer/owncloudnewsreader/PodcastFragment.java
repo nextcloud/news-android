@@ -51,7 +51,7 @@ import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link PodcastFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
+ * to StartYoutubePlayer interaction events.
  * Use the {@link PodcastFragment#newInstance} factory method to
  * create an instance of this fragment.
  *

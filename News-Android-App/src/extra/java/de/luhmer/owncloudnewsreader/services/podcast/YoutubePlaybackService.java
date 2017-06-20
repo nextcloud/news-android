@@ -75,12 +75,12 @@ public class YoutubePlaybackService extends PlaybackService {
         return VideoType.YouTube;
     }
 
-    public void setYoutubePlayer(YouTubePlayer youTubePlayer, boolean wasRestored) {
-        this.youTubePlayer = youTubePlayer;
-        youTubePlayer.setPlaybackEventListener(youtubePlaybackEventListener);
-        youTubePlayer.setPlayerStateChangeListener(youtubePlayerStateChangeListener);
+    public void setYoutubePlayer(Object youTubePlayer, boolean wasRestored) {
+        this.youTubePlayer = (YouTubePlayer) youTubePlayer;
+        this.youTubePlayer.setPlaybackEventListener(youtubePlaybackEventListener);
+        this.youTubePlayer.setPlayerStateChangeListener(youtubePlayerStateChangeListener);
 
-        youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);
+        this.youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);
 
         // Start buffering
         if (!wasRestored) {
@@ -88,7 +88,7 @@ public class YoutubePlaybackService extends PlaybackService {
             Matcher matcher = youtubeIdPattern.matcher(getMediaItem().link);
             if(matcher.matches()) {
                 String youtubeId = matcher.group(1);
-                youTubePlayer.cueVideo(youtubeId);
+                this.youTubePlayer.cueVideo(youtubeId);
             } else {
                 Toast.makeText(context, "Cannot find youtube video id", Toast.LENGTH_LONG).show();
                 setStatus(Status.FAILED);

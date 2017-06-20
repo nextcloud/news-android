@@ -24,6 +24,15 @@ android {
         }
     }
 
+    productFlavors {
+        // 100% Open-Source Edition
+        oss {
+        }
+        // 99% Open-source edition:  uses the YouTube Player Jar
+        extra {
+        }
+    }
+
     lintOptions {
         // translations are imported from transifex, so no need to check here
         disable 'MissingTranslation'
@@ -114,7 +123,7 @@ dependencies {
     compile project(':MaterialShowcaseView:library')
     compile 'com.nbsp:library:1.02' // MaterialFilePicker
 
-    compile 'com.github.tommus:youtube-android-player-api:1.2.2'
+    extraCompile 'com.github.tommus:youtube-android-player-api:1.2.2'
 
     testCompile 'org.robolectric:robolectric:3.0-rc3'
     testCompile 'junit:junit:4.1'

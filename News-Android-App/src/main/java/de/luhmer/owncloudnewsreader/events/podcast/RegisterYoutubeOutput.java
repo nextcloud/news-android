@@ -1,15 +1,13 @@
 package de.luhmer.owncloudnewsreader.events.podcast;
 
-import com.google.android.youtube.player.YouTubePlayer;
-
 public class RegisterYoutubeOutput {
 
-    public RegisterYoutubeOutput(YouTubePlayer youTubePlayer, boolean wasRestored) {
+    public RegisterYoutubeOutput(Object youTubePlayer, boolean wasRestored) {
         this.youTubePlayer = youTubePlayer;
         this.wasRestored = wasRestored;
     }
 
-    public YouTubePlayer youTubePlayer;
+    public Object youTubePlayer; // (Type: com.google.android.youtube.player.YouTubePlayer;)
     public boolean wasRestored;
 
 }

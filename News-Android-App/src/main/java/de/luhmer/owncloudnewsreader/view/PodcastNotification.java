@@ -188,7 +188,9 @@ public class PodcastNotification {
                 showImageForEmptyUri(R.drawable.default_feed_icon_light).
                 showImageOnFail(R.drawable.default_feed_icon_light).
                 build();
-        Bitmap bmpAlbumArt = ImageLoader.getInstance().loadImageSync(favIconUrl, displayImageOptions);
+
+        //TODO networkOnMainThreadExceptionHere!
+        //Bitmap bmpAlbumArt = ImageLoader.getInstance().loadImageSync(favIconUrl, displayImageOptions);
 
 
 
@@ -198,7 +200,7 @@ public class PodcastNotification {
                 .putString(MediaMetadataCompat.METADATA_KEY_TITLE, "Test")
                         //.putString(MediaMetadataCompat.METADATA_KEY_TITLE, podcastItem.title)
                 .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, 100)
-                .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bmpAlbumArt)
+                //.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bmpAlbumArt)
                 /* .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART,
                         BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_launcher)) */
                 .build());

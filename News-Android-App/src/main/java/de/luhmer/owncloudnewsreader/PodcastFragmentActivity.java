@@ -3,7 +3,6 @@ package de.luhmer.owncloudnewsreader;
 import android.animation.Animator;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.app.FragmentTransaction;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,9 +27,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -67,11 +63,9 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     private static final String TAG = PodcastFragmentActivity.class.getCanonicalName();
 
-
     @Inject SharedPreferences mPrefs;
     @Inject ApiProvider mApi;
     @Inject public MemorizingTrustManager mMTM;
-
 
     private PodcastPlaybackService mPodcastPlaybackService;
     private boolean mBound = false;
@@ -277,6 +271,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     }
 
     boolean currentlyPlaying = false;
+    boolean showedYoutubeFeatureNotAvailableDialog = false;
 
     boolean videoViewInitialized = false;
     boolean isVideoViewVisible = true;
@@ -325,39 +320,38 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 eventBus.post(new RegisterVideoOutput(surfaceView, rlVideoPodcastSurfaceWrapper));
                 togglePodcastVideoViewAnimation();
             }
-        } else if(podcast.getVideoType() == PlaybackService.VideoType.YouTube){
-            if(!videoViewInitialized) {
-                isVideoViewVisible = true;
-                videoViewInitialized = true;
-                rlVideoPodcastSurfaceWrapper.removeAllViews();
+        } else if(podcast.getVideoType() == PlaybackService.VideoType.YouTube) {
+            if(BuildConfig.FLAVOR.equals("extra")) {
+                if (!videoViewInitialized) {
+                    isVideoViewVisible = true;
+                    videoViewInitialized = true;
+                    rlVideoPodcastSurfaceWrapper.removeAllViews();
 
-                rlVideoPodcastSurfaceWrapper.setVisibility(View.VISIBLE);
+                    rlVideoPodcastSurfaceWrapper.setVisibility(View.VISIBLE);
 
-                togglePodcastVideoViewAnimation();
+                    togglePodcastVideoViewAnimation();
 
-                final int YOUTUBE_CONTENT_VIEW_ID = 10101010;
-                FrameLayout frame = new FrameLayout(this);
-                frame.setId(YOUTUBE_CONTENT_VIEW_ID);
-                rlVideoPodcastSurfaceWrapper.addView(frame);
-                //setContentView(frame, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+                    final int YOUTUBE_CONTENT_VIEW_ID = 10101010;
+                    FrameLayout frame = new FrameLayout(this);
+                    frame.setId(YOUTUBE_CONTENT_VIEW_ID);
+                    rlVideoPodcastSurfaceWrapper.addView(frame);
+                    //setContentView(frame, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
 
-
-
-                YouTubePlayerFragment youTubePlayerFragment = YouTubePlayerFragment.newInstance();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.add(YOUTUBE_CONTENT_VIEW_ID, youTubePlayerFragment).commit();
-                youTubePlayerFragment.initialize("AIzaSyA2OHKWvF_hRVtPmLcwnO8yF6-iah2hjbk", new YouTubePlayer.OnInitializedListener() {
-                    @Override
-                    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
-                        eventBus.post(new RegisterYoutubeOutput(youTubePlayer, wasRestored));
-                        togglePodcastVideoViewAnimation();
-                    }
-
-                    @Override
-                    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-                        Toast.makeText(PodcastFragmentActivity.this, "Error while playing youtube video! (InitializationFailure)", Toast.LENGTH_LONG).show();
-                    }
-                });
+                    YoutubePlayerManager.StartYoutubePlayer(this, YOUTUBE_CONTENT_VIEW_ID, eventBus, new Runnable() {
+                        @Override
+                        public void run() {
+                            togglePodcastVideoViewAnimation();
+                        }
+                    });
+                }
+            } else if(!showedYoutubeFeatureNotAvailableDialog) {
+                showedYoutubeFeatureNotAvailableDialog = true;
+                new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.warning))
+                        .setMessage(R.string.dialog_feature_not_available)
+                        .setCancelable(true)
+                        .setPositiveButton(getString(android.R.string.ok), null)
+                        .show();
             }
         } else {
             isVideoViewVisible = false;
