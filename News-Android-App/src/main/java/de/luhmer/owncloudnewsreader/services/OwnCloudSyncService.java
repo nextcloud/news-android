@@ -23,7 +23,7 @@ package de.luhmer.owncloudnewsreader.services;
 
 import android.app.ActivityManager;
 import android.app.Service;
-import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -294,19 +294,26 @@ public class OwnCloudSyncService extends Service {
 		//int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
 
 		if(newItemsCount > 0) {
-			ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-			List<ActivityManager.RunningTaskInfo> runningTaskInfo = am.getRunningTasks(1);
+            String foregroundActivityPackageName = "";
 
-			ComponentName componentInfo = runningTaskInfo.get(0).topActivity;
-			if(!componentInfo.getPackageName().equals("de.luhmer.owncloudnewsreader")) {
-				Resources res = getResources();
-				String tickerText = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
-				String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
-				String title = getString(R.string.app_name);
+            ActivityManager mActivityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningTaskInfo> rtiList = mActivityManager.getRunningTasks(1);
+            if(rtiList.size() > 0) {
+                foregroundActivityPackageName = rtiList.get(0).topActivity.getPackageName();
+            }
 
-				if(mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true))//Default is true
-					NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
-			}
+            //Log.v(TAG, "foregroundActivityPackageName=" + foregroundActivityPackageName);
+
+            // If another app is opened show a notification
+            if (!foregroundActivityPackageName.equals(getPackageName())) {
+                Resources res = getResources();
+                String tickerText = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
+                String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
+                String title = getString(R.string.app_name);
+
+                if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true))//Default is true
+                    NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
+            }
 		}
 
         Intent service = new Intent(this, DownloadImagesService.class);

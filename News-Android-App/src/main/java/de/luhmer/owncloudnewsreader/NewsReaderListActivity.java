@@ -822,7 +822,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             if(ThemeChooser.ThemeRequiresRestartOfUI(this) || !newLayout.equals(oldLayout)) {
                 finish();
                 startActivity(getIntent());
-            } else if(data.hasExtra(SettingsActivity.CACHE_CLEARED)) {
+            } else if(data.hasExtra(SettingsActivity.CACHE_CLEARED) && ownCloudSyncService != null) {
                 resetUiAndStartSync();
             }
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
