@@ -89,10 +89,16 @@ Updates
 ==================================
 1.0 (in development)
 ---------------------
+- Single Sign on for all Nextcloud Android Apps!
 
-
-0.9.9.8 (in development)
+0.9.9.9 (in development)
 ---------------------
+
+
+0.9.9.8 (Google Play)
+---------------------
+- Fix several app crashes
+- Use flavors (for proprietary api calls)
 
 
 0.9.9.7 (Google Play)
