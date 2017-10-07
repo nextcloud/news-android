@@ -18,6 +18,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterYoutubeOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
+import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -232,6 +233,12 @@ public class PodcastPlaybackService extends Service {
         sendMediaStatus();
     }
 
+    @Subscribe
+    public void onEvent(SpeedPodcast event) {
+        if(mPlaybackService != null) {
+            mPlaybackService.setPlaybackSpeed(event.playbackSpeed);
+        }
+    }
 
     public void play() {
         if(mPlaybackService != null) {
@@ -255,7 +262,7 @@ public class PodcastPlaybackService extends Service {
         UpdatePodcastStatusEvent audioPodcastEvent;
 
         if(mPlaybackService == null) {
-            audioPodcastEvent = new UpdatePodcastStatusEvent(0, 0, PlaybackService.Status.NOT_INITIALIZED, "", PlaybackService.VideoType.None, -1);
+            audioPodcastEvent = new UpdatePodcastStatusEvent(0, 0, PlaybackService.Status.NOT_INITIALIZED, "", PlaybackService.VideoType.None, -1, -1);
         } else {
             audioPodcastEvent = new UpdatePodcastStatusEvent(
                     mPlaybackService.getCurrentDuration(),
@@ -263,7 +270,8 @@ public class PodcastPlaybackService extends Service {
                     mPlaybackService.getStatus(),
                     mPlaybackService.getMediaItem().title,
                     mPlaybackService.getVideoType(),
-                    mPlaybackService.getMediaItem().itemId);
+                    mPlaybackService.getMediaItem().itemId,
+                    mPlaybackService.getPlaybackSpeed());
         }
         eventBus.post(audioPodcastEvent);
     }
