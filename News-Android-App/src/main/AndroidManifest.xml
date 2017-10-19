@@ -113,7 +113,9 @@
 		**********************************************************************
         -->
 
-        <service android:name=".services.DownloadImagesService" />
+        <service
+            android:name=".services.DownloadImagesService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <service android:name=".services.SyncItemStateService" />
 
         <service

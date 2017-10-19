@@ -34,37 +34,35 @@ import java.net.URL;
 
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 
-public class GetImageThreaded implements ImageLoadingListener
+public class DownloadImageHandler implements ImageLoadingListener
 {
 	private static final String TAG = "GetImageAsyncTask";
 
-	private URL WEB_URL_TO_FILE;
+	private URL mImageUrl;
 	private ImageDownloadFinished imageDownloadFinished;
-	private long ThreadId;
 
 	private static final DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
 			.cacheOnDisk(true)
 			.build();
 
-	public GetImageThreaded(String WEB_URL_TO_FILE, ImageDownloadFinished imgDownloadFinished, long ThreadId) {
-		try
-		{
-			this.WEB_URL_TO_FILE = new URL(WEB_URL_TO_FILE);
-		}
-		catch(Exception ex)
-		{
-            Log.d(TAG, "Invalid URL: " + WEB_URL_TO_FILE, ex);
+	public DownloadImageHandler(String imageUrl) {
+		try {
+			this.mImageUrl = new URL(imageUrl);
+		} catch(Exception ex) {
+            Log.d(TAG, "Invalid URL: " + imageUrl, ex);
 		}
 
-		imageDownloadFinished = imgDownloadFinished;
-		this.ThreadId = ThreadId;
-		//this.imageViewReference = new WeakReference<ImageView>(imageView);
+
 	}
 
-    public void start() {
-        ImageLoader.getInstance().loadImage(WEB_URL_TO_FILE.toString(), displayImageOptions, this);
-    }
+	public void downloadSync() {
+		ImageLoader.getInstance().loadImageSync(mImageUrl.toString(), displayImageOptions);
+	}
 
+    public void downloadAsync(ImageDownloadFinished imgDownloadFinished) {
+		this.imageDownloadFinished = imgDownloadFinished;
+        ImageLoader.getInstance().loadImage(mImageUrl.toString(), displayImageOptions, this);
+    }
 
 	@Override
 	public void onLoadingStarted(String imageUri, View view) {
@@ -89,7 +87,8 @@ public class GetImageThreaded implements ImageLoadingListener
 	}
 
 	private void NotifyDownloadFinished(Bitmap bitmap) {
-		if(imageDownloadFinished != null)
-			imageDownloadFinished.DownloadFinished(ThreadId, bitmap);
+		if(imageDownloadFinished != null) {
+            imageDownloadFinished.DownloadFinished(bitmap);
+        }
 	}
 }

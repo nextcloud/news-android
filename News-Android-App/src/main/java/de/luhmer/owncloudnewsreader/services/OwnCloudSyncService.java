@@ -146,12 +146,10 @@ public class OwnCloudSyncService extends Service {
         boolean      stateSyncSuccessful;
     }
 
-	//Sync state of items e.g. read/unread/starred/unstarred
+	// Start sync
     private void start() {
         syncStopWatch = new StopWatch();
         syncStopWatch.start();
-
-
 
         //Delete all pinned/stored SSL Certificates
         /*
@@ -164,14 +162,7 @@ public class OwnCloudSyncService extends Service {
             }
         }*/
 
-
-
-
-
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(OwnCloudSyncService.this);
-
-
-
 
         Observable rssStateSync = Observable.fromPublisher(
                 new Publisher() {
@@ -316,10 +307,9 @@ public class OwnCloudSyncService extends Service {
             }
 		}
 
-        Intent service = new Intent(this, DownloadImagesService.class);
-        service.setPackage(getPackageName());
-        service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.FAVICONS_ONLY);
-        startService(service);
+        Intent data = new Intent();
+        data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.FAVICONS_ONLY);
+		DownloadImagesService.enqueueWork(OwnCloudSyncService.this, data);
 
         EventBus.getDefault().post(new SyncFinishedEvent());
 	}

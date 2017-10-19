@@ -1,22 +1,19 @@
 package de.luhmer.owncloudnewsreader.view;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.media.AudioManager;
-import android.media.session.MediaSessionManager;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.media.MediaMetadataCompat;
-import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,16 +40,25 @@ public class PodcastNotification {
     private EventBus eventBus;
     private NotificationCompat.Builder notificationBuilder;
     private PendingIntent resultPendingIntent;
+    private String CHANNEL_ID = "1";
 
-    private MediaSessionManager mManager;
-    public MediaSessionCompat mSession;
-    private MediaControllerCompat mController;
+    //private MediaSessionManager mManager;
+    private MediaSessionCompat mSession;
+    //private MediaControllerCompat mController;
+    private int lastDrawableId = -1;
 
     private final static int NOTIFICATION_ID = 1111;
 
     public PodcastNotification(Context context) {
         this.mContext = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, importance);
+            //mChannel.enableLights(true);
+            this.notificationManager.createNotificationChannel(mChannel);
+        }
 
         eventBus = EventBus.getDefault();
         eventBus.register(this);
@@ -78,15 +84,17 @@ public class PodcastNotification {
                 );
 
         // Create the final Notification object.
-        notificationBuilder = new NotificationCompat.Builder(mContext)
+        notificationBuilder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setAutoCancel(true)
                 .setOngoing(true)
                 .setContentIntent(resultPendingIntent);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            notificationBuilder.setChannelId(CHANNEL_ID);
+        }
     }
 
-
-    int lastDrawableId = -1;
 
     @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
@@ -215,6 +223,8 @@ public class PodcastNotification {
                 // Ignore
             }
         }, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+
+
 
         //MediaControllerCompat controller = mSession.getController();
 

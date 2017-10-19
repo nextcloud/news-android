@@ -187,7 +187,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				}
 			};
 
-			drawerLayout.setDrawerListener(drawerToggle);
+			drawerLayout.addDrawerListener(drawerToggle);
 
 			try {
 				// increase the size of the drag margin to prevent starting a star swipe when
@@ -476,7 +476,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				// Setting android:TextColor to #000 in the light theme results in black on black
 				// text on the Snackbar, set the text back to white,
 				// TODO: find a cleaner way to do this
-				TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+				TextView textView = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
 				textView.setTextColor(Color.WHITE);
 				snackbar.show();
 			}
@@ -537,10 +537,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
 		if (isFolder) {
+            /*
 			if(idFeed >= 0) {
 				//currently no actions for folders
 				//String titel = dbConn.getFolderById(idFeed).getLabel();
-			}
+			}*/
 		} else {
 			String titel = dbConn.getFeedById(idFeed).getFeedTitle();
 			String iconurl = dbConn.getFeedById(idFeed).getFaviconUrl();
@@ -612,9 +613,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     {
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
+		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
 			StartLoginFragment(this);
-		else {
+		} else {
 			if (!ownCloudSyncService.isSyncRunning())
 			{
 				new PostDelayHandler(this).stopRunningPostDelayHandler();//Stop pending sync handler
@@ -630,7 +631,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			} else {
 				UpdateButtonLayout();
 			}
-
 		}
     }
 
@@ -721,10 +721,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
 				long highestItemId = dbConn.getLowestRssItemIdUnread();
-				Intent service = new Intent(this, DownloadImagesService.class);
-				service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
-				service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
-				startService(service);
+
+
+				Intent data = new Intent();
+				data.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
+				data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
+				DownloadImagesService.enqueueWork(this, data);
 
 				break;
 
