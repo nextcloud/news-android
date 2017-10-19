@@ -1,6 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.app.Activity;
+
 import org.greenrobot.eventbus.EventBus;
 
 public class YoutubePlayerManager {
