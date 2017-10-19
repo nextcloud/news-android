@@ -10,6 +10,7 @@ android {
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -72,7 +73,7 @@ repositories {
 
 }
 
-final SUPPORT_VERSION = '25.3.1'
+final SUPPORT_VERSION = '26.+'
 
 dependencies {
     // core android studio module
@@ -82,6 +83,7 @@ dependencies {
     // compile 'com.google.android.gms:play-services:4.2.42'
     compile project(':ownCloud-Account-Importer')
     compile "com.android.support:support-v4:${SUPPORT_VERSION}"
+    compile "com.android.support:support-compat:${SUPPORT_VERSION}"
     compile "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
     compile "com.android.support:design:${SUPPORT_VERSION}"
     compile "com.android.support:palette-v7:${SUPPORT_VERSION}"
