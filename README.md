@@ -1,6 +1,6 @@
-ownCloud News Reader – Android App
+Nextcloud News Reader – Android App
 ==================================
-The ownCloud News Reader Android App is under [AGPLv3](https://www.gnu.org/licenses/license-list.html#AGPLv3.0) License terms.
+The Nextcloud News Reader Android App is under [AGPLv3](https://www.gnu.org/licenses/license-list.html#AGPLv3.0) License terms.
 
 <p>
 <a href="https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader" alt="Download from Google Play">
@@ -91,9 +91,14 @@ Updates
 ---------------------
 - Single Sign on for all Nextcloud Android Apps!
 
-0.9.9.9 (in development)
----------------------
 
+0.9.9.9 (Google Play)
+---------------------
+- Fix several app crashes
+- Fix several widget issues
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/583">#583 App crashes on Android 8</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/579">#579 App crash due to invalid drawable tag vector</a>
+- Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/575">#575 Widget unusable on dark background</a>
 
 0.9.9.8 (Google Play)
 ---------------------
