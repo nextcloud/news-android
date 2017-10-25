@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
+
+    /*
+    signingConfigs {
+        debug {
+            storeFile file("~/.android/debug.keystore")
+        }
+    }*/
+
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
     buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
@@ -17,11 +25,14 @@ android {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             pseudoLocalesEnabled true
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            //signingConfig signingConfigs.debug
         }
     }
 
