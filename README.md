@@ -85,6 +85,7 @@ Contributors
 * [Benjamin Stephan](https://github.com/b3nson)
 * [Stefan Niedermann](https://github.com/stefan-niedermann)
 
+
 Updates
 ==================================
 1.0 (in development)
@@ -99,6 +100,8 @@ Updates
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/583">#583 App crashes on Android 8</a>
 - Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/579">#579 App crash due to invalid drawable tag vector</a>
 - Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/575">#575 Widget unusable on dark background</a>
+- Bug fix - <a href="https://github.com/owncloud/News-Android-App/issues/587">#587 App crashes</a>
+
 
 0.9.9.8 (Google Play)
 ---------------------
