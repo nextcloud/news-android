@@ -24,8 +24,10 @@ package de.luhmer.owncloudnewsreader;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -39,6 +41,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -269,6 +272,18 @@ public class NewsDetailFragment extends Fragment {
 
 
         mWebView.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                builder.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDarkTheme));
+                builder.setShowTitle(true);
+                builder.setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
+                builder.setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right);
+                builder.build().launchUrl(getActivity(), Uri.parse(url));
+                return true;
+                //return super.shouldOverrideUrlLoading(view, url);
+            }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {

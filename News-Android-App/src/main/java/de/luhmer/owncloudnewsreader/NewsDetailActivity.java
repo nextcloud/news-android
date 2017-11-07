@@ -99,12 +99,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private DatabaseConnectionOrm dbConn;
 	public List<RssItem> rssItems;
 
-	private CustomTabsSession mCustomTabsSession;
-	private CustomTabsClient mCustomTabsClient;
-	private CustomTabsServiceConnection mCustomTabsConnection;
-
-	private boolean mCustomTabsSupported;
-    //public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
+	//public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -183,15 +178,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
         mViewPager.addOnPageChangeListener(onPageChangeListener);
-
-		//Init ChromeCustomTabs
-		mCustomTabsSupported = bindCustomTabsService();
     }
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		unbindCustomTabsService();
 	}
 
     private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
@@ -427,9 +418,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 				if(link.length() > 0)
 				{
-					if(isChromeDefaultBrowser() && mCustomTabsSupported) {
-						mCustomTabsSession = getSession();
-						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
+					//if(isChromeDefaultBrowser() && mCustomTabsSupported) {
+					if(isChromeDefaultBrowser()) {
+						//CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
+						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
 						builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimaryDarkTheme));
 						builder.setShowTitle(true);
 						builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
@@ -512,48 +504,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
         Log.v(TAG, "Default Browser is: " + resolveInfo.loadLabel(getPackageManager()).toString());
 		return (resolveInfo.loadLabel(getPackageManager()).toString().contains("Chrome"));
-	}
-
-	private boolean bindCustomTabsService() {
-		if (mCustomTabsClient != null)
-			return true;
-
-		String packageName = CustomTabActivityManager.getInstance().getPackageNameToUse(this);
-		if (packageName == null)
-			return false;
-
-		mCustomTabsConnection = new CustomTabsServiceConnection() {
-			@Override
-			public void onCustomTabsServiceConnected(ComponentName name, CustomTabsClient client) {
-				mCustomTabsClient = client;
-			}
-
-			@Override
-			public void onServiceDisconnected(ComponentName name) {
-				mCustomTabsClient = null;
-			}
-		};
-
-		return CustomTabsClient.bindCustomTabsService(this, packageName, mCustomTabsConnection);
-	}
-
-	private void unbindCustomTabsService() {
-		if (mCustomTabsConnection == null)
-			return;
-
-		unbindService(mCustomTabsConnection);
-		mCustomTabsConnection = null;
-		mCustomTabsClient = null;
-		mCustomTabsSession = null;
-	}
-
-	private CustomTabsSession getSession() {
-		if (mCustomTabsClient == null) {
-			mCustomTabsSession = null;
-		} else if (mCustomTabsSession == null) {
-			mCustomTabsSession = mCustomTabsClient.newSession(new CustomTabsCallback());
-		}
-		return mCustomTabsSession;
 	}
 
 	private void markItemAsReadUnread(RssItem item, boolean read) {
