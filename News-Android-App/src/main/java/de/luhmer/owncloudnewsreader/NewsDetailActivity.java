@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,11 +29,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.customtabs.CustomTabsCallback;
-import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
-import android.support.customtabs.CustomTabsServiceConnection;
-import android.support.customtabs.CustomTabsSession;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -59,7 +54,6 @@ import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloudnewsreader.chrometabs.CustomTabActivityManager;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -239,18 +233,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		{
 			NewsDetailFragment ndf = getNewsDetailFragmentAtPosition(currentPosition);//(NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 
-			if(ndf != null && ndf.mWebView != null)
-			{
-				if (ndf.urls.size() > 1) {
-                    ndf.urls.remove(0);
-					ndf.mWebView.loadUrl(ndf.urls.get(0));
-					return true;
-				} else if(ndf.urls.size() == 1) {
-					ndf.urls.remove(0);
-                    ndf.startLoadRssItemToWebViewTask();
-                    Log.v(TAG, "Load rssitem to webview again");
-					return true;
-                }
+			if(ndf != null && ndf.canNavigateBack()) {
+				ndf.navigateBack();
+				return true;
 			}
 		}
 

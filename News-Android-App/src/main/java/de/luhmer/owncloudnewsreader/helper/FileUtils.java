@@ -22,6 +22,7 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
+import android.os.Environment;
 
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
@@ -86,5 +87,10 @@ public class FileUtils {
     public static String getPathPodcasts(Context context)
     {
         return getPath(context) + "/podcasts";
+    }
+
+    public static boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 }
