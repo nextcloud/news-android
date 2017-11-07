@@ -93,6 +93,14 @@ Updates
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.10 (Google Play)
+---------------------
+- Several bug fixes
+- Add support for cardview
+- Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/590">#590 Improve "mark as read while scrolling" feature</a>
+- Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/591">#591 Load links of feeds in external browser</a>
+
+
 0.9.9.9 (Google Play)
 ---------------------
 - Fix several app crashes
