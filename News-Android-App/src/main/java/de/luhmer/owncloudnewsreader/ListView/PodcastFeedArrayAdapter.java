@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastFeedClicked;
@@ -55,8 +55,8 @@ public class PodcastFeedArrayAdapter extends ArrayAdapter<PodcastFeedItem> {
 
 
     static class ViewHolder {
-        @Bind(R.id.tv_title) TextView tvTitle;
-        @Bind(R.id.tv_body) TextView tvBody;
+        @BindView(R.id.tv_title) TextView tvTitle;
+        @BindView(R.id.tv_body) TextView tvBody;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

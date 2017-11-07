@@ -67,7 +67,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
@@ -123,11 +123,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	//private Date mLastSyncDate = new Date(0);
 	private boolean mSyncOnStartupPerformed = false;
 
-	@Bind(R.id.toolbar) Toolbar toolbar;
+	@BindView(R.id.toolbar) Toolbar toolbar;
 
 	private ServiceConnection mConnection = null;
 
-	@Nullable @Bind(R.id.drawer_layout)
+	@Nullable @BindView(R.id.drawer_layout)
 	protected DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;

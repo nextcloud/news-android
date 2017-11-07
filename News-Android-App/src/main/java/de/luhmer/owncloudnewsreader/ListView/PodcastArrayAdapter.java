@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
@@ -131,13 +131,13 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
 
 
     static class ViewHolder {
-        @Bind(R.id.tv_title) TextView tvTitle;
-        @Bind(R.id.tv_body) TextView tvBody;
-        @Bind(R.id.fl_downloadPodcastWrapper) FrameLayout flDownloadPodcast;
-        @Bind(R.id.fl_PlayPodcastWrapper) FrameLayout flPlayPodcast;
-        @Bind(R.id.fl_deletePodcastWrapper) FrameLayout flDeletePodcast;
-        @Bind(R.id.pbDownloadPodcast) ProgressBar pbDownloadPodcast;
-        @Bind(R.id.tvDownloadPodcastProgress) TextView tvDownloadPodcastProgress;
+        @BindView(R.id.tv_title) TextView tvTitle;
+        @BindView(R.id.tv_body) TextView tvBody;
+        @BindView(R.id.fl_downloadPodcastWrapper) FrameLayout flDownloadPodcast;
+        @BindView(R.id.fl_PlayPodcastWrapper) FrameLayout flPlayPodcast;
+        @BindView(R.id.fl_deletePodcastWrapper) FrameLayout flDeletePodcast;
+        @BindView(R.id.pbDownloadPodcast) ProgressBar pbDownloadPodcast;
+        @BindView(R.id.tvDownloadPodcastProgress) TextView tvDownloadPodcastProgress;
 
 
 

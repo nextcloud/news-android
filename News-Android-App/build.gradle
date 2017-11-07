@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
 
@@ -24,6 +23,7 @@ android {
     buildTypes {
         debug {
             minifyEnabled true
+            // TODO check if proguard-android.txt is used at all.. it's supposed to get it from the sdk. so we can delete it in this repo!
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             pseudoLocalesEnabled true
@@ -36,12 +36,18 @@ android {
         }
     }
 
+
+
+    flavorDimensions "default"
+
     productFlavors {
         // 100% Open-Source Edition
         oss {
+            dimension "default"
         }
         // 99% Open-source edition:  uses the YouTube Player Jar
         extra {
+            dimension "default"
         }
     }
 
@@ -92,7 +98,7 @@ dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // compile 'com.google.android.gms:play-services:4.2.42'
-    compile project(':ownCloud-Account-Importer')
+    compile project(path: ':ownCloud-Account-Importer', configuration: 'default')
     compile "com.android.support:support-v4:${SUPPORT_VERSION}"
     compile "com.android.support:support-compat:${SUPPORT_VERSION}"
     compile "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
@@ -103,8 +109,9 @@ dependencies {
     compile 'de.mrmaffen:holocircularprogressbar:1.0.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
     compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    //compile group: 'com.jakewharton', name: 'butterknife', version: '8.5.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    annotationProcessor 'com.google.auto.value:auto-value:1.1'
     compile 'com.sothree.slidinguppanel:library:3.2.1'
 
     compile 'org.greenrobot:eventbus:3.0.0'
@@ -118,7 +125,6 @@ dependencies {
 
 
     compile 'com.google.dagger:dagger:2.9'
-    apt "com.google.dagger:dagger-compiler:2.9"
     annotationProcessor "com.google.dagger:dagger-compiler:2.9"
     provided 'javax.annotation:jsr250-api:1.0'
 
@@ -133,13 +139,13 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
-    compile project(':MaterialShowcaseView:library')
+    compile project(path: ':MaterialShowcaseView:library', configuration: 'default')
     compile 'com.nbsp:library:1.02' // MaterialFilePicker
 
     extraCompile 'com.github.tommus:youtube-android-player-api:1.2.2'
 
     testCompile 'org.robolectric:robolectric:3.0-rc3'
-    testCompile 'junit:junit:4.1'
+    testCompile 'junit:junit:4.12'
     testCompile("org.mockito:mockito-core:1.10.19") {
         exclude group: 'org.hamcrest'
     }
@@ -153,9 +159,9 @@ dependencies {
 
 
     androidTestCompile "com.android.support:support-annotations:${SUPPORT_VERSION}"
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile 'com.android.support.test:rules:0.5'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
+    androidTestCompile 'com.android.support.test:rules:1.0.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
     androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2') {
         // this library uses the newest app compat v22 but the espresso contrib still v21.
         // you have to specifically exclude the older versions of the contrib library or

@@ -53,7 +53,7 @@ import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.adapter.DividerItemDecoration;
@@ -110,10 +110,10 @@ public class NewsReaderDetailFragment extends Fragment {
     private static final String LAYOUT_MANAGER_STATE = "LAYOUT_MANAGER_STATE";
     private boolean mMarkAsReadWhileScrollingEnabled;
 
-    @Bind(R.id.pb_loading) ProgressBar pbLoading;
-    @Bind(R.id.tv_no_items_available) View tvNoItemsAvailable;
-    @Bind(R.id.list) RecyclerView recyclerView;
-    @Bind(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
+    @BindView(R.id.pb_loading) ProgressBar pbLoading;
+    @BindView(R.id.tv_no_items_available) View tvNoItemsAvailable;
+    @BindView(R.id.list) RecyclerView recyclerView;
+    @BindView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the

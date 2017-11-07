@@ -62,7 +62,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -78,9 +78,9 @@ public class NewsDetailFragment extends Fragment {
 
 	public static int background_color = Integer.MIN_VALUE;
 
-	@Bind(R.id.webview) WebView mWebView;
-    @Bind(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
-	@Bind(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
+	@BindView(R.id.webview) WebView mWebView;
+    @BindView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
+	@BindView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
 
 
 	private int section_number;

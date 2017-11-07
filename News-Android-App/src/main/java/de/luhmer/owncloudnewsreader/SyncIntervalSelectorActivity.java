@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 
@@ -28,7 +28,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
     SharedPreferences mPrefs;
     PlaceholderFragment mFragment;
     String[] items_values;
-    @Bind(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
