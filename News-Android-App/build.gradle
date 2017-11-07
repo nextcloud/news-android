@@ -106,6 +106,7 @@ dependencies {
     compile "com.android.support:palette-v7:${SUPPORT_VERSION}"
     compile "com.android.support:recyclerview-v7:${SUPPORT_VERSION}"
     compile "com.android.support:customtabs:${SUPPORT_VERSION}"
+    compile "com.android.support:cardview-v7:${SUPPORT_VERSION}"
     compile 'de.mrmaffen:holocircularprogressbar:1.0.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
     compile 'com.google.code.gson:gson:2.8.0'

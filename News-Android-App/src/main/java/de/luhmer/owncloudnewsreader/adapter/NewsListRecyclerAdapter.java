@@ -174,6 +174,9 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                 case 2:
                     layout = R.layout.subscription_detail_list_item_extended_webview;
                     break;
+                case 4:
+                    layout = R.layout.subscription_detail_list_item_extended_cardview;
+                    break;
             }
             View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
