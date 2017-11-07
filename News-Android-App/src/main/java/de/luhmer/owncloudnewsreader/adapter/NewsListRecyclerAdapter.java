@@ -310,6 +310,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
 
     public void updateAdapterData(List<RssItem> rssItems) {
+        stayUnreadItems.clear();
+
         cachedPages = 1;
 
         if (this.lazyList != null) {
