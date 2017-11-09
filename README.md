@@ -43,8 +43,6 @@ Requirements:
 -----------------------
   1. Android Studio
 
-  1. Git installed (you can do the following stuff without git but I'm not going to show how).
-
 Download and install:
 -----------------------
   1. Open cmd/terminal
@@ -60,8 +58,6 @@ Download and install:
     
     git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
     
-
-  4. Run the following script `News-Android-App/remove_invalid_languages.sh`
 
   5. Import the Project and start coding!
 
