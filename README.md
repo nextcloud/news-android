@@ -4,7 +4,7 @@ The Nextcloud News Reader Android App is under [AGPLv3](https://www.gnu.org/lice
 
 <p>
 <a href='https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-    <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="height:100px;"/>
+    <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="100"/>
 </a>
 
 <a href="https://f-droid.org/app/de.luhmer.owncloudnewsreader">
@@ -23,7 +23,7 @@ Donate
 
 How to use the Beta App via Google Play?
 ==================================
-<a href='https://play.google.com/apps/testing/de.luhmer.owncloudnewsreader'>Nextcloud News Beta</a>
+[Nextcloud News Beta](https://play.google.com/apps/testing/de.luhmer.owncloudnewsreader)
 
 
 
