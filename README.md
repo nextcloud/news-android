@@ -4,11 +4,12 @@ The Nextcloud News Reader Android App is under [AGPLv3](https://www.gnu.org/lice
 
 <p>
 <a href='https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-    <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
+    <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="height:100px;"/>
 </a>
 
-<a href="https://f-droid.org/repository/browse/?fdid=de.luhmer.owncloudnewsreader" alt="ownCloud News App on fdroid.org">
-  <img src="https://camo.githubusercontent.com/7df0eafa4433fa4919a56f87c3d99cf81b68d01c/68747470733a2f2f662d64726f69642e6f72672f77696b692f696d616765732f632f63342f462d44726f69642d627574746f6e5f617661696c61626c652d6f6e2e706e67">
+<a href="https://f-droid.org/app/de.luhmer.owncloudnewsreader">
+  <img src="https://f-droid.org/badge/get-it-on.png"
+        alt="Get it on F-Droid" height="100">
 </a>
 </p>
 
@@ -22,7 +23,6 @@ Donate
 
 How to use the Beta App via Google Play?
 ==================================
-
 <a href='https://play.google.com/apps/testing/de.luhmer.owncloudnewsreader'>Nextcloud News Beta</a>
 
 
