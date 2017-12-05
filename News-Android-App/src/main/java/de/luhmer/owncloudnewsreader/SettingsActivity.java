@@ -49,6 +49,7 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
 import android.support.v7.widget.AppCompatEditText;
@@ -136,6 +137,9 @@ public class SettingsActivity extends PreferenceActivity {
 		}
 
 		super.onCreate(savedInstanceState);
+
+		// Fixes Resources$NotFoundException on some devices
+		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
 		//getActionBar().setDisplayHomeAsUpEnabled(true);
 
