@@ -364,8 +364,10 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
      * the original rss item page
      */
     private boolean isCurrentPageRssItem() {
-        String currentPageUrl = mWebView.copyBackForwardList().getCurrentItem().getOriginalUrl();
-        return currentPageUrl.equals("data:text/html;charset=utf-8;base64,");
-        //return currentPageUrl.equals(RSS_ITEM_PAGE_URL);
+        if(mWebView.copyBackForwardList().getCurrentItem() != null) {
+            String currentPageUrl = mWebView.copyBackForwardList().getCurrentItem().getOriginalUrl();
+            return currentPageUrl.equals("data:text/html;charset=utf-8;base64,");
+        }
+        return true;
     }
 }

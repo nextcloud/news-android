@@ -169,8 +169,12 @@ public class PodcastNotification {
 
     public void cancel()
     {
-        notificationManager.cancel(NOTIFICATION_ID);
-        mSession.setActive(false);
+        if(notificationManager != null) {
+            notificationManager.cancel(NOTIFICATION_ID);
+        }
+        if(mSession != null) {
+            mSession.setActive(false);
+        }
     }
 
     public void podcastChanged() {

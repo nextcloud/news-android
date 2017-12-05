@@ -220,7 +220,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             }
         }
 
-        if(textViewTitle != null) {
+        if(textViewTitle != null && title != null) {
             textViewTitle.setText(Html.fromHtml(title));
         }
 

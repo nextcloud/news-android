@@ -77,7 +77,7 @@ public class OkHttpSSLClient {
     }
 
     public static <T extends Throwable> T HandleExceptions(T ex) {
-        if(ex.getMessage().startsWith("Not a JSON Object: \"<!DOCTYPE\"")) {
+        if(ex.getMessage() != null && ex.getMessage().startsWith("Not a JSON Object: \"<!DOCTYPE\"")) {
             return (T) new JsonParseException("Invalid response from server. Please make sure, that the News App is installed and activated in your ownCloud/Nextcloud Webinterface. More information can be found here: https://github.com/nextcloud/news/blob/master/README.md#installationupdate");
         }
         //if(versionCode == -1 && exception_message.equals("Value <!DOCTYPE of type java.lang.String cannot be converted to JSONObject")) {
