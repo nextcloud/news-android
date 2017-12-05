@@ -3,6 +3,12 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.12 (Google Play)
+---------------------
+- Several bug fixes
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/602">#602 crash when trying to open settings</a>
+
+
 0.9.9.11 (Google Play)
 ---------------------
 - Fix app crashes on Android 8+
