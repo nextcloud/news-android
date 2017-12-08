@@ -1,190 +1,220 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">自動同期</string>
-  <string name="app_name">ownCloudニュースリーダー</string>
-  <string name="title_activity_sync_interval_selector">同期間隔を指定</string>
-  <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="empty_view_content">ここにアイテムなし</string>
-  <string name="toast_GettingMoreItems">複数のアイテムをダウンロード中です... しばらくお待ちください。</string>
-  <string name="no_wifi_available">WiFi接続がありません</string>
-  <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか？</string>
-  <string name="current_version">使用中のバージョンは %s です</string>
-  <string name="widget_header">ownCloudニュース</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="other">%d 個の新しいアイテムが利用可能です</item>
-  </plurals>
-  <string name="message_bar_reload">再読み込み</string>
-  <string name="allUnreadFeeds">すべての未読アイテム</string>
-  <string name="starredFeeds">共有アイテム</string>
-  <string name="title_activity_new_feed">新しいフィードを追加</string>
-  <string name="menu_update">同期</string>
-  <string name="menu_About_Changelog">ownCloudについて / 変更点</string>
-  <string name="menu_markAllAsRead">すべて既読にする</string>
-  <string name="menu_StartImageCaching">画像をダウンロード</string>
-  <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">共有</string>
-  <string name="action_read">読込</string>
-  <string name="action_playPodacst">Podcast を再生</string>
-  <string name="action_openInBrowser">ブラウザーで開く</string>
-  <string name="action_Share">共有</string>
-  <string name="action_login">サーバー設定</string>
-  <string name="action_save">保存</string>
-  <string name="action_settings">設定</string>
-  <string name="action_sync_settings">設定の同期</string>
-  <string name="action_add_new_feed">新しいフィードを追加</string>
-  <string name="action_textToSpeech">音声読み上げ</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="other">%d 個の新しい未読アイテムがあります</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="other">%d 個の新しい未読アイテムが利用できます</item>
-  </plurals>
-  <!--Add new feed-->
-  <string name="hint_feed_url">フィードURL</string>
-  <string name="action_add_feed">フィードを追加</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="action_img_download">画像をダウンロード</string>
-  <string name="action_img_sharelink">画像リンクを共有</string>
-  <string name="action_img_open">画像をブラウザで開く</string>
-  <string name="action_img_copylink">画像リンクをコピー</string>
-  <string name="action_link_share">共有リンク</string>
-  <string name="action_link_open">リンクをブラウザで開く</string>
-  <string name="action_link_copy">リンクをコピー</string>
-  <string name="toast_img_download_wait">ダウンロード中... しばらくお待ちください</string>
-  <string name="toast_img_saved">画像を保存しました。</string>
-  <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
-  <string name="toast_copied_to_clipboard">クリップボードにコピー</string>
-  <string name="error_download_failed">ダウンロードに失敗</string>
-  <string name="intent_title_share">次のものでシェア</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="action_feed_remove">フィードの削除</string>
-  <string name="action_feed_rename">フィードの名前を変更</string>
-  <string name="feed_remove_button">削除</string>
-  <string name="feed_rename_button">名前の変更</string>
-  <string name="confirm_feed_remove">本当にこのフィードを削除してよろしいですか？この操作は元に戻せません！</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">ユーザー名</string>
-  <string name="pref_title_password">パスワード</string>
-  <string name="pref_title_owncloudRootPath">ownCloud ルートアドレス</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">ログイン</string>
-  <string name="login_progress_signing_in">ログイン中...</string>
-  <string name="error_field_required">このフィールドは必須です</string>
-  <string name="error_invalid_url">このURLは不正確です</string>
-  <!--Import Accounts-->
-  <string name="import_account">アカウントをインポート</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="other">ダウンロードされた %d 個の古いアイテム</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">これ以上利用できるアイテムがありません</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="other">これまでに %d 個のアイテムを読み込みました...</item>
-  </plurals>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">設定</string>
-  <string name="cache_is_cleared">キャッシュがクリアされます！</string>
-  <!--General settings-->
-  <string name="pref_header_general">一般</string>
-  <string name="pref_title_general_sort_order">ソート順</string>
-  <string-array name="pref_general_sort_order">
-    <item>新 -&gt; 旧</item>
-    <item>旧 -&gt; 新</item>
-  </string-array>
-  <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
-  <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています…しばらくお待ちください。</string>
-  <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
-  <string name="warning">警告</string>
-  <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
-  <string name="pref_title_ShowOnlyUnread">未読の記事のみ表示</string>
-  <string name="pref_title_DisableHostnameVerification">ホスト名の検証を無効化</string>
-  <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
-  <string name="pref_title_OpenInBrowserDirectly">この記事を外部ブラウザーで開く</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
-  <string name="mtm_decision_always">常に</string>
-  <string name="mtm_decision_abort">中止</string>
-  <string name="mtm_notification">証明書の検証</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Podcast が選択されていません</string>
-  <string name="no_chapters_available">チャプターがありません</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">表示</string>
-  <string name="pref_title_app_theme">アプリテーマ</string>
-  <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
-  <string name="pref_display_title_lines_count">タイトルの行数</string>
-  <string-array name="pref_display_apptheme">
-    <item>ダーク</item>
-    <item>ライト</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>基本</item>
-    <item>拡張</item>
-    <item>拡張 (全文)</item>
-    <item>拡張ウェブ表示</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">通知</string>
-  <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">エラー</string>
-  <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
-  <string name="login_dialog_text_not_compatible">このアプリのバージョンはownCloudニュースアプリと互換性がありません。ニュースアプリとappframeworkをアップデートしてください。</string>
-  <string name="login_dialog_title_security_warning">セキュリティ警告</string>
-  <string name="login_dialog_text_security_warning">httpsを使用していません。攻撃者があなたのトラフィックに干渉し、一部の機密データ(例えば、パスワード)にアクセスする恐れがあります。そのため、httpsを利用することを強くお勧めします！</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">データと同期</string>
-  <string name="pref_title_clearCache">キャッシュをクリア</string>
-  <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
-  <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>なし</item>
-    <item>WiFiのみ</item>
-    <item>WiFi &amp; モバイル</item>
-    <item>WiFi接続がない場合は尋ねる</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 分</item>
-    <item>15 分</item>
-    <item>30 分</item>
-    <item>45 分</item>
-    <item>1 時間</item>
-    <item>2 時間</item>
-    <item>3 時間</item>
-    <item>6 時間</item>
-    <item>12 時間</item>
-    <item>24 時間</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_play">再生</string>
-  <string name="content_desc_pause">一時停止</string>
-  <string name="content_desc_rewind">巻戻し</string>
-  <string name="content_desc_forward">早送り</string>
-  <string name="content_desc_expand">展開</string>
-  <string name="content_desc_collapse">折りたたみ</string>
-  <string name="content_desc_mark_as_read">既読としてマーク</string>
-  <string name="content_desc_mark_as_unread">未読としてマーク</string>
-  <string name="content_desc_tap_to_refresh">タップして更新</string>
-  <string name="content_desc_add_to_favorites">お気に入りに追加</string>
-  <string name="content_desc_remove_from_favorites">お気に入りから削除</string>
-  <string name="content_desc_show_password">パスワードを表示</string>
-  <string name="content_desc_delete">削除</string>
-  <string name="content_desc_download">ダウンロード</string>
+
+    <string name="auto_sync_string">自動同期</string>
+    <string name="title_activity_sync_interval_selector">同期間隔を指定</string>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
+    <string name="empty_view_content">ここにアイテムなし</string>
+    <string name="toast_GettingMoreItems">複数のアイテムをダウンロード中です... しばらくお待ちください。</string>
+    <string name="no_wifi_available">WiFi接続がありません</string>
+    <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか？</string>
+    <string name="current_version">使用中のバージョンは %s です</string>
+    <string name="widget_header">ownCloudニュース</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="other">%d 個の新しいアイテムが利用可能です</item>
+    </plurals>
+    <string name="message_bar_reload">再読み込み</string>
+    <string name="allUnreadFeeds">すべての未読アイテム</string>
+    <string name="starredFeeds">共有アイテム</string>
+    <string name="title_activity_new_feed">新しいフィードを追加</string>
+
+    <string name="menu_update">同期</string>
+    <string name="menu_About_Changelog">ownCloudについて / 変更点</string>
+    <string name="menu_markAllAsRead">すべて既読にする</string>
+    <string name="menu_StartImageCaching">画像をダウンロード</string>
+    <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">共有</string>
+    <string name="action_read">読込</string>
+    <string name="action_playPodacst">Podcast を再生</string>
+    <string name="action_openInBrowser">ブラウザーで開く</string>
+    <string name="action_Share">共有</string>
+    <string name="action_login">サーバー設定</string>
+    <string name="action_save">保存</string>
+    <string name="action_settings">設定</string>
+    <string name="action_sync_settings">設定の同期</string>
+    <string name="action_add_new_feed">新しいフィードを追加</string>
+    <string name="action_textToSpeech">音声読み上げ</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="other">%d 個の新しい未読アイテムがあります</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="other">%d 個の新しい未読アイテムが利用できます</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">フィードURL</string>
+    <string name="action_add_feed">フィードを追加</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">画像をダウンロード</string>
+    <string name="action_img_sharelink">画像リンクを共有</string>
+    <string name="action_img_open">画像をブラウザで開く</string>
+    <string name="action_img_copylink">画像リンクをコピー</string>
+    <string name="action_link_share">共有リンク</string>
+    <string name="action_link_open">リンクをブラウザで開く</string>
+    <string name="action_link_copy">リンクをコピー</string>
+    <string name="toast_img_download_wait">ダウンロード中... しばらくお待ちください</string>
+    <string name="toast_img_saved">画像を保存しました。</string>
+    <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
+    <string name="toast_copied_to_clipboard">クリップボードにコピー</string>
+    <string name="error_download_failed">ダウンロードに失敗</string>
+    <string name="intent_title_share">次のものでシェア</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">フィードの削除</string>
+    <string name="action_feed_rename">フィードの名前を変更</string>
+    <string name="feed_remove_button">削除</string>
+    <string name="feed_rename_button">名前の変更</string>
+    <string name="confirm_feed_remove">本当にこのフィードを削除してよろしいですか？この操作は元に戻せません！</string>
+
+    <!-- Strings related to login -->
+    <string name="pref_title_username">ユーザー名</string>
+    <string name="pref_title_password">パスワード</string>
+    <string name="pref_title_owncloudRootPath">ownCloud ルートアドレス</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">ログイン</string>
+    <string name="login_progress_signing_in">ログイン中...</string>
+    <string name="error_field_required">このフィールドは必須です</string>
+    <string name="error_invalid_url">このURLは不正確です</string>
+
+
+    <!-- Import Accounts -->
+    <string name="import_account">アカウントをインポート</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="other">ダウンロードされた %d 個の古いアイテム</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">これ以上利用できるアイテムがありません</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="other">これまでに %d 個のアイテムを読み込みました...</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">設定</string>
+    <string name="cache_is_cleared">キャッシュがクリアされます！</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">一般</string>
+    <string name="pref_title_general_sort_order">ソート順</string>
+
+    <string-array name="pref_general_sort_order">
+        <item>新 -&gt; 旧</item>
+        <item>旧 -&gt; 新</item>
+    </string-array>
+    <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
+    <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています…しばらくお待ちください。</string>
+    <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
+    <string name="warning">警告</string>
+    <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
+    <string name="pref_title_ShowOnlyUnread">未読の記事のみ表示</string>
+    <string name="pref_title_DisableHostnameVerification">ホスト名の検証を無効化</string>
+    <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
+    <string name="pref_title_OpenInBrowserDirectly">この記事を外部ブラウザーで開く</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
+    <string name="mtm_decision_always">常に</string>
+    <string name="mtm_decision_abort">中止</string>
+    <string name="mtm_notification">証明書の検証</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Podcast が選択されていません</string>
+    <string name="no_chapters_available">チャプターがありません</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">表示</string>
+    <string name="pref_title_app_theme">アプリテーマ</string>
+    <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
+    <string name="pref_display_title_lines_count">タイトルの行数</string>
+
+    <string-array name="pref_display_apptheme">
+        <item>ダーク</item>
+        <item>ライト</item>
+    </string-array>
+    <string-array name="pref_display_feed_list_layout">
+        <item>基本</item>
+        <item>拡張</item>
+        <item>拡張 (全文)</item>
+        <item>拡張ウェブ表示</item>
+    </string-array>
+    <string-array name="pref_title_lines_count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">通知</string>
+    <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">エラー</string>
+    <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
+    <string name="login_dialog_text_not_compatible">このアプリのバージョンはownCloudニュースアプリと互換性がありません。ニュースアプリとappframeworkをアップデートしてください。</string>
+    <string name="login_dialog_title_security_warning">セキュリティ警告</string>
+    <string name="login_dialog_text_security_warning">httpsを使用していません。攻撃者があなたのトラフィックに干渉し、一部の機密データ(例えば、パスワード)にアクセスする恐れがあります。そのため、httpsを利用することを強くお勧めします！</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">データと同期</string>
+    <string name="pref_title_clearCache">キャッシュをクリア</string>
+    <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
+    <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
+
+    <string-array name="pref_data_sync_image_cache">
+        <item>なし</item>
+        <item>WiFiのみ</item>
+        <item>WiFi &amp; モバイル</item>
+        <item>WiFi接続がない場合は尋ねる</item>
+    </string-array>
+    <string-array name="pref_data_sync_max_cache_size">
+        <item>250 MB</item>
+        <item>500 MB</item>
+        <item>750 MB</item>
+        <item>1 GB</item>
+        <item>2 GB</item>
+        <item>5 GB</item>
+        <item>10 GB</item>
+    </string-array>
+    <string-array name="array_sync_interval">
+        <item>5 分</item>
+        <item>15 分</item>
+        <item>30 分</item>
+        <item>45 分</item>
+        <item>1 時間</item>
+        <item>2 時間</item>
+        <item>3 時間</item>
+        <item>6 時間</item>
+        <item>12 時間</item>
+        <item>24 時間</item>
+    </string-array>
+    <string name="content_desc_play">再生</string>
+    <string name="content_desc_pause">一時停止</string>
+    <string name="content_desc_rewind">巻戻し</string>
+    <string name="content_desc_forward">早送り</string>
+    <string name="content_desc_expand">展開</string>
+    <string name="content_desc_collapse">折りたたみ</string>
+    <string name="content_desc_mark_as_read">既読としてマーク</string>
+    <string name="content_desc_mark_as_unread">未読としてマーク</string>
+    <string name="content_desc_tap_to_refresh">タップして更新</string>
+    <string name="content_desc_add_to_favorites">お気に入りに追加</string>
+    <string name="content_desc_remove_from_favorites">お気に入りから削除</string>
+    <string name="content_desc_show_password">パスワードを表示</string>
+    <string name="content_desc_delete">削除</string>
+    <string name="content_desc_download">ダウンロード</string>
 </resources>

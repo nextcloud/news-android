@@ -1,116 +1,125 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Sincronizar automáticamente</string>
-  <string name="app_name">Lector de Noticias ownCloud</string>
-  <string name="title_activity_sync_interval_selector">Selector de intervalo de sincro. </string>
-  <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
-  <string name="empty_view_content">No hay artículos aquí</string>
-  <string name="no_wifi_available">No estás conectado a WiFi</string>
-  <string name="do_you_want_to_download_without_wifi">Querés bajar las imágenes sin conexión WiFi</string>
-  <string name="widget_header">Noticias de ownCloud</string>
-  <string name="message_bar_reload">Recargar</string>
-  <string name="allUnreadFeeds">Todos los artículos sin leer</string>
-  <string name="starredFeeds">Artículos destacados</string>
-  <string name="title_activity_new_feed">Agregar nueva fuente</string>
-  <string name="menu_update">Recargar</string>
-  <string name="menu_About_Changelog">Acerca de / Actualizaciones</string>
-  <string name="menu_markAllAsRead">Marcar todos como leídos</string>
-  <string name="menu_StartImageCaching">Descargar imágenes</string>
-  <string name="menu_downloadMoreItems">Descargar más artículos</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Favoritos</string>
-  <string name="action_read">Leer</string>
-  <string name="action_openInBrowser">Abrir en Navegador</string>
-  <string name="action_Share">Compartir</string>
-  <string name="action_login">Ajustes del servidor</string>
-  <string name="action_save">Guardar</string>
-  <string name="action_settings">Configuración</string>
-  <string name="action_sync_settings">Configuración de sincro. </string>
-  <string name="action_add_new_feed">Agregar nueva fuente</string>
-  <!--Add new feed-->
-  <string name="action_add_feed">Agregar fuente</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
-  <string name="error_download_failed">Error al descargar</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="feed_remove_button">Borrar</string>
-  <string name="feed_rename_button">Cambiar nombre</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Nombre de usuario</string>
-  <string name="pref_title_password">Contraseña</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Entrar</string>
-  <string name="login_progress_signing_in">Entrando...</string>
-  <string name="error_field_required">Este campo es requerido</string>
-  <string name="error_invalid_url">Esta URL es incorrecta</string>
-  <!--Import Accounts-->
-  <!--Toast Messages-->
-  <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Configuración</string>
-  <!--General settings-->
-  <string name="pref_header_general">General</string>
-  <string name="pref_title_general_sort_order">Ordenar por</string>
-  <string-array name="pref_general_sort_order">
-    <item>Nuevo -&gt; Antiguo</item>
-    <item>Antiguo -&gt; Nuevo</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Borrando la caché</string>
-  <string name="reset_cache_unsaved_changes">Hay cambios que no fueron sincronizados. ¿Querés vaciar la caché de todas formas?</string>
-  <string name="warning">Atención</string>
-  <string name="pref_title_AutoSyncOnStart">Sincronizar al comenzar</string>
-  <string name="pref_title_ShowOnlyUnread">Mostrar solamente artículos no leídos</string>
-  <string name="pref_title_DisableHostnameVerification">Deshabilitar verificación del hostname</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído al desplazar</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">¿Aceptar certificados desconocidos?</string>
-  <string name="mtm_decision_always">Siempre</string>
-  <string name="mtm_decision_abort">Abortar</string>
-  <string name="mtm_notification">Verificación del certificado</string>
-  <!--Podcast-->
-  <!--Settings for Display-->
-  <string name="pref_header_display">Mostrar</string>
-  <string name="pref_title_feed_list_layout">Presentación de la lista de orígenes</string>
-  <string-array name="pref_display_apptheme">
-    <item>Oscuro</item>
-    <item>Claro</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Notificaciones</string>
-  <string name="pref_title_notification_new_articles_available">Mostrar notificacion cuando nuevos artículos estén disponibles</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Error</string>
-  <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
-  <string name="login_dialog_text_not_compatible">La versión de esta App no es compatible con tu App de ownCloud News. Actualizá la News App y sus depencencias.</string>
-  <string name="login_dialog_title_security_warning">Advertencia de seguridad</string>
-  <string name="login_dialog_text_security_warning">No estás usando https. Un atacante podría interceptar tu tráfico y obtener acceso a datos importantes (p. ej. tu contraseña). ¡Te recomendamos que usés https!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Sincronización de datos</string>
-  <string name="pref_title_clearCache">Limpiar caché</string>
-  <string name="pref_title_CacheImagesOffline">Hacer caché de imágenes fuera de línea</string>
-  <string name="pref_title_Max_Cache_Size">Tamaño máximo de la caché</string>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 Minutos</item>
-    <item>15 Minutos</item>
-    <item>30 Minutos</item>
-    <item>45 Minutos</item>
-    <item>1 Hora</item>
-    <item>2 Horas</item>
-    <item>3 Horas</item>
-    <item>6 Horas</item>
-    <item>12 Horas</item>
-    <item>24 Horas</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_delete">borrar</string>
-</resources>
+
+    <string name="auto_sync_string">Sincronizar automáticamente</string>
+    <string name="title_activity_sync_interval_selector">Selector de intervalo de sincro. </string>
+    <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
+    <string name="empty_view_content">No hay artículos aquí</string>
+    <string name="no_wifi_available">No estás conectado a WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Querés bajar las imágenes sin conexión WiFi</string>
+    <string name="widget_header">Noticias de ownCloud</string>
+    <string name="message_bar_reload">Recargar</string>
+    <string name="allUnreadFeeds">Todos los artículos sin leer</string>
+    <string name="starredFeeds">Artículos destacados</string>
+    <string name="title_activity_new_feed">Agregar nueva fuente</string>
+
+    <string name="menu_update">Recargar</string>
+    <string name="menu_About_Changelog">Acerca de / Actualizaciones</string>
+    <string name="menu_markAllAsRead">Marcar todos como leídos</string>
+    <string name="menu_StartImageCaching">Descargar imágenes</string>
+    <string name="menu_downloadMoreItems">Descargar más artículos</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Favoritos</string>
+    <string name="action_read">Leer</string>
+    <string name="action_openInBrowser">Abrir en Navegador</string>
+    <string name="action_Share">Compartir</string>
+    <string name="action_login">Ajustes del servidor</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_settings">Configuración</string>
+    <string name="action_sync_settings">Configuración de sincro. </string>
+    <string name="action_add_new_feed">Agregar nueva fuente</string>
+    <string name="action_add_feed">Agregar fuente</string>
+
+
+    <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
+    <string name="error_download_failed">Error al descargar</string>
+    <string name="feed_remove_button">Borrar</string>
+    <string name="feed_rename_button">Cambiar nombre</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Nombre de usuario</string>
+    <string name="pref_title_password">Contraseña</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="login_progress_signing_in">Entrando...</string>
+    <string name="error_field_required">Este campo es requerido</string>
+    <string name="error_invalid_url">Esta URL es incorrecta</string>
+
+
+    <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Configuración</string>
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_general_sort_order">Ordenar por</string>
+
+    <string-array name="pref_general_sort_order">
+        <item>Nuevo -&gt; Antiguo</item>
+        <item>Antiguo -&gt; Nuevo</item>
+    </string-array>
+    <string name="dialog_clearing_cache">Borrando la caché</string>
+    <string name="reset_cache_unsaved_changes">Hay cambios que no fueron sincronizados. ¿Querés vaciar la caché de todas formas?</string>
+    <string name="warning">Atención</string>
+    <string name="pref_title_AutoSyncOnStart">Sincronizar al comenzar</string>
+    <string name="pref_title_ShowOnlyUnread">Mostrar solamente artículos no leídos</string>
+    <string name="pref_title_DisableHostnameVerification">Deshabilitar verificación del hostname</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído al desplazar</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">¿Aceptar certificados desconocidos?</string>
+    <string name="mtm_decision_always">Siempre</string>
+    <string name="mtm_decision_abort">Abortar</string>
+    <string name="mtm_notification">Verificación del certificado</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Mostrar</string>
+    <string name="pref_title_feed_list_layout">Presentación de la lista de orígenes</string>
+    <string-array name="pref_display_apptheme">
+        <item>Oscuro</item>
+        <item>Claro</item>
+    </string-array>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Notificaciones</string>
+    <string name="pref_title_notification_new_articles_available">Mostrar notificacion cuando nuevos artículos estén disponibles</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Error</string>
+    <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
+    <string name="login_dialog_text_not_compatible">La versión de esta App no es compatible con tu App de ownCloud News. Actualizá la News App y sus depencencias.</string>
+    <string name="login_dialog_title_security_warning">Advertencia de seguridad</string>
+    <string name="login_dialog_text_security_warning">No estás usando https. Un atacante podría interceptar tu tráfico y obtener acceso a datos importantes (p. ej. tu contraseña). ¡Te recomendamos que usés https!</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Sincronización de datos</string>
+    <string name="pref_title_clearCache">Limpiar caché</string>
+    <string name="pref_title_CacheImagesOffline">Hacer caché de imágenes fuera de línea</string>
+    <string name="pref_title_Max_Cache_Size">Tamaño máximo de la caché</string>
+
+    <string-array name="pref_data_sync_max_cache_size">
+        <item>250 MB</item>
+        <item>500 MB</item>
+        <item>750 MB</item>
+        <item>1 GB</item>
+        <item>2 GB</item>
+        <item>5 GB</item>
+        <item>10 GB</item>
+    </string-array>
+    <string-array name="array_sync_interval">
+        <item>5 Minutos</item>
+        <item>15 Minutos</item>
+        <item>30 Minutos</item>
+        <item>45 Minutos</item>
+        <item>1 Hora</item>
+        <item>2 Horas</item>
+        <item>3 Horas</item>
+        <item>6 Horas</item>
+        <item>12 Horas</item>
+        <item>24 Horas</item>
+    </string-array>
+    <string name="content_desc_delete">borrar</string>
+    </resources>

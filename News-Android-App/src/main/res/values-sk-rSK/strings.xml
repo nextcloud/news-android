@@ -1,133 +1,146 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Autosynchronizácia</string>
-  <string name="app_name">ownCloud čítačka noviniek</string>
-  <string name="title_activity_sync_interval_selector">Voľba intervalu synchronizácie</string>
-  <string name="title_activity_news_detail">Podrobná aktivita noviniek</string>
-  <string name="empty_view_content">Žiadne položky</string>
-  <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
-  <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez WiFi pripojenia</string>
-  <string name="widget_header">ownCloud Novinky</string>
-  <string name="message_bar_reload">Znovu načítať</string>
-  <string name="allUnreadFeeds">Všetky neprečítané položky</string>
-  <string name="starredFeeds">Položky s hviezdičkou</string>
-  <string name="title_activity_new_feed">Pridať nový kanál</string>
-  <string name="menu_update">Obnoviť</string>
-  <string name="menu_About_Changelog">O aplikácii / Zoznam zmien</string>
-  <string name="menu_markAllAsRead">Všetko označiť ako prečítané</string>
-  <string name="menu_StartImageCaching">Stiahnuť obrázky</string>
-  <string name="menu_downloadMoreItems">Stiahnuť viac položiek</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">S hviezdičkou</string>
-  <string name="action_read">Čítať</string>
-  <string name="action_playPodacst">Prehrať podcast</string>
-  <string name="action_openInBrowser">Otvoriť v prehliadači</string>
-  <string name="action_Share">Zdieľať</string>
-  <string name="action_login">Nastavenia servera</string>
-  <string name="action_save">Uložiť</string>
-  <string name="action_settings">Nastavenia</string>
-  <string name="action_sync_settings">Nastavenia synchronizácie</string>
-  <string name="action_add_new_feed">Pridať nový kanál</string>
-  <string name="action_textToSpeech">Prečítať</string>
-  <!--Add new feed-->
-  <string name="action_add_feed">Pridať kanál</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
-  <string name="error_download_failed">Stiahnutie zlyhalo</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="feed_remove_button">Odobrať</string>
-  <string name="feed_rename_button">Premenovať</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Meno používateľa</string>
-  <string name="pref_title_password">Heslo</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Prihlásenie</string>
-  <string name="login_progress_signing_in">Prihlasujem vás...</string>
-  <string name="error_field_required">Toto pole je povinné</string>
-  <string name="error_invalid_url">URL je nesprávna</string>
-  <!--Import Accounts-->
-  <string name="import_account">Importný účet</string>
-  <!--Toast Messages-->
-  <string name="toast_no_more_downloads_available">Žiadne ďalšie položky k dispozícii</string>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Nastavenia</string>
-  <!--General settings-->
-  <string name="pref_header_general">Všeobecné</string>
-  <string name="pref_title_general_sort_order">Zoradenie</string>
-  <string-array name="pref_general_sort_order">
-    <item>Nové -&gt; Staré</item>
-    <item>Staré -&gt; Nové</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
-  <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
-  <string name="warning">Varovanie</string>
-  <string name="pref_title_AutoSyncOnStart">Synchronizovať pri spustení</string>
-  <string name="pref_title_ShowOnlyUnread">Zobraziť len neprečítané články</string>
-  <string name="pref_title_DisableHostnameVerification">Vypnúť overovanie názvu hostiteľa</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Navigácia pomocou tlačidiel hlasitosti</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Označiť ako prečítané pri rolovaní stránky</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Prijať neznámy certifikát?</string>
-  <string name="mtm_decision_always">Vždy</string>
-  <string name="mtm_decision_abort">Prerušiť</string>
-  <string name="mtm_notification">Overenie certifikátu</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Nebol vybraný žiaden podcast</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Zobrazenie</string>
-  <string name="pref_title_app_theme">Téma vzhľadu aplikácie</string>
-  <string name="pref_title_feed_list_layout">Rozvrhnutie zoznamu kanálov</string>
-  <string-array name="pref_display_apptheme">
-    <item>Tmavé</item>
-    <item>Svetlé</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Oznámenia</string>
-  <string name="pref_title_notification_new_articles_available">Zobraziť oznámenie, keď sú k dispozícii nové články</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Chyba</string>
-  <string name="login_dialog_text_something_went_wrong">Tak toto je nepríjemné :(</string>
-  <string name="login_dialog_text_not_compatible">Táto verzia aplikácie nie je kompatibilná s vašou aplikáciou ownCloud News. Urobte aktualizáciu aplikácií News a appFramework.</string>
-  <string name="login_dialog_title_security_warning">Bezpečnostné varovanie</string>
-  <string name="login_dialog_text_security_warning">Nepoužívate HTTPS. Útočník môže zachytiť vašu komunikáciu a získať prístup k niektorým citlivým dátam (napr. vaše heslo). Doporučujeme HTTPS používať!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Dáta &amp; synchronizácia</string>
-  <string name="pref_title_clearCache">Vyčistiť medzipamäť</string>
-  <string name="pref_title_CacheImagesOffline">Ukladať obrázky do offline mezipameti</string>
-  <string name="pref_title_Max_Cache_Size">Maximálna medzipamäť</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Nikdy</item>
-    <item>Iba cez WiFi</item>
-    <item>Iba cez WiFi &amp; Mobil</item>
-    <item>Spýtať sa keď nieste pripojený k WiFi</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 minút</item>
-    <item>15 minút</item>
-    <item>30 minút</item>
-    <item>45 minút</item>
-    <item>1 hodina</item>
-    <item>2 hodiny</item>
-    <item>3 hodiny</item>
-    <item>6 hodín</item>
-    <item>12 hodín</item>
-    <item>24 hodín</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_delete">vymazať</string>
-</resources>
+
+    <string name="auto_sync_string">Autosynchronizácia</string>
+    <string name="title_activity_sync_interval_selector">Voľba intervalu synchronizácie</string>
+    <string name="title_activity_news_detail">Podrobná aktivita noviniek</string>
+    <string name="empty_view_content">Žiadne položky</string>
+    <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez WiFi pripojenia</string>
+    <string name="widget_header">ownCloud Novinky</string>
+    <string name="message_bar_reload">Znovu načítať</string>
+    <string name="allUnreadFeeds">Všetky neprečítané položky</string>
+    <string name="starredFeeds">Položky s hviezdičkou</string>
+    <string name="title_activity_new_feed">Pridať nový kanál</string>
+
+    <string name="menu_update">Obnoviť</string>
+    <string name="menu_About_Changelog">O aplikácii / Zoznam zmien</string>
+    <string name="menu_markAllAsRead">Všetko označiť ako prečítané</string>
+    <string name="menu_StartImageCaching">Stiahnuť obrázky</string>
+    <string name="menu_downloadMoreItems">Stiahnuť viac položiek</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">S hviezdičkou</string>
+    <string name="action_read">Čítať</string>
+    <string name="action_playPodacst">Prehrať podcast</string>
+    <string name="action_openInBrowser">Otvoriť v prehliadači</string>
+    <string name="action_Share">Zdieľať</string>
+    <string name="action_login">Nastavenia servera</string>
+    <string name="action_save">Uložiť</string>
+    <string name="action_settings">Nastavenia</string>
+    <string name="action_sync_settings">Nastavenia synchronizácie</string>
+    <string name="action_add_new_feed">Pridať nový kanál</string>
+    <string name="action_textToSpeech">Prečítať</string>
+    <string name="action_add_feed">Pridať kanál</string>
+
+
+    <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
+    <string name="error_download_failed">Stiahnutie zlyhalo</string>
+    <string name="feed_remove_button">Odobrať</string>
+    <string name="feed_rename_button">Premenovať</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Meno používateľa</string>
+    <string name="pref_title_password">Heslo</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Prihlásenie</string>
+    <string name="login_progress_signing_in">Prihlasujem vás...</string>
+    <string name="error_field_required">Toto pole je povinné</string>
+    <string name="error_invalid_url">URL je nesprávna</string>
+
+
+    <!-- Import Accounts -->
+    <string name="import_account">Importný účet</string>
+
+
+    <string name="toast_no_more_downloads_available">Žiadne ďalšie položky k dispozícii</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Nastavenia</string>
+    <!-- General settings -->
+    <string name="pref_header_general">Všeobecné</string>
+    <string name="pref_title_general_sort_order">Zoradenie</string>
+
+    <string-array name="pref_general_sort_order">
+        <item>Nové -&gt; Staré</item>
+        <item>Staré -&gt; Nové</item>
+    </string-array>
+    <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
+    <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
+    <string name="warning">Varovanie</string>
+    <string name="pref_title_AutoSyncOnStart">Synchronizovať pri spustení</string>
+    <string name="pref_title_ShowOnlyUnread">Zobraziť len neprečítané články</string>
+    <string name="pref_title_DisableHostnameVerification">Vypnúť overovanie názvu hostiteľa</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigácia pomocou tlačidiel hlasitosti</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Označiť ako prečítané pri rolovaní stránky</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Prijať neznámy certifikát?</string>
+    <string name="mtm_decision_always">Vždy</string>
+    <string name="mtm_decision_abort">Prerušiť</string>
+    <string name="mtm_notification">Overenie certifikátu</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Nebol vybraný žiaden podcast</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Zobrazenie</string>
+    <string name="pref_title_app_theme">Téma vzhľadu aplikácie</string>
+    <string name="pref_title_feed_list_layout">Rozvrhnutie zoznamu kanálov</string>
+    <string-array name="pref_display_apptheme">
+        <item>Tmavé</item>
+        <item>Svetlé</item>
+    </string-array>
+    <string-array name="pref_title_lines_count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Oznámenia</string>
+    <string name="pref_title_notification_new_articles_available">Zobraziť oznámenie, keď sú k dispozícii nové články</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Chyba</string>
+    <string name="login_dialog_text_something_went_wrong">Tak toto je nepríjemné :(</string>
+    <string name="login_dialog_text_not_compatible">Táto verzia aplikácie nie je kompatibilná s vašou aplikáciou ownCloud News. Urobte aktualizáciu aplikácií News a appFramework.</string>
+    <string name="login_dialog_title_security_warning">Bezpečnostné varovanie</string>
+    <string name="login_dialog_text_security_warning">Nepoužívate HTTPS. Útočník môže zachytiť vašu komunikáciu a získať prístup k niektorým citlivým dátam (napr. vaše heslo). Doporučujeme HTTPS používať!</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Dáta &amp; synchronizácia</string>
+    <string name="pref_title_clearCache">Vyčistiť medzipamäť</string>
+    <string name="pref_title_CacheImagesOffline">Ukladať obrázky do offline mezipameti</string>
+    <string name="pref_title_Max_Cache_Size">Maximálna medzipamäť</string>
+
+    <string-array name="pref_data_sync_image_cache">
+        <item>Nikdy</item>
+        <item>Iba cez WiFi</item>
+        <item>Iba cez WiFi &amp; Mobil</item>
+        <item>Spýtať sa keď nieste pripojený k WiFi</item>
+    </string-array>
+    <string-array name="pref_data_sync_max_cache_size">
+        <item>250 MB</item>
+        <item>500 MB</item>
+        <item>750 MB</item>
+        <item>1 GB</item>
+        <item>2 GB</item>
+        <item>5 GB</item>
+        <item>10 GB</item>
+    </string-array>
+    <string-array name="array_sync_interval">
+        <item>5 minút</item>
+        <item>15 minút</item>
+        <item>30 minút</item>
+        <item>45 minút</item>
+        <item>1 hodina</item>
+        <item>2 hodiny</item>
+        <item>3 hodiny</item>
+        <item>6 hodín</item>
+        <item>12 hodín</item>
+        <item>24 hodín</item>
+    </string-array>
+    <string name="content_desc_delete">vymazať</string>
+    </resources>

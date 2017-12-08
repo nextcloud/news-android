@@ -1,155 +1,175 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Sincronización automática</string>
-  <string name="app_name">Lector de novas do ownCloud</string>
-  <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronización</string>
-  <string name="title_activity_news_detail">Detalle da actividade das novas</string>
-  <string name="empty_view_content">Non hai elementos aquí</string>
-  <string name="toast_GettingMoreItems">Iniciada a descarga de máis elementos... Agarde.</string>
-  <string name="no_wifi_available">Non está conectado á WiFi</string>
-  <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi?</string>
-  <string name="widget_header">Novas do ownCloud</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="one">%d elemento novo dispoñíbel</item>
-    <item quantity="other">%d elementos novos dispoñíbeis</item>
-  </plurals>
-  <string name="message_bar_reload">Volver cargar</string>
-  <string name="allUnreadFeeds">Todos os elementos sen ler</string>
-  <string name="starredFeeds">Elementos destacados</string>
-  <string name="title_activity_new_feed">Engadir unha nova fonte</string>
-  <string name="menu_update">Actualizar</string>
-  <string name="menu_About_Changelog">Sobre / Rexistro de cambios</string>
-  <string name="menu_markAllAsRead">Marcar todo como lido</string>
-  <string name="menu_StartImageCaching">Descargar imaxes</string>
-  <string name="menu_downloadMoreItems">Descargar máis elementos</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Destacado</string>
-  <string name="action_read">Ler</string>
-  <string name="action_playPodacst">Reproducir o Podcast</string>
-  <string name="action_openInBrowser">Abrir no navegador</string>
-  <string name="action_Share">Compartir</string>
-  <string name="action_login">Axustes do servidor</string>
-  <string name="action_save">Gardar</string>
-  <string name="action_settings">Axustes</string>
-  <string name="action_sync_settings">Axustes da sincronización</string>
-  <string name="action_add_new_feed">Engadir unha nova fonte</string>
-  <string name="action_textToSpeech">Ler a saída</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="one">Ten %d elemento novo sen ler</item>
-    <item quantity="other">Ten %d elementos novos sen ler</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="one">Dispón de %d elemento novo sen ler</item>
-    <item quantity="other">Dispón de %d elementos novos sen ler</item>
-  </plurals>
-  <!--Add new feed-->
-  <string name="action_add_feed">Engadir fonte</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="toast_copied_to_clipboard">Copiado no portapapeis.</string>
-  <string name="error_download_failed">Produciuse un fallo na descarga</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="feed_remove_button">Retirar</string>
-  <string name="feed_rename_button">Renomear</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Nome de usuario</string>
-  <string name="pref_title_password">Contrasinal</string>
-  <string name="pref_title_owncloudRootPath">Enderezo raíz do ownCloud</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Rexistrarse</string>
-  <string name="login_progress_signing_in">Rexistrándose en...</string>
-  <string name="error_field_required">Este campo é obrigatorio</string>
-  <string name="error_invalid_url">Este URL é incorrecto</string>
-  <!--Import Accounts-->
-  <string name="import_account">Importar a conta</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="one">Descargado %d elemento antigo</item>
-    <item quantity="other">Descargados %d elementos antigos</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Axustes</string>
-  <string name="cache_is_cleared">A cahé está limpa!</string>
-  <!--General settings-->
-  <string name="pref_header_general">Xeral</string>
-  <string name="pref_title_general_sort_order">Reordenar</string>
-  <string-array name="pref_general_sort_order">
-    <item>Novo -&gt; Antigo</item>
-    <item>Antigo -&gt; Novo</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Limpando a caché</string>
-  <string name="dialog_clearing_cache_please_wait">Limpando a caché. Agarde.</string>
-  <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>
-  <string name="warning">Aviso</string>
-  <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
-  <string name="pref_title_ShowOnlyUnread">Amosar só os artigos non lidos</string>
-  <string name="pref_title_DisableHostnameVerification">Desactivar a verificación do nome da máquina/servidor</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Navegar cos botóns de volume</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido mentres se despraza</string>
-  <string name="pref_title_OpenInBrowserDirectly">Use un navegador externo para ver os artgos</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Aceptar un certificado descoñecido?</string>
-  <string name="mtm_decision_always">Sempre</string>
-  <string name="mtm_decision_abort">Interromper</string>
-  <string name="mtm_notification">Verificación do certificado</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Non hai ningún podcast seleccionadp</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Presentar</string>
-  <string name="pref_title_app_theme">Tema da aplicación</string>
-  <string name="pref_title_feed_list_layout">Deseño da lista de novas</string>
-  <string name="pref_display_title_lines_count">Contador de liñas para o titulo</string>
-  <string-array name="pref_display_apptheme">
-    <item>Escuro</item>
-    <item>Claro</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Notificacións</string>
-  <string name="pref_title_notification_new_articles_available">Amosar unha notificación cando estea dispoñíbel un novo artigo</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Erro</string>
-  <string name="login_dialog_text_something_went_wrong">Algo foi mal :(</string>
-  <string name="login_dialog_text_not_compatible">Esta versión da aplicación non é compatíbel coa súa aplicación de novas para ownCloud. Actualice a aplicación de novas e o marco de traballo da aplicación.</string>
-  <string name="login_dialog_title_security_warning">Aviso de seguridade</string>
-  <string name="login_dialog_text_security_warning">Non está a empregar https. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal). Polo que recomendámoslle que empregue https!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Datos e sincronización</string>
-  <string name="pref_title_clearCache">Limpar a caché</string>
-  <string name="pref_title_CacheImagesOffline">Gardar a imaxe na caché sen conexión</string>
-  <string name="pref_title_Max_Cache_Size">Tamaño máximo da caché</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Nunca</item>
-    <item>Só sobre WiFi</item>
-    <item>Sobre WiFi &amp; Móbil</item>
-    <item>Preguntar cando non estea conectado por WiFi</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 minutos</item>
-    <item>15 minutos</item>
-    <item>30 minutos</item>
-    <item>45 minutos</item>
-    <item>1 hora</item>
-    <item>2 horas</item>
-    <item>3 horas</item>
-    <item>6 horas</item>
-    <item>12 horas</item>
-    <item>24 horas</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_delete">eliminar</string>
-</resources>
+
+    <string name="auto_sync_string">Sincronización automática</string>
+    <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronización</string>
+    <string name="title_activity_news_detail">Detalle da actividade das novas</string>
+    <string name="empty_view_content">Non hai elementos aquí</string>
+    <string name="toast_GettingMoreItems">Iniciada a descarga de máis elementos... Agarde.</string>
+    <string name="no_wifi_available">Non está conectado á WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi?</string>
+    <string name="widget_header">Novas do ownCloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d elemento novo dispoñíbel</item>
+        <item quantity="other">%d elementos novos dispoñíbeis</item>
+    </plurals>
+    <string name="message_bar_reload">Volver cargar</string>
+    <string name="allUnreadFeeds">Todos os elementos sen ler</string>
+    <string name="starredFeeds">Elementos destacados</string>
+    <string name="title_activity_new_feed">Engadir unha nova fonte</string>
+
+    <string name="menu_update">Actualizar</string>
+    <string name="menu_About_Changelog">Sobre / Rexistro de cambios</string>
+    <string name="menu_markAllAsRead">Marcar todo como lido</string>
+    <string name="menu_StartImageCaching">Descargar imaxes</string>
+    <string name="menu_downloadMoreItems">Descargar máis elementos</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Destacado</string>
+    <string name="action_read">Ler</string>
+    <string name="action_playPodacst">Reproducir o Podcast</string>
+    <string name="action_openInBrowser">Abrir no navegador</string>
+    <string name="action_Share">Compartir</string>
+    <string name="action_login">Axustes do servidor</string>
+    <string name="action_save">Gardar</string>
+    <string name="action_settings">Axustes</string>
+    <string name="action_sync_settings">Axustes da sincronización</string>
+    <string name="action_add_new_feed">Engadir unha nova fonte</string>
+    <string name="action_textToSpeech">Ler a saída</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Ten %d elemento novo sen ler</item>
+        <item quantity="other">Ten %d elementos novos sen ler</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">Dispón de %d elemento novo sen ler</item>
+        <item quantity="other">Dispón de %d elementos novos sen ler</item>
+    </plurals>
+
+
+    <string name="action_add_feed">Engadir fonte</string>
+
+
+    <string name="toast_copied_to_clipboard">Copiado no portapapeis.</string>
+    <string name="error_download_failed">Produciuse un fallo na descarga</string>
+    <string name="feed_remove_button">Retirar</string>
+    <string name="feed_rename_button">Renomear</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Nome de usuario</string>
+    <string name="pref_title_password">Contrasinal</string>
+    <string name="pref_title_owncloudRootPath">Enderezo raíz do ownCloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Rexistrarse</string>
+    <string name="login_progress_signing_in">Rexistrándose en...</string>
+    <string name="error_field_required">Este campo é obrigatorio</string>
+    <string name="error_invalid_url">Este URL é incorrecto</string>
+
+
+    <!-- Import Accounts -->
+    <string name="import_account">Importar a conta</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Descargado %d elemento antigo</item>
+        <item quantity="other">Descargados %d elementos antigos</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Axustes</string>
+    <string name="cache_is_cleared">A cahé está limpa!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Xeral</string>
+    <string name="pref_title_general_sort_order">Reordenar</string>
+
+    <string-array name="pref_general_sort_order">
+        <item>Novo -&gt; Antigo</item>
+        <item>Antigo -&gt; Novo</item>
+    </string-array>
+    <string name="dialog_clearing_cache">Limpando a caché</string>
+    <string name="dialog_clearing_cache_please_wait">Limpando a caché. Agarde.</string>
+    <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>
+    <string name="warning">Aviso</string>
+    <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
+    <string name="pref_title_ShowOnlyUnread">Amosar só os artigos non lidos</string>
+    <string name="pref_title_DisableHostnameVerification">Desactivar a verificación do nome da máquina/servidor</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navegar cos botóns de volume</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido mentres se despraza</string>
+    <string name="pref_title_OpenInBrowserDirectly">Use un navegador externo para ver os artgos</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Aceptar un certificado descoñecido?</string>
+    <string name="mtm_decision_always">Sempre</string>
+    <string name="mtm_decision_abort">Interromper</string>
+    <string name="mtm_notification">Verificación do certificado</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Non hai ningún podcast seleccionadp</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Presentar</string>
+    <string name="pref_title_app_theme">Tema da aplicación</string>
+    <string name="pref_title_feed_list_layout">Deseño da lista de novas</string>
+    <string name="pref_display_title_lines_count">Contador de liñas para o titulo</string>
+
+    <string-array name="pref_display_apptheme">
+        <item>Escuro</item>
+        <item>Claro</item>
+    </string-array>
+    <string-array name="pref_title_lines_count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Notificacións</string>
+    <string name="pref_title_notification_new_articles_available">Amosar unha notificación cando estea dispoñíbel un novo artigo</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Erro</string>
+    <string name="login_dialog_text_something_went_wrong">Algo foi mal :(</string>
+    <string name="login_dialog_text_not_compatible">Esta versión da aplicación non é compatíbel coa súa aplicación de novas para ownCloud. Actualice a aplicación de novas e o marco de traballo da aplicación.</string>
+    <string name="login_dialog_title_security_warning">Aviso de seguridade</string>
+    <string name="login_dialog_text_security_warning">Non está a empregar https. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal). Polo que recomendámoslle que empregue https!</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Datos e sincronización</string>
+    <string name="pref_title_clearCache">Limpar a caché</string>
+    <string name="pref_title_CacheImagesOffline">Gardar a imaxe na caché sen conexión</string>
+    <string name="pref_title_Max_Cache_Size">Tamaño máximo da caché</string>
+
+    <string-array name="pref_data_sync_image_cache">
+        <item>Nunca</item>
+        <item>Só sobre WiFi</item>
+        <item>Sobre WiFi &amp; Móbil</item>
+        <item>Preguntar cando non estea conectado por WiFi</item>
+    </string-array>
+    <string-array name="pref_data_sync_max_cache_size">
+        <item>250 MB</item>
+        <item>500 MB</item>
+        <item>750 MB</item>
+        <item>1 GB</item>
+        <item>2 GB</item>
+        <item>5 GB</item>
+        <item>10 GB</item>
+    </string-array>
+    <string-array name="array_sync_interval">
+        <item>5 minutos</item>
+        <item>15 minutos</item>
+        <item>30 minutos</item>
+        <item>45 minutos</item>
+        <item>1 hora</item>
+        <item>2 horas</item>
+        <item>3 horas</item>
+        <item>6 horas</item>
+        <item>12 horas</item>
+        <item>24 horas</item>
+    </string-array>
+    <string name="content_desc_delete">eliminar</string>
+    </resources>

@@ -1,126 +1,137 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Avtomatik sinxronizasiya</string>
-  <string name="app_name">ownCloud xəbərlərinin oxuyucusu</string>
-  <string name="title_activity_sync_interval_selector">Seçici İnterval Sinxronizasiyası</string>
-  <string name="title_activity_news_detail">XəbərlərDetallıFəaliyyəti</string>
-  <string name="empty_view_content">Burda heş bir məlumat yoxdur</string>
-  <string name="no_wifi_available">Qoşulmuş WiFi yoxdur</string>
-  <string name="do_you_want_to_download_without_wifi">WiFi qoşulması olmadan, şəkilləri yükləmək istəyirsiniz?</string>
-  <string name="widget_header">ownCloud xəbərlər</string>
-  <string name="message_bar_reload">Yenidən yüklə</string>
-  <string name="allUnreadFeeds">Bütün oxunmayan hissələr</string>
-  <string name="starredFeeds">Ulduzlanmış elementlər</string>
-  <string name="title_activity_new_feed">Yeni kanalı əlavə et</string>
-  <string name="menu_update">Yenilə</string>
-  <string name="menu_About_Changelog">Haqqında / Dəyişikliklər</string>
-  <string name="menu_markAllAsRead">Hamısını oxunulmuş kimi qeydə al</string>
-  <string name="menu_StartImageCaching">Şəkilləri endir</string>
-  <string name="menu_downloadMoreItems">Çoxlu hissələri endir</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Ulduzlu</string>
-  <string name="action_read">Oxu</string>
-  <string name="action_playPodacst">Podcast oyna</string>
-  <string name="action_openInBrowser">Browser-də aç</string>
-  <string name="action_Share">Paylaş</string>
-  <string name="action_login">Server quraşdırmaları</string>
-  <string name="action_save">Saxlamaq</string>
-  <string name="action_settings">Quraşdırmalar</string>
-  <string name="action_sync_settings">Sync quraşdırmaları</string>
-  <string name="action_add_new_feed">Yeni kanalı əlavə et</string>
-  <string name="action_textToSpeech">Oxuyun</string>
-  <!--Add new feed-->
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="toast_copied_to_clipboard">Mübadilə buferinə nüsxələndi</string>
-  <string name="error_download_failed">Endirim olmadı</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="feed_remove_button">Sil</string>
-  <string name="feed_rename_button">Adı dəyiş</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">İstifadəçi adı</string>
-  <string name="pref_title_password">Şifrə</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/</string>
-  <string name="action_sign_in_short">Daxil ol</string>
-  <string name="login_progress_signing_in">Daxil olunur...</string>
-  <string name="error_field_required">Bu sütun tələb edilir</string>
-  <string name="error_invalid_url">Bu URL yalnışdır</string>
-  <!--Import Accounts-->
-  <string name="import_account">Hesabi idxal et</string>
-  <!--Toast Messages-->
-  <string name="toast_no_more_downloads_available">Heç bir əlavə mənbələr yoxdur</string>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Quraşdırmalar</string>
-  <!--General settings-->
-  <string name="pref_header_general">Ümumi</string>
-  <string name="pref_title_general_sort_order">Qayda ilə çeşidlə</string>
-  <string-array name="pref_general_sort_order">
-    <item>Yeni -&gt; Köhnə</item>
-    <item>Köhnə -&gt; Yeni</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Keş təmizlənir</string>
-  <string name="reset_cache_unsaved_changes">Orda sinxronizasiya edilməmiş dəyişikliklər var. Siz keşi istənilən halda sifirlamaq isteəyirsiniz?</string>
-  <string name="warning">Xəbərdarlıq</string>
-  <string name="pref_title_AutoSyncOnStart">İşə düşəndə sinxronizasiya elə</string>
-  <string name="pref_title_ShowOnlyUnread">Yalnız oxunmamış məqalələri göstər</string>
-  <string name="pref_title_DisableHostnameVerification">Host adının yoxlanışını söndür</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Təyinatını səs düymələri ilə et</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Ötürüldükdə, oxunulmuş kimi qeydə al</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Tanınmayan sertifikat qəbul edilsin? </string>
-  <string name="mtm_decision_always">Həmişə</string>
-  <string name="mtm_decision_abort">Durdur</string>
-  <string name="mtm_notification">Sertifikat yoxlanışı</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Heç bir podcast seçilməyib</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Ekran</string>
-  <string name="pref_title_app_theme">Proqram mövzusu</string>
-  <string name="pref_title_feed_list_layout">Axın siyahısının görünüşü</string>
-  <string-array name="pref_display_apptheme">
-    <item>Qaranlıq</item>
-    <item>İşıqlı</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Xəbərdarlıqlar</string>
-  <string name="pref_title_notification_new_articles_available">Yeni məqalə olduqda notifikasiyanı göstər</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Səhv</string>
-  <string name="login_dialog_text_something_went_wrong">Nə isə düzgün getmədi :(</string>
-  <string name="login_dialog_text_not_compatible">Bu proqram versiyası sizin ownCloud xəbərlər proqramına uyğun deyil. Xahiş olunur xəbərlər proqramını program mühitindən yeniləyəsiniz. </string>
-  <string name="login_dialog_title_security_warning">Təhlükəsizlik xəbərdarlığı</string>
-  <string name="login_dialog_text_security_warning">Siz HTTPS istifadə etmirsiniz. Hücumçu sizin gizli məlumatlarınızı ələ keçirə bilər(misal üçün şifrəniz). Bunun üçündə mütləq şəkildə HTTPS-dən istifadə etməniz məsləhət görülür.</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Data &amp; sync</string>
-  <string name="pref_title_clearCache">Keşi təmizlə</string>
-  <string name="pref_title_CacheImagesOffline">Keş şəkilləri offlinedır</string>
-  <string name="pref_title_Max_Cache_Size">Maksimal keş həcmi</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Heç vaxt</item>
-    <item>Yalnız WiFi üzərindən</item>
-    <item>Yalnız WiFi &amp; Mobile</item>
-    <item>WiFi-a qoşulu olmayanda soruş</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 Dəqiqqə</item>
-    <item>15 Dəqiqqə</item>
-    <item>30 Dəqiqqə</item>
-    <item>45 Dəqiqqə</item>
-    <item>1 Saat</item>
-    <item>2 Saat</item>
-    <item>3 Saat</item>
-    <item>6 Saat</item>
-    <item>12 Saat</item>
-    <item>24 Saat</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_delete">sil</string>
-</resources>
+
+    <string name="auto_sync_string">Avtomatik sinxronizasiya</string>
+    <string name="title_activity_sync_interval_selector">Seçici İnterval Sinxronizasiyası</string>
+    <string name="title_activity_news_detail">XəbərlərDetallıFəaliyyəti</string>
+    <string name="empty_view_content">Burda heş bir məlumat yoxdur</string>
+    <string name="no_wifi_available">Qoşulmuş WiFi yoxdur</string>
+    <string name="do_you_want_to_download_without_wifi">WiFi qoşulması olmadan, şəkilləri yükləmək istəyirsiniz?</string>
+    <string name="widget_header">ownCloud xəbərlər</string>
+    <string name="message_bar_reload">Yenidən yüklə</string>
+    <string name="allUnreadFeeds">Bütün oxunmayan hissələr</string>
+    <string name="starredFeeds">Ulduzlanmış elementlər</string>
+    <string name="title_activity_new_feed">Yeni kanalı əlavə et</string>
+
+    <string name="menu_update">Yenilə</string>
+    <string name="menu_About_Changelog">Haqqında / Dəyişikliklər</string>
+    <string name="menu_markAllAsRead">Hamısını oxunulmuş kimi qeydə al</string>
+    <string name="menu_StartImageCaching">Şəkilləri endir</string>
+    <string name="menu_downloadMoreItems">Çoxlu hissələri endir</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Ulduzlu</string>
+    <string name="action_read">Oxu</string>
+    <string name="action_playPodacst">Podcast oyna</string>
+    <string name="action_openInBrowser">Browser-də aç</string>
+    <string name="action_Share">Paylaş</string>
+    <string name="action_login">Server quraşdırmaları</string>
+    <string name="action_save">Saxlamaq</string>
+    <string name="action_settings">Quraşdırmalar</string>
+    <string name="action_sync_settings">Sync quraşdırmaları</string>
+    <string name="action_add_new_feed">Yeni kanalı əlavə et</string>
+    <string name="action_textToSpeech">Oxuyun</string>
+    <string name="toast_copied_to_clipboard">Mübadilə buferinə nüsxələndi</string>
+    <string name="error_download_failed">Endirim olmadı</string>
+    <string name="feed_remove_button">Sil</string>
+    <string name="feed_rename_button">Adı dəyiş</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">İstifadəçi adı</string>
+    <string name="pref_title_password">Şifrə</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/</string>
+
+    <string name="action_sign_in_short">Daxil ol</string>
+    <string name="login_progress_signing_in">Daxil olunur...</string>
+    <string name="error_field_required">Bu sütun tələb edilir</string>
+    <string name="error_invalid_url">Bu URL yalnışdır</string>
+
+
+    <!-- Import Accounts -->
+    <string name="import_account">Hesabi idxal et</string>
+
+
+    <string name="toast_no_more_downloads_available">Heç bir əlavə mənbələr yoxdur</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Quraşdırmalar</string>
+    <!-- General settings -->
+    <string name="pref_header_general">Ümumi</string>
+    <string name="pref_title_general_sort_order">Qayda ilə çeşidlə</string>
+
+    <string-array name="pref_general_sort_order">
+        <item>Yeni -&gt; Köhnə</item>
+        <item>Köhnə -&gt; Yeni</item>
+    </string-array>
+    <string name="dialog_clearing_cache">Keş təmizlənir</string>
+    <string name="reset_cache_unsaved_changes">Orda sinxronizasiya edilməmiş dəyişikliklər var. Siz keşi istənilən halda sifirlamaq isteəyirsiniz?</string>
+    <string name="warning">Xəbərdarlıq</string>
+    <string name="pref_title_AutoSyncOnStart">İşə düşəndə sinxronizasiya elə</string>
+    <string name="pref_title_ShowOnlyUnread">Yalnız oxunmamış məqalələri göstər</string>
+    <string name="pref_title_DisableHostnameVerification">Host adının yoxlanışını söndür</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Təyinatını səs düymələri ilə et</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Ötürüldükdə, oxunulmuş kimi qeydə al</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Tanınmayan sertifikat qəbul edilsin? </string>
+    <string name="mtm_decision_always">Həmişə</string>
+    <string name="mtm_decision_abort">Durdur</string>
+    <string name="mtm_notification">Sertifikat yoxlanışı</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Heç bir podcast seçilməyib</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Ekran</string>
+    <string name="pref_title_app_theme">Proqram mövzusu</string>
+    <string name="pref_title_feed_list_layout">Axın siyahısının görünüşü</string>
+    <string-array name="pref_display_apptheme">
+        <item>Qaranlıq</item>
+        <item>İşıqlı</item>
+    </string-array>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Xəbərdarlıqlar</string>
+    <string name="pref_title_notification_new_articles_available">Yeni məqalə olduqda notifikasiyanı göstər</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Səhv</string>
+    <string name="login_dialog_text_something_went_wrong">Nə isə düzgün getmədi :(</string>
+    <string name="login_dialog_text_not_compatible">Bu proqram versiyası sizin ownCloud xəbərlər proqramına uyğun deyil. Xahiş olunur xəbərlər proqramını program mühitindən yeniləyəsiniz. </string>
+    <string name="login_dialog_title_security_warning">Təhlükəsizlik xəbərdarlığı</string>
+    <string name="login_dialog_text_security_warning">Siz HTTPS istifadə etmirsiniz. Hücumçu sizin gizli məlumatlarınızı ələ keçirə bilər(misal üçün şifrəniz). Bunun üçündə mütləq şəkildə HTTPS-dən istifadə etməniz məsləhət görülür.</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="pref_title_clearCache">Keşi təmizlə</string>
+    <string name="pref_title_CacheImagesOffline">Keş şəkilləri offlinedır</string>
+    <string name="pref_title_Max_Cache_Size">Maksimal keş həcmi</string>
+
+    <string-array name="pref_data_sync_image_cache">
+        <item>Heç vaxt</item>
+        <item>Yalnız WiFi üzərindən</item>
+        <item>Yalnız WiFi &amp; Mobile</item>
+        <item>WiFi-a qoşulu olmayanda soruş</item>
+    </string-array>
+    <string-array name="pref_data_sync_max_cache_size">
+        <item>250 MB</item>
+        <item>500 MB</item>
+        <item>750 MB</item>
+        <item>1 GB</item>
+        <item>2 GB</item>
+        <item>5 GB</item>
+        <item>10 GB</item>
+    </string-array>
+    <string-array name="array_sync_interval">
+        <item>5 Dəqiqqə</item>
+        <item>15 Dəqiqqə</item>
+        <item>30 Dəqiqqə</item>
+        <item>45 Dəqiqqə</item>
+        <item>1 Saat</item>
+        <item>2 Saat</item>
+        <item>3 Saat</item>
+        <item>6 Saat</item>
+        <item>12 Saat</item>
+        <item>24 Saat</item>
+    </string-array>
+    <string name="content_desc_delete">sil</string>
+    </resources>
