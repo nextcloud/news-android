@@ -9,6 +9,10 @@
     <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Le szeretnéd tölteni a képeket WiFi kapcsolat nélkül?</string>
     <string name="widget_header">ownCloud Hírek</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d új elem elérhető</item>
+        <item quantity="other">%dúj elem elérhető</item>
+    </plurals>
     <string name="message_bar_reload">Újratöltés</string>
     <string name="allUnreadFeeds">Az összes olvasatlan</string>
     <string name="starredFeeds">Csillagozottak</string>
@@ -32,13 +36,33 @@
     <string name="action_settings">Beállítások</string>
     <string name="action_sync_settings">Szinkronizációs beállítások</string>
     <string name="action_add_new_feed">Új hírcsatorna hozzáadása</string>
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Hírfolyam URL</string>
     <string name="action_add_feed">Hírcsatorna hozzáadása</string>
 
 
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Kép létöltése</string>
+    <string name="action_img_open">Kép megnyitása böngészőben</string>
+    <string name="action_img_copylink">Kép hivatkozásának másolása</string>
+    <string name="action_link_share">Hivatkozás megosztása</string>
+    <string name="action_link_open">Hivatkozás megnyitása böngészőben</string>
+    <string name="action_link_copy">Hivatkozás másolása</string>
+    <string name="toast_img_download_wait">Letöltés... kérjük, várj.</string>
+    <string name="toast_img_saved">Kép elmentve.</string>
+    <string name="toast_img_notwriteable">Kép írása nem sikerült.</string>
     <string name="toast_copied_to_clipboard">Bemásolva a vágólapra</string>
     <string name="error_download_failed">A letöltés sikertelen</string>
+    <string name="intent_title_share">Megosztás ezzel</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Hírfolyam eltávolítása</string>
+    <string name="action_feed_rename">Hírfolyam átnevezése</string>
     <string name="feed_remove_button">Eltávolítás</string>
     <string name="feed_rename_button">Átnevezés</string>
+    <string name="confirm_feed_remove">Biztos, hogy el akarod távolítani ezt a hírfolyamot? Ez a művelet nem vonható vissza!</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Felhasználónév</string>
     <string name="pref_title_password">Jelszó</string>
@@ -77,6 +101,8 @@
     <string name="pref_title_DisableHostnameVerification">A \"Hostname Verification\" kikapcsolása</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigálj a hangerőszabályozó gombokkal</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben olvasottként legyen megjelőlve</string>
+    <string name="pref_title_OpenInBrowserDirectly">Külső böngésző használata a cikkek megtekintéséhez</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Elfogadod az ismeretlen tanusítványokat?</string>
     <string name="mtm_decision_always">Mindig</string>
@@ -86,6 +112,9 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Nincs Podcast kiválasztva</string>
+    <string name="no_chapters_available">Nincsenek elérhető fejezetek</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Kijelző</string>
     <string name="pref_title_app_theme">App téma </string>
@@ -93,6 +122,15 @@
     <string-array name="pref_display_apptheme">
         <item>Sőtét</item>
         <item>Világos</item>
+    </string-array>
+    <string-array name="pref_display_feed_list_layout">
+        <item>Egyszerű</item>
+    </string-array>
+    <string-array name="pref_title_lines_count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Értesítések</string>
@@ -113,6 +151,12 @@
     <string name="pref_title_CacheImagesOffline">Képek offline tárolása ideglenesen</string>
     <string name="pref_title_Max_Cache_Size">Maximum Cache Méret</string>
 
+    <string-array name="pref_data_sync_image_cache">
+        <item>Soha</item>
+        <item>Csak WiFi-n keresztül</item>
+        <item>WiFi-n &amp; mobilkapcsolaton keresztül</item>
+        <item>Kérdezzen rá ha nem kapcsolódik WiFihez</item>
+    </string-array>
     <string-array name="pref_data_sync_max_cache_size">
         <item>250 MB</item>
         <item>500 MB</item>
@@ -134,5 +178,17 @@
         <item>12 óra</item>
         <item>24 óra</item>
     </string-array>
+    <string name="content_desc_play">lejátszás</string>
+    <string name="content_desc_pause">szünet</string>
+    <string name="content_desc_rewind">visszatekerés</string>
+    <string name="content_desc_forward">előretekerés</string>
+    <string name="content_desc_expand">kinyitás</string>
+    <string name="content_desc_collapse">összecsukás</string>
+    <string name="content_desc_mark_as_read">megjelölés olvasottnak</string>
+    <string name="content_desc_mark_as_unread">megjelölés olvasatlannak</string>
+    <string name="content_desc_add_to_favorites">hozzáadás a kedvencekhez</string>
+    <string name="content_desc_remove_from_favorites">eltávolítás a kedvencekből</string>
+    <string name="content_desc_show_password">jelszó mutatása</string>
     <string name="content_desc_delete">törlés</string>
-    </resources>
+    <string name="content_desc_download">letöltés</string>
+</resources>

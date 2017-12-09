@@ -69,8 +69,13 @@
     <string name="intent_title_share">Teilen über</string>
 
 
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Feed löschen</string>
+    <string name="action_feed_rename">Feed umbenennen</string>
     <string name="feed_remove_button">Entfernen</string>
     <string name="feed_rename_button">Umbenennen</string>
+    <string name="confirm_feed_remove">Möchtest du diesen Feed wirklich entfernen? Das kann nicht rückgängig gemacht werden!</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Benutzername</string>
     <string name="pref_title_password">Passwort</string>
@@ -93,6 +98,12 @@
         <item quantity="other">%d alte Artikel heruntergeladen</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Keine weiteren Artikel verfügbar</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Bisher %d Eintrag geladen…</item>
+        <item quantity="other">Bisher %d Einträge geladen...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Einstellungen</string>
     <string name="cache_is_cleared">Zwischenspeicher wurde gelöscht!</string>
@@ -117,6 +128,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Während des Scrollens als gelesen markieren</string>
     <string name="pref_title_OpenInBrowserDirectly">Externen Browser zum Anzeigen der Artikel verwenden</string>
 
+    <string name="dialog_feature_not_available">Diese Funktion ist in dieser (Open-Source-)Version dieser App nicht verfügbar. Wenn du diese Funktion nutzen möchtest, lade bitte die App aus dem GitHub Repository herunter oder lade die App aus dem Google PlayStore herunter.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Unbekanntes Zertifikat akzeptieren?</string>
     <string name="mtm_decision_always">Immer</string>
@@ -135,6 +149,7 @@
     <string name="pref_title_feed_list_layout">Feed-Listen-Layout</string>
     <string name="pref_display_title_lines_count">Zeilenanzahl des Titels</string>
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Aktionssymbole (Detailansicht)</string>
     <string-array name="pref_display_apptheme">
         <item>Dunkel</item>
         <item>Hell</item>
@@ -144,6 +159,7 @@
         <item>Erweitert</item>
         <item>Erweitert(Volltext)</item>
         <item>Erweitert mit Webansicht</item>
+        <item>Erweitert mit Kartenansicht</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
@@ -159,6 +175,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fehler</string>
     <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
+    <string name="login_dialog_text_zero_version_code">Die Web News App lieferte die Version \"0\" zurück. Wirf bitte einen Blick auf den folgenden Fehlerbericht: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Diese App-Version ist nicht mit Deiner ownCloud News App kompatibel. Bitte aktualisiere die News App und das App Framework.</string>
     <string name="login_dialog_title_security_warning">Sicherheitswarnung</string>
     <string name="login_dialog_text_security_warning">Du nutzt kein https. Ein Angreifer könnte Deinen Datenverkehr mitschneiden und dadurch Zugang zu sensiblen Daten (z.B. Deinem Passwort) erhalten. Wir empfehlen dringend die Nutzung von https!</string>
@@ -202,6 +219,7 @@
     <string name="content_desc_rewind">rückwärts</string>
     <string name="content_desc_forward">vorwärts</string>
     <string name="content_desc_expand">erweitern</string>
+    <string name="content_desc_collapse">Zuklappen</string>
     <string name="content_desc_mark_as_read">Als gelesen markieren</string>
     <string name="content_desc_mark_as_unread">Als ungelesen markieren</string>
     <string name="content_desc_tap_to_refresh">Zum Aktualisieren antippen</string>

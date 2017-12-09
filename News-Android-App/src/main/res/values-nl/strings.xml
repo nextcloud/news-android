@@ -128,6 +128,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
     <string name="pref_title_OpenInBrowserDirectly">Gebruik een externe browser om artikelen te bekijken</string>
 
+    <string name="dialog_feature_not_available">Deze feature is niet beschikbaar in deze (open-source) versie van deze app. Indien je deze feature wilt gebruiken, download dan de app van de GitHub Repository of de Google PlayStore.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Onbekend certificaat accepteren?</string>
     <string name="mtm_decision_always">Altijd</string>
@@ -146,6 +149,7 @@
     <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
     <string name="pref_display_title_lines_count">Regelteller voor titel</string>
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
     <string-array name="pref_display_apptheme">
         <item>Donker</item>
         <item>Licht</item>
@@ -155,6 +159,7 @@
         <item>Uitgebreid</item>
         <item>Uitgebreid (volledige tekst)</item>
         <item>Uitgebreid met Webview</item>
+        <item>Uitgebreid met Cardview</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
@@ -170,6 +175,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fout</string>
     <string name="login_dialog_text_something_went_wrong">Er ging iets verkeerd :(</string>
+    <string name="login_dialog_text_zero_version_code">De Web News App gaf Versie \"0\". Kijk aub naar het volgende bug report: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Deze app versie is niet compatibel met uw ownCloud News App. Werk de News App en het Appframework bij.</string>
     <string name="login_dialog_title_security_warning">Beveiligingswaarschuwing</string>
     <string name="login_dialog_text_security_warning">U gebruikt geen https. Een aanvaller zou het niet versleutelde verkeer kunnen onderscheppen en toegang krijgen tot gevoelige gegevens (bijv. uw wachtwoord). We adviseren om https te gebruiken!</string>
@@ -181,6 +187,12 @@
     <string name="pref_title_CacheImagesOffline">Afbeeldingen offline cachen</string>
     <string name="pref_title_Max_Cache_Size">Max cache grootte</string>
 
+    <string-array name="pref_data_sync_image_cache">
+        <item>Nooit</item>
+        <item>Enkel met WiFi</item>
+        <item>Met WiFi &amp; Mobiel</item>
+        <item>Vraag indien niet verbonden met WiFi</item>
+    </string-array>
     <string-array name="pref_data_sync_max_cache_size">
         <item>250 MB</item>
         <item>500 MB</item>

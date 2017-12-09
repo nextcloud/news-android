@@ -5,8 +5,10 @@
     <string name="title_activity_sync_interval_selector">Voľba intervalu synchronizácie</string>
     <string name="title_activity_news_detail">Podrobná aktivita noviniek</string>
     <string name="empty_view_content">Žiadne položky</string>
+    <string name="toast_GettingMoreItems">Začínam sťahovať ďalšie položky... Prosím čakajte.</string>
     <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez WiFi pripojenia</string>
+    <string name="current_version">Používate verziu %s</string>
     <string name="widget_header">ownCloud Novinky</string>
     <string name="message_bar_reload">Znovu načítať</string>
     <string name="allUnreadFeeds">Všetky neprečítané položky</string>
@@ -35,6 +37,13 @@
     <string name="action_add_feed">Pridať kanál</string>
 
 
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Stiahnuť obrázok</string>
+    <string name="action_img_sharelink">Sprístupniť odkaz na obrázok</string>
+    <string name="action_img_open">Otvoriť obrázok v prehliadači</string>
+    <string name="action_img_copylink">Kopíruj odkaz na obrázok</string>
+    <string name="action_link_share">Sprístupniť odkaz</string>
+    <string name="action_link_open">Otvoriť odkaz v prehliadači</string>
     <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
     <string name="error_download_failed">Stiahnutie zlyhalo</string>
     <string name="feed_remove_button">Odobrať</string>
