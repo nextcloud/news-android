@@ -43,6 +43,7 @@
 
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Kép létöltése</string>
+    <string name="action_img_sharelink">Képhivatkozás megosztása</string>
     <string name="action_img_open">Kép megnyitása böngészőben</string>
     <string name="action_img_copylink">Kép hivatkozásának másolása</string>
     <string name="action_link_share">Hivatkozás megosztása</string>
@@ -78,6 +79,11 @@
     <string name="import_account">Konto importálás</string>
 
 
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">%drégi elem letöltve</item>
+        <item quantity="other">%drégi elem letöltve</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">Nincs elérhető további elem</string>
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Beállítások</string>
@@ -125,6 +131,8 @@
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Egyszerű</item>
+        <item>Kiterjesztett</item>
+        <item>Kiterjesztett (teljes szöveg)</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
