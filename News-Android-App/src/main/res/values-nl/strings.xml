@@ -9,7 +9,7 @@
     <string name="no_wifi_available">Geen wifi verbinding</string>
     <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
     <string name="current_version">U gebruikt versie %s</string>
-    <string name="widget_header">ownCloud nieuws</string>
+    <string name="widget_header">Nextcloud nieuws</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nieuw bericht beschikbaar</item>
         <item quantity="other">%d nieuwe berichten beschikbaar</item>
@@ -40,7 +40,7 @@
     <string name="action_textToSpeech">Voorlezen</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">U hebt %d nieuw ongelezen bericht</item>
-        <item quantity="other">U hebt %d nieuwe ongelezen berichten</item>
+        <item quantity="other">Je hebt %d nieuwe ongelezen berichten</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d nieuw ongelezen bericht beschikbaar</item>
@@ -74,13 +74,13 @@
     <string name="action_feed_rename">Hernoem feed</string>
     <string name="feed_remove_button">Verwijder</string>
     <string name="feed_rename_button">Naam wijzigen</string>
-    <string name="confirm_feed_remove">Wilt u deze feed echt verwijderen? Dit kan niet ongedaan worden gemaakt!</string>
+    <string name="confirm_feed_remove">Wil je deze feed echt verwijderen? Dit kan niet ongedaan worden gemaakt!</string>
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Gebruikersnaam</string>
     <string name="pref_title_password">Wachtwoord</string>
-    <string name="pref_title_owncloudRootPath">ownCloud root adres</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud root adres</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Inloggen</string>
     <string name="login_progress_signing_in">Inloggen...</string>
@@ -119,7 +119,7 @@
     </string-array>
     <string name="dialog_clearing_cache">Schoonmaken cache</string>
     <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
-    <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wilt u de cache toch resetten?</string>
+    <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wil je de cache toch resetten?</string>
     <string name="warning">Waarschuwing</string>
     <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>
     <string name="pref_title_ShowOnlyUnread">Toon alleen ongelezen artikelen</string>
@@ -176,9 +176,9 @@
     <string name="login_dialog_title_error">Fout</string>
     <string name="login_dialog_text_something_went_wrong">Er ging iets verkeerd :(</string>
     <string name="login_dialog_text_zero_version_code">De Web News App gaf Versie \"0\". Kijk aub naar het volgende bug report: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Deze app versie is niet compatibel met uw ownCloud News App. Werk de News App en het Appframework bij.</string>
+    <string name="login_dialog_text_not_compatible">Deze app versie is niet compatibel met je Nextcloud Nieuws App. Werk de Nieuws App en het Appframework bij.</string>
     <string name="login_dialog_title_security_warning">Beveiligingswaarschuwing</string>
-    <string name="login_dialog_text_security_warning">U gebruikt geen https. Een aanvaller zou het niet versleutelde verkeer kunnen onderscheppen en toegang krijgen tot gevoelige gegevens (bijv. uw wachtwoord). We adviseren om https te gebruiken!</string>
+    <string name="login_dialog_text_security_warning">Je gebruikt geen https. Een aanvaller zou het niet versleutelde verkeer kunnen onderscheppen en toegang krijgen tot gevoelige gegevens (bijv. je wachtwoord). We adviseren om https te gebruiken!</string>
 
 
     <!-- Data & Sync -->
