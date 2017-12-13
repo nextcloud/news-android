@@ -10,10 +10,10 @@
     <string name="title_newsreader_detail">NewsReader Detail</string>
     <string name="empty_view_header">Information</string>
     <string name="empty_view_content">No items here</string>
-    <string name="toast_GettingMoreItems">Started downloading more items... Please wait.</string>
+    <string name="toast_GettingMoreItems">Download of more items started… Please wait.</string>
     <string name="tv_clickHereToOpenItem">Click here to open item</string>
     <string name="no_wifi_available">No WiFi connected</string>
-    <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a WiFi connection</string>
+    <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a Wi-Fi connection</string>
     <string name="max_items_count_reached">You\'ve reached the maximum size of XX items</string>
     <string name="widget_header">ownCloud News</string>
     <string name="message_bar_new_articles_available">New items available</string>
@@ -34,13 +34,13 @@
 
     <!-- EMAIL -->
     <string name="email_sourceCode">Sourcecode of item - Bugreport</string>
-    <string name="email_sendMail">Send EMail</string>
+    <string name="email_sendMail">Send Email</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
     <string name="action_read">Read</string>
-    <string name="action_openInBrowser">Open in Browser</string>
-    <string name="action_sendSourceCode">Send item to Developer</string>
+    <string name="action_openInBrowser">Open in Web browser</string>
+    <string name="action_sendSourceCode">Send item to Developers</string>
     <string name="action_Share">Share</string>
     <string name="action_login">Server Settings</string>
     <string name="action_save">Save</string>
@@ -54,14 +54,14 @@
     <string name="pref_title_username">Username</string>
     <string name="pref_title_password">Password</string>
     <!-- <string name="pref_title_owncloudRootPath">ownCloud root address</string> -->
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
     <!-- <string name="pref_default_username">admin</string> -->
 
     <string name="action_sign_in_short">Sign in</string>
     <string name="login_progress_signing_in">Signing in…</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_incorrect_password">Incorrect password</string>
     <string name="error_field_required">This field is required</string>
-    <string name="error_invalid_url">This url is incorrect</string>
+    <string name="error_invalid_url">Incorrect URL</string>
 
     <!-- Toast Messages -->
     <string name="toast_downloaded_x_items">Downloaded X old items</string>
@@ -100,8 +100,8 @@
     -->
 
     <string name="dialog_clearing_cache">Clearing cache</string>
-    <string name="dialog_clearing_cache_please_wait">Clearing cache.. Please wait.</string>
-    <string name="calculating_cache_size">Calculating cache size.. Please wait.</string>
+    <string name="dialog_clearing_cache_please_wait">Clearing cache… Please wait.</string>
+    <string name="calculating_cache_size">Calculating cache size… Please wait.</string>
     <string name="reset_cache_unsaved_changes">There are unsynchronized changes. Would you like to reset the cache anyway?</string>
     <string name="warning">Warning</string>
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
@@ -110,7 +110,7 @@
     <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Mark as read while scrolling</string>
-    <string name="pref_title_OpenInBrowserDirectly">Skip detail view and open article in the browser</string>
+    <string name="pref_title_OpenInBrowserDirectly">Skip detailed view and open article in the browser</string>
     <string name="pref_title_notification_new_articles_available">Show notification when new articles are available</string>
 
     <!-- MemorizingTrustManager -->
@@ -128,9 +128,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Display</string>
-    <string name="pref_title_app_theme">App theme (requires restart to apply)</string>
+    <string name="pref_title_app_theme">App theme (start the program again to apply)</string>
     <string name="pref_title_feed_list_layout">Feed list layout</string>
-    <string name="pref_display_font_layout">Font (requires restart to apply)</string>
+    <string name="pref_display_font_layout">Font (start the program again to apply)</string>
 
     <string-array name="pref_display_apptheme">
         <item>Dark</item>
@@ -182,9 +182,9 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_something_went_wrong">Something went wrong :(</string>
-    <string name="login_dialog_text_not_compatible">This App version is not compatible with your ownCloud News App. Please update the news app and the appframework.</string>
+    <string name="login_dialog_text_not_compatible">This App version is not compatible with your Nextcloud News App. Please upgrade the news app and the appframework.</string>
     <string name="login_dialog_title_security_warning">Security Warning</string>
-    <string name="login_dialog_text_security_warning">You\'re not using https. An attacker could intercept your traffic and gain access to some sensitive data (e.g. your password). So it\'s strongly recommend to use https!</string>
+    <string name="login_dialog_text_security_warning">You\'re not using HTTPS, which is strongly encouraged. An attacker could intercept your traffic and gain access to some sensitive data (e.g. your password).</string>
 
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
