@@ -79,7 +79,7 @@
     <!-- Strings related to login -->
     <string name="pref_title_username">Gebruikersnaam</string>
     <string name="pref_title_password">Wachtwoord</string>
-    <string name="pref_title_owncloudRootPath">Nextcloud root adres</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud root-adres</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Inloggen</string>
@@ -89,7 +89,7 @@
 
 
     <!-- Import Accounts -->
-    <string name="import_account">Import account</string>
+    <string name="import_account">Importeer account</string>
 
 
     <!-- Toast Messages -->
@@ -175,7 +175,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fout</string>
     <string name="login_dialog_text_something_went_wrong">Er ging iets verkeerd :(</string>
-    <string name="login_dialog_text_zero_version_code">De Web News App gaf Versie \"0\". Kijk aub naar het volgende bug report: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_zero_version_code">De Web News App gaf Versie \"0\". Bekijk alsjeblieft het volgende bug report: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Deze app versie is niet compatibel met je Nextcloud Nieuws App. Werk de Nieuws App en het Appframework bij.</string>
     <string name="login_dialog_title_security_warning">Beveiligingswaarschuwing</string>
     <string name="login_dialog_text_security_warning">Je gebruikt geen https. Een aanvaller zou het niet versleutelde verkeer kunnen onderscheppen en toegang krijgen tot gevoelige gegevens (bijv. je wachtwoord). We adviseren om https te gebruiken!</string>

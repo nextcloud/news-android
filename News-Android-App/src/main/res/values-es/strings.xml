@@ -159,6 +159,7 @@
         <item>Extendida</item>
         <item>Extendida (texto completo)</item>
         <item>Extendida con Visor web</item>
+        <item>Extendido con Cardview</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>

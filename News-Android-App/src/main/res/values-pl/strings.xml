@@ -5,8 +5,10 @@
     <string name="title_activity_sync_interval_selector">Wybór interwału synchronizacji</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Nic tu nie ma</string>
+    <string name="toast_GettingMoreItems">Rozpoczęto pobieranie nowych elementów... Proszę czekać.</string>
     <string name="no_wifi_available">Brak połączenia WIFI</string>
     <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
+    <string name="current_version">Używasz wersji %s</string>
     <string name="widget_header">ownCloud News</string>
     <string name="message_bar_reload">Przeładuj</string>
     <string name="allUnreadFeeds">Wszystkie nieprzeczytane</string>
@@ -32,16 +34,38 @@
     <string name="action_sync_settings">Ustawienia synchronizacji</string>
     <string name="action_add_new_feed">Dodaj nowy kanał</string>
     <string name="action_textToSpeech">Przeczytane</string>
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL kanału</string>
     <string name="action_add_feed">Dodaj kanał</string>
 
 
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Pobierz obraz</string>
+    <string name="action_img_sharelink">Udostępnij link obrazu</string>
+    <string name="action_img_open">Otwórz obraz w przeglądarce</string>
+    <string name="action_img_copylink">Skopiuj link obrazu</string>
+    <string name="action_link_share">Udostępnij link</string>
+    <string name="action_link_open">Otwórz link w przeglądarce</string>
+    <string name="action_link_copy">Skopiuj link</string>
+    <string name="toast_img_download_wait">Pobieranie... proszę czekać</string>
+    <string name="toast_img_saved">Zapisano obraz.</string>
+    <string name="toast_img_notwriteable">Błąd zapisu obrazu.</string>
     <string name="toast_copied_to_clipboard">Skopiuj do schowka</string>
     <string name="error_download_failed">Pobieranie nieudane</string>
+    <string name="intent_title_share">Współdziel przez</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Usuń kanał</string>
+    <string name="action_feed_rename">Zmień nazwę kanału</string>
     <string name="feed_remove_button">Usuń</string>
     <string name="feed_rename_button">Zmień nazwę</string>
+    <string name="confirm_feed_remove">Czy na pewno chcesz usunąć ten kanał? Operacja jest nieodwracalna!</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Nazwa użytkownika</string>
     <string name="pref_title_password">Hasło</string>
+    <string name="pref_title_owncloudRootPath">Adres główny Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Zaloguj</string>
@@ -57,6 +81,9 @@
     <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych elementów</string>
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Ustawienia</string>
+    <string name="cache_is_cleared">Cache jest wyczyszczone!</string>
+
+
     <!-- General settings -->
     <string name="pref_header_general">Ogólne</string>
     <string name="pref_title_general_sort_order">Sortuj w kolejności</string>
@@ -66,6 +93,7 @@
         <item>Stare -&gt; Nowe</item>
     </string-array>
     <string name="dialog_clearing_cache">Czyszczenie pamięci podręcznej</string>
+    <string name="dialog_clearing_cache_please_wait">Czyszczenie cache... Proszę czekać.</string>
     <string name="reset_cache_unsaved_changes">Są niezsynchronizowane zmiany. Czy chcesz zresetować pamięć podręczną?</string>
     <string name="warning">Ostrzeżenie</string>
     <string name="pref_title_AutoSyncOnStart">Synchronizuj na starcie</string>
@@ -73,6 +101,11 @@
     <string name="pref_title_DisableHostnameVerification">Wyłącz weryfikację nazwy hosta</string>
     <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
+    <string name="pref_title_OpenInBrowserDirectly">Użyj zewnętrznej przeglądarki aby przeglądać artykuły.</string>
+
+    <string name="dialog_feature_not_available">Ta funkcja nie jest dostępna w wersji open-source tej aplikacji. Jeśli chcesz skorzystać z tej funkcji, pobierz aplikację z repozytorium GitHub lub pobierz aplikację z Google PlayStore.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Akceptować nieznane certyfikaty?</string>
     <string name="mtm_decision_always">Zawsze</string>
@@ -82,15 +115,26 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Brak wybranego podcastu</string>
+    <string name="no_chapters_available">Brak dostępnych rozdziałów</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Wygląd</string>
     <string name="pref_title_app_theme">Motyw aplikacji</string>
     <string name="pref_title_feed_list_layout">Układ listy kanałów</string>
     <string name="pref_display_title_lines_count">Licznik linii tytułu</string>
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcji (Widok szczegółowy)</string>
     <string-array name="pref_display_apptheme">
         <item>Ciemny</item>
         <item>Jasny</item>
+    </string-array>
+    <string-array name="pref_display_feed_list_layout">
+        <item>Prosty</item>
+        <item>Rozszerzony</item>
+        <item>Rozszerzony (pełny tekst)</item>
+        <item>Rozszerzony z Webview</item>
+        <item>Rozszerzony z CardView</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
@@ -106,6 +150,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Błąd</string>
     <string name="login_dialog_text_something_went_wrong">Coś poszło nie tak :(</string>
+    <string name="login_dialog_text_zero_version_code">Aplikacja Web News zwróciła wersję \"0\". Proszę sprawdź następujący raport o błędzie: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Ta wersja aplikacji nie jest zgodny z twoją aplikacją wiadomości na ownCloud. Zaktualizuj aplikacje news i appframework.</string>
     <string name="login_dialog_title_security_warning">Ostrzeżenie o zabezpieczeniach</string>
     <string name="login_dialog_text_security_warning">Nie używaszpołączenia https. Osoba atakująca może przechwytywać ruch i uzyskać dostęp do niektórych poufnych danych (np. hasła). Zdecydowanie polecamy używać https!</string>
@@ -144,5 +189,18 @@
         <item>12 godzin</item>
         <item>24 godziny</item>
     </string-array>
+    <string name="content_desc_play">odtwarzanie</string>
+    <string name="content_desc_pause">pauza</string>
+    <string name="content_desc_rewind">przewiń wstecz</string>
+    <string name="content_desc_forward">przewiń wprzód</string>
+    <string name="content_desc_expand">rozwiń</string>
+    <string name="content_desc_collapse">zwiń</string>
+    <string name="content_desc_mark_as_read">oznacz jako przeczytane</string>
+    <string name="content_desc_mark_as_unread">oznacz jako nieprzeczytane</string>
+    <string name="content_desc_tap_to_refresh">dotknij aby odświeżyć</string>
+    <string name="content_desc_add_to_favorites">dodaj do ulubionych</string>
+    <string name="content_desc_remove_from_favorites">usuń z ulubionych</string>
+    <string name="content_desc_show_password">pokaż hasło</string>
     <string name="content_desc_delete">skasuj</string>
-    </resources>
+    <string name="content_desc_download">pobierz</string>
+</resources>

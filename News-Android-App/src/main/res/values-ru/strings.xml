@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="auto_sync_string">Авто синхронизация</string>
+    <string name="auto_sync_string">Автоматическая синхронизация</string>
     <string name="title_activity_sync_interval_selector">Переключатель интервала синхронизации</string>
     <string name="title_activity_news_detail">Последние новости</string>
     <string name="empty_view_content">Здесь нет элементов</string>
@@ -138,6 +138,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
     <string name="pref_title_OpenInBrowserDirectly">Используйте внешний браузер для просмотра записей</string>
 
+    <string name="dialog_feature_not_available">Эта возможность недоступна в установленной (open-source) версии приложения. Для использования этой возможности загрузите приложение из репозитория GitHub или установите его из Google Play Маркет.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
     <string name="mtm_decision_always">Всегда</string>
@@ -156,6 +159,7 @@
     <string name="pref_title_feed_list_layout">Макет списка лент</string>
     <string name="pref_display_title_lines_count">Количество строк для заголовка</string>
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Значки действия (подробный просмотр)</string>
     <string-array name="pref_display_apptheme">
         <item>Темная</item>
         <item>Светлая</item>
@@ -164,7 +168,8 @@
         <item>Простой</item>
         <item>Расширенный</item>
         <item>Расширенный (полный текст)</item>
-        <item>Расширенный с Webview</item>
+        <item>Функционал улучшен использованием Webview</item>
+        <item>Функционал улучшен использованием Cardview</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
@@ -180,6 +185,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Ошибка</string>
     <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
+    <string name="login_dialog_text_zero_version_code">Веб-версия приложения «Новости» вернула «0». Для получения дополнительных сведений обратитесь к сообщению об ошибке: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением ownCloud News. Обновите новостное приложение и appframework.</string>
     <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
     <string name="login_dialog_text_security_warning">Вы не используете HTTPS. Злоумышленники могут перехватить трафик и получить доступ к некоторым конфиденциальным данным (например, пароль). Мы настоятельно рекомендуем использовать HTTPS!</string>

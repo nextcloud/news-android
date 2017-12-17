@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="empty_view_content">Engin atriði hér</string>
+    <string name="current_version">Þú ert að nota útgáfu %s</string>
+    <string name="widget_header">Nextcloud-fréttir</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d nýtt atriði tiltækt</item>
+        <item quantity="other">%d ný atriði tiltæk</item>
+    </plurals>
+    <string name="message_bar_reload">Endurhlaða</string>
+    <string name="allUnreadFeeds">Öll ólesin atriði</string>
+    <string name="starredFeeds">Stjörnumerkt atriði</string>
+    <string name="title_activity_new_feed">Bæta við nýjum fréttastraumi</string>
+
+    <string name="menu_update">Endurlesa</string>
+    <string name="menu_markAllAsRead">Merkja allt sem lesið</string>
+    <string name="menu_StartImageCaching">Sækja myndir</string>
+    <string name="menu_downloadMoreItems">Sækja fleiri atriði</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Stjörnumerkt</string>
+    <string name="action_read">Lesa</string>
+    <string name="action_playPodacst">Spila hlaðvarp</string>
+    <string name="action_openInBrowser">Opna í vafra</string>
+    <string name="action_Share">Deila</string>
+    <string name="action_login">Stillingar þjóns</string>
+    <string name="action_save">Vista</string>
+    <string name="action_settings">Stillingar</string>
+    <string name="action_sync_settings">Valkostir samstillingar</string>
+    <string name="action_add_new_feed">Bæta við nýjum fréttastraum</string>
+    <string name="action_textToSpeech">Lesa upphátt</string>
+    <string name="action_add_feed">Bæta við fréttastraum</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Sækja mynd</string>
+    <string name="action_img_sharelink">Deila tengli á mynd</string>
+    <string name="action_img_open">Opna mynd í vafra</string>
+    <string name="action_img_copylink">Afrita tengil á mynd</string>
+    <string name="action_link_share">Deila tengli</string>
+    <string name="action_link_open">Opna tengil í vafra</string>
+    <string name="action_link_copy">Afrita tengil</string>
+    <string name="toast_img_saved">Mynd vistuð.</string>
+    <string name="toast_copied_to_clipboard">Afritað á klippispjald</string>
+    <string name="error_download_failed">Niðurhal mistókst</string>
+    <string name="intent_title_share">Deila með</string>
+
+
+    <string name="feed_remove_button">Fjarlægja</string>
+    <string name="feed_rename_button">Endurskýra</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Notendanafn</string>
+    <string name="pref_title_password">Lykilorð</string>
+    <string name="action_sign_in_short">Skrá inn</string>
+    <string name="login_progress_signing_in">Skrái inn …</string>
+    <string name="error_field_required">Krafist er að fyllt sé í þennan reit</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Stillingar</string>
+    <!-- General settings -->
+    <string name="pref_header_general">Almennt</string>
+    <string name="pref_title_general_sort_order">Röðun</string>
+
+    <string-array name="pref_general_sort_order">
+        <item>Nýrra -> Eldra</item>
+        <item>Eldra -> Nýrra</item>
+    </string-array>
+    <string name="dialog_clearing_cache">Hreinsa skyndiminni</string>
+    <string name="warning">Aðvörun</string>
+    <string-array name="pref_title_lines_count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Tilkynningar</string>
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Villa</string>
+    <string name="login_dialog_title_security_warning">Öryggis aðvörun</string>
+    <string name="pref_title_clearCache">Hreinsa skyndiminni</string>
+    <string-array name="pref_data_sync_image_cache">
+        <item>Aldrei</item>
+    </string-array>
+    <string-array name="pref_data_sync_max_cache_size">
+        <item>250 MB</item>
+        <item>500 MB</item>
+        <item>750 MB</item>
+        <item>1 GB</item>
+        <item>2 GB</item>
+        <item>5 GB</item>
+        <item>10 GB</item>
+    </string-array>
+    <string-array name="array_sync_interval">
+        <item>5 mínútur</item>
+        <item>15 mínútur</item>
+        <item>30 mínútur</item>
+        <item>45 mínútur</item>
+        <item>1 klukkustund</item>
+        <item>2 klukkustundir</item>
+        <item>3 klukkustundir</item>
+        <item>6 klukkustundir</item>
+        <item>12 klukkustundir</item>
+        <item>24 klukkustundir</item>
+    </string-array>
+    <string name="content_desc_play">afspilun</string>
+    <string name="content_desc_pause">bið</string>
+    <string name="content_desc_mark_as_unread">merkja allt sem ólesið</string>
+    <string name="content_desc_show_password">sýna lykilorð</string>
+    <string name="content_desc_delete">eyða</string>
+    </resources>

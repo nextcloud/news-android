@@ -116,6 +116,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
     <string name="pref_title_OpenInBrowserDirectly">使用外部浏览器浏览文章</string>
 
+    <string name="dialog_feature_not_available">此功能在这个(开源)版本中不可用。 如果您想使用此功能，请从GitHub存储库或Google PlayStore下载应用程序。</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">接受未知认证？</string>
     <string name="mtm_decision_always">总是</string>
@@ -140,6 +143,7 @@
         <item>扩展</item>
         <item>扩展(全部文本)</item>
         <item>扩展,使用网页浏览器</item>
+        <item>Cardview扩展</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
@@ -193,8 +197,12 @@
         <item>12 小时</item>
         <item>24 小时</item>
     </string-array>
+    <string name="content_desc_play">播放</string>
     <string name="content_desc_pause">暂停</string>
     <string name="content_desc_mark_as_read">标记为已读</string>
     <string name="content_desc_mark_as_unread">标记为未读</string>
+    <string name="content_desc_remove_from_favorites">取消收藏</string>
+    <string name="content_desc_show_password">显示密码</string>
     <string name="content_desc_delete">删除</string>
-    </resources>
+    <string name="content_desc_download">下载</string>
+</resources>

@@ -8,6 +8,7 @@
     <string name="toast_GettingMoreItems">Több elem letöltése elindítva... Kérjük, várj.</string>
     <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Le szeretnéd tölteni a képeket WiFi kapcsolat nélkül?</string>
+    <string name="current_version">A(z) %s verziót használod</string>
     <string name="widget_header">ownCloud Hírek</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d új elem elérhető</item>
@@ -36,6 +37,17 @@
     <string name="action_settings">Beállítások</string>
     <string name="action_sync_settings">Szinkronizációs beállítások</string>
     <string name="action_add_new_feed">Új hírcsatorna hozzáadása</string>
+    <string name="action_textToSpeech">Kiolvasás</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">%dúj olvasatlan elemed van </item>
+        <item quantity="other">%d új olvasatlan elemed van</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d új olvasatlan elem elérhető</item>
+        <item quantity="other">%dúj olvasatlan elem elérhető</item>
+    </plurals>
+
+
     <!-- Add new feed -->
     <string name="hint_feed_url">Hírfolyam URL</string>
     <string name="action_add_feed">Hírcsatorna hozzáadása</string>
@@ -67,6 +79,7 @@
     <!-- Strings related to login -->
     <string name="pref_title_username">Felhasználónév</string>
     <string name="pref_title_password">Jelszó</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud gyökércím</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Belépés</string>
@@ -85,6 +98,12 @@
         <item quantity="other">%drégi elem letöltve</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Nincs elérhető további elem</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Eddig %d elem lekérve</item>
+        <item quantity="other">Eddig %d elem lekérve...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Beállítások</string>
     <string name="cache_is_cleared">Gyorsítótár kiürítve!</string>
@@ -109,6 +128,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben olvasottként legyen megjelőlve</string>
     <string name="pref_title_OpenInBrowserDirectly">Külső böngésző használata a cikkek megtekintéséhez</string>
 
+    <string name="dialog_feature_not_available">Ez a funkció az appnak ebben a (nyílt forrású) verziójában nem érhető el. Ha használni akarod ezt a funkciót, töltsd le az appot a GitHub tárolóból vagy a Google PlayStore-ból.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Elfogadod az ismeretlen tanusítványokat?</string>
     <string name="mtm_decision_always">Mindig</string>
@@ -125,6 +147,9 @@
     <string name="pref_header_display">Kijelző</string>
     <string name="pref_title_app_theme">App téma </string>
     <string name="pref_title_feed_list_layout">A csatorna elrendezés</string>
+    <string name="pref_display_title_lines_count">Cím sorainak száma</string>
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Akció ikonok (Részletes nézet)</string>
     <string-array name="pref_display_apptheme">
         <item>Sőtét</item>
         <item>Világos</item>
@@ -133,6 +158,8 @@
         <item>Egyszerű</item>
         <item>Kiterjesztett</item>
         <item>Kiterjesztett (teljes szöveg)</item>
+        <item>Részletes Webview-val</item>
+        <item>Részletes Cardview-val</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
@@ -148,6 +175,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Hiba</string>
     <string name="login_dialog_text_something_went_wrong">Valami balul sült el :(</string>
+    <string name="login_dialog_text_zero_version_code">A Web News App verziónak 0-át adott vissza. Olvasd el ezt a hibajelentést: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Ez az App verzió hem kompatibilis a the ownCloud Hírolvasó App-pal. Frissitsd a hír app-pt és az app-keretrendszert.</string>
     <string name="login_dialog_title_security_warning">Biztonsági figyelmeztetés</string>
     <string name="login_dialog_text_security_warning">Jelenleg nem használsz https-t. Egy támadó beépülhet és lehalgathatja a forgalmat és ez által hozzáférhetet kényes adatokhoz(pl jelszó). Nagyon ajánlott, hogy használj https-t!</string>
@@ -194,6 +222,7 @@
     <string name="content_desc_collapse">összecsukás</string>
     <string name="content_desc_mark_as_read">megjelölés olvasottnak</string>
     <string name="content_desc_mark_as_unread">megjelölés olvasatlannak</string>
+    <string name="content_desc_tap_to_refresh">koppints a frissítéshez</string>
     <string name="content_desc_add_to_favorites">hozzáadás a kedvencekhez</string>
     <string name="content_desc_remove_from_favorites">eltávolítás a kedvencekből</string>
     <string name="content_desc_show_password">jelszó mutatása</string>
