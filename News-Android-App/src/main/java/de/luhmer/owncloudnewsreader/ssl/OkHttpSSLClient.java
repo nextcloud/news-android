@@ -2,6 +2,7 @@ package de.luhmer.owncloudnewsreader.ssl;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 import com.google.gson.JsonParseException;
 
@@ -21,6 +22,7 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import okhttp3.ConnectionSpec;
 import okhttp3.Credentials;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -55,6 +57,13 @@ public class OkHttpSSLClient {
             // enables TLSv1.1/1.2 for Jelly Bean Devices
             TLSSocketFactory tlsSocketFactory = new TLSSocketFactory(sc);
             clientBuilder.sslSocketFactory(tlsSocketFactory, systemDefaultTrustManager());
+
+            // Workaround for Android 7.0 TLS bug
+            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
+                String[] suites = tlsSocketFactory.getDefaultCipherSuites();
+                ConnectionSpec tlsSpec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS).cipherSuites(suites).build();
+                clientBuilder.connectionSpecs(Arrays.asList(tlsSpec, ConnectionSpec.CLEARTEXT));
+            }
         } catch (KeyManagementException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
