@@ -5,9 +5,16 @@
     <string name="title_activity_sync_interval_selector">Период освежавања</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Овде нема ничега</string>
+    <string name="toast_GettingMoreItems">Почињем скидање још ставки… Сачекајте.</string>
     <string name="no_wifi_available">Нема бежичне везе</string>
     <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе?</string>
+    <string name="current_version">Користите верзију %s</string>
     <string name="widget_header">оунКлауд новости</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">Доступна %d нова ставка</item>
+        <item quantity="few">Доступне %d нове ставке</item>
+        <item quantity="other">Доступних %d нових ставки</item>
+    </plurals>
     <string name="message_bar_reload">Поново учитај</string>
     <string name="allUnreadFeeds">Све непрочитане ставке</string>
     <string name="starredFeeds">Озвездане ставке</string>
@@ -32,13 +39,50 @@
     <string name="action_sync_settings">Поставке освежавања</string>
     <string name="action_add_new_feed">Додај довод</string>
     <string name="action_textToSpeech">Ишчитај</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Имате %d непрочитану ставку</item>
+        <item quantity="few">Имате %d непрочитане ставке</item>
+        <item quantity="other">Имате %d непрочитаних ставки</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">Доступна је %d непрочитана ставка</item>
+        <item quantity="few">Доступно је %d непрочитане ставке</item>
+        <item quantity="other">Доступно је %d непрочитаних ставки</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Адреса довода</string>
+    <string name="action_add_feed">Додај довод</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Преузми слику</string>
+    <string name="action_img_sharelink">Подели везу ка слици</string>
+    <string name="action_img_open">Отвори слику у прегледачу</string>
+    <string name="action_img_copylink">Копирај везу ка слици</string>
+    <string name="action_link_share">Подели везу</string>
+    <string name="action_link_open">Отвори везу у прегледачу</string>
+    <string name="action_link_copy">Копирај везу</string>
+    <string name="toast_img_download_wait">Преузимам… сачекајте молим</string>
+    <string name="toast_img_saved">Слика сачувана.</string>
+    <string name="toast_img_notwriteable">Грешка при чувању слике.</string>
     <string name="toast_copied_to_clipboard">Копирано у клипборд</string>
     <string name="error_download_failed">Преузимање није успело</string>
+    <string name="intent_title_share">Подели преко</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Уклони довод</string>
+    <string name="action_feed_rename">Преименуј довод</string>
     <string name="feed_remove_button">Уклони</string>
     <string name="feed_rename_button">Преименуј</string>
+    <string name="confirm_feed_remove">Да ли стварно желите да уклоните овај довод? Ово је неповратна операција!</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Корисничко име</string>
     <string name="pref_title_password">Лозинка</string>
+    <string name="pref_title_owncloudRootPath">Корена адреса Некстклауда</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Пријави се</string>
@@ -51,7 +95,20 @@
     <string name="import_account">Увези налог</string>
 
 
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Преузета %d стара ставка</item>
+        <item quantity="few">Преузето %d старе ставке</item>
+        <item quantity="other">Преузето %d старих ставки</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">Нема више доступних ставки</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">До сада скинута %d ставка…</item>
+        <item quantity="few">До сада скинуто %d ставке…</item>
+        <item quantity="other">До сада скинуто %d ставки…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Поставке</string>
     <string name="cache_is_cleared">Кеш је очишћен!</string>
@@ -76,6 +133,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Означи као прочитано током клизања</string>
     <string name="pref_title_OpenInBrowserDirectly">Користи спољашњи прегледач за приказ чланака</string>
 
+    <string name="dialog_feature_not_available">Ова функционалност није доступна у овој верзији (отвореног кода). Ако желите да користите ову функционалност, преузмите апликација са GitHub репозиторијума или скините апликација са Google PlayStore продавнице.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Прихватити непознати сертификат?</string>
     <string name="mtm_decision_always">Увек</string>
@@ -85,12 +145,16 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Није изабрана подемисија</string>
+    <string name="no_chapters_available">Нема доступних поглавља</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Приказ</string>
     <string name="pref_title_app_theme">Тема</string>
     <string name="pref_title_feed_list_layout">Распоред листе довода</string>
     <string name="pref_display_title_lines_count">Број линија у наслову</string>
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Акционе иконица (детаљни приказ)</string>
     <string-array name="pref_display_apptheme">
         <item>тамна</item>
         <item>светла</item>
@@ -100,6 +164,7 @@
         <item>проширена</item>
         <item>прочирена (цео текст)</item>
         <item>проширена помоћу Webview</item>
+        <item>проширена помоћу Cardview</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
@@ -115,6 +180,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Грешка</string>
     <string name="login_dialog_text_something_went_wrong">Нешто је пошло наопако :(</string>
+    <string name="login_dialog_text_zero_version_code">Апликација вести је вратила верзију \"0\". Погледајте следећи извештај о грешци: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Верзија ове апликације није усклађена са новинском апликацијом оунКлауда. Ажурирајте апликацију и њен радни оквир.</string>
     <string name="login_dialog_title_security_warning">Сигурносно упозорење</string>
     <string name="login_dialog_text_security_warning">Не користите безбедни пренос. Нападач може пресрести ваш саобраћај и доћи у посед осетљивих података (нпр. ваше лозинке). Заиста препоручујемо да користите https!</string>
@@ -153,5 +219,18 @@
         <item>12 сати</item>
         <item>24 сата</item>
     </string-array>
+    <string name="content_desc_play">пусти</string>
+    <string name="content_desc_pause">паузирај</string>
+    <string name="content_desc_rewind">премотај</string>
+    <string name="content_desc_forward">убрзај</string>
+    <string name="content_desc_expand">прошири</string>
+    <string name="content_desc_collapse">скупи</string>
+    <string name="content_desc_mark_as_read">означи као прочитано</string>
+    <string name="content_desc_mark_as_unread">означи као непрочитано</string>
+    <string name="content_desc_tap_to_refresh">притисните да освежите</string>
+    <string name="content_desc_add_to_favorites">додај у омиљене</string>
+    <string name="content_desc_remove_from_favorites">уклони из омиљених</string>
+    <string name="content_desc_show_password">прикажи лозинку</string>
     <string name="content_desc_delete">обриши</string>
-    </resources>
+    <string name="content_desc_download">преузми</string>
+</resources>
