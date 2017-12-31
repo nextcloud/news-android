@@ -144,6 +144,7 @@
     <string name="pref_header_display">Visa</string>
     <string name="pref_title_app_theme">App tema</string>
     <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
     <string-array name="pref_display_apptheme">
         <item>Mörk</item>
         <item>Ljus</item>
@@ -153,6 +154,7 @@
         <item>Utvidgad</item>
         <item>Utvidgad (fulltext)</item>
         <item>Utvidgad med WebView</item>
+        <item>Utökad med Cardview</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
