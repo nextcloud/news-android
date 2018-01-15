@@ -200,6 +200,8 @@
     </string-array>
     <string name="content_desc_play">toistsa</string>
     <string name="content_desc_pause">keskeytä</string>
+    <string name="content_desc_expand">laajenna</string>
+    <string name="content_desc_collapse">supista</string>
     <string name="content_desc_mark_as_read">merkitse luetuksi</string>
     <string name="content_desc_mark_as_unread">merkitse lukemattomaksi</string>
     <string name="content_desc_tap_to_refresh">napauta päivittääksesi</string>
