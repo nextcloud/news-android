@@ -136,5 +136,6 @@
         <item>12 Годин</item>
         <item>24 Години</item>
     </string-array>
+    <string name="content_desc_add_to_favorites">додати до улюбленого</string>
     <string name="content_desc_delete">видалити</string>
     </resources>

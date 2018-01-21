@@ -170,6 +170,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Feil</string>
     <string name="login_dialog_text_something_went_wrong">Noe gikk galt :-(</string>
+    <string name="login_dialog_text_zero_version_code">Nettnyhetsprogrammet returnerte versjon \"0\". Ta en titt på følgende feilrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Applikasjonsversjonen din er ikka kompatibel med din ownCloud Nyhetsapp. Vennligst oppdater nyhetsappen og apprammeverket.</string>
     <string name="login_dialog_title_security_warning">Sikkerhetsadvarsel</string>
     <string name="login_dialog_text_security_warning">Du bruker ikke https. En angriper kan fange opp trafikken og få tilgang til noen sensitive data (f.eks passordet ditt). Så det er det sterkt anbefalt å bruke https!</string>

@@ -69,8 +69,13 @@
     <string name="intent_title_share">Dela via</string>
 
 
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Ta bort Feed</string>
+    <string name="action_feed_rename">Döp om Feed</string>
     <string name="feed_remove_button">Radera</string>
     <string name="feed_rename_button">Byt namn</string>
+    <string name="confirm_feed_remove">Vill du verkligen ta bort denna Feed? Det kan inte ångras!</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Användarnamn</string>
     <string name="pref_title_password">Lösenord</string>
@@ -139,6 +144,7 @@
     <string name="pref_header_display">Visa</string>
     <string name="pref_title_app_theme">App tema</string>
     <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
     <string-array name="pref_display_apptheme">
         <item>Mörk</item>
         <item>Ljus</item>
@@ -148,6 +154,7 @@
         <item>Utvidgad</item>
         <item>Utvidgad (fulltext)</item>
         <item>Utvidgad med WebView</item>
+        <item>Utökad med Cardview</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>

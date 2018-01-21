@@ -48,21 +48,34 @@
     </plurals>
 
 
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL Ροής</string>
     <string name="action_add_feed">Προσθήκη ροής</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Λήψη εικόνας</string>
+    <string name="action_img_sharelink">Μοιραστείτε Σύνδεσμο Εικόνας</string>
     <string name="action_img_open">Άνοιγμα εικόνας στον περιηγητή</string>
     <string name="action_img_copylink">Αντιγραφή συνδέσμου εικόνας</string>
     <string name="action_link_share">Διαμοιρασμός συνδέσμου</string>
     <string name="action_link_open">Άνοιγμα συνδέσμου στον περιηγητή</string>
     <string name="action_link_copy">Αντιγραφή συνδέσμου</string>
+    <string name="toast_img_download_wait">Λήψη... Παρακαλούμε περιμένετε</string>
     <string name="toast_img_saved">Η εικόνα αποθηκεύτηκε.</string>
+    <string name="toast_img_notwriteable">Αποτυχία Εγγραφής Εικόνας.</string>
     <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
     <string name="error_download_failed">Η λήψη απέτυχε</string>
+    <string name="intent_title_share">Μοιραστείτε με</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Αφαίρεση Ροής</string>
+    <string name="action_feed_rename">Μετονομασία Ροής</string>
     <string name="feed_remove_button">Αφαίρεση</string>
     <string name="feed_rename_button">Μετονομασία</string>
+    <string name="confirm_feed_remove">Θέλετε πραγματικά να αφαιρέσετε αυτή την Ροή; Αυτό δεν μπορεί να αναιρεθεί!</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Όνομα χρήστη</string>
     <string name="pref_title_password">Συνθηματικό</string>
@@ -108,6 +121,9 @@
     <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
     <string name="pref_title_OpenInBrowserDirectly">Χρήση εξωτερικού προγράμματος περιήγησης για θέαση άρθρων</string>
+
+    <string name="dialog_feature_not_available">Αυτή η λειτουργία δεν είναι διαθέσιμη σε αυτή την (Open Source) έκδοση αυτής της εφαρμογής. Αν θέλετε να χρησιμοποιήσετε αυτή την λειτουργία παρακαλούμε κατεβάστε την εφαρμογή από το αποθετήριο Github ή από το Google PlayStore.</string>
+
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Αποδοχή Άγνωστων Πιστοποιητικών;</string>
@@ -159,6 +175,12 @@
     <string name="pref_title_CacheImagesOffline">Αποθήκευση εικόνων για χρήση χωρίς σύνδεση</string>
     <string name="pref_title_Max_Cache_Size">Μέγιστο μέγεθος στοιχείων προς αποθήκευση</string>
 
+    <string-array name="pref_data_sync_image_cache">
+        <item>Ποτέ</item>
+        <item>Μόνο μέσω WiFi</item>
+        <item>Μέσω Wifi &amp; δεδομένων Κινητής Τηλεφωνίας</item>
+        <item>Ερώτηση αν δεν υπάρχει σύνδεση WiFi</item>
+    </string-array>
     <string-array name="pref_data_sync_max_cache_size">
         <item>250 MB</item>
         <item>500 MB</item>
@@ -182,6 +204,11 @@
     </string-array>
     <string name="content_desc_play">αναπαραγωγή</string>
     <string name="content_desc_pause">παύση</string>
+    <string name="content_desc_forward">προώθηση</string>
+    <string name="content_desc_expand">επέκταση</string>
+    <string name="content_desc_mark_as_read">επισήμανση ως αναγνωσμένο</string>
+    <string name="content_desc_mark_as_unread">επισήμανση ως μή-αναγνωσμένο</string>
+    <string name="content_desc_tap_to_refresh">αγγίξτε για ανανέωση</string>
     <string name="content_desc_add_to_favorites">προσθήκη στα αγαπημένα</string>
     <string name="content_desc_remove_from_favorites">αφαίρεση από τα αγαπημένα</string>
     <string name="content_desc_show_password">εμφάνιση συνθηματικού</string>
