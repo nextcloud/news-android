@@ -22,6 +22,7 @@ android {
 
     buildTypes {
         debug {
+            shrinkResources true
             minifyEnabled true
             // TODO check if proguard-android.txt is used at all.. it's supposed to get it from the sdk. so we can delete it in this repo!
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
@@ -29,6 +30,7 @@ android {
             pseudoLocalesEnabled true
         }
         release {
+            shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
@@ -90,7 +92,7 @@ repositories {
 
 }
 
-final SUPPORT_VERSION = '26.+'
+final SUPPORT_VERSION = '27.0.2'
 
 dependencies {
     // core android studio module
@@ -112,7 +114,10 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    annotationProcessor 'com.google.auto.value:auto-value:1.1'
+
+    compileOnly 'com.google.auto.value:auto-value:1.5.1'
+    annotationProcessor 'com.google.auto.value:auto-value:1.5.1'
+
     compile 'com.sothree.slidinguppanel:library:3.2.1'
 
     compile 'org.greenrobot:eventbus:3.0.0'
