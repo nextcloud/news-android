@@ -78,7 +78,7 @@ public class NewFeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
-        ThemeChooser.chooseTheme(this);
+        ThemeChooser.ChooseTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_feed);
 

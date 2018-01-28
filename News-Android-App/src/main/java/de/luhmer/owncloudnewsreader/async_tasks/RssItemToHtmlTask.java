@@ -92,10 +92,18 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         }
 
         String body_id;
-        if (ThemeChooser.isDarkTheme(context)) {
-            body_id = "darkTheme";
-        } else {
-            body_id = "lightTheme";
+        switch(ThemeChooser.getInstance(context).getSelectedTheme(context, false)) {
+            case 0:
+                body_id = "darkTheme";
+                break;
+            case 1:
+                body_id = "lightTheme";
+                break;
+            case 2:
+                body_id = "darkThemeOLED";
+                break;
+            default:
+                body_id = "darkTheme";
         }
 
         boolean isRightToLeft = context.getResources().getBoolean(R.bool.is_right_to_left);

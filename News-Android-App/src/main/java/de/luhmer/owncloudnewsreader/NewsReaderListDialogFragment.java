@@ -100,7 +100,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         });
 
         int style = DialogFragment.STYLE_NO_TITLE;
-        int theme = ThemeChooser.isDarkTheme(getActivity())
+        int theme = ThemeChooser.getInstance(getActivity()).isDarkTheme()
                 ? R.style.FloatingDialog
                 : R.style.FloatingDialogLight;
         setStyle(style, theme);

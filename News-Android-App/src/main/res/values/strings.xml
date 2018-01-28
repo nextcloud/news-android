@@ -174,10 +174,12 @@
 
     <string-array name="pref_display_apptheme">
         <item>Dark</item>
+        <item>Dark (for OLED Screens)</item>
         <item>Light</item>
     </string-array>
     <string-array name="pref_display_apptheme_values" translatable="false">
         <item>0</item>
+        <item>2</item>
         <item>1</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
@@ -194,6 +196,7 @@
         <item>2</item>
         <item>4</item>
     </string-array>
+
     <string-array name="pref_title_lines_count">
         <item>1</item>
         <item>2</item>

@@ -8,6 +8,11 @@ body#lightTheme {
     color:				black;
 }
 
+body#darkThemeOLED {
+    background-color:   #000;
+    color:              #eee;
+}
+
 body#darkTheme {
     background-color:   #222;
     color:              #eee;

@@ -31,32 +31,50 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 
 public class ThemeChooser {
 
-	public static void chooseTheme(Activity act)
-	{
-        if(isDarkTheme(act)) {
-            act.setTheme(R.style.AppTheme);
-        } else {
-            act.setTheme(R.style.AppThemeLight);
+    private Integer mSelectedTheme;
+    private static ThemeChooser mInstance;
+
+    public static ThemeChooser getInstance(Context context) {
+        if(mInstance == null) {
+            mInstance = new ThemeChooser(context);
         }
-	}
-
-
-    public static boolean ThemeRequiresRestartOfUI(Context context) {
-        return mIsDarkTheme != null && mIsDarkTheme != isDarkTheme(context, true);
+        return mInstance;
     }
 
-    static Boolean mIsDarkTheme;
-	public static boolean isDarkTheme(Context context)
+    public ThemeChooser(Context context) {
+        getSelectedTheme(context, false); // Init variable
+    }
+
+	public static void ChooseTheme(Activity act)
 	{
-        return isDarkTheme(context, false);
+	    switch(getInstance(act).getSelectedTheme(act, false)) {
+            case 0: // Dark Theme
+                act.setTheme(R.style.AppTheme);
+                break;
+            case 1: // Light Theme
+                act.setTheme(R.style.AppThemeLight);
+                break;
+            case 2: // Dark Theme for OLED
+                act.setTheme(R.style.AppThemeOLED);
+                break;
+        }
 	}
 
-    public static boolean isDarkTheme(Context context, boolean forceReloadCache) {
-        if(mIsDarkTheme == null || forceReloadCache) {
+    // Check if the currently loaded theme is different from the one set in the settings
+    public boolean themeRequiresRestartOfUI(Context context) {
+        return mSelectedTheme != getSelectedTheme(context, true);
+    }
+
+	public boolean isDarkTheme()
+	{
+        return  mSelectedTheme == 0 || mSelectedTheme == 2;
+	}
+
+    public Integer getSelectedTheme(Context context, boolean forceReloadCache) {
+        if(mSelectedTheme == null || forceReloadCache) {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            String value = mPrefs.getString(SettingsActivity.SP_APP_THEME, "0");
-            mIsDarkTheme = value.equals("0");
+            mSelectedTheme = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_APP_THEME, "0"));
         }
-        return mIsDarkTheme;
+        return mSelectedTheme;
     }
 }

@@ -162,7 +162,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         mProgressBarLoading.setVisibility(View.VISIBLE);
 
         NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
-        if(background_color != Integer.MIN_VALUE && ThemeChooser.isDarkTheme(ndActivity))
+        if(background_color != Integer.MIN_VALUE && ThemeChooser.getInstance(ndActivity).isDarkTheme())
         {
             mWebView.setBackgroundColor(background_color);
             ndActivity.mViewPager.setBackgroundColor(background_color);
@@ -228,7 +228,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         registerForContextMenu(mWebView);
 
         mWebView.setWebChromeClient(new ProgressBarWebChromeClient(mProgressbarWebView));
-
 
         mWebView.setWebViewClient(new WebViewClient() {
 

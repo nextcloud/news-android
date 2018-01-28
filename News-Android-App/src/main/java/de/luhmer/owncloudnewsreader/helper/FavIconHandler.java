@@ -62,7 +62,7 @@ public class FavIconHandler {
 
     public static int getResourceIdForRightDefaultFeedIcon(Context context)
 	{
-		if(ThemeChooser.isDarkTheme(context))
+		if(ThemeChooser.getInstance(context).isDarkTheme())
 			return R.drawable.default_feed_icon_light;
 		else
 			return R.drawable.default_feed_icon_dark;

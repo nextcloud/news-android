@@ -368,7 +368,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
     private int getBtn_rating_star_off_normal_holo_light() {
         if(btn_rating_star_off_normal_holo_light == null) {
-            if(ThemeChooser.isDarkTheme(mContext)) {
+            if(ThemeChooser.getInstance(mContext).isDarkTheme()) {
                 btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_dark;
             } else {
                 btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_light;

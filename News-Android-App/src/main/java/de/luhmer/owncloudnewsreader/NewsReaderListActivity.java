@@ -134,7 +134,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.chooseTheme(this);
+		ThemeChooser.ChooseTheme(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
 
@@ -821,7 +821,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			String oldLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
 			String newLayout = PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
 
-            if(ThemeChooser.ThemeRequiresRestartOfUI(this) || !newLayout.equals(oldLayout)) {
+            if(ThemeChooser.getInstance(this).themeRequiresRestartOfUI(this) || !newLayout.equals(oldLayout)) {
                 finish();
                 startActivity(getIntent());
             } else if(data.hasExtra(SettingsActivity.CACHE_CLEARED) && ownCloudSyncService != null) {
