@@ -3,6 +3,16 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.13 (Google Play)
+---------------------
+- Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/614">#614 Black background color for OLED screens (New Theme)</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/612">#612 Impossible to delete or edit RSS feeds</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/607">#607 Workaround for SSL Handshake failed on Android 7.0 (thank you @svenschn)</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/606">#606 App crash when opening "Settings" on Android 4.2</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/591">#591 Add option to load links in feeds in external browser</a>
+- Fix app crash on android 8
+
+
 0.9.9.12 (Google Play)
 ---------------------
 - Several bug fixes
