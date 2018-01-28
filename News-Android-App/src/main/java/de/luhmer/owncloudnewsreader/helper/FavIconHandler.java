@@ -68,12 +68,13 @@ public class FavIconHandler {
 			return R.drawable.default_feed_icon_dark;
 	}
 
-	public void PreCacheFavIcon(final Feed feed) {
+	public void PreCacheFavIcon(final Feed feed) throws IllegalStateException {
         if(feed.getFaviconUrl() == null) {
             Log.v(TAG, "No favicon for "+feed.getFeedTitle());
             return;
         }
 
+        Log.v(TAG, "Loading image: " + feed.getFaviconUrl());
         ImageLoader.getInstance().loadImage(feed.getFaviconUrl(), displayImageOptions, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {

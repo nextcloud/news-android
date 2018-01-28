@@ -130,7 +130,11 @@ public class DownloadImagesService extends JobIntentService {
             List<Feed> feedList = dbConn.getListOfFeeds();
             FavIconHandler favIconHandler = new FavIconHandler(this);
             for(Feed feed : feedList) {
-                favIconHandler.PreCacheFavIcon(feed);
+                try {
+                    favIconHandler.PreCacheFavIcon(feed);
+                } catch(IllegalStateException ex) {
+                    Log.e(TAG, ex.getMessage());
+                }
             }
         } else if(downloadMode.equals(DownloadMode.FAVICONS_AND_PICTURES) || downloadMode.equals(DownloadMode.PICTURES_ONLY)) {
             long lastId = intent.getLongExtra(LAST_ITEM_ID, 0);
