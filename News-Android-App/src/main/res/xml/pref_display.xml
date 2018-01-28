@@ -20,8 +20,8 @@
         android:entryValues="@array/pref_display_feed_list_layout_values"
         android:key="sp_feed_list_layout"
         android:title="@string/pref_title_feed_list_layout" />
-    
-    
+
+
     <ListPreference
         android:defaultValue="2"
         android:entries="@array/pref_title_lines_count"
@@ -29,6 +29,12 @@
         android:key="sp_title_lines_count"
         android:title="@string/pref_display_title_lines_count" />
 
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_display_browser"
+        android:entryValues="@array/pref_display_browser_values"
+        android:key="sp_display_browser"
+        android:title="@string/pref_display_browser" />
 
     <MultiSelectListPreference
         android:entries="@array/pref_display_news_detail_actionbar_icons"

@@ -154,6 +154,7 @@
     <string name="pref_title_app_theme">App theme</string>
     <string name="pref_title_feed_list_layout">Feed list layout</string>
     <string name="pref_display_title_lines_count">Line Count for title</string>
+    <string name="pref_display_browser">Browser</string>
 
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
     <string-array name="pref_display_news_detail_actionbar_icons" translatable="false">
@@ -182,6 +183,18 @@
         <item>2</item>
         <item>1</item>
     </string-array>
+
+    <string-array name="pref_display_browser">
+        <item>Built-in Chrome-Custom-Tabs</item>
+        <item>Built-in Browser</item>
+        <item>External browser</item>
+    </string-array>
+    <string-array name="pref_display_browser_values" translatable="false">
+        <item>0</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
+
     <string-array name="pref_display_feed_list_layout">
         <item>Simple</item>
         <item>Extended</item>
@@ -262,6 +275,7 @@
         <item>5000</item>
         <item>10000</item>
     </string-array>
+
     <string-array name="array_sync_interval">
         <item>5 Minutes</item>
         <item>15 Minutes</item>

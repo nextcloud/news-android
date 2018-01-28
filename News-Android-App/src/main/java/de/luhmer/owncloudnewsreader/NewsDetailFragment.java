@@ -22,8 +22,11 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -233,13 +236,29 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDarkTheme));
-                builder.setShowTitle(true);
-                builder.setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-                builder.setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right);
-                builder.build().launchUrl(getActivity(), Uri.parse(url));
-                return true;
+                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
+
+                boolean result = true;
+                switch(selectedBrowser) {
+                    case 0: // Custom Tabs
+                        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                        builder.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDarkTheme));
+                        builder.setShowTitle(true);
+                        builder.setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
+                        builder.setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right);
+                        builder.build().launchUrl(getActivity(), Uri.parse(url));
+                        result = true;
+                        break;
+                    case 1: // External Browser
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(browserIntent);
+                        break;
+                    case 2: // Built in
+                        result = super.shouldOverrideUrlLoading(view, url);
+                        break;
+                }
+                return result;
                 //return super.shouldOverrideUrlLoading(view, url);
             }
 
