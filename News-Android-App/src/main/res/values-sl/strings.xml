@@ -155,10 +155,8 @@
     <string name="pref_title_app_theme">Ime teme</string>
     <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
     <string name="pref_display_title_lines_count">Vrstični števec za naslov</string>
-
     <string-array name="pref_display_apptheme">
         <item>Temna</item>
-        <item>Svetla</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Enostavno</item>

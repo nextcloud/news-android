@@ -140,10 +140,8 @@
     <string name="pref_title_app_theme">アプリテーマ</string>
     <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
     <string name="pref_display_title_lines_count">タイトルの行数</string>
-
     <string-array name="pref_display_apptheme">
         <item>ダーク</item>
-        <item>ライト</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>基本</item>

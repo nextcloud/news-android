@@ -109,10 +109,8 @@
     <string name="pref_title_app_theme">Визуална Тема</string>
     <string name="pref_title_feed_list_layout">Оформление на списъка с потоци</string>
     <string name="pref_display_title_lines_count">Брой на редовете за заглавия</string>
-
     <string-array name="pref_display_apptheme">
         <item>Тъмна</item>
-        <item>Светла</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>

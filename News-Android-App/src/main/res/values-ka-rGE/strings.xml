@@ -143,11 +143,9 @@
     <string name="pref_title_app_theme">აპლიკაციის თემა</string>
     <string name="pref_title_feed_list_layout">ლენტის სიის მაკეტი</string>
     <string name="pref_display_title_lines_count">ხაზების ოდენობა სათაურისთვის</string>
-
     <string name="pref_display_news_detail_actionbar_icons_title">მოქმედების პიქტოგრამები (დეტალების ხედი)</string>
     <string-array name="pref_display_apptheme">
         <item>მუქი</item>
-        <item>ღია</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>მარტივი</item>

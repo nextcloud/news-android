@@ -147,7 +147,6 @@
     <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
     <string-array name="pref_display_apptheme">
         <item>Mörk</item>
-        <item>Ljus</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Enkel</item>

@@ -75,7 +75,7 @@
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Nama pengguna</string>
-    <string name="pref_title_password">Sandi</string>
+    <string name="pref_title_password">Kata sandi</string>
     <string name="pref_title_owncloudRootPath">Alamat root ownCloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
@@ -140,10 +140,8 @@
     <string name="pref_title_app_theme">Tema aplikasi</string>
     <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
     <string name="pref_display_title_lines_count">Jumlah Baris untuk judul</string>
-
     <string-array name="pref_display_apptheme">
         <item>Gelap</item>
-        <item>Terang</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Sederhana</item>
@@ -214,7 +212,7 @@
     <string name="content_desc_tap_to_refresh">tekan untuk menyegarkan</string>
     <string name="content_desc_add_to_favorites">tambah ke favorit</string>
     <string name="content_desc_remove_from_favorites">hapus dari favorit</string>
-    <string name="content_desc_show_password">tampilkan sandi</string>
+    <string name="content_desc_show_password">tampilkan kata sandi</string>
     <string name="content_desc_delete">hapus</string>
     <string name="content_desc_download">unduh</string>
 </resources>

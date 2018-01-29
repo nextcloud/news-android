@@ -125,10 +125,8 @@
     <string name="pref_title_app_theme">Tèma de l\'app</string>
     <string name="pref_title_feed_list_layout">Disposicion de la lista dels fluxes</string>
     <string name="pref_display_title_lines_count">Nombre de linhas pel títol</string>
-
     <string-array name="pref_display_apptheme">
         <item>Escur</item>
-        <item>Clar</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Simpla</item>

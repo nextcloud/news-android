@@ -85,7 +85,6 @@
     <string name="pref_title_feed_list_layout">Axın siyahısının görünüşü</string>
     <string-array name="pref_display_apptheme">
         <item>Qaranlıq</item>
-        <item>İşıqlı</item>
     </string-array>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Xəbərdarlıqlar</string>

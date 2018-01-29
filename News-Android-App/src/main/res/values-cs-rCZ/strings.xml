@@ -150,10 +150,8 @@
     <string name="pref_title_app_theme">Vzhled aplikace</string>
     <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
     <string name="pref_display_title_lines_count">Počet řádek pro nadpis</string>
-
     <string-array name="pref_display_apptheme">
         <item>Tmavý</item>
-        <item>Světlý</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Jednoduchý</item>

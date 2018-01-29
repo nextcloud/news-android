@@ -145,10 +145,8 @@
     <string name="pref_title_app_theme">Temë aplikacioni</string>
     <string name="pref_title_feed_list_layout">Skemë liste prurjesh</string>
     <string name="pref_display_title_lines_count">Numërim Rreshtash për titullin</string>
-
     <string-array name="pref_display_apptheme">
         <item>E errët</item>
-        <item>E çelët</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>E thjeshtë</item>

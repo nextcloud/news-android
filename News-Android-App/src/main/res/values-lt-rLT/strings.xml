@@ -95,7 +95,6 @@
     <string name="pref_title_feed_list_layout">Sklaikos kanalų sąrašo išdėstymas</string>
     <string-array name="pref_display_apptheme">
         <item>Tamsi</item>
-        <item>Šviesi</item>
     </string-array>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Pranešimai</string>

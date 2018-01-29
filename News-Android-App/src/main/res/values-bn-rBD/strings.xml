@@ -87,7 +87,6 @@
     <string name="pref_title_feed_list_layout">ফিডলিস্ট প্রদর্শনী</string>
     <string-array name="pref_display_apptheme">
         <item>গাঢ়</item>
-        <item>হাল্কা</item>
     </string-array>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">বার্তাসমূহ</string>

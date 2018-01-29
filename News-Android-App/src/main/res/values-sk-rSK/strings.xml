@@ -97,7 +97,6 @@
     <string name="pref_title_feed_list_layout">Rozvrhnutie zoznamu kanálov</string>
     <string-array name="pref_display_apptheme">
         <item>Tmavé</item>
-        <item>Svetlé</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>

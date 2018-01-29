@@ -134,10 +134,8 @@
     <string name="pref_title_app_theme">Rakendi teema</string>
     <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>
     <string name="pref_display_title_lines_count">Pealkirja ridade arv</string>
-
     <string-array name="pref_display_apptheme">
         <item>Hele</item>
-        <item>Tume</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>

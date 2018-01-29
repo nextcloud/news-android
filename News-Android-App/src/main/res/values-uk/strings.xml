@@ -94,7 +94,6 @@
     <string name="pref_title_feed_list_layout">Поле списку стрічок</string>
     <string-array name="pref_display_apptheme">
         <item>Темна</item>
-        <item>Світла</item>
     </string-array>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Сповіщення</string>

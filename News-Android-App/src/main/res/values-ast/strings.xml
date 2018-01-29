@@ -111,10 +111,8 @@
     <string name="pref_title_app_theme">Tema de l\'aplicación</string>
     <string name="pref_title_feed_list_layout">Llista de fontes</string>
     <string name="pref_display_title_lines_count">Cuntar llínees por títulu</string>
-
     <string-array name="pref_display_apptheme">
         <item>Escuru</item>
-        <item>Claru</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Simple</item>

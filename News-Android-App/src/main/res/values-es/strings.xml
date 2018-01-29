@@ -148,11 +148,9 @@
     <string name="pref_title_app_theme">Tema de la aplicación</string>
     <string name="pref_title_feed_list_layout">Lista de fuentes</string>
     <string name="pref_display_title_lines_count">Contar línea por título</string>
-
     <string name="pref_display_news_detail_actionbar_icons_title">Iconos de acción (vista detallada)</string>
     <string-array name="pref_display_apptheme">
         <item>Oscuro</item>
-        <item>Brillante</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Simple</item>

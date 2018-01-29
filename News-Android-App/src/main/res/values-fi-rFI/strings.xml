@@ -142,10 +142,8 @@
     <string name="pref_title_app_theme">Sovelluksen teema</string>
     <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
     <string name="pref_display_title_lines_count">Otsikon rivimäärä</string>
-
     <string-array name="pref_display_apptheme">
         <item>Tumma</item>
-        <item>Vaalea</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>

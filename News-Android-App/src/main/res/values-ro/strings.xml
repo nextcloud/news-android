@@ -93,7 +93,6 @@
     <string name="pref_title_feed_list_layout">Aspectul listei de flux</string>
     <string-array name="pref_display_apptheme">
         <item>Închis</item>
-        <item>Deschis</item>
     </string-array>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Notificari</string>

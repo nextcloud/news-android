@@ -88,7 +88,6 @@
     <string name="pref_title_feed_list_layout">Format de llista de fonts</string>
     <string-array name="pref_display_apptheme">
         <item>Fosc</item>
-        <item>Clar</item>
     </string-array>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Notificacions</string>
