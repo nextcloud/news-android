@@ -148,9 +148,18 @@
     <string name="pref_title_app_theme">Thème de l\'app</string>
     <string name="pref_title_feed_list_layout">Disposition de la liste des flux</string>
     <string name="pref_display_title_lines_count">Nombre de lignes pour le titre</string>
+    <string name="pref_display_browser">Navigateur</string>
+
     <string name="pref_display_news_detail_actionbar_icons_title">Icônes d\'action (Vue détaillée)</string>
     <string-array name="pref_display_apptheme">
         <item>Sombre</item>
+        <item>Sombre (pour écrans OLED)</item>
+        <item>Clair</item>
+    </string-array>
+    <string-array name="pref_display_browser">
+        <item>Onglets de navigation Chrome</item>
+        <item>Navigateur intégré</item>
+        <item>Navigateur externe</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Simple</item>
