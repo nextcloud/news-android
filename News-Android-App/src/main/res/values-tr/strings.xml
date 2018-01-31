@@ -148,9 +148,18 @@
     <string name="pref_title_app_theme">Uygulama teması</string>
     <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>
     <string name="pref_display_title_lines_count">Başlığın satır sayısı</string>
+    <string name="pref_display_browser">Tarayıcı</string>
+
     <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (Ayrıntı Görünümü)</string>
     <string-array name="pref_display_apptheme">
         <item>Koyu</item>
+        <item>Koyu (OLED ekranlar için)</item>
+        <item>Açık</item>
+    </string-array>
+    <string-array name="pref_display_browser">
+        <item>İç Chrome Özel Sekmeleri</item>
+        <item>İç Tarayıcı</item>
+        <item>Dış tarayıcı</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Basit</item>

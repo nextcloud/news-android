@@ -153,9 +153,18 @@
     <string name="pref_title_app_theme">Тема</string>
     <string name="pref_title_feed_list_layout">Распоред листе довода</string>
     <string name="pref_display_title_lines_count">Број линија у наслову</string>
+    <string name="pref_display_browser">Прегледач</string>
+
     <string name="pref_display_news_detail_actionbar_icons_title">Акционе иконица (детаљни приказ)</string>
     <string-array name="pref_display_apptheme">
         <item>тамна</item>
+        <item>Тамна (за OLED екране)</item>
+        <item>Светла</item>
+    </string-array>
+    <string-array name="pref_display_browser">
+        <item>Уграђени Chrome-Custom-Tabs</item>
+        <item>Уграђени прегледач</item>
+        <item>Спољни прегледач</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>једноставна</item>
