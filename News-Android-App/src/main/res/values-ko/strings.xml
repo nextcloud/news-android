@@ -143,9 +143,18 @@
     <string name="pref_title_app_theme">앱 테마</string>
     <string name="pref_title_feed_list_layout">피드 목록 레이아웃</string>
     <string name="pref_display_title_lines_count">제목 줄 수</string>
+    <string name="pref_display_browser">브라우저</string>
+
     <string name="pref_display_news_detail_actionbar_icons_title">동작 아이콘(자세히 보기)</string>
     <string-array name="pref_display_apptheme">
         <item>어둡게</item>
+        <item>어두움(OLED 화면 최적화)</item>
+        <item>밝음</item>
+    </string-array>
+    <string-array name="pref_display_browser">
+        <item>내장 Chrome 사용자 정의 탭</item>
+        <item>내장 브라우저</item>
+        <item>외부 브라우저</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>간단히</item>

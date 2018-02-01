@@ -148,9 +148,18 @@
     <string name="pref_title_app_theme">App téma </string>
     <string name="pref_title_feed_list_layout">A csatorna elrendezés</string>
     <string name="pref_display_title_lines_count">Cím sorainak száma</string>
+    <string name="pref_display_browser">Böngésző</string>
+
     <string name="pref_display_news_detail_actionbar_icons_title">Akció ikonok (Részletes nézet)</string>
     <string-array name="pref_display_apptheme">
         <item>Sőtét</item>
+        <item>Sötét (OLED képernyőkhöz)</item>
+        <item>Világos</item>
+    </string-array>
+    <string-array name="pref_display_browser">
+        <item>Beépített Chrome-Custom-Tabs</item>
+        <item>Beépített böngésző</item>
+        <item>Külső böngésző</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Egyszerű</item>
