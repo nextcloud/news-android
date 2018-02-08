@@ -3,6 +3,13 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.14 (Google Play)
+---------------------
+- Add more translations to reduce number of app crashes
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/617">#617 Strange behaviour when marking read with scroll</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/616">#616 Improve usability - Blue links with dark OLED theme</a>
+
+
 0.9.9.13 (Google Play)
 ---------------------
 - Optimization - <a href="https://github.com/owncloud/News-Android-App/issues/614">#614 Black background color for OLED screens (New Theme)</a>
