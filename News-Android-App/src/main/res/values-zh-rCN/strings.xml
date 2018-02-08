@@ -133,8 +133,12 @@
     <string name="pref_title_app_theme">应用主题</string>
     <string name="pref_title_feed_list_layout">源清单布局</string>
     <string name="pref_display_title_lines_count">标题行数计数</string>
+    <string name="pref_display_browser">浏览器</string>
+
     <string-array name="pref_display_apptheme">
         <item>深色</item>
+    </string-array>
+    <item>外部浏览器</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>简单</item>
