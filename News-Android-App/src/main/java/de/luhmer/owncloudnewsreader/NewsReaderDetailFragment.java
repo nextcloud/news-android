@@ -421,7 +421,7 @@ public class NewsReaderDetailFragment extends Fragment {
         //ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(firstVisibleItem);
 
         // Mark the first two items as read
-        final int numberItemsAhead = 2;
+        final int numberItemsAhead = 1;
         for(int i = firstVisibleItem; i < firstVisibleItem + numberItemsAhead; i++) {
             //Log.v(TAG, "Mark item as read: " + i);
 
