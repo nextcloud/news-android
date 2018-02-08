@@ -137,9 +137,9 @@
 
     <string-array name="pref_display_apptheme">
         <item>深色</item>
+        <item>外部浏览器</item>
     </string-array>
-    <item>外部浏览器</item>
-    </string-array>
+
     <string-array name="pref_display_feed_list_layout">
         <item>简单</item>
         <item>扩展</item>
