@@ -148,9 +148,18 @@
     <string name="pref_title_app_theme">App theme</string>
     <string name="pref_title_feed_list_layout">Feed list layout</string>
     <string name="pref_display_title_lines_count">Line Count for title</string>
+    <string name="pref_display_browser">Browser</string>
+
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
     <string-array name="pref_display_apptheme">
         <item>Dark</item>
+        <item>Dark (for OLED Screens)</item>
+        <item>Light</item>
+    </string-array>
+    <string-array name="pref_display_browser">
+        <item>Built-in Chrome-Custom-Tabs</item>
+        <item>Built-in Browser</item>
+        <item>External browser</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Simple</item>

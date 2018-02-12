@@ -151,6 +151,7 @@
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
     <string-array name="pref_display_apptheme">
         <item>Donker</item>
+        <item>Licht</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Simpel</item>

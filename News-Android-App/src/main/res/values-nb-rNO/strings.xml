@@ -147,6 +147,8 @@
     <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
     <string-array name="pref_display_apptheme">
         <item>Mørk</item>
+        <item>Mørk (For OLED-skjermer)</item>
+        <item>Lys</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Enkel</item>
