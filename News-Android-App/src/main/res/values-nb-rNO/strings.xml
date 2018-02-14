@@ -128,6 +128,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
     <string name="pref_title_OpenInBrowserDirectly">Bruk ekstern nettleser til å vise artikler</string>
 
+    <string name="dialog_feature_not_available">Denne muligheten er ikke tilgjengelig i denne (åpen kildekode) versjonen av denne app. Hvis du ønsker å benytte denne muligheten vennligst last ned fra GitHub eller last ned app\'en fra Google PlayStore.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
     <string name="mtm_decision_always">Alltid</string>
@@ -145,16 +148,22 @@
     <string name="pref_title_app_theme">App-tema</string>
     <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
     <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
+    <string name="pref_display_browser">Nettleser</string>
+
     <string-array name="pref_display_apptheme">
         <item>Mørk</item>
         <item>Mørk (For OLED-skjermer)</item>
         <item>Lys</item>
+    </string-array>
+    <item>Innebygget nettleser</item>
+        <item>Ekstern nettleser</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Enkel</item>
         <item>Utvidet</item>
         <item>Utvidet (fulltekst)</item>
         <item>Utvidet med Nettvisning</item>
+        <item>Utvidet med Cardview</item>
     </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
