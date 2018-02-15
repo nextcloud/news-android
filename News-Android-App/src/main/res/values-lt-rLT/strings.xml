@@ -7,32 +7,43 @@
     <string name="empty_view_content">Nėra elementų</string>
     <string name="toast_GettingMoreItems">Atsiunčiama daugiau elementų.. Prašome palaukti.</string>
     <string name="no_wifi_available">Nėra WiFi ryšio</string>
-    <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslėlius be WiFi ryšio?</string>
-    <string name="widget_header">ownCloud Naujienos</string>
+    <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslus be WiFi ryšio</string>
+    <string name="current_version">Jūs naudojate versiją %s</string>
+    <string name="widget_header">Nextcloud Naujienos</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">Yra prieinamas %d naujas elementas</item>
+        <item quantity="few">Yra prieinami %d nauji elementai</item>
+        <item quantity="other">Yra prieinama %d naujų elementų</item>
+    </plurals>
     <string name="message_bar_reload">Įkelti iš naujo</string>
     <string name="allUnreadFeeds">Visi neskaityti elementai</string>
     <string name="starredFeeds">Pažymėti elementai</string>
-    <string name="title_activity_new_feed">Pridėti naują srautą</string>
+    <string name="title_activity_new_feed">Pridėti naują kanalą</string>
 
-    <string name="menu_update">Atnaujinti</string>
-    <string name="menu_About_Changelog">Apie / Pakitimai</string>
+    <string name="menu_update">Įkelti iš naujo</string>
+    <string name="menu_About_Changelog">Apie / Keitinių žurnalas</string>
     <string name="menu_markAllAsRead">Žymėti visus skaitytais</string>
-    <string name="menu_StartImageCaching">Atsisiųsti paveikslėlius</string>
+    <string name="menu_StartImageCaching">Atsisiųsti paveikslus</string>
     <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
 
 
     <!-- Action Bar Items -->
     <string name="action_starred">Pažymėti</string>
     <string name="action_read">Skaityti</string>
-    <string name="action_playPodacst">Groti Podcast</string>
+    <string name="action_playPodacst">Groti tinklalaidę</string>
     <string name="action_openInBrowser">Atverti naršyklėje</string>
     <string name="action_Share">Dalintis</string>
     <string name="action_login">Serverio nustatymai</string>
     <string name="action_save">Išsaugoti</string>
     <string name="action_settings">Nustatymai</string>
     <string name="action_sync_settings">Sinchronizavimo nustatymai</string>
-    <string name="action_add_new_feed">Pridėti naują srautą</string>
+    <string name="action_add_new_feed">Pridėti naują kanalą</string>
     <string name="action_textToSpeech">Perskaityk</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Turite %d neskaitytą elementą</item>
+        <item quantity="few">Turite %d neskaitytus elementus</item>
+        <item quantity="other">Turite %d neskaitytų elementų</item>
+    </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d neperskaitytas įrašas</item>
         <item quantity="few">%d neperskaityti įrašai</item>
@@ -40,12 +51,33 @@
     </plurals>
 
 
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Kanalo URL</string>
+    <string name="action_add_feed">Pridėti kanalą</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">Parsiųsti paveikslėlį</string>
+    <string name="action_img_download">Atsisiųsti paveikslą</string>
+    <string name="action_img_sharelink">Bendrinti paveikslo nuorodą</string>
+    <string name="action_img_open">Atverti paveikslą naršyklėje</string>
+    <string name="action_img_copylink">Kopijuoti paveikslo nuorodą</string>
+    <string name="action_link_open">Atverti nuorodą naršyklėje</string>
+    <string name="action_link_copy">Kopijuoti nuorodą</string>
+    <string name="toast_img_download_wait">Atsiunčiama… prašome palaukti</string>
+    <string name="toast_img_saved">Paveikslas įrašytas.</string>
+    <string name="toast_img_notwriteable">Nepavyko įrašyti paveikslo.</string>
     <string name="toast_copied_to_clipboard">Nukopijuota į talpyklę</string>
     <string name="error_download_failed">Atsiuntimas nepavyko</string>
+    <string name="intent_title_share">Bendrinti per</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Šalinti kanalą</string>
+    <string name="action_feed_rename">Pervadinti kanalą</string>
     <string name="feed_remove_button">Pašalinti</string>
     <string name="feed_rename_button">Pervadinti</string>
+    <string name="confirm_feed_remove">Ar tikrai norite pašalinti šį kanalą? Šio veiksmo neįmanoma bus atšaukti!</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Prisijungimo vardas</string>
     <string name="pref_title_password">Slaptažodis</string>
@@ -61,9 +93,25 @@
     <string name="import_account">Importuoti paskyrą</string>
 
 
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Atsiųstas %d senas elementas</item>
+        <item quantity="few">Atsiųsti %d seni elementai</item>
+        <item quantity="other">Atsiųsta %d senų elementų</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">Daugiau elementų nėra</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Kol kas gautas %d elementas…</item>
+        <item quantity="few">Kol kas gauti %d elementai…</item>
+        <item quantity="other">Kol kas gauta %d elementų…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nustatymai</string>
+    <string name="cache_is_cleared">Podėlis išvalytas!</string>
+
+
     <!-- General settings -->
     <string name="pref_header_general">Bendras</string>
     <string name="pref_title_general_sort_order">Rikiavimo tvarka</string>
@@ -72,14 +120,17 @@
         <item>Naujas -&gt; Senas</item>
         <item>Senas -&gt; Naujas</item>
     </string-array>
-    <string name="dialog_clearing_cache">Valoma talpykla</string>
-    <string name="reset_cache_unsaved_changes">Yra nesinchronizuotų pakitimų. Ar vis tiek norite atstatyti talpyklą?</string>
+    <string name="dialog_clearing_cache">Išvalomas podėlis</string>
+    <string name="dialog_clearing_cache_please_wait">Išvalomas podėlis… Prašome palaukti.</string>
+    <string name="reset_cache_unsaved_changes">Yra nesinchronizuotų pakeitimų. Ar vis tiek norite atstatyti podėlį?</string>
     <string name="warning">Įspėjimas</string>
     <string name="pref_title_AutoSyncOnStart">Sinchronizuoti pasileidžiant</string>
     <string name="pref_title_ShowOnlyUnread">Rodyti tik neskaitytus straipsnius</string>
     <string name="pref_title_DisableHostnameVerification">Išjungti mazgo vardo patikrinimą</string>
     <string name="pref_title_NavigateWithVolumeButtons">Naršyti su garso mygtukais</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Žymėti perskaitytu slenkant</string>
+    <string name="pref_title_OpenInBrowserDirectly">Straipsnių peržiūrai naudoti išorinę naršyklę</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Priimti nežinomą sertifikatą?</string>
     <string name="mtm_decision_always">Visada</string>
@@ -88,13 +139,24 @@
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Nepasirinktos joks podcast</string>
+    <string name="no_podcast_selected">Nepasirinkta jokia tinklalaidė</string>
+    <string name="no_chapters_available">Skyriai neprieinami</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Ekranas</string>
     <string name="pref_title_app_theme">Programos tema</string>
     <string name="pref_title_feed_list_layout">Sklaikos kanalų sąrašo išdėstymas</string>
+    <string name="pref_display_browser">Naršyklė</string>
+
     <string-array name="pref_display_apptheme">
         <item>Tamsi</item>
+    </string-array>
+    <string-array name="pref_title_lines_count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Pranešimai</string>
@@ -103,22 +165,22 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Klaida</string>
-    <string name="login_dialog_text_something_went_wrong">Kažkas sugriuvo :(</string>
+    <string name="login_dialog_text_something_went_wrong">Kažkas nutiko :(</string>
     <string name="login_dialog_text_not_compatible">Ši programos versija nesuderinama su Jūsų ownCloud naujienų programa. Prašome atnaujinti naujienų programą ir programų sistemą (appframework).</string>
-    <string name="login_dialog_title_security_warning">Saugumo pranešimas</string>
+    <string name="login_dialog_title_security_warning">Saugumo įspėjimas</string>
     <string name="login_dialog_text_security_warning">Jūs nenaudojate https. Atakuojantysis galėtų nuskaityti Jūsų srautą ir gauti prieigą prie jautrios informacijos (pvz. Jūsų slaptažodis). Taigi labai rekomenduotina naudoti https!</string>
 
 
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Duomenys ir sinchonizavimas</string>
-    <string name="pref_title_clearCache">Išvalyti talpyklą</string>
-    <string name="pref_title_CacheImagesOffline">Saugoti paveikslėlius darbui neprisijungu</string>
-    <string name="pref_title_Max_Cache_Size">Didžiausias talpyklos dydis</string>
+    <string name="pref_title_clearCache">Išvalyti podėlį</string>
+    <string name="pref_title_CacheImagesOffline">Saugoti paveikslėlius darbui neprisijungus</string>
+    <string name="pref_title_Max_Cache_Size">Didžiausias podėlio dydis</string>
 
     <string-array name="pref_data_sync_image_cache">
-        <item>niekada</item>
+        <item>Niekada</item>
         <item>Tik per WiFi</item>
-        <item>Per WiFi &amp; Mobilų tinklą</item>
+        <item>Per WiFi ir mobilųjį tinklą</item>
         <item>Klausti kai neprisijungta prie WiFi</item>
     </string-array>
     <string-array name="pref_data_sync_max_cache_size">
@@ -142,5 +204,18 @@
         <item>12 val.</item>
         <item>24 val.</item>
     </string-array>
+    <string name="content_desc_play">groti</string>
+    <string name="content_desc_pause">pristabdyti</string>
+    <string name="content_desc_rewind">prasukti atgal</string>
+    <string name="content_desc_forward">prasukti pirmyn</string>
+    <string name="content_desc_expand">išskleisti</string>
+    <string name="content_desc_collapse">suskleisti</string>
+    <string name="content_desc_mark_as_read">žymėti kaip skaitytą</string>
+    <string name="content_desc_mark_as_unread">žymėti kaip neskaitytą</string>
+    <string name="content_desc_tap_to_refresh">bakstelėkite, norėdami įkelti iš naujo</string>
+    <string name="content_desc_add_to_favorites">pridėti į mėgstamus</string>
+    <string name="content_desc_remove_from_favorites">šalinti iš mėgstamų</string>
+    <string name="content_desc_show_password">rodyti slaptažodį</string>
     <string name="content_desc_delete">ištrinti</string>
-    </resources>
+    <string name="content_desc_download">atsisiųsti</string>
+</resources>
