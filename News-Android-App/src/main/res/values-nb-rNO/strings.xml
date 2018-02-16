@@ -128,7 +128,7 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
     <string name="pref_title_OpenInBrowserDirectly">Bruk ekstern nettleser til å vise artikler</string>
 
-    <string name="dialog_feature_not_available">Denne muligheten er ikke tilgjengelig i denne (åpen kildekode) versjonen av denne app. Hvis du ønsker å benytte denne muligheten vennligst last ned fra GitHub eller last ned app\'en fra Google PlayStore.</string>
+    <string name="dialog_feature_not_available">Denne muligheten er ikke tilgjengelig i denne (åpen kildekode) versjonen av denne app. Hvis du ønsker å benytte denne muligheten vennligst last ned fra GitHub eller last ned programmet fra Google PlayStore.</string>
 
 
     <!-- MemorizingTrustManager -->
@@ -150,12 +150,15 @@
     <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
     <string name="pref_display_browser">Nettleser</string>
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
     <string-array name="pref_display_apptheme">
         <item>Mørk</item>
         <item>Mørk (For OLED-skjermer)</item>
         <item>Lys</item>
     </string-array>
-    <item>Innebygget nettleser</item>
+    <string-array name="pref_display_browser">
+        <item>Innebygde tilpassede Chrome-faner</item>
+        <item>Innebygget nettleser</item>
         <item>Ekstern nettleser</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
