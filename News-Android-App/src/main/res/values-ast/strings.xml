@@ -8,6 +8,7 @@
     <string name="toast_GettingMoreItems">Descarga de más elementos aniciada ... Por favor espera.</string>
     <string name="no_wifi_available">Nun hai conexón WiFi</string>
     <string name="do_you_want_to_download_without_wifi">¿Quies baxar les semeyes ensin una conexón WiFi?</string>
+    <string name="current_version">Tas usuando la versión %s</string>
     <string name="widget_header">Noticies ownCloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d elementos nuevos disponibles</item>
