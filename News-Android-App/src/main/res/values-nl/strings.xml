@@ -148,10 +148,18 @@
     <string name="pref_title_app_theme">App thema</string>
     <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
     <string name="pref_display_title_lines_count">Regelteller voor titel</string>
+    <string name="pref_display_browser">Browser</string>
+
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
     <string-array name="pref_display_apptheme">
         <item>Donker</item>
+        <item>Donker (voor OLED schermen)</item>
         <item>Licht</item>
+    </string-array>
+    <string-array name="pref_display_browser">
+        <item>Ingebouwde Chrome-maatwerk-tabs</item>
+        <item>Ingebouwde browser</item>
+        <item>Externe browser</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Simpel</item>
