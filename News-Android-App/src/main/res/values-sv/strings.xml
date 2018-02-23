@@ -144,9 +144,16 @@
     <string name="pref_header_display">Visa</string>
     <string name="pref_title_app_theme">App tema</string>
     <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
+    <string name="pref_display_browser">Webbläsare</string>
+
     <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
     <string-array name="pref_display_apptheme">
         <item>Mörk</item>
+        <item>Mörk (för OLED-skärmar)</item>
+        <item>Ljus</item>
+    </string-array>
+    <item>Inbyggd webbläsare</item>
+        <item>Extern webbläsare</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
         <item>Enkel</item>
