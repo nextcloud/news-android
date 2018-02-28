@@ -45,6 +45,8 @@
     </plurals>
 
 
+    <!-- Add new feed -->
+    <string name="hint_feed_url">源网址</string>
     <string name="action_add_feed">添加Feed</string>
 
 

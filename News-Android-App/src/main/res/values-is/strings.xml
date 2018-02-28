@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="auto_sync_string">Sjálfvirk samstilling</string>
     <string name="empty_view_content">Engin atriði hér</string>
+    <string name="toast_GettingMoreItems">Byrjaði að sækja fleiri atriði... Bíddu aðeins...</string>
+    <string name="no_wifi_available">Ekkert WiFi-net tengt</string>
     <string name="current_version">Þú ert að nota útgáfu %s</string>
     <string name="widget_header">Nextcloud-fréttir</string>
     <plurals name="message_bar_new_articles_available">
@@ -14,6 +17,7 @@
     <string name="title_activity_new_feed">Bæta við nýjum fréttastraumi</string>
 
     <string name="menu_update">Endurlesa</string>
+    <string name="menu_About_Changelog">Um hugbúnaðinn / Breytingaannáll</string>
     <string name="menu_markAllAsRead">Merkja allt sem lesið</string>
     <string name="menu_StartImageCaching">Sækja myndir</string>
     <string name="menu_downloadMoreItems">Sækja fleiri atriði</string>
@@ -31,6 +35,14 @@
     <string name="action_sync_settings">Valkostir samstillingar</string>
     <string name="action_add_new_feed">Bæta við nýjum fréttastraum</string>
     <string name="action_textToSpeech">Lesa upphátt</string>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d nýtt ólesið atriði tiltækt</item>
+        <item quantity="other">%d ný ólesin atriði tiltæk</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Streymisslóð</string>
     <string name="action_add_feed">Bæta við fréttastraum</string>
 
 
@@ -42,22 +54,54 @@
     <string name="action_link_share">Deila tengli</string>
     <string name="action_link_open">Opna tengil í vafra</string>
     <string name="action_link_copy">Afrita tengil</string>
+    <string name="toast_img_download_wait">Sæki... Bíddu aðeins.</string>
     <string name="toast_img_saved">Mynd vistuð.</string>
+    <string name="toast_img_notwriteable">Tókst ekki að skrifa mynd.</string>
     <string name="toast_copied_to_clipboard">Afritað á klippispjald</string>
     <string name="error_download_failed">Niðurhal mistókst</string>
     <string name="intent_title_share">Deila með</string>
 
 
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Fjarlægja streymi</string>
+    <string name="action_feed_rename">Endurnefna streymi</string>
     <string name="feed_remove_button">Fjarlægja</string>
     <string name="feed_rename_button">Endurskýra</string>
+    <string name="confirm_feed_remove">Ertu viss um að þú viljir fjarlægja þetta streymi? Þetta er ekki hægt að afturkalla!</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Notendanafn</string>
     <string name="pref_title_password">Lykilorð</string>
+    <string name="pref_title_owncloudRootPath">Rótarvistfang Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
     <string name="action_sign_in_short">Skrá inn</string>
     <string name="login_progress_signing_in">Skrái inn …</string>
     <string name="error_field_required">Krafist er að fyllt sé í þennan reit</string>
+    <string name="error_invalid_url">Þessi slóð er ógild</string>
+
+
+    <!-- Import Accounts -->
+    <string name="import_account">Flytja inn aðgang</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Sótti %d eldra atriði</item>
+        <item quantity="other">Sótti %d eldri atriði</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Engin fleiri atriði tiltæk</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Hef þegar %d sótt atriði…</item>
+        <item quantity="other">Hef þegar sótt %d atriði…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Stillingar</string>
+    <string name="cache_is_cleared">Skyndiminni hreinsað!</string>
+
+
     <!-- General settings -->
     <string name="pref_header_general">Almennt</string>
     <string name="pref_title_general_sort_order">Röðun</string>
@@ -67,7 +111,43 @@
         <item>Eldra -> Nýrra</item>
     </string-array>
     <string name="dialog_clearing_cache">Hreinsa skyndiminni</string>
+    <string name="dialog_clearing_cache_please_wait">Hreinsa skyndiminni... Bíddu aðeins.</string>
     <string name="warning">Aðvörun</string>
+    <string name="pref_title_AutoSyncOnStart">Samstilla í ræsingu</string>
+    <string name="pref_title_ShowOnlyUnread">Birta einungis ólesnar greinar</string>
+    <string name="pref_title_DisableHostnameVerification">Gera sannvottun hýsilvélar óvirka</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Flakka með hnöppum fyrir hljóðstyrk</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Samþykkja óþekkt skilríki?</string>
+    <string name="mtm_decision_always">Alltaf</string>
+    <string name="mtm_decision_abort">Hætta við</string>
+    <string name="mtm_notification">Sannvottun skilríkis</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Ekkert hlaðvarp valið</string>
+    <string name="no_chapters_available">Engir kaflar tiltækir</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Birting</string>
+    <string name="pref_title_app_theme">Þema forrits</string>
+    <string name="pref_display_title_lines_count">Fjöldi lína í fyrirsögn</string>
+    <string name="pref_display_browser">Vafri</string>
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Táknmyndir aðgerða (ítarleg sýn)</string>
+    <string-array name="pref_display_apptheme">
+        <item>Dökkt</item>
+        <item>Dökkt (fyrir OLED-skjái)</item>
+        <item>Ljóst</item>
+    </string-array>
+    <item>Innbyggður vafri</item>
+        <item>Ytri vafri</item>
+    </string-array>
+    <string-array name="pref_display_feed_list_layout">
+        <item>Einfalt</item>
+        <item>Ítarlegt</item>
+    </string-array>
     <string-array name="pref_title_lines_count">
         <item>1</item>
         <item>2</item>
@@ -76,12 +156,24 @@
     </string-array>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Tilkynningar</string>
+    <string name="pref_title_notification_new_articles_available">Birta tilkynningu þegar nýjar greinar eru tiltækar</string>
+
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Villa</string>
-    <string name="login_dialog_title_security_warning">Öryggis aðvörun</string>
+    <string name="login_dialog_text_something_went_wrong">Úbbs! Eitthvað fór úrskeiðis :(</string>
+    <string name="login_dialog_title_security_warning">Öryggisaðvörun</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Gögn &amp; samstilling</string>
     <string name="pref_title_clearCache">Hreinsa skyndiminni</string>
+    <string name="pref_title_CacheImagesOffline">Setja myndir í skyndiminni fyrir þegar engin nettenging finnst</string>
+    <string name="pref_title_Max_Cache_Size">Hámarksstærð skyndiminnis</string>
+
     <string-array name="pref_data_sync_image_cache">
         <item>Aldrei</item>
+        <item>Einungis yfir WiFi-net</item>
+        <item>Yfir WiFi-net og farsímasamband</item>
+        <item>Spyrja þegar ekki er WiFi-tenging</item>
     </string-array>
     <string-array name="pref_data_sync_max_cache_size">
         <item>250 MB</item>
@@ -106,7 +198,16 @@
     </string-array>
     <string name="content_desc_play">afspilun</string>
     <string name="content_desc_pause">bið</string>
+    <string name="content_desc_rewind">fara til baka</string>
+    <string name="content_desc_forward">áfram</string>
+    <string name="content_desc_expand">útvíkka</string>
+    <string name="content_desc_collapse">fella saman</string>
+    <string name="content_desc_mark_as_read">merkja sem lesið</string>
     <string name="content_desc_mark_as_unread">merkja allt sem ólesið</string>
+    <string name="content_desc_tap_to_refresh">banka til að endurlesa</string>
+    <string name="content_desc_add_to_favorites">bæta í Eftirlæti</string>
+    <string name="content_desc_remove_from_favorites">fjarlægja úr Eftirlæti</string>
     <string name="content_desc_show_password">sýna lykilorð</string>
     <string name="content_desc_delete">eyða</string>
-    </resources>
+    <string name="content_desc_download">sækja</string>
+</resources>
