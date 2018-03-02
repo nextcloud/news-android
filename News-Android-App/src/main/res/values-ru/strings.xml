@@ -166,7 +166,9 @@
         <item>Тёмная (для OLED экранов)</item>
         <item>Светлая</item>
     </string-array>
-    <item>Встроенный браузер</item>
+    <string-array name="pref_display_browser">
+        <item>Встроенные настраиваемые ярлыки Chrome</item>
+        <item>Встроенный браузер</item>
         <item>Сторонний браузер</item>
     </string-array>
     <string-array name="pref_display_feed_list_layout">
