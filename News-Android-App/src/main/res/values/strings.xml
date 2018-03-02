@@ -114,14 +114,19 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Sort Order</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>New -> Old</item>
-        <item>Old -> New</item>
+
+    <string name="pref_general_sort_order_new_old">New -> Old</string>
+    <string name="pref_general_sort_order_old_new">Old -> New</string>
+
+    <string-array name="pref_general_sort_order" translatable="false">
+        <item>@string/pref_general_sort_order_new_old</item>
+        <item>@string/pref_general_sort_order_old_new</item>
     </string-array>
     <string-array name="pref_general_sort_order_values_not_translated" translatable="false">
         <item>1</item>
         <item>0</item>
     </string-array>
+
 
     <string name="dialog_clearing_cache">Clearing cache</string>
     <string name="dialog_clearing_cache_please_wait">Clearing cache… Please wait.</string>
@@ -156,7 +161,12 @@
     <string name="pref_display_title_lines_count">Line Count for title</string>
     <string name="pref_display_browser">Browser</string>
 
+
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
+
     <string-array name="pref_display_news_detail_actionbar_icons" translatable="false">
         <item>@string/action_openInBrowser</item>
         <item>@string/action_Share</item>
@@ -173,10 +183,17 @@
     </string-array>
 
 
-    <string-array name="pref_display_apptheme">
-        <item>Dark</item>
-        <item>Dark (for OLED Screens)</item>
-        <item>Light</item>
+
+
+
+    <string name="pref_display_apptheme_dark">Dark</string>
+    <string name="pref_display_apptheme_dark_oled">Dark (for OLED Screens)</string>
+    <string name="pref_display_apptheme_light">Light</string>
+
+    <string-array name="pref_display_apptheme" translatable="false">
+        <item>@string/pref_display_apptheme_dark</item>
+        <item>@string/pref_display_apptheme_dark_oled</item>
+        <item>@string/pref_display_apptheme_light</item>
     </string-array>
     <string-array name="pref_display_apptheme_values" translatable="false">
         <item>0</item>
@@ -184,33 +201,10 @@
         <item>1</item>
     </string-array>
 
-    <string-array name="pref_display_browser">
-        <item>Built-in Chrome-Custom-Tabs</item>
-        <item>Built-in Browser</item>
-        <item>External browser</item>
-    </string-array>
-    <string-array name="pref_display_browser_values" translatable="false">
-        <item>0</item>
-        <item>2</item>
-        <item>1</item>
-    </string-array>
 
-    <string-array name="pref_display_feed_list_layout">
-        <item>Simple</item>
-        <item>Extended</item>
-        <item>Extended (full text)</item>
-        <item>Extended with Webview</item>
-        <item>Extended with Cardview</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>3</item>
-        <item>2</item>
-        <item>4</item>
-    </string-array>
 
-    <string-array name="pref_title_lines_count">
+
+    <string-array name="pref_title_lines_count" translatable="false">
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -222,6 +216,73 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+
+
+
+
+
+    <string name="pref_display_browser_cct">Built-in Chrome-Custom-Tabs</string>
+    <string name="pref_display_browser_built_in">Built-in Browser</string>
+    <string name="pref_display_browser_external">External Browser</string>
+
+    <string-array name="pref_display_browser" translatable="false">
+        <item>@string/pref_display_browser_cct</item>
+        <item>@string/pref_display_browser_built_in</item>
+        <item>@string/pref_display_browser_external</item>
+    </string-array>
+    <string-array name="pref_display_browser_values" translatable="false">
+        <item>0</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
+
+
+
+
+
+    <string name="pref_display_feed_list_layout_simple">Simple</string>
+    <string name="pref_display_feed_list_layout_extended">Extended</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Extended (full text)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Extended with Webview</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Extended with Cardview</string>
+
+    <string-array name="pref_display_feed_list_layout" translatable="false">
+        <item>@string/pref_display_feed_list_layout_simple</item>
+        <item>@string/pref_display_feed_list_layout_extended</item>
+        <item>@string/pref_display_feed_list_layout_extended_full_text</item>
+        <item>@string/pref_display_feed_list_layout_extended_webview</item>
+        <item>@string/pref_display_feed_list_layout_extended_cardview</item>
+    </string-array>
+    <string-array name="pref_display_feed_list_layout_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+        <item>2</item>
+        <item>4</item>
+    </string-array>
+
+
+
+
+
+
+    <!-- content description for images and icons -->
+    <string name="content_desc_none" translatable="false">@null</string>
+    <string name="content_desc_play">play</string>
+    <string name="content_desc_pause">pause</string>
+    <string name="content_desc_rewind">rewind</string>
+    <string name="content_desc_forward">forward</string>
+    <string name="content_desc_expand">expand</string>
+    <string name="content_desc_collapse">collapse</string>
+    <string name="content_desc_mark_as_read">mark as read</string>
+    <string name="content_desc_mark_as_unread">mark as unread</string>
+    <string name="content_desc_tap_to_refresh">tap to refresh</string>
+    <string name="content_desc_add_to_favorites">add to favorites</string>
+    <string name="content_desc_remove_from_favorites">remove from favorites</string>
+    <string name="content_desc_show_password">show password</string>
+    <string name="content_desc_delete">delete</string>
+    <string name="content_desc_download">download</string>
+
 
 
     <!-- Settings for Notifications -->
@@ -244,11 +305,19 @@
     <string name="pref_title_CacheImagesOffline">Cache images offline</string>
     <string name="pref_title_Max_Cache_Size">Max Cache Size</string>
 
-    <string-array name="pref_data_sync_image_cache">
-        <item>Never</item>
-        <item>Over WiFi only</item>
-        <item>Over WiFi &amp; Mobile</item>
-        <item>Ask when not connected to WiFi</item>
+
+
+
+    <string name="pref_data_sync_image_cache_never">Never</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Over WiFi only</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Over WiFi &amp; Mobile</string>
+    <string name="pref_data_sync_image_cache_ask">Ask when not connected to WiFi</string>
+
+    <string-array name="pref_data_sync_image_cache" translatable="false">
+        <item>@string/pref_data_sync_image_cache_never</item>
+        <item>@string/pref_data_sync_image_cache_wifi_only</item>
+        <item>@string/pref_data_sync_image_cache_wifi_and_mobile</item>
+        <item>@string/pref_data_sync_image_cache_ask</item>
     </string-array>
     <string-array name="pref_data_sync_image_cache_values" translatable="false">
         <item>0</item>
@@ -257,7 +326,10 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="pref_data_sync_max_cache_size">
+
+
+
+    <string-array name="pref_data_sync_max_cache_size" translatable="false">
         <item>250 MB</item>
         <item>500 MB</item>
         <item>750 MB</item>
@@ -276,17 +348,31 @@
         <item>10000</item>
     </string-array>
 
-    <string-array name="array_sync_interval">
-        <item>5 Minutes</item>
-        <item>15 Minutes</item>
-        <item>30 Minutes</item>
-        <item>45 Minutes</item>
-        <item>1 Hour</item>
-        <item>2 Hours</item>
-        <item>3 Hours</item>
-        <item>6 Hours</item>
-        <item>12 Hours</item>
-        <item>24 Hours</item>
+
+
+
+    <string name="array_sync_interval_min_5">5 Minutes</string>
+    <string name="array_sync_interval_min_15">15 Minutes</string>
+    <string name="array_sync_interval_min_30">30 Minutes</string>
+    <string name="array_sync_interval_min_45">45 Minutes</string>
+    <string name="array_sync_interval_hour_1">1 Hour</string>
+    <string name="array_sync_interval_hour_2">2 Hours</string>
+    <string name="array_sync_interval_hour_3">3 Hours</string>
+    <string name="array_sync_interval_hour_6">6 Hours</string>
+    <string name="array_sync_interval_hour_12">12 Hours</string>
+    <string name="array_sync_interval_hour_24">24 Hours</string>
+
+    <string-array name="array_sync_interval" translatable="false">
+        <item>@string/array_sync_interval_min_5</item>
+        <item>@string/array_sync_interval_min_15</item>
+        <item>@string/array_sync_interval_min_30</item>
+        <item>@string/array_sync_interval_min_45</item>
+        <item>@string/array_sync_interval_hour_1</item>
+        <item>@string/array_sync_interval_hour_2</item>
+        <item>@string/array_sync_interval_hour_3</item>
+        <item>@string/array_sync_interval_hour_6</item>
+        <item>@string/array_sync_interval_hour_12</item>
+        <item>@string/array_sync_interval_hour_24</item>
     </string-array>
     <string-array name="array_sync_interval_values" translatable="false">
         <item>5</item>
@@ -300,22 +386,4 @@
         <item>720</item>
         <item>1440</item>
     </string-array>
-
-
-    <!-- content description for images and icons -->
-    <string name="content_desc_none" translatable="false">@null</string>
-    <string name="content_desc_play">play</string>
-    <string name="content_desc_pause">pause</string>
-    <string name="content_desc_rewind">rewind</string>
-    <string name="content_desc_forward">forward</string>
-    <string name="content_desc_expand">expand</string>
-    <string name="content_desc_collapse">collapse</string>
-    <string name="content_desc_mark_as_read">mark as read</string>
-    <string name="content_desc_mark_as_unread">mark as unread</string>
-    <string name="content_desc_tap_to_refresh">tap to refresh</string>
-    <string name="content_desc_add_to_favorites">add to favorites</string>
-    <string name="content_desc_remove_from_favorites">remove from favorites</string>
-    <string name="content_desc_show_password">show password</string>
-    <string name="content_desc_delete">delete</string>
-    <string name="content_desc_download">download</string>
 </resources>
