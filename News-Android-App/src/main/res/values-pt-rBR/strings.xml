@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Seletor de Intervalo de Sincronização</string>
     <string name="title_activity_news_detail">Detalhes da notícia</string>
     <string name="empty_view_content">Este local está vazio</string>
-    <string name="toast_GettingMoreItems">Começou a baixar mais itens ... Por favor, aguarde.</string>
     <string name="no_wifi_available">Nenhum WiFi conectado</string>
-    <string name="do_you_want_to_download_without_wifi">Você quer baixar imagens sem uma conexão WiFi?</string>
     <string name="current_version">Você está usando a versão %s</string>
     <string name="widget_header">Notícias ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,7 +28,6 @@
     <string name="action_starred">Vistos</string>
     <string name="action_read">Ler</string>
     <string name="action_playPodacst">Ouvir o Podcast</string>
-    <string name="action_openInBrowser">Abrir no Navegador</string>
     <string name="action_Share">Compartilhar</string>
     <string name="action_login">Configurações do servidor</string>
     <string name="action_save">Salvar</string>
@@ -84,10 +81,8 @@
 
     <string name="action_sign_in_short">Entrar</string>
     <string name="login_progress_signing_in">Fazendo login...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo é obrigatório</string>
-    <string name="error_invalid_url">A URL está incorreta</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Importar Conta</string>
 
@@ -113,10 +108,7 @@
     <string name="pref_header_general">Geral</string>
     <string name="pref_title_general_sort_order">Ordem de Classificação</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Novo -&gt; Antigo</item>
-        <item>Antigo -&gt; Novo</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Limpando o cache</string>
     <string name="dialog_clearing_cache_please_wait">Limpando o cache ... Por favor, aguarde.</string>
     <string name="reset_cache_unsaved_changes">Há alterações não sincronizadas. Gostaria de redefinir o cache de qualquer maneira?</string>
@@ -126,8 +118,6 @@
     <string name="pref_title_DisableHostnameVerification">Desabilitar Verificação de Hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
-    <string name="pref_title_OpenInBrowserDirectly">Usar um navegador externo para visualizar os artigos</string>
-
     <string name="dialog_feature_not_available">Este recurso não está disponível nesta versão open-source deste aplicativo. Se você quiser usar este recurso, baixe o aplicativo do repositório do GitHub ou da Google PlayStore.</string>
 
 
@@ -145,82 +135,15 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Exibir</string>
-    <string name="pref_title_app_theme">Aplicativo tema</string>
     <string name="pref_title_feed_list_layout">Layout da lista de feeds</string>
     <string name="pref_display_title_lines_count">Contagem de linha para o título</string>
     <string name="pref_display_browser">Navegador</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Visualização detalhada)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Escuro</item>
-        <item>Escuro (para telas OLED)</item>
-        <item>Claro</item>
-    </string-array>
-    <string-array name="pref_display_browser">
-        <item>Abas personalizadas Chrome incorporadas</item>
-        <item>Navegador incorporado</item>
-        <item>Navegador externo</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Simples</item>
-        <item>Extendido</item>
-        <item>Extendido (texto completo)</item>
-        <item>Extendid0 com visualização Web</item>
-        <item>Estendido com o Cardview</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notificações</string>
-    <string name="pref_title_notification_new_articles_available">Mostrar notificações quando novos artigos estiverem disponíveis</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Erro</string>
-    <string name="login_dialog_text_something_went_wrong">Algo deu errado :(</string>
-    <string name="login_dialog_text_zero_version_code">O aplicativo Web News retornou a versão \"0\". Por favor, veja o seguinte relatório de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Esta versão do aplicativo não é compatível com o seu aplicativo ownCloud News. Por favor atualize o aplicativo e o seu framework.</string>
-    <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
-    <string name="login_dialog_text_security_warning">Você não está usando https. Sua conexão poderá ser interceptada e alguém poderá ter acesso a dados secretos (ex.: sua senha). Então, é fortemente recomendado usar https!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Dados &amp; sincronização</string>
-    <string name="pref_title_clearCache">Limpar cache</string>
-    <string name="pref_title_CacheImagesOffline">Armazenar imagens offline</string>
-    <string name="pref_title_Max_Cache_Size">Tamanho Máximo do Cache</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Nunca</item>
-        <item>Somente WiFi</item>
-        <item>Sobre WiFi &amp; Móvel</item>
-        <item>Perguntar quando não estiver conectado ao Wi-Fi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 Minutos</item>
-        <item>15 Minutos</item>
-        <item>30 Minutos</item>
-        <item>45 Minutos</item>
-        <item>1 Hora</item>
-        <item>2 Horas</item>
-        <item>3 Horas</item>
-        <item>6 Horas</item>
-        <item>12 Horas</item>
-        <item>24 Horas</item>
-    </string-array>
     <string name="content_desc_play">executar</string>
     <string name="content_desc_pause">pausa</string>
     <string name="content_desc_rewind">recarregar</string>
@@ -235,4 +158,26 @@
     <string name="content_desc_show_password">mostrar senha</string>
     <string name="content_desc_delete">excluir</string>
     <string name="content_desc_download">baixar</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Notificações</string>
+    <string name="pref_title_notification_new_articles_available">Mostrar notificações quando novos artigos estiverem disponíveis</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Erro</string>
+    <string name="login_dialog_text_something_went_wrong">Algo deu errado :(</string>
+    <string name="login_dialog_text_zero_version_code">O aplicativo Web News retornou a versão \"0\". Por favor, veja o seguinte relatório de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Dados &amp; sincronização</string>
+    <string name="pref_title_clearCache">Limpar cache</string>
+    <string name="pref_title_CacheImagesOffline">Armazenar imagens offline</string>
+    <string name="pref_title_Max_Cache_Size">Tamanho Máximo do Cache</string>
+
+
+
+
+    </resources>

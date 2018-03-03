@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Переключатель интервала синхронизации</string>
     <string name="title_activity_news_detail">Последние новости</string>
     <string name="empty_view_content">Здесь нет элементов</string>
-    <string name="toast_GettingMoreItems">Началось скачивание элементов... Пожалуйста подождите.</string>
     <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
-    <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
     <string name="current_version">Вы используете версию %s</string>
     <string name="widget_header">Новости ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -32,7 +30,6 @@
     <string name="action_starred">Избранное</string>
     <string name="action_read">Читать</string>
     <string name="action_playPodacst">Воспроизвести Подкаст</string>
-    <string name="action_openInBrowser">Открыть в браузере</string>
     <string name="action_Share">Поделиться</string>
     <string name="action_login">Параметры сервера</string>
     <string name="action_save">Сохранить</string>
@@ -90,10 +87,8 @@
 
     <string name="action_sign_in_short">Войти</string>
     <string name="login_progress_signing_in">Авторизация...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Это поле обязательно для заполнения</string>
-    <string name="error_invalid_url">Неверный url адрес</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Импортировать учётную запись</string>
 
@@ -123,10 +118,7 @@
     <string name="pref_header_general">Основные</string>
     <string name="pref_title_general_sort_order">Порядок сортировки</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Новые -&gt; Старые</item>
-        <item>Старые -&gt; Новые</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Очистить кеш.</string>
     <string name="dialog_clearing_cache_please_wait">Очистка кеша... Пожалуйста подождите.</string>
     <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
@@ -136,8 +128,6 @@
     <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
     <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
-    <string name="pref_title_OpenInBrowserDirectly">Используйте внешний браузер для просмотра записей</string>
-
     <string name="dialog_feature_not_available">Эта возможность недоступна в установленной (open-source) версии приложения. Для использования этой возможности загрузите приложение из репозитория GitHub или установите его из Google Play Маркет.</string>
 
 
@@ -155,82 +145,15 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Экран</string>
-    <string name="pref_title_app_theme">Тема приложения</string>
     <string name="pref_title_feed_list_layout">Макет списка лент</string>
     <string name="pref_display_title_lines_count">Количество строк для заголовка</string>
     <string name="pref_display_browser">Браузер</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Значки действия (подробный просмотр)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Темная</item>
-        <item>Тёмная (для OLED экранов)</item>
-        <item>Светлая</item>
-    </string-array>
-    <string-array name="pref_display_browser">
-        <item>Встроенные настраиваемые ярлыки Chrome</item>
-        <item>Встроенный браузер</item>
-        <item>Сторонний браузер</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Простой</item>
-        <item>Расширенный</item>
-        <item>Расширенный (полный текст)</item>
-        <item>Функционал улучшен использованием Webview</item>
-        <item>Функционал улучшен использованием Cardview</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Уведомления</string>
-    <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Ошибка</string>
-    <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
-    <string name="login_dialog_text_zero_version_code">Веб-версия приложения «Новости» вернула «0». Для получения дополнительных сведений обратитесь к сообщению об ошибке: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением ownCloud News. Обновите новостное приложение и appframework.</string>
-    <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
-    <string name="login_dialog_text_security_warning">Вы не используете HTTPS. Злоумышленники могут перехватить трафик и получить доступ к некоторым конфиденциальным данным (например, пароль). Мы настоятельно рекомендуем использовать HTTPS!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Данные и синхронизация</string>
-    <string name="pref_title_clearCache">Очистить кэш</string>
-    <string name="pref_title_CacheImagesOffline">Кэшировать изображения вне сети</string>
-    <string name="pref_title_Max_Cache_Size">Максимальный размер кэша</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Никогда</item>
-        <item>Только через WiFi </item>
-        <item>Через WiFi &amp; и мобильный интернет</item>
-        <item>Спросить, если не подключён к WiFi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 МБ</item>
-        <item>500 МБ</item>
-        <item>750 МБ</item>
-        <item>1 ГБ</item>
-        <item>2 ГБ</item>
-        <item>5 ГБ</item>
-        <item>10 ГБ</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 Минут</item>
-        <item>15 Минут</item>
-        <item>30 Минут</item>
-        <item>45 Минут</item>
-        <item>1 Час</item>
-        <item>2 Часа</item>
-        <item>3 Часа</item>
-        <item>6 Часов</item>
-        <item>12 Часов</item>
-        <item>24 Часа</item>
-    </string-array>
     <string name="content_desc_play">воспроизвести</string>
     <string name="content_desc_pause">пауза</string>
     <string name="content_desc_rewind">перемотка назад </string>
@@ -245,4 +168,26 @@
     <string name="content_desc_show_password">показать пароль</string>
     <string name="content_desc_delete">удалить</string>
     <string name="content_desc_download">загрузить</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Уведомления</string>
+    <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Ошибка</string>
+    <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
+    <string name="login_dialog_text_zero_version_code">Веб-версия приложения «Новости» вернула «0». Для получения дополнительных сведений обратитесь к сообщению об ошибке: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Данные и синхронизация</string>
+    <string name="pref_title_clearCache">Очистить кэш</string>
+    <string name="pref_title_CacheImagesOffline">Кэшировать изображения вне сети</string>
+    <string name="pref_title_Max_Cache_Size">Максимальный размер кэша</string>
+
+
+
+
+    </resources>

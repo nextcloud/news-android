@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Επιλογέας διαστήματος συγχρονισμού</string>
     <string name="title_activity_news_detail">Λεπτομέρειες Δραστηριότητας Ειδήσεων</string>
     <string name="empty_view_content">Κανένα στοιχείο</string>
-    <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε.</string>
     <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
-    <string name="do_you_want_to_download_without_wifi">Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi</string>
     <string name="current_version">Χρησιμοποιείτε την έκδοση %s</string>
     <string name="widget_header">Νέα ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,7 +28,6 @@
     <string name="action_starred">Με αστέρι</string>
     <string name="action_read">Ανάγνωση</string>
     <string name="action_playPodacst">Αναπαραγωγή Podcast</string>
-    <string name="action_openInBrowser">Άνοιγμα στον Περιηγητή</string>
     <string name="action_Share">Διαμοιρασμός</string>
     <string name="action_login">Ρυθμίσεις Διακομιστή</string>
     <string name="action_save">Αποθήκευση</string>
@@ -84,10 +81,8 @@
 
     <string name="action_sign_in_short">Είσοδος</string>
     <string name="login_progress_signing_in">Είσοδος...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
-    <string name="error_invalid_url">Αυτός ο σύνδεσμος είναι εσφαλμένος</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Εισαγωγή λογαριασμού</string>
 
@@ -107,10 +102,7 @@
     <string name="pref_header_general">Γενικά</string>
     <string name="pref_title_general_sort_order">Σειρά ταξινόμησης</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Νέα-&gt; Παλιά</item>
-        <item>Παλιά -&gt; Νέα</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Εκκαθάριση προσωρινής μνήμης</string>
     <string name="dialog_clearing_cache_please_wait">Εκκαθάριση προσωρινής μνήμης... Παρακαλώ περιμένετε.</string>
     <string name="reset_cache_unsaved_changes">Υπάρχουν αλλαγές που δεν έχουν συγχρονιστεί. Θα θέλατε να επαναφέρετε τα αποθηκευμένα στοιχεία ούτως ή άλλως;</string>
@@ -120,8 +112,6 @@
     <string name="pref_title_DisableHostnameVerification">Απενεργοποίηση επαλήθευσης Ονόματος Υπολογιστή</string>
     <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
-    <string name="pref_title_OpenInBrowserDirectly">Χρήση εξωτερικού προγράμματος περιήγησης για θέαση άρθρων</string>
-
     <string name="dialog_feature_not_available">Αυτή η λειτουργία δεν είναι διαθέσιμη σε αυτή την (Open Source) έκδοση αυτής της εφαρμογής. Αν θέλετε να χρησιμοποιήσετε αυτή την λειτουργία παρακαλούμε κατεβάστε την εφαρμογή από το αποθετήριο Github ή από το Google PlayStore.</string>
 
 
@@ -136,70 +126,8 @@
     <string name="no_podcast_selected">Δεν επιλέχθηκε Podcast</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Εμφάνιση</string>
-    <string name="pref_title_app_theme">Θέμα εφαρμογής</string>
     <string name="pref_title_feed_list_layout">Προβολή λίστας ροών</string>
     <string name="pref_display_title_lines_count">Απαρίθμηση Γραμμών για τίτλο</string>
-    <string-array name="pref_display_apptheme">
-        <item>Σκοτεινό</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Απλή</item>
-        <item>Εκτεταμένη</item>
-        <item>Εκτεταμένη (πλήρες κείμενο)</item>
-        <item>Εκτεταμένη με προβολή ιστού</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Ειδοποιήσεις</string>
-    <string name="pref_title_notification_new_articles_available">Προβολή ειδοποίησης όταν νέα άρθρα είναι διαθέσιμα</string>
-
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Σφάλμα</string>
-    <string name="login_dialog_text_something_went_wrong">Κάτι πήγε στραβά :(</string>
-    <string name="login_dialog_text_not_compatible">Αυτή η έκδοση της εφαρμογής δεν είναι συμβατή με τη δική σας εφαρμογή Ανάγνωσης Ειδήσεων του ownCloud. Παρακαλώ ενημερώστε την εφαρμογή Ανάγνωσης Ειδήσεων και την εφαρμογή Πλαίσιο Εφαρμογών.</string>
-    <string name="login_dialog_title_security_warning">Προειδοποίηση Ασφαλείας</string>
-    <string name="login_dialog_text_security_warning">Δεν χρησιμοποιείτε htpps. Κάποιος εισβολέας θα μπορούσε να παρεμβληθεί στη σύνδεσή σας και να αποκτήσει πρόσβαση σε ευαίσθητα δεδομένα (π.χ. τον κωδικό σας). Επομένως προτείνεται σοβαρά η χρήση htpps!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Δεδομένα &amp; συγχρονισμός</string>
-    <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
-    <string name="pref_title_CacheImagesOffline">Αποθήκευση εικόνων για χρήση χωρίς σύνδεση</string>
-    <string name="pref_title_Max_Cache_Size">Μέγιστο μέγεθος στοιχείων προς αποθήκευση</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Ποτέ</item>
-        <item>Μόνο μέσω WiFi</item>
-        <item>Μέσω Wifi &amp; δεδομένων Κινητής Τηλεφωνίας</item>
-        <item>Ερώτηση αν δεν υπάρχει σύνδεση WiFi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 Λεπτά</item>
-        <item>15 Λεπτά</item>
-        <item>30 Λεπτά</item>
-        <item>45 Λεπτά</item>
-        <item>1 Ώρα</item>
-        <item>2 Ώρες</item>
-        <item>3 Ώρες</item>
-        <item>6 Ώρες</item>
-        <item>12 Ώρες</item>
-        <item>24 Ώρες</item>
-    </string-array>
     <string name="content_desc_play">αναπαραγωγή</string>
     <string name="content_desc_pause">παύση</string>
     <string name="content_desc_forward">προώθηση</string>
@@ -212,4 +140,25 @@
     <string name="content_desc_show_password">εμφάνιση συνθηματικού</string>
     <string name="content_desc_delete">διαγραφή</string>
     <string name="content_desc_download">λήψη</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Ειδοποιήσεις</string>
+    <string name="pref_title_notification_new_articles_available">Προβολή ειδοποίησης όταν νέα άρθρα είναι διαθέσιμα</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Σφάλμα</string>
+    <string name="login_dialog_text_something_went_wrong">Κάτι πήγε στραβά :(</string>
+    <string name="login_dialog_title_security_warning">Προειδοποίηση Ασφαλείας</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Δεδομένα &amp; συγχρονισμός</string>
+    <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
+    <string name="pref_title_CacheImagesOffline">Αποθήκευση εικόνων για χρήση χωρίς σύνδεση</string>
+    <string name="pref_title_Max_Cache_Size">Μέγιστο μέγεθος στοιχείων προς αποθήκευση</string>
+
+
+
+
+    </resources>

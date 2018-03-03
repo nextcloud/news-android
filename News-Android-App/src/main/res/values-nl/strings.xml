@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Sync interval selector</string>
     <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
     <string name="empty_view_content">Geen items hier</string>
-    <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>
     <string name="no_wifi_available">Geen wifi verbinding</string>
-    <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
     <string name="current_version">U gebruikt versie %s</string>
     <string name="widget_header">Nextcloud nieuws</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,7 +28,6 @@
     <string name="action_starred">Gemarkeerd</string>
     <string name="action_read">Lees</string>
     <string name="action_playPodacst">Afspelen Podcast</string>
-    <string name="action_openInBrowser">Openen in browser</string>
     <string name="action_Share">Delen</string>
     <string name="action_login">Serverinstellingen</string>
     <string name="action_save">Bewaren</string>
@@ -84,10 +81,8 @@
 
     <string name="action_sign_in_short">Inloggen</string>
     <string name="login_progress_signing_in">Inloggen...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dit veld is verplicht</string>
-    <string name="error_invalid_url">De URL is ongeldig</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Importeer account</string>
 
@@ -113,10 +108,7 @@
     <string name="pref_header_general">Algemeen</string>
     <string name="pref_title_general_sort_order">Sorteervolgorde</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Nieuw -&gt; Oud</item>
-        <item>Oud -&gt; Nieuw</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Schoonmaken cache</string>
     <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
     <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wil je de cache toch resetten?</string>
@@ -126,8 +118,6 @@
     <string name="pref_title_DisableHostnameVerification">Deactiveren Hostname verificatie</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigeren met volumeknoppen</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
-    <string name="pref_title_OpenInBrowserDirectly">Gebruik een externe browser om artikelen te bekijken</string>
-
     <string name="dialog_feature_not_available">Deze feature is niet beschikbaar in deze (open-source) versie van deze app. Indien je deze feature wilt gebruiken, download dan de app van de GitHub Repository of de Google PlayStore.</string>
 
 
@@ -145,82 +135,15 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Weergeven</string>
-    <string name="pref_title_app_theme">App thema</string>
     <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
     <string name="pref_display_title_lines_count">Regelteller voor titel</string>
     <string name="pref_display_browser">Browser</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Donker</item>
-        <item>Donker (voor OLED schermen)</item>
-        <item>Licht</item>
-    </string-array>
-    <string-array name="pref_display_browser">
-        <item>Ingebouwde Chrome-maatwerk-tabs</item>
-        <item>Ingebouwde browser</item>
-        <item>Externe browser</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Simpel</item>
-        <item>Uitgebreid</item>
-        <item>Uitgebreid (volledige tekst)</item>
-        <item>Uitgebreid met Webview</item>
-        <item>Uitgebreid met Cardview</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Meldingen</string>
-    <string name="pref_title_notification_new_articles_available">Toon meldingen als er nieuwe artikelen zijn</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Fout</string>
-    <string name="login_dialog_text_something_went_wrong">Er ging iets verkeerd :(</string>
-    <string name="login_dialog_text_zero_version_code">De Web News App gaf Versie \"0\". Bekijk alsjeblieft het volgende bug report: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Deze app versie is niet compatibel met je Nextcloud Nieuws App. Werk de Nieuws App en het Appframework bij.</string>
-    <string name="login_dialog_title_security_warning">Beveiligingswaarschuwing</string>
-    <string name="login_dialog_text_security_warning">Je gebruikt geen https. Een aanvaller zou het niet versleutelde verkeer kunnen onderscheppen en toegang krijgen tot gevoelige gegevens (bijv. je wachtwoord). We adviseren om https te gebruiken!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; synch</string>
-    <string name="pref_title_clearCache">Leegmaken cache</string>
-    <string name="pref_title_CacheImagesOffline">Afbeeldingen offline cachen</string>
-    <string name="pref_title_Max_Cache_Size">Max cache grootte</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Nooit</item>
-        <item>Enkel met WiFi</item>
-        <item>Met WiFi &amp; Mobiel</item>
-        <item>Vraag indien niet verbonden met WiFi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 minuten</item>
-        <item>15 minuten</item>
-        <item>30 minuten</item>
-        <item>45 minuten</item>
-        <item>1 uur</item>
-        <item>2 uur</item>
-        <item>3 uur</item>
-        <item>6 uur</item>
-        <item>12 uur</item>
-        <item>24 uur</item>
-    </string-array>
     <string name="content_desc_play">afspelen</string>
     <string name="content_desc_pause">pauze</string>
     <string name="content_desc_rewind">terugspoelen</string>
@@ -235,4 +158,26 @@
     <string name="content_desc_show_password">tonen wachtwoord</string>
     <string name="content_desc_delete">verwijderen</string>
     <string name="content_desc_download">downloaden</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Meldingen</string>
+    <string name="pref_title_notification_new_articles_available">Toon meldingen als er nieuwe artikelen zijn</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Fout</string>
+    <string name="login_dialog_text_something_went_wrong">Er ging iets verkeerd :(</string>
+    <string name="login_dialog_text_zero_version_code">De Web News App gaf Versie \"0\". Bekijk alsjeblieft het volgende bug report: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Beveiligingswaarschuwing</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; synch</string>
+    <string name="pref_title_clearCache">Leegmaken cache</string>
+    <string name="pref_title_CacheImagesOffline">Afbeeldingen offline cachen</string>
+    <string name="pref_title_Max_Cache_Size">Max cache grootte</string>
+
+
+
+
+    </resources>

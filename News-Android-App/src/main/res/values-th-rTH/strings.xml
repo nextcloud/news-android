@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">เลือกช่วงเวลาการประสานข้อมูล</string>
     <string name="title_activity_news_detail">รายละเอียดกิจกรรม</string>
     <string name="empty_view_content">ไม่มีรายการที่นี่</string>
-    <string name="toast_GettingMoreItems">กำลังเริ่มดาวน์โหลดรายการอื่นๆ ... โปรดรอสักครู่</string>
     <string name="no_wifi_available">ไม่มีการเชื่อมต่อ Wifi</string>
-    <string name="do_you_want_to_download_without_wifi">คุณต้องการดาวน์โหลดรูปภาพได้โดยไม่ต้องเชื่อมต่อ WiFi</string>
     <string name="current_version">คุณกำลังใช้รุ่น %s</string>
     <string name="widget_header">ข่าว ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -29,7 +27,6 @@
     <string name="action_starred">ติดดาวแล้ว</string>
     <string name="action_read">อ่าน</string>
     <string name="action_playPodacst">เล่นพอดคาสต์</string>
-    <string name="action_openInBrowser">เปิดในเบราว์เซอร์</string>
     <string name="action_Share">แชร์</string>
     <string name="action_login">ตั้งค่าเซิร์ฟเวอร์</string>
     <string name="action_save">บันทึก</string>
@@ -81,10 +78,8 @@
 
     <string name="action_sign_in_short">เข้าสู่ระบบ</string>
     <string name="login_progress_signing_in">กำลังเข้าสู่ระบบ ...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">ต้องใส่ข้อมูลลงในช่องนี้</string>
-    <string name="error_invalid_url">URL นี้ไม่ถูกต้อง</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">นำเข้าบัญชี</string>
 
@@ -108,10 +103,7 @@
     <string name="pref_header_general">ทั่วไป</string>
     <string name="pref_title_general_sort_order">เรียงลำดับรายการ</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>ใหม่ -&gt; เก่า</item>
-        <item>เก่า -&gt; ใหม่</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">กำลังล้างแคช</string>
     <string name="dialog_clearing_cache_please_wait">กำลังล้างแคช ... โปรดรอสักครู่</string>
     <string name="reset_cache_unsaved_changes">มีการเปลี่ยนแปลงที่ไม่ได้ประสานข้อมูล คุณต้องการตั้งค่าแคชหรือไม่?</string>
@@ -121,8 +113,6 @@
     <string name="pref_title_DisableHostnameVerification">ปิดการใช้งานการตรวจสอบ Hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">นำทางด้วยปุ่มปรับระดับเสียง</string>
     <string name="pref_title_MarkAsReadWhileScrolling">ทำเครื่องหมายว่าอ่านในขณะที่เลื่อน</string>
-    <string name="pref_title_OpenInBrowserDirectly">ใช้เบราว์เซอร์ภายนอกเพื่อดูบทความ</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">ยอมรับใบรับรองที่ไม่รู้จัก?</string>
     <string name="mtm_decision_always">เสมอ</string>
@@ -137,70 +127,8 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">แสดงผล</string>
-    <string name="pref_title_app_theme">ธีมแอพฯ</string>
     <string name="pref_title_feed_list_layout">รูปแบบรายการฟีด</string>
     <string name="pref_display_title_lines_count">จำนวนบรรทัดสำหรับชื่อเรื่อง</string>
-    <string-array name="pref_display_apptheme">
-        <item>มืด</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>ปกติ</item>
-        <item>ขยาย</item>
-        <item>ขยาย (ฉบับเต็ม)</item>
-        <item>ขยายด้วย Webview</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">การแจ้งเตือน</string>
-    <string name="pref_title_notification_new_articles_available">แสดงการแจ้งเตือนเมื่อมีบทความใหม่</string>
-
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">ข้อผิดพลาด</string>
-    <string name="login_dialog_text_something_went_wrong">เกิดข้อผิดพลาดบางอย่าง :(</string>
-    <string name="login_dialog_text_not_compatible">แอพฯรุ่นนี้เข้ากันไม่ได้กับแอพฯข่าว ownCloud ของคุณ โปรดอัพเดตแอพฯข่าวและ appframework</string>
-    <string name="login_dialog_title_security_warning">คำเตือนเกี่ยวกับความปลอดภัย</string>
-    <string name="login_dialog_text_security_warning">คุณไม่ได้ใช้ Https คุณอาจถูกดักแพคเกจเช่นรหัสผ่านของคุณดังนั้นจึงขอแนะนำให้ใช้ Https!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">ข้อมูล &amp; ประสานข้อมูล</string>
-    <string name="pref_title_clearCache">ล้างแคช</string>
-    <string name="pref_title_CacheImagesOffline">แคชรูปภาพออฟไลน์</string>
-    <string name="pref_title_Max_Cache_Size">ขนาดแคชสูงสุด</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>ไม่เคย</item>
-        <item>เฉพาะ WiFi เท่านั้น</item>
-        <item>เฉพาะ WiFi &amp; เคลือข่ายมือถือ</item>
-        <item>ถามเมื่อไม่ได้เชื่อมต่อกับ WiFi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 เมกะไบต์</item>
-        <item>500 เมกะไบต์</item>
-        <item>750 เมกะไบต์</item>
-        <item>1 กิกะไบต์</item>
-        <item>2 กิกะไบต์</item>
-        <item>5 กิกะไบต์</item>
-        <item>10 กิกะไบต์</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 นาที</item>
-        <item>15 นาที</item>
-        <item>30 นาที</item>
-        <item>45 นาที</item>
-        <item>1 ชั่วโมง</item>
-        <item>2 ชั่วโมง</item>
-        <item>3 ชั่วโมง</item>
-        <item>6 ชั่วโมง</item>
-        <item>12 ชั่วโมง</item>
-        <item>24 ชั่วโมง</item>
-    </string-array>
     <string name="content_desc_play">เล่น</string>
     <string name="content_desc_pause">หยุดชั่วคราว</string>
     <string name="content_desc_rewind">กรอกลับ</string>
@@ -215,4 +143,25 @@
     <string name="content_desc_show_password">แสดงรหัสผ่าน</string>
     <string name="content_desc_delete">ลบ</string>
     <string name="content_desc_download">ดาวน์โหลด</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">การแจ้งเตือน</string>
+    <string name="pref_title_notification_new_articles_available">แสดงการแจ้งเตือนเมื่อมีบทความใหม่</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">ข้อผิดพลาด</string>
+    <string name="login_dialog_text_something_went_wrong">เกิดข้อผิดพลาดบางอย่าง :(</string>
+    <string name="login_dialog_title_security_warning">คำเตือนเกี่ยวกับความปลอดภัย</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">ข้อมูล &amp; ประสานข้อมูล</string>
+    <string name="pref_title_clearCache">ล้างแคช</string>
+    <string name="pref_title_CacheImagesOffline">แคชรูปภาพออฟไลน์</string>
+    <string name="pref_title_Max_Cache_Size">ขนาดแคชสูงสุด</string>
+
+
+
+
+    </resources>

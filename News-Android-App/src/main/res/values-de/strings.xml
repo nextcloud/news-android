@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Auswahl des Synchronisationsintervalls</string>
     <string name="title_activity_news_detail">Newsdetailaktivität</string>
     <string name="empty_view_content">Keine Artikel vorhanden</string>
-    <string name="toast_GettingMoreItems">Herunterladen weiterer Elemente gestartet... Bitte warten.</string>
     <string name="no_wifi_available">Keine WLAN-Verbindung</string>
-    <string name="do_you_want_to_download_without_wifi">Willst du die Bilder ohne W-LAN-Verbindung herunterladen</string>
     <string name="current_version">Du benutzt die Version %s</string>
     <string name="widget_header">ownCloud-News</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,7 +28,6 @@
     <string name="action_starred">Favorisiert</string>
     <string name="action_read">Gelesen</string>
     <string name="action_playPodacst">Podcast wiedergeben</string>
-    <string name="action_openInBrowser">Im Browser öffnen</string>
     <string name="action_Share">Teilen</string>
     <string name="action_login">Servereinstellungen</string>
     <string name="action_save">Speichern</string>
@@ -84,10 +81,8 @@
 
     <string name="action_sign_in_short">Einloggen</string>
     <string name="login_progress_signing_in">Anmeldung…</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dieses Feld ist erforderlich</string>
-    <string name="error_invalid_url">Diese URL ist falsch</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Benutzerkonto importieren</string>
 
@@ -113,10 +108,7 @@
     <string name="pref_header_general">Allgemein</string>
     <string name="pref_title_general_sort_order">Sortierung</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Neu -&gt; Alt</item>
-        <item>Alt -&gt; Neu</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Cache löschen</string>
     <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird geleert … Bitte warten.</string>
     <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchtest Du dennoch den Cache leeren?</string>
@@ -126,8 +118,6 @@
     <string name="pref_title_DisableHostnameVerification">Hostnamen-Nachweis deaktivieren</string>
     <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärketasten navigieren</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Während des Scrollens als gelesen markieren</string>
-    <string name="pref_title_OpenInBrowserDirectly">Externen Browser zum Anzeigen der Artikel verwenden</string>
-
     <string name="dialog_feature_not_available">Diese Funktion ist in dieser (Open-Source-)Version dieser App nicht verfügbar. Wenn du diese Funktion nutzen möchtest, lade bitte die App aus dem GitHub Repository herunter oder lade die App aus dem Google PlayStore herunter.</string>
 
 
@@ -145,82 +135,15 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Anzeige</string>
-    <string name="pref_title_app_theme">App-Thema</string>
     <string name="pref_title_feed_list_layout">Feed-Listen-Layout</string>
     <string name="pref_display_title_lines_count">Zeilenanzahl des Titels</string>
     <string name="pref_display_browser">Browser</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Aktionssymbole (Detailansicht)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Dunkel</item>
-        <item>Dunkel (für OLED-Anzeigen)</item>
-        <item>Hell</item>
-    </string-array>
-    <string-array name="pref_display_browser">
-        <item>Integrierte Chrome-Register</item>
-        <item>Integrierter Browser</item>
-        <item>Externer Browser</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Einfach</item>
-        <item>Erweitert</item>
-        <item>Erweitert(Volltext)</item>
-        <item>Erweitert mit Webansicht</item>
-        <item>Erweitert mit Kartenansicht</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Benachrichtigungen</string>
-    <string name="pref_title_notification_new_articles_available">Benachrichtigungen anzeigen, wenn neue Artikel verfügbar sind</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Fehler</string>
-    <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
-    <string name="login_dialog_text_zero_version_code">Die Web News App lieferte die Version \"0\" zurück. Wirf bitte einen Blick auf den folgenden Fehlerbericht: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Diese App-Version ist nicht mit Deiner ownCloud News App kompatibel. Bitte aktualisiere die News App und das App Framework.</string>
-    <string name="login_dialog_title_security_warning">Sicherheitswarnung</string>
-    <string name="login_dialog_text_security_warning">Du nutzt kein https. Ein Angreifer könnte Deinen Datenverkehr mitschneiden und dadurch Zugang zu sensiblen Daten (z.B. Deinem Passwort) erhalten. Wir empfehlen dringend die Nutzung von https!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
-    <string name="pref_title_clearCache">Cache leeren</string>
-    <string name="pref_title_CacheImagesOffline">Bilder offline zwischenspeichern</string>
-    <string name="pref_title_Max_Cache_Size">Maximale Cachegröße</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Niemals</item>
-        <item>Nur über WLAN</item>
-        <item>Über WLAN &amp; Mobil</item>
-        <item>Bei nicht verbundenem WLAN fragen</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 Minuten</item>
-        <item>15 Minuten</item>
-        <item>30 Minuten</item>
-        <item>45 Minuten</item>
-        <item>1 Stunde</item>
-        <item>2 Stunden</item>
-        <item>3 Stunden</item>
-        <item>6 Stunden</item>
-        <item>12 Stunden</item>
-        <item>24 Stunden</item>
-    </string-array>
     <string name="content_desc_play">spielen</string>
     <string name="content_desc_pause">Pause</string>
     <string name="content_desc_rewind">rückwärts</string>
@@ -235,4 +158,26 @@
     <string name="content_desc_show_password">Passwort anzeigen</string>
     <string name="content_desc_delete">löschen</string>
     <string name="content_desc_download">Herunterladen</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Benachrichtigungen</string>
+    <string name="pref_title_notification_new_articles_available">Benachrichtigungen anzeigen, wenn neue Artikel verfügbar sind</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Fehler</string>
+    <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
+    <string name="login_dialog_text_zero_version_code">Die Web News App lieferte die Version \"0\" zurück. Wirf bitte einen Blick auf den folgenden Fehlerbericht: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Sicherheitswarnung</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
+    <string name="pref_title_clearCache">Cache leeren</string>
+    <string name="pref_title_CacheImagesOffline">Bilder offline zwischenspeichern</string>
+    <string name="pref_title_Max_Cache_Size">Maximale Cachegröße</string>
+
+
+
+
+    </resources>

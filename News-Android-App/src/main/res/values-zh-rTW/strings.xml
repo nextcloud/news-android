@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">同步時間間隔選擇</string>
     <string name="title_activity_news_detail">新聞內容活動</string>
     <string name="empty_view_content">無任何項目</string>
-    <string name="toast_GettingMoreItems">正在下載更多的項目，請稍候</string>
     <string name="no_wifi_available">WiFi 未連線</string>
-    <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖片</string>
     <string name="current_version">您在使用版本 %s</string>
     <string name="widget_header">ownCloud 新聞</string>
     <plurals name="message_bar_new_articles_available">
@@ -29,7 +27,6 @@
     <string name="action_starred">星號</string>
     <string name="action_read">已讀</string>
     <string name="action_playPodacst">播放 Podcast</string>
-    <string name="action_openInBrowser">開啟瀏覽器</string>
     <string name="action_Share">分享</string>
     <string name="action_login">伺服器設定</string>
     <string name="action_save">儲存</string>
@@ -81,10 +78,8 @@
 
     <string name="action_sign_in_short">登入</string>
     <string name="login_progress_signing_in">登入中…</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">此欄位為必填</string>
-    <string name="error_invalid_url">網址不正確</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">匯入帳戶</string>
 
@@ -108,10 +103,7 @@
     <string name="pref_header_general">一般</string>
     <string name="pref_title_general_sort_order">排序依據</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>新 -&gt; 舊</item>
-        <item>舊 -&gt; 新</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">正在清除快取</string>
     <string name="dialog_clearing_cache_please_wait">正在清除快取…請稍候</string>
     <string name="reset_cache_unsaved_changes">有未同步的更動，您仍然要重設快取嗎？</string>
@@ -121,8 +113,6 @@
     <string name="pref_title_DisableHostnameVerification">停用主機名稱檢驗</string>
     <string name="pref_title_NavigateWithVolumeButtons">用音量鍵瀏覽</string>
     <string name="pref_title_MarkAsReadWhileScrolling">當滾動時標為已讀</string>
-    <string name="pref_title_OpenInBrowserDirectly">使用外部瀏覽器來閱讀條目</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">允許未知憑證？</string>
     <string name="mtm_decision_always">總是</string>
@@ -137,70 +127,8 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">顯示</string>
-    <string name="pref_title_app_theme">App 主題</string>
     <string name="pref_title_feed_list_layout">Feed 清單版型</string>
     <string name="pref_display_title_lines_count">標題的行數</string>
-    <string-array name="pref_display_apptheme">
-        <item>暗色</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>簡單</item>
-        <item>完整</item>
-        <item>完整（全文）</item>
-        <item>完整（使用內嵌式網頁瀏覽器）</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">通知</string>
-    <string name="pref_title_notification_new_articles_available">當有新條目時顯示通知</string>
-
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">錯誤</string>
-    <string name="login_dialog_text_something_went_wrong">發生錯誤了 :(</string>
-    <string name="login_dialog_text_not_compatible">此 App 版本不相容您的 ownCloud 新聞應用程式，請更新 ownCloud 新聞應用程式和 appframework</string>
-    <string name="login_dialog_title_security_warning">安全性警告</string>
-    <string name="login_dialog_text_security_warning">您不是使用 HTTPS，攻擊者可能攔截您的通訊，進而取得敏感資料（例如您的密碼），因此強烈建議使用 HTTPS！</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">資料 &amp; 同步</string>
-    <string name="pref_title_clearCache">清除快取</string>
-    <string name="pref_title_CacheImagesOffline">暫存離線圖片</string>
-    <string name="pref_title_Max_Cache_Size">最大快取容量</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>從不</item>
-        <item>只透過 WiFi</item>
-        <item>透過 WiFi 和行動網路</item>
-        <item>當未連接到 WiFi 時詢問</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 分鐘</item>
-        <item>15 分鐘</item>
-        <item>30 分鐘</item>
-        <item>45 分鐘</item>
-        <item>1 小時</item>
-        <item>2 小時</item>
-        <item>3 小時</item>
-        <item>6 小時</item>
-        <item>12 小時</item>
-        <item>24 小時</item>
-    </string-array>
     <string name="content_desc_play">播放</string>
     <string name="content_desc_pause">暫停</string>
     <string name="content_desc_rewind">倒帶</string>
@@ -215,4 +143,25 @@
     <string name="content_desc_show_password">顯示密碼</string>
     <string name="content_desc_delete">刪除</string>
     <string name="content_desc_download">下載</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">通知</string>
+    <string name="pref_title_notification_new_articles_available">當有新條目時顯示通知</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">錯誤</string>
+    <string name="login_dialog_text_something_went_wrong">發生錯誤了 :(</string>
+    <string name="login_dialog_title_security_warning">安全性警告</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">資料 &amp; 同步</string>
+    <string name="pref_title_clearCache">清除快取</string>
+    <string name="pref_title_CacheImagesOffline">暫存離線圖片</string>
+    <string name="pref_title_Max_Cache_Size">最大快取容量</string>
+
+
+
+
+    </resources>

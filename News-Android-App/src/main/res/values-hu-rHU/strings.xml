@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">A szinkronizáció gyakoriságának kiválasztása</string>
     <string name="title_activity_news_detail">HírekRészletTevékenység</string>
     <string name="empty_view_content">Itt nincs semmi</string>
-    <string name="toast_GettingMoreItems">Több elem letöltése elindítva... Kérjük, várj.</string>
     <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">Le szeretnéd tölteni a képeket WiFi kapcsolat nélkül?</string>
     <string name="current_version">A(z) %s verziót használod</string>
     <string name="widget_header">ownCloud Hírek</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,7 +28,6 @@
     <string name="action_starred">Csillagozott</string>
     <string name="action_read">Olvas</string>
     <string name="action_playPodacst">Podcast lejatszás</string>
-    <string name="action_openInBrowser">Megnyitás böngészőben</string>
     <string name="action_Share">Megosztás</string>
     <string name="action_login">Szerver Beállítások</string>
     <string name="action_save">Mentés</string>
@@ -84,10 +81,8 @@
 
     <string name="action_sign_in_short">Belépés</string>
     <string name="login_progress_signing_in">Belépés...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ez a mező szükséges</string>
-    <string name="error_invalid_url">Ez az url hibás</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Konto importálás</string>
 
@@ -113,10 +108,7 @@
     <string name="pref_header_general">Általános</string>
     <string name="pref_title_general_sort_order">Rendezés Iránya</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Új -&gt; Régi</item>
-        <item>Régi -&gt; Új</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">A gyorsítótár törlése folyamatban</string>
     <string name="dialog_clearing_cache_please_wait">Gyorsítótár ürítése... Kérjük, várj.</string>
     <string name="reset_cache_unsaved_changes">Vannak nem színkronizált változások. Bizots hogy alaphelyzetbe szeretnéd állítani a cache-t így is?</string>
@@ -126,8 +118,6 @@
     <string name="pref_title_DisableHostnameVerification">A \"Hostname Verification\" kikapcsolása</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigálj a hangerőszabályozó gombokkal</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben olvasottként legyen megjelőlve</string>
-    <string name="pref_title_OpenInBrowserDirectly">Külső böngésző használata a cikkek megtekintéséhez</string>
-
     <string name="dialog_feature_not_available">Ez a funkció az appnak ebben a (nyílt forrású) verziójában nem érhető el. Ha használni akarod ezt a funkciót, töltsd le az appot a GitHub tárolóból vagy a Google PlayStore-ból.</string>
 
 
@@ -145,82 +135,15 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Kijelző</string>
-    <string name="pref_title_app_theme">App téma </string>
     <string name="pref_title_feed_list_layout">A csatorna elrendezés</string>
     <string name="pref_display_title_lines_count">Cím sorainak száma</string>
     <string name="pref_display_browser">Böngésző</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Akció ikonok (Részletes nézet)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Sőtét</item>
-        <item>Sötét (OLED képernyőkhöz)</item>
-        <item>Világos</item>
-    </string-array>
-    <string-array name="pref_display_browser">
-        <item>Beépített Chrome-Custom-Tabs</item>
-        <item>Beépített böngésző</item>
-        <item>Külső böngésző</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Egyszerű</item>
-        <item>Kiterjesztett</item>
-        <item>Kiterjesztett (teljes szöveg)</item>
-        <item>Részletes Webview-val</item>
-        <item>Részletes Cardview-val</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Értesítések</string>
-    <string name="pref_title_notification_new_articles_available">Értesítés megjelenítés amikor van elérhető új cikk </string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Hiba</string>
-    <string name="login_dialog_text_something_went_wrong">Valami balul sült el :(</string>
-    <string name="login_dialog_text_zero_version_code">A Web News App verziónak 0-át adott vissza. Olvasd el ezt a hibajelentést: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Ez az App verzió hem kompatibilis a the ownCloud Hírolvasó App-pal. Frissitsd a hír app-pt és az app-keretrendszert.</string>
-    <string name="login_dialog_title_security_warning">Biztonsági figyelmeztetés</string>
-    <string name="login_dialog_text_security_warning">Jelenleg nem használsz https-t. Egy támadó beépülhet és lehalgathatja a forgalmat és ez által hozzáférhetet kényes adatokhoz(pl jelszó). Nagyon ajánlott, hogy használj https-t!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Adatok &amp; szinkronizáció</string>
-    <string name="pref_title_clearCache">Átmeneti tár(cache) tisztitása</string>
-    <string name="pref_title_CacheImagesOffline">Képek offline tárolása ideglenesen</string>
-    <string name="pref_title_Max_Cache_Size">Maximum Cache Méret</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Soha</item>
-        <item>Csak WiFi-n keresztül</item>
-        <item>WiFi-n &amp; mobilkapcsolaton keresztül</item>
-        <item>Kérdezzen rá ha nem kapcsolódik WiFihez</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 perc</item>
-        <item>15 perc</item>
-        <item>30 perc</item>
-        <item>45 perc</item>
-        <item>1 óra</item>
-        <item>2 óra</item>
-        <item>3 óra</item>
-        <item>6 óra</item>
-        <item>12 óra</item>
-        <item>24 óra</item>
-    </string-array>
     <string name="content_desc_play">lejátszás</string>
     <string name="content_desc_pause">szünet</string>
     <string name="content_desc_rewind">visszatekerés</string>
@@ -235,4 +158,26 @@
     <string name="content_desc_show_password">jelszó mutatása</string>
     <string name="content_desc_delete">törlés</string>
     <string name="content_desc_download">letöltés</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Értesítések</string>
+    <string name="pref_title_notification_new_articles_available">Értesítés megjelenítés amikor van elérhető új cikk </string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Hiba</string>
+    <string name="login_dialog_text_something_went_wrong">Valami balul sült el :(</string>
+    <string name="login_dialog_text_zero_version_code">A Web News App verziónak 0-át adott vissza. Olvasd el ezt a hibajelentést: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Biztonsági figyelmeztetés</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Adatok &amp; szinkronizáció</string>
+    <string name="pref_title_clearCache">Átmeneti tár(cache) tisztitása</string>
+    <string name="pref_title_CacheImagesOffline">Képek offline tárolása ideglenesen</string>
+    <string name="pref_title_Max_Cache_Size">Maximum Cache Méret</string>
+
+
+
+
+    </resources>

@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Sjálfvirk samstilling</string>
     <string name="empty_view_content">Engin atriði hér</string>
-    <string name="toast_GettingMoreItems">Byrjaði að sækja fleiri atriði... Bíddu aðeins...</string>
     <string name="no_wifi_available">Ekkert WiFi-net tengt</string>
     <string name="current_version">Þú ert að nota útgáfu %s</string>
     <string name="widget_header">Nextcloud-fréttir</string>
@@ -27,7 +26,6 @@
     <string name="action_starred">Stjörnumerkt</string>
     <string name="action_read">Lesa</string>
     <string name="action_playPodacst">Spila hlaðvarp</string>
-    <string name="action_openInBrowser">Opna í vafra</string>
     <string name="action_Share">Deila</string>
     <string name="action_login">Stillingar þjóns</string>
     <string name="action_save">Vista</string>
@@ -77,10 +75,8 @@
 
     <string name="action_sign_in_short">Skrá inn</string>
     <string name="login_progress_signing_in">Skrái inn …</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Krafist er að fyllt sé í þennan reit</string>
-    <string name="error_invalid_url">Þessi slóð er ógild</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Flytja inn aðgang</string>
 
@@ -106,10 +102,7 @@
     <string name="pref_header_general">Almennt</string>
     <string name="pref_title_general_sort_order">Röðun</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Nýrra -> Eldra</item>
-        <item>Eldra -> Nýrra</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Hreinsa skyndiminni</string>
     <string name="dialog_clearing_cache_please_wait">Hreinsa skyndiminni... Bíddu aðeins.</string>
     <string name="warning">Aðvörun</string>
@@ -131,29 +124,31 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Birting</string>
-    <string name="pref_title_app_theme">Þema forrits</string>
     <string name="pref_display_title_lines_count">Fjöldi lína í fyrirsögn</string>
     <string name="pref_display_browser">Vafri</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Táknmyndir aðgerða (ítarleg sýn)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Dökkt</item>
-        <item>Dökkt (fyrir OLED-skjái)</item>
-        <item>Ljóst</item>
-    </string-array>
-    <item>Innbyggður vafri</item>
-        <item>Ytri vafri</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Einfalt</item>
-        <item>Ítarlegt</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
+
+    <string name="content_desc_play">afspilun</string>
+    <string name="content_desc_pause">bið</string>
+    <string name="content_desc_rewind">fara til baka</string>
+    <string name="content_desc_forward">áfram</string>
+    <string name="content_desc_expand">útvíkka</string>
+    <string name="content_desc_collapse">fella saman</string>
+    <string name="content_desc_mark_as_read">merkja sem lesið</string>
+    <string name="content_desc_mark_as_unread">merkja allt sem ólesið</string>
+    <string name="content_desc_tap_to_refresh">banka til að endurlesa</string>
+    <string name="content_desc_add_to_favorites">bæta í Eftirlæti</string>
+    <string name="content_desc_remove_from_favorites">fjarlægja úr Eftirlæti</string>
+    <string name="content_desc_show_password">sýna lykilorð</string>
+    <string name="content_desc_delete">eyða</string>
+    <string name="content_desc_download">sækja</string>
+
+
+
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Tilkynningar</string>
     <string name="pref_title_notification_new_articles_available">Birta tilkynningu þegar nýjar greinar eru tiltækar</string>
@@ -169,45 +164,7 @@
     <string name="pref_title_CacheImagesOffline">Setja myndir í skyndiminni fyrir þegar engin nettenging finnst</string>
     <string name="pref_title_Max_Cache_Size">Hámarksstærð skyndiminnis</string>
 
-    <string-array name="pref_data_sync_image_cache">
-        <item>Aldrei</item>
-        <item>Einungis yfir WiFi-net</item>
-        <item>Yfir WiFi-net og farsímasamband</item>
-        <item>Spyrja þegar ekki er WiFi-tenging</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 mínútur</item>
-        <item>15 mínútur</item>
-        <item>30 mínútur</item>
-        <item>45 mínútur</item>
-        <item>1 klukkustund</item>
-        <item>2 klukkustundir</item>
-        <item>3 klukkustundir</item>
-        <item>6 klukkustundir</item>
-        <item>12 klukkustundir</item>
-        <item>24 klukkustundir</item>
-    </string-array>
-    <string name="content_desc_play">afspilun</string>
-    <string name="content_desc_pause">bið</string>
-    <string name="content_desc_rewind">fara til baka</string>
-    <string name="content_desc_forward">áfram</string>
-    <string name="content_desc_expand">útvíkka</string>
-    <string name="content_desc_collapse">fella saman</string>
-    <string name="content_desc_mark_as_read">merkja sem lesið</string>
-    <string name="content_desc_mark_as_unread">merkja allt sem ólesið</string>
-    <string name="content_desc_tap_to_refresh">banka til að endurlesa</string>
-    <string name="content_desc_add_to_favorites">bæta í Eftirlæti</string>
-    <string name="content_desc_remove_from_favorites">fjarlægja úr Eftirlæti</string>
-    <string name="content_desc_show_password">sýna lykilorð</string>
-    <string name="content_desc_delete">eyða</string>
-    <string name="content_desc_download">sækja</string>
-</resources>
+
+
+
+    </resources>

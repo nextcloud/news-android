@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">სინქ. ინტერვალის შერჩევა</string>
     <string name="title_activity_news_detail">სიახლეებიდეტალებიაქტივობები</string>
     <string name="empty_view_content">აქ ელემენტები არაა</string>
-    <string name="toast_GettingMoreItems">დაწყებულია მეტი ელემენტების ჩამოტვირთვა... გთხოვთ მოითმინოთ.</string>
     <string name="no_wifi_available">WiFi არაა დაკავშირებული</string>
-    <string name="do_you_want_to_download_without_wifi">გსურთ სურათების ჩამოტვირთვა WiFi კავშირის გარეშე</string>
     <string name="current_version">თქვენ სარგებლობთ ვერსიით %s</string>
     <string name="widget_header">Nextcloud სიახლეები</string>
     <plurals name="message_bar_new_articles_available">
@@ -29,7 +27,6 @@
     <string name="action_starred">ვარსკვლავმინიჭებული</string>
     <string name="action_read">წაკითხვა</string>
     <string name="action_playPodacst">პოდკასტის დაკვრა</string>
-    <string name="action_openInBrowser">ბრაუზერით გახსნა</string>
     <string name="action_Share">გაზიარება</string>
     <string name="action_login">სერვერის პარამეტრები</string>
     <string name="action_save">შენახვა</string>
@@ -81,10 +78,8 @@
 
     <string name="action_sign_in_short">შესვლა</string>
     <string name="login_progress_signing_in">მიმდინარეობს ავტორიზაცია</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">ეს ველი აუცილებელია</string>
-    <string name="error_invalid_url">ეს მისამართი არასწორია</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">ანგარიშის იმპორტი</string>
 
@@ -108,10 +103,7 @@
     <string name="pref_header_general">ზოგადი</string>
     <string name="pref_title_general_sort_order">განლაგების თანმიმდევრობა</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>ახალი -> ძველი</item>
-        <item>ძველი -> ახალი</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">კეშის გასუფთავება</string>
     <string name="dialog_clearing_cache_please_wait">კეში სუფთავდება... გთხოვთ მოითმინოთ.</string>
     <string name="reset_cache_unsaved_changes">აღმოჩენილია არასინქრონიზირებული ცვილებები. მაინც გსურთ კეშის საწყის მდგომარეობაში დაბრუნება?</string>
@@ -121,8 +113,6 @@
     <string name="pref_title_DisableHostnameVerification">ჰოსტის სახელის ვერიფიკაციის გათიშვა</string>
     <string name="pref_title_NavigateWithVolumeButtons">აწარმოეთ ნაციგაცია ხმის ღილაკებით</string>
     <string name="pref_title_MarkAsReadWhileScrolling">წაკითხულად მონიშვნა გადახვევისას</string>
-    <string name="pref_title_OpenInBrowserDirectly">არტიკლების საჩვენებლად გარე ბრაუზერის გამოყენება</string>
-
     <string name="dialog_feature_not_available">ეს ფუნქცია არაა ხელმისაწვდომი აპლიკაციის ამ (ღია) ვერსიაში. თუ გსურთ ამ ფუნქციით სარგებლობა, გთხოვთ ჩამოტვირთოთ აპლიკაცია GitHub საცავიდან ან Google PlayStore-იდან.</string>
 
 
@@ -140,82 +130,15 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">დისპლეი</string>
-    <string name="pref_title_app_theme">აპლიკაციის თემა</string>
     <string name="pref_title_feed_list_layout">ლენტის სიის მაკეტი</string>
     <string name="pref_display_title_lines_count">ხაზების ოდენობა სათაურისთვის</string>
     <string name="pref_display_browser">ბრაუზერი</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">მოქმედების პიქტოგრამები (დეტალების ხედი)</string>
-    <string-array name="pref_display_apptheme">
-        <item>მუქი</item>
-        <item>მუქი (OLED ეკრანებისთვის)</item>
-        <item>ღია</item>
-    </string-array>
-    <string-array name="pref_display_browser">
-        <item>ჩაშენებული ქრომის-პერსონალიზირებული-ტაბულები</item>
-        <item>ჩაშენებული ბრაუზერი</item>
-        <item>ექსტერნალური ბრაუზერი</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>მარტივი</item>
-        <item>გაფართოებული</item>
-        <item>გაფართოებული (სრული ტექსტი)</item>
-        <item>გაფართოებულია Webview-ით</item>
-        <item>გაფართოებულია Cardview-ით</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">შეტყობინებები</string>
-    <string name="pref_title_notification_new_articles_available">შეტყობინებების ჩვენება ახალი არტიკლების გამოჩენისას</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">შეცდომა</string>
-    <string name="login_dialog_text_something_went_wrong">რაღაც მოხდა :(</string>
-    <string name="login_dialog_text_zero_version_code">Web News App-მა დააბრუნა ვერსია \"0\". გთხოვთ იხილოთ შემდეგი შეცდომის რეპორტი: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">ეს აპლიკაციის ვერსია არაა თავსებადი თქვენს Nextcloud News აპლიკაციასთან. გთხოვთ განაახლოთ სიახლეების აპლიკაცია და აპლიკაციის სისტემა.</string>
-    <string name="login_dialog_title_security_warning">უსაფრთხოების გაფრთხილება</string>
-    <string name="login_dialog_text_security_warning">თქვენ არ სარგებლობთ https-ით. შემომტევს შეუძლია ხელთ იგდოს თქვენი ტრეფიკი და იქონიოს წვდომა მგრძნობიარე მონაცემებზე (მაგ. თქვენს პაროლზე). ამის გამო რეკომენდირებულია ისარგებლოთ https-ით!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">მონაცემები და სინქ.</string>
-    <string name="pref_title_clearCache">კეშის გასუფთავება</string>
-    <string name="pref_title_CacheImagesOffline">სურათების ოფლაინ კეშირება</string>
-    <string name="pref_title_Max_Cache_Size">მაქს. კეშის ზომა</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>არასდროს</item>
-        <item>მხოლოდ WiFi-ზე</item>
-        <item>Wi-Fi-ზე და მობილურზე</item>
-        <item>შეკითხვა როდესაც არაა კავშირი WiFi-სთან</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 მბ</item>
-        <item>500 მბ</item>
-        <item>750 მბ</item>
-        <item>1 გბ</item>
-        <item>2 გბ</item>
-        <item>5 გბ</item>
-        <item>10 გბ</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 წუთი</item>
-        <item>15 წუთი</item>
-        <item>30 წუთი</item>
-        <item>45 წუთი</item>
-        <item>1 საათი</item>
-        <item>2 საათი</item>
-        <item>3 საათი</item>
-        <item>6 საათი</item>
-        <item>12 საათი</item>
-        <item>24 საათი</item>
-    </string-array>
     <string name="content_desc_play">დაკვრა</string>
     <string name="content_desc_pause">პაუზა</string>
     <string name="content_desc_rewind">გადახვევა</string>
@@ -230,4 +153,26 @@
     <string name="content_desc_show_password">პაროლის ჩვენება</string>
     <string name="content_desc_delete">წაშლა</string>
     <string name="content_desc_download">ჩამოტვირთვა</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">შეტყობინებები</string>
+    <string name="pref_title_notification_new_articles_available">შეტყობინებების ჩვენება ახალი არტიკლების გამოჩენისას</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">შეცდომა</string>
+    <string name="login_dialog_text_something_went_wrong">რაღაც მოხდა :(</string>
+    <string name="login_dialog_text_zero_version_code">Web News App-მა დააბრუნა ვერსია \"0\". გთხოვთ იხილოთ შემდეგი შეცდომის რეპორტი: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">უსაფრთხოების გაფრთხილება</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">მონაცემები და სინქ.</string>
+    <string name="pref_title_clearCache">კეშის გასუფთავება</string>
+    <string name="pref_title_CacheImagesOffline">სურათების ოფლაინ კეშირება</string>
+    <string name="pref_title_Max_Cache_Size">მაქს. კეშის ზომა</string>
+
+
+
+
+    </resources>

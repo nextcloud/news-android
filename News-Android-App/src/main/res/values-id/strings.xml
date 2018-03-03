@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Pemilih Jeda Sync</string>
     <string name="title_activity_news_detail">AktivitasRinciBerita</string>
     <string name="empty_view_content">Tak ada item disini</string>
-    <string name="toast_GettingMoreItems">Mulai mengunduh lebih banyak item... Mohon tunggu.</string>
     <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
-    <string name="do_you_want_to_download_without_wifi">Apakah anda ingin mengunduh gambar tanpa koneksi WiFi</string>
     <string name="current_version">Anda menggunakan Versi %s</string>
     <string name="widget_header">Berita ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -29,7 +27,6 @@
     <string name="action_starred">Dibintangi</string>
     <string name="action_read">Baca</string>
     <string name="action_playPodacst">Putar Siniar</string>
-    <string name="action_openInBrowser">Buka di Peramban</string>
     <string name="action_Share">Bagikan</string>
     <string name="action_login">Pengaturan Server</string>
     <string name="action_save">Simpan</string>
@@ -81,10 +78,8 @@
 
     <string name="action_sign_in_short">Masuk</string>
     <string name="login_progress_signing_in">Sedang masuk...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Bidang wajib diisi</string>
-    <string name="error_invalid_url">URL salah</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Impor Akun</string>
 
@@ -108,10 +103,7 @@
     <string name="pref_header_general">Umum</string>
     <string name="pref_title_general_sort_order">Urutan</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Baru -&gt; Lawas</item>
-        <item>Lawas -&gt; Baru</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Membersihkan cache</string>
     <string name="dialog_clearing_cache_please_wait">Membersihkan cache... Mohon tunggu.</string>
     <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
@@ -121,8 +113,6 @@
     <string name="pref_title_DisableHostnameVerification">Nonaktifkan Verifikasi Hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigasi dengan tombol volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Tandai telah dibaca saat bergulir</string>
-    <string name="pref_title_OpenInBrowserDirectly">Gunakan peramban eksternal untuk melihat artikel</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Terima Sertifikat yang Tak Dikenal?</string>
     <string name="mtm_decision_always">Selalu</string>
@@ -137,70 +127,8 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Tampilkan</string>
-    <string name="pref_title_app_theme">Tema aplikasi</string>
     <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
     <string name="pref_display_title_lines_count">Jumlah Baris untuk judul</string>
-    <string-array name="pref_display_apptheme">
-        <item>Gelap</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Sederhana</item>
-        <item>Diperluas</item>
-        <item>Diperluas (teks penuh)</item>
-        <item>Diperluas dengan Webview</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Pemberitahuan</string>
-    <string name="pref_title_notification_new_articles_available">Tampilkan pemberitahuan ketika artikel baru tersedia</string>
-
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Kesalahan</string>
-    <string name="login_dialog_text_something_went_wrong">Ada yang tidak beres :(</string>
-    <string name="login_dialog_text_not_compatible">Versi aplikasi ini tidak kompatibel dengan aplikasi berita ownCloud. Silakan perbarui aplikasi berita ini dan aplikasi bingkai kerjanya.</string>
-    <string name="login_dialog_title_security_warning">Peringatan Keamanan</string>
-    <string name="login_dialog_text_security_warning">Anda tidak menggunakan https. Peratas bisa saja mencegat lalu lintas jaringan dan mendapatkan akses ke beberapa data sensitif (misalnya kata sandi Anda). Jadi sangat disarankan menggunakan https!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-    <string name="pref_title_clearCache">Bersihkan cache</string>
-    <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
-    <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Jangan pernah</item>
-        <item>Hanya melalui WiFi</item>
-        <item>Melalui WiFi &amp; Mobile</item>
-        <item>Tanya ketika tidak tersambung ke WiFi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 Menit</item>
-        <item>15 Menit</item>
-        <item>30 Menit</item>
-        <item>45 Menit</item>
-        <item>1 Jam</item>
-        <item>2 Jam</item>
-        <item>3 Jam</item>
-        <item>6 Jam</item>
-        <item>12 Jam</item>
-        <item>24 Jam</item>
-    </string-array>
     <string name="content_desc_play">putar</string>
     <string name="content_desc_pause">jeda</string>
     <string name="content_desc_rewind">mundur</string>
@@ -215,4 +143,25 @@
     <string name="content_desc_show_password">tampilkan kata sandi</string>
     <string name="content_desc_delete">hapus</string>
     <string name="content_desc_download">unduh</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Pemberitahuan</string>
+    <string name="pref_title_notification_new_articles_available">Tampilkan pemberitahuan ketika artikel baru tersedia</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Kesalahan</string>
+    <string name="login_dialog_text_something_went_wrong">Ada yang tidak beres :(</string>
+    <string name="login_dialog_title_security_warning">Peringatan Keamanan</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="pref_title_clearCache">Bersihkan cache</string>
+    <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
+    <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
+
+
+
+
+    </resources>

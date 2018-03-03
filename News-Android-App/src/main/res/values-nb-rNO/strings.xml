@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Velger for synkroniseringsintervall</string>
     <string name="title_activity_news_detail">NyhetsDetaljAktivitet</string>
     <string name="empty_view_content">Ingenting her</string>
-    <string name="toast_GettingMoreItems">Startet nedlasting av flere elementer... Vennligst vent.</string>
     <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
-    <string name="do_you_want_to_download_without_wifi">Vil du laste ned bildene uten WiFi tilkobling?</string>
     <string name="current_version">Du bruker versjon %s</string>
     <string name="widget_header">ownCloud Nyheter</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,7 +28,6 @@
     <string name="action_starred">Merket</string>
     <string name="action_read">Les</string>
     <string name="action_playPodacst">Spill podcast</string>
-    <string name="action_openInBrowser">Åpne i nettleser</string>
     <string name="action_Share">Del</string>
     <string name="action_login">Serverinnstillinger</string>
     <string name="action_save">Lagre</string>
@@ -84,10 +81,8 @@
 
     <string name="action_sign_in_short">Logg inn</string>
     <string name="login_progress_signing_in">Logger inn...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette feltet er påkrevd</string>
-    <string name="error_invalid_url">Denne adressen er feil</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Importer konto</string>
 
@@ -113,10 +108,7 @@
     <string name="pref_header_general">Generelt</string>
     <string name="pref_title_general_sort_order">Sorteringsrekkefølge</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Ny -&gt; Gammel</item>
-        <item>Gammel -&gt; Ny</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Sletter hurtiglager</string>
     <string name="dialog_clearing_cache_please_wait">Nullstiller hurtiglager... Vennligst vent.</string>
     <string name="reset_cache_unsaved_changes">Det er usynkroniserte forandringer. Vil du resette hurtilageret likevel?</string>
@@ -126,8 +118,6 @@
     <string name="pref_title_DisableHostnameVerification">Deaktiver vertsnavnverifikasjon</string>
     <string name="pref_title_NavigateWithVolumeButtons">Naviger med volumknappene</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
-    <string name="pref_title_OpenInBrowserDirectly">Bruk ekstern nettleser til å vise artikler</string>
-
     <string name="dialog_feature_not_available">Denne muligheten er ikke tilgjengelig i denne (åpen kildekode) versjonen av denne app. Hvis du ønsker å benytte denne muligheten vennligst last ned fra GitHub eller last ned programmet fra Google PlayStore.</string>
 
 
@@ -145,82 +135,15 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
-    <string name="pref_title_app_theme">App-tema</string>
     <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
     <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
     <string name="pref_display_browser">Nettleser</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Mørk</item>
-        <item>Mørk (For OLED-skjermer)</item>
-        <item>Lys</item>
-    </string-array>
-    <string-array name="pref_display_browser">
-        <item>Innebygde tilpassede Chrome-faner</item>
-        <item>Innebygget nettleser</item>
-        <item>Ekstern nettleser</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Enkel</item>
-        <item>Utvidet</item>
-        <item>Utvidet (fulltekst)</item>
-        <item>Utvidet med Nettvisning</item>
-        <item>Utvidet med Cardview</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Varsler</string>
-    <string name="pref_title_notification_new_articles_available">Vis varsel når nye artikler er tilgjengelig</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Feil</string>
-    <string name="login_dialog_text_something_went_wrong">Noe gikk galt :-(</string>
-    <string name="login_dialog_text_zero_version_code">Nettnyhetsprogrammet returnerte versjon \"0\". Ta en titt på følgende feilrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Applikasjonsversjonen din er ikka kompatibel med din ownCloud Nyhetsapp. Vennligst oppdater nyhetsappen og apprammeverket.</string>
-    <string name="login_dialog_title_security_warning">Sikkerhetsadvarsel</string>
-    <string name="login_dialog_text_security_warning">Du bruker ikke https. En angriper kan fange opp trafikken og få tilgang til noen sensitive data (f.eks passordet ditt). Så det er det sterkt anbefalt å bruke https!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; synk.</string>
-    <string name="pref_title_clearCache">Slett hurtiglager</string>
-    <string name="pref_title_CacheImagesOffline">Bildehurtiglager er offline</string>
-    <string name="pref_title_Max_Cache_Size">Maks hurtiglagerstørrelse</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Aldri</item>
-        <item>Bare over WiFi</item>
-        <item>Over WiFi &amp; Mobil</item>
-        <item>Spør når ikke koblet til WiFi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 minutter</item>
-        <item>15 minutter</item>
-        <item>30 minutter</item>
-        <item>45 minutter</item>
-        <item>1 time</item>
-        <item>2 timer</item>
-        <item>3 timer</item>
-        <item>6 timer</item>
-        <item>12 timer</item>
-        <item>24 timer</item>
-    </string-array>
     <string name="content_desc_play">spil</string>
     <string name="content_desc_pause">pause</string>
     <string name="content_desc_rewind">bakover</string>
@@ -235,4 +158,26 @@
     <string name="content_desc_show_password">vis passord</string>
     <string name="content_desc_delete">slett</string>
     <string name="content_desc_download">last ned</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Varsler</string>
+    <string name="pref_title_notification_new_articles_available">Vis varsel når nye artikler er tilgjengelig</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Feil</string>
+    <string name="login_dialog_text_something_went_wrong">Noe gikk galt :-(</string>
+    <string name="login_dialog_text_zero_version_code">Nettnyhetsprogrammet returnerte versjon \"0\". Ta en titt på følgende feilrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Sikkerhetsadvarsel</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; synk.</string>
+    <string name="pref_title_clearCache">Slett hurtiglager</string>
+    <string name="pref_title_CacheImagesOffline">Bildehurtiglager er offline</string>
+    <string name="pref_title_Max_Cache_Size">Maks hurtiglagerstørrelse</string>
+
+
+
+
+    </resources>

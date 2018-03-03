@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Wybór interwału synchronizacji</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Nic tu nie ma</string>
-    <string name="toast_GettingMoreItems">Rozpoczęto pobieranie nowych elementów... Proszę czekać.</string>
     <string name="no_wifi_available">Brak połączenia WIFI</string>
-    <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia WiFi</string>
     <string name="current_version">Używasz wersji %s</string>
     <string name="widget_header">ownCloud News</string>
     <string name="message_bar_reload">Przeładuj</string>
@@ -26,7 +24,6 @@
     <string name="action_starred">Oznaczone</string>
     <string name="action_read">Odczyt</string>
     <string name="action_playPodacst">Odtwórz Podcast</string>
-    <string name="action_openInBrowser">Otwórz w przeglądarce</string>
     <string name="action_Share">Udostępnij</string>
     <string name="action_login">Ustawienia serwera</string>
     <string name="action_save">Zapisz</string>
@@ -70,10 +67,8 @@
 
     <string name="action_sign_in_short">Zaloguj</string>
     <string name="login_progress_signing_in">Loguję...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ten element jest wymagany</string>
-    <string name="error_invalid_url">Ten adres jest niepoprawny</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Konto importu</string>
 
@@ -88,10 +83,7 @@
     <string name="pref_header_general">Ogólne</string>
     <string name="pref_title_general_sort_order">Sortuj w kolejności</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Nowe -&gt; Stare</item>
-        <item>Stare -&gt; Nowe</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Czyszczenie pamięci podręcznej</string>
     <string name="dialog_clearing_cache_please_wait">Czyszczenie cache... Proszę czekać.</string>
     <string name="reset_cache_unsaved_changes">Są niezsynchronizowane zmiany. Czy chcesz zresetować pamięć podręczną?</string>
@@ -101,8 +93,6 @@
     <string name="pref_title_DisableHostnameVerification">Wyłącz weryfikację nazwy hosta</string>
     <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
-    <string name="pref_title_OpenInBrowserDirectly">Użyj zewnętrznej przeglądarki aby przeglądać artykuły.</string>
-
     <string name="dialog_feature_not_available">Ta funkcja nie jest dostępna w wersji open-source tej aplikacji. Jeśli chcesz skorzystać z tej funkcji, pobierz aplikację z repozytorium GitHub lub pobierz aplikację z Google PlayStore.</string>
 
 
@@ -120,73 +110,10 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Wygląd</string>
-    <string name="pref_title_app_theme">Motyw aplikacji</string>
     <string name="pref_title_feed_list_layout">Układ listy kanałów</string>
     <string name="pref_display_title_lines_count">Licznik linii tytułu</string>
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcji (Widok szczegółowy)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Ciemny</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Prosty</item>
-        <item>Rozszerzony</item>
-        <item>Rozszerzony (pełny tekst)</item>
-        <item>Rozszerzony z Webview</item>
-        <item>Rozszerzony z CardView</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Powiadomienia</string>
-    <string name="pref_title_notification_new_articles_available">Pokaż powiadomienie, gdy pojawią się nowe artykuły</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Błąd</string>
-    <string name="login_dialog_text_something_went_wrong">Coś poszło nie tak :(</string>
-    <string name="login_dialog_text_zero_version_code">Aplikacja Web News zwróciła wersję \"0\". Proszę sprawdź następujący raport o błędzie: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Ta wersja aplikacji nie jest zgodny z twoją aplikacją wiadomości na ownCloud. Zaktualizuj aplikacje news i appframework.</string>
-    <string name="login_dialog_title_security_warning">Ostrzeżenie o zabezpieczeniach</string>
-    <string name="login_dialog_text_security_warning">Nie używaszpołączenia https. Osoba atakująca może przechwytywać ruch i uzyskać dostęp do niektórych poufnych danych (np. hasła). Zdecydowanie polecamy używać https!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; synchronizacja</string>
-    <string name="pref_title_clearCache">Czyść pamięć podręczną</string>
-    <string name="pref_title_CacheImagesOffline">Zapisuj obrazy offline</string>
-    <string name="pref_title_Max_Cache_Size">Maksymalny rozmiar pamięci podręcznej</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Nigdy</item>
-        <item>Tylko przez WiFi</item>
-        <item>Przez WiFi &amp; Mobilne</item>
-        <item>Zapytaj gdy nie podłączony do WiFi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 minut</item>
-        <item>15 minut</item>
-        <item>30 minut</item>
-        <item>45 minut</item>
-        <item>1 godzina</item>
-        <item>2 godziny</item>
-        <item>3 godziny</item>
-        <item>6 godzin</item>
-        <item>12 godzin</item>
-        <item>24 godziny</item>
-    </string-array>
     <string name="content_desc_play">odtwarzanie</string>
     <string name="content_desc_pause">pauza</string>
     <string name="content_desc_rewind">przewiń wstecz</string>
@@ -201,4 +128,26 @@
     <string name="content_desc_show_password">pokaż hasło</string>
     <string name="content_desc_delete">skasuj</string>
     <string name="content_desc_download">pobierz</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Powiadomienia</string>
+    <string name="pref_title_notification_new_articles_available">Pokaż powiadomienie, gdy pojawią się nowe artykuły</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Błąd</string>
+    <string name="login_dialog_text_something_went_wrong">Coś poszło nie tak :(</string>
+    <string name="login_dialog_text_zero_version_code">Aplikacja Web News zwróciła wersję \"0\". Proszę sprawdź następujący raport o błędzie: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Ostrzeżenie o zabezpieczeniach</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; synchronizacja</string>
+    <string name="pref_title_clearCache">Czyść pamięć podręczną</string>
+    <string name="pref_title_CacheImagesOffline">Zapisuj obrazy offline</string>
+    <string name="pref_title_Max_Cache_Size">Maksymalny rozmiar pamięci podręcznej</string>
+
+
+
+
+    </resources>

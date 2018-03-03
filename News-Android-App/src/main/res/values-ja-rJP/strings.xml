@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">同期間隔を指定</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">ここにアイテムなし</string>
-    <string name="toast_GettingMoreItems">複数のアイテムをダウンロード中です... しばらくお待ちください。</string>
     <string name="no_wifi_available">WiFi接続がありません</string>
-    <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか？</string>
     <string name="current_version">使用中のバージョンは %s です</string>
     <string name="widget_header">ownCloudニュース</string>
     <plurals name="message_bar_new_articles_available">
@@ -29,7 +27,6 @@
     <string name="action_starred">共有</string>
     <string name="action_read">読込</string>
     <string name="action_playPodacst">Podcast を再生</string>
-    <string name="action_openInBrowser">ブラウザーで開く</string>
     <string name="action_Share">共有</string>
     <string name="action_login">サーバー設定</string>
     <string name="action_save">保存</string>
@@ -81,10 +78,8 @@
 
     <string name="action_sign_in_short">ログイン</string>
     <string name="login_progress_signing_in">ログイン中...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">このフィールドは必須です</string>
-    <string name="error_invalid_url">このURLは不正確です</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">アカウントをインポート</string>
 
@@ -108,10 +103,7 @@
     <string name="pref_header_general">一般</string>
     <string name="pref_title_general_sort_order">ソート順</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>新 -&gt; 旧</item>
-        <item>旧 -&gt; 新</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
     <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています…しばらくお待ちください。</string>
     <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
@@ -121,8 +113,6 @@
     <string name="pref_title_DisableHostnameVerification">ホスト名の検証を無効化</string>
     <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
     <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
-    <string name="pref_title_OpenInBrowserDirectly">この記事を外部ブラウザーで開く</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
     <string name="mtm_decision_always">常に</string>
@@ -137,70 +127,8 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">表示</string>
-    <string name="pref_title_app_theme">アプリテーマ</string>
     <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
     <string name="pref_display_title_lines_count">タイトルの行数</string>
-    <string-array name="pref_display_apptheme">
-        <item>ダーク</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>基本</item>
-        <item>拡張</item>
-        <item>拡張 (全文)</item>
-        <item>拡張ウェブ表示</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">通知</string>
-    <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
-
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">エラー</string>
-    <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
-    <string name="login_dialog_text_not_compatible">このアプリのバージョンはownCloudニュースアプリと互換性がありません。ニュースアプリとappframeworkをアップデートしてください。</string>
-    <string name="login_dialog_title_security_warning">セキュリティ警告</string>
-    <string name="login_dialog_text_security_warning">httpsを使用していません。攻撃者があなたのトラフィックに干渉し、一部の機密データ(例えば、パスワード)にアクセスする恐れがあります。そのため、httpsを利用することを強くお勧めします！</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">データと同期</string>
-    <string name="pref_title_clearCache">キャッシュをクリア</string>
-    <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
-    <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>なし</item>
-        <item>WiFiのみ</item>
-        <item>WiFi &amp; モバイル</item>
-        <item>WiFi接続がない場合は尋ねる</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 分</item>
-        <item>15 分</item>
-        <item>30 分</item>
-        <item>45 分</item>
-        <item>1 時間</item>
-        <item>2 時間</item>
-        <item>3 時間</item>
-        <item>6 時間</item>
-        <item>12 時間</item>
-        <item>24 時間</item>
-    </string-array>
     <string name="content_desc_play">再生</string>
     <string name="content_desc_pause">一時停止</string>
     <string name="content_desc_rewind">巻戻し</string>
@@ -215,4 +143,25 @@
     <string name="content_desc_show_password">パスワードを表示</string>
     <string name="content_desc_delete">削除</string>
     <string name="content_desc_download">ダウンロード</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">通知</string>
+    <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">エラー</string>
+    <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
+    <string name="login_dialog_title_security_warning">セキュリティ警告</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">データと同期</string>
+    <string name="pref_title_clearCache">キャッシュをクリア</string>
+    <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
+    <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
+
+
+
+
+    </resources>

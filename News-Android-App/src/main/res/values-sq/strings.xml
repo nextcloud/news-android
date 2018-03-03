@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Përzgjedhës Intervali Njëkohësimesh</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">S\’ka gjë këtu</string>
-    <string name="toast_GettingMoreItems">Filloi të shkarkojë më tepër zëra… Ju lutemi, pritni.</string>
     <string name="no_wifi_available">Pa lidhje WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">Doni të shkarkohen figurat pa një lidhje WiFi</string>
     <string name="current_version">Po përdorni Versionin %s</string>
     <string name="widget_header">Lajme ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,7 +28,6 @@
     <string name="action_starred">Me yll</string>
     <string name="action_read">Lexoni</string>
     <string name="action_playPodacst">Luani Podcast</string>
-    <string name="action_openInBrowser">Hape në Shfletues</string>
     <string name="action_Share">Ndajeni me të tjerët</string>
     <string name="action_login">Rregullime Shërbyesi</string>
     <string name="action_save">Ruaje</string>
@@ -84,10 +81,8 @@
 
     <string name="action_sign_in_short">Hyni</string>
     <string name="login_progress_signing_in">Po hyhet…</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Kjo fushë është e domosdoshme</string>
-    <string name="error_invalid_url">Kjo URL është e pasaktë</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Importoni Llogari</string>
 
@@ -113,10 +108,7 @@
     <string name="pref_header_general">Të përgjithshme</string>
     <string name="pref_title_general_sort_order">Radhë Renditjeje</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Të rinj -&gt; Të vjetër</item>
-        <item>Të vjetër -&gt; Të rinj</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Pastrim fshehtine</string>
     <string name="dialog_clearing_cache_please_wait">Fshehtina po pastrohet… Ju lutemi, pritni.</string>
     <string name="reset_cache_unsaved_changes">Ka ndryshime të panjëkohësuara. Doni ta ktheni fshehtinën në gjendjen fillestare sido qoftë?</string>
@@ -126,8 +118,6 @@
     <string name="pref_title_DisableHostnameVerification">Çaktivizo Verifikim e Strehëemrave</string>
     <string name="pref_title_NavigateWithVolumeButtons">Lëvizni me butona volumi</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Shënoji si të lexuara teksa rrëshqitet</string>
-    <string name="pref_title_OpenInBrowserDirectly">Përdor shfletues të jashtëm për të parë artikujt</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Të pranohet Dëshmi e Panjohur?</string>
     <string name="mtm_decision_always">Përherë</string>
@@ -142,70 +132,8 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Ekran</string>
-    <string name="pref_title_app_theme">Temë aplikacioni</string>
     <string name="pref_title_feed_list_layout">Skemë liste prurjesh</string>
     <string name="pref_display_title_lines_count">Numërim Rreshtash për titullin</string>
-    <string-array name="pref_display_apptheme">
-        <item>E errët</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>E thjeshtë</item>
-        <item>E zgjeruar</item>
-        <item>E zgjeruar (me tekst të plotë)</item>
-        <item>E zgjeruar me Webview</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Njoftime</string>
-    <string name="pref_title_notification_new_articles_available">Shfaq njoftime kur ka gati artikuj të rinj</string>
-
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Gabim</string>
-    <string name="login_dialog_text_something_went_wrong">Diçka shkoi ters :(</string>
-    <string name="login_dialog_text_not_compatible">Ky version i Aplikacionit s\’është i përputhshëm me Aplikacionin tuaj ownCloud Për Lajme. Ju lutemi, përditësojeni aplikacionin e lajmeve dhe appframework-un.</string>
-    <string name="login_dialog_title_security_warning">Sinjalizim Sigurie</string>
-    <string name="login_dialog_text_security_warning">S\’po përdorni https. Një sulmues mund të kapë trafikun tuaj dhe të arrijë të hyjë në disa të dhëna me spec (p.sh. fjalëkalimi juaj). Ndaj këshillohet me forcë të përdorni https!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Të dhëna &amp; njëkohësim</string>
-    <string name="pref_title_clearCache">Pastroje fshehtinën</string>
-    <string name="pref_title_CacheImagesOffline">Ruajio figurat në fshehtinë</string>
-    <string name="pref_title_Max_Cache_Size">Madhësi Maksimum Fshehtine</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Kurrë</item>
-        <item>Vetëm përmes WiFi-ji</item>
-        <item>Përmes WiFi-ji &amp; Lidhjeje Celulari</item>
-        <item>Pyet, kur s\’është i lidhur me WiFi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 Minuta</item>
-        <item>15 Minuta</item>
-        <item>30 Minuta</item>
-        <item>45 Minuta</item>
-        <item>1 Orë</item>
-        <item>2 Orë</item>
-        <item>3 Orë</item>
-        <item>6 Orë</item>
-        <item>12 Orë</item>
-        <item>24 Orë</item>
-    </string-array>
     <string name="content_desc_play">luaje</string>
     <string name="content_desc_pause">pushoje</string>
     <string name="content_desc_rewind">mbrapsht</string>
@@ -220,4 +148,25 @@
     <string name="content_desc_show_password">shfaqe fjalëkalimin</string>
     <string name="content_desc_delete">fshi</string>
     <string name="content_desc_download">shkarkoje</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Njoftime</string>
+    <string name="pref_title_notification_new_articles_available">Shfaq njoftime kur ka gati artikuj të rinj</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Gabim</string>
+    <string name="login_dialog_text_something_went_wrong">Diçka shkoi ters :(</string>
+    <string name="login_dialog_title_security_warning">Sinjalizim Sigurie</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Të dhëna &amp; njëkohësim</string>
+    <string name="pref_title_clearCache">Pastroje fshehtinën</string>
+    <string name="pref_title_CacheImagesOffline">Ruajio figurat në fshehtinë</string>
+    <string name="pref_title_Max_Cache_Size">Madhësi Maksimum Fshehtine</string>
+
+
+
+
+    </resources>

@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synkronisera intervallväljaren</string>
     <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
     <string name="empty_view_content">Inga objekt här</string>
-    <string name="toast_GettingMoreItems">Börjat ladda ner fler artiklar... Var god vänta.</string>
     <string name="no_wifi_available">Ingen WIFI ansluten</string>
-    <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>
     <string name="current_version">Du använder Version %s</string>
     <string name="widget_header">ownCloud nyheter</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,7 +28,6 @@
     <string name="action_starred">Stjärnmärkt</string>
     <string name="action_read">Läsa</string>
     <string name="action_playPodacst">Spela Podcast</string>
-    <string name="action_openInBrowser">Öppna i webbläsaren</string>
     <string name="action_Share">Dela</string>
     <string name="action_login">Serverinställningar</string>
     <string name="action_save">Spara</string>
@@ -84,10 +81,8 @@
 
     <string name="action_sign_in_short">Logga in</string>
     <string name="login_progress_signing_in">Logga in...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Detta fält obligatoriskt</string>
-    <string name="error_invalid_url">Felaktig URL</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Importera Konto</string>
 
@@ -113,10 +108,7 @@
     <string name="pref_header_general">Allmänt</string>
     <string name="pref_title_general_sort_order">Sorteringsordning</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Nyare -&gt; Äldre</item>
-        <item>Äldre -&gt; Nyare</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Rensar cache</string>
     <string name="dialog_clearing_cache_please_wait">Rensar cache, var god vänta...</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
@@ -126,8 +118,6 @@
     <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
-    <string name="pref_title_OpenInBrowserDirectly">Använd extern webbläsare för att visa artiklar</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
     <string name="mtm_decision_always">Alltid</string>
@@ -142,78 +132,14 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Visa</string>
-    <string name="pref_title_app_theme">App tema</string>
     <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
     <string name="pref_display_browser">Webbläsare</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Mörk</item>
-        <item>Mörk (för OLED-skärmar)</item>
-        <item>Ljus</item>
-    </string-array>
-    <item>Inbyggd webbläsare</item>
-        <item>Extern webbläsare</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Enkel</item>
-        <item>Utvidgad</item>
-        <item>Utvidgad (fulltext)</item>
-        <item>Utvidgad med WebView</item>
-        <item>Utökad med Cardview</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notifieringar</string>
-    <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Fel</string>
-    <string name="login_dialog_text_something_went_wrong">Något gick fel :(</string>
-    <string name="login_dialog_text_not_compatible">Denna version är inte kompatibel med din ownCloud nyhetsapp. Vänligen uppdatera nyhetsappen och dess beroenden.</string>
-    <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
-    <string name="login_dialog_text_security_warning">Du använder inte https. En angripare kan fånga din trafik och få tillgång till känsliga uppgifter (t.ex. ditt lösenord). Så det är starkt rekommenderat att använda https!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; synk</string>
-    <string name="pref_title_clearCache">Rensa cache</string>
-    <string name="pref_title_CacheImagesOffline">Cacha bilder offline</string>
-    <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Aldrig</item>
-        <item>Endast över WiFi</item>
-        <item>Över WiFi &amp; Mobildata</item>
-        <item>Fråga om ej ansluten till WiFi</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 minuter</item>
-        <item>15 minuter</item>
-        <item>30 minuter</item>
-        <item>45 minuter</item>
-        <item>1 timme</item>
-        <item>2 timme</item>
-        <item>3 timme</item>
-        <item>6 timme</item>
-        <item>12 timme</item>
-        <item>24 timme</item>
-    </string-array>
     <string name="content_desc_play">spela</string>
     <string name="content_desc_pause">pausa</string>
     <string name="content_desc_rewind">spola bakåt</string>
@@ -228,4 +154,25 @@
     <string name="content_desc_show_password">visa lösenordet</string>
     <string name="content_desc_delete">radera</string>
     <string name="content_desc_download">ladda ner</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Notifieringar</string>
+    <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Fel</string>
+    <string name="login_dialog_text_something_went_wrong">Något gick fel :(</string>
+    <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; synk</string>
+    <string name="pref_title_clearCache">Rensa cache</string>
+    <string name="pref_title_CacheImagesOffline">Cacha bilder offline</string>
+    <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
+
+
+
+
+    </resources>

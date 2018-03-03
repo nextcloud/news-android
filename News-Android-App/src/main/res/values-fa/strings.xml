@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">انتخاب کننده فاصله زمان بین هماهنگ سازی</string>
     <string name="title_activity_news_detail">فعالیت جزئیات اخبار</string>
     <string name="empty_view_content">هیچ آیتمی اینجا نیست.</string>
-    <string name="toast_GettingMoreItems">دانلود آیتم های دیگر شروع شد... لطفاً منتظر بمانید.</string>
     <string name="no_wifi_available">هیچ WiFi متصل نیست.</string>
-    <string name="do_you_want_to_download_without_wifi">آیا میخواهید تصاویر را بدون هیچ اتصال WiFi  دریافت کنید؟</string>
     <string name="current_version">شما از نسخه %s استفاده می کنید.</string>
     <string name="widget_header">اخبار ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -29,7 +27,6 @@
     <string name="action_starred">ستاره دار</string>
     <string name="action_read">بخوانید</string>
     <string name="action_playPodacst">اجرای پادکست</string>
-    <string name="action_openInBrowser">در مرورگر باز کن</string>
     <string name="action_Share">اشتراک‌گذاری</string>
     <string name="action_login">تنظیمات سرور</string>
     <string name="action_save">ذخیره</string>
@@ -79,10 +76,8 @@
 
     <string name="action_sign_in_short">ورود</string>
     <string name="login_progress_signing_in">ورود به سیستم ...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">این فیلد مورد نیاز است</string>
-    <string name="error_invalid_url">این آدرس url  نادرست است.</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">وارد کردن حساب</string>
 
@@ -106,10 +101,7 @@
     <string name="pref_header_general">عمومی</string>
     <string name="pref_title_general_sort_order">ترتیب مرتب‌سازی</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>جدید -> قدیمی</item>
-        <item>قدیمی -> جدید</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">در حال پاک کردن نهانگاه</string>
     <string name="dialog_clearing_cache_please_wait">در حال پاک کردن نهانگاه... لطفاً منتظر بمانید.</string>
     <string name="reset_cache_unsaved_changes">تغییرات هماهنگ سازی نشده ای وجود دارد. آیا مایلید در هر صورت نهانگاه را ریست کنید؟</string>
@@ -119,8 +111,6 @@
     <string name="pref_title_DisableHostnameVerification">غیر فعال کردن تاییدیه hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">کنترل با دکمه های درجه صدا</string>
     <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری در حال پیمایش به عنوان خوانده شده </string>
-    <string name="pref_title_OpenInBrowserDirectly">برای دیدن مقاله از مرورگر خارج برنامه استفاده کنید</string>
-
     <string name="dialog_feature_not_available">این امکان در این نسخه (متن باز) این برنامک در دسترس نیست. اگر می خواهید از این امکان استفاده کنید، لطفاً برنامک را از مخزن GitHub یا از Google PlayStore دانلود کنید.</string>
 
 
@@ -138,72 +128,10 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">نمایشی</string>
-    <string name="pref_title_app_theme">قالب برنامه</string>
     <string name="pref_title_feed_list_layout">طرح لسیت خوراک خوان</string>
     <string name="pref_display_title_lines_count">تعداد خطوط عنوان</string>
     <string name="pref_display_news_detail_actionbar_icons_title">نشانگرهای فعالیت (دیدن جزئیات)</string>
-    <string-array name="pref_display_apptheme">
-        <item>تاریک</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>ساده</item>
-        <item>توسعه یافته</item>
-        <item>توسعه یافته (متن کامل)</item>
-        <item>توسعه یافته توسط Webview</item>
-        <item>توسعه یافته توسط Cardview</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">هشدارها</string>
-    <string name="pref_title_notification_new_articles_available">هرگاه مقالات جدید در دسترس بود هشدار بده</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">خطا</string>
-    <string name="login_dialog_text_something_went_wrong">چند چیز اشتباه شدند :(</string>
-    <string name="login_dialog_text_zero_version_code">برنامک Web News نسخه \"0\" را بازگرداند. لطفاً به این گزارش باگ نگاهی بیاندازید: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">این نسخه از برنامه با برنامه اخبار ownCloud شما سازگار نیست. لطفا برنامه اخبار و چارچوب برنامه را به روز رسانی کنید.</string>
-    <string name="login_dialog_title_security_warning">اخطار امنیتی</string>
-    <string name="login_dialog_text_security_warning">شما از https استفاده نمی کنید. یک مهاجم می تواند ترافیک شما را رهگیری و به برخی از اطلاعات حساس دسترسی پیدا کند(به عنوان مثال، رمزعبور شما). پس شه شدت توصیه می شود که از https استفاده کنید.</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">داده ها و همگام سازی</string>
-    <string name="pref_title_clearCache">پاک کردن حافظه موقتی</string>
-    <string name="pref_title_CacheImagesOffline">تصاویر را کش کن</string>
-    <string name="pref_title_Max_Cache_Size">حداکثر اندازه حافظه پنهان</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>هرگز</item>
-        <item>فقط از طریق WiFi</item>
-        <item>هرگاه به WiFi متصل نیست سوال کن</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 دقیقه</item>
-        <item>15 دقیقه</item>
-        <item>30 دقیقه</item>
-        <item>45  دقیقه</item>
-        <item>1 ساعت</item>
-        <item>2 ساعت</item>
-        <item>3 ساعت</item>
-        <item>6 ساعت</item>
-        <item>12 ساعت</item>
-        <item>24 ساعت</item>
-    </string-array>
     <string name="content_desc_play">اجرا</string>
     <string name="content_desc_pause">وقفه</string>
     <string name="content_desc_rewind">بازگشت به عقب</string>
@@ -218,4 +146,26 @@
     <string name="content_desc_show_password">نمایش گذرواژه</string>
     <string name="content_desc_delete">حذف</string>
     <string name="content_desc_download">دانلود</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">هشدارها</string>
+    <string name="pref_title_notification_new_articles_available">هرگاه مقالات جدید در دسترس بود هشدار بده</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">خطا</string>
+    <string name="login_dialog_text_something_went_wrong">چند چیز اشتباه شدند :(</string>
+    <string name="login_dialog_text_zero_version_code">برنامک Web News نسخه \"0\" را بازگرداند. لطفاً به این گزارش باگ نگاهی بیاندازید: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">اخطار امنیتی</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">داده ها و همگام سازی</string>
+    <string name="pref_title_clearCache">پاک کردن حافظه موقتی</string>
+    <string name="pref_title_CacheImagesOffline">تصاویر را کش کن</string>
+    <string name="pref_title_Max_Cache_Size">حداکثر اندازه حافظه پنهان</string>
+
+
+
+
+    </resources>

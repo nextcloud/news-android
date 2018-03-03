@@ -5,9 +5,7 @@
     <string name="title_activity_sync_interval_selector">Eşitleme Aralığı Seçici</string>
     <string name="title_activity_news_detail">HaberAyrıntıİşlem</string>
     <string name="empty_view_content">Burada herhangi bir öge yok</string>
-    <string name="toast_GettingMoreItems">Diğer ögelerin indirilmesine başlandı... Lütfen bekleyin.</string>
     <string name="no_wifi_available">Kablosuz ağ bağlantısı yapılmamış</string>
-    <string name="do_you_want_to_download_without_wifi">Görselleri bir kablosuz ağ bağlantısı olmadan indirmek ister misiniz</string>
     <string name="current_version">%s sürümünü kullanıyorsunuz</string>
     <string name="widget_header">Nextcloud Haberleri</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,7 +28,6 @@
     <string name="action_starred">Yıldızlanmış</string>
     <string name="action_read">Oku</string>
     <string name="action_playPodacst">Podcast\'i Oynat</string>
-    <string name="action_openInBrowser">Tarayıcıda Aç</string>
     <string name="action_Share">Paylaş</string>
     <string name="action_login">Sunucu Ayarları</string>
     <string name="action_save">Kaydet</string>
@@ -84,10 +81,8 @@
 
     <string name="action_sign_in_short">Oturum Açın</string>
     <string name="login_progress_signing_in">Oturum açılıyor...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Bu alan zorunludur</string>
-    <string name="error_invalid_url">Bu adres geçersiz</string>
-
-
     <!-- Import Accounts -->
     <string name="import_account">Hesabı İçe Aktar</string>
 
@@ -113,10 +108,7 @@
     <string name="pref_header_general">Genel</string>
     <string name="pref_title_general_sort_order">Sıralama</string>
 
-    <string-array name="pref_general_sort_order">
-        <item>Yeniden -> Eskiye</item>
-        <item>Eskiden -> Yeniye</item>
-    </string-array>
+
     <string name="dialog_clearing_cache">Ön bellek temizleniyor</string>
     <string name="dialog_clearing_cache_please_wait">Ön bellek temizleniyor... Lütfen bekleyin.</string>
     <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Yine de ön belleği sıfırlamak ister misiniz?</string>
@@ -126,8 +118,6 @@
     <string name="pref_title_DisableHostnameVerification">Sunucu Adı Doğrulanmasın</string>
     <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezilebilsin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu olarak işaretlensin</string>
-    <string name="pref_title_OpenInBrowserDirectly">Makaleleri görüntülemek için dış tarayıcı kullanılsın</string>
-
     <string name="dialog_feature_not_available">Bu özellik uygulamanın bu sürümünde (açık kaynaklı) kullanılamaz. Bu özelliği kullanmak istiyorsanız lütfen uygulamayı GitHub deposundan ya da Google PlayStore üzerinden indirin.</string>
 
 
@@ -145,82 +135,15 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Görüntüle</string>
-    <string name="pref_title_app_theme">Uygulama teması</string>
     <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>
     <string name="pref_display_title_lines_count">Başlığın satır sayısı</string>
     <string name="pref_display_browser">Tarayıcı</string>
 
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (Ayrıntı Görünümü)</string>
-    <string-array name="pref_display_apptheme">
-        <item>Koyu</item>
-        <item>Koyu (OLED ekranlar için)</item>
-        <item>Açık</item>
-    </string-array>
-    <string-array name="pref_display_browser">
-        <item>İç Chrome Özel Sekmeleri</item>
-        <item>İç Tarayıcı</item>
-        <item>Dış tarayıcı</item>
-    </string-array>
-    <string-array name="pref_display_feed_list_layout">
-        <item>Basit</item>
-        <item>Genişletilmiş</item>
-        <item>Genişletilmiş (tam metin)</item>
-        <item>Web görünümü ile genişletilmiş</item>
-        <item>Kart görünümü ile genişletilmiş</item>
-    </string-array>
-    <string-array name="pref_title_lines_count">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Bildirimler</string>
-    <string name="pref_title_notification_new_articles_available">Yeni makaleler yayınlandığında bildirim görüntülensin</string>
 
-
-    <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Hata</string>
-    <string name="login_dialog_text_something_went_wrong">Bir şeyler ters gitti :(</string>
-    <string name="login_dialog_text_zero_version_code">Web Haberleri uygulamasının sürümü \"0\" olarak görünüyor. Lütfen şu hata raporuna bakın: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Bu uygulama sürümü kullandığınız Nextcloud Haberler uygulaması ile uyumlu değil. Lütfen Haberler uygulaması ve uygulama çatısını güncelleyin.</string>
-    <string name="login_dialog_title_security_warning">Güvenlik Uyarısı</string>
-    <string name="login_dialog_text_security_warning">HTTPS kullanmıyorsunuz. Bir saldırgan trafiğinize katılıp önemli verilere erişebilir (parolanız gibi). Bu yüzden HTTPS kullanmanız önemle önerilir!</string>
-
-
-    <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Veri ve eşitleme</string>
-    <string name="pref_title_clearCache">Ön belleği temizle</string>
-    <string name="pref_title_CacheImagesOffline">Görseller çevrimdışı ön belleğe alınsın</string>
-    <string name="pref_title_Max_Cache_Size">En Büyük Ön Bellek Boyutu</string>
-
-    <string-array name="pref_data_sync_image_cache">
-        <item>Asla</item>
-        <item>Yalnız WiFi Üzerinden</item>
-        <item>WiFi ve Mobil Veri Üzerinden</item>
-        <item>WiFi bağlı değilken sorulsun</item>
-    </string-array>
-    <string-array name="pref_data_sync_max_cache_size">
-        <item>250 MB</item>
-        <item>500 MB</item>
-        <item>750 MB</item>
-        <item>1 GB</item>
-        <item>2 GB</item>
-        <item>5 GB</item>
-        <item>10 GB</item>
-    </string-array>
-    <string-array name="array_sync_interval">
-        <item>5 Dakika</item>
-        <item>15 Dakika</item>
-        <item>30 Dakika</item>
-        <item>45 Dakika</item>
-        <item>1 Saat</item>
-        <item>2 Saat</item>
-        <item>3 Saat</item>
-        <item>6 Saat</item>
-        <item>12 Saat</item>
-        <item>24 Saat</item>
-    </string-array>
     <string name="content_desc_play">oynat</string>
     <string name="content_desc_pause">duraklat</string>
     <string name="content_desc_rewind">geri</string>
@@ -235,4 +158,26 @@
     <string name="content_desc_show_password">parolayı görüntüle</string>
     <string name="content_desc_delete">sil</string>
     <string name="content_desc_download">indir</string>
-</resources>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Bildirimler</string>
+    <string name="pref_title_notification_new_articles_available">Yeni makaleler yayınlandığında bildirim görüntülensin</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Hata</string>
+    <string name="login_dialog_text_something_went_wrong">Bir şeyler ters gitti :(</string>
+    <string name="login_dialog_text_zero_version_code">Web Haberleri uygulamasının sürümü \"0\" olarak görünüyor. Lütfen şu hata raporuna bakın: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Güvenlik Uyarısı</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Veri ve eşitleme</string>
+    <string name="pref_title_clearCache">Ön belleği temizle</string>
+    <string name="pref_title_CacheImagesOffline">Görseller çevrimdışı ön belleğe alınsın</string>
+    <string name="pref_title_Max_Cache_Size">En Büyük Ön Bellek Boyutu</string>
+
+
+
+
+    </resources>
