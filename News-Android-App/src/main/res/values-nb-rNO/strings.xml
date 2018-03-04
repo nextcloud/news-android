@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Velger for synkroniseringsintervall</string>
     <string name="title_activity_news_detail">NyhetsDetaljAktivitet</string>
     <string name="empty_view_content">Ingenting her</string>
+    <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet... Vennligst vent.</string>
     <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
+    <string name="do_you_want_to_download_without_wifi">Vil du laste ned bilder uten en Wi-Fi- tilkobling</string>
     <string name="current_version">Du bruker versjon %s</string>
     <string name="widget_header">ownCloud Nyheter</string>
     <plurals name="message_bar_new_articles_available">
@@ -28,6 +30,7 @@
     <string name="action_starred">Merket</string>
     <string name="action_read">Les</string>
     <string name="action_playPodacst">Spill podcast</string>
+    <string name="action_openInBrowser">Åpne i nettleser</string>
     <string name="action_Share">Del</string>
     <string name="action_login">Serverinnstillinger</string>
     <string name="action_save">Lagre</string>
@@ -83,6 +86,9 @@
     <string name="login_progress_signing_in">Logger inn...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette feltet er påkrevd</string>
+    <string name="error_invalid_url">URL er ikke riktig</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Importer konto</string>
 
@@ -109,6 +115,9 @@
     <string name="pref_title_general_sort_order">Sorteringsrekkefølge</string>
 
 
+    <string name="pref_general_sort_order_new_old">Ny -> Gammel</string>
+    <string name="pref_general_sort_order_old_new">Gammel -> Ny</string>
+
     <string name="dialog_clearing_cache">Sletter hurtiglager</string>
     <string name="dialog_clearing_cache_please_wait">Nullstiller hurtiglager... Vennligst vent.</string>
     <string name="reset_cache_unsaved_changes">Det er usynkroniserte forandringer. Vil du resette hurtilageret likevel?</string>
@@ -118,6 +127,8 @@
     <string name="pref_title_DisableHostnameVerification">Deaktiver vertsnavnverifikasjon</string>
     <string name="pref_title_NavigateWithVolumeButtons">Naviger med volumknappene</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
+    <string name="pref_title_OpenInBrowserDirectly">Hopp over detaljert visning og åpne artikkel i nettleser</string>
+
     <string name="dialog_feature_not_available">Denne muligheten er ikke tilgjengelig i denne (åpen kildekode) versjonen av denne app. Hvis du ønsker å benytte denne muligheten vennligst last ned fra GitHub eller last ned programmet fra Google PlayStore.</string>
 
 
@@ -135,6 +146,7 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
+    <string name="pref_title_app_theme">App- tema (start programmet igjen for å se endringen)</string>
     <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
     <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
     <string name="pref_display_browser">Nettleser</string>
@@ -144,6 +156,13 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
 
+    <string name="pref_display_apptheme_dark">Mørk</string>
+    <string name="pref_display_apptheme_dark_oled">Mørk (for OLED- skjermer)</string>
+    <string name="pref_display_browser_built_in">Innebygd nettleser</string>
+    <string name="pref_display_browser_external">Ekstern nettleser</string>
+
+    <string name="pref_display_feed_list_layout_simple">Enkel</string>
+    <string name="pref_display_feed_list_layout_extended">Utvidet</string>
     <string name="content_desc_play">spil</string>
     <string name="content_desc_pause">pause</string>
     <string name="content_desc_rewind">bakover</string>
@@ -179,5 +198,18 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Aldri</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Bare over Wi-Fi</string>
+    <string name="array_sync_interval_min_5">5 minutter</string>
+    <string name="array_sync_interval_min_15">15 minutter</string>
+    <string name="array_sync_interval_min_30">30 minutter</string>
+    <string name="array_sync_interval_min_45">45 minutter</string>
+    <string name="array_sync_interval_hour_1">1 time</string>
+    <string name="array_sync_interval_hour_2">2 timer</string>
+    <string name="array_sync_interval_hour_3">3 timer</string>
+    <string name="array_sync_interval_hour_6">6 timer</string>
+    <string name="array_sync_interval_hour_12">12 timer</string>
+    <string name="array_sync_interval_hour_24">24 timer</string>
 
     </resources>

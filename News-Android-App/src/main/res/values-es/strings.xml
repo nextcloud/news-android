@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Sincronizar Selector de Intervalo</string>
     <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
     <string name="empty_view_content">No hay artículos aquí</string>
+    <string name="toast_GettingMoreItems">Se ha iniciado la descarga de varios elementos... por favor, espere.</string>
     <string name="no_wifi_available">No hay una conexión WiFi</string>
     <string name="current_version">Está utilizando la versión %s</string>
     <string name="widget_header">Noticias de ownCloud</string>
@@ -28,6 +29,7 @@
     <string name="action_starred">Destacado</string>
     <string name="action_read">Leer</string>
     <string name="action_playPodacst">Reproducir podcast</string>
+    <string name="action_openInBrowser">Abrir con el navegador</string>
     <string name="action_Share">Compartir</string>
     <string name="action_login">Ajustes del Servidor</string>
     <string name="action_save">Guardar</string>
@@ -62,7 +64,7 @@
     <string name="toast_img_saved">Imagen guardada</string>
     <string name="toast_img_notwriteable">Error al escribir Imagen.</string>
     <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
-    <string name="error_download_failed">Falló la descarga</string>
+    <string name="error_download_failed">Fallo al descargar</string>
     <string name="intent_title_share">Compartir vía</string>
 
 
@@ -83,6 +85,9 @@
     <string name="login_progress_signing_in">Registrándose...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo es necesario</string>
+    <string name="error_invalid_url">URL incorrecta</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Importar cuenta de usuario</string>
 
@@ -108,6 +113,9 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Ordenar</string>
 
+
+    <string name="pref_general_sort_order_new_old">Nuevo -> Antiguo</string>
+    <string name="pref_general_sort_order_old_new">Antiguo -> Nuevo</string>
 
     <string name="dialog_clearing_cache">Vaciando el caché</string>
     <string name="dialog_clearing_cache_please_wait">Limpiando cache... Por favor espere.</string>
@@ -144,6 +152,10 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Iconos de acción (vista detallada)</string>
 
+    <string name="pref_display_browser_external">Navegador externo</string>
+
+    <string name="pref_display_feed_list_layout_simple">Simple</string>
+    <string name="pref_display_feed_list_layout_extended">Extendido</string>
     <string name="content_desc_play">reproducir</string>
     <string name="content_desc_pause">pausar</string>
     <string name="content_desc_rewind">rebobinar</string>
@@ -179,5 +191,17 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Nunca</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
+    <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_2">2 horas</string>
+    <string name="array_sync_interval_hour_3">3 horas</string>
+    <string name="array_sync_interval_hour_6">6 horas</string>
+    <string name="array_sync_interval_hour_12">12 horas</string>
+    <string name="array_sync_interval_hour_24">24 horas</string>
 
     </resources>

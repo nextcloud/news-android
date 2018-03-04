@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Sync interval selector</string>
     <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
     <string name="empty_view_content">Geen items hier</string>
+    <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>
     <string name="no_wifi_available">Geen wifi verbinding</string>
     <string name="current_version">U gebruikt versie %s</string>
     <string name="widget_header">Nextcloud nieuws</string>
@@ -28,6 +29,7 @@
     <string name="action_starred">Gemarkeerd</string>
     <string name="action_read">Lees</string>
     <string name="action_playPodacst">Afspelen Podcast</string>
+    <string name="action_openInBrowser">Openen in webbrowser</string>
     <string name="action_Share">Delen</string>
     <string name="action_login">Serverinstellingen</string>
     <string name="action_save">Bewaren</string>
@@ -83,6 +85,9 @@
     <string name="login_progress_signing_in">Inloggen...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dit veld is verplicht</string>
+    <string name="error_invalid_url">Onjuiste URL</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Importeer account</string>
 
@@ -108,6 +113,9 @@
     <string name="pref_header_general">Algemeen</string>
     <string name="pref_title_general_sort_order">Sorteervolgorde</string>
 
+
+    <string name="pref_general_sort_order_new_old">Niwu-> Ou</string>
+    <string name="pref_general_sort_order_old_new">Oud -> Nieuw</string>
 
     <string name="dialog_clearing_cache">Schoonmaken cache</string>
     <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
@@ -144,6 +152,20 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
 
+    <string name="pref_display_apptheme_dark">Donker</string>
+    <string name="pref_display_apptheme_dark_oled">Donker (voor OLED schermen)</string>
+    <string name="pref_display_apptheme_light">Licht</string>
+
+    <string name="pref_display_browser_cct">Ingebouwde Chrome-maatwerk-tabs</string>
+    <string name="pref_display_browser_built_in">Ingebouwde browser</string>
+    <string name="pref_display_browser_external">Externe browser</string>
+
+    <string name="pref_display_feed_list_layout_simple">Simpel</string>
+    <string name="pref_display_feed_list_layout_extended">Uitgebreid</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Uitgebreid (volledige tekst)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Uitgebreid met Webview</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Uitgebreid met Cardview</string>
+
     <string name="content_desc_play">afspelen</string>
     <string name="content_desc_pause">pauze</string>
     <string name="content_desc_rewind">terugspoelen</string>
@@ -179,5 +201,19 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Nooit</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Alleen met WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Met WiFi &amp; Mobiel</string>
+    <string name="array_sync_interval_min_5">5 minuten</string>
+    <string name="array_sync_interval_min_15">15 minuten</string>
+    <string name="array_sync_interval_min_30">30 minuten</string>
+    <string name="array_sync_interval_min_45">45 minuten</string>
+    <string name="array_sync_interval_hour_1">1 uur</string>
+    <string name="array_sync_interval_hour_2">2 uur</string>
+    <string name="array_sync_interval_hour_3">3 uur</string>
+    <string name="array_sync_interval_hour_6">6 uur</string>
+    <string name="array_sync_interval_hour_12">12 uur</string>
+    <string name="array_sync_interval_hour_24">24 uur</string>
 
     </resources>
