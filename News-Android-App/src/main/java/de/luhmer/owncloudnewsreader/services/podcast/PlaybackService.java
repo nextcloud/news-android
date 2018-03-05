@@ -31,6 +31,8 @@ public abstract class PlaybackService {
     public abstract void play();
     public abstract void pause();
 
+    public void setPlaybackSpeed(float speed) { }
+    public float getPlaybackSpeed() {return 0; }
 
     public void seekTo(double percent) { }
     public int getCurrentDuration() { return 0; }
