@@ -2,7 +2,7 @@ package de.luhmer.owncloudnewsreader.services.podcast;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.media.PlaybackParams;
+import android.os.Build;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -97,14 +97,12 @@ public class MediaPlayerPlaybackService extends PlaybackService {
     }
 
     @Override
-    public void setPlaybackSpeed(float speed) {
-        mMediaPlayer.setPlaybackParams(mMediaPlayer.getPlaybackParams().setSpeed(speed));
+    public void playbackSpeedChanged(float currentPlaybackSpeed) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mMediaPlayer.setPlaybackParams(mMediaPlayer.getPlaybackParams().setSpeed(currentPlaybackSpeed));
+        }
     }
 
-    @Override
-    public float getPlaybackSpeed() {
-        return mMediaPlayer.getPlaybackParams().getSpeed();
-    }
 
     @Override
     public void seekTo(double percent) {

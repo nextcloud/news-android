@@ -49,6 +49,11 @@ public class YoutubePlaybackService extends PlaybackService {
         }
     }
 
+    @Override
+    public void playbackSpeedChanged(float currentPlaybackSpeed) {
+
+    }
+
     public void seekTo(double percent) {
         if(youTubePlayer != null) {
             double totalDuration = getTotalDuration();

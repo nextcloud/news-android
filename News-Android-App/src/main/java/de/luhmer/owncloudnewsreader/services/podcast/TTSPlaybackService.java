@@ -64,6 +64,11 @@ public class TTSPlaybackService extends PlaybackService implements TextToSpeech.
     }
 
     @Override
+    public void playbackSpeedChanged(float currentPlaybackSpeed) {
+        ttsController.setSpeechRate(currentPlaybackSpeed);
+    }
+
+    @Override
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
             /*

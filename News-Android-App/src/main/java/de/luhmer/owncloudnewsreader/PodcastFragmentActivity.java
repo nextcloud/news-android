@@ -613,4 +613,9 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     public void pausePodcast() {
         mPodcastPlaybackService.pause();
     }
+
+    public float getCurrentPlaybackSpeed() {
+        return mPodcastPlaybackService.getPlaybackSpeed();
+    }
+
 }

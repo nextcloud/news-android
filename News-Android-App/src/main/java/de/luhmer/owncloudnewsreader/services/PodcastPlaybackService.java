@@ -16,9 +16,9 @@ import de.luhmer.owncloudnewsreader.events.podcast.NewPodcastPlaybackListener;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterYoutubeOutput;
+import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
-import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -85,6 +85,9 @@ public class PodcastPlaybackService extends Service {
 
     private PlaybackService mPlaybackService;
 
+    public static final float PLAYBACK_SPEEDS[] = { 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f };
+    private float currentPlaybackSpeed = 1;
+
 
     @Override
     public void onCreate() {
@@ -143,6 +146,8 @@ public class PodcastPlaybackService extends Service {
 
             podcastNotification.podcastChanged();
             sendMediaStatus();
+
+            mPlaybackService.playbackSpeedChanged(currentPlaybackSpeed);
         }
 
         return Service.START_STICKY;
@@ -235,8 +240,10 @@ public class PodcastPlaybackService extends Service {
 
     @Subscribe
     public void onEvent(SpeedPodcast event) {
+        this.currentPlaybackSpeed = event.playbackSpeed;
+
         if(mPlaybackService != null) {
-            mPlaybackService.setPlaybackSpeed(event.playbackSpeed);
+            mPlaybackService.playbackSpeedChanged(currentPlaybackSpeed);
         }
     }
 
@@ -258,6 +265,11 @@ public class PodcastPlaybackService extends Service {
         sendMediaStatus();
     }
 
+
+    public float getPlaybackSpeed() {
+        return currentPlaybackSpeed;
+    }
+
     public void sendMediaStatus() {
         UpdatePodcastStatusEvent audioPodcastEvent;
 
@@ -271,7 +283,7 @@ public class PodcastPlaybackService extends Service {
                     mPlaybackService.getMediaItem().title,
                     mPlaybackService.getVideoType(),
                     mPlaybackService.getMediaItem().itemId,
-                    mPlaybackService.getPlaybackSpeed());
+                    getPlaybackSpeed());
         }
         eventBus.post(audioPodcastEvent);
     }

@@ -341,27 +341,17 @@
                 android:scaleType="fitXY"
                 android:contentDescription="@string/content_desc_forward"/>
 
-            <Button
-                android:id="@+id/buttonSpeedMinus"
-                android:layout_width="43dp"
-                android:layout_height="wrap_content"
-                android:text="-" />
-
-            <EditText
-                android:id="@+id/tv_playbackSpeed"
-                android:layout_width="71dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                android:selectAllOnFocus="true"
-                android:visibility="visible"
-                android:focusable="false"/>
-
-            <Button
-                android:id="@+id/buttonSpeedPlus"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:text="+" />
+            <ImageButton
+                android:id="@+id/btn_podcastSpeed"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_slow_motion_video"
+                android:tint="@color/tintColorLight"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="36dp"
+                android:contentDescription="@string/content_desc_playback_speed"/>
 
 
         </LinearLayout>

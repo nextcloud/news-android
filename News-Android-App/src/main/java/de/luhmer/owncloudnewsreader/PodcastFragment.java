@@ -1,21 +1,24 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -31,21 +34,24 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
+import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
-import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
+import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 
@@ -181,8 +187,6 @@ public class PodcastFragment extends Fragment {
         tvTo.setText(String.format("%02d:%02d", minutes, seconds));
         tvToSlider.setText(String.format("%02d:%02d", minutes, seconds));
 
-        tvPlaybackSpeed.setText(String.format("%.02f", podcast.getSpeed()));
-
         tvTitle.setText(podcast.getTitle());
         tvTitleSlider.setText(podcast.getTitle());
 
@@ -225,6 +229,7 @@ public class PodcastFragment extends Fragment {
     @BindView(R.id.btn_playPausePodcastSlider) ImageButton btnPlayPausePodcastSlider;
     @BindView(R.id.btn_nextPodcastSlider) ImageButton btnNextPodcastSlider;
     @BindView(R.id.btn_previousPodcastSlider) ImageButton btnPreviousPodcastSlider;
+    @BindView(R.id.btn_podcastSpeed) ImageButton btnPlaybackSpeed;
 
     @BindView(R.id.img_feed_favicon) ImageView imgFavIcon;
 
@@ -241,9 +246,6 @@ public class PodcastFragment extends Fragment {
     @BindView(R.id.pb_progress) ProgressBar pb_progress;
     @BindView(R.id.pb_progress2) ProgressBar pb_progress2;
 
-    @Bind(R.id.tv_playbackSpeed) TextView tvPlaybackSpeed;
-    @Bind(R.id.buttonSpeedMinus) TextView btnSpeedMinus;
-    @Bind(R.id.buttonSpeedPlus) TextView btnSpeedPlus;
 
     @BindView(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
     @BindView(R.id.rlPodcast) RelativeLayout rlPodcast;
@@ -281,16 +283,8 @@ public class PodcastFragment extends Fragment {
         }});
     }
 
-    @OnClick(R.id.buttonSpeedMinus) void speedMinus() {
-        eventBus.post(new SpeedPodcast() {{
-            playbackSpeed = podcast.getSpeed() - 0.1f;
-        }});
-    }
-
-    @OnClick(R.id.buttonSpeedPlus) void speedPlus() {
-        eventBus.post(new SpeedPodcast() {{
-            playbackSpeed = podcast.getSpeed() + 0.1f;
-        }});
+    @OnClick(R.id.btn_podcastSpeed) void openSpeedMenu() {
+        showPlaybackSpeedPicker();
     }
 
     PodcastSlidingUpPanelLayout sliding_layout;
@@ -332,7 +326,6 @@ public class PodcastFragment extends Fragment {
         podcastFeedList.setVisibility(View.VISIBLE);
 
         sb_progress.setOnSeekBarChangeListener(onSeekBarChangeListener);
-        tvPlaybackSpeed.setOnEditorActionListener(onEditorActionListener);
 
         return view;
     }
@@ -404,20 +397,6 @@ public class PodcastFragment extends Fragment {
         }
     };
 
-    private TextView.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {
-        @Override
-        public boolean onEditorAction(final TextView textView, int i, KeyEvent keyEvent) {
-            final float pbSpeed = Float.parseFloat(textView.getText().toString());
-                if(hasTitleInCache) {
-                    eventBus.post(new SpeedPodcast() {{
-                        playbackSpeed = pbSpeed;
-                    }});
-                }
-                Log.v(TAG, "playback speed changed: "+pbSpeed);
-                return true;
-        }
-    };
-
 
     boolean blockSeekbarUpdate = false;
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -444,4 +423,87 @@ public class PodcastFragment extends Fragment {
         }
     };
 
+
+    private void showPlaybackSpeedPicker() {
+        final NumberPicker numberPicker = new NumberPicker(getContext());
+        //setNumberPickerTextColor(numberPicker, Color.parseColor("#FFFFFF"));
+        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(PodcastPlaybackService.PLAYBACK_SPEEDS.length-1);
+        numberPicker.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format(int i) {
+                return String.valueOf(PodcastPlaybackService.PLAYBACK_SPEEDS[i]);
+            }
+        });
+
+        if(getActivity() instanceof PodcastFragmentActivity) {
+            float playbackSpeed = ((PodcastFragmentActivity) getActivity()).getCurrentPlaybackSpeed();
+            int position = Arrays.binarySearch(PodcastPlaybackService.PLAYBACK_SPEEDS, playbackSpeed);
+            numberPicker.setValue(position);
+        } else {
+            numberPicker.setValue(3);
+        }
+        numberPicker.setWrapSelectorWheel(false);
+
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+
+        // set title
+        alertDialogBuilder.setTitle(getString(R.string.podcast_playback_speed_dialog_title));
+
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        float speed = PodcastPlaybackService.PLAYBACK_SPEEDS[numberPicker.getValue()];
+                        //Toast.makeText(getActivity(), String.valueOf(speed]), Toast.LENGTH_SHORT).show();
+                        eventBus.post(new SpeedPodcast(speed));
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .setView(numberPicker);
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
+
+    public static boolean setNumberPickerTextColor(NumberPicker numberPicker, int color)
+    {
+        final int count = numberPicker.getChildCount();
+        for(int i = 0; i < count; i++){
+            View child = numberPicker.getChildAt(i);
+            if(child instanceof EditText){
+                try{
+                    Field selectorWheelPaintField = numberPicker.getClass()
+                            .getDeclaredField("mSelectorWheelPaint");
+                    selectorWheelPaintField.setAccessible(true);
+                    ((Paint)selectorWheelPaintField.get(numberPicker)).setColor(color);
+                    ((EditText)child).setTextColor(color);
+                    numberPicker.invalidate();
+                    return true;
+                }
+                catch(NoSuchFieldException e){
+                    Log.w("setNumberPickerTextCol", e);
+                }
+                catch(IllegalAccessException e){
+                    Log.w("setNumberPickerTextCol", e);
+                }
+                catch(IllegalArgumentException e){
+                    Log.w("setNumberPickerTextCol", e);
+                }
+            }
+        }
+        return false;
+    }
 }
