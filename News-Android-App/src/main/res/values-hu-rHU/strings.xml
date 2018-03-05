@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">A szinkronizáció gyakoriságának kiválasztása</string>
     <string name="title_activity_news_detail">HírekRészletTevékenység</string>
     <string name="empty_view_content">Itt nincs semmi</string>
+    <string name="toast_GettingMoreItems">Több elem letöltése megkezdődött...Kérlek várj.</string>
     <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Letöltöd a képet Wi-Fi kapcsolat nélkül?</string>
     <string name="current_version">A(z) %s verziót használod</string>
     <string name="widget_header">ownCloud Hírek</string>
     <plurals name="message_bar_new_articles_available">
@@ -28,6 +30,7 @@
     <string name="action_starred">Csillagozott</string>
     <string name="action_read">Olvas</string>
     <string name="action_playPodacst">Podcast lejatszás</string>
+    <string name="action_openInBrowser">Megnyitás böngészőben</string>
     <string name="action_Share">Megosztás</string>
     <string name="action_login">Szerver Beállítások</string>
     <string name="action_save">Mentés</string>
@@ -83,6 +86,9 @@
     <string name="login_progress_signing_in">Belépés...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ez a mező szükséges</string>
+    <string name="error_invalid_url">Hibás URL</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Konto importálás</string>
 
@@ -109,6 +115,9 @@
     <string name="pref_title_general_sort_order">Rendezés Iránya</string>
 
 
+    <string name="pref_general_sort_order_new_old">Új->Régi</string>
+    <string name="pref_general_sort_order_old_new">Régi->Új</string>
+
     <string name="dialog_clearing_cache">A gyorsítótár törlése folyamatban</string>
     <string name="dialog_clearing_cache_please_wait">Gyorsítótár ürítése... Kérjük, várj.</string>
     <string name="reset_cache_unsaved_changes">Vannak nem színkronizált változások. Bizots hogy alaphelyzetbe szeretnéd állítani a cache-t így is?</string>
@@ -118,6 +127,8 @@
     <string name="pref_title_DisableHostnameVerification">A \"Hostname Verification\" kikapcsolása</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigálj a hangerőszabályozó gombokkal</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben olvasottként legyen megjelőlve</string>
+    <string name="pref_title_OpenInBrowserDirectly">Részletes megjelenítés átugrása és megnyitás böngészőben</string>
+
     <string name="dialog_feature_not_available">Ez a funkció az appnak ebben a (nyílt forrású) verziójában nem érhető el. Ha használni akarod ezt a funkciót, töltsd le az appot a GitHub tárolóból vagy a Google PlayStore-ból.</string>
 
 
@@ -135,6 +146,7 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Kijelző</string>
+    <string name="pref_title_app_theme">Alkalmazástéma (indítsd el a programot ismét az alkalmazáshoz)</string>
     <string name="pref_title_feed_list_layout">A csatorna elrendezés</string>
     <string name="pref_display_title_lines_count">Cím sorainak száma</string>
     <string name="pref_display_browser">Böngésző</string>
@@ -143,6 +155,20 @@
 
 
     <string name="pref_display_news_detail_actionbar_icons_title">Akció ikonok (Részletes nézet)</string>
+
+    <string name="pref_display_apptheme_dark">Sötét</string>
+    <string name="pref_display_apptheme_dark_oled">Sötét (OLED képernyőkhöz)</string>
+    <string name="pref_display_apptheme_light">Világos</string>
+
+    <string name="pref_display_browser_cct">Beépített egyedi Chrome fülek</string>
+    <string name="pref_display_browser_built_in">Beépített böngésző</string>
+    <string name="pref_display_browser_external">Külső böngésző</string>
+
+    <string name="pref_display_feed_list_layout_simple">Egyszerű</string>
+    <string name="pref_display_feed_list_layout_extended">Bővített</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Bővített (csak szöveges)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Kiterjesztett WebView-val</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Kiterjesztett Cardview-val</string>
 
     <string name="content_desc_play">lejátszás</string>
     <string name="content_desc_pause">szünet</string>
@@ -170,7 +196,11 @@
     <string name="login_dialog_title_error">Hiba</string>
     <string name="login_dialog_text_something_went_wrong">Valami balul sült el :(</string>
     <string name="login_dialog_text_zero_version_code">A Web News App verziónak 0-át adott vissza. Olvasd el ezt a hibajelentést: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Az alkalmazás nem kompatibilis a Nextcloud Hírek app-oddal. Kérlek frissítsd a csomagkezelődben.</string>
     <string name="login_dialog_title_security_warning">Biztonsági figyelmeztetés</string>
+    <string name="login_dialog_text_security_warning">Nem használsz HTTPS-t, ami erősen javasolt. Egy támadó lehallgathatja a kommunikációdat a szerverrel ezzel érzékeny adatokhoz jutva.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Adatok &amp; szinkronizáció</string>
     <string name="pref_title_clearCache">Átmeneti tár(cache) tisztitása</string>
@@ -179,5 +209,21 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Soha</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Csak WiFi-n</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi-n &amp; Mobil hálózaton</string>
+    <string name="pref_data_sync_image_cache_ask">Kérdezze meg amikor nem WiFi-n vagyok</string>
+
+    <string name="array_sync_interval_min_5">5 perc</string>
+    <string name="array_sync_interval_min_15">15 perc</string>
+    <string name="array_sync_interval_min_30">30 perc</string>
+    <string name="array_sync_interval_min_45">45 perc</string>
+    <string name="array_sync_interval_hour_1">1 óra</string>
+    <string name="array_sync_interval_hour_2">2 óra</string>
+    <string name="array_sync_interval_hour_3">3 óra</string>
+    <string name="array_sync_interval_hour_6">6 óra</string>
+    <string name="array_sync_interval_hour_12">12 óra</string>
+    <string name="array_sync_interval_hour_24">24 óra</string>
 
     </resources>
