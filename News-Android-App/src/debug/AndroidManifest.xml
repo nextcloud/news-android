@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="de.luhmer.owncloudnewsreader"
-    android:installLocation="auto">
+    package="de.luhmer.owncloudnewsreader">
 
     <!-- Debug for Screengrab -->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />

@@ -75,7 +75,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 		return rssItems.size();
 	}
 
-	// Given the position (index) of a WidgetItem in the array, use the item's text value in
+    // Given the position (index) of a WidgetItem in the array, use the item's text value in
     // combination with the app widget item XML file to construct a RemoteViews object.
     @SuppressLint("SimpleDateFormat")
 	public RemoteViews getViewAt(int position) {
@@ -86,8 +86,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 
     	RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
 
-        try
-        {
+        try {
             String header = rssItem.getFeed().getFeedTitle();
             String colorString = rssItem.getFeed().getAvgColour();
 
@@ -114,8 +113,18 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", resId);
             rv.setContentDescription(R.id.cb_lv_item_read, context.getString(contentDescriptionId));
 
-            if(colorString != null)
+            if(colorString != null) {
                 rv.setInt(R.id.color_line_feed, "setBackgroundColor", Integer.parseInt(colorString));
+            }
+
+
+            //Get a fresh new intent
+            Intent rowIntent = new Intent();
+            //Load it with whatever extra you want
+            rowIntent.putExtra(WidgetProvider.RSS_ITEM_ID, id);
+            //Set it on the list remote view
+            rv.setOnClickFillInIntent(R.id.widget_row_layout, rowIntent);
+
 
             //Get a fresh new intent
             Intent ei = new Intent();
@@ -151,7 +160,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
 
 	@Override
 	public long getItemId(int position) {
-        Log.v(TAG, "getItemId: " + position);
+        //Log.v(TAG, "getItemId: " + position);
 		return(position);
 	}
 

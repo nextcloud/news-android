@@ -31,8 +31,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -48,7 +46,6 @@ import android.preference.TwoStatePreference;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
 import android.support.v7.widget.AppCompatEditText;
@@ -66,6 +63,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.helper.AppCompatPreferenceActivity;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -81,7 +79,7 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends AppCompatPreferenceActivity {
 	/**
 	 * Determines whether to always show the simplified settings UI, where
 	 * settings are presented in a single list. When false, settings are shown
@@ -116,30 +114,29 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
     public static final String SP_TITLE_LINES_COUNT = "sp_title_lines_count";
     public static final String SP_SORT_ORDER = "sp_sort_order";
+	public static final String SP_DISPLAY_BROWSER = "sp_display_browser";
 
 
     //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
-
-
     //public static final String SP_MAX_ITEMS_SYNC = "sync_max_items";
-
 
 	static EditTextPreference clearCachePref;
     static Activity _mActivity;
 
+
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		if(isXLargeTablet(this)) {
 			setTheme(R.style.AppThemeSettings);
 		} else {
-			ThemeChooser.chooseTheme(this);
+			ThemeChooser.ChooseTheme(this);
 		}
 
 		super.onCreate(savedInstanceState);
 
-		//getActionBar().setDisplayHomeAsUpEnabled(true);
-
         AppBarLayout appBarLayout;
+
 
         // get the root container of the preferences list
         LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
@@ -149,18 +146,10 @@ public class SettingsActivity extends PreferenceActivity {
 
             Toolbar toolbar = (Toolbar) appBarLayout.getChildAt(0);
 
-
-			final Drawable backarrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp);
-			backarrow.setColorFilter(ContextCompat.getColor(this, R.color.tintColorDark), PorterDuff.Mode.SRC_ATOP);
-			toolbar.setNavigationIcon(backarrow);
-			toolbar.setTitle(R.string.title_activity_settings);
-			toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.tintColorDark));
-			toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.title_activity_settings);
         }
 
 		TypedValue typedValue = new TypedValue();
@@ -487,12 +476,14 @@ public class SettingsActivity extends PreferenceActivity {
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_APP_THEME));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FEED_LIST_LAYOUT));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_TITLE_LINES_COUNT));
+            bindPreferenceSummaryToValue(prefFrag.findPreference(SP_DISPLAY_BROWSER));
 		}
 		else
 		{
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_APP_THEME));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FEED_LIST_LAYOUT));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_TITLE_LINES_COUNT));
+			bindPreferenceSummaryToValue(prefAct.findPreference(SP_DISPLAY_BROWSER));
 		}
 	}
 
@@ -625,8 +616,8 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        ProgressDialog pd;
-        Context context;
+        private ProgressDialog pd;
+        private Context context;
 
         public ResetDatabaseAsyncTask(Context context) {
             this.context = context;
@@ -646,7 +637,7 @@ public class SettingsActivity extends PreferenceActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(_mActivity);
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             dbConn.resetDatabase();
 			ImageHandler.clearCache();
 			return null;

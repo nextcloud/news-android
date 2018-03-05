@@ -159,7 +159,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         }
 
         int style = DialogFragment.STYLE_NO_TITLE;
-        int theme = ThemeChooser.isDarkTheme(getActivity())
+        int theme = ThemeChooser.getInstance(getActivity()).isDarkTheme()
                 ? R.style.FloatingDialog
                 : R.style.FloatingDialogLight;
         setStyle(style, theme);
@@ -195,9 +195,9 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
         View v = inflater.inflate(R.layout.fragment_dialog_image, container, false);
 
-        TextView tvTitle = (TextView) v.findViewById(R.id.ic_menu_title);
-        TextView tvText = (TextView) v.findViewById(R.id.ic_menu_item_text);
-        ImageView imgTitle = (ImageView) v.findViewById(R.id.ic_menu_gallery);
+        TextView tvTitle   = v.findViewById(R.id.ic_menu_title);
+        TextView tvText    = v.findViewById(R.id.ic_menu_item_text);
+        ImageView imgTitle = v.findViewById(R.id.ic_menu_gallery);
 
         tvTitle.setText(mDialogTitle);
         tvText.setText(mDialogText);

@@ -176,17 +176,16 @@ public class WidgetProvider extends AppWidgetProvider {
         
         //int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
         
-        
         super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
     
-	@SuppressWarnings("deprecation")
 	public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
     	RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
     	
     	Intent intent = new Intent(context, WidgetService.class);
 		intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-		rv.setRemoteAdapter(appWidgetId, R.id.list_view, intent);
+		//rv.setRemoteAdapter(appWidgetId, R.id.list_view, intent);
+        rv.setRemoteAdapter(R.id.list_view, intent);
 		
     	
         Intent onListClickIntent = new Intent(context, WidgetProvider.class);
@@ -194,7 +193,8 @@ public class WidgetProvider extends AppWidgetProvider {
         onListClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         onListClickIntent.setData(Uri.parse(onListClickIntent.toUri(Intent.URI_INTENT_SCHEME)));    
         
-        final PendingIntent onListClickPendingIntent = PendingIntent.getBroadcast(context, 0,
+        final PendingIntent onListClickPendingIntent = PendingIntent.getBroadcast(context,
+                                                        0,
 										        		onListClickIntent,
 										        		PendingIntent.FLAG_UPDATE_CURRENT);
         rv.setPendingIntentTemplate(R.id.list_view, onListClickPendingIntent);

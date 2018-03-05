@@ -1,184 +1,183 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Otomatik eşitle</string>
-  <string name="app_name">ownCloud Haber Okuyucu</string>
-  <string name="title_activity_sync_interval_selector">Eşitleme Aralık Seçici</string>
-  <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="empty_view_content">Burada öge yok</string>
-  <string name="toast_GettingMoreItems">Daha fazla öge indirilmeye başlandı... Lütfen bekleyin.</string>
-  <string name="no_wifi_available">Kablosuz bağlı değil</string>
-  <string name="do_you_want_to_download_without_wifi">Resimleri bir kablosuz bağlantı olmadan indirmek ister misiniz</string>
-  <string name="current_version">%s sürümünü kullanıyorsunuz</string>
-  <string name="widget_header">ownCloud Haberler</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="one">%d yeni öge mevcut</item>
-    <item quantity="other">%d yeni öge mevcut</item>
-  </plurals>
-  <string name="message_bar_reload">Yeniden yükle</string>
-  <string name="allUnreadFeeds">Tüm okunmamış ögeler</string>
-  <string name="starredFeeds">Yıldızlı ögeler</string>
-  <string name="title_activity_new_feed">Yeni besleme ekle</string>
-  <string name="menu_update">Yenile</string>
-  <string name="menu_About_Changelog">Hakkında / Değişim Günlüğü</string>
-  <string name="menu_markAllAsRead">Tümünü okundu işaretle</string>
-  <string name="menu_StartImageCaching">Resimleri indir</string>
-  <string name="menu_downloadMoreItems">Daha fazla öge indir</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Yıldızlı</string>
-  <string name="action_read">Oku</string>
-  <string name="action_playPodacst">Podcast\'i Oynat</string>
-  <string name="action_openInBrowser">Tarayıcıda Aç</string>
-  <string name="action_Share">Paylaş</string>
-  <string name="action_login">Sunucu Ayarları</string>
-  <string name="action_save">Kaydet</string>
-  <string name="action_settings">Ayarlar</string>
-  <string name="action_sync_settings">Eşitleme Ayarları</string>
-  <string name="action_add_new_feed">Yeni besleme ekle</string>
-  <string name="action_textToSpeech">Sesli oku</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="one">Yeni %d okunmamış ögeniz var</item>
-    <item quantity="other">Yeni %d okunmamış ögeniz var</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="one">Yeni %d okunmamış öge mevcut</item>
-    <item quantity="other">Yeni %d okunmamış öge mevcut</item>
-  </plurals>
-  <!--Add new feed-->
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="action_img_download">Resmi İndir</string>
-  <string name="action_img_sharelink">Resim Bağlantısını Paylaş</string>
-  <string name="action_img_open">Resmi Tarayıcıda Aç</string>
-  <string name="action_img_copylink">Resim Bağlantısını Kopyala</string>
-  <string name="action_link_share">Bağlantıyı Paylaş</string>
-  <string name="action_link_open">Bağlantıyı Tarayıcıda Aç</string>
-  <string name="action_link_copy">Bağlantıyı Kopyala</string>
-  <string name="toast_img_download_wait">İndiriliyor... Lütfen bekleyin</string>
-  <string name="toast_img_saved">Resim kaydedildi.</string>
-  <string name="toast_img_notwriteable">Resim diske yazılamadı.</string>
-  <string name="toast_copied_to_clipboard">Panoya kopyalandı</string>
-  <string name="error_download_failed">İndirme başarısız</string>
-  <string name="intent_title_share">Şununla paylaş</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="feed_remove_button">Kaldır</string>
-  <string name="feed_rename_button">Yeniden adlandır</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Kullanıcı Adı</string>
-  <string name="pref_title_password">Parola</string>
-  <string name="pref_title_owncloudRootPath">ownCloud ana dizin adresi</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Oturum aç</string>
-  <string name="login_progress_signing_in">Oturum açılıyor...</string>
-  <string name="error_field_required">Bu alan gerekli</string>
-  <string name="error_invalid_url">Bu adres geçersiz</string>
-  <!--Import Accounts-->
-  <string name="import_account">Hesabı İçe Aktar</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="one">%d eski öge indirildi</item>
-    <item quantity="other">%d eski öge indirildi</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">Daha fazla öge yok</string>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Ayarlar</string>
-  <string name="cache_is_cleared">Önbellek temizlendi!</string>
-  <!--General settings-->
-  <string name="pref_header_general">Genel</string>
-  <string name="pref_title_general_sort_order">Sıralama Şekli</string>
-  <string-array name="pref_general_sort_order">
-    <item>Yeni -&gt; Eski</item>
-    <item>Eski -&gt; Yeni</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Önbellek temizleniyor</string>
-  <string name="dialog_clearing_cache_please_wait">Önbellek temizleniyor... Lütfen bekleyin.</string>
-  <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Önbelleği yine de sıfırlamak ister misiniz?</string>
-  <string name="warning">Uyarı</string>
-  <string name="pref_title_AutoSyncOnStart">Başlangıçta eşitle</string>
-  <string name="pref_title_ShowOnlyUnread">Sadece okunmamışları göster</string>
-  <string name="pref_title_DisableHostnameVerification">Ana Makine Doğrulamayı Devre Dışı Bırak</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezin</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu işaretle</string>
-  <string name="pref_title_OpenInBrowserDirectly">Makaleleri görüntülemek için harici tarayıcı kullan</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>
-  <string name="mtm_decision_always">Her Zaman</string>
-  <string name="mtm_decision_abort">İptal Et</string>
-  <string name="mtm_notification">Sertifika Doğrulama</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Hiç podcast seçilmedi</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Görüntüle</string>
-  <string name="pref_title_app_theme">Uyg. teması</string>
-  <string name="pref_title_feed_list_layout">Besleme listesi yerleşimi</string>
-  <string name="pref_display_title_lines_count">Başlık için satır sayısı</string>
-  <string-array name="pref_display_apptheme">
-    <item>Koyu</item>
-    <item>Açık</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Basit</item>
-    <item>Genişletilmiş</item>
-    <item>&gt;Genişletilmiş (tam metin)</item>
-    <item>Web görünümü ile genişletilmiş</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Bildirimler</string>
-  <string name="pref_title_notification_new_articles_available">Yeni makaleler kullanılabilir olduğunda bildirim göster</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Hata</string>
-  <string name="login_dialog_text_something_went_wrong">Bir şeyler yanlış gitti :(</string>
-  <string name="login_dialog_text_not_compatible">Bu uygulama sürümü sizin ownCloud Haber uygulamanız ile uyumlu değil. Lütfen haber uygulama ve uygulama çerçevesini güncelleyin.</string>
-  <string name="login_dialog_title_security_warning">Güvenlik Uyarısı</string>
-  <string name="login_dialog_text_security_warning">HTTPS kullanmıyorsunuz. Bir saldırgan trafiğinizi kesip hassas verilere erişim kazanabilir (örn. parolanız). Bu yüzden HTTPS kullanmanız şiddetle tavsiye olunur!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Veri ve eşitleme</string>
-  <string name="pref_title_clearCache">Önbelleği temizle</string>
-  <string name="pref_title_CacheImagesOffline">Resimleri çevrimdışı önbelleğe al</string>
-  <string name="pref_title_Max_Cache_Size">Azami Önbellek Boyutu</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Asla</item>
-    <item>Sadece WiFi ile</item>
-    <item>WiFi ve Mobil</item>
-    <item>WiFi ile bağlı değilken sor</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 Dakika</item>
-    <item>15 Dakika</item>
-    <item>30 Dakika</item>
-    <item>45 Dakika</item>
-    <item>1 Saat</item>
-    <item>2 Saat</item>
-    <item>3 Saat</item>
-    <item>6 Saat</item>
-    <item>12 Saat</item>
-    <item>24 Saat</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_play">oynat</string>
-  <string name="content_desc_pause">duraklat</string>
-  <string name="content_desc_rewind">geri</string>
-  <string name="content_desc_forward">ileri</string>
-  <string name="content_desc_expand">genişlet</string>
-  <string name="content_desc_collapse">daralt</string>
-  <string name="content_desc_mark_as_read">okundu olarak işaretle</string>
-  <string name="content_desc_mark_as_unread">okunmadı olarak işaretle</string>
-  <string name="content_desc_add_to_favorites">sık kullanılanlara ekle</string>
-  <string name="content_desc_remove_from_favorites">sık kullanılanlardan çıkart</string>
-  <string name="content_desc_show_password">şifre göster</string>
-  <string name="content_desc_delete">sil</string>
-  <string name="content_desc_download">indir</string>
-</resources>
+
+    <string name="auto_sync_string">Otomatik eşitleme</string>
+    <string name="title_activity_sync_interval_selector">Eşitleme Aralığı Seçici</string>
+    <string name="title_activity_news_detail">HaberAyrıntıİşlem</string>
+    <string name="empty_view_content">Burada herhangi bir öge yok</string>
+    <string name="no_wifi_available">Kablosuz ağ bağlantısı yapılmamış</string>
+    <string name="current_version">%s sürümünü kullanıyorsunuz</string>
+    <string name="widget_header">Nextcloud Haberleri</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d yeni öge var</item>
+        <item quantity="other">%d yeni öge var</item>
+    </plurals>
+    <string name="message_bar_reload">Yeniden yükle</string>
+    <string name="allUnreadFeeds">Tüm okunmamış ögeler</string>
+    <string name="starredFeeds">Yıldızlanmış ögeler</string>
+    <string name="title_activity_new_feed">Yeni akış ekle</string>
+
+    <string name="menu_update">Yenile</string>
+    <string name="menu_About_Changelog">Hakkında / Değişiklik Günlüğü</string>
+    <string name="menu_markAllAsRead">Tümünü okunmuş olarak işaretle</string>
+    <string name="menu_StartImageCaching">Görselleri indir</string>
+    <string name="menu_downloadMoreItems">Diğer ögeleri indir</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Yıldızlanmış</string>
+    <string name="action_read">Oku</string>
+    <string name="action_playPodacst">Podcast\'i Oynat</string>
+    <string name="action_Share">Paylaş</string>
+    <string name="action_login">Sunucu Ayarları</string>
+    <string name="action_save">Kaydet</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_sync_settings">Eşitleme Ayarları</string>
+    <string name="action_add_new_feed">Yeni akış ekle</string>
+    <string name="action_textToSpeech">Sesli oku</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Yeni %d okunmamış ögeniz var</item>
+        <item quantity="other">Okunmamış %d yeni ögeniz var</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">Okunmamış %d yeni öge var</item>
+        <item quantity="other">Okunmamış %d yeni öge var</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Akış Adresi</string>
+    <string name="action_add_feed">Akış Ekle</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Görseli İndir</string>
+    <string name="action_img_sharelink">Görsel Bağlantısını Paylaş</string>
+    <string name="action_img_open">Görseli Tarayıcıda Aç</string>
+    <string name="action_img_copylink">Görsel Bağlantısını Kopyala</string>
+    <string name="action_link_share">Bağlantıyı Paylaş</string>
+    <string name="action_link_open">Bağlantıyı Tarayıcıda Aç</string>
+    <string name="action_link_copy">Bağlantıyı Kopyala</string>
+    <string name="toast_img_download_wait">İndiriliyor... Lütfen bekleyin</string>
+    <string name="toast_img_saved">Görsel kaydedildi.</string>
+    <string name="toast_img_notwriteable">Görsel diske yazılamadı.</string>
+    <string name="toast_copied_to_clipboard">Panoya kopyalandı</string>
+    <string name="error_download_failed">İndirilemedi</string>
+    <string name="intent_title_share">Şununla paylaş</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Akışı Sil</string>
+    <string name="action_feed_rename">Akışı Yeniden Adlandır</string>
+    <string name="feed_remove_button">Sil</string>
+    <string name="feed_rename_button">Yeniden Adlandır</string>
+    <string name="confirm_feed_remove">Bu akışı gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz!</string>
+
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Kullanıcı Adı</string>
+    <string name="pref_title_password">Parola</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud kök adresi</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">Oturum Açın</string>
+    <string name="login_progress_signing_in">Oturum açılıyor...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Bu alan zorunludur</string>
+    <!-- Import Accounts -->
+    <string name="import_account">Hesabı İçe Aktar</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">%d eski öge indirildi</item>
+        <item quantity="other">%d eski öge indirildi</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Başka bir öge yok</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Şu ana kadar %d öge alındı…</item>
+        <item quantity="other">Şu ana kadar %d öge alındı…</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Ayarlar</string>
+    <string name="cache_is_cleared">Ön bellek temizlendi!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Genel</string>
+    <string name="pref_title_general_sort_order">Sıralama</string>
+
+
+    <string name="dialog_clearing_cache">Ön bellek temizleniyor</string>
+    <string name="dialog_clearing_cache_please_wait">Ön bellek temizleniyor... Lütfen bekleyin.</string>
+    <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Yine de ön belleği sıfırlamak ister misiniz?</string>
+    <string name="warning">Uyarı</string>
+    <string name="pref_title_AutoSyncOnStart">Başlangıçta eşitle</string>
+    <string name="pref_title_ShowOnlyUnread">Yalnız okunmamış makaleler görüntülensin</string>
+    <string name="pref_title_DisableHostnameVerification">Sunucu Adı Doğrulanmasın</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezilebilsin</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu olarak işaretlensin</string>
+    <string name="dialog_feature_not_available">Bu özellik uygulamanın bu sürümünde (açık kaynaklı) kullanılamaz. Bu özelliği kullanmak istiyorsanız lütfen uygulamayı GitHub deposundan ya da Google PlayStore üzerinden indirin.</string>
+
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>
+    <string name="mtm_decision_always">Her Zaman</string>
+    <string name="mtm_decision_abort">Vazgeç</string>
+    <string name="mtm_notification">Sertifika Doğrulama</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Herhangi bir podcast seçilmemiş</string>
+    <string name="no_chapters_available">Kullanılabilecek bir bölüm yok</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Görüntüle</string>
+    <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>
+    <string name="pref_display_title_lines_count">Başlığın satır sayısı</string>
+    <string name="pref_display_browser">Tarayıcı</string>
+
+
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (Ayrıntı Görünümü)</string>
+
+    <string name="content_desc_play">oynat</string>
+    <string name="content_desc_pause">duraklat</string>
+    <string name="content_desc_rewind">geri</string>
+    <string name="content_desc_forward">ileri</string>
+    <string name="content_desc_expand">genişlet</string>
+    <string name="content_desc_collapse">daralt</string>
+    <string name="content_desc_mark_as_read">okunmuş olarak işaretle</string>
+    <string name="content_desc_mark_as_unread">okunmamış olarak işaretle</string>
+    <string name="content_desc_tap_to_refresh">yenilemek için dokunun</string>
+    <string name="content_desc_add_to_favorites">sık kullanılanlara ekle</string>
+    <string name="content_desc_remove_from_favorites">sık kullanılanlardan kaldır</string>
+    <string name="content_desc_show_password">parolayı görüntüle</string>
+    <string name="content_desc_delete">sil</string>
+    <string name="content_desc_download">indir</string>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Bildirimler</string>
+    <string name="pref_title_notification_new_articles_available">Yeni makaleler yayınlandığında bildirim görüntülensin</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Hata</string>
+    <string name="login_dialog_text_something_went_wrong">Bir şeyler ters gitti :(</string>
+    <string name="login_dialog_text_zero_version_code">Web Haberleri uygulamasının sürümü \"0\" olarak görünüyor. Lütfen şu hata raporuna bakın: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Güvenlik Uyarısı</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Veri ve eşitleme</string>
+    <string name="pref_title_clearCache">Ön belleği temizle</string>
+    <string name="pref_title_CacheImagesOffline">Görseller çevrimdışı ön belleğe alınsın</string>
+    <string name="pref_title_Max_Cache_Size">En Büyük Ön Bellek Boyutu</string>
+
+
+
+
+    </resources>

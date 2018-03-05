@@ -30,7 +30,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
@@ -216,34 +216,34 @@ public class PodcastFragment extends Fragment {
 
 
 
-    @Bind(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
-    @Bind(R.id.btn_playPausePodcastSlider) ImageButton btnPlayPausePodcastSlider;
-    @Bind(R.id.btn_nextPodcastSlider) ImageButton btnNextPodcastSlider;
-    @Bind(R.id.btn_previousPodcastSlider) ImageButton btnPreviousPodcastSlider;
+    @BindView(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
+    @BindView(R.id.btn_playPausePodcastSlider) ImageButton btnPlayPausePodcastSlider;
+    @BindView(R.id.btn_nextPodcastSlider) ImageButton btnNextPodcastSlider;
+    @BindView(R.id.btn_previousPodcastSlider) ImageButton btnPreviousPodcastSlider;
 
-    @Bind(R.id.img_feed_favicon) ImageView imgFavIcon;
+    @BindView(R.id.img_feed_favicon) ImageView imgFavIcon;
 
-    @Bind(R.id.tv_title) TextView tvTitle;
-    @Bind(R.id.tv_titleSlider) TextView tvTitleSlider;
-
-
-    @Bind(R.id.tv_from) TextView tvFrom;
-    @Bind(R.id.tv_to) TextView tvTo;
-    @Bind(R.id.tv_fromSlider) TextView tvFromSlider;
-    @Bind(R.id.tv_ToSlider) TextView tvToSlider;
-
-    @Bind(R.id.sb_progress) SeekBar sb_progress;
-    @Bind(R.id.pb_progress) ProgressBar pb_progress;
-    @Bind(R.id.pb_progress2) ProgressBar pb_progress2;
+    @BindView(R.id.tv_title) TextView tvTitle;
+    @BindView(R.id.tv_titleSlider) TextView tvTitleSlider;
 
 
-    @Bind(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
-    @Bind(R.id.rlPodcast) RelativeLayout rlPodcast;
-    @Bind(R.id.ll_podcast_header) LinearLayout rlPodcastHeader;
-    @Bind(R.id.fl_playPausePodcastWrapper) FrameLayout playPausePodcastWrapper;
-    @Bind(R.id.podcastTitleGrid) ListView /*CardGridView*/ podcastTitleGrid;
+    @BindView(R.id.tv_from) TextView tvFrom;
+    @BindView(R.id.tv_to) TextView tvTo;
+    @BindView(R.id.tv_fromSlider) TextView tvFromSlider;
+    @BindView(R.id.tv_ToSlider) TextView tvToSlider;
 
-    @Bind(R.id.viewSwitcherProgress) ViewSwitcher /*CardGridView*/ viewSwitcherProgress;
+    @BindView(R.id.sb_progress) SeekBar sb_progress;
+    @BindView(R.id.pb_progress) ProgressBar pb_progress;
+    @BindView(R.id.pb_progress2) ProgressBar pb_progress2;
+
+
+    @BindView(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
+    @BindView(R.id.rlPodcast) RelativeLayout rlPodcast;
+    @BindView(R.id.ll_podcast_header) LinearLayout rlPodcastHeader;
+    @BindView(R.id.fl_playPausePodcastWrapper) FrameLayout playPausePodcastWrapper;
+    @BindView(R.id.podcastTitleGrid) ListView /*CardGridView*/ podcastTitleGrid;
+
+    @BindView(R.id.viewSwitcherProgress) ViewSwitcher /*CardGridView*/ viewSwitcherProgress;
 
 
     boolean hasTitleInCache = false;

@@ -23,30 +23,35 @@ package de.luhmer.owncloudnewsreader.reader.nextcloud;
 
 import com.google.gson.JsonObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Date;
 import java.util.UUID;
 
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
-public class InsertRssItemIntoDatabase {
+class InsertRssItemIntoDatabase {
 
-    public static RssItem parseItem(JsonObject e) {
+    static RssItem parseItem(JsonObject e) {
 		Date pubDate = new Date(e.get("pubDate").getAsLong() * 1000);
 
         String content = e.get("body").getAsString();
 
-        // Remove some ads
-        content = content.replaceAll("<img[^>]*feedsportal.com.*>", "");
-        content = content.replaceAll("<img[^>]*statisches.auslieferung.commindo-media-ressourcen.de.*>", "");
-        content = content.replaceAll("<img[^>]*auslieferung.commindo-media-ressourcen.de.*>", "");
-        content = content.replaceAll("<img[^>]*rss.buysellads.com.*>", "");
+        /*
+        // URL Decoding content (some pages provide url decoded content - such as showrss.info
+        try {
+            // Try URL decoding
+            content = URLDecoder.decode(content, "UTF-8");
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+        */
 
-
-
-        String url = e.get("url").getAsString();
+        //String url = e.get("url").getAsString();
+        String url = getStringOrDefault("url", "about:blank", e);
         String guid = e.get("guid").getAsString();
-        String enclosureLink = getStringOrNull("enclosureLink", e);
-        String enclosureMime = getStringOrNull("enclosureMime", e);
+        String enclosureLink = getStringOrEmpty("enclosureLink", e);
+        String enclosureMime = getStringOrEmpty("enclosureMime", e);
 
         if(enclosureLink.trim().equals("") && url.matches("^https?://(www.)?youtube.com/.*")) {
             enclosureLink = url;
@@ -81,11 +86,15 @@ public class InsertRssItemIntoDatabase {
         return rssItem;
 	}
 
-	private static String getStringOrNull(String key, JsonObject jObj) {
+	private static String getStringOrEmpty(String key, JsonObject jObj) {
+        return getStringOrDefault(key, "", jObj);
+    }
+
+    private static String getStringOrDefault(String key, String defaultValue, JsonObject jObj) {
         if(jObj.has(key) && !jObj.get(key).isJsonNull()) {
             return jObj.get(key).getAsString();
         } else {
-            return "";
+            return defaultValue;
         }
     }
 

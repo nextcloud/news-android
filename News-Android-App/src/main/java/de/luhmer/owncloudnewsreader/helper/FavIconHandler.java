@@ -51,8 +51,8 @@ public class FavIconHandler {
                 .showImageOnLoading(placeHolder)
                 .showImageForEmptyUri(placeHolder)
                 .showImageOnFail(placeHolder)
-                .cacheOnDisk(false)
-                .cacheInMemory(false)
+                .cacheOnDisk(true)
+                .cacheInMemory(true)
                 .build();
     }
 
@@ -62,18 +62,19 @@ public class FavIconHandler {
 
     public static int getResourceIdForRightDefaultFeedIcon(Context context)
 	{
-		if(ThemeChooser.isDarkTheme(context))
+		if(ThemeChooser.getInstance(context).isDarkTheme())
 			return R.drawable.default_feed_icon_light;
 		else
 			return R.drawable.default_feed_icon_dark;
 	}
 
-	public void PreCacheFavIcon(final Feed feed) {
+	public void PreCacheFavIcon(final Feed feed) throws IllegalStateException {
         if(feed.getFaviconUrl() == null) {
             Log.v(TAG, "No favicon for "+feed.getFeedTitle());
             return;
         }
 
+        Log.v(TAG, "Loading image: " + feed.getFaviconUrl());
         ImageLoader.getInstance().loadImage(feed.getFaviconUrl(), displayImageOptions, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {

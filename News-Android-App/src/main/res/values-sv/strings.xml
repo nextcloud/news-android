@@ -1,191 +1,178 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Automatisk synkning</string>
-  <string name="app_name">ownCloud Nyhetsläsare</string>
-  <string name="title_activity_sync_interval_selector">Synkronisera intervallväljaren</string>
-  <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
-  <string name="empty_view_content">Inga objekt här</string>
-  <string name="toast_GettingMoreItems">Börjat ladda ner fler artiklar... Var god vänta.</string>
-  <string name="no_wifi_available">Ingen WIFI ansluten</string>
-  <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilderna utan en WIFI-anslutning</string>
-  <string name="current_version">Du använder Version %s</string>
-  <string name="widget_header">ownCloud nyheter</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="one">%d ny artikel tillgänglig</item>
-    <item quantity="other">%d nya artiklar tillgängliga</item>
-  </plurals>
-  <string name="message_bar_reload">Ladda om</string>
-  <string name="allUnreadFeeds">Alla olästa objekt</string>
-  <string name="starredFeeds">Stjärnmärkta objekt</string>
-  <string name="title_activity_new_feed">Lägg till flöde</string>
-  <string name="menu_update">Uppdatera</string>
-  <string name="menu_About_Changelog">Om / Ändringslogg</string>
-  <string name="menu_markAllAsRead">Markera alla som lästa</string>
-  <string name="menu_StartImageCaching">Ladda ner bilder</string>
-  <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Stjärnmärkt</string>
-  <string name="action_read">Läsa</string>
-  <string name="action_playPodacst">Spela Podcast</string>
-  <string name="action_openInBrowser">Öppna i webbläsaren</string>
-  <string name="action_Share">Dela</string>
-  <string name="action_login">Serverinställningar</string>
-  <string name="action_save">Spara</string>
-  <string name="action_settings">Inställningar</string>
-  <string name="action_sync_settings">Synk inställningar</string>
-  <string name="action_add_new_feed">Lägg till flöde</string>
-  <string name="action_textToSpeech">Läs upp</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="one">Du har %d oläst sak</item>
-    <item quantity="other">Du har %d olästa saker</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="one">%d ny oläst artikel tillgänglig</item>
-    <item quantity="other">%d nya olästa artiklar tillgängliga</item>
-  </plurals>
-  <!--Add new feed-->
-  <string name="hint_feed_url">FlödesURL</string>
-  <string name="action_add_feed">Lägg till flöde</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="action_img_download">Ladda ner bild</string>
-  <string name="action_img_sharelink">Dela bildlänk</string>
-  <string name="action_img_open">Öppna bilden i webbläsaren</string>
-  <string name="action_img_copylink">Kopiera bildlänk</string>
-  <string name="action_link_share">Dela länk</string>
-  <string name="action_link_open">Öppna länk i webbläsaren</string>
-  <string name="action_link_copy">Kopiera länk</string>
-  <string name="toast_img_download_wait">Laddar ner... var god vänta</string>
-  <string name="toast_img_saved">Bild sparad.</string>
-  <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
-  <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
-  <string name="error_download_failed">Misslyckad nedladdning</string>
-  <string name="intent_title_share">Dela via</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="feed_remove_button">Radera</string>
-  <string name="feed_rename_button">Byt namn</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Användarnamn</string>
-  <string name="pref_title_password">Lösenord</string>
-  <string name="pref_title_owncloudRootPath">ownCloud rotadress</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Logga in</string>
-  <string name="login_progress_signing_in">Logga in...</string>
-  <string name="error_field_required">Detta fält obligatoriskt</string>
-  <string name="error_invalid_url">Felaktig URL</string>
-  <!--Import Accounts-->
-  <string name="import_account">Importera Konto</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="one">Laddade ner %d gamla artiklar</item>
-    <item quantity="other">Laddade ner %d gamla artiklar</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Hämtat %d artikel än så länge...</item>
-    <item quantity="other">Hämtat %d artiklar än så länge...</item>
-  </plurals>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Inställningar</string>
-  <string name="cache_is_cleared">Cacheminne rensat!</string>
-  <!--General settings-->
-  <string name="pref_header_general">Allmänt</string>
-  <string name="pref_title_general_sort_order">Sorteringsordning</string>
-  <string-array name="pref_general_sort_order">
-    <item>Nyare -&gt; Äldre</item>
-    <item>Äldre -&gt; Nyare</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Rensar cache</string>
-  <string name="dialog_clearing_cache_please_wait">Rensar cache, var god vänta...</string>
-  <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
-  <string name="warning">Varning</string>
-  <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
-  <string name="pref_title_ShowOnlyUnread">Visa endast olästa artiklar</string>
-  <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
-  <string name="pref_title_OpenInBrowserDirectly">Använd extern webbläsare för att visa artiklar</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
-  <string name="mtm_decision_always">Alltid</string>
-  <string name="mtm_decision_abort">Avbryt</string>
-  <string name="mtm_notification">Verifikation av certifikat</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Ingen podcast vald</string>
-  <string name="no_chapters_available">Inga kapitel tillgängliga.</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Visa</string>
-  <string name="pref_title_app_theme">App tema</string>
-  <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
-  <string-array name="pref_display_apptheme">
-    <item>Mörk</item>
-    <item>Ljus</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Enkel</item>
-    <item>Utvidgad</item>
-    <item>Utvidgad (fulltext)</item>
-    <item>Utvidgad med WebView</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Notifieringar</string>
-  <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Fel</string>
-  <string name="login_dialog_text_something_went_wrong">Något gick fel :(</string>
-  <string name="login_dialog_text_not_compatible">Denna version är inte kompatibel med din ownCloud nyhetsapp. Vänligen uppdatera nyhetsappen och dess beroenden.</string>
-  <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
-  <string name="login_dialog_text_security_warning">Du använder inte https. En angripare kan fånga din trafik och få tillgång till känsliga uppgifter (t.ex. ditt lösenord). Så det är starkt rekommenderat att använda https!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Data &amp; synk</string>
-  <string name="pref_title_clearCache">Rensa cache</string>
-  <string name="pref_title_CacheImagesOffline">Cacha bilder offline</string>
-  <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Aldrig</item>
-    <item>Endast över WiFi</item>
-    <item>Över WiFi &amp; Mobildata</item>
-    <item>Fråga om ej ansluten till WiFi</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 minuter</item>
-    <item>15 minuter</item>
-    <item>30 minuter</item>
-    <item>45 minuter</item>
-    <item>1 timme</item>
-    <item>2 timme</item>
-    <item>3 timme</item>
-    <item>6 timme</item>
-    <item>12 timme</item>
-    <item>24 timme</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_play">spela</string>
-  <string name="content_desc_pause">pausa</string>
-  <string name="content_desc_rewind">spola bakåt</string>
-  <string name="content_desc_forward">spola framåt</string>
-  <string name="content_desc_expand">utöka</string>
-  <string name="content_desc_collapse">dölj</string>
-  <string name="content_desc_mark_as_read">markera som läst</string>
-  <string name="content_desc_mark_as_unread">markera som oläst</string>
-  <string name="content_desc_tap_to_refresh">tryck för att uppdatera</string>
-  <string name="content_desc_add_to_favorites">lägg till i favoriter</string>
-  <string name="content_desc_remove_from_favorites">ta bort från favoriter</string>
-  <string name="content_desc_show_password">visa lösenordet</string>
-  <string name="content_desc_delete">radera</string>
-  <string name="content_desc_download">ladda ner</string>
-</resources>
+
+    <string name="auto_sync_string">Automatisk synkning</string>
+    <string name="title_activity_sync_interval_selector">Synkronisera intervallväljaren</string>
+    <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
+    <string name="empty_view_content">Inga objekt här</string>
+    <string name="no_wifi_available">Ingen WIFI ansluten</string>
+    <string name="current_version">Du använder Version %s</string>
+    <string name="widget_header">ownCloud nyheter</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d ny artikel tillgänglig</item>
+        <item quantity="other">%d nya artiklar tillgängliga</item>
+    </plurals>
+    <string name="message_bar_reload">Ladda om</string>
+    <string name="allUnreadFeeds">Alla olästa objekt</string>
+    <string name="starredFeeds">Stjärnmärkta objekt</string>
+    <string name="title_activity_new_feed">Lägg till flöde</string>
+
+    <string name="menu_update">Uppdatera</string>
+    <string name="menu_About_Changelog">Om / Ändringslogg</string>
+    <string name="menu_markAllAsRead">Markera alla som lästa</string>
+    <string name="menu_StartImageCaching">Ladda ner bilder</string>
+    <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Stjärnmärkt</string>
+    <string name="action_read">Läsa</string>
+    <string name="action_playPodacst">Spela Podcast</string>
+    <string name="action_Share">Dela</string>
+    <string name="action_login">Serverinställningar</string>
+    <string name="action_save">Spara</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="action_sync_settings">Synk inställningar</string>
+    <string name="action_add_new_feed">Lägg till flöde</string>
+    <string name="action_textToSpeech">Läs upp</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Du har %d oläst sak</item>
+        <item quantity="other">Du har %d olästa saker</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d ny oläst artikel tillgänglig</item>
+        <item quantity="other">%d nya olästa artiklar tillgängliga</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">FlödesURL</string>
+    <string name="action_add_feed">Lägg till flöde</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Ladda ner bild</string>
+    <string name="action_img_sharelink">Dela bildlänk</string>
+    <string name="action_img_open">Öppna bilden i webbläsaren</string>
+    <string name="action_img_copylink">Kopiera bildlänk</string>
+    <string name="action_link_share">Dela länk</string>
+    <string name="action_link_open">Öppna länk i webbläsaren</string>
+    <string name="action_link_copy">Kopiera länk</string>
+    <string name="toast_img_download_wait">Laddar ner... var god vänta</string>
+    <string name="toast_img_saved">Bild sparad.</string>
+    <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
+    <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
+    <string name="error_download_failed">Misslyckad nedladdning</string>
+    <string name="intent_title_share">Dela via</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Ta bort Feed</string>
+    <string name="action_feed_rename">Döp om Feed</string>
+    <string name="feed_remove_button">Radera</string>
+    <string name="feed_rename_button">Byt namn</string>
+    <string name="confirm_feed_remove">Vill du verkligen ta bort denna Feed? Det kan inte ångras!</string>
+
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Användarnamn</string>
+    <string name="pref_title_password">Lösenord</string>
+    <string name="pref_title_owncloudRootPath">ownCloud rotadress</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Logga in</string>
+    <string name="login_progress_signing_in">Logga in...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Detta fält obligatoriskt</string>
+    <!-- Import Accounts -->
+    <string name="import_account">Importera Konto</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Laddade ner %d gamla artiklar</item>
+        <item quantity="other">Laddade ner %d gamla artiklar</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Hämtat %d artikel än så länge...</item>
+        <item quantity="other">Hämtat %d artiklar än så länge...</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Inställningar</string>
+    <string name="cache_is_cleared">Cacheminne rensat!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Allmänt</string>
+    <string name="pref_title_general_sort_order">Sorteringsordning</string>
+
+
+    <string name="dialog_clearing_cache">Rensar cache</string>
+    <string name="dialog_clearing_cache_please_wait">Rensar cache, var god vänta...</string>
+    <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
+    <string name="warning">Varning</string>
+    <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
+    <string name="pref_title_ShowOnlyUnread">Visa endast olästa artiklar</string>
+    <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
+    <string name="mtm_decision_always">Alltid</string>
+    <string name="mtm_decision_abort">Avbryt</string>
+    <string name="mtm_notification">Verifikation av certifikat</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Ingen podcast vald</string>
+    <string name="no_chapters_available">Inga kapitel tillgängliga.</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Visa</string>
+    <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
+    <string name="pref_display_browser">Webbläsare</string>
+
+
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
+
+    <string name="content_desc_play">spela</string>
+    <string name="content_desc_pause">pausa</string>
+    <string name="content_desc_rewind">spola bakåt</string>
+    <string name="content_desc_forward">spola framåt</string>
+    <string name="content_desc_expand">utöka</string>
+    <string name="content_desc_collapse">dölj</string>
+    <string name="content_desc_mark_as_read">markera som läst</string>
+    <string name="content_desc_mark_as_unread">markera som oläst</string>
+    <string name="content_desc_tap_to_refresh">tryck för att uppdatera</string>
+    <string name="content_desc_add_to_favorites">lägg till i favoriter</string>
+    <string name="content_desc_remove_from_favorites">ta bort från favoriter</string>
+    <string name="content_desc_show_password">visa lösenordet</string>
+    <string name="content_desc_delete">radera</string>
+    <string name="content_desc_download">ladda ner</string>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Notifieringar</string>
+    <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Fel</string>
+    <string name="login_dialog_text_something_went_wrong">Något gick fel :(</string>
+    <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; synk</string>
+    <string name="pref_title_clearCache">Rensa cache</string>
+    <string name="pref_title_CacheImagesOffline">Cacha bilder offline</string>
+    <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
+
+
+
+
+    </resources>

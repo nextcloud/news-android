@@ -11,7 +11,8 @@
         android:layout_height="100dp"
         android:padding="10dp"
         android:background="@drawable/nextcloud"
-        android:clickable="true">
+        android:clickable="true"
+        android:focusable="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,7 +22,6 @@
             android:id="@+id/userTextView"
             android:textColor="@android:color/white"
             android:layout_above="@+id/urlTextView"
-            android:layout_toRightOf="@+id/header_logo"
             android:layout_toEndOf="@+id/header_logo"
             android:ellipsize="end"
             android:singleLine="true" />
@@ -34,7 +34,6 @@
             android:textColor="@android:color/white"
             android:layout_alignParentBottom="true"
             android:paddingBottom="5dp"
-            android:layout_toRightOf="@+id/header_logo"
             android:layout_toEndOf="@+id/header_logo"
             android:singleLine="true"
             android:ellipsize="end" />
@@ -43,24 +42,25 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:id="@+id/header_logo"
+            android:background="@drawable/shadow"
             android:layout_alignBottom="@+id/urlTextView"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
             android:contentDescription="@string/content_desc_tap_to_refresh"/>
 
-        <ProgressBar android:layout_width="48dp"
+        <ProgressBar
+            android:id="@+id/header_logo_progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="48dp"
             android:layout_height="48dp"
-            android:padding="7dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:indeterminateTint="@android:color/white"
+            android:indeterminateTintMode="src_in"
             android:layout_gravity="center"
             android:indeterminate="true"
-            android:id="@+id/header_logo_progress"
-            android:layout_alignBottom="@+id/header_logo"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            style="?android:attr/progressBarStyle" />
+            android:padding="7dp" />
 
     </RelativeLayout>
 

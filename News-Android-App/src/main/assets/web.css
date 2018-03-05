@@ -8,6 +8,19 @@ body#lightTheme {
     color:				black;
 }
 
+body#darkThemeOLED {
+    background-color:   #000;
+    color:              #eee;
+}
+
+body#darkThemeOLED a:link {
+	color:              #0289ff;
+}
+
+body#darkThemeOLED a:visited {
+    color:              #cd4fff;
+}
+
 body#darkTheme {
     background-color:   #222;
     color:              #eee;

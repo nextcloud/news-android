@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader.helper;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -10,18 +11,20 @@ import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 
 public class NotificationManagerNewsReader {
+
     private static NotificationManagerNewsReader instance;
     private final int NOTIFICATION_ID = 0;
+    private final String CHANNEL_ID = "0";
     private Context context;
 
-    public static NotificationManagerNewsReader getInstance(Context context)
+    public synchronized static NotificationManagerNewsReader getInstance(Context context)
     {
         if(instance == null)
             instance = new NotificationManagerNewsReader(context);
         return instance;
     }
 
-    public NotificationManagerNewsReader(Context context)
+    private NotificationManagerNewsReader(Context context)
     {
         this.context = context;
         //NOTIFICATION_ID = new Random().nextInt();
@@ -33,7 +36,7 @@ public class NotificationManagerNewsReader {
     public void ShowMessage(String title, String tickerMessage, String message)
     {
         NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(context)
+                new NotificationCompat.Builder(context, "")
                         .setSmallIcon(R.drawable.ic_notification)
                         .setTicker(tickerMessage)
                         .setContentTitle(title)
@@ -63,6 +66,15 @@ public class NotificationManagerNewsReader {
 
         // Add as notification
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, importance);
+            //mChannel.enableLights(true);
+            manager.createNotificationChannel(mChannel);
+            builder.setChannelId(CHANNEL_ID);
+        }
+
         manager.notify(NOTIFICATION_ID, builder.build());
     }
 

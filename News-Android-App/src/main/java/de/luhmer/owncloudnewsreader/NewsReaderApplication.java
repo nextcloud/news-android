@@ -5,6 +5,7 @@ import android.app.Application;
 import de.luhmer.owncloudnewsreader.di.ApiModule;
 import de.luhmer.owncloudnewsreader.di.AppComponent;
 import de.luhmer.owncloudnewsreader.di.DaggerAppComponent;
+import de.luhmer.owncloudnewsreader.helper.AdBlocker;
 
 public class NewsReaderApplication extends Application {
 
@@ -13,6 +14,8 @@ public class NewsReaderApplication extends Application {
         super.onCreate();
 
         initDaggerAppComponent();
+
+        AdBlocker.init(this);
     }
 
     public void initDaggerAppComponent() {

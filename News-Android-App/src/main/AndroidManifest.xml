@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="de.luhmer.owncloudnewsreader"
-    android:versionCode="120"
-    android:versionName="0.9.9.8"
-    android:installLocation="auto">
+    android:versionCode="128"
+    android:versionName="0.9.9.14"
+    android:installLocation="internalOnly">
 
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -113,8 +115,11 @@
 		**********************************************************************
         -->
 
-        <service android:name=".services.DownloadImagesService" />
-        <service android:name=".services.SyncItemStateService" />
+        <service
+            android:name=".services.DownloadImagesService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service android:name=".services.SyncItemStateService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <service
             android:name=".services.OwnCloudAuthenticatorService"

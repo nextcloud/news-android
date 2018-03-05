@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,11 +29,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.customtabs.CustomTabsCallback;
-import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
-import android.support.customtabs.CustomTabsServiceConnection;
-import android.support.customtabs.CustomTabsSession;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -57,9 +52,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloudnewsreader.chrometabs.CustomTabActivityManager;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -81,8 +75,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
-    @Bind(R.id.toolbar) Toolbar toolbar;
-	@Bind(R.id.progressIndicator) ProgressBar progressIndicator;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+	@BindView(R.id.progressIndicator) ProgressBar progressIndicator;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -99,16 +93,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private DatabaseConnectionOrm dbConn;
 	public List<RssItem> rssItems;
 
-	private CustomTabsSession mCustomTabsSession;
-	private CustomTabsClient mCustomTabsClient;
-	private CustomTabsServiceConnection mCustomTabsConnection;
-
-	private boolean mCustomTabsSupported;
-    //public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
+	//public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.chooseTheme(this);
+		ThemeChooser.ChooseTheme(this);
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
@@ -183,15 +172,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
         mViewPager.addOnPageChangeListener(onPageChangeListener);
-
-		//Init ChromeCustomTabs
-		mCustomTabsSupported = bindCustomTabsService();
     }
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		unbindCustomTabsService();
 	}
 
     private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
@@ -248,18 +233,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		{
 			NewsDetailFragment ndf = getNewsDetailFragmentAtPosition(currentPosition);//(NewsDetailFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + currentPosition);
 
-			if(ndf != null && ndf.mWebView != null)
-			{
-				if (ndf.urls.size() > 1) {
-                    ndf.urls.remove(0);
-					ndf.mWebView.loadUrl(ndf.urls.get(0));
-					return true;
-				} else if(ndf.urls.size() == 1) {
-					ndf.urls.remove(0);
-                    ndf.startLoadRssItemToWebViewTask();
-                    Log.v(TAG, "Load rssitem to webview again");
-					return true;
-                }
+			if(ndf != null && ndf.canNavigateBack()) {
+				ndf.navigateBack();
+				return true;
 			}
 		}
 
@@ -427,9 +403,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 				if(link.length() > 0)
 				{
-					if(isChromeDefaultBrowser() && mCustomTabsSupported) {
-						mCustomTabsSession = getSession();
-						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
+					//if(isChromeDefaultBrowser() && mCustomTabsSupported) {
+					if(isChromeDefaultBrowser()) {
+						//CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
+						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
 						builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimaryDarkTheme));
 						builder.setShowTitle(true);
 						builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
@@ -512,48 +489,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
         Log.v(TAG, "Default Browser is: " + resolveInfo.loadLabel(getPackageManager()).toString());
 		return (resolveInfo.loadLabel(getPackageManager()).toString().contains("Chrome"));
-	}
-
-	private boolean bindCustomTabsService() {
-		if (mCustomTabsClient != null)
-			return true;
-
-		String packageName = CustomTabActivityManager.getInstance().getPackageNameToUse(this);
-		if (packageName == null)
-			return false;
-
-		mCustomTabsConnection = new CustomTabsServiceConnection() {
-			@Override
-			public void onCustomTabsServiceConnected(ComponentName name, CustomTabsClient client) {
-				mCustomTabsClient = client;
-			}
-
-			@Override
-			public void onServiceDisconnected(ComponentName name) {
-				mCustomTabsClient = null;
-			}
-		};
-
-		return CustomTabsClient.bindCustomTabsService(this, packageName, mCustomTabsConnection);
-	}
-
-	private void unbindCustomTabsService() {
-		if (mCustomTabsConnection == null)
-			return;
-
-		unbindService(mCustomTabsConnection);
-		mCustomTabsConnection = null;
-		mCustomTabsClient = null;
-		mCustomTabsSession = null;
-	}
-
-	private CustomTabsSession getSession() {
-		if (mCustomTabsClient == null) {
-			mCustomTabsSession = null;
-		} else if (mCustomTabsSession == null) {
-			mCustomTabsSession = mCustomTabsClient.newSession(new CustomTabsCallback());
-		}
-		return mCustomTabsSession;
 	}
 
 	private void markItemAsReadUnread(RssItem item, boolean read) {

@@ -53,7 +53,7 @@ import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.adapter.DividerItemDecoration;
@@ -110,10 +110,10 @@ public class NewsReaderDetailFragment extends Fragment {
     private static final String LAYOUT_MANAGER_STATE = "LAYOUT_MANAGER_STATE";
     private boolean mMarkAsReadWhileScrollingEnabled;
 
-    @Bind(R.id.pb_loading) ProgressBar pbLoading;
-    @Bind(R.id.tv_no_items_available) View tvNoItemsAvailable;
-    @Bind(R.id.list) RecyclerView recyclerView;
-    @Bind(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
+    @BindView(R.id.pb_loading) ProgressBar pbLoading;
+    @BindView(R.id.tv_no_items_available) View tvNoItemsAvailable;
+    @BindView(R.id.list) RecyclerView recyclerView;
+    @BindView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -154,6 +154,7 @@ public class NewsReaderDetailFragment extends Fragment {
         super.onResume();
     }
 
+    /*
     private void handleMarkAsReadScrollEvent() {
         LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
         int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
@@ -179,13 +180,16 @@ public class NewsReaderDetailFragment extends Fragment {
                 RecyclerView.ViewHolder vhTemp = recyclerView.findViewHolderForLayoutPosition(i);
                 if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
                     vh = (ViewHolder) vhTemp;
-                    if (vh != null && !vh.shouldStayUnread()) {
+                    if (!vh.shouldStayUnread()) {
                         adapter.ChangeReadStateOfItem(vh, true);
+                    } else {
+                        Log.v(TAG, "shouldStayUnread");
                     }
                 }
             }
         }
     }
+    */
 
     public void UpdateMenuItemsState()
 	{
@@ -355,6 +359,7 @@ public class NewsReaderDetailFragment extends Fragment {
         swipeRefresh.setColorSchemeColors(accentColor);
         swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) getActivity());
 
+        /*
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             GestureDetectorCompat detector = new GestureDetectorCompat(getActivity(), new RecyclerViewOnGestureListener());
 
@@ -372,11 +377,79 @@ public class NewsReaderDetailFragment extends Fragment {
             public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
             }
         });
+        */
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+        {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+            {
+                if(dy > 0) //check for scroll down
+                {
+                    if(mMarkAsReadWhileScrollingEnabled) {
+                        //Log.v(TAG, "Scroll Delta y: " + dy);
+                        handleMarkAsReadScrollEvent();
+                    }
+                }
+            }
+        });
 
         return rootView;
 	}
 
+
+	private int previousFirstVisibleItem = -1;
+	private void handleMarkAsReadScrollEvent() {
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
+
+        int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+        int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+        int visibleItemCount = lastVisibleItem - firstVisibleItem;
+        int totalItemCount = adapter.getItemCount();
+        boolean reachedBottom = (lastVisibleItem == (totalItemCount-1));
+
+        // Exit if the position didn't change.
+        if(firstVisibleItem == previousFirstVisibleItem && !reachedBottom)
+            return;
+        previousFirstVisibleItem = firstVisibleItem;
+
+
+        //Log.v(TAG, "First visible: " + firstVisibleItem + " - Last visible: " + lastVisibleItem + " - visible count: " + visibleItemCount + " - total count: " + totalItemCount);
+
+        //Set the item at top to read
+        //ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(firstVisibleItem);
+
+        // Mark the first two items as read
+        final int numberItemsAhead = 1;
+        for(int i = firstVisibleItem; i < firstVisibleItem + numberItemsAhead; i++) {
+            //Log.v(TAG, "Mark item as read: " + i);
+
+            ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(i);
+            if (vh != null && !vh.shouldStayUnread()) {
+                adapter.ChangeReadStateOfItem(vh, true);
+            }
+        }
+
+        //Check if Listview is scrolled to bottom
+        if (reachedBottom &&
+                visibleItemCount != 0 && //Check if list is empty
+                recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
+            for (int i = firstVisibleItem; i <= lastVisibleItem; i++) {
+                RecyclerView.ViewHolder vhTemp = recyclerView.findViewHolderForLayoutPosition(i);
+                if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
+                    ViewHolder vh = (ViewHolder) vhTemp;
+                    if (!vh.shouldStayUnread()) {
+                        adapter.ChangeReadStateOfItem(vh, true);
+                    } else {
+                        Log.v(TAG, "shouldStayUnread");
+                    }
+                }
+            }
+        }
+    }
+
+    /*
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
@@ -385,7 +458,7 @@ public class NewsReaderDetailFragment extends Fragment {
             }
             return super.onScroll(e1, e2, distanceX, distanceY);
         }
-    }
+    }*/
 
 
     @Override

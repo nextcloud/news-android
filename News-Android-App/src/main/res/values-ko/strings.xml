@@ -1,171 +1,178 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">자동 동기화</string>
-  <string name="app_name">ownCloud 뉴스 리더</string>
-  <string name="title_activity_sync_interval_selector">동기화 주기 선택기</string>
-  <string name="title_activity_news_detail">NewsDetailActivity</string>
-  <string name="empty_view_content">항목 없음</string>
-  <string name="toast_GettingMoreItems">더 많은 항목을 다운로드하고 있습니다... 잠시 기다려 주십시오.</string>
-  <string name="no_wifi_available">Wi-Fi에 연결되지 않았음</string>
-  <string name="do_you_want_to_download_without_wifi">Wi-Fi에 연결되지 않은 상태에서 사진을 다운로드하시겠습니까?</string>
-  <string name="current_version">현재 %s 버전을 사용 중입니다.</string>
-  <string name="widget_header">ownCloud 뉴스</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="other">새 항목 %d개 있음</item>
-  </plurals>
-  <string name="message_bar_reload">새로 고침</string>
-  <string name="allUnreadFeeds">모든 읽지 않은 항목</string>
-  <string name="starredFeeds">별표한 항목</string>
-  <string name="title_activity_new_feed">새 피드 추가</string>
-  <string name="menu_update">새로 고침</string>
-  <string name="menu_About_Changelog">정보 / 변경 사항</string>
-  <string name="menu_markAllAsRead">모두 읽은 것으로 표시</string>
-  <string name="menu_StartImageCaching">사진 다운로드</string>
-  <string name="menu_downloadMoreItems">더 많은 항목 다운로드</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">별표</string>
-  <string name="action_read">읽기</string>
-  <string name="action_playPodacst">팟캐스트 재생</string>
-  <string name="action_openInBrowser">브라우저에서 열기</string>
-  <string name="action_Share">공유</string>
-  <string name="action_login">서버 설정</string>
-  <string name="action_save">저장</string>
-  <string name="action_settings">설정</string>
-  <string name="action_sync_settings">동기화 설정</string>
-  <string name="action_add_new_feed">새 피드 추가</string>
-  <string name="action_textToSpeech">음성으로 읽기</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="other">읽지 않은 항목이 %d개 있습니다</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="other">새 항목이 %d개 있습니다</item>
-  </plurals>
-  <!--Add new feed-->
-  <string name="hint_feed_url">피드 링크</string>
-  <string name="action_add_feed">피드 추가</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="action_img_sharelink">사진 공유 링크</string>
-  <string name="action_img_open">브라우저에서 사진 열기</string>
-  <string name="action_img_copylink">사진 링크 복사</string>
-  <string name="action_link_share">링크 공유</string>
-  <string name="action_link_open">브라우저에서 링크 열기</string>
-  <string name="action_link_copy">링크 복사</string>
-  <string name="toast_img_download_wait">다운로드 중입니다... 잠시 기다려 주십시오.</string>
-  <string name="toast_img_saved">사진이 저장되었습니다.</string>
-  <string name="toast_img_notwriteable">이미지를 쓰지 못했습니다.</string>
-  <string name="toast_copied_to_clipboard">클립보드로 복사됨</string>
-  <string name="error_download_failed">다운로드 실패</string>
-  <string name="intent_title_share">다음으로 공유</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="feed_remove_button">삭제</string>
-  <string name="feed_rename_button">이름 바꾸기</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">사용자 이름</string>
-  <string name="pref_title_password">암호</string>
-  <string name="pref_title_owncloudRootPath">ownCloud 루트 주소</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">로그인</string>
-  <string name="login_progress_signing_in">로그인 중...</string>
-  <string name="error_field_required">이 항목은 필수 사항입니다</string>
-  <string name="error_invalid_url">URL이 잘못되었습니다</string>
-  <!--Import Accounts-->
-  <string name="import_account">계정 가져오기</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="other">오래된 항목 %d개 다운로드됨</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">더 이상 항목 없음</string>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">설정</string>
-  <string name="cache_is_cleared">캐시를 비웠습니다!</string>
-  <!--General settings-->
-  <string name="pref_header_general">일반</string>
-  <string name="pref_title_general_sort_order">정렬 순서</string>
-  <string-array name="pref_general_sort_order">
-    <item>새 항목 -&gt; 오래된 항목</item>
-    <item>오래된 항목 -&gt; 새 항목</item>
-  </string-array>
-  <string name="dialog_clearing_cache">캐시 비우는 중</string>
-  <string name="dialog_clearing_cache_please_wait">캐시를 비우고 있습니다... 잠시 기다려 주십시오.</string>
-  <string name="reset_cache_unsaved_changes">동기화되지 않은 변경 사항이 있습니다. 캐시를 비우시겠습니까?</string>
-  <string name="warning">경고</string>
-  <string name="pref_title_AutoSyncOnStart">시작할 때 동기화</string>
-  <string name="pref_title_ShowOnlyUnread">읽지 않은 항목만 보기</string>
-  <string name="pref_title_DisableHostnameVerification">호스트 이름 확인 사용 안함</string>
-  <string name="pref_title_NavigateWithVolumeButtons">음량 단추로 탐색</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">스크롤 중 읽은 것으로 표시</string>
-  <string name="pref_title_OpenInBrowserDirectly">외부 브라우저로 글 읽기</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">알 수 없는 인증서를 허용하시겠습니까?</string>
-  <string name="mtm_decision_always">항상</string>
-  <string name="mtm_decision_abort">중단</string>
-  <string name="mtm_notification">인증서 확인</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">팟캐스트가 선택되지 않았음</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">표시</string>
-  <string name="pref_title_app_theme">앱 테마</string>
-  <string name="pref_title_feed_list_layout">피드 목록 레이아웃</string>
-  <string name="pref_display_title_lines_count">제목 줄 수</string>
-  <string-array name="pref_display_apptheme">
-    <item>어둡게</item>
-    <item>밝게</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>간단히</item>
-    <item>자세히</item>
-    <item>자세히, 웹뷰 포함</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">알림</string>
-  <string name="pref_title_notification_new_articles_available">새 글이 있을 때 알림 표시</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">오류</string>
-  <string name="login_dialog_text_something_went_wrong">무언가 잘못되었습니다 :(</string>
-  <string name="login_dialog_text_not_compatible">이 앱 버전은 ownCloud 뉴스 앱과 호환되지 않습니다. 뉴스 앱과 프레임워크를 업데이트하십시오.</string>
-  <string name="login_dialog_title_security_warning">보안 경고</string>
-  <string name="login_dialog_text_security_warning">HTTPS를 사용하고 있지 않습니다. 공격자가 트래픽을 감청하여 암호와 같은 민감한 데이터에 접근할 수 있습니다. HTTPS 사용을 적극 권장합니다!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">데이터 및 동기화</string>
-  <string name="pref_title_clearCache">캐시 비우기</string>
-  <string name="pref_title_CacheImagesOffline">오프라인 사용을 위하여 사진 저장</string>
-  <string name="pref_title_Max_Cache_Size">최대 캐시 크기</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>하지 않음</item>
-    <item>Wi-Fi에서만</item>
-    <item>Wi-Fi 및 모바일 데이터</item>
-    <item>Wi-Fi에 연결되지 않았을 때 묻기</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250MB</item>
-    <item>500MB</item>
-    <item>750MB</item>
-    <item>1GB</item>
-    <item>2GB</item>
-    <item>5GB</item>
-    <item>10GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5분</item>
-    <item>15분</item>
-    <item>30분</item>
-    <item>45분</item>
-    <item>1시간</item>
-    <item>2시간</item>
-    <item>3시간</item>
-    <item>6시간</item>
-    <item>12시간</item>
-    <item>24시간</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_play">재생</string>
-  <string name="content_desc_pause">일시정지</string>
-  <string name="content_desc_rewind">되감기</string>
-  <string name="content_desc_delete">삭제</string>
-</resources>
+
+    <string name="auto_sync_string">자동 동기화</string>
+    <string name="title_activity_sync_interval_selector">동기화 주기 선택기</string>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
+    <string name="empty_view_content">항목 없음</string>
+    <string name="no_wifi_available">Wi-Fi에 연결되지 않았음</string>
+    <string name="current_version">현재 버전 %s을(를) 사용 중입니다.</string>
+    <string name="widget_header">Nextcloud 뉴스</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="other">새 항목 %d개 있음</item>
+    </plurals>
+    <string name="message_bar_reload">새로 고침</string>
+    <string name="allUnreadFeeds">모든 읽지 않은 항목</string>
+    <string name="starredFeeds">별표한 항목</string>
+    <string name="title_activity_new_feed">새 피드 추가</string>
+
+    <string name="menu_update">새로 고침</string>
+    <string name="menu_About_Changelog">정보 / 변경 사항</string>
+    <string name="menu_markAllAsRead">모두 읽은 것으로 표시</string>
+    <string name="menu_StartImageCaching">사진 다운로드</string>
+    <string name="menu_downloadMoreItems">더 많은 항목 다운로드</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">별표</string>
+    <string name="action_read">읽기</string>
+    <string name="action_playPodacst">팟캐스트 재생</string>
+    <string name="action_Share">공유</string>
+    <string name="action_login">서버 설정</string>
+    <string name="action_save">저장</string>
+    <string name="action_settings">설정</string>
+    <string name="action_sync_settings">동기화 설정</string>
+    <string name="action_add_new_feed">새 피드 추가</string>
+    <string name="action_textToSpeech">음성으로 읽기</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="other">읽지 않은 항목이 %d개 있습니다</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="other">새 항목이 %d개 있습니다</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">피드 URL</string>
+    <string name="action_add_feed">피드 추가</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">사진 다운로드</string>
+    <string name="action_img_sharelink">사진 링크 공유</string>
+    <string name="action_img_open">브라우저에서 사진 열기</string>
+    <string name="action_img_copylink">사진 링크 복사</string>
+    <string name="action_link_share">링크 공유</string>
+    <string name="action_link_open">브라우저에서 링크 열기</string>
+    <string name="action_link_copy">링크 복사</string>
+    <string name="toast_img_download_wait">다운로드 중입니다… 잠시 기다려 주십시오.</string>
+    <string name="toast_img_saved">사진이 저장되었습니다.</string>
+    <string name="toast_img_notwriteable">사진을 기록할 수 없습니다.</string>
+    <string name="toast_copied_to_clipboard">클립보드로 복사됨</string>
+    <string name="error_download_failed">다운로드 실패</string>
+    <string name="intent_title_share">다음으로 공유</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">피드 삭제</string>
+    <string name="action_feed_rename">비드 이름 바꾸기</string>
+    <string name="feed_remove_button">삭제</string>
+    <string name="feed_rename_button">이름 바꾸기</string>
+    <string name="confirm_feed_remove">이 피드를 삭제하시겠습니까? 취소할 수 없습니다!</string>
+
+    <!-- Strings related to login -->
+    <string name="pref_title_username">사용자 이름</string>
+    <string name="pref_title_password">암호</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud 루트 주소</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">로그인</string>
+    <string name="login_progress_signing_in">로그인 중…</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">이 항목은 필수 사항입니다</string>
+    <!-- Import Accounts -->
+    <string name="import_account">계정 가져오기</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="other">오래된 항목 %d개 다운로드됨</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">더 이상 항목 없음</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="other">항목 %d개 가져옴…</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">설정</string>
+    <string name="cache_is_cleared">캐시를 비웠습니다!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">일반</string>
+    <string name="pref_title_general_sort_order">정렬 순서</string>
+
+
+    <string name="dialog_clearing_cache">캐시 비우는 중</string>
+    <string name="dialog_clearing_cache_please_wait">캐시를 비우고 있습니다… 잠시 기다려 주십시오.</string>
+    <string name="reset_cache_unsaved_changes">동기화되지 않은 변경 사항이 있습니다. 캐시를 비우시겠습니까?</string>
+    <string name="warning">경고</string>
+    <string name="pref_title_AutoSyncOnStart">시작할 때 동기화</string>
+    <string name="pref_title_ShowOnlyUnread">읽지 않은 항목만 보기</string>
+    <string name="pref_title_DisableHostnameVerification">호스트 이름 확인 사용 안함</string>
+    <string name="pref_title_NavigateWithVolumeButtons">음량 단추로 탐색</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">스크롤 중 읽은 것으로 표시</string>
+    <string name="dialog_feature_not_available">이 기능은 이 앱의 현재 (오픈소스) 버전에서 사용할 수 없습니다. 이 기능을 사용하려면 GitHub 저장소에서 다운로드하거나 Google Play 스토어에서 다운로드하십시오.</string>
+
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">알 수 없는 인증서를 허용하시겠습니까?</string>
+    <string name="mtm_decision_always">항상</string>
+    <string name="mtm_decision_abort">중단</string>
+    <string name="mtm_notification">인증서 확인</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">팟캐스트가 선택되지 않았음</string>
+    <string name="no_chapters_available">사용 가능한 챕터가 없음</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">표시</string>
+    <string name="pref_title_feed_list_layout">피드 목록 레이아웃</string>
+    <string name="pref_display_title_lines_count">제목 줄 수</string>
+    <string name="pref_display_browser">브라우저</string>
+
+
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">동작 아이콘(자세히 보기)</string>
+
+    <string name="content_desc_play">재생</string>
+    <string name="content_desc_pause">일시정지</string>
+    <string name="content_desc_rewind">되감기</string>
+    <string name="content_desc_forward">앞으로</string>
+    <string name="content_desc_expand">확장</string>
+    <string name="content_desc_collapse">축소</string>
+    <string name="content_desc_mark_as_read">읽은 것으로 표시</string>
+    <string name="content_desc_mark_as_unread">읽지 않은 것으로 표시</string>
+    <string name="content_desc_tap_to_refresh">눌러서 새로 고침</string>
+    <string name="content_desc_add_to_favorites">즐겨찾기에 추가</string>
+    <string name="content_desc_remove_from_favorites">즐겨찾기에서 삭제</string>
+    <string name="content_desc_show_password">암호 표시</string>
+    <string name="content_desc_delete">삭제</string>
+    <string name="content_desc_download">다운로드</string>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">알림</string>
+    <string name="pref_title_notification_new_articles_available">새 글이 있을 때 알림 표시</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">오류</string>
+    <string name="login_dialog_text_something_went_wrong">무언가 잘못되었습니다 :(</string>
+    <string name="login_dialog_text_zero_version_code">웹 뉴스 앱에서 버전 "0"을 반환했습니다. 다음 버그 보고를 참조하십시오: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">보안 경고</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">데이터 및 동기화</string>
+    <string name="pref_title_clearCache">캐시 비우기</string>
+    <string name="pref_title_CacheImagesOffline">오프라인 사용을 위하여 사진 저장</string>
+    <string name="pref_title_Max_Cache_Size">최대 캐시 크기</string>
+
+
+
+
+    </resources>

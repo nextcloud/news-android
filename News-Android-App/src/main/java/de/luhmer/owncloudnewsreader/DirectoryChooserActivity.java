@@ -13,7 +13,7 @@ public class DirectoryChooserActivity extends net.rdrei.android.dirchooser.Direc
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int theme = ThemeChooser.isDarkTheme(getApplicationContext())
+        int theme = ThemeChooser.getInstance(getApplicationContext()).isDarkTheme()
                 ? R.style.DirectoryChooserTheme
                 : R.style.DirectoryChooserTheme_Light;
         setTheme(theme);

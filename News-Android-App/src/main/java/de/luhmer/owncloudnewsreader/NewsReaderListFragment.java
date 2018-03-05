@@ -51,7 +51,7 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -129,12 +129,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 	private SubscriptionExpandableListAdapter lvAdapter;
 
-    @Bind(R.id.expandableListView) protected ExpandableListView eListView;
-	@Bind(R.id.urlTextView) protected TextView urlTextView;
-	@Bind(R.id.userTextView) protected TextView userTextView;
-	@Bind(R.id.header_view) protected ViewGroup headerView;
-	@Bind(R.id.header_logo) protected ImageView headerLogo;
-	@Bind(R.id.header_logo_progress) protected View headerLogoProgress;
+    @BindView(R.id.expandableListView) protected ExpandableListView eListView;
+	@BindView(R.id.urlTextView) protected TextView urlTextView;
+	@BindView(R.id.userTextView) protected TextView userTextView;
+	@BindView(R.id.header_view) protected ViewGroup headerView;
+	@BindView(R.id.header_logo) protected ImageView headerLogo;
+	@BindView(R.id.header_logo_progress) protected View headerLogoProgress;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -154,7 +154,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_newsreader_list, container, false);
 
-        if(!ThemeChooser.isDarkTheme(getActivity())) {
+        if(!ThemeChooser.getInstance(getActivity()).isDarkTheme()) {
             view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.slider_listview_background_color_light_theme));
         }
 

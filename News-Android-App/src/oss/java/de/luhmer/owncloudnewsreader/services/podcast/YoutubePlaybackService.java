@@ -1,11 +1,6 @@
 package de.luhmer.owncloudnewsreader.services.podcast;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 

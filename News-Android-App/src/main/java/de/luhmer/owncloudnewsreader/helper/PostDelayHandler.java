@@ -56,8 +56,7 @@ public class PostDelayHandler {
 		        	{
                         Log.v(TAG, "Starting SyncItemStateService");
 
-		        		Intent iService = new Intent(context, SyncItemStateService.class); 
-		        		context.startService(iService);
+		        		SyncItemStateService.enqueueWork(context, new Intent());
 		        	}
 		      }}, delayTime);
 		}

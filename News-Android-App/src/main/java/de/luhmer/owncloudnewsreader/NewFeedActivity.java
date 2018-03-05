@@ -43,7 +43,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -64,12 +64,12 @@ import retrofit2.Response;
 public class NewFeedActivity extends AppCompatActivity {
 
     // UI references.
-    @Bind(R.id.et_feed_url) EditText mFeedUrlView;
-    @Bind(R.id.sp_folder) Spinner mFolderView;
-    @Bind(R.id.new_feed_progress) View mProgressView;
-    @Bind(R.id.new_feed_form) View mLoginFormView;
-    @Bind(R.id.btn_addFeed) Button mAddFeedButton;
-    @Bind(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.et_feed_url) EditText mFeedUrlView;
+    @BindView(R.id.sp_folder) Spinner mFolderView;
+    @BindView(R.id.new_feed_progress) View mProgressView;
+    @BindView(R.id.new_feed_form) View mLoginFormView;
+    @BindView(R.id.btn_addFeed) Button mAddFeedButton;
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     private List<Folder> folders;
     @Inject ApiProvider mApi;
@@ -78,7 +78,7 @@ public class NewFeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
-        ThemeChooser.chooseTheme(this);
+        ThemeChooser.ChooseTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_feed);
 

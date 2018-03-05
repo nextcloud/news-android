@@ -36,7 +36,7 @@ import java.io.File;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -74,8 +74,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     private int appHeight;
     private int appWidth;
 
-    @Bind(R.id.videoPodcastSurfaceWrapper) ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
-    @Bind(R.id.sliding_layout) PodcastSlidingUpPanelLayout sliding_layout;
+    @BindView(R.id.videoPodcastSurfaceWrapper) ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
+    @BindView(R.id.sliding_layout) PodcastSlidingUpPanelLayout sliding_layout;
     //YouTubePlayerFragment youtubeplayerfragment;
 
 

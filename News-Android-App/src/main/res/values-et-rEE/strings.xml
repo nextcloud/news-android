@@ -1,182 +1,161 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Auto sünk</string>
-  <string name="app_name">ownCloud Uudiste Lugeja</string>
-  <string name="title_activity_sync_interval_selector">Sync sageduse valik</string>
-  <string name="title_activity_news_detail">UudisteÜksikasjadeTegevused</string>
-  <string name="empty_view_content">Siin pole üksusi</string>
-  <string name="toast_GettingMoreItems">Rohkemate kirjete allaladaimist on alustatud... Palun oota.</string>
-  <string name="no_wifi_available">WiFi pole ühendatud</string>
-  <string name="do_you_want_to_download_without_wifi">Kas soovid pildid alla laadida WiFi ühendust kasutamata</string>
-  <string name="current_version">Sa kasutad versioon %s</string>
-  <string name="widget_header">ownCloud Uudised</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="one">Saadaval on %d uus kirjet</item>
-    <item quantity="other">Saadaval on %d uut kirjet</item>
-  </plurals>
-  <string name="message_bar_reload">Lae uuesti</string>
-  <string name="allUnreadFeeds">Kõik lugemata üksused</string>
-  <string name="starredFeeds">Tärniga märgitud üksused</string>
-  <string name="title_activity_new_feed">Lisa uudisvoog</string>
-  <string name="menu_update">Värskenda</string>
-  <string name="menu_About_Changelog">Teave / Muudatused</string>
-  <string name="menu_markAllAsRead">Märgi loetuks</string>
-  <string name="menu_StartImageCaching">Laadi pildid alla</string>
-  <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Tärniga märgitud</string>
-  <string name="action_read">Lugemine</string>
-  <string name="action_playPodacst">Mängi podcast</string>
-  <string name="action_openInBrowser">Ava veebilehitsejas</string>
-  <string name="action_Share">Jaga</string>
-  <string name="action_login">Serveri seaded</string>
-  <string name="action_save">Salvesta</string>
-  <string name="action_settings">Seaded</string>
-  <string name="action_sync_settings">Sync seaded</string>
-  <string name="action_add_new_feed">Lisa uudisvoog</string>
-  <string name="action_textToSpeech">Loe ette</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="one">Sul on %d uus lugemata kirje</item>
-    <item quantity="other">Sul on %d uut lugemata kirjet</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="one">Saadaval on %d uus lugemata kirje</item>
-    <item quantity="other">Saadaval on %d uut lugemata kirjet</item>
-  </plurals>
-  <!--Add new feed-->
-  <string name="hint_feed_url">Uudisvoo URL</string>
-  <string name="action_add_feed">Lisa uudivoog</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="action_img_download">Laadi pilt alla</string>
-  <string name="action_img_sharelink">Jaga pildi linki</string>
-  <string name="action_img_open">Ava pilt veebilehitsejas</string>
-  <string name="action_img_copylink">Kopeeri pildi link</string>
-  <string name="action_link_share">Jaga linki</string>
-  <string name="action_link_open">Ava link veebilehitsejas</string>
-  <string name="action_link_copy">Kopeeri link</string>
-  <string name="toast_img_download_wait">Allalaadimine... palun oota</string>
-  <string name="toast_img_saved">Pilt on salvestatud.</string>
-  <string name="toast_img_notwriteable">Pildi kirjutamine ebaõnnestus.</string>
-  <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
-  <string name="error_download_failed">Allalaadimine ebaõnnestus</string>
-  <string name="intent_title_share">Jaga kasutades</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="feed_remove_button">Eemalda</string>
-  <string name="feed_rename_button">Nimeta ümber</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Kasutajanimi</string>
-  <string name="pref_title_password">Parool</string>
-  <string name="pref_title_owncloudRootPath">ownCloud juur address</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Logi sisse</string>
-  <string name="login_progress_signing_in">Sisselogimine...</string>
-  <string name="error_field_required">See väli on kohustuslik</string>
-  <string name="error_invalid_url">URL pole korrektne</string>
-  <!--Import Accounts-->
-  <string name="import_account">Impordi konto</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="one">Alla on laaditud %d vana kirje</item>
-    <item quantity="other">Alla on laaditud %d vana kirjet</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">Rohkem üksusi pole saadaval</string>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Seaded</string>
-  <string name="cache_is_cleared">Vahemälu on tühjendatud!</string>
-  <!--General settings-->
-  <string name="pref_header_general">Üldine</string>
-  <string name="pref_title_general_sort_order">Sorteerimise järjekord</string>
-  <string-array name="pref_general_sort_order">
-    <item>Uus -&gt; Vana</item>
-    <item>Vana -&gt; Uus</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
-  <string name="dialog_clearing_cache_please_wait">Vahemälu tühjendamine... palun oota</string>
-  <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
-  <string name="warning">Hoiatus</string>
-  <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
-  <string name="pref_title_ShowOnlyUnread">Näita ainult lugemata artikleid</string>
-  <string name="pref_title_DisableHostnameVerification">Keela serveri nime kontroll</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Navigeeri häälevaljuse nuppudega</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Märgi kerides loetuks</string>
-  <string name="pref_title_OpenInBrowserDirectly">Kasuta artiklite vaatamiseks välist lehitsejat</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Nõustu tundmatu sertifikaadiga?</string>
-  <string name="mtm_decision_always">Alati</string>
-  <string name="mtm_decision_abort">Katkesta</string>
-  <string name="mtm_notification">Sertifikaadi kontroll</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Ühtegi podcasti pole valitud</string>
-  <string name="no_chapters_available">Ühtegi peatükki pole saadaval</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Vaade</string>
-  <string name="pref_title_app_theme">Rakendi teema</string>
-  <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>
-  <string name="pref_display_title_lines_count">Pealkirja ridade arv</string>
-  <string-array name="pref_display_apptheme">
-    <item>Hele</item>
-    <item>Tume</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Teavitused</string>
-  <string name="pref_title_notification_new_articles_available">Näita teavitusi kui on saadaval uusi arikleid</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Viga</string>
-  <string name="login_dialog_text_something_went_wrong">Midagi läks valesti :(</string>
-  <string name="login_dialog_text_not_compatible">See App versioon pole ühilduv sinu ownCloud News App-iga. Palun uuenda oma uudiste app-i ning app-i raamistikku.</string>
-  <string name="login_dialog_title_security_warning">Turvahoiatus</string>
-  <string name="login_dialog_text_security_warning">Sa ei kasuta https-i. Ründaja võib jälgida sinu liiklust ning saavutada ligipääsu tundlikele andmetele (näiteks sinu parooli). Seega on tungivalt soovitatav https kasutamine!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Andmed &amp; sünkroniseerimine</string>
-  <string name="pref_title_clearCache">Tühjenda puhver</string>
-  <string name="pref_title_CacheImagesOffline">Puhverda pildid võrguta seisu</string>
-  <string name="pref_title_Max_Cache_Size">Maksimaalne puhvri suurus</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Mitte kunagi</item>
-    <item>Ainult üle WiFi</item>
-    <item>WiFi &amp; andmeside</item>
-    <item>Küsi, kui pole WiFisse ühendatud</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 minutit</item>
-    <item>15 minutit</item>
-    <item>30 minutit</item>
-    <item>45 minutit</item>
-    <item>1 tund</item>
-    <item>2 tundi</item>
-    <item>3 tundi</item>
-    <item>6 tundi</item>
-    <item>12 tundi</item>
-    <item>24 tundi</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_play">esita</string>
-  <string name="content_desc_pause">peata</string>
-  <string name="content_desc_rewind">keri tagasi</string>
-  <string name="content_desc_forward">edasi</string>
-  <string name="content_desc_expand">laienda</string>
-  <string name="content_desc_collapse">sulge</string>
-  <string name="content_desc_mark_as_read">märgi loetuks</string>
-  <string name="content_desc_mark_as_unread">märgi mitteloetuks</string>
-  <string name="content_desc_tap_to_refresh">värskendamiseks vajuta</string>
-  <string name="content_desc_add_to_favorites">lisa lemmikutesse</string>
-  <string name="content_desc_remove_from_favorites">eelamda lemmikutest</string>
-  <string name="content_desc_show_password">näita parooli</string>
-  <string name="content_desc_delete">kustuta</string>
-  <string name="content_desc_download">laadi alla</string>
-</resources>
+
+    <string name="auto_sync_string">Auto sünk</string>
+    <string name="title_activity_sync_interval_selector">Sync sageduse valik</string>
+    <string name="title_activity_news_detail">UudisteÜksikasjadeTegevused</string>
+    <string name="empty_view_content">Siin pole üksusi</string>
+    <string name="no_wifi_available">WiFi pole ühendatud</string>
+    <string name="current_version">Sa kasutad versioon %s</string>
+    <string name="widget_header">ownCloud Uudised</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">Saadaval on %d uus kirjet</item>
+        <item quantity="other">Saadaval on %d uut kirjet</item>
+    </plurals>
+    <string name="message_bar_reload">Lae uuesti</string>
+    <string name="allUnreadFeeds">Kõik lugemata üksused</string>
+    <string name="starredFeeds">Tärniga märgitud üksused</string>
+    <string name="title_activity_new_feed">Lisa uudisvoog</string>
+
+    <string name="menu_update">Värskenda</string>
+    <string name="menu_About_Changelog">Teave / Muudatused</string>
+    <string name="menu_markAllAsRead">Märgi loetuks</string>
+    <string name="menu_StartImageCaching">Laadi pildid alla</string>
+    <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Tärniga märgitud</string>
+    <string name="action_read">Lugemine</string>
+    <string name="action_playPodacst">Mängi podcast</string>
+    <string name="action_Share">Jaga</string>
+    <string name="action_login">Serveri seaded</string>
+    <string name="action_save">Salvesta</string>
+    <string name="action_settings">Seaded</string>
+    <string name="action_sync_settings">Sync seaded</string>
+    <string name="action_add_new_feed">Lisa uudisvoog</string>
+    <string name="action_textToSpeech">Loe ette</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Sul on %d uus lugemata kirje</item>
+        <item quantity="other">Sul on %d uut lugemata kirjet</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">Saadaval on %d uus lugemata kirje</item>
+        <item quantity="other">Saadaval on %d uut lugemata kirjet</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Uudisvoo URL</string>
+    <string name="action_add_feed">Lisa uudivoog</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Laadi pilt alla</string>
+    <string name="action_img_sharelink">Jaga pildi linki</string>
+    <string name="action_img_open">Ava pilt veebilehitsejas</string>
+    <string name="action_img_copylink">Kopeeri pildi link</string>
+    <string name="action_link_share">Jaga linki</string>
+    <string name="action_link_open">Ava link veebilehitsejas</string>
+    <string name="action_link_copy">Kopeeri link</string>
+    <string name="toast_img_download_wait">Allalaadimine... palun oota</string>
+    <string name="toast_img_saved">Pilt on salvestatud.</string>
+    <string name="toast_img_notwriteable">Pildi kirjutamine ebaõnnestus.</string>
+    <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
+    <string name="error_download_failed">Allalaadimine ebaõnnestus</string>
+    <string name="intent_title_share">Jaga kasutades</string>
+
+
+    <string name="feed_remove_button">Eemalda</string>
+    <string name="feed_rename_button">Nimeta ümber</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Kasutajanimi</string>
+    <string name="pref_title_password">Parool</string>
+    <string name="pref_title_owncloudRootPath">ownCloud juur address</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Logi sisse</string>
+    <string name="login_progress_signing_in">Sisselogimine...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">See väli on kohustuslik</string>
+    <!-- Import Accounts -->
+    <string name="import_account">Impordi konto</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Alla on laaditud %d vana kirje</item>
+        <item quantity="other">Alla on laaditud %d vana kirjet</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Rohkem üksusi pole saadaval</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Seaded</string>
+    <string name="cache_is_cleared">Vahemälu on tühjendatud!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Üldine</string>
+    <string name="pref_title_general_sort_order">Sorteerimise järjekord</string>
+
+
+    <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
+    <string name="dialog_clearing_cache_please_wait">Vahemälu tühjendamine... palun oota</string>
+    <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
+    <string name="warning">Hoiatus</string>
+    <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
+    <string name="pref_title_ShowOnlyUnread">Näita ainult lugemata artikleid</string>
+    <string name="pref_title_DisableHostnameVerification">Keela serveri nime kontroll</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigeeri häälevaljuse nuppudega</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Märgi kerides loetuks</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Nõustu tundmatu sertifikaadiga?</string>
+    <string name="mtm_decision_always">Alati</string>
+    <string name="mtm_decision_abort">Katkesta</string>
+    <string name="mtm_notification">Sertifikaadi kontroll</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Ühtegi podcasti pole valitud</string>
+    <string name="no_chapters_available">Ühtegi peatükki pole saadaval</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Vaade</string>
+    <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>
+    <string name="pref_display_title_lines_count">Pealkirja ridade arv</string>
+    <string name="content_desc_play">esita</string>
+    <string name="content_desc_pause">peata</string>
+    <string name="content_desc_rewind">keri tagasi</string>
+    <string name="content_desc_forward">edasi</string>
+    <string name="content_desc_expand">laienda</string>
+    <string name="content_desc_collapse">sulge</string>
+    <string name="content_desc_mark_as_read">märgi loetuks</string>
+    <string name="content_desc_mark_as_unread">märgi mitteloetuks</string>
+    <string name="content_desc_tap_to_refresh">värskendamiseks vajuta</string>
+    <string name="content_desc_add_to_favorites">lisa lemmikutesse</string>
+    <string name="content_desc_remove_from_favorites">eelamda lemmikutest</string>
+    <string name="content_desc_show_password">näita parooli</string>
+    <string name="content_desc_delete">kustuta</string>
+    <string name="content_desc_download">laadi alla</string>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Teavitused</string>
+    <string name="pref_title_notification_new_articles_available">Näita teavitusi kui on saadaval uusi arikleid</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Viga</string>
+    <string name="login_dialog_text_something_went_wrong">Midagi läks valesti :(</string>
+    <string name="login_dialog_title_security_warning">Turvahoiatus</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Andmed &amp; sünkroniseerimine</string>
+    <string name="pref_title_clearCache">Tühjenda puhver</string>
+    <string name="pref_title_CacheImagesOffline">Puhverda pildid võrguta seisu</string>
+    <string name="pref_title_Max_Cache_Size">Maksimaalne puhvri suurus</string>
+
+
+
+
+    </resources>

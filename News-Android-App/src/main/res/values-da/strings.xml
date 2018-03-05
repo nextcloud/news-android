@@ -1,161 +1,125 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Automatisk synkronisering </string>
-  <string name="app_name">ownCloud Nyheds Læser</string>
-  <string name="title_activity_sync_interval_selector">Synkroniseringsinterval vælger</string>
-  <string name="title_activity_news_detail">DetaljeretNyhedsAktivitet</string>
-  <string name="empty_view_content">Her er ingen artikler</string>
-  <string name="toast_GettingMoreItems">Påbegyndte download af flere elementer... Vent venligst.</string>
-  <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
-  <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden brug af WiFi-forbindelse</string>
-  <string name="widget_header">ownCloud Nyheder</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="one">%d nyt element er tilgængeligt</item>
-    <item quantity="other">%d nye elementer er tilgængelige</item>
-  </plurals>
-  <string name="message_bar_reload">Genindlæs</string>
-  <string name="allUnreadFeeds">Alle ulæste artikler</string>
-  <string name="starredFeeds">Markerede artikler</string>
-  <string name="title_activity_new_feed">Tilføj nyt feed</string>
-  <string name="menu_update">Opdatér</string>
-  <string name="menu_About_Changelog">Om / Ændringslog</string>
-  <string name="menu_markAllAsRead">Markér alle som læst</string>
-  <string name="menu_StartImageCaching">Hent billeder</string>
-  <string name="menu_downloadMoreItems">Hent flere artikler</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Stjernemarkéret</string>
-  <string name="action_read">Læst</string>
-  <string name="action_playPodacst">Afspil podcast</string>
-  <string name="action_openInBrowser">Åbn i browser</string>
-  <string name="action_Share">Del</string>
-  <string name="action_login">Server-indstillinger</string>
-  <string name="action_save">Gem</string>
-  <string name="action_settings">Indstillinger</string>
-  <string name="action_sync_settings">Synkroniseringsindstillinger</string>
-  <string name="action_add_new_feed">Tilføj nyt feed</string>
-  <string name="action_textToSpeech">Læs højt</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="one">Du har %d nyt, ulæst element</item>
-    <item quantity="other">Du har %d nye, ulæste elementer</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="one">%d nyt, ulæst element er tilgængeligt</item>
-    <item quantity="other">%d nye, ulæste elementer er tilgængelige</item>
-  </plurals>
-  <!--Add new feed-->
-  <string name="action_add_feed">Tilføj feed</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
-  <string name="error_download_failed">Download fejlede</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="feed_remove_button">Fjern</string>
-  <string name="feed_rename_button">Omdøb</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Brugernavn</string>
-  <string name="pref_title_password">Kodeord</string>
-  <string name="pref_title_owncloudRootPath">rodadressen for ownCloud</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Log ind</string>
-  <string name="login_progress_signing_in">Logger ind...</string>
-  <string name="error_field_required">Dette felt er påkrævet</string>
-  <string name="error_invalid_url">Denne URL er ikke korrekt</string>
-  <!--Import Accounts-->
-  <string name="import_account">Importér brugerkonto</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="one">Hentede %d gammelt element</item>
-    <item quantity="other">Hentede %d gamle elementer</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelig</string>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Indstillinger</string>
-  <string name="cache_is_cleared">Cachen er ryddet!</string>
-  <!--General settings-->
-  <string name="pref_header_general">Generelt</string>
-  <string name="pref_title_general_sort_order">Rækkefølge for sortering</string>
-  <string-array name="pref_general_sort_order">
-    <item>Ny -&gt; Gammel</item>
-    <item>Gammel -&gt; Ny</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Nulstil mellemlager</string>
-  <string name="dialog_clearing_cache_please_wait">Rydder mellemlageret... Vent venligst.</string>
-  <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
-  <string name="warning">Advarsel</string>
-  <string name="pref_title_AutoSyncOnStart">Synkroniserer ved opstart</string>
-  <string name="pref_title_ShowOnlyUnread">Vis kun ulæste artikler</string>
-  <string name="pref_title_DisableHostnameVerification">Deaktivér verifikation af værtsnavn</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Navigér med lydknapper</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Markér som læst når der rulles</string>
-  <string name="pref_title_OpenInBrowserDirectly">Benyt en ekstern browser for at se artiklerne</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Acceptér ukendt certifikat? </string>
-  <string name="mtm_decision_always">Altid</string>
-  <string name="mtm_decision_abort">Afbryd</string>
-  <string name="mtm_notification">Verificering af certifikat</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Der er ikke valgt podcasts</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Vis</string>
-  <string name="pref_title_app_theme">App-tema</string>
-  <string name="pref_title_feed_list_layout">Layout for feed-liste</string>
-  <string name="pref_display_title_lines_count">Linjeantal for titel</string>
-  <string-array name="pref_display_apptheme">
-    <item>Mørk</item>
-    <item>Lys</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Simpel</item>
-    <item>Udvidet</item>
-    <item>Udvidet (fuld tekst)</item>
-    <item>Udvidet med Webvisning</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Notifikationer</string>
-  <string name="pref_title_notification_new_articles_available">Vis notifikation når der er nye artikler tilgængelige</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Fejl</string>
-  <string name="login_dialog_text_something_went_wrong">Noget gik galt :(</string>
-  <string name="login_dialog_text_not_compatible">Denne app-version er ikke kompatibel med din ownCloud News App. Opdatér venligst nyheds-app\'en og appframework.</string>
-  <string name="login_dialog_title_security_warning">Sikkerhedsadvarsel</string>
-  <string name="login_dialog_text_security_warning">Du benytter ikke https. En ondsindet person kan opsnappe din trafik og få adgang til følsomme data (f.eks. dit kodeord). Derfor er det stærkt anbefalet at bruge https!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Data &amp; sync</string>
-  <string name="pref_title_clearCache">Ryd mellemlageret</string>
-  <string name="pref_title_CacheImagesOffline">Foretag mellemlagring af billeder offline</string>
-  <string name="pref_title_Max_Cache_Size">Maksimumstørrelse på mellemlageret</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Aldrig</item>
-    <item>Kun via wifi</item>
-    <item>Via wifi &amp; mobil</item>
-    <item>Spørg når der ikke er wifi-forbindelse</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 minutter</item>
-    <item>15 minutter</item>
-    <item>30 minutter</item>
-    <item>45 minutter</item>
-    <item>1 time</item>
-    <item>2 timer</item>
-    <item>3 timer</item>
-    <item>6 timer</item>
-    <item>12 timer</item>
-    <item>24 timer</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_delete">slet</string>
-</resources>
+
+    <string name="auto_sync_string">Automatisk synkronisering </string>
+    <string name="title_activity_sync_interval_selector">Synkroniseringsinterval vælger</string>
+    <string name="title_activity_news_detail">DetaljeretNyhedsAktivitet</string>
+    <string name="empty_view_content">Her er ingen artikler</string>
+    <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
+    <string name="widget_header">ownCloud Nyheder</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d nyt element er tilgængeligt</item>
+        <item quantity="other">%d nye elementer er tilgængelige</item>
+    </plurals>
+    <string name="message_bar_reload">Genindlæs</string>
+    <string name="allUnreadFeeds">Alle ulæste artikler</string>
+    <string name="starredFeeds">Markerede artikler</string>
+    <string name="title_activity_new_feed">Tilføj nyt feed</string>
+
+    <string name="menu_update">Opdatér</string>
+    <string name="menu_About_Changelog">Om / Ændringslog</string>
+    <string name="menu_markAllAsRead">Markér alle som læst</string>
+    <string name="menu_StartImageCaching">Hent billeder</string>
+    <string name="menu_downloadMoreItems">Hent flere artikler</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Stjernemarkéret</string>
+    <string name="action_read">Læst</string>
+    <string name="action_playPodacst">Afspil podcast</string>
+    <string name="action_Share">Del</string>
+    <string name="action_login">Server-indstillinger</string>
+    <string name="action_save">Gem</string>
+    <string name="action_settings">Indstillinger</string>
+    <string name="action_sync_settings">Synkroniseringsindstillinger</string>
+    <string name="action_add_new_feed">Tilføj nyt feed</string>
+    <string name="action_textToSpeech">Læs højt</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Du har %d nyt, ulæst element</item>
+        <item quantity="other">Du har %d nye, ulæste elementer</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d nyt, ulæst element er tilgængeligt</item>
+        <item quantity="other">%d nye, ulæste elementer er tilgængelige</item>
+    </plurals>
+
+
+    <string name="action_add_feed">Tilføj feed</string>
+
+
+    <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
+    <string name="error_download_failed">Download fejlede</string>
+    <string name="feed_remove_button">Fjern</string>
+    <string name="feed_rename_button">Omdøb</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Brugernavn</string>
+    <string name="pref_title_password">Kodeord</string>
+    <string name="pref_title_owncloudRootPath">rodadressen for ownCloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Log ind</string>
+    <string name="login_progress_signing_in">Logger ind...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Dette felt er påkrævet</string>
+    <!-- Import Accounts -->
+    <string name="import_account">Importér brugerkonto</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Hentede %d gammelt element</item>
+        <item quantity="other">Hentede %d gamle elementer</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelig</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Indstillinger</string>
+    <string name="cache_is_cleared">Cachen er ryddet!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Generelt</string>
+    <string name="pref_title_general_sort_order">Rækkefølge for sortering</string>
+
+
+    <string name="dialog_clearing_cache">Nulstil mellemlager</string>
+    <string name="dialog_clearing_cache_please_wait">Rydder mellemlageret... Vent venligst.</string>
+    <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
+    <string name="warning">Advarsel</string>
+    <string name="pref_title_AutoSyncOnStart">Synkroniserer ved opstart</string>
+    <string name="pref_title_ShowOnlyUnread">Vis kun ulæste artikler</string>
+    <string name="pref_title_DisableHostnameVerification">Deaktivér verifikation af værtsnavn</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigér med lydknapper</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Markér som læst når der rulles</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Acceptér ukendt certifikat? </string>
+    <string name="mtm_decision_always">Altid</string>
+    <string name="mtm_decision_abort">Afbryd</string>
+    <string name="mtm_notification">Verificering af certifikat</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Der er ikke valgt podcasts</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Vis</string>
+    <string name="pref_title_feed_list_layout">Layout for feed-liste</string>
+    <string name="pref_display_title_lines_count">Linjeantal for titel</string>
+    <string name="content_desc_delete">slet</string>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Notifikationer</string>
+    <string name="pref_title_notification_new_articles_available">Vis notifikation når der er nye artikler tilgængelige</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Fejl</string>
+    <string name="login_dialog_text_something_went_wrong">Noget gik galt :(</string>
+    <string name="login_dialog_title_security_warning">Sikkerhedsadvarsel</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="pref_title_clearCache">Ryd mellemlageret</string>
+    <string name="pref_title_CacheImagesOffline">Foretag mellemlagring af billeder offline</string>
+    <string name="pref_title_Max_Cache_Size">Maksimumstørrelse på mellemlageret</string>
+
+
+
+
+    </resources>

@@ -55,7 +55,7 @@ import java.net.URL;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloud.accountimporter.ImportAccountsDialogFragment;
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
@@ -102,11 +102,11 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	private boolean showImportAccountButton;
 
 	// UI references.
-	@Bind(R.id.username) EditText mUsernameView;
-	@Bind(R.id.password) EditText mPasswordView;
-	@Bind(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
-	@Bind(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
-    @Bind(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
+	@BindView(R.id.username) EditText mUsernameView;
+	@BindView(R.id.password) EditText mPasswordView;
+	@BindView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
+	@BindView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
+    @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
 
     boolean mPasswordVisible = false;
 

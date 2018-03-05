@@ -47,7 +47,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
@@ -186,10 +186,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	}
 
 	static class ChildHolder {
-        @Bind(R.id.list_item_layout) View listItemLayout;
-        @Bind(R.id.summary) TextView tV_HeaderText;
-        @Bind(R.id.tv_unreadCount) TextView tV_UnreadCount;
-        @Bind(R.id.iVFavicon) ImageView imgView_FavIcon;
+        @BindView(R.id.list_item_layout) View listItemLayout;
+        @BindView(R.id.summary) TextView tV_HeaderText;
+        @BindView(R.id.tv_unreadCount) TextView tV_UnreadCount;
+        @BindView(R.id.iVFavicon) ImageView imgView_FavIcon;
 
         public ChildHolder(View view) {
             ButterKnife.bind(this, view);
@@ -368,7 +368,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
     private int getBtn_rating_star_off_normal_holo_light() {
         if(btn_rating_star_off_normal_holo_light == null) {
-            if(ThemeChooser.isDarkTheme(mContext)) {
+            if(ThemeChooser.getInstance(mContext).isDarkTheme()) {
                 btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_dark;
             } else {
                 btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_light;
@@ -379,11 +379,11 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 	static class GroupHolder
 	{
-        @Bind(R.id.list_item_layout) View listItemLayout;
-        @Bind(R.id.summary) TextView txt_Summary;
-        @Bind(R.id.tV_feedsCount) TextView txt_UnreadCount;
-        @Bind(R.id.img_View_expandable_indicator) ImageButton imgView;
-        @Bind(R.id.img_view_favicon) ImageView faviconView;
+        @BindView(R.id.list_item_layout) View listItemLayout;
+        @BindView(R.id.summary) TextView txt_Summary;
+        @BindView(R.id.tV_feedsCount) TextView txt_UnreadCount;
+        @BindView(R.id.img_View_expandable_indicator) ImageButton imgView;
+        @BindView(R.id.img_view_favicon) ImageView faviconView;
 
         public GroupHolder(View view) {
             ButterKnife.bind(this, view);

@@ -1,181 +1,172 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Automaattinen synkronointi</string>
-  <string name="app_name">ownCloud-uutislukija</string>
-  <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
-  <string name="empty_view_content">Ei kohteita</string>
-  <string name="toast_GettingMoreItems">Lisäkohteiden lataaminen aloitettu, odota hetki.</string>
-  <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
-  <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman wifi-yhteyttä</string>
-  <string name="current_version">Käytössäsi on versio %s</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="one">%d uusi kohde saatavilla</item>
-    <item quantity="other">%d uutta kohdetta saatavilla</item>
-  </plurals>
-  <string name="message_bar_reload">Päivitä</string>
-  <string name="allUnreadFeeds">Kaikki lukemattomat kohteet</string>
-  <string name="starredFeeds">Tähdellä varustetut</string>
-  <string name="title_activity_new_feed">Lisää uusi syöte</string>
-  <string name="menu_update">Päivitä</string>
-  <string name="menu_About_Changelog">Tietoja / muutosloki</string>
-  <string name="menu_markAllAsRead">Merkitse kaikki luetuiksi</string>
-  <string name="menu_StartImageCaching">Lataa kuvat</string>
-  <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Varustettu tähdellä</string>
-  <string name="action_read">Luku</string>
-  <string name="action_playPodacst">Toista podcast</string>
-  <string name="action_openInBrowser">Avaa selaimessa</string>
-  <string name="action_Share">Jaa</string>
-  <string name="action_login">Palvelinasetukset</string>
-  <string name="action_save">Tallenna</string>
-  <string name="action_settings">Asetukset</string>
-  <string name="action_sync_settings">Synkronointiasetukset</string>
-  <string name="action_add_new_feed">Lisää uusi syöte</string>
-  <string name="action_textToSpeech">Lue ääneen</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="one">%d uusi lukematon kohde</item>
-    <item quantity="other">%d uutta lukematonta kohdetta</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="one">%d uusi lukematon kohde saatavilla</item>
-    <item quantity="other">%d uutta lukematonta kohdetta saatavilla</item>
-  </plurals>
-  <!--Add new feed-->
-  <string name="hint_feed_url">Syötteen osoite</string>
-  <string name="action_add_feed">Lisää syöte</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="action_img_download">Lataa kuva</string>
-  <string name="action_img_sharelink">Jaa kuvan linkki</string>
-  <string name="action_img_open">Avaa kuva selaimessa</string>
-  <string name="action_img_copylink">Kopioi kuvan linkki</string>
-  <string name="action_link_share">Jaa linkki</string>
-  <string name="action_link_open">Avaa linkki selaimessa</string>
-  <string name="action_link_copy">Kopioi linkki</string>
-  <string name="toast_img_download_wait">Ladataan, odota hetki…</string>
-  <string name="toast_img_saved">Kuva tallennettu.</string>
-  <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
-  <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
-  <string name="error_download_failed">Lataus epäonnistui</string>
-  <string name="intent_title_share">Jaa käyttäen</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="action_feed_remove">Poista syöte</string>
-  <string name="action_feed_rename">Nimeä syöte uudelleen</string>
-  <string name="feed_remove_button">Poista</string>
-  <string name="feed_rename_button">Nimeä uudelleen</string>
-  <string name="confirm_feed_remove">Haluatko varmasti poistaa tämän syötteen? Toimintoa ei voi perua!</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Käyttäjätunnus</string>
-  <string name="pref_title_password">Salasana</string>
-  <string name="pref_title_owncloudRootPath">ownCloudin juuriosoite</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Kirjaudu</string>
-  <string name="login_progress_signing_in">Kirjaudutaan…</string>
-  <string name="error_field_required">Tämä kenttä vaaditaan</string>
-  <string name="error_invalid_url">Osoite on virheellinen</string>
-  <!--Import Accounts-->
-  <string name="import_account">Tuo tili</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="one">Ladattiin %d vanha kohde</item>
-    <item quantity="other">Ladattiin %d vanhaa kohdetta</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">Ei enempää kohteita saatavilla</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Toistaiseksi noudettu %d artikkeli…</item>
-    <item quantity="other">Toistaiseksi noudettu %d artikkelia…</item>
-  </plurals>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Asetukset</string>
-  <string name="cache_is_cleared">Välimuisti on tyhjennetty!</string>
-  <!--General settings-->
-  <string name="pref_header_general">Yleiset</string>
-  <string name="pref_title_general_sort_order">Lajittelujärjestys</string>
-  <string-array name="pref_general_sort_order">
-    <item>Uusi -&gt; vanha</item>
-    <item>Vanha -&gt; uusi</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
-  <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
-  <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
-  <string name="warning">Varoitus</string>
-  <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
-  <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Liiku äänipainikkeilla</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
-  <string name="pref_title_OpenInBrowserDirectly">Käytä erillistä selainta artikkelien avaamiseen</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
-  <string name="mtm_decision_always">Aina</string>
-  <string name="mtm_decision_abort">Keskeytä</string>
-  <string name="mtm_notification">Varmennevahvistus</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Podcastia ei ole valittu</string>
-  <string name="no_chapters_available">Ei kappaleita saatavilla</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Näyttö</string>
-  <string name="pref_title_app_theme">Sovelluksen teema</string>
-  <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
-  <string name="pref_display_title_lines_count">Otsikon rivimäärä</string>
-  <string-array name="pref_display_apptheme">
-    <item>Tumma</item>
-    <item>Vaalea</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Ilmoitukset</string>
-  <string name="pref_title_notification_new_articles_available">Näytä ilmoitus uusien kohteiden ollessa saatavilla</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Virhe</string>
-  <string name="login_dialog_text_something_went_wrong">Jokin meni pieleen :(</string>
-  <string name="login_dialog_title_security_warning">Turvallisuusvaroitus</string>
-  <string name="login_dialog_text_security_warning">Yhteytesi ei ole salattu. Hyökkääjä voi siepata yhteyden ja saada tärkeää tietoa (esim. salasanasi). Suosittelemme ehdottomasti käyttämään https-yhteyttä!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Data &amp; synkronointi</string>
-  <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
-  <string name="pref_title_CacheImagesOffline">Varastoi kuvat yhteydetöntä tilaa varten</string>
-  <string name="pref_title_Max_Cache_Size">Välimuistin enimmäiskoko</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Ei koskaan</item>
-    <item>Vain wifissä</item>
-    <item>Wifissä ja mobiiliyhteydessä</item>
-    <item>Kysy kun ei wifi-yhteyttä</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 Mt</item>
-    <item>500 Mt</item>
-    <item>750 Mt</item>
-    <item>1 Gt</item>
-    <item>2 Gt</item>
-    <item>5 Gt</item>
-    <item>10 Gt</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 minuuttia</item>
-    <item>15 minuuttia</item>
-    <item>30 minuuttia</item>
-    <item>45 minuuttia</item>
-    <item>1 tunti</item>
-    <item>2 tuntia</item>
-    <item>3 tuntia</item>
-    <item>6 tuntia</item>
-    <item>12 tuntia</item>
-    <item>24 tuntia</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_play">toistsa</string>
-  <string name="content_desc_pause">keskeytä</string>
-  <string name="content_desc_mark_as_read">merkitse luetuksi</string>
-  <string name="content_desc_mark_as_unread">merkitse lukemattomaksi</string>
-  <string name="content_desc_tap_to_refresh">napauta päivittääksesi</string>
-  <string name="content_desc_add_to_favorites">lisää suosikkeihin</string>
-  <string name="content_desc_remove_from_favorites">poista suosikeista</string>
-  <string name="content_desc_show_password">näytä salasana</string>
-  <string name="content_desc_delete">poista</string>
-  <string name="content_desc_download">lataa</string>
-</resources>
+
+    <string name="auto_sync_string">Automaattinen synkronointi</string>
+    <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
+    <string name="empty_view_content">Ei kohteita</string>
+    <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
+    <string name="current_version">Käytössäsi on versio %s</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d uusi kohde saatavilla</item>
+        <item quantity="other">%d uutta kohdetta saatavilla</item>
+    </plurals>
+    <string name="message_bar_reload">Päivitä</string>
+    <string name="allUnreadFeeds">Kaikki lukemattomat kohteet</string>
+    <string name="starredFeeds">Tähdellä varustetut</string>
+    <string name="title_activity_new_feed">Lisää uusi syöte</string>
+
+    <string name="menu_update">Päivitä</string>
+    <string name="menu_About_Changelog">Tietoja / muutosloki</string>
+    <string name="menu_markAllAsRead">Merkitse kaikki luetuiksi</string>
+    <string name="menu_StartImageCaching">Lataa kuvat</string>
+    <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Varustettu tähdellä</string>
+    <string name="action_read">Luku</string>
+    <string name="action_playPodacst">Toista podcast</string>
+    <string name="action_Share">Jaa</string>
+    <string name="action_login">Palvelinasetukset</string>
+    <string name="action_save">Tallenna</string>
+    <string name="action_settings">Asetukset</string>
+    <string name="action_sync_settings">Synkronointiasetukset</string>
+    <string name="action_add_new_feed">Lisää uusi syöte</string>
+    <string name="action_textToSpeech">Lue ääneen</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">%d uusi lukematon kohde</item>
+        <item quantity="other">%d uutta lukematonta kohdetta</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d uusi lukematon kohde saatavilla</item>
+        <item quantity="other">%d uutta lukematonta kohdetta saatavilla</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Syötteen osoite</string>
+    <string name="action_add_feed">Lisää syöte</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Lataa kuva</string>
+    <string name="action_img_sharelink">Jaa kuvan linkki</string>
+    <string name="action_img_open">Avaa kuva selaimessa</string>
+    <string name="action_img_copylink">Kopioi kuvan linkki</string>
+    <string name="action_link_share">Jaa linkki</string>
+    <string name="action_link_open">Avaa linkki selaimessa</string>
+    <string name="action_link_copy">Kopioi linkki</string>
+    <string name="toast_img_download_wait">Ladataan, odota hetki…</string>
+    <string name="toast_img_saved">Kuva tallennettu.</string>
+    <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
+    <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
+    <string name="error_download_failed">Lataus epäonnistui</string>
+    <string name="intent_title_share">Jaa käyttäen</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Poista syöte</string>
+    <string name="action_feed_rename">Nimeä syöte uudelleen</string>
+    <string name="feed_remove_button">Poista</string>
+    <string name="feed_rename_button">Nimeä uudelleen</string>
+    <string name="confirm_feed_remove">Haluatko varmasti poistaa tämän syötteen? Toimintoa ei voi perua!</string>
+
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Käyttäjätunnus</string>
+    <string name="pref_title_password">Salasana</string>
+    <string name="pref_title_owncloudRootPath">ownCloudin juuriosoite</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Kirjaudu</string>
+    <string name="login_progress_signing_in">Kirjaudutaan…</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Tämä kenttä vaaditaan</string>
+    <!-- Import Accounts -->
+    <string name="import_account">Tuo tili</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Ladattiin %d vanha kohde</item>
+        <item quantity="other">Ladattiin %d vanhaa kohdetta</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Ei enempää kohteita saatavilla</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Toistaiseksi noudettu %d artikkeli…</item>
+        <item quantity="other">Toistaiseksi noudettu %d artikkelia…</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Asetukset</string>
+    <string name="cache_is_cleared">Välimuisti on tyhjennetty!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Yleiset</string>
+    <string name="pref_title_general_sort_order">Lajittelujärjestys</string>
+
+
+    <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
+    <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
+    <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
+    <string name="warning">Varoitus</string>
+    <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
+    <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Liiku äänipainikkeilla</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
+    <string name="mtm_decision_always">Aina</string>
+    <string name="mtm_decision_abort">Keskeytä</string>
+    <string name="mtm_notification">Varmennevahvistus</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Podcastia ei ole valittu</string>
+    <string name="no_chapters_available">Ei kappaleita saatavilla</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Näyttö</string>
+    <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
+    <string name="pref_display_title_lines_count">Otsikon rivimäärä</string>
+    <string name="pref_display_browser">Selain</string>
+
+
+
+
+    <string name="content_desc_play">toistsa</string>
+    <string name="content_desc_pause">keskeytä</string>
+    <string name="content_desc_expand">laajenna</string>
+    <string name="content_desc_collapse">supista</string>
+    <string name="content_desc_mark_as_read">merkitse luetuksi</string>
+    <string name="content_desc_mark_as_unread">merkitse lukemattomaksi</string>
+    <string name="content_desc_tap_to_refresh">napauta päivittääksesi</string>
+    <string name="content_desc_add_to_favorites">lisää suosikkeihin</string>
+    <string name="content_desc_remove_from_favorites">poista suosikeista</string>
+    <string name="content_desc_show_password">näytä salasana</string>
+    <string name="content_desc_delete">poista</string>
+    <string name="content_desc_download">lataa</string>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Ilmoitukset</string>
+    <string name="pref_title_notification_new_articles_available">Näytä ilmoitus uusien kohteiden ollessa saatavilla</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Virhe</string>
+    <string name="login_dialog_text_something_went_wrong">Jokin meni pieleen :(</string>
+    <string name="login_dialog_title_security_warning">Turvallisuusvaroitus</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; synkronointi</string>
+    <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
+    <string name="pref_title_CacheImagesOffline">Varastoi kuvat yhteydetöntä tilaa varten</string>
+    <string name="pref_title_Max_Cache_Size">Välimuistin enimmäiskoko</string>
+
+
+
+
+    </resources>

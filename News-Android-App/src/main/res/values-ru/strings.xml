@@ -1,205 +1,193 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Авто синхронизация</string>
-  <string name="app_name">Чтение новостей ownCloud</string>
-  <string name="title_activity_sync_interval_selector">Переключатель интервала синхронизации</string>
-  <string name="title_activity_news_detail">Последние новости</string>
-  <string name="empty_view_content">Здесь нет элементов</string>
-  <string name="toast_GettingMoreItems">Началось скачивание элементов... Пожалуйста подождите.</string>
-  <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
-  <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
-  <string name="current_version">Вы используете версию %s</string>
-  <string name="widget_header">Новости ownCloud</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="one">доступен %d новый элемент</item>
-    <item quantity="few">доступно %d новых элемента</item>
-    <item quantity="many">доступно %d новых элементов</item>
-    <item quantity="other">доступно %d новых элементов</item>
-  </plurals>
-  <string name="message_bar_reload">Обновить</string>
-  <string name="allUnreadFeeds">Все непрочитанные</string>
-  <string name="starredFeeds">Избранные элементы</string>
-  <string name="title_activity_new_feed">Добавить новую ленту</string>
-  <string name="menu_update">Обновить</string>
-  <string name="menu_About_Changelog">О программе / Изменения</string>
-  <string name="menu_markAllAsRead">Пометить всё как прочитанное</string>
-  <string name="menu_StartImageCaching">Скачать изображения</string>
-  <string name="menu_downloadMoreItems">Скачать ещё</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Избранное</string>
-  <string name="action_read">Читать</string>
-  <string name="action_playPodacst">Воспроизвести Подкаст</string>
-  <string name="action_openInBrowser">Открыть в браузере</string>
-  <string name="action_Share">Поделиться</string>
-  <string name="action_login">Параметры сервера</string>
-  <string name="action_save">Сохранить</string>
-  <string name="action_settings">Настройки</string>
-  <string name="action_sync_settings">Настройки синхронизации</string>
-  <string name="action_add_new_feed">Добавить новую ленту</string>
-  <string name="action_textToSpeech">Зачитать вслух</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="one">У Вас есть %d новый элемент</item>
-    <item quantity="few">У Вас есть %d новых элемента</item>
-    <item quantity="many">У Вас есть %d новых элементов</item>
-    <item quantity="other">У Вас есть %d новых элементов</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="one">доступен %d непрочинатнный элемент</item>
-    <item quantity="few">доступно %d непрочинатнных элемента</item>
-    <item quantity="many">доступно %d непрочинатнных элементов</item>
-    <item quantity="other">доступно %d непрочинатнных элементов</item>
-  </plurals>
-  <!--Add new feed-->
-  <string name="hint_feed_url">Ссылка ленты</string>
-  <string name="action_add_feed">Добавить ленту</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="action_img_download">Скачать изображение</string>
-  <string name="action_img_sharelink">Поделиться ссылкой картинки</string>
-  <string name="action_img_open">Открыть картинку в браузере</string>
-  <string name="action_img_copylink">Скопировать ссылку картинки</string>
-  <string name="action_link_share">Поделиться ссылкой</string>
-  <string name="action_link_open">Открыть ссылку в браузере</string>
-  <string name="action_link_copy">Копировать ссылку</string>
-  <string name="toast_img_download_wait">Загрузка ... Пожалуйста, подождите</string>
-  <string name="toast_img_saved">Изображение сохранено</string>
-  <string name="toast_img_notwriteable">Не удалось записать изображение.</string>
-  <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>
-  <string name="error_download_failed">Скачивание не удалось</string>
-  <string name="intent_title_share">Поделиться в</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="action_feed_remove">Удалить Новостную ленту</string>
-  <string name="action_feed_rename">Переименовать Новостную ленту</string>
-  <string name="feed_remove_button">Удалить</string>
-  <string name="feed_rename_button">Переименовать</string>
-  <string name="confirm_feed_remove">Вы действительно хотите удалить эту Новостную ленту? Это не действие необратимо!</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Имя пользователя</string>
-  <string name="pref_title_password">Пароль</string>
-  <string name="pref_title_owncloudRootPath">root адрес ownCloud</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Войти</string>
-  <string name="login_progress_signing_in">Авторизация...</string>
-  <string name="error_field_required">Это поле обязательно для заполнения</string>
-  <string name="error_invalid_url">Неверный url адрес</string>
-  <!--Import Accounts-->
-  <string name="import_account">Импортировать учётную запись</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="one">Скачан %d старый элемент</item>
-    <item quantity="few">Скачано %d старых элемента</item>
-    <item quantity="many">Скачано %d старых элементов</item>
-    <item quantity="other">Скачано %d старых элементов</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">Доступных объектов больше нет</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Пока привлечено %d  наименований</item>
-    <item quantity="few">Пока привлечено %d  наименований</item>
-    <item quantity="many">Пока привлечено %d  наименований</item>
-    <item quantity="other">Пока привлечено %d  наименований</item>
-  </plurals>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Настройки</string>
-  <string name="cache_is_cleared">Кеш очищен!</string>
-  <!--General settings-->
-  <string name="pref_header_general">Основные</string>
-  <string name="pref_title_general_sort_order">Порядок сортировки</string>
-  <string-array name="pref_general_sort_order">
-    <item>Новые -&gt; Старые</item>
-    <item>Старые -&gt; Новые</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Очистить кеш.</string>
-  <string name="dialog_clearing_cache_please_wait">Очистка кеша... Пожалуйста подождите.</string>
-  <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
-  <string name="warning">Предупреждение</string>
-  <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>
-  <string name="pref_title_ShowOnlyUnread">Показать только непрочитанные статьи</string>
-  <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
-  <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
-  <string name="pref_title_OpenInBrowserDirectly">Используйте внешний браузер для просмотра записей</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
-  <string name="mtm_decision_always">Всегда</string>
-  <string name="mtm_decision_abort">Отмена</string>
-  <string name="mtm_notification">Проверка сертификата</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Нет выбранных подкастов</string>
-  <string name="no_chapters_available">Нет доступных глав</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Экран</string>
-  <string name="pref_title_app_theme">Тема приложения</string>
-  <string name="pref_title_feed_list_layout">Макет списка лент</string>
-  <string name="pref_display_title_lines_count">Количество строк для заголовка</string>
-  <string-array name="pref_display_apptheme">
-    <item>Темная</item>
-    <item>Светлая</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Простой</item>
-    <item>Расширенный</item>
-    <item>Расширенный (полный текст)</item>
-    <item>Расширенный с Webview</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Уведомления</string>
-  <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Ошибка</string>
-  <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
-  <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением ownCloud News. Обновите новостное приложение и appframework.</string>
-  <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
-  <string name="login_dialog_text_security_warning">Вы не используете HTTPS. Злоумышленники могут перехватить трафик и получить доступ к некоторым конфиденциальным данным (например, пароль). Мы настоятельно рекомендуем использовать HTTPS!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Данные и синхронизация</string>
-  <string name="pref_title_clearCache">Очистить кэш</string>
-  <string name="pref_title_CacheImagesOffline">Кэшировать изображения вне сети</string>
-  <string name="pref_title_Max_Cache_Size">Максимальный размер кэша</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Никогда</item>
-    <item>Только через WiFi </item>
-    <item>Через WiFi &amp; и мобильный интернет</item>
-    <item>Спросить, если не подключён к WiFi</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 МБ</item>
-    <item>500 МБ</item>
-    <item>750 МБ</item>
-    <item>1 ГБ</item>
-    <item>2 ГБ</item>
-    <item>5 ГБ</item>
-    <item>10 ГБ</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 Минут</item>
-    <item>15 Минут</item>
-    <item>30 Минут</item>
-    <item>45 Минут</item>
-    <item>1 Час</item>
-    <item>2 Часа</item>
-    <item>3 Часа</item>
-    <item>6 Часов</item>
-    <item>12 Часов</item>
-    <item>24 Часа</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_play">воспроизвести</string>
-  <string name="content_desc_pause">пауза</string>
-  <string name="content_desc_rewind">перемотка назад </string>
-  <string name="content_desc_forward">перемотка в перед</string>
-  <string name="content_desc_expand">развернуть</string>
-  <string name="content_desc_collapse">свернуть</string>
-  <string name="content_desc_mark_as_read">пометить, как прочитанное</string>
-  <string name="content_desc_mark_as_unread">пометить, как непрочитанное</string>
-  <string name="content_desc_tap_to_refresh">коснитесь для обновления</string>
-  <string name="content_desc_add_to_favorites">добавить в избранное</string>
-  <string name="content_desc_remove_from_favorites">удалить из избранного</string>
-  <string name="content_desc_show_password">показать пароль</string>
-  <string name="content_desc_delete">удалить</string>
-  <string name="content_desc_download">загрузить</string>
-</resources>
+
+    <string name="auto_sync_string">Автоматическая синхронизация</string>
+    <string name="title_activity_sync_interval_selector">Переключатель интервала синхронизации</string>
+    <string name="title_activity_news_detail">Последние новости</string>
+    <string name="empty_view_content">Здесь нет элементов</string>
+    <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
+    <string name="current_version">Вы используете версию %s</string>
+    <string name="widget_header">Новости ownCloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">доступен %d новый элемент</item>
+        <item quantity="few">доступно %d новых элемента</item>
+        <item quantity="many">доступно %d новых элементов</item>
+        <item quantity="other">доступно %d новых элементов</item>
+    </plurals>
+    <string name="message_bar_reload">Обновить</string>
+    <string name="allUnreadFeeds">Все непрочитанные</string>
+    <string name="starredFeeds">Избранные элементы</string>
+    <string name="title_activity_new_feed">Добавить новую ленту</string>
+
+    <string name="menu_update">Обновить</string>
+    <string name="menu_About_Changelog">О программе / Изменения</string>
+    <string name="menu_markAllAsRead">Пометить всё как прочитанное</string>
+    <string name="menu_StartImageCaching">Скачать изображения</string>
+    <string name="menu_downloadMoreItems">Скачать ещё</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Избранное</string>
+    <string name="action_read">Читать</string>
+    <string name="action_playPodacst">Воспроизвести Подкаст</string>
+    <string name="action_Share">Поделиться</string>
+    <string name="action_login">Параметры сервера</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_sync_settings">Настройки синхронизации</string>
+    <string name="action_add_new_feed">Добавить новую ленту</string>
+    <string name="action_textToSpeech">Зачитать вслух</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">У Вас есть %d новый элемент</item>
+        <item quantity="few">У Вас есть %d новых элемента</item>
+        <item quantity="many">У Вас есть %d новых элементов</item>
+        <item quantity="other">У Вас есть %d новых элементов</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">доступен %d непрочинатнный элемент</item>
+        <item quantity="few">доступно %d непрочинатнных элемента</item>
+        <item quantity="many">доступно %d непрочинатнных элементов</item>
+        <item quantity="other">доступно %d непрочинатнных элементов</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Ссылка ленты</string>
+    <string name="action_add_feed">Добавить ленту</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Скачать изображение</string>
+    <string name="action_img_sharelink">Поделиться ссылкой картинки</string>
+    <string name="action_img_open">Открыть картинку в браузере</string>
+    <string name="action_img_copylink">Скопировать ссылку картинки</string>
+    <string name="action_link_share">Поделиться ссылкой</string>
+    <string name="action_link_open">Открыть ссылку в браузере</string>
+    <string name="action_link_copy">Копировать ссылку</string>
+    <string name="toast_img_download_wait">Загрузка ... Пожалуйста, подождите</string>
+    <string name="toast_img_saved">Изображение сохранено</string>
+    <string name="toast_img_notwriteable">Не удалось записать изображение.</string>
+    <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>
+    <string name="error_download_failed">Скачивание не удалось</string>
+    <string name="intent_title_share">Поделиться в</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Удалить Новостную ленту</string>
+    <string name="action_feed_rename">Переименовать Новостную ленту</string>
+    <string name="feed_remove_button">Удалить</string>
+    <string name="feed_rename_button">Переименовать</string>
+    <string name="confirm_feed_remove">Вы действительно хотите удалить эту Новостную ленту? Это не действие необратимо!</string>
+
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Имя пользователя</string>
+    <string name="pref_title_password">Пароль</string>
+    <string name="pref_title_owncloudRootPath">root адрес ownCloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Войти</string>
+    <string name="login_progress_signing_in">Авторизация...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Это поле обязательно для заполнения</string>
+    <!-- Import Accounts -->
+    <string name="import_account">Импортировать учётную запись</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Скачан %d старый элемент</item>
+        <item quantity="few">Скачано %d старых элемента</item>
+        <item quantity="many">Скачано %d старых элементов</item>
+        <item quantity="other">Скачано %d старых элементов</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Доступных объектов больше нет</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Пока привлечено %d  наименований</item>
+        <item quantity="few">Пока привлечено %d  наименований</item>
+        <item quantity="many">Пока привлечено %d  наименований</item>
+        <item quantity="other">Пока привлечено %d  наименований</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Настройки</string>
+    <string name="cache_is_cleared">Кеш очищен!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Основные</string>
+    <string name="pref_title_general_sort_order">Порядок сортировки</string>
+
+
+    <string name="dialog_clearing_cache">Очистить кеш.</string>
+    <string name="dialog_clearing_cache_please_wait">Очистка кеша... Пожалуйста подождите.</string>
+    <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
+    <string name="warning">Предупреждение</string>
+    <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>
+    <string name="pref_title_ShowOnlyUnread">Показать только непрочитанные статьи</string>
+    <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
+    <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
+    <string name="dialog_feature_not_available">Эта возможность недоступна в установленной (open-source) версии приложения. Для использования этой возможности загрузите приложение из репозитория GitHub или установите его из Google Play Маркет.</string>
+
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
+    <string name="mtm_decision_always">Всегда</string>
+    <string name="mtm_decision_abort">Отмена</string>
+    <string name="mtm_notification">Проверка сертификата</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Нет выбранных подкастов</string>
+    <string name="no_chapters_available">Нет доступных глав</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Экран</string>
+    <string name="pref_title_feed_list_layout">Макет списка лент</string>
+    <string name="pref_display_title_lines_count">Количество строк для заголовка</string>
+    <string name="pref_display_browser">Браузер</string>
+
+
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Значки действия (подробный просмотр)</string>
+
+    <string name="content_desc_play">воспроизвести</string>
+    <string name="content_desc_pause">пауза</string>
+    <string name="content_desc_rewind">перемотка назад </string>
+    <string name="content_desc_forward">перемотка в перед</string>
+    <string name="content_desc_expand">развернуть</string>
+    <string name="content_desc_collapse">свернуть</string>
+    <string name="content_desc_mark_as_read">пометить, как прочитанное</string>
+    <string name="content_desc_mark_as_unread">пометить, как непрочитанное</string>
+    <string name="content_desc_tap_to_refresh">коснитесь для обновления</string>
+    <string name="content_desc_add_to_favorites">добавить в избранное</string>
+    <string name="content_desc_remove_from_favorites">удалить из избранного</string>
+    <string name="content_desc_show_password">показать пароль</string>
+    <string name="content_desc_delete">удалить</string>
+    <string name="content_desc_download">загрузить</string>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Уведомления</string>
+    <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Ошибка</string>
+    <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
+    <string name="login_dialog_text_zero_version_code">Веб-версия приложения «Новости» вернула «0». Для получения дополнительных сведений обратитесь к сообщению об ошибке: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Данные и синхронизация</string>
+    <string name="pref_title_clearCache">Очистить кэш</string>
+    <string name="pref_title_CacheImagesOffline">Кэшировать изображения вне сети</string>
+    <string name="pref_title_Max_Cache_Size">Максимальный размер кэша</string>
+
+
+
+
+    </resources>

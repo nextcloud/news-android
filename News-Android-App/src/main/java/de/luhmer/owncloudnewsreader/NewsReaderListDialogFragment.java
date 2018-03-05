@@ -25,15 +25,15 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Action;
@@ -68,10 +68,24 @@ public class NewsReaderListDialogFragment extends DialogFragment{
 
     private NewsReaderListActivity parentActivity;
 
-    private RelativeLayout mRemoveFeedDialogView, mRenameFeedDialogView, mProgressView;
-    private Button mButtonRemoveConfirm, mButtonRemoveCancel, mButtonRenameConfirm, mButtonRenameCancel;
-    private ListView mListView;
-    private EditText mFeedName;
+    @BindView(R.id.lv_menu_list) ListView mListView;
+
+    @BindView(R.id.tv_menu_title) TextView tvTitle;
+    @BindView(R.id.tv_menu_text)  TextView tvText;
+
+    @BindView(R.id.ic_menu_feedicon) ImageView imgTitle;
+
+    @BindView(R.id.remove_feed_dialog) RelativeLayout mRemoveFeedDialogView;
+    @BindView(R.id.rename_feed_dialog) RelativeLayout mRenameFeedDialogView;
+    @BindView(R.id.progressView)       RelativeLayout mProgressView;
+
+    @BindView(R.id.button_remove_confirm) Button mButtonRemoveConfirm;
+    @BindView(R.id.button_remove_cancel) Button mButtonRemoveCancel;
+    @BindView(R.id.button_rename_confirm) Button mButtonRenameConfirm;
+    @BindView(R.id.button_rename_cancel) Button mButtonRenameCancel;
+
+    @BindView(R.id.renamefeed_feedname) EditText mFeedName;
+
 
 
     @Override
@@ -100,7 +114,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         });
 
         int style = DialogFragment.STYLE_NO_TITLE;
-        int theme = ThemeChooser.isDarkTheme(getActivity())
+        int theme = ThemeChooser.getInstance(getActivity()).isDarkTheme()
                 ? R.style.FloatingDialog
                 : R.style.FloatingDialogLight;
         setStyle(style, theme);
@@ -113,18 +127,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
 
         View v = inflater.inflate(R.layout.fragment_dialog_feedoptions, container, false);
 
-        TextView tvTitle = (TextView) v.findViewById(R.id.tv_menu_title);
-        TextView tvText = (TextView) v.findViewById(R.id.tv_menu_text);
-        ImageView imgTitle = (ImageView) v.findViewById(R.id.ic_menu_feedicon);
-
-        mRemoveFeedDialogView = (RelativeLayout) v.findViewById(R.id.remove_feed_dialog);
-        mRenameFeedDialogView = (RelativeLayout) v.findViewById(R.id.rename_feed_dialog);
-        mProgressView = (RelativeLayout) v.findViewById(R.id.progressView);
-        mButtonRemoveConfirm = (Button) v.findViewById(R.id.button_remove_confirm);
-        mButtonRemoveCancel = (Button) v.findViewById(R.id.button_remove_cancel);
-        mButtonRenameConfirm = (Button) v.findViewById(R.id.button_rename_confirm);
-        mButtonRenameCancel = (Button) v.findViewById(R.id.button_rename_cancel);
-        mFeedName = (EditText) v.findViewById(R.id.renamefeed_feedname);
+        ButterKnife.bind(this, v);
 
         FavIconHandler favIconHandler = new FavIconHandler(getContext());
         favIconHandler.loadFavIconForFeed(mDialogIconUrl, imgTitle);
@@ -143,7 +146,6 @@ public class NewsReaderListDialogFragment extends DialogFragment{
             }
         });
 
-        mListView = (ListView) v.findViewById(R.id.lv_menu_list);
         List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
@@ -222,15 +224,10 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                 setCancelable(false);
                 getDialog().setCanceledOnTouchOutside(false);
 
-                Completable.fromCallable(new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        Map<String, String> feedTitleMap = new LinkedHashMap<>();
-                        feedTitleMap.put("feedTitle", mFeedName.getText().toString());
-                        mApi.getAPI().renameFeed(feedId, feedTitleMap);
-                        return true;
-                    }
-                })
+
+                Map<String, String> paramMap = new LinkedHashMap<>();
+                paramMap.put("feedTitle", mFeedName.getText().toString());
+                mApi.getAPI().renameFeed(feedId, paramMap)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Action() {
@@ -273,13 +270,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                 getDialog().setCanceledOnTouchOutside(false);
 
 
-                Completable.fromCallable(new Callable<Boolean>() {
-                            @Override
-                            public Boolean call() throws Exception {
-                                mApi.getAPI().deleteFeed(feedId);
-                                return true;
-                            }
-                        })
+                mApi.getAPI().deleteFeed(feedId)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Action() {

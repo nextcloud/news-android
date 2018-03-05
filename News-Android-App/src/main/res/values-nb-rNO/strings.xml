@@ -1,195 +1,215 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="auto_sync_string">Autosynk</string>
-  <string name="app_name">ownClouds Nyhetsleser</string>
-  <string name="title_activity_sync_interval_selector">Velger for synkroniseringsintervall</string>
-  <string name="title_activity_news_detail">NyhetsDetaljAktivitet</string>
-  <string name="empty_view_content">Ingenting her</string>
-  <string name="toast_GettingMoreItems">Startet nedlasting av flere elementer... Vennligst vent.</string>
-  <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
-  <string name="do_you_want_to_download_without_wifi">Vil du laste ned bildene uten WiFi tilkobling?</string>
-  <string name="current_version">Du bruker versjon %s</string>
-  <string name="widget_header">ownCloud Nyheter</string>
-  <plurals name="message_bar_new_articles_available">
-    <item quantity="one">%d nytt element tilgjengelig</item>
-    <item quantity="other">%d nye elementer tilgjengelig</item>
-  </plurals>
-  <string name="message_bar_reload">Last på nytt</string>
-  <string name="allUnreadFeeds">Alle uleste elementer</string>
-  <string name="starredFeeds">Stjernemerkede elementer</string>
-  <string name="title_activity_new_feed">Legg til ny kilde</string>
-  <string name="menu_update">Oppdater</string>
-  <string name="menu_About_Changelog">Om / Endringslogg</string>
-  <string name="menu_markAllAsRead">Marker alle som lest</string>
-  <string name="menu_StartImageCaching">Last ned bilder</string>
-  <string name="menu_downloadMoreItems">Last ned flere elementer</string>
-  <!--Action Bar Items-->
-  <string name="action_starred">Merket</string>
-  <string name="action_read">Les</string>
-  <string name="action_playPodacst">Spill podcast</string>
-  <string name="action_openInBrowser">Åpne i nettleser</string>
-  <string name="action_Share">Del</string>
-  <string name="action_login">Serverinnstillinger</string>
-  <string name="action_save">Lagre</string>
-  <string name="action_settings">Innstillinger</string>
-  <string name="action_sync_settings">Innstillinger for synkronisering</string>
-  <string name="action_add_new_feed">Legg til ny kilde</string>
-  <string name="action_textToSpeech">Les opp</string>
-  <plurals name="notification_new_items_ticker">
-    <item quantity="one">Du har %d nytt ulest element</item>
-    <item quantity="other">Du har %d nye uleste elementer</item>
-  </plurals>
-  <plurals name="notification_new_items_text">
-    <item quantity="one">%d nytt ulest element tilgjengelig</item>
-    <item quantity="other">%d nye uleste elementer tilgjengelig</item>
-  </plurals>
-  <!--Add new feed-->
-  <string name="hint_feed_url">Nyhets-URL</string>
-  <string name="action_add_feed">Legg til nyhetskilde</string>
-  <!--String related to NewsDetail-ContextMenu Items-->
-  <string name="action_img_download">Last ned bilde</string>
-  <string name="action_img_sharelink">Del bildelenke</string>
-  <string name="action_img_open">Åpne bilde i nettleser</string>
-  <string name="action_img_copylink">Kopier bildelenke</string>
-  <string name="action_link_share">Del lenke</string>
-  <string name="action_link_open">Åpne lenke i nettleser</string>
-  <string name="action_link_copy">Kopier lenke</string>
-  <string name="toast_img_download_wait">Laster ned... Vennligst vent</string>
-  <string name="toast_img_saved">Bilde lagret.</string>
-  <string name="toast_img_notwriteable">Klarte ikke å skrive bilde.</string>
-  <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
-  <string name="error_download_failed">Nedlasting feilet</string>
-  <string name="intent_title_share">Del via</string>
-  <!--Strings related to NewsReaderListDialogFragment (Rename/Remove Feed)-->
-  <string name="action_feed_remove">Fjern nyhetskilde</string>
-  <string name="action_feed_rename">Omdøp nyhetskilde</string>
-  <string name="feed_remove_button">Fjern</string>
-  <string name="feed_rename_button">Gi nytt navn</string>
-  <string name="confirm_feed_remove">Vil du virkelig fjerne denne nyhetskilden? Dette kan ikke angres!</string>
-  <!--Strings related to login-->
-  <string name="pref_title_username">Brukernavn</string>
-  <string name="pref_title_password">Passord</string>
-  <string name="pref_title_owncloudRootPath">ownCloud rot-adresse</string>
-  <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
-  <string name="action_sign_in_short">Logg inn</string>
-  <string name="login_progress_signing_in">Logger inn...</string>
-  <string name="error_field_required">Dette feltet er påkrevd</string>
-  <string name="error_invalid_url">Denne adressen er feil</string>
-  <!--Import Accounts-->
-  <string name="import_account">Importer konto</string>
-  <!--Toast Messages-->
-  <plurals name="toast_downloaded_x_items">
-    <item quantity="one">Lastet ned %d gammelt element</item>
-    <item quantity="other">Lastet ned %d gamle elementer</item>
-  </plurals>
-  <string name="toast_no_more_downloads_available">Ingen flere elemeter tilgjengelig</string>
-  <plurals name="fetched_items_so_far">
-    <item quantity="one">Hentet %d element så langt...</item>
-    <item quantity="other">Hentet %d elementer så langt...</item>
-  </plurals>
-  <!--Strings related to Settings-->
-  <string name="title_activity_settings">Innstillinger</string>
-  <string name="cache_is_cleared">Mellomlager er nullstilt!</string>
-  <!--General settings-->
-  <string name="pref_header_general">Generelt</string>
-  <string name="pref_title_general_sort_order">Sorteringsrekkefølge</string>
-  <string-array name="pref_general_sort_order">
-    <item>Ny -&gt; Gammel</item>
-    <item>Gammel -&gt; Ny</item>
-  </string-array>
-  <string name="dialog_clearing_cache">Sletter hurtiglager</string>
-  <string name="dialog_clearing_cache_please_wait">Nullstiller hurtiglager... Vennligst vent.</string>
-  <string name="reset_cache_unsaved_changes">Det er usynkroniserte forandringer. Vil du resette hurtilageret likevel?</string>
-  <string name="warning">Advarsel</string>
-  <string name="pref_title_AutoSyncOnStart">Synkroniser under oppstart</string>
-  <string name="pref_title_ShowOnlyUnread">Vis kun uleste artikler</string>
-  <string name="pref_title_DisableHostnameVerification">Deaktiver vertsnavnverifikasjon</string>
-  <string name="pref_title_NavigateWithVolumeButtons">Naviger med volumknappene</string>
-  <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
-  <string name="pref_title_OpenInBrowserDirectly">Bruk ekstern nettleser til å vise artikler</string>
-  <!--MemorizingTrustManager-->
-  <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
-  <string name="mtm_decision_always">Alltid</string>
-  <string name="mtm_decision_abort">Avbryt</string>
-  <string name="mtm_notification">Sertifikatverifikasjon</string>
-  <!--Podcast-->
-  <string name="no_podcast_selected">Ingen podcast valgt</string>
-  <string name="no_chapters_available">Ingen kapitler tilgjengelig</string>
-  <!--Settings for Display-->
-  <string name="pref_header_display">Vis</string>
-  <string name="pref_title_app_theme">App-tema</string>
-  <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
-  <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
-  <string-array name="pref_display_apptheme">
-    <item>Mørk</item>
-    <item>Lys</item>
-  </string-array>
-  <string-array name="pref_display_feed_list_layout">
-    <item>Enkel</item>
-    <item>Utvidet</item>
-    <item>Utvidet (fulltekst)</item>
-    <item>Utvidet med Nettvisning</item>
-  </string-array>
-  <string-array name="pref_title_lines_count">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-  </string-array>
-  <!--Settings for Notifications-->
-  <string name="pref_header_notifications">Varsler</string>
-  <string name="pref_title_notification_new_articles_available">Vis varsel når nye artikler er tilgjengelig</string>
-  <!--Login Dialog-->
-  <string name="login_dialog_title_error">Feil</string>
-  <string name="login_dialog_text_something_went_wrong">Noe gikk galt :-(</string>
-  <string name="login_dialog_text_not_compatible">Applikasjonsversjonen din er ikka kompatibel med din ownCloud Nyhetsapp. Vennligst oppdater nyhetsappen og apprammeverket.</string>
-  <string name="login_dialog_title_security_warning">Sikkerhetsadvarsel</string>
-  <string name="login_dialog_text_security_warning">Du bruker ikke https. En angriper kan fange opp trafikken og få tilgang til noen sensitive data (f.eks passordet ditt). Så det er det sterkt anbefalt å bruke https!</string>
-  <!--Data & Sync-->
-  <string name="pref_header_data_sync">Data &amp; synk.</string>
-  <string name="pref_title_clearCache">Slett hurtiglager</string>
-  <string name="pref_title_CacheImagesOffline">Bildehurtiglager er offline</string>
-  <string name="pref_title_Max_Cache_Size">Maks hurtiglagerstørrelse</string>
-  <string-array name="pref_data_sync_image_cache">
-    <item>Aldri</item>
-    <item>Bare over WiFi</item>
-    <item>Over WiFi &amp; Mobil</item>
-    <item>Spør når ikke koblet til WiFi</item>
-  </string-array>
-  <string-array name="pref_data_sync_max_cache_size">
-    <item>250 MB</item>
-    <item>500 MB</item>
-    <item>750 MB</item>
-    <item>1 GB</item>
-    <item>2 GB</item>
-    <item>5 GB</item>
-    <item>10 GB</item>
-  </string-array>
-  <string-array name="array_sync_interval">
-    <item>5 minutter</item>
-    <item>15 minutter</item>
-    <item>30 minutter</item>
-    <item>45 minutter</item>
-    <item>1 time</item>
-    <item>2 timer</item>
-    <item>3 timer</item>
-    <item>6 timer</item>
-    <item>12 timer</item>
-    <item>24 timer</item>
-  </string-array>
-  <!--content description for images and icons-->
-  <string name="content_desc_play">spil</string>
-  <string name="content_desc_pause">pause</string>
-  <string name="content_desc_rewind">bakover</string>
-  <string name="content_desc_forward">framover</string>
-  <string name="content_desc_expand">utvid</string>
-  <string name="content_desc_collapse">skjul</string>
-  <string name="content_desc_mark_as_read">merk som lest</string>
-  <string name="content_desc_mark_as_unread">merk som ulest</string>
-  <string name="content_desc_tap_to_refresh">trykk for å oppfiske</string>
-  <string name="content_desc_add_to_favorites">legg til i favoritter</string>
-  <string name="content_desc_remove_from_favorites">fjern fra favoritter</string>
-  <string name="content_desc_show_password">vis passord</string>
-  <string name="content_desc_delete">slett</string>
-  <string name="content_desc_download">last ned</string>
-</resources>
+
+    <string name="auto_sync_string">Autosynk</string>
+    <string name="title_activity_sync_interval_selector">Velger for synkroniseringsintervall</string>
+    <string name="title_activity_news_detail">NyhetsDetaljAktivitet</string>
+    <string name="empty_view_content">Ingenting her</string>
+    <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet... Vennligst vent.</string>
+    <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
+    <string name="do_you_want_to_download_without_wifi">Vil du laste ned bilder uten en Wi-Fi- tilkobling</string>
+    <string name="current_version">Du bruker versjon %s</string>
+    <string name="widget_header">ownCloud Nyheter</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d nytt element tilgjengelig</item>
+        <item quantity="other">%d nye elementer tilgjengelig</item>
+    </plurals>
+    <string name="message_bar_reload">Last på nytt</string>
+    <string name="allUnreadFeeds">Alle uleste elementer</string>
+    <string name="starredFeeds">Stjernemerkede elementer</string>
+    <string name="title_activity_new_feed">Legg til ny kilde</string>
+
+    <string name="menu_update">Oppdater</string>
+    <string name="menu_About_Changelog">Om / Endringslogg</string>
+    <string name="menu_markAllAsRead">Marker alle som lest</string>
+    <string name="menu_StartImageCaching">Last ned bilder</string>
+    <string name="menu_downloadMoreItems">Last ned flere elementer</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Merket</string>
+    <string name="action_read">Les</string>
+    <string name="action_playPodacst">Spill podcast</string>
+    <string name="action_openInBrowser">Åpne i nettleser</string>
+    <string name="action_Share">Del</string>
+    <string name="action_login">Serverinnstillinger</string>
+    <string name="action_save">Lagre</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="action_sync_settings">Innstillinger for synkronisering</string>
+    <string name="action_add_new_feed">Legg til ny kilde</string>
+    <string name="action_textToSpeech">Les opp</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Du har %d nytt ulest element</item>
+        <item quantity="other">Du har %d nye uleste elementer</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d nytt ulest element tilgjengelig</item>
+        <item quantity="other">%d nye uleste elementer tilgjengelig</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Nyhets-URL</string>
+    <string name="action_add_feed">Legg til nyhetskilde</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Last ned bilde</string>
+    <string name="action_img_sharelink">Del bildelenke</string>
+    <string name="action_img_open">Åpne bilde i nettleser</string>
+    <string name="action_img_copylink">Kopier bildelenke</string>
+    <string name="action_link_share">Del lenke</string>
+    <string name="action_link_open">Åpne lenke i nettleser</string>
+    <string name="action_link_copy">Kopier lenke</string>
+    <string name="toast_img_download_wait">Laster ned... Vennligst vent</string>
+    <string name="toast_img_saved">Bilde lagret.</string>
+    <string name="toast_img_notwriteable">Klarte ikke å skrive bilde.</string>
+    <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
+    <string name="error_download_failed">Nedlasting feilet</string>
+    <string name="intent_title_share">Del via</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Fjern nyhetskilde</string>
+    <string name="action_feed_rename">Omdøp nyhetskilde</string>
+    <string name="feed_remove_button">Fjern</string>
+    <string name="feed_rename_button">Gi nytt navn</string>
+    <string name="confirm_feed_remove">Vil du virkelig fjerne denne nyhetskilden? Dette kan ikke angres!</string>
+
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Brukernavn</string>
+    <string name="pref_title_password">Passord</string>
+    <string name="pref_title_owncloudRootPath">ownCloud rot-adresse</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Logg inn</string>
+    <string name="login_progress_signing_in">Logger inn...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Dette feltet er påkrevd</string>
+    <string name="error_invalid_url">URL er ikke riktig</string>
+
+
+    <!-- Import Accounts -->
+    <string name="import_account">Importer konto</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Lastet ned %d gammelt element</item>
+        <item quantity="other">Lastet ned %d gamle elementer</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Ingen flere elemeter tilgjengelig</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Hentet %d element så langt...</item>
+        <item quantity="other">Hentet %d elementer så langt...</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Innstillinger</string>
+    <string name="cache_is_cleared">Mellomlager er nullstilt!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Generelt</string>
+    <string name="pref_title_general_sort_order">Sorteringsrekkefølge</string>
+
+
+    <string name="pref_general_sort_order_new_old">Ny -> Gammel</string>
+    <string name="pref_general_sort_order_old_new">Gammel -> Ny</string>
+
+    <string name="dialog_clearing_cache">Sletter hurtiglager</string>
+    <string name="dialog_clearing_cache_please_wait">Nullstiller hurtiglager... Vennligst vent.</string>
+    <string name="reset_cache_unsaved_changes">Det er usynkroniserte forandringer. Vil du resette hurtilageret likevel?</string>
+    <string name="warning">Advarsel</string>
+    <string name="pref_title_AutoSyncOnStart">Synkroniser under oppstart</string>
+    <string name="pref_title_ShowOnlyUnread">Vis kun uleste artikler</string>
+    <string name="pref_title_DisableHostnameVerification">Deaktiver vertsnavnverifikasjon</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Naviger med volumknappene</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
+    <string name="pref_title_OpenInBrowserDirectly">Hopp over detaljert visning og åpne artikkel i nettleser</string>
+
+    <string name="dialog_feature_not_available">Denne muligheten er ikke tilgjengelig i denne (åpen kildekode) versjonen av denne app. Hvis du ønsker å benytte denne muligheten vennligst last ned fra GitHub eller last ned programmet fra Google PlayStore.</string>
+
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
+    <string name="mtm_decision_always">Alltid</string>
+    <string name="mtm_decision_abort">Avbryt</string>
+    <string name="mtm_notification">Sertifikatverifikasjon</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Ingen podcast valgt</string>
+    <string name="no_chapters_available">Ingen kapitler tilgjengelig</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Vis</string>
+    <string name="pref_title_app_theme">App- tema (start programmet igjen for å se endringen)</string>
+    <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
+    <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
+    <string name="pref_display_browser">Nettleser</string>
+
+
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
+
+    <string name="pref_display_apptheme_dark">Mørk</string>
+    <string name="pref_display_apptheme_dark_oled">Mørk (for OLED- skjermer)</string>
+    <string name="pref_display_browser_built_in">Innebygd nettleser</string>
+    <string name="pref_display_browser_external">Ekstern nettleser</string>
+
+    <string name="pref_display_feed_list_layout_simple">Enkel</string>
+    <string name="pref_display_feed_list_layout_extended">Utvidet</string>
+    <string name="content_desc_play">spil</string>
+    <string name="content_desc_pause">pause</string>
+    <string name="content_desc_rewind">bakover</string>
+    <string name="content_desc_forward">framover</string>
+    <string name="content_desc_expand">utvid</string>
+    <string name="content_desc_collapse">skjul</string>
+    <string name="content_desc_mark_as_read">merk som lest</string>
+    <string name="content_desc_mark_as_unread">merk som ulest</string>
+    <string name="content_desc_tap_to_refresh">trykk for å oppfiske</string>
+    <string name="content_desc_add_to_favorites">legg til i favoritter</string>
+    <string name="content_desc_remove_from_favorites">fjern fra favoritter</string>
+    <string name="content_desc_show_password">vis passord</string>
+    <string name="content_desc_delete">slett</string>
+    <string name="content_desc_download">last ned</string>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Varsler</string>
+    <string name="pref_title_notification_new_articles_available">Vis varsel når nye artikler er tilgjengelig</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Feil</string>
+    <string name="login_dialog_text_something_went_wrong">Noe gikk galt :-(</string>
+    <string name="login_dialog_text_zero_version_code">Nettnyhetsprogrammet returnerte versjon \"0\". Ta en titt på følgende feilrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">Sikkerhetsadvarsel</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; synk.</string>
+    <string name="pref_title_clearCache">Slett hurtiglager</string>
+    <string name="pref_title_CacheImagesOffline">Bildehurtiglager er offline</string>
+    <string name="pref_title_Max_Cache_Size">Maks hurtiglagerstørrelse</string>
+
+
+
+
+    <string name="pref_data_sync_image_cache_never">Aldri</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Bare over Wi-Fi</string>
+    <string name="array_sync_interval_min_5">5 minutter</string>
+    <string name="array_sync_interval_min_15">15 minutter</string>
+    <string name="array_sync_interval_min_30">30 minutter</string>
+    <string name="array_sync_interval_min_45">45 minutter</string>
+    <string name="array_sync_interval_hour_1">1 time</string>
+    <string name="array_sync_interval_hour_2">2 timer</string>
+    <string name="array_sync_interval_hour_3">3 timer</string>
+    <string name="array_sync_interval_hour_6">6 timer</string>
+    <string name="array_sync_interval_hour_12">12 timer</string>
+    <string name="array_sync_interval_hour_24">24 timer</string>
+
+    </resources>

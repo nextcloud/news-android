@@ -25,10 +25,10 @@ public class DownloadImagesActivity extends Activity {
                 .setCancelable(true)
                 .setPositiveButton(getString(android.R.string.yes) ,new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
-                        Intent service = new Intent(DownloadImagesActivity.this, DownloadImagesService.class);
-                        service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemIdBeforeSync);
-                        service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
-                        DownloadImagesActivity.this.startService(service);
+                        Intent data = new Intent();
+                        data.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemIdBeforeSync);
+                        data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
+                        DownloadImagesService.enqueueWork(DownloadImagesActivity.this, data);
 
                         DownloadImagesActivity.this.finish();
                     }

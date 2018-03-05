@@ -9,6 +9,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.model.NextcloudNewsVersion;
 import de.luhmer.owncloudnewsreader.model.NextcloudStatus;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -57,13 +58,15 @@ public interface API {
 
 
     @PUT("feeds/{feedId}/rename")
-    Call<Void> renameFeed(@Path("feedId") long feedId, @Body Map<String, String> feedTitleMap);
+    Completable renameFeed(@Path("feedId") long feedId, @Body Map<String, String> paramMap);
+
     /*
     @PUT("feeds/{feedId}/move")
-    Call<Void> moveFeed(@Path("feedId") long feedId, @Body Map<String,Long> folderIdMap);*/
+    Completable moveFeed(@Path("feedId") long feedId, @Body Map<String,Long> folderIdMap);
+    */
 
     @DELETE("feeds/{feedId}")
-    Call<Void> deleteFeed(@Path("feedId") long feedId);
+    Completable deleteFeed(@Path("feedId") long feedId);
 
 
     /** ITEMS **/

@@ -24,11 +24,11 @@ import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
@@ -40,39 +40,39 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private static SparseArray<Integer> downloadProgressList = new SparseArray<>();
 
     @Nullable
-    @Bind(R.id.star_imageview)
+    @BindView(R.id.star_imageview)
     protected ImageView starImageView;
 
-    @Bind(R.id.summary)
+    @BindView(R.id.summary)
     protected TextView textViewSummary;
 
-    @Bind(R.id.tv_item_date)
+    @BindView(R.id.tv_item_date)
     protected TextView textViewItemDate;
 
-    @Bind(R.id.tv_subscription)
+    @BindView(R.id.tv_subscription)
     protected TextView textViewTitle;
 
-    @Bind(R.id.imgViewFavIcon)
+    @BindView(R.id.imgViewFavIcon)
     protected ImageView imgViewFavIcon;
 
-    @Bind(R.id.color_line_feed)
+    @BindView(R.id.color_line_feed)
     protected View colorLineFeed;
 
-    @Bind(R.id.btn_playPausePodcast)
+    @BindView(R.id.btn_playPausePodcast)
     protected ImageView btnPlayPausePodcast;
 
-    @Bind(R.id.podcastDownloadProgress)
+    @BindView(R.id.podcastDownloadProgress)
     protected HoloCircularProgressBar pbPodcastDownloadProgress;
 
-    @Bind(R.id.podcast_wrapper)
+    @BindView(R.id.podcast_wrapper)
     View flPlayPausePodcastWrapper;
 
     // only in extended layout
-    @Nullable @Bind(R.id.body)
+    @Nullable @BindView(R.id.body)
     protected TextView textViewBody;
 
     // Only in extended with webview layout
-    @Nullable @Bind(R.id.webView_body)
+    @Nullable @BindView(R.id.webView_body)
     protected WebView webView_body;
 
     private RecyclerItemClickListener clickListener;
@@ -220,7 +220,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             }
         }
 
-        if(textViewTitle != null) {
+        if(textViewTitle != null && title != null) {
             textViewTitle.setText(Html.fromHtml(title));
         }
 
@@ -243,7 +243,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon);
 
         if(webView_body != null) {
-            String htmlPage = NewsDetailFragment.getHtmlPage(itemView.getContext(),rssItem,false);
+            String htmlPage = RssItemToHtmlTask.getHtmlPage(itemView.getContext(), rssItem, false);
             webView_body.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
         }
     }

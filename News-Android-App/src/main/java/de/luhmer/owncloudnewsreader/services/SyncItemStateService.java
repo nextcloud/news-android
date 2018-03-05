@@ -26,6 +26,8 @@ import android.app.ActivityManager.RunningServiceInfo;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.JobIntentService;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -36,16 +38,21 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.ItemStateSync;
 
-public class SyncItemStateService extends IntentService {
+public class SyncItemStateService extends JobIntentService {
 
-	@Inject ApiProvider mApi;
+	/**
+	 * Unique job/channel ID for this service.
+	 */
+	static final int JOB_ID = 1001;
+    private static final String TAG = SyncItemStateService.class.getCanonicalName();
 
-	public SyncItemStateService() {
-		super(null);
-	}	
-	
-	public SyncItemStateService(String name) {
-		super(name);
+    @Inject ApiProvider mApi;
+
+	/**
+	 * Convenience method for enqueuing work in to this service.
+	 */
+	public static void enqueueWork(Context context, Intent work) {
+		enqueueWork(context, SyncItemStateService.class, JOB_ID, work);
 	}
 
 	@Override
@@ -55,11 +62,12 @@ public class SyncItemStateService extends IntentService {
 	}
 
 	@Override
-	protected void onHandleIntent(Intent intent) {
+	protected void onHandleWork(Intent intent) {
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
         try {
             ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
+            Log.v(TAG, "SyncItemStateService successful");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -67,7 +67,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
@@ -123,18 +123,18 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	//private Date mLastSyncDate = new Date(0);
 	private boolean mSyncOnStartupPerformed = false;
 
-	@Bind(R.id.toolbar) Toolbar toolbar;
+	@BindView(R.id.toolbar) Toolbar toolbar;
 
 	private ServiceConnection mConnection = null;
 
-	@Nullable @Bind(R.id.drawer_layout)
+	@Nullable @BindView(R.id.drawer_layout)
 	protected DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.chooseTheme(this);
+		ThemeChooser.ChooseTheme(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
 
@@ -187,7 +187,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				}
 			};
 
-			drawerLayout.setDrawerListener(drawerToggle);
+			drawerLayout.addDrawerListener(drawerToggle);
 
 			try {
 				// increase the size of the drag margin to prevent starting a star swipe when
@@ -476,7 +476,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				// Setting android:TextColor to #000 in the light theme results in black on black
 				// text on the Snackbar, set the text back to white,
 				// TODO: find a cleaner way to do this
-				TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+				TextView textView = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
 				textView.setTextColor(Color.WHITE);
 				snackbar.show();
 			}
@@ -537,10 +537,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
 		if (isFolder) {
+            /*
 			if(idFeed >= 0) {
 				//currently no actions for folders
 				//String titel = dbConn.getFolderById(idFeed).getLabel();
-			}
+			}*/
 		} else {
 			String titel = dbConn.getFeedById(idFeed).getFeedTitle();
 			String iconurl = dbConn.getFeedById(idFeed).getFaviconUrl();
@@ -612,9 +613,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     {
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
+		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
 			StartLoginFragment(this);
-		else {
+		} else {
 			if (!ownCloudSyncService.isSyncRunning())
 			{
 				new PostDelayHandler(this).stopRunningPostDelayHandler();//Stop pending sync handler
@@ -630,7 +631,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			} else {
 				UpdateButtonLayout();
 			}
-
 		}
     }
 
@@ -721,10 +721,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
 				long highestItemId = dbConn.getLowestRssItemIdUnread();
-				Intent service = new Intent(this, DownloadImagesService.class);
-				service.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
-				service.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
-				startService(service);
+
+
+				Intent data = new Intent();
+				data.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
+				data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
+				DownloadImagesService.enqueueWork(this, data);
 
 				break;
 
@@ -819,7 +821,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			String oldLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
 			String newLayout = PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
 
-            if(ThemeChooser.ThemeRequiresRestartOfUI(this) || !newLayout.equals(oldLayout)) {
+            if(ThemeChooser.getInstance(this).themeRequiresRestartOfUI(this) || !newLayout.equals(oldLayout)) {
                 finish();
                 startActivity(getIntent());
             } else if(data.hasExtra(SettingsActivity.CACHE_CLEARED) && ownCloudSyncService != null) {
