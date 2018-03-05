@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -39,6 +41,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
+import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -178,6 +181,8 @@ public class PodcastFragment extends Fragment {
         tvTo.setText(String.format("%02d:%02d", minutes, seconds));
         tvToSlider.setText(String.format("%02d:%02d", minutes, seconds));
 
+        tvPlaybackSpeed.setText(String.format("%.02f", podcast.getSpeed()));
+
         tvTitle.setText(podcast.getTitle());
         tvTitleSlider.setText(podcast.getTitle());
 
@@ -236,6 +241,9 @@ public class PodcastFragment extends Fragment {
     @BindView(R.id.pb_progress) ProgressBar pb_progress;
     @BindView(R.id.pb_progress2) ProgressBar pb_progress2;
 
+    @Bind(R.id.tv_playbackSpeed) TextView tvPlaybackSpeed;
+    @Bind(R.id.buttonSpeedMinus) TextView btnSpeedMinus;
+    @Bind(R.id.buttonSpeedPlus) TextView btnSpeedPlus;
 
     @BindView(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
     @BindView(R.id.rlPodcast) RelativeLayout rlPodcast;
@@ -270,6 +278,18 @@ public class PodcastFragment extends Fragment {
         eventBus.post(new WindPodcast() {{
             long position = podcast.getCurrent() - 10000;
             toPositionInPercent = ((double) position / (double) podcast.getMax()) * 100d;
+        }});
+    }
+
+    @OnClick(R.id.buttonSpeedMinus) void speedMinus() {
+        eventBus.post(new SpeedPodcast() {{
+            playbackSpeed = podcast.getSpeed() - 0.1f;
+        }});
+    }
+
+    @OnClick(R.id.buttonSpeedPlus) void speedPlus() {
+        eventBus.post(new SpeedPodcast() {{
+            playbackSpeed = podcast.getSpeed() + 0.1f;
         }});
     }
 
@@ -312,7 +332,7 @@ public class PodcastFragment extends Fragment {
         podcastFeedList.setVisibility(View.VISIBLE);
 
         sb_progress.setOnSeekBarChangeListener(onSeekBarChangeListener);
-
+        tvPlaybackSpeed.setOnEditorActionListener(onEditorActionListener);
 
         return view;
     }
@@ -383,6 +403,21 @@ public class PodcastFragment extends Fragment {
 
         }
     };
+
+    private TextView.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(final TextView textView, int i, KeyEvent keyEvent) {
+            final float pbSpeed = Float.parseFloat(textView.getText().toString());
+                if(hasTitleInCache) {
+                    eventBus.post(new SpeedPodcast() {{
+                        playbackSpeed = pbSpeed;
+                    }});
+                }
+                Log.v(TAG, "playback speed changed: "+pbSpeed);
+                return true;
+        }
+    };
+
 
     boolean blockSeekbarUpdate = false;
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
