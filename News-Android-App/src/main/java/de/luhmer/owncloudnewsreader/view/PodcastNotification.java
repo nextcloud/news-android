@@ -119,8 +119,12 @@ public class PodcastNotification {
                 //Prevent the Podcast Player from getting killed because of low memory
                 //For more info see: http://developer.android.com/reference/android/app/Service.html#startForeground(int, android.app.Notification)
                 ((PodcastPlaybackService)mContext).startForeground(NOTIFICATION_ID, notificationBuilder.build());
+
+                notificationBuilder.setOngoing(true); // Non cancelable (sort above the others)
             } else {
                 ((PodcastPlaybackService)mContext).stopForeground(false);
+
+                notificationBuilder.setOngoing(false); // cancelable
             }
 
             //Lock screen notification
