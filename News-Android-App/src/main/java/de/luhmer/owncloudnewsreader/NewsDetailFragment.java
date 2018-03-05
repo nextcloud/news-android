@@ -40,6 +40,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebBackForwardList;
 import android.webkit.WebHistoryItem;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -51,12 +52,15 @@ import org.jsoup.select.Elements;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.adapter.ProgressBarWebChromeClient;
 import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.AdBlocker;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -233,6 +237,20 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         mWebView.setWebChromeClient(new ProgressBarWebChromeClient(mProgressbarWebView));
 
         mWebView.setWebViewClient(new WebViewClient() {
+
+            private Map<String, Boolean> loadedUrls = new HashMap<>();
+
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+                boolean isAd;
+                if (!loadedUrls.containsKey(url)) {
+                    isAd = AdBlocker.isAd(url);
+                    loadedUrls.put(url, isAd);
+                } else {
+                    isAd = loadedUrls.get(url);
+                }
+                return isAd ? AdBlocker.createEmptyResource() : super.shouldInterceptRequest(view, url);
+            }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
