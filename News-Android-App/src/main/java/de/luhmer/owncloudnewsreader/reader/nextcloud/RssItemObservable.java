@@ -143,7 +143,7 @@ public class RssItemObservable implements Publisher<Integer> {
 
                         @Override
                         public void onSubscribe(@NonNull Disposable d) {
-                            Log.v(TAG, "onSubscribe() called with: d = [" + d + "]");
+                            Log.v(TAG, "onSubscribe() called with Disposable: d = [" + d + "]");
                         }
 
                         @Override
@@ -160,7 +160,7 @@ public class RssItemObservable implements Publisher<Integer> {
 
                         @Override
                         public void onError(@NonNull Throwable e) {
-                            Log.v(TAG, "onError() called with: e = [" + e + "]");
+                            Log.e(TAG, "onError() called with: e = [" + e + "]");
                         }
 
                         @Override
@@ -218,6 +218,9 @@ public class RssItemObservable implements Publisher<Integer> {
                 } catch (IOException err) {
                     err.printStackTrace();
                     e.onError(err);
+                } catch(NullPointerException npe) {
+                    npe.printStackTrace();
+                    e.onError(npe);
                 }
                 e.onComplete();
             }
