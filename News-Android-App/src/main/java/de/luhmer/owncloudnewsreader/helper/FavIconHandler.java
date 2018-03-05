@@ -51,8 +51,8 @@ public class FavIconHandler {
                 .showImageOnLoading(placeHolder)
                 .showImageForEmptyUri(placeHolder)
                 .showImageOnFail(placeHolder)
-                .cacheOnDisk(false)
-                .cacheInMemory(false)
+                .cacheOnDisk(true)
+                .cacheInMemory(true)
                 .build();
     }
 
