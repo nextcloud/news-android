@@ -3,6 +3,16 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.15 (Google Play)
+---------------------
+- Fix app crashes due to missing translations
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/622">#622 Sync fails (showrss.info feeds)</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/618">#618 No white theme in 0.9.9.13 fdroid</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/564">#564 Feed icons don't appear to be caching</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/557">#557 Reloading Icon barely visible</a>
+- Add option to change podcast playback speed (thanks @jwaghetti)
+
+
 0.9.9.14 (Google Play)
 ---------------------
 - Add more translations to reduce number of app crashes
