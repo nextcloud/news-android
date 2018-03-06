@@ -148,7 +148,7 @@ public class MediaPlayerPlaybackService extends PlaybackService {
     public void setVideoView(SurfaceView surfaceView, View parentResizableView) {
         if (surfaceView == null) {
             mMediaPlayer.setDisplay(null);
-            Log.d(TAG, "Disable Screen output!");
+            //Log.v(TAG, "Disable Screen output!");
 
             mMediaPlayer.setScreenOnWhilePlaying(false);
         } else {
@@ -160,7 +160,7 @@ public class MediaPlayerPlaybackService extends PlaybackService {
 
                 populateVideo();
 
-                Log.d(TAG, "Enable Screen output!");
+                //Log.v(TAG, "Enable Screen output!");
             }
         }
     }
