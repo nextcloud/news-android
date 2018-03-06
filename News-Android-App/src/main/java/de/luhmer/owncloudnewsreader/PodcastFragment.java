@@ -503,7 +503,16 @@ public class PodcastFragment extends Fragment {
                     Log.w("setNumberPickerTextCol", e);
                 }
             }
+        // Code below is required to fix bug in Android (default value is not shown) (https://stackoverflow.com/a/30859583)
+        try {
+            Field f = NumberPicker.class.getDeclaredField("mInputText");
+            f.setAccessible(true);
+            EditText inputText = (EditText) f.get(numberPicker);
+            inputText.setFilters(new InputFilter[0]);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
-        return false;
     }
 }
