@@ -142,8 +142,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ingen podcast valgt</string>
     <string name="no_chapters_available">Ingen kapitler tilgjengelig</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
     <string name="pref_title_app_theme">App- tema (start programmet igjen for å se endringen)</string>

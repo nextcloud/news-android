@@ -7,6 +7,7 @@
     <string name="empty_view_content">No hay artículos aquí</string>
     <string name="toast_GettingMoreItems">Se ha iniciado la descarga de varios elementos... por favor, espere.</string>
     <string name="no_wifi_available">No hay una conexión WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">¿Quieres descargarte las imágenes sin conexión WiFi?</string>
     <string name="current_version">Está utilizando la versión %s</string>
     <string name="widget_header">Noticias de ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -126,6 +127,8 @@
     <string name="pref_title_DisableHostnameVerification">Deshabilitar verificación del hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído mientras se desplaza</string>
+    <string name="pref_title_OpenInBrowserDirectly">Saltarse la vista detallada y abrir el artículo en el navegador</string>
+
     <string name="dialog_feature_not_available">Esta característica no está disponible en esta versión (de código abierto) de la app. Si quieres usar esta característica, descarga por favor la app desde el repositorio de GitHub o desde Google Play Store.</string>
 
 
@@ -139,10 +142,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ningún podcast seleccionado</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
+    <string name="pref_title_app_theme">Tema de la aplicación (abre de nuevo el programa para que se apliquen los cambios)</string>
     <string name="pref_title_feed_list_layout">Lista de fuentes</string>
     <string name="pref_display_title_lines_count">Contar línea por título</string>
     <string name="pref_display_browser">Explorador</string>
@@ -152,6 +154,12 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Iconos de acción (vista detallada)</string>
 
+    <string name="pref_display_apptheme_dark">Oscuro</string>
+    <string name="pref_display_apptheme_dark_oled">Oscuro (para pantallas OLED)</string>
+    <string name="pref_display_apptheme_light">Claro</string>
+
+    <string name="pref_display_browser_cct">Pestañas integradas de Chrome</string>
+    <string name="pref_display_browser_built_in">Navegador integrado</string>
     <string name="pref_display_browser_external">Navegador externo</string>
 
     <string name="pref_display_feed_list_layout_simple">Simple</string>
@@ -182,6 +190,7 @@
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
     <string name="login_dialog_text_zero_version_code">La app web de Noticias devolvió la versión \"0\". Por favor, echa un vistazo al siguiente informe de error: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Esta versión de la aplicación no es compatible con tu aplicación de Noticias de Nextcloud. Por favor, actualiza la aplicación de noticias y el appframework.</string>
     <string name="login_dialog_title_security_warning">Advertencia de seguridad</string>
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Datos &amp; sincronización</string>
@@ -193,6 +202,9 @@
 
 
     <string name="pref_data_sync_image_cache_never">Nunca</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Sólo mediante WiFi</string>
+    <string name="pref_data_sync_image_cache_ask">Preguntar cuando no esté conectado a una WiFi</string>
+
     <string name="array_sync_interval_min_5">5 minutos</string>
     <string name="array_sync_interval_min_15">15 minutos</string>
     <string name="array_sync_interval_min_30">30 minutos</string>

@@ -123,8 +123,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Podcast が選択されていません</string>
     <string name="no_chapters_available">チャプターがありません</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">表示</string>
     <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>

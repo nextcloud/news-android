@@ -106,8 +106,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Brak wybranego podcastu</string>
     <string name="no_chapters_available">Brak dostępnych rozdziałów</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Wygląd</string>
     <string name="pref_title_feed_list_layout">Układ listy kanałów</string>

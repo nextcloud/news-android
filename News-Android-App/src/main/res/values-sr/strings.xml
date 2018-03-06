@@ -136,8 +136,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Није изабрана подемисија</string>
     <string name="no_chapters_available">Нема доступних поглавља</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Приказ</string>
     <string name="pref_title_feed_list_layout">Распоред листе довода</string>

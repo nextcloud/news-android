@@ -131,8 +131,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Herhangi bir podcast seçilmemiş</string>
     <string name="no_chapters_available">Kullanılabilecek bir bölüm yok</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Görüntüle</string>
     <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>

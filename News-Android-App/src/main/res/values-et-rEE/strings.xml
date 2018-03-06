@@ -117,8 +117,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ühtegi podcasti pole valitud</string>
     <string name="no_chapters_available">Ühtegi peatükki pole saadaval</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Vaade</string>
     <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>

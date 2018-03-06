@@ -126,8 +126,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">პოდკასტი არაა არჩეული</string>
     <string name="no_chapters_available">არც ერთი თავი არაა ხელმისაწვდომი</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">დისპლეი</string>
     <string name="pref_title_feed_list_layout">ლენტის სიის მაკეტი</string>

@@ -142,8 +142,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nessun podcast selezionato</string>
     <string name="no_chapters_available">Nessun capitolo disponibile</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Schermo</string>
     <string name="pref_title_app_theme">Tema dell\'applicazione (riavvia il programma per applicarlo)</string>

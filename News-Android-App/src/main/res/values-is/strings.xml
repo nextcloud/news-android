@@ -120,8 +120,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ekkert hlaðvarp valið</string>
     <string name="no_chapters_available">Engir kaflar tiltækir</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Birting</string>
     <string name="pref_display_title_lines_count">Fjöldi lína í fyrirsögn</string>

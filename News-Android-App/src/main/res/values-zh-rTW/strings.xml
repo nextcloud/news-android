@@ -123,8 +123,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">沒有選擇 podcast</string>
     <string name="no_chapters_available">沒有章節</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">顯示</string>
     <string name="pref_title_feed_list_layout">Feed 清單版型</string>

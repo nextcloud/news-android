@@ -124,8 +124,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">هیچ پادکستی انتخاب نشده</string>
     <string name="no_chapters_available">هیچ قسمتی در دسترسی نیست</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">نمایشی</string>
     <string name="pref_title_feed_list_layout">طرح لسیت خوراک خوان</string>

@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Seletor de Intervalo de Sincronização</string>
     <string name="title_activity_news_detail">Detalhes da notícia</string>
     <string name="empty_view_content">Este local está vazio</string>
+    <string name="toast_GettingMoreItems">Download de mais itens iniciou... Aguarde.</string>
     <string name="no_wifi_available">Nenhum WiFi conectado</string>
+    <string name="do_you_want_to_download_without_wifi">Quer baixar as imagens sem uma conexão WiFi?</string>
     <string name="current_version">Você está usando a versão %s</string>
     <string name="widget_header">Notícias ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -28,6 +30,7 @@
     <string name="action_starred">Vistos</string>
     <string name="action_read">Ler</string>
     <string name="action_playPodacst">Ouvir o Podcast</string>
+    <string name="action_openInBrowser">Abrir no navegador</string>
     <string name="action_Share">Compartilhar</string>
     <string name="action_login">Configurações do servidor</string>
     <string name="action_save">Salvar</string>
@@ -83,6 +86,9 @@
     <string name="login_progress_signing_in">Fazendo login...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo é obrigatório</string>
+    <string name="error_invalid_url">URL incorreta</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Importar Conta</string>
 
@@ -109,6 +115,9 @@
     <string name="pref_title_general_sort_order">Ordem de Classificação</string>
 
 
+    <string name="pref_general_sort_order_new_old">Novo -> Velho</string>
+    <string name="pref_general_sort_order_old_new">Velho -> Novo</string>
+
     <string name="dialog_clearing_cache">Limpando o cache</string>
     <string name="dialog_clearing_cache_please_wait">Limpando o cache ... Por favor, aguarde.</string>
     <string name="reset_cache_unsaved_changes">Há alterações não sincronizadas. Gostaria de redefinir o cache de qualquer maneira?</string>
@@ -118,6 +127,8 @@
     <string name="pref_title_DisableHostnameVerification">Desabilitar Verificação de Hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
+    <string name="pref_title_OpenInBrowserDirectly">Salte a exibição detalhada e abra o artigo no navegador</string>
+
     <string name="dialog_feature_not_available">Este recurso não está disponível nesta versão open-source deste aplicativo. Se você quiser usar este recurso, baixe o aplicativo do repositório do GitHub ou da Google PlayStore.</string>
 
 
@@ -131,10 +142,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nenhum podcast selecionado</string>
     <string name="no_chapters_available">Nenhum capítulo disponível</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Exibir</string>
+    <string name="pref_title_app_theme">Tema do aplicativo (reiniciar o programa para aplicar)</string>
     <string name="pref_title_feed_list_layout">Layout da lista de feeds</string>
     <string name="pref_display_title_lines_count">Contagem de linha para o título</string>
     <string name="pref_display_browser">Navegador</string>
@@ -143,6 +153,20 @@
 
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Visualização detalhada)</string>
+
+    <string name="pref_display_apptheme_dark">Escuro</string>
+    <string name="pref_display_apptheme_dark_oled">Escuro (para telas OLED)</string>
+    <string name="pref_display_apptheme_light">Claro</string>
+
+    <string name="pref_display_browser_cct">Chrome-Custom-Tabs incorporadas</string>
+    <string name="pref_display_browser_built_in">Navegador Incorporado</string>
+    <string name="pref_display_browser_external">Navegador Externo</string>
+
+    <string name="pref_display_feed_list_layout_simple">Simples</string>
+    <string name="pref_display_feed_list_layout_extended">Estendido</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Estendido (texto completo)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Estendido com Webview</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Estendido com Cardview</string>
 
     <string name="content_desc_play">executar</string>
     <string name="content_desc_pause">pausa</string>
@@ -170,7 +194,11 @@
     <string name="login_dialog_title_error">Erro</string>
     <string name="login_dialog_text_something_went_wrong">Algo deu errado :(</string>
     <string name="login_dialog_text_zero_version_code">O aplicativo Web News retornou a versão \"0\". Por favor, veja o seguinte relatório de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Esta versão do aplicativo não é compatível com o seu aplicativo Nextcloud News. Atualize o aplicativo de notícias e o quadro de aplicativos.</string>
     <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
+    <string name="login_dialog_text_security_warning">Você não está usando HTTPS, que é fortemente encorajado. Um invasor pode interceptar seu tráfego e obter acesso a alguns dados confidenciais (sua senha, por exemplo).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Dados &amp; sincronização</string>
     <string name="pref_title_clearCache">Limpar cache</string>
@@ -179,5 +207,21 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Nunca</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Por WiFi somente</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Por WiFi &amp; Celular</string>
+    <string name="pref_data_sync_image_cache_ask">Perguntar quando não conectado por WiFi</string>
+
+    <string name="array_sync_interval_min_5">5 Minutos</string>
+    <string name="array_sync_interval_min_15">15 Minutos</string>
+    <string name="array_sync_interval_min_30">30 Minutos</string>
+    <string name="array_sync_interval_min_45">45 Minutos</string>
+    <string name="array_sync_interval_hour_1">1 Hora</string>
+    <string name="array_sync_interval_hour_2">2 Horas</string>
+    <string name="array_sync_interval_hour_3">3 Horas</string>
+    <string name="array_sync_interval_hour_6">6 Horas</string>
+    <string name="array_sync_interval_hour_12">12 Horas</string>
+    <string name="array_sync_interval_hour_24">24 Horas</string>
 
     </resources>

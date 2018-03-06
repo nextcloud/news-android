@@ -131,8 +131,6 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">No se ha seleccionado algún podcast</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_feed_list_layout">Lista de fuentes</string>
