@@ -2,11 +2,11 @@ package de.luhmer.owncloudnewsreader;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -426,7 +426,6 @@ public class PodcastFragment extends Fragment {
 
     private void showPlaybackSpeedPicker() {
         final NumberPicker numberPicker = new NumberPicker(getContext());
-        //setNumberPickerTextColor(numberPicker, Color.parseColor("#FFFFFF"));
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(PodcastPlaybackService.PLAYBACK_SPEEDS.length-1);
@@ -475,34 +474,8 @@ public class PodcastFragment extends Fragment {
 
         // show it
         alertDialog.show();
-    }
 
 
-    public static boolean setNumberPickerTextColor(NumberPicker numberPicker, int color)
-    {
-        final int count = numberPicker.getChildCount();
-        for(int i = 0; i < count; i++){
-            View child = numberPicker.getChildAt(i);
-            if(child instanceof EditText){
-                try{
-                    Field selectorWheelPaintField = numberPicker.getClass()
-                            .getDeclaredField("mSelectorWheelPaint");
-                    selectorWheelPaintField.setAccessible(true);
-                    ((Paint)selectorWheelPaintField.get(numberPicker)).setColor(color);
-                    ((EditText)child).setTextColor(color);
-                    numberPicker.invalidate();
-                    return true;
-                }
-                catch(NoSuchFieldException e){
-                    Log.w("setNumberPickerTextCol", e);
-                }
-                catch(IllegalAccessException e){
-                    Log.w("setNumberPickerTextCol", e);
-                }
-                catch(IllegalArgumentException e){
-                    Log.w("setNumberPickerTextCol", e);
-                }
-            }
         // Code below is required to fix bug in Android (default value is not shown) (https://stackoverflow.com/a/30859583)
         try {
             Field f = NumberPicker.class.getDeclaredField("mInputText");
