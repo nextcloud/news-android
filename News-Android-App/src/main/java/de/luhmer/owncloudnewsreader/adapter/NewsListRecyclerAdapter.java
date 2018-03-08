@@ -35,8 +35,8 @@ import de.luhmer.owncloudnewsreader.model.CurrentRssViewDataHolder;
 public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     private static final String TAG = "NewsListRecyclerAdapter";
 
-    private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
+    private final int VIEW_ITEM = 1; // Item
+    private final int VIEW_PROG = 0; // Progress
 
     private long idOfCurrentlyPlayedPodcast = -1;
 
@@ -112,14 +112,18 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
                                 Log.v(TAG, "start load more task...");
 
-                                // End has been reached
-                                // Do something
-                                lazyList.add(null);
-                                notifyItemInserted(lazyList.size() - 1);
+                                recyclerView.post(new Runnable() {
+                                    public void run() {
+                                        // End has been reached
+                                        // Do something
+                                        lazyList.add(null);
+                                        notifyItemInserted(lazyList.size() - 1);
 
-                                new LoadMoreItemsAsyncTask().execute();
+                                        AsyncTaskHelper.StartAsyncTask(new LoadMoreItemsAsyncTask());
 
-                                loading = true;
+                                        loading = true;
+                                    }
+                                });
                             }
                         }
                     });
@@ -189,6 +193,19 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                 }
             });
 
+            holder.setClickListener((RecyclerItemClickListener) activity);
+
+            holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (holder.isPlaying()) {
+                        playPausePodcastClicked.pausePodcast();
+                    } else {
+                        playPausePodcastClicked.openPodcast(holder.getRssItem());
+                    }
+                }
+            });
+
             return holder;
         }
     }
@@ -200,33 +217,16 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
         } else {
             final ViewHolder holder = (ViewHolder) viewHolder;
             RssItem item = lazyList.get(position);
-
             holder.setRssItem(item);
-
             holder.setStayUnread(stayUnreadItems.contains(item.getId()));
-
-            holder.setClickListener((RecyclerItemClickListener) activity);
 
             //Podcast stuff
             if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(item.getEnclosureMime())) {
                 final boolean isPlaying = idOfCurrentlyPlayedPodcast == item.getId();
                 //Enable podcast buttons in view
                 holder.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
-
                 holder.setPlaying(isPlaying);
-
                 holder.setDownloadPodcastProgressbar();
-
-                holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (holder.isPlaying()) {
-                            playPausePodcastClicked.pausePodcast();
-                        } else {
-                            playPausePodcastClicked.openPodcast(holder.getRssItem());
-                        }
-                    }
-                });
             } else {
                 holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
             }
@@ -281,7 +281,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        return lazyList.get(position) != null ? VIEW_ITEM : VIEW_PROG; //(position < (cachedPages * DatabaseConnectionOrm.PageSize)) ? VIEW_ITEM : VIEW_PROG;
+        return lazyList.get(position) != null ? VIEW_ITEM : VIEW_PROG;
     }
 
     @Override
