@@ -2,6 +2,7 @@ package de.luhmer.owncloudnewsreader.database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -25,6 +26,7 @@ import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.FolderDao;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
+import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
@@ -338,19 +340,48 @@ public class DatabaseConnectionOrm {
         return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.ge(id)).listLazy();
     }
 
+    /***
+     * Warning: This methods performs database operations asynchronously. Therefore this method
+     * will return immediately - even though the operation might not be completed
+     */
     public void updateRssItem(RssItem rssItem) {
-        daoSession.getRssItemDao().update(rssItem);
-        if(rssItem.getRead_temp()) {
-            for (RssItem rssItem1 : daoSession.getRssItemDao().queryBuilder().where(
-                    RssItemDao.Properties.Fingerprint.eq(rssItem.getFingerprint()),
-                    RssItemDao.Properties.Id.notEq(rssItem.getId()))
-                    .list()) {
-                rssItem1.setRead_temp(rssItem.getRead_temp());
-                //rssItem1.setStarred_temp(rssItem.getStarred_temp());
-                daoSession.getRssItemDao().update(rssItem1);
-            }
-        }
+        AsyncTaskHelper.StartAsyncTask(new UpdateRssItemAsyncTask(rssItem));
     }
+
+
+    class UpdateRssItemAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private RssItem rssItem;
+
+        UpdateRssItemAsyncTask(RssItem rssItem) {
+            this.rssItem = rssItem;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            daoSession.getRssItemDao().update(rssItem);
+
+            // Code below is used to deduplicate rss items (see https://github.com/nextcloud/news-android/issues/513)
+            if(rssItem.getRead_temp()) {
+                // Get all rss items with the same fingerprint (This operation is very slow)
+                List<RssItem> rssItemList = daoSession.getRssItemDao().queryBuilder().where(
+                        RssItemDao.Properties.Fingerprint.eq(rssItem.getFingerprint()),
+                        RssItemDao.Properties.Id.notEq(rssItem.getId()))
+                        .list();
+
+                // Sync the read-state of the items
+                for (RssItem rssItem1 : rssItemList) {
+                    rssItem1.setRead_temp(rssItem.getRead_temp());
+                }
+
+                // Update in database
+                daoSession.getRssItemDao().updateInTx(rssItemList);
+            }
+
+            return null;
+        }
+    };
+
 
     public boolean doesRssItemAlreadyExsists (long feedId) {
         List<RssItem> feeds = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.eq(feedId)).list();
