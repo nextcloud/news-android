@@ -5,8 +5,9 @@
     <string name="title_activity_sync_interval_selector">Sync interval selector</string>
     <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
     <string name="empty_view_content">Geen items hier</string>
-    <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>
+    <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld AUB.</string>
     <string name="no_wifi_available">Geen wifi verbinding</string>
+    <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
     <string name="current_version">U gebruikt versie %s</string>
     <string name="widget_header">Nextcloud nieuws</string>
     <plurals name="message_bar_new_articles_available">
@@ -126,7 +127,7 @@
     <string name="pref_title_DisableHostnameVerification">Deactiveren Hostname verificatie</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigeren met volumeknoppen</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
-    <string name="dialog_feature_not_available">Deze feature is niet beschikbaar in deze (open-source) versie van deze app. Indien je deze feature wilt gebruiken, download dan de app van de GitHub Repository of de Google PlayStore.</string>
+    <string name="dialog_feature_not_available">Deze feature is niet beschikbaar in deze (open-source) versie van deze app. Indien je deze feature wilt gebruiken, download dan alsjeblieft de app van de GitHub Repository of de Google PlayStore.</string>
 
 
     <!-- MemorizingTrustManager -->

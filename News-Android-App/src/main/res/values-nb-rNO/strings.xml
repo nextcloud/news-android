@@ -142,6 +142,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ingen podcast valgt</string>
     <string name="no_chapters_available">Ingen kapitler tilgjengelig</string>
+    <string name="podcast_playback_speed_dialog_title">Avspillingshastighet</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
     <string name="pref_title_app_theme">App- tema (start programmet igjen for å se endringen)</string>
@@ -156,6 +159,8 @@
 
     <string name="pref_display_apptheme_dark">Mørk</string>
     <string name="pref_display_apptheme_dark_oled">Mørk (for OLED- skjermer)</string>
+    <string name="pref_display_apptheme_light">Lys</string>
+
     <string name="pref_display_browser_built_in">Innebygd nettleser</string>
     <string name="pref_display_browser_external">Ekstern nettleser</string>
 

@@ -142,6 +142,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ningún podcast seleccionado</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
+    <string name="podcast_playback_speed_dialog_title">Velocidad de reproducción</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_app_theme">Tema de la aplicación (abre de nuevo el programa para que se apliquen los cambios)</string>
@@ -164,8 +167,13 @@
 
     <string name="pref_display_feed_list_layout_simple">Simple</string>
     <string name="pref_display_feed_list_layout_extended">Extendido</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Extendido (texto completo)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Extendido con vista web</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Extendido con vista de tarjeta</string>
+
     <string name="content_desc_play">reproducir</string>
     <string name="content_desc_pause">pausar</string>
+    <string name="content_desc_playback_speed">velocidad de reproducción</string>
     <string name="content_desc_rewind">rebobinar</string>
     <string name="content_desc_forward">avance</string>
     <string name="content_desc_expand">expandir</string>
@@ -192,6 +200,9 @@
     <string name="login_dialog_text_zero_version_code">La app web de Noticias devolvió la versión \"0\". Por favor, echa un vistazo al siguiente informe de error: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Esta versión de la aplicación no es compatible con tu aplicación de Noticias de Nextcloud. Por favor, actualiza la aplicación de noticias y el appframework.</string>
     <string name="login_dialog_title_security_warning">Advertencia de seguridad</string>
+    <string name="login_dialog_text_security_warning">No está usando HTTPS. Un atacante podría interceptar tu tráfico y obtener acceso a algún dato sensible (p. ej., tu contraseña).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Datos &amp; sincronización</string>
     <string name="pref_title_clearCache">Vaciar caché</string>
@@ -203,6 +214,7 @@
 
     <string name="pref_data_sync_image_cache_never">Nunca</string>
     <string name="pref_data_sync_image_cache_wifi_only">Sólo mediante WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Osbre WiFi &amp; móvil.</string>
     <string name="pref_data_sync_image_cache_ask">Preguntar cuando no esté conectado a una WiFi</string>
 
     <string name="array_sync_interval_min_5">5 minutos</string>

@@ -29,6 +29,7 @@
     <string name="action_starred">S hvězdičkou</string>
     <string name="action_read">Číst</string>
     <string name="action_playPodacst">Přehrát podcast</string>
+    <string name="action_openInBrowser">Otevřít ve webovém prohlížeči</string>
     <string name="action_Share">Sdílet</string>
     <string name="action_login">Nastavení serveru</string>
     <string name="action_save">Uložit</string>
@@ -61,7 +62,7 @@
     <string name="action_link_share">Sdílet odkaz</string>
     <string name="action_link_open">Otevřít odkaz v prohlížeči</string>
     <string name="action_link_copy">Zkopírovat odkaz</string>
-    <string name="toast_img_download_wait">Stahování... chvíli strpení</string>
+    <string name="toast_img_download_wait">Stahování… chvíli strpení</string>
     <string name="toast_img_saved">Obrázek uložen.</string>
     <string name="toast_img_notwriteable">Selhalo zapsání obrázku.</string>
     <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
@@ -86,6 +87,9 @@
     <string name="login_progress_signing_in">Přihlašuji...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Tato položka je povinná</string>
+    <string name="error_invalid_url">Nesprávná URL</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Importovat účet</string>
 
@@ -133,12 +137,21 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nebyl vybrán žádný podcast</string>
     <string name="no_chapters_available">Žádné dostupné kapitoly</string>
+    <string name="podcast_playback_speed_dialog_title">Rychlost přehrávání</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazení</string>
     <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
     <string name="pref_display_title_lines_count">Počet řádek pro nadpis</string>
+    <string name="pref_display_browser">Prohlížeč</string>
+
+
+
+
     <string name="content_desc_play">přehrát</string>
     <string name="content_desc_pause">pozastavit</string>
+    <string name="content_desc_playback_speed">rychlost přehrávání</string>
     <string name="content_desc_rewind">přetočit</string>
     <string name="content_desc_forward">vpřed</string>
     <string name="content_desc_expand">rozbalit</string>
@@ -172,4 +185,11 @@
 
 
 
+    <string name="pref_data_sync_image_cache_never">Nikdy</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Pouze přes WiFi</string>
+    <string name="array_sync_interval_min_5">5 minut</string>
+    <string name="array_sync_interval_min_15">15 minut</string>
+    <string name="array_sync_interval_min_30">30 minut</string>
+    <string name="array_sync_interval_min_45">45 minut</string>
+    <string name="array_sync_interval_hour_1">1 hodina</string>
     </resources>

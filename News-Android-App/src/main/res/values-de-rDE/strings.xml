@@ -142,6 +142,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Kein Podcast ausgewählt</string>
     <string name="no_chapters_available">Keine Kapitel verfügbar</string>
+    <string name="podcast_playback_speed_dialog_title">Wiedergabegeschwindigkeit</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Anzeige</string>
     <string name="pref_title_app_theme">App-Thema (die App muss zur Anwendung neu gestartet werden)</string>
@@ -170,6 +173,7 @@
 
     <string name="content_desc_play">Abspielen</string>
     <string name="content_desc_pause">Anhalten</string>
+    <string name="content_desc_playback_speed">Wiedergabegeschwindigkeit</string>
     <string name="content_desc_rewind">Zurück</string>
     <string name="content_desc_forward">weiterleiten</string>
     <string name="content_desc_expand">erweitern</string>
