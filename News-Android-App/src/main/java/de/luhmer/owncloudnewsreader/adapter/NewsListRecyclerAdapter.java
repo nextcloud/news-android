@@ -109,6 +109,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                                     .findLastVisibleItemPosition();
                             if (!loading && adapterTotalItemCount <= (lastVisibleItem + visibleThreshold) &&
                                     adapterTotalItemCount < totalItemCount) {
+                                loading = true;
 
                                 Log.v(TAG, "start load more task...");
 
@@ -120,8 +121,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                                         notifyItemInserted(lazyList.size() - 1);
 
                                         AsyncTaskHelper.StartAsyncTask(new LoadMoreItemsAsyncTask());
-
-                                        loading = true;
                                     }
                                 });
                             }
