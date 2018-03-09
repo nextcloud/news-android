@@ -93,8 +93,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
-            final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView
-                    .getLayoutManager();
+            final LinearLayoutManager linearLayoutManager =
+                    (LinearLayoutManager) recyclerView.getLayoutManager();
 
 
             recyclerView
@@ -107,7 +107,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                             int adapterTotalItemCount = linearLayoutManager.getItemCount();
                             int lastVisibleItem = linearLayoutManager
                                     .findLastVisibleItemPosition();
-                            if (!loading && adapterTotalItemCount <= (lastVisibleItem + visibleThreshold) &&
+                            if (!loading &&
+                                    adapterTotalItemCount <= (lastVisibleItem + visibleThreshold) &&
                                     adapterTotalItemCount < totalItemCount) {
                                 loading = true;
 
