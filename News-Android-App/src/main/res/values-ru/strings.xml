@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Переключатель интервала синхронизации</string>
     <string name="title_activity_news_detail">Последние новости</string>
     <string name="empty_view_content">Здесь нет элементов</string>
+    <string name="toast_GettingMoreItems">Началось скачивание элементов... Пожалуйста подождите.</string>
     <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
+    <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
     <string name="current_version">Вы используете версию %s</string>
     <string name="widget_header">Новости ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -30,6 +32,7 @@
     <string name="action_starred">Избранное</string>
     <string name="action_read">Читать</string>
     <string name="action_playPodacst">Воспроизвести Подкаст</string>
+    <string name="action_openInBrowser">Открыть в браузере</string>
     <string name="action_Share">Поделиться</string>
     <string name="action_login">Параметры сервера</string>
     <string name="action_save">Сохранить</string>
@@ -89,6 +92,9 @@
     <string name="login_progress_signing_in">Авторизация...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Это поле обязательно для заполнения</string>
+    <string name="error_invalid_url">Некорректный адрес</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Импортировать учётную запись</string>
 
@@ -119,6 +125,9 @@
     <string name="pref_title_general_sort_order">Порядок сортировки</string>
 
 
+    <string name="pref_general_sort_order_new_old">Новые -&gt; Старые</string>
+    <string name="pref_general_sort_order_old_new">Старые -&gt; Новые</string>
+
     <string name="dialog_clearing_cache">Очистить кеш.</string>
     <string name="dialog_clearing_cache_please_wait">Очистка кеша... Пожалуйста подождите.</string>
     <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
@@ -128,6 +137,8 @@
     <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
     <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
+    <string name="pref_title_OpenInBrowserDirectly">Пропустить детальный обзор и открыть статью в браузере</string>
+
     <string name="dialog_feature_not_available">Эта возможность недоступна в установленной (open-source) версии приложения. Для использования этой возможности загрузите приложение из репозитория GitHub или установите его из Google Play Маркет.</string>
 
 
@@ -141,8 +152,12 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Нет выбранных подкастов</string>
     <string name="no_chapters_available">Нет доступных глав</string>
+    <string name="podcast_playback_speed_dialog_title">Скорость воспроизведения</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Экран</string>
+    <string name="pref_title_app_theme">Тема приложения (перезапустите программу для применения)</string>
     <string name="pref_title_feed_list_layout">Макет списка лент</string>
     <string name="pref_display_title_lines_count">Количество строк для заголовка</string>
     <string name="pref_display_browser">Браузер</string>
@@ -152,8 +167,23 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Значки действия (подробный просмотр)</string>
 
+    <string name="pref_display_apptheme_dark">Тёмная</string>
+    <string name="pref_display_apptheme_dark_oled">Тёмная (для OLED экранов)</string>
+    <string name="pref_display_apptheme_light">Светлая</string>
+
+    <string name="pref_display_browser_cct">Встроенные настраиваемые ярлыки Chrome</string>
+    <string name="pref_display_browser_built_in">Встроенный браузер</string>
+    <string name="pref_display_browser_external">Сторонний браузер</string>
+
+    <string name="pref_display_feed_list_layout_simple">Простой</string>
+    <string name="pref_display_feed_list_layout_extended">Расширенный</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Расширенный (полный текст)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Функционал улучшен использованием Webview</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Функционал улучшен использованием Cardview</string>
+
     <string name="content_desc_play">воспроизвести</string>
     <string name="content_desc_pause">пауза</string>
+    <string name="content_desc_playback_speed">скорость воспроизведения</string>
     <string name="content_desc_rewind">перемотка назад </string>
     <string name="content_desc_forward">перемотка в перед</string>
     <string name="content_desc_expand">развернуть</string>
@@ -178,7 +208,11 @@
     <string name="login_dialog_title_error">Ошибка</string>
     <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
     <string name="login_dialog_text_zero_version_code">Веб-версия приложения «Новости» вернула «0». Для получения дополнительных сведений обратитесь к сообщению об ошибке: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением ownCloud News. Обновите новостное приложение и appframework.</string>
     <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
+    <string name="login_dialog_text_security_warning">Вы не используете HTTPS, что настоятельно рекомендуется. Злоумышленник может перехватить ваш трафик и получить доступ к некоторым конфиденциальным данным (например, к вашему паролю). </string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Данные и синхронизация</string>
     <string name="pref_title_clearCache">Очистить кэш</string>
@@ -187,5 +221,21 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Никогда</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Только через WiFi </string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Через WiFi &amp; и мобильный интернет</string>
+    <string name="pref_data_sync_image_cache_ask">Спросить, если не подключён к WiFi</string>
+
+    <string name="array_sync_interval_min_5">5 Минут</string>
+    <string name="array_sync_interval_min_15">15 Минут</string>
+    <string name="array_sync_interval_min_30">30 Минут</string>
+    <string name="array_sync_interval_min_45">45 Минут</string>
+    <string name="array_sync_interval_hour_1">1 Час</string>
+    <string name="array_sync_interval_hour_2">2 Часа</string>
+    <string name="array_sync_interval_hour_3">3 Часа</string>
+    <string name="array_sync_interval_hour_6">6 Часов</string>
+    <string name="array_sync_interval_hour_12">12 Часов</string>
+    <string name="array_sync_interval_hour_24">24 Часа</string>
 
     </resources>
