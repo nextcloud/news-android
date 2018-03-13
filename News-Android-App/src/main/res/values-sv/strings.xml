@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synkronisera intervallväljaren</string>
     <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
     <string name="empty_view_content">Inga objekt här</string>
+    <string name="toast_GettingMoreItems">Nedladdning av fler objekt startade... Var god vänta.</string>
     <string name="no_wifi_available">Ingen WIFI ansluten</string>
     <string name="current_version">Du använder Version %s</string>
     <string name="widget_header">ownCloud nyheter</string>

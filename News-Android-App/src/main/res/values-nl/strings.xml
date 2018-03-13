@@ -140,6 +140,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Geen podcast geselecteerd</string>
     <string name="no_chapters_available">Geen hoofdstukken beschikbaar</string>
+    <string name="podcast_playback_speed_dialog_title">Afspeelsnelheid</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Weergeven</string>
     <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
@@ -167,6 +170,7 @@
 
     <string name="content_desc_play">afspelen</string>
     <string name="content_desc_pause">pauze</string>
+    <string name="content_desc_playback_speed">afspeelsnelheid</string>
     <string name="content_desc_rewind">terugspoelen</string>
     <string name="content_desc_forward">vooruit spoelen</string>
     <string name="content_desc_expand">uitbreiden</string>
@@ -204,6 +208,8 @@
     <string name="pref_data_sync_image_cache_never">Nooit</string>
     <string name="pref_data_sync_image_cache_wifi_only">Alleen met WiFi</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Met WiFi &amp; Mobiel</string>
+    <string name="pref_data_sync_image_cache_ask">Vraag indien niet verbonden met WiFi</string>
+
     <string name="array_sync_interval_min_5">5 minuten</string>
     <string name="array_sync_interval_min_15">15 minuten</string>
     <string name="array_sync_interval_min_30">30 minuten</string>

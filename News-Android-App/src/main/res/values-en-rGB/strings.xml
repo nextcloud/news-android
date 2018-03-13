@@ -142,6 +142,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">No podcast selected</string>
     <string name="no_chapters_available">No chapters available</string>
+    <string name="podcast_playback_speed_dialog_title">Playback Speed</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Display</string>
     <string name="pref_title_app_theme">App theme (start the program again to apply)</string>
@@ -170,6 +173,7 @@
 
     <string name="content_desc_play">play</string>
     <string name="content_desc_pause">pause</string>
+    <string name="content_desc_playback_speed">playback speed</string>
     <string name="content_desc_rewind">rewind</string>
     <string name="content_desc_forward">forward</string>
     <string name="content_desc_expand">expand</string>
