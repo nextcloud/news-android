@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Eşitleme Aralığı Seçici</string>
     <string name="title_activity_news_detail">HaberAyrıntıİşlem</string>
     <string name="empty_view_content">Burada herhangi bir öge yok</string>
-    <string name="no_wifi_available">Kablosuz ağ bağlantısı yapılmamış</string>
+    <string name="toast_GettingMoreItems">Diğer ögelerin indirilmesine başlandı… Lütfen bekleyin.</string>
+    <string name="no_wifi_available">WiFi bağlantısı yapılmamış</string>
+    <string name="do_you_want_to_download_without_wifi">Görselleri bir kablosuz ağ bağlantısı olmadan indirmek ister misiniz</string>
     <string name="current_version">%s sürümünü kullanıyorsunuz</string>
     <string name="widget_header">Nextcloud Haberleri</string>
     <plurals name="message_bar_new_articles_available">
@@ -28,6 +30,7 @@
     <string name="action_starred">Yıldızlanmış</string>
     <string name="action_read">Oku</string>
     <string name="action_playPodacst">Podcast\'i Oynat</string>
+    <string name="action_openInBrowser">Web Tarayıcıda Aç</string>
     <string name="action_Share">Paylaş</string>
     <string name="action_login">Sunucu Ayarları</string>
     <string name="action_save">Kaydet</string>
@@ -83,6 +86,9 @@
     <string name="login_progress_signing_in">Oturum açılıyor...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Bu alan zorunludur</string>
+    <string name="error_invalid_url">Adres yanlış</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Hesabı İçe Aktar</string>
 
@@ -109,6 +115,9 @@
     <string name="pref_title_general_sort_order">Sıralama</string>
 
 
+    <string name="pref_general_sort_order_new_old">Yeniden -> Eskiye</string>
+    <string name="pref_general_sort_order_old_new">Eskiden -> Yeniye</string>
+
     <string name="dialog_clearing_cache">Ön bellek temizleniyor</string>
     <string name="dialog_clearing_cache_please_wait">Ön bellek temizleniyor... Lütfen bekleyin.</string>
     <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Yine de ön belleği sıfırlamak ister misiniz?</string>
@@ -118,6 +127,8 @@
     <string name="pref_title_DisableHostnameVerification">Sunucu Adı Doğrulanmasın</string>
     <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezilebilsin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu olarak işaretlensin</string>
+    <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görünümü atlayıp makaleyi tarayıcıda aç</string>
+
     <string name="dialog_feature_not_available">Bu özellik uygulamanın bu sürümünde (açık kaynaklı) kullanılamaz. Bu özelliği kullanmak istiyorsanız lütfen uygulamayı GitHub deposundan ya da Google PlayStore üzerinden indirin.</string>
 
 
@@ -131,8 +142,12 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Herhangi bir podcast seçilmemiş</string>
     <string name="no_chapters_available">Kullanılabilecek bir bölüm yok</string>
+    <string name="podcast_playback_speed_dialog_title">Oynatma Hızı</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Görüntüle</string>
+    <string name="pref_title_app_theme">Uygulama teması (geçerli olması için uygulamayı yeninden başlatın)</string>
     <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>
     <string name="pref_display_title_lines_count">Başlığın satır sayısı</string>
     <string name="pref_display_browser">Tarayıcı</string>
@@ -142,8 +157,23 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (Ayrıntı Görünümü)</string>
 
+    <string name="pref_display_apptheme_dark">Koyu</string>
+    <string name="pref_display_apptheme_dark_oled">Koyu (OLED ekranlar için)</string>
+    <string name="pref_display_apptheme_light">Açık</string>
+
+    <string name="pref_display_browser_cct">Özel İç Chrome Sekmeleri</string>
+    <string name="pref_display_browser_built_in">İç Tarayıcı</string>
+    <string name="pref_display_browser_external">Dış Tarayıcı</string>
+
+    <string name="pref_display_feed_list_layout_simple">Basit</string>
+    <string name="pref_display_feed_list_layout_extended">Gelişmiş</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Gelişmiş (tam metin)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Web Görünümü ile Gelişmiş</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Kart Görünümü ile Gelişmiş</string>
+
     <string name="content_desc_play">oynat</string>
     <string name="content_desc_pause">duraklat</string>
+    <string name="content_desc_playback_speed">oynatma hızı</string>
     <string name="content_desc_rewind">geri</string>
     <string name="content_desc_forward">ileri</string>
     <string name="content_desc_expand">genişlet</string>
@@ -168,7 +198,11 @@
     <string name="login_dialog_title_error">Hata</string>
     <string name="login_dialog_text_something_went_wrong">Bir şeyler ters gitti :(</string>
     <string name="login_dialog_text_zero_version_code">Web Haberleri uygulamasının sürümü \"0\" olarak görünüyor. Lütfen şu hata raporuna bakın: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Bu uygulama sürümü kullandığınız Nextcloud Haberler uygulaması ile uyumlu değil. Lütfen Haberler uygulaması ve uygulama çatısını güncelleyin.</string>
     <string name="login_dialog_title_security_warning">Güvenlik Uyarısı</string>
+    <string name="login_dialog_text_security_warning">Kullanılması önemle önerilen HTTPS kullanmıyorsunuz. Bir saldırgan trafiğinizi izleyip önemli verilere erişebilir (parolanız gibi).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Veri ve eşitleme</string>
     <string name="pref_title_clearCache">Ön belleği temizle</string>
@@ -177,5 +211,21 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Asla</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Yalnız WiFi Üzerinden</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi ve Mobil Veri Üzerinden</string>
+    <string name="pref_data_sync_image_cache_ask">WiFi bağlı değilken sorulsun</string>
+
+    <string name="array_sync_interval_min_5">5 Dakika</string>
+    <string name="array_sync_interval_min_15">15 Dakika</string>
+    <string name="array_sync_interval_min_30">30 Dakika</string>
+    <string name="array_sync_interval_min_45">45 Dakika</string>
+    <string name="array_sync_interval_hour_1">1 Saat</string>
+    <string name="array_sync_interval_hour_2">2 Saat</string>
+    <string name="array_sync_interval_hour_3">3 Saat</string>
+    <string name="array_sync_interval_hour_6">6 Saat</string>
+    <string name="array_sync_interval_hour_12">12 Saat</string>
+    <string name="array_sync_interval_hour_24">24 Saat</string>
 
     </resources>
