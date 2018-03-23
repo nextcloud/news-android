@@ -134,6 +134,10 @@
 
 
 
+    <string name="pref_display_apptheme_dark">Tumma</string>
+    <string name="pref_display_apptheme_light">Vaalea</string>
+
+    <string name="pref_display_feed_list_layout_simple">Yksinkertainen</string>
     <string name="content_desc_play">toistsa</string>
     <string name="content_desc_pause">keskeytä</string>
     <string name="content_desc_expand">laajenna</string>
@@ -166,5 +170,16 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Ei koskaan</string>
+    <string name="array_sync_interval_min_5">5 Minuuttia</string>
+    <string name="array_sync_interval_min_15">15 Minuuttia</string>
+    <string name="array_sync_interval_min_30">30 Minuuttia</string>
+    <string name="array_sync_interval_min_45">45 Minuuttia</string>
+    <string name="array_sync_interval_hour_1">1 Tunti</string>
+    <string name="array_sync_interval_hour_2">2 Tuntia</string>
+    <string name="array_sync_interval_hour_6">6 Tuntia</string>
+    <string name="array_sync_interval_hour_12">12 Tuntia</string>
+    <string name="array_sync_interval_hour_24">24 Tuntia</string>
 
     </resources>
