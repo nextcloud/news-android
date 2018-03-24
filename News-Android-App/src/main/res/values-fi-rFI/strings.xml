@@ -107,6 +107,9 @@
     <string name="pref_title_general_sort_order">Lajittelujärjestys</string>
 
 
+    <string name="pref_general_sort_order_new_old">Uusi -> Vanha</string>
+    <string name="pref_general_sort_order_old_new">Vanha -> Uusi</string>
+
     <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
     <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
     <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
