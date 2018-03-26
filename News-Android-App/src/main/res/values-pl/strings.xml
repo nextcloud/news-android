@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Wybór interwału synchronizacji</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Nic tu nie ma</string>
+    <string name="toast_GettingMoreItems">Rozpoczęto pobieranie kolejnych elementów ... Proszę czekać.</string>
     <string name="no_wifi_available">Brak połączenia WIFI</string>
+    <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia Wi-Fi</string>
     <string name="current_version">Używasz wersji %s</string>
     <string name="widget_header">ownCloud News</string>
     <string name="message_bar_reload">Przeładuj</string>
@@ -24,6 +26,7 @@
     <string name="action_starred">Oznaczone</string>
     <string name="action_read">Odczyt</string>
     <string name="action_playPodacst">Odtwórz Podcast</string>
+    <string name="action_openInBrowser">Otwórz w przeglądarce </string>
     <string name="action_Share">Udostępnij</string>
     <string name="action_login">Ustawienia serwera</string>
     <string name="action_save">Zapisz</string>
@@ -69,6 +72,9 @@
     <string name="login_progress_signing_in">Loguję...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ten element jest wymagany</string>
+    <string name="error_invalid_url">Nieprawidłowy adres URL</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Konto importu</string>
 
@@ -106,14 +112,27 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Brak wybranego podcastu</string>
     <string name="no_chapters_available">Brak dostępnych rozdziałów</string>
+    <string name="podcast_playback_speed_dialog_title">Prędkość odtwarzania</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Wygląd</string>
     <string name="pref_title_feed_list_layout">Układ listy kanałów</string>
     <string name="pref_display_title_lines_count">Licznik linii tytułu</string>
+    <string name="pref_display_browser">Przeglądarka</string>
+
+
+
+
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcji (Widok szczegółowy)</string>
+
+    <string name="pref_display_apptheme_dark">Ciemny</string>
+    <string name="pref_display_apptheme_dark_oled">Ciemny (dla ekranów OLED)</string>
+    <string name="pref_display_apptheme_light">Jasny</string>
 
     <string name="content_desc_play">odtwarzanie</string>
     <string name="content_desc_pause">pauza</string>
+    <string name="content_desc_playback_speed">prędkość odtwarzania</string>
     <string name="content_desc_rewind">przewiń wstecz</string>
     <string name="content_desc_forward">przewiń wprzód</string>
     <string name="content_desc_expand">rozwiń</string>
