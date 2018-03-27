@@ -168,6 +168,7 @@
     <string name="pref_display_feed_list_layout_extended">Utvidet</string>
     <string name="content_desc_play">spil</string>
     <string name="content_desc_pause">pause</string>
+    <string name="content_desc_playback_speed">avspillingshastighet</string>
     <string name="content_desc_rewind">bakover</string>
     <string name="content_desc_forward">framover</string>
     <string name="content_desc_expand">utvid</string>
