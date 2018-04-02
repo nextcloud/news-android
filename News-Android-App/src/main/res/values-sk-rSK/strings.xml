@@ -89,6 +89,13 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazenie</string>
     <string name="pref_title_feed_list_layout">Rozvrhnutie zoznamu kanálov</string>
+    <string name="pref_display_browser">Prehliadač</string>
+
+
+
+
+    <string name="pref_display_browser_external">Externý prehliadač</string>
+
     <string name="content_desc_delete">vymazať</string>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Oznámenia</string>
