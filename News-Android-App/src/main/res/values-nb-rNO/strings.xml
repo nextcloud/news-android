@@ -161,11 +161,14 @@
     <string name="pref_display_apptheme_dark_oled">Mørk (for OLED- skjermer)</string>
     <string name="pref_display_apptheme_light">Lys</string>
 
+    <string name="pref_display_browser_cct">Innebygde tilpassede Chrome-faner</string>
     <string name="pref_display_browser_built_in">Innebygd nettleser</string>
     <string name="pref_display_browser_external">Ekstern nettleser</string>
 
     <string name="pref_display_feed_list_layout_simple">Enkel</string>
     <string name="pref_display_feed_list_layout_extended">Utvidet</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Utvidet (fulltekst)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Utvidet med nettvisning</string>
     <string name="content_desc_play">spil</string>
     <string name="content_desc_pause">pause</string>
     <string name="content_desc_playback_speed">avspillingshastighet</string>
@@ -205,6 +208,9 @@
 
     <string name="pref_data_sync_image_cache_never">Aldri</string>
     <string name="pref_data_sync_image_cache_wifi_only">Bare over Wi-Fi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Over Wi-Fi og mobilnettverk</string>
+    <string name="pref_data_sync_image_cache_ask">Spør når ikke tilkoblet Wi-Fi</string>
+
     <string name="array_sync_interval_min_5">5 minutter</string>
     <string name="array_sync_interval_min_15">15 minutter</string>
     <string name="array_sync_interval_min_30">30 minutter</string>
