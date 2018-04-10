@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@color/slider_listview_background_color_light_theme"/>
+        android:drawable="@color/nextcloudBlueLight"/>
 
     <item>
         <bitmap
