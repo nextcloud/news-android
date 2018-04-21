@@ -175,4 +175,14 @@
 
 
 
+    <string name="pref_data_sync_image_cache_never">Ποτέ</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Μόνο μέσω WiFi</string>
+    <string name="array_sync_interval_min_45">45 λεπτά</string>
+    <string name="array_sync_interval_hour_1">1 ώρα</string>
+    <string name="array_sync_interval_hour_2">2 ώρες</string>
+    <string name="array_sync_interval_hour_3">3 ώρες</string>
+    <string name="array_sync_interval_hour_6">6 ώρες</string>
+    <string name="array_sync_interval_hour_12">12 ώρες</string>
+    <string name="array_sync_interval_hour_24">24 ώρες</string>
+
     </resources>

@@ -5,7 +5,7 @@
     <string name="title_activity_sync_interval_selector">Sync interval selector</string>
     <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
     <string name="empty_view_content">Geen items hier</string>
-    <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld AUB.</string>
+    <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>
     <string name="no_wifi_available">Geen wifi verbinding</string>
     <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
     <string name="current_version">U gebruikt versie %s</string>
