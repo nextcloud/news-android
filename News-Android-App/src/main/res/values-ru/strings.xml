@@ -5,7 +5,7 @@
     <string name="title_activity_sync_interval_selector">Переключатель интервала синхронизации</string>
     <string name="title_activity_news_detail">Последние новости</string>
     <string name="empty_view_content">Здесь нет элементов</string>
-    <string name="toast_GettingMoreItems">Началось скачивание элементов... Пожалуйста подождите.</string>
+    <string name="toast_GettingMoreItems">Началось скачивание элементов… Пожалуйста подождите.</string>
     <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
     <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
     <string name="current_version">Вы используете версию %s</string>
@@ -67,7 +67,7 @@
     <string name="action_link_share">Поделиться ссылкой</string>
     <string name="action_link_open">Открыть ссылку в браузере</string>
     <string name="action_link_copy">Копировать ссылку</string>
-    <string name="toast_img_download_wait">Загрузка ... Пожалуйста, подождите</string>
+    <string name="toast_img_download_wait">Загрузка… Пожалуйста, подождите</string>
     <string name="toast_img_saved">Изображение сохранено</string>
     <string name="toast_img_notwriteable">Не удалось записать изображение.</string>
     <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>
@@ -89,7 +89,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Войти</string>
-    <string name="login_progress_signing_in">Авторизация...</string>
+    <string name="login_progress_signing_in">Авторизация…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Это поле обязательно для заполнения</string>
     <string name="error_invalid_url">Некорректный адрес</string>
@@ -129,7 +129,7 @@
     <string name="pref_general_sort_order_old_new">Старые -&gt; Новые</string>
 
     <string name="dialog_clearing_cache">Очистить кеш.</string>
-    <string name="dialog_clearing_cache_please_wait">Очистка кеша... Пожалуйста подождите.</string>
+    <string name="dialog_clearing_cache_please_wait">Очистка кеша… Пожалуйста подождите.</string>
     <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
     <string name="warning">Предупреждение</string>
     <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>
