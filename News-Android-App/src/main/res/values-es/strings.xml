@@ -9,7 +9,7 @@
     <string name="no_wifi_available">No hay una conexión WiFi</string>
     <string name="do_you_want_to_download_without_wifi">¿Quieres descargarte las imágenes sin conexión WiFi?</string>
     <string name="current_version">Está utilizando la versión %s</string>
-    <string name="widget_header">Noticias de ownCloud</string>
+    <string name="widget_header">Noticias de Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nuevo elemento disponible</item>
         <item quantity="other">%d nuevos elementos disponibles</item>
@@ -20,7 +20,7 @@
     <string name="title_activity_new_feed">Añadir nueva fuente</string>
 
     <string name="menu_update">Actualizar</string>
-    <string name="menu_About_Changelog">Acerca de / Changelog</string>
+    <string name="menu_About_Changelog">Acerca de / Registro de cambios</string>
     <string name="menu_markAllAsRead">Marcar todo como leído</string>
     <string name="menu_StartImageCaching">Descargar imágenes</string>
     <string name="menu_downloadMoreItems">Descargar más artículos</string>
@@ -32,14 +32,14 @@
     <string name="action_playPodacst">Reproducir podcast</string>
     <string name="action_openInBrowser">Abrir con el navegador</string>
     <string name="action_Share">Compartir</string>
-    <string name="action_login">Ajustes del Servidor</string>
+    <string name="action_login">Ajustes del servidor</string>
     <string name="action_save">Guardar</string>
     <string name="action_settings">Ajustes</string>
-    <string name="action_sync_settings">Ajustes de Sincronización</string>
+    <string name="action_sync_settings">Ajustes de sincronización</string>
     <string name="action_add_new_feed">Añadir nueva fuente</string>
     <string name="action_textToSpeech">Recopilar información</string>
     <plurals name="notification_new_items_ticker">
-        <item quantity="one">Tienes %d elementos nuevos sin leer</item>
+        <item quantity="one">Tienes %d elemento nuevo sin leer</item>
         <item quantity="other">Tienes %d elementos nuevos sin leer</item>
     </plurals>
     <plurals name="notification_new_items_text">
@@ -50,27 +50,27 @@
 
     <!-- Add new feed -->
     <string name="hint_feed_url">URL para el canal</string>
-    <string name="action_add_feed">Añadir fuente</string>
+    <string name="action_add_feed">Añadir canal</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Descargar imagen</string>
     <string name="action_img_sharelink">Compartir enlace de imagen</string>
     <string name="action_img_open">Abrir imagen en el navegador de internet</string>
-    <string name="action_img_copylink">Copiar imagen enlace</string>
+    <string name="action_img_copylink">Copiar enlace de la imagen</string>
     <string name="action_link_share">Compartir enlace</string>
-    <string name="action_link_open">Abrir enlace en el navegador de internet</string>
+    <string name="action_link_open">Abrir enlace en el navegador</string>
     <string name="action_link_copy">Copiar enlace</string>
-    <string name="toast_img_download_wait">Descargando... Por favor espera</string>
+    <string name="toast_img_download_wait">Descargando… Por favor, espera</string>
     <string name="toast_img_saved">Imagen guardada</string>
-    <string name="toast_img_notwriteable">Error al escribir Imagen.</string>
+    <string name="toast_img_notwriteable">Error al escribir imagen</string>
     <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
     <string name="error_download_failed">Fallo al descargar</string>
     <string name="intent_title_share">Compartir vía</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">Eliminar Fuente</string>
+    <string name="action_feed_remove">Eliminar fuente</string>
     <string name="action_feed_rename">Renombrar Fuente</string>
     <string name="feed_remove_button">Eliminar</string>
     <string name="feed_rename_button">Renombrar</string>
@@ -79,11 +79,11 @@
     <!-- Strings related to login -->
     <string name="pref_title_username">Nombre de usuario</string>
     <string name="pref_title_password">Contraseña</string>
-    <string name="pref_title_owncloudRootPath">Dirección de la raíz de OwnCloud</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Dirección de la raíz de Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Iniciar sesión</string>
-    <string name="login_progress_signing_in">Registrándose...</string>
+    <string name="login_progress_signing_in">Registrándose…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo es necesario</string>
     <string name="error_invalid_url">URL incorrecta</string>
@@ -95,13 +95,13 @@
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
-        <item quantity="one">Descargó %d ítem elemento</item>
-        <item quantity="other">Descargó %d antiguos elementos</item>
+        <item quantity="one">Se ha descargado %d elemento antiguo</item>
+        <item quantity="other">Se han descargado %d elementos antiguos</item>
     </plurals>
     <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">Descabellada %d artículo hasta ahora</item>
-        <item quantity="other">Descabellada %d artículo hasta ahora</item>
+        <item quantity="one">%d artículo recogido hasta ahora</item>
+        <item quantity="other">%d artículos recogidos hasta ahora</item>
     </plurals>
 
 
@@ -119,7 +119,7 @@
     <string name="pref_general_sort_order_old_new">Antiguo -> Nuevo</string>
 
     <string name="dialog_clearing_cache">Vaciando el caché</string>
-    <string name="dialog_clearing_cache_please_wait">Limpiando cache... Por favor espere.</string>
+    <string name="dialog_clearing_cache_please_wait">Limpiando cache… Por favor espere.</string>
     <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quiere vaciar la caché igualmente?</string>
     <string name="warning">Precaución</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar al inicio</string>
