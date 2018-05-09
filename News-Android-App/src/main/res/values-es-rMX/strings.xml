@@ -3,7 +3,7 @@
 
     <string name="auto_sync_string">Sincronización automática</string>
     <string name="title_activity_sync_interval_selector">Control del intervalo de sincronización</string>
-    <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Aquí no hay elementos</string>
     <string name="toast_GettingMoreItems">La descarga de más elmentos ha comenzado... Por favor espera. </string>
     <string name="no_wifi_available">No estás conectado a una WiFi</string>
@@ -127,7 +127,7 @@
     <string name="pref_title_DisableHostnameVerification">Deshabilitar la verificación del hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído al desplazar</string>
-    <string name="pref_title_OpenInBrowserDirectly">Saltarse la vista detallada y abrir el artículo en el navegador</string>
+    <string name="pref_title_OpenInBrowserDirectly">Omitir la vista detallada y abrir el artículo en el navegador</string>
 
     <string name="dialog_feature_not_available">Esta funcionalidad no está dispoinible en esta versión (de código abierto) de esta aplicación. Si quieres usar esta funcionalidad por favor descarga la aplicación desde el Repositorio de GitHub o descarga la Aplicación desde la PlayStore de Google.</string>
 
@@ -148,7 +148,7 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_app_theme">Aplicación de temas (inicia el programa nuevamente para aplicar)</string>
-    <string name="pref_title_feed_list_layout">Lista de fuentes</string>
+    <string name="pref_title_feed_list_layout">Distribución de lista de fuente</string>
     <string name="pref_display_title_lines_count">Conteo de Líneas para título</string>
     <string name="pref_display_browser">Navegador</string>
 
@@ -206,7 +206,7 @@
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Sincronización de datos &amp;</string>
     <string name="pref_title_clearCache">Limpiar el caché</string>
-    <string name="pref_title_CacheImagesOffline">Cachear imágenes offline</string>
+    <string name="pref_title_CacheImagesOffline">Llevar a cache las imágenes fuera de linea</string>
     <string name="pref_title_Max_Cache_Size">Tamaño máximo del caché</string>
 
 
