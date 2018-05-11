@@ -76,6 +76,7 @@ import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
@@ -771,39 +772,55 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if(username != null) {
 			final NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 
+			// Folder is selected.. download more items for all feeds in this folder
+			if(ndf.getIdFeed() == null) {
+				Long idFolder = ndf.getIdFolder();
+				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
+				for(Feed feed : dbConn.getFolderById(idFolder).getFeedList()) {
+					downloadMoreItemsForFeed(feed.getId());
+				}
+			} else {
+				// Single feed is selected.. download more items
+				downloadMoreItemsForFeed(ndf.getIdFeed());
+			}
 
-            Completable.fromAction(new Action() {
-                @Override
-                public void run() throws Exception {
-                    DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(NewsReaderListActivity.this);
-                    RssItem rssItem = dbConn.getLowestRssItemIdByFeed(ndf.getIdFeed());
-                    long offset = rssItem.getId();
-                    long id = rssItem.getFeedId();
-                    int type = 0; // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
 
-                    List<RssItem> buffer = mApi.getAPI().items(100, offset, type, id, true, false).execute().body();
-                    RssItemObservable.performDatabaseBatchInsert(dbConn, buffer);
-                }
-            })
-					.subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action() {
-                        @Override
-                        public void run() throws Exception {
-                            updateCurrentRssView();
-                            Log.v(TAG, "Finished Download extra items..");
-                        }
-                    }, new Consumer<Throwable>() {
-                        @Override
-                        public void accept(@io.reactivex.annotations.NonNull Throwable throwable) throws Exception {
-                            throwable.printStackTrace();
-                            Throwable e = OkHttpSSLClient.HandleExceptions(throwable);
-                            Toast.makeText(NewsReaderListActivity.this, getString(R.string.login_dialog_text_something_went_wrong) + " - " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
 			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	private void downloadMoreItemsForFeed(final Long feedId) {
+		Completable.fromAction(new Action() {
+			@Override
+			public void run() throws Exception {
+				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(NewsReaderListActivity.this);
+				RssItem rssItem = dbConn.getLowestRssItemIdByFeed(feedId);
+				long offset = rssItem.getId();
+				long id = rssItem.getFeedId();
+				int type = 0; // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
+
+				List<RssItem> buffer = mApi.getAPI().items(100, offset, type, id, true, false).execute().body();
+				RssItemObservable.performDatabaseBatchInsert(dbConn, buffer);
+			}
+		})
+				.subscribeOn(Schedulers.newThread())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new Action() {
+					@Override
+					public void run() throws Exception {
+						updateCurrentRssView();
+						Log.v(TAG, "Finished Download extra items..");
+					}
+				}, new Consumer<Throwable>() {
+					@Override
+					public void accept(@io.reactivex.annotations.NonNull Throwable throwable) throws Exception {
+						throwable.printStackTrace();
+						Throwable e = OkHttpSSLClient.HandleExceptions(throwable);
+						Toast.makeText(NewsReaderListActivity.this, getString(R.string.login_dialog_text_something_went_wrong) + " - " + e.getMessage(), Toast.LENGTH_SHORT).show();
+					}
+				})
+				.dispose();
 	}
 
     @Override
