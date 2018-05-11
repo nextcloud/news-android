@@ -2,8 +2,11 @@
 <resources>
 
     <string name="auto_sync_string">Sjálfvirk samstilling</string>
+    <string name="title_activity_sync_interval_selector">Val á bili milli samstillinga</string>
     <string name="empty_view_content">Engin atriði hér</string>
+    <string name="toast_GettingMoreItems">Byrjaði að sækja fleiri atriði... Bíddu aðeins.</string>
     <string name="no_wifi_available">Ekkert WiFi-net tengt</string>
+    <string name="do_you_want_to_download_without_wifi">Viltu sækja myndirnar án Wi-Fi-tengingar</string>
     <string name="current_version">Þú ert að nota útgáfu %s</string>
     <string name="widget_header">Nextcloud-fréttir</string>
     <plurals name="message_bar_new_articles_available">
@@ -26,6 +29,7 @@
     <string name="action_starred">Stjörnumerkt</string>
     <string name="action_read">Lesa</string>
     <string name="action_playPodacst">Spila hlaðvarp</string>
+    <string name="action_openInBrowser">Opna í vafra</string>
     <string name="action_Share">Deila</string>
     <string name="action_login">Stillingar þjóns</string>
     <string name="action_save">Vista</string>
@@ -33,6 +37,10 @@
     <string name="action_sync_settings">Valkostir samstillingar</string>
     <string name="action_add_new_feed">Bæta við nýjum fréttastraum</string>
     <string name="action_textToSpeech">Lesa upphátt</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Þú átt %d nýtt ólesið atriði</item>
+        <item quantity="other">Þú átt %d ný ólesin atriði</item>
+    </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d nýtt ólesið atriði tiltækt</item>
         <item quantity="other">%d ný ólesin atriði tiltæk</item>
@@ -77,6 +85,9 @@
     <string name="login_progress_signing_in">Skrái inn …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Krafist er að fyllt sé í þennan reit</string>
+    <string name="error_invalid_url">Röng slóð</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Flytja inn aðgang</string>
 
@@ -103,13 +114,20 @@
     <string name="pref_title_general_sort_order">Röðun</string>
 
 
+    <string name="pref_general_sort_order_new_old">Nýrra -> Eldra</string>
+    <string name="pref_general_sort_order_old_new">Eldra -> Nýrra</string>
+
     <string name="dialog_clearing_cache">Hreinsa skyndiminni</string>
     <string name="dialog_clearing_cache_please_wait">Hreinsa skyndiminni... Bíddu aðeins.</string>
+    <string name="reset_cache_unsaved_changes">Það eru ósamstilltar breytingar. Viltu samt endurstilla skyndiminnið?</string>
     <string name="warning">Aðvörun</string>
     <string name="pref_title_AutoSyncOnStart">Samstilla í ræsingu</string>
     <string name="pref_title_ShowOnlyUnread">Birta einungis ólesnar greinar</string>
     <string name="pref_title_DisableHostnameVerification">Gera sannvottun hýsilvélar óvirka</string>
     <string name="pref_title_NavigateWithVolumeButtons">Flakka með hnöppum fyrir hljóðstyrk</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Merkja sem lesið við skrun</string>
+    <string name="pref_title_OpenInBrowserDirectly">Sleppa ítarlegri sýn og opna greinina í vafranum</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Samþykkja óþekkt skilríki?</string>
     <string name="mtm_decision_always">Alltaf</string>
@@ -120,8 +138,13 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ekkert hlaðvarp valið</string>
     <string name="no_chapters_available">Engir kaflar tiltækir</string>
+    <string name="podcast_playback_speed_dialog_title">Hraði afspilunar</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Birting</string>
+    <string name="pref_title_app_theme">Þema forritsins (endurræstu forritið til að breytingar taki gildi)</string>
+    <string name="pref_title_feed_list_layout">Framsetning streymislista</string>
     <string name="pref_display_title_lines_count">Fjöldi lína í fyrirsögn</string>
     <string name="pref_display_browser">Vafri</string>
 
@@ -130,8 +153,23 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Táknmyndir aðgerða (ítarleg sýn)</string>
 
+    <string name="pref_display_apptheme_dark">Dökkt</string>
+    <string name="pref_display_apptheme_dark_oled">Dökkt (fyrir OLED-skjái)</string>
+    <string name="pref_display_apptheme_light">Ljóst</string>
+
+    <string name="pref_display_browser_cct">Innbyggðir Chrome-sérsniðnir-flipar</string>
+    <string name="pref_display_browser_built_in">Innbyggður vafri</string>
+    <string name="pref_display_browser_external">Ytri vafri</string>
+
+    <string name="pref_display_feed_list_layout_simple">Einfalt</string>
+    <string name="pref_display_feed_list_layout_extended">Ítarlegt</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Ítarlegt (allur textinn)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Ítarlegt í vefskoðun</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Ítarlegt í spjaldskoðun</string>
+
     <string name="content_desc_play">afspilun</string>
     <string name="content_desc_pause">bið</string>
+    <string name="content_desc_playback_speed">hraði afspilunar</string>
     <string name="content_desc_rewind">fara til baka</string>
     <string name="content_desc_forward">áfram</string>
     <string name="content_desc_expand">útvíkka</string>
@@ -164,5 +202,21 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Aldrei</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Einungis yfir WiFi-net</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Yfir WiFi-net &amp; farsímasamband</string>
+    <string name="pref_data_sync_image_cache_ask">Spyrja þegar ekki er WiFi-tenging</string>
+
+    <string name="array_sync_interval_min_5">5 mínútur</string>
+    <string name="array_sync_interval_min_15">15 mínútur</string>
+    <string name="array_sync_interval_min_30">30 mínútur</string>
+    <string name="array_sync_interval_min_45">45 mínútur</string>
+    <string name="array_sync_interval_hour_1">1 klukkustund</string>
+    <string name="array_sync_interval_hour_2">2 klukkustundir</string>
+    <string name="array_sync_interval_hour_3">3 klukkustundir</string>
+    <string name="array_sync_interval_hour_6">6 klukkustundir</string>
+    <string name="array_sync_interval_hour_12">12 klukkustundir</string>
+    <string name="array_sync_interval_hour_24">24 klukkustundir</string>
 
     </resources>

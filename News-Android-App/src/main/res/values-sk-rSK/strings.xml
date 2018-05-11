@@ -24,6 +24,7 @@
     <string name="action_starred">S hviezdičkou</string>
     <string name="action_read">Čítať</string>
     <string name="action_playPodacst">Prehrať podcast</string>
+    <string name="action_openInBrowser">Otvoriť vo webovom prehliadači</string>
     <string name="action_Share">Zdieľať</string>
     <string name="action_login">Nastavenia servera</string>
     <string name="action_save">Uložiť</string>
@@ -41,6 +42,9 @@
     <string name="action_img_copylink">Kopíruj odkaz na obrázok</string>
     <string name="action_link_share">Sprístupniť odkaz</string>
     <string name="action_link_open">Otvoriť odkaz v prehliadači</string>
+    <string name="action_link_copy">Kopírovať odkaz</string>
+    <string name="toast_img_download_wait">Sťahujem… počkajte prosím</string>
+    <string name="toast_img_saved">Obrázok uložený.</string>
     <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
     <string name="error_download_failed">Stiahnutie zlyhalo</string>
     <string name="feed_remove_button">Odobrať</string>
@@ -86,6 +90,15 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazenie</string>
     <string name="pref_title_feed_list_layout">Rozvrhnutie zoznamu kanálov</string>
+    <string name="pref_display_browser">Prehliadač</string>
+
+
+
+
+    <string name="pref_display_browser_external">Externý prehliadač</string>
+
+    <string name="content_desc_mark_as_read">označiť ako prečítané</string>
+    <string name="content_desc_mark_as_unread">označiť ako neprečítané</string>
     <string name="content_desc_delete">vymazať</string>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Oznámenia</string>
@@ -104,5 +117,18 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Nikdy</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Iba cez WiFi</string>
+    <string name="array_sync_interval_min_5">5 minút</string>
+    <string name="array_sync_interval_min_15">15 minút</string>
+    <string name="array_sync_interval_min_30">30 minút</string>
+    <string name="array_sync_interval_min_45">45 minút</string>
+    <string name="array_sync_interval_hour_1">1 hodina</string>
+    <string name="array_sync_interval_hour_2">2 hodiny</string>
+    <string name="array_sync_interval_hour_3">3 hodiny</string>
+    <string name="array_sync_interval_hour_6">6 hodín</string>
+    <string name="array_sync_interval_hour_12">12 hodín</string>
+    <string name="array_sync_interval_hour_24">24 hodín</string>
 
     </resources>

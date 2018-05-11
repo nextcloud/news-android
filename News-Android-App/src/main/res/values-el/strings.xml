@@ -28,6 +28,7 @@
     <string name="action_starred">Με αστέρι</string>
     <string name="action_read">Ανάγνωση</string>
     <string name="action_playPodacst">Αναπαραγωγή Podcast</string>
+    <string name="action_openInBrowser">Άνοιγμα στον περιηγητή</string>
     <string name="action_Share">Διαμοιρασμός</string>
     <string name="action_login">Ρυθμίσεις Διακομιστή</string>
     <string name="action_save">Αποθήκευση</string>
@@ -83,6 +84,9 @@
     <string name="login_progress_signing_in">Είσοδος...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
+    <string name="error_invalid_url">Εσφαλμένη URL</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Εισαγωγή λογαριασμού</string>
 
@@ -128,6 +132,16 @@
     <string name="pref_header_display">Εμφάνιση</string>
     <string name="pref_title_feed_list_layout">Προβολή λίστας ροών</string>
     <string name="pref_display_title_lines_count">Απαρίθμηση Γραμμών για τίτλο</string>
+    <string name="pref_display_browser">Περιηγητής</string>
+
+
+
+
+    <string name="pref_display_apptheme_dark">Σκούρο</string>
+    <string name="pref_display_apptheme_light">Φωτεινό</string>
+
+    <string name="pref_display_browser_external">Εξωτερικός περιηγητής</string>
+
     <string name="content_desc_play">αναπαραγωγή</string>
     <string name="content_desc_pause">παύση</string>
     <string name="content_desc_forward">προώθηση</string>
@@ -160,5 +174,15 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Ποτέ</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Μόνο μέσω WiFi</string>
+    <string name="array_sync_interval_min_45">45 λεπτά</string>
+    <string name="array_sync_interval_hour_1">1 ώρα</string>
+    <string name="array_sync_interval_hour_2">2 ώρες</string>
+    <string name="array_sync_interval_hour_3">3 ώρες</string>
+    <string name="array_sync_interval_hour_6">6 ώρες</string>
+    <string name="array_sync_interval_hour_12">12 ώρες</string>
+    <string name="array_sync_interval_hour_24">24 ώρες</string>
 
     </resources>
