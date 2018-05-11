@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -9,10 +10,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +31,7 @@ import android.widget.Toast;
 
 import net.rdrei.android.dirchooser.DirectoryChooserConfig;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,6 +39,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
+
+import static android.support.v4.content.PermissionChecker.checkSelfPermission;
 
 public class NewsDetailImageDialogFragment extends DialogFragment {
 
@@ -102,7 +110,11 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                     mMenuItems.put(getString(R.string.action_img_download), new MenuActionLongClick() {
                         @Override
                         public void execute() {
-                            downloadImage(mImageUrl);
+                            if(haveStoragePermission()) {
+                                downloadImage(mImageUrl);
+                            } else {
+
+                            }
                         }
 
                         public void executeLongClick() {
@@ -296,15 +308,35 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
             request.setDestinationUri(getDownloadDir(filename));
-            request.setTitle("Downloading image");
+            request.setTitle(getString(R.string.app_name) + " - " + getString(R.string.action_img_download));
             request.setDescription(filename);
-            request.setVisibleInDownloadsUi(false);
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+            request.setVisibleInDownloadsUi(true);
+            //request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+            //request.setAllowedOverRoaming(false);
+            //request.setVisibleInDownloadsUi(false);
+            //request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
             downloadID = downloadManager.enqueue(request);
             getDialog().hide();
         } else {
             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
             dismiss();
+        }
+    }
+
+    public boolean haveStoragePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Log.v("Permission error","You have permission");
+                return true;
+            } else {
+                Log.e("Permission error","Asking for permission");
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //you dont need to worry about these stuff below api level 23
+            Log.e("Permission error","You already have the permission");
+            return true;
         }
     }
 
@@ -382,13 +414,23 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                     switch (status) {
                         case DownloadManager.STATUS_SUCCESSFUL:
                             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_saved), Toast.LENGTH_LONG).show();
-                            try { dismiss(); }
-                            catch (Exception e) {}
+
+                            //String imagePath = downloadManager.getUriForDownloadedFile(refID).toString();
+
+                            String downloadFileLocalUri = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+                            File image = new File(Uri.parse(downloadFileLocalUri).getPath());
+
+                            NextcloudNotificationManager.ShowNotificationDownloadSingleImageComplete(context, image);
+
+                            if(isVisible()) {
+                                dismiss();
+                            }
                             break;
                         case DownloadManager.STATUS_FAILED:
                             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_download_failed) + ": " + reason, Toast.LENGTH_LONG).show();
-                            try { dismiss(); }
-                            catch (Exception e) {}
+                            if(isVisible()) {
+                                dismiss();
+                            }
                             break;
                     }
                 }

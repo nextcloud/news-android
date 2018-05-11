@@ -31,7 +31,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.JobIntentService;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -173,7 +172,11 @@ public class DownloadImagesService extends JobIntentService {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            Toast.makeText(this, "Error while downloading images.", Toast.LENGTH_LONG).show();
+            Log.e(TAG, "Error while downloading images.");
+            mNotificationDownloadImages
+                    .setContentText("Error while downloading images - " + ex.toString())
+                    .setProgress(0, 0, false);
+            mNotificationManager.notify(NOTIFICATION_ID, mNotificationDownloadImages.build());
         }
     }
 
