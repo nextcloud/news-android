@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Период освежавања</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Овде нема ничега</string>
+    <string name="toast_GettingMoreItems">Скидање још ставки започето… Сачекајте.</string>
     <string name="no_wifi_available">Нема бежичне везе</string>
+    <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе</string>
     <string name="current_version">Користите верзију %s</string>
     <string name="widget_header">оунКлауд новости</string>
     <plurals name="message_bar_new_articles_available">
@@ -29,6 +31,7 @@
     <string name="action_starred">Озвездано</string>
     <string name="action_read">Читај</string>
     <string name="action_playPodacst">Пусти подемисију</string>
+    <string name="action_openInBrowser">Отвори у прегледачу</string>
     <string name="action_Share">Дели</string>
     <string name="action_login">Поставке сервера</string>
     <string name="action_save">Сачувај</string>
@@ -62,7 +65,6 @@
     <string name="action_link_open">Отвори везу у прегледачу</string>
     <string name="action_link_copy">Копирај везу</string>
     <string name="toast_img_download_wait">Преузимам… сачекајте молим</string>
-    <string name="toast_img_saved">Слика сачувана.</string>
     <string name="toast_img_notwriteable">Грешка при чувању слике.</string>
     <string name="toast_copied_to_clipboard">Копирано у клипборд</string>
     <string name="error_download_failed">Преузимање није успело</string>
@@ -86,6 +88,9 @@
     <string name="login_progress_signing_in">Пријављујем се...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ово поље је неопходно</string>
+    <string name="error_invalid_url">Неисправна адреса</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Увези налог</string>
 
@@ -114,6 +119,9 @@
     <string name="pref_title_general_sort_order">Сортирање</string>
 
 
+    <string name="pref_general_sort_order_new_old">Новији -> Старији</string>
+    <string name="pref_general_sort_order_old_new">Старији -> Новији</string>
+
     <string name="dialog_clearing_cache">Чистим кеш</string>
     <string name="dialog_clearing_cache_please_wait">Чистим кеш… Сачекајте.</string>
     <string name="reset_cache_unsaved_changes">Постоје несинхронизоване измене. Да ипак обришем кеш?</string>
@@ -123,6 +131,8 @@
     <string name="pref_title_DisableHostnameVerification">Искључи проверу имена домаћина</string>
     <string name="pref_title_NavigateWithVolumeButtons">Навигација помоћу дугмади за јачину звука</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Означи као прочитано током клизања</string>
+    <string name="pref_title_OpenInBrowserDirectly">Прескочи детаљни преглед и одмах отвори чланак у Веб читачу</string>
+
     <string name="dialog_feature_not_available">Ова функционалност није доступна у овој верзији (отвореног кода). Ако желите да користите ову функционалност, преузмите апликација са GitHub репозиторијума или скините апликација са Google PlayStore продавнице.</string>
 
 
@@ -136,8 +146,12 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Није изабрана подемисија</string>
     <string name="no_chapters_available">Нема доступних поглавља</string>
+    <string name="podcast_playback_speed_dialog_title">Брзина пуштања</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Приказ</string>
+    <string name="pref_title_app_theme">Тема апликације (поново покрените програм да видите промене)</string>
     <string name="pref_title_feed_list_layout">Распоред листе довода</string>
     <string name="pref_display_title_lines_count">Број линија у наслову</string>
     <string name="pref_display_browser">Прегледач</string>
@@ -147,8 +161,23 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Акционе иконица (детаљни приказ)</string>
 
+    <string name="pref_display_apptheme_dark">Тамна</string>
+    <string name="pref_display_apptheme_dark_oled">Тамна (за OLED екране)</string>
+    <string name="pref_display_apptheme_light">Светла</string>
+
+    <string name="pref_display_browser_cct">Уграђени Chrome-Custom-Tabs</string>
+    <string name="pref_display_browser_built_in">Уграђени Веб читач</string>
+    <string name="pref_display_browser_external">Спољни Веб читач</string>
+
+    <string name="pref_display_feed_list_layout_simple">Просто</string>
+    <string name="pref_display_feed_list_layout_extended">Проширено</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Проширено (пун текст)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Проширено помоћу Webview-а</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Проширено помоћу Cardview-а</string>
+
     <string name="content_desc_play">пусти</string>
     <string name="content_desc_pause">паузирај</string>
+    <string name="content_desc_playback_speed">брзина пуштања</string>
     <string name="content_desc_rewind">премотај</string>
     <string name="content_desc_forward">убрзај</string>
     <string name="content_desc_expand">прошири</string>
@@ -173,7 +202,11 @@
     <string name="login_dialog_title_error">Грешка</string>
     <string name="login_dialog_text_something_went_wrong">Нешто је пошло наопако :(</string>
     <string name="login_dialog_text_zero_version_code">Апликација вести је вратила верзију \"0\". Погледајте следећи извештај о грешци: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Верзија ове апликације није усклађена са новинском апликацијом Некстклауда. Ажурирајте апликацију и њен радни оквир.</string>
     <string name="login_dialog_title_security_warning">Сигурносно упозорење</string>
+    <string name="login_dialog_text_security_warning">Не користите препоручени безбедни HTTPS пренос. Нападач може пресрести ваш саобраћај и доћи у посед осетљивим податацима (нпр. ваше лозинке).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Подаци и синхронизација</string>
     <string name="pref_title_clearCache">Очисти кеш</string>
@@ -182,5 +215,21 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Никад</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Само преко бежичне везе</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Преко бежичне &amp; мобилне мреже</string>
+    <string name="pref_data_sync_image_cache_ask">Питај када нема бежичне везе</string>
+
+    <string name="array_sync_interval_min_5">5 минута</string>
+    <string name="array_sync_interval_min_15">15 минута</string>
+    <string name="array_sync_interval_min_30">30 минута</string>
+    <string name="array_sync_interval_min_45">45 минута</string>
+    <string name="array_sync_interval_hour_1">1 сат</string>
+    <string name="array_sync_interval_hour_2">2 сата</string>
+    <string name="array_sync_interval_hour_3">3 сата</string>
+    <string name="array_sync_interval_hour_6">6 сати</string>
+    <string name="array_sync_interval_hour_12">12 сати</string>
+    <string name="array_sync_interval_hour_24">24 сата</string>
 
     </resources>

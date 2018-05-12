@@ -62,7 +62,6 @@
     <string name="action_link_open">Åpne lenke i nettleser</string>
     <string name="action_link_copy">Kopier lenke</string>
     <string name="toast_img_download_wait">Laster ned... Vennligst vent</string>
-    <string name="toast_img_saved">Bilde lagret.</string>
     <string name="toast_img_notwriteable">Klarte ikke å skrive bilde.</string>
     <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
     <string name="error_download_failed">Nedlasting feilet</string>
@@ -142,6 +141,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ingen podcast valgt</string>
     <string name="no_chapters_available">Ingen kapitler tilgjengelig</string>
+    <string name="podcast_playback_speed_dialog_title">Avspillingshastighet</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
     <string name="pref_title_app_theme">App- tema (start programmet igjen for å se endringen)</string>
@@ -156,13 +158,19 @@
 
     <string name="pref_display_apptheme_dark">Mørk</string>
     <string name="pref_display_apptheme_dark_oled">Mørk (for OLED- skjermer)</string>
+    <string name="pref_display_apptheme_light">Lys</string>
+
+    <string name="pref_display_browser_cct">Innebygde tilpassede Chrome-faner</string>
     <string name="pref_display_browser_built_in">Innebygd nettleser</string>
     <string name="pref_display_browser_external">Ekstern nettleser</string>
 
     <string name="pref_display_feed_list_layout_simple">Enkel</string>
     <string name="pref_display_feed_list_layout_extended">Utvidet</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Utvidet (fulltekst)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Utvidet med nettvisning</string>
     <string name="content_desc_play">spil</string>
     <string name="content_desc_pause">pause</string>
+    <string name="content_desc_playback_speed">avspillingshastighet</string>
     <string name="content_desc_rewind">bakover</string>
     <string name="content_desc_forward">framover</string>
     <string name="content_desc_expand">utvid</string>
@@ -199,6 +207,9 @@
 
     <string name="pref_data_sync_image_cache_never">Aldri</string>
     <string name="pref_data_sync_image_cache_wifi_only">Bare over Wi-Fi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Over Wi-Fi og mobilnettverk</string>
+    <string name="pref_data_sync_image_cache_ask">Spør når ikke tilkoblet Wi-Fi</string>
+
     <string name="array_sync_interval_min_5">5 minutter</string>
     <string name="array_sync_interval_min_15">15 minutter</string>
     <string name="array_sync_interval_min_30">30 minutter</string>

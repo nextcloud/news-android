@@ -54,7 +54,6 @@
     <string name="action_link_open">بازکردن عکس در مرورگر</string>
     <string name="action_link_copy">کپی کردن لینک</string>
     <string name="toast_img_download_wait">در حال دانلود... لطفاً منتظر بمانید</string>
-    <string name="toast_img_saved">عکس ذخیره شد.</string>
     <string name="toast_img_notwriteable">خطا در ذخیره عکس</string>
     <string name="toast_copied_to_clipboard">کپی به کلیپ بورد</string>
     <string name="error_download_failed">بارگیری ناموفق بود</string>

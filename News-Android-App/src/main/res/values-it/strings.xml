@@ -62,7 +62,6 @@
     <string name="action_link_open">Apri collegamento nel browser</string>
     <string name="action_link_copy">Copia collegamento</string>
     <string name="toast_img_download_wait">Scaricamento in corso... attendi</string>
-    <string name="toast_img_saved">Immagine salvata.</string>
     <string name="toast_img_notwriteable">Scrittura dell\'immagine non riuscita.</string>
     <string name="toast_copied_to_clipboard">Copiato negli appunti</string>
     <string name="error_download_failed">Scaricamento non riuscito</string>
@@ -142,6 +141,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nessun podcast selezionato</string>
     <string name="no_chapters_available">Nessun capitolo disponibile</string>
+    <string name="podcast_playback_speed_dialog_title">Velocità  di riproduzione</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Schermo</string>
     <string name="pref_title_app_theme">Tema dell\'applicazione (riavvia il programma per applicarlo)</string>
@@ -170,6 +172,7 @@
 
     <string name="content_desc_play">riproduci</string>
     <string name="content_desc_pause">pausa</string>
+    <string name="content_desc_playback_speed">Velocità  di riproduzione</string>
     <string name="content_desc_rewind">riavvolgi</string>
     <string name="content_desc_forward">avanza</string>
     <string name="content_desc_expand">espandi</string>

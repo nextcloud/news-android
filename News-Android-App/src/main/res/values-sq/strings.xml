@@ -59,7 +59,6 @@
     <string name="action_link_open">Hapeni Lidhjen në Shfletues</string>
     <string name="action_link_copy">Kopjoje Lidhjen</string>
     <string name="toast_img_download_wait">Po shkarkohet… Ju lutemi, pritni</string>
-    <string name="toast_img_saved">Figura u ruajt.</string>
     <string name="toast_img_notwriteable">Dështoi shkrimi i Figurës.</string>
     <string name="toast_copied_to_clipboard">U kopjua në të papastër</string>
     <string name="error_download_failed">Shkarkimi dështoi</string>

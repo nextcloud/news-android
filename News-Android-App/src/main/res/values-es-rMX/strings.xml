@@ -62,7 +62,6 @@
     <string name="action_link_open">Abrir la Liga en el Navegador</string>
     <string name="action_link_copy">Copiar Liga</string>
     <string name="toast_img_download_wait">Descargando... por favor aguarda</string>
-    <string name="toast_img_saved">Imagen guardada.</string>
     <string name="toast_img_notwriteable">Falla al escribir la Imagen.</string>
     <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
     <string name="error_download_failed">La descarga falló</string>
@@ -142,6 +141,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">No se ha seleccionado algún podcast</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
+    <string name="podcast_playback_speed_dialog_title">Velocidad de Reproducción</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_app_theme">Aplicación de temas (inicia el programa nuevamente para aplicar)</string>
@@ -170,6 +172,7 @@
 
     <string name="content_desc_play">reproducir</string>
     <string name="content_desc_pause">pausar</string>
+    <string name="content_desc_playback_speed">velocidad de reproducción</string>
     <string name="content_desc_rewind">rebobinar</string>
     <string name="content_desc_forward">adelantar</string>
     <string name="content_desc_expand">expandir</string>

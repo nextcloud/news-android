@@ -57,7 +57,6 @@
     <string name="action_link_open">Avaa linkki selaimessa</string>
     <string name="action_link_copy">Kopioi linkki</string>
     <string name="toast_img_download_wait">Ladataan, odota hetki…</string>
-    <string name="toast_img_saved">Kuva tallennettu.</string>
     <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
     <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
     <string name="error_download_failed">Lataus epäonnistui</string>
@@ -107,6 +106,9 @@
     <string name="pref_title_general_sort_order">Lajittelujärjestys</string>
 
 
+    <string name="pref_general_sort_order_new_old">Uusi -> Vanha</string>
+    <string name="pref_general_sort_order_old_new">Vanha -> Uusi</string>
+
     <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
     <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
     <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
@@ -134,6 +136,10 @@
 
 
 
+    <string name="pref_display_apptheme_dark">Tumma</string>
+    <string name="pref_display_apptheme_light">Vaalea</string>
+
+    <string name="pref_display_feed_list_layout_simple">Yksinkertainen</string>
     <string name="content_desc_play">toistsa</string>
     <string name="content_desc_pause">keskeytä</string>
     <string name="content_desc_expand">laajenna</string>
@@ -166,5 +172,16 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Ei koskaan</string>
+    <string name="array_sync_interval_min_5">5 Minuuttia</string>
+    <string name="array_sync_interval_min_15">15 Minuuttia</string>
+    <string name="array_sync_interval_min_30">30 Minuuttia</string>
+    <string name="array_sync_interval_min_45">45 Minuuttia</string>
+    <string name="array_sync_interval_hour_1">1 Tunti</string>
+    <string name="array_sync_interval_hour_2">2 Tuntia</string>
+    <string name="array_sync_interval_hour_6">6 Tuntia</string>
+    <string name="array_sync_interval_hour_12">12 Tuntia</string>
+    <string name="array_sync_interval_hour_24">24 Tuntia</string>
 
     </resources>

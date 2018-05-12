@@ -65,7 +65,6 @@
     <string name="action_link_open">Odpri povezavo v brskalniku</string>
     <string name="action_link_copy">Kopiraj povezavo</string>
     <string name="toast_img_download_wait">Poteka prejemanje ...</string>
-    <string name="toast_img_saved">Slika je shranjena.</string>
     <string name="toast_img_notwriteable">Zapisovanje slike je spodletelo.</string>
     <string name="toast_copied_to_clipboard">Kopirano v odložišče</string>
     <string name="error_download_failed">Prejemanje je spodletelo</string>

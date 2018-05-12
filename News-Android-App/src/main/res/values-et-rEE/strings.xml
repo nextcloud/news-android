@@ -59,7 +59,6 @@
     <string name="action_link_open">Ava link veebilehitsejas</string>
     <string name="action_link_copy">Kopeeri link</string>
     <string name="toast_img_download_wait">Allalaadimine... palun oota</string>
-    <string name="toast_img_saved">Pilt on salvestatud.</string>
     <string name="toast_img_notwriteable">Pildi kirjutamine ebaõnnestus.</string>
     <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
     <string name="error_download_failed">Allalaadimine ebaõnnestus</string>

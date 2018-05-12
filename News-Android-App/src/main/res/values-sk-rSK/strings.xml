@@ -44,7 +44,6 @@
     <string name="action_link_open">Otvoriť odkaz v prehliadači</string>
     <string name="action_link_copy">Kopírovať odkaz</string>
     <string name="toast_img_download_wait">Sťahujem… počkajte prosím</string>
-    <string name="toast_img_saved">Obrázok uložený.</string>
     <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
     <string name="error_download_failed">Stiahnutie zlyhalo</string>
     <string name="feed_remove_button">Odobrať</string>

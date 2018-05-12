@@ -62,7 +62,6 @@
     <string name="action_link_open">Öffne den Link im Browser</string>
     <string name="action_link_copy">Link kopieren</string>
     <string name="toast_img_download_wait">Herunterladen... bitte warten</string>
-    <string name="toast_img_saved">Bild gespeichert.</string>
     <string name="toast_img_notwriteable">Beim Schreiben des Images ist ein Fehler aufgetreten.</string>
     <string name="toast_copied_to_clipboard">In die Zwischenablage kopiert</string>
     <string name="error_download_failed">Herunterladen fehlgeschlagen</string>
@@ -142,6 +141,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Kein Podcast ausgewählt</string>
     <string name="no_chapters_available">Es sind keine Kapitel verfügbar</string>
+    <string name="podcast_playback_speed_dialog_title">Wiedergabegeschwindigkeit</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Anzeige</string>
     <string name="pref_title_app_theme">App-Thema (die App muss zur Anwendung neu gestartet werden)</string>
@@ -170,6 +172,7 @@
 
     <string name="content_desc_play">spielen</string>
     <string name="content_desc_pause">Pause</string>
+    <string name="content_desc_playback_speed">Wiedergabegeschwindigkeit</string>
     <string name="content_desc_rewind">rückwärts</string>
     <string name="content_desc_forward">vorwärts</string>
     <string name="content_desc_expand">erweitern</string>

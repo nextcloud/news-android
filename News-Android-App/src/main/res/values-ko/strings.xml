@@ -56,7 +56,6 @@
     <string name="action_link_open">브라우저에서 링크 열기</string>
     <string name="action_link_copy">링크 복사</string>
     <string name="toast_img_download_wait">다운로드 중입니다… 잠시 기다려 주십시오.</string>
-    <string name="toast_img_saved">사진이 저장되었습니다.</string>
     <string name="toast_img_notwriteable">사진을 기록할 수 없습니다.</string>
     <string name="toast_copied_to_clipboard">클립보드로 복사됨</string>
     <string name="error_download_failed">다운로드 실패</string>

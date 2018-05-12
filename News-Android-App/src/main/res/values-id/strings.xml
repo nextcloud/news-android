@@ -56,7 +56,6 @@
     <string name="action_link_open">Buka Tautan di Peramban</string>
     <string name="action_link_copy">Salin Tautan</string>
     <string name="toast_img_download_wait">Mengunduh... mohon tunggu</string>
-    <string name="toast_img_saved">Gambar disimpan.</string>
     <string name="toast_img_notwriteable">Gagal menulis Gambar.</string>
     <string name="toast_copied_to_clipboard">Disalin ke papan klip</string>
     <string name="error_download_failed">Gagal Mengunduh</string>

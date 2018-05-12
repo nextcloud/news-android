@@ -62,7 +62,6 @@
     <string name="action_link_open">Hivatkozás megnyitása böngészőben</string>
     <string name="action_link_copy">Hivatkozás másolása</string>
     <string name="toast_img_download_wait">Letöltés... kérjük, várj.</string>
-    <string name="toast_img_saved">Kép elmentve.</string>
     <string name="toast_img_notwriteable">Kép írása nem sikerült.</string>
     <string name="toast_copied_to_clipboard">Bemásolva a vágólapra</string>
     <string name="error_download_failed">A letöltés sikertelen</string>
@@ -142,6 +141,9 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nincs Podcast kiválasztva</string>
     <string name="no_chapters_available">Nincsenek elérhető fejezetek</string>
+    <string name="podcast_playback_speed_dialog_title">Lejátszási sebesség</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Kijelző</string>
     <string name="pref_title_app_theme">Alkalmazástéma (indítsd el a programot ismét az alkalmazáshoz)</string>
@@ -170,6 +172,7 @@
 
     <string name="content_desc_play">lejátszás</string>
     <string name="content_desc_pause">szünet</string>
+    <string name="content_desc_playback_speed">lejátszási sebesség</string>
     <string name="content_desc_rewind">visszatekerés</string>
     <string name="content_desc_forward">előretekerés</string>
     <string name="content_desc_expand">kinyitás</string>

@@ -59,7 +59,6 @@
     <string name="action_link_open">Abrir ligação num explorador</string>
     <string name="action_link_copy">Copiar hiperligação</string>
     <string name="toast_img_download_wait">A descarregar... por favor, aguarde</string>
-    <string name="toast_img_saved">Imagem guardada.</string>
     <string name="toast_img_notwriteable">Falhou ao guardar a imagem</string>
     <string name="toast_copied_to_clipboard">Copiado para a área de transferência</string>
     <string name="error_download_failed">Transferência falhada</string>

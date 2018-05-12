@@ -56,7 +56,6 @@
     <string name="action_link_open">ბმულის ბრაუზერში გახსნა</string>
     <string name="action_link_copy">ბმულის კოპირება</string>
     <string name="toast_img_download_wait">იტვირთება... გთხოვთ მოითმინოთ</string>
-    <string name="toast_img_saved">სურათი შენახულია.</string>
     <string name="toast_img_notwriteable">სურათის ჩაწერა ვერ მოხერხდა.</string>
     <string name="toast_copied_to_clipboard">კოპირებულია კლიპბორდში</string>
     <string name="error_download_failed">ჩამოტვირთვა ვერ განხორციელდა</string>
