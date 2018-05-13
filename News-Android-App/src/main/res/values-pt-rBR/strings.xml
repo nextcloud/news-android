@@ -62,6 +62,7 @@
     <string name="action_link_open">Abrir o Link no Navegador</string>
     <string name="action_link_copy">Copiar o Link</string>
     <string name="toast_img_download_wait">Baixando... por favor aguarde</string>
+    <string name="toast_img_saved">Imagem gravada</string>
     <string name="toast_img_notwriteable">Falhou ao salvar Imagem</string>
     <string name="toast_copied_to_clipboard">Copiado para área de transferência</string>
     <string name="error_download_failed">A transferência falhou</string>

@@ -62,6 +62,7 @@
     <string name="action_link_open">Öffne den Link im Browser</string>
     <string name="action_link_copy">Link kopieren</string>
     <string name="toast_img_download_wait">Herunterladen... bitte warten</string>
+    <string name="toast_img_saved">Bild gespeichert</string>
     <string name="toast_img_notwriteable">Beim Schreiben des Images ist ein Fehler aufgetreten.</string>
     <string name="toast_copied_to_clipboard">In die Zwischenablage kopiert</string>
     <string name="error_download_failed">Herunterladen fehlgeschlagen</string>

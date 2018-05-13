@@ -62,6 +62,7 @@
     <string name="action_link_open">Apri collegamento nel browser</string>
     <string name="action_link_copy">Copia collegamento</string>
     <string name="toast_img_download_wait">Scaricamento in corso... attendi</string>
+    <string name="toast_img_saved">Immagine salvata</string>
     <string name="toast_img_notwriteable">Scrittura dell\'immagine non riuscita.</string>
     <string name="toast_copied_to_clipboard">Copiato negli appunti</string>
     <string name="error_download_failed">Scaricamento non riuscito</string>

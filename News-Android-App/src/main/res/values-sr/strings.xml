@@ -65,6 +65,7 @@
     <string name="action_link_open">Отвори везу у прегледачу</string>
     <string name="action_link_copy">Копирај везу</string>
     <string name="toast_img_download_wait">Преузимам… сачекајте молим</string>
+    <string name="toast_img_saved">Слика сачувана.</string>
     <string name="toast_img_notwriteable">Грешка при чувању слике.</string>
     <string name="toast_copied_to_clipboard">Копирано у клипборд</string>
     <string name="error_download_failed">Преузимање није успело</string>
