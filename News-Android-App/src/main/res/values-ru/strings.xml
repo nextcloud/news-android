@@ -68,6 +68,7 @@
     <string name="action_link_open">Открыть ссылку в браузере</string>
     <string name="action_link_copy">Копировать ссылку</string>
     <string name="toast_img_download_wait">Загрузка… Пожалуйста, подождите</string>
+    <string name="toast_img_saved">Изображение записано</string>
     <string name="toast_img_notwriteable">Не удалось записать изображение.</string>
     <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>
     <string name="error_download_failed">Скачивание не удалось</string>

@@ -62,6 +62,7 @@
     <string name="action_link_open">Openen link in browser</string>
     <string name="action_link_copy">Kopiëren link </string>
     <string name="toast_img_download_wait">Downloaden... even geduld...</string>
+    <string name="toast_img_saved">Afbeelding opgeslagen</string>
     <string name="toast_img_notwriteable">Opslaan afbeelding mislukt</string>
     <string name="toast_copied_to_clipboard">Gekopieerd naar het klembord</string>
     <string name="error_download_failed">Downloaden mislukt</string>

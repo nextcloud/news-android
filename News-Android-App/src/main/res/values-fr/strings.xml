@@ -62,6 +62,7 @@
     <string name="action_link_open">Ouvrir le Lien dans le Navigateur</string>
     <string name="action_link_copy">Copier le Lien</string>
     <string name="toast_img_download_wait">Téléchargement... Veuillez patienter</string>
+    <string name="toast_img_saved">Image sauvegardée</string>
     <string name="toast_img_notwriteable">Erreur d\'écriture de l\'Image.</string>
     <string name="toast_copied_to_clipboard">Copié dans le presse-papier</string>
     <string name="error_download_failed">Le téléchargement a échoué</string>
