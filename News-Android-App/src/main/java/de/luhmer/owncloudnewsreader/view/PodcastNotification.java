@@ -1,6 +1,5 @@
 package de.luhmer.owncloudnewsreader.view;
 
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -12,23 +11,25 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.broadcastreceiver.PodcastNotificationToggle;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
+import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 
 public class PodcastNotification {
 
+    private static final String TAG = PodcastNotification.class.getCanonicalName();
     public static final String ACTION_PLAY = "action_play";
     public static final String ACTION_PAUSE = "action_pause";
     //public static final String ACTION_NEXT = "action_next";
@@ -37,15 +38,14 @@ public class PodcastNotification {
 
     private Context mContext;
     private NotificationManager notificationManager;
-    private EventBus eventBus;
     private NotificationCompat.Builder notificationBuilder;
-    private PendingIntent resultPendingIntent;
-    private String CHANNEL_ID = "1";
+    private String CHANNEL_ID = "Podcast Notification";
 
     //private MediaSessionManager mManager;
     private MediaSessionCompat mSession;
     //private MediaControllerCompat mController;
     private int lastDrawableId = -1;
+
 
     private final static int NOTIFICATION_ID = 1111;
 
@@ -53,15 +53,7 @@ public class PodcastNotification {
         this.mContext = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_LOW;
-            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, importance);
-            //mChannel.enableLights(true);
-            this.notificationManager.createNotificationChannel(mChannel);
-        }
-
-        eventBus = EventBus.getDefault();
-        eventBus.register(this);
+        EventBus.getDefault().register(this);
     }
 
     public void unbind() {
@@ -70,36 +62,13 @@ public class PodcastNotification {
         }
     }
 
-    private void createNewNotificationBuilder() {
-        // Creates an explicit intent for an ResultActivity to receive.
-        Intent resultIntent = new Intent(mContext, NewsReaderListActivity.class);
-        // Because clicking the notification opens a new ("special") activity, there's
-        // no need to create an artificial back stack.
-        resultPendingIntent =
-                PendingIntent.getActivity(
-                        mContext,
-                        0,
-                        resultIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-
-        // Create the final Notification object.
-        notificationBuilder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notification)
-                .setAutoCancel(true)
-                .setOngoing(true)
-                .setContentIntent(resultPendingIntent);
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            notificationBuilder.setChannelId(CHANNEL_ID);
-        }
-    }
-
 
     @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
-        if(mSession == null)
+        if(mSession == null) {
+            Log.v(TAG, "Session null.. ignore UpdatePodcastStatusEvent");
             return;
+        }
 
         int drawableId = podcast.isPlaying() ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
         String actionText = podcast.isPlaying() ? "Pause" : "Play";
@@ -108,10 +77,12 @@ public class PodcastNotification {
         if(lastDrawableId != drawableId) {
             lastDrawableId = drawableId;
 
-            createNewNotificationBuilder();
+            notificationBuilder = NextcloudNotificationManager.BuildPodcastNotification(mContext, CHANNEL_ID);
             notificationBuilder.setContentTitle(podcast.getTitle());
-            notificationBuilder.addAction(drawableId, actionText, PendingIntent.getBroadcast(mContext, 0, new Intent(mContext,
-                            PodcastNotificationToggle.class),
+            notificationBuilder.addAction(
+                    drawableId,
+                    actionText,
+                    PendingIntent.getBroadcast(mContext, 0, new Intent(mContext, PodcastNotificationToggle.class),
                     PendingIntent.FLAG_ONE_SHOT));
 
 
@@ -207,8 +178,6 @@ public class PodcastNotification {
 
         //TODO networkOnMainThreadExceptionHere!
         //Bitmap bmpAlbumArt = ImageLoader.getInstance().loadImageSync(favIconUrl, displayImageOptions);
-
-
 
         mSession.setMetadata(new MediaMetadataCompat.Builder()
                 .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, "Test")

@@ -2,9 +2,7 @@ package de.luhmer.owncloudnewsreader.services;
 
 import android.app.DownloadManager;
 import android.app.IntentService;
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -24,10 +22,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
 
-import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -133,22 +130,11 @@ public class PodcastDownloadService extends IntentService {
 
 
     private void downloadPodcast(PodcastItem podcast, Context context) {
-        Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationCompat.Builder mNotificationDownloadPodcast = new NotificationCompat.Builder(this)
-                .setContentTitle(getResources().getString(R.string.app_name))
-                .setContentText("Downloading podcast")
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentIntent(pIntent)
-                .setOngoing(true);
-        Notification notify = mNotificationDownloadPodcast.build();
-        //Hide the notification after its selected
-        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-        notify.flags |= Notification.FLAG_NO_CLEAR;
 
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder mNotificationDownloadPodcast = NextcloudNotificationManager.BuildDownloadPodcastNotification(context, "Download Podcast");
         int NOTIFICATION_ID = 543226;
-        notificationManager.notify(NOTIFICATION_ID, notify);
+        notificationManager.notify(NOTIFICATION_ID, mNotificationDownloadPodcast.build());
 
 
 

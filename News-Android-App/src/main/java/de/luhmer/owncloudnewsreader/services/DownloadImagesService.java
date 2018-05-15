@@ -21,10 +21,7 @@
 
 package de.luhmer.owncloudnewsreader.services;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -35,46 +32,41 @@ import android.util.Log;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import de.greenrobot.dao.query.LazyList;
-import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.DownloadImageHandler;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 
 public class DownloadImagesService extends JobIntentService {
 
 	public static final String LAST_ITEM_ID = "LAST_ITEM_ID";
     private static final String TAG = DownloadImagesService.class.getCanonicalName();
 
-
     public enum DownloadMode { FAVICONS_ONLY, PICTURES_ONLY, FAVICONS_AND_PICTURES }
     public static final String DOWNLOAD_MODE_STRING = "DOWNLOAD_MODE";
 	private static Random random;
 
 	private int NOTIFICATION_ID = 1;
-	private NotificationManager mNotificationManager;
 	private NotificationCompat.Builder mNotificationDownloadImages;
-    NotificationChannel mChannel;
 
     private int maxCount;
 	//private int total_size = 0;
 
-    List<String> linksToImages = new LinkedList<>();
+    //List<String> linksToImages = new LinkedList<>();
 
 
     /**
      * Unique job/channel ID for this service.
      */
     static final int JOB_ID = 1000;
-    static final String CHANNEL_ID = "1000";
+    static final String CHANNEL_ID = "Download Images Service";
 
     /**
      * Convenience method for enqueuing work in to this service.
@@ -82,7 +74,7 @@ public class DownloadImagesService extends JobIntentService {
     public static void enqueueWork(Context context, Intent work) {
         enqueueWork(context, DownloadImagesService.class, JOB_ID, work);
     }
-
+    NotificationManager mNotificationManager;
 
 
     @Override
@@ -93,17 +85,10 @@ public class DownloadImagesService extends JobIntentService {
             if (random == null)
                 random = new Random();
             NOTIFICATION_ID = random.nextInt();
+
+            mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-
-
-        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_LOW;
-            mChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, importance);
-            //mChannel.enableLights(true);
-            mNotificationManager.createNotificationChannel(mChannel);
         }
     }
 
@@ -112,8 +97,9 @@ public class DownloadImagesService extends JobIntentService {
         Log.d(TAG, "onDestroy");
 		if(mNotificationDownloadImages != null)
 		{
-			if(maxCount == 0)
-				mNotificationManager.cancel(NOTIFICATION_ID);
+			if(maxCount == 0) {
+                mNotificationManager.cancel(NOTIFICATION_ID);
+            }
 		}
 		super.onDestroy();
 	}
@@ -123,7 +109,7 @@ public class DownloadImagesService extends JobIntentService {
         DownloadMode downloadMode = (DownloadMode) intent.getSerializableExtra(DOWNLOAD_MODE_STRING);
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
-        Notification notify = BuildNotification();
+        mNotificationDownloadImages = NextcloudNotificationManager.BuildNotificationDownloadImageService(this, CHANNEL_ID);
 
         if(downloadMode.equals(DownloadMode.FAVICONS_ONLY)) {
             List<Feed> feedList = dbConn.getListOfFeeds();
@@ -144,7 +130,7 @@ public class DownloadImagesService extends JobIntentService {
                 links.addAll(ImageHandler.getImageLinksFromText(body));
 
                 if(links.size() > 10000) {
-                    mNotificationManager.notify(123, GetNotificationLimitImagesReached(10000));
+                    NextcloudNotificationManager.ShowNotificationImageDownloadLimitReached(this, CHANNEL_ID, 10000);
                     break;
                 }
             }
@@ -153,22 +139,20 @@ public class DownloadImagesService extends JobIntentService {
             maxCount = links.size();
 
             if (maxCount > 0) {
-                mNotificationManager.notify(NOTIFICATION_ID, notify);
+                mNotificationManager.notify(NOTIFICATION_ID, mNotificationDownloadImages.build());
             }
 
-            linksToImages.addAll(links);
-
-            downloadImages();
+            downloadImages(links);
         }
 	}
 
-    private void downloadImages() {
+    private void downloadImages(List<String> linksToImages) {
         try {
             while(linksToImages.size() > 0) {
                 String link = linksToImages.remove(0);
                 new DownloadImageHandler(link).downloadSync();
 
-                updateNotificationProgress();
+                updateNotificationProgress(linksToImages.size());
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -180,62 +164,18 @@ public class DownloadImagesService extends JobIntentService {
         }
     }
 
-    private void updateNotificationProgress() {
-        int count = maxCount - linksToImages.size();
+    private void updateNotificationProgress(int remainingImagesCount) {
+        int count = maxCount - remainingImagesCount;
         if(maxCount == count) {
             mNotificationManager.cancel(NOTIFICATION_ID);
             //RemoveOldImages();
         } else {
             mNotificationDownloadImages
-                    .setContentText("Downloading Images for offline usage - " + (count + 1) + "/" + maxCount)
+                    .setContentText((count + 1) + "/" + maxCount + " - Downloading Images for offline usage")
                     .setProgress(maxCount, count + 1, false);
 
             mNotificationManager.notify(NOTIFICATION_ID, mNotificationDownloadImages.build());
         }
-    }
-
-    private Notification GetNotificationLimitImagesReached(int limit) {
-        Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
-        NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("Nextcloud News")
-                .setContentText("Only " + limit + " images can be cached at once")
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentIntent(pIntent);
-
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            notifyBuilder.setChannelId(CHANNEL_ID);
-        }
-
-        Notification notify = notifyBuilder.build();
-
-        //Hide the notification after its selected
-        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-        return notify;
-    }
-
-    private Notification BuildNotification() {
-        Intent intentNewsReader = new Intent(this, NewsReaderListActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intentNewsReader, 0);
-        mNotificationDownloadImages = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle(getResources().getString(R.string.app_name))
-                .setContentText("Downloading images for offline usage")
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentIntent(pIntent)
-                .setOngoing(true);
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            mNotificationDownloadImages.setChannelId(CHANNEL_ID);
-        }
-
-        Notification notify = mNotificationDownloadImages.build();
-
-        //Hide the notification after its selected
-        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-        notify.flags |= Notification.FLAG_NO_CLEAR;
-
-        return notify;
     }
 
     private void RemoveOldImages() {
