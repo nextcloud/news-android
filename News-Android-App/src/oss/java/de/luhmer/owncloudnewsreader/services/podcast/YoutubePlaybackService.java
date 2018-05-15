@@ -24,6 +24,9 @@ public class YoutubePlaybackService extends PlaybackService {
     @Override
     public void pause() { }
 
+    @Override
+    public void playbackSpeedChanged(float currentPlaybackSpeed) { }
+
     public void seekTo(double percent) { }
     public int getCurrentDuration() {
         return 0;
