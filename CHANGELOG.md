@@ -3,6 +3,17 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.16 (Google Play)
+---------------------
+- Massive improvements to the rss-item-list scrolling performance
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/632">#632 App crash when downloading single image</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/629">#629 Error when trying to fetch more items</a>
+- Add support for Android 8+ Notifications
+- Added widget preview - thank you @stefan-niedermann
+- Added roundIcon for API level 25 - thank you @stefan-niedermann
+- Added adaptive icon and adjusted splash screen - thank you @stefan-niedermann
+
+
 0.9.9.15 (Google Play)
 ---------------------
 - Fix app crashes due to missing translations
