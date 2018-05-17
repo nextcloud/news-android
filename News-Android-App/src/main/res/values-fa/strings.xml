@@ -9,6 +9,7 @@
     <string name="current_version">شما از نسخه %s استفاده می کنید.</string>
     <string name="widget_header">اخبار ownCloud</string>
     <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d مورد جدید در دسترس است</item>
         <item quantity="other">%d مورد جدید در دسترس است</item>
     </plurals>
     <string name="message_bar_reload">بازنگری</string>
@@ -35,9 +36,11 @@
     <string name="action_add_new_feed">اضافه کردن فید جدید</string>
     <string name="action_textToSpeech">خواندن اطلاعات</string>
     <plurals name="notification_new_items_ticker">
+        <item quantity="one">شما %d آیتم خوانده نشده دارید</item>
         <item quantity="other">شما %d آیتم خوانده نشده دارید</item>
     </plurals>
     <plurals name="notification_new_items_text">
+        <item quantity="one">%d آیتم خواند نشده وجود دارد</item>
         <item quantity="other">%d آیتم خواند نشده وجود دارد</item>
     </plurals>
 
@@ -83,10 +86,12 @@
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
+        <item quantity="one">%d آیتم قدیمی دانلود شدند</item>
         <item quantity="other">%d آیتم قدیمی دانلود شدند</item>
     </plurals>
     <string name="toast_no_more_downloads_available">هیچ آیتم دیگری در دسترس نیست</string>
     <plurals name="fetched_items_so_far">
+        <item quantity="one">تا حالا %d آیتم گرفته شده اند ...</item>
         <item quantity="other">تا حالا %d آیتم گرفته شده اند ...</item>
     </plurals>
 

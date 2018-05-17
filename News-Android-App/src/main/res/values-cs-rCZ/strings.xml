@@ -11,6 +11,7 @@
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nová položka k dispozici</item>
         <item quantity="few">%d nové položky k dispozici</item>
+        <item quantity="many">%d nových položek k dispozici</item>
         <item quantity="other">%d nových položek k dispozici</item>
     </plurals>
     <string name="message_bar_reload">Obnovit</string>
@@ -40,11 +41,13 @@
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Máte %d novou nepřečtenou položku</item>
         <item quantity="few">Máte %d nové nepřečtené položky</item>
+        <item quantity="many">Máte %d nových nepřečtených položek</item>
         <item quantity="other">Máte %d nových nepřečtených položek</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d nová nepřečtená položka k dispozici</item>
         <item quantity="few">%d nové nepřečtené položky k dispozici</item>
+        <item quantity="many">%d nových nepřečtených položek k dispozici</item>
         <item quantity="other">%d nových nepřečtených položek k dispozici</item>
     </plurals>
 
@@ -97,12 +100,14 @@
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Stažena %d stará položka</item>
         <item quantity="few">Staženo %d staré položky</item>
+        <item quantity="many">Staženo %d starých položek</item>
         <item quantity="other">Staženo %d starých položek</item>
     </plurals>
     <string name="toast_no_more_downloads_available">K dispozici nejsou žádné další položky</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">Stažena %d položka...</item>
         <item quantity="few">Staženy %d položky...</item>
+        <item quantity="many">Staženo %d položek...</item>
         <item quantity="other">Staženo %d položek...</item>
     </plurals>
 

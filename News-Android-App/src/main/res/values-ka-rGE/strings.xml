@@ -9,6 +9,7 @@
     <string name="current_version">თქვენ სარგებლობთ ვერსიით %s</string>
     <string name="widget_header">Nextcloud სიახლეები</string>
     <plurals name="message_bar_new_articles_available">
+        <item quantity="one">ხელმისაწვდომია %d ახალი ელემენტი</item>
         <item quantity="other">ხელმისაწვდომია %d ახალი ელემენტი</item>
     </plurals>
     <string name="message_bar_reload">გადატვირთვა</string>
@@ -35,9 +36,11 @@
     <string name="action_add_new_feed">სიახლეების ლენტის დამატება</string>
     <string name="action_textToSpeech">წაკითხვა</string>
     <plurals name="notification_new_items_ticker">
+        <item quantity="one">გაქვთ %d ახალი წაუკითხავი ელემენტი</item>
         <item quantity="other">გაქვთ %d ახალი წაუკითხავი ელემენტი</item>
     </plurals>
     <plurals name="notification_new_items_text">
+        <item quantity="one">ხელმისაწვდომია %d ახალი წაუკითხავი ელემენტი</item>
         <item quantity="other">ხელმისაწვდომია %d ახალი წაუკითხავი ელემენტი</item>
     </plurals>
 
@@ -85,10 +88,12 @@
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
+        <item quantity="one">ჩამოტვირთულია %d ძველი ელემენტი</item>
         <item quantity="other">ჩამოტვირთულია %d ძველი ელემენტი</item>
     </plurals>
     <string name="toast_no_more_downloads_available">მეტი ელემენტი არაა</string>
     <plurals name="fetched_items_so_far">
+        <item quantity="one">ჯერჯერობით ამოღებულია %d ელემენტი...</item>
         <item quantity="other">ჯერჯერობით ამოღებულია %d ელემენტი...</item>
     </plurals>
 

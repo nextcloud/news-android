@@ -11,6 +11,7 @@
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">Yra prieinamas %d naujas elementas</item>
         <item quantity="few">Yra prieinami %d nauji elementai</item>
+        <item quantity="many">Yra prieinama %d naujų elementų</item>
         <item quantity="other">Yra prieinama %d naujų elementų</item>
     </plurals>
     <string name="message_bar_reload">Įkelti iš naujo</string>
@@ -39,11 +40,13 @@
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Turite %d neskaitytą elementą</item>
         <item quantity="few">Turite %d neskaitytus elementus</item>
+        <item quantity="many">Turite %d neskaitytų elementų</item>
         <item quantity="other">Turite %d neskaitytų elementų</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d neperskaitytas įrašas</item>
         <item quantity="few">%d neperskaityti įrašai</item>
+        <item quantity="many">%d neperskaityti įrašai</item>
         <item quantity="other">%d neperskaityti įrašai</item>
     </plurals>
 
@@ -91,12 +94,14 @@
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Atsiųstas %d senas elementas</item>
         <item quantity="few">Atsiųsti %d seni elementai</item>
+        <item quantity="many">Atsiųsta %d senų elementų</item>
         <item quantity="other">Atsiųsta %d senų elementų</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Daugiau elementų nėra</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">Kol kas gautas %d elementas…</item>
         <item quantity="few">Kol kas gauti %d elementai…</item>
+        <item quantity="many">Kol kas gauta %d elementų…</item>
         <item quantity="other">Kol kas gauta %d elementų…</item>
     </plurals>
 
