@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader.di;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -22,13 +23,17 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
+import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.API_SSO;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.NextcloudDeserializer;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.Types;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
@@ -45,10 +50,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiProvider {
 
+    private static final String TAG = ApiProvider.class.getCanonicalName();
     private final MemorizingTrustManager mMemorizingTrustManager;
     private final SharedPreferences mPrefs;
     private API mApi;
     private Context context;
+
 
     public ApiProvider(MemorizingTrustManager mtm, SharedPreferences sp, Context context) {
         this.mMemorizingTrustManager = mtm;
@@ -64,54 +71,47 @@ public class ApiProvider {
         HttpUrl baseUrl = HttpUrl.parse(baseUrlStr).newBuilder()
                 .addPathSegments("index.php/apps/news/api/v1-2/")
                 .build();
-
         Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
 
-        Type feedList = new TypeToken<List<Feed>>() {}.getType();
-        Type folderList = new TypeToken<List<Folder>>() {}.getType();
-        Type rssItemsList = new TypeToken<List<RssItem>>() {}.getType();
-
-        // Info: RssItems are handled as a stream (to be more memory efficient - see @OwnCloudSyncService and @RssItemObservable)
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .registerTypeAdapter(folderList,   new NextcloudDeserializer<>(Types.FOLDERS.toString(), Folder.class))
-                .registerTypeAdapter(feedList,     new NextcloudDeserializer<>(Types.FEEDS.toString(), Feed.class))
-                .registerTypeAdapter(rssItemsList, new NextcloudDeserializer<>(Types.ITEMS.toString(), RssItem.class))
-                .registerTypeAdapter(UserInfo.class, new JsonDeserializer<UserInfo>() {
-                    @Override
-                    public UserInfo deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-                        try {
-                            JsonObject jObj = json.getAsJsonObject();
-                            JsonElement avatar = jObj.get("avatar");
-                            byte[] decodedString = {};
-                            if (!avatar.isJsonNull()) {
-                                decodedString = Base64.decode(avatar.getAsJsonObject().get("data").getAsString(), Base64.DEFAULT);
-                            }
-                            return new UserInfo.Builder()
-                                    .setDisplayName(jObj.get("displayName").getAsString())
-                                    .setUserId(jObj.get("userId").getAsString())
-                                    .setAvatar(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length))
-                                    .setLastLoginTimestamp(jObj.get("lastLoginTimestamp").getAsLong())
-                                    .build();
-                        } catch(IllegalStateException ex) {
-                            throw OkHttpSSLClient.HandleExceptions(ex);
-                        }
-                    }
-                })
-                .create();
-
         OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
+
+        initImageLoader(mPrefs, client, context);
+
+
+
+        //initRetrofitApi(baseUrl, client);
+        Account account = AccountImporter.GetCurrentAccount(context);
+        initSsoApi(account, new NextcloudAPI.ApiConnectedListener() {
+            @Override
+            public void onConnected() {
+                Log.d(TAG, "onConnected() called");
+            }
+
+            @Override
+            public void onError(Exception ex) {
+                Log.d(TAG, "onError() called with: ex = [" + ex + "]");
+            }
+        });
+    }
+
+    private void initRetrofitApi(HttpUrl baseUrl, OkHttpClient client) {
         Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create(GsonConfig.GetGson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(baseUrl)
                 .client(client)
                 .build();
 
-        initImageLoader(mPrefs, client, context);
-
         mApi = retrofit.create(API.class);
     }
+
+    public void initSsoApi(Account account, NextcloudAPI.ApiConnectedListener callback) {
+        NextcloudAPI nextcloudAPI = new NextcloudAPI(account, GsonConfig.GetGson());
+        nextcloudAPI.start(context, callback);
+        mApi = new API_SSO(nextcloudAPI);
+    }
+
+
 
     private void initImageLoader(SharedPreferences mPrefs, OkHttpClient okHttpClient, Context context) {
         int diskCacheSize = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE,"500"))*1024*1024;
