@@ -4,6 +4,8 @@ import android.accounts.Account;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Base64;
 import android.util.Log;
 
@@ -61,37 +63,38 @@ public class ApiProvider {
         this.mMemorizingTrustManager = mtm;
         this.mPrefs = sp;
         this.context = context;
-        initApi();
-    }
-
-    public void initApi() {
-        String username   = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-        String password   = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-        String baseUrlStr = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "https://luhmer.de"); // We need to provide some sort of default URL here..
-        HttpUrl baseUrl = HttpUrl.parse(baseUrlStr).newBuilder()
-                .addPathSegments("index.php/apps/news/api/v1-2/")
-                .build();
-        Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
-
-        OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
-
-        initImageLoader(mPrefs, client, context);
-
-
-
-        //initRetrofitApi(baseUrl, client);
-        Account account = AccountImporter.GetCurrentAccount(context);
-        initSsoApi(account, new NextcloudAPI.ApiConnectedListener() {
+        initApi(new NextcloudAPI.ApiConnectedListener() {
             @Override
             public void onConnected() {
-                Log.d(TAG, "onConnected() called");
+
             }
 
             @Override
             public void onError(Exception ex) {
-                Log.d(TAG, "onError() called with: ex = [" + ex + "]");
+
             }
         });
+    }
+
+    public void initApi(@NonNull NextcloudAPI.ApiConnectedListener apiConnectedListener) {
+        String username   = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
+        String password   = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
+        String baseUrlStr = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "https://luhmer.de"); // We need to provide some sort of default URL here..
+        Boolean useSSO    = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
+        HttpUrl baseUrl = HttpUrl.parse(baseUrlStr).newBuilder()
+                .addPathSegments("index.php/apps/news/api/v1-2/")
+                .build();
+        Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
+        OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
+        initImageLoader(mPrefs, client, context);
+
+        if(useSSO) {
+            Account account = AccountImporter.GetCurrentAccount(context);
+            initSsoApi(account, apiConnectedListener);
+        } else {
+            initRetrofitApi(baseUrl, client);
+            apiConnectedListener.onConnected();
+        }
     }
 
     private void initRetrofitApi(HttpUrl baseUrl, OkHttpClient client) {
@@ -105,7 +108,7 @@ public class ApiProvider {
         mApi = retrofit.create(API.class);
     }
 
-    public void initSsoApi(Account account, NextcloudAPI.ApiConnectedListener callback) {
+    private void initSsoApi(Account account, NextcloudAPI.ApiConnectedListener callback) {
         NextcloudAPI nextcloudAPI = new NextcloudAPI(account, GsonConfig.GetGson());
         nextcloudAPI.start(context, callback);
         mApi = new API_SSO(nextcloudAPI);

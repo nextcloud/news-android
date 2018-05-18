@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,11 +14,20 @@
         android:paddingRight="@dimen/abc_dialog_padding_material"
         android:paddingTop="@dimen/abc_dialog_padding_material">
 
+        <Switch
+            android:id="@+id/swSingleSignOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Use single sign on" />
+
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:id="@+id/username_container">
+            android:id="@+id/username_container"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/swSingleSignOn">
 
             <EditText
                 android:id="@+id/username"

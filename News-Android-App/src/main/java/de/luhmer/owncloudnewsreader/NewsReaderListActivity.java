@@ -69,8 +69,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
-import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfullListener;
+import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfulListener;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
@@ -824,7 +825,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+	    super.onActivityResult(requestCode, resultCode, data);
+
 		if(resultCode == RESULT_OK) {
 			UpdateListView();
 			getSlidingListFragment().ListViewNotifyDataSetChanged();
@@ -833,17 +836,26 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         if(requestCode == RESULT_SETTINGS)
         {
             //Update settings of image Loader
-            mApi.initApi();
+            mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+                @Override
+                public void onConnected() {
+                    String oldLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
+                    String newLayout = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
 
-			String oldLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
-			String newLayout = PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
+                    if(ThemeChooser.getInstance(NewsReaderListActivity.this).themeRequiresRestartOfUI(NewsReaderListActivity.this) || !newLayout.equals(oldLayout)) {
+                        finish();
+                        startActivity(getIntent());
+                    } else if(data.hasExtra(SettingsActivity.CACHE_CLEARED) && ownCloudSyncService != null) {
+                        resetUiAndStartSync();
+                    }
+                }
 
-            if(ThemeChooser.getInstance(this).themeRequiresRestartOfUI(this) || !newLayout.equals(oldLayout)) {
-                finish();
-                startActivity(getIntent());
-            } else if(data.hasExtra(SettingsActivity.CACHE_CLEARED) && ownCloudSyncService != null) {
-                resetUiAndStartSync();
-            }
+                @Override
+                public void onError(Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
             if(data != null) {
                 boolean val = data.getBooleanExtra(NewFeedActivity.ADD_NEW_SUCCESS, false);
@@ -867,7 +879,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     {
 	   	LoginDialogFragment dialog = LoginDialogFragment.getInstance();
 	   	dialog.setActivity(activity);
-	   	dialog.setListener(new LoginSuccessfullListener() {
+	   	dialog.setListener(new LoginSuccessfulListener() {
             @Override
             public void LoginSucceeded() {
                 ((NewsReaderListActivity) activity).resetUiAndStartSync();

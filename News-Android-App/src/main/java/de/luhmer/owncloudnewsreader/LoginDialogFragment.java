@@ -21,15 +21,19 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.Manifest;
 import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -49,6 +53,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +64,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloud.accountimporter.ImportAccountsDialogFragment;
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
 import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
 import de.luhmer.owncloud.accountimporter.helper.SingleAccount;
@@ -68,13 +72,14 @@ import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.model.NextcloudNewsVersion;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.API_SSO;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -83,6 +88,7 @@ import io.reactivex.schedulers.Schedulers;
 public class LoginDialogFragment extends DialogFragment implements IAccountImport {
 
     final String TAG = LoginDialogFragment.class.getCanonicalName();
+    final int CHOOSE_ACCOUNT = 12;
 
 
     static LoginDialogFragment instance;
@@ -114,9 +120,11 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	@BindView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
 	@BindView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
     @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
+    @BindView(R.id.swSingleSignOn) Switch mSwSingleSignOn;
 
 	private Account importedAccount = null;
     private boolean mPasswordVisible = false;
+    private LoginSuccessfulListener listener;
 
 	@Override
 	public void accountAccessGranted(final Account account) {
@@ -133,10 +141,10 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		}
 	}
 
-	public interface LoginSuccessfullListener {
+	public interface LoginSuccessfulListener {
 		void LoginSucceeded();
 	}
-	LoginSuccessfullListener listener;
+
 
 
 	public LoginDialogFragment() {
@@ -150,7 +158,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	/**
 	 * @param listener the listener to set
 	 */
-	public void setListener(LoginSuccessfullListener listener) {
+	public void setListener(LoginSuccessfulListener listener) {
 		this.listener = listener;
 	}
 
@@ -169,7 +177,10 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-		//accountImporter = new AccountImporter();
+        ActivityCompat.requestPermissions(getActivity(),
+                new String[]{Manifest.permission.GET_ACCOUNTS}, 0);
+
+        //accountImporter = new AccountImporter();
 		showImportAccountButton = AccountImporter.AccountsToImportAvailable(getActivity());
 
 		//setRetainInstance(true);
@@ -196,6 +207,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
         mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
         mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+        boolean useSSO = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
         mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
 
 		if(!mPassword.isEmpty()) {
@@ -218,18 +230,48 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			}
 		});
 
+        if(useSSO) {
+            mSwSingleSignOn.setChecked(true);
+            syncUiElementState();
+        }
+
+        mSwSingleSignOn.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                syncUiElementState();
+
+                mUsernameView.setText("");
+                mPasswordView.setText("");
+                mOc_root_path_View.setText("");
+                mCbDisableHostnameVerificationView.setChecked(false);
+
+                if(isChecked) {
+                    Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[] {"nextcloud"},
+                            true, null, null, null, null);
+                    startActivityForResult(intent, CHOOSE_ACCOUNT);
+                } else {
+                    importedAccount = null;
+                }
+            }
+        });
+
+
+
 		AlertDialog dialog = builder.create();
 		// Set dialog to resize when soft keyboard pops up
 		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
 
-		// For demo
-		mUsernameView.setEnabled(false);
-		mPasswordView.setEnabled(false);
-		mOc_root_path_View.setEnabled(false);
-		this.importedAccount = AccountImporter.GetCurrentAccount(getActivity());
 
 		return dialog;
+    }
+
+    private void syncUiElementState() {
+        boolean useSSO = mSwSingleSignOn.isChecked();
+        mUsernameView.setEnabled(!useSSO);
+        mPasswordView.setEnabled(!useSSO);
+        mOc_root_path_View.setEnabled(!useSSO);
+        mCbDisableHostnameVerificationView.setEnabled(!useSSO);
     }
 
 	@Override
@@ -243,7 +285,9 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 				neutralButton.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
+                        mSwSingleSignOn.setChecked(false);
+                        mSwSingleSignOn.setChecked(true);
+						//ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
 					}
 				});
 				// Limit button width to not push positive button out of view
@@ -258,6 +302,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			});
 		}
 	}
+
 
 	@Override
 	public void onCancel(DialogInterface dialog) {
@@ -369,32 +414,27 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
             editor.putString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, mOc_root_path);
             editor.putString(SettingsActivity.EDT_PASSWORD_STRING, mPassword);
             editor.putString(SettingsActivity.EDT_USERNAME_STRING, mUsername);
+            editor.putBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, importedAccount != null);
             editor.commit();
 
             final ProgressDialog dialogLogin = BuildPendingDialogWhileLoggingIn();
             dialogLogin.show();
 
+            AccountImporter.SetCurrentAccount(getActivity(), importedAccount);
 
+            mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+                @Override
+                public void onConnected() {
+                    Log.d(TAG, "onConnected() called");
+                    finishLogin(dialogLogin);
+                }
 
-            // Re-init API
-			if(mApi.getAPI() instanceof API_SSO) {
-				mApi.initSsoApi(importedAccount, new NextcloudAPI.ApiConnectedListener() {
-                    @Override
-                    public void onConnected() {
-                        Log.d(TAG, "onConnected() called");
-                        finishLogin(dialogLogin);
-                    }
-
-                    @Override
-                    public void onError(Exception ex) {
-                        Log.d(TAG, "onError() called with: ex = [" + ex + "]");
-                        ShowAlertDialog(getString(R.string.login_dialog_title_error), ex.getMessage(), getActivity());
-                    }
-                });
-			} else {
-				mApi.initApi();
-                finishLogin(dialogLogin);
-			}
+                @Override
+                public void onError(Exception ex) {
+                    Log.d(TAG, "onError() called with: ex = [" + ex + "]");
+                    ShowAlertDialog(getString(R.string.login_dialog_title_error), ex.getMessage(), getActivity());
+                }
+            });
 		}
 	}
 
@@ -413,10 +453,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
                     @Override
                     public void onNext(@NonNull NextcloudNewsVersion version) {
                         Log.v(TAG, "onNext() called with: status = [" + version + "]");
-
-                        if(importedAccount != null) {
-                            AccountImporter.SetCurrentAccount(getActivity(), importedAccount);
-                        }
 
                         loginSuccessful = true;
                         mPrefs.edit().putString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, version.version).apply();
@@ -472,4 +508,26 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		// Make the textview clickable. Must be called after show()
 		((TextView)aDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
 	}
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == CHOOSE_ACCOUNT) {
+                importedAccount = null;
+                String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+                AccountManager accountManager = AccountManager.get(getActivity());
+                for (Account account : accountManager.getAccountsByType("nextcloud")) {
+                    if(account.name.equals(accountName)) {
+                        accountAccessGranted(account);
+                        break;
+                    }
+                }
+                //accountManager.getAuthToken(userAccount, "oauth2:" + SCOPE, null, this, new OnTokenAcquired(), null);
+                //accountAccessGranted();
+            }
+
+        }
+    }
 }
