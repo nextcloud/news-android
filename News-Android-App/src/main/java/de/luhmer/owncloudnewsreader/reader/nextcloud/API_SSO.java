@@ -210,9 +210,7 @@ public class API_SSO implements API {
         try {
             nextcloudAPI.performRequest(Void.class, request);
             return API_SSO_Helper.WrapVoidCall(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return API_SSO_Helper.WrapVoidCall(false);

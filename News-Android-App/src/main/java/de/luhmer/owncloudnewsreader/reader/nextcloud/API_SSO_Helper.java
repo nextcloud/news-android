@@ -20,14 +20,10 @@ import retrofit2.Response;
 public class API_SSO_Helper {
 
     public static ResponseBody getResponseBodyFromRequest(NextcloudAPI nextcloudAPI, NextcloudRequest request) {
-        final ParcelFileDescriptor output;
         try {
-            output = nextcloudAPI.performNetworkRequest(request);
-            InputStream os = new ParcelFileDescriptor.AutoCloseInputStream(output);
+            InputStream os = nextcloudAPI.performNetworkRequest(request);
             return ResponseBody.create(null, 0, new BufferedSourceSSO(os));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return ResponseBody.create(null, "");
@@ -36,7 +32,7 @@ public class API_SSO_Helper {
     public static Completable WrapInCompletable(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
         return Completable.fromAction(new Action() {
             @Override
-            public void run() throws IOException, RemoteException {
+            public void run() throws Exception {
                 nextcloudAPI.performRequest(Void.class, request);
             }
         });
@@ -49,7 +45,7 @@ public class API_SSO_Helper {
                 try {
                     T body = nextcloudAPI.performRequest(resType, nextcloudRequest);
                     return Response.success(body);
-                } catch (RemoteException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 return null;
@@ -60,9 +56,7 @@ public class API_SSO_Helper {
                 try {
                     T body = nextcloudAPI.performRequest(resType, nextcloudRequest);
                     callback.onResponse(null, Response.success(body));
-                } catch (RemoteException e) {
-                    callback.onResponse(null, Response.<T>error(520, ResponseBody.create(null, e.toString())));
-                } catch (IOException e) {
+                } catch (Exception e) {
                     callback.onResponse(null, Response.<T>error(520, ResponseBody.create(null, e.toString())));
                 }
             }
