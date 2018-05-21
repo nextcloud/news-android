@@ -3,41 +3,22 @@ package de.luhmer.owncloudnewsreader.di;
 import android.accounts.Account;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.util.Base64;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import java.lang.reflect.Type;
-import java.util.List;
-
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
 import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
+import de.luhmer.owncloud.accountimporter.helper.SingleSignOnAccount;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.database.model.Feed;
-import de.luhmer.owncloudnewsreader.database.model.Folder;
-import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
-import de.luhmer.owncloudnewsreader.model.UserInfo;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.API_SSO;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.NextcloudDeserializer;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.Types;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import okhttp3.HttpUrl;
@@ -108,8 +89,9 @@ public class ApiProvider {
         mApi = retrofit.create(API.class);
     }
 
-    private void initSsoApi(Account account, NextcloudAPI.ApiConnectedListener callback) {
-        NextcloudAPI nextcloudAPI = new NextcloudAPI(account, GsonConfig.GetGson());
+    private void initSsoApi(final Account account, final NextcloudAPI.ApiConnectedListener callback) {
+        SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeperateThread(context, account);
+        NextcloudAPI nextcloudAPI = new NextcloudAPI(ssoAccount, GsonConfig.GetGson());
         nextcloudAPI.start(context, callback);
         mApi = new API_SSO(nextcloudAPI);
     }

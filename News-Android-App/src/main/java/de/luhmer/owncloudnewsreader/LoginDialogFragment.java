@@ -66,7 +66,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
 import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
-import de.luhmer.owncloud.accountimporter.helper.SingleAccount;
+import de.luhmer.owncloud.accountimporter.helper.SingleSignOnAccount;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -129,7 +129,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	@Override
 	public void accountAccessGranted(final Account account) {
 		try {
-			SingleAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
+			SingleSignOnAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
 			mUsernameView.setText(singleAccount.username);
 			mPasswordView.setText(singleAccount.password);
 			mOc_root_path_View.setText(singleAccount.url);
