@@ -90,7 +90,7 @@ public class ApiProvider {
     }
 
     private void initSsoApi(final Account account, final NextcloudAPI.ApiConnectedListener callback) {
-        SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeperateThread(context, account);
+        SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(context, account);
         NextcloudAPI nextcloudAPI = new NextcloudAPI(ssoAccount, GsonConfig.GetGson());
         nextcloudAPI.start(context, callback);
         mApi = new API_SSO(nextcloudAPI);
