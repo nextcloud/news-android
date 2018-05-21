@@ -517,17 +517,12 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
             if (requestCode == CHOOSE_ACCOUNT) {
                 importedAccount = null;
                 String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-                AccountManager accountManager = AccountManager.get(getActivity());
-                for (Account account : accountManager.getAccountsByType("nextcloud")) {
-                    if(account.name.equals(accountName)) {
-                        accountAccessGranted(account);
-                        break;
-                    }
-                }
-                //accountManager.getAuthToken(userAccount, "oauth2:" + SCOPE, null, this, new OnTokenAcquired(), null);
-                //accountAccessGranted();
-            }
 
+                Account account = AccountImporter.GetAccountForName(getActivity(), accountName);
+                if(account != null) {
+                    accountAccessGranted(account);
+                }
+            }
         }
     }
 }
