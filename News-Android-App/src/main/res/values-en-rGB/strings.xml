@@ -62,6 +62,7 @@
     <string name="action_link_open">Open Link in Browser</string>
     <string name="action_link_copy">Copy Link</string>
     <string name="toast_img_download_wait">Downloading… please wait</string>
+    <string name="toast_img_saved">Image saved</string>
     <string name="toast_img_notwriteable">Failed to write Image.</string>
     <string name="toast_copied_to_clipboard">Copied to clipboard</string>
     <string name="error_download_failed">Download failed</string>
