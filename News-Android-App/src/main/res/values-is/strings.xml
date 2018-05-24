@@ -61,6 +61,7 @@
     <string name="action_link_open">Opna tengil í vafra</string>
     <string name="action_link_copy">Afrita tengil</string>
     <string name="toast_img_download_wait">Sæki... Bíddu aðeins.</string>
+    <string name="toast_img_saved">Mynd vistuð</string>
     <string name="toast_img_notwriteable">Tókst ekki að skrifa mynd.</string>
     <string name="toast_copied_to_clipboard">Afritað á klippispjald</string>
     <string name="error_download_failed">Niðurhal mistókst</string>
