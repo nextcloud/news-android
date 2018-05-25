@@ -6,6 +6,7 @@
     <string name="title_activity_news_detail">新闻详细活动</string>
     <string name="empty_view_content">无内容</string>
     <string name="no_wifi_available">没有连接到WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">您要在非Wi-Fi环境下下载图片吗</string>
     <string name="current_version">亲，您正在使用的版本号为：%s</string>
     <string name="widget_header">ownCloud 新闻</string>
     <plurals name="message_bar_new_articles_available">
@@ -27,6 +28,7 @@
     <string name="action_starred">已加星标</string>
     <string name="action_read">阅读</string>
     <string name="action_playPodacst">播放 Podcast</string>
+    <string name="action_openInBrowser">在浏览器中打开网页</string>
     <string name="action_Share">共享</string>
     <string name="action_login">服务器配置</string>
     <string name="action_save">保存</string>
@@ -56,6 +58,7 @@
     <string name="action_link_open">在浏览器中打开链接</string>
     <string name="action_link_copy">复制链接</string>
     <string name="toast_img_download_wait">下载中... 请稍候</string>
+    <string name="toast_img_saved">图片已保存</string>
     <string name="toast_img_notwriteable">未能写入图片。</string>
     <string name="toast_copied_to_clipboard">复制到剪贴板</string>
     <string name="error_download_failed">下载失败</string>
@@ -74,6 +77,9 @@
     <string name="login_progress_signing_in">登录中...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">这个字段是必填的</string>
+    <string name="error_invalid_url">网络地址不正确</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">导入帐号</string>
 
@@ -107,6 +113,8 @@
     <string name="pref_title_DisableHostnameVerification">禁用主机名校验</string>
     <string name="pref_title_NavigateWithVolumeButtons">用音量键导航</string>
     <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
+    <string name="pref_title_OpenInBrowserDirectly">跳过详情查看并在浏览器中打开文章</string>
+
     <string name="dialog_feature_not_available">此功能在这个(开源)版本中不可用。 如果您想使用此功能，请从GitHub存储库或Google PlayStore下载应用程序。</string>
 
 
@@ -128,10 +136,20 @@
 
 
 
+    <string name="pref_display_apptheme_dark">深色</string>
+    <string name="pref_display_apptheme_light">浅色</string>
+
+    <string name="pref_display_browser_external">外部浏览器</string>
+
+    <string name="pref_display_feed_list_layout_simple">简单</string>
+    <string name="pref_display_feed_list_layout_extended">扩展</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">扩展(全部文本)</string>
     <string name="content_desc_play">播放</string>
     <string name="content_desc_pause">暂停</string>
     <string name="content_desc_mark_as_read">标记为已读</string>
     <string name="content_desc_mark_as_unread">标记为未读</string>
+    <string name="content_desc_tap_to_refresh">点击刷新</string>
+    <string name="content_desc_add_to_favorites">添加收藏</string>
     <string name="content_desc_remove_from_favorites">取消收藏</string>
     <string name="content_desc_show_password">显示密码</string>
     <string name="content_desc_delete">删除</string>
@@ -156,5 +174,20 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">从不</string>
+    <string name="pref_data_sync_image_cache_wifi_only">仅限WiFi</string>
+    <string name="pref_data_sync_image_cache_ask">未连接到 WiFi 时询问</string>
+
+    <string name="array_sync_interval_min_5">5 分钟</string>
+    <string name="array_sync_interval_min_15">15 分钟</string>
+    <string name="array_sync_interval_min_30">30 分钟</string>
+    <string name="array_sync_interval_min_45">45 分钟</string>
+    <string name="array_sync_interval_hour_1">1 小时</string>
+    <string name="array_sync_interval_hour_2">2 小时</string>
+    <string name="array_sync_interval_hour_3">3 小时</string>
+    <string name="array_sync_interval_hour_6">6 小时</string>
+    <string name="array_sync_interval_hour_12">12 小时</string>
+    <string name="array_sync_interval_hour_24">24 小时</string>
 
     </resources>

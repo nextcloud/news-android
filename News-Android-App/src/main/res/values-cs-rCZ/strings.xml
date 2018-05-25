@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Volba intervalu synchronizace</string>
     <string name="title_activity_news_detail">Podrobná aktivita zpráv</string>
     <string name="empty_view_content">Žádné položky</string>
+    <string name="toast_GettingMoreItems">Zahájeno stahování vícero položek… Čekejte.</string>
     <string name="no_wifi_available">Wi-Fi není připojeno</string>
+    <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez Wi-Fi připojení</string>
     <string name="current_version">Používáte verzi %s</string>
     <string name="widget_header">ownCloud Novinky</string>
     <plurals name="message_bar_new_articles_available">
@@ -66,6 +68,7 @@
     <string name="action_link_open">Otevřít odkaz v prohlížeči</string>
     <string name="action_link_copy">Zkopírovat odkaz</string>
     <string name="toast_img_download_wait">Stahování… chvíli strpení</string>
+    <string name="toast_img_saved">Obrázek uložen</string>
     <string name="toast_img_notwriteable">Selhalo zapsání obrázku.</string>
     <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
     <string name="error_download_failed">Stažení selhalo</string>
@@ -153,6 +156,14 @@
 
 
 
+    <string name="pref_display_apptheme_dark">Tmavé</string>
+    <string name="pref_display_apptheme_light">Světlé</string>
+
+    <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
+    <string name="pref_display_browser_external">Vnější prohlížeč</string>
+
+    <string name="pref_display_feed_list_layout_simple">Jednoduché</string>
+    <string name="pref_display_feed_list_layout_extended">Rozšířené</string>
     <string name="content_desc_play">přehrát</string>
     <string name="content_desc_pause">pozastavit</string>
     <string name="content_desc_playback_speed">rychlost přehrávání</string>
@@ -196,4 +207,6 @@
     <string name="array_sync_interval_min_30">30 minut</string>
     <string name="array_sync_interval_min_45">45 minut</string>
     <string name="array_sync_interval_hour_1">1 hodina</string>
+    <string name="array_sync_interval_hour_2">Dvě hodiny</string>
+    <string name="array_sync_interval_hour_3">Tři hodiny</string>
     </resources>
