@@ -16,7 +16,7 @@
         <item quantity="many">%d nových položek k dispozici</item>
         <item quantity="other">%d nových položek k dispozici</item>
     </plurals>
-    <string name="message_bar_reload">Obnovit</string>
+    <string name="message_bar_reload">Načíst znovu</string>
     <string name="allUnreadFeeds">Všechny nepřečtené položky</string>
     <string name="starredFeeds">Položky s hvězdičkou</string>
     <string name="title_activity_new_feed">Přidat nový kanál</string>
