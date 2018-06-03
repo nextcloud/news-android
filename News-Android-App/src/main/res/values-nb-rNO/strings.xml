@@ -5,7 +5,7 @@
     <string name="title_activity_sync_interval_selector">Velger for synkroniseringsintervall</string>
     <string name="title_activity_news_detail">NyhetsDetaljAktivitet</string>
     <string name="empty_view_content">Ingenting her</string>
-    <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet... Vennligst vent.</string>
+    <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet … Vennligst vent.</string>
     <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
     <string name="do_you_want_to_download_without_wifi">Vil du laste ned bilder uten en Wi-Fi- tilkobling</string>
     <string name="current_version">Du bruker versjon %s</string>
@@ -61,7 +61,7 @@
     <string name="action_link_share">Del lenke</string>
     <string name="action_link_open">Åpne lenke i nettleser</string>
     <string name="action_link_copy">Kopier lenke</string>
-    <string name="toast_img_download_wait">Laster ned... Vennligst vent</string>
+    <string name="toast_img_download_wait">Laster ned … vennligst vent</string>
     <string name="toast_img_notwriteable">Klarte ikke å skrive bilde.</string>
     <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
     <string name="error_download_failed">Nedlasting feilet</string>
@@ -82,7 +82,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Logg inn</string>
-    <string name="login_progress_signing_in">Logger inn...</string>
+    <string name="login_progress_signing_in">Logger inn …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette feltet er påkrevd</string>
     <string name="error_invalid_url">URL er ikke riktig</string>
@@ -100,7 +100,7 @@
     <string name="toast_no_more_downloads_available">Ingen flere elemeter tilgjengelig</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">Hentet %d element så langt...</item>
-        <item quantity="other">Hentet %d elementer så langt...</item>
+        <item quantity="other">Hentet %d elementer så langt …</item>
     </plurals>
 
 
@@ -118,7 +118,7 @@
     <string name="pref_general_sort_order_old_new">Gammel -> Ny</string>
 
     <string name="dialog_clearing_cache">Sletter hurtiglager</string>
-    <string name="dialog_clearing_cache_please_wait">Nullstiller hurtiglager... Vennligst vent.</string>
+    <string name="dialog_clearing_cache_please_wait">Nullstiller hurtiglager … Vennligst vent.</string>
     <string name="reset_cache_unsaved_changes">Det er usynkroniserte forandringer. Vil du resette hurtilageret likevel?</string>
     <string name="warning">Advarsel</string>
     <string name="pref_title_AutoSyncOnStart">Synkroniser under oppstart</string>
