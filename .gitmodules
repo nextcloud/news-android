@@ -1,6 +1,3 @@
-[submodule "ownCloud-Account-Importer"]
-	path = ownCloud-Account-Importer
-	url = https://github.com/David-Development/ownCloud-Account-Importer.git
 [submodule "MaterialShowcaseView"]
 	path = MaterialShowcaseView
 	url = https://github.com/David-Development/MaterialShowcaseView.git

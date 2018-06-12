@@ -33,6 +33,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -117,6 +118,8 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	// UI references.
 	@BindView(R.id.username) EditText mUsernameView;
 	@BindView(R.id.password) EditText mPasswordView;
+	@BindView(R.id.password_container)
+	TextInputLayout mPasswordContainerView;
 	@BindView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
 	@BindView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
     @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
@@ -131,9 +134,10 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		try {
 			SingleSignOnAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
 			mUsernameView.setText(singleAccount.username);
-			mPasswordView.setText(singleAccount.password);
+			mPasswordContainerView.setVisibility(View.GONE);
+			mPasswordView.setText("Dummy");
 			mOc_root_path_View.setText(singleAccount.url);
-			mCbDisableHostnameVerificationView.setChecked(singleAccount.disableHostnameVerification);
+			mCbDisableHostnameVerificationView.setVisibility(View.GONE);
 			this.importedAccount = account;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-include ':News-Android-App', ':ownCloud-Account-Importer'
+include ':News-Android-App'
 include ':Changeloglib:ChangeLogLibrary'
 include ':MaterialShowcaseView:library'
 
