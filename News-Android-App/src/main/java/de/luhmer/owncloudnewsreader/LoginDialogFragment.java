@@ -118,8 +118,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	// UI references.
 	@BindView(R.id.username) EditText mUsernameView;
 	@BindView(R.id.password) EditText mPasswordView;
-	@BindView(R.id.password_container)
-	TextInputLayout mPasswordContainerView;
+	@BindView(R.id.password_container) TextInputLayout mPasswordContainerView;
 	@BindView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
 	@BindView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
     @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
@@ -134,10 +133,13 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		try {
 			SingleSignOnAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
 			mUsernameView.setText(singleAccount.username);
+            mPasswordView.setText("");
+            mOc_root_path_View.setText(singleAccount.url);
+
 			mPasswordContainerView.setVisibility(View.GONE);
-			mPasswordView.setText("Dummy");
-			mOc_root_path_View.setText(singleAccount.url);
-			mCbDisableHostnameVerificationView.setVisibility(View.GONE);
+            mImageViewShowPwd.setVisibility(View.GONE);
+            mCbDisableHostnameVerificationView.setVisibility(View.GONE);
+
 			this.importedAccount = account;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -248,6 +250,10 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
                 mPasswordView.setText("");
                 mOc_root_path_View.setText("");
                 mCbDisableHostnameVerificationView.setChecked(false);
+
+                mPasswordContainerView.setVisibility(View.VISIBLE);
+                mImageViewShowPwd.setVisibility(View.VISIBLE);
+                mCbDisableHostnameVerificationView.setVisibility(View.VISIBLE);
 
                 if(isChecked) {
                     Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[] {"nextcloud"},
@@ -377,36 +383,39 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		boolean cancel = false;
 		View focusView = null;
 
-		// Check for a valid password.
-		if (TextUtils.isEmpty(mPassword)) {
-			mPasswordView.setError(getString(R.string.error_field_required));
-			focusView = mPasswordView;
-			cancel = true;
-		}
-		// Check for a valid email address.
-		if (TextUtils.isEmpty(mUsername)) {
-			mUsernameView.setError(getString(R.string.error_field_required));
-			focusView = mUsernameView;
-			cancel = true;
-		}
+        // Only run checks if we don't use sso
+        if(!mSwSingleSignOn.isChecked()) {
+            // Check for a valid password.
+            if (TextUtils.isEmpty(mPassword)) {
+                mPasswordView.setError(getString(R.string.error_field_required));
+                focusView = mPasswordView;
+                cancel = true;
+            }
+            // Check for a valid email address.
+            if (TextUtils.isEmpty(mUsername)) {
+                mUsernameView.setError(getString(R.string.error_field_required));
+                focusView = mUsernameView;
+                cancel = true;
+            }
 
-		if (TextUtils.isEmpty(mOc_root_path)) {
-			mOc_root_path_View.setError(getString(R.string.error_field_required));
-			focusView = mOc_root_path_View;
-			cancel = true;
-		} else {
-			try {
-				URL url = new URL(mOc_root_path);
-				if(!url.getProtocol().equals("https"))
-					ShowAlertDialog(getString(R.string.login_dialog_title_security_warning),
-							getString(R.string.login_dialog_text_security_warning), getActivity());
-			} catch (MalformedURLException e) {
-				mOc_root_path_View.setError(getString(R.string.error_invalid_url));
-				focusView = mOc_root_path_View;
-				cancel = true;
-				//e.printStackTrace();
-			}
-		}
+            if (TextUtils.isEmpty(mOc_root_path)) {
+                mOc_root_path_View.setError(getString(R.string.error_field_required));
+                focusView = mOc_root_path_View;
+                cancel = true;
+            } else {
+                try {
+                    URL url = new URL(mOc_root_path);
+                    if (!url.getProtocol().equals("https"))
+                        ShowAlertDialog(getString(R.string.login_dialog_title_security_warning),
+                                getString(R.string.login_dialog_text_security_warning), getActivity());
+                } catch (MalformedURLException e) {
+                    mOc_root_path_View.setError(getString(R.string.error_invalid_url));
+                    focusView = mOc_root_path_View;
+                    cancel = true;
+                    //e.printStackTrace();
+                }
+            }
+        }
 
 		if (cancel) {
 			// There was an error; don't attempt login and focus the first
@@ -424,9 +433,12 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
             final ProgressDialog dialogLogin = BuildPendingDialogWhileLoggingIn();
             dialogLogin.show();
 
-            AccountImporter.SetCurrentAccount(getActivity(), importedAccount);
+			if(mSwSingleSignOn.isChecked()) {
+				AccountImporter.SetCurrentAccount(getActivity(), importedAccount);
+			}
 
-            mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+
+			mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
                 @Override
                 public void onConnected() {
                     Log.d(TAG, "onConnected() called");

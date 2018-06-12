@@ -1,7 +1,5 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LoginActivity"
     android:id="@+id/login_form"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -44,7 +42,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/username_container"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/password_container">
 
@@ -66,7 +63,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/password_container"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
             <EditText
@@ -94,7 +90,6 @@
             android:src="@drawable/ic_action_visibility"
             android:layout_alignTop="@+id/password_container"
             android:layout_alignBottom="@+id/password_container"
-            android:layout_alignRight="@+id/password_container"
             android:layout_alignEnd="@+id/password_container"
             android:contentDescription="@string/content_desc_show_password"/>
 
@@ -103,9 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pref_title_DisableHostnameVerification"
-            android:layout_below="@+id/url_container"
-            android:layout_alignRight="@+id/imgView_ShowPassword"
-            android:layout_alignEnd="@+id/imgView_ShowPassword" />
+            android:layout_below="@+id/url_container" />
 
     </RelativeLayout>
 
