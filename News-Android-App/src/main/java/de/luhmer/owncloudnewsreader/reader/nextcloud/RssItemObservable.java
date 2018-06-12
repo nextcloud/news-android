@@ -51,7 +51,6 @@ public class RssItemObservable implements Publisher<Integer> {
     @Override
     public void subscribe(Subscriber<? super Integer> s) {
         try {
-            //throw new RuntimeException("");
             sync(s);
             s.onComplete();
         } catch (Exception ex) {

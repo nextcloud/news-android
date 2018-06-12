@@ -13,6 +13,7 @@ android {
     buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
+        multiDexEnabled true
         minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
 
@@ -89,6 +90,7 @@ repositories {
     jcenter()
     maven { url 'http://guardian.github.com/maven/repo-releases' } //needed for com.gu:option:1.3 in Android-DirectoryChooser
     maven { url  "http://dl.bintray.com/lukaville/maven" } //Needed for com.nbsp:library:1.02 in Material File Picker
+    maven { url "https://jitpack.io" }
 
 }
 
@@ -100,7 +102,7 @@ dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // implementation 'com.google.android.gms:play-services:4.2.42'
-    implementation project(path: ':ownCloud-Account-Importer', configuration: 'default')
+    implementation "com.github.nextcloud:android-SingleSignOn:sso-SNAPSHOT"
     implementation "com.android.support:support-v4:${SUPPORT_VERSION}"
     implementation "com.android.support:support-compat:${SUPPORT_VERSION}"
     implementation "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
@@ -113,6 +115,7 @@ dependencies {
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.android.support:multidex:1.0.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     compileOnly 'com.google.auto.value:auto-value:1.5.2'

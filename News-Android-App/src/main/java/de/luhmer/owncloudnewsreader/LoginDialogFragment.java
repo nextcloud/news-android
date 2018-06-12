@@ -21,14 +21,20 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.Manifest;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -48,7 +54,9 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -57,9 +65,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloud.accountimporter.ImportAccountsDialogFragment;
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
-import de.luhmer.owncloud.accountimporter.helper.OwnCloudAccount;
+import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
+import de.luhmer.owncloud.accountimporter.helper.SingleSignOnAccount;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -72,11 +80,17 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
 public class LoginDialogFragment extends DialogFragment implements IAccountImport {
+
+    final String TAG = LoginDialogFragment.class.getCanonicalName();
+    final int CHOOSE_ACCOUNT = 12;
+
 
     static LoginDialogFragment instance;
     public static LoginDialogFragment getInstance() {
@@ -104,23 +118,39 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	// UI references.
 	@BindView(R.id.username) EditText mUsernameView;
 	@BindView(R.id.password) EditText mPasswordView;
+	@BindView(R.id.password_container) TextInputLayout mPasswordContainerView;
 	@BindView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
 	@BindView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
     @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
+    @BindView(R.id.swSingleSignOn) Switch mSwSingleSignOn;
 
-    boolean mPasswordVisible = false;
+	private Account importedAccount = null;
+    private boolean mPasswordVisible = false;
+    private LoginSuccessfulListener listener;
 
-    @Override
-    public void accountAccessGranted(OwnCloudAccount account) {
-        mUsernameView.setText(account.getUsername());
-        mPasswordView.setText(account.getPassword());
-        mOc_root_path_View.setText(account.getUrl());
-    }
+	@Override
+	public void accountAccessGranted(final Account account) {
+		try {
+			SingleSignOnAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
+			mUsernameView.setText(singleAccount.username);
+            mPasswordView.setText("");
+            mOc_root_path_View.setText(singleAccount.url);
 
-    public interface LoginSuccessfullListener {
+			mPasswordContainerView.setVisibility(View.GONE);
+            mImageViewShowPwd.setVisibility(View.GONE);
+            mCbDisableHostnameVerificationView.setVisibility(View.GONE);
+
+			this.importedAccount = account;
+		} catch (Exception e) {
+			e.printStackTrace();
+			Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	public interface LoginSuccessfulListener {
 		void LoginSucceeded();
 	}
-	LoginSuccessfullListener listener;
+
 
 
 	public LoginDialogFragment() {
@@ -134,7 +164,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 	/**
 	 * @param listener the listener to set
 	 */
-	public void setListener(LoginSuccessfullListener listener) {
+	public void setListener(LoginSuccessfulListener listener) {
 		this.listener = listener;
 	}
 
@@ -153,7 +183,11 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-		showImportAccountButton = AccountImporter.findAccounts(getActivity()).size() > 0;
+        ActivityCompat.requestPermissions(getActivity(),
+                new String[]{Manifest.permission.GET_ACCOUNTS}, 0);
+
+        //accountImporter = new AccountImporter();
+		showImportAccountButton = AccountImporter.AccountsToImportAvailable(getActivity());
 
 		//setRetainInstance(true);
 
@@ -179,6 +213,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
         mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
         mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+        boolean useSSO = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
         mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
 
 		if(!mPassword.isEmpty()) {
@@ -201,11 +236,52 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			}
 		});
 
+        if(useSSO) {
+            mSwSingleSignOn.setChecked(true);
+            syncUiElementState();
+        }
+
+        mSwSingleSignOn.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                syncUiElementState();
+
+                mUsernameView.setText("");
+                mPasswordView.setText("");
+                mOc_root_path_View.setText("");
+                mCbDisableHostnameVerificationView.setChecked(false);
+
+                mPasswordContainerView.setVisibility(View.VISIBLE);
+                mImageViewShowPwd.setVisibility(View.VISIBLE);
+                mCbDisableHostnameVerificationView.setVisibility(View.VISIBLE);
+
+                if(isChecked) {
+                    Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[] {"nextcloud"},
+                            true, null, null, null, null);
+                    startActivityForResult(intent, CHOOSE_ACCOUNT);
+                } else {
+                    importedAccount = null;
+                }
+            }
+        });
+
+
+
 		AlertDialog dialog = builder.create();
 		// Set dialog to resize when soft keyboard pops up
 		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
-        return dialog;
+
+
+		return dialog;
+    }
+
+    private void syncUiElementState() {
+        boolean useSSO = mSwSingleSignOn.isChecked();
+        mUsernameView.setEnabled(!useSSO);
+        mPasswordView.setEnabled(!useSSO);
+        mOc_root_path_View.setEnabled(!useSSO);
+        mCbDisableHostnameVerificationView.setEnabled(!useSSO);
     }
 
 	@Override
@@ -219,7 +295,9 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 				neutralButton.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
+                        mSwSingleSignOn.setChecked(false);
+                        mSwSingleSignOn.setChecked(true);
+						//ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
 					}
 				});
 				// Limit button width to not push positive button out of view
@@ -234,6 +312,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 			});
 		}
 	}
+
 
 	@Override
 	public void onCancel(DialogInterface dialog) {
@@ -304,36 +383,39 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		boolean cancel = false;
 		View focusView = null;
 
-		// Check for a valid password.
-		if (TextUtils.isEmpty(mPassword)) {
-			mPasswordView.setError(getString(R.string.error_field_required));
-			focusView = mPasswordView;
-			cancel = true;
-		}
-		// Check for a valid email address.
-		if (TextUtils.isEmpty(mUsername)) {
-			mUsernameView.setError(getString(R.string.error_field_required));
-			focusView = mUsernameView;
-			cancel = true;
-		}
+        // Only run checks if we don't use sso
+        if(!mSwSingleSignOn.isChecked()) {
+            // Check for a valid password.
+            if (TextUtils.isEmpty(mPassword)) {
+                mPasswordView.setError(getString(R.string.error_field_required));
+                focusView = mPasswordView;
+                cancel = true;
+            }
+            // Check for a valid email address.
+            if (TextUtils.isEmpty(mUsername)) {
+                mUsernameView.setError(getString(R.string.error_field_required));
+                focusView = mUsernameView;
+                cancel = true;
+            }
 
-		if (TextUtils.isEmpty(mOc_root_path)) {
-			mOc_root_path_View.setError(getString(R.string.error_field_required));
-			focusView = mOc_root_path_View;
-			cancel = true;
-		} else {
-			try {
-				URL url = new URL(mOc_root_path);
-				if(!url.getProtocol().equals("https"))
-					ShowAlertDialog(getString(R.string.login_dialog_title_security_warning),
-							getString(R.string.login_dialog_text_security_warning), getActivity());
-			} catch (MalformedURLException e) {
-				mOc_root_path_View.setError(getString(R.string.error_invalid_url));
-				focusView = mOc_root_path_View;
-				cancel = true;
-				//e.printStackTrace();
-			}
-		}
+            if (TextUtils.isEmpty(mOc_root_path)) {
+                mOc_root_path_View.setError(getString(R.string.error_field_required));
+                focusView = mOc_root_path_View;
+                cancel = true;
+            } else {
+                try {
+                    URL url = new URL(mOc_root_path);
+                    if (!url.getProtocol().equals("https"))
+                        ShowAlertDialog(getString(R.string.login_dialog_title_security_warning),
+                                getString(R.string.login_dialog_text_security_warning), getActivity());
+                } catch (MalformedURLException e) {
+                    mOc_root_path_View.setError(getString(R.string.error_invalid_url));
+                    focusView = mOc_root_path_View;
+                    cancel = true;
+                    //e.printStackTrace();
+                }
+            }
+        }
 
 		if (cancel) {
 			// There was an error; don't attempt login and focus the first
@@ -345,73 +427,86 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
             editor.putString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, mOc_root_path);
             editor.putString(SettingsActivity.EDT_PASSWORD_STRING, mPassword);
             editor.putString(SettingsActivity.EDT_USERNAME_STRING, mUsername);
+            editor.putBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, importedAccount != null);
             editor.commit();
 
-            // Re-init API
-            mApi.initApi();
+            final ProgressDialog dialogLogin = BuildPendingDialogWhileLoggingIn();
+            dialogLogin.show();
 
-            //((NewsReaderApplication) getActivity().getApplication()).initDaggerAppComponent();
-            //((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
-
-
-			final String TAG = LoginDialogFragment.class.getCanonicalName();
-            final ProgressDialog mDialogLogin = BuildPendingDialogWhileLoggingIn();
-            mDialogLogin.show();
+			if(mSwSingleSignOn.isChecked()) {
+				AccountImporter.SetCurrentAccount(getActivity(), importedAccount);
+			}
 
 
-			mApi.getAPI().version()
-					.subscribeOn(Schedulers.newThread())
-					.observeOn(AndroidSchedulers.mainThread())
-					.subscribe(new Observer<NextcloudNewsVersion>() {
-                                boolean loginSuccessful = false;
+			mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+                @Override
+                public void onConnected() {
+                    Log.d(TAG, "onConnected() called");
+                    finishLogin(dialogLogin);
+                }
 
-								   @Override
-								   public void onSubscribe(@NonNull Disposable d) {
-									   Log.v(TAG, "onSubscribe() called with: d = [" + d + "]");
-								   }
-
-								   @Override
-								   public void onNext(@NonNull NextcloudNewsVersion version) {
-									   Log.v(TAG, "onNext() called with: status = [" + version + "]");
-
-                                       loginSuccessful = true;
-                                       mPrefs.edit().putString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, version.version).apply();
-
-                                       if(version.version.equals("0")) {
-                                           ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_zero_version_code), getActivity());
-                                           loginSuccessful = false;
-                                       }
-								   }
-
-								   @Override
-								   public void onError(@NonNull Throwable e) {
-                                       mDialogLogin.dismiss();
-									   Log.v(TAG, "onError() called with: e = [" + e + "]");
-
-                                       Throwable t = OkHttpSSLClient.HandleExceptions(e);
-                                       ShowAlertDialog(getString(R.string.login_dialog_title_error), t.getMessage(), getActivity());
-								   }
-
-								   @Override
-								   public void onComplete() {
-                                       mDialogLogin.dismiss();
-
-									   Log.v(TAG, "onComplete() called");
-
-                                       if(loginSuccessful) {
-                                           //Reset Database
-                                           DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
-                                           dbConn.resetDatabase();
-
-                                           listener.LoginSucceeded();
-                                           LoginDialogFragment.this.getDialog().cancel();
-                                           if(mActivity instanceof AuthenticatorActivity)
-                                               mActivity.finish();
-                                       }
-                                   }
-							   });
+                @Override
+                public void onError(Exception ex) {
+                    Log.d(TAG, "onError() called with: ex = [" + ex + "]");
+                    ShowAlertDialog(getString(R.string.login_dialog_title_error), ex.getMessage(), getActivity());
+                }
+            });
 		}
 	}
+
+	private void finishLogin(final ProgressDialog dialogLogin) {
+        mApi.getAPI().version()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<NextcloudNewsVersion>() {
+                    boolean loginSuccessful = false;
+
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        Log.v(TAG, "onSubscribe() called with: d = [" + d + "]");
+                    }
+
+                    @Override
+                    public void onNext(@NonNull NextcloudNewsVersion version) {
+                        Log.v(TAG, "onNext() called with: status = [" + version + "]");
+
+                        loginSuccessful = true;
+                        mPrefs.edit().putString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, version.version).apply();
+
+                        if(version.version.equals("0")) {
+                            ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_zero_version_code), getActivity());
+                            loginSuccessful = false;
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        dialogLogin.dismiss();
+                        Log.v(TAG, "onError() called with: e = [" + e + "]");
+
+                        Throwable t = OkHttpSSLClient.HandleExceptions(e);
+                        ShowAlertDialog(getString(R.string.login_dialog_title_error), t.getMessage(), getActivity());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dialogLogin.dismiss();
+
+                        Log.v(TAG, "onComplete() called");
+
+                        if(loginSuccessful) {
+                            //Reset Database
+                            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
+                            dbConn.resetDatabase();
+
+                            listener.LoginSucceeded();
+                            LoginDialogFragment.this.getDialog().cancel();
+                            if(mActivity instanceof AuthenticatorActivity)
+                                mActivity.finish();
+                        }
+                    }
+                });
+    }
 
 	public static void ShowAlertDialog(String title, String text, Activity activity)
 	{
@@ -429,4 +524,21 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
 		// Make the textview clickable. Must be called after show()
 		((TextView)aDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
 	}
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == CHOOSE_ACCOUNT) {
+                importedAccount = null;
+                String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+
+                Account account = AccountImporter.GetAccountForName(getActivity(), accountName);
+                if(account != null) {
+                    accountAccessGranted(account);
+                }
+            }
+        }
+    }
 }
