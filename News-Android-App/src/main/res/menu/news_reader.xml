@@ -7,6 +7,11 @@
         android:icon="@drawable/ic_action_refresh"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/app_bar_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search" />
     <item android:id="@+id/menu_StartImageCaching"
         android:title="@string/menu_StartImageCaching"
         android:orderInCategory="95"
