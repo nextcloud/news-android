@@ -8,10 +8,15 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/app_bar_search"
-        android:actionViewClass="android.widget.SearchView"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Search" />
+        android:id="@+id/menu_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:iconifiedByDefault="false"
+        android:title="Search"
+        android:visible="true"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
     <item android:id="@+id/menu_StartImageCaching"
         android:title="@string/menu_StartImageCaching"
         android:orderInCategory="95"
