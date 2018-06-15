@@ -50,10 +50,10 @@
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">画像をダウンロード</string>
     <string name="action_img_sharelink">画像リンクを共有</string>
-    <string name="action_img_open">画像をブラウザで開く</string>
+    <string name="action_img_open">画像をブラウザーで開く</string>
     <string name="action_img_copylink">画像リンクをコピー</string>
     <string name="action_link_share">共有リンク</string>
-    <string name="action_link_open">リンクをブラウザで開く</string>
+    <string name="action_link_open">リンクをブラウザーで開く</string>
     <string name="action_link_copy">リンクをコピー</string>
     <string name="toast_img_download_wait">ダウンロード中... しばらくお待ちください</string>
     <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
