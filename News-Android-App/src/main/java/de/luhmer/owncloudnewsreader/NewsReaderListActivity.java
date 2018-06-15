@@ -57,6 +57,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,7 +110,7 @@ import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
  * selections.
  */
 public class NewsReaderListActivity extends PodcastFragmentActivity implements
-		 NewsReaderListFragment.Callbacks,RecyclerItemClickListener,SwipeRefreshLayout.OnRefreshListener {
+		 NewsReaderListFragment.Callbacks,RecyclerItemClickListener,SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener {
 
 	private static final String TAG = NewsReaderListActivity.class.getCanonicalName();
 
@@ -132,6 +133,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	protected DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
+	private Menu menu;
+	private SearchView searchView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -590,6 +593,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				titel = getString(R.string.allUnreadFeeds);
 			else if(idFolder == -11)
 				titel = getString(R.string.starredFeeds);
+
 		}
 
 		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
@@ -650,6 +654,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		this.menu = menu;
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.news_reader, menu);
 
@@ -657,6 +662,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		menuItemDownloadMoreItems = menu.findItem(R.id.menu_downloadMoreItems);
 
 		menuItemDownloadMoreItems.setEnabled(false);
+		this.searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+		searchView.setIconifiedByDefault(false);
+		searchView.setOnQueryTextListener(this);
 
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if(ndf != null)
@@ -764,6 +772,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		return super.onOptionsItemSelected(item);
 	}
 
+
+	private void StartSearch(final String searchString) {
+
+		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+		if(ndf != null)
+		{
+			ndf.SearchInCurrentRssView(this,searchString);
+		}
+
+	}
 
 	private void DownloadMoreItems()
 	{
@@ -921,5 +939,17 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         ft.addToBackStack(null);
         newFragment.show(ft, "menu_fragment_dialog");
         return true;
+	}
+
+	@Override
+	public boolean onQueryTextSubmit(String query) {
+		searchView.clearFocus();
+		return true;
+	}
+
+	@Override
+	public boolean onQueryTextChange(String newText) {
+		StartSearch(newText);
+		return true;
 	}
 }
