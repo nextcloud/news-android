@@ -118,13 +118,13 @@ public class NewsReaderListActivityUiTests
         mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 5).commit();
 
         try {
-            final Method method = NewsReaderListActivity.class.getDeclaredMethod("syncFinishedHandler", null);
+            final Method method = NewsReaderListActivity.class.getDeclaredMethod("syncFinishedHandler");
             method.setAccessible(true);
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        if (!(boolean) method.invoke(getActivity(), null))
+                        if (!(boolean) method.invoke(getActivity()))
                             throw new RuntimeException("No new items! Something went wrong!");
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();

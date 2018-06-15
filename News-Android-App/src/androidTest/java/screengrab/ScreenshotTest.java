@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
 
 import org.junit.Before;
@@ -38,15 +39,15 @@ public class ScreenshotTest {
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class);
 
 
-    private MenuItem menuItem;
     private NewsReaderListActivity activity;
     private NewsReaderListFragment nrlf;
     private NewsReaderDetailFragment nrdf;
     private int itemPos = 0;
 
+    private int podcastGroupPosition = 3;
+
     @Before
     public void setup() {
-        menuItem = Mockito.mock(MenuItem.class);
         activity = mActivityRule.getActivity();
         nrlf = mActivityRule.getActivity().getSlidingListFragment();
         nrdf = mActivityRule.getActivity().getNewsReaderDetailFragment();
@@ -66,7 +67,6 @@ public class ScreenshotTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -74,15 +74,14 @@ public class ScreenshotTest {
     @Test
     public void testTakeScreenshots() {
         Screengrab.screenshot("startup");
-        Mockito.when(menuItem.getItemId()).thenReturn(android.R.id.home);
+
         activity.runOnUiThread(new Runnable() {
             public void run() {
                 //Set url to mock
                 nrlf.bindUserInfoToUI(true);
 
-                mActivityRule.getActivity().onOptionsItemSelected(menuItem); //Open Drawer
-
-                nrlf.getListView().expandGroup(2);
+                openDrawer();
+                nrlf.getListView().expandGroup(podcastGroupPosition);
             }
         });
 
@@ -95,11 +94,9 @@ public class ScreenshotTest {
         Screengrab.screenshot("slider_open");
 
 
-
-
         activity.runOnUiThread(new Runnable() {
             public void run() {
-                activity.onOptionsItemSelected(menuItem); //Close Drawer
+                closeDrawer();
 
                 try {
                     Thread.sleep(200);
@@ -132,6 +129,8 @@ public class ScreenshotTest {
     }
 
 
+
+
     @Test
     public void testPodcast() {
         activity.runOnUiThread(new Runnable() {
@@ -139,11 +138,9 @@ public class ScreenshotTest {
                 //Set url to mock
                 nrlf.bindUserInfoToUI(true);
 
-                mActivityRule.getActivity().onOptionsItemSelected(menuItem); //Open Drawer
-
-                nrlf.getListView().expandGroup(2);
-
-                nrlf.onChildClickListener.onChildClick(null, null, 2, 2, 0); //Click on Android Central Podcast
+                openDrawer();
+                nrlf.getListView().expandGroup(podcastGroupPosition);
+                openFeed(podcastGroupPosition, 0);
             }
         });
 
@@ -157,8 +154,7 @@ public class ScreenshotTest {
 
         activity.runOnUiThread(new Runnable() {
             public void run() {
-                ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(1));
-
+                ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(0));
                 PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(activity, vh.getRssItem());
                 activity.openMediaItem(podcastItem);
             }
@@ -197,11 +193,8 @@ public class ScreenshotTest {
                 //Set url to mock
                 nrlf.bindUserInfoToUI(true);
 
-                mActivityRule.getActivity().onOptionsItemSelected(menuItem); //Open Drawer
-
-
-
-                nrlf.onChildClickListener.onChildClick(null, null, 0, 7, 0); //Click on Android Central Podcast
+                openDrawer();
+                openFeed(0, 13); //Click on ARD Podcast
             }
         });
 
@@ -214,7 +207,6 @@ public class ScreenshotTest {
         activity.runOnUiThread(new Runnable() {
             public void run() {
                 ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(1));
-
                 PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(activity, vh.getRssItem());
                 activity.openMediaItem(podcastItem);
             }
@@ -241,6 +233,22 @@ public class ScreenshotTest {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void openFeed(int groupPosition, int childPosition) {
+        nrlf.onChildClickListener.onChildClick(null, null, groupPosition, childPosition, 0); //Click on ARD Podcast
+    }
+
+    private void openDrawer() {
+        if(activity.drawerLayout != null) {
+            activity.drawerLayout.openDrawer(GravityCompat.START, true);
+        }
+    }
+
+    private void closeDrawer() {
+        if(activity.drawerLayout != null) {
+            activity.drawerLayout.closeDrawer(GravityCompat.START, true);
         }
     }
 }

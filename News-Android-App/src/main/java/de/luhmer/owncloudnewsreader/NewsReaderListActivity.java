@@ -129,8 +129,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private ServiceConnection mConnection = null;
 
-	@Nullable @BindView(R.id.drawer_layout)
-	protected DrawerLayout drawerLayout;
+	@VisibleForTesting @Nullable @BindView(R.id.drawer_layout) public DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
 
