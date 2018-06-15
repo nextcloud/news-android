@@ -17,6 +17,18 @@
 #}
 
 
+# Required for Test execution
+-dontwarn org.xmlpull.v1.**
+-dontwarn org.apache.tools.ant.**
+-dontwarn java.beans.**
+-dontwarn javax.naming.**
+-dontwarn sun.misc.Unsafe
+
+
+# Mockito
+-dontwarn org.mockito.**
+
+
 
 
 -keepnames class * implements java.io.Serializable
