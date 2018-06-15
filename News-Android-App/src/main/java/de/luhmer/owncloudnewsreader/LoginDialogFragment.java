@@ -261,7 +261,6 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
                 if(isChecked) {
                     try {
                         AccountImporter.PickNewAccount(LoginDialogFragment.this);
-                        throw new NextcloudFilesAppNotInstalledException();
                     } catch (NextcloudFilesAppNotInstalledException e) {
                         UiExceptionManager.ShowDialogForException(getActivity(), e);
                     }
