@@ -242,6 +242,16 @@ public class NewsReaderDetailFragment extends Fragment {
         AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context));
     }
 
+    /**
+     *
+     * @param context Context
+     * @param searchString The string to search for
+     */
+    public void SearchInCurrentRssView(final Context context, final String searchString) {
+        Log.v(TAG, "SearchInCurrentRssView");
+        AsyncTaskHelper.StartAsyncTask(new SearchInCurrentRssViewTask(context, searchString));
+    }
+
     public RecyclerView getRecyclerView() {
         return recyclerView;
     }
@@ -254,10 +264,14 @@ public class NewsReaderDetailFragment extends Fragment {
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, List<RssItem>> {
 
         private Context context;
-        private SORT_DIRECTION sortDirection;
+        protected SORT_DIRECTION sortDirection;
 
         public UpdateCurrentRssViewTask(Context context) {
             this.context = context;
+        }
+
+        protected Context getContext() {
+            return context;
         }
 
         @Override
@@ -336,6 +350,89 @@ public class NewsReaderDetailFragment extends Fragment {
                 ex.printStackTrace();
             }
         }
+    }
+
+    private class SearchInCurrentRssViewTask extends UpdateCurrentRssViewTask {
+
+        final private String searchString;
+
+        /**
+         * Display only items in current view, where Title OR Body contain the searchString
+         * @param context Context
+         * @param searchString String to search for
+         */
+        public SearchInCurrentRssViewTask(final Context context, final String searchString)
+        {
+            super(context);
+            this.searchString=searchString;
+        }
+
+        @Override
+        protected List<RssItem> doInBackground(Void... urls) {
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(super.getContext());
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(super.getContext());
+            boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
+            boolean onlyStarredItems = false;
+
+            String sqlSelectStatement = null;
+            if (idFeed != null) {
+                sqlSelectStatement = getFeedSQLStatement(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString, dbConn, mPrefs);
+
+            } else if (idFolder != null) {
+                if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue()) {
+                    onlyUnreadItems = false;
+                }
+                sqlSelectStatement = getFolderSQLStatement(idFolder, onlyUnreadItems, sortDirection,searchString, dbConn, mPrefs);
+            }
+
+            List<RssItem> items = null;
+            if (sqlSelectStatement != "") {
+                dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
+                items = dbConn.getCurrentRssItemView(0);
+            }
+            return items;
+
+        }
+
+        private String getFeedSQLStatement(final long idFeed,
+                                           final boolean onlyUnreadItems,
+                                           final boolean onlyStarredItems,
+                                           final SORT_DIRECTION sort_direction,
+                                           final String searchString,
+                                           final DatabaseConnectionOrm dbConn,
+                                           final SharedPreferences mPrefs)
+        {
+            String sql="";
+            switch(mPrefs.getInt(SettingsActivity.SP_SEARCH_IN,0)) {
+                case 0:
+                    sql = dbConn.getAllItemsIdsForFeedSQLFilteredByTitle(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
+                    break;
+                case 1:
+                    sql = dbConn.getAllItemsIdsForFeedSQLFilteredByBodySQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
+                    break;
+            }
+            return sql;
+        }
+
+        private String getFolderSQLStatement(final long ID_FOLDER,
+                                           final boolean onlyUnreadItems,
+                                           final SORT_DIRECTION sort_direction,
+                                           final String searchString,
+                                           final DatabaseConnectionOrm dbConn,
+                                           final SharedPreferences mPrefs)
+        {
+            String sql="";
+            switch(mPrefs.getInt(SettingsActivity.SP_SEARCH_IN,0)) {
+                case 0:
+                    sql = dbConn.getAllItemsIdsForFolderSQLFilteredByTitle(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
+                    break;
+                case 1:
+                    sql = dbConn.getAllItemsIdsForFolderSQLFilteredByBody(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
+                    break;
+            }
+            return sql;
+        }
+
     }
 
 
