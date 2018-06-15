@@ -11,9 +11,11 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
-import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
-import de.luhmer.owncloud.accountimporter.helper.SingleSignOnAccount;
+import de.luhmer.owncloud.accountimporter.AccountImporter;
+import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
+import de.luhmer.owncloud.accountimporter.exceptions.SSOException;
+import de.luhmer.owncloud.accountimporter.helper.SingleAccountHelper;
+import de.luhmer.owncloud.accountimporter.model.SingleSignOnAccount;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
@@ -70,8 +72,12 @@ public class ApiProvider {
         initImageLoader(mPrefs, client, context);
 
         if(useSSO) {
-            Account account = AccountImporter.GetCurrentAccount(context);
-            initSsoApi(account, apiConnectedListener);
+            try {
+                Account account = SingleAccountHelper.GetCurrentAccount(context);
+                initSsoApi(account, apiConnectedListener);
+            } catch (SSOException e) {
+                e.printStackTrace();
+            }
         } else {
             initRetrofitApi(baseUrl, client);
             apiConnectedListener.onConnected();

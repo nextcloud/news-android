@@ -2,13 +2,14 @@ package de.luhmer.owncloudnewsreader.reader.nextcloud;
 
 import com.google.gson.reflect.TypeToken;
 
+import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
-import de.luhmer.owncloud.accountimporter.helper.NextcloudRequest;
+import de.luhmer.owncloud.accountimporter.aidl.NextcloudRequest;
+import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;

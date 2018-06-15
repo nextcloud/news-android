@@ -1,14 +1,10 @@
 package de.luhmer.owncloudnewsreader.reader.nextcloud;
 
-import android.os.ParcelFileDescriptor;
-import android.os.RemoteException;
-
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 
-import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
-import de.luhmer.owncloud.accountimporter.helper.NextcloudRequest;
+import de.luhmer.owncloud.accountimporter.aidl.NextcloudRequest;
+import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
 import io.reactivex.Completable;
 import io.reactivex.functions.Action;
 import okhttp3.Request;
@@ -41,7 +37,7 @@ public class API_SSO_Helper {
     public static <T> Call<T> WrapInCall(final NextcloudAPI nextcloudAPI, final NextcloudRequest nextcloudRequest, final Type resType) {
         return new Call<T>() {
             @Override
-            public Response<T> execute() throws IOException {
+            public Response<T> execute() {
                 try {
                     T body = nextcloudAPI.performRequest(resType, nextcloudRequest);
                     return Response.success(body);

@@ -69,7 +69,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
+import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
+import de.luhmer.owncloud.accountimporter.exceptions.SSOException;
+import de.luhmer.owncloud.accountimporter.ui.UiExceptionManager;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfulListener;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
@@ -421,7 +423,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     @Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(SyncFailedEvent event) {
-		Toast.makeText(NewsReaderListActivity.this, event.exception().getLocalizedMessage(), Toast.LENGTH_LONG).show();
+	    Throwable exception = event.exception();
+		if(event.exception() instanceof SSOException){
+            UiExceptionManager.ShowDialogForException(this, (SSOException) exception);
+            //UiExceptionManager.ShowNotificationForException(this, (SSOException) exception);
+		} else {
+            Toast.makeText(NewsReaderListActivity.this, exception.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        }
         UpdateButtonLayout();
         syncFinishedHandler();
 	}

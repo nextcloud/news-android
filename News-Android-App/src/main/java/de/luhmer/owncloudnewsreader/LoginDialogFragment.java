@@ -65,10 +65,13 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
-import de.luhmer.owncloud.accountimporter.helper.NextcloudAPI;
-import de.luhmer.owncloud.accountimporter.helper.SingleSignOnAccount;
+import de.luhmer.owncloud.accountimporter.AccountImporter;
+import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
+import de.luhmer.owncloud.accountimporter.exceptions.NextcloudFilesAppNotInstalledException;
+import de.luhmer.owncloud.accountimporter.helper.SingleAccountHelper;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
+import de.luhmer.owncloud.accountimporter.model.SingleSignOnAccount;
+import de.luhmer.owncloud.accountimporter.ui.UiExceptionManager;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
@@ -80,7 +83,9 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static de.luhmer.owncloud.accountimporter.AccountImporter.CHOOSE_ACCOUNT_SSO;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -89,8 +94,6 @@ import static android.app.Activity.RESULT_OK;
 public class LoginDialogFragment extends DialogFragment implements IAccountImport {
 
     final String TAG = LoginDialogFragment.class.getCanonicalName();
-    final int CHOOSE_ACCOUNT = 12;
-
 
     static LoginDialogFragment instance;
     public static LoginDialogFragment getInstance() {
@@ -256,9 +259,12 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
                 mCbDisableHostnameVerificationView.setVisibility(View.VISIBLE);
 
                 if(isChecked) {
-                    Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[] {"nextcloud"},
-                            true, null, null, null, null);
-                    startActivityForResult(intent, CHOOSE_ACCOUNT);
+                    try {
+                        AccountImporter.PickNewAccount(LoginDialogFragment.this);
+                        throw new NextcloudFilesAppNotInstalledException();
+                    } catch (NextcloudFilesAppNotInstalledException e) {
+                        UiExceptionManager.ShowDialogForException(getActivity(), e);
+                    }
                 } else {
                     importedAccount = null;
                 }
@@ -434,7 +440,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
             dialogLogin.show();
 
 			if(mSwSingleSignOn.isChecked()) {
-				AccountImporter.SetCurrentAccount(getActivity(), importedAccount);
+				SingleAccountHelper.SetCurrentAccount(getActivity(), importedAccount);
 			}
 
 
@@ -530,14 +536,17 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-            if (requestCode == CHOOSE_ACCOUNT) {
+            if (requestCode == CHOOSE_ACCOUNT_SSO) {
                 importedAccount = null;
                 String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-
                 Account account = AccountImporter.GetAccountForName(getActivity(), accountName);
                 if(account != null) {
                     accountAccessGranted(account);
                 }
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            if (requestCode == CHOOSE_ACCOUNT_SSO) {
+                Toast.makeText(getActivity(), "App is not installed!", Toast.LENGTH_LONG).show();
             }
         }
     }
