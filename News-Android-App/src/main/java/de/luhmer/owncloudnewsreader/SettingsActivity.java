@@ -115,6 +115,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static final String SP_TITLE_LINES_COUNT = "sp_title_lines_count";
     public static final String SP_SORT_ORDER = "sp_sort_order";
 	public static final String SP_DISPLAY_BROWSER = "sp_display_browser";
+	public static final String SP_SEARCH_IN = "sp_search_in";
 
 
     //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
