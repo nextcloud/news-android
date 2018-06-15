@@ -18,6 +18,7 @@ import java.util.List;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.WhereCondition;
 import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemView;
 import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemViewDao;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -486,6 +487,19 @@ public class DatabaseConnectionOrm {
         return buildSQL;
     }
 
+    public String getAllItemsIdsForFeedSQLFilteredByTitle(final long feedId, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection, final String searchString) {
+        String buildSQL = getAllItemsIdsForFeedSQL(feedId, onlyUnread, onlyStarredItems, sortDirection);
+        return new StringBuilder(
+                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Title.columnName + " LIKE \"%" + searchString + "%\" ").toString();
+    }
+
+    public String getAllItemsIdsForFeedSQLFilteredByBodySQL(final long feedId, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection, final String searchString) {
+        String buildSQL = getAllItemsIdsForFeedSQL(feedId, onlyUnread, onlyStarredItems, sortDirection);
+        return new StringBuilder(buildSQL).insert(
+                buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Body.columnName + " LIKE \"%" + searchString + "%\" ").toString();
+
+    }
+
 
     public Long getLowestItemIdByFolder(Long id_folder) {
         WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.FeedId.columnName + " IN " +
@@ -527,6 +541,18 @@ public class DatabaseConnectionOrm {
 
 
         return buildSQL;
+    }
+
+    public String getAllItemsIdsForFolderSQLFilteredByTitle(final long ID_FOLDER, final boolean onlyUnread, final SORT_DIRECTION sortDirection, final String searchString) {
+        String buildSQL = getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, sortDirection);
+        return new StringBuilder(
+                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Title.columnName + " LIKE \"%" + searchString + "%\" ").toString();
+    }
+
+    public String getAllItemsIdsForFolderSQLFilteredByBody(final long ID_FOLDER, final boolean onlyUnread, final SORT_DIRECTION sortDirection, final String searchString) {
+        String buildSQL = getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, sortDirection);
+        return new StringBuilder(
+                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Title.columnName + " LIKE \"%" + searchString + "%\" ").toString();
     }
 
     public void insertIntoRssCurrentViewTable(String SQL_SELECT) {
@@ -774,7 +800,6 @@ public class DatabaseConnectionOrm {
 
         return result;
     }
-
 
 
     public static String join(Collection<?> col, String delim) {
