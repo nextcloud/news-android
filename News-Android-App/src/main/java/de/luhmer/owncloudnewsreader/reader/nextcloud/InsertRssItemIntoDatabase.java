@@ -23,8 +23,6 @@ package de.luhmer.owncloudnewsreader.reader.nextcloud;
 
 import com.google.gson.JsonObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.Date;
 import java.util.UUID;
 
@@ -63,7 +61,7 @@ class InsertRssItemIntoDatabase {
         rssItem.setFeedId(e.get("feedId").getAsLong());
         rssItem.setGuid(guid);
         rssItem.setGuidHash(e.get("guidHash").getAsString());
-        rssItem.setFingerprint(e.get("fingerprint").getAsString());
+        rssItem.setFingerprint(getStringOrDefault("fingerprint", null, e));
         rssItem.setBody(content);
         rssItem.setLastModified(new Date(e.get("lastModified").getAsLong()));
         rssItem.setRead(!e.get("unread").getAsBoolean());
