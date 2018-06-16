@@ -768,6 +768,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			case R.id.menu_downloadMoreItems:
 				DownloadMoreItems();
 				return true;
+
+			case R.id.menu_search:
+				searchView.setIconified(false);
+				searchView.setFocusable(true);
+				searchView.requestFocusFromTouch();
 		}
 		return super.onOptionsItemSelected(item);
 	}
