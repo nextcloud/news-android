@@ -505,6 +505,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
             bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
 	        bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SORT_ORDER));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SEARCH_IN));
 		}
 		else
 		{
@@ -520,6 +521,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
             bindPreferenceBooleanToValue(prefAct.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
 	        bindPreferenceSummaryToValue(prefAct.findPreference(SP_SORT_ORDER));
+			bindPreferenceSummaryToValue(prefAct.findPreference(SP_SEARCH_IN));
 		}
 	}
 

@@ -114,10 +114,6 @@
     <!-- General settings -->
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Sort Order</string>
-    <string name="pref_general_search_in">Search In</string>
-    <string name="pref_general_search_in_title">Title</string>
-    <string name="pref_general_search_in_body">Body</string>
-
 
     <string name="pref_general_sort_order_new_old">New -> Old</string>
     <string name="pref_general_sort_order_old_new">Old -> New</string>
@@ -130,6 +126,11 @@
         <item>1</item>
         <item>0</item>
     </string-array>
+
+    <string name="pref_title_general_search_in">Search In</string>
+
+    <string name="pref_general_search_in_title">Title</string>
+    <string name="pref_general_search_in_body">Body</string>
 
     <string-array name="pref_general_search_in" translatable="false">
         <item>@string/pref_general_search_in_title</item>
