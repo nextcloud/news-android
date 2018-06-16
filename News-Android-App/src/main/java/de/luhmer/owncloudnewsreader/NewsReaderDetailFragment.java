@@ -403,13 +403,11 @@ public class NewsReaderDetailFragment extends Fragment {
                                            final SharedPreferences mPrefs)
         {
             String sql="";
-            switch(mPrefs.getInt(SettingsActivity.SP_SEARCH_IN,0)) {
-                case 0:
-                    sql = dbConn.getAllItemsIdsForFeedSQLFilteredByTitle(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
-                    break;
-                case 1:
-                    sql = dbConn.getAllItemsIdsForFeedSQLFilteredByBodySQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
-                    break;
+            String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN,"0");
+            if(searchIn.equals("0")) {
+                sql = dbConn.getAllItemsIdsForFeedSQLFilteredByTitle(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
+            } else if(searchIn.equals("1")) {
+                sql = dbConn.getAllItemsIdsForFeedSQLFilteredByBodySQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
             }
             return sql;
         }
@@ -422,14 +420,13 @@ public class NewsReaderDetailFragment extends Fragment {
                                            final SharedPreferences mPrefs)
         {
             String sql="";
-            switch(mPrefs.getInt(SettingsActivity.SP_SEARCH_IN,0)) {
-                case 0:
-                    sql = dbConn.getAllItemsIdsForFolderSQLFilteredByTitle(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
-                    break;
-                case 1:
-                    sql = dbConn.getAllItemsIdsForFolderSQLFilteredByBody(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
-                    break;
+            String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN,"0");
+            if(searchIn.equals("0")) {
+                sql = dbConn.getAllItemsIdsForFolderSQLFilteredByTitle(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
+            } else if(searchIn.equals("1")) {
+                sql = dbConn.getAllItemsIdsForFolderSQLFilteredByBody(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
             }
+
             return sql;
         }
 
