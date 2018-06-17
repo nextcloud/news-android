@@ -48,6 +48,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.ViewDragHelper;
@@ -662,6 +663,22 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		menuItemDownloadMoreItems = menu.findItem(R.id.menu_downloadMoreItems);
 
 		menuItemDownloadMoreItems.setEnabled(false);
+
+		MenuItem searchItem = menu.findItem(R.id.menu_search);
+
+		//Set expand listener to close keyboard
+		searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+			@Override
+			public boolean onMenuItemActionExpand(MenuItem item) {
+				return true;
+			}
+
+			@Override
+			public boolean onMenuItemActionCollapse(MenuItem item) {
+				clearSearchViewFocus();
+				return true;
+			}
+		});
 		this.searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		searchView.setIconifiedByDefault(false);
 		searchView.setOnQueryTextListener(this);
@@ -948,7 +965,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public boolean onQueryTextSubmit(String query) {
-		searchView.clearFocus();
+		clearSearchViewFocus();
 		return true;
 	}
 
@@ -957,4 +974,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		StartSearch(newText);
 		return true;
 	}
+
+	public void clearSearchViewFocus() {
+		searchView.clearFocus();
+	}
+
 }
