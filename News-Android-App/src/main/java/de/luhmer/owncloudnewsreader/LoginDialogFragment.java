@@ -69,7 +69,6 @@ import de.luhmer.owncloud.accountimporter.AccountImporter;
 import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
 import de.luhmer.owncloud.accountimporter.exceptions.NextcloudFilesAppNotInstalledException;
 import de.luhmer.owncloud.accountimporter.helper.SingleAccountHelper;
-import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 import de.luhmer.owncloud.accountimporter.model.SingleSignOnAccount;
 import de.luhmer.owncloud.accountimporter.ui.UiExceptionManager;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
@@ -91,7 +90,7 @@ import static de.luhmer.owncloud.accountimporter.AccountImporter.CHOOSE_ACCOUNT_
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
-public class LoginDialogFragment extends DialogFragment implements IAccountImport {
+public class LoginDialogFragment extends DialogFragment {
 
     final String TAG = LoginDialogFragment.class.getCanonicalName();
 
@@ -127,11 +126,11 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
     @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
     @BindView(R.id.swSingleSignOn) Switch mSwSingleSignOn;
 
-	private Account importedAccount = null;
+    private Account importedAccount = null;
     private boolean mPasswordVisible = false;
     private LoginSuccessfulListener listener;
 
-	@Override
+
 	public void accountAccessGranted(final Account account) {
 		try {
 			SingleSignOnAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
@@ -545,7 +544,7 @@ public class LoginDialogFragment extends DialogFragment implements IAccountImpor
             }
         } else if (resultCode == RESULT_CANCELED) {
             if (requestCode == CHOOSE_ACCOUNT_SSO) {
-                Toast.makeText(getActivity(), "App is not installed!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Unknown error.. please report!", Toast.LENGTH_LONG).show();
             }
         }
     }
