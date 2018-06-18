@@ -227,5 +227,8 @@
     <string name="array_sync_interval_hour_6">6 Stunden</string>
     <string name="array_sync_interval_hour_12">12 Stunden</string>
     <string name="array_sync_interval_hour_24">24 Stunden</string>
+    <string name="pref_title_general_search_in">Suchen in</string>
+    <string name="pref_general_search_in_title">Titel</string>
+    <string name="pref_general_search_in_body">Artikel</string>
 
-    </resources>
+</resources>
