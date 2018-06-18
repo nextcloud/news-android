@@ -60,6 +60,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.SSOException;
+import com.nextcloud.android.sso.ui.UiExceptionManager;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -69,9 +73,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
-import de.luhmer.owncloud.accountimporter.exceptions.SSOException;
-import de.luhmer.owncloud.accountimporter.ui.UiExceptionManager;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfulListener;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;

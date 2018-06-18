@@ -6,16 +6,16 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.nextcloud.android.sso.AccountImporter;
+import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.SSOException;
+import com.nextcloud.android.sso.helper.SingleAccountHelper;
+import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import de.luhmer.owncloud.accountimporter.AccountImporter;
-import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
-import de.luhmer.owncloud.accountimporter.exceptions.SSOException;
-import de.luhmer.owncloud.accountimporter.helper.SingleAccountHelper;
-import de.luhmer.owncloud.accountimporter.model.SingleSignOnAccount;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;

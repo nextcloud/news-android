@@ -1,10 +1,12 @@
 package de.luhmer.owncloudnewsreader.reader.nextcloud;
 
+import com.nextcloud.android.sso.aidl.NextcloudRequest;
+import com.nextcloud.android.sso.api.NextcloudAPI;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 
-import de.luhmer.owncloud.accountimporter.aidl.NextcloudRequest;
-import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
 import io.reactivex.Completable;
 import io.reactivex.functions.Action;
 import okhttp3.Request;

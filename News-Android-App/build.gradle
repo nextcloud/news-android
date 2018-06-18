@@ -101,7 +101,7 @@ dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // implementation 'com.google.android.gms:play-services:4.2.42'
-    implementation "com.github.nextcloud:android-SingleSignOn:sso-SNAPSHOT"
+    implementation "com.github.nextcloud:android-SingleSignOn:packageRenaming-SNAPSHOT"
     implementation "com.android.support:support-v4:${SUPPORT_VERSION}"
     implementation "com.android.support:support-compat:${SUPPORT_VERSION}"
     implementation "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
