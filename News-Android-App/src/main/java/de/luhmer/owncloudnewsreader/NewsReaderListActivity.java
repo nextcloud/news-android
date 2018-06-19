@@ -772,8 +772,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 			case R.id.menu_markAllAsRead:
 				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-				if(ndf != null)
-				{
+				if(ndf != null) {
 					DatabaseConnectionOrm dbConn2 = new DatabaseConnectionOrm(this);
 					dbConn2.markAllItemsAsReadForCurrentView();
 
@@ -800,7 +799,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if(ndf != null)
 		{
-			ndf.SearchInCurrentRssView(this,searchString);
+			ndf.searchInCurrentRssView(this,searchString);
 		}
 
 	}

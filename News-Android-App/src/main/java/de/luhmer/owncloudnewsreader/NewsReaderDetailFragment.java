@@ -108,6 +108,8 @@ public class NewsReaderDetailFragment extends Fragment {
 
     private int onResumeCount = 0;
     private static final String LAYOUT_MANAGER_STATE = "LAYOUT_MANAGER_STATE";
+    private static final String SEARCH_IN_TITLE = "0";
+    private static final String SEARCH_IN_BODY = "1";
     private boolean mMarkAsReadWhileScrollingEnabled;
 
     @BindView(R.id.pb_loading) ProgressBar pbLoading;
@@ -247,7 +249,7 @@ public class NewsReaderDetailFragment extends Fragment {
      * @param context Context
      * @param searchString The string to search for
      */
-    public void SearchInCurrentRssView(final Context context, final String searchString) {
+    public void searchInCurrentRssView(final Context context, final String searchString) {
         Log.v(TAG, "SearchInCurrentRssView");
         AsyncTaskHelper.StartAsyncTask(new SearchInCurrentRssViewTask(context, searchString));
     }
@@ -361,8 +363,7 @@ public class NewsReaderDetailFragment extends Fragment {
          * @param context Context
          * @param searchString String to search for
          */
-        public SearchInCurrentRssViewTask(final Context context, final String searchString)
-        {
+        public SearchInCurrentRssViewTask(final Context context, final String searchString) {
             super(context);
             this.searchString=searchString;
         }
@@ -404,9 +405,9 @@ public class NewsReaderDetailFragment extends Fragment {
         {
             String sql="";
             String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN,"0");
-            if(searchIn.equals("0")) {
+            if(searchIn.equals(SEARCH_IN_TITLE)) {
                 sql = dbConn.getAllItemsIdsForFeedSQLFilteredByTitle(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
-            } else if(searchIn.equals("1")) {
+            } else if(searchIn.equals(SEARCH_IN_BODY)) {
                 sql = dbConn.getAllItemsIdsForFeedSQLFilteredByBodySQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
             }
             return sql;
@@ -421,9 +422,9 @@ public class NewsReaderDetailFragment extends Fragment {
         {
             String sql="";
             String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN,"0");
-            if(searchIn.equals("0")) {
+            if(searchIn.equals(SEARCH_IN_TITLE)) {
                 sql = dbConn.getAllItemsIdsForFolderSQLFilteredByTitle(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
-            } else if(searchIn.equals("1")) {
+            } else if(searchIn.equals(SEARCH_IN_BODY)) {
                 sql = dbConn.getAllItemsIdsForFolderSQLFilteredByBody(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
             }
 
