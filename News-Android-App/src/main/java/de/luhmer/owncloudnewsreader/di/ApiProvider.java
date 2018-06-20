@@ -72,12 +72,7 @@ public class ApiProvider {
         initImageLoader(mPrefs, client, context);
 
         if(useSSO) {
-            try {
-                Account account = SingleAccountHelper.GetCurrentAccount(context);
-                initSsoApi(account, apiConnectedListener);
-            } catch (SSOException e) {
-                e.printStackTrace();
-            }
+            initSsoApi(apiConnectedListener);
         } else {
             initRetrofitApi(baseUrl, client);
             apiConnectedListener.onConnected();
@@ -95,11 +90,16 @@ public class ApiProvider {
         mApi = retrofit.create(API.class);
     }
 
-    private void initSsoApi(final Account account, final NextcloudAPI.ApiConnectedListener callback) {
-        SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(context, account);
-        NextcloudAPI nextcloudAPI = new NextcloudAPI(ssoAccount, GsonConfig.GetGson());
-        nextcloudAPI.start(context, callback);
-        mApi = new API_SSO(nextcloudAPI);
+    private void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
+        try {
+            Account account = SingleAccountHelper.GetCurrentAccount(context);
+            SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(context, account);
+            NextcloudAPI nextcloudAPI = new NextcloudAPI(ssoAccount, GsonConfig.GetGson());
+            nextcloudAPI.start(context, callback);
+            mApi = new API_SSO(nextcloudAPI);
+        } catch (SSOException e) {
+            callback.onError(e);
+        }
     }
 
 

@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.luhmer.owncloud.accountimporter.helper.Okhttp3Helper;
+import de.luhmer.owncloud.accountimporter.helper.ReactivexHelper;
+import de.luhmer.owncloud.accountimporter.helper.Retrofit2Helper;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -97,7 +100,7 @@ public class API_SSO implements API {
                 .setUrl(mApiEndpoint + "folders")
                 .setRequestBody(body)
                 .build();
-        return API_SSO_Helper.WrapInCall(nextcloudAPI, request, Folder.class);
+        return Retrofit2Helper.WrapInCall(nextcloudAPI, request, Folder.class);
     }
 
 
@@ -110,7 +113,7 @@ public class API_SSO implements API {
                 .setUrl(mApiEndpoint + "feeds")
                 .setRequestBody(body)
                 .build();
-        return API_SSO_Helper.WrapInCall(nextcloudAPI, request, feedListType);
+        return Retrofit2Helper.WrapInCall(nextcloudAPI, request, feedListType);
     }
 
     @Override
@@ -121,7 +124,7 @@ public class API_SSO implements API {
                 .setUrl(mApiEndpoint + "feeds/" + feedId + "/rename")
                 .setRequestBody(body)
                 .build();
-        return API_SSO_Helper.WrapInCompletable(nextcloudAPI, request);
+        return ReactivexHelper.WrapInCompletable(nextcloudAPI, request);
     }
 
     @Override
@@ -130,7 +133,7 @@ public class API_SSO implements API {
                 .setMethod("DELETE")
                 .setUrl(mApiEndpoint + "feeds/" + feedId)
                 .build();
-        return API_SSO_Helper.WrapInCompletable(nextcloudAPI, request);
+        return ReactivexHelper.WrapInCompletable(nextcloudAPI, request);
     }
 
 
@@ -151,7 +154,7 @@ public class API_SSO implements API {
                 .setUrl(mApiEndpoint + "items")
                 .build();
 
-        return API_SSO_Helper.WrapInCall(nextcloudAPI, request, resType);
+        return Retrofit2Helper.WrapInCall(nextcloudAPI, request, resType);
     }
 
     @Override
@@ -166,7 +169,7 @@ public class API_SSO implements API {
                 .setUrl(mApiEndpoint + "items/updated")
                 .setParameter(parameters)
                 .build();
-        return Observable.just(API_SSO_Helper.getResponseBodyFromRequest(nextcloudAPI, request));
+        return Observable.just(Okhttp3Helper.getResponseBodyFromRequest(nextcloudAPI, request));
     }
 
     // https://github.com/owncloud/news/wiki/Items-1.2#mark-multiple-items-as-read
@@ -206,11 +209,11 @@ public class API_SSO implements API {
                 .build();
         try {
             nextcloudAPI.performRequest(Void.class, request);
-            return API_SSO_Helper.WrapVoidCall(true);
+            return Retrofit2Helper.WrapVoidCall(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return API_SSO_Helper.WrapVoidCall(false);
+        return Retrofit2Helper.WrapVoidCall(false);
     }
 }
 

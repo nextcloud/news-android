@@ -151,6 +151,11 @@ public class OwnCloudSyncService extends Service {
         syncStopWatch = new StopWatch();
         syncStopWatch.start();
 
+
+        if(mApi.getAPI() == null) {
+            ThrowException(new IllegalStateException("API is not initialized"));
+        }
+
         //Delete all pinned/stored SSL Certificates
         /*
         final ArrayList<String> aliases = Collections.list(mMTM.getCertificates());
