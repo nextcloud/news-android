@@ -21,6 +21,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Streaming;
+import retrofit2.http.PATCH;
 
 /**
  * Created by david on 22.05.17.
@@ -60,10 +61,10 @@ public interface API {
     @PUT("feeds/{feedId}/rename")
     Completable renameFeed(@Path("feedId") long feedId, @Body Map<String, String> paramMap);
 
-    /*
+
     @PUT("feeds/{feedId}/move")
     Completable moveFeed(@Path("feedId") long feedId, @Body Map<String,Long> folderIdMap);
-    */
+
 
     @DELETE("feeds/{feedId}")
     Completable deleteFeed(@Path("feedId") long feedId);
