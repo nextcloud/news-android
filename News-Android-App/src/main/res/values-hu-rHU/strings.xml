@@ -62,6 +62,7 @@
     <string name="action_link_open">Hivatkozás megnyitása böngészőben</string>
     <string name="action_link_copy">Hivatkozás másolása</string>
     <string name="toast_img_download_wait">Letöltés... kérjük, várj.</string>
+    <string name="toast_img_saved">Kép elmentve</string>
     <string name="toast_img_notwriteable">Kép írása nem sikerült.</string>
     <string name="toast_copied_to_clipboard">Bemásolva a vágólapra</string>
     <string name="error_download_failed">A letöltés sikertelen</string>
