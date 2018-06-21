@@ -9,7 +9,7 @@
     <string name="no_wifi_available">Keine WLAN-Verbindung</string>
     <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne WLAN-Verbindung herunterladen</string>
     <string name="current_version">Sie benutzen die Version %s</string>
-    <string name="widget_header">ownCloud-News</string>
+    <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d neuer Artikel verfügbar</item>
         <item quantity="other">%d neue Artikel verfügbar</item>
@@ -23,7 +23,7 @@
     <string name="menu_About_Changelog">Über / Änderungen</string>
     <string name="menu_markAllAsRead">Alles als gelesen kennzeichnen</string>
     <string name="menu_StartImageCaching">Bilder herunterladen</string>
-    <string name="menu_downloadMoreItems">Weitere Artikel herunterladen.</string>
+    <string name="menu_downloadMoreItems">Weitere Artikel herunterladen</string>
 
 
     <!-- Action Bar Items -->
@@ -79,7 +79,7 @@
     <!-- Strings related to login -->
     <string name="pref_title_username">Benutzername</string>
     <string name="pref_title_password">Passwort</string>
-    <string name="pref_title_owncloudRootPath">ownCloud Wurzeladresse</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud Wurzeladresse</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Einloggen</string>
@@ -118,7 +118,7 @@
     <string name="pref_general_sort_order_new_old">Neu -> Alt</string>
     <string name="pref_general_sort_order_old_new">Alt -> Neu</string>
 
-    <string name="dialog_clearing_cache">Zwischenspeicher löschen</string>
+    <string name="dialog_clearing_cache">Zwischenspeicher wird geleert</string>
     <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird geleert … Bitte warten.</string>
     <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchten Sie dennoch den Zwischenspeicher leeren?</string>
     <string name="warning">Warnung</string>
