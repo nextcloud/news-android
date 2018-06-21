@@ -66,7 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_menu_text"
         android:layout_marginTop="13dp"
-        android:divider="@null"/>
+        android:divider="@null">
+
+    </ListView>
 
     <RelativeLayout
         android:id="@+id/remove_feed_dialog"
@@ -169,8 +171,23 @@
                 android:layout_marginEnd="0dp"
                 android:layout_weight="1"
                 android:text="@string/feed_rename_button" />
+
         </LinearLayout>
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/move_feed_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_menu_text"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/folder_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="38px" />
     </RelativeLayout>
 
     <RelativeLayout
