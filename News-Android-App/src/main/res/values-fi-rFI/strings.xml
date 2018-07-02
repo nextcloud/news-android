@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
     <string name="empty_view_content">Ei kohteita</string>
     <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
+    <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman wifi-yhteyttä</string>
     <string name="current_version">Käytössäsi on versio %s</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d uusi kohde saatavilla</item>
@@ -26,6 +27,7 @@
     <string name="action_starred">Varustettu tähdellä</string>
     <string name="action_read">Luku</string>
     <string name="action_playPodacst">Toista podcast</string>
+    <string name="action_openInBrowser">Avaa selaimessa</string>
     <string name="action_Share">Jaa</string>
     <string name="action_login">Palvelinasetukset</string>
     <string name="action_save">Tallenna</string>
@@ -57,6 +59,7 @@
     <string name="action_link_open">Avaa linkki selaimessa</string>
     <string name="action_link_copy">Kopioi linkki</string>
     <string name="toast_img_download_wait">Ladataan, odota hetki…</string>
+    <string name="toast_img_saved">Kuva tallennettu</string>
     <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
     <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
     <string name="error_download_failed">Lataus epäonnistui</string>
@@ -127,8 +130,12 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Podcastia ei ole valittu</string>
     <string name="no_chapters_available">Ei kappaleita saatavilla</string>
+    <string name="podcast_playback_speed_dialog_title">Toistonopeus</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Näyttö</string>
+    <string name="pref_title_app_theme">Sovelluksen teema. Käynnistä sovellus uudelleen asettaaksesi muutoksen voimaan. </string>
     <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
     <string name="pref_display_title_lines_count">Otsikon rivimäärä</string>
     <string name="pref_display_browser">Selain</string>
@@ -137,7 +144,11 @@
 
 
     <string name="pref_display_apptheme_dark">Tumma</string>
+    <string name="pref_display_apptheme_dark_oled">Tumma (OLED-näytöille)</string>
     <string name="pref_display_apptheme_light">Vaalea</string>
+
+    <string name="pref_display_browser_built_in">Sisäänrakennettu selain</string>
+    <string name="pref_display_browser_external">Ulkoinen selain</string>
 
     <string name="pref_display_feed_list_layout_simple">Yksinkertainen</string>
     <string name="content_desc_play">toistsa</string>
@@ -174,12 +185,17 @@
 
 
     <string name="pref_data_sync_image_cache_never">Ei koskaan</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Vain wifi-yhteydellä</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Wifi- ja mobiilidatayhteydellä</string>
+    <string name="pref_data_sync_image_cache_ask">Kysy kun ei yhteyttä wifiin</string>
+
     <string name="array_sync_interval_min_5">5 Minuuttia</string>
     <string name="array_sync_interval_min_15">15 Minuuttia</string>
     <string name="array_sync_interval_min_30">30 Minuuttia</string>
     <string name="array_sync_interval_min_45">45 Minuuttia</string>
     <string name="array_sync_interval_hour_1">1 Tunti</string>
     <string name="array_sync_interval_hour_2">2 Tuntia</string>
+    <string name="array_sync_interval_hour_3">3 tuntia</string>
     <string name="array_sync_interval_hour_6">6 Tuntia</string>
     <string name="array_sync_interval_hour_12">12 Tuntia</string>
     <string name="array_sync_interval_hour_24">24 Tuntia</string>
