@@ -5,7 +5,7 @@
     <string name="title_activity_sync_interval_selector">Wybór interwału synchronizacji</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Nic tu nie ma</string>
-    <string name="toast_GettingMoreItems">Rozpoczęto pobieranie kolejnych elementów ... Proszę czekać.</string>
+    <string name="toast_GettingMoreItems">Rozpoczęto pobieranie kolejnych elementów… Proszę czekać.</string>
     <string name="no_wifi_available">Brak połączenia WIFI</string>
     <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia Wi-Fi</string>
     <string name="current_version">Używasz wersji %s</string>
@@ -47,7 +47,7 @@
     <string name="action_link_share">Udostępnij link</string>
     <string name="action_link_open">Otwórz link w przeglądarce</string>
     <string name="action_link_copy">Skopiuj link</string>
-    <string name="toast_img_download_wait">Pobieranie... proszę czekać</string>
+    <string name="toast_img_download_wait">Pobieranie… proszę czekać</string>
     <string name="toast_img_notwriteable">Błąd zapisu obrazu.</string>
     <string name="toast_copied_to_clipboard">Skopiuj do schowka</string>
     <string name="error_download_failed">Pobieranie nieudane</string>
@@ -68,7 +68,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Zaloguj</string>
-    <string name="login_progress_signing_in">Loguję...</string>
+    <string name="login_progress_signing_in">Loguję…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ten element jest wymagany</string>
     <string name="error_invalid_url">Nieprawidłowy adres URL</string>
@@ -78,6 +78,13 @@
     <string name="import_account">Konto importu</string>
 
 
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Pobrano %d stary element</item>
+        <item quantity="few">Pobrano %d stare elementy</item>
+        <item quantity="many">Pobrano %d starych elementów</item>
+        <item quantity="other">Pobrano %d starych elementów</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych elementów</string>
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Ustawienia</string>
@@ -90,7 +97,7 @@
 
 
     <string name="dialog_clearing_cache">Czyszczenie pamięci podręcznej</string>
-    <string name="dialog_clearing_cache_please_wait">Czyszczenie cache... Proszę czekać.</string>
+    <string name="dialog_clearing_cache_please_wait">Czyszczenie cache… Proszę czekać.</string>
     <string name="reset_cache_unsaved_changes">Są niezsynchronizowane zmiany. Czy chcesz zresetować pamięć podręczną?</string>
     <string name="warning">Ostrzeżenie</string>
     <string name="pref_title_AutoSyncOnStart">Synchronizuj na starcie</string>
