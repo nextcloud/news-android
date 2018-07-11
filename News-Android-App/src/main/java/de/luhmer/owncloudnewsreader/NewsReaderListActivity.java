@@ -134,7 +134,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	protected DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
-	private Menu menu;
 	private SearchView searchView;
 
 	@Override
@@ -655,7 +654,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		this.menu = menu;
+
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.news_reader, menu);
 
