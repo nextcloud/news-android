@@ -280,6 +280,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         @Override
         public void onError(Throwable e) {
+            pbLoading.setVisibility(View.GONE);
             Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         }
 
