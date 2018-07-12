@@ -29,11 +29,12 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.support.annotation.MainThread;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -42,12 +43,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.time.StopWatch;
 
@@ -64,6 +65,8 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTIO
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
+import de.luhmer.owncloudnewsreader.helper.Search;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -108,8 +111,6 @@ public class NewsReaderDetailFragment extends Fragment {
 
     private int onResumeCount = 0;
     private static final String LAYOUT_MANAGER_STATE = "LAYOUT_MANAGER_STATE";
-    private static final String SEARCH_IN_TITLE = "0";
-    private static final String SEARCH_IN_BODY = "1";
     private boolean mMarkAsReadWhileScrollingEnabled;
 
     @BindView(R.id.pb_loading) ProgressBar pbLoading;
@@ -244,15 +245,6 @@ public class NewsReaderDetailFragment extends Fragment {
         AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context));
     }
 
-    /**
-     *
-     * @param context Context
-     * @param searchString The string to search for
-     */
-    public void searchInCurrentRssView(final Context context, final String searchString) {
-        Log.v(TAG, "SearchInCurrentRssView");
-        AsyncTaskHelper.StartAsyncTask(new SearchInCurrentRssViewTask(context, searchString));
-    }
 
     public RecyclerView getRecyclerView() {
         return recyclerView;
@@ -263,34 +255,60 @@ public class NewsReaderDetailFragment extends Fragment {
         return (LinearLayoutManager) recyclerView.getLayoutManager();
     }
 
+
+    protected List<RssItem> performSearch(String searchString) {
+        Handler mainHandler = new Handler(getActivity().getMainLooper());
+
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                pbLoading.setVisibility(View.VISIBLE);
+                tvNoItemsAvailable.setVisibility(View.GONE);
+            }
+        };
+        mainHandler.post(myRunnable);
+
+        return Search.PerformSearch(getActivity(), idFolder, idFeed, searchString);
+    }
+
+    protected DisposableObserver<List<RssItem>> SearchResultObserver = new DisposableObserver<List<RssItem>>() {
+
+        @Override
+        public void onNext(List<RssItem> rssItems) {
+            loadRssItemsIntoView(rssItems);
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onComplete() {
+            Log.v(TAG, "Search Completed!");
+        }
+    };
+
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, List<RssItem>> {
 
         private Context context;
-        protected SORT_DIRECTION sortDirection;
 
-        public UpdateCurrentRssViewTask(Context context) {
+        UpdateCurrentRssViewTask(Context context) {
             this.context = context;
-        }
-
-        protected Context getContext() {
-            return context;
         }
 
         @Override
         protected void onPreExecute() {
             pbLoading.setVisibility(View.VISIBLE);
             tvNoItemsAvailable.setVisibility(View.GONE);
-
-            sortDirection = getSortDirection(context);
-
             super.onPreExecute();
         }
 
         @Override
-        protected List<RssItem> doInBackground(Void... urls) {
+        protected List<RssItem> doInBackground(Void... voids) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            SORT_DIRECTION sortDirection = getSortDirection(context);
             boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
             boolean onlyStarredItems = false;
             if (idFolder != null)
@@ -327,112 +345,33 @@ public class NewsReaderDetailFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<RssItem> rssItem) {
-            try
-            {
-                NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
-                if(nra == null) {
-                    nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity());
-
-                    recyclerView.setAdapter(nra);
-                }
-                nra.updateAdapterData(rssItem);
-
-                pbLoading.setVisibility(View.GONE);
-                if(nra.getItemCount() <= 0) {
-                    tvNoItemsAvailable.setVisibility(View.VISIBLE);
-                } else {
-                    tvNoItemsAvailable.setVisibility(View.GONE);
-                }
-
-                recyclerView.scrollToPosition(0);
-
-            }
-            catch(Exception ex)
-            {
-                ex.printStackTrace();
-            }
+            loadRssItemsIntoView(rssItem);
         }
     }
 
-    private class SearchInCurrentRssViewTask extends UpdateCurrentRssViewTask {
+    void loadRssItemsIntoView(List<RssItem> rssItems) {
+        try {
+            NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
+            if (nra == null) {
+                nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity());
 
-        final private String searchString;
+                recyclerView.setAdapter(nra);
+            }
+            nra.updateAdapterData(rssItems);
 
-        /**
-         * Display only items in current view, where Title OR Body contain the searchString
-         * @param context Context
-         * @param searchString String to search for
-         */
-        public SearchInCurrentRssViewTask(final Context context, final String searchString) {
-            super(context);
-            this.searchString=searchString;
-        }
-
-        @Override
-        protected List<RssItem> doInBackground(Void... urls) {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(super.getContext());
-            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(super.getContext());
-            boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
-            boolean onlyStarredItems = false;
-
-            String sqlSelectStatement = null;
-            if (idFeed != null) {
-                sqlSelectStatement = getFeedSQLStatement(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString, dbConn, mPrefs);
-
-            } else if (idFolder != null) {
-                if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue()) {
-                    onlyUnreadItems = false;
-                }
-                sqlSelectStatement = getFolderSQLStatement(idFolder, onlyUnreadItems, sortDirection,searchString, dbConn, mPrefs);
+            pbLoading.setVisibility(View.GONE);
+            if (nra.getItemCount() <= 0) {
+                tvNoItemsAvailable.setVisibility(View.VISIBLE);
+            } else {
+                tvNoItemsAvailable.setVisibility(View.GONE);
             }
 
-            List<RssItem> items = null;
-            if (sqlSelectStatement != "") {
-                dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
-                items = dbConn.getCurrentRssItemView(0);
-            }
-            return items;
+            recyclerView.scrollToPosition(0);
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-
-        private String getFeedSQLStatement(final long idFeed,
-                                           final boolean onlyUnreadItems,
-                                           final boolean onlyStarredItems,
-                                           final SORT_DIRECTION sort_direction,
-                                           final String searchString,
-                                           final DatabaseConnectionOrm dbConn,
-                                           final SharedPreferences mPrefs)
-        {
-            String sql="";
-            String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN,"0");
-            if(searchIn.equals(SEARCH_IN_TITLE)) {
-                sql = dbConn.getAllItemsIdsForFeedSQLFilteredByTitle(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
-            } else if(searchIn.equals(SEARCH_IN_BODY)) {
-                sql = dbConn.getAllItemsIdsForFeedSQLFilteredByBodySQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection, searchString);
-            }
-            return sql;
-        }
-
-        private String getFolderSQLStatement(final long ID_FOLDER,
-                                           final boolean onlyUnreadItems,
-                                           final SORT_DIRECTION sort_direction,
-                                           final String searchString,
-                                           final DatabaseConnectionOrm dbConn,
-                                           final SharedPreferences mPrefs)
-        {
-            String sql="";
-            String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN,"0");
-            if(searchIn.equals(SEARCH_IN_TITLE)) {
-                sql = dbConn.getAllItemsIdsForFolderSQLFilteredByTitle(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
-            } else if(searchIn.equals(SEARCH_IN_BODY)) {
-                sql = dbConn.getAllItemsIdsForFolderSQLFilteredByBody(ID_FOLDER, onlyUnreadItems, sortDirection, searchString);
-            }
-
-            return sql;
-        }
-
     }
-
 
     public static SORT_DIRECTION getSortDirection(Context context) {
         return NewsDetailActivity.getSortDirectionFromSettings(context);

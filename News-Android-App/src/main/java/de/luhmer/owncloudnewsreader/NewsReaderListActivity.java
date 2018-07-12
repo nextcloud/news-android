@@ -37,6 +37,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
@@ -48,7 +49,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.ViewDragHelper;
@@ -68,6 +68,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,6 +84,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import de.luhmer.owncloudnewsreader.helper.Search;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -92,10 +94,15 @@ import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import io.reactivex.Completable;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
@@ -136,7 +143,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private ActionBarDrawerToggle drawerToggle;
 	private SearchView searchView;
 
-	@Override
+    private PublishSubject<String> searchPublishSubject;
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		ThemeChooser.ChooseTheme(this);
 		super.onCreate(savedInstanceState);
@@ -379,7 +388,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		super.onStart();
 	}
 
-	@Override
+    @Override
 	protected void onStop() {
 		unbindService(mConnection);
 		mConnection = null;
@@ -792,17 +801,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		return super.onOptionsItemSelected(item);
 	}
 
-
-	private void StartSearch(final String searchString) {
-
-		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-		if(ndf != null)
-		{
-			ndf.searchInCurrentRssView(this,searchString);
-		}
-
-	}
-
 	private void DownloadMoreItems()
 	{
 		String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_username", null);
@@ -969,12 +967,30 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public boolean onQueryTextChange(String newText) {
-		StartSearch(newText);
-		return true;
-	}
+        if (searchPublishSubject == null) {
+            searchPublishSubject = PublishSubject.create();
+            searchPublishSubject
+                    .debounce(300, TimeUnit.MILLISECONDS)
+                    .distinctUntilChanged()
+                    .map(new Function<String, List<RssItem>>() {
 
-	public void clearSearchViewFocus() {
-		searchView.clearFocus();
-	}
+                        @Override
+                        public List<RssItem> apply(String s) throws Exception {
+                            return getNewsReaderDetailFragment().performSearch(s);
+                        }
 
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(getNewsReaderDetailFragment().SearchResultObserver)
+                    .isDisposed();
+
+        }
+        searchPublishSubject.onNext(newText);
+        return true;
+    }
+
+    public void clearSearchViewFocus() {
+        searchView.clearFocus();
+    }
 }
