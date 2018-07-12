@@ -38,7 +38,7 @@ public class Search {
         }
 
         List<RssItem> items = null;
-        if (sqlSelectStatement != "") {
+        if (!sqlSelectStatement.equals("")) {
             dbConn.insertIntoRssCurrentViewTable(sqlSelectStatement);
             items = dbConn.getCurrentRssItemView(0);
         }
