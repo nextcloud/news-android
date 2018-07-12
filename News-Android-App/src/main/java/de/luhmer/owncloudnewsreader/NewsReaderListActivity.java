@@ -970,7 +970,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         if (searchPublishSubject == null) {
             searchPublishSubject = PublishSubject.create();
             searchPublishSubject
-                    .debounce(300, TimeUnit.MILLISECONDS)
+                    .debounce(400, TimeUnit.MILLISECONDS)
                     .distinctUntilChanged()
                     .map(new Function<String, List<RssItem>>() {
 
