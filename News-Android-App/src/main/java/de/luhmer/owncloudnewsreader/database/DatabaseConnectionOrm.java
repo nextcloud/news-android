@@ -18,7 +18,6 @@ import java.util.List;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.WhereCondition;
 import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemView;
 import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemViewDao;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -536,23 +535,31 @@ public class DatabaseConnectionOrm {
         else if(ID_FOLDER == ALL_STARRED_ITEMS.getValue())
             buildSQL += " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1";
 
-
         buildSQL += " ORDER BY " + RssItemDao.Properties.PubDate.columnName + " " + sortDirection.toString();
-
 
         return buildSQL;
     }
 
-    public String getAllItemsIdsForFolderSQLFilteredByTitle(final long ID_FOLDER, final boolean onlyUnread, final SORT_DIRECTION sortDirection, final String searchString) {
-        String buildSQL = getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, sortDirection);
-        return new StringBuilder(
-                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Title.columnName + " LIKE \"%" + searchString + "%\" ").toString();
-    }
+    public String getAllItemsIdsForFolderSQLSearch(long ID_FOLDER, SORT_DIRECTION sortDirection, String searchPredicate, String searchString) {
+        String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
+                " FROM " + RssItemDao.TABLENAME;
 
-    public String getAllItemsIdsForFolderSQLFilteredByBody(final long ID_FOLDER, final boolean onlyUnread, final SORT_DIRECTION sortDirection, final String searchString) {
-        String buildSQL = getAllItemsIdsForFolderSQL(ID_FOLDER, onlyUnread, sortDirection);
-        return new StringBuilder(
-                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Title.columnName + " LIKE \"%" + searchString + "%\" ").toString();
+        if (!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue()) || ID_FOLDER == ALL_ITEMS.getValue())//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+        {
+            buildSQL += " WHERE " + RssItemDao.Properties.FeedId.columnName + " IN " +
+                    "(SELECT sc." + FeedDao.Properties.Id.columnName +
+                    " FROM " + FeedDao.TABLENAME + " sc " +
+                    " JOIN " + FolderDao.TABLENAME + " f ON sc." + FeedDao.Properties.FolderId.columnName + " = f." + FolderDao.Properties.Id.columnName +
+                    " WHERE f." + FolderDao.Properties.Id.columnName + " = " + ID_FOLDER + ") AND ";
+        } else {
+            buildSQL += " WHERE ";
+        }
+
+        buildSQL += searchPredicate + " LIKE \"%" + searchString + "%\"";
+
+        buildSQL += " ORDER BY " + RssItemDao.Properties.PubDate.columnName + " " + sortDirection.toString();
+
+        return buildSQL;
     }
 
     public void insertIntoRssCurrentViewTable(String SQL_SELECT) {
