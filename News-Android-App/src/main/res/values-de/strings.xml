@@ -9,7 +9,7 @@
     <string name="no_wifi_available">Keine WLAN-Verbindung</string>
     <string name="do_you_want_to_download_without_wifi">Willst du die Bilder ohne W-LAN-Verbindung herunterladen</string>
     <string name="current_version">Du benutzt die Version %s</string>
-    <string name="widget_header">ownCloud-News</string>
+    <string name="widget_header">Nextcloud-News</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d neuer Artikel verfügbar</item>
         <item quantity="other">%d neue Artikel verfügbar</item>
@@ -35,7 +35,7 @@
     <string name="action_login">Servereinstellungen</string>
     <string name="action_save">Speichern</string>
     <string name="action_settings">Einstellungen</string>
-    <string name="action_sync_settings">Einstellungen zur Synchronisation</string>
+    <string name="action_sync_settings">Synchronisations-Einstellungen</string>
     <string name="action_add_new_feed">Einen neuen Feed hinzufügen</string>
     <string name="action_textToSpeech">Vorlesen</string>
     <plurals name="notification_new_items_ticker">
@@ -61,7 +61,7 @@
     <string name="action_link_share">Link teilen</string>
     <string name="action_link_open">Öffne den Link im Browser</string>
     <string name="action_link_copy">Link kopieren</string>
-    <string name="toast_img_download_wait">Herunterladen... bitte warten</string>
+    <string name="toast_img_download_wait">Lade herunter... bitte warten</string>
     <string name="toast_img_saved">Bild gespeichert</string>
     <string name="toast_img_notwriteable">Beim Schreiben des Images ist ein Fehler aufgetreten.</string>
     <string name="toast_copied_to_clipboard">In die Zwischenablage kopiert</string>
@@ -79,14 +79,14 @@
     <!-- Strings related to login -->
     <string name="pref_title_username">Benutzername</string>
     <string name="pref_title_password">Passwort</string>
-    <string name="pref_title_owncloudRootPath">ownCloud Wurzeladresse</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud Wurzeladresse</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Einloggen</string>
     <string name="login_progress_signing_in">Anmeldung…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dieses Feld ist erforderlich</string>
-    <string name="error_invalid_url">URL nicht korrekt</string>
+    <string name="error_invalid_url">URL falsch</string>
 
 
     <!-- Import Accounts -->
