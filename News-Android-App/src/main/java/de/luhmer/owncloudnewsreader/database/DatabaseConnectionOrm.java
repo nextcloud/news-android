@@ -486,6 +486,19 @@ public class DatabaseConnectionOrm {
         return buildSQL;
     }
 
+    public String getAllItemsIdsForFeedSQLFilteredByTitle(final long feedId, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection, final String searchString) {
+        String buildSQL = getAllItemsIdsForFeedSQL(feedId, onlyUnread, onlyStarredItems, sortDirection);
+        return new StringBuilder(
+                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Title.columnName + " LIKE \"%" + searchString + "%\" ").toString();
+    }
+
+    public String getAllItemsIdsForFeedSQLFilteredByBodySQL(final long feedId, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection, final String searchString) {
+        String buildSQL = getAllItemsIdsForFeedSQL(feedId, onlyUnread, onlyStarredItems, sortDirection);
+        return new StringBuilder(buildSQL).insert(
+                buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Body.columnName + " LIKE \"%" + searchString + "%\" ").toString();
+
+    }
+
 
     public Long getLowestItemIdByFolder(Long id_folder) {
         WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.FeedId.columnName + " IN " +
@@ -522,9 +535,29 @@ public class DatabaseConnectionOrm {
         else if(ID_FOLDER == ALL_STARRED_ITEMS.getValue())
             buildSQL += " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1";
 
-
         buildSQL += " ORDER BY " + RssItemDao.Properties.PubDate.columnName + " " + sortDirection.toString();
 
+        return buildSQL;
+    }
+
+    public String getAllItemsIdsForFolderSQLSearch(long ID_FOLDER, SORT_DIRECTION sortDirection, String searchPredicate, String searchString) {
+        String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
+                " FROM " + RssItemDao.TABLENAME;
+
+        if (!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue()) || ID_FOLDER == ALL_ITEMS.getValue())//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+        {
+            buildSQL += " WHERE " + RssItemDao.Properties.FeedId.columnName + " IN " +
+                    "(SELECT sc." + FeedDao.Properties.Id.columnName +
+                    " FROM " + FeedDao.TABLENAME + " sc " +
+                    " JOIN " + FolderDao.TABLENAME + " f ON sc." + FeedDao.Properties.FolderId.columnName + " = f." + FolderDao.Properties.Id.columnName +
+                    " WHERE f." + FolderDao.Properties.Id.columnName + " = " + ID_FOLDER + ") AND ";
+        } else {
+            buildSQL += " WHERE ";
+        }
+
+        buildSQL += searchPredicate + " LIKE \"%" + searchString + "%\"";
+
+        buildSQL += " ORDER BY " + RssItemDao.Properties.PubDate.columnName + " " + sortDirection.toString();
 
         return buildSQL;
     }
@@ -774,7 +807,6 @@ public class DatabaseConnectionOrm {
 
         return result;
     }
-
 
 
     public static String join(Collection<?> col, String delim) {

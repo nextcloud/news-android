@@ -7,6 +7,16 @@
         android:icon="@drawable/ic_action_refresh"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/menu_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:iconifiedByDefault="false"
+        android:title="Search"
+        android:visible="true"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
     <item android:id="@+id/menu_StartImageCaching"
         android:title="@string/menu_StartImageCaching"
         android:orderInCategory="95"

@@ -37,6 +37,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
@@ -57,6 +58,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +68,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,6 +87,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import de.luhmer.owncloudnewsreader.helper.Search;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -93,10 +97,15 @@ import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import io.reactivex.Completable;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
@@ -112,7 +121,7 @@ import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
  * selections.
  */
 public class NewsReaderListActivity extends PodcastFragmentActivity implements
-		 NewsReaderListFragment.Callbacks,RecyclerItemClickListener,SwipeRefreshLayout.OnRefreshListener {
+		 NewsReaderListFragment.Callbacks,RecyclerItemClickListener,SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener {
 
 	private static final String TAG = NewsReaderListActivity.class.getCanonicalName();
 
@@ -134,8 +143,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@VisibleForTesting @Nullable @BindView(R.id.drawer_layout) public DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
+	private SearchView searchView;
 
-	@Override
+    private PublishSubject<String> searchPublishSubject;
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		ThemeChooser.ChooseTheme(this);
 		super.onCreate(savedInstanceState);
@@ -378,7 +390,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		super.onStart();
 	}
 
-	@Override
+    @Override
 	protected void onStop() {
 		unbindService(mConnection);
 		mConnection = null;
@@ -598,6 +610,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				titel = getString(R.string.allUnreadFeeds);
 			else if(idFolder == -11)
 				titel = getString(R.string.starredFeeds);
+
 		}
 
 		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
@@ -658,6 +671,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.news_reader, menu);
 
@@ -665,6 +679,25 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		menuItemDownloadMoreItems = menu.findItem(R.id.menu_downloadMoreItems);
 
 		menuItemDownloadMoreItems.setEnabled(false);
+
+		MenuItem searchItem = menu.findItem(R.id.menu_search);
+
+		//Set expand listener to close keyboard
+		searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+			@Override
+			public boolean onMenuItemActionExpand(MenuItem item) {
+				return true;
+			}
+
+			@Override
+			public boolean onMenuItemActionCollapse(MenuItem item) {
+				clearSearchViewFocus();
+				return true;
+			}
+		});
+		this.searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+		searchView.setIconifiedByDefault(false);
+		searchView.setOnQueryTextListener(this);
 
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if(ndf != null)
@@ -755,8 +788,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 			case R.id.menu_markAllAsRead:
 				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-				if(ndf != null)
-				{
+				if(ndf != null) {
 					DatabaseConnectionOrm dbConn2 = new DatabaseConnectionOrm(this);
 					dbConn2.markAllItemsAsReadForCurrentView();
 
@@ -768,10 +800,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			case R.id.menu_downloadMoreItems:
 				DownloadMoreItems();
 				return true;
+
+			case R.id.menu_search:
+				searchView.setIconified(false);
+				searchView.setFocusable(true);
+				searchView.requestFocusFromTouch();
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
 
 	private void DownloadMoreItems()
 	{
@@ -941,4 +977,39 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         newFragment.show(ft, "menu_fragment_dialog");
         return true;
 	}
+
+	@Override
+	public boolean onQueryTextSubmit(String query) {
+		clearSearchViewFocus();
+		return true;
+	}
+
+	@Override
+	public boolean onQueryTextChange(String newText) {
+        if (searchPublishSubject == null) {
+            searchPublishSubject = PublishSubject.create();
+            searchPublishSubject
+                    .debounce(400, TimeUnit.MILLISECONDS)
+                    .distinctUntilChanged()
+                    .map(new Function<String, List<RssItem>>() {
+
+                        @Override
+                        public List<RssItem> apply(String s) throws Exception {
+                            return getNewsReaderDetailFragment().performSearch(s);
+                        }
+
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(getNewsReaderDetailFragment().SearchResultObserver)
+                    .isDisposed();
+
+        }
+        searchPublishSubject.onNext(newText);
+        return true;
+    }
+
+    public void clearSearchViewFocus() {
+        searchView.clearFocus();
+    }
 }

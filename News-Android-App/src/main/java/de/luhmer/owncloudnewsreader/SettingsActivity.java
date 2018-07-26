@@ -116,6 +116,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static final String SP_TITLE_LINES_COUNT = "sp_title_lines_count";
     public static final String SP_SORT_ORDER = "sp_sort_order";
 	public static final String SP_DISPLAY_BROWSER = "sp_display_browser";
+	public static final String SP_SEARCH_IN = "sp_search_in";
 
 
     //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
@@ -505,6 +506,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
             bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
 	        bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SORT_ORDER));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SEARCH_IN));
 		}
 		else
 		{
@@ -520,6 +522,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	        bindPreferenceBooleanToValue(prefAct.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
             bindPreferenceBooleanToValue(prefAct.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
 	        bindPreferenceSummaryToValue(prefAct.findPreference(SP_SORT_ORDER));
+			bindPreferenceSummaryToValue(prefAct.findPreference(SP_SEARCH_IN));
 		}
 	}
 

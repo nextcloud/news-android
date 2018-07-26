@@ -82,6 +82,13 @@
         android:key="sp_sort_order"
         android:title="@string/pref_title_general_sort_order" />
 
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_general_search_in"
+        android:entryValues="@array/pref_general_search_in_values"
+        android:key="sp_search_in"
+        android:title="@string/pref_title_general_search_in" />
+
     <!--
          NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it.

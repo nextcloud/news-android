@@ -29,11 +29,12 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.support.annotation.MainThread;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -42,12 +43,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.time.StopWatch;
 
@@ -64,6 +65,8 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTIO
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
+import de.luhmer.owncloudnewsreader.helper.Search;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -242,6 +245,7 @@ public class NewsReaderDetailFragment extends Fragment {
         AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context));
     }
 
+
     public RecyclerView getRecyclerView() {
         return recyclerView;
     }
@@ -251,12 +255,46 @@ public class NewsReaderDetailFragment extends Fragment {
         return (LinearLayoutManager) recyclerView.getLayoutManager();
     }
 
+
+    protected List<RssItem> performSearch(String searchString) {
+        Handler mainHandler = new Handler(getActivity().getMainLooper());
+
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                pbLoading.setVisibility(View.VISIBLE);
+                tvNoItemsAvailable.setVisibility(View.GONE);
+            }
+        };
+        mainHandler.post(myRunnable);
+
+        return Search.PerformSearch(getActivity(), idFolder, idFeed, searchString);
+    }
+
+    protected DisposableObserver<List<RssItem>> SearchResultObserver = new DisposableObserver<List<RssItem>>() {
+
+        @Override
+        public void onNext(List<RssItem> rssItems) {
+            loadRssItemsIntoView(rssItems);
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            pbLoading.setVisibility(View.GONE);
+            Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onComplete() {
+            Log.v(TAG, "Search Completed!");
+        }
+    };
+
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, List<RssItem>> {
 
         private Context context;
-        private SORT_DIRECTION sortDirection;
 
-        public UpdateCurrentRssViewTask(Context context) {
+        UpdateCurrentRssViewTask(Context context) {
             this.context = context;
         }
 
@@ -264,17 +302,14 @@ public class NewsReaderDetailFragment extends Fragment {
         protected void onPreExecute() {
             pbLoading.setVisibility(View.VISIBLE);
             tvNoItemsAvailable.setVisibility(View.GONE);
-
-            sortDirection = getSortDirection(context);
-
             super.onPreExecute();
         }
 
         @Override
-        protected List<RssItem> doInBackground(Void... urls) {
+        protected List<RssItem> doInBackground(Void... voids) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            SORT_DIRECTION sortDirection = getSortDirection(context);
             boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
             boolean onlyStarredItems = false;
             if (idFolder != null)
@@ -311,33 +346,33 @@ public class NewsReaderDetailFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<RssItem> rssItem) {
-            try
-            {
-                NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
-                if(nra == null) {
-                    nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity());
-
-                    recyclerView.setAdapter(nra);
-                }
-                nra.updateAdapterData(rssItem);
-
-                pbLoading.setVisibility(View.GONE);
-                if(nra.getItemCount() <= 0) {
-                    tvNoItemsAvailable.setVisibility(View.VISIBLE);
-                } else {
-                    tvNoItemsAvailable.setVisibility(View.GONE);
-                }
-
-                recyclerView.scrollToPosition(0);
-
-            }
-            catch(Exception ex)
-            {
-                ex.printStackTrace();
-            }
+            loadRssItemsIntoView(rssItem);
         }
     }
 
+    void loadRssItemsIntoView(List<RssItem> rssItems) {
+        try {
+            NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
+            if (nra == null) {
+                nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity());
+
+                recyclerView.setAdapter(nra);
+            }
+            nra.updateAdapterData(rssItems);
+
+            pbLoading.setVisibility(View.GONE);
+            if (nra.getItemCount() <= 0) {
+                tvNoItemsAvailable.setVisibility(View.VISIBLE);
+            } else {
+                tvNoItemsAvailable.setVisibility(View.GONE);
+            }
+
+            recyclerView.scrollToPosition(0);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public static SORT_DIRECTION getSortDirection(Context context) {
         return NewsDetailActivity.getSortDirectionFromSettings(context);
@@ -356,6 +391,13 @@ public class NewsReaderDetailFragment extends Fragment {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new NewsReaderItemTouchHelperCallback());
         itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+        recyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                ((NewsReaderListActivity) getActivity()).clearSearchViewFocus();
+                return false;
+            }
+        });
 
         swipeRefresh.setColorSchemeColors(accentColor);
         swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) getActivity());
