@@ -79,7 +79,7 @@ Contributors
 * [cemrich](https://github.com/cemrich)
 * [Benjamin Stephan](https://github.com/b3nson)
 * [Stefan Niedermann](https://github.com/stefan-niedermann)
-
+* [Nils Griebner](https://github.com/NilsGriebner)
 
 Changelog
 ==================================
