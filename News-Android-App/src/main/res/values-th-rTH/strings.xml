@@ -102,7 +102,6 @@
     <string name="pref_header_general">ทั่วไป</string>
     <string name="pref_title_general_sort_order">เรียงลำดับรายการ</string>
 
-
     <string name="dialog_clearing_cache">กำลังล้างแคช</string>
     <string name="dialog_clearing_cache_please_wait">กำลังล้างแคช ... โปรดรอสักครู่</string>
     <string name="reset_cache_unsaved_changes">มีการเปลี่ยนแปลงที่ไม่ได้ประสานข้อมูล คุณต้องการตั้งค่าแคชหรือไม่?</string>

@@ -69,7 +69,6 @@
     <string name="pref_header_general">Všeobecné</string>
     <string name="pref_title_general_sort_order">Zoradenie</string>
 
-
     <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
     <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
     <string name="warning">Varovanie</string>

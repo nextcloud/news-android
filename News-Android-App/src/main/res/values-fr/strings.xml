@@ -114,7 +114,6 @@
     <string name="pref_header_general">Généraux</string>
     <string name="pref_title_general_sort_order">Ordre de tri</string>
 
-
     <string name="pref_general_sort_order_new_old">Récent -> Ancien</string>
     <string name="pref_general_sort_order_old_new">Ancien -> Récent</string>
 

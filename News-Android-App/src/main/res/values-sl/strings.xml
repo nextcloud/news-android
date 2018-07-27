@@ -117,7 +117,6 @@
     <string name="pref_header_general">Splošno</string>
     <string name="pref_title_general_sort_order">Način razvrščanja</string>
 
-
     <string name="dialog_clearing_cache">Čiščenje predpomnilnika</string>
     <string name="dialog_clearing_cache_please_wait">Poteka čiščenje predpomnilnika ...</string>
     <string name="reset_cache_unsaved_changes">Obstajajo neusklajene spremembe. Ali želite vseeno počistiti predpomnilnik?</string>

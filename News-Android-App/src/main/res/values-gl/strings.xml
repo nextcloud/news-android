@@ -80,7 +80,6 @@
     <string name="pref_header_general">Xeral</string>
     <string name="pref_title_general_sort_order">Reordenar</string>
 
-
     <string name="dialog_clearing_cache">Limpando a caché</string>
     <string name="dialog_clearing_cache_please_wait">Limpando a caché. Agarde.</string>
     <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>

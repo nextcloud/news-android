@@ -120,7 +120,6 @@
     <string name="pref_header_general">Bendras</string>
     <string name="pref_title_general_sort_order">Rikiavimo tvarka</string>
 
-
     <string name="dialog_clearing_cache">Išvalomas podėlis</string>
     <string name="dialog_clearing_cache_please_wait">Išvalomas podėlis… Prašome palaukti.</string>
     <string name="reset_cache_unsaved_changes">Yra nesinchronizuotų pakeitimų. Ar vis tiek norite atstatyti podėlį?</string>

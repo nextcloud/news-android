@@ -102,7 +102,6 @@
     <string name="pref_header_general">一般</string>
     <string name="pref_title_general_sort_order">排序依據</string>
 
-
     <string name="dialog_clearing_cache">正在清除快取</string>
     <string name="dialog_clearing_cache_please_wait">正在清除快取…請稍候</string>
     <string name="reset_cache_unsaved_changes">有未同步的更動，您仍然要重設快取嗎？</string>

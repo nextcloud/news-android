@@ -90,7 +90,6 @@
     <string name="pref_header_general">Generals</string>
     <string name="pref_title_general_sort_order">Òrdre de triada</string>
 
-
     <string name="dialog_clearing_cache">Voidar l\'escondedor</string>
     <string name="dialog_clearing_cache_please_wait">Purga de l\'escondedor... Pacientatz.</string>
     <string name="reset_cache_unsaved_changes">Certanas modificacions son pas sincronizadas. Volètz reïnicializar l\'escondedor malgrat tot ?</string>

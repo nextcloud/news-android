@@ -124,6 +124,8 @@
     <string name="pref_header_general">Hlavní</string>
     <string name="pref_title_general_sort_order">Řazení</string>
 
+    <string name="pref_general_sort_order_new_old">Nové -> staré</string>
+    <string name="pref_general_sort_order_old_new">Staré -> nové</string>
 
     <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
     <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti... Chvíli strpení.</string>
@@ -134,6 +136,8 @@
     <string name="pref_title_DisableHostnameVerification">Vypnout ověřování názvu hostitele</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigace pomocí tlačítek hlasitosti</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Označit jako přečtené při rolování stránky</string>
+    <string name="pref_title_OpenInBrowserDirectly">Přeskočit detailní pohled a otevřít článek v prohlížeči</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>
     <string name="mtm_decision_always">Vždy</string>
@@ -149,6 +153,7 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazení</string>
+    <string name="pref_title_app_theme">Motiv aplikace (spusťte aplikaci znovu, aby se změna projevila)</string>
     <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
     <string name="pref_display_title_lines_count">Počet řádek pro nadpis</string>
     <string name="pref_display_browser">Prohlížeč</string>

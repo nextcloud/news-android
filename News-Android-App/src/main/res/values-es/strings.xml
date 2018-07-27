@@ -114,7 +114,6 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Ordenar</string>
 
-
     <string name="pref_general_sort_order_new_old">Nuevo -> Antiguo</string>
     <string name="pref_general_sort_order_old_new">Antiguo -> Nuevo</string>
 

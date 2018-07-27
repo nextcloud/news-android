@@ -65,8 +65,13 @@
     <string name="intent_title_share">分享途径</string>
 
 
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">删除订阅</string>
+    <string name="action_feed_rename">重命名订阅</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重命名</string>
+    <string name="confirm_feed_remove">您真的要删除此订阅吗？本操作不可恢复！</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">用户名</string>
     <string name="pref_title_password">密码</string>
@@ -103,6 +108,8 @@
     <string name="pref_header_general">常规</string>
     <string name="pref_title_general_sort_order">排序</string>
 
+    <string name="pref_general_sort_order_new_old">新 -> 旧</string>
+    <string name="pref_general_sort_order_old_new">旧 -> 新</string>
 
     <string name="dialog_clearing_cache">清除缓存</string>
     <string name="dialog_clearing_cache_please_wait">清理缓存中，请稍候</string>
@@ -127,8 +134,13 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">无 Podcast 被选中</string>
+    <string name="no_chapters_available">无可用章节</string>
+    <string name="podcast_playback_speed_dialog_title">播放速度</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">显示</string>
+    <string name="pref_title_app_theme">应用主题 (重新打开程序生效)</string>
     <string name="pref_title_feed_list_layout">源清单布局</string>
     <string name="pref_display_title_lines_count">标题行数计数</string>
     <string name="pref_display_browser">浏览器</string>
@@ -136,16 +148,26 @@
 
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">动作图标 (详情页)</string>
+
     <string name="pref_display_apptheme_dark">深色</string>
+    <string name="pref_display_apptheme_dark_oled">暗色 (用于 OLED 屏幕)</string>
     <string name="pref_display_apptheme_light">浅色</string>
 
+    <string name="pref_display_browser_cct">内置 Chrome 自定义分页</string>
+    <string name="pref_display_browser_built_in">内置浏览器</string>
     <string name="pref_display_browser_external">外部浏览器</string>
 
     <string name="pref_display_feed_list_layout_simple">简单</string>
     <string name="pref_display_feed_list_layout_extended">扩展</string>
     <string name="pref_display_feed_list_layout_extended_full_text">扩展(全部文本)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">使用 Webview 扩展</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">使用 Cardview 扩展</string>
+
     <string name="content_desc_play">播放</string>
     <string name="content_desc_pause">暂停</string>
+    <string name="content_desc_playback_speed">播放速度</string>
+    <string name="content_desc_collapse">折叠</string>
     <string name="content_desc_mark_as_read">标记为已读</string>
     <string name="content_desc_mark_as_unread">标记为未读</string>
     <string name="content_desc_tap_to_refresh">点击刷新</string>
@@ -165,7 +187,12 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">错误</string>
     <string name="login_dialog_text_something_went_wrong">有地方出错了 :(</string>
+    <string name="login_dialog_text_zero_version_code">网页新闻应用返回的版本号为 “0”。请查阅以下 bug 报告：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">此 App 版本与您的 Nextcloud 新闻应用版本不兼容。请更新新闻 app 和 appframework。</string>
     <string name="login_dialog_title_security_warning">安全警告</string>
+    <string name="login_dialog_text_security_warning">您没有使用 HTTPS，该方法我们强烈推荐使用。攻击者可能会截获您的流量并获得某些敏感信息（例如您的密码）</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">数据 &amp; 同步</string>
     <string name="pref_title_clearCache">清除缓存</string>

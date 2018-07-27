@@ -113,7 +113,6 @@
     <string name="pref_header_general">Almennt</string>
     <string name="pref_title_general_sort_order">Röðun</string>
 
-
     <string name="pref_general_sort_order_new_old">Nýrra -> Eldra</string>
     <string name="pref_general_sort_order_old_new">Eldra -> Nýrra</string>
 

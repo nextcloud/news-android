@@ -108,7 +108,6 @@
     <string name="pref_header_general">Allmänt</string>
     <string name="pref_title_general_sort_order">Sorteringsordning</string>
 
-
     <string name="dialog_clearing_cache">Rensar cache</string>
     <string name="dialog_clearing_cache_please_wait">Rensar cache, var god vänta...</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>

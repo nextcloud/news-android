@@ -105,7 +105,6 @@
     <string name="pref_header_general">Γενικά</string>
     <string name="pref_title_general_sort_order">Σειρά ταξινόμησης</string>
 
-
     <string name="dialog_clearing_cache">Εκκαθάριση προσωρινής μνήμης</string>
     <string name="dialog_clearing_cache_please_wait">Εκκαθάριση προσωρινής μνήμης... Παρακαλώ περιμένετε.</string>
     <string name="reset_cache_unsaved_changes">Υπάρχουν αλλαγές που δεν έχουν συγχρονιστεί. Θα θέλατε να επαναφέρετε τα αποθηκευμένα στοιχεία ούτως ή άλλως;</string>

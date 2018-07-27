@@ -114,7 +114,6 @@
     <string name="pref_header_general">Általános</string>
     <string name="pref_title_general_sort_order">Rendezés Iránya</string>
 
-
     <string name="pref_general_sort_order_new_old">Új->Régi</string>
     <string name="pref_general_sort_order_old_new">Régi->Új</string>
 

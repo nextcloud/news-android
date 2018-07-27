@@ -96,7 +96,6 @@
     <string name="pref_header_general">Üldine</string>
     <string name="pref_title_general_sort_order">Sorteerimise järjekord</string>
 
-
     <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
     <string name="dialog_clearing_cache_please_wait">Vahemälu tühjendamine... palun oota</string>
     <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>

@@ -107,7 +107,6 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Cirterio para ordenar</string>
 
-
     <string name="dialog_clearing_cache">Limpiando el caché</string>
     <string name="dialog_clearing_cache_please_wait">Limpiando el caché... Por favor aguarda.</string>
     <string name="reset_cache_unsaved_changes">Hay cambios que no han sido sincronizados. ¿Quieres limpiar el caché de cualquier modo?</string>

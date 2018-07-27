@@ -114,7 +114,6 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Sort Order</string>
 
-
     <string name="pref_general_sort_order_new_old">New -> Old</string>
     <string name="pref_general_sort_order_old_new">Old -> New</string>
 
@@ -227,8 +226,5 @@
     <string name="array_sync_interval_hour_6">6 Hours</string>
     <string name="array_sync_interval_hour_12">12 Hours</string>
     <string name="array_sync_interval_hour_24">24 Hours</string>
-    <string name="pref_title_general_search_in">Search In</string>
-    <string name="pref_general_search_in_title">Title</string>
-    <string name="pref_general_search_in_body">Body</string>
 
-</resources>
+    </resources>
