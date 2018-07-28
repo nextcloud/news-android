@@ -77,7 +77,6 @@
     <string name="feed_remove_button">Remove</string>
     <string name="feed_rename_button">Rename</string>
     <string name="confirm_feed_remove">Do you really want to remove this Feed? This cannot be undone!</string>
-    <string name="feed_move_list_heading">Move Feed</string>
     <string name="feed_move_list_description">Select folder to move feed in</string>
 
     <!-- Strings related to login -->
