@@ -228,14 +228,17 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                 R.attr.news_detail_background_color);
         mWebView.setBackgroundColor(backgroundColor);
 
-		WebSettings webSettings = mWebView.getSettings();
+        WebSettings webSettings = mWebView.getSettings();
+        //webSettings.setPluginState(WebSettings.PluginState.ON);
 	    webSettings.setJavaScriptEnabled(true);
+	    webSettings.setAllowContentAccess(true);
 	    webSettings.setAllowFileAccess(true);
 	    webSettings.setDomStorageEnabled(true);
 	    webSettings.setJavaScriptCanOpenWindowsAutomatically(false);
 	    webSettings.setSupportMultipleWindows(false);
 	    webSettings.setSupportZoom(false);
         webSettings.setAppCacheEnabled(true);
+        webSettings.setMediaPlaybackRequiresUserGesture(true);
 
         registerForContextMenu(mWebView);
 

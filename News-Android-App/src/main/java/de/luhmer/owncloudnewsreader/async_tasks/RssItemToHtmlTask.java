@@ -154,14 +154,17 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
             }
 
             builder.append("</div>");
-
             builder.append("</div>");
         }
 
         String description = rssItem.getBody();
-
         description = getDescriptionWithCachedImages(description).trim();
-        description = removePreloadAttributeFromVideos(description);
+        description = replacePatternInText(PATTERN_PRELOAD_VIDEOS_REMOVE, description, "$1 $3"); // remove whatever preload is there
+        description = replacePatternInText(PATTERN_PRELOAD_VIDEOS_INSERT, description, "$1 preload=\"metadata\" $3"); // add preload attribute
+        description = replacePatternInText(PATTERN_AUTOPLAY_VIDEOS_1, description, "$1 $3");
+        description = replacePatternInText(PATTERN_AUTOPLAY_VIDEOS_2, description, "$1 $3");
+
+        //description = replacePatternInText(PATTERN_AUTOPLAY_REGEX_CB, description, "$1 $3");
 
         builder.append("<div id=\"content\">");
         builder.append(description);
@@ -190,18 +193,17 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         return text;
     }
 
-    private static Pattern PATTERN_PRELOAD_VIDEOS = Pattern.compile("(<video[^>]*)(preload=\".*?\")");
-    private static String removePreloadAttributeFromVideos(String text) {
-        Matcher m = PATTERN_PRELOAD_VIDEOS.matcher(text);
-        if(m.find()) {
-            StringBuffer sb = new StringBuffer();
-            do {
-                //$1 represents the 1st group
-                m.appendReplacement(sb, "$1" + "preload=\"none\"");
-            } while (m.find());
-            m.appendTail(sb);
-            text = sb.toString();
-        }
-        return text;
+    private static Pattern PATTERN_PRELOAD_VIDEOS_REMOVE = Pattern.compile("(<video[^>]*)(preload=\".*?\")(.*?>)");
+    private static Pattern PATTERN_PRELOAD_VIDEOS_INSERT = Pattern.compile("(<video[^>]*)(.*?)(.*?>)");
+
+    private static Pattern PATTERN_AUTOPLAY_VIDEOS_1 = Pattern.compile("(<video[^>]*)(autoplay=\".*?\")(.*?>)");
+    private static Pattern PATTERN_AUTOPLAY_VIDEOS_2 = Pattern.compile("(<video[^>]*)(\\sautoplay)(.*?>)");
+
+    private static Pattern PATTERN_AUTOPLAY_REGEX_CB = Pattern.compile("(.*?)^(Unser Feedsponsor:\\s*<\\/p><p>\\s*.*?\\s*<\\/p>)(.*)", Pattern.MULTILINE);
+
+
+    private static String replacePatternInText(Pattern pattern, String text, String replacement) {
+        Matcher m = pattern.matcher(text);
+        return m.replaceAll(replacement);
     }
 }
