@@ -117,6 +117,11 @@
     <string name="pref_general_sort_order_new_old">Novo -> Velho</string>
     <string name="pref_general_sort_order_old_new">Velho -> Novo</string>
 
+    <string name="pref_title_general_search_in">Procurar em</string>
+
+    <string name="pref_general_search_in_title">Título</string>
+    <string name="pref_general_search_in_body">Corpo</string>
+
     <string name="dialog_clearing_cache">Limpando o cache</string>
     <string name="dialog_clearing_cache_please_wait">Limpando o cache ... Por favor, aguarde.</string>
     <string name="reset_cache_unsaved_changes">Há alterações não sincronizadas. Gostaria de redefinir o cache de qualquer maneira?</string>

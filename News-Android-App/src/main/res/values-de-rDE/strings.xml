@@ -117,6 +117,11 @@
     <string name="pref_general_sort_order_new_old">Neu -> Alt</string>
     <string name="pref_general_sort_order_old_new">Alt -> Neu</string>
 
+    <string name="pref_title_general_search_in">Suche in</string>
+
+    <string name="pref_general_search_in_title">Titel</string>
+    <string name="pref_general_search_in_body">Artikel</string>
+
     <string name="dialog_clearing_cache">Zwischenspeicher wird geleert</string>
     <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird geleert … Bitte warten.</string>
     <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchten Sie dennoch den Zwischenspeicher leeren?</string>

@@ -117,6 +117,11 @@
     <string name="pref_general_sort_order_new_old">Yeniden -> Eskiye</string>
     <string name="pref_general_sort_order_old_new">Eskiden -> Yeniye</string>
 
+    <string name="pref_title_general_search_in">Şurada Aransın</string>
+
+    <string name="pref_general_search_in_title">Başlık</string>
+    <string name="pref_general_search_in_body">İçerik</string>
+
     <string name="dialog_clearing_cache">Ön bellek temizleniyor</string>
     <string name="dialog_clearing_cache_please_wait">Ön bellek temizleniyor... Lütfen bekleyin.</string>
     <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Yine de ön belleği sıfırlamak ister misiniz?</string>

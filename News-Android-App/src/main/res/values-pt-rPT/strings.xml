@@ -113,7 +113,7 @@
     <string name="warning">Aviso</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar no arranque</string>
     <string name="pref_title_ShowOnlyUnread">Só mostrar os artigos não lidos</string>
-    <string name="pref_title_DisableHostnameVerification">Desativar a Verificação do Nome do Hopsedeiro</string>
+    <string name="pref_title_DisableHostnameVerification">Desativar a Verificação do Nome de Anfitrião</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegue com os botões do volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto rolar com o rato</string>
     <!-- MemorizingTrustManager -->
