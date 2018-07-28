@@ -30,7 +30,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloudnewsreader.ListView.FolderArrayAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
@@ -323,8 +322,13 @@ public class NewsReaderListDialogFragment extends DialogFragment{
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
         List<Folder> folders = dbConn.getListOfFolders();
+        List<String> folderNames = new ArrayList<>();
 
-        FolderArrayAdapter folderAdapter = new FolderArrayAdapter(getContext(), folders);
+        for(Folder folder: folders) {
+            folderNames.add(folder.getLabel());
+        }
+
+        ArrayAdapter<String> folderAdapter = new ArrayAdapter<> (getActivity(), R.layout.dialog_list_folder, android.R.id.text1, folderNames);
         mFolderList.setAdapter(folderAdapter);
         mFolderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
