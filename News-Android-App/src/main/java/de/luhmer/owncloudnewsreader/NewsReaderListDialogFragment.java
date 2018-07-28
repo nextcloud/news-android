@@ -332,7 +332,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         mFolderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final Folder folder = (Folder) mFolderList.getItemAtPosition(position);
+                final Folder folder = folders.get(position);
 
                 showProgress(true);
                 setCancelable(false);
