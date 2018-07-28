@@ -25,6 +25,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.customtabs.CustomTabsIntent;
@@ -201,7 +202,11 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
      */
     private void setSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
         if (htmlPage.contains(".gif")) {
-            webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                // Workaround some playback issues with gifs on devices below android oreo
+                webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+            }
+
             Log.v("NewsDetailFragment", "Using LAYER_TYPE_SOFTWARE");
         } else {
             if (webView.getLayerType() == WebView.LAYER_TYPE_HARDWARE) {
