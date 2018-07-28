@@ -305,14 +305,15 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                                 dismiss();
                             }
                         });
-
-
-
             }
         });
     }
 
-    // TODO: make it possible to move feed into top-level again (no-folder)
+
+    /**
+     * https://github.com/nextcloud/news/blob/master/docs/externalapi/Legacy.md#move-a-feed-to-a-different-folder
+     * @param mFeedId Feed to move
+     */
     private void showMoveFeedView(final long mFeedId) {
         mListView.setVisibility(View.GONE);
         mMoveFeedDialogView.setVisibility(View.VISIBLE);
@@ -320,7 +321,8 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         tvText.setText(getString(R.string.feed_move_list_description));
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
-        List<Folder> folders = dbConn.getListOfFolders();
+        final List<Folder> folders = dbConn.getListOfFolders();
+        folders.add(new Folder(0, getString(R.string.move_feed_root_folder))); // root folder (fake insert it here since this folder is not synced)
         List<String> folderNames = new ArrayList<>();
 
         for(Folder folder: folders) {
@@ -345,7 +347,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Action() {
                             @Override
-                            public void run() throws Exception {
+                            public void run() {
                                 DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
                                 Feed feed = dbConn.getFeedById(mFeedId);
                                 feed.setFolder(folder);
