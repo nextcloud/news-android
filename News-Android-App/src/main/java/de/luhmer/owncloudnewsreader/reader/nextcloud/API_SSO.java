@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.luhmer.owncloud.accountimporter.helper.Okhttp3Helper;
-import de.luhmer.owncloud.accountimporter.helper.ReactivexHelper;
-import de.luhmer.owncloud.accountimporter.helper.Retrofit2Helper;
+import com.nextcloud.android.sso.helper.Okhttp3Helper;
+import com.nextcloud.android.sso.helper.ReactivexHelper;
+import com.nextcloud.android.sso.helper.Retrofit2Helper;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
