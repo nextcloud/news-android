@@ -58,6 +58,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nextcloud.android.sso.AccountImporter;
+import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
+import com.nextcloud.android.sso.helper.SingleAccountHelper;
+import com.nextcloud.android.sso.interfaces.IAccountImport;
+import com.nextcloud.android.sso.model.SingleSignOnAccount;
+import com.nextcloud.android.sso.ui.UiExceptionManager;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -65,12 +73,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloud.accountimporter.AccountImporter;
-import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
-import de.luhmer.owncloud.accountimporter.exceptions.NextcloudFilesAppNotInstalledException;
-import de.luhmer.owncloud.accountimporter.helper.SingleAccountHelper;
-import de.luhmer.owncloud.accountimporter.model.SingleSignOnAccount;
-import de.luhmer.owncloud.accountimporter.ui.UiExceptionManager;
 import de.luhmer.owncloudnewsreader.authentication.AuthenticatorActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
@@ -84,7 +86,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
-import static de.luhmer.owncloud.accountimporter.AccountImporter.CHOOSE_ACCOUNT_SSO;
+import static com.nextcloud.android.sso.AccountImporter.CHOOSE_ACCOUNT_SSO;
 
 /**
  * Activity which displays a login screen to the user, offering registration as

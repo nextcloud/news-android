@@ -1,15 +1,14 @@
 package de.luhmer.owncloudnewsreader.reader.nextcloud;
 
 import com.google.gson.reflect.TypeToken;
+import com.nextcloud.android.sso.aidl.NextcloudRequest;
+import com.nextcloud.android.sso.api.NextcloudAPI;
 
-import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.luhmer.owncloud.accountimporter.aidl.NextcloudRequest;
-import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
 import de.luhmer.owncloud.accountimporter.helper.Okhttp3Helper;
 import de.luhmer.owncloud.accountimporter.helper.ReactivexHelper;
 import de.luhmer.owncloud.accountimporter.helper.Retrofit2Helper;
@@ -215,11 +214,6 @@ public class API_SSO implements API {
             e.printStackTrace();
         }
         return Retrofit2Helper.WrapVoidCall(false);
-    }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
 
