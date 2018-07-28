@@ -312,13 +312,12 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         });
     }
 
+    // TODO: make it possible to move feed into top-level again (no-folder)
     private void showMoveFeedView(final long mFeedId) {
         mListView.setVisibility(View.GONE);
-        imgTitle.setVisibility(View.GONE);
         mMoveFeedDialogView.setVisibility(View.VISIBLE);
 
-        tvTitle.setText(getString(R.string.feed_move_list_heading));
-        tvText.setText("Select folder to move feed into");
+        tvText.setText(getString(R.string.feed_move_list_description));
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
         List<Folder> folders = dbConn.getListOfFolders();
