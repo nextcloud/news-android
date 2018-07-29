@@ -226,5 +226,8 @@
     <string name="array_sync_interval_hour_6">6 Hours</string>
     <string name="array_sync_interval_hour_12">12 Hours</string>
     <string name="array_sync_interval_hour_24">24 Hours</string>
+    <string name="feed_move_list_heading">"Move feed "</string>
+    <string name="action_feed_move">Move feed</string>
+    <string name="feed_move_list_description">Select folder to move feed in</string>
 
-    </resources>
+</resources>
