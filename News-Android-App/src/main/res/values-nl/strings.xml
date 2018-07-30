@@ -75,7 +75,6 @@
     <string name="feed_remove_button">Verwijder</string>
     <string name="feed_rename_button">Naam wijzigen</string>
     <string name="confirm_feed_remove">Wil je deze feed echt verwijderen? Dit kan niet ongedaan worden gemaakt!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Gebruikersnaam</string>
     <string name="pref_title_password">Wachtwoord</string>

@@ -74,7 +74,6 @@
     <string name="feed_remove_button">Fjarlægja</string>
     <string name="feed_rename_button">Endurskýra</string>
     <string name="confirm_feed_remove">Ertu viss um að þú viljir fjarlægja þetta streymi? Þetta er ekki hægt að afturkalla!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Notendanafn</string>
     <string name="pref_title_password">Lykilorð</string>

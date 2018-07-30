@@ -72,7 +72,6 @@
     <string name="feed_remove_button">Radera</string>
     <string name="feed_rename_button">Byt namn</string>
     <string name="confirm_feed_remove">Vill du verkligen ta bort denna Feed? Det kan inte ångras!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Användarnamn</string>
     <string name="pref_title_password">Lösenord</string>

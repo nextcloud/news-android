@@ -71,7 +71,6 @@
     <string name="feed_remove_button">წაშლა</string>
     <string name="feed_rename_button">გადარქმევა</string>
     <string name="confirm_feed_remove">ნამდვილად გსურთ ამ ლენტის გაუქმება? ეს ვერ იქნება უკუქცეული.</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">მომხმარებლის სახელი</string>
     <string name="pref_title_password">პაროლი</string>

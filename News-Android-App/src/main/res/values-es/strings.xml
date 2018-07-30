@@ -75,7 +75,6 @@
     <string name="feed_remove_button">Eliminar</string>
     <string name="feed_rename_button">Renombrar</string>
     <string name="confirm_feed_remove">¿Realmente desea eliminar esta Fuente? ¡Esto no se puede deshacer!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Nombre de usuario</string>
     <string name="pref_title_password">Contraseña</string>

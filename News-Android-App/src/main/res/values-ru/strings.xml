@@ -81,7 +81,6 @@
     <string name="feed_remove_button">Удалить</string>
     <string name="feed_rename_button">Переименовать</string>
     <string name="confirm_feed_remove">Вы действительно хотите удалить эту Новостную ленту? Это не действие необратимо!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Имя пользователя</string>
     <string name="pref_title_password">Пароль</string>

@@ -68,7 +68,6 @@
     <string name="feed_remove_button">삭제</string>
     <string name="feed_rename_button">이름 바꾸기</string>
     <string name="confirm_feed_remove">이 피드를 삭제하시겠습니까? 취소할 수 없습니다!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">사용자 이름</string>
     <string name="pref_title_password">암호</string>

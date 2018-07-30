@@ -75,7 +75,6 @@
     <string name="feed_remove_button">Sil</string>
     <string name="feed_rename_button">Yeniden Adlandır</string>
     <string name="confirm_feed_remove">Bu akışı gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Kullanıcı Adı</string>
     <string name="pref_title_password">Parola</string>

@@ -75,7 +75,6 @@
     <string name="feed_remove_button">Remover</string>
     <string name="feed_rename_button">Renomear</string>
     <string name="confirm_feed_remove">Você realmente deseja remover esta alimentação? Isso não pode ser desfeito!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Nome de Usuário</string>
     <string name="pref_title_password">Senha</string>

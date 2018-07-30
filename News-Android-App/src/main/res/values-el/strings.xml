@@ -72,7 +72,6 @@
     <string name="feed_remove_button">Αφαίρεση</string>
     <string name="feed_rename_button">Μετονομασία</string>
     <string name="confirm_feed_remove">Θέλετε πραγματικά να αφαιρέσετε αυτή την Ροή; Αυτό δεν μπορεί να αναιρεθεί!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Όνομα χρήστη</string>
     <string name="pref_title_password">Συνθηματικό</string>

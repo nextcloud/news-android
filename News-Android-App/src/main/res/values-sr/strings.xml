@@ -78,7 +78,6 @@
     <string name="feed_remove_button">Уклони</string>
     <string name="feed_rename_button">Преименуј</string>
     <string name="confirm_feed_remove">Да ли стварно желите да уклоните овај довод? Ово је неповратна операција!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Корисничко име</string>
     <string name="pref_title_password">Лозинка</string>

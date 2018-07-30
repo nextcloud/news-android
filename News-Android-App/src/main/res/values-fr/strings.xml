@@ -75,7 +75,6 @@
     <string name="feed_remove_button">Supprimer</string>
     <string name="feed_rename_button">Renommer</string>
     <string name="confirm_feed_remove">Voulez-vous vraiment supprimer ce Flux ? Cela ne pourra pas être annulé !</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Nom d\'utilisateur</string>
     <string name="pref_title_password">Mot de passe</string>

@@ -78,7 +78,6 @@
     <string name="feed_remove_button">Pašalinti</string>
     <string name="feed_rename_button">Pervadinti</string>
     <string name="confirm_feed_remove">Ar tikrai norite pašalinti šį kanalą? Šio veiksmo neįmanoma bus atšaukti!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Prisijungimo vardas</string>
     <string name="pref_title_password">Slaptažodis</string>

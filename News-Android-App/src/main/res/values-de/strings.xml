@@ -75,7 +75,6 @@
     <string name="feed_remove_button">Entfernen</string>
     <string name="feed_rename_button">Umbenennen</string>
     <string name="confirm_feed_remove">Möchtest du diesen Feed wirklich entfernen? Das kann nicht rückgängig gemacht werden!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Benutzername</string>
     <string name="pref_title_password">Passwort</string>
@@ -232,4 +231,4 @@
     <string name="array_sync_interval_hour_12">12 Stunden</string>
     <string name="array_sync_interval_hour_24">24 Stunden</string>
 
-</resources>
+    </resources>
