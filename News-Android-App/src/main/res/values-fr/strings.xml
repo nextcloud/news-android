@@ -72,9 +72,13 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Supprimer le Flux</string>
     <string name="action_feed_rename">Renommer le Flux</string>
+    <string name="action_feed_move">Déplacer le Flux</string>
     <string name="feed_remove_button">Supprimer</string>
     <string name="feed_rename_button">Renommer</string>
     <string name="confirm_feed_remove">Voulez-vous vraiment supprimer ce Flux ? Cela ne pourra pas être annulé !</string>
+    <string name="feed_move_list_description">Sélectionner le dossier dans lequel déplacer le flux</string>
+    <string name="move_feed_root_folder">Dossier racine</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Nom d\'utilisateur</string>
     <string name="pref_title_password">Mot de passe</string>
@@ -115,6 +119,11 @@
 
     <string name="pref_general_sort_order_new_old">Récent -> Ancien</string>
     <string name="pref_general_sort_order_old_new">Ancien -> Récent</string>
+
+    <string name="pref_title_general_search_in">Rechercher dans</string>
+
+    <string name="pref_general_search_in_title">Titre</string>
+    <string name="pref_general_search_in_body">Corps</string>
 
     <string name="dialog_clearing_cache">Vider le cache</string>
     <string name="dialog_clearing_cache_please_wait">Purge du cache... Veuillez patienter.</string>

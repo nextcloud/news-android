@@ -72,9 +72,13 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Akışı Sil</string>
     <string name="action_feed_rename">Akışı Yeniden Adlandır</string>
+    <string name="action_feed_move">Akışı Taşı</string>
     <string name="feed_remove_button">Sil</string>
     <string name="feed_rename_button">Yeniden Adlandır</string>
     <string name="confirm_feed_remove">Bu akışı gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz!</string>
+    <string name="feed_move_list_description">Akışın içine taşınacağı klasörü seçin</string>
+    <string name="move_feed_root_folder">Kök klasör</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Kullanıcı Adı</string>
     <string name="pref_title_password">Parola</string>

@@ -75,9 +75,13 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Уклони довод</string>
     <string name="action_feed_rename">Преименуј довод</string>
+    <string name="action_feed_move">Премести довод</string>
     <string name="feed_remove_button">Уклони</string>
     <string name="feed_rename_button">Преименуј</string>
     <string name="confirm_feed_remove">Да ли стварно желите да уклоните овај довод? Ово је неповратна операција!</string>
+    <string name="feed_move_list_description">Одаберите у коју фасциклу да се довод премести</string>
+    <string name="move_feed_root_folder">Корена фасцикла</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Корисничко име</string>
     <string name="pref_title_password">Лозинка</string>
