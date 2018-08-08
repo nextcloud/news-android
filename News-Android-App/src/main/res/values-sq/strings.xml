@@ -164,4 +164,14 @@
 
 
 
+    <string name="array_sync_interval_min_5">5 Minuta</string>
+    <string name="array_sync_interval_min_15">15 Minuta</string>
+    <string name="array_sync_interval_min_30">30 Minuta</string>
+    <string name="array_sync_interval_min_45">45 Minuta</string>
+    <string name="array_sync_interval_hour_1">1 Orë</string>
+    <string name="array_sync_interval_hour_2">2 Orë</string>
+    <string name="array_sync_interval_hour_3">3 Orë</string>
+    <string name="array_sync_interval_hour_6">6 Orë</string>
+    <string name="array_sync_interval_hour_24">24 Orë</string>
+
     </resources>
