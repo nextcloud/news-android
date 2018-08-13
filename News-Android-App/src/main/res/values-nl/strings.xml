@@ -72,9 +72,13 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Verwijder feed</string>
     <string name="action_feed_rename">Hernoem feed</string>
+    <string name="action_feed_move">Verplaats feed</string>
     <string name="feed_remove_button">Verwijder</string>
     <string name="feed_rename_button">Naam wijzigen</string>
     <string name="confirm_feed_remove">Wil je deze feed echt verwijderen? Dit kan niet ongedaan worden gemaakt!</string>
+    <string name="feed_move_list_description">Kies de map om de feed naar te verplaatsen</string>
+    <string name="move_feed_root_folder">Hoofdmap</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Gebruikersnaam</string>
     <string name="pref_title_password">Wachtwoord</string>
@@ -119,6 +123,8 @@
     <string name="pref_title_general_search_in">Zoeken in</string>
 
     <string name="pref_general_search_in_title">Titel</string>
+    <string name="pref_general_search_in_body">Body</string>
+
     <string name="dialog_clearing_cache">Schoonmaken cache</string>
     <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
     <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wil je de cache toch resetten?</string>
