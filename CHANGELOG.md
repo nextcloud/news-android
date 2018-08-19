@@ -6,7 +6,7 @@
 0.9.9.17 (Google Play)
 ---------------------
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/630">#630 Improve unread rss item count notification (#645)</a>
-- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/646">#646 support for animated gifs on android 8.1/a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/646">#646 support for animated gifs on android 8.1</a>
 - Fix - Login issues when using passwords with special characters
 - Add Single Sign On (requires a non published version of the Nextcloud files app)
 
