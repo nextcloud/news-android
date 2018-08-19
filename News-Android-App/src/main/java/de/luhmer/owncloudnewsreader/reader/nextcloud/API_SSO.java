@@ -128,6 +128,17 @@ public class API_SSO implements API {
     }
 
     @Override
+    public Completable moveFeed(long feedId, Map<String, Long> folderIdMap) {
+        String body = GsonConfig.GetGson().toJson(folderIdMap);
+        final NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("PUT")
+                .setUrl(mApiEndpoint + "feeds/" + feedId + "/move")
+                .setRequestBody(body)
+                .build();
+        return ReactivexHelper.WrapInCompletable(nextcloudAPI, request);
+    }
+
+    @Override
     public Completable deleteFeed(long feedId) {
         final NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("DELETE")
