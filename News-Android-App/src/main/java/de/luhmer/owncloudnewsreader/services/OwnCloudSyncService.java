@@ -52,7 +52,6 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
-import de.luhmer.owncloudnewsreader.helper.TeslaUnreadManager;
 import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.ItemStateSync;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
@@ -275,7 +274,6 @@ public class OwnCloudSyncService extends Service {
 	}
 
 	private void finishedSync() {
-		TeslaUnreadManager.PublishUnreadCount(this);
 		WidgetProvider.UpdateWidget(this);
 
 		syncRunning = false;

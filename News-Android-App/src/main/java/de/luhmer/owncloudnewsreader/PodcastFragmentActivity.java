@@ -47,7 +47,6 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterYoutubeOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
-import de.luhmer.owncloudnewsreader.helper.TeslaUnreadManager;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -200,8 +199,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         rlVideoPodcastSurfaceWrapper.setVisibility(View.GONE);
         rlVideoPodcastSurfaceWrapper.removeAllViews();
 
-
-        TeslaUnreadManager.PublishUnreadCount(this);
         WidgetProvider.UpdateWidget(this);
 
         super.onPause();
