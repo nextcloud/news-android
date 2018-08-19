@@ -60,10 +60,10 @@ public interface API {
     @PUT("feeds/{feedId}/rename")
     Completable renameFeed(@Path("feedId") long feedId, @Body Map<String, String> paramMap);
 
-    /*
+
     @PUT("feeds/{feedId}/move")
     Completable moveFeed(@Path("feedId") long feedId, @Body Map<String,Long> folderIdMap);
-    */
+
 
     @DELETE("feeds/{feedId}")
     Completable deleteFeed(@Path("feedId") long feedId);

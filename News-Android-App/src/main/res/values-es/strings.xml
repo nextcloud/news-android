@@ -72,9 +72,12 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Eliminar fuente</string>
     <string name="action_feed_rename">Renombrar Fuente</string>
+    <string name="action_feed_move">Mover fuente</string>
     <string name="feed_remove_button">Eliminar</string>
     <string name="feed_rename_button">Renombrar</string>
     <string name="confirm_feed_remove">¿Realmente desea eliminar esta Fuente? ¡Esto no se puede deshacer!</string>
+    <string name="feed_move_list_description">Selecciona la carpeta a la que mover la fuente</string>
+    <string name="move_feed_root_folder">Carpeta raíz</string>
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Nombre de usuario</string>
@@ -116,6 +119,11 @@
 
     <string name="pref_general_sort_order_new_old">Nuevo -> Antiguo</string>
     <string name="pref_general_sort_order_old_new">Antiguo -> Nuevo</string>
+
+    <string name="pref_title_general_search_in">Buscar en</string>
+
+    <string name="pref_general_search_in_title">Título</string>
+    <string name="pref_general_search_in_body">Cuerpo</string>
 
     <string name="dialog_clearing_cache">Vaciando el caché</string>
     <string name="dialog_clearing_cache_please_wait">Limpiando cache… Por favor espere.</string>

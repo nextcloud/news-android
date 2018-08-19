@@ -68,7 +68,6 @@
     <string name="feed_remove_button">ลบออก</string>
     <string name="feed_rename_button">เปลี่ยนชื่อ</string>
     <string name="confirm_feed_remove">คุณต้องการลบฟีดนี้หรือไม่? หากลบแล้วจะกู้คืนไม่ได้!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">ชื่อผู้ใช้งาน</string>
     <string name="pref_title_password">รหัสผ่าน</string>

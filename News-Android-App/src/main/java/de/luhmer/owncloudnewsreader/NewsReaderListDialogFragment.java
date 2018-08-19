@@ -31,6 +31,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.Feed;
+import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -69,6 +71,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
     private NewsReaderListActivity parentActivity;
 
     @BindView(R.id.lv_menu_list) ListView mListView;
+    @BindView(R.id.folder_list) ListView mFolderList;
 
     @BindView(R.id.tv_menu_title) TextView tvTitle;
     @BindView(R.id.tv_menu_text)  TextView tvText;
@@ -77,6 +80,8 @@ public class NewsReaderListDialogFragment extends DialogFragment{
 
     @BindView(R.id.remove_feed_dialog) RelativeLayout mRemoveFeedDialogView;
     @BindView(R.id.rename_feed_dialog) RelativeLayout mRenameFeedDialogView;
+    @BindView(R.id.move_feed_dialog) RelativeLayout mMoveFeedDialogView;
+
     @BindView(R.id.progressView)       RelativeLayout mProgressView;
 
     @BindView(R.id.button_remove_confirm) Button mButtonRemoveConfirm;
@@ -111,6 +116,11 @@ public class NewsReaderListDialogFragment extends DialogFragment{
             public void execute() {
                 showRemoveFeedView(mFeedId);
             }
+        });
+
+        mMenuItems.put(getString(R.string.action_feed_move), new MenuAction() {
+            @Override
+            public void execute() { showMoveFeedView(mFeedId); }
         });
 
         int style = DialogFragment.STYLE_NO_TITLE;
@@ -295,11 +305,68 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                                 dismiss();
                             }
                         });
-
-
-
             }
         });
+    }
+
+
+    /**
+     * https://github.com/nextcloud/news/blob/master/docs/externalapi/Legacy.md#move-a-feed-to-a-different-folder
+     * @param mFeedId Feed to move
+     */
+    private void showMoveFeedView(final long mFeedId) {
+        mListView.setVisibility(View.GONE);
+        mMoveFeedDialogView.setVisibility(View.VISIBLE);
+
+        tvText.setText(getString(R.string.feed_move_list_description));
+
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
+        final List<Folder> folders = dbConn.getListOfFolders();
+        folders.add(new Folder(0, getString(R.string.move_feed_root_folder))); // root folder (fake insert it here since this folder is not synced)
+        List<String> folderNames = new ArrayList<>();
+
+        for(Folder folder: folders) {
+            folderNames.add(folder.getLabel());
+        }
+
+        ArrayAdapter<String> folderAdapter = new ArrayAdapter<> (getActivity(), R.layout.dialog_list_folder, android.R.id.text1, folderNames);
+        mFolderList.setAdapter(folderAdapter);
+        mFolderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final Folder folder = folders.get(position);
+
+                showProgress(true);
+                setCancelable(false);
+                getDialog().setCanceledOnTouchOutside(false);
+
+                Map<String, Long> paramMap = new LinkedHashMap<>();
+                paramMap.put("folderId", folder.getId());
+                mApi.getAPI().moveFeed(mFeedId, paramMap)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Action() {
+                            @Override
+                            public void run() {
+                                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
+                                Feed feed = dbConn.getFeedById(mFeedId);
+                                feed.setFolder(folder);
+
+                                parentActivity.getSlidingListFragment().ReloadAdapter();
+                                parentActivity.startSync();
+
+                                dismiss();
+                            }
+                        }, new Consumer<Throwable>() {
+                            @Override
+                            public void accept(@NonNull Throwable throwable) throws Exception {
+                                Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong) + " - " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                                dismiss();
+                            }
+                        });
+            }
+        });
+
     }
 
     interface MenuAction {

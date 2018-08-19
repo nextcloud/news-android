@@ -75,7 +75,6 @@
     <string name="feed_remove_button">Remove</string>
     <string name="feed_rename_button">Rename</string>
     <string name="confirm_feed_remove">Do you really want to remove this Feed? This cannot be undone!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>
     <string name="pref_title_password">Password</string>

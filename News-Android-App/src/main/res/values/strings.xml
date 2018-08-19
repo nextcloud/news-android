@@ -73,9 +73,12 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Remove Feed</string>
     <string name="action_feed_rename">Rename Feed</string>
+    <string name="action_feed_move">Move Feed</string>
     <string name="feed_remove_button">Remove</string>
     <string name="feed_rename_button">Rename</string>
     <string name="confirm_feed_remove">Do you really want to remove this Feed? This cannot be undone!</string>
+    <string name="feed_move_list_description">Select folder to move feed in</string>
+    <string name="move_feed_root_folder">Root folder</string>
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>

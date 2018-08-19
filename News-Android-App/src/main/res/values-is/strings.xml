@@ -3,6 +3,7 @@
 
     <string name="auto_sync_string">Sjálfvirk samstilling</string>
     <string name="title_activity_sync_interval_selector">Val á bili milli samstillinga</string>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Engin atriði hér</string>
     <string name="toast_GettingMoreItems">Byrjaði að sækja fleiri atriði... Bíddu aðeins.</string>
     <string name="no_wifi_available">Ekkert WiFi-net tengt</string>
@@ -71,9 +72,12 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Fjarlægja streymi</string>
     <string name="action_feed_rename">Endurnefna streymi</string>
+    <string name="action_feed_move">Færa streymi</string>
     <string name="feed_remove_button">Fjarlægja</string>
     <string name="feed_rename_button">Endurskýra</string>
     <string name="confirm_feed_remove">Ertu viss um að þú viljir fjarlægja þetta streymi? Þetta er ekki hægt að afturkalla!</string>
+    <string name="feed_move_list_description">Veldu möppu sem á að færa streymið í</string>
+    <string name="move_feed_root_folder">Rótarmappa</string>
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Notendanafn</string>
@@ -116,6 +120,11 @@
     <string name="pref_general_sort_order_new_old">Nýrra -> Eldra</string>
     <string name="pref_general_sort_order_old_new">Eldra -> Nýrra</string>
 
+    <string name="pref_title_general_search_in">Leita í</string>
+
+    <string name="pref_general_search_in_title">Titill</string>
+    <string name="pref_general_search_in_body">Meginmál</string>
+
     <string name="dialog_clearing_cache">Hreinsa skyndiminni</string>
     <string name="dialog_clearing_cache_please_wait">Hreinsa skyndiminni... Bíddu aðeins.</string>
     <string name="reset_cache_unsaved_changes">Það eru ósamstilltar breytingar. Viltu samt endurstilla skyndiminnið?</string>
@@ -126,6 +135,9 @@
     <string name="pref_title_NavigateWithVolumeButtons">Flakka með hnöppum fyrir hljóðstyrk</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Merkja sem lesið við skrun</string>
     <string name="pref_title_OpenInBrowserDirectly">Sleppa ítarlegri sýn og opna greinina í vafranum</string>
+
+    <string name="dialog_feature_not_available">Þessi eiginleiki er ekki tiltækur í þessari (frjálsu-opnu/open-source) útgáfu forritsins. Ef þú ætlar að nota þennan eiginleika ættirðu að sækja forritið í GitHub hugbúnaðarsafnið eða ná í forritið úr Google PlayStore safninu.</string>
+
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Samþykkja óþekkt skilríki?</string>
@@ -192,7 +204,12 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Villa</string>
     <string name="login_dialog_text_something_went_wrong">Úbbs! Eitthvað fór úrskeiðis :(</string>
+    <string name="login_dialog_text_zero_version_code">Veffréttaforritið svaraði með útgáfu \"0\". Þú ættir að skoða eftirfarandi villuskýrslu: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Útgáfa þessa forrits er ekki samhæfð við Nextcloud fréttaforritið þitt. Endilega uppfærðu fréttaforritið og forritsumhverfi þess.</string>
     <string name="login_dialog_title_security_warning">Öryggisaðvörun</string>
+    <string name="login_dialog_text_security_warning">Þú ert ekki að nota HTTPS, sem sterklega er mælt með að gera. Utanaðkomandi aðili gæti komist inn í samskiptin og öðlast þannig aðgang að viðkvæmum gögnum (t.d. lykilorðinu þínu).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Gögn &amp; samstilling</string>
     <string name="pref_title_clearCache">Hreinsa skyndiminni</string>

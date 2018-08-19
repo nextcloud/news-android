@@ -75,7 +75,6 @@
     <string name="feed_remove_button">Eltávolítás</string>
     <string name="feed_rename_button">Átnevezés</string>
     <string name="confirm_feed_remove">Biztos, hogy el akarod távolítani ezt a hírfolyamot? Ez a művelet nem vonható vissza!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Felhasználónév</string>
     <string name="pref_title_password">Jelszó</string>

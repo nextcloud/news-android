@@ -69,7 +69,6 @@
     <string name="feed_remove_button">حذف</string>
     <string name="feed_rename_button">تغییرنام</string>
     <string name="confirm_feed_remove">آیا واقعاً می خواهید این فید را حذف کنید؟ این عمل قابل بازگشت نیست!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">نام کاربری</string>
     <string name="pref_title_password">گذرواژه</string>

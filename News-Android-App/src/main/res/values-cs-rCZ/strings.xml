@@ -81,7 +81,6 @@
     <string name="feed_remove_button">Odstranit</string>
     <string name="feed_rename_button">Přejmenovat</string>
     <string name="confirm_feed_remove">Opravdu chcete odstranit tento kanál? Toto nelze vrátit zpět!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Uživatelské jméno</string>
     <string name="pref_title_password">Heslo</string>

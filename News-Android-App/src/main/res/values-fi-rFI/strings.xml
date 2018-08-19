@@ -72,7 +72,6 @@
     <string name="feed_remove_button">Poista</string>
     <string name="feed_rename_button">Nimeä uudelleen</string>
     <string name="confirm_feed_remove">Haluatko varmasti poistaa tämän syötteen? Toimintoa ei voi perua!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Käyttäjätunnus</string>
     <string name="pref_title_password">Salasana</string>

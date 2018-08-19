@@ -71,7 +71,6 @@
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重命名</string>
     <string name="confirm_feed_remove">您真的要删除此订阅吗？本操作不可恢复！</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">用户名</string>
     <string name="pref_title_password">密码</string>

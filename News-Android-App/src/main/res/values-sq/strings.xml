@@ -71,7 +71,6 @@
     <string name="feed_remove_button">Hiqe</string>
     <string name="feed_rename_button">Riemërtoje</string>
     <string name="confirm_feed_remove">Doni vërtet të hiqet kjo Prurje? Kjo s’mund të zhbëhet!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Emër përdoruesi</string>
     <string name="pref_title_password">Fjalëkalim</string>
@@ -164,5 +163,15 @@
 
 
 
+
+    <string name="array_sync_interval_min_5">5 Minuta</string>
+    <string name="array_sync_interval_min_15">15 Minuta</string>
+    <string name="array_sync_interval_min_30">30 Minuta</string>
+    <string name="array_sync_interval_min_45">45 Minuta</string>
+    <string name="array_sync_interval_hour_1">1 Orë</string>
+    <string name="array_sync_interval_hour_2">2 Orë</string>
+    <string name="array_sync_interval_hour_3">3 Orë</string>
+    <string name="array_sync_interval_hour_6">6 Orë</string>
+    <string name="array_sync_interval_hour_24">24 Orë</string>
 
     </resources>

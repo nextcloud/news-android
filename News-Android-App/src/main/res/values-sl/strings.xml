@@ -77,7 +77,6 @@
     <string name="feed_remove_button">Odstrani</string>
     <string name="feed_rename_button">Preimenuj</string>
     <string name="confirm_feed_remove">Ali res želite odstraniti ta vir? Dejanjaa ni mogoče povrniti!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Uporabniško ime</string>
     <string name="pref_title_password">Geslo</string>

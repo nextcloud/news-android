@@ -74,7 +74,6 @@
     <string name="feed_remove_button">Fjern</string>
     <string name="feed_rename_button">Gi nytt navn</string>
     <string name="confirm_feed_remove">Vil du virkelig fjerne denne nyhetskilden? Dette kan ikke angres!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Brukernavn</string>
     <string name="pref_title_password">Passord</string>

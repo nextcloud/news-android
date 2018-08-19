@@ -60,7 +60,6 @@
     <string name="feed_remove_button">Usuń</string>
     <string name="feed_rename_button">Zmień nazwę</string>
     <string name="confirm_feed_remove">Czy na pewno chcesz usunąć ten kanał? Operacja jest nieodwracalna!</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">Nazwa użytkownika</string>
     <string name="pref_title_password">Hasło</string>

@@ -78,9 +78,12 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Удалить Новостную ленту</string>
     <string name="action_feed_rename">Переименовать Новостную ленту</string>
+    <string name="action_feed_move">Перенести Новостную ленту</string>
     <string name="feed_remove_button">Удалить</string>
     <string name="feed_rename_button">Переименовать</string>
     <string name="confirm_feed_remove">Вы действительно хотите удалить эту Новостную ленту? Это не действие необратимо!</string>
+    <string name="feed_move_list_description">Выберите папку для перемещения Новостной ленты</string>
+    <string name="move_feed_root_folder">Корневой каталог</string>
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Имя пользователя</string>
@@ -126,6 +129,11 @@
 
     <string name="pref_general_sort_order_new_old">Новые -&gt; Старые</string>
     <string name="pref_general_sort_order_old_new">Старые -&gt; Новые</string>
+
+    <string name="pref_title_general_search_in">Искать в</string>
+
+    <string name="pref_general_search_in_title">Заголовок</string>
+    <string name="pref_general_search_in_body">Тело</string>
 
     <string name="dialog_clearing_cache">Очистить кеш.</string>
     <string name="dialog_clearing_cache_please_wait">Очистка кеша… Пожалуйста подождите.</string>

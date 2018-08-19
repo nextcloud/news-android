@@ -69,7 +69,6 @@
     <string name="feed_remove_button">削除</string>
     <string name="feed_rename_button">名前の変更</string>
     <string name="confirm_feed_remove">本当にこのフィードを削除してよろしいですか？この操作は元に戻せません！</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">ユーザー名</string>
     <string name="pref_title_password">パスワード</string>
