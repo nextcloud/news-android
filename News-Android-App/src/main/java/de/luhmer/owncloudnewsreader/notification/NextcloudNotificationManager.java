@@ -10,7 +10,9 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
+import android.service.notification.StatusBarNotification;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 
@@ -165,14 +167,21 @@ public class NextcloudNotificationManager {
         PendingIntent contentIntent = PendingIntent.getActivity(context, UNREAD_RSS_ITEMS_NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(contentIntent);
 
-
         notificationManager.notify(UNREAD_RSS_ITEMS_NOTIFICATION_ID, builder.build());
     }
 
     public static boolean IsUnreadRssCountNotificationVisible(Context context) {
-        Intent notificationIntent = new Intent(context, OwnCloudSyncService.class);
-        PendingIntent test = PendingIntent.getActivity(context, UNREAD_RSS_ITEMS_NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        return test != null;
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            for(StatusBarNotification statusBarNotification : notificationManager.getActiveNotifications()) {
+                if(statusBarNotification.getId() == UNREAD_RSS_ITEMS_NOTIFICATION_ID) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
     }
 
     public static void RemoveRssItemsNotification(Context context) {
