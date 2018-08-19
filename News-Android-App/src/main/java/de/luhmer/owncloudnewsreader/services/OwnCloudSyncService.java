@@ -101,7 +101,6 @@ public class OwnCloudSyncService extends Service {
 	public void startSync() {
 		if(!isSyncRunning()) {
 			startedSync();
-
             start();
 		}
 	}
@@ -145,7 +144,7 @@ public class OwnCloudSyncService extends Service {
         boolean      stateSyncSuccessful;
     }
 
-	// Start sync
+    // Start sync
     private void start() {
         syncStopWatch = new StopWatch();
         syncStopWatch.start();
@@ -154,17 +153,6 @@ public class OwnCloudSyncService extends Service {
         if(mApi.getAPI() == null) {
             ThrowException(new IllegalStateException("API is not initialized"));
         }
-
-        //Delete all pinned/stored SSL Certificates
-        /*
-        final ArrayList<String> aliases = Collections.list(mMTM.getCertificates());
-        for(int i = 0; i < aliases.size(); i++) {
-            try {
-                mMTM.deleteCertificate(aliases.get(i));
-            } catch (KeyStoreException e) {
-                e.printStackTrace();
-            }
-        }*/
 
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(OwnCloudSyncService.this);
 
