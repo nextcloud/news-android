@@ -65,6 +65,7 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function3;
@@ -92,6 +93,7 @@ public class OwnCloudSyncService extends Service {
 
 
 	private boolean syncRunning;
+    private CompositeDisposable mDisposable;
 
     @Inject SharedPreferences mPrefs;
 	@Inject ApiProvider mApi;
@@ -111,12 +113,19 @@ public class OwnCloudSyncService extends Service {
 
 	@Override
 	public void onCreate() {
+        mDisposable = new CompositeDisposable();
         ((NewsReaderApplication) getApplication()).getAppComponent().injectService(this);
 		super.onCreate();
 		Log.v(TAG, "onCreate() called");
 	}
 
-	@Nullable
+    @Override
+    public void onDestroy() {
+        mDisposable.dispose();
+        super.onDestroy();
+    }
+
+    @Nullable
 	@Override
 	public IBinder onBind(Intent intent) {
 		return mBinder;
@@ -156,10 +165,10 @@ public class OwnCloudSyncService extends Service {
 
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(OwnCloudSyncService.this);
 
-        Observable rssStateSync = Observable.fromPublisher(
-                new Publisher() {
+        Observable<Boolean> rssStateSync = Observable.fromPublisher(
+                new Publisher<Boolean>() {
                    @Override
-                   public void subscribe(Subscriber s) {
+                   public void subscribe(Subscriber<? super Boolean> s) {
                        try {
                            ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
                            s.onNext(true);
@@ -181,19 +190,19 @@ public class OwnCloudSyncService extends Service {
                 .feeds()
                 .subscribeOn(Schedulers.newThread());
 
-        // Wait for both results
+        // Wait for results
         Observable<SyncResult> combined = Observable.zip(folderObservable, feedsObservable, rssStateSync, new Function3<List<Folder>, List<Feed>, Boolean, SyncResult>() {
             @Override
-            public SyncResult apply(@NonNull List<Folder> folders, @NonNull List<Feed> feeds, @NonNull Boolean mRes) throws Exception {
+            public SyncResult apply(@NonNull List<Folder> folders, @NonNull List<Feed> feeds, @NonNull Boolean mRes) {
                 Log.v(TAG, "apply() called with: folders = [" + folders + "], feeds = [" + feeds + "], mRes = [" + mRes + "]");
                 return new SyncResult(folders, feeds, mRes);
             }
         });
 
         // Insert them into the database
-        combined.subscribe(new Consumer<SyncResult>() {
+        Disposable disposable = combined.subscribe(new Consumer<SyncResult>() {
             @Override
-            public void accept(@NonNull SyncResult syncResult) throws Exception {
+            public void accept(@NonNull SyncResult syncResult) {
                 Log.v(TAG, "onNext() called with: syncResult = [" + syncResult + "]");
 
                 InsertIntoDatabase.InsertFoldersIntoDatabase(syncResult.folders, dbConn);
@@ -204,11 +213,13 @@ public class OwnCloudSyncService extends Service {
             }
         }, new Consumer<Throwable>() {
             @Override
-            public void accept(@NonNull Throwable e) throws Exception {
+            public void accept(@NonNull Throwable e) {
                 Log.v(TAG, "onError() called with: e = [" + e + "]");
                 ThrowException(e);
             }
         });
+
+        mDisposable.add(disposable);
     }
 
 
