@@ -12,29 +12,11 @@ import de.luhmer.owncloudnewsreader.R;
 
 public class NotificationManagerNewsReader {
 
-    private static NotificationManagerNewsReader instance;
-    private final int NOTIFICATION_ID = 0;
-    private final String CHANNEL_ID = "0";
-    private Context context;
-
-    public synchronized static NotificationManagerNewsReader getInstance(Context context)
-    {
-        if(instance == null)
-            instance = new NotificationManagerNewsReader(context);
-        return instance;
-    }
-
-    private NotificationManagerNewsReader(Context context)
-    {
-        this.context = context;
-        //NOTIFICATION_ID = new Random().nextInt();
-        //NOTIFICATION_ID = new Random().nextInt();
-    }
+    private static final int NOTIFICATION_ID = 0;
+    private static final String CHANNEL_ID = "0";
 
 
-
-    public void ShowMessage(String title, String tickerMessage, String message)
-    {
+    public static void ShowUnreadRssItemsNotification(Context context, String title, String tickerMessage, String message) {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context, "")
                         .setSmallIcon(R.drawable.ic_notification)
@@ -44,21 +26,6 @@ public class NotificationManagerNewsReader {
                         .setAutoCancel(true)
                         .setContentText(message);
 
-
-    /*
-
-    myNotification = new NotificationCompat.Builder(context)
-      .setContentTitle("Exercise of Notification!")
-      .setContentText("http://android-er.blogspot.com/")
-      .setTicker("Notification!")
-      .setWhen(System.currentTimeMillis())
-      .setContentIntent(pendingIntent)
-      .setDefaults(Notification.DEFAULT_SOUND)
-      .setAutoCancel(true)
-      .setSmallIcon(R.drawable.ic_launcher)
-      .build();
-
-    */
 
         Intent notificationIntent = new Intent(context, NewsReaderListActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -79,7 +46,7 @@ public class NotificationManagerNewsReader {
     }
 
     // Remove notification
-    public void RemoveNotification() {
+    public void RemoveNotification(Context context) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancel(NOTIFICATION_ID);
     }

@@ -52,6 +52,7 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.NotificationManagerNewsReader;
+import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.ItemStateSync;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
@@ -299,20 +300,16 @@ public class OwnCloudSyncService extends Service {
 
             // If another app is opened show a notification
             if (!foregroundActivityPackageName.equals(getPackageName())) {
-                Resources res = getResources();
-                String tickerText = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
-                String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
-                String title = getString(R.string.app_name);
-
-                if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true))//Default is true
-                    NotificationManagerNewsReader.getInstance(OwnCloudSyncService.this).ShowMessage(title, tickerText, contentText);
+                if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true)) {
+                    NextcloudNotificationManager.ShowUnreadRssItemsNotification(OwnCloudSyncService.this, newItemsCount);
+                }
             }
-		}
+        }
 
         Intent data = new Intent();
         data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.FAVICONS_ONLY);
-		DownloadImagesService.enqueueWork(OwnCloudSyncService.this, data);
+        DownloadImagesService.enqueueWork(OwnCloudSyncService.this, data);
 
         EventBus.getDefault().post(new SyncFinishedEvent());
-	}
+    }
 }

@@ -38,6 +38,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
@@ -50,10 +51,13 @@ import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
+import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
+import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
+import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -201,8 +205,21 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
         WidgetProvider.UpdateWidget(this);
 
+
+        if(NextcloudNotificationManager.IsUnreadRssCountNotificationVisible(this)) {
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
+            int count = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
+            NextcloudNotificationManager.ShowUnreadRssItemsNotification(this, count);
+
+            if(count == 0) {
+                NextcloudNotificationManager.RemoveRssItemsNotification(this);
+            }
+        }
+
+
         super.onPause();
     }
+
 
     public static boolean isMyServiceRunning(Class<?> serviceClass, Context context) {
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);

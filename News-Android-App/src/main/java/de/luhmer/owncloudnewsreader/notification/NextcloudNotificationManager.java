@@ -6,8 +6,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 
@@ -19,10 +22,13 @@ import java.io.File;
 import de.luhmer.owncloudnewsreader.BuildConfig;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 
 public class NextcloudNotificationManager {
 
     private static final int ID_DownloadSingleImageComplete = 10;
+    private static final int UNREAD_RSS_ITEMS_NOTIFICATION_ID = 246;
 
     public static void ShowNotificationDownloadSingleImageComplete(Context context, File imagePath) {
         String channelDownloadImage = context.getString(R.string.action_img_download);
@@ -131,6 +137,47 @@ public class NextcloudNotificationManager {
                 .setOngoing(true);
 
         return mNotificationDownloadPodcast;
+    }
+
+
+
+
+    public static void ShowUnreadRssItemsNotification(Context context, int newItemsCount) {
+        Resources res = context.getResources();
+        String tickerMessage = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
+        String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
+        String title = context.getString(R.string.app_name);
+
+        String channelId = context.getString(R.string.app_name);
+        NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
+
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(context, channelId)
+                        .setSmallIcon(R.drawable.ic_notification)
+                        .setTicker(tickerMessage)
+                        .setContentTitle(title)
+                        //.setDefaults(Notification.DEFAULT_ALL)
+                        .setAutoCancel(true)
+                        .setContentText(contentText);
+
+
+        Intent notificationIntent = new Intent(context, NewsReaderListActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, UNREAD_RSS_ITEMS_NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+
+
+        notificationManager.notify(UNREAD_RSS_ITEMS_NOTIFICATION_ID, builder.build());
+    }
+
+    public static boolean IsUnreadRssCountNotificationVisible(Context context) {
+        Intent notificationIntent = new Intent(context, OwnCloudSyncService.class);
+        PendingIntent test = PendingIntent.getActivity(context, UNREAD_RSS_ITEMS_NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return test != null;
+    }
+
+    public static void RemoveRssItemsNotification(Context context) {
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.cancel(UNREAD_RSS_ITEMS_NOTIFICATION_ID);
     }
 
 
