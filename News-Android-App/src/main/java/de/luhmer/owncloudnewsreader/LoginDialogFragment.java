@@ -119,7 +119,6 @@ public class LoginDialogFragment extends DialogFragment {
 	private String mPassword;
 	private String mOc_root_path;
 	private boolean mCbDisableHostnameVerification;
-	private boolean showImportAccountButton;
 
 	// UI references.
 	@BindView(R.id.username) EditText mUsernameView;
@@ -195,10 +194,7 @@ public class LoginDialogFragment extends DialogFragment {
         ActivityCompat.requestPermissions(getActivity(),
                 new String[]{ Manifest.permission.GET_ACCOUNTS }, 0);
 
-        //accountImporter = new AccountImporter();
-		showImportAccountButton = AccountImporter.AccountsToImportAvailable(getActivity());
-
-		//setRetainInstance(true);
+        //setRetainInstance(true);
 
         // Build the dialog and set up the button click handlers
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -210,10 +206,6 @@ public class LoginDialogFragment extends DialogFragment {
 		builder.setTitle(getString(R.string.action_sign_in_short));
 
 		builder.setPositiveButton(getString(R.string.action_sign_in_short), null);
-
-		if(showImportAccountButton) {
-			builder.setNeutralButton(getString(R.string.import_account), null);
-		}
 
         mImageViewShowPwd.setOnClickListener(ImgViewShowPasswordListener);
 		mPasswordView.addTextChangedListener(PasswordTextChangedListener);
@@ -309,19 +301,6 @@ public class LoginDialogFragment extends DialogFragment {
 		final AlertDialog dialog = (AlertDialog) getDialog();
 		// Override the onClickListeners, as the default implementation would dismiss the dialog
 		if (dialog != null) {
-			if (showImportAccountButton) {
-				Button neutralButton = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
-				neutralButton.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-                        mSwSingleSignOn.setChecked(false);
-                        mSwSingleSignOn.setChecked(true);
-						//ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
-					}
-				});
-				// Limit button width to not push positive button out of view
-				neutralButton.setMaxEms(10);
-			}
 			Button positiveButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
 			positiveButton.setOnClickListener(new View.OnClickListener() {
 				@Override
