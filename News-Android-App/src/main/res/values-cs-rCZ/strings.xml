@@ -81,6 +81,8 @@
     <string name="feed_remove_button">Odstranit</string>
     <string name="feed_rename_button">Přejmenovat</string>
     <string name="confirm_feed_remove">Opravdu chcete odstranit tento kanál? Toto nelze vrátit zpět!</string>
+    <string name="move_feed_root_folder">Kořenová složka</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Uživatelské jméno</string>
     <string name="pref_title_password">Heslo</string>
@@ -125,6 +127,8 @@
 
     <string name="pref_general_sort_order_new_old">Nové -> staré</string>
     <string name="pref_general_sort_order_old_new">Staré -> nové</string>
+
+    <string name="pref_title_general_search_in">Hledat v</string>
 
     <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
     <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti... Chvíli strpení.</string>
