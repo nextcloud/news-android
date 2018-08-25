@@ -39,8 +39,6 @@ public class API_SSO implements API {
     }
 
 
-
-
     @Override
     public Observable<UserInfo> user() {
         final Type type = UserInfo.class;

@@ -27,7 +27,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
+import junit.runner.Version;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -52,6 +55,7 @@ import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.API_SSO;
 import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
@@ -61,6 +65,8 @@ import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
+
+import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
 
 public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
@@ -85,6 +91,10 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+
+        if(mApi.getAPI() instanceof API_SSO) {
+            VersionCheckHelper.VerifyMinVersion(this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE);
+        }
 
         //Delete all pinned/stored SSL Certificates
         /*

@@ -31,6 +31,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
@@ -64,6 +66,7 @@ import android.widget.Toast;
 
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.SSOException;
+import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -382,10 +385,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	protected void onStart() {
-		Intent serviceIntent = new Intent(this, OwnCloudSyncService.class);
+        Intent serviceIntent = new Intent(this, OwnCloudSyncService.class);
 		mConnection = generateServiceConnection();
 		if (!isMyServiceRunning(OwnCloudSyncService.class, this)) {
-			startService(serviceIntent);
+            try {
+                 startService(serviceIntent);
+            } catch (IllegalStateException ex) {
+                ex.printStackTrace();
+            }
 		}
 		bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
 		super.onStart();

@@ -14,6 +14,8 @@ public class Constants {
 
     public static final int maxItemsCount = 1500;
 
+    public static final int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030000;
+
     public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
 
 

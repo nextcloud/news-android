@@ -61,7 +61,9 @@ import android.widget.Toast;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
+import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
@@ -86,6 +88,7 @@ import io.reactivex.schedulers.Schedulers;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static com.nextcloud.android.sso.AccountImporter.CHOOSE_ACCOUNT_SSO;
+import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -134,16 +137,19 @@ public class LoginDialogFragment extends DialogFragment {
 
 	public void accountAccessGranted(final Account account) {
 		try {
-			SingleSignOnAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
-			mUsernameView.setText(singleAccount.username);
+            SingleSignOnAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
+            mUsernameView.setText(singleAccount.username);
             mPasswordView.setText("");
             mOc_root_path_View.setText(singleAccount.url);
 
-			mPasswordContainerView.setVisibility(View.GONE);
+            mPasswordContainerView.setVisibility(View.GONE);
             mImageViewShowPwd.setVisibility(View.GONE);
             mCbDisableHostnameVerificationView.setVisibility(View.GONE);
 
-			this.importedAccount = account;
+            this.importedAccount = account;
+        } catch (NextcloudFilesAppNotSupportedException ex) {
+            ex.printStackTrace();
+            UiExceptionManager.ShowDialogForException(getActivity(), ex);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -187,7 +193,7 @@ public class LoginDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         ActivityCompat.requestPermissions(getActivity(),
-                new String[]{Manifest.permission.GET_ACCOUNTS}, 0);
+                new String[]{ Manifest.permission.GET_ACCOUNTS }, 0);
 
         //accountImporter = new AccountImporter();
 		showImportAccountButton = AccountImporter.AccountsToImportAvailable(getActivity());
@@ -247,6 +253,14 @@ public class LoginDialogFragment extends DialogFragment {
         mSwSingleSignOn.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    if (!VersionCheckHelper.VerifyMinVersion(getActivity(), MIN_NEXTCLOUD_FILES_APP_VERSION_CODE)) {
+                        mSwSingleSignOn.setChecked(false);
+                        return;
+
+                    }
+                }
+
                 syncUiElementState();
 
                 mUsernameView.setText("");
@@ -371,7 +385,7 @@ public class LoginDialogFragment extends DialogFragment {
 	 * errors are presented and no actual login attempt is made.
 	 */
 	public void attemptLogin() {
-		//if (mAuthTask != null) {
+        //if (mAuthTask != null) {
 		//	return;
 		//}
 
@@ -439,7 +453,7 @@ public class LoginDialogFragment extends DialogFragment {
             dialogLogin.show();
 
 			if(mSwSingleSignOn.isChecked()) {
-				SingleAccountHelper.SetCurrentAccount(getActivity(), importedAccount);
+			    SingleAccountHelper.SetCurrentAccount(getActivity(), importedAccount);
 			}
 
 
