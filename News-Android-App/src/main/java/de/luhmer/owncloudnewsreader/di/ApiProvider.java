@@ -94,8 +94,7 @@ public class ApiProvider {
         try {
             Account account = SingleAccountHelper.GetCurrentAccount(context);
             SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(context, account);
-            NextcloudAPI nextcloudAPI = new NextcloudAPI(ssoAccount, GsonConfig.GetGson());
-            nextcloudAPI.start(context, callback);
+            NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
             mApi = new API_SSO(nextcloudAPI);
         } catch (SSOException e) {
             callback.onError(e);
