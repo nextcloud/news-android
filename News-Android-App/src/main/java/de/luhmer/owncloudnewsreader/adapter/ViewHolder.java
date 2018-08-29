@@ -24,6 +24,8 @@ import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
@@ -258,6 +260,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     private String getBodyText(String body, boolean limitLength)
     {
+        if (body.startsWith("<![CDATA[")) {
+            body = body.replaceFirst( Pattern.quote("<![CDATA["), "");
+            body = body.replaceFirst("]]>", "");
+        }
+
         body = body.replaceAll("<img[^>]*>", "");
         body = body.replaceAll("<video[^>]*>", "");
 
@@ -267,8 +274,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         String bodyString = bodyStringSpannable.toString().trim();
 
 
-        if(limitLength && bodyString.length() > LengthBody)
+        if(limitLength && bodyString.length() > LengthBody) {
             bodyString = bodyString.substring(0, LengthBody) + "...";
+        }
 
         return bodyString;
     }
