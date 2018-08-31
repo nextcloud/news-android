@@ -4,10 +4,12 @@
     <string name="auto_sync_string">Vetënjëkohëso</string>
     <string name="title_activity_sync_interval_selector">Përzgjedhës Intervali Njëkohësimesh</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
-    <string name="empty_view_content">S\’ka gjë këtu</string>
+    <string name="empty_view_content">S’ka gjë këtu</string>
+    <string name="toast_GettingMoreItems">Shkarkimi i më shumë gjërave filloi... Ju lutem prisni.</string>
     <string name="no_wifi_available">Pa lidhje WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Doni të shkarkoni imazhet pa lidhje me Wi-Fi</string>
     <string name="current_version">Po përdorni Versionin %s</string>
-    <string name="widget_header">Lajme ownCloud</string>
+    <string name="widget_header">Lajme Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d zë i ri gati</item>
         <item quantity="other">%d zëra të rinj gati</item>
@@ -28,6 +30,7 @@
     <string name="action_starred">Me yll</string>
     <string name="action_read">Lexoni</string>
     <string name="action_playPodacst">Luani Podcast</string>
+    <string name="action_openInBrowser">Hape në Webfaqe</string>
     <string name="action_Share">Ndajeni me të tjerët</string>
     <string name="action_login">Rregullime Shërbyesi</string>
     <string name="action_save">Ruaje</string>
@@ -59,6 +62,7 @@
     <string name="action_link_open">Hapeni Lidhjen në Shfletues</string>
     <string name="action_link_copy">Kopjoje Lidhjen</string>
     <string name="toast_img_download_wait">Po shkarkohet… Ju lutemi, pritni</string>
+    <string name="toast_img_saved">Imazhi u ruajt</string>
     <string name="toast_img_notwriteable">Dështoi shkrimi i Figurës.</string>
     <string name="toast_copied_to_clipboard">U kopjua në të papastër</string>
     <string name="error_download_failed">Shkarkimi dështoi</string>
@@ -106,6 +110,12 @@
     <string name="pref_header_general">Të përgjithshme</string>
     <string name="pref_title_general_sort_order">Radhë Renditjeje</string>
 
+    <string name="pref_general_sort_order_new_old">Të rinj -> Të vjetër</string>
+    <string name="pref_general_sort_order_old_new">Të vjetër -> Të rinj</string>
+
+    <string name="pref_title_general_search_in">Kërkoni</string>
+
+    <string name="pref_general_search_in_title">Titulli</string>
     <string name="dialog_clearing_cache">Pastrim fshehtine</string>
     <string name="dialog_clearing_cache_please_wait">Fshehtina po pastrohet… Ju lutemi, pritni.</string>
     <string name="reset_cache_unsaved_changes">Ka ndryshime të panjëkohësuara. Doni ta ktheni fshehtinën në gjendjen fillestare sido qoftë?</string>
@@ -129,6 +139,13 @@
     <string name="pref_header_display">Ekran</string>
     <string name="pref_title_feed_list_layout">Skemë liste prurjesh</string>
     <string name="pref_display_title_lines_count">Numërim Rreshtash për titullin</string>
+    <string name="pref_display_browser">Shfletues</string>
+
+
+
+
+    <string name="pref_display_feed_list_layout_simple">E thjeshtë</string>
+    <string name="pref_display_feed_list_layout_extended">E zgjeruar</string>
     <string name="content_desc_play">luaje</string>
     <string name="content_desc_pause">pushoje</string>
     <string name="content_desc_rewind">mbrapsht</string>
@@ -164,6 +181,7 @@
 
 
 
+    <string name="pref_data_sync_image_cache_never">Kurrë</string>
     <string name="array_sync_interval_min_5">5 Minuta</string>
     <string name="array_sync_interval_min_15">15 Minuta</string>
     <string name="array_sync_interval_min_30">30 Minuta</string>
@@ -172,6 +190,7 @@
     <string name="array_sync_interval_hour_2">2 Orë</string>
     <string name="array_sync_interval_hour_3">3 Orë</string>
     <string name="array_sync_interval_hour_6">6 Orë</string>
+    <string name="array_sync_interval_hour_12">12 Orë</string>
     <string name="array_sync_interval_hour_24">24 Orë</string>
 
     </resources>
