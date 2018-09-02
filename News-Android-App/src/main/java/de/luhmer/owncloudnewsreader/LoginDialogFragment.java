@@ -31,11 +31,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.InputType;
@@ -62,6 +64,7 @@ import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
+import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
@@ -447,6 +450,7 @@ public class LoginDialogFragment extends DialogFragment {
 
                 @Override
                 public void onError(Exception ex) {
+                    dialogLogin.dismiss();
                     Log.d(TAG, "onError() called with: ex = [" + ex + "]");
                     ShowAlertDialog(getString(R.string.login_dialog_title_error), ex.getMessage(), getActivity());
                 }
@@ -468,7 +472,7 @@ public class LoginDialogFragment extends DialogFragment {
 
                     @Override
                     public void onNext(@NonNull NextcloudNewsVersion version) {
-                        Log.v(TAG, "onNext() called with: status = [" + version + "]");
+                        Log.v(TAG, "onNext() called with: status = [" + version.version + "]");
 
                         loginSuccessful = true;
                         mPrefs.edit().putString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, version.version).apply();
@@ -485,7 +489,16 @@ public class LoginDialogFragment extends DialogFragment {
                         Log.v(TAG, "onError() called with: e = [" + e + "]");
 
                         Throwable t = OkHttpSSLClient.HandleExceptions(e);
-                        ShowAlertDialog(getString(R.string.login_dialog_title_error), t.getMessage(), getActivity());
+
+                        if(t instanceof NextcloudHttpRequestFailedException && ((NextcloudHttpRequestFailedException) t).getStatusCode() == 302) {
+                            ShowAlertDialog(
+                                    getString(R.string.login_dialog_title_error),
+                                    getString(R.string.login_dialog_text_news_app_not_installed_on_server,
+                                            "https://github.com/nextcloud/news/blob/master/docs/install.md#installing-from-the-app-store"),
+                                    getActivity());
+                        } else {
+                            ShowAlertDialog(getString(R.string.login_dialog_title_error), t.getMessage(), getActivity());
+                        }
                     }
 
                     @Override

@@ -62,6 +62,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
@@ -104,6 +105,8 @@ import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
+import static de.luhmer.owncloudnewsreader.LoginDialogFragment.ShowAlertDialog;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -436,9 +439,17 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     @Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(SyncFailedEvent event) {
 	    Throwable exception = event.exception();
-		if(event.exception() instanceof SSOException){
-            UiExceptionManager.ShowDialogForException(this, (SSOException) exception);
-            //UiExceptionManager.ShowNotificationForException(this, (SSOException) exception);
+		if(exception instanceof SSOException){
+			if(exception instanceof NextcloudHttpRequestFailedException && ((NextcloudHttpRequestFailedException) exception).getStatusCode() == 302) {
+				ShowAlertDialog(
+						getString(R.string.login_dialog_title_error),
+						getString(R.string.login_dialog_text_news_app_not_installed_on_server,
+								"https://github.com/nextcloud/news/blob/master/docs/install.md#installing-from-the-app-store"),
+						this);
+			} else {
+				UiExceptionManager.ShowDialogForException(this, (SSOException) exception);
+				//UiExceptionManager.ShowNotificationForException(this, (SSOException) exception);
+			}
 		} else {
             Toast.makeText(NewsReaderListActivity.this, exception.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         }
