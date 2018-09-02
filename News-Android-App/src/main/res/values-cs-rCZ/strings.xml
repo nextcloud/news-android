@@ -164,6 +164,8 @@
 
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Ikony akce (pohled s podrobnostmi)</string>
+
     <string name="pref_display_apptheme_dark">Tmavé</string>
     <string name="pref_display_apptheme_dark_oled">Tmavý (pro OLED displeje)</string>
     <string name="pref_display_apptheme_light">Světlé</string>
@@ -173,6 +175,7 @@
 
     <string name="pref_display_feed_list_layout_simple">Jednoduché</string>
     <string name="pref_display_feed_list_layout_extended">Rozšířené</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Rozšířené (plnotextové)</string>
     <string name="content_desc_play">přehrát</string>
     <string name="content_desc_pause">pozastavit</string>
     <string name="content_desc_playback_speed">rychlost přehrávání</string>
