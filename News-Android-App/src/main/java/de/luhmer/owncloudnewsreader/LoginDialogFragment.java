@@ -146,6 +146,8 @@ public class LoginDialogFragment extends DialogFragment {
             mCbDisableHostnameVerificationView.setVisibility(View.GONE);
 
             this.importedAccount = account;
+
+            attemptLogin();
         } catch (NextcloudFilesAppNotSupportedException ex) {
             ex.printStackTrace();
             UiExceptionManager.ShowDialogForException(getActivity(), ex);
