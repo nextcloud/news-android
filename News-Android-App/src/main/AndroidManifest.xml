@@ -20,7 +20,6 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 
-    <uses-permission android:name="com.nextcloud.android.sso"/>
     <!--
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     -->
