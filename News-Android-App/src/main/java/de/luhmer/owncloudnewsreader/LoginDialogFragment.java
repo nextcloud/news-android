@@ -31,13 +31,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.InputType;
@@ -153,7 +151,7 @@ public class LoginDialogFragment extends DialogFragment {
             attemptLogin();
         } catch (NextcloudFilesAppNotSupportedException ex) {
             ex.printStackTrace();
-            UiExceptionManager.ShowDialogForException(getActivity(), ex);
+            UiExceptionManager.showDialogForException(getActivity(), ex);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -251,7 +249,7 @@ public class LoginDialogFragment extends DialogFragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
-                    if (!VersionCheckHelper.VerifyMinVersion(getActivity(), MIN_NEXTCLOUD_FILES_APP_VERSION_CODE)) {
+                    if (!VersionCheckHelper.verifyMinVersion(getActivity(), MIN_NEXTCLOUD_FILES_APP_VERSION_CODE)) {
                         mSwSingleSignOn.setChecked(false);
                         return;
 
@@ -273,7 +271,7 @@ public class LoginDialogFragment extends DialogFragment {
                     try {
                         AccountImporter.PickNewAccount(LoginDialogFragment.this);
                     } catch (NextcloudFilesAppNotInstalledException e) {
-                        UiExceptionManager.ShowDialogForException(getActivity(), e);
+                        UiExceptionManager.showDialogForException(getActivity(), e);
                     }
                 } else {
                     importedAccount = null;
@@ -437,7 +435,7 @@ public class LoginDialogFragment extends DialogFragment {
             dialogLogin.show();
 
 			if(mSwSingleSignOn.isChecked()) {
-			    SingleAccountHelper.SetCurrentAccount(getActivity(), importedAccount);
+			    SingleAccountHelper.setCurrentAccount(getActivity(), importedAccount);
 			}
 
 

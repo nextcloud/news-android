@@ -30,8 +30,6 @@ import android.widget.Toast;
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import junit.runner.Version;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -56,12 +54,10 @@ import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.API_SSO;
-import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
-import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -93,7 +89,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
         if(mApi.getAPI() instanceof API_SSO) {
-            VersionCheckHelper.VerifyMinVersion(this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE);
+            VersionCheckHelper.verifyMinVersion(this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE);
         }
 
         //Delete all pinned/stored SSL Certificates

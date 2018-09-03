@@ -447,8 +447,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 								"https://github.com/nextcloud/news/blob/master/docs/install.md#installing-from-the-app-store"),
 						this);
 			} else {
-				UiExceptionManager.ShowDialogForException(this, (SSOException) exception);
-				//UiExceptionManager.ShowNotificationForException(this, (SSOException) exception);
+				UiExceptionManager.showDialogForException(this, (SSOException) exception);
+				//UiExceptionManager.showNotificationForException(this, (SSOException) exception);
 			}
 		} else {
             Toast.makeText(NewsReaderListActivity.this, exception.getLocalizedMessage(), Toast.LENGTH_LONG).show();
