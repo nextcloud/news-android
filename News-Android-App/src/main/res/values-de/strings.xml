@@ -203,6 +203,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fehler</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Die News-App ist auf dem Server nicht installiert oder aktiviert. Folge den Anweisungen zur Installation und Einrichtung: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
     <string name="login_dialog_text_zero_version_code">Die Web News App lieferte die Version \"0\" zurück. Wirf bitte einen Blick auf den folgenden Fehlerbericht: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Diese App-Version ist nicht mit Deiner Nextcloud News-App kompatibel. Bitte aktualisiere die News-App und das App-Framework.</string>
