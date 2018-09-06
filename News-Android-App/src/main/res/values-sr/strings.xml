@@ -208,6 +208,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Грешка</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Изгледа да апликација вести није инсталирана или активирана на серверу. Пратите упутства одавде да прво подесите апликацију вести на серверу: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Нешто је пошло наопако :(</string>
     <string name="login_dialog_text_zero_version_code">Апликација вести је вратила верзију \"0\". Погледајте следећи извештај о грешци: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Верзија ове апликације није усклађена са новинском апликацијом Некстклауда. Ажурирајте апликацију и њен радни оквир.</string>
