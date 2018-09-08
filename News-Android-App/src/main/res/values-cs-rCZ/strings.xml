@@ -131,7 +131,7 @@
     <string name="pref_title_general_search_in">Hledat v</string>
 
     <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
-    <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti... Chvíli strpení.</string>
+    <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti… Chvíli strpení.</string>
     <string name="reset_cache_unsaved_changes">Existují nesesynchronizované změny. Přejete si přesto vyprázdnit mezipaměť?</string>
     <string name="warning">Varování</string>
     <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>
@@ -139,7 +139,7 @@
     <string name="pref_title_DisableHostnameVerification">Vypnout ověřování názvu hostitele</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigace pomocí tlačítek hlasitosti</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Označit jako přečtené při rolování stránky</string>
-    <string name="pref_title_OpenInBrowserDirectly">Přeskočit detailní pohled a otevřít článek v prohlížeči</string>
+    <string name="pref_title_OpenInBrowserDirectly">Přeskočit podrobný pohled a otevřít článek v prohlížeči</string>
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>
