@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">סנכרון אוטומטי</string>
+    <string name="empty_view_content">אין כאן פריטים</string>
+    <string name="toast_GettingMoreItems">החלה הורדה של פריטים נוספים… נא להמתין.</string>
+    <string name="no_wifi_available">אין חיבור WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">להוריד תמונות בלי חיבור לרשת אלחוטית</string>
+    <string name="current_version">הנך משתמש/ת בגרסה %s</string>
+    <string name="widget_header">חדשות ownCloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">פריט %d חדש זמין</item>
+        <item quantity="two">%d פריטים חדשים זמינים</item>
+        <item quantity="many">%d פריטים חדשים זמינים</item>
+        <item quantity="other">%d פריטים חדשים זמינים</item>
+    </plurals>
+    <string name="message_bar_reload">טעינה מחדש</string>
+    <string name="allUnreadFeeds">כל הפריטים שלא נקראו</string>
+    <string name="starredFeeds">פריטים שמסומנים בכוכב</string>
+    <string name="title_activity_new_feed">הוספת ערוץ הזנת תוכן חדש</string>
+
+    <string name="menu_update">רענון</string>
+    <string name="menu_About_Changelog">אודות / לוג שינויים</string>
+    <string name="menu_markAllAsRead">סימון הכול כנקרא</string>
+    <string name="menu_StartImageCaching">הורדת תמונות</string>
+    <string name="menu_downloadMoreItems">הורדת פריטים נוספים</string>
+
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">מסומן בכוכב</string>
+    <string name="action_read">נקרא</string>
+    <string name="action_playPodacst">נגינת פודקאסט</string>
+    <string name="action_openInBrowser">פתיחה בדפדפן</string>
+    <string name="action_Share">שיתוף</string>
+    <string name="action_login">הגדרות שרת</string>
+    <string name="action_save">שמירה</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="action_sync_settings">הגדרות סנכרון</string>
+    <string name="action_add_new_feed">הוספת ערוץ תוכן חדש</string>
+    <string name="action_textToSpeech">הקראה</string>
+    <!-- Add new feed -->
+    <string name="hint_feed_url">נתיב ערוץ תוכן</string>
+    <string name="action_add_feed">הוספת ערוץ תוכן</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">הורדת תמונה</string>
+    <string name="action_img_sharelink">שיתוף קישור תמונה</string>
+    <string name="action_img_open">פתיחת תמונה בדפדפן</string>
+    <string name="action_img_copylink">העתקת קישור תמונה</string>
+    <string name="action_link_share">שיתוף קישור</string>
+    <string name="action_link_open">פתיחת קישור בדפדפן</string>
+    <string name="action_link_copy">העתקת קישור</string>
+    <string name="toast_img_download_wait">בהורדה... יש להמתין</string>
+    <string name="toast_img_saved">תמונה נשמרה</string>
+    <string name="toast_img_notwriteable">כתיבת התמונה נכשלה.</string>
+    <string name="toast_copied_to_clipboard">הועתק ללוח הגזירים - clipboard</string>
+    <string name="error_download_failed">ההורדה נכשלה</string>
+    <string name="intent_title_share">שיתוף דרך</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">הסרת הזנה</string>
+    <string name="action_feed_rename">שינוי שם הזנה</string>
+    <string name="action_feed_move">העברת הזנה</string>
+    <string name="feed_remove_button">הסרה</string>
+    <string name="feed_rename_button">שינוי שם</string>
+    <string name="confirm_feed_remove">להסיר את ההזנה הזאת? מדובר בהליך בלתי הפיך.</string>
+    <string name="feed_move_list_description">לבחור תיקייה אליה להעביר את ההזנה</string>
+    <string name="move_feed_root_folder">תיקיית בסיס</string>
+
+    <!-- Strings related to login -->
+    <string name="pref_title_username">שם משתמש</string>
+    <string name="pref_title_password">סיסמא</string>
+    <string name="pref_title_owncloudRootPath">כתובת בסיס ה־Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">כניסה</string>
+    <string name="login_progress_signing_in">מתבצעת כניסה</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">השדה הזה נחוץ</string>
+    <string name="error_invalid_url">כתובת שגויה</string>
+
+
+    <!-- Import Accounts -->
+    <string name="import_account">ייבוא חשבון</string>
+
+
+    <string name="toast_no_more_downloads_available">אין פריטים נוספים זמינים</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">הגדרות</string>
+    <!-- General settings -->
+    <string name="pref_header_general">כללי</string>
+    <string name="pref_title_general_sort_order">סדר חיפוש</string>
+
+    <string name="pref_general_sort_order_new_old">חדש -> ישן</string>
+    <string name="pref_general_sort_order_old_new">ישן -> חדש</string>
+
+    <string name="pref_title_general_search_in">חיפוש תחת</string>
+
+    <string name="pref_general_search_in_title">כותרת</string>
+    <string name="pref_general_search_in_body">גוף</string>
+
+    <string name="dialog_clearing_cache">זכרון המטמון מתפנה</string>
+    <string name="reset_cache_unsaved_changes">יש שינויים שלא סונכרנו. לאפס את המטמון בכל זאת?</string>
+    <string name="warning">אזהרה</string>
+    <string name="pref_title_AutoSyncOnStart">סנכרון בהתחלה</string>
+    <string name="pref_title_ShowOnlyUnread">הצגת כתבות שלא נקראו בלבד</string>
+    <string name="pref_title_DisableHostnameVerification">נטרול אימות מארח</string>
+    <string name="pref_title_NavigateWithVolumeButtons">ניווט עם כפתורי עצמת שמע</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">סימון כנקרא בזמן הגלילה</string>
+    <string name="pref_title_OpenInBrowserDirectly">לדלג על התצוגה המפורטת ולפתוח את הכתבה בדפדפן</string>
+
+    <string name="dialog_feature_not_available">תכונה זו אינה זמינה בגרסה זו של היישומון (קוד פתוח). כדי להשתמש בתכונה הזאת עליך להוריד את היישומון מהמאגר של GitHub או להוריד את היישומון מחנות היישומונים של Google.</string>
+
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">לקבל אישור בלתי ידוע?</string>
+    <string name="mtm_decision_always">תמיד</string>
+    <string name="mtm_decision_abort">להפסיק</string>
+    <string name="mtm_notification">אימות אישור</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">לא נבחרו פודקאסטים</string>
+    <string name="no_chapters_available">אין פרקים זמינים</string>
+    <string name="podcast_playback_speed_dialog_title">מהירות נגינה</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">תצוגה</string>
+    <string name="pref_title_app_theme">ערכת עיצוב היישומון (יש להפעיל את היישומון מחדש כדי להחיל)</string>
+    <string name="pref_title_feed_list_layout">פריסת רשימת הזנות</string>
+    <string name="pref_display_title_lines_count">ספירת שורות לכותרת</string>
+    <string name="pref_display_browser">דפדפן</string>
+
+
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">סמלי פעולה (תצוגה מפורטת)</string>
+
+    <string name="pref_display_apptheme_dark">כהה</string>
+    <string name="pref_display_apptheme_dark_oled">כהה (למסכי OLED)</string>
+    <string name="pref_display_apptheme_light">בהירה</string>
+
+    <string name="pref_display_browser_cct">לשוניות Chrome מובנות מותאמות</string>
+    <string name="pref_display_browser_built_in">דפדפן מובנה</string>
+    <string name="pref_display_browser_external">דפדפן חיצוני</string>
+
+    <string name="pref_display_feed_list_layout_simple">פשוט</string>
+    <string name="pref_display_feed_list_layout_extended">מורחב</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">מורחב (טקסט מלא)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">מורחב עם תצוגת אתר</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">מורחב עם תצוגת כרטיס</string>
+
+    <string name="content_desc_play">נגינה</string>
+    <string name="content_desc_pause">השהיה</string>
+    <string name="content_desc_playback_speed">מהירות נגינה</string>
+    <string name="content_desc_rewind">חזרה אחורה</string>
+    <string name="content_desc_forward">קדימה</string>
+    <string name="content_desc_expand">הרחבה</string>
+    <string name="content_desc_collapse">צמצום</string>
+    <string name="content_desc_mark_as_read">סימון כנקרא</string>
+    <string name="content_desc_mark_as_unread">סימון כלא נקרא</string>
+    <string name="content_desc_tap_to_refresh">יש לגעת כדי לרענן</string>
+    <string name="content_desc_add_to_favorites">הוספה למועדפים</string>
+    <string name="content_desc_remove_from_favorites">הסרה ממועדפים</string>
+    <string name="content_desc_show_password">הצגת ססמה</string>
+    <string name="content_desc_delete">מחיקה</string>
+    <string name="content_desc_download">הורדה</string>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">דיווחים</string>
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">שגיאה</string>
+    <string name="login_dialog_text_something_went_wrong">משהו השתבש :(</string>
+    <string name="login_dialog_title_security_warning">אזהרת אבטחה</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">נתונים וסנכרון</string>
+    <string name="pref_title_clearCache">פינוי מטמון</string>
+    <string name="pref_data_sync_image_cache_never">לעולם לא</string>
+    <string name="pref_data_sync_image_cache_wifi_only">דרך רשת אלחוטית בלבד</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">דרך רשת אלחוטית וסלולרית</string>
+    <string name="pref_data_sync_image_cache_ask">לשאול כאשר אין חיבור אלחוטי</string>
+
+    <string name="array_sync_interval_min_5">5 דקות</string>
+    <string name="array_sync_interval_min_15">15 דקות</string>
+    <string name="array_sync_interval_min_30">30 דקות</string>
+    <string name="array_sync_interval_min_45">45 דקות</string>
+    <string name="array_sync_interval_hour_1">שעה אחת</string>
+    <string name="array_sync_interval_hour_2">שעתיים</string>
+    <string name="array_sync_interval_hour_3">3 שעות</string>
+    <string name="array_sync_interval_hour_6">6 שעות</string>
+    <string name="array_sync_interval_hour_12">12 שעות</string>
+    <string name="array_sync_interval_hour_24">24 שעות</string>
+
+    </resources>
