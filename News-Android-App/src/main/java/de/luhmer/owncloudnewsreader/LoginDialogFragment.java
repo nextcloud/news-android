@@ -265,7 +265,7 @@ public class LoginDialogFragment extends DialogFragment {
 
                 if(isChecked) {
                     try {
-                        AccountImporter.PickNewAccount(LoginDialogFragment.this);
+                        AccountImporter.pickNewAccount(LoginDialogFragment.this);
                     } catch (NextcloudFilesAppNotInstalledException e) {
                         UiExceptionManager.showDialogForException(getActivity(), e);
                     }
@@ -540,12 +540,12 @@ public class LoginDialogFragment extends DialogFragment {
             if (requestCode == CHOOSE_ACCOUNT_SSO) {
                 importedAccount = null;
                 try {
-                    AccountImporter.RequestAuthToken(LoginDialogFragment.this, data);
+                    AccountImporter.requestAuthToken(LoginDialogFragment.this, data);
                 } catch (NextcloudFilesAppNotSupportedException e) {
                     UiExceptionManager.showDialogForException(getActivity(), e);
                 }
             } else if(requestCode == REQUEST_AUTH_TOKEN__SSO) {
-                SingleSignOnAccount singleSignOnAccount = AccountImporter.ExtractSingleSignOnAccountFromResponse(data, getActivity());
+                SingleSignOnAccount singleSignOnAccount = AccountImporter.extractSingleSignOnAccountFromResponse(data, getActivity());
                 accountAccessGranted(singleSignOnAccount);
             }
         } else if (resultCode == RESULT_CANCELED) {
@@ -553,7 +553,7 @@ public class LoginDialogFragment extends DialogFragment {
                 Toast.makeText(getActivity(), "Unknown error.. please report!", Toast.LENGTH_LONG).show();
             } else if (requestCode == REQUEST_AUTH_TOKEN__SSO) {
                 try {
-                    AccountImporter.HandleFailedAuthRequest(data);
+                    AccountImporter.handleFailedAuthRequest(data);
                 } catch (SSOException e) {
                     UiExceptionManager.showDialogForException(getActivity(), e);
                 } catch (Exception e) {
