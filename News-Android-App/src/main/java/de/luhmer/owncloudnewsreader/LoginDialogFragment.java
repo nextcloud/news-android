@@ -22,8 +22,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.Manifest;
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -63,6 +61,7 @@ import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
+import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
@@ -89,6 +88,7 @@ import io.reactivex.schedulers.Schedulers;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static com.nextcloud.android.sso.AccountImporter.CHOOSE_ACCOUNT_SSO;
+import static com.nextcloud.android.sso.AccountImporter.REQUEST_AUTH_TOKEN__SSO;
 import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
 
 /**
@@ -130,17 +130,16 @@ public class LoginDialogFragment extends DialogFragment {
     @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
     @BindView(R.id.swSingleSignOn) Switch mSwSingleSignOn;
 
-    private Account importedAccount = null;
+    private SingleSignOnAccount importedAccount = null;
     private boolean mPasswordVisible = false;
     private LoginSuccessfulListener listener;
 
 
-	public void accountAccessGranted(final Account account) {
+	public void accountAccessGranted(final SingleSignOnAccount account) {
 		try {
-            SingleSignOnAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
-            mUsernameView.setText(singleAccount.username);
+            mUsernameView.setText(account.username);
             mPasswordView.setText("");
-            mOc_root_path_View.setText(singleAccount.url);
+            mOc_root_path_View.setText(account.url);
 
             mPasswordContainerView.setVisibility(View.GONE);
             mImageViewShowPwd.setVisibility(View.GONE);
@@ -149,14 +148,11 @@ public class LoginDialogFragment extends DialogFragment {
             this.importedAccount = account;
 
             attemptLogin();
-        } catch (NextcloudFilesAppNotSupportedException ex) {
-            ex.printStackTrace();
-            UiExceptionManager.showDialogForException(getActivity(), ex);
-		} catch (Exception e) {
-			e.printStackTrace();
-			Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-		}
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
 	public interface LoginSuccessfulListener {
 		void LoginSucceeded();
@@ -435,7 +431,7 @@ public class LoginDialogFragment extends DialogFragment {
             dialogLogin.show();
 
 			if(mSwSingleSignOn.isChecked()) {
-			    SingleAccountHelper.setCurrentAccount(getActivity(), importedAccount);
+			    SingleAccountHelper.setCurrentAccount(getActivity(), importedAccount.name);
 			}
 
 
@@ -543,15 +539,28 @@ public class LoginDialogFragment extends DialogFragment {
         if (resultCode == RESULT_OK) {
             if (requestCode == CHOOSE_ACCOUNT_SSO) {
                 importedAccount = null;
-                String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-                Account account = AccountImporter.GetAccountForName(getActivity(), accountName);
-                if(account != null) {
-                    accountAccessGranted(account);
+                try {
+                    AccountImporter.RequestAuthToken(LoginDialogFragment.this, data);
+                } catch (NextcloudFilesAppNotSupportedException e) {
+                    UiExceptionManager.showDialogForException(getActivity(), e);
                 }
+            } else if(requestCode == REQUEST_AUTH_TOKEN__SSO) {
+                SingleSignOnAccount singleSignOnAccount = AccountImporter.ExtractSingleSignOnAccountFromResponse(data, getActivity());
+                accountAccessGranted(singleSignOnAccount);
             }
         } else if (resultCode == RESULT_CANCELED) {
             if (requestCode == CHOOSE_ACCOUNT_SSO) {
                 Toast.makeText(getActivity(), "Unknown error.. please report!", Toast.LENGTH_LONG).show();
+            } else if (requestCode == REQUEST_AUTH_TOKEN__SSO) {
+                try {
+                    AccountImporter.HandleFailedAuthRequest(data);
+                } catch (SSOException e) {
+                    UiExceptionManager.showDialogForException(getActivity(), e);
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
             }
         }
     }

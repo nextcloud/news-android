@@ -1,12 +1,10 @@
 package de.luhmer.owncloudnewsreader.di;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
@@ -60,20 +58,21 @@ public class ApiProvider {
     }
 
     public void initApi(@NonNull NextcloudAPI.ApiConnectedListener apiConnectedListener) {
-        String username   = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-        String password   = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-        String baseUrlStr = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "https://luhmer.de"); // We need to provide some sort of default URL here..
-        Boolean useSSO    = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
-        HttpUrl baseUrl = HttpUrl.parse(baseUrlStr).newBuilder()
-                .addPathSegments("index.php/apps/news/api/v1-2/")
-                .build();
-        Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
-        OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
-        initImageLoader(mPrefs, client, context);
-
+        boolean useSSO = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
         if(useSSO) {
+            OkHttpClient client = new OkHttpClient.Builder().build();
+            initImageLoader(mPrefs, client, context);
             initSsoApi(apiConnectedListener);
         } else {
+            String username   = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
+            String password   = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
+            String baseUrlStr = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "https://luhmer.de"); // We need to provide some sort of default URL here..
+            HttpUrl baseUrl = HttpUrl.parse(baseUrlStr).newBuilder()
+                    .addPathSegments("index.php/apps/news/api/v1-2/")
+                    .build();
+            Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
+            OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
+            initImageLoader(mPrefs, client, context);
             initRetrofitApi(baseUrl, client);
             apiConnectedListener.onConnected();
         }
@@ -92,8 +91,7 @@ public class ApiProvider {
 
     private void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
         try {
-            Account account = SingleAccountHelper.getCurrentAccount(context);
-            SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(context, account);
+            SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
             mApi = new API_SSO(nextcloudAPI);
         } catch (SSOException e) {
