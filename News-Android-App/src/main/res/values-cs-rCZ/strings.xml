@@ -81,16 +81,17 @@
     <string name="feed_remove_button">Odstranit</string>
     <string name="feed_rename_button">Přejmenovat</string>
     <string name="confirm_feed_remove">Opravdu chcete odstranit tento kanál? Toto nelze vrátit zpět!</string>
+    <string name="feed_move_list_description">Vyberte složku do které zdroj přesunout</string>
     <string name="move_feed_root_folder">Kořenová složka</string>
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Uživatelské jméno</string>
     <string name="pref_title_password">Heslo</string>
-    <string name="pref_title_owncloudRootPath">ownCloud kořenová adresa</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud kořenová adresa</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Přihlásit</string>
-    <string name="login_progress_signing_in">Přihlašuji...</string>
+    <string name="login_progress_signing_in">Přihlašování…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Tato položka je povinná</string>
     <string name="error_invalid_url">Nesprávná URL</string>
@@ -107,12 +108,12 @@
         <item quantity="many">Staženo %d starých položek</item>
         <item quantity="other">Staženo %d starých položek</item>
     </plurals>
-    <string name="toast_no_more_downloads_available">K dispozici nejsou žádné další položky</string>
+    <string name="toast_no_more_downloads_available">Žádné další položky k dispozici</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">Stažena %d položka...</item>
-        <item quantity="few">Staženy %d položky...</item>
-        <item quantity="many">Staženo %d položek...</item>
-        <item quantity="other">Staženo %d položek...</item>
+        <item quantity="one">Stažena %d položka…</item>
+        <item quantity="few">Staženy %d položky…</item>
+        <item quantity="many">Staženo %d položek…</item>
+        <item quantity="other">Staženy %d položky…</item>
     </plurals>
 
 
@@ -130,6 +131,9 @@
 
     <string name="pref_title_general_search_in">Hledat v</string>
 
+    <string name="pref_general_search_in_title">Nadpis</string>
+    <string name="pref_general_search_in_body">Tělo</string>
+
     <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
     <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti… Chvíli strpení.</string>
     <string name="reset_cache_unsaved_changes">Existují nesesynchronizované změny. Přejete si přesto vyprázdnit mezipaměť?</string>
@@ -140,6 +144,9 @@
     <string name="pref_title_NavigateWithVolumeButtons">Navigace pomocí tlačítek hlasitosti</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Označit jako přečtené při rolování stránky</string>
     <string name="pref_title_OpenInBrowserDirectly">Přeskočit podrobný pohled a otevřít článek v prohlížeči</string>
+
+    <string name="dialog_feature_not_available">Tato funkce není k dispozici v této (open source) variantě aplikace. Pokud chcete tuto funkci používat, stáhněte si aplikaci z GitHub repozitáře nebo z Google Play.</string>
+
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>
@@ -170,6 +177,7 @@
     <string name="pref_display_apptheme_dark_oled">Tmavý (pro OLED displeje)</string>
     <string name="pref_display_apptheme_light">Světlé</string>
 
+    <string name="pref_display_browser_cct">Vestavěné Chrome vlastní karty</string>
     <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
     <string name="pref_display_browser_external">Vnější prohlížeč</string>
 
@@ -202,6 +210,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Chyba</string>
     <string name="login_dialog_text_something_went_wrong">Něco se pokazilo :(</string>
+    <string name="login_dialog_text_not_compatible">Tato verze aplikace není kompatibilní s vámi používanou aplikací Nextcloud novinky. Aktualizujte novinkovou aplikaci a aplikační rámec.</string>
     <string name="login_dialog_title_security_warning">Bezpečnostní upozornění</string>
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synchronizace</string>
@@ -214,6 +223,7 @@
 
     <string name="pref_data_sync_image_cache_never">Nikdy</string>
     <string name="pref_data_sync_image_cache_wifi_only">Pouze přes WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Přes WiFi &amp; Mobile</string>
     <string name="pref_data_sync_image_cache_ask">Dotázat se pokud bez WiFi</string>
 
     <string name="array_sync_interval_min_5">5 minut</string>
