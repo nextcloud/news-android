@@ -92,13 +92,6 @@ public class LoginDialogFragment extends DialogFragment {
 
     final String TAG = LoginDialogFragment.class.getCanonicalName();
 
-    static LoginDialogFragment instance;
-    public static LoginDialogFragment getInstance() {
-        if(instance == null)
-            instance = new LoginDialogFragment();
-        return instance;
-    }
-
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
@@ -127,12 +120,16 @@ public class LoginDialogFragment extends DialogFragment {
     private boolean mPasswordVisible = false;
     private LoginSuccessfulListener listener;
 
+    static LoginDialogFragment instance;
+    public static LoginDialogFragment getInstance() {
+        if(instance == null)
+            instance = new LoginDialogFragment();
+        return instance;
+    }
 
-	public interface LoginSuccessfulListener {
+    public interface LoginSuccessfulListener {
 		void LoginSucceeded();
 	}
-
-
 
 	public LoginDialogFragment() {
 
