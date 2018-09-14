@@ -22,8 +22,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.Manifest;
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -56,12 +54,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
-import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
@@ -86,9 +82,6 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
-import static com.nextcloud.android.sso.AccountImporter.CHOOSE_ACCOUNT_SSO;
 import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
 
 /**
@@ -98,13 +91,6 @@ import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VER
 public class LoginDialogFragment extends DialogFragment {
 
     final String TAG = LoginDialogFragment.class.getCanonicalName();
-
-    static LoginDialogFragment instance;
-    public static LoginDialogFragment getInstance() {
-        if(instance == null)
-            instance = new LoginDialogFragment();
-        return instance;
-    }
 
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
@@ -130,39 +116,20 @@ public class LoginDialogFragment extends DialogFragment {
     @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
     @BindView(R.id.swSingleSignOn) Switch mSwSingleSignOn;
 
-    private Account importedAccount = null;
+    private SingleSignOnAccount importedAccount = null;
     private boolean mPasswordVisible = false;
     private LoginSuccessfulListener listener;
 
+    static LoginDialogFragment instance;
+    public static LoginDialogFragment getInstance() {
+        if(instance == null)
+            instance = new LoginDialogFragment();
+        return instance;
+    }
 
-	public void accountAccessGranted(final Account account) {
-		try {
-            SingleSignOnAccount singleAccount = AccountImporter.BlockingGetAuthToken(getActivity(), account);
-            mUsernameView.setText(singleAccount.username);
-            mPasswordView.setText("");
-            mOc_root_path_View.setText(singleAccount.url);
-
-            mPasswordContainerView.setVisibility(View.GONE);
-            mImageViewShowPwd.setVisibility(View.GONE);
-            mCbDisableHostnameVerificationView.setVisibility(View.GONE);
-
-            this.importedAccount = account;
-
-            attemptLogin();
-        } catch (NextcloudFilesAppNotSupportedException ex) {
-            ex.printStackTrace();
-            UiExceptionManager.showDialogForException(getActivity(), ex);
-		} catch (Exception e) {
-			e.printStackTrace();
-			Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-		}
-	}
-
-	public interface LoginSuccessfulListener {
+    public interface LoginSuccessfulListener {
 		void LoginSucceeded();
 	}
-
-
 
 	public LoginDialogFragment() {
 
@@ -269,7 +236,7 @@ public class LoginDialogFragment extends DialogFragment {
 
                 if(isChecked) {
                     try {
-                        AccountImporter.PickNewAccount(LoginDialogFragment.this);
+                        AccountImporter.pickNewAccount(LoginDialogFragment.this);
                     } catch (NextcloudFilesAppNotInstalledException e) {
                         UiExceptionManager.showDialogForException(getActivity(), e);
                     }
@@ -413,7 +380,6 @@ public class LoginDialogFragment extends DialogFragment {
                     mOc_root_path_View.setError(getString(R.string.error_invalid_url));
                     focusView = mOc_root_path_View;
                     cancel = true;
-                    //e.printStackTrace();
                 }
             }
         }
@@ -435,7 +401,7 @@ public class LoginDialogFragment extends DialogFragment {
             dialogLogin.show();
 
 			if(mSwSingleSignOn.isChecked()) {
-			    SingleAccountHelper.setCurrentAccount(getActivity(), importedAccount);
+			    SingleAccountHelper.setCurrentAccount(getActivity(), importedAccount.name);
 			}
 
 
@@ -540,19 +506,21 @@ public class LoginDialogFragment extends DialogFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK) {
-            if (requestCode == CHOOSE_ACCOUNT_SSO) {
-                importedAccount = null;
-                String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-                Account account = AccountImporter.GetAccountForName(getActivity(), accountName);
-                if(account != null) {
-                    accountAccessGranted(account);
-                }
+        AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogFragment.this, new AccountImporter.IAccountAccessGranted() {
+            @Override
+            public void accountAccessGranted(SingleSignOnAccount account) {
+                mUsernameView.setText(account.username);
+                mPasswordView.setText("");
+                mOc_root_path_View.setText(account.url);
+
+                mPasswordContainerView.setVisibility(View.GONE);
+                mImageViewShowPwd.setVisibility(View.GONE);
+                mCbDisableHostnameVerificationView.setVisibility(View.GONE);
+
+                LoginDialogFragment.getInstance().importedAccount = account;
+
+                attemptLogin();
             }
-        } else if (resultCode == RESULT_CANCELED) {
-            if (requestCode == CHOOSE_ACCOUNT_SSO) {
-                Toast.makeText(getActivity(), "Unknown error.. please report!", Toast.LENGTH_LONG).show();
-            }
-        }
+        });
     }
 }
