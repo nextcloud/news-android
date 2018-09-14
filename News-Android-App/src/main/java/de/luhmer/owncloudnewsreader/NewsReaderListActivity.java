@@ -497,7 +497,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			int firstVisiblePosition = getNewsReaderDetailFragment().getFirstVisibleScrollPosition();
 
 			//Only show the update snackbar if scrollposition is not top.
-			if (firstVisiblePosition == 0) {
+			// 0 if scrolled all the way up
+			// 1 if no items are visible right now (e.g. first sync)
+			if (firstVisiblePosition == 0 || firstVisiblePosition == -1) {
 				updateCurrentRssView();
 			} else {
 				Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
