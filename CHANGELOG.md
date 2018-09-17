@@ -3,6 +3,15 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.18 (Google Play)
+---------------------
+- Improve - <a href="https://github.com/owncloud/News-Android-App/issues/651">#651 Automatic reload of rss item list when empty</a>
+- Improve - <a href="https://github.com/owncloud/News-Android-App/issues/657">#657 Rename app from "Nextcloud News" to "News"</a>
+- Improve first sign-on experience
+- Several UI improvements
+- Single Sign On (first official beta!)
+
+
 0.9.9.17 (Google Play)
 ---------------------
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/630">#630 Improve unread rss item count notification (#645)</a>
@@ -166,7 +175,7 @@
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/515">#515 Increase the padding for article content</a>
 - Feature - <a href="https://github.com/owncloud/News-Android-App/issues/513">#513 Deduplicate articles</a>
 - Feature - add support for video/mp4 podcasts
-- Several Bug fixes and improvements 
+- Several Bug fixes and improvements
 
 
 0.9.8.2 (Google Play)
@@ -193,7 +202,7 @@
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/436">#436 Audio podcast: highlight them in detailed view</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/485">#485 Rename to "ownCloud News"</a>
 - Performance improvement
-- Several Bug fixes and improvements 
+- Several Bug fixes and improvements
 
 
 0.9.7.6 (Google Play)
