@@ -69,9 +69,13 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Poista syöte</string>
     <string name="action_feed_rename">Nimeä syöte uudelleen</string>
+    <string name="action_feed_move">Siirrä syöte</string>
     <string name="feed_remove_button">Poista</string>
     <string name="feed_rename_button">Nimeä uudelleen</string>
     <string name="confirm_feed_remove">Haluatko varmasti poistaa tämän syötteen? Toimintoa ei voi perua!</string>
+    <string name="feed_move_list_description">Valitse kansio, johon syöte siirretään</string>
+    <string name="move_feed_root_folder">Juurikansio</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Käyttäjätunnus</string>
     <string name="pref_title_password">Salasana</string>
@@ -82,6 +86,9 @@
     <string name="login_progress_signing_in">Kirjaudutaan…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Tämä kenttä vaaditaan</string>
+    <string name="error_invalid_url">Virheellinen URL</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Tuo tili</string>
 
@@ -149,8 +156,10 @@
     <string name="pref_display_browser_external">Ulkoinen selain</string>
 
     <string name="pref_display_feed_list_layout_simple">Yksinkertainen</string>
+    <string name="pref_display_feed_list_layout_extended">Laajennettu</string>
     <string name="content_desc_play">toistsa</string>
     <string name="content_desc_pause">keskeytä</string>
+    <string name="content_desc_playback_speed">toistonopeus</string>
     <string name="content_desc_expand">laajenna</string>
     <string name="content_desc_collapse">supista</string>
     <string name="content_desc_mark_as_read">merkitse luetuksi</string>
