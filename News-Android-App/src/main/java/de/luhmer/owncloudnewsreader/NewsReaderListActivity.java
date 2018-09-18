@@ -162,8 +162,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		//Init config --> if nothing is configured start the login dialog.
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null)
+		if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
 			StartLoginFragment(NewsReaderListActivity.this);
+		}
 
 
 		Bundle args = new Bundle();
@@ -224,11 +225,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
-		if (drawerToggle != null)
+		if (drawerToggle != null) {
 			drawerToggle.syncState();
+		}
 
-		if (savedInstanceState == null)//When the app starts (no orientation change)
-		{
+		if (savedInstanceState == null) {//When the app starts (no orientation change)
 			StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
 		}
 
@@ -247,7 +248,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		@Override
 		public void onClick(View view) {
 			//Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
-
 			updateCurrentRssView();
 		}
 	};
@@ -840,8 +840,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				// Single feed is selected.. download more items
 				downloadMoreItemsForFeed(ndf.getIdFeed());
 			}
-
-
 
 			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 		}
