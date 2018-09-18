@@ -18,6 +18,15 @@
         android:contentDescription="@string/content_desc_pause"
         android:src="@drawable/ic_action_pause" />
 
+    <ProgressBar
+        android:id="@+id/podcastDownloadProgress"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/colorPrimaryDarkDarkTheme"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center" />
+
+    <!--
     <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
         android:id="@+id/podcastDownloadProgress"
         android:layout_width="30dp"
@@ -29,5 +38,6 @@
         app:marker_visible="false"
         app:thumb_visible="false"
         android:layout_gravity="center" />
+    -->
 
 </FrameLayout>

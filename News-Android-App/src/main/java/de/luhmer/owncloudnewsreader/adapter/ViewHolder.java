@@ -1,12 +1,17 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
@@ -18,13 +23,24 @@ import android.util.SparseArray;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.LoadedFrom;
+import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.imageaware.ImageAware;
+import com.nostra13.universalimageloader.core.process.BitmapProcessor;
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.List;
 import java.util.regex.Pattern;
+
+import javax.annotation.Resource;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +50,10 @@ import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
+
+import static android.view.View.GONE;
 
 public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     private final static String TAG = "RecyclerView.ViewHolder";
@@ -54,9 +73,16 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     @BindView(R.id.tv_subscription)
     protected TextView textViewTitle;
 
+    @Nullable
     @BindView(R.id.imgViewFavIcon)
     protected ImageView imgViewFavIcon;
 
+    @Nullable
+    @BindView(R.id.imgViewThumbnail)
+    protected ImageView imgViewThumbnail;
+
+
+    @Nullable
     @BindView(R.id.color_line_feed)
     protected View colorLineFeed;
 
@@ -64,7 +90,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     protected ImageView btnPlayPausePodcast;
 
     @BindView(R.id.podcastDownloadProgress)
-    protected HoloCircularProgressBar pbPodcastDownloadProgress;
+    //protected HoloCircularProgressBar pbPodcastDownloadProgress; // TODO reminder: remove this dependency (and fix podcast progressbar issues)
+    protected ProgressBar pbPodcastDownloadProgress;
 
     @BindView(R.id.podcast_wrapper)
     View flPlayPausePodcastWrapper;
@@ -87,6 +114,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private int selectedListLayout;
     private int starColor;
     private int inactiveStarColor;
+    private DisplayImageOptions displayImageOptionsThumbnail;
 
     public ViewHolder(View itemView, int titleLineCount) {
         super(itemView);
@@ -110,13 +138,23 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
+
+
+        displayImageOptionsThumbnail = new DisplayImageOptions.Builder()
+                .displayer(new RoundedBitmapDisplayer(30))
+                //.showImageOnLoading(placeHolder)
+                //.showImageForEmptyUri(placeHolder)
+                //.showImageOnFail(placeHolder)
+                .cacheOnDisk(true)
+                .cacheInMemory(true)
+                .build();
     }
 
     @Subscribe
     public void onEvent(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
         downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
         if (rssItem.getId().equals(downloadProgress.podcast.itemId)) {
-            pbPodcastDownloadProgress.setProgress(downloadProgress.podcast.downloadProgress / 100f);
+            pbPodcastDownloadProgress.setProgress((int) (downloadProgress.podcast.downloadProgress / 100f));
         }
     }
 
@@ -131,7 +169,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 progress = 0;
             }
         }
-        pbPodcastDownloadProgress.setProgress(progress);
+        pbPodcastDownloadProgress.setProgress((int) progress);
     }
 
     @Override
@@ -148,8 +186,10 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         return clickListener.onLongClick(this, getLayoutPosition());
     }
 
-    public void setFeedColor(int color) {
-        colorLineFeed.setBackgroundColor(color);
+    private void setFeedColor(int color) {
+        if(colorLineFeed != null) {
+            colorLineFeed.setBackgroundColor(color);
+        }
     }
 
     public void setReadState(boolean isRead) {
@@ -238,11 +278,24 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             textViewBody.setText(Html.fromHtml(body));
         }
 
-        if(textViewItemDate != null)
+        if(textViewItemDate != null) {
             textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
+        }
 
-        if (imgViewFavIcon != null)
+        if (imgViewFavIcon != null) {
             favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon);
+        }
+
+        if(imgViewThumbnail != null) {
+            String body = rssItem.getBody();
+            List<String> images = ImageHandler.getImageLinksFromText(body);
+
+            if(images.size() > 0) {
+                ImageLoader.getInstance().displayImage(images.get(0), imgViewThumbnail, displayImageOptionsThumbnail);
+            } else {
+                imgViewThumbnail.setVisibility(GONE);
+            }
+        }
 
         if(webView_body != null) {
             String htmlPage = RssItemToHtmlTask.getHtmlPage(itemView.getContext(), rssItem, false);

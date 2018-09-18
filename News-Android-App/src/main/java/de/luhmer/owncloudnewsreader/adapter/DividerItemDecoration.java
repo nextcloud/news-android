@@ -16,8 +16,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     private int size = 0;
 
     public DividerItemDecoration(Context context) {
-        final TypedArray a = context
-                .obtainStyledAttributes(new int[]{android.R.attr.listDivider});
+        final TypedArray a = context.obtainStyledAttributes(new int[]{android.R.attr.listDivider});
         mDivider = a.getDrawable(0);
         a.recycle();
         if(mDivider != null)

@@ -26,6 +26,7 @@
     <string name="menu_StartImageCaching">Download images</string>
     <string name="menu_downloadMoreItems">Download more items</string>
 
+    <string name="img_view_thumbnail" translatable="false">Thumbnail</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
