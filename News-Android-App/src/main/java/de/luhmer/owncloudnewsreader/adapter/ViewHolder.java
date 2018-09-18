@@ -124,11 +124,14 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(itemView.getContext(), android.R.color.secondary_text_dark));
 
-        if(favIconHandler == null)
+        if(favIconHandler == null) {
             favIconHandler = new FavIconHandler(itemView.getContext());
+        }
+
         ButterKnife.bind(this, itemView);
-        if(textViewSummary != null)
+        if(textViewSummary != null) {
             textViewSummary.setLines(titleLineCount);
+        }
 
         int[] attribute = new int[]{ R.attr.starredColor, R.attr.unstarredColor };
         TypedArray array = starImageView.getContext().getTheme().obtainStyledAttributes(attribute);
