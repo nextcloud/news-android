@@ -35,6 +35,7 @@ import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
@@ -145,22 +146,25 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     public void onEvent(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
         downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
         if (rssItem.getId().equals(downloadProgress.podcast.itemId)) {
-            pbPodcastDownloadProgress.setProgress((int) (downloadProgress.podcast.downloadProgress / 100f));
+            pbPodcastDownloadProgress.setProgress(downloadProgress.podcast.downloadProgress);
+
+            Log.v(TAG, "Progress of download1: " + downloadProgress.podcast.downloadProgress);
         }
     }
 
     public void setDownloadPodcastProgressbar() {
         float progress;
-        if(PodcastDownloadService.PodcastAlreadyCached(itemView.getContext(), rssItem.getEnclosureLink()))
-            progress = 1f;
-        else {
+        if(PodcastDownloadService.PodcastAlreadyCached(itemView.getContext(), rssItem.getEnclosureLink())) {
+            progress = 100;
+        } else {
             if(downloadProgressList.get(rssItem.getId().intValue()) != null) {
-                progress = downloadProgressList.get(rssItem.getId().intValue()) / 100f;
+                progress = downloadProgressList.get(rssItem.getId().intValue());
             } else {
                 progress = 0;
             }
         }
         pbPodcastDownloadProgress.setProgress((int) progress);
+        Log.v(TAG, "Progress of download2: " + progress);
     }
 
     @Override
@@ -278,13 +282,23 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         }
 
         if(imgViewThumbnail != null) {
+            imgViewThumbnail.setColorFilter(null);
+
             String body = rssItem.getBody();
             List<String> images = ImageHandler.getImageLinksFromText(body);
 
             if(images.size() > 0) {
+                imgViewThumbnail.setVisibility(View.VISIBLE);
                 ImageLoader.getInstance().displayImage(images.get(0), imgViewThumbnail, displayImageOptionsThumbnail);
             } else {
-                imgViewThumbnail.setVisibility(GONE);
+                // Show Podcast Icon if no thumbnail is available but it is a podcast (otherwise the podcast button will go missing)
+                if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
+                    imgViewThumbnail.setVisibility(View.VISIBLE);
+                    imgViewThumbnail.setColorFilter(Color.parseColor("#d8d8d8"));
+                    imgViewThumbnail.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.default_feed_icon_dark));
+                } else {
+                    imgViewThumbnail.setVisibility(GONE);
+                }
             }
         }
 
