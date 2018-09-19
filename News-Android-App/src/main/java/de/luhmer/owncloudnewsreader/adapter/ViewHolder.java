@@ -1,17 +1,12 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
@@ -28,19 +23,12 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.LoadedFrom;
-import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.nostra13.universalimageloader.core.imageaware.ImageAware;
-import com.nostra13.universalimageloader.core.process.BitmapProcessor;
-import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 import java.util.regex.Pattern;
-
-import javax.annotation.Resource;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

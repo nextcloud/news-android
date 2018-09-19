@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?attr/selectableItemBackground">
+    android:background="?attr/selectableItemBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!--
     <View
@@ -21,6 +21,8 @@
         android:descendantFocusability="blocksDescendants"
         android:layout_marginTop="@dimen/listview_row_margin_top"
         android:layout_marginBottom="@dimen/listview_row_margin_bottom"
+        android:paddingStart="@dimen/listview_row_margin_left"
+        android:paddingEnd="@dimen/listview_row_margin_right"
         android:id="@+id/list_item_header">
 
 
@@ -46,7 +48,7 @@
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             android:contentDescription="@string/img_view_thumbnail"
             android:scaleType="centerCrop"
             tools:src="@drawable/default_feed_icon_dark"
@@ -70,6 +72,7 @@
             android:layout_toEndOf="@id/imgViewThumbnail"
             android:layout_toStartOf="@id/podcast_wrapper"
             android:layout_below="@id/summary"
+            android:textColor="@color/material_grey_600"
             tools:text="Anruf-Info djkas dhask dhas dashdajs dha dhas dhas djka a jsa das djsa djas dash djas dashdja sljda dhjas ja dkla da ja da djas djkasas jkas dklas dsa djla"/>
 
 
@@ -123,6 +126,7 @@
             android:layout_below="@id/imgViewThumbnail"
             android:layout_toEndOf="@id/imgViewFavIcon"
             android:layout_toStartOf="@id/tv_item_date"
+            android:textColor="@color/material_grey_500"
             tools:text="PortableApps.com and some other long name behind here! dhajs ak"/>
 
 
@@ -136,7 +140,8 @@
             tools:text="vor 13 Stunden"
             android:layout_below="@id/imgViewThumbnail"
             android:layout_marginStart="8dp"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/material_grey_500" />
 
     </RelativeLayout>
 </LinearLayout>

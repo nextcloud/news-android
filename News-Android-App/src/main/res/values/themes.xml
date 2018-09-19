@@ -56,7 +56,7 @@
 
         <item name="dividerLineColor">#1e000000</item>
         <!-- <item name="rssItemListBackground">#ffdedede</item> -->
-        <item name="rssItemListBackground">#f2f2f2</item>
+        <item name="rssItemListBackground">@android:color/white</item>
 
         <item name="extended_listview_item_body_text_color">@color/extended_listview_item_body_text_color_light_theme</item>
 
