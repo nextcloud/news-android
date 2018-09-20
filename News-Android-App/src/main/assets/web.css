@@ -22,7 +22,7 @@ body.darkThemeOLED a:visited {
 }
 
 body.darkTheme {
-    background-color:   rgb(44, 44, 48);
+    background-color:   #212121;
     color:              #ffffff;
 }
 
@@ -98,7 +98,7 @@ a {
 
 #header {
     font-size:		18px;
-    margin-bottom:	5px;
+    margin-bottom:	10px;
     font-weight:	bold;
 }
 
