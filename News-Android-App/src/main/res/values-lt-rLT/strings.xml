@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Sinchronizavimo intervalas</string>
     <string name="title_activity_news_detail">NaujienosInformacijaVeikla</string>
     <string name="empty_view_content">Nėra elementų</string>
+    <string name="toast_GettingMoreItems">Elementai pradėti siųsti... Prašome palaukti.</string>
     <string name="no_wifi_available">Nėra WiFi ryšio</string>
     <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslus be Wi-Fi ryšio</string>
     <string name="current_version">Jūs naudojate versiją %s</string>
