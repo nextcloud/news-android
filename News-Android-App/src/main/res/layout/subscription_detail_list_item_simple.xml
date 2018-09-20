@@ -20,27 +20,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/listview_row_margin_bottom"
-        android:layout_marginTop="@dimen/listview_row_margin_top"
         android:descendantFocusability="blocksDescendants"
-        android:paddingStart="@dimen/listview_row_margin_left">
-
+        android:paddingStart="@dimen/listview_row_margin_left"
+        android:paddingEnd="0dp">
 
         <TextView
             android:id="@+id/summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/listview_row_margin_top"
             android:layout_marginBottom="8dp"
             android:layout_toStartOf="@id/star_imageview"
             android:ellipsize="end"
             android:gravity="center_vertical"
-            android:lines="2"
             android:maxLines="2"
-            android:minLines="2"
             android:textSize="17sp"
             android:textStyle="bold"
-            tools:text="Anruf-InfoSecond \nAbc" />
-
+            tools:text="Anruf-InfoSecond" />
 
         <ImageView
             android:id="@+id/imgViewThumbnail"
@@ -63,7 +60,7 @@
 
         <TextView
             android:id="@+id/body"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="96dp"
             android:layout_below="@id/summary"
             android:layout_toEndOf="@id/imgViewThumbnail"
@@ -78,21 +75,19 @@
             android:textStyle="normal"
             tools:text="Anruf-Info djkas dhask dhas dashdajs dha dhas dhas djka a jsa das djsa djas dash djas dashdja sljda dhjas ja dkla da ja da djas djkasas jkas dklas dsa djla hkjdsahkdas hd ashjdas jsak dsada" />
 
-
         <ImageView
             android:id="@+id/star_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="top"
             android:contentDescription="@string/content_desc_add_to_favorites"
-            android:paddingBottom="24dp"
-            android:paddingEnd="8dp"
-            android:paddingStart="24dp"
+            android:paddingBottom="8dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="8dp"
             android:paddingTop="8dp"
             android:tint="?attr/starredColor"
             app:srcCompat="@drawable/ic_star_black_24dp" />
-
 
         <ImageView
             android:id="@+id/imgViewFavIcon"
@@ -104,7 +99,6 @@
             android:layout_marginTop="2dp"
             android:contentDescription="@string/content_desc_none"
             tools:src="@drawable/default_feed_icon_light" />
-
 
         <TextView
             android:id="@+id/tv_subscription"
@@ -122,7 +116,6 @@
             android:textSize="13sp"
             tools:text="PortableApps.com and some other long name behind here! dhajs ak" />
 
-
         <TextView
             android:id="@+id/tv_item_date"
             android:layout_width="wrap_content"
@@ -130,7 +123,7 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@id/body"
             android:layout_marginEnd="@dimen/listview_row_margin_right"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/listview_row_margin_right"
             android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/material_grey_500"

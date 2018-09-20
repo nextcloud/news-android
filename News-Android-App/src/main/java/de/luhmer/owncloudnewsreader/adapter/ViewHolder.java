@@ -119,7 +119,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         ButterKnife.bind(this, itemView);
         if(textViewSummary != null) {
-            textViewSummary.setLines(titleLineCount);
+            //textViewSummary.setLines(titleLineCount);
         }
 
         int[] attribute = new int[]{ R.attr.starredColor, R.attr.unstarredColor };
