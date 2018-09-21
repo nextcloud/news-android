@@ -66,6 +66,9 @@ body {
     margin:     0px;
     word-wrap:  break-word !important;
     font-family:'ROBOTO_REGULAR';
+
+    margin-left:   1rem;
+    margin-right:  1rem;
 }
 
 div#content > p {
@@ -165,19 +168,14 @@ ul li:before {
 }
 
 #top_section {
-    padding:       0.5rem;
-    margin-top:   1rem;
-    margin-left:   1rem;
-    margin-right:  1rem;
+    margin-top:    1rem;
 }
 .rtl #top_section {
     text-align: right;
 }
 
 #content {
-    margin-top:     1rem;
-    margin-left:    1rem;
-    margin-right:   1rem;
+    margin-top:     0.6rem;
     line-height:    1.5em !important;
 }
 
