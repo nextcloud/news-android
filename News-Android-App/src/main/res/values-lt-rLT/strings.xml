@@ -64,9 +64,11 @@
     <string name="action_img_sharelink">Bendrinti paveikslo nuorodą</string>
     <string name="action_img_open">Atverti paveikslą naršyklėje</string>
     <string name="action_img_copylink">Kopijuoti paveikslo nuorodą</string>
+    <string name="action_link_share">Bendrinimo nuoroda</string>
     <string name="action_link_open">Atverti nuorodą naršyklėje</string>
     <string name="action_link_copy">Kopijuoti nuorodą</string>
     <string name="toast_img_download_wait">Atsiunčiama… prašome palaukti</string>
+    <string name="toast_img_saved">Paveiksliukas iš.saugotas</string>
     <string name="toast_img_notwriteable">Nepavyko įrašyti paveikslo.</string>
     <string name="toast_copied_to_clipboard">Nukopijuota į talpyklę</string>
     <string name="error_download_failed">Atsiuntimas nepavyko</string>
@@ -76,12 +78,17 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Šalinti kanalą</string>
     <string name="action_feed_rename">Pervadinti kanalą</string>
+    <string name="action_feed_move">Perkelti kanalą</string>
     <string name="feed_remove_button">Pašalinti</string>
     <string name="feed_rename_button">Pervadinti</string>
     <string name="confirm_feed_remove">Ar tikrai norite pašalinti šį kanalą? Šio veiksmo neįmanoma bus atšaukti!</string>
+    <string name="feed_move_list_description">Pasirinkite katalogą į aplanką į kurį norite perkelti kanalą</string>
+    <string name="move_feed_root_folder">Šakninis aplankas</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Prisijungimo vardas</string>
     <string name="pref_title_password">Slaptažodis</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud root adresas</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Prisijungti</string>
@@ -120,6 +127,12 @@
     <string name="pref_header_general">Bendras</string>
     <string name="pref_title_general_sort_order">Rikiavimo tvarka</string>
 
+    <string name="pref_general_sort_order_new_old">Naujas -> Senas</string>
+    <string name="pref_general_sort_order_old_new">Senas -> Naujas</string>
+
+    <string name="pref_title_general_search_in">Ieškoti</string>
+
+    <string name="pref_general_search_in_title">Pavadinimas</string>
     <string name="dialog_clearing_cache">Išvalomas podėlis</string>
     <string name="dialog_clearing_cache_please_wait">Išvalomas podėlis… Prašome palaukti.</string>
     <string name="reset_cache_unsaved_changes">Yra nesinchronizuotų pakeitimų. Ar vis tiek norite atstatyti podėlį?</string>
@@ -129,6 +142,11 @@
     <string name="pref_title_DisableHostnameVerification">Išjungti mazgo vardo patikrinimą</string>
     <string name="pref_title_NavigateWithVolumeButtons">Naršyti su garso mygtukais</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Žymėti perskaitytu slenkant</string>
+    <string name="pref_title_OpenInBrowserDirectly">Praleisti išsamų atvaizdavimą ir atidaryti straipsnį naršyklėje.</string>
+
+    <string name="dialog_feature_not_available">Ši funkcija negalima šioje programos versijoje. Jei norite naudoti šią funkciją, atsisiųskite programą iš \"GitHub\" saugyklos arba  iš \"Google PlayStore\".</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Priimti nežinomą sertifikatą?</string>
     <string name="mtm_decision_always">Visada</string>
@@ -144,13 +162,28 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Ekranas</string>
+    <string name="pref_title_app_theme">Programos tema (paleiskite programą dar kartą, kad būtų pritaikyta)</string>
     <string name="pref_title_feed_list_layout">Sklaikos kanalų sąrašo išdėstymas</string>
     <string name="pref_display_browser">Naršyklė</string>
 
 
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Veiksmų ikonos (Išsamus atvaizdavimas)</string>
+
+    <string name="pref_display_apptheme_dark">Tamsi</string>
+    <string name="pref_display_apptheme_dark_oled">Tamsi (OLED ekranams)</string>
+    <string name="pref_display_apptheme_light">Šviesi</string>
+
+    <string name="pref_display_browser_cct">Integruoti Chrome adaptuoti tabuliacijos klavišai</string>
+    <string name="pref_display_browser_built_in">Integruota naršyklė</string>
     <string name="pref_display_browser_external">Išorinė naršyklė</string>
+
+    <string name="pref_display_feed_list_layout_simple">Paprastas</string>
+    <string name="pref_display_feed_list_layout_extended">Išplėstinis</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Išplėstinis (visas tekstas)      </string>
+    <string name="pref_display_feed_list_layout_extended_webview">Išplėstas naudojant Webview</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Išplėstas naudojant Cardview</string>
 
     <string name="content_desc_play">groti</string>
     <string name="content_desc_pause">pristabdyti</string>
@@ -177,8 +210,14 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Klaida</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Panašu, kad nauja programa nėra įdiegta ar aktyvuota jūsų serveryje. Atlikite instrukcijoje pateiktus veiksmus, kad įdiegtumėte programą savo serveryje:%1$s</string>
     <string name="login_dialog_text_something_went_wrong">Kažkas nutiko :(</string>
+    <string name="login_dialog_text_zero_version_code">\"Web News\" programa grąžino versiją \"0\". Prašome peržvelgti pranešimą apie klaidas: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Ši programos versija nėra suderinama su jūsų Nextcloud Naujienų programa. Atnaujinkite Naujienų programą ir programų sistemą (appframework).</string>
     <string name="login_dialog_title_security_warning">Saugumo įspėjimas</string>
+    <string name="login_dialog_text_security_warning">Jūs nenaudojate rekomenduojamo HTTPS, dėl to galimi saugumo pažeidimai.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Duomenys ir sinchonizavimas</string>
     <string name="pref_title_clearCache">Išvalyti podėlį</string>
@@ -187,5 +226,21 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Niekada</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Tik naudojant WiFI</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Naudojant Wifi &amp; ir mobiliuosius duomenis</string>
+    <string name="pref_data_sync_image_cache_ask"> Klausti kai neprisijungta prie WiFi </string>
+
+    <string name="array_sync_interval_min_5">5 minutės</string>
+    <string name="array_sync_interval_min_15">15 minučių</string>
+    <string name="array_sync_interval_min_30">30 minučių</string>
+    <string name="array_sync_interval_min_45">45 minutės</string>
+    <string name="array_sync_interval_hour_1">1 valanda</string>
+    <string name="array_sync_interval_hour_2">2 valandos</string>
+    <string name="array_sync_interval_hour_3">3 valandos</string>
+    <string name="array_sync_interval_hour_6">6 valandos</string>
+    <string name="array_sync_interval_hour_12">12 valandų</string>
+    <string name="array_sync_interval_hour_24">24 valandos</string>
 
     </resources>
