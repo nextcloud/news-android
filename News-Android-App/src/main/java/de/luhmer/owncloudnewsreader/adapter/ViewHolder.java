@@ -23,7 +23,6 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -40,6 +39,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.SquareRoundedBitmapDisplayer;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 import static android.view.View.GONE;
@@ -131,12 +131,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
 
-
         displayImageOptionsThumbnail = new DisplayImageOptions.Builder()
-                .displayer(new RoundedBitmapDisplayer(30))
-                //.showImageOnLoading(placeHolder)
-                //.showImageForEmptyUri(placeHolder)
-                //.showImageOnFail(placeHolder)
+                .displayer(new SquareRoundedBitmapDisplayer(30))
+                .showImageOnLoading(R.drawable.feed_icon)
+                .showImageForEmptyUri(R.drawable.feed_icon)
+                .showImageOnFail(R.drawable.feed_icon)
                 .cacheOnDisk(true)
                 .cacheInMemory(true)
                 .build();
@@ -294,8 +293,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 // Show Podcast Icon if no thumbnail is available but it is a podcast (otherwise the podcast button will go missing)
                 if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
                     imgViewThumbnail.setVisibility(View.VISIBLE);
-                    imgViewThumbnail.setColorFilter(Color.parseColor("#d8d8d8"));
-                    imgViewThumbnail.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.default_feed_icon_dark));
+                    //imgViewThumbnail.setColorFilter(Color.parseColor("#d8d8d8"));
+                    imgViewThumbnail.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.feed_icon));
                 } else {
                     imgViewThumbnail.setVisibility(GONE);
                 }

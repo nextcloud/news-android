@@ -49,14 +49,14 @@
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/img_view_thumbnail"
             android:scaleType="centerCrop"
-            tools:src="@drawable/default_feed_icon_dark" />
+            tools:src="@drawable/feed_icon" />
 
         <include
             android:id="@+id/podcast_wrapper"
             layout="@layout/subscription_detail_list_item_podcast_wrapper"
             android:layout_height="88dp"
             android:layout_width="88dp"
-            android:layout_below="@id/star_imageview"/>
+            android:layout_below="@id/summary"/>
 
         <TextView
             android:id="@+id/body"
