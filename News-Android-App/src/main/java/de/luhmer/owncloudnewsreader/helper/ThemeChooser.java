@@ -26,10 +26,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatDelegate;
 
-import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 
 public class ThemeChooser {
@@ -69,19 +67,13 @@ public class ThemeChooser {
     }
 
 	public boolean isDarkTheme(Context context) {
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        if(AppCompatDelegate.MODE_NIGHT_YES == AppCompatDelegate.getDefaultNightMode()) {
             return true;
+        }
 
-        } else {
-            int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-            switch (nightModeFlags) {
-                case Configuration.UI_MODE_NIGHT_YES:
-                    return true;
-                case Configuration.UI_MODE_NIGHT_NO:
-                    // fallthrough is intentional
-                case Configuration.UI_MODE_NIGHT_UNDEFINED:
-                    // fallthrough is intentional
-            }
+        int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if(Configuration.UI_MODE_NIGHT_YES == nightModeFlags) {
+            return true;
         }
         return false;
     }
