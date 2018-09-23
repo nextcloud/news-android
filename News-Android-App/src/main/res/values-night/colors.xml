@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <color name="slider_listview_background_color">#ffebebeb</color>
+    <color name="slider_listview_background_color">#383d43</color>
 
-    <color name="slider_listview_text_color">#ff101010</color>
+    <color name="slider_listview_text_color">#F0F0F0</color>
 
     <color name="divider_row_color">#292929</color>
 
-    <color name="extended_listview_item_body_text_color">#ff393939</color>
+    <color name="extended_listview_item_body_text_color">#ffaaaaaa</color>
 
     <color name="slide_up_panel_header_background_color">#ff343434</color>
     <color name="slide_up_panel_slider_background_color">#ffdcdcdc</color>
@@ -15,23 +15,24 @@
     <color name="options_menu_item_text">@color/options_menu_item</color>
 
     <!-- see also assets/web.css -->
-    <color name="news_detail_background_color">#eeeeee</color>
+    <color name="news_detail_background_color">#222222</color>
 
 
-    <color name="owncloudBlue">#35537A</color>
-    <color name="nextcloudBlue">#0082C9</color>
+    <color name="owncloudBlue">#1D2D44</color>
+
+    <color name="nextcloudBlue">#006AA3</color>
 
     <color name="colorPrimary">@color/nextcloudBlue</color>
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
-    <color name="colorAccent">@color/colorPrimary</color>
-    <color name="background">#ffffff</color>
+    <color name="colorAccent">#8698af</color>
+    <color name="background">#212121</color>
 
     <color name="starredColor">@android:color/holo_orange_light</color>
-    <color name="unstarredColor">#ff888888</color>
+    <color name="unstarredColor">#ffcccccc</color>
     <color name="markasreadColor">@android:color/holo_green_light</color>
     <color name="swipeBackground">#aaa</color>
 
-    <color name="tintColor">@android:color/black</color>
+    <color name="tintColors">@android:color/white</color>
 
     <!-- override libs -->
     <color name="chglib_background_default_divider_color">#00000000</color>

@@ -148,9 +148,9 @@
 
 
 
-    <string name="pref_display_apptheme_dark">Tumma</string>
-    <string name="pref_display_apptheme_dark_oled">Tumma (OLED-näytöille)</string>
-    <string name="pref_display_apptheme_light">Vaalea</string>
+    <string name="pref_display_apptheme_night">Tumma</string>
+    <string name="pref_display_apptheme_auto">Tumma (OLED-näytöille)</string>
+    <string name="pref_display_apptheme_day">Vaalea</string>
 
     <string name="pref_display_browser_built_in">Sisäänrakennettu selain</string>
     <string name="pref_display_browser_external">Ulkoinen selain</string>

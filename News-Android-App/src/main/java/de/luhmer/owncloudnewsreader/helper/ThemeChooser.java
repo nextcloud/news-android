@@ -24,7 +24,10 @@ package de.luhmer.owncloudnewsreader.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatDelegate;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
@@ -49,13 +52,13 @@ public class ThemeChooser {
 	{
 	    switch(getInstance(act).getSelectedTheme(act, false)) {
             case 0: // Dark Theme
-                act.setTheme(R.style.AppTheme);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 break;
             case 1: // Light Theme
-                act.setTheme(R.style.AppThemeLight);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 break;
             case 2: // Dark Theme for OLED
-                act.setTheme(R.style.AppThemeOLED);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
                 break;
         }
 	}
@@ -65,10 +68,23 @@ public class ThemeChooser {
         return mSelectedTheme != getSelectedTheme(context, true);
     }
 
-	public boolean isDarkTheme()
-	{
-        return  mSelectedTheme == 0 || mSelectedTheme == 2;
-	}
+	public boolean isDarkTheme(Context context) {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            return true;
+
+        } else {
+            int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            switch (nightModeFlags) {
+                case Configuration.UI_MODE_NIGHT_YES:
+                    return true;
+                case Configuration.UI_MODE_NIGHT_NO:
+                    // fallthrough is intentional
+                case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                    // fallthrough is intentional
+            }
+        }
+        return false;
+    }
 
     public Integer getSelectedTheme(Context context, boolean forceReloadCache) {
         if(mSelectedTheme == null || forceReloadCache) {

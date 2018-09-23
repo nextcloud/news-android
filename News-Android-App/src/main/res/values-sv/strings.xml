@@ -136,9 +136,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
 
-    <string name="pref_display_apptheme_dark">Mörk</string>
-    <string name="pref_display_apptheme_dark_oled">Mörk (för OLED-skärmar)</string>
-    <string name="pref_display_apptheme_light">Ljus</string>
+    <string name="pref_display_apptheme_night">Mörk</string>
+    <string name="pref_display_apptheme_auto">Mörk (för OLED-skärmar)</string>
+    <string name="pref_display_apptheme_day">Ljus</string>
 
     <string name="pref_display_feed_list_layout_simple">Enkel</string>
     <string name="pref_display_feed_list_layout_extended">Utökad</string>

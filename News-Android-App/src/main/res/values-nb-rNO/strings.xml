@@ -154,9 +154,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
 
-    <string name="pref_display_apptheme_dark">Mørk</string>
-    <string name="pref_display_apptheme_dark_oled">Mørk (for OLED- skjermer)</string>
-    <string name="pref_display_apptheme_light">Lys</string>
+    <string name="pref_display_apptheme_night">Mørk</string>
+    <string name="pref_display_apptheme_auto">Mørk (for OLED- skjermer)</string>
+    <string name="pref_display_apptheme_day">Lys</string>
 
     <string name="pref_display_browser_cct">Innebygde tilpassede Chrome-faner</string>
     <string name="pref_display_browser_built_in">Innebygd nettleser</string>

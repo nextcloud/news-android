@@ -130,9 +130,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcji (Widok szczegółowy)</string>
 
-    <string name="pref_display_apptheme_dark">Ciemny</string>
-    <string name="pref_display_apptheme_dark_oled">Ciemny (dla ekranów OLED)</string>
-    <string name="pref_display_apptheme_light">Jasny</string>
+    <string name="pref_display_apptheme_night">Ciemny</string>
+    <string name="pref_display_apptheme_auto">Ciemny (dla ekranów OLED)</string>
+    <string name="pref_display_apptheme_day">Jasny</string>
 
     <string name="content_desc_play">odtwarzanie</string>
     <string name="content_desc_pause">pauza</string>

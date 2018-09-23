@@ -154,7 +154,7 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Anzeige</string>
-    <string name="pref_title_app_theme">App-Thema (die App muss zur Anwendung neu gestartet werden)</string>
+    <string name="pref_title_app_theme">Nachtmodus</string>
     <string name="pref_title_feed_list_layout">Feed-Listenlayout</string>
     <string name="pref_display_title_lines_count">Zeilenanzahl des Titels</string>
     <string name="pref_display_browser">Browser</string>
@@ -164,9 +164,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Aktionssymbole (Detailansicht)</string>
 
-    <string name="pref_display_apptheme_dark">Dunkel</string>
-    <string name="pref_display_apptheme_dark_oled">Dunkel (für OLED-Anzeigen)</string>
-    <string name="pref_display_apptheme_light">Hell</string>
+    <string name="pref_display_apptheme_night">An</string>
+    <string name="pref_display_apptheme_auto">Auto</string>
+    <string name="pref_display_apptheme_day">Aus</string>
 
     <string name="pref_display_browser_cct">Integrierte angepasste Chrome-Tabs</string>
     <string name="pref_display_browser_built_in">Integrierter Browser</string>
