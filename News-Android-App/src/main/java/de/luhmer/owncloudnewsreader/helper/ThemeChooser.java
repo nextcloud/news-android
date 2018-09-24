@@ -67,15 +67,21 @@ public class ThemeChooser {
     }
 
 	public boolean isDarkTheme(Context context) {
-        if(AppCompatDelegate.MODE_NIGHT_YES == AppCompatDelegate.getDefaultNightMode()) {
-            return true;
-        }
+        switch(AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                return true;
 
-        int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-        if(Configuration.UI_MODE_NIGHT_YES == nightModeFlags) {
-            return true;
+            case AppCompatDelegate.MODE_NIGHT_AUTO:
+                int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+                if(Configuration.UI_MODE_NIGHT_YES == nightModeFlags) {
+                    return true;
+                }
+                // fallthrough is deliberate
+            case AppCompatDelegate.MODE_NIGHT_NO:
+                // fallthrough is deliberate
+            default:
+                return false;
         }
-        return false;
     }
 
     public Integer getSelectedTheme(Context context, boolean forceReloadCache) {
