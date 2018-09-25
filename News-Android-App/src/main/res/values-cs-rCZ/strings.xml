@@ -69,9 +69,9 @@
     <string name="action_link_copy">Zkopírovat odkaz</string>
     <string name="toast_img_download_wait">Stahování… chvíli strpení</string>
     <string name="toast_img_saved">Obrázek uložen</string>
-    <string name="toast_img_notwriteable">Selhalo zapsání obrázku.</string>
+    <string name="toast_img_notwriteable">Obrázek se nepodařilo zapsat.</string>
     <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
-    <string name="error_download_failed">Stažení selhalo</string>
+    <string name="error_download_failed">Stažení se nezdařilo</string>
     <string name="intent_title_share">Sdílet pomocí</string>
 
 
