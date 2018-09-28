@@ -29,7 +29,7 @@
     <color name="colorPrimary">@color/nextcloudBlue</color>
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
     <color name="colorAccent">@color/colorPrimary</color>
-    <color name="background">#ffffff</color>
+    <color name="background">@android:color/white</color>
 
     <color name="starredColor">@android:color/holo_orange_light</color>
     <color name="unstarredColor">#ff888888</color>

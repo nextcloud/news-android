@@ -17,15 +17,13 @@
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#222222</color>
 
-
     <color name="owncloudBlue">#1D2D44</color>
-
     <color name="nextcloudBlue">#006AA3</color>
 
     <color name="colorPrimary">@color/nextcloudBlue</color>
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
     <color name="colorAccent">#8698af</color>
-    <color name="background">#212121</color>
+    <color name="background">@color/material_grey_900</color>
 
     <color name="starredColor">@android:color/holo_orange_light</color>
     <color name="unstarredColor">#ffcccccc</color>
