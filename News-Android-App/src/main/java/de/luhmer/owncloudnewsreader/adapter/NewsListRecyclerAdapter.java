@@ -41,7 +41,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     private long idOfCurrentlyPlayedPodcast = -1;
 
     private List<RssItem> lazyList;
-    private int titleLineCount;
     private DatabaseConnectionOrm dbConn;
     private ForegroundColorSpan bodyForegroundColor;
     private PostDelayHandler pDelayHandler;
@@ -84,7 +83,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
         dbConn = new DatabaseConnectionOrm(activity);
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        titleLineCount = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_TITLE_LINES_COUNT, "2"));
         setHasStableIds(true);
 
         EventBus.getDefault().register(this);
@@ -184,7 +182,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             }
             View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
-            final ViewHolder holder = new ViewHolder(view, titleLineCount);
+            final ViewHolder holder = new ViewHolder(view);
 
             holder.starImageView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -105,7 +105,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private int inactiveStarColor;
     private DisplayImageOptions displayImageOptionsThumbnail;
 
-    public ViewHolder(View itemView, int titleLineCount) {
+    public ViewHolder(View itemView) {
         super(itemView);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(itemView.getContext());
@@ -118,9 +118,6 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         }
 
         ButterKnife.bind(this, itemView);
-        if(textViewSummary != null) {
-            //textViewSummary.setLines(titleLineCount);
-        }
 
         int[] attribute = new int[]{ R.attr.starredColor, R.attr.unstarredColor };
         TypedArray array = starImageView.getContext().getTheme().obtainStyledAttributes(attribute);
