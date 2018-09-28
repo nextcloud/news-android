@@ -3,28 +3,42 @@
     src: url('fonts/Roboto-Regular.ttf');
 }
 
-body#lightTheme {
-    background-color:	#eee;
+body.lightTheme {
+    background-color:	#ffffff;
     color:				black;
 }
 
-body#darkThemeOLED {
+body.darkThemeOLED {
     background-color:   #000;
     color:              #eee;
 }
 
-body#darkThemeOLED a:link {
+body.darkThemeOLED a:link {
 	color:              #0289ff;
 }
 
-body#darkThemeOLED a:visited {
+body.darkThemeOLED a:visited {
     color:              #cd4fff;
 }
 
-body#darkTheme {
-    background-color:   #222;
-    color:              #eee;
+body.darkTheme {
+    background-color:   #212121;
+    color:              #ffffff;
 }
+
+body.lightTheme a:link, a:active, a:hover {
+    color: #333 !important;
+}
+body.lightTheme a:visited {
+    color: #000 !important;
+}
+body.darkTheme a:link, a:active, a:hover {
+    color: #dadada !important;
+}
+body#darkTheme a:visited {
+    color: #aeaeae !important;
+}
+
 
 /* For debugging */
 /*
@@ -52,6 +66,9 @@ body {
     margin:     0px;
     word-wrap:  break-word !important;
     font-family:'ROBOTO_REGULAR';
+
+    margin-left:   1rem;
+    margin-right:  1rem;
 }
 
 div#content > p {
@@ -84,15 +101,43 @@ a {
 
 #header {
     font-size:		18px;
-    margin-bottom:	5px;
-    margin-top:     5px;
-
+    margin-bottom:	10px;
     font-weight:	bold;
 }
 
+#header.darkTheme a:link, a:active, a:hover, a:visited {
+    color: #ffffff !important;
+}
+
 #header a:link, a:active, a:hover, a:visited {
-    color:				#DADADA !important;
+    color:				#000000 !important;
     text-decoration:	none !important;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li:before {
+    vertical-align: 18%;
+    margin-right:10px;
+    border-style: solid;
+	border-width: 0.10em 0.10em 0 0;
+	content: '';
+	display: inline-block;
+	height: 0.3em;
+	left: 0.15em;
+	position: relative;
+	top: 0.15em;
+	transform: rotate(45deg);
+	width: 0.3em;
+    /*
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    vertical-align: -10%;
+    font-family: "Material Icons";
+    content: "\e5cc";
+    */
 }
 
 #subscription, #datetime {
@@ -118,20 +163,19 @@ a {
     overflow: auto;
 }
 
-#top_section {
-    padding:        0.5rem;
-    padding-left:   1rem;
-    padding-right:  1rem;
+#header_small_text {
+    color: #9E9E9E;
+}
 
+#top_section {
+    margin-top:    1rem;
 }
 .rtl #top_section {
     text-align: right;
 }
 
 #content {
-    margin-top:     1rem;
-    margin-left:    1rem;
-    margin-right:   1rem;
+    margin-top:     0.6rem;
     line-height:    1.5em !important;
 }
 
@@ -146,17 +190,4 @@ a {
     float: right;
     margin-right: 0;
     margin-left: 4px;
-}
-
-body#lightTheme a:link, a:active, a:hover {
-    color: #333 !important;
-}
-body#lightTheme a:visited {
-    color: #000 !important;
-}
-body#darkTheme a:link, a:active, a:hover {
-    color: #dadada !important;
-}
-body#darkTheme a:visited {
-    color: #aeaeae !important;
 }

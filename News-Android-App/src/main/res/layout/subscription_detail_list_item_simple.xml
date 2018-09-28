@@ -1,118 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:background="?attr/selectableItemBackground">
+    android:background="?attr/selectableItemBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--
     <View
         android:id="@+id/color_line_feed"
         android:layout_height="match_parent"
         android:layout_width="4dp"
         android:background="?attr/dividerLineColor"
-        android:layout_marginEnd="@dimen/listview_row_margin_left"
-        android:layout_marginRight="@dimen/listview_row_margin_left"/>
+        android:layout_marginEnd="@dimen/listview_row_margin_left" />
+    -->
 
     <RelativeLayout
+        android:id="@+id/list_item_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:descendantFocusability="blocksDescendants"
-        android:layout_marginTop="@dimen/listview_row_margin_top"
         android:layout_marginBottom="@dimen/listview_row_margin_bottom"
-        android:id="@+id/list_item_header">
+        android:descendantFocusability="blocksDescendants"
+        android:paddingStart="@dimen/listview_row_margin_left"
+        android:paddingEnd="0dp">
 
         <TextView
             android:id="@+id/summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:textAlignment="viewStart"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/listview_row_margin_top"
+            android:layout_marginBottom="8dp"
+            android:layout_toStartOf="@id/star_imageview"
             android:ellipsize="end"
-            android:lines="2"
+            android:gravity="center_vertical"
+            android:maxLines="2"
             android:textSize="17sp"
             android:textStyle="bold"
-            tools:text="Summary Text\nSecond Line"
+            tools:text="Anruf-InfoSecond" />
+
+        <ImageView
+            android:id="@+id/imgViewThumbnail"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:minLines="2"
-            android:maxLines="2"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/podcast_wrapper"
-            android:layout_toStartOf="@+id/podcast_wrapper"/>
+            android:layout_below="@id/summary"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/img_view_thumbnail"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/feed_icon" />
+
+        <include
+            android:id="@+id/podcast_wrapper"
+            layout="@layout/subscription_detail_list_item_podcast_wrapper"
+            android:layout_height="88dp"
+            android:layout_width="88dp"
+            android:layout_below="@id/summary"/>
+
+        <TextView
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_below="@id/summary"
+            android:layout_toEndOf="@id/imgViewThumbnail"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:layout_marginEnd="@dimen/listview_row_margin_right"
+            android:layout_marginBottom="8dp"
+            android:maxLines="5"
+            android:textAlignment="viewStart"
+            android:textColor="@color/material_grey_600"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            tools:text="Anruf-Info djkas dhask dhas dashdajs dha dhas dhas djka a jsa das djsa djas dash djas dashdja sljda dhjas ja dkla da ja da djas djkasas jkas dklas dsa djla hkjdsahkdas hd ashjdas jsak dsada" />
+
+        <ImageView
+            android:id="@+id/star_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="top"
+            android:contentDescription="@string/content_desc_add_to_favorites"
+            android:paddingBottom="8dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:tint="?attr/starredColor"
+            app:srcCompat="@drawable/ic_star_black_24dp" />
 
         <ImageView
             android:id="@+id/imgViewFavIcon"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_below="@+id/summary"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            tools:src="@drawable/default_feed_icon_light"
+            android:layout_below="@id/body"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="2dp"
-            android:contentDescription="@string/content_desc_none"/>
+            android:contentDescription="@string/content_desc_none"
+            tools:src="@drawable/default_feed_icon_light" />
 
         <TextView
             android:id="@+id/tv_subscription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:textAlignment="viewStart"
+            android:layout_below="@id/body"
+            android:layout_marginBottom="8dp"
+            android:layout_toEndOf="@id/imgViewFavIcon"
+            android:layout_toStartOf="@id/tv_item_date"
             android:ellipsize="end"
+            android:gravity="start"
             android:singleLine="true"
+            android:textAlignment="viewStart"
+            android:textColor="@color/material_grey_500"
             android:textSize="13sp"
-            tools:text="PortableApps.com"
-            android:layout_below="@+id/summary"
-            android:layout_toStartOf="@+id/tv_item_date"
-            android:layout_toEndOf="@+id/imgViewFavIcon"
-            android:layout_toLeftOf="@+id/tv_item_date"
-            android:layout_toRightOf="@+id/imgViewFavIcon"/>
+            tools:text="PortableApps.com and some other long name behind here! dhajs ak" />
 
         <TextView
             android:id="@+id/tv_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/body"
+            android:layout_marginEnd="@dimen/listview_row_margin_right"
+            android:layout_marginStart="@dimen/listview_row_margin_right"
             android:ellipsize="end"
             android:singleLine="true"
+            android:textColor="@color/material_grey_500"
             android:textSize="13sp"
-            tools:text="vor 13 Stunden"
-            android:layout_marginEnd="@dimen/listview_row_margin_right"
-            android:layout_marginRight="@dimen/listview_row_margin_right"
-            android:layout_toStartOf="@+id/podcast_wrapper"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_toLeftOf="@+id/podcast_wrapper"
-            android:layout_alignBaseline="@id/tv_subscription"/>
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/star_imageview"
-            android:paddingTop="8dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="8dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="@dimen/listview_row_margin_right"
-            android:paddingRight="@dimen/listview_row_margin_right"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_action_star_dark"
-            android:tint="?attr/starredColor"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:contentDescription="@string/content_desc_add_to_favorites"/>
-
-        <include
-            layout="@layout/subscription_detail_list_item_podcast_wrapper"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="-4dp"
-            android:id="@+id/podcast_wrapper"
-            android:layout_toLeftOf="@id/star_imageview"
-            android:layout_toStartOf="@id/star_imageview"/>
+            tools:text="vor 13 Stunden" />
 
     </RelativeLayout>
-
 </LinearLayout>

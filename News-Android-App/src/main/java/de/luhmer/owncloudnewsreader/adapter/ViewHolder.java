@@ -18,12 +18,15 @@ import android.util.SparseArray;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
@@ -31,10 +34,15 @@ import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.SquareRoundedBitmapDisplayer;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
+
+import static android.view.View.GONE;
 
 public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     private final static String TAG = "RecyclerView.ViewHolder";
@@ -54,9 +62,16 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     @BindView(R.id.tv_subscription)
     protected TextView textViewTitle;
 
+    @Nullable
     @BindView(R.id.imgViewFavIcon)
     protected ImageView imgViewFavIcon;
 
+    @Nullable
+    @BindView(R.id.imgViewThumbnail)
+    protected ImageView imgViewThumbnail;
+
+
+    @Nullable
     @BindView(R.id.color_line_feed)
     protected View colorLineFeed;
 
@@ -64,7 +79,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     protected ImageView btnPlayPausePodcast;
 
     @BindView(R.id.podcastDownloadProgress)
-    protected HoloCircularProgressBar pbPodcastDownloadProgress;
+    //protected HoloCircularProgressBar pbPodcastDownloadProgress; // TODO reminder: remove this dependency (and fix podcast progressbar issues)
+    protected ProgressBar pbPodcastDownloadProgress;
 
     @BindView(R.id.podcast_wrapper)
     View flPlayPausePodcastWrapper;
@@ -87,8 +103,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private int selectedListLayout;
     private int starColor;
     private int inactiveStarColor;
+    private DisplayImageOptions displayImageOptionsThumbnail;
 
-    public ViewHolder(View itemView, int titleLineCount) {
+    public ViewHolder(View itemView) {
         super(itemView);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(itemView.getContext());
@@ -96,11 +113,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(itemView.getContext(), android.R.color.secondary_text_dark));
 
-        if(favIconHandler == null)
+        if(favIconHandler == null) {
             favIconHandler = new FavIconHandler(itemView.getContext());
+        }
+
         ButterKnife.bind(this, itemView);
-        if(textViewSummary != null)
-            textViewSummary.setLines(titleLineCount);
 
         int[] attribute = new int[]{ R.attr.starredColor, R.attr.unstarredColor };
         TypedArray array = starImageView.getContext().getTheme().obtainStyledAttributes(attribute);
@@ -110,28 +127,40 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
+
+        displayImageOptionsThumbnail = new DisplayImageOptions.Builder()
+                .displayer(new SquareRoundedBitmapDisplayer(30))
+                .showImageOnLoading(R.drawable.feed_icon)
+                .showImageForEmptyUri(R.drawable.feed_icon)
+                .showImageOnFail(R.drawable.feed_icon)
+                .cacheOnDisk(true)
+                .cacheInMemory(true)
+                .build();
     }
 
     @Subscribe
     public void onEvent(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
         downloadProgressList.put((int) downloadProgress.podcast.itemId, downloadProgress.podcast.downloadProgress);
         if (rssItem.getId().equals(downloadProgress.podcast.itemId)) {
-            pbPodcastDownloadProgress.setProgress(downloadProgress.podcast.downloadProgress / 100f);
+            pbPodcastDownloadProgress.setProgress(downloadProgress.podcast.downloadProgress);
+
+            Log.v(TAG, "Progress of download1: " + downloadProgress.podcast.downloadProgress);
         }
     }
 
     public void setDownloadPodcastProgressbar() {
         float progress;
-        if(PodcastDownloadService.PodcastAlreadyCached(itemView.getContext(), rssItem.getEnclosureLink()))
-            progress = 1f;
-        else {
+        if(PodcastDownloadService.PodcastAlreadyCached(itemView.getContext(), rssItem.getEnclosureLink())) {
+            progress = 100;
+        } else {
             if(downloadProgressList.get(rssItem.getId().intValue()) != null) {
-                progress = downloadProgressList.get(rssItem.getId().intValue()) / 100f;
+                progress = downloadProgressList.get(rssItem.getId().intValue());
             } else {
                 progress = 0;
             }
         }
-        pbPodcastDownloadProgress.setProgress(progress);
+        pbPodcastDownloadProgress.setProgress((int) progress);
+        Log.v(TAG, "Progress of download2: " + progress);
     }
 
     @Override
@@ -148,8 +177,10 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         return clickListener.onLongClick(this, getLayoutPosition());
     }
 
-    public void setFeedColor(int color) {
-        colorLineFeed.setBackgroundColor(color);
+    private void setFeedColor(int color) {
+        if(colorLineFeed != null) {
+            colorLineFeed.setBackgroundColor(color);
+        }
     }
 
     public void setReadState(boolean isRead) {
@@ -238,11 +269,34 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             textViewBody.setText(Html.fromHtml(body));
         }
 
-        if(textViewItemDate != null)
+        if(textViewItemDate != null) {
             textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
+        }
 
-        if (imgViewFavIcon != null)
+        if (imgViewFavIcon != null) {
             favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon);
+        }
+
+        if(imgViewThumbnail != null) {
+            imgViewThumbnail.setColorFilter(null);
+
+            String body = rssItem.getBody();
+            List<String> images = ImageHandler.getImageLinksFromText(body);
+
+            if(images.size() > 0) {
+                imgViewThumbnail.setVisibility(View.VISIBLE);
+                ImageLoader.getInstance().displayImage(images.get(0), imgViewThumbnail, displayImageOptionsThumbnail);
+            } else {
+                // Show Podcast Icon if no thumbnail is available but it is a podcast (otherwise the podcast button will go missing)
+                if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
+                    imgViewThumbnail.setVisibility(View.VISIBLE);
+                    //imgViewThumbnail.setColorFilter(Color.parseColor("#d8d8d8"));
+                    imgViewThumbnail.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.feed_icon));
+                } else {
+                    imgViewThumbnail.setVisibility(GONE);
+                }
+            }
+        }
 
         if(webView_body != null) {
             String htmlPage = RssItemToHtmlTask.getHtmlPage(itemView.getContext(), rssItem, false);

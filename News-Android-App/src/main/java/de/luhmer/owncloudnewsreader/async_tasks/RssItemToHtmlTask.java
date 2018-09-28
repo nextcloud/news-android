@@ -114,6 +114,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         builder.append("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />");
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
+        /*
         builder.append("<style type=\"text/css\">");
         builder.append(String.format(
                         "#top_section { border-%s: 4px solid %s; border-bottom: 1px solid %s; background: %s }",
@@ -123,11 +124,12 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
                         ColorHelper.getCssColor(colors[1]))
         );
         builder.append("</style>");
-        builder.append(String.format("</head><body id=\"%s\" class=\"%s\">", body_id, rtlClass));
+        */
+        builder.append(String.format("</head><body class=\"%s\" class=\"%s\">", body_id, rtlClass));
 
         if (showHeader) {
             builder.append("<div id=\"top_section\">");
-            builder.append("<div id=\"header\">");
+            builder.append(String.format("<div id=\"header\" class=\"%s\">", body_id));
             String title = StringEscapeUtils.escapeHtml4(rssItem.getTitle());
             String linkToFeed = StringEscapeUtils.escapeHtml4(rssItem.getLink());
             builder.append(String.format("<a href=\"%s\">%s</a>", linkToFeed, title));
