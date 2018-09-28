@@ -93,16 +93,20 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         String body_id;
         switch(ThemeChooser.getInstance(context).getSelectedTheme(context, false)) {
-            case 0:
-                body_id = "darkTheme";
+            case 0: // Auto (Light / Dark)
+                body_id = ThemeChooser.getInstance(context).isDarkTheme(context) ? "darkTheme" : "lightTheme";
                 break;
-            case 1:
+            case 1: // Light Theme
                 body_id = "lightTheme";
                 break;
-            case 2:
+            case 2: // Dark Theme
+                body_id = "darkTheme";
+                break;
+            case 3: // Dark Theme for OLED
                 body_id = "darkThemeOLED";
                 break;
             default:
+                // this should never happen!
                 body_id = "darkTheme";
         }
 
