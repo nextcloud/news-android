@@ -32,7 +32,7 @@
     <color name="markasreadColor">@android:color/holo_green_light</color>
     <color name="swipeBackground">#aaa</color>
 
-    <color name="tintColors">@android:color/white</color>
+    <color name="tintColor">@android:color/white</color>
 
     <!-- override libs -->
     <color name="chglib_background_default_divider_color">#00000000</color>
