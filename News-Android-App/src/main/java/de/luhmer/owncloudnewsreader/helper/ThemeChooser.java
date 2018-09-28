@@ -87,7 +87,7 @@ public class ThemeChooser {
     public Integer getSelectedTheme(Context context, boolean forceReloadCache) {
         if(mSelectedTheme == null || forceReloadCache) {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            mSelectedTheme = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_APP_THEME, "0"));
+            mSelectedTheme = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_APP_THEME, "1"));
         }
         return mSelectedTheme;
     }

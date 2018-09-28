@@ -14,6 +14,11 @@
 
     <color name="options_menu_item_text">@color/options_menu_item</color>
 
+
+    <color name="material_grey_500" tools:override="true">#9E9E9E</color>
+    <color name="material_grey_600" tools:override="true">#757575</color>
+    <color name="material_grey_900" tools:override="true">#212121</color>
+
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#eeeeee</color>
 
