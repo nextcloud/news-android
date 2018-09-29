@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Görselleri indir</string>
     <string name="menu_downloadMoreItems">Diğer ögeleri indir</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Yıldızlanmış</string>
     <string name="action_read">Oku</string>
@@ -156,7 +155,6 @@
     <string name="pref_header_display">Görüntüle</string>
     <string name="pref_title_app_theme">Uygulama teması (geçerli olması için uygulamayı yeninden başlatın)</string>
     <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>
-    <string name="pref_display_title_lines_count">Başlığın satır sayısı</string>
     <string name="pref_display_browser">Tarayıcı</string>
 
 

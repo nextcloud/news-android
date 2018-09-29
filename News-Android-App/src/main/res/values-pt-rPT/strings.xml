@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Transferir as imagens</string>
     <string name="menu_downloadMoreItems">Transferir mais itens</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Marcado</string>
     <string name="action_read">Lido</string>
@@ -130,7 +129,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_feed_list_layout">Disposição da lista de feeds</string>
-    <string name="pref_display_title_lines_count">Contagem de linhas para o título</string>
     <string name="content_desc_play">reproduzir</string>
     <string name="content_desc_pause">pausa</string>
     <string name="content_desc_rewind">rebobinar</string>

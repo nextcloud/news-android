@@ -27,7 +27,6 @@
     <string name="menu_StartImageCaching">Скачать изображения</string>
     <string name="menu_downloadMoreItems">Скачать ещё</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Избранное</string>
     <string name="action_read">Читать</string>
@@ -166,7 +165,6 @@
     <string name="pref_header_display">Экран</string>
     <string name="pref_title_app_theme">Тема приложения (перезапустите программу для применения)</string>
     <string name="pref_title_feed_list_layout">Макет списка лент</string>
-    <string name="pref_display_title_lines_count">Количество строк для заголовка</string>
     <string name="pref_display_browser">Браузер</string>
 
 

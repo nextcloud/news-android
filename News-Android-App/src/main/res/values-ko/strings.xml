@@ -22,7 +22,6 @@
     <string name="menu_StartImageCaching">사진 다운로드</string>
     <string name="menu_downloadMoreItems">더 많은 항목 다운로드</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">별표</string>
     <string name="action_read">읽기</string>
@@ -126,7 +125,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">표시</string>
     <string name="pref_title_feed_list_layout">피드 목록 레이아웃</string>
-    <string name="pref_display_title_lines_count">제목 줄 수</string>
     <string name="pref_display_browser">브라우저</string>
 
 

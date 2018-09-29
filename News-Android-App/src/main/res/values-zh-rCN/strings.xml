@@ -24,7 +24,6 @@
     <string name="menu_StartImageCaching">下载图片</string>
     <string name="menu_downloadMoreItems">下载更多内容</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">已加星标</string>
     <string name="action_read">阅读</string>
@@ -149,7 +148,6 @@
     <string name="pref_header_display">显示</string>
     <string name="pref_title_app_theme">应用主题 (重新打开程序生效)</string>
     <string name="pref_title_feed_list_layout">源清单布局</string>
-    <string name="pref_display_title_lines_count">标题行数计数</string>
     <string name="pref_display_browser">浏览器</string>
 
 

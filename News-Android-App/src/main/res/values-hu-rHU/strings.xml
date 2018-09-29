@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Képek letőltése</string>
     <string name="menu_downloadMoreItems">Több elem letőltése</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Csillagozott</string>
     <string name="action_read">Olvas</string>
@@ -147,7 +146,6 @@
     <string name="pref_header_display">Kijelző</string>
     <string name="pref_title_app_theme">Alkalmazástéma (indítsd el a programot ismét az alkalmazáshoz)</string>
     <string name="pref_title_feed_list_layout">A csatorna elrendezés</string>
-    <string name="pref_display_title_lines_count">Cím sorainak száma</string>
     <string name="pref_display_browser">Böngésző</string>
 
 

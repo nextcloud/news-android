@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Télécharger les images</string>
     <string name="menu_downloadMoreItems">+ d\'articles</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Favori</string>
     <string name="action_read">Lu</string>
@@ -156,7 +155,6 @@
     <string name="pref_header_display">Affichage</string>
     <string name="pref_title_app_theme">Thème de l\'application (redémarrer le programme pour l\'appliquer)</string>
     <string name="pref_title_feed_list_layout">Disposition de la liste des flux</string>
-    <string name="pref_display_title_lines_count">Nombre de lignes pour le titre</string>
     <string name="pref_display_browser">Navigateur</string>
 
 

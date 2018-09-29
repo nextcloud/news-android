@@ -23,7 +23,6 @@
     <string name="menu_StartImageCaching">Telecargar los imatges</string>
     <string name="menu_downloadMoreItems">+ d\'articles</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Favorit</string>
     <string name="action_read">Legit</string>
@@ -111,7 +110,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Afichatge</string>
     <string name="pref_title_feed_list_layout">Disposicion de la lista dels fluxes</string>
-    <string name="pref_display_title_lines_count">Nombre de linhas pel títol</string>
     <string name="content_desc_delete">suprimir</string>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Notificacions</string>

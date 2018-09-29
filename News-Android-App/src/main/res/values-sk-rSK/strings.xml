@@ -19,7 +19,6 @@
     <string name="menu_StartImageCaching">Stiahnuť obrázky</string>
     <string name="menu_downloadMoreItems">Stiahnuť viac položiek</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">S hviezdičkou</string>
     <string name="action_read">Čítať</string>
