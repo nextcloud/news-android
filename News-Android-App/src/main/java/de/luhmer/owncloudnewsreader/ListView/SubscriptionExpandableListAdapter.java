@@ -103,7 +103,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
     }
 
-    private int mTextColorLightTheme;
     private FavIconHandler favIconHandler;
 
     LayoutInflater inflater;
@@ -115,8 +114,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	this.mContext = mContext;
     	this.dbConn = dbConn;
-
-        mTextColorLightTheme = ContextCompat.getColor(mContext, R.color.slider_listview_text_color);
 
         unreadCountFeeds = new SparseArray<>();
         unreadCountFolders = new SparseArray<>();
