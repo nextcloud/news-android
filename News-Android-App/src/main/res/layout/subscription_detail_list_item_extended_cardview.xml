@@ -26,7 +26,6 @@
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_marginStart="@dimen/listview_row_margin_left"
-            android:layout_marginLeft="@dimen/listview_row_margin_left"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:descendantFocusability="blocksDescendants"
@@ -46,12 +45,9 @@
                 android:id="@+id/imgViewFavIcon"
                 tools:src="@drawable/default_feed_icon_light"
                 android:layout_alignStart="@+id/summary"
-                android:layout_alignLeft="@+id/summary"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
                 android:contentDescription="@string/content_desc_none"/>
 
             <TextView
@@ -65,9 +61,7 @@
                 android:textSize="15sp"
                 android:textAlignment="viewStart"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/imgViewFavIcon"
                 android:layout_toEndOf="@+id/imgViewFavIcon"
-                android:layout_toLeftOf="@+id/tv_item_date"
                 android:layout_toStartOf="@+id/tv_item_date"  />
 
             <TextView
@@ -80,10 +74,8 @@
                 android:singleLine="true"
                 android:textSize="15sp"
                 android:layout_marginEnd="@dimen/listview_row_margin_right"
-                android:layout_marginRight="@dimen/listview_row_margin_left"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:id="@+id/summary"
@@ -99,9 +91,7 @@
                 android:layout_toStartOf="@+id/podcast_wrapper"
                 android:maxLines="4"
                 android:layout_marginTop="5dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/podcast_wrapper"/>
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:id="@+id/body"
@@ -119,8 +109,6 @@
                 android:layout_marginTop="5dp"
                 android:paddingBottom="@dimen/listview_row_margin_bottom"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/podcast_wrapper"
                 android:layout_toStartOf="@+id/podcast_wrapper"/>
 
             <ImageView
@@ -130,15 +118,12 @@
                 android:layout_marginTop="15dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
-                android:paddingLeft="8dp"
                 android:paddingStart="8dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_action_star_light"
                 android:tint="?attr/starredColor"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:paddingEnd="@dimen/listview_row_margin_left"
-                android:paddingRight="@dimen/listview_row_margin_left"
                 android:contentDescription="@string/content_desc_add_to_favorites"/>
 
             <include
@@ -150,7 +135,6 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="22dp"
                 android:id="@+id/podcast_wrapper"
-                android:layout_toLeftOf="@id/star_imageview"
                 android:layout_toStartOf="@id/star_imageview" />
 
         </RelativeLayout>

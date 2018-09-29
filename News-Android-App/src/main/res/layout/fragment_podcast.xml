@@ -95,7 +95,6 @@
                 android:id="@+id/fl_playPausePodcastWrapper"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingRight="@dimen/podcast_horizontal_margin"
                 android:paddingEnd="@dimen/podcast_horizontal_margin">
 
                 <ImageButton

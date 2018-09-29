@@ -15,7 +15,6 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="0dp"
         android:paddingStart="0dp"
         android:layout_marginBottom="4dp"
         android:id="@+id/title_wrapper">
@@ -29,7 +28,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:gravity="start"
             android:id="@+id/ic_menu_title"
@@ -38,7 +36,6 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textAlignment="viewStart"
-            android:layout_toRightOf="@+id/ic_menu_gallery"
             android:layout_toEndOf="@+id/ic_menu_gallery"/>
 
     </RelativeLayout>
@@ -47,7 +44,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:paddingLeft="6dp"
         android:paddingStart="6dp"
         android:id="@+id/ic_menu_item_text"
         android:textAlignment="viewStart"

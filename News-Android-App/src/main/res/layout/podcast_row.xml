@@ -5,7 +5,6 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="10dp"
     android:paddingStart="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
@@ -59,7 +58,6 @@
                 android:id="@+id/tvDownloadPodcastProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 tools:text="100%"
                 android:gravity="center_vertical"
@@ -73,7 +71,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:paddingRight="@dimen/podcast_horizontal_margin"
         android:paddingEnd="@dimen/podcast_horizontal_margin">
 
         <ImageButton
@@ -94,7 +91,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:paddingRight="@dimen/podcast_horizontal_margin"
         android:paddingEnd="@dimen/podcast_horizontal_margin">
 
         <ImageButton
@@ -116,7 +112,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:paddingRight="@dimen/podcast_horizontal_margin"
         android:paddingEnd="@dimen/podcast_horizontal_margin">
 
         <ImageButton
