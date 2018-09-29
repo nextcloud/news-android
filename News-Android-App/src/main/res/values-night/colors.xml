@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-
+<resources>
     <color name="slider_listview_background_color">#383d43</color>
 
-    <color name="slider_listview_text_color">#F0F0F0</color>
+    <color name="primaryTextColor">@android:color/white</color>
 
     <color name="divider_row_color">#292929</color>
 
-    <color name="extended_listview_item_body_text_color">#ffaaaaaa</color>
-
-    <color name="slide_up_panel_header_background_color">#ff343434</color>
-    <color name="slide_up_panel_slider_background_color">#ffdcdcdc</color>
-
     <color name="options_menu_item_text">@color/options_menu_item</color>
+
+    <!-- Color of slide up panel in closed state -->
+    <color name="slide_up_panel_header_background_color">#ff343434</color>
+    <!-- Color when slide up panel is opened (toolbar and bottom bar background -->
+    <color name="slide_up_panel_slider_background_color">#ff343434</color>
 
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#222222</color>
@@ -23,7 +22,7 @@
     <color name="colorPrimary">@color/nextcloudBlue</color>
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
     <color name="colorAccent">#8698af</color>
-    <color name="background">@color/material_grey_900</color>
+    <color name="rssItemListBackground">@color/material_grey_900</color>
 
     <color name="starredColor">@android:color/holo_orange_light</color>
     <color name="unstarredColor">#ffcccccc</color>

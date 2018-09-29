@@ -101,7 +101,7 @@
                 android:textAlignment="viewStart"
                 android:ellipsize="end"
                 tools:text="Body"
-                android:textColor="?attr/extended_listview_item_body_text_color"
+                android:textColor="@color/material_grey_600"
                 android:textSize="14sp"
                 android:autoLink="none"
                 android:layout_below="@+id/summary"

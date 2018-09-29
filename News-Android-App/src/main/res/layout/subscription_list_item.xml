@@ -34,23 +34,21 @@
     </FrameLayout>
 
     <TextView
-		android:id="@+id/summary"
-       	android:layout_width="0dp"
-       	android:layout_height="match_parent"
-       	android:layout_marginLeft="10dp"
+        android:id="@+id/summary"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_marginStart="10dp"
-       	android:gravity="center_vertical|start"
-       	android:singleLine="true"
-       	android:textSize="14sp"
-       	android:textStyle="bold"
-       	android:layout_weight="1"
+        android:gravity="center_vertical|start"
+        android:singleLine="true"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_weight="1"
         android:textAlignment="viewStart"
-       	android:textIsSelectable="false"
+        android:textIsSelectable="false"
         tools:text="Summary"
-        android:alpha=".87"
+        android:textColor="?attr/primaryTextColor"
         android:focusable="false"
         android:clickable="false" />
-    <!--app:typeface="roboto_thin" -->
 
 
     <TextView
@@ -62,6 +60,7 @@
         android:textIsSelectable="false"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="5dp"
+        android:textColor="?attr/primaryTextColor"
         android:textSize="12sp"
         tools:text="13"
         android:alpha=".54" />

@@ -2,8 +2,9 @@
 <resources>
 
     <style name="AppThemeOLED" parent="AppTheme.Base">
-        <item name="rssItemListBackground">#000000</item>
-        <item name="news_detail_background_color">#000000</item>
+        <item name="rssItemListBackground">@android:color/black</item>
+        <item name="news_detail_background_color">@android:color/black</item>
+        <item name="primaryTextColor">@android:color/white</item>
     </style>
 
 
@@ -22,10 +23,9 @@
         <item name="tintColor">@color/tintColor</item>
 
         <item name="dividerLineColor">#1effffff</item>
-        <item name="rssItemListBackground">@color/background</item>
-        <!-- <item name="rssItemListBackground">@color/material_grey_900</item> -->
+        <item name="rssItemListBackground">@color/rssItemListBackground</item>
 
-        <item name="extended_listview_item_body_text_color">@color/extended_listview_item_body_text_color</item>
+        <item name="primaryTextColor">@color/primaryTextColor</item>
 
         <item name="starredColor">@color/starredColor</item>
         <item name="unstarredColor">@color/unstarredColor</item>

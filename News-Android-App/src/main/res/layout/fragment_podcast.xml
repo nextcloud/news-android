@@ -55,7 +55,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:singleLine="true"
-                    android:textColor="@color/slider_listview_text_color" />
+                    android:textColor="@color/primaryTextColor" />
 
                 <!-- media playback ui should always use ltr direction -->
                 <ProgressBar
@@ -79,14 +79,14 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         tools:text="00:00"
-                        android:textColor="@color/slider_listview_text_color" />
+                        android:textColor="@color/primaryTextColor" />
 
                     <TextView
                         android:id="@+id/tv_to"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="00:00"
-                        android:textColor="@color/slider_listview_text_color" />
+                        android:textColor="@color/primaryTextColor" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -131,6 +131,7 @@
                 android:textStyle="bold"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:textColor="@color/primaryTextColor"
                 android:layout_marginLeft="@dimen/podcast_horizontal_margin"
                 android:layout_marginRight="@dimen/podcast_horizontal_margin"
                 android:text="@string/no_podcast_selected"
@@ -255,6 +256,7 @@
                 android:id="@+id/tv_fromSlider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextColor"
                 tools:text="00:00"
                 android:layout_gravity="center_vertical" />
 
@@ -289,6 +291,7 @@
                 android:id="@+id/tv_ToSlider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextColor"
                 tools:text="00:00"
                 android:layout_gravity="center_vertical" />
 

@@ -37,6 +37,7 @@
             android:maxLines="2"
             android:textSize="17sp"
             android:textStyle="bold"
+            android:textColor="?attr/primaryTextColor"
             tools:text="Anruf-InfoSecond" />
 
         <ImageView
