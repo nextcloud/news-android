@@ -30,7 +30,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -53,7 +52,6 @@ import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -110,7 +108,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static final String PREF_SYNC_SETTINGS = "pref_sync_settings";
 
     public static final String SP_APP_THEME = "sp_app_theme";
-    public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
+	public static final String CB_OLED_MODE = "cb_oled_mode";
+
+	public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
     public static final String CACHE_CLEARED = "CACHE_CLEARED";
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
     public static final String SP_SORT_ORDER = "sp_sort_order";
@@ -153,12 +153,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             getSupportActionBar().setTitle(R.string.title_activity_settings);
         }
 
-		TypedValue typedValue = new TypedValue();
-		Resources.Theme theme = getTheme();
-		theme.resolveAttribute(R.attr.rssItemListBackground, typedValue, true);
-		int color = typedValue.data;
-		getWindow().getDecorView().setBackgroundColor(color);
-	}
+		if(ThemeChooser.getInstance(this).isOledMode(this, false)) {
+            getWindow().getDecorView().setBackgroundResource(R.color.rssItemListBackgroundOled);
+		} else {
+            getWindow().getDecorView().setBackgroundResource(R.color.rssItemListBackground);
+        }
+    }
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -475,12 +475,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		if(prefFrag != null)
 		{
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_APP_THEME));
+            bindPreferenceBooleanToValue(prefFrag.findPreference(CB_OLED_MODE));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FEED_LIST_LAYOUT));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_DISPLAY_BROWSER));
 		}
 		else
 		{
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_APP_THEME));
+            bindPreferenceBooleanToValue(prefAct.findPreference(CB_OLED_MODE));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FEED_LIST_LAYOUT));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_DISPLAY_BROWSER));
 		}

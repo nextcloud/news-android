@@ -203,21 +203,20 @@
     <string name="pref_display_apptheme_auto">Light / Dark (based on Daytime)</string>
     <string name="pref_display_apptheme_light">Light</string>
     <string name="pref_display_apptheme_dark">Dark</string>
-    <string name="pref_display_apptheme_dark_oled">Dark (for OLED Screens)</string>
 
     <string-array name="pref_display_apptheme" translatable="false">
         <item>@string/pref_display_apptheme_auto</item>
         <item>@string/pref_display_apptheme_light</item>
         <item>@string/pref_display_apptheme_dark</item>
-        <item>@string/pref_display_apptheme_dark_oled</item>
     </string-array>
     <string-array name="pref_display_apptheme_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
     </string-array>
 
+    <string name="pref_oled_mode">Black background</string>
+    <string name="pref_oled_mode_summary">For dark theme on OLED screens</string>
 
     <string-array name="pref_title_lines_count" translatable="false">
         <item>1</item>
