@@ -897,8 +897,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     String newLayout = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
 
                     if(ThemeChooser.getInstance(NewsReaderListActivity.this).themeRequiresRestartOfUI(NewsReaderListActivity.this) || !newLayout.equals(oldLayout)) {
-                        finish();
-                        startActivity(getIntent());
+                        NewsReaderListActivity.this.recreate();
                     } else if(data.hasExtra(SettingsActivity.CACHE_CLEARED) && ownCloudSyncService != null) {
                         resetUiAndStartSync();
                     }
