@@ -133,7 +133,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		if(isXLargeTablet(this)) {
 			setTheme(R.style.AppThemeSettings);
 		} else {
-			ThemeChooser.ChooseTheme(this);
+			ThemeChooser.chooseTheme(this);
 		}
 
 		super.onCreate(savedInstanceState);

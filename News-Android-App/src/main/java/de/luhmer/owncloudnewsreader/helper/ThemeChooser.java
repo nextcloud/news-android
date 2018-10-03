@@ -51,7 +51,7 @@ public class ThemeChooser {
         isOledMode(context, false); // Init cache
     }
 
-    public static void ChooseTheme(Activity act) {
+    public static void chooseTheme(Activity act) {
         switch(getInstance(act).getSelectedTheme(act, false)) {
             case 0: // Auto (Light / Dark)
                 Log.v(TAG, "Auto (Light / Dark)");
