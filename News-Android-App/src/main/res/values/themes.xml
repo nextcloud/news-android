@@ -3,6 +3,12 @@
 
     <style name="AppTheme" parent="AppTheme.Base"/>
 
+    <style name="AppThemeOLED" parent="AppTheme.Base">
+        <item name="rssItemListBackground">@android:color/black</item>
+        <item name="news_detail_background_color">@android:color/black</item>
+        <item name="primaryTextColor">@android:color/white</item>
+    </style>
+
     <style name="AppTheme.Base" parent="Theme.AppCompat.DayNight">
         <item name="android:windowBackground">@drawable/splash_screen</item>
 

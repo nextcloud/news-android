@@ -64,7 +64,6 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.Search;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import io.reactivex.observers.DisposableObserver;
 
 /**
@@ -382,15 +381,7 @@ public class NewsReaderDetailFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_newsreader_detail, container, false);
 
-		if(ThemeChooser.getInstance(getActivity()).isDarkTheme(rootView.getContext())) {
-            if(ThemeChooser.getInstance(getActivity()).isOledMode(rootView.getContext(), false)) {
-                rootView.setBackgroundResource(R.color.rssItemListBackgroundOled);
-            } else {
-                rootView.setBackgroundResource(R.color.rssItemListBackground);
-            }
-        }
-
-        ButterKnife.bind(this, rootView);
+		ButterKnife.bind(this, rootView);
 
 
         recyclerView.setHasFixedSize(true);
