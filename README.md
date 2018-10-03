@@ -80,6 +80,7 @@ Contributors
 * [Benjamin Stephan](https://github.com/b3nson)
 * [Stefan Niedermann](https://github.com/stefan-niedermann)
 * [Nils Griebner](https://github.com/NilsGriebner)
+* [AnotherDaniel](https://github.com/AnotherDaniel)
 
 Changelog
 ==================================
