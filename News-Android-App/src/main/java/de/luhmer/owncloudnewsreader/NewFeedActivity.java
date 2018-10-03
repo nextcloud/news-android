@@ -16,7 +16,6 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -82,16 +81,6 @@ public class NewFeedActivity extends AppCompatActivity {
         ThemeChooser.ChooseTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_feed);
-
-        ViewGroup rootView = (ViewGroup) ((ViewGroup) this
-                .findViewById(android.R.id.content)).getChildAt(0);
-        if(ThemeChooser.getInstance(this).isDarkTheme(this)) {
-            if(ThemeChooser.getInstance(this).isOledMode(this, false)) {
-                rootView.setBackgroundResource(R.color.rssItemListBackgroundOled);
-            } else {
-                rootView.setBackgroundResource(R.color.rssItemListBackground);
-            }
-        }
 
         ButterKnife.bind(this);
 

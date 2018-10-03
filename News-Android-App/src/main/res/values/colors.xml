@@ -29,7 +29,6 @@
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
     <color name="colorAccent">@color/colorPrimary</color>
     <color name="rssItemListBackground">@android:color/white</color>
-    <color name="rssItemListBackgroundOled">@android:color/white</color>
 
 
     <color name="starredColor">@android:color/holo_orange_light</color>

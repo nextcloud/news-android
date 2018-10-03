@@ -66,6 +66,13 @@ public class ThemeChooser {
                 // what would be a meaningful default? Auto mode?
                 break;
         }
+
+
+        if(ThemeChooser.getInstance(act).isOledMode(act, false)) {
+            if(ThemeChooser.getInstance(act).isDarkTheme(act)) {
+                act.setTheme(R.style.AppThemeOLED);
+            }
+        }
     }
 
     // Check if the currently loaded theme is different from the one set in the settings, or if OLED mode changed
@@ -78,7 +85,6 @@ public class ThemeChooser {
         switch(AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 return true;
-
             case AppCompatDelegate.MODE_NIGHT_AUTO:
                 int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
                 if(Configuration.UI_MODE_NIGHT_YES == nightModeFlags) {
@@ -92,7 +98,7 @@ public class ThemeChooser {
         }
     }
 
-    public Boolean isOledMode(Context context, boolean forceReloadCache) {
+    public boolean isOledMode(Context context, boolean forceReloadCache) {
         if(mOledMode == null || forceReloadCache) {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             mOledMode = mPrefs.getBoolean(SettingsActivity.CB_OLED_MODE, false);
