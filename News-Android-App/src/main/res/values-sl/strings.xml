@@ -26,7 +26,6 @@
     <string name="menu_StartImageCaching">Prejmi slike</string>
     <string name="menu_downloadMoreItems">Prejmi več predmetov</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Označeno</string>
     <string name="action_read">Branje</string>
@@ -162,7 +161,6 @@
     <string name="pref_header_display">Prikaz</string>
     <string name="pref_title_app_theme">Tema programa (za uveljavitev je treba program znova zagnati)</string>
     <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
-    <string name="pref_display_title_lines_count">Vrstični števec za naslov</string>
     <string name="pref_display_browser">Brskalnik</string>
 
 

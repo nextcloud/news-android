@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">הורדת תמונות</string>
     <string name="menu_downloadMoreItems">הורדת פריטים נוספים</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">מסומן בכוכב</string>
     <string name="action_read">נקרא</string>
@@ -131,7 +130,6 @@
     <string name="pref_header_display">תצוגה</string>
     <string name="pref_title_app_theme">ערכת עיצוב היישומון (יש להפעיל את היישומון מחדש כדי להחיל)</string>
     <string name="pref_title_feed_list_layout">פריסת רשימת הזנות</string>
-    <string name="pref_display_title_lines_count">ספירת שורות לכותרת</string>
     <string name="pref_display_browser">דפדפן</string>
 
 

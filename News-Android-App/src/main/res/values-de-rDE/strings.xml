@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Bilder herunterladen</string>
     <string name="menu_downloadMoreItems">Weitere Artikel herunterladen</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Favorisiert</string>
     <string name="action_read">Gelesen</string>
@@ -156,7 +155,6 @@
     <string name="pref_header_display">Anzeige</string>
     <string name="pref_title_app_theme">Nachtmodus</string>
     <string name="pref_title_feed_list_layout">Feed-Listenlayout</string>
-    <string name="pref_display_title_lines_count">Zeilenanzahl des Titels</string>
     <string name="pref_display_browser">Browser</string>
 
 

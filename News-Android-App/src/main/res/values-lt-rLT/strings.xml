@@ -27,7 +27,6 @@
     <string name="menu_StartImageCaching">Atsisiųsti paveikslus</string>
     <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Pažymėti</string>
     <string name="action_read">Skaityti</string>

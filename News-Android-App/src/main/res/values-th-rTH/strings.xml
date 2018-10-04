@@ -22,7 +22,6 @@
     <string name="menu_StartImageCaching">ดาวน์โหลดรูปภาพ</string>
     <string name="menu_downloadMoreItems">ดาวน์โหลดรายการอื่นๆ</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">ติดดาวแล้ว</string>
     <string name="action_read">อ่าน</string>
@@ -123,7 +122,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">แสดงผล</string>
     <string name="pref_title_feed_list_layout">รูปแบบรายการฟีด</string>
-    <string name="pref_display_title_lines_count">จำนวนบรรทัดสำหรับชื่อเรื่อง</string>
     <string name="content_desc_play">เล่น</string>
     <string name="content_desc_pause">หยุดชั่วคราว</string>
     <string name="content_desc_rewind">กรอกลับ</string>

@@ -23,7 +23,6 @@
     <string name="menu_StartImageCaching">სურათების ჩამოტვირთვა</string>
     <string name="menu_downloadMoreItems">მეტი ელემენტის ჩამოტვირთვა</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">ვარსკვლავმინიჭებული</string>
     <string name="action_read">წაკითხვა</string>
@@ -131,7 +130,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">დისპლეი</string>
     <string name="pref_title_feed_list_layout">ლენტის სიის მაკეტი</string>
-    <string name="pref_display_title_lines_count">ხაზების ოდენობა სათაურისთვის</string>
     <string name="pref_display_browser">ბრაუზერი</string>
 
 

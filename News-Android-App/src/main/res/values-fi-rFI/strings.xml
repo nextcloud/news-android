@@ -22,7 +22,6 @@
     <string name="menu_StartImageCaching">Lataa kuvat</string>
     <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Varustettu tähdellä</string>
     <string name="action_read">Luku</string>
@@ -142,7 +141,6 @@
     <string name="pref_header_display">Näyttö</string>
     <string name="pref_title_app_theme">Sovelluksen teema. Käynnistä sovellus uudelleen asettaaksesi muutoksen voimaan. </string>
     <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
-    <string name="pref_display_title_lines_count">Otsikon rivimäärä</string>
     <string name="pref_display_browser">Selain</string>
 
 

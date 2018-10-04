@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Sækja myndir</string>
     <string name="menu_downloadMoreItems">Sækja fleiri atriði</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Stjörnumerkt</string>
     <string name="action_read">Lesa</string>
@@ -156,7 +155,6 @@
     <string name="pref_header_display">Birting</string>
     <string name="pref_title_app_theme">Þema forritsins (endurræstu forritið til að breytingar taki gildi)</string>
     <string name="pref_title_feed_list_layout">Framsetning streymislista</string>
-    <string name="pref_display_title_lines_count">Fjöldi lína í fyrirsögn</string>
     <string name="pref_display_browser">Vafri</string>
 
 
