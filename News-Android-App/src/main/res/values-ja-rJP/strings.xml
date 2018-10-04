@@ -22,7 +22,6 @@
     <string name="menu_StartImageCaching">画像をダウンロード</string>
     <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">共有</string>
     <string name="action_read">読込</string>
@@ -124,7 +123,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">表示</string>
     <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
-    <string name="pref_display_title_lines_count">タイトルの行数</string>
     <string name="content_desc_play">再生</string>
     <string name="content_desc_pause">一時停止</string>
     <string name="content_desc_rewind">巻戻し</string>

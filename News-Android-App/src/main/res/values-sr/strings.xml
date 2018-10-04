@@ -26,7 +26,6 @@
     <string name="menu_StartImageCaching">Преузми слике</string>
     <string name="menu_downloadMoreItems">Преузми још ставки</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Озвездано</string>
     <string name="action_read">Читај</string>
@@ -161,7 +160,6 @@
     <string name="pref_header_display">Приказ</string>
     <string name="pref_title_app_theme">Тема апликације (поново покрените програм да видите промене)</string>
     <string name="pref_title_feed_list_layout">Распоред листе довода</string>
-    <string name="pref_display_title_lines_count">Број линија у наслову</string>
     <string name="pref_display_browser">Прегледач</string>
 
 
@@ -169,9 +167,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Акционе иконица (детаљни приказ)</string>
 
-    <string name="pref_display_apptheme_dark">Тамна</string>
-    <string name="pref_display_apptheme_dark_oled">Тамна (за OLED екране)</string>
-    <string name="pref_display_apptheme_light">Светла</string>
+    <string name="pref_display_apptheme_night">Тамна</string>
+    <string name="pref_display_apptheme_auto">Тамна (за OLED екране)</string>
+    <string name="pref_display_apptheme_day">Светла</string>
 
     <string name="pref_display_browser_cct">Уграђени Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Уграђени Веб читач</string>

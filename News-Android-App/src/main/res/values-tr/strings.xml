@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Görselleri indir</string>
     <string name="menu_downloadMoreItems">Diğer ögeleri indir</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Yıldızlanmış</string>
     <string name="action_read">Oku</string>
@@ -156,7 +155,6 @@
     <string name="pref_header_display">Görüntüle</string>
     <string name="pref_title_app_theme">Uygulama teması (geçerli olması için uygulamayı yeninden başlatın)</string>
     <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>
-    <string name="pref_display_title_lines_count">Başlığın satır sayısı</string>
     <string name="pref_display_browser">Tarayıcı</string>
 
 
@@ -164,9 +162,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (Ayrıntı Görünümü)</string>
 
-    <string name="pref_display_apptheme_dark">Koyu</string>
-    <string name="pref_display_apptheme_dark_oled">Koyu (OLED ekranlar için)</string>
-    <string name="pref_display_apptheme_light">Açık</string>
+    <string name="pref_display_apptheme_night">Koyu</string>
+    <string name="pref_display_apptheme_auto">Koyu (OLED ekranlar için)</string>
+    <string name="pref_display_apptheme_day">Açık</string>
 
     <string name="pref_display_browser_cct">Özel İç Chrome Sekmeleri</string>
     <string name="pref_display_browser_built_in">İç Tarayıcı</string>

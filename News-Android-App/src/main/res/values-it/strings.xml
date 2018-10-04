@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Scarica le immagini</string>
     <string name="menu_downloadMoreItems">Scarica altri elementi</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Preferiti</string>
     <string name="action_read">Lettura</string>
@@ -156,7 +155,6 @@
     <string name="pref_header_display">Schermo</string>
     <string name="pref_title_app_theme">Tema dell\'applicazione (riavvia il programma per applicarlo)</string>
     <string name="pref_title_feed_list_layout">Struttura elenco fonti</string>
-    <string name="pref_display_title_lines_count">Numero di righe per il titolo</string>
     <string name="pref_display_browser">Browser</string>
 
 
@@ -164,9 +162,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Azioni delle icone (vista dettagliata)</string>
 
-    <string name="pref_display_apptheme_dark">Scuro</string>
-    <string name="pref_display_apptheme_dark_oled">Scuro (per schermi OLED)</string>
-    <string name="pref_display_apptheme_light">Chiaro</string>
+    <string name="pref_display_apptheme_night">Scuro</string>
+    <string name="pref_display_apptheme_auto">Scuro (per schermi OLED)</string>
+    <string name="pref_display_apptheme_day">Chiaro</string>
 
     <string name="pref_display_browser_cct">Schede personalizzate di Chrome integrate</string>
     <string name="pref_display_browser_built_in">Broswer integrato</string>

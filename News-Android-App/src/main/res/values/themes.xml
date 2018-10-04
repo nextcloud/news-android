@@ -1,70 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppThemeOLED" parent="AppTheme.Base">
-        <item name="rssItemListBackground">#000000</item>
-        <item name="news_detail_background_color">#000000</item>
-    </style>
-
-
     <style name="AppTheme" parent="AppTheme.Base"/>
 
-    <style name="AppTheme.Base" parent="Theme.AppCompat">
+    <style name="AppThemeOLED" parent="AppTheme.Base">
+
+        <!-- for settings activity -->
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorSecondary">@color/material_grey_500</item>
+        <!-- for settings activity end-->
+
+
+        <item name="rssItemListBackground">@android:color/black</item>
+        <item name="news_detail_background_color">@android:color/black</item>
+        <item name="primaryTextColor">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.DayNight">
         <item name="android:windowBackground">@drawable/splash_screen</item>
 
-        <item name="colorPrimary">@color/colorPrimaryDarkTheme</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkDarkTheme</item>
-        <item name="colorAccent">@color/colorAccentDarkTheme</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
 
-        <item name="tintColor">@color/tintColorDark</item>
+        <item name="tintColor">@color/tintColor</item>
 
         <item name="dividerLineColor">#1effffff</item>
-        <item name="rssItemListBackground">@color/material_grey_900</item>
+        <item name="rssItemListBackground">@color/rssItemListBackground</item>
 
-        <item name="extended_listview_item_body_text_color">@color/extended_listview_item_body_text_color_dark_theme</item>
+        <item name="primaryTextColor">@color/primaryTextColor</item>
 
-        <item name="starredColor">@color/starredColorDark</item>
-        <item name="unstarredColor">@color/unstarredColorDark</item>
+        <item name="starredColor">@color/starredColor</item>
+        <item name="unstarredColor">@color/unstarredColor</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread</item>
         <item name="starredDrawable">@drawable/swipe_setstarred</item>
 
-        <item name="news_detail_background_color">@color/news_detail_background_color_dark_theme</item>
+        <item name="news_detail_background_color">@color/news_detail_background_color</item>
     </style>
 
-    <style name="AppThemeLight" parent="AppThemeLight.Base"/>
-
-    <style name="AppThemeSettings" parent="AppThemeLight">
-        <item name="android:windowBackground">@color/slider_listview_background_color_light_theme</item>
-    </style>
-
-    <style name="AppThemeLight.Base" parent="Theme.AppCompat.Light">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-
-        <item name="colorPrimary">@color/colorPrimaryLightTheme</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkLightTheme</item>
-        <item name="colorAccent">@color/colorAccentLightTheme</item>
-
-        <item name="tintColor">@color/tintColorLight</item>
-
-        <item name="android:textColor">#000</item>
-        <!-- <item name="android:textColorSecondary">@color/slider_listview_text_color_dark_theme</item> -->
-
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-
-        <item name="dividerLineColor">#1e000000</item>
-        <item name="rssItemListBackground">#ffdedede</item>
-
-        <item name="extended_listview_item_body_text_color">@color/extended_listview_item_body_text_color_light_theme</item>
-
-        <item name="starredColor">@color/starredColorLight</item>
-        <item name="unstarredColor">@color/unstarredColorLight</item>
-        <item name="markasreadDrawable">@drawable/swipe_markasread_light</item>
-        <item name="starredDrawable">@drawable/swipe_setstarred_light</item>
-
-        <item name="news_detail_background_color">@color/news_detail_background_color_light_theme</item>
+    <style name="AppThemeSettings" parent="AppTheme.Base">
+        <item name="android:windowBackground">@color/slider_listview_background_color</item>
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

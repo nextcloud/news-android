@@ -2,12 +2,13 @@
 <resources>
 
     <string name="auto_sync_string">Samodejno usklajevanje</string>
-    <string name="title_activity_sync_interval_selector">Izbirnik razmika usklajevanja</string>
+    <string name="title_activity_sync_interval_selector">Izbirnik razmika med usklajevanji</string>
     <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
-    <string name="empty_view_content">Ni vsebine</string>
-    <string name="no_wifi_available">Ni vzpostavljene povezave WiFi</string>
+    <string name="empty_view_content">Ni nobene novice.</string>
+    <string name="no_wifi_available">Ni vzpostavljene povezave Wi-Fi</string>
+    <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike, čeprav ni vzpostavljene povezave prek Wi-Fi?</string>
     <string name="current_version">V uporabi je različica %s</string>
-    <string name="widget_header">Novice ownCloud</string>
+    <string name="widget_header">Novice Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nov predmet je na voljo</item>
         <item quantity="two">%d nova predmeta sta na voljo</item>
@@ -25,12 +26,12 @@
     <string name="menu_StartImageCaching">Prejmi slike</string>
     <string name="menu_downloadMoreItems">Prejmi več predmetov</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Označeno</string>
     <string name="action_read">Branje</string>
     <string name="action_playPodacst">Predvajaj podcast</string>
-    <string name="action_Share">Souporaba</string>
+    <string name="action_openInBrowser">Odpri v brskalniku</string>
+    <string name="action_Share">Objavi za druge</string>
     <string name="action_login">Nastavitve strežnika</string>
     <string name="action_save">Shrani</string>
     <string name="action_settings">Nastavitve</string>
@@ -58,35 +59,43 @@
 
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Prejmi sliko</string>
-    <string name="action_img_sharelink">Omogoči souporabo povezave do slike</string>
+    <string name="action_img_sharelink">Objavi povezavo do slike</string>
     <string name="action_img_open">Pokaži sliko v brskalniku</string>
     <string name="action_img_copylink">Kopiraj povezavo do slike</string>
-    <string name="action_link_share">Omogoči souporabo povezave</string>
+    <string name="action_link_share">Objavi povezavo</string>
     <string name="action_link_open">Odpri povezavo v brskalniku</string>
     <string name="action_link_copy">Kopiraj povezavo</string>
     <string name="toast_img_download_wait">Poteka prejemanje ...</string>
+    <string name="toast_img_saved">Slika je shranjena.</string>
     <string name="toast_img_notwriteable">Zapisovanje slike je spodletelo.</string>
     <string name="toast_copied_to_clipboard">Kopirano v odložišče</string>
     <string name="error_download_failed">Prejemanje je spodletelo</string>
-    <string name="intent_title_share">Omogoči souporabo prek</string>
+    <string name="intent_title_share">Objavi prek</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Odstrani vir</string>
     <string name="action_feed_rename">Preimenuj vir</string>
+    <string name="action_feed_move">Premakni vir</string>
     <string name="feed_remove_button">Odstrani</string>
     <string name="feed_rename_button">Preimenuj</string>
-    <string name="confirm_feed_remove">Ali res želite odstraniti ta vir? Dejanjaa ni mogoče povrniti!</string>
+    <string name="confirm_feed_remove">Ali res želite odstraniti ta vir? Dejanja ni mogoče povrniti!</string>
+    <string name="feed_move_list_description">Izbor mape za premikanje vira</string>
+    <string name="move_feed_root_folder">Korenska mapa</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Uporabniško ime</string>
     <string name="pref_title_password">Geslo</string>
-    <string name="pref_title_owncloudRootPath">korenski naslov oblaka ownCloud</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Korenski naslov oblaka Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Prijava</string>
-    <string name="login_progress_signing_in">Prijavljanje ...</string>
+    <string name="login_progress_signing_in">Poteka prijavljanje ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">Vpis v to polje je obvezno</string>
+    <string name="error_field_required">Vpis v to polje je obvezen</string>
+    <string name="error_invalid_url">Napačen naslov URL</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Uvozi račun</string>
 
@@ -116,15 +125,25 @@
     <string name="pref_header_general">Splošno</string>
     <string name="pref_title_general_sort_order">Način razvrščanja</string>
 
-    <string name="dialog_clearing_cache">Čiščenje predpomnilnika</string>
+    <string name="pref_general_sort_order_new_old">Od novejših do starejših</string>
+    <string name="pref_general_sort_order_old_new">Od starejših do novejših</string>
+
+    <string name="pref_title_general_search_in">Poišči v</string>
+
+    <string name="pref_general_search_in_title">Naslov</string>
+    <string name="pref_general_search_in_body">Vsebina</string>
+
+    <string name="dialog_clearing_cache">Poteka čiščenje predpomnilnika</string>
     <string name="dialog_clearing_cache_please_wait">Poteka čiščenje predpomnilnika ...</string>
     <string name="reset_cache_unsaved_changes">Obstajajo neusklajene spremembe. Ali želite vseeno počistiti predpomnilnik?</string>
     <string name="warning">Opozorilo</string>
     <string name="pref_title_AutoSyncOnStart">Uskladi ob zagonu</string>
     <string name="pref_title_ShowOnlyUnread">Pokaži le neprebrane prispevke</string>
     <string name="pref_title_DisableHostnameVerification">Onemogoči overjanje imena gostitelja</string>
-    <string name="pref_title_NavigateWithVolumeButtons">Pomikanje po zaslonu z uporabo gumbov za glasnost</string>
-    <string name="pref_title_MarkAsReadWhileScrolling">Označi kot prebrano med pomikanjem med predmeti</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Omogoči pomikanje po zaslonu z gumbm za glasnost</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Med pomikanjem predmete označi kot prebrane</string>
+    <string name="pref_title_OpenInBrowserDirectly">Preskoči podrobni pogled in odpri vir v brskalniku</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
     <string name="mtm_decision_always">Vedno</string>
@@ -135,19 +154,44 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ni izbranega podcasta</string>
     <string name="no_chapters_available">V prispevku ni poglavij</string>
+    <string name="podcast_playback_speed_dialog_title">Hitrost predvajanja</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Prikaz</string>
+    <string name="pref_title_app_theme">Tema programa (za uveljavitev je treba program znova zagnati)</string>
     <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
-    <string name="pref_display_title_lines_count">Vrstični števec za naslov</string>
+    <string name="pref_display_browser">Brskalnik</string>
+
+
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Ikone dejavnosti (podrobni pogled)</string>
+
+    <string name="pref_display_apptheme_dark">Temna</string>
+    <string name="pref_display_apptheme_dark_oled">Temna (za zaslone OLED)</string>
+    <string name="pref_display_apptheme_light">Svetla</string>
+
+    <string name="pref_display_browser_cct">Vgrajen Chrome z zavihki</string>
+    <string name="pref_display_browser_built_in">Vgrajen brskalnik</string>
+    <string name="pref_display_browser_external">Zunanji brskalnik</string>
+
+    <string name="pref_display_feed_list_layout_simple">Enostavna</string>
+    <string name="pref_display_feed_list_layout_extended">Razširjena</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Razširjena (polno besedilo)</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Razširjena z Webview</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Razširjena s Cardview</string>
+
     <string name="content_desc_play">predvajaj</string>
     <string name="content_desc_pause">premor</string>
+    <string name="content_desc_playback_speed">hitrost predvajanja</string>
     <string name="content_desc_rewind">skoči nazaj</string>
     <string name="content_desc_forward">skoči naprej</string>
     <string name="content_desc_expand">razširi</string>
-    <string name="content_desc_collapse">zloži</string>
+    <string name="content_desc_collapse">skrči</string>
     <string name="content_desc_mark_as_read">označi kot prebrano</string>
     <string name="content_desc_mark_as_unread">označi kot neprebrano</string>
-    <string name="content_desc_tap_to_refresh">s pritiskom osveži</string>
+    <string name="content_desc_tap_to_refresh">osveži s potegom</string>
     <string name="content_desc_add_to_favorites">dodaj med priljubljene</string>
     <string name="content_desc_remove_from_favorites">odstrani iz priljubljenih</string>
     <string name="content_desc_show_password">pokaži geslo</string>
@@ -158,12 +202,13 @@
 
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Obvestila</string>
-    <string name="pref_title_notification_new_articles_available">Pokaži obvestilo, ko je na voljo nov prispevek</string>
+    <string name="pref_title_notification_new_articles_available">Pokaži obvestilo, ko so na voljo novi prispevki</string>
 
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Napaka</string>
     <string name="login_dialog_text_something_went_wrong">Prišlo je do napake :(</string>
+    <string name="login_dialog_text_not_compatible">Program ni skladen s programom Novice Nextcloud. Posodobiti je treba program in vire.</string>
     <string name="login_dialog_title_security_warning">Varnostno opozorilo</string>
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Podatki in usklajevanje</string>
@@ -173,5 +218,21 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">Nikoli</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Le prek Wi-Fi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Prek Wi-Fi in prek mobilnega dostopa</string>
+    <string name="pref_data_sync_image_cache_ask">Vprašaj, kadar povezava ni vzpostavljena prek Wi-Fi</string>
+
+    <string name="array_sync_interval_min_5">5 minut</string>
+    <string name="array_sync_interval_min_15">15 minut</string>
+    <string name="array_sync_interval_min_30">30 minut</string>
+    <string name="array_sync_interval_min_45">45 minut</string>
+    <string name="array_sync_interval_hour_1">1 ura</string>
+    <string name="array_sync_interval_hour_2">2 uri</string>
+    <string name="array_sync_interval_hour_3">3 ure</string>
+    <string name="array_sync_interval_hour_6">6 ur</string>
+    <string name="array_sync_interval_hour_12">12 ur</string>
+    <string name="array_sync_interval_hour_24">24 ur</string>
 
     </resources>

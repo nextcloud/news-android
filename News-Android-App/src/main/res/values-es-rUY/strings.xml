@@ -23,7 +23,6 @@
     <string name="menu_StartImageCaching">Descargar imágenes</string>
     <string name="menu_downloadMoreItems">Descargar más artículos</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Marcado como favorito</string>
     <string name="action_read">Leer</string>
@@ -131,7 +130,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_feed_list_layout">Lista de fuentes</string>
-    <string name="pref_display_title_lines_count">Conteo de Líneas para título</string>
     <string name="pref_display_news_detail_actionbar_icons_title">Íconos de acción (Vista Detallada)</string>
 
     <string name="content_desc_play">reproducir</string>

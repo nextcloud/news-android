@@ -23,7 +23,6 @@
     <string name="menu_StartImageCaching">Laadi pildid alla</string>
     <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Tärniga märgitud</string>
     <string name="action_read">Lugemine</string>
@@ -118,7 +117,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Vaade</string>
     <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>
-    <string name="pref_display_title_lines_count">Pealkirja ridade arv</string>
     <string name="content_desc_play">esita</string>
     <string name="content_desc_pause">peata</string>
     <string name="content_desc_rewind">keri tagasi</string>

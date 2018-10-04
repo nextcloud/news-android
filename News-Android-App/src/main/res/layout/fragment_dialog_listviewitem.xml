@@ -23,11 +23,9 @@
     android:gravity="center_vertical|start"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
     android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-    android:paddingRight="?android:attr/listPreferredItemPaddingRight"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:textAlignment="viewStart"
     android:textStyle="normal"
-    android:paddingLeft="6dp"
     android:ellipsize="marquee"
     tools:text="One list item"
     />

@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Last ned bilder</string>
     <string name="menu_downloadMoreItems">Last ned flere elementer</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Merket</string>
     <string name="action_read">Les</string>
@@ -146,7 +145,6 @@
     <string name="pref_header_display">Vis</string>
     <string name="pref_title_app_theme">App- tema (start programmet igjen for å se endringen)</string>
     <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
-    <string name="pref_display_title_lines_count">Antall linjer for tittel</string>
     <string name="pref_display_browser">Nettleser</string>
 
 
@@ -154,9 +152,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
 
-    <string name="pref_display_apptheme_dark">Mørk</string>
-    <string name="pref_display_apptheme_dark_oled">Mørk (for OLED- skjermer)</string>
-    <string name="pref_display_apptheme_light">Lys</string>
+    <string name="pref_display_apptheme_night">Mørk</string>
+    <string name="pref_display_apptheme_auto">Mørk (for OLED- skjermer)</string>
+    <string name="pref_display_apptheme_day">Lys</string>
 
     <string name="pref_display_browser_cct">Innebygde tilpassede Chrome-faner</string>
     <string name="pref_display_browser_built_in">Innebygd nettleser</string>

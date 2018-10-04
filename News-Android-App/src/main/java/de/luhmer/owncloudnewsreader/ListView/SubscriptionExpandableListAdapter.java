@@ -103,7 +103,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
     }
 
-    private int mTextColorLightTheme;
     private FavIconHandler favIconHandler;
 
     LayoutInflater inflater;
@@ -115,8 +114,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	this.mContext = mContext;
     	this.dbConn = dbConn;
-
-        mTextColorLightTheme = ContextCompat.getColor(mContext, R.color.slider_listview_text_color_light_theme);
 
         unreadCountFeeds = new SparseArray<>();
         unreadCountFolders = new SparseArray<>();
@@ -368,7 +365,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
     private int getBtn_rating_star_off_normal_holo_light() {
         if(btn_rating_star_off_normal_holo_light == null) {
-            if(ThemeChooser.getInstance(mContext).isDarkTheme()) {
+            if(ThemeChooser.getInstance(mContext).isDarkTheme(mContext)) {
                 btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_dark;
             } else {
                 btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_light;

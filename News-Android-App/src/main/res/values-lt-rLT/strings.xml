@@ -27,7 +27,6 @@
     <string name="menu_StartImageCaching">Atsisiųsti paveikslus</string>
     <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Pažymėti</string>
     <string name="action_read">Skaityti</string>
@@ -171,9 +170,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Veiksmų ikonos (Išsamus atvaizdavimas)</string>
 
-    <string name="pref_display_apptheme_dark">Tamsi</string>
-    <string name="pref_display_apptheme_dark_oled">Tamsi (OLED ekranams)</string>
-    <string name="pref_display_apptheme_light">Šviesi</string>
+    <string name="pref_display_apptheme_night">Tamsi</string>
+    <string name="pref_display_apptheme_auto">Tamsi (OLED ekranams)</string>
+    <string name="pref_display_apptheme_day">Šviesi</string>
 
     <string name="pref_display_browser_cct">Integruoti Chrome adaptuoti tabuliacijos klavišai</string>
     <string name="pref_display_browser_built_in">Integruota naršyklė</string>

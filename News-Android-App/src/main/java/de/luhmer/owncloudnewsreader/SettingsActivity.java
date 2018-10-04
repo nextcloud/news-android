@@ -110,10 +110,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static final String PREF_SYNC_SETTINGS = "pref_sync_settings";
 
     public static final String SP_APP_THEME = "sp_app_theme";
-    public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
+	public static final String CB_OLED_MODE = "cb_oled_mode";
+
+	public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
     public static final String CACHE_CLEARED = "CACHE_CLEARED";
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
-    public static final String SP_TITLE_LINES_COUNT = "sp_title_lines_count";
     public static final String SP_SORT_ORDER = "sp_sort_order";
 	public static final String SP_DISPLAY_BROWSER = "sp_display_browser";
 	public static final String SP_SEARCH_IN = "sp_search_in";
@@ -132,7 +133,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		if(isXLargeTablet(this)) {
 			setTheme(R.style.AppThemeSettings);
 		} else {
-			ThemeChooser.ChooseTheme(this);
+			ThemeChooser.chooseTheme(this);
 		}
 
 		super.onCreate(savedInstanceState);
@@ -154,12 +155,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             getSupportActionBar().setTitle(R.string.title_activity_settings);
         }
 
-		TypedValue typedValue = new TypedValue();
-		Resources.Theme theme = getTheme();
-		theme.resolveAttribute(R.attr.rssItemListBackground, typedValue, true);
-		int color = typedValue.data;
-		getWindow().getDecorView().setBackgroundColor(color);
-	}
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getTheme();
+        theme.resolveAttribute(R.attr.rssItemListBackground, typedValue, true);
+        int color = typedValue.data;
+        getWindow().getDecorView().setBackgroundColor(color);
+    }
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -476,15 +477,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		if(prefFrag != null)
 		{
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_APP_THEME));
+            bindPreferenceBooleanToValue(prefFrag.findPreference(CB_OLED_MODE));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FEED_LIST_LAYOUT));
-			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_TITLE_LINES_COUNT));
-            bindPreferenceSummaryToValue(prefFrag.findPreference(SP_DISPLAY_BROWSER));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_DISPLAY_BROWSER));
 		}
 		else
 		{
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_APP_THEME));
+            bindPreferenceBooleanToValue(prefAct.findPreference(CB_OLED_MODE));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FEED_LIST_LAYOUT));
-			bindPreferenceSummaryToValue(prefAct.findPreference(SP_TITLE_LINES_COUNT));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_DISPLAY_BROWSER));
 		}
 	}

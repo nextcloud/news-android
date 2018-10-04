@@ -44,6 +44,10 @@
 }
 
 
+# AndroidSlidingUpPanel
+# https://github.com/umano/AndroidSlidingUpPanel/issues/921
+-dontwarn com.sothree.slidinguppanel.SlidingUpPanelLayout
+
 
 
 # Butterknife

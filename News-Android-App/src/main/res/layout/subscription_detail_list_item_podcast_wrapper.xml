@@ -11,23 +11,36 @@
 
     <ImageView
         android:id="@+id/btn_playPausePodcast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:tint="?attr/tintColor"
         android:contentDescription="@string/content_desc_pause"
         android:src="@drawable/ic_action_pause" />
 
+    <ProgressBar
+        android:id="@+id/podcastDownloadProgress"
+        android:indeterminate="false"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="90"
+        android:layout_gravity="center"
+        android:progressDrawable="@drawable/custom_progress"/>
+
+    <!--
     <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar
         android:id="@+id/podcastDownloadProgress"
         android:layout_width="30dp"
         android:layout_height="30dp"
 
         app:stroke_width="2dp"
-        app:progress_color="@color/colorPrimaryDarkDarkTheme"
+        app:progress_color="@color/colorPrimaryDark"
         app:progress_background_color="#8e8e8e"
         app:marker_visible="false"
         app:thumb_visible="false"
         android:layout_gravity="center" />
+    -->
 
 </FrameLayout>

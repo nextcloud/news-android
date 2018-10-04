@@ -170,7 +170,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         mProgressBarLoading.setVisibility(View.VISIBLE);
 
         NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
-        if(background_color != Integer.MIN_VALUE && ThemeChooser.getInstance(ndActivity).isDarkTheme())
+        if(background_color != Integer.MIN_VALUE && ThemeChooser.getInstance(ndActivity).isDarkTheme(ndActivity))
         {
             mWebView.setBackgroundColor(background_color);
             ndActivity.mViewPager.setBackgroundColor(background_color);
@@ -269,7 +269,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                 switch(selectedBrowser) {
                     case 0: // Custom Tabs
                         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                        builder.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDarkTheme));
+                        builder.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
                         builder.setShowTitle(true);
                         builder.setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
                         builder.setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right);

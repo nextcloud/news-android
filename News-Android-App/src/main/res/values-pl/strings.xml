@@ -21,7 +21,6 @@
     <string name="menu_StartImageCaching">Pobierz obrazki</string>
     <string name="menu_downloadMoreItems">Pobierz więcej elementów</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Oznaczone</string>
     <string name="action_read">Odczyt</string>
@@ -122,7 +121,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Wygląd</string>
     <string name="pref_title_feed_list_layout">Układ listy kanałów</string>
-    <string name="pref_display_title_lines_count">Licznik linii tytułu</string>
     <string name="pref_display_browser">Przeglądarka</string>
 
 
@@ -130,9 +128,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcji (Widok szczegółowy)</string>
 
-    <string name="pref_display_apptheme_dark">Ciemny</string>
-    <string name="pref_display_apptheme_dark_oled">Ciemny (dla ekranów OLED)</string>
-    <string name="pref_display_apptheme_light">Jasny</string>
+    <string name="pref_display_apptheme_night">Ciemny</string>
+    <string name="pref_display_apptheme_auto">Ciemny (dla ekranów OLED)</string>
+    <string name="pref_display_apptheme_day">Jasny</string>
 
     <string name="content_desc_play">odtwarzanie</string>
     <string name="content_desc_pause">pauza</string>

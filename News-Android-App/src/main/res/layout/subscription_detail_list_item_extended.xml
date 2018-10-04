@@ -87,9 +87,7 @@
             android:layout_toStartOf="@+id/podcast_wrapper"
             android:maxLines="4"
             android:layout_marginTop="5dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/podcast_wrapper"/>
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/body"
@@ -99,7 +97,7 @@
             android:textAlignment="viewStart"
             android:ellipsize="end"
             tools:text="Body"
-            android:textColor="?attr/extended_listview_item_body_text_color"
+            android:textColor="@color/material_grey_600"
             android:textSize="14sp"
             android:autoLink="none"
             android:layout_below="@+id/summary"
@@ -107,8 +105,6 @@
             android:layout_marginTop="5dp"
             android:paddingBottom="@dimen/listview_row_margin_bottom"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/podcast_wrapper"
             android:layout_toStartOf="@+id/podcast_wrapper"/>
 
         <ImageView
@@ -118,15 +114,12 @@
             android:layout_marginTop="15dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:paddingLeft="8dp"
             android:paddingStart="8dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_action_star_light"
             android:tint="?attr/starredColor"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:paddingEnd="@dimen/listview_row_margin_left"
-            android:paddingRight="@dimen/listview_row_margin_left"
             android:contentDescription="@string/content_desc_add_to_favorites"/>
 
         <include
@@ -138,7 +131,6 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="22dp"
             android:id="@+id/podcast_wrapper"
-            android:layout_toLeftOf="@id/star_imageview"
             android:layout_toStartOf="@id/star_imageview" />
 
     </RelativeLayout>
