@@ -34,6 +34,7 @@ import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -42,6 +43,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -82,6 +84,8 @@ public class NewsReaderDetailFragment extends Fragment {
     private int accentColor;
     private Parcelable layoutManagerSavedState;
 
+    // Variables related to mark as read when scrolling
+    private int previousFirstVisibleItem = -1;
 
     /**
      * @return the idFeed
@@ -345,6 +349,12 @@ public class NewsReaderDetailFragment extends Fragment {
         @Override
         protected void onPostExecute(List<RssItem> rssItem) {
             loadRssItemsIntoView(rssItem);
+
+            if(rssItem.size() < 10) { // Less than 10 items in the list (usually 3-5 items fit on one screen)
+                recyclerView.addOnItemTouchListener(itemTouchListener);
+            } else {
+                recyclerView.removeOnItemTouchListener(itemTouchListener);
+            }
         }
     }
 
@@ -400,33 +410,12 @@ public class NewsReaderDetailFragment extends Fragment {
         swipeRefresh.setColorSchemeColors(accentColor);
         swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) getActivity());
 
-        /*
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            GestureDetectorCompat detector = new GestureDetectorCompat(getActivity(), new RecyclerViewOnGestureListener());
-
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                detector.onTouchEvent(e);
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-            }
-        });
-        */
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy)
             {
-                if(dy > 0) //check for scroll down
-                {
+                if(dy > 0) { //check for scroll down
                     if(mMarkAsReadWhileScrollingEnabled) {
                         //Log.v(TAG, "Scroll Delta y: " + dy);
                         handleMarkAsReadScrollEvent();
@@ -436,11 +425,25 @@ public class NewsReaderDetailFragment extends Fragment {
         });
 
         return rootView;
-	}
+    }
 
+    private RecyclerView.OnItemTouchListener itemTouchListener = new RecyclerView.OnItemTouchListener() {
+        GestureDetectorCompat detector = new GestureDetectorCompat(getActivity(), new RecyclerViewOnGestureListener());
 
-	private int previousFirstVisibleItem = -1;
-	private void handleMarkAsReadScrollEvent() {
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            detector.onTouchEvent(e);
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) { }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
+    };
+
+    private void handleMarkAsReadScrollEvent() {
         LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
         NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
 
@@ -451,8 +454,9 @@ public class NewsReaderDetailFragment extends Fragment {
         boolean reachedBottom = (lastVisibleItem == (totalItemCount-1));
 
         // Exit if the position didn't change.
-        if(firstVisibleItem == previousFirstVisibleItem && !reachedBottom)
+        if(firstVisibleItem == previousFirstVisibleItem && !reachedBottom) {
             return;
+        }
         previousFirstVisibleItem = firstVisibleItem;
 
 
@@ -490,7 +494,7 @@ public class NewsReaderDetailFragment extends Fragment {
         }
     }
 
-    /*
+
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
@@ -499,7 +503,7 @@ public class NewsReaderDetailFragment extends Fragment {
             }
             return super.onScroll(e1, e2, distanceX, distanceY);
         }
-    }*/
+    }
 
 
     @Override
