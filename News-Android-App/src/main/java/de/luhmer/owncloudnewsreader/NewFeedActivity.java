@@ -84,6 +84,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

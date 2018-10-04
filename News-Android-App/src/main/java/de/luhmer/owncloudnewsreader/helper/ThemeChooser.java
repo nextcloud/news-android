@@ -34,6 +34,7 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 public class ThemeChooser {
 
     private Integer mSelectedTheme;
+    private Boolean mOledMode;
     private static ThemeChooser mInstance;
 
     public static ThemeChooser getInstance(Context context) {
@@ -61,23 +62,29 @@ public class ThemeChooser {
                 act.setTheme(R.style.AppTheme);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 break;
-            case 3: // Dark Theme for OLED
-                act.setTheme(R.style.AppThemeOLED);
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            default:
+                // what would be a meaningful default? Auto mode?
                 break;
+        }
+
+
+        if(ThemeChooser.getInstance(act).isOledMode(act, false)) {
+            if(ThemeChooser.getInstance(act).isDarkTheme(act)) {
+                act.setTheme(R.style.AppThemeOLED);
+            }
         }
     }
 
-    // Check if the currently loaded theme is different from the one set in the settings
+    // Check if the currently loaded theme is different from the one set in the settings, or if OLED mode changed
     public boolean themeRequiresRestartOfUI(Context context) {
-        return !mSelectedTheme.equals(getSelectedTheme(context, true));
+        return !mSelectedTheme.equals(getSelectedTheme(context, true)) ||
+               !mOledMode.equals(isOledMode(context, true));
     }
 
     public boolean isDarkTheme(Context context) {
         switch(AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 return true;
-
             case AppCompatDelegate.MODE_NIGHT_AUTO:
                 int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
                 if(Configuration.UI_MODE_NIGHT_YES == nightModeFlags) {
@@ -89,6 +96,14 @@ public class ThemeChooser {
             default:
                 return false;
         }
+    }
+
+    public boolean isOledMode(Context context, boolean forceReloadCache) {
+        if(mOledMode == null || forceReloadCache) {
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            mOledMode = mPrefs.getBoolean(SettingsActivity.CB_OLED_MODE, false);
+        }
+        return mOledMode;
     }
 
     public Integer getSelectedTheme(Context context, boolean forceReloadCache) {

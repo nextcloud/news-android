@@ -24,6 +24,7 @@
     <color name="colorAccent">#8698af</color>
     <color name="rssItemListBackground">@color/material_grey_900</color>
 
+
     <color name="starredColor">@android:color/holo_orange_light</color>
     <color name="unstarredColor">#ffcccccc</color>
     <color name="markasreadColor">@android:color/holo_green_light</color>

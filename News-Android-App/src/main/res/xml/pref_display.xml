@@ -12,8 +12,13 @@
         android:entryValues="@array/pref_display_apptheme_values"
         android:key="sp_app_theme"
         android:title="@string/pref_title_app_theme" />
-    
-    
+
+    <SwitchPreference
+        android:key="cb_oled_mode"
+        android:title="@string/pref_oled_mode"
+        android:summary="@string/pref_oled_mode_summary"/>
+
+
     <ListPreference
         android:defaultValue="0"
         android:entries="@array/pref_display_feed_list_layout"
