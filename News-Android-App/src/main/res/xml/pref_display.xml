@@ -17,7 +17,8 @@
         android:defaultValue="false"
         android:key="cb_oled_mode"
         android:title="@string/pref_oled_mode"
-        android:summary="@string/pref_oled_mode_summary"/>
+        android:summary="@string/pref_oled_mode_summary"
+        android:defaultValue="false" />
 
 
     <ListPreference
