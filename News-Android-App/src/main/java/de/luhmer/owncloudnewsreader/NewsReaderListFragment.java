@@ -154,12 +154,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_newsreader_list, container, false);
 
-        if(!ThemeChooser.getInstance(getActivity()).isDarkTheme(getContext())) {
-            view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.slider_listview_background_color));
-        }
-
         ButterKnife.bind(this, view);
-
 
         if(!Constants.IsNextCloud(getContext())) {
             // Set ownCloud view

@@ -97,7 +97,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.ChooseTheme(this);
+		ThemeChooser.chooseTheme(this);
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
