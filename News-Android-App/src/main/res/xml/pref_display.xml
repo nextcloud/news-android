@@ -14,6 +14,7 @@
         android:title="@string/pref_title_app_theme" />
 
     <SwitchPreference
+        android:defaultValue="false"
         android:key="cb_oled_mode"
         android:title="@string/pref_oled_mode"
         android:summary="@string/pref_oled_mode_summary"/>
