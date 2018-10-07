@@ -45,7 +45,6 @@ import android.widget.TextView;
 import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -529,15 +528,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         //    folderList = dbConn.getListOfFoldersWithUnreadItems();
         //} else {
             folderList = dbConn.getListOfFolders();
-        java.util.Collections.sort(folderList, new Comparator() {
-            @Override
-            public int compare(Object folderOne, Object folderTwo) {
-                //use instanceof to verify the references are indeed of the type in question
-                return ((Folder)folderOne).getLabel()
-                        .compareTo(((Folder)folderTwo).getLabel());
-            }
-        });
-
         //}
 
         sw.stop();
