@@ -47,6 +47,7 @@
     <string name="action_link_open">Otwórz link w przeglądarce</string>
     <string name="action_link_copy">Skopiuj link</string>
     <string name="toast_img_download_wait">Pobieranie… proszę czekać</string>
+    <string name="toast_img_saved">Zapisano obraz</string>
     <string name="toast_img_notwriteable">Błąd zapisu obrazu.</string>
     <string name="toast_copied_to_clipboard">Skopiuj do schowka</string>
     <string name="error_download_failed">Pobieranie nieudane</string>
@@ -59,6 +60,8 @@
     <string name="feed_remove_button">Usuń</string>
     <string name="feed_rename_button">Zmień nazwę</string>
     <string name="confirm_feed_remove">Czy na pewno chcesz usunąć ten kanał? Operacja jest nieodwracalna!</string>
+    <string name="move_feed_root_folder">Główny folder</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Nazwa użytkownika</string>
     <string name="pref_title_password">Hasło</string>
@@ -92,6 +95,11 @@
     <!-- General settings -->
     <string name="pref_header_general">Ogólne</string>
     <string name="pref_title_general_sort_order">Sortuj w kolejności</string>
+
+    <string name="pref_title_general_search_in">Wyszukaj w</string>
+
+    <string name="pref_general_search_in_title">Tutuł</string>
+    <string name="pref_general_search_in_body">Treść</string>
 
     <string name="dialog_clearing_cache">Czyszczenie pamięci podręcznej</string>
     <string name="dialog_clearing_cache_please_wait">Czyszczenie cache… Proszę czekać.</string>
