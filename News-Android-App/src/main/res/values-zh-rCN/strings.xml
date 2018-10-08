@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">同步间隔选择器</string>
     <string name="title_activity_news_detail">新闻详细活动</string>
     <string name="empty_view_content">无内容</string>
-    <string name="toast_GettingMoreItems">正在下载多个文件...请稍候。</string>
     <string name="no_wifi_available">没有连接到WiFi</string>
     <string name="do_you_want_to_download_without_wifi">您要在非Wi-Fi环境下下载图片吗</string>
     <string name="current_version">亲，您正在使用的版本号为：%s</string>
@@ -71,8 +70,6 @@
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重命名</string>
     <string name="confirm_feed_remove">您真的要删除此订阅吗？本操作不可恢复！</string>
-    <string name="move_feed_root_folder">根目录</string>
-
     <!-- Strings related to login -->
     <string name="pref_title_username">用户名</string>
     <string name="pref_title_password">密码</string>
@@ -112,11 +109,6 @@
     <string name="pref_general_sort_order_new_old">新 -> 旧</string>
     <string name="pref_general_sort_order_old_new">旧 -> 新</string>
 
-    <string name="pref_title_general_search_in">搜索</string>
-
-    <string name="pref_general_search_in_title">标题</string>
-    <string name="pref_general_search_in_body">主体</string>
-
     <string name="dialog_clearing_cache">清除缓存</string>
     <string name="dialog_clearing_cache_please_wait">清理缓存中，请稍候</string>
     <string name="reset_cache_unsaved_changes">有一部分文件未同步，你确定仍然清空缓存吗？</string>
@@ -155,9 +147,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">动作图标 (详情页)</string>
 
-    <string name="pref_display_apptheme_dark">深色</string>
-    <string name="pref_display_apptheme_dark_oled">暗色 (用于 OLED 屏幕)</string>
-    <string name="pref_display_apptheme_light">浅色</string>
+    <string name="pref_display_apptheme_night">深色</string>
+    <string name="pref_display_apptheme_auto">暗色 (用于 OLED 屏幕)</string>
+    <string name="pref_display_apptheme_day">浅色</string>
 
     <string name="pref_display_browser_cct">内置 Chrome 自定义分页</string>
     <string name="pref_display_browser_built_in">内置浏览器</string>
@@ -172,9 +164,6 @@
     <string name="content_desc_play">播放</string>
     <string name="content_desc_pause">暂停</string>
     <string name="content_desc_playback_speed">播放速度</string>
-    <string name="content_desc_rewind">撤回</string>
-    <string name="content_desc_forward">转发</string>
-    <string name="content_desc_expand">扩展</string>
     <string name="content_desc_collapse">折叠</string>
     <string name="content_desc_mark_as_read">标记为已读</string>
     <string name="content_desc_mark_as_unread">标记为未读</string>
@@ -194,7 +183,6 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">错误</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">您的服务器上似乎未安装或激活您的新闻应用。 请按照此处给出的说明在您的服务器上首先设置新闻应用：%1$s</string>
     <string name="login_dialog_text_something_went_wrong">有地方出错了 :(</string>
     <string name="login_dialog_text_zero_version_code">网页新闻应用返回的版本号为 “0”。请查阅以下 bug 报告：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">此 App 版本与您的 Nextcloud 新闻应用版本不兼容。请更新新闻 app 和 appframework。</string>
@@ -213,7 +201,6 @@
 
     <string name="pref_data_sync_image_cache_never">从不</string>
     <string name="pref_data_sync_image_cache_wifi_only">仅限WiFi</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">仅在 WiFi 和移动网络</string>
     <string name="pref_data_sync_image_cache_ask">未连接到 WiFi 时询问</string>
 
     <string name="array_sync_interval_min_5">5 分钟</string>

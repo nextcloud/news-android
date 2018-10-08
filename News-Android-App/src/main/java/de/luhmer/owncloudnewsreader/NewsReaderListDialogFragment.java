@@ -124,9 +124,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         });
 
         int style = DialogFragment.STYLE_NO_TITLE;
-        int theme = ThemeChooser.getInstance(getActivity()).isDarkTheme()
-                ? R.style.FloatingDialog
-                : R.style.FloatingDialogLight;
+        int theme = R.style.FloatingDialog;
         setStyle(style, theme);
     }
 

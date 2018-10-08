@@ -96,26 +96,32 @@ public class DatabaseConnectionOrm {
 
     }
 
+    /*
     public void insertNewFeed (Feed... feeds) {
         daoSession.getFeedDao().insertOrReplaceInTx(feeds);
     }
+*/
 
     public void insertNewFeed (Iterable<Feed> feeds) {
         daoSession.getFeedDao().insertOrReplaceInTx(feeds);
     }
 
+    /*
     public void insertNewItems(RssItem... items) {
         daoSession.getRssItemDao().insertOrReplaceInTx(items);
     }
+*/
 
     public void insertNewItems(Iterable<RssItem> items) {
         daoSession.getRssItemDao().insertOrReplaceInTx(items);
     }
 
     public List<Folder> getListOfFolders() {
-        return daoSession.getFolderDao().loadAll();
+        // return daoSession.getFolderDao().loadAll();
+        return daoSession.getFolderDao().queryBuilder().orderAsc(FolderDao.Properties.Label).list();
     }
 
+/*
     public List<Folder> getListOfFoldersWithUnreadItems() {
         return daoSession.getFolderDao().queryBuilder().where(
                 new WhereCondition.PropertyCondition(FolderDao.Properties.Id, " IN "
@@ -124,9 +130,10 @@ public class DatabaseConnectionOrm {
                         + " WHERE rss." + RssItemDao.Properties.Read_temp.columnName + " != 1)")
         ).list();
     }
+*/
 
     public List<Feed> getListOfFeeds() {
-        return daoSession.getFeedDao().loadAll();
+        return daoSession.getFeedDao().queryBuilder().orderAsc(FeedDao.Properties.FeedTitle).list();
     }
 
     public List<Feed> getListOfFeedsWithUnreadItems() {
@@ -152,15 +159,15 @@ public class DatabaseConnectionOrm {
     }
 
     public List<Feed> getListOfFeedsWithFolders() {
-        return daoSession.getFeedDao().queryBuilder().where(FeedDao.Properties.FolderId.isNotNull()).list();
+        return daoSession.getFeedDao().queryBuilder().orderAsc(FeedDao.Properties.FeedTitle).where(FeedDao.Properties.FolderId.isNotNull()).list();
     }
 
     public List<Feed> getListOfFeedsWithoutFolders(boolean onlyWithUnreadRssItems) {
         if(onlyWithUnreadRssItems) {
-            return daoSession.getFeedDao().queryBuilder().where(FeedDao.Properties.FolderId.eq(0L),
+            return daoSession.getFeedDao().queryBuilder().orderAsc(FeedDao.Properties.FeedTitle).where(FeedDao.Properties.FolderId.eq(0L),
                     new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1)")).list();
         } else {
-            return daoSession.getFeedDao().queryBuilder().where(FeedDao.Properties.FolderId.eq(0L)).list();
+            return daoSession.getFeedDao().queryBuilder().orderAsc(FeedDao.Properties.FeedTitle).where(FeedDao.Properties.FolderId.eq(0L)).list();
         }
     }
 
@@ -171,17 +178,17 @@ public class DatabaseConnectionOrm {
     }
 
     public List<Feed> getAllFeedsWithUnreadRssItemsForFolder(long folderId) {
-        return daoSession.getFeedDao().queryBuilder().where(FeedDao.Properties.FolderId.eq(folderId)).list();
+        return daoSession.getFeedDao().queryBuilder().orderAsc(FeedDao.Properties.FeedTitle).where(FeedDao.Properties.FolderId.eq(folderId)).list();
     }
 
     public List<Feed> getAllFeedsWithStarredRssItems() {
-        return daoSession.getFeedDao().queryBuilder().where(
+        return daoSession.getFeedDao().queryBuilder().orderAsc(FeedDao.Properties.FeedTitle).where(
                 new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1)")).list();
     }
 
     public List<PodcastFeedItem> getListOfFeedsWithAudioPodcasts() {
         WhereCondition whereCondition = new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.EnclosureMime.columnName + " IN(\"" + join(ALLOWED_PODCASTS_TYPES, "\",\"") + "\"))");
-        List<Feed> feedsWithPodcast = daoSession.getFeedDao().queryBuilder().where(whereCondition).list();
+        List<Feed> feedsWithPodcast = daoSession.getFeedDao().queryBuilder().orderAsc(FeedDao.Properties.FeedTitle).where(whereCondition).list();
 
         List<PodcastFeedItem> podcastFeedItemsList = new ArrayList<>(feedsWithPodcast.size());
         for(Feed feed : feedsWithPodcast) {

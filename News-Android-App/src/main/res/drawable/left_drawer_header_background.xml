@@ -3,8 +3,8 @@
     <item>
         <shape>
             <gradient
-                android:startColor="@color/owncloudBlueLight"
-                android:endColor="@color/owncloudBlueDark"
+                android:startColor="@color/owncloudBlue"
+                android:endColor="@color/owncloudBlue"
                 android:angle="-90"/>
         </shape>
     </item>

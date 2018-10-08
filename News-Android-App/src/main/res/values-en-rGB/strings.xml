@@ -153,9 +153,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
 
-    <string name="pref_display_apptheme_dark">Dark</string>
-    <string name="pref_display_apptheme_dark_oled">Dark (for OLED Screens)</string>
-    <string name="pref_display_apptheme_light">Light</string>
+    <string name="pref_display_apptheme_night">Dark</string>
+    <string name="pref_display_apptheme_auto">Dark (for OLED Screens)</string>
+    <string name="pref_display_apptheme_day">Light</string>
 
     <string name="pref_display_browser_cct">Built-in Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Built-in Browser</string>
