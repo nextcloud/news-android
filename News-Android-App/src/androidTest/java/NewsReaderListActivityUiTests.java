@@ -1,3 +1,4 @@
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -5,11 +6,15 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
+import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.test.ActivityInstrumentationTestCase2;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -29,30 +34,32 @@ import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
-public class NewsReaderListActivityUiTests
-        extends ActivityInstrumentationTestCase2<NewsReaderListActivity> {
+public class NewsReaderListActivityUiTests {
 
-    public NewsReaderListActivityUiTests() {
-        super(NewsReaderListActivity.class);
+    @Rule
+    public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(
+            NewsReaderListActivity.class);
+
+
+    Activity getActivity() {
+        return mActivityRule.getActivity();
     }
 
     @Before
     public void setUp() throws Exception {
-        super.setUp();
-        injectInstrumentation(InstrumentationRegistry.getInstrumentation());
+        //injectInstrumentation(InstrumentationRegistry.getInstrumentation()); // TODO ?!!
         getActivity();
 
         onView(isRoot()).perform(OrientationChangeAction.orientationLandscape());
         sleep(0.3f);
     }
 
-    @Override
+    @After
     protected void tearDown() throws Exception {
         onView(isRoot()).perform(OrientationChangeAction.orientationLandscape());
-
-        super.tearDown();
     }
 
+    @Test
     public void testPositionAfterOrientationChange_sameActivity() {
         NewsReaderDetailFragment ndf = (NewsReaderDetailFragment) waitForFragment(R.id.content_frame, 5000);
 
@@ -75,7 +82,7 @@ public class NewsReaderListActivityUiTests
         onView(withId(R.id.tv_no_items_available)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
     }
 
-
+    @Test
     public void testPositionAfterActivityRestart_sameActivity() {
         NewsReaderDetailFragment ndf = (NewsReaderDetailFragment) waitForFragment(R.id.content_frame, 5000);
 
@@ -101,14 +108,17 @@ public class NewsReaderListActivityUiTests
     }
 
 
+    @Test
     public void testSyncFinishedRefreshRecycler_sameActivity() {
         syncResultTest(true);
     }
 
+    @Test
     public void testSyncFinishedSnackbar_sameActivity() {
         syncResultTest(false);
     }
 
+    @Test
     private void syncResultTest(boolean testFirstPosition) {
         if(!testFirstPosition) {
             onView(withId(R.id.list)).perform(RecyclerViewActions.scrollToPosition(20));
@@ -133,7 +143,7 @@ public class NewsReaderListActivityUiTests
                     }
                 }
             });
-            getInstrumentation().waitForIdleSync();
+            //getInstrumentation().waitForIdleSync(); // TOD?!!!
 
             if(!testFirstPosition)
                 onView(withId(android.support.design.R.id.snackbar_text)).check(matches(isDisplayed()));
@@ -155,7 +165,7 @@ public class NewsReaderListActivityUiTests
         long endTime = SystemClock.uptimeMillis() + timeout;
         while (SystemClock.uptimeMillis() <= endTime) {
 
-            Fragment fragment = getActivity().getSupportFragmentManager().findFragmentById(id);
+            Fragment fragment = ((FragmentActivity) getActivity()).getSupportFragmentManager().findFragmentById(id);
             if (fragment != null) {
                 return fragment;
             }
