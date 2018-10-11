@@ -177,6 +177,7 @@
     <string name="pref_header_display">Display</string>
     <string name="pref_title_app_theme">App theme (start the program again to apply)</string>
     <string name="pref_title_feed_list_layout">Feed list layout</string>
+    <string name="pref_title_font_size">Font size</string>
     <string name="pref_display_browser">Browser</string>
 
 
@@ -238,7 +239,6 @@
 
 
 
-
     <string name="pref_display_feed_list_layout_simple">Simple</string>
     <string name="pref_display_feed_list_layout_extended">Extended</string>
     <string name="pref_display_feed_list_layout_extended_full_text">Extended (full text)</string>
@@ -261,7 +261,24 @@
     </string-array>
 
 
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Small</string>
+    <string name="pref_display_font_size_d">Default</string>
+    <string name="pref_display_font_size_l">Large</string>
+    <string name="pref_display_font_size_xl">Extra Large</string>
 
+    <string-array name="pref_display_font_size" translatable="false">
+        <item>@string/pref_display_font_size_s</item>
+        <item>@string/pref_display_font_size_d</item>
+        <item>@string/pref_display_font_size_l</item>
+        <item>@string/pref_display_font_size_xl</item>
+    </string-array>
+    <string-array name="pref_display_font_size_values" translatable="false">
+        <item>0.8</item>
+        <item>1.0</item>
+        <item>1.2</item>
+        <item>1.4</item>
+    </string-array>
 
 
 

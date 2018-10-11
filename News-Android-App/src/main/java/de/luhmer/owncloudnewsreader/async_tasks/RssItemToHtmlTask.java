@@ -1,7 +1,9 @@
 package de.luhmer.owncloudnewsreader.async_tasks;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
@@ -16,6 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
@@ -114,17 +117,26 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         builder.append("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />");
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
-        /*
+
+
+        // font size scaling
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
         builder.append("<style type=\"text/css\">");
         builder.append(String.format(
-                        "#top_section { border-%s: 4px solid %s; border-bottom: 1px solid %s; background: %s }",
-                        borderSide,
-                        ColorHelper.getCssColor(feedColor),
-                        ColorHelper.getCssColor(colors[0]),
-                        ColorHelper.getCssColor(colors[1]))
-        );
+                        ":root { \n" +
+                            "--fontsize-body: %spx; \n" +
+                            "--fontsize-header: %spx; \n" +
+                            "--fontsize-subscript: %spx; \n" +
+                        "}",
+                Math.round(18*scalingFactor),   // body font size
+                Math.round(18*scalingFactor),   // heading font size
+                Math.round(13*scalingFactor)    // subscript font size
+            ));
         builder.append("</style>");
-        */
+
+
+
         builder.append(String.format("</head><body class=\"%s\" class=\"%s\">", body_id, rtlClass));
 
         if (showHeader) {
