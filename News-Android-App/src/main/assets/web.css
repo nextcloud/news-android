@@ -1,7 +1,7 @@
 :root {
-    --fontsize-body: 18px;
-    --fontsize-header: 18px;
-    --fontsize-subscript: 13px;
+    --fontsize-body: 1.1em;
+    --fontsize-header: 1.1em;
+    --fontsize-subscript: 0.7em;
 }
 
 @font-face {

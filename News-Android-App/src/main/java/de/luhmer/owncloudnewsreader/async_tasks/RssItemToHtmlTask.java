@@ -12,6 +12,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -27,6 +28,10 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 
 public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
+
+    private static final double BODY_FONT_SIZE = 1.1;
+    private static final double HEADING_FONT_SIZE = 1.1;
+    private static final double SUBSCRIPT_FONT_SIZE = 0.7;
 
     public interface Listener {
         /**
@@ -121,17 +126,19 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         // font size scaling
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
+        double scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
+        DecimalFormat fontFormat = new DecimalFormat("#.#");
+
         builder.append("<style type=\"text/css\">");
         builder.append(String.format(
                         ":root { \n" +
-                            "--fontsize-body: %spx; \n" +
-                            "--fontsize-header: %spx; \n" +
-                            "--fontsize-subscript: %spx; \n" +
+                            "--fontsize-body: %sem; \n" +
+                            "--fontsize-header: %sem; \n" +
+                            "--fontsize-subscript: %sem; \n" +
                         "}",
-                Math.round(18*scalingFactor),   // body font size
-                Math.round(18*scalingFactor),   // heading font size
-                Math.round(13*scalingFactor)    // subscript font size
+                fontFormat.format(scalingFactor*BODY_FONT_SIZE),
+                fontFormat.format(scalingFactor*HEADING_FONT_SIZE),
+                fontFormat.format(scalingFactor*SUBSCRIPT_FONT_SIZE)
             ));
         builder.append("</style>");
 
