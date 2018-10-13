@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
@@ -38,6 +39,10 @@ public class ThemeChooser {
     private Integer mSelectedTheme;
     private Boolean mOledMode;
     private static ThemeChooser mInstance;
+
+    @VisibleForTesting
+    public boolean OLEDActive = false;
+    public boolean DarkThemeActive = false;
 
     public static ThemeChooser getInstance(Context context) {
         if(mInstance == null) {
@@ -74,10 +79,14 @@ public class ThemeChooser {
                 break;
         }
 
+        ThemeChooser.getInstance(act).DarkThemeActive = ThemeChooser.getInstance(act).isDarkTheme(act);
 
+
+        ThemeChooser.getInstance(act).OLEDActive = false;
         if(ThemeChooser.getInstance(act).isOledMode(act, false)) {
             if(ThemeChooser.getInstance(act).isDarkTheme(act)) {
                 act.setTheme(R.style.AppThemeOLED);
+                ThemeChooser.getInstance(act).OLEDActive = true;
             }
         }
     }
@@ -124,6 +133,7 @@ public class ThemeChooser {
     public int getSelectedTheme(Context context, boolean forceReloadCache) {
         if(mSelectedTheme == null || forceReloadCache) {
             SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+
             mSelectedTheme = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_APP_THEME, "0"));
         }
         return mSelectedTheme;
