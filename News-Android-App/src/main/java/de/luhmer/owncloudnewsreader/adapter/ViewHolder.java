@@ -15,6 +15,7 @@ import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -105,6 +106,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private int inactiveStarColor;
     private DisplayImageOptions displayImageOptionsThumbnail;
 
+    private int textSizeSummary = -1;
+    private int textSizeTitle = -1;
+    private int textSizeBody = -1;
+    private int textSizeItemDate = -1;
+
     public ViewHolder(View itemView) {
         super(itemView);
 
@@ -124,6 +130,21 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         starColor = array.getColor(0, Color.TRANSPARENT);
         inactiveStarColor = array.getColor(1, Color.LTGRAY);
         array.recycle();
+
+        // get and store initial item text sizes (can't figure out how to directly get this info from layout definition)
+        double factor = 3.4;    // this is because getTextSize returns a completely different value than setTextSize takes... dirty hack
+        if(textViewSummary != null && textSizeSummary < 0) {
+            textSizeSummary = (int)Math.round(textViewSummary.getTextSize()/factor);
+        }
+        if(textViewTitle != null && textSizeTitle < 0) {
+            textSizeTitle =  (int)Math.round(textViewTitle.getTextSize()/factor);
+        }
+        if(textViewBody != null && textSizeBody < 0) {
+            textSizeBody = (int)Math.round(textViewBody.getTextSize()/factor);
+        }
+        if(textViewItemDate != null && textSizeItemDate < 0) {
+            textSizeItemDate = (int)Math.round(textViewItemDate.getTextSize()/factor);
+        }
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
@@ -248,6 +269,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 //textViewSummary.setText(Html.fromHtml(spanish));
 
                 textViewSummary.setText(Html.fromHtml(rssItem.getTitle()));
+                scaleTextSize(textViewSummary, textSizeSummary);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -255,6 +277,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         if(textViewTitle != null && title != null) {
             textViewTitle.setText(Html.fromHtml(title));
+            scaleTextSize(textViewTitle, textSizeTitle);
         }
 
         if(textViewBody != null) {
@@ -267,10 +290,12 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 body = getBodyText(body, true);
             }
             textViewBody.setText(Html.fromHtml(body));
+            scaleTextSize(textViewBody, textSizeBody);
         }
 
         if(textViewItemDate != null) {
             textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
+            scaleTextSize(textViewItemDate, textSizeItemDate);
         }
 
         if (imgViewFavIcon != null) {
@@ -302,6 +327,16 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             String htmlPage = RssItemToHtmlTask.getHtmlPage(itemView.getContext(), rssItem, false);
             webView_body.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
         }
+    }
+
+    private static void scaleTextSize(TextView tv, int initialSize) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
+        float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
+        if(initialSize < 0) {
+            initialSize = Math.round(tv.getTextSize()/3);
+        }
+        int textSize = Math.round(initialSize*scalingFactor);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize);
     }
 
     public boolean shouldStayUnread() {
