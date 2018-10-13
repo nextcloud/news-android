@@ -132,8 +132,8 @@
 
 
 
-    <string name="pref_display_apptheme_dark">Σκούρο</string>
-    <string name="pref_display_apptheme_light">Φωτεινό</string>
+    <string name="pref_display_apptheme_night">Σκούρο</string>
+    <string name="pref_display_apptheme_day">Φωτεινό</string>
 
     <string name="pref_display_browser_external">Εξωτερικός περιηγητής</string>
 

@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <color name="slider_listview_background_color_light_theme">#ffebebeb</color>
-    <color name="slider_listview_background_color_dark_theme">#383d43</color>
+    <color name="slider_listview_background_color">@android:color/white</color>
 
-    <color name="slider_listview_text_color_dark_theme">#F0F0F0</color>
-    <color name="slider_listview_text_color_light_theme">#ff101010</color>
+    <color name="primaryTextColor">@android:color/black</color>
 
-    <color name="divider_row_color_dark_theme">#292929</color>
+    <color name="divider_row_color">#292929</color>
 
-    <color name="extended_listview_item_body_text_color_dark_theme">#ffaaaaaa</color>
-    <color name="extended_listview_item_body_text_color_light_theme">#ff393939</color>
-
-    <color name="slide_up_panel_header_background_color">#ff343434</color>
-    <color name="slide_up_panel_slider_background_color">#ffdcdcdc</color>
+    <!-- Color of slide up panel in closed state -->
+    <color name="slide_up_panel_header_background_color">#e6e6e6</color>
+    <!-- Color when slide up panel is opened (toolbar and bottom bar background -->
+    <color name="slide_up_panel_slider_background_color">#e6e6e6</color>
 
     <color name="options_menu_item_text">@color/options_menu_item</color>
 
@@ -23,37 +20,23 @@
     <color name="material_grey_900" tools:override="true">#212121</color>
 
     <!-- see also assets/web.css -->
-    <color name="news_detail_background_color_light_theme">#eeeeee</color>
-    <color name="news_detail_background_color_dark_theme">#222222</color>
+    <color name="news_detail_background_color">#eeeeee</color>
+
+    <color name="owncloudBlue">#35537A</color>
+    <color name="nextcloudBlue">#0082C9</color>
+
+    <color name="colorPrimary">@color/nextcloudBlue</color>
+    <color name="colorPrimaryDark">@color/nextcloudBlue</color>
+    <color name="colorAccent">@color/colorPrimary</color>
+    <color name="rssItemListBackground">@android:color/white</color>
 
 
+    <color name="starredColor">@android:color/holo_orange_light</color>
+    <color name="unstarredColor">#ff888888</color>
+    <color name="markasreadColor">@android:color/holo_green_light</color>
+    <color name="swipeBackground">#aaa</color>
 
-    <color name="owncloudBlueLight">#35537A</color>
-    <color name="owncloudBlueDark">#1D2D44</color>
-
-    <color name="nextcloudBlueLight">#0082C9</color>
-    <color name="nextcloudBlueDark">#006AA3</color>
-
-    <color name="colorPrimaryDarkTheme">@color/nextcloudBlueDark</color>
-    <color name="colorPrimaryDarkDarkTheme">@color/nextcloudBlueLight</color>
-    <color name="colorAccentDarkTheme">#8698af</color>
-
-    <color name="colorPrimaryLightTheme">@color/nextcloudBlueLight</color>
-    <color name="colorPrimaryDarkLightTheme">@color/nextcloudBlueDark</color>
-    <color name="colorAccentLightTheme">@color/colorPrimaryLightTheme</color>
-
-    <color name="starredColorLight">@android:color/holo_orange_light</color>
-    <color name="unstarredColorLight">#ff888888</color>
-    <color name="markasreadColorLight">@android:color/holo_green_light</color>
-    <color name="swipeBackgroundLight">#aaa</color>
-
-    <color name="starredColorDark">@android:color/holo_orange_light</color>
-    <color name="unstarredColorDark">#ffcccccc</color>
-    <color name="markasreadColorDark">@android:color/holo_green_light</color>
-    <color name="swipeBackgroundDark">#aaa</color>
-
-    <color name="tintColorLight">@android:color/black</color>
-    <color name="tintColorDark">@android:color/white</color>
+    <color name="tintColor">@android:color/black</color>
 
     <!-- override libs -->
     <color name="chglib_background_default_divider_color">#00000000</color>

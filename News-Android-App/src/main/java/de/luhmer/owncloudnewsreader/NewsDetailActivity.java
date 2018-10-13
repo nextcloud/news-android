@@ -97,7 +97,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.ChooseTheme(this);
+		ThemeChooser.chooseTheme(this);
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
@@ -407,7 +407,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 					if(isChromeDefaultBrowser()) {
 						//CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
 						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-						builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimaryDarkTheme));
+						builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
 						builder.setShowTitle(true);
 						builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
 						builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);

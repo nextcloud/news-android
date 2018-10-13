@@ -57,17 +57,10 @@
 	-->
 
     <style name="DirectoryChooserTheme" parent="AppTheme" >
-        <item name="android:background">@color/news_detail_background_color_dark_theme</item>
-    </style>
-    <style name="DirectoryChooserTheme_Light" parent="AppThemeLight" >
-        <item name="android:background">@color/news_detail_background_color_light_theme</item>
+        <item name="android:background">@color/news_detail_background_color</item>
     </style>
 
     <style name="FloatingDialog" parent="AppTheme" >
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-    </style>
-    <style name="FloatingDialogLight" parent="AppThemeLight" >
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>

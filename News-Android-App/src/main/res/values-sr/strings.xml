@@ -167,9 +167,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Акционе иконица (детаљни приказ)</string>
 
-    <string name="pref_display_apptheme_dark">Тамна</string>
-    <string name="pref_display_apptheme_dark_oled">Тамна (за OLED екране)</string>
-    <string name="pref_display_apptheme_light">Светла</string>
+    <string name="pref_display_apptheme_night">Тамна</string>
+    <string name="pref_display_apptheme_auto">Тамна (за OLED екране)</string>
+    <string name="pref_display_apptheme_day">Светла</string>
 
     <string name="pref_display_browser_cct">Уграђени Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Уграђени Веб читач</string>

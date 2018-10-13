@@ -141,9 +141,9 @@
     <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>
     <string name="pref_title_ShowOnlyUnread">Zobrazit pouze nepřečtené články</string>
     <string name="pref_title_DisableHostnameVerification">Vypnout ověřování názvu hostitele</string>
-    <string name="pref_title_NavigateWithVolumeButtons">Pohybovat se pomocí tlačítek hlasitosti</string>
-    <string name="pref_title_MarkAsReadWhileScrolling">Rolováním stránky označit jako přečtené</string>
-    <string name="pref_title_OpenInBrowserDirectly">Přeskočit podrobné zobrazení a otevřít článek v prohlížeči</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigace pomocí tlačítek hlasitosti</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Označit jako přečtené při rolování stránky</string>
+    <string name="pref_title_OpenInBrowserDirectly">Přeskočit podrobný pohled a otevřít článek v prohlížeči</string>
 
     <string name="dialog_feature_not_available">Tato funkce není k dispozici v této (open source) variantě aplikace. Pokud chcete tuto funkci používat, stáhněte si aplikaci z GitHub repozitáře nebo z Google Play.</string>
 
@@ -170,11 +170,11 @@
 
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">Ikony akce (podrobné zobrazení)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">Ikony akce (pohled s podrobnostmi)</string>
 
-    <string name="pref_display_apptheme_dark">Tmavé</string>
-    <string name="pref_display_apptheme_dark_oled">Tmavý (pro OLED displeje)</string>
-    <string name="pref_display_apptheme_light">Světlé</string>
+    <string name="pref_display_apptheme_night">Tmavé</string>
+    <string name="pref_display_apptheme_auto">Tmavý (pro OLED displeje)</string>
+    <string name="pref_display_apptheme_day">Světlé</string>
 
     <string name="pref_display_browser_cct">Vestavěné Chrome vlastní karty</string>
     <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
