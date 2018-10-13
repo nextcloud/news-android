@@ -132,18 +132,17 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         array.recycle();
 
         // get and store initial item text sizes (can't figure out how to directly get this info from layout definition)
-        double factor = 3.4;    // this is because getTextSize returns a completely different value than setTextSize takes... dirty hack
         if(textViewSummary != null && textSizeSummary < 0) {
-            textSizeSummary = (int)Math.round(textViewSummary.getTextSize()/factor);
+            textSizeSummary = Math.round(textViewSummary.getTextSize());
         }
         if(textViewTitle != null && textSizeTitle < 0) {
-            textSizeTitle =  (int)Math.round(textViewTitle.getTextSize()/factor);
+            textSizeTitle = Math.round(textViewTitle.getTextSize());
         }
         if(textViewBody != null && textSizeBody < 0) {
-            textSizeBody = (int)Math.round(textViewBody.getTextSize()/factor);
+            textSizeBody = Math.round(textViewBody.getTextSize());
         }
         if(textViewItemDate != null && textSizeItemDate < 0) {
-            textSizeItemDate = (int)Math.round(textViewItemDate.getTextSize()/factor);
+            textSizeItemDate = Math.round(textViewItemDate.getTextSize());
         }
 
         itemView.setOnClickListener(this);
@@ -333,10 +332,10 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
         float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
         if(initialSize < 0) {
-            initialSize = Math.round(tv.getTextSize()/3);
+            initialSize = Math.round(tv.getTextSize());
         }
-        int textSize = Math.round(initialSize*scalingFactor);
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize);
+        int textSize = (int)Math.round(initialSize*scalingFactor/3.5);  // factor 3.5 is there to be able to use scaled pixels
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
     }
 
     public boolean shouldStayUnread() {
