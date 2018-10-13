@@ -322,8 +322,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         }
 
         SharedPreferences mPrefs = ((PodcastFragmentActivity) getActivity()).mPrefs;
+        if(!mPrefs.contains(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING)) {
+            // return if app is not setup yet..
+            return;
+        }
         String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-        String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, getString(R.string.app_name));
+        String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
         mOc_root_path = mOc_root_path.replace("http://", "").replace("https://", ""); //Remove http:// or https://
 
         userTextView.setText(mUsername);
