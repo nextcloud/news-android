@@ -64,17 +64,21 @@ public class ApiProvider {
             initImageLoader(mPrefs, client, context);
             initSsoApi(apiConnectedListener);
         } else {
-            String username   = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-            String password   = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-            String baseUrlStr = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "https://luhmer.de"); // We need to provide some sort of default URL here..
-            HttpUrl baseUrl = HttpUrl.parse(baseUrlStr).newBuilder()
-                    .addPathSegments("index.php/apps/news/api/v1-2/")
-                    .build();
-            Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
-            OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
-            initImageLoader(mPrefs, client, context);
-            initRetrofitApi(baseUrl, client);
-            apiConnectedListener.onConnected();
+            if(mPrefs.contains(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING)) {
+                String username = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
+                String password = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
+                String baseUrlStr = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
+                HttpUrl baseUrl = HttpUrl.parse(baseUrlStr).newBuilder()
+                        .addPathSegments("index.php/apps/news/api/v1-2/")
+                        .build();
+                Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
+                OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
+                initImageLoader(mPrefs, client, context);
+                initRetrofitApi(baseUrl, client);
+                apiConnectedListener.onConnected();
+            } else {
+                apiConnectedListener.onError(new Exception("no login data"));
+            }
         }
     }
 
