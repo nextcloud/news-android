@@ -22,7 +22,6 @@
     <string name="menu_StartImageCaching">Unduh gambar</string>
     <string name="menu_downloadMoreItems">Unduh beberapa item</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Dibintangi</string>
     <string name="action_read">Baca</string>
@@ -123,7 +122,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Tampilkan</string>
     <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
-    <string name="pref_display_title_lines_count">Jumlah Baris untuk judul</string>
     <string name="content_desc_play">putar</string>
     <string name="content_desc_pause">jeda</string>
     <string name="content_desc_rewind">mundur</string>

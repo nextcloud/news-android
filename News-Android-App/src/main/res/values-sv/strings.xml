@@ -24,7 +24,6 @@
     <string name="menu_StartImageCaching">Ladda ner bilder</string>
     <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Stjärnmärkt</string>
     <string name="action_read">Läsa</string>

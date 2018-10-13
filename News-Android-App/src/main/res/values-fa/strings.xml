@@ -23,7 +23,6 @@
     <string name="menu_StartImageCaching">دانلود تصاویر</string>
     <string name="menu_downloadMoreItems">دانلود آیتم های بیشتر</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">ستاره دار</string>
     <string name="action_read">بخوانید</string>
@@ -129,7 +128,6 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">نمایشی</string>
     <string name="pref_title_feed_list_layout">طرح لسیت خوراک خوان</string>
-    <string name="pref_display_title_lines_count">تعداد خطوط عنوان</string>
     <string name="pref_display_news_detail_actionbar_icons_title">نشانگرهای فعالیت (دیدن جزئیات)</string>
 
     <string name="content_desc_play">اجرا</string>

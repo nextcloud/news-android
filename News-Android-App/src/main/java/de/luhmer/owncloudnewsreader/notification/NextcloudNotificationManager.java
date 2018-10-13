@@ -75,6 +75,7 @@ public class NextcloudNotificationManager {
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
                 .setOngoing(true);
 
         return mNotificationDownloadImages;
@@ -122,6 +123,7 @@ public class NextcloudNotificationManager {
                 .setSmallIcon(R.drawable.ic_notification)
                 .setAutoCancel(true)
                 .setOngoing(true)
+                .setOnlyAlertOnce(true)
                 .setContentIntent(resultPendingIntent);
     }
 
@@ -136,6 +138,7 @@ public class NextcloudNotificationManager {
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
                 .setOngoing(true);
 
         return mNotificationDownloadPodcast;

@@ -25,7 +25,6 @@
     <string name="menu_StartImageCaching">Scarica le immagini</string>
     <string name="menu_downloadMoreItems">Scarica altri elementi</string>
 
-
     <!-- Action Bar Items -->
     <string name="action_starred">Preferiti</string>
     <string name="action_read">Lettura</string>
@@ -156,7 +155,6 @@
     <string name="pref_header_display">Schermo</string>
     <string name="pref_title_app_theme">Tema dell\'applicazione (riavvia il programma per applicarlo)</string>
     <string name="pref_title_feed_list_layout">Struttura elenco fonti</string>
-    <string name="pref_display_title_lines_count">Numero di righe per il titolo</string>
     <string name="pref_display_browser">Browser</string>
 
 
