@@ -334,8 +334,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         if(initialSize < 0) {
             initialSize = Math.round(tv.getTextSize());
         }
-        int textSize = (int)Math.round(initialSize*scalingFactor/3.5);  // factor 3.5 is there to be able to use scaled pixels
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+
+        float sp = initialSize / tv.getContext().getResources().getDisplayMetrics().scaledDensity;  // transform scaled pixels, device pixels
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, Math.round(sp*scalingFactor));
     }
 
     public boolean shouldStayUnread() {
