@@ -268,7 +268,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 //textViewSummary.setText(Html.fromHtml(spanish));
 
                 textViewSummary.setText(Html.fromHtml(rssItem.getTitle()));
-                scaleTextSize(textViewSummary, textSizeSummary);
+                scaleTextSize(textViewSummary, textSizeSummary, false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -277,7 +277,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         if(textViewTitle != null && title != null) {
             textViewTitle.setText(Html.fromHtml(title));
             // disabled scaling, do not change feed name size
-            //scaleTextSize(textViewTitle, textSizeTitle);
+            scaleTextSize(textViewTitle, textSizeTitle, true);
         }
 
         if(textViewBody != null) {
@@ -295,13 +295,13 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 body = getBodyText(body, true);
             }
             textViewBody.setText(Html.fromHtml(body));
-            scaleTextSize(textViewBody, textSizeBody);
+            scaleTextSize(textViewBody, textSizeBody, false);
         }
 
         if(textViewItemDate != null) {
             textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
             // disabled scaling, do not change item data size
-            //scaleTextSize(textViewItemDate, textSizeItemDate);
+            scaleTextSize(textViewItemDate, textSizeItemDate, true);
         }
 
         if (imgViewFavIcon != null) {
@@ -335,11 +335,14 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         }
     }
 
-    private static void scaleTextSize(TextView tv, int initialSize) {
+    private static void scaleTextSize(TextView tv, int initialSize, boolean halfScale) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
         float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
         if(initialSize < 0) {
             initialSize = Math.round(tv.getTextSize());
+        }
+        if(halfScale) {
+            scalingFactor = scalingFactor + (1-scalingFactor)/2;
         }
         // float sp = initialSize / tv.getContext().getResources().getDisplayMetrics().scaledDensity;  // transform scaled pixels, device pixels
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, Math.round(initialSize*scalingFactor));
