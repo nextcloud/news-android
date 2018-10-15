@@ -132,16 +132,16 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         array.recycle();
 
         // get and store initial item text sizes (can't figure out how to directly get this info from layout definition)
-        if(textViewSummary != null && textSizeSummary < 0) {
+        if(textViewSummary != null) {
             textSizeSummary = Math.round(textViewSummary.getTextSize());
         }
-        if(textViewTitle != null && textSizeTitle < 0) {
+        if(textViewTitle != null) {
             textSizeTitle = Math.round(textViewTitle.getTextSize());
         }
-        if(textViewBody != null && textSizeBody < 0) {
+        if(textViewBody != null) {
             textSizeBody = Math.round(textViewBody.getTextSize());
         }
-        if(textViewItemDate != null && textSizeItemDate < 0) {
+        if(textViewItemDate != null) {
             textSizeItemDate = Math.round(textViewItemDate.getTextSize());
         }
 
@@ -276,15 +276,21 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         if(textViewTitle != null && title != null) {
             textViewTitle.setText(Html.fromHtml(title));
-            scaleTextSize(textViewTitle, textSizeTitle);
+            // disabled scaling, do not change feed name size
+            //scaleTextSize(textViewTitle, textSizeTitle);
         }
 
         if(textViewBody != null) {
             String body = rssItem.getBody();
             // Strip html from String
-            if(selectedListLayout == 3) {
+            if(selectedListLayout == 0) {
+                textViewBody.setMaxLines(scaleSimpleTextLines(textViewBody));
+                body = getBodyText(body, false);
+
+            } else if(selectedListLayout == 3) {
                 textViewBody.setMaxLines(200);
                 body = getBodyText(body, false);
+
             } else {
                 body = getBodyText(body, true);
             }
@@ -294,7 +300,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         if(textViewItemDate != null) {
             textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
-            scaleTextSize(textViewItemDate, textSizeItemDate);
+            // disabled scaling, do not change item data size
+            //scaleTextSize(textViewItemDate, textSizeItemDate);
         }
 
         if (imgViewFavIcon != null) {
@@ -334,10 +341,27 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         if(initialSize < 0) {
             initialSize = Math.round(tv.getTextSize());
         }
-
-        float sp = initialSize / tv.getContext().getResources().getDisplayMetrics().scaledDensity;  // transform scaled pixels, device pixels
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, Math.round(sp*scalingFactor));
+        // float sp = initialSize / tv.getContext().getResources().getDisplayMetrics().scaledDensity;  // transform scaled pixels, device pixels
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, Math.round(initialSize*scalingFactor));
     }
+
+    private static int scaleSimpleTextLines(TextView tv) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
+        float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
+        int numLines = 5;
+
+        if(scalingFactor < 0.9) {
+            numLines = 7;
+        } else if (scalingFactor < 1.1 ) {
+            numLines = 5;
+        } else if (scalingFactor < 1.3 ) {
+            numLines = 4;
+        } else if (scalingFactor < 1.5 ) {
+            numLines = 3;
+        }
+        return numLines;
+    }
+
 
     public boolean shouldStayUnread() {
         return stayUnread;
