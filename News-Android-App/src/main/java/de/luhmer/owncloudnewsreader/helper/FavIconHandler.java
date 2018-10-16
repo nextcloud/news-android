@@ -22,10 +22,13 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -35,6 +38,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 
@@ -58,6 +62,19 @@ public class FavIconHandler {
 
     public void loadFavIconForFeed(String favIconUrl, ImageView imgView) {
         ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
+    }
+
+    /**
+     * Version of loadFacIconForFeed that applies a vertical offset to the icon ImageView,
+     * to compensate for font size scaling alignment issue
+     *
+     * @param favIconUrl    URL of icon to load/display
+     * @param imgView       ImageView object to use for icon display
+     * @param offset        Y translation to apply to ImageView
+     */
+    public void loadFavIconForFeed(String favIconUrl, ImageView imgView, int offset) {
+        ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
+        imgView.setTranslationY(offset);
     }
 
     public static int getResourceIdForRightDefaultFeedIcon(Context context)

@@ -2,9 +2,12 @@ package de.luhmer.owncloudnewsreader.adapter;
 
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +19,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -27,6 +31,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -132,18 +137,12 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         array.recycle();
 
         // get and store initial item text sizes (can't figure out how to directly get this info from layout definition)
-        if(textViewSummary != null) {
-            textSizeSummary = Math.round(textViewSummary.getTextSize());
-        }
-        if(textViewTitle != null) {
-            textSizeTitle = Math.round(textViewTitle.getTextSize());
-        }
+        textSizeSummary = Math.round(textViewSummary.getTextSize());
+        textSizeTitle = Math.round(textViewTitle.getTextSize());
         if(textViewBody != null) {
             textSizeBody = Math.round(textViewBody.getTextSize());
         }
-        if(textViewItemDate != null) {
-            textSizeItemDate = Math.round(textViewItemDate.getTextSize());
-        }
+        textSizeItemDate = Math.round(textViewItemDate.getTextSize());
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
@@ -276,7 +275,6 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         if(textViewTitle != null && title != null) {
             textViewTitle.setText(Html.fromHtml(title));
-            // disabled scaling, do not change feed name size
             scaleTextSize(textViewTitle, textSizeTitle, true);
         }
 
@@ -298,19 +296,19 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             scaleTextSize(textViewBody, textSizeBody, false);
         }
 
+        int height = 0; // used for feed icon vertical offset calculation
         if(textViewItemDate != null) {
             textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
-            // disabled scaling, do not change item data size
             scaleTextSize(textViewItemDate, textSizeItemDate, true);
+            height = Math.round(textViewItemDate.getTextSize());
         }
 
         if (imgViewFavIcon != null) {
-            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon);
+            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon, height-textSizeItemDate-1);
         }
 
         if(imgViewThumbnail != null) {
             imgViewThumbnail.setColorFilter(null);
-
             String body = rssItem.getBody();
             List<String> images = ImageHandler.getImageLinksFromText(body);
 
@@ -335,6 +333,13 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         }
     }
 
+    /**
+     * Apply scaling factor to TextView font size, based on app font-size preference.
+     *
+     * @param tv            TextView object to be scaled
+     * @param initialSize   app layout definition default size of TextView element
+     * @param halfScale     if set to true, will only apply half of the scaling factor
+     */
     private static void scaleTextSize(TextView tv, int initialSize, boolean halfScale) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
         float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
@@ -348,13 +353,20 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, Math.round(initialSize*scalingFactor));
     }
 
+    /**
+     * Return the number of rss item body text lines, depending on the currently selected font size/scale;
+     * only meant to be used with simple feed view.
+     *
+     * @param tv    TextView object, needed to get context->preferences from
+     * @return      number of lines of rss item body text lines to be used in simple view
+     */
     private static int scaleSimpleTextLines(TextView tv) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
         float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
         int numLines = 5;
 
         if(scalingFactor < 0.9) {
-            numLines = 7;
+            numLines = 6;
         } else if (scalingFactor < 1.1 ) {
             numLines = 5;
         } else if (scalingFactor < 1.3 ) {
