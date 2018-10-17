@@ -2,12 +2,9 @@ package de.luhmer.owncloudnewsreader.adapter;
 
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +16,6 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -31,7 +27,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -304,7 +299,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         }
 
         if (imgViewFavIcon != null) {
-            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon, height-textSizeItemDate-1);
+            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon, Math.round((height-textSizeItemDate)/2));
         }
 
         if(imgViewThumbnail != null) {
@@ -364,7 +359,6 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
         float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
         int numLines = 5;
-
         if(scalingFactor < 0.9) {
             numLines = 6;
         } else if (scalingFactor < 1.1 ) {
@@ -375,6 +369,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             numLines = 3;
         }
         return numLines;
+
     }
 
 
