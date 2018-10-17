@@ -69,7 +69,7 @@ public class FavIconHandler {
      * @param offset        Y translation to apply to ImageView
      */
     public void loadFavIconForFeed(String favIconUrl, ImageView imgView, int offset) {
-        ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
+        loadFavIconForFeed(favIconUrl, imgView);
         imgView.setTranslationY(offset);
     }
 
