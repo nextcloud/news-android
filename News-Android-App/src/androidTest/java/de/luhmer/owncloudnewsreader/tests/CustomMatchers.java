@@ -1,12 +1,15 @@
+package de.luhmer.owncloudnewsreader.tests;
+
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.PaintDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.support.test.espresso.matcher.BoundedMatcher;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,31 +23,60 @@ import org.hamcrest.TypeSafeMatcher;
 public class CustomMatchers {
     private static final String TAG = CustomMatchers.class.getCanonicalName();
 
-    public static Matcher<View> withBackgroundColor(final int resourceColorId) {
+    public static Matcher<View> withBackgroundColor(final int resourceColorId, final Activity activity) {
         return new TypeSafeDiagnosingMatcher<View>() {
+
+            String error;
 
             @Override
             public void describeTo(Description description) {
-                description.appendText("HALLO!!!!!!");
+                description.appendText(error);
             }
 
             @Override
             protected boolean matchesSafely(View view, Description mismatchDescription) {
+
                 Drawable drawable = view.getBackground();
-                Drawable otherDrawable = view.getContext().getResources().getDrawable(resourceColorId);
+                Drawable otherDrawable = ContextCompat.getDrawable(view.getContext(), resourceColorId);
+                int colorId = getColor(activity, resourceColorId);
+
+                error = "COLOR: "+resourceColorId + " - " + colorId;
+
+                /*
                 if (drawable instanceof ColorDrawable && otherDrawable instanceof ColorDrawable) {
                     int colorId = ((ColorDrawable) drawable).getColor();
+
                     if(colorId == resourceColorId) {
                         return true;
                     } else {
-                        mismatchDescription.appendText("Got: " + colorId);
+                        error = "FAILED Got: " + colorId;
                     }
                 } else {
-                    mismatchDescription.appendText("Not color drawables!!");
+                    error = "Not color drawables!!";
                 }
+                */
+
                 return false;
             }
         };
+    }
+
+    public static int getColor(Context context, int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return context.getColor(color);
+        } else {
+            return ContextCompat.getColor(context, color);
+        }
+    }
+
+    public static int getBackgroundColor(Context context, View v, int defaultColor) {
+        Drawable drawable = v.getBackground();
+        if (drawable instanceof ColorDrawable) {
+            ColorDrawable colorDrawable = (ColorDrawable) drawable;
+            return colorDrawable.getColor();
+        } else {
+            return getColor(context, defaultColor);
+        }
     }
 
     public static Matcher<View> withBackground(final int resourceId) {

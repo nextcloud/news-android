@@ -480,7 +480,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 * @return true if new items count was greater than 0
 	 */
 	private boolean syncFinishedHandler() {
-
 		ShowcaseConfig config = new ShowcaseConfig();
 		config.setDelay(300); // half second between each showcase view
 		MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SWIPE_LEFT_RIGHT_AND_PTR");

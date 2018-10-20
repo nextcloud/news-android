@@ -23,6 +23,8 @@
  * 
  */
 
+package de.luhmer.owncloudnewsreader.tests;
+
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.support.test.espresso.UiController;
@@ -41,10 +43,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
  * An Espresso ViewAction that changes the orientation of the screen
  */
 public class OrientationChangeAction implements ViewAction {
-    private final int orientation;
 
-    private OrientationChangeAction(int orientation) {
+    private final int orientation;
+    private Activity activity;
+
+    private OrientationChangeAction(int orientation, Activity activity) {
         this.orientation = orientation;
+        this.activity = activity;
     }
 
     @Override
@@ -60,7 +65,6 @@ public class OrientationChangeAction implements ViewAction {
     @Override
     public void perform(UiController uiController, View view) {
         uiController.loopMainThreadUntilIdle();
-        final Activity activity = (Activity) view.getContext();
         activity.setRequestedOrientation(orientation);
 
         Collection<Activity> resumedActivities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED);
@@ -69,11 +73,11 @@ public class OrientationChangeAction implements ViewAction {
         }
     }
 
-    public static ViewAction orientationLandscape() {
-        return new OrientationChangeAction(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    public static ViewAction orientationLandscape(Activity activity) {
+        return new OrientationChangeAction(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, activity);
     }
 
-    public static ViewAction orientationPortrait() {
-        return new OrientationChangeAction(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    public static ViewAction orientationPortrait(Activity activity) {
+        return new OrientationChangeAction(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, activity);
     }
 }

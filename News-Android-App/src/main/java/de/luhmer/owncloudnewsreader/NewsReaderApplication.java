@@ -35,4 +35,8 @@ public class NewsReaderApplication extends Application {
     public AppComponent getAppComponent() {
         return mAppComponent;
     }
+
+    public void setAppComponent(AppComponent appComponent) {
+        this.mAppComponent = appComponent;
+    }
 }

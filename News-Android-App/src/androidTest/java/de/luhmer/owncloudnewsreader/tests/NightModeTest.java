@@ -1,37 +1,27 @@
-import org.hamcrest.CustomMatcher;
-import org.hamcrest.core.Is;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+package de.luhmer.owncloudnewsreader.tests;
 
 import android.app.Activity;
-import android.app.SharedElementCallback;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.ViewAssertion;
-import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import de.luhmer.owncloudnewsreader.NewsReaderApplication;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.di.ApiModule;
-import de.luhmer.owncloudnewsreader.di.AppComponent;
-import de.luhmer.owncloudnewsreader.di.DaggerAppComponent;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 import static android.preference.PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES;
-import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
@@ -41,26 +31,26 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.PreferenceMatchers.withKey;
 import static android.support.test.espresso.matcher.PreferenceMatchers.withSummary;
 import static android.support.test.espresso.matcher.PreferenceMatchers.withTitle;
-import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isNotChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_APP_THEME;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.checkForUnsycedChangesInDatabaseAndResetDatabase;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class NightModeTest {
+
+    /**
+     * NOTE: These tests only works during "daylight".. (this is because there is no way to check
+     * the current state of the android day/night mode)
+     */
 
     @Rule
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class, true, false);
@@ -75,16 +65,15 @@ public class NightModeTest {
 
     }
 
-    /*
     @Test
     public void testBackgroundDaylight_sameActivity() {
+        launchActivity();
+
         // Type text and then press the button.
         boolean isDarkTheme = ThemeChooser.getInstance(getActivity()).isDarkTheme(getActivity());
-        assertFalse(isDarkTheme);
-
+        assertThat(isDarkTheme, equalTo(false));
         //onView(withId(R.id.sliding_layout)).check(ViewAssertions.matches(CustomMatchers.withBackgroundColor(android.R.color.white, getActivity())));
     }
-    */
 
     @Test
     public void testOledAutoMode_sameActivity() {
@@ -227,11 +216,13 @@ public class NightModeTest {
     private void launchActivity() {
         mActivityRule.launchActivity(new Intent());
 
+        /*
         NewsReaderApplication nra = (NewsReaderApplication) getActivity().getApplication();
         AppComponent appComponent = DaggerAppComponent.builder()
                 .apiModule(new TestApiModule(nra))
                 .build();
         nra.setAppComponent(appComponent);
+        */
 
         sleep();
 

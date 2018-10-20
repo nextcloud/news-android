@@ -1,41 +1,42 @@
+package de.luhmer.owncloudnewsreader.tests;
+
+import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.filters.LargeTest;
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.LargeTest;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.di.ApiProvider;
-import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
+import static android.support.test.InstrumentationRegistry.registerInstance;
+
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListActivity> {
+public class SyncTests {
 
-    private NewsReaderListActivity mActivity;
     private MockWebServer server;
     private HttpUrl baseUrl;
 
-    public SyncTests() {
-        super(NewsReaderListActivity.class);
-    }
+    @Rule
+    public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(
+            NewsReaderListActivity.class);
 
-    /*
+
     @Before
     public void setUp() throws Exception {
-        super.setUp();
-        injectInstrumentation(InstrumentationRegistry.getInstrumentation());
-        mActivity = getActivity();
+        registerInstance(InstrumentationRegistry.getInstrumentation(), new Bundle());
 
         // Create a MockWebServer. These are lean enough that you can create a new
         // instance for every unit test.
@@ -44,10 +45,12 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         // Ask the server for its URL. You'll need this to make HTTP requests.
         baseUrl = server.url("/");
 
-        HttpJsonRequest.init(mActivity);
-        HttpJsonRequest.getInstance().setCredentials("test", "test", baseUrl.toString());
+        //HttpJsonRequest.init(mActivityRule.getActivity());
+        //HttpJsonRequest.getInstance().setCredentials("test", "test", baseUrl.toString());
     }
 
+
+    /*
     @Test
     public void testVersionInfo() throws Exception {
         // Schedule some responses.
@@ -59,6 +62,7 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         API api = API.GetRightApiForVersion(versionNumber, baseUrl);
         assertTrue(api instanceof APIv2);
     }
+    */
 
     private String getSampleVersionInfoV2() {
         JsonObject jVer = new JsonObject();
@@ -67,6 +71,7 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
     }
 
 
+    /*
     @Test
     public void testFeedSync() throws Exception {
 
@@ -97,6 +102,7 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         assertEquals(1, res[0]);
         assertEquals(1, res[1]);
     }
+    */
 
 
     @Test
@@ -126,20 +132,20 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
         server.enqueue(new MockResponse().setBody(getSampleVersionInfoV2()));
         server.enqueue(new MockResponse().setBody(jItem.toString()));
 
+        /*
         String versionNumber = OwnCloudReaderMethods.GetVersionNumber(baseUrl);
         API api = API.GetRightApiForVersion(versionNumber, baseUrl);
         assertTrue(api instanceof APIv2);
 
         int res2 = OwnCloudReaderMethods.GetItems(FeedItemTags.ALL, mActivity, "0", true, "0", "0", api); //TODO verify params
         assertEquals(1, res2);
+        */
     }
 
     @After
     public void tearDown() throws Exception {
         // Shut down the server. Instances cannot be reused.
         server.shutdown();
-
-        super.tearDown();
     }
 
 
@@ -150,6 +156,5 @@ public class SyncTests extends ActivityInstrumentationTestCase2<NewsReaderListAc
             e.printStackTrace();
         }
     }
-*/
 
 }
