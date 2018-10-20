@@ -74,6 +74,8 @@
     <string name="feed_remove_button">Eltávolítás</string>
     <string name="feed_rename_button">Átnevezés</string>
     <string name="confirm_feed_remove">Biztos, hogy el akarod távolítani ezt a hírfolyamot? Ez a művelet nem vonható vissza!</string>
+    <string name="move_feed_root_folder">Gyökérmappa</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Felhasználónév</string>
     <string name="pref_title_password">Jelszó</string>
@@ -115,6 +117,7 @@
     <string name="pref_general_sort_order_new_old">Új->Régi</string>
     <string name="pref_general_sort_order_old_new">Régi->Új</string>
 
+    <string name="pref_general_search_in_title">Cím</string>
     <string name="dialog_clearing_cache">A gyorsítótár törlése folyamatban</string>
     <string name="dialog_clearing_cache_please_wait">Gyorsítótár ürítése... Kérjük, várj.</string>
     <string name="reset_cache_unsaved_changes">Vannak nem színkronizált változások. Bizots hogy alaphelyzetbe szeretnéd állítani a cache-t így is?</string>
