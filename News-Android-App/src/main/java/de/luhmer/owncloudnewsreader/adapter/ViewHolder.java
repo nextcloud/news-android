@@ -358,18 +358,10 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private static int scaleSimpleTextLines(TextView tv) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
         float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
-        int numLines = 5;
-        if(scalingFactor < 0.9) {
-            numLines = 6;
-        } else if (scalingFactor < 1.1 ) {
-            numLines = 5;
-        } else if (scalingFactor < 1.3 ) {
-            numLines = 4;
-        } else if (scalingFactor < 1.5 ) {
-            numLines = 3;
-        }
-        return numLines;
-
+        /* The following formula computes the number of text lines for Simple item view; it simply boils
+         * down to a linear conversion from the font scaling factor from 0.8 -> 6 lines to 1.6 -> 3 lines
+         */
+        return Math.round((scalingFactor*-5)+10);
     }
 
 
