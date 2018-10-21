@@ -1,5 +1,9 @@
 Nextcloud News Reader – Android App
 ==================================
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bb65782750445c99e80dab29f6701a6)](https://www.codacy.com/app/Nextcloud/news-android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nextcloud/news-android&amp;utm_campaign=Badge_Grade)
+
+
 The Nextcloud News Reader Android App is under [AGPLv3](https://www.gnu.org/licenses/license-list.html#AGPLv3.0) License terms.
 
 <p>
@@ -8,17 +12,11 @@ The Nextcloud News Reader Android App is under [AGPLv3](https://www.gnu.org/lice
 </a>
 
 <a href="https://f-droid.org/app/de.luhmer.owncloudnewsreader">
-  <img src="https://f-droid.org/badge/get-it-on.png"
-        alt="Get it on F-Droid" height="100">
+  <img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="100">
 </a>
 </p>
 
-*Bugs and enhancements can be reported under*: https://github.com/owncloud/News-Android-App/issues
-
-
-Donate
-==================================
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=david-dev&url=https://github.com/owncloud/News-Android-App&title=News-Android-App&language=JAVA&tags=github&category=software)
+*Bugs and enhancements can be reported under*: https://github.com/nextcloud/news-android/issues
 
 
 How to use the Beta App via Google Play?
@@ -27,13 +25,12 @@ How to use the Beta App via Google Play?
 
 
 
-
 Help to translate
 ==================================
-Have you found a translation error? Or would you like to use ownCloud News Reader in your
+Have you found a translation error? Or would you like to use Nextcloud News Reader in your
 native language?
 
-You can [join the translation team](https://www.transifex.com/owncloud-org/owncloud/) and improve one of over 100 languages (it's the android-news app).
+You can [join the translation team](https://www.transifex.com/nextcloud/nextcloud/) and improve one of over 100 languages (it's the android-news app).
 
 
 How to compile the App
@@ -51,11 +48,11 @@ Download and install:
   3. Then type in:
 
     
-    git clone --recursive https://github.com/owncloud/News-Android-App.git
+    git clone --recursive https://github.com/nextcloud/news-android.git
     
     for the dev branch:
     
-    git clone --recursive https://github.com/owncloud/News-Android-App.git -b dev
+    git clone --recursive https://github.com/nextcloud/news-android.git -b dev
     
 
   5. Import the Project and start coding!
@@ -85,3 +82,9 @@ Contributors
 Changelog
 ==================================
 - see [CHANGELOG.md](CHANGELOG.md)
+
+
+Donate
+==================================
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=david-dev&url=https://github.com/owncloud/News-Android-App&title=News-Android-App&language=JAVA&tags=github&category=software)
+
