@@ -18,7 +18,6 @@ import org.junit.runner.RunWith;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 import static android.preference.PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES;
