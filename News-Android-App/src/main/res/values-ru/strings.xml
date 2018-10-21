@@ -211,6 +211,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Ошибка</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Похоже что новостное приложение не установлено или не активировано на вашем сервере. Следуйте этой инструкции для установки новостного приложения на ваш сервер: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Что-то пошло не так :(</string>
     <string name="login_dialog_text_zero_version_code">Веб-версия приложения «Новости» вернула «0». Для получения дополнительных сведений обратитесь к сообщению об ошибке: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением ownCloud News. Обновите новостное приложение и appframework.</string>
