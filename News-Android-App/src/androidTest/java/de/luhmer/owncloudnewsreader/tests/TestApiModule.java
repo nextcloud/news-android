@@ -28,7 +28,7 @@ public class TestApiModule extends ApiModule {
 
     @Provides
     @Singleton
-    ApiProvider provideAPI(MemorizingTrustManager mtm, SharedPreferences sp) {
+    public ApiProvider provideAPI(MemorizingTrustManager mtm, SharedPreferences sp) {
         return new ApiProvider(mtm, sp, mApplication);
     }
 

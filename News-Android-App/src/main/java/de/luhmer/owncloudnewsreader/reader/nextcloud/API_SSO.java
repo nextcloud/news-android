@@ -3,15 +3,15 @@ package de.luhmer.owncloudnewsreader.reader.nextcloud;
 import com.google.gson.reflect.TypeToken;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.helper.Okhttp3Helper;
+import com.nextcloud.android.sso.helper.ReactivexHelper;
+import com.nextcloud.android.sso.helper.Retrofit2Helper;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.nextcloud.android.sso.helper.Okhttp3Helper;
-import com.nextcloud.android.sso.helper.ReactivexHelper;
-import com.nextcloud.android.sso.helper.Retrofit2Helper;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;

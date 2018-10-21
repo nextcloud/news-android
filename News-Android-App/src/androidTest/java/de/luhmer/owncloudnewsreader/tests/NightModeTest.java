@@ -58,12 +58,6 @@ public class NightModeTest {
         return mActivityRule.getActivity();
     }
 
-
-    @Before
-    public void initTestData() {
-
-    }
-
     @Test
     public void testBackgroundDaylightTheme() {
         launchActivity();

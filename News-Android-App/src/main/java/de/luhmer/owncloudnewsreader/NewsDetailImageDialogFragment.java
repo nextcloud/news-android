@@ -38,7 +38,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 
 import static android.support.v4.content.PermissionChecker.checkSelfPermission;
