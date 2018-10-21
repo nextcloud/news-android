@@ -29,6 +29,14 @@
 
 
     <ListPreference
+        android:defaultValue="1.0"
+        android:entries="@array/pref_display_font_size"
+        android:entryValues="@array/pref_display_font_size_values"
+        android:key="sp_font_size"
+        android:title="@string/pref_title_font_size" />
+
+
+    <ListPreference
         android:defaultValue="0"
         android:entries="@array/pref_display_browser"
         android:entryValues="@array/pref_display_browser_values"

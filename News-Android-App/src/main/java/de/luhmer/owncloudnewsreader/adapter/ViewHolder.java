@@ -15,6 +15,7 @@ import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -105,6 +106,11 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private int inactiveStarColor;
     private DisplayImageOptions displayImageOptionsThumbnail;
 
+    private int textSizeSummary;
+    private int textSizeTitle;
+    private int textSizeItemDate;
+    private int textSizeBody = -1;
+
     public ViewHolder(View itemView) {
         super(itemView);
 
@@ -124,6 +130,14 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         starColor = array.getColor(0, Color.TRANSPARENT);
         inactiveStarColor = array.getColor(1, Color.LTGRAY);
         array.recycle();
+
+        // get and store initial item text sizes (can't figure out how to directly get this info from layout definition)
+        textSizeSummary = Math.round(textViewSummary.getTextSize());
+        textSizeTitle = Math.round(textViewTitle.getTextSize());
+        if(textViewBody != null) {
+            textSizeBody = Math.round(textViewBody.getTextSize());
+        }
+        textSizeItemDate = Math.round(textViewItemDate.getTextSize());
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
@@ -248,6 +262,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 //textViewSummary.setText(Html.fromHtml(spanish));
 
                 textViewSummary.setText(Html.fromHtml(rssItem.getTitle()));
+                scaleTextSize(textViewSummary, textSizeSummary, false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -255,31 +270,40 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
         if(textViewTitle != null && title != null) {
             textViewTitle.setText(Html.fromHtml(title));
+            scaleTextSize(textViewTitle, textSizeTitle, true);
         }
 
         if(textViewBody != null) {
             String body = rssItem.getBody();
             // Strip html from String
-            if(selectedListLayout == 3) {
+            if(selectedListLayout == 0) {
+                textViewBody.setMaxLines(scaleSimpleTextLines(textViewBody));
+                body = getBodyText(body, false);
+
+            } else if(selectedListLayout == 3) {
                 textViewBody.setMaxLines(200);
                 body = getBodyText(body, false);
+
             } else {
                 body = getBodyText(body, true);
             }
             textViewBody.setText(Html.fromHtml(body));
+            scaleTextSize(textViewBody, textSizeBody, false);
         }
 
+        int height = 0; // used for feed icon vertical offset calculation
         if(textViewItemDate != null) {
             textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
+            scaleTextSize(textViewItemDate, textSizeItemDate, true);
+            height = Math.round(textViewItemDate.getTextSize());
         }
 
         if (imgViewFavIcon != null) {
-            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon);
+            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon, Math.round((height-textSizeItemDate)/2));
         }
 
         if(imgViewThumbnail != null) {
             imgViewThumbnail.setColorFilter(null);
-
             String body = rssItem.getBody();
             List<String> images = ImageHandler.getImageLinksFromText(body);
 
@@ -303,6 +327,45 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             webView_body.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
         }
     }
+
+    /**
+     * Apply scaling factor to TextView font size, based on app font-size preference.
+     *
+     * @param tv            TextView object to be scaled
+     * @param initialSize   app layout definition default size of TextView element
+     * @param halfScale     if set to true, will only apply half of the scaling factor
+     */
+    private static void scaleTextSize(TextView tv, int initialTvSize, boolean halfScale) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
+        float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
+        if(halfScale) {
+            scalingFactor = scalingFactor + (1-scalingFactor)/2;
+        }
+
+        int initialSize = initialTvSize;
+        if(initialSize < 0) {
+            initialSize = Math.round(tv.getTextSize());
+        }
+        // float sp = initialSize / tv.getContext().getResources().getDisplayMetrics().scaledDensity;  // transform scaled pixels, device pixels
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, Math.round(initialSize*scalingFactor));
+    }
+
+    /**
+     * Return the number of rss item body text lines, depending on the currently selected font size/scale;
+     * only meant to be used with simple feed view.
+     *
+     * @param tv    TextView object, needed to get context->preferences from
+     * @return      number of lines of rss item body text lines to be used in simple view
+     */
+    private static int scaleSimpleTextLines(TextView tv) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
+        float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
+        /* The following formula computes the number of text lines for Simple item view; it simply boils
+         * down to a linear conversion from the font scaling factor from 0.8 -> 6 lines to 1.6 -> 3 lines
+         */
+        return Math.round((scalingFactor*-5)+10);
+    }
+
 
     public boolean shouldStayUnread() {
         return stayUnread;

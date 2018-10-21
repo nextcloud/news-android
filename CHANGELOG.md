@@ -3,10 +3,21 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.19 (Google Play)
+---------------------
+- Feature - <a href="https://github.com/owncloud/News-Android-App/issues/661">#661 NightMode (Thank you @AnotherDaniel)</a>
+- Feature - <a href="https://github.com/owncloud/News-Android-App/issues/658">#658 Several UI refactorings</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/664">#664 Order of folders is confusing (Thank you @AnotherDaniel)</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/633">#633 swipe upwards to mark as read</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/667">#667 Beeping while podcast playing/downloading</a>
+
+
 0.9.9.18 (Google Play)
 ---------------------
 - Improve - <a href="https://github.com/owncloud/News-Android-App/issues/651">#651 Automatic reload of rss item list when empty</a>
 - Improve - <a href="https://github.com/owncloud/News-Android-App/issues/657">#657 Rename app from "Nextcloud News" to "News"</a>
+- Feature - <a href="https://github.com/owncloud/News-Android-App/issues/478">#478 Add Search Functionality (Thank you @NilsGriebner)</a>
+- Feature - <a href="https://github.com/owncloud/News-Android-App/issues/644">#644 Move feed (Thank you @NilsGriebner)</a>
 - Improve first sign-on experience
 - Several UI improvements
 - Single Sign On (first official beta!)
