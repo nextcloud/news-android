@@ -6,12 +6,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.service.notification.StatusBarNotification;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
@@ -24,8 +22,6 @@ import java.io.File;
 import de.luhmer.owncloudnewsreader.BuildConfig;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 
 public class NextcloudNotificationManager {
 

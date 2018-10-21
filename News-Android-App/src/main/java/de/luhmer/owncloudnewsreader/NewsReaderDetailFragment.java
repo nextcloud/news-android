@@ -390,7 +390,9 @@ public class NewsReaderDetailFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_newsreader_detail, container, false);
-        ButterKnife.bind(this, rootView);
+
+		ButterKnife.bind(this, rootView);
+
 
         recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
@@ -512,7 +514,7 @@ public class NewsReaderDetailFragment extends Fragment {
         TypedArray a = context.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable, R.attr.starredDrawable, R.attr.colorAccent});
         markAsReadDrawable = a.getDrawable(0);
         starredDrawable = a.getDrawable(1);
-        int color = Constants.IsNextCloud(getContext()) ? R.color.nextcloudBlueLight : R.color.owncloudBlueLight;
+        int color = Constants.IsNextCloud(getContext()) ? R.color.nextcloudBlue : R.color.owncloudBlue;
         accentColor = a.getColor(2, ContextCompat.getColor(context, color));
         a.recycle();
     }

@@ -35,7 +35,6 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Action;
@@ -124,9 +123,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         });
 
         int style = DialogFragment.STYLE_NO_TITLE;
-        int theme = ThemeChooser.getInstance(getActivity()).isDarkTheme()
-                ? R.style.FloatingDialog
-                : R.style.FloatingDialogLight;
+        int theme = R.style.FloatingDialog;
         setStyle(style, theme);
     }
 

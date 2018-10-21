@@ -26,7 +26,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
@@ -56,7 +55,6 @@ import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
@@ -154,12 +152,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_newsreader_list, container, false);
 
-        if(!ThemeChooser.getInstance(getActivity()).isDarkTheme()) {
-            view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.slider_listview_background_color_light_theme));
-        }
-
         ButterKnife.bind(this, view);
-
 
         if(!Constants.IsNextCloud(getContext())) {
             // Set ownCloud view
@@ -327,8 +320,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         }
 
         SharedPreferences mPrefs = ((PodcastFragmentActivity) getActivity()).mPrefs;
+        if(!mPrefs.contains(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING)) {
+            // return if app is not setup yet..
+            return;
+        }
         String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-        String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, getString(R.string.app_name));
+        String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
         mOc_root_path = mOc_root_path.replace("http://", "").replace("https://", ""); //Remove http:// or https://
 
         userTextView.setText(mUsername);

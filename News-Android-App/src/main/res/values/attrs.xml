@@ -8,12 +8,12 @@
     <attr name="unstarredColor" format="color" />
     <attr name="starredDrawable" format="reference" />
 
-    <attr name="extended_listview_item_body_text_color" format="color" />
-
     <attr name="markasreadDrawable" format="reference" />
 
     <attr name="tintColor" format="color" />
 
     <attr name="news_detail_background_color" format="color" />
+
+    <attr name="primaryTextColor" format="color" />
 
 </resources>

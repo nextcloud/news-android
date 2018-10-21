@@ -1,3 +1,5 @@
+package de.luhmer.owncloudnewsreader.tests;
+
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.ViewAssertion;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +20,8 @@ public class RecyclerViewAssertions implements ViewAssertion {
         LinearLayoutManager layoutManager = ((LinearLayoutManager)recyclerView.getLayoutManager());
         int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
 
-        if(firstVisiblePosition != mExpectedPos)
+        if(firstVisiblePosition != mExpectedPos) {
             throw new RuntimeException("Wrong position! Expected: " + mExpectedPos + " but was: " + firstVisiblePosition);
+        }
     }
 }

@@ -148,7 +148,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.ChooseTheme(this);
+        SharedPreferences defaultValueSp = getSharedPreferences(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, Context.MODE_PRIVATE);
+        if(!defaultValueSp.getBoolean(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, false)) {
+            PreferenceManager.setDefaultValues(this, R.xml.pref_data_sync, true);
+            PreferenceManager.setDefaultValues(this, R.xml.pref_display, true);
+            PreferenceManager.setDefaultValues(this, R.xml.pref_general, true);
+            PreferenceManager.setDefaultValues(this, R.xml.pref_notification, true);
+        }
+
+		ThemeChooser.chooseTheme(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
 
@@ -472,7 +480,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 * @return true if new items count was greater than 0
 	 */
 	private boolean syncFinishedHandler() {
-
 		ShowcaseConfig config = new ShowcaseConfig();
 		config.setDelay(300); // half second between each showcase view
 		MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SWIPE_LEFT_RIGHT_AND_PTR");
@@ -893,19 +900,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
                 @Override
                 public void onConnected() {
-                    String oldLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
-                    String newLayout = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this).getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
-
-                    if(ThemeChooser.getInstance(NewsReaderListActivity.this).themeRequiresRestartOfUI(NewsReaderListActivity.this) || !newLayout.equals(oldLayout)) {
-                        finish();
-                        startActivity(getIntent());
-                    } else if(data.hasExtra(SettingsActivity.CACHE_CLEARED) && ownCloudSyncService != null) {
-                        resetUiAndStartSync();
-                    }
+                    ensureCorrectTheme(data);
                 }
 
                 @Override
                 public void onError(Exception ex) {
+                    ensureCorrectTheme(data);
                     ex.printStackTrace();
                 }
             });
@@ -913,9 +913,22 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
             if(data != null) {
                 boolean val = data.getBooleanExtra(NewFeedActivity.ADD_NEW_SUCCESS, false);
-                if (val)
+                if (val) {
                     startSync();
+                }
             }
+        }
+    }
+
+    private void ensureCorrectTheme(Intent data) {
+	    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String oldListLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
+        String newListLayout = mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
+
+        if (ThemeChooser.getInstance(NewsReaderListActivity.this).themeRequiresRestartOfUI(NewsReaderListActivity.this) || !newListLayout.equals(oldListLayout)) {
+            NewsReaderListActivity.this.recreate();
+        } else if (data.hasExtra(SettingsActivity.CACHE_CLEARED) && ownCloudSyncService != null) {
+            resetUiAndStartSync();
         }
     }
 

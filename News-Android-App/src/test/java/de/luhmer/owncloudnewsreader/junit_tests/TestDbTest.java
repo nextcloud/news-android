@@ -52,7 +52,10 @@ public class TestDbTest {
         feed.setId(0);
         feed.setFeedTitle("Test");
         feed.setFolderId(0l);
-        dbConn.insertNewFeed(feed);
+
+        List<Feed> feedList = new ArrayList<>();
+        feedList.add(feed);
+        dbConn.insertNewFeed(feedList);
 
         String randomBody = randomString(1000000);
 
