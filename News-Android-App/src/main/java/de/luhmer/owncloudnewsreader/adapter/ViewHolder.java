@@ -106,10 +106,10 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private int inactiveStarColor;
     private DisplayImageOptions displayImageOptionsThumbnail;
 
-    private int textSizeSummary = -1;
-    private int textSizeTitle = -1;
+    private int textSizeSummary;
+    private int textSizeTitle;
+    private int textSizeItemDate;
     private int textSizeBody = -1;
-    private int textSizeItemDate = -1;
 
     public ViewHolder(View itemView) {
         super(itemView);
@@ -335,14 +335,16 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
      * @param initialSize   app layout definition default size of TextView element
      * @param halfScale     if set to true, will only apply half of the scaling factor
      */
-    private static void scaleTextSize(TextView tv, int initialSize, boolean halfScale) {
+    private static void scaleTextSize(TextView tv, int initialTvSize, boolean halfScale) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
         float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
-        if(initialSize < 0) {
-            initialSize = Math.round(tv.getTextSize());
-        }
         if(halfScale) {
             scalingFactor = scalingFactor + (1-scalingFactor)/2;
+        }
+
+        int initialSize = initialTvSize;
+        if(initialSize < 0) {
+            initialSize = Math.round(tv.getTextSize());
         }
         // float sp = initialSize / tv.getContext().getResources().getDisplayMetrics().scaledDensity;  // transform scaled pixels, device pixels
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, Math.round(initialSize*scalingFactor));
