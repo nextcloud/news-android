@@ -66,7 +66,7 @@ public class NightModeTest {
     }
 
     @Test
-    public void testBackgroundDaylight_sameActivity() {
+    public void testBackgroundDaylightTheme() {
         launchActivity();
 
         // Type text and then press the button.
@@ -76,7 +76,7 @@ public class NightModeTest {
     }
 
     @Test
-    public void testOledAutoMode_sameActivity() {
+    public void testOledAutoMode() {
         launchActivity();
 
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -96,7 +96,7 @@ public class NightModeTest {
     }
 
     @Test
-    public void testLight_sameActivity() {
+    public void testLightTheme() {
         launchActivity();
 
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -114,7 +114,7 @@ public class NightModeTest {
     }
 
     @Test
-    public void testDark_sameActivity() {
+    public void testDarkTheme() {
         launchActivity();
 
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -132,7 +132,7 @@ public class NightModeTest {
     }
 
     @Test
-    public void testDarkOled_sameActivity() {
+    public void testDarkOledTheme() {
         launchActivity();
 
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -204,8 +204,8 @@ public class NightModeTest {
                 .remove(SP_APP_THEME)
                 .commit();
 
-        assertThat(mPrefs.contains(SettingsActivity.SP_APP_THEME), equalTo(false));
-        assertThat(mPrefs.contains(SettingsActivity.CB_OLED_MODE), equalTo(false));
+        assertThat(mPrefs.contains(SP_APP_THEME), equalTo(false));
+        assertThat(mPrefs.contains(CB_OLED_MODE), equalTo(false));
 
 
         SharedPreferences defaultValueSp = context.getSharedPreferences(KEY_HAS_SET_DEFAULT_VALUES, Context.MODE_PRIVATE);

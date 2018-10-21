@@ -35,14 +35,9 @@ public class CustomMatchers {
 
             @Override
             protected boolean matchesSafely(View view, Description mismatchDescription) {
-
                 Drawable drawable = view.getBackground();
                 Drawable otherDrawable = ContextCompat.getDrawable(view.getContext(), resourceColorId);
-                int colorId = getColor(activity, resourceColorId);
 
-                error = "COLOR: "+resourceColorId + " - " + colorId;
-
-                /*
                 if (drawable instanceof ColorDrawable && otherDrawable instanceof ColorDrawable) {
                     int colorId = ((ColorDrawable) drawable).getColor();
 
@@ -54,14 +49,13 @@ public class CustomMatchers {
                 } else {
                     error = "Not color drawables!!";
                 }
-                */
 
                 return false;
             }
         };
     }
 
-    public static int getColor(Context context, int color) {
+    private static int getColor(Context context, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return context.getColor(color);
         } else {
@@ -140,8 +134,7 @@ public class CustomMatchers {
         }
         if (drawable instanceof StateListDrawable && otherDrawable instanceof StateListDrawable) {
             Log.e(TAG, "other drawable!!");
-            drawable = drawable.getCurrent();
-            otherDrawable = otherDrawable.getCurrent();
+            return drawable.getCurrent().equals(otherDrawable.getCurrent());
         }
         if (drawable instanceof BitmapDrawable) {
             Log.e(TAG, "bitmap drawable!!");

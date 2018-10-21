@@ -47,24 +47,20 @@ import static junit.framework.TestCase.fail;
 @LargeTest
 public class NewsReaderListActivityUiTests {
 
-    int scrollPosition = 10;
+    private int scrollPosition = 10;
 
     @Rule
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class);
 
 
-    NewsReaderListActivity getActivity() {
+    private NewsReaderListActivity getActivity() {
         return mActivityRule.getActivity();
     }
 
     @Before
     public void setUp() {
-        registerInstance(InstrumentationRegistry.getInstrumentation(), new Bundle());
+        registerInstance(getInstrumentation(), new Bundle());
         sleep(0.3f);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test

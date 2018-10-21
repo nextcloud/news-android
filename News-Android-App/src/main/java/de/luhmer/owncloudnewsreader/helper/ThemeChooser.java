@@ -83,11 +83,9 @@ public class ThemeChooser {
 
 
         ThemeChooser.getInstance(act).OLEDActive = false;
-        if(ThemeChooser.getInstance(act).isOledMode(act, false)) {
-            if(ThemeChooser.getInstance(act).isDarkTheme(act)) {
-                act.setTheme(R.style.AppThemeOLED);
-                ThemeChooser.getInstance(act).OLEDActive = true;
-            }
+        if(ThemeChooser.getInstance(act).isOledMode(act, false) && ThemeChooser.getInstance(act).isDarkTheme(act)) {
+            act.setTheme(R.style.AppThemeOLED);
+            ThemeChooser.getInstance(act).OLEDActive = true;
         }
     }
 

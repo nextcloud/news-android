@@ -14,7 +14,7 @@ import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 
 public class TestApiModule extends ApiModule {
 
-    Application mApplication;
+    private Application mApplication;
 
     public TestApiModule(Application application) {
         super(application);
