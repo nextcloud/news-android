@@ -1,3 +1,9 @@
+:root {
+    --fontsize-body: 1.1em;
+    --fontsize-header: 1.1em;
+    --fontsize-subscript: 0.7em;
+}
+
 @font-face {
     font-family: "ROBOTO_REGULAR";
     src: url('fonts/Roboto-Regular.ttf');
@@ -61,7 +67,7 @@ span {
 }
 
 body {
-    font-size:  1.1em;
+    font-size:  var(--fontsize-body);
     font-weight:normal;
     margin:     0px;
     word-wrap:  break-word !important;
@@ -100,7 +106,7 @@ a {
 }
 
 #header {
-    font-size:		18px;
+    font-size:		var(--fontsize-header);
     margin-bottom:	10px;
     font-weight:	bold;
 }
@@ -142,7 +148,7 @@ ul li:before {
 
 #subscription, #datetime {
     margin-bottom:3px;
-    font-size:13px;
+    font-size: var(--fontsize-subscript);
 }
 
 #subscription {

@@ -60,6 +60,19 @@ public class FavIconHandler {
         ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
     }
 
+    /**
+     * Version of loadFacIconForFeed that applies a vertical offset to the icon ImageView,
+     * to compensate for font size scaling alignment issue
+     *
+     * @param favIconUrl    URL of icon to load/display
+     * @param imgView       ImageView object to use for icon display
+     * @param offset        Y translation to apply to ImageView
+     */
+    public void loadFavIconForFeed(String favIconUrl, ImageView imgView, int offset) {
+        loadFavIconForFeed(favIconUrl, imgView);
+        imgView.setTranslationY(offset);
+    }
+
     public static int getResourceIdForRightDefaultFeedIcon(Context context)
 	{
 		if(ThemeChooser.getInstance(context).isDarkTheme())

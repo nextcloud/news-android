@@ -111,6 +111,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
+	public static final String SP_FONT_SIZE = "sp_font_size";
     public static final String CACHE_CLEARED = "CACHE_CLEARED";
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
     public static final String SP_SORT_ORDER = "sp_sort_order";
@@ -476,12 +477,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		{
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_APP_THEME));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FEED_LIST_LAYOUT));
+			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FONT_SIZE));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_DISPLAY_BROWSER));
 		}
 		else
 		{
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_APP_THEME));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FEED_LIST_LAYOUT));
+			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FONT_SIZE));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_DISPLAY_BROWSER));
 		}
 	}

@@ -1,7 +1,9 @@
 package de.luhmer.owncloudnewsreader.async_tasks;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
@@ -10,12 +12,14 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
@@ -24,6 +28,10 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 
 public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
+
+    private static final double BODY_FONT_SIZE = 1.1;
+    private static final double HEADING_FONT_SIZE = 1.1;
+    private static final double SUBSCRIPT_FONT_SIZE = 0.7;
 
     public interface Listener {
         /**
@@ -114,17 +122,28 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         builder.append("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />");
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
-        /*
+
+
+        // font size scaling
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        double scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
+        DecimalFormat fontFormat = new DecimalFormat("#.#");
+
         builder.append("<style type=\"text/css\">");
         builder.append(String.format(
-                        "#top_section { border-%s: 4px solid %s; border-bottom: 1px solid %s; background: %s }",
-                        borderSide,
-                        ColorHelper.getCssColor(feedColor),
-                        ColorHelper.getCssColor(colors[0]),
-                        ColorHelper.getCssColor(colors[1]))
-        );
+                        ":root { \n" +
+                            "--fontsize-body: %sem; \n" +
+                            "--fontsize-header: %sem; \n" +
+                            "--fontsize-subscript: %sem; \n" +
+                        "}",
+                fontFormat.format(scalingFactor*BODY_FONT_SIZE),
+                fontFormat.format(scalingFactor*HEADING_FONT_SIZE),
+                fontFormat.format(scalingFactor*SUBSCRIPT_FONT_SIZE)
+            ));
         builder.append("</style>");
-        */
+
+
+
         builder.append(String.format("</head><body class=\"%s\" class=\"%s\">", body_id, rtlClass));
 
         if (showHeader) {
