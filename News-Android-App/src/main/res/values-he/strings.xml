@@ -128,7 +128,6 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">תצוגה</string>
-    <string name="pref_title_app_theme">ערכת עיצוב היישומון (יש להפעיל את היישומון מחדש כדי להחיל)</string>
     <string name="pref_title_feed_list_layout">פריסת רשימת הזנות</string>
     <string name="pref_display_browser">דפדפן</string>
 
@@ -137,9 +136,8 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">סמלי פעולה (תצוגה מפורטת)</string>
 
-    <string name="pref_display_apptheme_night">כהה</string>
-    <string name="pref_display_apptheme_auto">כהה (למסכי OLED)</string>
-    <string name="pref_display_apptheme_day">בהירה</string>
+    <string name="pref_display_apptheme_light">בהירה</string>
+    <string name="pref_display_apptheme_dark">כהה</string>
 
     <string name="pref_display_browser_cct">לשוניות Chrome מובנות מותאמות</string>
     <string name="pref_display_browser_built_in">דפדפן מובנה</string>

@@ -153,7 +153,6 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Affichage</string>
-    <string name="pref_title_app_theme">Thème de l\'application (redémarrer le programme pour l\'appliquer)</string>
     <string name="pref_title_feed_list_layout">Disposition de la liste des flux</string>
     <string name="pref_display_browser">Navigateur</string>
 
@@ -162,9 +161,8 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Icônes d\'action (Vue détaillée)</string>
 
-    <string name="pref_display_apptheme_night">Sombre</string>
-    <string name="pref_display_apptheme_auto">Sombre (pour écrans OLED)</string>
-    <string name="pref_display_apptheme_day">Clair</string>
+    <string name="pref_display_apptheme_light">Clair</string>
+    <string name="pref_display_apptheme_dark">Sombre</string>
 
     <string name="pref_display_browser_cct">Onglets de navigation Chrome intégré</string>
     <string name="pref_display_browser_built_in">Navigateur intégré</string>

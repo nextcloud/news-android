@@ -159,7 +159,6 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Prikaz</string>
-    <string name="pref_title_app_theme">Tema programa (za uveljavitev je treba program znova zagnati)</string>
     <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
     <string name="pref_display_browser">Brskalnik</string>
 
@@ -168,9 +167,8 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikone dejavnosti (podrobni pogled)</string>
 
-    <string name="pref_display_apptheme_dark">Temna</string>
-    <string name="pref_display_apptheme_dark_oled">Temna (za zaslone OLED)</string>
     <string name="pref_display_apptheme_light">Svetla</string>
+    <string name="pref_display_apptheme_dark">Temna</string>
 
     <string name="pref_display_browser_cct">Vgrajen Chrome z zavihki</string>
     <string name="pref_display_browser_built_in">Vgrajen brskalnik</string>

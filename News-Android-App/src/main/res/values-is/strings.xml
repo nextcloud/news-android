@@ -153,7 +153,6 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Birting</string>
-    <string name="pref_title_app_theme">Þema forritsins (endurræstu forritið til að breytingar taki gildi)</string>
     <string name="pref_title_feed_list_layout">Framsetning streymislista</string>
     <string name="pref_display_browser">Vafri</string>
 
@@ -162,9 +161,8 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Táknmyndir aðgerða (ítarleg sýn)</string>
 
-    <string name="pref_display_apptheme_night">Dökkt</string>
-    <string name="pref_display_apptheme_auto">Dökkt (fyrir OLED-skjái)</string>
-    <string name="pref_display_apptheme_day">Ljóst</string>
+    <string name="pref_display_apptheme_light">Ljóst</string>
+    <string name="pref_display_apptheme_dark">Dökkt</string>
 
     <string name="pref_display_browser_cct">Innbyggðir Chrome-sérsniðnir-flipar</string>
     <string name="pref_display_browser_built_in">Innbyggður vafri</string>

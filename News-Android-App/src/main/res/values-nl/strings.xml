@@ -153,7 +153,6 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Weergeven</string>
-    <string name="pref_title_app_theme">Appthema (start het programma opnieuw om toe te passen)</string>
     <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
     <string name="pref_display_browser">Browser</string>
 
@@ -162,9 +161,8 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
 
-    <string name="pref_display_apptheme_night">Donker</string>
-    <string name="pref_display_apptheme_auto">Donker (voor OLED schermen)</string>
-    <string name="pref_display_apptheme_day">Licht</string>
+    <string name="pref_display_apptheme_light">Licht</string>
+    <string name="pref_display_apptheme_dark">Donker</string>
 
     <string name="pref_display_browser_cct">Ingebouwde Chrome-maatwerk-tabs</string>
     <string name="pref_display_browser_built_in">Ingebouwde browser</string>

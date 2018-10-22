@@ -153,7 +153,6 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Exibir</string>
-    <string name="pref_title_app_theme">Tema do aplicativo (reiniciar o programa para aplicar)</string>
     <string name="pref_title_feed_list_layout">Layout da lista de feeds</string>
     <string name="pref_display_browser">Navegador</string>
 
@@ -162,9 +161,8 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Visualização detalhada)</string>
 
-    <string name="pref_display_apptheme_night">Escuro</string>
-    <string name="pref_display_apptheme_auto">Escuro (para telas OLED)</string>
-    <string name="pref_display_apptheme_day">Claro</string>
+    <string name="pref_display_apptheme_light">Claro</string>
+    <string name="pref_display_apptheme_dark">Escuro</string>
 
     <string name="pref_display_browser_cct">Chrome-Custom-Tabs incorporadas</string>
     <string name="pref_display_browser_built_in">Navegador Incorporado</string>
