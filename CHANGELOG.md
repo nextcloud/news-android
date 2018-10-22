@@ -7,6 +7,7 @@
 ---------------------
 - Feature - <a href="https://github.com/owncloud/News-Android-App/issues/661">#661 NightMode (Thank you @AnotherDaniel)</a>
 - Feature - <a href="https://github.com/owncloud/News-Android-App/issues/658">#658 Several UI refactorings</a>
+- Feature - <a href="https://github.com/owncloud/News-Android-App/issues/585">#585 Thumbnail support</a>
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/664">#664 Order of folders is confusing (Thank you @AnotherDaniel)</a>
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/633">#633 swipe upwards to mark as read</a>
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/667">#667 Beeping while podcast playing/downloading</a>
