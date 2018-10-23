@@ -153,7 +153,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Exibir</string>
+    <string name="pref_title_app_theme">Modo Noturno</string>
     <string name="pref_title_feed_list_layout">Layout da lista de feeds</string>
+    <string name="pref_title_font_size">Tamanho da fonte</string>
     <string name="pref_display_browser">Navegador</string>
 
 
@@ -161,8 +163,12 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Visualização detalhada)</string>
 
+    <string name="pref_display_apptheme_auto">Claro / Escuro (baseado na hora do dia)</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Escuro</string>
+
+    <string name="pref_oled_mode">Fundo escuro</string>
+    <string name="pref_oled_mode_summary">Para temas escuros em telas OLED</string>
 
     <string name="pref_display_browser_cct">Chrome-Custom-Tabs incorporadas</string>
     <string name="pref_display_browser_built_in">Navegador Incorporado</string>
@@ -173,6 +179,12 @@
     <string name="pref_display_feed_list_layout_extended_full_text">Estendido (texto completo)</string>
     <string name="pref_display_feed_list_layout_extended_webview">Estendido com Webview</string>
     <string name="pref_display_feed_list_layout_extended_cardview">Estendido com Cardview</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Pequeno</string>
+    <string name="pref_display_font_size_d">Padrão</string>
+    <string name="pref_display_font_size_l">Grande</string>
+    <string name="pref_display_font_size_xl">Extra Grande</string>
 
     <string name="content_desc_play">executar</string>
     <string name="content_desc_pause">pausa</string>

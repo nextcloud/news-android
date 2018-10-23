@@ -1,235 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="auto_sync_string">Automatisch synchronisieren</string>
-    <string name="title_activity_sync_interval_selector">Auswahl des Synchronisationsintervalls</string>
-    <string name="title_activity_news_detail">Newsdetailaktivität</string>
-    <string name="empty_view_content">Keine Artikel vorhanden</string>
-    <string name="toast_GettingMoreItems">Herunterladen weiterer Elemente gestartet... Bitte warten.</string>
-    <string name="no_wifi_available">Keine WLAN-Verbindung</string>
-    <string name="do_you_want_to_download_without_wifi">Willst du die Bilder ohne W-LAN-Verbindung herunterladen</string>
-    <string name="current_version">Du benutzt die Version %s</string>
-    <string name="widget_header">Nextcloud-News</string>
+    <string name="auto_sync_string">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="title_activity_sync_interval_selector">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="title_activity_news_detail">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="empty_view_content">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="toast_GettingMoreItems">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="no_wifi_available">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="do_you_want_to_download_without_wifi">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="current_version">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).%s</string>
+    <string name="widget_header">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d neuer Artikel verfügbar</item>
-        <item quantity="other">%d neue Artikel verfügbar</item>
+        <item quantity="other">%dBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</item>
     </plurals>
-    <string name="message_bar_reload">Aktualisieren</string>
-    <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
-    <string name="starredFeeds">Favorisierte Artikel</string>
-    <string name="title_activity_new_feed">Einen neuen Feed hinzufügen</string>
+    <string name="message_bar_reload">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="allUnreadFeeds">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="starredFeeds">Favorisierte ArtikelBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="title_activity_new_feed">Einen neuen Feed hinzufügenBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="menu_update">Aktualisieren</string>
-    <string name="menu_About_Changelog">Über / Änderungen</string>
-    <string name="menu_markAllAsRead">Alle als gelesen markieren</string>
-    <string name="menu_StartImageCaching">Lade Bilder herunter</string>
-    <string name="menu_downloadMoreItems">Weitere Artikel herunterladen</string>
+    <string name="menu_update">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="menu_About_Changelog">Über / ÄnderungenBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="menu_markAllAsRead">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="menu_StartImageCaching">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="menu_downloadMoreItems">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
     <!-- Action Bar Items -->
-    <string name="action_starred">Favorisiert</string>
-    <string name="action_read">Gelesen</string>
-    <string name="action_playPodacst">Podcast wiedergeben</string>
-    <string name="action_openInBrowser">Im Browser öffnen</string>
-    <string name="action_Share">Teilen</string>
-    <string name="action_login">Servereinstellungen</string>
-    <string name="action_save">Speichern</string>
-    <string name="action_settings">Einstellungen</string>
-    <string name="action_sync_settings">Synchronisations-Einstellungen</string>
-    <string name="action_add_new_feed">Einen neuen Feed hinzufügen</string>
-    <string name="action_textToSpeech">Vorlesen</string>
+    <string name="action_starred">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_read">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_playPodacst">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_openInBrowser">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_Share">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_login">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_save">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_settings">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_sync_settings">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_add_new_feed">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_textToSpeech">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Du hast %d neuen ungelesenen Eintrag</item>
-        <item quantity="other">Du hast %d neue ungelesene Einträge</item>
+        <item quantity="other">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).%d neue ungelesene Einträge</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d neuen ungelesenen Eintrag verfügbar</item>
-        <item quantity="other">%d neue ungelesene Einträge verfügbar</item>
+        <item quantity="other">%dBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).
+</item>
     </plurals>
 
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">Feed URL</string>
-    <string name="action_add_feed">Feed hinzufügen</string>
+    <string name="hint_feed_url">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_add_feed">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">Lade Bild herunter</string>
-    <string name="action_img_sharelink">Teile den Link zum Bild</string>
-    <string name="action_img_open">Bild im Browser öffnen</string>
-    <string name="action_img_copylink">Link zum Bild kopieren</string>
-    <string name="action_link_share">Link teilen</string>
-    <string name="action_link_open">Öffne den Link im Browser</string>
-    <string name="action_link_copy">Link kopieren</string>
-    <string name="toast_img_download_wait">Lade herunter... bitte warten</string>
-    <string name="toast_img_saved">Bild gespeichert</string>
-    <string name="toast_img_notwriteable">Beim Schreiben des Images ist ein Fehler aufgetreten.</string>
-    <string name="toast_copied_to_clipboard">In die Zwischenablage kopiert</string>
-    <string name="error_download_failed">Herunterladen fehlgeschlagen</string>
-    <string name="intent_title_share">Teilen über</string>
+    <string name="action_img_download">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_img_sharelink">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_img_open">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_img_copylink">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_link_share">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_link_open">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_link_copy">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="toast_img_download_wait">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="toast_img_saved">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="toast_img_notwriteable">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="toast_copied_to_clipboard">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="error_download_failed">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="intent_title_share">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">Feed löschen</string>
-    <string name="action_feed_rename">Feed umbenennen</string>
-    <string name="action_feed_move">Feed verschieben</string>
-    <string name="feed_remove_button">Entfernen</string>
-    <string name="feed_rename_button">Umbenennen</string>
-    <string name="confirm_feed_remove">Möchtest du diesen Feed wirklich entfernen? Das kann nicht rückgängig gemacht werden!</string>
-    <string name="feed_move_list_description">Den Zielordner für den Feed auswählen</string>
-    <string name="move_feed_root_folder">Quellordner</string>
+    <string name="action_feed_remove">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_feed_rename">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_feed_move">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="feed_remove_button">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="feed_rename_button">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="confirm_feed_remove">Möchtest du diesen Feed wirklich entfernen? Das kann nicht Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="feed_move_list_description">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="move_feed_root_folder">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
     <!-- Strings related to login -->
-    <string name="pref_title_username">Benutzername</string>
-    <string name="pref_title_password">Passwort</string>
-    <string name="pref_title_owncloudRootPath">Nextcloud Wurzeladresse</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+    <string name="pref_title_username">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_password">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_owncloudRootPath">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_default_owncloudRootPath">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="action_sign_in_short">Einloggen</string>
-    <string name="login_progress_signing_in">Anmeldung…</string>
+    <string name="action_sign_in_short">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="login_progress_signing_in">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">Dieses Feld ist erforderlich</string>
-    <string name="error_invalid_url">URL falsch</string>
+    <string name="error_field_required">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="error_invalid_url">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- Import Accounts -->
-    <string name="import_account">Benutzerkonto importieren</string>
+    <string name="import_account">Benutzerkonto importierenBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">%d alter Artikel heruntergeladen</item>
-        <item quantity="other">%d alte Artikel heruntergeladen</item>
+        <item quantity="other">%dBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</item>
     </plurals>
-    <string name="toast_no_more_downloads_available">Keine weiteren Artikel verfügbar</string>
+    <string name="toast_no_more_downloads_available">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">Bisher %d Eintrag geladen…</item>
-        <item quantity="other">Bisher %d Einträge geladen...</item>
+        <item quantity="other">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).%d Einträge geladen...</item>
     </plurals>
 
 
     <!-- Strings related to Settings -->
-    <string name="title_activity_settings">Einstellungen</string>
-    <string name="cache_is_cleared">Zwischenspeicher wurde gelöscht!</string>
+    <string name="title_activity_settings">EinstellungenBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="cache_is_cleared">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- General settings -->
-    <string name="pref_header_general">Allgemein</string>
-    <string name="pref_title_general_sort_order">Sortierung</string>
+    <string name="pref_header_general">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_general_sort_order">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="pref_general_sort_order_new_old">Neu -> Alt</string>
-    <string name="pref_general_sort_order_old_new">Alt -> Neu</string>
+    <string name="pref_general_sort_order_new_old">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_general_sort_order_old_new">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="pref_title_general_search_in">Suche in</string>
+    <string name="pref_title_general_search_in">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="pref_general_search_in_title">Titel</string>
-    <string name="pref_general_search_in_body">Artikel</string>
+    <string name="pref_general_search_in_title">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_general_search_in_body">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="dialog_clearing_cache">Cache löschen</string>
-    <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird geleert … Bitte warten.</string>
-    <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchtest Du dennoch den Cache leeren?</string>
-    <string name="warning">Warnung</string>
+    <string name="dialog_clearing_cache">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird geleert … Bitte warten.Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchtest Du dennoch den Cache leeren?Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="warning">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="pref_title_AutoSyncOnStart">Beim Starten synchronisieren</string>
     <string name="pref_title_ShowOnlyUnread">Nur ungelesene Artikel anzeigen</string>
-    <string name="pref_title_DisableHostnameVerification">Hostnamen-Nachweis deaktivieren</string>
-    <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärketasten navigieren</string>
-    <string name="pref_title_MarkAsReadWhileScrolling">Während des Scrollens als gelesen markieren</string>
-    <string name="pref_title_OpenInBrowserDirectly">Detailansicht überspringen und Artikel in Browser öffnen</string>
+    <string name="pref_title_DisableHostnameVerification">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_OpenInBrowserDirectly">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="dialog_feature_not_available">Diese Funktion ist in dieser (Open-Source-)Version dieser App nicht verfügbar. Wenn du diese Funktion nutzen möchtest, lade bitte die App aus dem GitHub Repository herunter oder lade die App aus dem Google PlayStore herunter.</string>
+    <string name="dialog_feature_not_available">Diese Funktion ist in dieser (Open-Source-)Version dieser App nicht verfügbar. Wenn du diese Funktion nutzen möchtest, lade bitte die App aus dem GitHub Repository herunter oder lade die App aus dem Google PlayStore Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">Unbekanntes Zertifikat akzeptieren?</string>
-    <string name="mtm_decision_always">Immer</string>
-    <string name="mtm_decision_abort">Abbrechen</string>
-    <string name="mtm_notification">Zertifikatsnachweis</string>
+    <string name="mtm_accept_cert">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="mtm_decision_always">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="mtm_decision_abort">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="mtm_notification">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Kein Podcast ausgewählt</string>
-    <string name="no_chapters_available">Es sind keine Kapitel verfügbar</string>
-    <string name="podcast_playback_speed_dialog_title">Wiedergabegeschwindigkeit</string>
+    <string name="no_podcast_selected">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="no_chapters_available">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="podcast_playback_speed_dialog_title">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- Settings for Display -->
-    <string name="pref_header_display">Anzeige</string>
-    <string name="pref_title_feed_list_layout">Feed-Listen-Layout</string>
-    <string name="pref_display_browser">Browser</string>
+    <string name="pref_header_display">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_app_theme">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_feed_list_layout">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_font_size">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_browser">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">Aktionssymbole (Detailansicht)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="pref_display_apptheme_light">Hell</string>
-    <string name="pref_display_apptheme_dark">Dunkel</string>
+    <string name="pref_display_apptheme_auto">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_apptheme_light">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_apptheme_dark">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="pref_display_browser_cct">Integrierte angepasste Chrome-Tabs</string>
-    <string name="pref_display_browser_built_in">Integrierter Browser</string>
-    <string name="pref_display_browser_external">Externer Browser</string>
+    <string name="pref_oled_mode">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_oled_mode_summary">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="pref_display_feed_list_layout_simple">Einfach</string>
-    <string name="pref_display_feed_list_layout_extended">Erweitert</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Erweitert (Volltext)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">Erweitert mit Webansicht</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">Erweitert mit Kartenansicht</string>
+    <string name="pref_display_browser_cct">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_browser_built_in">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_browser_external">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="content_desc_play">spielen</string>
-    <string name="content_desc_pause">Pause</string>
-    <string name="content_desc_playback_speed">Wiedergabegeschwindigkeit</string>
-    <string name="content_desc_rewind">rückwärts</string>
-    <string name="content_desc_forward">vorwärts</string>
-    <string name="content_desc_expand">erweitern</string>
-    <string name="content_desc_collapse">Zuklappen</string>
-    <string name="content_desc_mark_as_read">Als gelesen markieren</string>
-    <string name="content_desc_mark_as_unread">Als ungelesen markieren</string>
-    <string name="content_desc_tap_to_refresh">Zum Aktualisieren antippen</string>
-    <string name="content_desc_add_to_favorites">Zu den Favoriten hinzufügen</string>
-    <string name="content_desc_remove_from_favorites">Aus den Favoriten entfernen</string>
-    <string name="content_desc_show_password">Passwort anzeigen</string>
-    <string name="content_desc_delete">löschen</string>
-    <string name="content_desc_download">Herunterladen</string>
+    <string name="pref_display_feed_list_layout_simple">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_extended">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_extended_full_text">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_extended_webview">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_extended_cardview">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_font_size_d">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_font_size_l">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_font_size_xl">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+
+    <string name="content_desc_play">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_pause">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_playback_speed">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_rewind">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_forward">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_expand">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_collapse">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_mark_as_read">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_mark_as_unread">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_tap_to_refresh">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_add_to_favorites">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_remove_from_favorites">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_show_password">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_delete">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="content_desc_download">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
 
     <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Benachrichtigungen</string>
-    <string name="pref_title_notification_new_articles_available">Benachrichtigungen anzeigen, wenn neue Artikel verfügbar sind</string>
+    <string name="pref_header_notifications">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_notification_new_articles_available">Benachrichtigungen anzeigen, wenn neue Artikel verfügbar Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- Login Dialog -->
-    <string name="login_dialog_title_error">Fehler</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Die News-App ist auf dem Server nicht installiert oder aktiviert. Folge den Anweisungen zur Installation und Einrichtung: %1$s</string>
-    <string name="login_dialog_text_something_went_wrong">Etwas ist schiefgelaufen :(</string>
-    <string name="login_dialog_text_zero_version_code">Die Web News App lieferte die Version \"0\" zurück. Wirf bitte einen Blick auf den folgenden Fehlerbericht: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Diese App-Version ist nicht mit Deiner Nextcloud News-App kompatibel. Bitte aktualisiere die News-App und das App-Framework.</string>
-    <string name="login_dialog_title_security_warning">Sicherheitswarnung</string>
-    <string name="login_dialog_text_security_warning">Du verwendest kein HTTPS. Ein Angreifer könnte Deinen Datenverkehr mitschneiden und dadurch Zugang zu sensiblen Daten (z.B. Deinem Passwort) erhalten.</string>
+    <string name="login_dialog_title_error">FehlerBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).%1$s</string>
+    <string name="login_dialog_text_something_went_wrong">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="login_dialog_text_zero_version_code">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="login_dialog_text_not_compatible">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="login_dialog_title_security_warning">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="login_dialog_text_security_warning">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
     <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Daten &amp; Synchronisation</string>
-    <string name="pref_title_clearCache">Cache leeren</string>
-    <string name="pref_title_CacheImagesOffline">Bilder offline zwischenspeichern</string>
-    <string name="pref_title_Max_Cache_Size">Maximale Cachegröße</string>
+    <string name="pref_header_data_sync">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).&amp; Synchronisation</string>
+    <string name="pref_title_clearCache">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_CacheImagesOffline">Bilder offline zwischenspeichernBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_title_Max_Cache_Size">Maximale CachegrößeBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
 
 
 
-    <string name="pref_data_sync_image_cache_never">Nie</string>
-    <string name="pref_data_sync_image_cache_wifi_only">Nur über WLAN</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">Über WLAN &amp; Mobil</string>
-    <string name="pref_data_sync_image_cache_ask">Bei nicht verbundenem WLAN fragen</string>
+    <string name="pref_data_sync_image_cache_never">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Nur über WLANBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Über WLAN &amp; MobilBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_data_sync_image_cache_ask">Bei nicht verbundenem WLAN fragenBenötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
-    <string name="array_sync_interval_min_5">5 Minuten</string>
-    <string name="array_sync_interval_min_15">15 Minuten</string>
-    <string name="array_sync_interval_min_30">30 Minuten</string>
-    <string name="array_sync_interval_min_45">45 Minuten</string>
-    <string name="array_sync_interval_hour_1">1 Stunde</string>
-    <string name="array_sync_interval_hour_2">2 Stunden</string>
-    <string name="array_sync_interval_hour_3">3 Stunden</string>
-    <string name="array_sync_interval_hour_6">6 Stunden</string>
-    <string name="array_sync_interval_hour_12">12 Stunden</string>
-    <string name="array_sync_interval_hour_24">24 Stunden</string>
+    <string name="array_sync_interval_min_5">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="array_sync_interval_min_15">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="array_sync_interval_min_30">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="array_sync_interval_min_45">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="array_sync_interval_hour_1">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="array_sync_interval_hour_2">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="array_sync_interval_hour_3">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="array_sync_interval_hour_6">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="array_sync_interval_hour_12">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="array_sync_interval_hour_24">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
     </resources>

@@ -153,7 +153,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Görüntüle</string>
+    <string name="pref_title_app_theme">Gece Kipi</string>
     <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>
+    <string name="pref_title_font_size">Metin boyutu</string>
     <string name="pref_display_browser">Tarayıcı</string>
 
 
@@ -161,8 +163,12 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (Ayrıntı Görünümü)</string>
 
+    <string name="pref_display_apptheme_auto">Açık / Koyu /Gün ışığına göre)</string>
     <string name="pref_display_apptheme_light">Açık</string>
     <string name="pref_display_apptheme_dark">Koyu</string>
+
+    <string name="pref_oled_mode">Siyah arka plan</string>
+    <string name="pref_oled_mode_summary">OLED ekranlarda koyu tema için</string>
 
     <string name="pref_display_browser_cct">Özel İç Chrome Sekmeleri</string>
     <string name="pref_display_browser_built_in">İç Tarayıcı</string>
@@ -173,6 +179,12 @@
     <string name="pref_display_feed_list_layout_extended_full_text">Gelişmiş (tam metin)</string>
     <string name="pref_display_feed_list_layout_extended_webview">Web Görünümü ile Gelişmiş</string>
     <string name="pref_display_feed_list_layout_extended_cardview">Kart Görünümü ile Gelişmiş</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Küçük</string>
+    <string name="pref_display_font_size_d">Varsayılan</string>
+    <string name="pref_display_font_size_l">Büyük</string>
+    <string name="pref_display_font_size_xl">Çok Büyük</string>
 
     <string name="content_desc_play">oynat</string>
     <string name="content_desc_pause">duraklat</string>

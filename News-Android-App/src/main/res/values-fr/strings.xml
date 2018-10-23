@@ -153,7 +153,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Affichage</string>
+    <string name="pref_title_app_theme">Mode nuit</string>
     <string name="pref_title_feed_list_layout">Disposition de la liste des flux</string>
+    <string name="pref_title_font_size">Taille des caractères</string>
     <string name="pref_display_browser">Navigateur</string>
 
 
@@ -161,8 +163,12 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Icônes d\'action (Vue détaillée)</string>
 
+    <string name="pref_display_apptheme_auto">Clair / Sombre (basé sur l\'heure)</string>
     <string name="pref_display_apptheme_light">Clair</string>
     <string name="pref_display_apptheme_dark">Sombre</string>
+
+    <string name="pref_oled_mode">Arrière-plan sombre</string>
+    <string name="pref_oled_mode_summary">Pour le thème sombre sur les écrans OLED</string>
 
     <string name="pref_display_browser_cct">Onglets de navigation Chrome intégré</string>
     <string name="pref_display_browser_built_in">Navigateur intégré</string>
@@ -173,6 +179,12 @@
     <string name="pref_display_feed_list_layout_extended_full_text">Étendue (texte complet)</string>
     <string name="pref_display_feed_list_layout_extended_webview">Étendue avec Webview</string>
     <string name="pref_display_feed_list_layout_extended_cardview">Étendue avec Cardview</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Petit</string>
+    <string name="pref_display_font_size_d">Par défaut</string>
+    <string name="pref_display_font_size_l">Grand</string>
+    <string name="pref_display_font_size_xl">Très grand</string>
 
     <string name="content_desc_play">lire</string>
     <string name="content_desc_pause">pause</string>
