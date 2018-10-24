@@ -51,10 +51,10 @@
 
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">下载图片</string>
-    <string name="action_img_sharelink">分享图片链接</string>
+    <string name="action_img_sharelink">共享图片链接</string>
     <string name="action_img_open">在浏览器中打开图片</string>
-    <string name="action_img_copylink">分享图片链接</string>
-    <string name="action_link_share">分享图片链接</string>
+    <string name="action_img_copylink">共享图片链接</string>
+    <string name="action_link_share">共享图片链接</string>
     <string name="action_link_open">在浏览器中打开链接</string>
     <string name="action_link_copy">复制链接</string>
     <string name="toast_img_download_wait">下载中... 请稍候</string>
@@ -62,7 +62,7 @@
     <string name="toast_img_notwriteable">未能写入图片。</string>
     <string name="toast_copied_to_clipboard">复制到剪贴板</string>
     <string name="error_download_failed">下载失败</string>
-    <string name="intent_title_share">分享途径</string>
+    <string name="intent_title_share">共享途径</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
