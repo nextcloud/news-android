@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:visibility="visible"
     android:padding="10dp"
-    tools:showIn="@layout/subscription_detail_list_item_simple">
+    tools:showIn="@layout/subscription_detail_list_item_thumbnail">
 
     <ImageView
         android:id="@+id/btn_playPausePodcast"
