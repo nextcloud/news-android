@@ -163,7 +163,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazení</string>
+    <string name="pref_title_app_theme">Noční režim</string>
     <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
+    <string name="pref_title_font_size">Velikost písmen</string>
     <string name="pref_display_browser">Prohlížeč</string>
 
 
@@ -171,8 +173,12 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akce (podrobné zobrazení)</string>
 
+    <string name="pref_display_apptheme_auto">Světlé/tmavé (podle denní doby)</string>
     <string name="pref_display_apptheme_light">Světlé</string>
     <string name="pref_display_apptheme_dark">Tmavé</string>
+
+    <string name="pref_oled_mode">Černé pozadí</string>
+    <string name="pref_oled_mode_summary">Pro tmavý motiv vzhledu na OLED obrazovkách</string>
 
     <string name="pref_display_browser_cct">Vestavěné Chrome vlastní karty</string>
     <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
@@ -183,6 +189,12 @@
     <string name="pref_display_feed_list_layout_extended_full_text">Rozšířené (plnotextové)</string>
     <string name="pref_display_feed_list_layout_extended_webview">Rozšířeno s Webview</string>
     <string name="pref_display_feed_list_layout_extended_cardview">Rozšířeno s Cardview</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Malé</string>
+    <string name="pref_display_font_size_d">Výchozí</string>
+    <string name="pref_display_font_size_l">Velké</string>
+    <string name="pref_display_font_size_xl">Extra velké</string>
 
     <string name="content_desc_play">přehrát</string>
     <string name="content_desc_pause">pozastavit</string>
