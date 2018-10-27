@@ -165,19 +165,19 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             Integer layout = 0;
             switch (Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"))) {
                 case 0:
-                    layout = R.layout.subscription_detail_list_item_simple;
+                    layout = R.layout.subscription_detail_list_item_thumbnail;
                     break;
                 case 1:
-                    layout = R.layout.subscription_detail_list_item_extended;
+                    layout = R.layout.subscription_detail_list_item_text;
                     break;
                 case 3:
-                    layout = R.layout.subscription_detail_list_item_extended;
+                    layout = R.layout.subscription_detail_list_item_text;
                     break;
                 case 2:
-                    layout = R.layout.subscription_detail_list_item_extended_webview;
+                    layout = R.layout.subscription_detail_list_item_web_layout;
                     break;
                 case 4:
-                    layout = R.layout.subscription_detail_list_item_extended_cardview;
+                    layout = R.layout.subscription_detail_list_item_card_view;
                     break;
             }
             View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);

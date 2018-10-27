@@ -277,7 +277,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             String body = rssItem.getBody();
             // Strip html from String
             if(selectedListLayout == 0) {
-                textViewBody.setMaxLines(scaleSimpleTextLines(textViewBody));
+                textViewBody.setMaxLines(scaleTextLines(textViewBody));
                 body = getBodyText(body, false);
 
             } else if(selectedListLayout == 3) {
@@ -332,7 +332,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
      * Apply scaling factor to TextView font size, based on app font-size preference.
      *
      * @param tv            TextView object to be scaled
-     * @param initialSize   app layout definition default size of TextView element
+     * @param initialTvSize   app layout definition default size of TextView element
      * @param halfScale     if set to true, will only apply half of the scaling factor
      */
     private static void scaleTextSize(TextView tv, int initialTvSize, boolean halfScale) {
@@ -352,12 +352,12 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     /**
      * Return the number of rss item body text lines, depending on the currently selected font size/scale;
-     * only meant to be used with simple feed view.
+     * only meant to be used with thumbnail feed view.
      *
      * @param tv    TextView object, needed to get context->preferences from
-     * @return      number of lines of rss item body text lines to be used in simple view
+     * @return      number of lines of rss item body text lines to be used in thumbnail feed view
      */
-    private static int scaleSimpleTextLines(TextView tv) {
+    private static int scaleTextLines(TextView tv) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(tv.getContext());
         float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
         /* The following formula computes the number of text lines for Simple item view; it simply boils
