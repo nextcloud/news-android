@@ -153,7 +153,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Weergeven</string>
+    <string name="pref_title_app_theme">Nochtmodus</string>
     <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
+    <string name="pref_title_font_size">Fontgrootte</string>
     <string name="pref_display_browser">Browser</string>
 
 
@@ -161,8 +163,12 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
 
+    <string name="pref_display_apptheme_auto">Licht / Donker (op basis van tijd van de dag)</string>
     <string name="pref_display_apptheme_light">Licht</string>
     <string name="pref_display_apptheme_dark">Donker</string>
+
+    <string name="pref_oled_mode">Zwarte achtergrond</string>
+    <string name="pref_oled_mode_summary">Voor donker thema op OLED schermen</string>
 
     <string name="pref_display_browser_cct">Ingebouwde Chrome-maatwerk-tabs</string>
     <string name="pref_display_browser_built_in">Ingebouwde browser</string>
@@ -173,6 +179,12 @@
     <string name="pref_display_feed_list_layout_extended_full_text">Uitgebreid (volledige tekst)</string>
     <string name="pref_display_feed_list_layout_extended_webview">Uitgebreid met Webview</string>
     <string name="pref_display_feed_list_layout_extended_cardview">Uitgebreid met Cardview</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Klein</string>
+    <string name="pref_display_font_size_d">Standaard</string>
+    <string name="pref_display_font_size_l">Groot</string>
+    <string name="pref_display_font_size_xl">Extra groot</string>
 
     <string name="content_desc_play">afspelen</string>
     <string name="content_desc_pause">pauze</string>

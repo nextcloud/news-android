@@ -7,7 +7,7 @@
     <string name="empty_view_content">No hay artículos aquí</string>
     <string name="toast_GettingMoreItems">Se ha iniciado la descarga de varios elementos... por favor, espere.</string>
     <string name="no_wifi_available">No hay una conexión WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">¿Quieres descargarte las imágenes sin conexión WiFi?</string>
+    <string name="do_you_want_to_download_without_wifi">¿Quieres descargar las imágenes sin conexión WiFi?</string>
     <string name="current_version">Está utilizando la versión %s</string>
     <string name="widget_header">Noticias de Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -29,7 +29,7 @@
     <string name="action_starred">Destacado</string>
     <string name="action_read">Leer</string>
     <string name="action_playPodacst">Reproducir podcast</string>
-    <string name="action_openInBrowser">Abrir con el navegador</string>
+    <string name="action_openInBrowser">Abrir en el navegador</string>
     <string name="action_Share">Compartir</string>
     <string name="action_login">Ajustes del servidor</string>
     <string name="action_save">Guardar</string>
@@ -60,9 +60,9 @@
     <string name="action_link_share">Compartir enlace</string>
     <string name="action_link_open">Abrir enlace en el navegador</string>
     <string name="action_link_copy">Copiar enlace</string>
-    <string name="toast_img_download_wait">Descargando… Por favor, espera</string>
+    <string name="toast_img_download_wait">Descargando… Por favor, espere</string>
     <string name="toast_img_saved">Imagen guardada</string>
-    <string name="toast_img_notwriteable">Error al escribir imagen</string>
+    <string name="toast_img_notwriteable">Error al guardar la imagen.</string>
     <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
     <string name="error_download_failed">Fallo al descargar</string>
     <string name="intent_title_share">Compartir vía</string>
@@ -125,7 +125,7 @@
     <string name="pref_general_search_in_body">Cuerpo</string>
 
     <string name="dialog_clearing_cache">Vaciando el caché</string>
-    <string name="dialog_clearing_cache_please_wait">Limpiando cache… Por favor espere.</string>
+    <string name="dialog_clearing_cache_please_wait">Vaciando cache… Por favor espere.</string>
     <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quiere vaciar la caché igualmente?</string>
     <string name="warning">Precaución</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar al inicio</string>
@@ -135,13 +135,13 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído mientras se desplaza</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltarse la vista detallada y abrir el artículo en el navegador</string>
 
-    <string name="dialog_feature_not_available">Esta característica no está disponible en esta versión (de código abierto) de la app. Si quieres usar esta característica, descarga por favor la app desde el repositorio de GitHub o desde Google Play Store.</string>
+    <string name="dialog_feature_not_available">Esta característica no está disponible en esta versión (de código abierto) de la app. Si quieres usar esta característica, por favor descarga la app desde el repositorio de GitHub o desde Google Play Store.</string>
 
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">¿Aceptar certificados desconocidos?</string>
+    <string name="mtm_accept_cert">¿Aceptar certificado desconocido?</string>
     <string name="mtm_decision_always">Siempre</string>
-    <string name="mtm_decision_abort">Abortar</string>
+    <string name="mtm_decision_abort">Cancelar</string>
     <string name="mtm_notification">Verificación del certificado</string>
 
 
@@ -153,7 +153,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
+    <string name="pref_title_app_theme">Modo Oscuro</string>
     <string name="pref_title_feed_list_layout">Lista de fuentes</string>
+    <string name="pref_title_font_size">Tamaño del texto</string>
     <string name="pref_display_browser">Explorador</string>
 
 
@@ -161,8 +163,12 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Iconos de acción (vista detallada)</string>
 
+    <string name="pref_display_apptheme_auto">Claro / Oscuro (basado en la hora)</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Oscuro</string>
+
+    <string name="pref_oled_mode">Fondo oscuro</string>
+    <string name="pref_oled_mode_summary">Para el tema oscuro en las pantallas OLED</string>
 
     <string name="pref_display_browser_cct">Pestañas integradas de Chrome</string>
     <string name="pref_display_browser_built_in">Navegador integrado</string>
@@ -174,13 +180,19 @@
     <string name="pref_display_feed_list_layout_extended_webview">Extendido con vista web</string>
     <string name="pref_display_feed_list_layout_extended_cardview">Extendido con vista de tarjeta</string>
 
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Pequeño</string>
+    <string name="pref_display_font_size_d">Por defecto</string>
+    <string name="pref_display_font_size_l">Grande</string>
+    <string name="pref_display_font_size_xl">Muy grande</string>
+
     <string name="content_desc_play">reproducir</string>
     <string name="content_desc_pause">pausar</string>
     <string name="content_desc_playback_speed">velocidad de reproducción</string>
     <string name="content_desc_rewind">rebobinar</string>
     <string name="content_desc_forward">avance</string>
     <string name="content_desc_expand">expandir</string>
-    <string name="content_desc_collapse">colapsar</string>
+    <string name="content_desc_collapse">encoger</string>
     <string name="content_desc_mark_as_read">marcar como leído</string>
     <string name="content_desc_mark_as_unread">marcar como no leído</string>
     <string name="content_desc_tap_to_refresh">toque para refrescar</string>
@@ -199,7 +211,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Parece que tu aplicación de noticias no está instalada o activada en tu servidor. Sigue las instrucciones para configurar la aplicación de noticias en tu servidor, primero: %1$s</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Parece que tu aplicación de noticias no está instalada o activada en tu servidor. Siga las instrucciones para configurar la aplicación de noticias en tu servidor: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
     <string name="login_dialog_text_zero_version_code">La app web de Noticias devolvió la versión \"0\". Por favor, echa un vistazo al siguiente informe de error: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Esta versión de la aplicación no es compatible con tu aplicación de Noticias de Nextcloud. Por favor, actualiza la aplicación de noticias y el appframework.</string>
@@ -218,7 +230,7 @@
 
     <string name="pref_data_sync_image_cache_never">Nunca</string>
     <string name="pref_data_sync_image_cache_wifi_only">Sólo mediante WiFi</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">Osbre WiFi &amp; móvil.</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Sobre WiFi &amp; Móvil.</string>
     <string name="pref_data_sync_image_cache_ask">Preguntar cuando no esté conectado a una WiFi</string>
 
     <string name="array_sync_interval_min_5">5 minutos</string>
