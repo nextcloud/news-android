@@ -83,6 +83,17 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     @BindView(R.id.sliding_layout) PodcastSlidingUpPanelLayout sliding_layout;
     //YouTubePlayerFragment youtubeplayerfragment;
 
+    private boolean currentlyPlaying = false;
+    private boolean showedYoutubeFeatureNotAvailableDialog = false;
+    private boolean videoViewInitialized = false;
+    private boolean isVideoViewVisible = true;
+
+
+    private static final int animationTime = 300; //Milliseconds
+    private boolean isFullScreen = false;
+    private float scaleFactor = 1;
+    private boolean useAnimation = false;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -138,7 +149,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
         rlVideoPodcastSurfaceWrapper.setVisibility(View.INVISIBLE);
 
-        UpdatePodcastView();
+        updatePodcastView();
 
         if(isMyServiceRunning(PodcastPlaybackService.class, this)) {
             Intent intent = new Intent(this, PodcastPlaybackService.class);
@@ -212,13 +223,13 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         WidgetProvider.UpdateWidget(this);
 
 
-        if(NextcloudNotificationManager.IsUnreadRssCountNotificationVisible(this)) {
+        if(NextcloudNotificationManager.isUnreadRssCountNotificationVisible(this)) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
             int count = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
-            NextcloudNotificationManager.ShowUnreadRssItemsNotification(this, count);
+            NextcloudNotificationManager.showUnreadRssItemsNotification(this, count);
 
             if(count == 0) {
-                NextcloudNotificationManager.RemoveRssItemsNotification(this);
+                NextcloudNotificationManager.removeRssItemsNotification(this);
             }
         }
 
@@ -275,7 +286,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         return false;
     }
 
-    protected void UpdatePodcastView() {
+    protected void updatePodcastView() {
 
         if(mPodcastFragment != null) {
             getSupportFragmentManager().beginTransaction().remove(mPodcastFragment).commitAllowingStateLoss();
@@ -290,11 +301,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             sliding_layout.setPanelHeight(0);
     }
 
-    boolean currentlyPlaying = false;
-    boolean showedYoutubeFeatureNotAvailableDialog = false;
-
-    boolean videoViewInitialized = false;
-    boolean isVideoViewVisible = true;
     @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
         boolean playStateChanged = currentlyPlaying;
@@ -396,13 +402,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     }
 
 
-
-    private static final int animationTime = 300; //Milliseconds
-    float oldScaleFactor = 1;
-    boolean isFullScreen = false;
-    float scaleFactor = 1;
-    boolean useAnimation = false;
-
     @Subscribe
     public void onEvent(VideoDoubleClicked videoDoubleClicked) {
         appHeight = getWindow().getDecorView().findViewById(android.R.id.content).getHeight();
@@ -417,7 +416,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             //hideSystemUI();
 
             rlVideoPodcastSurfaceWrapper.setDisableScale(true);
-            oldScaleFactor = rlVideoPodcastSurfaceWrapper.getScaleFactor();
+            //oldScaleFactor = rlVideoPodcastSurfaceWrapper.getScaleFactor();
 
             final View view = rlVideoPodcastSurfaceWrapper;
 
@@ -571,17 +570,12 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         view.setScaleY(oldScaleFactor);
         view.getLayoutParams().height = height;
         view.getLayoutParams().width = width;
-*/
-        oldScaleFactor = 1;
-
-
+        */
     }
 
 
-    float dipToPx(float dip) {
-        Resources r = getResources();
-        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
-        return px;
+    private float dipToPx(float dip) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, getResources().getDisplayMetrics());
     }
 
     @VisibleForTesting

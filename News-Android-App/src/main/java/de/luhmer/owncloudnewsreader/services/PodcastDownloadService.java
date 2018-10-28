@@ -132,7 +132,7 @@ public class PodcastDownloadService extends IntentService {
     private void downloadPodcast(PodcastItem podcast, Context context) {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationCompat.Builder mNotificationDownloadPodcast = NextcloudNotificationManager.BuildDownloadPodcastNotification(context, "Download Podcast");
+        NotificationCompat.Builder mNotificationDownloadPodcast = NextcloudNotificationManager.buildDownloadPodcastNotification(context, "Download Podcast");
         int NOTIFICATION_ID = 543226;
         notificationManager.notify(NOTIFICATION_ID, mNotificationDownloadPodcast.build());
 

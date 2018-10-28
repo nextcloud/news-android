@@ -77,7 +77,7 @@ public class PodcastNotification {
         if(lastDrawableId != drawableId) {
             lastDrawableId = drawableId;
 
-            notificationBuilder = NextcloudNotificationManager.BuildPodcastNotification(mContext, CHANNEL_ID);
+            notificationBuilder = NextcloudNotificationManager.buildPodcastNotification(mContext, CHANNEL_ID);
             notificationBuilder.setContentTitle(podcast.getTitle());
             notificationBuilder.addAction(
                     drawableId,

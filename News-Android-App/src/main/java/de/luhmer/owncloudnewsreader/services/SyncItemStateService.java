@@ -42,10 +42,10 @@ public class SyncItemStateService extends JobIntentService {
 	/**
 	 * Unique job/channel ID for this service.
 	 */
-	static final int JOB_ID = 1001;
+	private static final int JOB_ID = 1001;
     private static final String TAG = SyncItemStateService.class.getCanonicalName();
 
-    @Inject ApiProvider mApi;
+    protected @Inject ApiProvider mApi;
 
 	/**
 	 * Convenience method for enqueuing work in to this service.

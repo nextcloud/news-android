@@ -4,10 +4,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +40,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
     private List<RssItem> lazyList;
     private DatabaseConnectionOrm dbConn;
-    private ForegroundColorSpan bodyForegroundColor;
     private PostDelayHandler pDelayHandler;
     private FragmentActivity activity;
     private HashSet<Long> stayUnreadItems = new HashSet<>();
@@ -79,15 +76,10 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
         pDelayHandler = new PostDelayHandler(activity);
 
-        bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(activity, android.R.color.secondary_text_dark));
-
         dbConn = new DatabaseConnectionOrm(activity);
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
         setHasStableIds(true);
 
         EventBus.getDefault().register(this);
-
-
 
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
@@ -179,6 +171,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                 case 4:
                     layout = R.layout.subscription_detail_list_item_card_view;
                     break;
+                default:
+                    Log.e(TAG, "Unknown layout..");
             }
             View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
@@ -243,7 +237,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             EventBus.getDefault().register(holder);
     }
 
-    public void ChangeReadStateOfItem(ViewHolder viewHolder, boolean isChecked) {
+    public void changeReadStateOfItem(ViewHolder viewHolder, boolean isChecked) {
         RssItem rssItem = viewHolder.getRssItem();
         if (rssItem.getRead_temp() != isChecked) { //Only perform database operations if really needed
             rssItem.setRead_temp(isChecked);
@@ -261,7 +255,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     public void toggleReadStateOfItem(ViewHolder viewHolder) {
         RssItem rssItem = viewHolder.getRssItem();
         boolean isRead = !rssItem.getRead_temp();
-        ChangeReadStateOfItem(viewHolder, isRead);
+        changeReadStateOfItem(viewHolder, isRead);
     }
 
     public void toggleStarredStateOfItem(ViewHolder viewHolder) {
@@ -269,7 +263,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
         boolean isStarred = !rssItem.getStarred_temp();
         rssItem.setStarred_temp(isStarred);
         if (isStarred) {
-            ChangeReadStateOfItem(viewHolder, true);
+            changeReadStateOfItem(viewHolder, true);
         } else {
             dbConn.updateRssItem(rssItem);
             pDelayHandler.DelayTimer();

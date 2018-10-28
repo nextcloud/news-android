@@ -90,37 +90,37 @@ import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VER
  */
 public class LoginDialogFragment extends DialogFragment {
 
-    final String TAG = LoginDialogFragment.class.getCanonicalName();
+    private final String TAG = LoginDialogFragment.class.getCanonicalName();
 
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
-	@Inject ApiProvider mApi;
-    @Inject SharedPreferences mPrefs;
+	protected @Inject ApiProvider mApi;
+    protected @Inject SharedPreferences mPrefs;
 	//private UserLoginTask mAuthTask = null;
 
-	private Activity mActivity;
+    private Activity mActivity;
 
-	// Values for email and password at the time of the login attempt.
-	private String mUsername;
-	private String mPassword;
-	private String mOc_root_path;
-	private boolean mCbDisableHostnameVerification;
+    // Values for email and password at the time of the login attempt.
+    private String mUsername;
+    private String mPassword;
+    private String mOc_root_path;
+    private boolean mCbDisableHostnameVerification;
 
-	// UI references.
-	@BindView(R.id.username) EditText mUsernameView;
-	@BindView(R.id.password) EditText mPasswordView;
-	@BindView(R.id.password_container) TextInputLayout mPasswordContainerView;
-	@BindView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
-	@BindView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
-    @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
-    @BindView(R.id.swSingleSignOn) Switch mSwSingleSignOn;
+    // UI references.
+    protected @BindView(R.id.username) EditText mUsernameView;
+    protected @BindView(R.id.password) EditText mPasswordView;
+    protected @BindView(R.id.password_container) TextInputLayout mPasswordContainerView;
+    protected @BindView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
+    protected @BindView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
+    protected @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
+    protected @BindView(R.id.swSingleSignOn) Switch mSwSingleSignOn;
 
     private SingleSignOnAccount importedAccount = null;
     private boolean mPasswordVisible = false;
     private LoginSuccessfulListener listener;
 
-    static LoginDialogFragment instance;
+    private static LoginDialogFragment instance;
     public static LoginDialogFragment getInstance() {
         if(instance == null)
             instance = new LoginDialogFragment();
@@ -128,14 +128,10 @@ public class LoginDialogFragment extends DialogFragment {
     }
 
     public interface LoginSuccessfulListener {
-		void LoginSucceeded();
-	}
+        void loginSucceeded();
+    }
 
-	public LoginDialogFragment() {
-
-	}
-
-	public void setActivity(Activity mActivity) {
+    public void setActivity(Activity mActivity) {
 		this.mActivity = mActivity;
 	}
 
@@ -476,7 +472,7 @@ public class LoginDialogFragment extends DialogFragment {
                             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getActivity());
                             dbConn.resetDatabase();
 
-                            listener.LoginSucceeded();
+                            listener.loginSucceeded();
                             LoginDialogFragment.this.getDialog().cancel();
                             if(mActivity instanceof AuthenticatorActivity)
                                 mActivity.finish();

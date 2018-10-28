@@ -68,16 +68,24 @@ import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAd
 public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter {
     private final String TAG = getClass().getCanonicalName();
 
-	private Context mContext;
+    private Context mContext;
     private DatabaseConnectionOrm dbConn;
 
-    ListView listView;
+    private ListView listView;
 
-    ExpListTextClicked eListTextClickHandler;
+    private ExpListTextClicked eListTextClickHandler;
+
+    private FavIconHandler favIconHandler;
+    private LayoutInflater inflater;
 
     private ArrayList<AbstractItem> mCategoriesArrayList;
     private SparseArray<ArrayList<ConcreteFeedItem>> mItemsArrayList;
-	private boolean showOnlyUnread = false;
+    private boolean showOnlyUnread = false;
+    private Integer btn_rating_star_off_normal_holo_light;
+
+    private SparseArray<String> starredCountFeeds;
+    private SparseArray<String> unreadCountFolders;
+    private SparseArray<String> unreadCountFeeds;
 
     public enum SPECIAL_FOLDERS  {
         ALL_UNREAD_ITEMS(-10), ALL_STARRED_ITEMS(-11), ALL_ITEMS(-12), ITEMS_WITHOUT_FOLDER(-22);
@@ -101,10 +109,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             return getValueString();
         }
     }
-
-    private FavIconHandler favIconHandler;
-
-    LayoutInflater inflater;
 
     public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnectionOrm dbConn, ListView listView)
     {
@@ -354,13 +358,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         viewHolder.imgView.setContentDescription(viewHolder.imgView.getContext().getString(contentDescriptionId));
 
         return convertView;
-	}
+    }
 
-
-
-
-
-    private Integer btn_rating_star_off_normal_holo_light;
 
     private int getBtn_rating_star_off_normal_holo_light() {
         if(btn_rating_star_off_normal_holo_light == null) {
@@ -387,22 +386,15 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	}
 
 
-	@Override
-	public boolean hasStableIds() {
+    @Override
+    public boolean hasStableIds() {
 		return false;
 	}
 
-	@Override
-	public boolean isChildSelectable(int groupPosition, int childPosition) {
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
 		return true;
 	}
-
-
-    SparseArray<String> starredCountFeeds;
-    SparseArray<String> unreadCountFolders;
-    SparseArray<String> unreadCountFeeds;
-    SparseArray<String> urlsToFavIcons;
-
 
     public void NotifyDataSetChangedAsync() {
         new NotifyDataSetChangedAsyncTask().execute((Void) null);
@@ -449,9 +441,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                         Log.v(TAG, "Remove feed item!!!");
                         mCategoriesArrayList.remove(i);
                         i--;
-                    } else {
-                        //Log.v(TAG, "Keep.. " + unreadCountFoldersTemp.get(((Long) item.id_database).intValue()));
-                    }
+                    } /* else {
+                        Log.v(TAG, "Keep.. " + unreadCountFoldersTemp.get(((Long) item.id_database).intValue()));
+                    } */
                 }
 
                 for (int i = 0; i < mItemsArrayList.size(); i++) {
@@ -487,7 +479,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             stopWatch.start();
 
             Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> ad = ReloadAdapter();
-            //return ReloadAdapter();
+            //return reloadAdapter();
 
             stopWatch.stop();
             Log.v(TAG, "Reload Adapter - time taken: " + stopWatch.toString());
@@ -579,7 +571,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     public void notifyCountDataSetChanged(SparseArray<String> unreadCountFolders, SparseArray<String> unreadCountFeeds, SparseArray<String> urlsToFavIcons, SparseArray<String> starredCountFeeds) {
         this.unreadCountFolders = unreadCountFolders;
         this.unreadCountFeeds = unreadCountFeeds;
-        this.urlsToFavIcons = urlsToFavIcons;
+        SparseArray<String> urlsToFavIcons1 = urlsToFavIcons;
         this.starredCountFeeds = starredCountFeeds;
 
         BlockingExpandableListView bView = (BlockingExpandableListView) listView;

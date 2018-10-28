@@ -52,12 +52,13 @@ public class DatabaseConnectionOrm {
         }
     };
 
-    public static final String[] VIDEO_FORMATS = { "youtube", "video/mp4" };
     private final String TAG = getClass().getCanonicalName();
-
+    private static final String[] VIDEO_FORMATS = { "youtube", "video/mp4" };
     public enum SORT_DIRECTION { asc, desc }
 
-    DaoSession daoSession;
+    private DaoSession daoSession;
+
+    private final static int PageSize = 100;
 
     public void resetDatabase() {
         daoSession.getRssItemDao().deleteAll();
@@ -263,7 +264,7 @@ public class DatabaseConnectionOrm {
      * @param itemIds
      * @param markAsStarred
      */
-    public void change_starrUnstarrStateOfItem(List<String> itemIds, boolean markAsStarred)
+    public void changeStarrUnstarrStateOfItem(List<String> itemIds, boolean markAsStarred)
     {
         if(itemIds != null)
             for(String idItem : itemIds)
@@ -432,8 +433,6 @@ public class DatabaseConnectionOrm {
         return daoSession.getCurrentRssItemViewDao().count();
 
     }
-
-    public final static int PageSize = 100;
 
     public List<RssItem> getCurrentRssItemView(int page) {
         if(page != -1) {
@@ -757,10 +756,8 @@ public class DatabaseConnectionOrm {
         Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
         try
         {
-            if(cursor != null)
-            {
-                if(cursor.moveToFirst())
-                    result = cursor.getLong(0);
+            if(cursor != null && cursor.moveToFirst()) {
+                result = cursor.getLong(0);
             }
         } finally {
             cursor.close();

@@ -94,7 +94,7 @@ public class NewsReaderDetailFragment extends Fragment {
 		return idFeed;
 	}
 
-	Long idFolder;
+	private Long idFolder;
 	/**
 	 * @return the idFolder
 	 */
@@ -102,7 +102,7 @@ public class NewsReaderDetailFragment extends Fragment {
 		return idFolder;
 	}
 
-	String titel;
+    private String titel;
 
 	/**
 	 * @return the titel
@@ -136,10 +136,11 @@ public class NewsReaderDetailFragment extends Fragment {
         this.titel = titel;
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(titel);
 
-        if(updateListView)
-            UpdateCurrentRssView(getActivity());
-        else
-            RefreshCurrentRssView();
+        if(updateListView) {
+            updateCurrentRssView(getActivity());
+        } else {
+            refreshCurrentRssView();
+        }
     }
 
     @Override
@@ -152,7 +153,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         //When the fragment is instantiated by the xml file, onResume will be called twice
         if(onResumeCount >= 2) {
-            RefreshCurrentRssView();
+            refreshCurrentRssView();
         }
         onResumeCount++;
 
@@ -172,7 +173,7 @@ public class NewsReaderDetailFragment extends Fragment {
         //Set the item at top to read
         ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(firstVisibleItem);
         if (vh != null && !vh.shouldStayUnread()) {
-            adapter.ChangeReadStateOfItem(vh, true);
+            adapter.changeReadStateOfItem(vh, true);
         }
 
 
@@ -186,7 +187,7 @@ public class NewsReaderDetailFragment extends Fragment {
                 if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
                     vh = (ViewHolder) vhTemp;
                     if (!vh.shouldStayUnread()) {
-                        adapter.ChangeReadStateOfItem(vh, true);
+                        adapter.changeReadStateOfItem(vh, true);
                     } else {
                         Log.v(TAG, "shouldStayUnread");
                     }
@@ -196,31 +197,29 @@ public class NewsReaderDetailFragment extends Fragment {
     }
     */
 
-    public void UpdateMenuItemsState()
-	{
+    public void UpdateMenuItemsState() {
         NewsReaderListActivity nla = (NewsReaderListActivity)getActivity();
-		if(nla.getMenuItemDownloadMoreItems() != null)
-		{
-			if(idFolder != null && idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue()) {
+        if(nla.getMenuItemDownloadMoreItems() != null) {
+            if(idFolder != null && idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue()) {
                 nla.getMenuItemDownloadMoreItems().setEnabled(false);
             } else {
                 nla.getMenuItemDownloadMoreItems().setEnabled(true);
             }
-		}
-	}
+        }
+    }
 
-	public void notifyDataSetChangedOnAdapter()
-	{
+    public void notifyDataSetChangedOnAdapter() {
         NewsListRecyclerAdapter nca = (NewsListRecyclerAdapter) recyclerView.getAdapter();
-        if(nca != null)
+        if(nca != null) {
             nca.notifyDataSetChanged();
-	}
+        }
+    }
 
     /**
      * Refreshes the current RSS-View
      */
-    public void RefreshCurrentRssView() {
-        Log.v(TAG, "RefreshCurrentRssView");
+    public void refreshCurrentRssView() {
+        Log.v(TAG, "refreshCurrentRssView");
         NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
 
         if(nra != null) {
@@ -242,8 +241,8 @@ public class NewsReaderDetailFragment extends Fragment {
      * Updates the current RSS-View
      * @param context
      */
-    public void UpdateCurrentRssView(Context context) {
-        Log.v(TAG, "UpdateCurrentRssView");
+    public void updateCurrentRssView(Context context) {
+        Log.v(TAG, "updateCurrentRssView");
         AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context));
     }
 
@@ -474,7 +473,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
             ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(i);
             if (vh != null && !vh.shouldStayUnread()) {
-                adapter.ChangeReadStateOfItem(vh, true);
+                adapter.changeReadStateOfItem(vh, true);
             }
         }
 
@@ -487,7 +486,7 @@ public class NewsReaderDetailFragment extends Fragment {
                 if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
                     ViewHolder vh = (ViewHolder) vhTemp;
                     if (!vh.shouldStayUnread()) {
-                        adapter.ChangeReadStateOfItem(vh, true);
+                        adapter.changeReadStateOfItem(vh, true);
                     } else {
                         Log.v(TAG, "shouldStayUnread");
                     }
@@ -514,7 +513,7 @@ public class NewsReaderDetailFragment extends Fragment {
         TypedArray a = context.obtainStyledAttributes(attrs,new int[]{R.attr.markasreadDrawable, R.attr.starredDrawable, R.attr.colorAccent});
         markAsReadDrawable = a.getDrawable(0);
         starredDrawable = a.getDrawable(1);
-        int color = Constants.IsNextCloud(getContext()) ? R.color.nextcloudBlue : R.color.owncloudBlue;
+        int color = Constants.isNextCloud(getContext()) ? R.color.nextcloudBlue : R.color.owncloudBlue;
         accentColor = a.getColor(2, ContextCompat.getColor(context, color));
         a.recycle();
     }

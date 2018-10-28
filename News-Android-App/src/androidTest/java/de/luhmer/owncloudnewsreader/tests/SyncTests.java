@@ -27,7 +27,7 @@ import static android.support.test.InstrumentationRegistry.registerInstance;
 public class SyncTests {
 
     private MockWebServer server;
-    private HttpUrl baseUrl;
+    //private HttpUrl baseUrl;
 
     @Rule
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(
@@ -43,7 +43,7 @@ public class SyncTests {
         server = new MockWebServer();
         server.start();
         // Ask the server for its URL. You'll need this to make HTTP requests.
-        baseUrl = server.url("/");
+        HttpUrl baseUrl = server.url("/");
 
         //HttpJsonRequest.init(mActivityRule.getActivity());
         //HttpJsonRequest.getInstance().setCredentials("test", "test", baseUrl.toString());
@@ -106,7 +106,7 @@ public class SyncTests {
 
 
     @Test
-    public void testItemSync() throws Exception {
+    public void testItemSync() {
         JsonObject jItem = new JsonObject();
         JsonObject jI = new JsonObject();
         jI.addProperty("id", "-1");
@@ -149,6 +149,7 @@ public class SyncTests {
     }
 
 
+    /*
     private void sleep(float seconds) {
         try {
             Thread.sleep((long) seconds * 1000);
@@ -156,5 +157,6 @@ public class SyncTests {
             e.printStackTrace();
         }
     }
+    */
 
 }

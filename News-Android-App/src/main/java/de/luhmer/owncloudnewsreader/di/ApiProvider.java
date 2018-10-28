@@ -46,14 +46,10 @@ public class ApiProvider {
         this.context = context;
         initApi(new NextcloudAPI.ApiConnectedListener() {
             @Override
-            public void onConnected() {
-
-            }
+            public void onConnected() { }
 
             @Override
-            public void onError(Exception ex) {
-
-            }
+            public void onError(Exception ex) { }
         });
     }
 

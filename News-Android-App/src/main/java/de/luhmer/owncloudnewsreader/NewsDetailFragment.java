@@ -83,9 +83,9 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     protected @BindView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
     protected @BindView(R.id.tv_offline_version) TextView mTvOfflineVersion;
 
-
-	private int section_number;
+    private int section_number;
     protected String html;
+    boolean changedUrl = false;
 
 
     public NewsDetailFragment() {
@@ -99,13 +99,13 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     @Override
     public void onResume() {
         super.onResume();
-        ResumeCurrentPage();
+        resumeCurrentPage();
     }
 
     @Override
 	public void onPause() {
 		super.onPause();
-        PauseCurrentPage();
+        pauseCurrentPage();
 	}
 
     @Override
@@ -116,8 +116,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         }
     }
 
-    public void PauseCurrentPage()
-    {
+    public void pauseCurrentPage() {
         if(mWebView != null) {
             mWebView.onPause();
             mWebView.pauseTimers();
@@ -125,8 +124,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     }
 
 
-    public void ResumeCurrentPage()
-    {
+    public void resumeCurrentPage() {
         if(mWebView != null) {
             mWebView.onResume();
             mWebView.resumeTimers();
@@ -223,10 +221,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         }
     }
 
-
-    boolean changedUrl = false;
-
-	@SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint("SetJavaScriptEnabled")
 	private void init_webView() {
         int backgroundColor = ColorHelper.getColorFromAttribute(getContext(),
                 R.attr.news_detail_background_color);
@@ -399,6 +394,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             case WebView.HitTestResult.PHONE_TYPE:
             case WebView.HitTestResult.EDIT_TEXT_TYPE:
                 break;
+            default:
+                Log.v(TAG, "Unknown type: " + type + ". Skipping..");
         }
     }
 

@@ -5,14 +5,12 @@ import android.preference.PreferenceManager;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.view.GravityCompat;
-import android.view.MenuItem;
 
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 
 import java.io.IOException;
 
@@ -47,7 +45,7 @@ public class ScreenshotTest {
     private int podcastGroupPosition = 3;
 
     @Before
-    public void setup() {
+    public void setUp() {
         activity = mActivityRule.getActivity();
         nrlf = mActivityRule.getActivity().getSlidingListFragment();
         nrdf = mActivityRule.getActivity().getNewsReaderDetailFragment();
@@ -123,7 +121,7 @@ public class ScreenshotTest {
             public void run() {
                 NewsListRecyclerAdapter na = (NewsListRecyclerAdapter) nrdf.getRecyclerView().getAdapter();
                 ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(itemPos));
-                na.ChangeReadStateOfItem(vh, false);
+                na.changeReadStateOfItem(vh, false);
             }
         });
     }

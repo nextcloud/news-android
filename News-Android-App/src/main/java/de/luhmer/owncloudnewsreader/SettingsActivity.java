@@ -53,6 +53,7 @@ import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -81,18 +82,20 @@ import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
-	/**
-	 * Determines whether to always show the simplified settings UI, where
-	 * settings are presented in a single list. When false, settings are shown
-	 * as a master/detail two-pane view on tablets. When true, a single pane is
-	 * shown on tablets.
-	 */
-	private static final boolean ALWAYS_SIMPLE_PREFS = false;
-	public static final String EDT_USERNAME_STRING = "edt_username";
-	public static final String EDT_PASSWORD_STRING = "edt_password";
-	public static final String EDT_OWNCLOUDROOTPATH_STRING = "edt_owncloudRootPath";
-	public static final String SW_USE_SINGLE_SIGN_ON = "sw_use_single_sign_on";
-	public static final String EDT_CLEAR_CACHE = "edt_clearCache";
+
+    private static final String TAG = SettingsActivity.class.getCanonicalName();
+
+    /**
+     * Determines whether to always show the simplified settings UI, where
+     * settings are presented in a single list. When false, settings are shown
+     * as a master/detail two-pane view on tablets. When true, a single pane is
+     * shown on tablets.
+     */
+    public static final String EDT_USERNAME_STRING = "edt_username";
+    public static final String EDT_PASSWORD_STRING = "edt_password";
+    public static final String EDT_OWNCLOUDROOTPATH_STRING = "edt_owncloudRootPath";
+    public static final String SW_USE_SINGLE_SIGN_ON = "sw_use_single_sign_on";
+    public static final String EDT_CLEAR_CACHE = "edt_clearCache";
 
     //public static final String CB_ALLOWALLSSLCERTIFICATES_STRING = "cb_AllowAllSSLCertificates";
     public static final String CB_SYNCONSTARTUP_STRING = "cb_AutoSyncOnStart";
@@ -119,15 +122,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static final String CACHE_CLEARED = "CACHE_CLEARED";
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
     public static final String SP_SORT_ORDER = "sp_sort_order";
-	public static final String SP_DISPLAY_BROWSER = "sp_display_browser";
-	public static final String SP_SEARCH_IN = "sp_search_in";
+    public static final String SP_DISPLAY_BROWSER = "sp_display_browser";
+    public static final String SP_SEARCH_IN = "sp_search_in";
 
 
     //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
     //public static final String SP_MAX_ITEMS_SYNC = "sync_max_items";
 
-	static EditTextPreference clearCachePref;
-    static Activity _mActivity;
+    private static EditTextPreference clearCachePref;
+    private static Activity _mActivity;
 
 
     @Override
@@ -389,6 +392,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 					return new AppCompatRadioButton(this, attrs);
 				case "CheckedTextView":
 					return new AppCompatCheckedTextView(this, attrs);
+                default:
+                    Log.v(TAG, "Error. Didn't find view of type: " + name);
 			}
 		}
 

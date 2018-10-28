@@ -33,6 +33,18 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
     private static final double HEADING_FONT_SIZE = 1.1;
     private static final double SUBSCRIPT_FONT_SIZE = 0.7;
 
+    private static Pattern PATTERN_PRELOAD_VIDEOS_REMOVE = Pattern.compile("(<video[^>]*)(preload=\".*?\")(.*?>)");
+    private static Pattern PATTERN_PRELOAD_VIDEOS_INSERT = Pattern.compile("(<video[^>]*)(.*?)(.*?>)");
+    private static Pattern PATTERN_AUTOPLAY_VIDEOS_1 = Pattern.compile("(<video[^>]*)(autoplay=\".*?\")(.*?>)");
+    private static Pattern PATTERN_AUTOPLAY_VIDEOS_2 = Pattern.compile("(<video[^>]*)(\\sautoplay)(.*?>)");
+    private static Pattern PATTERN_AUTOPLAY_REGEX_CB = Pattern.compile("(.*?)^(Unser Feedsponsor:\\s*<\\/p><p>\\s*.*?\\s*<\\/p>)(.*)", Pattern.MULTILINE);
+
+
+    private Context mContext;
+    private RssItem mRssItem;
+    private Listener mListener;
+
+
     public interface Listener {
         /**
          * The RSS item has successfully been parsed.
@@ -40,11 +52,6 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
          */
         void onRssItemParsed(String htmlPage);
     }
-
-
-    private Context mContext;
-    private RssItem mRssItem;
-    private Listener mListener;
 
 
     public RssItemToHtmlTask(Context context, RssItem rssItem, Listener listener) {
@@ -80,13 +87,13 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
                 R.attr.dividerLineColor,
                 R.attr.rssItemListBackground);
 
-        int feedColor = colors[0];
+        //int feedColor = colors[0];
         if (feed != null) {
             feedTitle = StringEscapeUtils.escapeHtml4(feed.getFeedTitle());
             favIconUrl = feed.getFaviconUrl();
-            if(feed.getAvgColour() != null) {
-                feedColor = Integer.parseInt(feed.getAvgColour());
-            }
+            //if(feed.getAvgColour() != null) {
+            //    feedColor = Integer.parseInt(feed.getAvgColour());
+            //}
         }
 
         if (favIconUrl != null) {
@@ -100,7 +107,8 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         }
 
         String body_id;
-        switch(ThemeChooser.getInstance(context).getSelectedTheme(context, false)) {
+        int selectedTheme = ThemeChooser.getInstance(context).getSelectedTheme(context, false);
+        switch(selectedTheme) {
             case 0: // Auto (Light / Dark)
                 body_id = ThemeChooser.getInstance(context).isDarkTheme(context) ? "darkTheme" : "lightTheme";
                 break;
@@ -121,7 +129,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         boolean isRightToLeft = context.getResources().getBoolean(R.bool.is_right_to_left);
         String rtlClass = isRightToLeft ? "rtl" : "";
-        String borderSide = isRightToLeft ? "right" : "left";
+        //String borderSide = isRightToLeft ? "right" : "left";
 
         StringBuilder builder = new StringBuilder();
 
@@ -218,15 +226,6 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         return text;
     }
-
-    private static Pattern PATTERN_PRELOAD_VIDEOS_REMOVE = Pattern.compile("(<video[^>]*)(preload=\".*?\")(.*?>)");
-    private static Pattern PATTERN_PRELOAD_VIDEOS_INSERT = Pattern.compile("(<video[^>]*)(.*?)(.*?>)");
-
-    private static Pattern PATTERN_AUTOPLAY_VIDEOS_1 = Pattern.compile("(<video[^>]*)(autoplay=\".*?\")(.*?>)");
-    private static Pattern PATTERN_AUTOPLAY_VIDEOS_2 = Pattern.compile("(<video[^>]*)(\\sautoplay)(.*?>)");
-
-    private static Pattern PATTERN_AUTOPLAY_REGEX_CB = Pattern.compile("(.*?)^(Unser Feedsponsor:\\s*<\\/p><p>\\s*.*?\\s*<\\/p>)(.*)", Pattern.MULTILINE);
-
 
     private static String replacePatternInText(Pattern pattern, String text, String replacement) {
         Matcher m = pattern.matcher(text);

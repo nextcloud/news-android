@@ -44,6 +44,38 @@ import io.reactivex.schedulers.Schedulers;
 
 public class NewsReaderListDialogFragment extends DialogFragment{
 
+    protected @Inject ApiProvider mApi;
+
+    private long mFeedId;
+    private String mDialogTitle;
+    private String mDialogText;
+    private String mDialogIconUrl;
+
+    private LinkedHashMap<String, MenuAction> mMenuItems;
+    private NewsReaderListActivity parentActivity;
+
+    protected @BindView(R.id.lv_menu_list) ListView mListView;
+    protected @BindView(R.id.folder_list) ListView mFolderList;
+
+    protected @BindView(R.id.tv_menu_title) TextView tvTitle;
+    protected @BindView(R.id.tv_menu_text)  TextView tvText;
+
+    protected @BindView(R.id.ic_menu_feedicon) ImageView imgTitle;
+
+    protected @BindView(R.id.remove_feed_dialog) RelativeLayout mRemoveFeedDialogView;
+    protected @BindView(R.id.rename_feed_dialog) RelativeLayout mRenameFeedDialogView;
+    protected @BindView(R.id.move_feed_dialog) RelativeLayout mMoveFeedDialogView;
+
+    protected @BindView(R.id.progressView)       RelativeLayout mProgressView;
+
+    protected @BindView(R.id.button_remove_confirm) Button mButtonRemoveConfirm;
+    protected @BindView(R.id.button_remove_cancel) Button mButtonRemoveCancel;
+    protected @BindView(R.id.button_rename_confirm) Button mButtonRenameConfirm;
+    protected @BindView(R.id.button_rename_cancel) Button mButtonRenameCancel;
+
+    protected @BindView(R.id.renamefeed_feedname) EditText mFeedName;
+
+
     static NewsReaderListDialogFragment newInstance(long feedId, String dialogTitle, String iconurl, String feedurl) {
         NewsReaderListDialogFragment f = new NewsReaderListDialogFragment();
 
@@ -56,40 +88,6 @@ public class NewsReaderListDialogFragment extends DialogFragment{
         f.setArguments(args);
         return f;
     }
-
-
-    @Inject ApiProvider mApi;
-
-    private long mFeedId;
-    private String mDialogTitle;
-    private String mDialogText;
-    private String mDialogIconUrl;
-
-    private LinkedHashMap<String, MenuAction> mMenuItems;
-
-    private NewsReaderListActivity parentActivity;
-
-    @BindView(R.id.lv_menu_list) ListView mListView;
-    @BindView(R.id.folder_list) ListView mFolderList;
-
-    @BindView(R.id.tv_menu_title) TextView tvTitle;
-    @BindView(R.id.tv_menu_text)  TextView tvText;
-
-    @BindView(R.id.ic_menu_feedicon) ImageView imgTitle;
-
-    @BindView(R.id.remove_feed_dialog) RelativeLayout mRemoveFeedDialogView;
-    @BindView(R.id.rename_feed_dialog) RelativeLayout mRenameFeedDialogView;
-    @BindView(R.id.move_feed_dialog) RelativeLayout mMoveFeedDialogView;
-
-    @BindView(R.id.progressView)       RelativeLayout mProgressView;
-
-    @BindView(R.id.button_remove_confirm) Button mButtonRemoveConfirm;
-    @BindView(R.id.button_remove_cancel) Button mButtonRemoveCancel;
-    @BindView(R.id.button_rename_confirm) Button mButtonRenameConfirm;
-    @BindView(R.id.button_rename_cancel) Button mButtonRenameCancel;
-
-    @BindView(R.id.renamefeed_feedname) EditText mFeedName;
-
 
 
     @Override
@@ -243,7 +241,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                                 DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
                                 dbConn.renameFeedById(mFeedId, mFeedName.getText().toString());
 
-                                parentActivity.getSlidingListFragment().ReloadAdapter();
+                                parentActivity.getSlidingListFragment().reloadAdapter();
                                 parentActivity.startSync();
 
                                 dismiss();
@@ -290,7 +288,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                                 if(currentFeedId != null && currentFeedId == mFeedId) {
                                     parentActivity.switchToAllUnreadItemsFolder();
                                 }
-                                parentActivity.getSlidingListFragment().ReloadAdapter();
+                                parentActivity.getSlidingListFragment().reloadAdapter();
                                 parentActivity.updateCurrentRssView();
 
                                 dismiss();
@@ -349,7 +347,7 @@ public class NewsReaderListDialogFragment extends DialogFragment{
                                 Feed feed = dbConn.getFeedById(mFeedId);
                                 feed.setFolder(folder);
 
-                                parentActivity.getSlidingListFragment().ReloadAdapter();
+                                parentActivity.getSlidingListFragment().reloadAdapter();
                                 parentActivity.startSync();
 
                                 dismiss();

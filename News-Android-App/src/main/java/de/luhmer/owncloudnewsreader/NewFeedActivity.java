@@ -63,16 +63,19 @@ import retrofit2.Response;
 
 public class NewFeedActivity extends AppCompatActivity {
 
+    private static final String TAG = NewFeedActivity.class.getCanonicalName();
+    public final static String ADD_NEW_SUCCESS = "success";
+
     // UI references.
-    @BindView(R.id.et_feed_url) EditText mFeedUrlView;
-    @BindView(R.id.sp_folder) Spinner mFolderView;
-    @BindView(R.id.new_feed_progress) View mProgressView;
-    @BindView(R.id.new_feed_form) View mLoginFormView;
-    @BindView(R.id.btn_addFeed) Button mAddFeedButton;
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    protected @BindView(R.id.et_feed_url) EditText mFeedUrlView;
+    protected @BindView(R.id.sp_folder) Spinner mFolderView;
+    protected @BindView(R.id.new_feed_progress) View mProgressView;
+    protected @BindView(R.id.new_feed_form) View mLoginFormView;
+    protected @BindView(R.id.btn_addFeed) Button mAddFeedButton;
+    protected @BindView(R.id.toolbar) Toolbar toolbar;
 
     private List<Folder> folders;
-    @Inject ApiProvider mApi;
+    protected @Inject ApiProvider mApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,8 +257,9 @@ public class NewFeedActivity extends AppCompatActivity {
                     final Map<String, Object> feedMap = new HashMap<>(2);
                     feedMap.put("url", feedUrl);
                     feedMap.put("folderId", folderId);
+                    
                     Feed feed = mApi.getAPI().createFeed(feedMap).execute().body().get(0);
-                    //TODO check above!
+                    Log.v(TAG, "New Feed-ID: " + feed.getId());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -396,9 +400,6 @@ public class NewFeedActivity extends AppCompatActivity {
             });
     }
 
-    public final static String ADD_NEW_SUCCESS = "success";
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -407,6 +408,8 @@ public class NewFeedActivity extends AppCompatActivity {
                 //NavUtils.navigateUpFromSameTask(this);
                 finish();
                 return true;
+            default:
+                    Log.v(TAG, "Unknown option selected..");
         }
         return super.onOptionsItemSelected(item);
     }

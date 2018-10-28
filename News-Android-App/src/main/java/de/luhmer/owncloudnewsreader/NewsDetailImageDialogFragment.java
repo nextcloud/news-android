@@ -48,6 +48,18 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     public enum TYPE { IMAGE, URL }
     private static final String TAG = NewsDetailImageDialogFragment.class.getCanonicalName();
 
+    private int mDialogIcon;
+    private String mDialogTitle;
+    private String mDialogText;
+    private URL mImageUrl;
+    private TYPE mDialogType;
+
+    private long downloadID;
+    private DownloadManager downloadManager;
+    private BroadcastReceiver downloadCompleteReceiver;
+
+    private LinkedHashMap<String, MenuAction> mMenuItems;
+
     static NewsDetailImageDialogFragment newInstanceImage(String dialogTitle, Integer titleIcon, String dialogText, URL imageUrl) {
         NewsDetailImageDialogFragment f = new NewsDetailImageDialogFragment();
 
@@ -65,7 +77,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         return f;
     }
 
-    static NewsDetailImageDialogFragment newInstanceUrl(String dialogTitle, String dialogText) {
+    protected static NewsDetailImageDialogFragment newInstanceUrl(String dialogTitle, String dialogText) {
         NewsDetailImageDialogFragment f = new NewsDetailImageDialogFragment();
 
         Bundle args = new Bundle();
@@ -76,20 +88,6 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         f.setArguments(args);
         return f;
     }
-
-    private int mDialogIcon;
-    private String mDialogTitle;
-    private String mDialogText;
-    private URL mImageUrl;
-    private TYPE mDialogType;
-
-    private ListView mListView;
-
-    private long downloadID;
-    private DownloadManager downloadManager;
-    private BroadcastReceiver downloadCompleteReceiver;
-
-    private LinkedHashMap<String, MenuAction> mMenuItems;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,8 +109,6 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                         public void execute() {
                             if(haveStoragePermission()) {
                                 downloadImage(mImageUrl);
-                            } else {
-
                             }
                         }
 
@@ -219,7 +215,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             }
         }
 
-        mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
+        ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
         List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
@@ -272,19 +268,19 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     private void shareImage() {
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mDialogText);
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mImageUrl.toString());
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, mDialogText);
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, mImageUrl.toString());
         startActivity(Intent.createChooser(sharingIntent, getString(R.string.intent_title_share)));
         dismiss();
     }
 
     private void shareLink() {
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mDialogTitle);
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mDialogText);
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, mDialogTitle);
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, mDialogText);
         startActivity(Intent.createChooser(sharingIntent, getString(R.string.intent_title_share)));
         dismiss();
     }
@@ -417,7 +413,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                             String downloadFileLocalUri = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
                             File image = new File(Uri.parse(downloadFileLocalUri).getPath());
 
-                            NextcloudNotificationManager.ShowNotificationDownloadSingleImageComplete(context, image);
+                            NextcloudNotificationManager.showNotificationDownloadSingleImageComplete(context, image);
 
                             if(isVisible()) {
                                 dismiss();
@@ -429,6 +425,8 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                                 dismiss();
                             }
                             break;
+                        default:
+                            Log.e(TAG, "this should never happen! - unknown download status");
                     }
                 }
             }

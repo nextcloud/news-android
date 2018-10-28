@@ -103,7 +103,7 @@ public class NewsReaderListActivityUiTests {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                na.ChangeReadStateOfItem(vh, false);
+                na.changeReadStateOfItem(vh, false);
             }
         });
         sleep(0.5f);

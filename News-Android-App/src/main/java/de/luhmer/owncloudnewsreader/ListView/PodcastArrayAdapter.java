@@ -21,8 +21,9 @@ import de.luhmer.owncloudnewsreader.helper.FileUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
 public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
-    LayoutInflater inflater;
-    EventBus eventBus;
+
+    private LayoutInflater inflater;
+    private EventBus eventBus;
 
     public PodcastArrayAdapter(Context context, PodcastItem[] values) {
         super(context, R.layout.podcast_row, values);

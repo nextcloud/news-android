@@ -73,7 +73,7 @@ public class FavIconHandler {
         imgView.setTranslationY(offset);
     }
 
-    public static int getResourceIdForRightDefaultFeedIcon(Context context)
+    private static int getResourceIdForRightDefaultFeedIcon(Context context)
 	{
 		if(ThemeChooser.getInstance(context).isDarkTheme(context))
 			return R.drawable.default_feed_icon_light;
@@ -81,7 +81,7 @@ public class FavIconHandler {
 			return R.drawable.default_feed_icon_dark;
 	}
 
-	public void PreCacheFavIcon(final Feed feed) throws IllegalStateException {
+	public void preCacheFavIcon(final Feed feed) throws IllegalStateException {
         if(feed.getFaviconUrl() == null) {
             Log.v(TAG, "No favicon for "+feed.getFeedTitle());
             return;
@@ -111,7 +111,7 @@ public class FavIconHandler {
         });
     }
 
-    public void DownloadFinished(long feedId, Bitmap bitmap) {
+    private void DownloadFinished(long feedId, Bitmap bitmap) {
         if(bitmap != null) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             Feed feed = dbConn.getFeedById(feedId);

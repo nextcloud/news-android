@@ -124,7 +124,7 @@ import static de.luhmer.owncloudnewsreader.LoginDialogFragment.ShowAlertDialog;
  * selections.
  */
 public class NewsReaderListActivity extends PodcastFragmentActivity implements
-		 NewsReaderListFragment.Callbacks,RecyclerItemClickListener,SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener {
+		 NewsReaderListFragment.Callbacks, RecyclerItemClickListener, SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener {
 
 	private static final String TAG = NewsReaderListActivity.class.getCanonicalName();
 
@@ -139,7 +139,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	//private Date mLastSyncDate = new Date(0);
 	private boolean mSyncOnStartupPerformed = false;
 
-	@BindView(R.id.toolbar) Toolbar toolbar;
+	protected @BindView(R.id.toolbar) Toolbar toolbar;
 
 	private ServiceConnection mConnection = null;
 
@@ -150,6 +150,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     private PublishSubject<String> searchPublishSubject;
     private static final int REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE = 1;
+
+    private static final String ID_FEED_STRING = "ID_FEED_STRING";
+    private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
+    private static final String OPTIONAL_FOLDER_ID = "OPTIONAL_FOLDER_ID";
+    private static final String LIST_ADAPTER_TOTAL_COUNT = "LIST_ADAPTER_TOTAL_COUNT";
+    private static final String LIST_ADAPTER_PAGE_COUNT = "LIST_ADAPTER_PAGE_COUNT";
+
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -243,13 +250,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 
 		if (savedInstanceState == null) {//When the app starts (no orientation change)
-			StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+			startDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
 		}
 
 		//AppRater.app_launched(this);
 		//AppRater.rateNow(this);
 
-		UpdateButtonLayout();
+		updateButtonLayout();
 	}
 
 
@@ -257,20 +264,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		getSlidingListFragment().showTapLogoToSyncShowcaseView();
 	}
 
-	View.OnClickListener mSnackbarListener = new View.OnClickListener() {
+	private View.OnClickListener mSnackbarListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View view) {
 			//Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
 			updateCurrentRssView();
 		}
 	};
-
-
-	private static final String ID_FEED_STRING = "ID_FEED_STRING";
-	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
-	private static final String OPTIONAL_FOLDER_ID = "OPTIONAL_FOLDER_ID";
-	private static final String LIST_ADAPTER_TOTAL_COUNT = "LIST_ADAPTER_TOTAL_COUNT";
-	private static final String LIST_ADAPTER_PAGE_COUNT = "LIST_ADAPTER_PAGE_COUNT";
 
 
 	/* (non-Javadoc)
@@ -337,7 +337,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					.getRecyclerView()
 					.setAdapter(adapter);
 
-			StartDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
+			startDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
 					savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
 					savedInstanceState.getLong(ID_FEED_STRING),
 					false);
@@ -383,12 +383,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if (ndf != null) {
 			//ndf.reloadAdapterFromScratch();
-			ndf.UpdateCurrentRssView(NewsReaderListActivity.this);
+			ndf.updateCurrentRssView(NewsReaderListActivity.this);
 		}
 	}
 
 	public void switchToAllUnreadItemsFolder() {
-		StartDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+		startDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
 	}
 
 	@Override
@@ -437,7 +437,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                             mLastSyncDate = new Date();
                         }*/
 					}
-					UpdateButtonLayout();
+					updateButtonLayout();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -466,18 +466,18 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		} else {
             Toast.makeText(NewsReaderListActivity.this, exception.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         }
-        UpdateButtonLayout();
+        updateButtonLayout();
         syncFinishedHandler();
 	}
 
     @Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(SyncStartedEvent event) {
-        UpdateButtonLayout();
+        updateButtonLayout();
 	}
 
     @Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(SyncFinishedEvent event) {
-        UpdateButtonLayout();
+        updateButtonLayout();
         syncFinishedHandler();
 	}
 
@@ -496,9 +496,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		sequence.start();
 
 		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
-		newsReaderListFragment.ReloadAdapter();
+		newsReaderListFragment.reloadAdapter();
 		UpdateItemList();
-		UpdatePodcastView();
+		updatePodcastView();
 
 		getSlidingListFragment().startAsyncTaskGetUserInfo();
 
@@ -536,7 +536,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	protected void onResume() {
 		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
 		if (newsReaderListFragment != null) {
-            newsReaderListFragment.ReloadAdapter();
+            newsReaderListFragment.reloadAdapter();
 			newsReaderListFragment.bindUserInfoToUI();
 		}
         invalidateOptionsMenu();
@@ -553,11 +553,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 * that the item with the given ID was selected.
 	 */
 	@Override
-	public void onTopItemClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
+	public void onTopItemClicked(long idFeed, boolean isFolder, long optional_folder_id) {
 		if (drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 
-		StartDetailFragment(idFeed, isFolder, optional_folder_id, true);
+		startDetailFragment(idFeed, isFolder, optional_folder_id, true);
 	}
 
 	@Override
@@ -565,21 +565,21 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 
-		StartDetailFragment(idFeed, false, optional_folder_id, true);
+		startDetailFragment(idFeed, false, optional_folder_id, true);
 	}
 
 	@Override
-	public void onTopItemLongClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
-		StartDialogFragment(idFeed, isFolder, optional_folder_id);
+	public void onTopItemLongClicked(long idFeed, boolean isFolder) {
+		startDialogFragment(idFeed, isFolder);
 	}
 
 	@Override
-	public void onChildItemLongClicked(long idFeed, Long optional_folder_id) {
-		StartDialogFragment(idFeed, false, optional_folder_id);
+	public void onChildItemLongClicked(long idFeed) {
+		startDialogFragment(idFeed, false);
 	}
 
 
-	private void StartDialogFragment(long idFeed, Boolean isFolder, Long optional_folder_id) {
+	private void startDialogFragment(long idFeed, Boolean isFolder) {
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
 		if (isFolder) {
@@ -607,7 +607,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 
-	private NewsReaderDetailFragment StartDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView)
+	private NewsReaderDetailFragment startDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView)
 	{
 		if(menuItemDownloadMoreItems != null) {
 			menuItemDownloadMoreItems.setEnabled(true);
@@ -617,29 +617,29 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		Long feedId = null;
 		Long folderId;
-		String titel = null;
+		String title = null;
 
 		if(!folder)
 		{
 			feedId = id;
 			folderId = optional_folder_id;
-			titel = dbConn.getFeedById(id).getFeedTitle();
+			title = dbConn.getFeedById(id).getFeedTitle();
 		}
 		else
 		{
 			folderId = id;
 			int idFolder = (int) id;
 			if(idFolder >= 0)
-				titel = dbConn.getFolderById(id).getLabel();
+				title = dbConn.getFolderById(id).getLabel();
 			else if(idFolder == -10)
-				titel = getString(R.string.allUnreadFeeds);
+				title = getString(R.string.allUnreadFeeds);
 			else if(idFolder == -11)
-				titel = getString(R.string.starredFeeds);
+				title = getString(R.string.starredFeeds);
 
 		}
 
 		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
-		fragment.setData(feedId, folderId, titel, updateListView);
+		fragment.setData(feedId, folderId, title, updateListView);
 		return fragment;
 	}
 
@@ -676,12 +676,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 						ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
 				//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
 			} else {
-				UpdateButtonLayout();
+				updateButtonLayout();
 			}
 		}
     }
 
-	public void UpdateButtonLayout()
+	public void updateButtonLayout()
     {
 		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
 		NewsReaderDetailFragment newsReaderDetailFragment = getNewsReaderDetailFragment();
@@ -728,7 +728,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if(ndf != null)
 			ndf.UpdateMenuItemsState();
 
-        UpdateButtonLayout();
+        updateButtonLayout();
 
 		return true;
 	}
@@ -818,7 +818,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					dbConn2.markAllItemsAsReadForCurrentView();
 
 					reloadCountNumbersOfSlidingPaneAdapter();
-					ndf.RefreshCurrentRssView();
+					ndf.refreshCurrentRssView();
 				}
 				return true;
 
@@ -992,7 +992,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	   	dialog.setActivity(activity);
 	   	dialog.setListener(new LoginSuccessfulListener() {
             @Override
-            public void LoginSucceeded() {
+            public void loginSucceeded() {
                 ((NewsReaderListActivity) activity).resetUiAndStartSync();
 			}
 		});
@@ -1000,7 +1000,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void resetUiAndStartSync() {
-        getSlidingListFragment().ReloadAdapter();
+        getSlidingListFragment().reloadAdapter();
         updateCurrentRssView();
         startSync();
         getSlidingListFragment().bindUserInfoToUI();
@@ -1021,7 +1021,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
             startActivity(browserIntent);
 
-            ((NewsListRecyclerAdapter) getNewsReaderDetailFragment().getRecyclerView().getAdapter()).ChangeReadStateOfItem(vh, true);
+            ((NewsListRecyclerAdapter) getNewsReaderDetailFragment().getRecyclerView().getAdapter()).changeReadStateOfItem(vh, true);
 		} else {
 			Intent intentNewsDetailAct = new Intent(this, NewsDetailActivity.class);
 

@@ -24,9 +24,11 @@ import static org.junit.Assert.assertTrue;
 public class TestDbTest {
 
     private NewsReaderListActivity activity;
+    private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private static SecureRandom rnd = new SecureRandom();
 
     @Before
-    public void setup() {
+    public void setUp() {
         activity = Robolectric.buildActivity(NewsReaderListActivity.class).create().get();
     }
 
@@ -83,9 +85,6 @@ public class TestDbTest {
             dbConn.insertNewItems(buffer);
         }
     }
-
-    private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    private static SecureRandom rnd = new SecureRandom();
 
     private String randomString( int len ){
         StringBuilder sb = new StringBuilder( len );

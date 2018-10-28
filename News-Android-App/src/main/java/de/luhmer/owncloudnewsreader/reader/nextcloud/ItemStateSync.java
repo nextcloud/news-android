@@ -29,13 +29,13 @@ public class ItemStateSync {
         itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewStarredRssItems());
         result = PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_STARRED, dbConn, api);
         if(result)
-            dbConn.change_starrUnstarrStateOfItem(itemIds, true);
+            dbConn.changeStarrUnstarrStateOfItem(itemIds, true);
 
         //Mark as UNSTARRED
         itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnstarredRssItems());
         result = PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNSTARRED, dbConn, api);
         if(result)
-            dbConn.change_starrUnstarrStateOfItem(itemIds, false);
+            dbConn.changeStarrUnstarrStateOfItem(itemIds, false);
 
     }
 

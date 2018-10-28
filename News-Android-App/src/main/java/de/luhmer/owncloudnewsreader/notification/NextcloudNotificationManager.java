@@ -28,7 +28,7 @@ public class NextcloudNotificationManager {
     private static final int ID_DownloadSingleImageComplete = 10;
     private static final int UNREAD_RSS_ITEMS_NOTIFICATION_ID = 246;
 
-    public static void ShowNotificationDownloadSingleImageComplete(Context context, File imagePath) {
+    public static void showNotificationDownloadSingleImageComplete(Context context, File imagePath) {
         String channelDownloadImage = context.getString(R.string.action_img_download);
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelDownloadImage);
 
@@ -60,7 +60,7 @@ public class NextcloudNotificationManager {
 
 
 
-    public static NotificationCompat.Builder BuildNotificationDownloadImageService(Context context, String channelId) {
+    public static NotificationCompat.Builder buildNotificationDownloadImageService(Context context, String channelId) {
         getNotificationManagerAndCreateChannel(context, channelId);
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
@@ -96,7 +96,7 @@ public class NextcloudNotificationManager {
 
 
 
-    public static void ShowNotificationImageDownloadLimitReached(Context context, String channelId, int limit) {
+    public static void showNotificationImageDownloadLimitReached(Context context, String channelId, int limit) {
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
@@ -117,7 +117,7 @@ public class NextcloudNotificationManager {
     }
 
 
-    public static NotificationCompat.Builder BuildPodcastNotification(Context context, String channelId) {
+    public static NotificationCompat.Builder buildPodcastNotification(Context context, String channelId) {
         getNotificationManagerAndCreateChannel(context, channelId);
 
         // Creates an explicit intent for an ResultActivity to receive.
@@ -140,7 +140,7 @@ public class NextcloudNotificationManager {
                 .setContentIntent(resultPendingIntent);
     }
 
-    public static NotificationCompat.Builder BuildDownloadPodcastNotification(Context context, String channelId) {
+    public static NotificationCompat.Builder buildDownloadPodcastNotification(Context context, String channelId) {
         getNotificationManagerAndCreateChannel(context, channelId);
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
@@ -160,7 +160,7 @@ public class NextcloudNotificationManager {
 
 
 
-    public static void ShowUnreadRssItemsNotification(Context context, int newItemsCount) {
+    public static void showUnreadRssItemsNotification(Context context, int newItemsCount) {
         Resources res = context.getResources();
         String tickerMessage = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
         String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
@@ -186,7 +186,7 @@ public class NextcloudNotificationManager {
         notificationManager.notify(UNREAD_RSS_ITEMS_NOTIFICATION_ID, builder.build());
     }
 
-    public static boolean IsUnreadRssCountNotificationVisible(Context context) {
+    public static boolean isUnreadRssCountNotificationVisible(Context context) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -200,7 +200,7 @@ public class NextcloudNotificationManager {
 
     }
 
-    public static void RemoveRssItemsNotification(Context context) {
+    public static void removeRssItemsNotification(Context context) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancel(UNREAD_RSS_ITEMS_NOTIFICATION_ID);
     }

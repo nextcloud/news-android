@@ -164,7 +164,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		try
 		{
             mViewPager.setCurrentItem(item_id, true);
-            PageChanged(item_id);
+            pageChanged(item_id);
 		}
 		catch(Exception ex)
 		{
@@ -183,7 +183,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
         @Override
         public void onPageSelected(int pos) {
-            PageChanged(pos);
+            pageChanged(pos);
         }
 
         @Override
@@ -251,7 +251,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		return super.onKeyUp(keyCode, event);
 	}
 
-	private void PageChanged(int position)
+	private void pageChanged(int position)
 	{
 		StopVideoOnCurrentPage();
 		currentPosition = position;
@@ -284,7 +284,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	{
 		NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
 		if(fragment != null)  // could be null if not instantiated yet
-			fragment.ResumeCurrentPage();
+			fragment.resumeCurrentPage();
 
 	}
 
@@ -292,7 +292,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	{
         NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
 		if(fragment != null)  // could be null if not instantiated yet
-			fragment.PauseCurrentPage();
+			fragment.pauseCurrentPage();
 	}
 
 	public void UpdateActionBarIcons()
@@ -304,7 +304,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 
         PodcastItem podcastItem =  DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
-        boolean podcastAvailable = !podcastItem.link.equals("");
+        boolean podcastAvailable = !"".equals(podcastItem.link);
 
 
         if(menuItem_PlayPodcast != null)

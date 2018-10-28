@@ -76,8 +76,14 @@ import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
  */
 public class NewsReaderListFragment extends Fragment implements OnCreateContextMenuListener {
 
-    @Inject ApiProvider mApi;
-    @Inject SharedPreferences mPrefs;
+    protected @Inject ApiProvider mApi;
+    protected @Inject SharedPreferences mPrefs;
+
+    /**
+     * The fragment's current callback object, which is notified of list item
+     * clicks.
+     */
+    private Callbacks mCallbacks = null;
 
 
 	@SuppressWarnings("unused")
@@ -87,15 +93,9 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         lvAdapter.NotifyDataSetChangedAsync();
     }
 
-    public void ReloadAdapter() {
+    public void reloadAdapter() {
         lvAdapter.ReloadAdapterAsync();
     }
-
-	/**
-	 * The fragment's current callback object, which is notified of list item
-	 * clicks.
-	 */
-	private Callbacks mCallbacks = null;
 
 	public void setRefreshing(boolean isRefreshing) {
 		if(isRefreshing) {
@@ -119,9 +119,9 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		 * Callback for when an item has been selected.
 		 */
 		void onChildItemClicked(long idFeed, Long optional_folder_id);
-		void onTopItemClicked(long idFeed, boolean isFolder, Long optional_folder_id);
-		void onChildItemLongClicked(long idFeed, Long optional_folder_id);
-		void onTopItemLongClicked(long idFeed, boolean isFolder, Long optional_folder_id);
+		void onTopItemClicked(long idFeed, boolean isFolder, long onTopItemClicked);
+		void onChildItemLongClicked(long idFeed);
+		void onTopItemLongClicked(long idFeed, boolean isFolder);
 	}
 
 
@@ -154,7 +154,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
         ButterKnife.bind(this, view);
 
-        if(!Constants.IsNextCloud(getContext())) {
+        if(!Constants.isNextCloud(getContext())) {
             // Set ownCloud view
             headerView.setBackgroundResource(R.drawable.left_drawer_header_background);
         }
@@ -179,7 +179,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         });
 
         lvAdapter.notifyDataSetChanged();
-        ReloadAdapter();
+        reloadAdapter();
 
 		return view;
 	}
@@ -213,7 +213,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 		@Override
 		public void onTextLongClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
-			mCallbacks.onTopItemLongClicked(idFeed, isFolder, optional_folder_id);
+			mCallbacks.onTopItemLongClicked(idFeed, isFolder);
 		}
 
 	};
@@ -242,7 +242,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 			if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
 				int childPosition = ExpandableListView.getPackedPositionChild(id);
-				mCallbacks.onChildItemLongClicked(childPosition, null);
+				mCallbacks.onChildItemLongClicked(childPosition);
 			}
 
 			return true;

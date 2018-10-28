@@ -72,41 +72,40 @@ import io.reactivex.schedulers.Schedulers;
 
 public class OwnCloudSyncService extends Service {
 
-    StopWatch syncStopWatch;
-	// This is the object that receives interactions from clients.  See
-	// RemoteService for a more complete example.
-	private final IBinder mBinder = new OwnCloudSyncServiceBinder();
+    private StopWatch syncStopWatch;
+    // This is the object that receives interactions from clients.  See
+    // RemoteService for a more complete example.
+    private final IBinder mBinder = new OwnCloudSyncServiceBinder();
 
-	/**
-	 * Class for clients to access.  Because we know this service always
-	 * runs in the same process as its clients, we don't need to deal with
-	 * IPC.
-	 */
-	public class OwnCloudSyncServiceBinder extends Binder {
-		public OwnCloudSyncService getService() {
-			return OwnCloudSyncService.this;
-		}
-	}
+    protected static final String TAG = "OwnCloudSyncService";
 
-	protected static final String TAG = "OwnCloudSyncService";
-
-
-	private boolean syncRunning;
+    private boolean syncRunning;
     private CompositeDisposable mDisposable;
 
-    @Inject SharedPreferences mPrefs;
-	@Inject ApiProvider mApi;
-    @Inject MemorizingTrustManager mMTM;
+    protected @Inject SharedPreferences mPrefs;
+    protected @Inject ApiProvider mApi;
+    protected @Inject MemorizingTrustManager mMTM;
 
-
-	public void startSync() {
-		if(!isSyncRunning()) {
-			startedSync();
-            start();
+    /**
+     * Class for clients to access.  Because we know this service always
+     * runs in the same process as its clients, we don't need to deal with
+     * IPC.
+     * */
+    public class OwnCloudSyncServiceBinder extends Binder {
+       public OwnCloudSyncService getService() {
+			return OwnCloudSyncService.this;
 		}
-	}
+    }
 
-	public boolean isSyncRunning() {
+
+    public void startSync() {
+        if(!isSyncRunning()) {
+            startedSync();
+            start();
+        }
+    }
+
+    public boolean isSyncRunning() {
 		return syncRunning;
 	}
 
@@ -142,14 +141,15 @@ public class OwnCloudSyncService extends Service {
     }
 
     private class SyncResult {
+        List<Folder> folders;
+        List<Feed>   feeds;
+        boolean      stateSyncSuccessful;
+
         SyncResult(List<Folder> folders, List<Feed> feeds, Boolean stateSyncSuccessful) {
             this.folders = folders;
             this.feeds = feeds;
             this.stateSyncSuccessful = stateSyncSuccessful;
         }
-        List<Folder> folders;
-        List<Feed>   feeds;
-        boolean      stateSyncSuccessful;
     }
 
     // Start sync
@@ -299,7 +299,7 @@ public class OwnCloudSyncService extends Service {
             // If another app is opened show a notification
             if (!foregroundActivityPackageName.equals(getPackageName())) {
                 if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true)) {
-                    NextcloudNotificationManager.ShowUnreadRssItemsNotification(OwnCloudSyncService.this, newItemsCount);
+                    NextcloudNotificationManager.showUnreadRssItemsNotification(OwnCloudSyncService.this, newItemsCount);
                 }
             }
         }

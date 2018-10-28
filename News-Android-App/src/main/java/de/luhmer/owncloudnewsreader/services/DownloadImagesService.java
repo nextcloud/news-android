@@ -108,14 +108,14 @@ public class DownloadImagesService extends JobIntentService {
         DownloadMode downloadMode = (DownloadMode) intent.getSerializableExtra(DOWNLOAD_MODE_STRING);
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
-        mNotificationDownloadImages = NextcloudNotificationManager.BuildNotificationDownloadImageService(this, CHANNEL_ID);
+        mNotificationDownloadImages = NextcloudNotificationManager.buildNotificationDownloadImageService(this, CHANNEL_ID);
 
         if(downloadMode.equals(DownloadMode.FAVICONS_ONLY)) {
             List<Feed> feedList = dbConn.getListOfFeeds();
             FavIconHandler favIconHandler = new FavIconHandler(this);
             for(Feed feed : feedList) {
                 try {
-                    favIconHandler.PreCacheFavIcon(feed);
+                    favIconHandler.preCacheFavIcon(feed);
                 } catch(IllegalStateException ex) {
                     Log.e(TAG, ex.getMessage());
                 }
@@ -129,7 +129,7 @@ public class DownloadImagesService extends JobIntentService {
                 links.addAll(ImageHandler.getImageLinksFromText(body));
 
                 if(links.size() > 10000) {
-                    NextcloudNotificationManager.ShowNotificationImageDownloadLimitReached(this, CHANNEL_ID, 10000);
+                    NextcloudNotificationManager.showNotificationImageDownloadLimitReached(this, CHANNEL_ID, 10000);
                     break;
                 }
             }
