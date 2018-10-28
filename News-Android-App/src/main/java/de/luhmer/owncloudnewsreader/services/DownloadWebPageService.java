@@ -48,7 +48,7 @@ public class DownloadWebPageService extends Service {
     private static final String TAG = DownloadWebPageService.class.getCanonicalName();
     private static final int JOB_ID = 1002;
 
-    static final String CHANNEL_ID = "Download Web Page Service";
+    private static final String CHANNEL_ID = "Download Web Page Service";
     private static final String WebArchiveFinalPrefix = "web_archive_";
     private static final int NUMBER_OF_CORES = 4;
     private NotificationCompat.Builder mNotificationWebPages;
@@ -95,7 +95,7 @@ public class DownloadWebPageService extends Service {
 
     private void initNotification() {
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationWebPages = NextcloudNotificationManager.BuildNotificationDownloadWebPageService(this, CHANNEL_ID);
+        mNotificationWebPages = NextcloudNotificationManager.buildNotificationDownloadWebPageService(this, CHANNEL_ID);
 
         Intent stopIntent = new Intent(this, NotificationActionReceiver.class);
         stopIntent.setAction(NOTIFICATION_ACTION_STOP_STRING);
@@ -205,7 +205,7 @@ public class DownloadWebPageService extends Service {
 
         private String url;
         private WebView webView;
-        final Object lock;
+        private final Object lock;
 
         DownloadWebPage(String url) {
             this.url = url;
@@ -269,7 +269,7 @@ public class DownloadWebPageService extends Service {
     class DownloadImageWebViewClient extends WebViewClient {
         private final String TAG = DownloadImageWebViewClient.class.getName();
         private final Object lock;
-        boolean failed = false;
+        private boolean failed = false;
 
         DownloadImageWebViewClient(Object lock) {
             this.lock = lock;

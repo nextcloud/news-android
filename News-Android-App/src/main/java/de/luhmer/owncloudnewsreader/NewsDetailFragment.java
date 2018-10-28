@@ -78,10 +78,10 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
 	public static int background_color = Integer.MIN_VALUE;
 
-	@BindView(R.id.webview) WebView mWebView;
-    @BindView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
-	@BindView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
-    @BindView(R.id.tv_offline_version) TextView mTvOfflineVersion;
+    protected @BindView(R.id.webview) WebView mWebView;
+    protected @BindView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
+    protected @BindView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
+    protected @BindView(R.id.tv_offline_version) TextView mTvOfflineVersion;
 
 
 	private int section_number;

@@ -77,7 +77,7 @@ public class NextcloudNotificationManager {
         return mNotificationDownloadImages;
     }
 
-    public static NotificationCompat.Builder BuildNotificationDownloadWebPageService(Context context, String channelId) {
+    public static NotificationCompat.Builder buildNotificationDownloadWebPageService(Context context, String channelId) {
         getNotificationManagerAndCreateChannel(context, channelId);
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
