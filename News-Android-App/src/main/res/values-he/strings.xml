@@ -143,12 +143,6 @@
     <string name="pref_display_browser_built_in">דפדפן מובנה</string>
     <string name="pref_display_browser_external">דפדפן חיצוני</string>
 
-    <string name="pref_display_feed_list_layout_simple">פשוט</string>
-    <string name="pref_display_feed_list_layout_extended">מורחב</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">מורחב (טקסט מלא)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">מורחב עם תצוגת אתר</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">מורחב עם תצוגת כרטיס</string>
-
     <string name="content_desc_play">נגינה</string>
     <string name="content_desc_pause">השהיה</string>
     <string name="content_desc_playback_speed">מהירות נגינה</string>

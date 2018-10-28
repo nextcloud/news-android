@@ -142,8 +142,6 @@
 
 
 
-    <string name="pref_display_feed_list_layout_simple">E thjeshtë</string>
-    <string name="pref_display_feed_list_layout_extended">E zgjeruar</string>
     <string name="content_desc_play">luaje</string>
     <string name="content_desc_pause">pushoje</string>
     <string name="content_desc_rewind">mbrapsht</string>

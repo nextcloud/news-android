@@ -174,12 +174,6 @@
     <string name="pref_display_browser_built_in">Integrierter Browser</string>
     <string name="pref_display_browser_external">Externer Browser</string>
 
-    <string name="pref_display_feed_list_layout_simple">Einfach</string>
-    <string name="pref_display_feed_list_layout_extended">Erweitert</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Erweitert (Volltext)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">Erweitert mit Webansicht</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">Erweitert mit Kartenansicht</string>
-
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Klein</string>
     <string name="pref_display_font_size_d">Standard</string>

@@ -174,12 +174,6 @@
     <string name="pref_display_browser_built_in">İç Tarayıcı</string>
     <string name="pref_display_browser_external">Dış Tarayıcı</string>
 
-    <string name="pref_display_feed_list_layout_simple">Basit</string>
-    <string name="pref_display_feed_list_layout_extended">Gelişmiş</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Gelişmiş (tam metin)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">Web Görünümü ile Gelişmiş</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">Kart Görünümü ile Gelişmiş</string>
-
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Küçük</string>
     <string name="pref_display_font_size_d">Varsayılan</string>

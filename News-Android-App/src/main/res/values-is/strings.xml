@@ -168,12 +168,6 @@
     <string name="pref_display_browser_built_in">Innbyggður vafri</string>
     <string name="pref_display_browser_external">Ytri vafri</string>
 
-    <string name="pref_display_feed_list_layout_simple">Einfalt</string>
-    <string name="pref_display_feed_list_layout_extended">Ítarlegt</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Ítarlegt (allur textinn)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">Ítarlegt í vefskoðun</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">Ítarlegt í spjaldskoðun</string>
-
     <string name="content_desc_play">afspilun</string>
     <string name="content_desc_pause">bið</string>
     <string name="content_desc_playback_speed">hraði afspilunar</string>

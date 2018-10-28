@@ -184,12 +184,6 @@
     <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
     <string name="pref_display_browser_external">Vnější prohlížeč</string>
 
-    <string name="pref_display_feed_list_layout_simple">Jednoduché</string>
-    <string name="pref_display_feed_list_layout_extended">Rozšířené</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Rozšířené (plnotextové)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">Rozšířeno s Webview</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">Rozšířeno s Cardview</string>
-
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Malé</string>
     <string name="pref_display_font_size_d">Výchozí</string>

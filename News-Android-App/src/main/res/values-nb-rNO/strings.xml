@@ -158,10 +158,6 @@
     <string name="pref_display_browser_built_in">Innebygd nettleser</string>
     <string name="pref_display_browser_external">Ekstern nettleser</string>
 
-    <string name="pref_display_feed_list_layout_simple">Enkel</string>
-    <string name="pref_display_feed_list_layout_extended">Utvidet</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Utvidet (fulltekst)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">Utvidet med nettvisning</string>
     <string name="content_desc_play">spil</string>
     <string name="content_desc_pause">pause</string>
     <string name="content_desc_playback_speed">avspillingshastighet</string>

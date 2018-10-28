@@ -161,12 +161,6 @@
     <string name="pref_display_browser_built_in">内置浏览器</string>
     <string name="pref_display_browser_external">外部浏览器</string>
 
-    <string name="pref_display_feed_list_layout_simple">简单</string>
-    <string name="pref_display_feed_list_layout_extended">扩展</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">扩展(全部文本)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">使用 Webview 扩展</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">使用 Cardview 扩展</string>
-
     <string name="content_desc_play">播放</string>
     <string name="content_desc_pause">暂停</string>
     <string name="content_desc_playback_speed">播放速度</string>

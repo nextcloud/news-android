@@ -176,12 +176,6 @@
     <string name="pref_display_browser_built_in">Integruota naršyklė</string>
     <string name="pref_display_browser_external">Išorinė naršyklė</string>
 
-    <string name="pref_display_feed_list_layout_simple">Paprastas</string>
-    <string name="pref_display_feed_list_layout_extended">Išplėstinis</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Išplėstinis (visas tekstas)      </string>
-    <string name="pref_display_feed_list_layout_extended_webview">Išplėstas naudojant Webview</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">Išplėstas naudojant Cardview</string>
-
     <string name="content_desc_play">groti</string>
     <string name="content_desc_pause">pristabdyti</string>
     <string name="content_desc_playback_speed">atkūrimo greitis</string>

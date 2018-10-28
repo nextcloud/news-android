@@ -173,12 +173,6 @@
     <string name="pref_display_browser_built_in">Уграђени Веб читач</string>
     <string name="pref_display_browser_external">Спољни Веб читач</string>
 
-    <string name="pref_display_feed_list_layout_simple">Просто</string>
-    <string name="pref_display_feed_list_layout_extended">Проширено</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Проширено (пун текст)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">Проширено помоћу Webview-а</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">Проширено помоћу Cardview-а</string>
-
     <string name="content_desc_play">пусти</string>
     <string name="content_desc_pause">паузирај</string>
     <string name="content_desc_playback_speed">брзина пуштања</string>

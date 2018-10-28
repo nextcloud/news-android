@@ -162,12 +162,6 @@
     <string name="pref_display_browser_built_in">Beépített böngésző</string>
     <string name="pref_display_browser_external">Külső böngésző</string>
 
-    <string name="pref_display_feed_list_layout_simple">Egyszerű</string>
-    <string name="pref_display_feed_list_layout_extended">Bővített</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Bővített (csak szöveges)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">Kiterjesztett WebView-val</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">Kiterjesztett Cardview-val</string>
-
     <string name="content_desc_play">lejátszás</string>
     <string name="content_desc_pause">szünet</string>
     <string name="content_desc_playback_speed">lejátszási sebesség</string>

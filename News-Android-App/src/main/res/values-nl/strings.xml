@@ -174,12 +174,6 @@
     <string name="pref_display_browser_built_in">Ingebouwde browser</string>
     <string name="pref_display_browser_external">Externe browser</string>
 
-    <string name="pref_display_feed_list_layout_simple">Simpel</string>
-    <string name="pref_display_feed_list_layout_extended">Uitgebreid</string>
-    <string name="pref_display_feed_list_layout_extended_full_text">Uitgebreid (volledige tekst)</string>
-    <string name="pref_display_feed_list_layout_extended_webview">Uitgebreid met Webview</string>
-    <string name="pref_display_feed_list_layout_extended_cardview">Uitgebreid met Cardview</string>
-
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Klein</string>
     <string name="pref_display_font_size_d">Standaard</string>
