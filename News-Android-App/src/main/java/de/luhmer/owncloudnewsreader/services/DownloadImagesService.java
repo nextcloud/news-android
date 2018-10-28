@@ -53,20 +53,19 @@ public class DownloadImagesService extends JobIntentService {
     public static final String DOWNLOAD_MODE_STRING = "DOWNLOAD_MODE";
 	private static Random random;
 
-	private int NOTIFICATION_ID = 1;
+	private int NOTIFICATION_ID = 1923;
 	private NotificationCompat.Builder mNotificationDownloadImages;
 
     private int maxCount;
-	//private int total_size = 0;
-
-    //List<String> linksToImages = new LinkedList<>();
+    private NotificationManager mNotificationManager;
 
 
     /**
      * Unique job/channel ID for this service.
      */
-    static final int JOB_ID = 1000;
-    static final String CHANNEL_ID = "Download Images Service";
+    private static final int JOB_ID = 1000;
+    private static final String CHANNEL_ID = "Download Images Service";
+
 
     /**
      * Convenience method for enqueuing work in to this service.
@@ -74,7 +73,7 @@ public class DownloadImagesService extends JobIntentService {
     public static void enqueueWork(Context context, Intent work) {
         enqueueWork(context, DownloadImagesService.class, JOB_ID, work);
     }
-    NotificationManager mNotificationManager;
+
 
 
     @Override

@@ -92,6 +92,14 @@
 -dontwarn autovalue.shaded.**
 
 -keep class de.luhmer.** { *; }
+-keepclassmembers class de.luhmer.** { *; }
+-keepnames class de.luhmer.** { *; }
+
+-printmapping out.map
+-keepattributes SourceFile,LineNumberTable
+-renamesourcefileattribute SourceFile
+
+-keepclasseswithmembers public class android.support.v7.widget.RecyclerView { *; }
 
 
 ###############
