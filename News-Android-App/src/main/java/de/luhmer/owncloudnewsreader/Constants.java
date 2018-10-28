@@ -15,10 +15,10 @@ public class Constants {
     public static final String NOTIFICATION_ACTION_STOP_STRING = "NOTIFICATION_STOP";
     protected static final String NEWS_WEB_VERSION_NUMBER_STRING = "NewsWebVersionNumber";
 
-    static final int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
+    protected static final int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
 
 
-    static boolean isNextCloud(Context context) {
+    protected static boolean isNextCloud(Context context) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         int[] version = extractVersionNumberFromString(mPrefs.getString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, ""));
         if(version[0] >= 9) {

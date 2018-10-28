@@ -726,7 +726,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if(ndf != null)
-			ndf.UpdateMenuItemsState();
+			ndf.updateMenuItemsState();
 
         updateButtonLayout();
 

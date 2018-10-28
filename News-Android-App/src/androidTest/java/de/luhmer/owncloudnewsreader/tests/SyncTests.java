@@ -43,7 +43,7 @@ public class SyncTests {
         server = new MockWebServer();
         server.start();
         // Ask the server for its URL. You'll need this to make HTTP requests.
-        HttpUrl baseUrl = server.url("/");
+        //baseUrl = server.url("/");
 
         //HttpJsonRequest.init(mActivityRule.getActivity());
         //HttpJsonRequest.getInstance().setCredentials("test", "test", baseUrl.toString());

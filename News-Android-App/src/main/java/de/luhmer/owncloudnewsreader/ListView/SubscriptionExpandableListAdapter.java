@@ -571,7 +571,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     public void notifyCountDataSetChanged(SparseArray<String> unreadCountFolders, SparseArray<String> unreadCountFeeds, SparseArray<String> urlsToFavIcons, SparseArray<String> starredCountFeeds) {
         this.unreadCountFolders = unreadCountFolders;
         this.unreadCountFeeds = unreadCountFeeds;
-        SparseArray<String> urlsToFavIcons1 = urlsToFavIcons;
         this.starredCountFeeds = starredCountFeeds;
 
         BlockingExpandableListView bView = (BlockingExpandableListView) listView;

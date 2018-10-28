@@ -197,7 +197,7 @@ public class NewsReaderDetailFragment extends Fragment {
     }
     */
 
-    public void UpdateMenuItemsState() {
+    public void updateMenuItemsState() {
         NewsReaderListActivity nla = (NewsReaderListActivity)getActivity();
         if(nla.getMenuItemDownloadMoreItems() != null) {
             if(idFolder != null && idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue()) {
