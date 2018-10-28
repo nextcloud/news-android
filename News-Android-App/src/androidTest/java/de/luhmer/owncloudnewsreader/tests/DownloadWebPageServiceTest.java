@@ -1,41 +1,35 @@
 package de.luhmer.owncloudnewsreader.tests;
 
-import android.app.Activity;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.test.uiautomator.UiDevice;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.R;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class DownloadWebPageServiceTest {
 
+    //private String expectedAppName;
+
     @Rule
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class);
 
+    /*
     private UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
     private Activity getActivity() {
         return mActivityRule.getActivity();
     }
 
-    private String expectedAppName;
-
-
     @Before
     private void setUp() {
         expectedAppName = getActivity().getString(R.string.app_name);
     }
 
-    /*
     @Test
     public void testStartDownload() {
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
