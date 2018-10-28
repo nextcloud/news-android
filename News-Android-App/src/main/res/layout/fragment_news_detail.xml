@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:hardwareAccelerated="true" />
+        android:hardwareAccelerated="true"
+        android:layout_above="@id/tv_offline_version"/>
 
     <ProgressBar
         android:id="@+id/progressbar_webview"
@@ -29,6 +30,17 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tv_offline_version"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/tv_showing_cached_version"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:background="@color/material_red_600"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

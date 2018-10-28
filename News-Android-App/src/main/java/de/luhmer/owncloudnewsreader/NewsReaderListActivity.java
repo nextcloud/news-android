@@ -21,6 +21,7 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -31,9 +32,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -91,6 +94,7 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
+import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
 import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
 import de.luhmer.owncloudnewsreader.services.events.SyncFailedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
@@ -145,6 +149,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private SearchView searchView;
 
     private PublishSubject<String> searchPublishSubject;
+    private static final int REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE = 1;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -780,7 +785,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				break;
 
 			case R.id.menu_StartImageCaching:
-				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
+				final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
 				long highestItemId = dbConn.getLowestRssItemIdUnread();
 
@@ -825,9 +830,35 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				searchView.setIconified(false);
 				searchView.setFocusable(true);
 				searchView.requestFocusFromTouch();
+                return true;
+
+            case R.id.menu_download_web_archive:
+                startDownloadWebPagesForOfflineReading();
+                return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	private void startDownloadWebPagesForOfflineReading() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Log.v("Permission error","You have permission");
+            } else {
+                Log.e("Permission error","Asking for permission");
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE);
+                return;
+            }
+        }
+        else { //you dont need to worry about these stuff below api level 23
+            Log.v("Permission error","You already have the permission");
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(this, DownloadWebPageService.class));
+        } else {
+            startService(new Intent(this, DownloadWebPageService.class));
+        }
+    }
 
 	private void DownloadMoreItems()
 	{
@@ -916,6 +947,19 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 if (val) {
                     startSync();
                 }
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(grantResults.length > 0 &&  grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if(requestCode == REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE) {
+                startDownloadWebPagesForOfflineReading();
+            } else {
+                Log.d(TAG, "No action defined here yet..");
             }
         }
     }

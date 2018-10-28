@@ -17,6 +17,12 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
 
+    <item
+        android:id="@+id/menu_download_web_archive"
+        android:enabled="true"
+        android:title="@string/action_download_articles_offline"
+        app:showAsAction="never" />
+
     <item android:id="@+id/menu_StartImageCaching"
         android:title="@string/menu_StartImageCaching"
         android:orderInCategory="95"

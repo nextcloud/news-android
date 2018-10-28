@@ -13,13 +13,11 @@ public class Constants {
     //public static final String LAST_SYNC = "LAST_SYNC";
 
     public static final int maxItemsCount = 1500;
+    public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
+    public static final String NEWS_WEB_VERSION_NUMBER_STRING = "NewsWebVersionNumber";
+    public static final String NOTIFICATION_ACTION_STOP_STRING = "NOTIFICATION_STOP";
 
     public static final int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
-
-    public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
-
-
-    public static final String NEWS_WEB_VERSION_NUMBER_STRING = "NewsWebVersionNumber";
 
 
     public static boolean IsNextCloud(Context context) {

@@ -67,6 +67,7 @@ import de.luhmer.owncloudnewsreader.helper.AppCompatPreferenceActivity;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -648,9 +649,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         protected Void doInBackground(Void... params) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             dbConn.resetDatabase();
-			ImageHandler.clearCache();
-			return null;
-		}
+            ImageHandler.clearCache();
+            DownloadWebPageService.clearWebArchiveCache(context);
+            return null;
+        }
 
         @Override
         protected void onPostExecute(Void result) {

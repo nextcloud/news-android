@@ -77,6 +77,23 @@ public class NextcloudNotificationManager {
         return mNotificationDownloadImages;
     }
 
+    public static NotificationCompat.Builder BuildNotificationDownloadWebPageService(Context context, String channelId) {
+        getNotificationManagerAndCreateChannel(context, channelId);
+
+        Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
+        NotificationCompat.Builder mNotificationWebPages = new NotificationCompat.Builder(context, channelId)
+                .setContentTitle(context.getResources().getString(R.string.app_name))
+                .setContentText("Downloading webpages for offline usage")
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentIntent(pIntent)
+                .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
+                .setOngoing(true);
+
+        return mNotificationWebPages;
+    }
+
 
 
     public static void ShowNotificationImageDownloadLimitReached(Context context, String channelId, int limit) {

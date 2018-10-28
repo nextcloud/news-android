@@ -19,6 +19,8 @@
     <color name="material_grey_600" tools:override="true">#757575</color>
     <color name="material_grey_900" tools:override="true">#212121</color>
 
+    <color name="material_red_600" tools:override="true">#e53935</color>
+
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#eeeeee</color>
 
