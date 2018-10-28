@@ -235,10 +235,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     }
 
 	@Override
-	public View getGroupView(final int groupPosition, final boolean isExpanded,
-			View convertView, ViewGroup parent) {
+	public View getGroupView(final int groupPosition, final boolean isExpanded, View convertView, ViewGroup parent) {
 
-		GroupHolder viewHolder;
+        GroupHolder viewHolder;
         final AbstractItem group = (AbstractItem) getGroup(groupPosition);
 
         if (convertView == null) {
@@ -598,7 +597,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	}
 	protected void fireListTextClicked(long idFeed, boolean isFolder, Long optional_folder_id)
 	{
-		if(eListTextClickHandler != null)
+        if(eListTextClickHandler != null)
 			eListTextClickHandler.onTextClicked(idFeed, isFolder, optional_folder_id);
 	}
     protected void fireListTextLongClicked(long idFeed, boolean isFolder, Long optional_folder_id)

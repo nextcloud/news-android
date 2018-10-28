@@ -26,8 +26,7 @@ public abstract class AbstractItem {
     public String header;
     public Long idFolder;
 
-    AbstractItem(long id_database, String header, Long idFolder)
-    {
+    AbstractItem(long id_database, String header, Long idFolder) {
         this.id_database = id_database;
         this.header = header;
         this.idFolder = idFolder;

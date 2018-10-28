@@ -23,11 +23,8 @@ package de.luhmer.owncloudnewsreader.model;
 
 public class FolderSubscribtionItem extends AbstractItem {
 
-
-
-	public FolderSubscribtionItem(String headerFolder, Long idFolder, long idFolder_database) {
+    public FolderSubscribtionItem(String headerFolder, Long idFolder, long idFolder_database) {
         super(idFolder_database, headerFolder, idFolder_database);
-
-		this.idFolder = idFolder;
-	}
+        this.idFolder = idFolder;
+    }
 }

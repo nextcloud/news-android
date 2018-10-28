@@ -553,7 +553,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 * that the item with the given ID was selected.
 	 */
 	@Override
-	public void onTopItemClicked(long idFeed, boolean isFolder, long optional_folder_id) {
+	public void onTopItemClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
 		if (drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 

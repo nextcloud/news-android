@@ -119,11 +119,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		 * Callback for when an item has been selected.
 		 */
 		void onChildItemClicked(long idFeed, Long optional_folder_id);
-		void onTopItemClicked(long idFeed, boolean isFolder, long onTopItemClicked);
+		void onTopItemClicked(long idFeed, boolean isFolder, Long onTopItemClicked);
 		void onChildItemLongClicked(long idFeed);
 		void onTopItemLongClicked(long idFeed, boolean isFolder);
 	}
-
 
 	private SubscriptionExpandableListAdapter lvAdapter;
 
@@ -208,7 +207,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 		@Override
 		public void onTextClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
-			mCallbacks.onTopItemClicked(idFeed, isFolder, optional_folder_id);
+            mCallbacks.onTopItemClicked(idFeed, isFolder, optional_folder_id);
 		}
 
 		@Override
