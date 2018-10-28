@@ -46,11 +46,13 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -65,6 +67,7 @@ import de.luhmer.owncloudnewsreader.helper.AdBlocker;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
 
 public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Listener {
 
@@ -75,9 +78,10 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
 	public static int background_color = Integer.MIN_VALUE;
 
-	@BindView(R.id.webview) WebView mWebView;
-    @BindView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
-	@BindView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
+    protected @BindView(R.id.webview) WebView mWebView;
+    protected @BindView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
+    protected @BindView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
+    protected @BindView(R.id.tv_offline_version) TextView mTvOfflineVersion;
 
 
 	private int section_number;
@@ -265,27 +269,32 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                 SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
 
-                boolean result = true;
-                switch(selectedBrowser) {
-                    case 0: // Custom Tabs
-                        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                        builder.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
-                        builder.setShowTitle(true);
-                        builder.setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-                        builder.setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right);
-                        builder.build().launchUrl(getActivity(), Uri.parse(url));
-                        result = true;
-                        break;
-                    case 1: // External Browser
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                        startActivity(browserIntent);
-                        break;
-                    case 2: // Built in
-                        result = super.shouldOverrideUrlLoading(view, url);
-                        break;
+                File webArchiveFile = DownloadWebPageService.getWebPageArchiveFileForUrl(getActivity(), url);
+                if(webArchiveFile.exists()) { // Test if WebArchive exists for url
+                    mTvOfflineVersion.setVisibility(View.VISIBLE);
+                    mWebView.loadUrl("file://" + webArchiveFile.getAbsolutePath());
+                    return true;
+                } else {
+                    mTvOfflineVersion.setVisibility(View.GONE);
+                    switch (selectedBrowser) {
+                        case 0: // Custom Tabs
+                            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                            builder.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
+                            builder.setShowTitle(true);
+                            builder.setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
+                            builder.setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right);
+                            builder.build().launchUrl(getActivity(), Uri.parse(url));
+                            return true;
+                        case 1: // External Browser
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                            startActivity(browserIntent);
+                            return true;
+                        case 2: // Built in
+                            return super.shouldOverrideUrlLoading(view, url);
+                        default:
+                            throw new IllegalStateException("Unknown selection!");
+                    }
                 }
-                return result;
-                //return super.shouldOverrideUrlLoading(view, url);
             }
 
             @Override

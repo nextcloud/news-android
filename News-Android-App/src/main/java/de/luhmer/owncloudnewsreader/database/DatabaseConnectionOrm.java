@@ -343,6 +343,10 @@ public class DatabaseConnectionOrm {
         return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.eq(false)).limit(100).orderDesc(RssItemDao.Properties.PubDate).listLazy();
     }
 
+    public LazyList<RssItem> getAllUnreadRssItemsForDownloadWebPageService() {
+        return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.eq(false)).orderDesc(RssItemDao.Properties.PubDate).listLazy();
+    }
+
     public LazyList<RssItem> getAllItemsWithIdHigher(long id) {
         return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.ge(id)).listLazy();
     }

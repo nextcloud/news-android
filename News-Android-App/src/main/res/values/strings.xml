@@ -27,6 +27,7 @@
     <string name="menu_downloadMoreItems">Download more items</string>
 
     <string name="img_view_thumbnail" translatable="false">Thumbnail</string>
+    <string name="tv_showing_cached_version">Showing cached version</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
@@ -40,6 +41,7 @@
     <string name="action_sync_settings">Sync Settings</string>
     <string name="action_add_new_feed">Add new feed</string>
     <string name="action_textToSpeech">Read out</string>
+    <string name="action_download_articles_offline">Download articles offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">You have %d new unread item</item>
         <item quantity="other">You have %d new unread items</item>

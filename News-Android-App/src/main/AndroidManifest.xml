@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="de.luhmer.owncloudnewsreader"
+    android:installLocation="internalOnly"
     android:versionCode="134"
-    android:versionName="0.9.9.19"
-    android:installLocation="internalOnly">
-
+    android:versionName="0.9.9.19">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,25 +19,21 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 
-    <!--
-    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-    -->
-
-
+    <!--     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" /> -->
     <application
+        android:name=".NewsReaderApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name=".NewsReaderApplication"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:label, android:theme, android:name">
         <activity
             android:name=".NewsReaderListActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
             android:launchMode="singleTop">
 
             <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
@@ -48,37 +43,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".NewsDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_news_detail" >
-        </activity>
-
+            android:label="@string/title_activity_news_detail"></activity>
         <activity
             android:name=".SettingsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_settings" >
-        </activity>
-
-        <activity android:name=".DownloadImagesActivity">
-        </activity>
-
+            android:label="@string/title_activity_settings"></activity>
+        <activity android:name=".DownloadImagesActivity"></activity>
         <activity
             android:name=".SyncIntervalSelectorActivity"
-            android:label="@string/title_activity_sync_interval_selector" >
-        </activity>
-
+            android:label="@string/title_activity_sync_interval_selector"></activity>
         <activity
             android:name=".NewFeedActivity"
             android:label="@string/title_activity_new_feed"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
-
+            android:windowSoftInputMode="adjustResize|stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="http" />
                 <data android:host="*" />
                 <data android:pathPattern=".*\\atom.xml" />
@@ -86,25 +73,32 @@
                 <data android:pathPattern=".*\\.rss" />
                 <data android:pathPattern=".*/feed" />
                 <data android:pathPattern=".*feed/*" />
-
-                <data android:scheme="http" android:host="*"
-                    android:pathPattern=".*\\.opml" />
-                <data android:scheme="https" android:host="*"
-                    android:pathPattern=".*\\.opml" />
-                <data android:scheme="content" android:host="*"
-                    android:pathPattern=".*\\.opml" />
-                <data android:scheme="file" android:host="*"
-                    android:pathPattern=".*\\.opml" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.opml"
+                    android:scheme="http" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.opml"
+                    android:scheme="https" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.opml"
+                    android:scheme="content" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.opml"
+                    android:scheme="file" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-
-        <activity android:name="DirectoryChooserActivity" />
+        <activity android:name=".DirectoryChooserActivity" />
 
         <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle">
             <intent-filter>
@@ -112,7 +106,6 @@
                 <action android:name="android.intent.action.HEADSET_PLUG" />
             </intent-filter>
         </receiver>
-
 
         <!--
 		**********************************************************************
@@ -123,12 +116,15 @@
         <service
             android:name=".services.DownloadImagesService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".services.SyncItemStateService"
+        <service
+            android:name=".services.SyncItemStateService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
+        <service
+            android:name=".services.DownloadWebPageService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".services.OwnCloudAuthenticatorService"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
@@ -137,11 +133,10 @@
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator" />
         </service>
-
         <service android:name=".services.OwnCloudSyncService" />
         <service
             android:name=".services.OwnCloudSettingsSyncService"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>
@@ -155,9 +150,7 @@
             android:name=".providers.OwnCloudSyncProvider"
             android:authorities="de.luhmer.owncloudnewsreader"
             android:label="@string/auto_sync_string"
-            android:syncable="true" >
-        </provider>
-
+            android:syncable="true"></provider>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -177,13 +170,20 @@
         <!-- android:theme="@style/Theme.Transparent" > -->
         <!-- </activity> -->
 
+        <receiver android:name=".helper.NotificationActionReceiver">
+            <intent-filter>
+                <action android:name="YES_ACTION"/>
+                <action android:name="STOP_ACTION"/>
+
+            </intent-filter>
+        </receiver>
 
         <!--
 		**********************************************************************
 		* Widget Provider Receiver
 		**********************************************************************
         -->
-        <receiver android:name=".widget.WidgetProvider" >
+        <receiver android:name=".widget.WidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -197,26 +197,17 @@
             android:name=".widget.WidgetService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-
-
         <service
             android:name=".services.PodcastPlaybackService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
         <service
             android:name=".services.PodcastDownloadService"
-            android:exported="false" >
-        </service>
-
-
-
-
+            android:exported="false"></service>
         <service
-            android:name="de.luhmer.owncloudnewsreader.chrometabs.KeepAliveService"
+            android:name=".chrometabs.KeepAliveService"
             android:exported="true"
             android:process=":remote" />
-
     </application>
 
 </manifest>
