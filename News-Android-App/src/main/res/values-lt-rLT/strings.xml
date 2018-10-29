@@ -161,7 +161,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Ekranas</string>
+    <string name="pref_title_app_theme">Nakties veiksena</string>
     <string name="pref_title_feed_list_layout">Kanalų sąrašo išdėstymas</string>
+    <string name="pref_title_font_size">Šrifto dydis</string>
     <string name="pref_display_browser">Naršyklė</string>
 
 
@@ -172,10 +174,12 @@
     <string name="pref_display_apptheme_light">Šviesi</string>
     <string name="pref_display_apptheme_dark">Tamsi</string>
 
+    <string name="pref_oled_mode">Juodas fonas</string>
     <string name="pref_display_browser_cct">Integruoti Chrome adaptuoti tabuliacijos klavišai</string>
     <string name="pref_display_browser_built_in">Integruota naršyklė</string>
     <string name="pref_display_browser_external">Išorinė naršyklė</string>
 
+    <string name="pref_display_feed_list_layout_thumbnails">Miniatiūros</string>
     <string name="content_desc_play">groti</string>
     <string name="content_desc_pause">pristabdyti</string>
     <string name="content_desc_playback_speed">atkūrimo greitis</string>

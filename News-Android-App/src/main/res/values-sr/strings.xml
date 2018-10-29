@@ -158,7 +158,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Приказ</string>
+    <string name="pref_title_app_theme">Ноћни режим</string>
     <string name="pref_title_feed_list_layout">Распоред листе довода</string>
+    <string name="pref_title_font_size">Величина фонта</string>
     <string name="pref_display_browser">Прегледач</string>
 
 
@@ -166,12 +168,28 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Акционе иконица (детаљни приказ)</string>
 
+    <string name="pref_display_apptheme_auto">Светло / тамно (у односу на део дана)</string>
     <string name="pref_display_apptheme_light">Светла</string>
     <string name="pref_display_apptheme_dark">Тамна</string>
+
+    <string name="pref_oled_mode">Црна позадина</string>
+    <string name="pref_oled_mode_summary">За тамне теме на OLED екранима</string>
 
     <string name="pref_display_browser_cct">Уграђени Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Уграђени Веб читач</string>
     <string name="pref_display_browser_external">Спољни Веб читач</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Мале сличице</string>
+    <string name="pref_display_feed_list_layout_simple_text">Обичан текст</string>
+    <string name="pref_display_feed_list_layout_full_text">Цео текст</string>
+    <string name="pref_display_feed_list_layout_web_layout">Веб распоред</string>
+    <string name="pref_display_feed_list_layout_card_view">Картични приказ</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Мало</string>
+    <string name="pref_display_font_size_d">Подразумевано</string>
+    <string name="pref_display_font_size_l">Велико</string>
+    <string name="pref_display_font_size_xl">Екстра велико</string>
 
     <string name="content_desc_play">пусти</string>
     <string name="content_desc_pause">паузирај</string>

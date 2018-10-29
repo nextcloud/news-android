@@ -175,6 +175,12 @@
     <string name="pref_display_browser_built_in">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="pref_display_browser_external">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
+    <string name="pref_display_feed_list_layout_thumbnails">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_simple_text">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_full_text">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_web_layout">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_card_view">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="pref_display_font_size_d">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
