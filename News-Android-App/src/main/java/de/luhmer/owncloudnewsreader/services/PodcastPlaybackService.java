@@ -31,6 +31,19 @@ import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 
 public class PodcastPlaybackService extends Service {
 
+    public static final String MEDIA_ITEM = "MediaItem";
+
+    private static final String TAG = "PodcastPlaybackService";
+    private PodcastNotification podcastNotification;
+
+    private EventBus eventBus;
+    private Handler mHandler;
+
+    private PlaybackService mPlaybackService;
+
+    public static final float PLAYBACK_SPEEDS[] = { 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f };
+    private float currentPlaybackSpeed = 1;
+
     // Binder given to clients
     private final IBinder mBinder = new LocalBinder();
 
@@ -75,22 +88,9 @@ public class PodcastPlaybackService extends Service {
         return super.onUnbind(intent);
     }
 
-    public static final String MEDIA_ITEM = "MediaItem";
-
-    private static final String TAG = "PodcastPlaybackService";
-    private PodcastNotification podcastNotification;
-
-    private EventBus eventBus;
-    private Handler mHandler;
-
-    private PlaybackService mPlaybackService;
-
-    public static final float PLAYBACK_SPEEDS[] = { 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f };
-    private float currentPlaybackSpeed = 1;
-
-
     @Override
     public void onCreate() {
+        super.onCreate();
         Log.v(TAG, "onCreate PodcastPlaybackService");
 
         TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
@@ -107,10 +107,7 @@ public class PodcastPlaybackService extends Service {
         mHandler.postDelayed(mUpdateTimeTask, 0);
 
 
-        // TODO: add
-        // startForeground(NOTIFICATION_ID, podcastNotification);
-
-        super.onCreate();
+        //startForeground(PodcastNotification.NOTIFICATION_ID, podcastNotification.getNotification());
     }
 
     @Override

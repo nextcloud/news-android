@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader.view;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -17,6 +18,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.Locale;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
@@ -36,10 +39,10 @@ public class PodcastNotification {
     //public static final String ACTION_PREVIOUS = "action_previous";
     //public static final String ACTION_STOP = "action_stop";
 
-    private Context mContext;
-    private NotificationManager notificationManager;
-    private NotificationCompat.Builder notificationBuilder;
-    private String CHANNEL_ID = "Podcast Notification";
+    private final Context mContext;
+    private final NotificationManager notificationManager;
+    private final NotificationCompat.Builder notificationBuilder;
+    private final String CHANNEL_ID = "Podcast Notification";
 
     //private MediaSessionManager mManager;
     private MediaSessionCompat mSession;
@@ -47,11 +50,12 @@ public class PodcastNotification {
     private int lastDrawableId = -1;
 
 
-    private final static int NOTIFICATION_ID = 1111;
+    public final static int NOTIFICATION_ID = 1111;
 
     public PodcastNotification(Context context) {
         this.mContext = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        this.notificationBuilder = NextcloudNotificationManager.buildPodcastNotification(mContext, CHANNEL_ID);
 
         EventBus.getDefault().register(this);
     }
@@ -73,12 +77,11 @@ public class PodcastNotification {
         int drawableId = podcast.isPlaying() ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
         String actionText = podcast.isPlaying() ? "Pause" : "Play";
 
-
         if(lastDrawableId != drawableId) {
             lastDrawableId = drawableId;
 
-            notificationBuilder = NextcloudNotificationManager.buildPodcastNotification(mContext, CHANNEL_ID);
             notificationBuilder.setContentTitle(podcast.getTitle());
+            notificationBuilder.mActions.clear();
             notificationBuilder.addAction(
                     drawableId,
                     actionText,
@@ -121,13 +124,13 @@ public class PodcastNotification {
         int minutes = (int)(podcast.getCurrent() % (1000*60*60)) / (1000*60);
         int seconds = (int) ((podcast.getCurrent() % (1000*60*60)) % (1000*60) / 1000);
         minutes += hours * 60;
-        String fromText = (String.format("%02d:%02d", minutes, seconds));
+        String fromText = (String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
 
         hours = (int)( podcast.getMax() / (1000*60*60));
         minutes = (int)(podcast.getMax() % (1000*60*60)) / (1000*60);
         seconds = (int) ((podcast.getMax() % (1000*60*60)) % (1000*60) / 1000);
         minutes += hours * 60;
-        String toText = (String.format("%02d:%02d", minutes, seconds));
+        String toText = (String.format(Locale.getDefault(),"%02d:%02d", minutes, seconds));
 
 
 
@@ -206,6 +209,10 @@ public class PodcastNotification {
         //MediaControllerCompat controller = mSession.getController();
 
         mSession.setActive(true);
+    }
+
+    public Notification getNotification() {
+        return notificationBuilder.build();
     }
 
 
