@@ -25,6 +25,8 @@
     <string name="menu_StartImageCaching">Bilder herunterladen</string>
     <string name="menu_downloadMoreItems">Weitere Artikel herunterladen</string>
 
+    <string name="tv_showing_cached_version">Zwischengespeicherte Version wird angezeigt</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Favorisiert</string>
     <string name="action_read">Gelesen</string>
@@ -37,6 +39,7 @@
     <string name="action_sync_settings">Einstellungen zur Synchronisation</string>
     <string name="action_add_new_feed">Einen neuen Feed hinzufügen</string>
     <string name="action_textToSpeech">Vorlesen</string>
+    <string name="action_download_articles_offline">Artikel zum offline-Lesen herunterladen.</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Sie haben %d neuen ungelesenen Eintrag</item>
         <item quantity="other">Sie haben %d neue ungelesene Einträge</item>

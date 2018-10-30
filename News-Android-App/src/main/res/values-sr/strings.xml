@@ -26,6 +26,8 @@
     <string name="menu_StartImageCaching">Преузми слике</string>
     <string name="menu_downloadMoreItems">Преузми још ставки</string>
 
+    <string name="tv_showing_cached_version">Приказујем кеширану верзију</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Озвездано</string>
     <string name="action_read">Читај</string>
@@ -38,6 +40,7 @@
     <string name="action_sync_settings">Поставке освежавања</string>
     <string name="action_add_new_feed">Додај довод</string>
     <string name="action_textToSpeech">Ишчитај</string>
+    <string name="action_download_articles_offline">Скини чланке за приступ и без интернета</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Имате %d непрочитану ставку</item>
         <item quantity="few">Имате %d непрочитане ставке</item>
