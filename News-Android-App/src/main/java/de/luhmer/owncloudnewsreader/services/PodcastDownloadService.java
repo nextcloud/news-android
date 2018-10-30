@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -21,8 +22,9 @@ import java.math.BigInteger;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
+import java.util.Locale;
 
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
+import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 
@@ -105,7 +107,7 @@ public class PodcastDownloadService extends IntentService {
     public static String getUrlToPodcastFile(Context context, String WEB_URL_TO_FILE, boolean createDir) {
         File file = new File(WEB_URL_TO_FILE);
 
-        String path = FileUtils.getPathPodcasts(context) + "/" + getHashOfString(WEB_URL_TO_FILE) + "/";
+        String path = NewsFileUtils.getPathPodcasts(context) + "/" + getHashOfString(WEB_URL_TO_FILE) + "/";
         if(createDir)
             new File(path).mkdirs();
 
@@ -141,6 +143,7 @@ public class PodcastDownloadService extends IntentService {
         try {
             String urlTemp = podcast.link;
             String path = getUrlToPodcastFile(this, urlTemp, true);
+            Log.v(TAG, "Storing podcast to: " + path);
 
             URL url = new URL(urlTemp);
             URLConnection connection = url.openConnection();
@@ -149,6 +152,8 @@ public class PodcastDownloadService extends IntentService {
             connection.setReadTimeout(120000);//2min
             // this will be useful so that you can show a typical 0-100% progress bar
             int fileLength = connection.getContentLength();
+            //float fileSizeInMb = (float)fileLength / 1024f / 1024f;
+            float fileSizeInMb = (float)fileLength / 1000f / 1000f; // This matches the actual file size..
 
             // download the file
             InputStream input = new BufferedInputStream(url.openStream());
@@ -157,13 +162,16 @@ public class PodcastDownloadService extends IntentService {
             String pathCache = path + ".download";
             OutputStream output = new FileOutputStream(pathCache);
 
+            long startTime = System.nanoTime();
 
             byte data[] = new byte[1024];
             long total = 0;
             int count;
             int lastProgress = -1;
+            int byteCountSinceLastProgress = 0;
             while ((count = input.read(data)) != -1) {
                 total += count;
+                byteCountSinceLastProgress += count;
 
                 podcast.downloadProgress = (int) (total * 100 / fileLength);
 
@@ -172,7 +180,12 @@ public class PodcastDownloadService extends IntentService {
                     lastProgress = podcast.downloadProgress;
                     eventBus.post(new DownloadProgressUpdate(podcast));
 
+                    float speedInKBps = calculateNetworkSpeed(byteCountSinceLastProgress, startTime);
+                    startTime = System.nanoTime();
+                    byteCountSinceLastProgress = 0;
+
                     mNotificationDownloadPodcast.setProgress(100, podcast.downloadProgress, false);
+                    mNotificationDownloadPodcast.setContentText(podcast.downloadProgress + "% - " + formatFloat(speedInKBps) + "KB/s - " + formatFloat(fileSizeInMb) + "MB");
                     notificationManager.notify(NOTIFICATION_ID, mNotificationDownloadPodcast.build());
                 }
 
@@ -185,7 +198,6 @@ public class PodcastDownloadService extends IntentService {
 
 
             new File(pathCache).renameTo(new File(path));
-
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -202,6 +214,23 @@ public class PodcastDownloadService extends IntentService {
         resultData.putInt("progress" ,100);
         receiver.send(UPDATE_PROGRESS, resultData);
         */
+    }
+
+    private float calculateNetworkSpeed(int byteCountSinceLastProgress, long startTime) {
+        float speedInKBps = 0.0f;
+        try {
+            // seconds, milliseconds, microseconds, nanoseconds
+            long currentTime = System.nanoTime();
+            float timeInSecs = (currentTime - startTime) / 1000f / 1000f / 1000f;
+            speedInKBps = ((float)byteCountSinceLastProgress / timeInSecs) / 1024f;
+        } catch (ArithmeticException ae) {
+            // ignore..
+        }
+        return speedInKBps;
+    }
+
+    private String formatFloat(float val) {
+        return String.format(Locale.getDefault(), "%.1f", val);
     }
 
     //public static final int UPDATE_PROGRESS = 5555;
