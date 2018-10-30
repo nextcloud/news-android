@@ -51,7 +51,7 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
+import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.OpmlXmlParser;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.helper.URLConnectionReader;
@@ -152,7 +152,7 @@ public class NewFeedActivity extends AppCompatActivity {
     public void exportOpml() {
         String xml = OpmlXmlParser.GenerateOPML(this);
 
-        String path = FileUtils.getPath(this) + "/../subscriptions.opml";
+        String path = NewsFileUtils.getCacheDirPath(this) + "/../subscriptions.opml";
 
         try {
             FileOutputStream fos = new FileOutputStream(new File(path));

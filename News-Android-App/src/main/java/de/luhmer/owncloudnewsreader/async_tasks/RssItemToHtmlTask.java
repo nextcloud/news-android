@@ -83,9 +83,9 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         String favIconUrl = null;
 
         Feed feed = rssItem.getFeed();
-        int[] colors = ColorHelper.getColorsFromAttributes(context,
-                R.attr.dividerLineColor,
-                R.attr.rssItemListBackground);
+        //int[] colors = ColorHelper.getColorsFromAttributes(context,
+        //        R.attr.dividerLineColor,
+        //        R.attr.rssItemListBackground);
 
         //int feedColor = colors[0];
         if (feed != null) {

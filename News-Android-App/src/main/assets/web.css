@@ -106,9 +106,14 @@ a {
 }
 
 #header {
-    font-size:		var(--fontsize-header);
-    margin-bottom:	10px;
-    font-weight:	bold;
+    font-size:      var(--fontsize-header);
+    margin-bottom:  10px;
+    font-weight:    bold;
+}
+
+#header a:link, a:active, a:hover, a:visited {
+    color:           #000000 !important;
+    text-decoration: none !important;
 }
 
 #header.darkTheme a:link, a:active, a:hover, a:visited {
@@ -117,11 +122,6 @@ a {
 
 #header.darkThemeOLED a:link, a:active, a:hover, a:visited {
     color: #ffffff !important;
-}
-
-#header a:link, a:active, a:hover, a:visited {
-    color:				#000000 !important;
-    text-decoration:	none !important;
 }
 
 ul {

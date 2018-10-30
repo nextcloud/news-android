@@ -147,7 +147,7 @@ public class NextcloudNotificationManager {
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
         NotificationCompat.Builder mNotificationDownloadPodcast = new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
-                .setContentText("Downloading podcast")
+                .setContentText(context.getString(R.string.notification_downloading_podcast_title))
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)

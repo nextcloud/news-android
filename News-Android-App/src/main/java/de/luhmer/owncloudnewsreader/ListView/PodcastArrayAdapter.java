@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
-import de.luhmer.owncloudnewsreader.helper.FileUtils;
+import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
 public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
@@ -77,7 +77,7 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         holder.flDeletePodcast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(FileUtils.DeletePodcastFile(getContext(), podcastItem.link)) {
+                if(NewsFileUtils.deletePodcastFile(getContext(), podcastItem.link)) {
                     podcastItem.offlineCached = false;
                     podcastItem.downloadProgress = PodcastItem.DOWNLOAD_NOT_STARTED;
                     notifyDataSetChanged();

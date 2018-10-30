@@ -43,7 +43,7 @@ public class DatabaseUtils {
 	    		File parentFolder = backupDb.getParentFile();
 	    		parentFolder.mkdirs();
 
-		        FileUtils.copyFile(new FileInputStream(db), new FileOutputStream(backupDb));
+		        NewsFileUtils.copyFile(new FileInputStream(db), new FileOutputStream(backupDb));
 		        return true;
 	    	} catch(Exception ex) {
 	    		ex.printStackTrace();
@@ -53,6 +53,6 @@ public class DatabaseUtils {
 	}
 
     public static File GetPath(Context context) {
-        return new File(FileUtils.getPath(context) + "/dbBackup/" + DATABASE_NAME);
+        return new File(NewsFileUtils.getCacheDirPath(context) + "/dbBackup/" + DATABASE_NAME);
     }
 }

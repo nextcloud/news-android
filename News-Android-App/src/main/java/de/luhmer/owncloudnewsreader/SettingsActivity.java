@@ -66,6 +66,7 @@ import java.util.List;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.AppCompatPreferenceActivity;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
+import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
@@ -267,9 +268,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
 	/**
 	 * Determines whether the simplified settings UI should be shown. This is
-	 * true if this is forced via {@link #ALWAYS_SIMPLE_PREFS}, or the device
-	 * doesn't have newer APIs like {@link PreferenceFragment}, or the device
-	 * doesn't have an extra-large screen. In these cases, a single-pane
+	 * true if device doesn't have newer APIs like {@link PreferenceFragment}, or
+	 * the device doesn't have an extra-large screen. In these cases, a single-pane
 	 * "simplified" settings UI should be shown.
 	 */
 	private static boolean isSimplePreferences(Context context) {
@@ -655,7 +655,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             dbConn.resetDatabase();
             ImageHandler.clearCache();
-            DownloadWebPageService.clearWebArchiveCache(context);
+            NewsFileUtils.clearWebArchiveCache(context);
+            NewsFileUtils.clearPodcastCache(context);
             return null;
         }
 
