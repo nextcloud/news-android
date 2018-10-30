@@ -204,10 +204,10 @@
         <service
             android:name=".services.PodcastPlaybackService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" /> <!-- android:process=":podcastPlaybackService" -->
         <service
             android:name=".services.PodcastDownloadService"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name=".chrometabs.KeepAliveService"
             android:exported="true"
