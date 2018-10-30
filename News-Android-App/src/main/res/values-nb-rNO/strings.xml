@@ -6,10 +6,10 @@
     <string name="title_activity_news_detail">NyhetsDetaljAktivitet</string>
     <string name="empty_view_content">Ingenting her</string>
     <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet … Vennligst vent.</string>
-    <string name="no_wifi_available">Ingen WiFi-tilkobling</string>
-    <string name="do_you_want_to_download_without_wifi">Vil du laste ned bilder uten en Wi-Fi- tilkobling</string>
+    <string name="no_wifi_available">Ingen WiFI tilkoblet</string>
+    <string name="do_you_want_to_download_without_wifi">Vil du laste ned bilder uten en WiFi tilkobling</string>
     <string name="current_version">Du bruker versjon %s</string>
-    <string name="widget_header">ownCloud Nyheter</string>
+    <string name="widget_header">Nextcloud nyheter</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nytt element tilgjengelig</item>
         <item quantity="other">%d nye elementer tilgjengelig</item>
@@ -20,10 +20,12 @@
     <string name="title_activity_new_feed">Legg til ny kilde</string>
 
     <string name="menu_update">Oppdater</string>
-    <string name="menu_About_Changelog">Om / Endringslogg</string>
+    <string name="menu_About_Changelog">Om/Endringslogg</string>
     <string name="menu_markAllAsRead">Marker alle som lest</string>
     <string name="menu_StartImageCaching">Last ned bilder</string>
-    <string name="menu_downloadMoreItems">Last ned flere elementer</string>
+    <string name="menu_downloadMoreItems">Last ned flere element</string>
+
+    <string name="tv_showing_cached_version">Viser versjon i hurtiglager</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Merket</string>
@@ -37,6 +39,7 @@
     <string name="action_sync_settings">Innstillinger for synkronisering</string>
     <string name="action_add_new_feed">Legg til ny kilde</string>
     <string name="action_textToSpeech">Les opp</string>
+    <string name="action_download_articles_offline">Last ned artikler offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Du har %d nytt ulest element</item>
         <item quantity="other">Du har %d nye uleste elementer</item>
@@ -48,7 +51,7 @@
 
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">Nyhets-URL</string>
+    <string name="hint_feed_url">Nyhets URL</string>
     <string name="action_add_feed">Legg til nyhetskilde</string>
 
 
@@ -61,6 +64,7 @@
     <string name="action_link_open">Åpne lenke i nettleser</string>
     <string name="action_link_copy">Kopier lenke</string>
     <string name="toast_img_download_wait">Laster ned … vennligst vent</string>
+    <string name="toast_img_saved">Bilde er lagret</string>
     <string name="toast_img_notwriteable">Klarte ikke å skrive bilde.</string>
     <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
     <string name="error_download_failed">Nedlasting feilet</string>
@@ -70,20 +74,24 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Fjern nyhetskilde</string>
     <string name="action_feed_rename">Omdøp nyhetskilde</string>
+    <string name="action_feed_move">Flytt strøm</string>
     <string name="feed_remove_button">Fjern</string>
     <string name="feed_rename_button">Gi nytt navn</string>
-    <string name="confirm_feed_remove">Vil du virkelig fjerne denne nyhetskilden? Dette kan ikke angres!</string>
+    <string name="confirm_feed_remove">Vil du fjerne denne nyhetskilden? Dette kan ikke angres!</string>
+    <string name="feed_move_list_description">Velg katalog å flytte strøm til</string>
+    <string name="move_feed_root_folder">Root katalog</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Brukernavn</string>
     <string name="pref_title_password">Passord</string>
-    <string name="pref_title_owncloudRootPath">ownCloud rot-adresse</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud rot adresse</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Logg inn</string>
     <string name="login_progress_signing_in">Logger inn …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette feltet er påkrevd</string>
-    <string name="error_invalid_url">URL er ikke riktig</string>
+    <string name="error_invalid_url">Ugyldig URL</string>
 
 
     <!-- Import Accounts -->
@@ -114,25 +122,30 @@
     <string name="pref_general_sort_order_new_old">Ny -> Gammel</string>
     <string name="pref_general_sort_order_old_new">Gammel -> Ny</string>
 
-    <string name="dialog_clearing_cache">Sletter hurtiglager</string>
+    <string name="pref_title_general_search_in">Søk i</string>
+
+    <string name="pref_general_search_in_title">Tittel</string>
+    <string name="pref_general_search_in_body">Kropp</string>
+
+    <string name="dialog_clearing_cache">Tømmer hurtiglager</string>
     <string name="dialog_clearing_cache_please_wait">Nullstiller hurtiglager … Vennligst vent.</string>
-    <string name="reset_cache_unsaved_changes">Det er usynkroniserte forandringer. Vil du resette hurtilageret likevel?</string>
+    <string name="reset_cache_unsaved_changes">Det er usynkroniserte endringer i hurtiglagret, skal det nullstilles likevel?</string>
     <string name="warning">Advarsel</string>
     <string name="pref_title_AutoSyncOnStart">Synkroniser under oppstart</string>
     <string name="pref_title_ShowOnlyUnread">Vis kun uleste artikler</string>
-    <string name="pref_title_DisableHostnameVerification">Deaktiver vertsnavnverifikasjon</string>
+    <string name="pref_title_DisableHostnameVerification">Deaktiver kontroll av vertsnavn</string>
     <string name="pref_title_NavigateWithVolumeButtons">Naviger med volumknappene</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
-    <string name="pref_title_OpenInBrowserDirectly">Hopp over detaljert visning og åpne artikkel i nettleser</string>
+    <string name="pref_title_OpenInBrowserDirectly">Dropp detaljert visning og åpne artikkel i nettleser</string>
 
-    <string name="dialog_feature_not_available">Denne muligheten er ikke tilgjengelig i denne (åpen kildekode) versjonen av denne app. Hvis du ønsker å benytte denne muligheten vennligst last ned fra GitHub eller last ned programmet fra Google PlayStore.</string>
+    <string name="dialog_feature_not_available">Denne funksjonen er ikke tilgjengelig i denne versjonen av programmet. Hvis du vil benytte funksjonen last den ned fra GitHub eller Google Play butikken.</string>
 
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
     <string name="mtm_decision_always">Alltid</string>
     <string name="mtm_decision_abort">Avbryt</string>
-    <string name="mtm_notification">Sertifikatverifikasjon</string>
+    <string name="mtm_notification">Verifiser sertifikat</string>
 
 
     <!-- Podcast -->
@@ -143,7 +156,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
+    <string name="pref_title_app_theme">Nattmodus</string>
     <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
+    <string name="pref_title_font_size">Font størrelse</string>
     <string name="pref_display_browser">Nettleser</string>
 
 
@@ -151,12 +166,28 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
 
+    <string name="pref_display_apptheme_auto">Lys/mørk (ut fra tid på dagen)</string>
     <string name="pref_display_apptheme_light">Lys</string>
     <string name="pref_display_apptheme_dark">Mørk</string>
+
+    <string name="pref_oled_mode">Svart bakgrunn</string>
+    <string name="pref_oled_mode_summary">For mørkt tema på OLED skjermer</string>
 
     <string name="pref_display_browser_cct">Innebygde tilpassede Chrome-faner</string>
     <string name="pref_display_browser_built_in">Innebygd nettleser</string>
     <string name="pref_display_browser_external">Ekstern nettleser</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Ikon</string>
+    <string name="pref_display_feed_list_layout_simple_text">Enkel tekst</string>
+    <string name="pref_display_feed_list_layout_full_text">Full tekst</string>
+    <string name="pref_display_feed_list_layout_web_layout">Vev utseende</string>
+    <string name="pref_display_feed_list_layout_card_view">Kort utsnitt</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Liten</string>
+    <string name="pref_display_font_size_d">Standard</string>
+    <string name="pref_display_font_size_l">Stor</string>
+    <string name="pref_display_font_size_xl">Ekstra stor</string>
 
     <string name="content_desc_play">spil</string>
     <string name="content_desc_pause">pause</string>
@@ -183,9 +214,14 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Feil</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Nyhets tillegg er ikke installert eller aktivert på din server. Følge instruksjonene angitt her for å sette opp din server: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Noe gikk galt :-(</string>
     <string name="login_dialog_text_zero_version_code">Nettnyhetsprogrammet returnerte versjon \"0\". Ta en titt på følgende feilrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Program versjon er ikke kompatibel md Nexcloud nyhetstillegg. Vennligst oppgrader dette tillegget. </string>
     <string name="login_dialog_title_security_warning">Sikkerhetsadvarsel</string>
+    <string name="login_dialog_text_security_warning">HTTPS er sterkt anbefalt for din sikkerhet. Uten HTTPS kan andre se din trafikk og hente ut innholdet  som for eksempel passord.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synk.</string>
     <string name="pref_title_clearCache">Slett hurtiglager</string>
@@ -197,7 +233,7 @@
 
     <string name="pref_data_sync_image_cache_never">Aldri</string>
     <string name="pref_data_sync_image_cache_wifi_only">Bare over Wi-Fi</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">Over Wi-Fi og mobilnettverk</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Over WiFi &amp; mobildata</string>
     <string name="pref_data_sync_image_cache_ask">Spør når ikke tilkoblet Wi-Fi</string>
 
     <string name="array_sync_interval_min_5">5 minutter</string>

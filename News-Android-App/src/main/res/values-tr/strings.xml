@@ -25,6 +25,8 @@
     <string name="menu_StartImageCaching">Görselleri indir</string>
     <string name="menu_downloadMoreItems">Diğer ögeleri indir</string>
 
+    <string name="tv_showing_cached_version">Ön bellekteki sürüm görüntüleniyor</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Yıldızlanmış</string>
     <string name="action_read">Oku</string>
@@ -37,6 +39,7 @@
     <string name="action_sync_settings">Eşitleme Ayarları</string>
     <string name="action_add_new_feed">Yeni akış ekle</string>
     <string name="action_textToSpeech">Sesli oku</string>
+    <string name="action_download_articles_offline">Makaleleri çevrimdış olarak indir</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Yeni %d okunmamış ögeniz var</item>
         <item quantity="other">Okunmamış %d yeni ögeniz var</item>
@@ -173,6 +176,12 @@
     <string name="pref_display_browser_cct">Özel İç Chrome Sekmeleri</string>
     <string name="pref_display_browser_built_in">İç Tarayıcı</string>
     <string name="pref_display_browser_external">Dış Tarayıcı</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Küçük görseller</string>
+    <string name="pref_display_feed_list_layout_simple_text">Basit metin</string>
+    <string name="pref_display_feed_list_layout_full_text">Tam metin</string>
+    <string name="pref_display_feed_list_layout_web_layout">Web görünümü</string>
+    <string name="pref_display_feed_list_layout_card_view">Kart görünümü</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Küçük</string>

@@ -25,6 +25,8 @@
     <string name="menu_StartImageCaching">Bilder herunterladen</string>
     <string name="menu_downloadMoreItems">Weitere Artikel herunterladen</string>
 
+    <string name="tv_showing_cached_version">Zwischengespeicherte Version wird angezeigt</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Favorisiert</string>
     <string name="action_read">Gelesen</string>
@@ -37,6 +39,7 @@
     <string name="action_sync_settings">Einstellungen zur Synchronisation</string>
     <string name="action_add_new_feed">Einen neuen Feed hinzufügen</string>
     <string name="action_textToSpeech">Vorlesen</string>
+    <string name="action_download_articles_offline">Artikel zum offline-Lesen herunterladen.</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Sie haben %d neuen ungelesenen Eintrag</item>
         <item quantity="other">Sie haben %d neue ungelesene Einträge</item>
@@ -173,6 +176,12 @@
     <string name="pref_display_browser_cct">Integrierte angepasste Chrome-Tabs</string>
     <string name="pref_display_browser_built_in">Integrierter Browser</string>
     <string name="pref_display_browser_external">Externer Browser</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Vorschaubilder</string>
+    <string name="pref_display_feed_list_layout_simple_text">Einfacher Text</string>
+    <string name="pref_display_feed_list_layout_full_text">Volltext</string>
+    <string name="pref_display_feed_list_layout_web_layout">Web-Layout</string>
+    <string name="pref_display_feed_list_layout_card_view">Kartenansicht</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Klein</string>

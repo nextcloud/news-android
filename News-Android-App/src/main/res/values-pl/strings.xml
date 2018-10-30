@@ -21,6 +21,8 @@
     <string name="menu_StartImageCaching">Pobierz obrazki</string>
     <string name="menu_downloadMoreItems">Pobierz więcej elementów</string>
 
+    <string name="tv_showing_cached_version">Pokazuję wersję z pamięci cache</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Oznaczone</string>
     <string name="action_read">Odczyt</string>
@@ -128,7 +130,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Wygląd</string>
+    <string name="pref_title_app_theme">Tryb Nocny</string>
     <string name="pref_title_feed_list_layout">Układ listy kanałów</string>
+    <string name="pref_title_font_size">Rozmiar czcionki</string>
     <string name="pref_display_browser">Przeglądarka</string>
 
 
@@ -138,6 +142,19 @@
 
     <string name="pref_display_apptheme_light">Jasny</string>
     <string name="pref_display_apptheme_dark">Ciemny</string>
+
+    <string name="pref_oled_mode">Czarne tło</string>
+    <string name="pref_display_browser_built_in">Wbudowana Przeglądarka</string>
+    <string name="pref_display_browser_external">Zewnętrzna przeglądarka</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Miniatury</string>
+    <string name="pref_display_feed_list_layout_simple_text">Prosty tekst</string>
+    <string name="pref_display_feed_list_layout_full_text">Rozbudowany tekst</string>
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Mały</string>
+    <string name="pref_display_font_size_d">Domyślny</string>
+    <string name="pref_display_font_size_l">Duży</string>
+    <string name="pref_display_font_size_xl">Bardzo duży</string>
 
     <string name="content_desc_play">odtwarzanie</string>
     <string name="content_desc_pause">pauza</string>
@@ -164,6 +181,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Błąd</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Wygląda na to, że aplikacja obsługująca aktualności nie jest zainstalowana lub aktywowana na twoim serwerze. Aby skonfigurować aplikację na swoim serwerze skorzystaj z tych porad: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Coś poszło nie tak :(</string>
     <string name="login_dialog_text_zero_version_code">Aplikacja Web News zwróciła wersję \"0\". Proszę sprawdź następujący raport o błędzie: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_title_security_warning">Ostrzeżenie o zabezpieczeniach</string>

@@ -28,6 +28,7 @@
     <string name="action_starred">Stjärnmärkt</string>
     <string name="action_read">Läsa</string>
     <string name="action_playPodacst">Spela Podcast</string>
+    <string name="action_openInBrowser">Öppna i webbläsare</string>
     <string name="action_Share">Dela</string>
     <string name="action_login">Serverinställningar</string>
     <string name="action_save">Spara</string>
@@ -115,6 +116,8 @@
     <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
+    <string name="pref_title_OpenInBrowserDirectly">Hoppa över detaljerad vy och öppna artikeln i webbläsare</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
     <string name="mtm_decision_always">Alltid</string>

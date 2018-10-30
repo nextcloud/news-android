@@ -153,7 +153,9 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Birting</string>
+    <string name="pref_title_app_theme">Næturhamur</string>
     <string name="pref_title_feed_list_layout">Framsetning streymislista</string>
+    <string name="pref_title_font_size">Leturstærð</string>
     <string name="pref_display_browser">Vafri</string>
 
 
@@ -161,12 +163,28 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Táknmyndir aðgerða (ítarleg sýn)</string>
 
+    <string name="pref_display_apptheme_auto">Ljóst / Dökkt (byggt á dagsþema)</string>
     <string name="pref_display_apptheme_light">Ljóst</string>
     <string name="pref_display_apptheme_dark">Dökkt</string>
+
+    <string name="pref_oled_mode">Svartur bakgrunnur</string>
+    <string name="pref_oled_mode_summary">Fyrir dökkt þema á OLED-skjám</string>
 
     <string name="pref_display_browser_cct">Innbyggðir Chrome-sérsniðnir-flipar</string>
     <string name="pref_display_browser_built_in">Innbyggður vafri</string>
     <string name="pref_display_browser_external">Ytri vafri</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Smámyndir</string>
+    <string name="pref_display_feed_list_layout_simple_text">Einfaldur texti</string>
+    <string name="pref_display_feed_list_layout_full_text">Allur textinn</string>
+    <string name="pref_display_feed_list_layout_web_layout">Vefframsetning</string>
+    <string name="pref_display_feed_list_layout_card_view">Spjaldasýn</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Lítið</string>
+    <string name="pref_display_font_size_d">Sjálfgefið</string>
+    <string name="pref_display_font_size_l">Stórt</string>
+    <string name="pref_display_font_size_xl">Mjög stórt</string>
 
     <string name="content_desc_play">afspilun</string>
     <string name="content_desc_pause">bið</string>
@@ -193,6 +211,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Villa</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Það lítur út fyrir að fréttaforritið sé ekki sett upp eða virkjað á þjóninum þínum. Farðu eftir leiðbeinungunum hér til að setja fréttaforritið upp fyrst á þjóninum þínum: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Úbbs! Eitthvað fór úrskeiðis :(</string>
     <string name="login_dialog_text_zero_version_code">Veffréttaforritið svaraði með útgáfu \"0\". Þú ættir að skoða eftirfarandi villuskýrslu: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Útgáfa þessa forrits er ekki samhæfð við Nextcloud fréttaforritið þitt. Endilega uppfærðu fréttaforritið og forritsumhverfi þess.</string>

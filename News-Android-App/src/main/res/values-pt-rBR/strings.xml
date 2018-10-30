@@ -25,6 +25,8 @@
     <string name="menu_StartImageCaching">Baixar imagens</string>
     <string name="menu_downloadMoreItems">Fazer download de mais itens</string>
 
+    <string name="tv_showing_cached_version">Mostrando a versão em cache</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Vistos</string>
     <string name="action_read">Ler</string>
@@ -37,6 +39,7 @@
     <string name="action_sync_settings">Configurações de Sincronização</string>
     <string name="action_add_new_feed">Adicionar novo feed</string>
     <string name="action_textToSpeech">Leia</string>
+    <string name="action_download_articles_offline">Download de artigos offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Você tem %d novo item não lido</item>
         <item quantity="other">Você tem %d novos itens não lidos</item>
@@ -173,6 +176,12 @@
     <string name="pref_display_browser_cct">Chrome-Custom-Tabs incorporadas</string>
     <string name="pref_display_browser_built_in">Navegador Incorporado</string>
     <string name="pref_display_browser_external">Navegador Externo</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Thumbnails</string>
+    <string name="pref_display_feed_list_layout_simple_text">Texto simples</string>
+    <string name="pref_display_feed_list_layout_full_text">Texto completo</string>
+    <string name="pref_display_feed_list_layout_web_layout">Layout da web</string>
+    <string name="pref_display_feed_list_layout_card_view">Visualização de cartão</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Pequeno</string>

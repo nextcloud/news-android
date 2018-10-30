@@ -25,6 +25,8 @@
     <string name="menu_StartImageCaching">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="menu_downloadMoreItems">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
+    <string name="tv_showing_cached_version">Benötigt keine Übersetzung. Für Android wird die formelle Version (de_DE) verwandt.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="action_read">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
@@ -37,6 +39,7 @@
     <string name="action_sync_settings">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="action_add_new_feed">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="action_textToSpeech">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="action_download_articles_offline">Benötigt keine Übersetzung. Für Android wird die formelle Version (de_DE) verwandt.</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Du hast %d neuen ungelesenen Eintrag</item>
         <item quantity="other">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).%d neue ungelesene Einträge</item>
@@ -174,6 +177,12 @@
     <string name="pref_display_browser_cct">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="pref_display_browser_built_in">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="pref_display_browser_external">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_simple_text">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_full_text">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_web_layout">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="pref_display_feed_list_layout_card_view">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
