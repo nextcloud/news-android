@@ -26,11 +26,13 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.NotificationActionReceiver;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 import de.luhmer.owncloudnewsreader.services.events.StopWebArchiveDownloadEvent;
@@ -47,12 +49,12 @@ public class DownloadWebPageService extends Service {
 
     private static final String TAG = DownloadWebPageService.class.getCanonicalName();
     private static final int JOB_ID = 1002;
-
+    private static final int NOTIFICATION_ID = JOB_ID;
     private static final String CHANNEL_ID = "Download Web Page Service";
-    private static final String WebArchiveFinalPrefix = "web_archive_";
+
+    public static final String WebArchiveFinalPrefix = "web_archive_";
     private static final int NUMBER_OF_CORES = 4;
     private NotificationCompat.Builder mNotificationWebPages;
-    private static final int NOTIFICATION_ID = JOB_ID;
     private NotificationManager mNotificationManager;
 
 
@@ -61,6 +63,7 @@ public class DownloadWebPageService extends Service {
     // Sets the Time Unit to seconds
     private static final TimeUnit KEEP_ALIVE_TIME_UNIT = TimeUnit.SECONDS;
 
+    private final AtomicBoolean interrupted = new AtomicBoolean();
     private final AtomicInteger doneCount = new AtomicInteger();
     private Integer totalCount = 0;
 
@@ -74,10 +77,11 @@ public class DownloadWebPageService extends Service {
         super.onCreate();
 
         initNotification();
-
         downloadWebPages();
 
         EventBus.getDefault().register(this);
+
+        startForeground(NOTIFICATION_ID, mNotificationWebPages.build());
     }
 
     @Override
@@ -106,6 +110,7 @@ public class DownloadWebPageService extends Service {
     @Subscribe
     public void onEvent(StopWebArchiveDownloadEvent event) {
         mDownloadThreadPool.shutdownNow();
+        interrupted.set(true);
         stopSelf();
     }
 
@@ -143,7 +148,7 @@ public class DownloadWebPageService extends Service {
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(DownloadWebPageService.this);
         final BlockingQueue<Runnable> downloadWorkQueue = new LinkedBlockingQueue<>();
 
-        getWebPageArchiveStorage(this).mkdirs();
+        NewsFileUtils.getWebPageArchiveStorage(this).mkdirs();
 
         for (RssItem rssItem : dbConn.getAllUnreadRssItemsForDownloadWebPageService()) {
             downloadWorkQueue.add(new DownloadWebPage(rssItem.getLink()));
@@ -160,23 +165,7 @@ public class DownloadWebPageService extends Service {
         startDownloadingQueue(downloadWorkQueue);
     }
 
-    public static void clearWebArchiveCache(Context context) {
-        getWebPageArchiveStorage(context).mkdirs();
 
-        String path = getWebPageArchiveStorage(context).getAbsolutePath();
-        Log.d("Files", "Path: " + path);
-        File directory = new File(path);
-        File[] files = directory.listFiles();
-        Log.d("Files", "Size: " + files.length);
-        for (File file : files) {
-            String name = file.getName();
-            //og.d("Files", "FileName: " + file.getName());
-            if (name.startsWith(WebArchiveFinalPrefix)) {
-                Log.v(TAG, "Deleting file: " + name);
-                //file.delete();
-            }
-        }
-    }
 
     private void startDownloadingQueue(BlockingQueue<Runnable> downloadWorkQueue) {
         totalCount = downloadWorkQueue.size();
@@ -324,31 +313,27 @@ public class DownloadWebPageService extends Service {
     }
 
     private synchronized void updateNotificationProgress() {
-        int current = doneCount.incrementAndGet();
-        Log.d(TAG, String.format("updateNotificationProgress (%d/%d)", current, totalCount));
-
-        if(current == totalCount) {
-            //mNotificationManager.cancel(NOTIFICATION_ID);
-            EventBus.getDefault().post(new StopWebArchiveDownloadEvent());
+        if(interrupted.get()) {
+            Log.v(TAG, "interrupted.. stop requested.. do not show progress anymore!");
         } else {
-            mNotificationWebPages
-                    .setContentText((current) + "/" + totalCount + " - Downloading Images for offline usage")
-                    .setProgress(totalCount, current, false);
+            int current = doneCount.incrementAndGet();
+            Log.d(TAG, String.format("updateNotificationProgress (%d/%d)", current, totalCount));
 
-            mNotificationManager.notify(NOTIFICATION_ID, mNotificationWebPages.build());
+            if (current == totalCount) {
+                //mNotificationManager.cancel(NOTIFICATION_ID);
+                EventBus.getDefault().post(new StopWebArchiveDownloadEvent());
+            } else {
+                mNotificationWebPages
+                        .setContentText((current) + "/" + totalCount + " - Downloading Images for offline usage")
+                        .setProgress(totalCount, current, false);
+
+                mNotificationManager.notify(NOTIFICATION_ID, mNotificationWebPages.build());
+            }
         }
     }
 
-    public static File getWebPageArchiveStorage(Context context) {
-        //return context.getFilesDir();
-        //return new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "nextcloud-news/web-archive/");
-
-        return new File(context.getExternalCacheDir(), "web-archive/");
-        //return new File(Environment.getExternalStorageDirectory(), "nextcloud-news/web-archive/");
-    }
-
     public static File getWebPageArchiveFileForUrl(Context context, String url) {
-        return new File(getWebPageArchiveStorage(context), getWebPageArchiveFilename(url));
+        return new File(NewsFileUtils.getWebPageArchiveStorage(context), getWebPageArchiveFilename(url));
     }
 
     public static String getWebPageArchiveFilename(String url) {
