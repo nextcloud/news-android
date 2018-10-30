@@ -106,6 +106,10 @@ public class PodcastPlaybackService extends Service {
 
         mHandler.postDelayed(mUpdateTimeTask, 0);
 
+
+        // TODO: add
+        // startForeground(NOTIFICATION_ID, podcastNotification);
+
         super.onCreate();
     }
 

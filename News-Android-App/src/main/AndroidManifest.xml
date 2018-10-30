@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="de.luhmer.owncloudnewsreader"
     android:installLocation="internalOnly"
-    android:versionCode="134"
-    android:versionName="0.9.9.19">
+    android:versionCode="135"
+    android:versionName="0.9.9.19.1">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <!--     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" /> -->
     <application
@@ -46,15 +47,15 @@
         <activity
             android:name=".NewsDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_news_detail"></activity>
+            android:label="@string/title_activity_news_detail" />
         <activity
             android:name=".SettingsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_settings"></activity>
-        <activity android:name=".DownloadImagesActivity"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".DownloadImagesActivity" />
         <activity
             android:name=".SyncIntervalSelectorActivity"
-            android:label="@string/title_activity_sync_interval_selector"></activity>
+            android:label="@string/title_activity_sync_interval_selector" />
         <activity
             android:name=".NewFeedActivity"
             android:label="@string/title_activity_new_feed"
@@ -120,9 +121,6 @@
             android:name=".services.SyncItemStateService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name=".services.DownloadWebPageService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
             android:name=".services.OwnCloudAuthenticatorService"
             android:exported="true">
             <intent-filter>
@@ -150,7 +148,7 @@
             android:name=".providers.OwnCloudSyncProvider"
             android:authorities="de.luhmer.owncloudnewsreader"
             android:label="@string/auto_sync_string"
-            android:syncable="true"></provider>
+            android:syncable="true" />
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -170,7 +168,13 @@
         <!-- android:theme="@style/Theme.Transparent" > -->
         <!-- </activity> -->
 
-        <receiver android:name=".helper.NotificationActionReceiver">
+        <service
+            android:name=".services.DownloadWebPageService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":downloadWebPageProcess"/>
+        <receiver
+            android:name=".helper.NotificationActionReceiver"
+            android:process=":downloadWebPageProcess">
             <intent-filter>
                 <action android:name="YES_ACTION"/>
                 <action android:name="STOP_ACTION"/>

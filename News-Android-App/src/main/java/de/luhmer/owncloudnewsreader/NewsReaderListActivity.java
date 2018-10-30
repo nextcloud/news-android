@@ -833,26 +833,30 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 return true;
 
             case R.id.menu_download_web_archive:
-                startDownloadWebPagesForOfflineReading();
+                checkAndStartDownloadWebPagesForOfflineReadingPermission();
                 return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void startDownloadWebPagesForOfflineReading() {
+	private void checkAndStartDownloadWebPagesForOfflineReadingPermission() {
         if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(Manifest.permission.FOREGROUND_SERVICE) == PackageManager.PERMISSION_GRANTED) {
                 Log.v("Permission error","You have permission");
+                startDownloadWebPagesForOfflineReading();
             } else {
                 Log.e("Permission error","Asking for permission");
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE);
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.FOREGROUND_SERVICE}, REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE);
                 return;
             }
-        }
-        else { //you dont need to worry about these stuff below api level 23
+        } else { //you dont need to worry about these stuff below api level 23
             Log.v("Permission error","You already have the permission");
+            startDownloadWebPagesForOfflineReading();
         }
+    }
 
+	private void startDownloadWebPagesForOfflineReading() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(new Intent(this, DownloadWebPageService.class));
         } else {
