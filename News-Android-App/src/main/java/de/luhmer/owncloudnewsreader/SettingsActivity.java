@@ -287,6 +287,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 			loadHeadersFromResource(R.xml.pref_headers, target);
 		}
 
+		// below workaround is only necessary in tablet mode
+		if(!isXLargeTablet(this))
+			return;
+
 		/* Fix settings page header ("breadcrumb") text color for dark mode
 		 * Thank you Stackoverflow: https://stackoverflow.com/questions/26922915/changing-the-highlight-and-title-color-for-fragments-in-preferenceactivity/27078485#27078485
 		 */
