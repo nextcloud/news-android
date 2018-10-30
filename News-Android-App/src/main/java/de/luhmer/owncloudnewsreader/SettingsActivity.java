@@ -31,6 +31,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ import android.preference.TwoStatePreference;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
 import android.support.v7.widget.AppCompatEditText;
@@ -61,6 +63,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -279,8 +282,25 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	/** {@inheritDoc} */
 	@Override
 	public void onBuildHeaders(List<Header> target) {
+		super.onBuildHeaders(target);
 		if (!isSimplePreferences(this)) {
 			loadHeadersFromResource(R.xml.pref_headers, target);
+		}
+
+		/* Fix settings page header ("breadcrumb") text color for dark mode
+		 * Thank you Stackoverflow: https://stackoverflow.com/questions/26922915/changing-the-highlight-and-title-color-for-fragments-in-preferenceactivity/27078485#27078485
+		 */
+		final View breadcrumb = findViewById(android.R.id.title);
+		if (breadcrumb == null) {
+			// Single pane layout
+			return;
+		}
+		try {
+			final Field titleColor = breadcrumb.getClass().getDeclaredField("mTextColor");
+			titleColor.setAccessible(true);
+			titleColor.setInt(breadcrumb, ContextCompat.getColor(this, R.color.primaryTextColor));
+		} catch (final Exception ignored) {
+			// Nothing to do
 		}
 	}
 
