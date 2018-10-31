@@ -290,7 +290,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		if (isXLargeTablet(this)) {
 
 			/* Fix settings page header ("breadcrumb") text color for dark mode
-			 * Thank you Stackoverflow: https://stackoverflow.com/questions/26922915/changing-the-highlight-and-title-color-for-fragments-in-preferenceactivity/27078485#27078485
+			 * Thank you Stackoverflow: https://stackoverflow.com/a/27078485
 			 */
 			final View breadcrumb = findViewById(android.R.id.title);
 			if (breadcrumb == null) {
