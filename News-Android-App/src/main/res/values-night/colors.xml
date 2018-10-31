@@ -15,6 +15,7 @@
 
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#222222</color>
+    <color name="news_detail_background_color_oled">@android:color/black</color>
 
     <color name="owncloudBlue">#1D2D44</color>
     <color name="nextcloudBlue">#006AA3</color>
@@ -23,6 +24,7 @@
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
     <color name="colorAccent">#8698af</color>
     <color name="rssItemListBackground">@color/material_grey_900</color>
+    <color name="rssItemListBackgroundOled">@android:color/black</color>
 
 
     <color name="starredColor">@android:color/holo_orange_light</color>

@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -66,6 +67,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.Search;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import io.reactivex.observers.DisposableObserver;
 
 /**
@@ -392,10 +394,13 @@ public class NewsReaderDetailFragment extends Fragment {
 
 		ButterKnife.bind(this, rootView);
 
-
         recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        if(ThemeChooser.getInstance(this.getContext()).isOledMode(this.getContext(), false)) {
+            recyclerView.setBackgroundColor(ContextCompat.getColor(this.getContext(), R.color.rssItemListBackgroundOled));
+        }
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new NewsReaderItemTouchHelperCallback());
         itemTouchHelper.attachToRecyclerView(recyclerView);

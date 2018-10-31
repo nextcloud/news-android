@@ -33,12 +33,10 @@
         tools:replace="android:icon, android:label, android:theme, android:name">
         <activity
             android:name=".NewsReaderListActivity"
-            android:configChanges="orientation|keyboardHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTop">
-
-            <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
-            <intent-filter>
+<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

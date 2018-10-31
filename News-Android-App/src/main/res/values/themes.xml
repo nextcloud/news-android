@@ -11,8 +11,8 @@
         <!-- for settings activity end-->
 
 
-        <item name="rssItemListBackground">@android:color/black</item>
-        <item name="news_detail_background_color">@android:color/black</item>
+        <item name="rssItemListBackground">@color/rssItemListBackgroundOled</item>
+        <item name="news_detail_background_color">@color/news_detail_background_color_oled</item>
         <item name="primaryTextColor">@android:color/white</item>
     </style>
 
