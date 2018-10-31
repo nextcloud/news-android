@@ -159,8 +159,6 @@
     <string name="no_podcast_selected">Нет выбранных подкастов</string>
     <string name="no_chapters_available">Нет доступных глав</string>
     <string name="podcast_playback_speed_dialog_title">Скорость воспроизведения</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Экран</string>
     <string name="pref_title_feed_list_layout">Макет списка лент</string>

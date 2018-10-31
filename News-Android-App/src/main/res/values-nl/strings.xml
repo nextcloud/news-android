@@ -149,8 +149,6 @@
     <string name="no_podcast_selected">Geen podcast geselecteerd</string>
     <string name="no_chapters_available">Geen hoofdstukken beschikbaar</string>
     <string name="podcast_playback_speed_dialog_title">Afspeelsnelheid</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Weergeven</string>
     <string name="pref_title_app_theme">Nochtmodus</string>

@@ -124,8 +124,6 @@
     <string name="no_podcast_selected">לא נבחרו פודקאסטים</string>
     <string name="no_chapters_available">אין פרקים זמינים</string>
     <string name="podcast_playback_speed_dialog_title">מהירות נגינה</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">תצוגה</string>
     <string name="pref_title_feed_list_layout">פריסת רשימת הזנות</string>

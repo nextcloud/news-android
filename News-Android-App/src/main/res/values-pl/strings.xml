@@ -126,8 +126,6 @@
     <string name="no_podcast_selected">Brak wybranego podcastu</string>
     <string name="no_chapters_available">Brak dostępnych rozdziałów</string>
     <string name="podcast_playback_speed_dialog_title">Prędkość odtwarzania</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Wygląd</string>
     <string name="pref_title_app_theme">Tryb Nocny</string>

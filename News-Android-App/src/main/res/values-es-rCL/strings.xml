@@ -140,8 +140,6 @@
     <string name="no_podcast_selected">No se ha seleccionado algún podcast</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
     <string name="podcast_playback_speed_dialog_title">Velocidad de Reproducción</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_feed_list_layout">Distribución de lista de fuente</string>

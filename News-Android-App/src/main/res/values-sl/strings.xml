@@ -155,8 +155,6 @@
     <string name="no_podcast_selected">Ni izbranega podcasta</string>
     <string name="no_chapters_available">V prispevku ni poglavij</string>
     <string name="podcast_playback_speed_dialog_title">Hitrost predvajanja</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Prikaz</string>
     <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>

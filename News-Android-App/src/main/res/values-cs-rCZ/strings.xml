@@ -159,8 +159,6 @@
     <string name="no_podcast_selected">Nebyl vybrán žádný podcast</string>
     <string name="no_chapters_available">Žádné dostupné kapitoly</string>
     <string name="podcast_playback_speed_dialog_title">Rychlost přehrávání</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazení</string>
     <string name="pref_title_app_theme">Noční režim</string>

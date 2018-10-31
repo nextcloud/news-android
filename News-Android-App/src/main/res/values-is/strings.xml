@@ -149,8 +149,6 @@
     <string name="no_podcast_selected">Ekkert hlaðvarp valið</string>
     <string name="no_chapters_available">Engir kaflar tiltækir</string>
     <string name="podcast_playback_speed_dialog_title">Hraði afspilunar</string>
-
-
     <!-- Settings for Display -->
     <string name="pref_header_display">Birting</string>
     <string name="pref_title_app_theme">Næturhamur</string>
