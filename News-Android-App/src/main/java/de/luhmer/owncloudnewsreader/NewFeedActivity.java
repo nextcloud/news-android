@@ -83,6 +83,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
         ThemeChooser.chooseTheme(this);
         super.onCreate(savedInstanceState);
+        ThemeChooser.afterOnCreate(this);
         setContentView(R.layout.activity_new_feed);
 
         ButterKnife.bind(this);
