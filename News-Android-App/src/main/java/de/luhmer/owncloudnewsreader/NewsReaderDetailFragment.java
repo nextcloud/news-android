@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -398,6 +397,7 @@ public class NewsReaderDetailFragment extends Fragment {
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        // this is necessary because older android versions don't keep the correct rss list background color across orientation changes
         if(ThemeChooser.getInstance(this.getContext()).isOledMode(this.getContext(), false)) {
             recyclerView.setBackgroundColor(ContextCompat.getColor(this.getContext(), R.color.rssItemListBackgroundOled));
         }
