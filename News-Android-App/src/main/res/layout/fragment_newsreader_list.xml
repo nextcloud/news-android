@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/slider_listview_background_color">
+    android:background="@color/app_drawer_feed_list_background_color">
 
     <!-- TODO: make header scroll up with listview -->
     <RelativeLayout

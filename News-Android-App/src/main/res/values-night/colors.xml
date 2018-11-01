@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="slider_listview_background_color">#383d43</color>
+    <color name="app_drawer_feed_list_background_color">#383d43</color>
+    <color name="settingsWindowBackground">#383d43</color>
 
     <color name="primaryTextColor">@android:color/white</color>
 
@@ -23,8 +24,7 @@
     <color name="colorPrimary">@color/nextcloudBlue</color>
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
     <color name="colorAccent">#8698af</color>
-    <color name="rssItemListBackground">@color/material_grey_900</color>
-    <color name="rssItemListBackgroundOled">@android:color/black</color>
+    <color name="rss_item_list_background">@color/material_grey_900</color>
 
 
     <color name="starredColor">@android:color/holo_orange_light</color>

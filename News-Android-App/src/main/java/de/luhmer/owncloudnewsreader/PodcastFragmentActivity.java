@@ -49,6 +49,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterYoutubeOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -97,6 +98,10 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ThemeChooser.chooseTheme(this);
+        super.onCreate(savedInstanceState);
+        ThemeChooser.afterOnCreate(this);
+        
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
         if(mApi.getAPI() instanceof API_SSO) {
@@ -114,7 +119,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             }
         }*/
 
-        super.onCreate(savedInstanceState);
+
     }
 
     @Override

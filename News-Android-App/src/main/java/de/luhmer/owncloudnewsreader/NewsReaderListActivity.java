@@ -168,7 +168,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             PreferenceManager.setDefaultValues(this, R.xml.pref_notification, true);
         }
 
-		ThemeChooser.chooseTheme(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
 

@@ -10,9 +10,8 @@
         <item name="android:textColorSecondary">@color/material_grey_500</item>
         <!-- for settings activity end-->
 
-
-        <item name="rssItemListBackground">@color/rssItemListBackgroundOled</item>
-        <item name="news_detail_background_color">@color/news_detail_background_color_oled</item>
+        <item name="rssItemListBackground">@android:color/black</item>
+        <item name="news_detail_background_color">@android:color/black</item>
         <item name="primaryTextColor">@android:color/white</item>
     </style>
 
@@ -29,7 +28,7 @@
         <item name="tintColor">@color/tintColor</item>
 
         <item name="dividerLineColor">#1effffff</item>
-        <item name="rssItemListBackground">@color/rssItemListBackground</item>
+        <item name="rssItemListBackground">@color/rss_item_list_background</item>
 
         <item name="primaryTextColor">@color/primaryTextColor</item>
 
@@ -42,7 +41,7 @@
     </style>
 
     <style name="AppThemeSettings" parent="AppTheme.Base">
-        <item name="android:windowBackground">@color/slider_listview_background_color</item>
+        <item name="android:windowBackground">@color/settingsWindowBackground</item>
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

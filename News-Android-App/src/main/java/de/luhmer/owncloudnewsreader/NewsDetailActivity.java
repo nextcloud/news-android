@@ -58,7 +58,6 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -97,8 +96,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.chooseTheme(this);
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
 

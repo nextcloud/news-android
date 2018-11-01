@@ -79,14 +79,27 @@ public class ThemeChooser {
                 break;
         }
 
-        ThemeChooser.getInstance(act).DarkThemeActive = ThemeChooser.getInstance(act).isDarkTheme(act);
+        ThemeChooser.getInstance(act).DarkThemeActive = ThemeChooser.isDarkTheme(act);
+    }
 
+    public static void afterOnCreate(Activity act) {
+        //int uiNightMode = Configuration.UI_MODE_NIGHT_NO;
 
         ThemeChooser.getInstance(act).OLEDActive = false;
-        if(ThemeChooser.getInstance(act).isOledMode(act, false) && ThemeChooser.getInstance(act).isDarkTheme(act)) {
+        if(ThemeChooser.getInstance(act).isOledMode(act, false) && ThemeChooser.isDarkTheme(act)) {
             act.setTheme(R.style.AppThemeOLED);
             ThemeChooser.getInstance(act).OLEDActive = true;
+            Log.v(TAG, "activate OLED mode");
+            //uiNightMode = Configuration.UI_MODE_NIGHT_YES;
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
+
+        /*
+        Configuration newConfig = new Configuration(act.getResources().getConfiguration());
+        newConfig.uiMode &= ~Configuration.UI_MODE_NIGHT_MASK;
+        newConfig.uiMode |= uiNightMode;
+        act.getResources().updateConfiguration(newConfig, null);
+        */
     }
 
     // Check if the currently loaded theme is different from the one set in the settings, or if OLED mode changed
@@ -97,7 +110,7 @@ public class ThemeChooser {
         return themeChanged || oledChanged;
     }
 
-    public boolean isDarkTheme(Context context) {
+    public static boolean isDarkTheme(Context context) {
         switch(AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 Log.v(TAG, "MODE_NIGHT_YES (Dark Theme)");
