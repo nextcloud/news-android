@@ -24,7 +24,7 @@ public class MediaPlayerPlaybackService extends PlaybackService {
     private View parentResizableView;
 
     public MediaPlayerPlaybackService(final Context context, PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
-        super(context, podcastStatusListener, mediaItem);
+        super(podcastStatusListener, mediaItem);
 
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {

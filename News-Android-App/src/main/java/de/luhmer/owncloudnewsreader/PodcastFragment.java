@@ -36,6 +36,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -168,7 +169,7 @@ public class PodcastFragment extends Fragment {
         }
 
         if(lastPodcastRssItemId != podcast.getRssItemId() && imgFavIcon != null) {
-            if(loadPodcastFavIcon()) { //Returns false if PodcastItem is not found (e.g. Service is not connected to Activity yet)
+            if(loadPodcastFavIcon()) {
                 lastPodcastRssItemId = podcast.getRssItemId();
             }
         }
@@ -177,15 +178,15 @@ public class PodcastFragment extends Fragment {
         int minutes = (int)(podcast.getCurrent() % (1000*60*60)) / (1000*60);
         int seconds = (int) ((podcast.getCurrent() % (1000*60*60)) % (1000*60) / 1000);
         minutes += hours * 60;
-        tvFrom.setText(String.format("%02d:%02d", minutes, seconds));
-        tvFromSlider.setText(String.format("%02d:%02d", minutes, seconds));
+        tvFrom.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        tvFromSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
 
         hours = (int)( podcast.getMax() / (1000*60*60));
         minutes = (int)(podcast.getMax() % (1000*60*60)) / (1000*60);
         seconds = (int) ((podcast.getMax() % (1000*60*60)) % (1000*60) / 1000);
         minutes += hours * 60;
-        tvTo.setText(String.format("%02d:%02d", minutes, seconds));
-        tvToSlider.setText(String.format("%02d:%02d", minutes, seconds));
+        tvTo.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        tvToSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
 
         tvTitle.setText(podcast.getTitle());
         tvTitleSlider.setText(podcast.getTitle());
@@ -210,17 +211,23 @@ public class PodcastFragment extends Fragment {
     }
 
     private boolean loadPodcastFavIcon() {
-        MediaItem podcastItem = ((PodcastFragmentActivity) getActivity()).getCurrentPlayingPodcast();
-        if(podcastItem != null) {
-            String favIconUrl = podcastItem.favIcon;
-            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().
-                    showImageOnLoading(R.drawable.default_feed_icon_light).
-                    showImageForEmptyUri(R.drawable.default_feed_icon_light).
-                    showImageOnFail(R.drawable.default_feed_icon_light).
-                    build();
-            ImageLoader.getInstance().displayImage(favIconUrl, imgFavIcon, displayImageOptions);
-        }
-        return podcastItem != null;
+        return ((PodcastFragmentActivity) getActivity()).getCurrentPlayingPodcast(
+            new PodcastFragmentActivity.OnCurrentPlayingPodcastCallback() {
+                @Override
+                public void currentPlayingPodcastReceived(MediaItem mediaItem) {
+                    Log.d(TAG, "currentPlayingPodcastReceived() called with: mediaItem = [" + mediaItem + "]");
+                    if(mediaItem != null) {
+                        String favIconUrl = mediaItem.favIcon;
+                        Log.d(TAG, "currentPlayingPodcastReceived: " + favIconUrl);
+                        DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().
+                                showImageOnLoading(R.drawable.default_feed_icon_light).
+                                showImageForEmptyUri(R.drawable.default_feed_icon_light).
+                                showImageOnFail(R.drawable.default_feed_icon_light).
+                                build();
+                        ImageLoader.getInstance().displayImage(favIconUrl, imgFavIcon, displayImageOptions);
+                    }
+                }
+            });
     }
 
 
@@ -437,9 +444,14 @@ public class PodcastFragment extends Fragment {
         });
 
         if(getActivity() instanceof PodcastFragmentActivity) {
-            float playbackSpeed = ((PodcastFragmentActivity) getActivity()).getCurrentPlaybackSpeed();
-            int position = Arrays.binarySearch(PodcastPlaybackService.PLAYBACK_SPEEDS, playbackSpeed);
-            numberPicker.setValue(position);
+            ((PodcastFragmentActivity) getActivity()).getCurrentPlaybackSpeed(new PodcastFragmentActivity.OnPlaybackSpeedCallback() {
+                @Override
+                public void currentPlaybackReceived(float playbackSpeed) {
+                    int position = Arrays.binarySearch(PodcastPlaybackService.PLAYBACK_SPEEDS, playbackSpeed);
+                    numberPicker.setValue(position);
+                }
+            });
+
         } else {
             numberPicker.setValue(3);
         }

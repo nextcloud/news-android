@@ -8,11 +8,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.MediaMetadataCompat;
+import android.support.v4.media.session.MediaButtonReceiver;
+import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
@@ -116,10 +123,17 @@ public class NextcloudNotificationManager {
         notificationManager.notify(123, notify);
     }
 
-
-    public static NotificationCompat.Builder buildPodcastNotification(Context context, String channelId) {
+    /**
+     * Build a notification using the information from the given media session. Makes heavy use
+     * of {@link MediaMetadataCompat#getDescription()} to extract the appropriate information.
+     * @param context Context used to construct the notification.
+     * @param mediaSession Media session to get information.
+     * @return A pre-built notification with information from the given media session.
+     */
+    public static NotificationCompat.Builder buildPodcastNotification(Context context, String channelId, MediaSessionCompat mediaSession) {
         getNotificationManagerAndCreateChannel(context, channelId);
 
+        /*
         // Creates an explicit intent for an ResultActivity to receive.
         Intent resultIntent = new Intent(context, NewsReaderListActivity.class);
         // Because clicking the notification opens a new ("special") activity, there's
@@ -138,6 +152,57 @@ public class NextcloudNotificationManager {
                 .setOngoing(true)
                 .setOnlyAlertOnce(true)
                 .setContentIntent(resultPendingIntent);
+        */
+
+        Bitmap bitmapIcon = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
+
+        MediaControllerCompat controller = mediaSession.getController();
+        MediaMetadataCompat mediaMetadata = controller.getMetadata();
+        MediaDescriptionCompat description = mediaMetadata.getDescription();
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
+                /*
+                .setStyle(new NotificationCompat.MediaStyle()
+                        .setShowActionsInCompactView(
+                                new int[]{playPauseButtonPosition})  // show only play/pause in compact view
+                        .setMediaSession(mSession.getSessionToken()))
+                */
+                //.setUsesChronometer(true)
+                .setContentTitle(description.getTitle())
+                .setSmallIcon(R.drawable.ic_notification)
+                //.setContentText(description.getSubtitle())
+                //.setContentText(mediaMetadata.getText(MediaMetadataCompat.METADATA_KEY_ARTIST))
+                //.setSubText(description.getDescription())
+                //.setLargeIcon(description.getIconBitmap())
+                .setLargeIcon(bitmapIcon)
+                .setContentIntent(controller.getSessionActivity())
+                .setDeleteIntent(MediaButtonReceiver.buildMediaButtonPendingIntent(context, PlaybackStateCompat.ACTION_STOP))
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setOnlyAlertOnce(true);
+
+        boolean isPlaying = controller.getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING;
+        builder.addAction(getPlayPauseAction(context, isPlaying));
+
+        builder.setStyle(new android.support.v4.media.app.NotificationCompat.MediaStyle()
+            //.setShowActionsInCompactView(0)  // show only play/pause in compact view
+            .setMediaSession(mediaSession.getSessionToken())
+            .setShowCancelButton(true)
+            .setCancelButtonIntent(
+                    MediaButtonReceiver.buildMediaButtonPendingIntent(
+                        context, PlaybackStateCompat.ACTION_STOP)));
+
+
+        return builder;
+    }
+
+    private static NotificationCompat.Action getPlayPauseAction(Context context, boolean isPlaying) {
+        int drawableId = isPlaying ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
+        String actionText = isPlaying ? "Pause" : "Play"; // TODO extract as string resource
+
+        PendingIntent pendingIntent = MediaButtonReceiver.buildMediaButtonPendingIntent(context,
+                isPlaying ? PlaybackStateCompat.ACTION_PAUSE : PlaybackStateCompat.ACTION_PLAY);
+        return new NotificationCompat.Action(drawableId, actionText,  pendingIntent);
+
     }
 
     public static NotificationCompat.Builder buildDownloadPodcastNotification(Context context, String channelId) {
@@ -223,6 +288,9 @@ public class NextcloudNotificationManager {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel mChannel = new NotificationChannel(channelId, channelId, importance);
+            mChannel.setSound(null, null);
+            mChannel.enableVibration(false);
+            //mChannel.setShowBadge(false);
             //mChannel.enableLights(true);
             notificationManager.createNotificationChannel(mChannel);
         }

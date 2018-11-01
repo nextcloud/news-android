@@ -18,7 +18,7 @@ public class TTSPlaybackService extends PlaybackService implements TextToSpeech.
     private TextToSpeech ttsController;
 
     public TTSPlaybackService(Context context, PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
-        super(context, podcastStatusListener, mediaItem);
+        super(podcastStatusListener, mediaItem);
 
         try {
             ttsController = new TextToSpeech(context, this);
