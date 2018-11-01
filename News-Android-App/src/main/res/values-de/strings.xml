@@ -153,6 +153,9 @@
     <string name="no_podcast_selected">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="no_chapters_available">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="podcast_playback_speed_dialog_title">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
+    <string name="notification_downloading_podcast_title">Podcast wird herunterladen</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
     <string name="pref_title_app_theme">Benötigt keine Übersetzung. Für Android wird nur die formelle Übersetzung verwendet (de_DE).</string>
