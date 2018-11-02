@@ -153,6 +153,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         }
 
+        mHandler.removeCallbacks(mUpdateTimeTask);
         podcastNotification.cancel();
 
         super.onDestroy();
@@ -168,6 +169,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                 mPlaybackService.destroy();
                 mPlaybackService = null;
             }
+            mHandler.removeCallbacks(mUpdateTimeTask);
 
             if(intent.hasExtra(MEDIA_ITEM)) {
                 MediaItem mediaItem = (MediaItem) intent.getSerializableExtra(MEDIA_ITEM);
@@ -226,6 +228,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
     @Subscribe
     public void onEvent(TogglePlayerStateEvent event) {
+        Log.d(TAG, "onEvent() called with: event = [" + event + "]");
         if(event.getState() == TogglePlayerStateEvent.State.Toggle) {
             if (isPlaying()) {
                 Log.v(TAG, "calling pause()");
@@ -388,6 +391,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
                 // Stop requested (e.g. notification was swiped away)
                 if(keyEvent.getKeyCode() == KEYCODE_MEDIA_STOP) {
+                    pause();
                     stopSelf();
                     /*
                     boolean isPlaying = mSession.getController().getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING;

@@ -265,10 +265,11 @@ public class PodcastFragment extends Fragment {
 
     boolean hasTitleInCache = false;
     @OnClick(R.id.fl_playPausePodcastWrapper) void playPause() {
-        if(!hasTitleInCache)
+        if(!hasTitleInCache) {
             Toast.makeText(getActivity(), "Please select a title first", Toast.LENGTH_SHORT).show();
-        else
+        } else {
             eventBus.post(new TogglePlayerStateEvent());
+        }
     }
 
     @OnClick(R.id.btn_playPausePodcastSlider) void playPauseSlider() {
