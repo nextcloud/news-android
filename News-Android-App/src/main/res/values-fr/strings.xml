@@ -25,6 +25,8 @@
     <string name="menu_StartImageCaching">Télécharger les images</string>
     <string name="menu_downloadMoreItems">+ d\'articles</string>
 
+    <string name="tv_showing_cached_version">Affichage de la version en cache</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Favori</string>
     <string name="action_read">Lu</string>
@@ -37,6 +39,7 @@
     <string name="action_sync_settings">Paramètres de synchronisation</string>
     <string name="action_add_new_feed">Ajouter un nouveau flux</string>
     <string name="action_textToSpeech">Lire à haute voix</string>
+    <string name="action_download_articles_offline">Télécharger les articles hors ligne</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Il y a %d nouvel article non lu</item>
         <item quantity="other">Il y a %d nouveaux articles non lus</item>
@@ -149,6 +152,9 @@
     <string name="no_podcast_selected">Aucun podcast sélectionné</string>
     <string name="no_chapters_available">Aucun chapitre disponible</string>
     <string name="podcast_playback_speed_dialog_title">Vitesse de lecture</string>
+    <string name="notification_downloading_podcast_title">Téléchargement du podcast</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Affichage</string>
     <string name="pref_title_app_theme">Mode nuit</string>
@@ -172,7 +178,7 @@
     <string name="pref_display_browser_built_in">Navigateur intégré</string>
     <string name="pref_display_browser_external">Navigateur externe</string>
 
-    <string name="pref_display_feed_list_layout_thumbnails">Miniatures</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Vignettes</string>
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Petit</string>
     <string name="pref_display_font_size_d">Par défaut</string>
