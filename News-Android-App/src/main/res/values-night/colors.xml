@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="app_drawer_feed_list_background_color">#383d43</color>
-    <color name="settingsWindowBackground">#383d43</color>
+    <color name="settingsWindowBackground">#222222</color>
 
     <color name="primaryTextColor">@android:color/white</color>
 

@@ -39,10 +39,6 @@
         <item name="news_detail_background_color">@color/news_detail_background_color</item>
     </style>
 
-    <style name="AppThemeSettings" parent="AppTheme.Base">
-        <item name="android:windowBackground">@color/settingsWindowBackground</item>
-    </style>
-
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColor">@color/options_menu_item_text</item>
     </style>

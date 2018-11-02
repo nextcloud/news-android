@@ -118,8 +118,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 e.printStackTrace();
             }
         }*/
-
-
     }
 
     @Override

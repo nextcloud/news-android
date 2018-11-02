@@ -73,9 +73,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * intensive, it may be best to switch to a
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
-    @BindView(R.id.toolbar) Toolbar toolbar;
-	@BindView(R.id.progressIndicator) ProgressBar progressIndicator;
+	private SectionsPagerAdapter mSectionsPagerAdapter;
+    protected @BindView(R.id.toolbar) Toolbar toolbar;
+	protected @BindView(R.id.progressIndicator) ProgressBar progressIndicator;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -154,17 +154,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		progressIndicator.setMax(mSectionsPagerAdapter.getCount());
 
 		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager = findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
-		try
-		{
+        try {
             mViewPager.setCurrentItem(item_id, true);
             pageChanged(item_id);
-		}
-		catch(Exception ex)
-		{
+		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
 
