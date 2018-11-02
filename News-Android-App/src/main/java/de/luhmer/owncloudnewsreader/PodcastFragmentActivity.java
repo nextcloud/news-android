@@ -7,14 +7,18 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
+import android.os.Handler;
+import android.os.RemoteException;
+import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
+import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -63,24 +67,27 @@ import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
+import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.CURRENT_PODCAST_ITEM_MEDIA_ITEM;
+import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.PLAYBACK_SPEED_FLOAT;
 
 public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
     private static final String TAG = PodcastFragmentActivity.class.getCanonicalName();
 
-    @Inject SharedPreferences mPrefs;
-    @Inject ApiProvider mApi;
-    @Inject public MemorizingTrustManager mMTM;
+    @Inject protected SharedPreferences mPrefs;
+    @Inject protected ApiProvider mApi;
+    @Inject protected MemorizingTrustManager mMTM;
 
-    private PodcastPlaybackService mPodcastPlaybackService;
-    private boolean mBound = false;
+    private MediaBrowserCompat mMediaBrowser;
     private EventBus eventBus;
     private PodcastFragment mPodcastFragment;
     private int appHeight;
     private int appWidth;
 
-    @BindView(R.id.videoPodcastSurfaceWrapper) ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
-    @BindView(R.id.sliding_layout) PodcastSlidingUpPanelLayout sliding_layout;
+    @BindView(R.id.videoPodcastSurfaceWrapper)
+    protected ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
+    @BindView(R.id.sliding_layout)
+    protected PodcastSlidingUpPanelLayout sliding_layout;
     //YouTubePlayerFragment youtubeplayerfragment;
 
     private boolean currentlyPlaying = false;
@@ -99,7 +106,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
-        if(mApi.getAPI() instanceof API_SSO) {
+        if (mApi.getAPI() instanceof API_SSO) {
             VersionCheckHelper.verifyMinVersion(this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE);
         }
 
@@ -151,10 +158,16 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
         updatePodcastView();
 
-        if(isMyServiceRunning(PodcastPlaybackService.class, this)) {
+        /*
+        if (isMyServiceRunning(PodcastPlaybackService.class, this)) {
             Intent intent = new Intent(this, PodcastPlaybackService.class);
             bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         }
+        */
+        mMediaBrowser = new MediaBrowserCompat(this,
+                new ComponentName(this, PodcastPlaybackService.class),
+                mConnectionCallbacks,
+                null); // optional Bundle
 
         super.onPostCreate(savedInstanceState);
     }
@@ -165,20 +178,12 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
         super.onStop();
 
-        unbindPodcastService();
-    }
-
-    private void unbindPodcastService() {
-        // Unbind from the service
-        if (mBound) {
-            unbindService(mConnection);
-            mBound = false;
-        }
+        mMediaBrowser.disconnect();
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
-        if(hasWindowFocus) {
+        if (hasWindowFocus) {
             int currentOrientation = getResources().getConfiguration().orientation;
             if (currentOrientation != lastOrientation) {
                 sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
@@ -190,13 +195,13 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     }
 
 
-
     int lastOrientation = -1;
+
     @Override
     protected void onResume() {
         eventBus.register(this);
 
-        if(mPodcastPlaybackService != null && !mPodcastPlaybackService.isActive()) {
+        if (mMediaBrowser != null && !mMediaBrowser.isConnected()) {
             sliding_layout.setPanelHeight(0);
             sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         }
@@ -223,12 +228,12 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         WidgetProvider.UpdateWidget(this);
 
 
-        if(NextcloudNotificationManager.isUnreadRssCountNotificationVisible(this)) {
+        if (NextcloudNotificationManager.isUnreadRssCountNotificationVisible(this)) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
             int count = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
             NextcloudNotificationManager.showUnreadRssItemsNotification(this, count);
 
-            if(count == 0) {
+            if (count == 0) {
                 NextcloudNotificationManager.removeRssItemsNotification(this);
             }
         }
@@ -248,30 +253,71 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         return false;
     }
 
+    private final MediaBrowserCompat.ConnectionCallback mConnectionCallbacks =
+        new MediaBrowserCompat.ConnectionCallback() {
+            @Override
+            public void onConnected() {
+                Log.d(TAG, "onConnected() called");
 
-    /** Defines callbacks for service binding, passed to bindService() */
-    private ServiceConnection mConnection = new ServiceConnection() {
+                // Get the token for the MediaSession
+                MediaSessionCompat.Token token = mMediaBrowser.getSessionToken();
 
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            PodcastPlaybackService.LocalBinder binder = (PodcastPlaybackService.LocalBinder) service;
-            mPodcastPlaybackService = binder.getService();
-            mBound = true;
+                try {
+                    // Create a MediaControllerCompat
+                    MediaControllerCompat mediaController = new MediaControllerCompat(PodcastFragmentActivity.this, token);
+
+                    // Save the controller
+                    MediaControllerCompat.setMediaController(PodcastFragmentActivity.this, mediaController);
+
+                    // Finish building the UI
+                    //buildTransportControls();
+                } catch (RemoteException e) {
+                    Log.e(TAG, "Connecting to podcast service failed!", e);
+                }
+            }
+
+            @Override
+            public void onConnectionSuspended() {
+                Log.d(TAG, "onConnectionSuspended() called");
+                // The Service has crashed. Disable transport controls until it automatically reconnects
+            }
+
+            @Override
+            public void onConnectionFailed() {
+                Log.e(TAG, "onConnectionFailed() called");
+                // The Service has refused our connection
+            }
+        };
+
+    /*
+    private void buildTransportControls() {
+        // Grab the view for the play/pause button
+
+        int pbState = MediaControllerCompat.getMediaController(PodcastFragmentActivity.this).getPlaybackState().getState();
+        if (pbState == PlaybackStateCompat.STATE_PLAYING) {
+            MediaControllerCompat.getMediaController(PodcastFragmentActivity.this).getTransportControls().pause();
+        } else {
+            MediaControllerCompat.getMediaController(PodcastFragmentActivity.this).getTransportControls().play();
         }
+        MediaControllerCompat mediaController = MediaControllerCompat.getMediaController(PodcastFragmentActivity.this);
 
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
-        }
-    };
+        // Display the initial state
+        MediaMetadataCompat metadata = mediaController.getMetadata();
+        PlaybackStateCompat pbState = mediaController.getPlaybackState();
 
-    public MediaItem getCurrentPlayingPodcast() {
-        if(mPodcastPlaybackService != null)
-            return mPodcastPlaybackService.getCurrentlyPlayingPodcast();
-        return null;
+        // Register a Callback to stay in sync
+        mediaController.registerCallback(controllerCallback);
     }
+
+    MediaControllerCompat.Callback controllerCallback =
+            new MediaControllerCompat.Callback() {
+                @Override
+                public void onMetadataChanged(MediaMetadataCompat metadata) {}
+
+                @Override
+                public void onPlaybackStateChanged(PlaybackStateCompat state) {}
+            };
+    */
 
     public PodcastSlidingUpPanelLayout getSlidingLayout() {
         return sliding_layout;
@@ -583,7 +629,12 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         Intent intent = new Intent(this, PodcastPlaybackService.class);
         intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, mediaItem);
         startService(intent);
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
+        if(!mMediaBrowser.isConnected()) {
+            mMediaBrowser.connect();
+        }
+        //bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
     }
 
     @Override
@@ -625,11 +676,44 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Override
     public void pausePodcast() {
-        mPodcastPlaybackService.pause();
+        MediaControllerCompat.getMediaController(PodcastFragmentActivity.this).getTransportControls().pause();
     }
 
-    public float getCurrentPlaybackSpeed() {
-        return mPodcastPlaybackService.getPlaybackSpeed();
+    public void getCurrentPlaybackSpeed(final OnPlaybackSpeedCallback callback) {
+        MediaControllerCompat.getMediaController(PodcastFragmentActivity.this)
+            .sendCommand(PLAYBACK_SPEED_FLOAT,
+                null,
+                new ResultReceiver(new Handler()) {
+                    @Override
+                    protected void onReceiveResult(int resultCode, Bundle resultData) {
+                        callback.currentPlaybackReceived(resultData.getFloat(PLAYBACK_SPEED_FLOAT));
+                    }
+                });
+    }
+
+    public boolean getCurrentPlayingPodcast(final OnCurrentPlayingPodcastCallback callback) {
+        if(mMediaBrowser != null && mMediaBrowser.isConnected()) {
+            MediaControllerCompat.getMediaController(PodcastFragmentActivity.this)
+                .sendCommand(CURRENT_PODCAST_ITEM_MEDIA_ITEM,
+                    null,
+                    new ResultReceiver(new Handler()) {
+                        @Override
+                        protected void onReceiveResult(int resultCode, Bundle resultData) {
+                            callback.currentPlayingPodcastReceived((MediaItem) resultData.getSerializable(CURRENT_PODCAST_ITEM_MEDIA_ITEM));
+                        }
+                    });
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public interface OnPlaybackSpeedCallback {
+        void currentPlaybackReceived(float playbackSpeed);
+    }
+
+    public interface OnCurrentPlayingPodcastCallback {
+        void currentPlayingPodcastReceived(MediaItem mediaItem);
     }
 
 }

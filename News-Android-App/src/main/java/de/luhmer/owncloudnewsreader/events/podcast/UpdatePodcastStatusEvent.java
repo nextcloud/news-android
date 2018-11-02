@@ -6,6 +6,7 @@ public class UpdatePodcastStatusEvent {
 
     private long current;
     private long max;
+    private String author;
     private String title;
     private PlaybackService.Status status;
     private PlaybackService.VideoType videoType;
@@ -14,6 +15,10 @@ public class UpdatePodcastStatusEvent {
 
     public long getRssItemId() {
         return rssItemId;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
     public String getTitle() {
@@ -42,10 +47,11 @@ public class UpdatePodcastStatusEvent {
 
     public boolean isVideoFile() { return !(videoType == PlaybackService.VideoType.None); }
 
-    public UpdatePodcastStatusEvent(long current, long max, PlaybackService.Status status, String title, PlaybackService.VideoType videoType, long rssItemId, float speed) {
+    public UpdatePodcastStatusEvent(long current, long max, PlaybackService.Status status, String author, String title, PlaybackService.VideoType videoType, long rssItemId, float speed) {
         this.current = current;
         this.max = max;
         this.status = status;
+        this.author = author;
         this.title = title;
         this.videoType = videoType;
         this.rssItemId = rssItemId;
