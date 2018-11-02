@@ -71,7 +71,7 @@
             android:layout_marginBottom="8dp"
             android:maxLines="5"
             android:textAlignment="viewStart"
-            android:textColor="@color/material_grey_600"
+            android:textColor="@color/text_medium_emphasis"
             android:textSize="15sp"
             android:textStyle="normal"
             tools:text="Anruf-Info djkas dhask dhas dashdajs dha dhas dhas djka a jsa das djsa djas dash djas dashdja sljda dhjas ja dkla da ja da djas djkasas jkas dklas dsa djla hkjdsahkdas hd ashjdas jsak dsada" />
