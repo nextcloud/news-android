@@ -76,12 +76,9 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     private static final String TAG = PodcastFragmentActivity.class.getCanonicalName();
 
-    @Inject
-    SharedPreferences mPrefs;
-    @Inject
-    ApiProvider mApi;
-    @Inject
-    public MemorizingTrustManager mMTM;
+    @Inject protected SharedPreferences mPrefs;
+    @Inject protected ApiProvider mApi;
+    @Inject protected MemorizingTrustManager mMTM;
 
     private MediaBrowserCompat mMediaBrowser;
     private EventBus eventBus;
@@ -90,9 +87,9 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     private int appWidth;
 
     @BindView(R.id.videoPodcastSurfaceWrapper)
-    ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
+    protected ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
     @BindView(R.id.sliding_layout)
-    PodcastSlidingUpPanelLayout sliding_layout;
+    protected PodcastSlidingUpPanelLayout sliding_layout;
     //YouTubePlayerFragment youtubeplayerfragment;
 
     private boolean currentlyPlaying = false;
@@ -275,15 +272,10 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                     MediaControllerCompat.setMediaController(PodcastFragmentActivity.this, mediaController);
 
                     // Finish building the UI
-                    buildTransportControls();
+                    //buildTransportControls();
                 } catch (RemoteException e) {
-                    e.printStackTrace();
-                    // TODO handle exception
+                    Log.e(TAG, "Connecting to podcast service failed!", e);
                 }
-
-
-
-
             }
 
             @Override
@@ -299,10 +291,9 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             }
         };
 
+    /*
     private void buildTransportControls() {
         // Grab the view for the play/pause button
-
-        /*
 
         int pbState = MediaControllerCompat.getMediaController(PodcastFragmentActivity.this).getPlaybackState().getState();
         if (pbState == PlaybackStateCompat.STATE_PLAYING) {
@@ -318,8 +309,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
         // Register a Callback to stay in sync
         mediaController.registerCallback(controllerCallback);
-        */
-
     }
 
     MediaControllerCompat.Callback controllerCallback =
@@ -330,7 +319,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 @Override
                 public void onPlaybackStateChanged(PlaybackStateCompat state) {}
             };
-
+    */
 
     public PodcastSlidingUpPanelLayout getSlidingLayout() {
         return sliding_layout;
