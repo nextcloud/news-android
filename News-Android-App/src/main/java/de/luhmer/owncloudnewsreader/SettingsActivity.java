@@ -146,8 +146,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         getWindow().getDecorView().setBackgroundColor(backgroundColor);
 
         if(isXLargeTablet(this)) {
-            int backgroundColorCatergoryList = getResources().getColor(R.color.material_grey_900);
-            findViewById(android.R.id.list).setBackgroundColor(backgroundColorCatergoryList);
+        	if(ThemeChooser.isDarkTheme(this)) {
+				backgroundColor = getResources().getColor(R.color.material_grey_900);
+				findViewById(android.R.id.list).setBackgroundColor(backgroundColor);
+			} else {
+				backgroundColor = getResources().getColor(R.color.settingsWindowBackground);
+				findViewById(android.R.id.list).setBackgroundColor(backgroundColor);
+			}
         }
     }
 
