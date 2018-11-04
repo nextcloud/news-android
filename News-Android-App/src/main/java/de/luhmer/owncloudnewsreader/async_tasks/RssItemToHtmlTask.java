@@ -23,9 +23,10 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+
+import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.THEME;
+import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.getInstance;
 
 
 public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
@@ -108,28 +109,20 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
             favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
         }
 
-        String body_id;
-        int selectedTheme = ThemeChooser.getInstance(context).getSelectedTheme(context, false);
-        boolean isDarkTheme = ThemeChooser.isDarkTheme(context);
+        String body_id = null;
+        THEME selectedTheme = getInstance(context).getSelectedTheme();
         switch (selectedTheme) {
-            case 0: // Auto (Light / Dark)
-                body_id = isDarkTheme ? "darkTheme" : "lightTheme";
-                break;
-            case 1: // Light Theme
+            case LIGHT:
                 body_id = "lightTheme";
                 break;
-            case 2: // Dark Theme
+            case DARK:
                 body_id = "darkTheme";
                 break;
-            default:
-                // this should never happen!
-                body_id = "darkTheme";
+            case OLED:
+                body_id = "darkThemeOLED";
                 break;
         }
 
-        if(isDarkTheme && ThemeChooser.getInstance(context).isOledMode(context, false)) {
-            body_id = "darkThemeOLED";
-        }
         Log.v(TAG, "Selected Theme: " + body_id);
 
         boolean isRightToLeft = context.getResources().getBoolean(R.bool.is_right_to_left);

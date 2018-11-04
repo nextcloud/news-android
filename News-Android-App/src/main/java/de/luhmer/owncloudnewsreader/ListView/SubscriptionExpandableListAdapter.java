@@ -350,7 +350,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                             ((ExpandableListView)listView).expandGroup(groupPosition);
                     }
                 });
-	        }
+            }
         }
 
         viewHolder.imgView.setRotation(rotation);
@@ -362,17 +362,16 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
     private int getBtn_rating_star_off_normal_holo_light() {
         if(btn_rating_star_off_normal_holo_light == null) {
-            if(ThemeChooser.getInstance(mContext).isDarkTheme(mContext)) {
-                btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_dark;
-            } else {
+            if(ThemeChooser.getInstance(mContext).getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
                 btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_light;
+            } else {
+                btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_dark;
             }
         }
         return btn_rating_star_off_normal_holo_light;
     }
 
-	static class GroupHolder
-	{
+    static class GroupHolder {
         @BindView(R.id.list_item_layout) View listItemLayout;
         @BindView(R.id.summary) TextView txt_Summary;
         @BindView(R.id.tV_feedsCount) TextView txt_UnreadCount;
@@ -382,7 +381,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         public GroupHolder(View view) {
             ButterKnife.bind(this, view);
         }
-	}
+    }
 
 
     @Override

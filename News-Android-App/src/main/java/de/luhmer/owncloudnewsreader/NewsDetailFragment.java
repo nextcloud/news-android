@@ -66,7 +66,6 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.AdBlocker;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
 
 public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Listener {
@@ -75,8 +74,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     private static final String RSS_ITEM_PAGE_URL = "about:blank";
 
 	public final String TAG = getClass().getCanonicalName();
-
-	public static int background_color = Integer.MIN_VALUE;
 
     protected @BindView(R.id.webview) WebView mWebView;
     protected @BindView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
@@ -168,20 +165,19 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 	}
 
     private void startLoadRssItemToWebViewTask() {
+        Log.d(TAG, "startLoadRssItemToWebViewTask() called");
         mWebView.setVisibility(View.GONE);
         mProgressBarLoading.setVisibility(View.VISIBLE);
 
         NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
-        if(background_color != Integer.MIN_VALUE && ThemeChooser.getInstance(ndActivity).isDarkTheme(ndActivity))
-        {
-            mWebView.setBackgroundColor(background_color);
-            ndActivity.mViewPager.setBackgroundColor(background_color);
-        }
+        assert ndActivity != null;
+
+        int backgroundColor = ContextCompat.getColor(ndActivity, R.color.news_detail_background_color);
+        mWebView.setBackgroundColor(backgroundColor);
+        ndActivity.setBackgroundColorOfViewPager(backgroundColor);
 
         init_webView();
-
         RssItem rssItem = ndActivity.rssItems.get(section_number);
-
         RssItemToHtmlTask task = new RssItemToHtmlTask(ndActivity, rssItem, this);
         AsyncTaskHelper.StartAsyncTask(task);
     }
@@ -295,13 +291,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-
-                // the following lines are a workaround for websites which don't use a background color
-                NewsDetailActivity ndActivity = ((NewsDetailActivity) getActivity());
-                int backgroundColor = ColorHelper.getColorFromAttribute(getContext(),
-                        R.attr.news_detail_background_color);
-                mWebView.setBackgroundColor(backgroundColor);
-                ndActivity.mViewPager.setBackgroundColor(backgroundColor);
             }
 
         });

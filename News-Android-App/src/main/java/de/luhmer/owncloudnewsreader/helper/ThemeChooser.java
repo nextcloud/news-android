@@ -26,7 +26,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
-import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
@@ -36,13 +35,16 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 public class ThemeChooser {
 
     private static final String TAG = ThemeChooser.class.getCanonicalName();
-    private Integer mSelectedTheme;
-    private Boolean mOledMode;
     private static ThemeChooser mInstance;
 
-    @VisibleForTesting
-    public boolean OLEDActive = false;
-    public boolean DarkThemeActive = false;
+    // Contains the selected theme defined in the settings (used for checking whether the app needs
+    // to restart after changing the theme
+    private Integer mSelectedThemeFromPreferences;
+    private Boolean mOledMode;
+
+    // Contains the current selected theme
+    public enum THEME { LIGHT, DARK, OLED }
+    private THEME mSelectedTheme = THEME.LIGHT;
 
     public static ThemeChooser getInstance(Context context) {
         if(mInstance == null) {
@@ -52,46 +54,54 @@ public class ThemeChooser {
     }
 
     private ThemeChooser(Context context) {
-        getSelectedTheme(context, false); // Init cache
+        getSelectedThemeFromPreferences(context, false); // Init cache
         isOledMode(context, false); // Init cache
     }
 
-    public static void chooseTheme(Activity act) {
-        switch(getInstance(act).getSelectedTheme(act, false)) {
+    public void chooseTheme(Activity act) {
+        switch(getInstance(act).getSelectedThemeFromPreferences(act, false)) {
             case 0: // Auto (Light / Dark)
                 Log.v(TAG, "Auto (Light / Dark)");
                 act.setTheme(R.style.AppTheme);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+                mSelectedTheme = THEME.LIGHT;
                 break;
             case 1: // Light Theme
                 Log.v(TAG, "Light");
                 act.setTheme(R.style.AppTheme);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                mSelectedTheme = THEME.LIGHT;
                 break;
             case 2: // Dark Theme
                 Log.v(TAG, "Dark");
                 act.setTheme(R.style.AppTheme);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                mSelectedTheme = THEME.DARK;
                 break;
             default:
+                // This should never happen - just in case.. use the light theme..
                 Log.v(TAG, "Default");
-                // what would be a meaningful default? Auto mode?
+                act.setTheme(R.style.AppTheme);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+                mSelectedTheme = THEME.LIGHT;
                 break;
         }
-
-        ThemeChooser.getInstance(act).DarkThemeActive = ThemeChooser.isDarkTheme(act);
     }
 
-    public static void afterOnCreate(Activity act) {
+    public void afterOnCreate(Activity act) {
         //int uiNightMode = Configuration.UI_MODE_NIGHT_NO;
 
-        ThemeChooser.getInstance(act).OLEDActive = false;
-        if(ThemeChooser.getInstance(act).isOledMode(act, false) && ThemeChooser.isDarkTheme(act)) {
-            act.setTheme(R.style.AppThemeOLED);
-            ThemeChooser.getInstance(act).OLEDActive = true;
-            Log.v(TAG, "activate OLED mode");
-            //uiNightMode = Configuration.UI_MODE_NIGHT_YES;
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        if(isDarkTheme(act)) {
+            mSelectedTheme = THEME.DARK; // this is required for auto mode at night
+
+            if (isOledMode(act, false) && isDarkTheme(act)) {
+                act.setTheme(R.style.AppThemeOLED);
+                Log.v(TAG, "activate OLED mode");
+                //uiNightMode = Configuration.UI_MODE_NIGHT_YES;
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+                mSelectedTheme = THEME.OLED;
+            }
         }
 
         /*
@@ -104,13 +114,12 @@ public class ThemeChooser {
 
     // Check if the currently loaded theme is different from the one set in the settings, or if OLED mode changed
     public boolean themeRequiresRestartOfUI(Context context) {
-        boolean themeChanged = !mSelectedTheme.equals(getSelectedTheme(context, true));
+        boolean themeChanged = !mSelectedThemeFromPreferences.equals(getSelectedThemeFromPreferences(context, true));
         boolean oledChanged = !mOledMode.equals(isOledMode(context, true));
-
         return themeChanged || oledChanged;
     }
 
-    public static boolean isDarkTheme(Context context) {
+    private boolean isDarkTheme(Context context) {
         switch(AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 Log.v(TAG, "MODE_NIGHT_YES (Dark Theme)");
@@ -141,12 +150,15 @@ public class ThemeChooser {
         return mOledMode;
     }
 
-    public int getSelectedTheme(Context context, boolean forceReloadCache) {
-        if(mSelectedTheme == null || forceReloadCache) {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-            mSelectedTheme = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_APP_THEME, "0"));
-        }
+    public THEME getSelectedTheme() {
         return mSelectedTheme;
+    }
+
+    private int getSelectedThemeFromPreferences(Context context, boolean forceReloadCache) {
+        if(mSelectedThemeFromPreferences == null || forceReloadCache) {
+            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            mSelectedThemeFromPreferences = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_APP_THEME, "0"));
+        }
+        return mSelectedThemeFromPreferences;
     }
 }

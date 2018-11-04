@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -98,9 +97,9 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ThemeChooser.chooseTheme(this);
+        ThemeChooser.getInstance(this).chooseTheme(this);
         super.onCreate(savedInstanceState);
-        ThemeChooser.afterOnCreate(this);
+        ThemeChooser.getInstance(this).afterOnCreate(this);
         
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
@@ -142,11 +141,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             public void onGlobalLayout() {
                 rlVideoPodcastSurfaceWrapper.readVideoPosition();
 
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                    rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                } else {
-                    rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                }
+                rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
 

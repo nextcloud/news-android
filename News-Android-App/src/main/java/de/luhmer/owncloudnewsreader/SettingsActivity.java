@@ -135,9 +135,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-        ThemeChooser.chooseTheme(this);
+        ThemeChooser.getInstance(this).chooseTheme(this);
         super.onCreate(savedInstanceState);
-        ThemeChooser.afterOnCreate(this);
+        ThemeChooser.getInstance(this).afterOnCreate(this);
 
         setupActionBar();
 

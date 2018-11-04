@@ -80,7 +80,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
-	public ViewPager mViewPager;
+	private ViewPager mViewPager;
 	private int currentPosition;
 
 	private PostDelayHandler pDelayHandler;
@@ -558,5 +558,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		public CharSequence getPageTitle(int position) {
 			return null;
 		}
+	}
+
+	protected void setBackgroundColorOfViewPager(int backgroundColor) {
+		this.mViewPager.setBackgroundColor(backgroundColor);
 	}
 }
