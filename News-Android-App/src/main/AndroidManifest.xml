@@ -99,12 +99,6 @@
         </activity>
         <activity android:name=".DirectoryChooserActivity" />
 
-        <receiver android:name=".events.podcast.broadcastreceiver.PodcastNotificationToggle">
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_BUTTON" />
-                <action android:name="android.intent.action.HEADSET_PLUG" />
-            </intent-filter>
-        </receiver>
 
         <!--
 		**********************************************************************
@@ -181,9 +175,9 @@
         </receiver>
 
         <!--
-		**********************************************************************
-		* Widget Provider Receiver
-		**********************************************************************
+        **********************************************************************
+        * Widget Provider Receiver
+        **********************************************************************
         -->
         <receiver android:name=".widget.WidgetProvider">
             <intent-filter>
@@ -199,13 +193,37 @@
             android:name=".widget.WidgetService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <!--
+        **********************************************************************
+        * Podcast
+        **********************************************************************
+        -->
         <service
             android:name=".services.PodcastPlaybackService"
             android:enabled="true"
-            android:exported="true" /> <!-- android:process=":podcastPlaybackService" -->
+            android:exported="true" >
+            <intent-filter>
+               <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service> <!-- android:process=":podcastPlaybackService" -->
+
+        <receiver android:name="android.support.v4.media.session.MediaButtonReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".services.PodcastDownloadService"
             android:exported="false" />
+
+        <!--
+        **********************************************************************
+        * Chrome-Custom Tabs
+        **********************************************************************
+        -->
         <service
             android:name=".chrometabs.KeepAliveService"
             android:exported="true"

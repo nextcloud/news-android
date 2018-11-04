@@ -152,6 +152,9 @@
     <string name="no_podcast_selected">Nenhum podcast selecionado</string>
     <string name="no_chapters_available">Nenhum capítulo disponível</string>
     <string name="podcast_playback_speed_dialog_title">Velocidade do Playback</string>
+    <string name="notification_downloading_podcast_title">Baixando podcast</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Exibir</string>
     <string name="pref_title_app_theme">Modo Noturno</string>

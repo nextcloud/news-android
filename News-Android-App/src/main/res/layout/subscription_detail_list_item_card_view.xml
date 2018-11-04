@@ -101,7 +101,7 @@
                 android:textAlignment="viewStart"
                 android:ellipsize="end"
                 tools:text="Body"
-                android:textColor="@color/material_grey_600"
+                android:textColor="@color/text_medium_emphasis"
                 android:textSize="14sp"
                 android:autoLink="none"
                 android:layout_below="@+id/summary"

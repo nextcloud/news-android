@@ -25,6 +25,8 @@
     <string name="menu_StartImageCaching">Downloaden afbeeldingen</string>
     <string name="menu_downloadMoreItems">Download meer berichten</string>
 
+    <string name="tv_showing_cached_version">Tonen van cached versie</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Gemarkeerd</string>
     <string name="action_read">Lees</string>
@@ -37,6 +39,7 @@
     <string name="action_sync_settings">Sync Settings</string>
     <string name="action_add_new_feed">Voeg nieuwe feed toe</string>
     <string name="action_textToSpeech">Voorlezen</string>
+    <string name="action_download_articles_offline">Download artikels offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">U hebt %d nieuw ongelezen bericht</item>
         <item quantity="other">Je hebt %d nieuwe ongelezen berichten</item>
@@ -149,9 +152,12 @@
     <string name="no_podcast_selected">Geen podcast geselecteerd</string>
     <string name="no_chapters_available">Geen hoofdstukken beschikbaar</string>
     <string name="podcast_playback_speed_dialog_title">Afspeelsnelheid</string>
+    <string name="notification_downloading_podcast_title">Downloaden podcast</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Weergeven</string>
-    <string name="pref_title_app_theme">Nochtmodus</string>
+    <string name="pref_title_app_theme">Nachtmodus</string>
     <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
     <string name="pref_title_font_size">Fontgrootte</string>
     <string name="pref_display_browser">Browser</string>
@@ -176,6 +182,8 @@
     <string name="pref_display_feed_list_layout_simple_text">Verkorte tekst</string>
     <string name="pref_display_feed_list_layout_full_text">Volledige tekst</string>
     <string name="pref_display_feed_list_layout_web_layout">Weblayout</string>
+    <string name="pref_display_feed_list_layout_card_view">Kaart weergave</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Klein</string>
     <string name="pref_display_font_size_d">Standaard</string>
@@ -207,7 +215,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fout</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">het lijkt erop dat je nieuwsapp niet is geïnstalleerd of geactiveerd op je server. Volg eerst de instructies hier om de nieuwsapp op je server te installeren: %1$s</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Het lijkt erop dat je nieuwsapp niet is geïnstalleerd of geactiveerd op je server. Volg eerst de instructies hier om de nieuwsapp op je server te installeren: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Er ging iets verkeerd :(</string>
     <string name="login_dialog_text_zero_version_code">De Web News App gaf Versie \"0\". Bekijk alsjeblieft het volgende bug report: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Deze app versie is niet compatibel met je Nextcloud Nieuws App. Werk de Nieuws App en het Appframework bij.</string>

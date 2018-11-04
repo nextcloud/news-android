@@ -1,17 +1,34 @@
 package de.luhmer.owncloudnewsreader.services;
 
-import android.app.Service;
+import android.app.PendingIntent;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Binder;
+import android.media.AudioManager;
+import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
+import android.os.ResultReceiver;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.MediaBrowserServiceCompat;
+import android.support.v4.media.MediaMetadataCompat;
+import android.support.v4.media.session.MediaButtonReceiver;
+import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.KeyEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
+import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.events.podcast.NewPodcastPlaybackListener;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
@@ -29,23 +46,27 @@ import de.luhmer.owncloudnewsreader.services.podcast.TTSPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.YoutubePlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 
-public class PodcastPlaybackService extends Service {
+import static android.view.KeyEvent.KEYCODE_MEDIA_STOP;
+
+public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
     public static final String MEDIA_ITEM = "MediaItem";
 
     private static final String TAG = "PodcastPlaybackService";
+
+    public static final String PLAYBACK_SPEED_FLOAT = "PLAYBACK_SPEED";
+    public static final String CURRENT_PODCAST_ITEM_MEDIA_ITEM= "CURRENT_PODCAST_ITEM";
     private PodcastNotification podcastNotification;
 
     private EventBus eventBus;
     private Handler mHandler;
 
     private PlaybackService mPlaybackService;
+    private MediaSessionCompat mSession;
 
     public static final float PLAYBACK_SPEEDS[] = { 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f };
     private float currentPlaybackSpeed = 1;
 
-    // Binder given to clients
-    private final IBinder mBinder = new LocalBinder();
 
     public MediaItem getCurrentlyPlayingPodcast() {
         if(mPlaybackService != null) {
@@ -58,20 +79,18 @@ public class PodcastPlaybackService extends Service {
         return mPlaybackService != null;
     }
 
-    /**
-     * Class used for the client Binder.  Because we know this service always
-     * runs in the same process as its clients, we don't need to deal with IPC.
-     */
-    public class LocalBinder extends Binder {
-        public PodcastPlaybackService getService() {
-            // Return this instance of LocalService so clients can call public methods
-            return PodcastPlaybackService.this;
-        }
+    @Nullable
+    @Override
+    public BrowserRoot onGetRoot(@NonNull String s, int i, @Nullable Bundle bundle) {
+        return new MediaBrowserServiceCompat.BrowserRoot(
+                getString(R.string.app_name),// Name visible in Android Auto
+                null);
     }
 
     @Override
-    public IBinder onBind(Intent intent) {
-        return mBinder;
+    public void onLoadChildren(@NonNull String s, @NonNull Result<List<MediaBrowserCompat.MediaItem>> result) {
+        Log.d(TAG, "onLoadChildren() called with: s = [" + s + "], result = [" + result + "]");
+        result.sendResult(new ArrayList<MediaBrowserCompat.MediaItem>());
     }
 
     @Override
@@ -98,16 +117,31 @@ public class PodcastPlaybackService extends Service {
             mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
 
-        podcastNotification = new PodcastNotification(this);
+        initMediaSessions();
+
+        podcastNotification = new PodcastNotification(this, mSession);
         mHandler = new Handler();
         eventBus = EventBus.getDefault();
         eventBus.register(this);
-        eventBus.post(new PodcastPlaybackServiceStarted());
+        //eventBus.post(new PodcastPlaybackServiceStarted());
 
         mHandler.postDelayed(mUpdateTimeTask, 0);
 
 
+        setSessionToken(mSession.getSessionToken());
+
+        Intent intent = new Intent(this, NewsReaderListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mSession.setSessionActivity(pi);
+
         //startForeground(PodcastNotification.NOTIFICATION_ID, podcastNotification.getNotification());
+
+        /*
+        //Handles headphones coming unplugged. cannot be done through a manifest receiver
+        IntentFilter filter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
+        registerReceiver(mNoisyReceiver, filter);
+        */
     }
 
     @Override
@@ -119,6 +153,7 @@ public class PodcastPlaybackService extends Service {
             mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         }
 
+        mHandler.removeCallbacks(mUpdateTimeTask);
         podcastNotification.cancel();
 
         super.onDestroy();
@@ -127,31 +162,36 @@ public class PodcastPlaybackService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        MediaButtonReceiver.handleIntent(mSession, intent);
+
         if (intent != null) {
-            if(mPlaybackService != null) {
+            if (mPlaybackService != null) {
                 mPlaybackService.destroy();
                 mPlaybackService = null;
             }
+            mHandler.removeCallbacks(mUpdateTimeTask);
 
-            MediaItem mediaItem = (MediaItem) intent.getSerializableExtra(MEDIA_ITEM);
+            if(intent.hasExtra(MEDIA_ITEM)) {
+                MediaItem mediaItem = (MediaItem) intent.getSerializableExtra(MEDIA_ITEM);
 
-            if (mediaItem instanceof PodcastItem) {
-                if(((PodcastItem)mediaItem).isYoutubeVideo()) {
-                    mPlaybackService = new YoutubePlaybackService(this, podcastStatusListener, mediaItem);
-                } else {
-                    mPlaybackService = new MediaPlayerPlaybackService(this, podcastStatusListener, mediaItem);
+                if (mediaItem instanceof PodcastItem) {
+                    if (((PodcastItem) mediaItem).isYoutubeVideo()) {
+                        mPlaybackService = new YoutubePlaybackService(this, podcastStatusListener, mediaItem);
+                    } else {
+                        mPlaybackService = new MediaPlayerPlaybackService(this, podcastStatusListener, mediaItem);
+                    }
+                } else if (mediaItem instanceof TTSItem) {
+                    mPlaybackService = new TTSPlaybackService(this, podcastStatusListener, mediaItem);
                 }
-            } else if(mediaItem instanceof TTSItem) {
-                mPlaybackService = new TTSPlaybackService(this, podcastStatusListener, mediaItem);
+
+                podcastNotification.podcastChanged();
+                sendMediaStatus();
+
+                mPlaybackService.playbackSpeedChanged(currentPlaybackSpeed);
             }
-
-            podcastNotification.podcastChanged();
-            sendMediaStatus();
-
-            mPlaybackService.playbackSpeedChanged(currentPlaybackSpeed);
         }
 
-        return Service.START_STICKY;
+        return super.onStartCommand(intent, flags, startId);
     }
 
     private PlaybackService.PodcastStatusListener podcastStatusListener = new PlaybackService.PodcastStatusListener() {
@@ -188,6 +228,7 @@ public class PodcastPlaybackService extends Service {
 
     @Subscribe
     public void onEvent(TogglePlayerStateEvent event) {
+        Log.d(TAG, "onEvent() called with: event = [" + event + "]");
         if(event.getState() == TogglePlayerStateEvent.State.Toggle) {
             if (isPlaying()) {
                 Log.v(TAG, "calling pause()");
@@ -275,24 +316,29 @@ public class PodcastPlaybackService extends Service {
         UpdatePodcastStatusEvent audioPodcastEvent;
 
         if(mPlaybackService == null) {
-            audioPodcastEvent = new UpdatePodcastStatusEvent(0, 0, PlaybackService.Status.NOT_INITIALIZED, "", PlaybackService.VideoType.None, -1, -1);
+            audioPodcastEvent = new UpdatePodcastStatusEvent(0, 0, PlaybackService.Status.NOT_INITIALIZED, "", "", PlaybackService.VideoType.None, -1, -1);
         } else {
             audioPodcastEvent = new UpdatePodcastStatusEvent(
                     mPlaybackService.getCurrentDuration(),
                     mPlaybackService.getTotalDuration(),
                     mPlaybackService.getStatus(),
+                    mPlaybackService.getMediaItem().link,
                     mPlaybackService.getMediaItem().title,
                     mPlaybackService.getVideoType(),
                     mPlaybackService.getMediaItem().itemId,
                     getPlaybackSpeed());
         }
         eventBus.post(audioPodcastEvent);
+
+        if(audioPodcastEvent.isPlaying()) {
+            startForeground(PodcastNotification.NOTIFICATION_ID, podcastNotification.getNotification());
+        } else {
+            stopForeground(false);
+        }
     }
 
 
-    public class PodcastPlaybackServiceStarted {
-
-    }
+    //public class PodcastPlaybackServiceStarted { }
 
     PhoneStateListener phoneStateListener = new PhoneStateListener() {
         @Override
@@ -308,4 +354,91 @@ public class PodcastPlaybackService extends Service {
             super.onCallStateChanged(state, incomingNumber);
         }
     };
+
+
+    private final class MediaSessionCallback extends MediaSessionCompat.Callback {
+        @Override
+        public void onPlay() {
+            EventBus.getDefault().post(new TogglePlayerStateEvent());
+        }
+
+        @Override
+        public void onPause() {
+            EventBus.getDefault().post(new TogglePlayerStateEvent());
+        }
+
+        @Override
+        public void onCommand(String command, Bundle extras, ResultReceiver cb) {
+            if (command.equals(PLAYBACK_SPEED_FLOAT)) {
+                Bundle b = new Bundle();
+                b.putFloat(PLAYBACK_SPEED_FLOAT, currentPlaybackSpeed);
+                cb.send(0, b);
+            } else if(command.equals(CURRENT_PODCAST_ITEM_MEDIA_ITEM)) {
+                Bundle b = new Bundle();
+                b.putSerializable(CURRENT_PODCAST_ITEM_MEDIA_ITEM, mPlaybackService.getMediaItem());
+                cb.send(0, b);
+            }
+            super.onCommand(command, extras, cb);
+        }
+
+        @Override
+        public boolean onMediaButtonEvent(Intent mediaButtonEvent) {
+            Log.d(TAG, mediaButtonEvent.getAction());
+
+            if(mediaButtonEvent.hasExtra("android.intent.extra.KEY_EVENT")) {
+                KeyEvent keyEvent = mediaButtonEvent.getParcelableExtra("android.intent.extra.KEY_EVENT");
+                Log.d(TAG, keyEvent.toString());
+
+                // Stop requested (e.g. notification was swiped away)
+                if(keyEvent.getKeyCode() == KEYCODE_MEDIA_STOP) {
+                    pause();
+                    stopSelf();
+                    /*
+                    boolean isPlaying = mSession.getController().getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING;
+                    if(isPlaying) {
+                        EventBus.getDefault().post(new TogglePlayerStateEvent());
+                    }
+                    */
+                }
+            }
+            return super.onMediaButtonEvent(mediaButtonEvent);
+        }
+    }
+
+    private void initMediaSessions() {
+        //String packageName = PodcastNotificationToggle.class.getPackage().getName();
+        //ComponentName receiver = new ComponentName(packageName, PodcastNotificationToggle.class.getName());
+        ComponentName mediaButtonReceiver = new ComponentName(this, MediaButtonReceiver.class);
+        mSession = new MediaSessionCompat(this, "PlayerService", mediaButtonReceiver, null);
+        mSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS |
+                MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
+        mSession.setPlaybackState(new PlaybackStateCompat.Builder()
+                .setState(PlaybackStateCompat.STATE_PAUSED, 0, 0)
+                .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE).build());
+
+        mSession.setCallback(new MediaSessionCallback());
+
+        //Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+        //mediaButtonIntent.setClass(mContext, MediaButtonReceiver.class);
+        //PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 0, mediaButtonIntent, 0);
+        //mSession.setMediaButtonReceiver(pendingIntent);
+
+
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager.requestAudioFocus(new AudioManager.OnAudioFocusChangeListener() {
+            @Override
+            public void onAudioFocusChange(int focusChange) {
+                // Ignore
+            }
+        }, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+
+        //MediaControllerCompat controller = mSession.getController();
+
+        //mSession.setActive(true);
+
+        mSession.setMetadata(new MediaMetadataCompat.Builder()
+                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, "")
+                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, "")
+                .build());
+    }
 }

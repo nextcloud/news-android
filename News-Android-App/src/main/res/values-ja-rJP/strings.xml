@@ -26,6 +26,7 @@
     <string name="action_starred">共有</string>
     <string name="action_read">読込</string>
     <string name="action_playPodacst">Podcast を再生</string>
+    <string name="action_openInBrowser">ブラウザで開く</string>
     <string name="action_Share">共有</string>
     <string name="action_login">サーバー設定</string>
     <string name="action_save">保存</string>
@@ -101,6 +102,10 @@
     <string name="pref_header_general">一般</string>
     <string name="pref_title_general_sort_order">ソート順</string>
 
+    <string name="pref_general_sort_order_new_old">新 -> 旧</string>
+    <string name="pref_general_sort_order_old_new">旧 -> 新</string>
+
+    <string name="pref_general_search_in_title">タイトル</string>
     <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
     <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています…しばらくお待ちください。</string>
     <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
@@ -120,11 +125,38 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Podcast が選択されていません</string>
     <string name="no_chapters_available">チャプターがありません</string>
+    <string name="podcast_playback_speed_dialog_title">再生速度</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">表示</string>
+    <string name="pref_title_app_theme">ナイトモード</string>
     <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
+    <string name="pref_title_font_size">フォントサイズ</string>
+    <string name="pref_display_browser">ブラウザ</string>
+
+
+
+
+    <string name="pref_display_apptheme_auto">ライト / ダーク（時刻に基づく）</string>
+    <string name="pref_display_apptheme_light">ライト</string>
+    <string name="pref_display_apptheme_dark">ダーク</string>
+
+    <string name="pref_display_browser_cct">内蔵のChromeカスタムタブ</string>
+    <string name="pref_display_browser_built_in">組み込みブラウザ</string>
+    <string name="pref_display_browser_external">外部ブラウザ</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">サムネイル</string>
+    <string name="pref_display_feed_list_layout_web_layout">ウェブレイアウト</string>
+    <string name="pref_display_feed_list_layout_card_view">カード表示</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">小</string>
+    <string name="pref_display_font_size_d">デフォルト</string>
+    <string name="pref_display_font_size_l">大</string>
+    <string name="pref_display_font_size_xl">巨大</string>
+
     <string name="content_desc_play">再生</string>
     <string name="content_desc_pause">一時停止</string>
+    <string name="content_desc_playback_speed">再生速度</string>
     <string name="content_desc_rewind">巻戻し</string>
     <string name="content_desc_forward">早送り</string>
     <string name="content_desc_expand">展開</string>
@@ -157,5 +189,21 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">しない</string>
+    <string name="pref_data_sync_image_cache_wifi_only">WiFiのみ</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi &amp; モバイル</string>
+    <string name="pref_data_sync_image_cache_ask">WiFi接続がない場合は尋ねる</string>
+
+    <string name="array_sync_interval_min_5">5 分</string>
+    <string name="array_sync_interval_min_15">15 分</string>
+    <string name="array_sync_interval_min_30">30 分</string>
+    <string name="array_sync_interval_min_45">45 分</string>
+    <string name="array_sync_interval_hour_1">1 時間</string>
+    <string name="array_sync_interval_hour_2">2 時間</string>
+    <string name="array_sync_interval_hour_3">3 時間</string>
+    <string name="array_sync_interval_hour_6">6 時間</string>
+    <string name="array_sync_interval_hour_12">12 時間</string>
+    <string name="array_sync_interval_hour_24">24 時間</string>
 
     </resources>

@@ -152,6 +152,9 @@
     <string name="no_podcast_selected">Herhangi bir podcast seçilmemiş</string>
     <string name="no_chapters_available">Kullanılabilecek bir bölüm yok</string>
     <string name="podcast_playback_speed_dialog_title">Oynatma Hızı</string>
+    <string name="notification_downloading_podcast_title">Podcast indiriliyor</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Görüntüle</string>
     <string name="pref_title_app_theme">Gece Kipi</string>

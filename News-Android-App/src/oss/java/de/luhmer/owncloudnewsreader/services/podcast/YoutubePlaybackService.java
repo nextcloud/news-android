@@ -11,7 +11,7 @@ import de.luhmer.owncloudnewsreader.model.MediaItem;
 public class YoutubePlaybackService extends PlaybackService {
 
     public YoutubePlaybackService(Context context, PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
-        super(context, podcastStatusListener, mediaItem);
+        super(podcastStatusListener, mediaItem);
         setStatus(Status.FAILED);
     }
 

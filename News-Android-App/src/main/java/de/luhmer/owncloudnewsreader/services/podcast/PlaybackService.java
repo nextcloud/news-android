@@ -1,7 +1,5 @@
 package de.luhmer.owncloudnewsreader.services.podcast;
 
-import android.content.Context;
-
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 
 /**
@@ -22,7 +20,7 @@ public abstract class PlaybackService {
     private PodcastStatusListener podcastStatusListener;
     private MediaItem mediaItem;
 
-    public PlaybackService(Context context, PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
+    public PlaybackService(PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
         this.podcastStatusListener = podcastStatusListener;
         this.mediaItem = mediaItem;
     }

@@ -16,8 +16,8 @@
 
     <color name="options_menu_item_text">@color/options_menu_item</color>
 
-    <color name="material_red_600" tools:override="true">#e53935</color>
-
+    <color name="text_medium_emphasis">#a0000000</color>
+   
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#eeeeee</color>
     <color name="news_detail_background_color_oled">#eeeeee</color>
@@ -51,4 +51,6 @@
     <color name="material_grey_700" tools:override="true">#ff717171</color>
     <color name="material_grey_800" tools:override="true">#424242</color>
     <color name="material_grey_900" tools:override="true">#212121</color>
+  
+    <color name="material_red_600" tools:override="true">#e53935</color>
 </resources>

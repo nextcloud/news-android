@@ -22,6 +22,8 @@
     <color name="owncloudBlue">#1D2D44</color>
     <color name="nextcloudBlue">#006AA3</color>
 
+    <color name="text_medium_emphasis">#a0ffffff</color>
+
     <color name="colorPrimary">@color/nextcloudBlue</color>
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
     <color name="colorAccent">#8698af</color>

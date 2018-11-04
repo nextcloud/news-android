@@ -22,7 +22,7 @@ public class YoutubePlaybackService extends PlaybackService {
     Context context;
 
     public YoutubePlaybackService(Context context, PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
-        super(context, podcastStatusListener, mediaItem);
+        super(podcastStatusListener, mediaItem);
         this.context = context;
         setStatus(Status.PREPARING);
     }
