@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="slider_listview_background_color">#383d43</color>
+    <color name="app_drawer_feed_list_background_color">#383d43</color>
+    <color name="settingsWindowBackground">@color/material_grey_900</color>
+    <color name="settingsWindowCategoryPaneBackground">@color/material_grey_800</color>
 
     <color name="primaryTextColor">@android:color/white</color>
 
@@ -14,7 +16,8 @@
     <color name="slide_up_panel_slider_background_color">#ff343434</color>
 
     <!-- see also assets/web.css -->
-    <color name="news_detail_background_color">#222222</color>
+    <color name="news_detail_background_color">@color/material_grey_900</color>
+    <color name="news_detail_background_color_oled">@android:color/black</color>
 
     <color name="owncloudBlue">#1D2D44</color>
     <color name="nextcloudBlue">#006AA3</color>
@@ -24,7 +27,7 @@
     <color name="colorPrimary">@color/nextcloudBlue</color>
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
     <color name="colorAccent">#8698af</color>
-    <color name="rssItemListBackground">@color/material_grey_900</color>
+    <color name="rss_item_list_background">@color/material_grey_900</color>
 
 
     <color name="starredColor">@android:color/holo_orange_light</color>

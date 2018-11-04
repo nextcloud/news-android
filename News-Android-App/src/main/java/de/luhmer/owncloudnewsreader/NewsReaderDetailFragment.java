@@ -392,7 +392,6 @@ public class NewsReaderDetailFragment extends Fragment {
 
 		ButterKnife.bind(this, rootView);
 
-
         recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());

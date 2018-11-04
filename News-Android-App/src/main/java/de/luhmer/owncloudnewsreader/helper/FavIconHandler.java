@@ -75,10 +75,12 @@ public class FavIconHandler {
 
     private static int getResourceIdForRightDefaultFeedIcon(Context context)
 	{
-		if(ThemeChooser.getInstance(context).isDarkTheme(context))
-			return R.drawable.default_feed_icon_light;
-		else
-			return R.drawable.default_feed_icon_dark;
+		if(ThemeChooser.getInstance(context).getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
+            return R.drawable.default_feed_icon_dark;
+        } else {
+            return R.drawable.default_feed_icon_light;
+        }
+
 	}
 
 	public void preCacheFavIcon(final Feed feed) throws IllegalStateException {

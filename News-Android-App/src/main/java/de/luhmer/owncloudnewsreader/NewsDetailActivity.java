@@ -58,7 +58,6 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -74,14 +73,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * intensive, it may be best to switch to a
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
-    @BindView(R.id.toolbar) Toolbar toolbar;
-	@BindView(R.id.progressIndicator) ProgressBar progressIndicator;
+	private SectionsPagerAdapter mSectionsPagerAdapter;
+    protected @BindView(R.id.toolbar) Toolbar toolbar;
+	protected @BindView(R.id.progressIndicator) ProgressBar progressIndicator;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
-	public ViewPager mViewPager;
+	private ViewPager mViewPager;
 	private int currentPosition;
 
 	private PostDelayHandler pDelayHandler;
@@ -97,8 +96,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		ThemeChooser.chooseTheme(this);
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
 
@@ -157,17 +154,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		progressIndicator.setMax(mSectionsPagerAdapter.getCount());
 
 		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager = findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
-		try
-		{
+        try {
             mViewPager.setCurrentItem(item_id, true);
             pageChanged(item_id);
-		}
-		catch(Exception ex)
-		{
+		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
 
@@ -564,5 +558,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		public CharSequence getPageTitle(int position) {
 			return null;
 		}
+	}
+
+	protected void setBackgroundColorOfViewPager(int backgroundColor) {
+		this.mViewPager.setBackgroundColor(backgroundColor);
 	}
 }

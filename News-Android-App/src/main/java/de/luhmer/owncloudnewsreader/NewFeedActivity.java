@@ -81,8 +81,9 @@ public class NewFeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
-        ThemeChooser.chooseTheme(this);
+        ThemeChooser.getInstance(this).chooseTheme(this);
         super.onCreate(savedInstanceState);
+        ThemeChooser.getInstance(this).afterOnCreate(this);
         setContentView(R.layout.activity_new_feed);
 
         ButterKnife.bind(this);

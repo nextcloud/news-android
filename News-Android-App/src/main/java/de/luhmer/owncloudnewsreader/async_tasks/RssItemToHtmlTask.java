@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -22,9 +23,10 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+
+import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.THEME;
+import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.getInstance;
 
 
 public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
@@ -32,6 +34,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
     private static final double BODY_FONT_SIZE = 1.1;
     private static final double HEADING_FONT_SIZE = 1.1;
     private static final double SUBSCRIPT_FONT_SIZE = 0.7;
+    private static final String TAG = RssItemToHtmlTask.class.getCanonicalName();
 
     private static Pattern PATTERN_PRELOAD_VIDEOS_REMOVE = Pattern.compile("(<video[^>]*)(preload=\".*?\")(.*?>)");
     private static Pattern PATTERN_PRELOAD_VIDEOS_INSERT = Pattern.compile("(<video[^>]*)(.*?)(.*?>)");
@@ -106,27 +109,21 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
             favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
         }
 
-        String body_id;
-        int selectedTheme = ThemeChooser.getInstance(context).getSelectedTheme(context, false);
+        String body_id = null;
+        THEME selectedTheme = getInstance(context).getSelectedTheme();
         switch (selectedTheme) {
-            case 0: // Auto (Light / Dark)
-                body_id = ThemeChooser.getInstance(context).isDarkTheme(context) ? "darkTheme" : "lightTheme";
-                break;
-            case 1: // Light Theme
+            case LIGHT:
                 body_id = "lightTheme";
                 break;
-            case 2: // Dark Theme
+            case DARK:
                 body_id = "darkTheme";
                 break;
-            default:
-                // this should never happen!
-                body_id = "darkTheme";
+            case OLED:
+                body_id = "darkThemeOLED";
                 break;
         }
 
-        if(ThemeChooser.getInstance(context).isOledMode(context, false) && ThemeChooser.getInstance(context).isDarkTheme(context)) {
-            body_id = "darkThemeOLED";
-        }
+        Log.v(TAG, "Selected Theme: " + body_id);
 
         boolean isRightToLeft = context.getResources().getBoolean(R.bool.is_right_to_left);
         String rtlClass = isRightToLeft ? "rtl" : "";

@@ -1,7 +1,7 @@
 <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,8 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="?attr/actionBarSize"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:layout="@layout/fragment_newsreader_detail" />
+                tools:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:layout="@layout/fragment_newsreader_detail" />
 
             <include
                 android:id="@+id/toolbar_layout"

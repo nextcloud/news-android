@@ -30,7 +30,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -55,7 +54,6 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,7 +69,6 @@ import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -138,37 +135,21 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
+        ThemeChooser.getInstance(this).chooseTheme(this);
+        super.onCreate(savedInstanceState);
+        ThemeChooser.getInstance(this).afterOnCreate(this);
 
-		if(isXLargeTablet(this)) {
-			setTheme(R.style.AppThemeSettings);
-		} else {
-			ThemeChooser.chooseTheme(this);
-		}
+        setupActionBar();
 
-		super.onCreate(savedInstanceState);
+        // Set background accordingly to theme
+        int backgroundColor = getResources().getColor(R.color.settingsWindowBackground);
+        getWindow().getDecorView().setBackgroundColor(backgroundColor);
 
-        AppBarLayout appBarLayout;
-
-
-        // get the root container of the preferences list
-        LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
-        if(root != null) { //Some legacy devices may not be supported
-            appBarLayout = (AppBarLayout) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
-            root.addView(appBarLayout, 0); // insert at top
-
-            Toolbar toolbar = (Toolbar) appBarLayout.getChildAt(0);
-
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.title_activity_settings);
+        // Set background of category pane on tablets
+        if(isXLargeTablet(this)) {
+            backgroundColor = getResources().getColor(R.color.settingsWindowCategoryPaneBackground);
+            findViewById(android.R.id.list).setBackgroundColor(backgroundColor);
         }
-
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = getTheme();
-        theme.resolveAttribute(R.attr.rssItemListBackground, typedValue, true);
-        int color = typedValue.data;
-        getWindow().getDecorView().setBackgroundColor(color);
     }
 
 	@Override
@@ -179,6 +160,21 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
 		setupSimplePreferencesScreen();
 	}
+
+
+	private void setupActionBar() {
+        // get the root container of the preferences list
+        LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
+        if(root != null) { //Some legacy devices may not be supported
+            AppBarLayout appBarLayout = (AppBarLayout) LayoutInflater.from(this).inflate(R.layout.toolbar_layout, root, false);
+            root.addView(appBarLayout, 0); // insert at top
+            Toolbar toolbar = (Toolbar) appBarLayout.getChildAt(0);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.title_activity_settings);
+        }
+    }
 
 	/**
 	 * Shows the simplified settings UI if the device configuration if the

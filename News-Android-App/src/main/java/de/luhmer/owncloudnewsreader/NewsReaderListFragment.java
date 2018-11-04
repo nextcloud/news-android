@@ -149,7 +149,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_newsreader_list, container, false);
+	    View view = inflater.inflate(R.layout.fragment_newsreader_list, container, false);
 
         ButterKnife.bind(this, view);
 

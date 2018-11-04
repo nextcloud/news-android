@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <color name="slider_listview_background_color">@android:color/white</color>
+    <color name="app_drawer_feed_list_background_color">#ededed</color>
+    <color name="settingsWindowBackground">@android:color/white</color>
+    <color name="settingsWindowCategoryPaneBackground">@color/material_grey_100</color>
 
     <color name="primaryTextColor">@android:color/black</color>
 
@@ -14,16 +16,11 @@
 
     <color name="options_menu_item_text">@color/options_menu_item</color>
 
-
     <color name="text_medium_emphasis">#a0000000</color>
-    <color name="material_grey_500" tools:override="true">#9E9E9E</color>
-    <color name="material_grey_600" tools:override="true">#757575</color>
-    <color name="material_grey_900" tools:override="true">#212121</color>
-
-    <color name="material_red_600" tools:override="true">#e53935</color>
-
+   
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#eeeeee</color>
+    <color name="news_detail_background_color_oled">#eeeeee</color>
 
     <color name="owncloudBlue">#35537A</color>
     <color name="nextcloudBlue">#0082C9</color>
@@ -31,7 +28,7 @@
     <color name="colorPrimary">@color/nextcloudBlue</color>
     <color name="colorPrimaryDark">@color/nextcloudBlue</color>
     <color name="colorAccent">@color/colorPrimary</color>
-    <color name="rssItemListBackground">@android:color/white</color>
+    <color name="rss_item_list_background">@android:color/white</color>
 
 
     <color name="starredColor">@android:color/holo_orange_light</color>
@@ -43,4 +40,17 @@
 
     <!-- override libs -->
     <color name="chglib_background_default_divider_color">#00000000</color>
+
+
+
+    <color name="material_grey_50"  tools:override="true">#fffafafa</color>
+    <color name="material_grey_100" tools:override="true">#fff5f5f5</color>
+    <color name="material_grey_300" tools:override="true">#ffeeeeee</color>
+    <color name="material_grey_500" tools:override="true">#9E9E9E</color>
+    <color name="material_grey_600" tools:override="true">#757575</color>
+    <color name="material_grey_700" tools:override="true">#ff717171</color>
+    <color name="material_grey_800" tools:override="true">#424242</color>
+    <color name="material_grey_900" tools:override="true">#212121</color>
+  
+    <color name="material_red_600" tools:override="true">#e53935</color>
 </resources>

@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
@@ -53,6 +52,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterYoutubeOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -104,6 +104,10 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ThemeChooser.getInstance(this).chooseTheme(this);
+        super.onCreate(savedInstanceState);
+        ThemeChooser.getInstance(this).afterOnCreate(this);
+        
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
         if (mApi.getAPI() instanceof API_SSO) {
@@ -120,8 +124,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 e.printStackTrace();
             }
         }*/
-
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -146,11 +148,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
             public void onGlobalLayout() {
                 rlVideoPodcastSurfaceWrapper.readVideoPosition();
 
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                    rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                } else {
-                    rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                }
+                rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
 
