@@ -3,6 +3,14 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.20 (Google Play)
+---------------------
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/683">#683 OLED bg is lost on orientation change in auto NightMode</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/681">#681 Make audio podcasts controllable by Bluetooth media controls</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/678">#678 Settings section/page header text is black, also in dark theme</a>
+- UI Immprovement - <a href="https://github.com/owncloud/News-Android-App/issues/677">#677 New feed items look read</a>
+
+
 0.9.9.19 (Google Play)
 ---------------------
 - Feature - <a href="https://github.com/owncloud/News-Android-App/issues/661">#661 NightMode (Thank you @AnotherDaniel)</a>
