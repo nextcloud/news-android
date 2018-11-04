@@ -157,6 +157,9 @@
     <string name="no_podcast_selected">Није изабрана подемисија</string>
     <string name="no_chapters_available">Нема доступних поглавља</string>
     <string name="podcast_playback_speed_dialog_title">Брзина пуштања</string>
+    <string name="notification_downloading_podcast_title">Преузимам подкаст</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Приказ</string>
     <string name="pref_title_app_theme">Ноћни режим</string>
