@@ -145,14 +145,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         int backgroundColor = getResources().getColor(R.color.settingsWindowBackground);
         getWindow().getDecorView().setBackgroundColor(backgroundColor);
 
+        // Set background of category pane on tablets
         if(isXLargeTablet(this)) {
-        	if(ThemeChooser.isDarkTheme(this)) {
-				backgroundColor = getResources().getColor(R.color.material_grey_900);
-				findViewById(android.R.id.list).setBackgroundColor(backgroundColor);
-			} else {
-				backgroundColor = getResources().getColor(R.color.settingsWindowBackground);
-				findViewById(android.R.id.list).setBackgroundColor(backgroundColor);
-			}
+            backgroundColor = getResources().getColor(R.color.settingsWindowCategoryPaneBackground);
+            findViewById(android.R.id.list).setBackgroundColor(backgroundColor);
         }
     }
 
