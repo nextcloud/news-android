@@ -190,10 +190,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		// In the simplified UI, fragments are not used at all and we instead
 		// use the older PreferenceActivity APIs.
 
+		// This is to initialize the settings panel to allow adding a first-section header (below)
+		// without running into stupid exceptions
+		addPreferencesFromResource(R.xml.pref_empty);
+
 		// Add 'general' preferences.
+		PreferenceCategory header = new PreferenceCategory(this);
+		header.setTitle(R.string.pref_header_general);
+		getPreferenceScreen().addPreference(header);
 		addPreferencesFromResource(R.xml.pref_general);
 
-		PreferenceCategory header = new PreferenceCategory(this);
+		header = new PreferenceCategory(this);
 		header.setTitle(R.string.pref_header_display);
 		getPreferenceScreen().addPreference(header);
 		addPreferencesFromResource(R.xml.pref_display);
