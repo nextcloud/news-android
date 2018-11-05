@@ -324,9 +324,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 				int index = listPreference.findIndexOfValue(stringValue);
 
 				// Set the summary to reflect the new value.
-				preference
-						.setSummary(index >= 0 ? listPreference.getEntries()[index]
-								: null);
+				preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
+
+				// only enable black-bg setting if light or auto theme is selected
+				if(preference.getKey().equals("sp_app_theme")) {
+					if (value.equals("1")) 	// value "1" means Light theme
+						preference.getPreferenceManager().findPreference("cb_oled_mode").setEnabled(false);
+					else
+						preference.getPreferenceManager().findPreference("cb_oled_mode").setEnabled(true);
+				}
+
 			} else {
 				String key = preference.getKey();
 				// For all other preferences, set the summary to the value's
