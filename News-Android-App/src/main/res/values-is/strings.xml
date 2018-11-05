@@ -151,7 +151,6 @@
     <string name="podcast_playback_speed_dialog_title">Hraði afspilunar</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Birting</string>
-    <string name="pref_title_app_theme">Næturhamur</string>
     <string name="pref_title_feed_list_layout">Framsetning streymislista</string>
     <string name="pref_title_font_size">Leturstærð</string>
     <string name="pref_display_browser">Vafri</string>

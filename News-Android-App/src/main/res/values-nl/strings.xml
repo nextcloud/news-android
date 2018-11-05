@@ -157,7 +157,6 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Weergeven</string>
-    <string name="pref_title_app_theme">Nachtmodus</string>
     <string name="pref_title_feed_list_layout">Feed lijst overzicht</string>
     <string name="pref_title_font_size">Fontgrootte</string>
     <string name="pref_display_browser">Browser</string>

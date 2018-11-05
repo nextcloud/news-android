@@ -157,7 +157,6 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Schermo</string>
-    <string name="pref_title_app_theme">Modalità notte</string>
     <string name="pref_title_feed_list_layout">Struttura elenco fonti</string>
     <string name="pref_title_font_size">Dimensiine carattere</string>
     <string name="pref_display_browser">Browser</string>

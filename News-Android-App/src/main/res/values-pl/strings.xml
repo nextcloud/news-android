@@ -128,7 +128,6 @@
     <string name="podcast_playback_speed_dialog_title">Prędkość odtwarzania</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Wygląd</string>
-    <string name="pref_title_app_theme">Tryb Nocny</string>
     <string name="pref_title_feed_list_layout">Układ listy kanałów</string>
     <string name="pref_title_font_size">Rozmiar czcionki</string>
     <string name="pref_display_browser">Przeglądarka</string>

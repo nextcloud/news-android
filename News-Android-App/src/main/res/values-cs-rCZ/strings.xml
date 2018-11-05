@@ -161,7 +161,6 @@
     <string name="podcast_playback_speed_dialog_title">Rychlost přehrávání</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazení</string>
-    <string name="pref_title_app_theme">Noční režim</string>
     <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
     <string name="pref_title_font_size">Velikost písmen</string>
     <string name="pref_display_browser">Prohlížeč</string>

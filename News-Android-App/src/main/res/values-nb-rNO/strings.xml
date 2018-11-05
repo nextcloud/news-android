@@ -154,7 +154,6 @@
     <string name="podcast_playback_speed_dialog_title">Avspillingshastighet</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
-    <string name="pref_title_app_theme">Nattmodus</string>
     <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
     <string name="pref_title_font_size">Font størrelse</string>
     <string name="pref_display_browser">Nettleser</string>
