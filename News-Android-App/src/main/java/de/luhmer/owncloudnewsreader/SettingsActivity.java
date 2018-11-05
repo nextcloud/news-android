@@ -327,11 +327,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 				preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
 
 				// only enable black-bg setting if light or auto theme is selected
-				if(preference.getKey().equals(SP_APP_THEME)) {
+				if(SP_APP_THEME.equals(preference.getKey())) {
 					if (value.equals("1")) 	// value "1" means Light theme
-						preference.getPreferenceManager().findPreference("cb_oled_mode").setEnabled(false);
+						preference.getPreferenceManager().findPreference(CB_OLED_MODE).setEnabled(false);
 					else
-						preference.getPreferenceManager().findPreference("cb_oled_mode").setEnabled(true);
+						preference.getPreferenceManager().findPreference(CB_OLED_MODE).setEnabled(true);
 				}
 
 			} else {
