@@ -159,6 +159,7 @@
     <string name="podcast_playback_speed_dialog_title">Atkūrimo greitis</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Ekranas</string>
+    <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Kanalų sąrašo išdėstymas</string>
     <string name="pref_title_font_size">Šrifto dydis</string>
     <string name="pref_display_browser">Naršyklė</string>
