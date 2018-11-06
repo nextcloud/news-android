@@ -191,7 +191,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		// use the older PreferenceActivity APIs.
 
 		// This is to initialize the settings panel to allow adding a first-section header (below)
-		// without running into stupid exceptions
+		// without running into stupid exceptions (otherwise getPreferenceScreen() will return null)
 		addPreferencesFromResource(R.xml.pref_empty);
 
 		// Add 'general' preferences.
