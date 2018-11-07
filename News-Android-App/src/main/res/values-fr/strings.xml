@@ -157,6 +157,7 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Affichage</string>
+    <string name="pref_title_app_theme">Thème</string>
     <string name="pref_title_feed_list_layout">Disposition de la liste des flux</string>
     <string name="pref_title_font_size">Taille des caractères</string>
     <string name="pref_display_browser">Navigateur</string>
