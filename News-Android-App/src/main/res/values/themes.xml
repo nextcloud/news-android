@@ -3,6 +3,10 @@
 
     <style name="AppTheme" parent="AppTheme.Base"/>
 
+    <style name="SplashTheme" parent="AppTheme.Base">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <style name="AppThemeOLED" parent="AppTheme.Base">
         <!-- for settings activity -->
         <item name="android:textColor">@android:color/white</item>
@@ -14,8 +18,8 @@
         <item name="primaryTextColor">@android:color/white</item>
     </style>
 
+
     <style name="AppTheme.Base" parent="Theme.AppCompat.DayNight">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

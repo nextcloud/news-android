@@ -140,16 +140,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         ThemeChooser.getInstance(this).afterOnCreate(this);
 
         setupActionBar();
-
-        // Set background accordingly to theme
-        int backgroundColor = getResources().getColor(R.color.settingsWindowBackground);
-        getWindow().getDecorView().setBackgroundColor(backgroundColor);
-
-        // Set background of category pane on tablets
-        if(isXLargeTablet(this)) {
-            backgroundColor = getResources().getColor(R.color.settingsWindowCategoryPaneBackground);
-            findViewById(android.R.id.list).setBackgroundColor(backgroundColor);
-        }
     }
 
 	@Override
