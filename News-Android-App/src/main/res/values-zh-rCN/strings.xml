@@ -24,6 +24,8 @@
     <string name="menu_StartImageCaching">下载图片</string>
     <string name="menu_downloadMoreItems">下载更多内容</string>
 
+    <string name="tv_showing_cached_version">显示缓存的版本</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">已加星标</string>
     <string name="action_read">阅读</string>
@@ -68,9 +70,11 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">删除订阅</string>
     <string name="action_feed_rename">重命名订阅</string>
+    <string name="action_feed_move">移动 Feed</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重命名</string>
     <string name="confirm_feed_remove">您真的要删除此订阅吗？本操作不可恢复！</string>
+    <string name="feed_move_list_description">选择 Feed 移动到哪个文件夹</string>
     <string name="move_feed_root_folder">根目录</string>
 
     <!-- Strings related to login -->
@@ -142,9 +146,14 @@
     <string name="no_podcast_selected">无 Podcast 被选中</string>
     <string name="no_chapters_available">无可用章节</string>
     <string name="podcast_playback_speed_dialog_title">播放速度</string>
+    <string name="notification_downloading_podcast_title">正在下载播客</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">显示</string>
+    <string name="pref_title_app_theme">主题</string>
     <string name="pref_title_feed_list_layout">源清单布局</string>
+    <string name="pref_title_font_size">字号</string>
     <string name="pref_display_browser">浏览器</string>
 
 
@@ -155,9 +164,22 @@
     <string name="pref_display_apptheme_light">浅色</string>
     <string name="pref_display_apptheme_dark">深色</string>
 
+    <string name="pref_oled_mode">黑色背景</string>
     <string name="pref_display_browser_cct">内置 Chrome 自定义分页</string>
     <string name="pref_display_browser_built_in">内置浏览器</string>
     <string name="pref_display_browser_external">外部浏览器</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">缩略图</string>
+    <string name="pref_display_feed_list_layout_simple_text">简述文本</string>
+    <string name="pref_display_feed_list_layout_full_text">完整文本</string>
+    <string name="pref_display_feed_list_layout_web_layout">页面布局</string>
+    <string name="pref_display_feed_list_layout_card_view">卡片视图</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">小</string>
+    <string name="pref_display_font_size_d">默认</string>
+    <string name="pref_display_font_size_l">大</string>
+    <string name="pref_display_font_size_xl">超大</string>
 
     <string name="content_desc_play">播放</string>
     <string name="content_desc_pause">暂停</string>

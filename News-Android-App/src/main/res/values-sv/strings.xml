@@ -60,6 +60,7 @@
     <string name="action_link_open">Öppna länk i webbläsaren</string>
     <string name="action_link_copy">Kopiera länk</string>
     <string name="toast_img_download_wait">Laddar ner... var god vänta</string>
+    <string name="toast_img_saved">Bild sparad</string>
     <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
     <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
     <string name="error_download_failed">Misslyckad nedladdning</string>
@@ -82,6 +83,9 @@
     <string name="login_progress_signing_in">Logga in...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Detta fält obligatoriskt</string>
+    <string name="error_invalid_url">Felaktig webbadress</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Importera Konto</string>
 
@@ -130,6 +134,7 @@
     <string name="no_chapters_available">Inga kapitel tillgängliga.</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Visa</string>
+    <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
     <string name="pref_display_browser">Webbläsare</string>
 
