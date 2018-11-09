@@ -8,8 +8,7 @@
     android:gravity="bottom"
     sothree:umanoPanelHeight="68dp"
     sothree:umanoParallaxOffset="100dp"
-    sothree:umanoShadowHeight="4dp"
-    android:background="?attr/rssItemListBackground"> <!-- sothree:dragView="@+id/name" -->
+    sothree:umanoShadowHeight="4dp"> <!-- sothree:dragView="@+id/name" -->
 
         <android.support.design.widget.CoordinatorLayout
             android:id="@+id/coordinator_layout"
