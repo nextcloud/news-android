@@ -168,8 +168,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             PreferenceManager.setDefaultValues(this, R.xml.pref_notification, true);
         }
 
-        setTheme(R.style.AppTheme);
-		super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newsreader);
 
 		ButterKnife.bind(this);
