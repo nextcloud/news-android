@@ -8,6 +8,8 @@
     </style>
 
     <style name="AppThemeOLED" parent="AppTheme.Base">
+        <item name="android:windowBackground">@android:color/black</item>
+
         <!-- for settings activity -->
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorSecondary">@color/material_grey_500</item>
