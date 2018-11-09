@@ -2,8 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="app_drawer_feed_list_background_color">#ededed</color>
-    <color name="settingsWindowBackground">@android:color/white</color>
-    <color name="settingsWindowCategoryPaneBackground">@color/material_grey_100</color>
 
     <color name="primaryTextColor">@android:color/black</color>
 
@@ -17,7 +15,7 @@
     <color name="options_menu_item_text">@color/options_menu_item</color>
 
     <color name="text_medium_emphasis">#a0000000</color>
-   
+
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#eeeeee</color>
     <color name="news_detail_background_color_oled">#eeeeee</color>

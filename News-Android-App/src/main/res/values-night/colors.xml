@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="app_drawer_feed_list_background_color">#383d43</color>
-    <color name="settingsWindowBackground">@color/material_grey_900</color>
-    <color name="settingsWindowCategoryPaneBackground">@color/material_grey_800</color>
 
     <color name="primaryTextColor">@android:color/white</color>
 
