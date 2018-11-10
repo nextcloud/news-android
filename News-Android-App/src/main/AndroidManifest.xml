@@ -28,7 +28,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/SplashTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:label, android:theme, android:name">
         <activity
