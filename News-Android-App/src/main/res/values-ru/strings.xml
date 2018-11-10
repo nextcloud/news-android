@@ -62,7 +62,7 @@
     <string name="action_img_download">Скачать изображение</string>
     <string name="action_img_sharelink">Поделиться ссылкой картинки</string>
     <string name="action_img_open">Открыть картинку в браузере</string>
-    <string name="action_img_copylink">Скопировать ссылку картинки</string>
+    <string name="action_img_copylink">Копировать ссылку на изображение</string>
     <string name="action_link_share">Поделиться ссылкой</string>
     <string name="action_link_open">Открыть ссылку в браузере</string>
     <string name="action_link_copy">Копировать ссылку</string>

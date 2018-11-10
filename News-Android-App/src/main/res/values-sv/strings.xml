@@ -7,6 +7,7 @@
     <string name="empty_view_content">Inga objekt här</string>
     <string name="toast_GettingMoreItems">Nedladdning av fler objekt startade... Var god vänta.</string>
     <string name="no_wifi_available">Ingen WIFI ansluten</string>
+    <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
     <string name="current_version">Du använder Version %s</string>
     <string name="widget_header">ownCloud nyheter</string>
     <plurals name="message_bar_new_articles_available">
@@ -122,6 +123,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
     <string name="pref_title_OpenInBrowserDirectly">Hoppa över detaljerad vy och öppna artikeln i webbläsare</string>
 
+    <string name="dialog_feature_not_available">Den här funktionen är inte tillgänglig i den här (öppen källkod) versionen av den här appen. Om du vill använda den här funktionen behöver du hämta appen från GitHub-förrådet eller hämta appen från Google Play-butiken.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
     <string name="mtm_decision_always">Alltid</string>
@@ -171,7 +175,12 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fel</string>
     <string name="login_dialog_text_something_went_wrong">Något gick fel :(</string>
+    <string name="login_dialog_text_zero_version_code">Webbnyhetsappen returnerade Version \"0\". Ta en titt på följande felrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Den här app-versionen är inte kompatibel med din Nextcloud News-app. Vänligen uppgradera nyhetsappen och appframework.</string>
     <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
+    <string name="login_dialog_text_security_warning">Du använder inte HTTPS, vilket uppmuntras starkt. En angripare kan fånga upp din trafik och få tillgång till viss känslig data (t.ex. ditt lösenord).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synk</string>
     <string name="pref_title_clearCache">Rensa cache</string>
