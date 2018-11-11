@@ -50,7 +50,6 @@
             android:name=".SettingsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".DownloadImagesActivity" />
         <activity
             android:name=".SyncIntervalSelectorActivity"
             android:label="@string/title_activity_sync_interval_selector" />

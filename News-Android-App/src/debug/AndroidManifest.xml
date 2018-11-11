@@ -40,9 +40,6 @@
             android:label="@string/title_activity_settings" >
         </activity>
 
-        <activity android:name=".DownloadImagesActivity">
-        </activity>
-
         <activity
             android:name=".SyncIntervalSelectorActivity"
             android:label="@string/title_activity_sync_interval_selector" >
