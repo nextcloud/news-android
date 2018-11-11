@@ -84,6 +84,22 @@ public class NextcloudNotificationManager {
         return mNotificationDownloadImages;
     }
 
+    public static void showNotificationSaveSingleCachedImageService(Context context, String channelId, File file) {
+        NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
+
+        //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(file));
+        //PendingIntent contentIntent = PendingIntent.getActivity(context.getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+        NotificationCompat.Builder mNotificationDownloadImages = new NotificationCompat.Builder(context, channelId)
+                .setContentTitle(context.getResources().getString(R.string.app_name))
+                .setContentText("Saved image to: " + file.getPath())
+                .setSmallIcon(R.drawable.ic_notification);
+                //.setContentIntent(contentIntent);
+
+
+        notificationManager.notify(1235, mNotificationDownloadImages.build());
+    }
+
     public static NotificationCompat.Builder buildNotificationDownloadWebPageService(Context context, String channelId) {
         getNotificationManagerAndCreateChannel(context, channelId);
 

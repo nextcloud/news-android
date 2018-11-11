@@ -32,12 +32,16 @@ import android.widget.Toast;
 import net.rdrei.android.dirchooser.DirectoryChooserConfig;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 
 import static android.support.v4.content.PermissionChecker.checkSelfPermission;
@@ -107,7 +111,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                     mMenuItems.put(getString(R.string.action_img_download), new MenuActionLongClick() {
                         @Override
                         public void execute() {
-                            if(haveStoragePermission()) {
+                            if (haveStoragePermission()) {
                                 downloadImage(mImageUrl);
                             }
                         }
@@ -134,8 +138,22 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                             copyToClipboard(mDialogTitle, mImageUrl.toString());
                         }
                     });
+                } else if (mImageUrl.toString().startsWith("file:///")) {
+                    mMenuItems.put(getString(R.string.action_img_download), new MenuActionLongClick() {
+                        @Override
+                        public void execute() {
+                            if (haveStoragePermission()) {
+                                storeCachedImage(mImageUrl.getPath());
+                            }
+                        }
+
+                        public void executeLongClick() {
+                            changeDownloadDir();
+                        }
+                    });
                 } else {
-                    mDialogTitle = "Cached image";
+                    mDialogTitle = "Unknown Type";
+                    mDialogText = "The URL type of image url: \"" + mImageUrl.toString() + "\" is unknown, please report this issue.";
                 }
                 break;
             case URL:
@@ -309,6 +327,25 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             //request.setVisibleInDownloadsUi(false);
             //request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
             downloadID = downloadManager.enqueue(request);
+            getDialog().hide();
+        } else {
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
+            dismiss();
+        }
+    }
+
+
+    private void storeCachedImage(String path) {
+        final String CHANNEL_ID = "Store cached Image";
+        if(isExternalStorageWritable()) {
+            String filename = path.substring(path.lastIndexOf('/') + 1, path.length());
+            File dstPath = new File(getDownloadDir(filename).getPath());
+            try {
+                NewsFileUtils.copyFile(new FileInputStream(path), new FileOutputStream(dstPath));
+            } catch (IOException e) {
+                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+            NextcloudNotificationManager.showNotificationSaveSingleCachedImageService(getActivity().getApplicationContext(), CHANNEL_ID, dstPath);
             getDialog().hide();
         } else {
             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
