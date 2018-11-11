@@ -21,6 +21,7 @@ import android.widget.ListView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 
 public class SyncIntervalSelectorActivity extends AppCompatActivity {
@@ -32,7 +33,10 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeChooser.getInstance(this).chooseTheme(this);
         super.onCreate(savedInstanceState);
+        ThemeChooser.getInstance(this).afterOnCreate(this);
+
         setContentView(R.layout.activity_sync_interval_selector);
 
         ButterKnife.bind(this);
