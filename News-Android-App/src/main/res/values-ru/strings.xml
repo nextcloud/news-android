@@ -27,6 +27,8 @@
     <string name="menu_StartImageCaching">Скачать изображения</string>
     <string name="menu_downloadMoreItems">Скачать ещё</string>
 
+    <string name="tv_showing_cached_version">Показана версия из кэша</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Избранное</string>
     <string name="action_read">Читать</string>
@@ -39,6 +41,7 @@
     <string name="action_sync_settings">Настройки синхронизации</string>
     <string name="action_add_new_feed">Добавить новую ленту</string>
     <string name="action_textToSpeech">Зачитать вслух</string>
+    <string name="action_download_articles_offline">Сохранить статьи для автономного доступа</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">У Вас есть %d новый элемент</item>
         <item quantity="few">У Вас есть %d новых элемента</item>
@@ -145,9 +148,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
     <string name="pref_title_OpenInBrowserDirectly">Пропустить детальный обзор и открыть статью в браузере</string>
 
-    <string name="dialog_feature_not_available">Эта возможность недоступна в установленной (open-source) версии приложения. Для использования этой возможности загрузите приложение из репозитория GitHub или установите его из Google Play Маркет.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
     <string name="mtm_decision_always">Всегда</string>
@@ -159,9 +159,14 @@
     <string name="no_podcast_selected">Нет выбранных подкастов</string>
     <string name="no_chapters_available">Нет доступных глав</string>
     <string name="podcast_playback_speed_dialog_title">Скорость воспроизведения</string>
+    <string name="notification_downloading_podcast_title">Сохранение подкастов</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Экран</string>
+    <string name="pref_title_app_theme">Стиль оформления</string>
     <string name="pref_title_feed_list_layout">Макет списка лент</string>
+    <string name="pref_title_font_size">Размер шрифта</string>
     <string name="pref_display_browser">Браузер</string>
 
 
@@ -169,12 +174,28 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Значки действия (подробный просмотр)</string>
 
+    <string name="pref_display_apptheme_auto">Светлый / тёмный (в зависимости от времени суток)</string>
     <string name="pref_display_apptheme_light">Светлая</string>
     <string name="pref_display_apptheme_dark">Тёмная</string>
+
+    <string name="pref_oled_mode">Чёрный фон</string>
+    <string name="pref_oled_mode_summary">Для тёмного стиля оформления на экранах OLED</string>
 
     <string name="pref_display_browser_cct">Встроенные настраиваемые ярлыки Chrome</string>
     <string name="pref_display_browser_built_in">Встроенный браузер</string>
     <string name="pref_display_browser_external">Сторонний браузер</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Миниатюры</string>
+    <string name="pref_display_feed_list_layout_simple_text">Простой текст</string>
+    <string name="pref_display_feed_list_layout_full_text">Полный текст</string>
+    <string name="pref_display_feed_list_layout_web_layout">Веб-макет</string>
+    <string name="pref_display_feed_list_layout_card_view">Просмотр карточек</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Маленький</string>
+    <string name="pref_display_font_size_d">По умолчанию</string>
+    <string name="pref_display_font_size_l">Крупный</string>
+    <string name="pref_display_font_size_xl">Очень большой</string>
 
     <string name="content_desc_play">воспроизвести</string>
     <string name="content_desc_pause">пауза</string>

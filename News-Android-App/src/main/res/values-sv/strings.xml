@@ -123,9 +123,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
     <string name="pref_title_OpenInBrowserDirectly">Hoppa över detaljerad vy och öppna artikeln i webbläsare</string>
 
-    <string name="dialog_feature_not_available">Den här funktionen är inte tillgänglig i den här (öppen källkod) versionen av den här appen. Om du vill använda den här funktionen behöver du hämta appen från GitHub-förrådet eller hämta appen från Google Play-butiken.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
     <string name="mtm_decision_always">Alltid</string>

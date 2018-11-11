@@ -110,9 +110,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">סימון כנקרא בזמן הגלילה</string>
     <string name="pref_title_OpenInBrowserDirectly">לדלג על התצוגה המפורטת ולפתוח את הכתבה בדפדפן</string>
 
-    <string name="dialog_feature_not_available">תכונה זו אינה זמינה בגרסה זו של היישומון (קוד פתוח). כדי להשתמש בתכונה הזאת עליך להוריד את היישומון מהמאגר של GitHub או להוריד את היישומון מחנות היישומונים של Google.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">לקבל אישור בלתי ידוע?</string>
     <string name="mtm_decision_always">תמיד</string>

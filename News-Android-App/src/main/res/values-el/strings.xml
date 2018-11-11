@@ -112,9 +112,6 @@
     <string name="pref_title_DisableHostnameVerification">Απενεργοποίηση επαλήθευσης Ονόματος Υπολογιστή</string>
     <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
-    <string name="dialog_feature_not_available">Αυτή η λειτουργία δεν είναι διαθέσιμη σε αυτή την (Open Source) έκδοση αυτής της εφαρμογής. Αν θέλετε να χρησιμοποιήσετε αυτή την λειτουργία παρακαλούμε κατεβάστε την εφαρμογή από το αποθετήριο Github ή από το Google PlayStore.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Αποδοχή Άγνωστων Πιστοποιητικών;</string>
     <string name="mtm_decision_always">Πάντα</string>
