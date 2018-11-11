@@ -138,9 +138,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu lors du défilement</string>
     <string name="pref_title_OpenInBrowserDirectly">Ignorer la vue détaillée et ouvrir dans un navigateur</string>
 
-    <string name="dialog_feature_not_available">Cette fonctionnalité n\'est pas disponible dans cette version (open-source) de cette application. Si vous souhaitez utiliser cette fonctionnalité, veuillez télécharger cette application depuis le repository Github ou depuis le Google PlayStore.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accepter les certificats non sûrs ?</string>
     <string name="mtm_decision_always">Toujours</string>

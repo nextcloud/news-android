@@ -138,9 +138,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
     <string name="pref_title_OpenInBrowserDirectly">Dropp detaljert visning og åpne artikkel i nettleser</string>
 
-    <string name="dialog_feature_not_available">Denne funksjonen er ikke tilgjengelig i denne versjonen av programmet. Hvis du vil benytte funksjonen last den ned fra GitHub eller Google Play butikken.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
     <string name="mtm_decision_always">Alltid</string>

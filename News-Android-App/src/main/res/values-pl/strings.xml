@@ -112,9 +112,6 @@
     <string name="pref_title_DisableHostnameVerification">Wyłącz weryfikację nazwy hosta</string>
     <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
-    <string name="dialog_feature_not_available">Ta funkcja nie jest dostępna w wersji open-source tej aplikacji. Jeśli chcesz skorzystać z tej funkcji, pobierz aplikację z repozytorium GitHub lub pobierz aplikację z Google PlayStore.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Akceptować nieznane certyfikaty?</string>
     <string name="mtm_decision_always">Zawsze</string>

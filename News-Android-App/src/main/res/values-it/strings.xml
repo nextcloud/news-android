@@ -138,9 +138,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Segna come letto durante lo scorrimento</string>
     <string name="pref_title_OpenInBrowserDirectly">Salta la vista dettagliata e apri l\'articolo nel browser</string>
 
-    <string name="dialog_feature_not_available">Questa funzionalità non è disponibile in questa versione (open-source) dell\'applicazione. Se vuoi utilizzare questa funzionalità, scarica l\'applicazione dal repository GitHub o dal Google PlayStore.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accettare un certificato sconosciuto?</string>
     <string name="mtm_decision_always">Sempre</string>

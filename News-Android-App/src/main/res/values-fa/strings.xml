@@ -112,9 +112,6 @@
     <string name="pref_title_DisableHostnameVerification">غیر فعال کردن تاییدیه hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">کنترل با دکمه های درجه صدا</string>
     <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری در حال پیمایش به عنوان خوانده شده </string>
-    <string name="dialog_feature_not_available">این امکان در این نسخه (متن باز) این برنامک در دسترس نیست. اگر می خواهید از این امکان استفاده کنید، لطفاً برنامک را از مخزن GitHub یا از Google PlayStore دانلود کنید.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">آیا مجوزهای ناشناخته را می پیذیریذ؟</string>
     <string name="mtm_decision_always">همیشه</string>

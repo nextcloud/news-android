@@ -114,9 +114,6 @@
     <string name="pref_title_DisableHostnameVerification">ჰოსტის სახელის ვერიფიკაციის გათიშვა</string>
     <string name="pref_title_NavigateWithVolumeButtons">აწარმოეთ ნაციგაცია ხმის ღილაკებით</string>
     <string name="pref_title_MarkAsReadWhileScrolling">წაკითხულად მონიშვნა გადახვევისას</string>
-    <string name="dialog_feature_not_available">ეს ფუნქცია არაა ხელმისაწვდომი აპლიკაციის ამ (ღია) ვერსიაში. თუ გსურთ ამ ფუნქციით სარგებლობა, გთხოვთ ჩამოტვირთოთ აპლიკაცია GitHub საცავიდან ან Google PlayStore-იდან.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">მივიღოთ ამოუცნობი სერტიფიკატი?</string>
     <string name="mtm_decision_always">ყოველთვის</string>

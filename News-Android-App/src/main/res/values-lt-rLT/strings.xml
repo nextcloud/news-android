@@ -143,9 +143,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Žymėti perskaitytu slenkant</string>
     <string name="pref_title_OpenInBrowserDirectly">Praleisti išsamų atvaizdavimą ir atidaryti straipsnį naršyklėje.</string>
 
-    <string name="dialog_feature_not_available">Ši funkcija negalima šioje programos versijoje. Jei norite naudoti šią funkciją, atsisiųskite programą iš \"GitHub\" saugyklos arba  iš \"Google PlayStore\".</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Priimti nežinomą sertifikatą?</string>
     <string name="mtm_decision_always">Visada</string>

@@ -126,9 +126,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído al desplazar</string>
     <string name="pref_title_OpenInBrowserDirectly">Omitir la vista detallada y abrir el artículo en el navegador</string>
 
-    <string name="dialog_feature_not_available">Esta funcionalidad no está dispoinible en esta versión (de código abierto) de esta aplicación. Si quieres usar esta funcionalidad por favor descarga la aplicación desde el Repositorio de GitHub o descarga la Aplicación desde la PlayStore de Google.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">¿Aceptar certificados desconocidos?</string>
     <string name="mtm_decision_always">Siempre</string>

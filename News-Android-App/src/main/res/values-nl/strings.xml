@@ -138,9 +138,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
     <string name="pref_title_OpenInBrowserDirectly">Sla detailvoorbeeld over en open artikel in browser</string>
 
-    <string name="dialog_feature_not_available">Deze feature is niet beschikbaar in deze (open-source) versie van deze app. Indien je deze feature wilt gebruiken, download dan alsjeblieft de app van de GitHub Repository of de Google PlayStore.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Onbekend certificaat accepteren?</string>
     <string name="mtm_decision_always">Altijd</string>
