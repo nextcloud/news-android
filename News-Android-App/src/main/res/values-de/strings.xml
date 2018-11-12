@@ -138,6 +138,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Beim Bildlauf als gelesen markieren</string>
     <string name="pref_title_OpenInBrowserDirectly">Detailansicht überspringen und Artikel in Browser öffnen</string>
 
+    <string name="dialog_feature_not_available">Diese Funktion ist in dieser (Open-Source-)Version dieser App nicht verfügbar. Wenn Sie diese Funktion nutzen möchten, laden Sie bitte die App aus dem GitHub-Repository oder aus dem Google Play Store herunter.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Unbekanntes Zertifikat akzeptieren?</string>
     <string name="mtm_decision_always">Immer</string>
