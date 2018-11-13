@@ -27,6 +27,8 @@
     <string name="menu_StartImageCaching">Stáhnout obrázky</string>
     <string name="menu_downloadMoreItems">Stáhnout další položky</string>
 
+    <string name="tv_showing_cached_version">Zobrazuje se verze z mezipaměti</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">S hvězdičkou</string>
     <string name="action_read">Číst</string>
@@ -39,6 +41,7 @@
     <string name="action_sync_settings">Nastavení synchronizace</string>
     <string name="action_add_new_feed">Přidat nový kanál</string>
     <string name="action_textToSpeech">Přečíst</string>
+    <string name="action_download_articles_offline">Stáhnout články pro čtení bez připojení</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Máte %d novou nepřečtenou položku</item>
         <item quantity="few">Máte %d nové nepřečtené položky</item>
@@ -145,6 +148,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Rolováním stránky označit jako přečtené</string>
     <string name="pref_title_OpenInBrowserDirectly">Přeskočit podrobné zobrazení a otevřít článek v prohlížeči</string>
 
+    <string name="dialog_feature_not_available">Tato funkce není k dispozici v této (open source) variantě aplikace. Pokud chcete tuto funkci používat, stáhněte si aplikaci z GitHub repozitáře nebo z Google Play Store.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>
     <string name="mtm_decision_always">Vždy</string>
@@ -156,8 +162,12 @@
     <string name="no_podcast_selected">Nebyl vybrán žádný podcast</string>
     <string name="no_chapters_available">Žádné dostupné kapitoly</string>
     <string name="podcast_playback_speed_dialog_title">Rychlost přehrávání</string>
+    <string name="notification_downloading_podcast_title">Stahuje se podcast</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazení</string>
+    <string name="pref_title_app_theme">Motiv vzhledu</string>
     <string name="pref_title_feed_list_layout">Rozvržení seznamu kanálů</string>
     <string name="pref_title_font_size">Velikost písmen</string>
     <string name="pref_display_browser">Prohlížeč</string>
@@ -177,6 +187,12 @@
     <string name="pref_display_browser_cct">Vestavěné Chrome vlastní karty</string>
     <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
     <string name="pref_display_browser_external">Vnější prohlížeč</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Náhledy</string>
+    <string name="pref_display_feed_list_layout_simple_text">Jednoduchý text</string>
+    <string name="pref_display_feed_list_layout_full_text">Plný text</string>
+    <string name="pref_display_feed_list_layout_web_layout">Webové rozvržení</string>
+    <string name="pref_display_feed_list_layout_card_view">Pohled s kartami</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Malé</string>

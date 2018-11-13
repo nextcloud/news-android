@@ -37,7 +37,7 @@
     <string name="action_Share">Поделиться</string>
     <string name="action_login">Параметры сервера</string>
     <string name="action_save">Сохранить</string>
-    <string name="action_settings">Настройки</string>
+    <string name="action_settings">Параметры</string>
     <string name="action_sync_settings">Настройки синхронизации</string>
     <string name="action_add_new_feed">Добавить новую ленту</string>
     <string name="action_textToSpeech">Зачитать вслух</string>

@@ -25,6 +25,8 @@
     <string name="menu_StartImageCaching">Sækja myndir</string>
     <string name="menu_downloadMoreItems">Sækja fleiri atriði</string>
 
+    <string name="tv_showing_cached_version">Sýna útgáfu í skyndiminni</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Stjörnumerkt</string>
     <string name="action_read">Lesa</string>
@@ -37,6 +39,7 @@
     <string name="action_sync_settings">Valkostir samstillingar</string>
     <string name="action_add_new_feed">Bæta við nýjum fréttastraum</string>
     <string name="action_textToSpeech">Lesa upphátt</string>
+    <string name="action_download_articles_offline">Sækja ónettengdar greinar</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Þú átt %d nýtt ólesið atriði</item>
         <item quantity="other">Þú átt %d ný ólesin atriði</item>
@@ -135,6 +138,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merkja sem lesið við skrun</string>
     <string name="pref_title_OpenInBrowserDirectly">Sleppa ítarlegri sýn og opna greinina í vafranum</string>
 
+    <string name="dialog_feature_not_available">Þessi eiginleiki er ekki tiltækur í þessari (frjálsu-opnu/open-source) útgáfu forritsins. Ef þú ætlar að nota þennan eiginleika ættirðu að sækja forritið í GitHub hugbúnaðarsafnið eða ná í forritið úr Google Play Store safninu.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Samþykkja óþekkt skilríki?</string>
     <string name="mtm_decision_always">Alltaf</string>
@@ -146,8 +152,12 @@
     <string name="no_podcast_selected">Ekkert hlaðvarp valið</string>
     <string name="no_chapters_available">Engir kaflar tiltækir</string>
     <string name="podcast_playback_speed_dialog_title">Hraði afspilunar</string>
+    <string name="notification_downloading_podcast_title">Sæki hlaðvarp</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Birting</string>
+    <string name="pref_title_app_theme">Þema</string>
     <string name="pref_title_feed_list_layout">Framsetning streymislista</string>
     <string name="pref_title_font_size">Leturstærð</string>
     <string name="pref_display_browser">Vafri</string>
