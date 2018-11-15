@@ -138,6 +138,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu lors du défilement</string>
     <string name="pref_title_OpenInBrowserDirectly">Ignorer la vue détaillée et ouvrir dans un navigateur</string>
 
+    <string name="dialog_feature_not_available">Cette fonctionnalité n\'est pas disponible dans cette version (open-source) de cette application. Si vous souhaitez utiliser cette fonctionnalité, veuillez télécharger l\'application depuis le dépôt GitHub ou télécharger l\'application depuis le Google Play Store.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accepter les certificats non sûrs ?</string>
     <string name="mtm_decision_always">Toujours</string>
@@ -176,6 +179,11 @@
     <string name="pref_display_browser_external">Navigateur externe</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Vignettes</string>
+    <string name="pref_display_feed_list_layout_simple_text">Texte simple</string>
+    <string name="pref_display_feed_list_layout_full_text">Texte intégral</string>
+    <string name="pref_display_feed_list_layout_web_layout">Mise en page Web</string>
+    <string name="pref_display_feed_list_layout_card_view">Vue carte</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Petit</string>
     <string name="pref_display_font_size_d">Par défaut</string>
