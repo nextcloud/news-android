@@ -2,69 +2,78 @@
 <resources>
 
     <string name="auto_sync_string">همگام‌سازی خودکار</string>
-    <string name="title_activity_sync_interval_selector">انتخاب کننده فاصله زمان بین هماهنگ سازی</string>
-    <string name="title_activity_news_detail">فعالیت جزئیات اخبار</string>
-    <string name="empty_view_content">هیچ آیتمی اینجا نیست.</string>
-    <string name="no_wifi_available">هیچ WiFi متصل نیست.</string>
-    <string name="current_version">شما از نسخه %s استفاده می کنید.</string>
-    <string name="widget_header">اخبار ownCloud</string>
+    <string name="title_activity_sync_interval_selector">گزینشگر وقفهٔ همگام سازی</string>
+    <string name="title_activity_news_detail">فعالیت جزییات اخبار</string>
+    <string name="empty_view_content">موردی وجود ندارد</string>
+    <string name="toast_GettingMoreItems">بارگیری موارد بیش‌تر آغاز شد… صبر لطفاً </string>
+    <string name="no_wifi_available">وای‌فایی وصل نیست</string>
+    <string name="do_you_want_to_download_without_wifi">می‌خواهید تصاویر بدون اتصال وای‌فای بارگیری شوند؟</string>
+    <string name="current_version">از نگارش %s استفاده می‌کنید</string>
+    <string name="widget_header">اخبار نکست‌کلود</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d مورد جدید در دسترس است</item>
         <item quantity="other">%d مورد جدید در دسترس است</item>
     </plurals>
-    <string name="message_bar_reload">بازنگری</string>
-    <string name="allUnreadFeeds">تمام آیتم های خوانده نشده</string>
-    <string name="starredFeeds">آیتم های ستاره دار</string>
-    <string name="title_activity_new_feed">اضافه کردن فید جدید</string>
+    <string name="message_bar_reload">بار کردن دوباره</string>
+    <string name="allUnreadFeeds">تمام موارد خوانده‌نشده</string>
+    <string name="starredFeeds">موارد ستاره‌دار</string>
+    <string name="title_activity_new_feed">افزودن خوراک جدید</string>
 
-    <string name="menu_update">بازنمایی</string>
+    <string name="menu_update">تازه‌سازی</string>
     <string name="menu_About_Changelog">درباره / تغییرات</string>
-    <string name="menu_markAllAsRead">علامت همه به عنوان خوانده شده</string>
-    <string name="menu_StartImageCaching">دانلود تصاویر</string>
-    <string name="menu_downloadMoreItems">دانلود آیتم های بیشتر</string>
+    <string name="menu_markAllAsRead">علامت همه به عنوان خوانده‌شده</string>
+    <string name="menu_StartImageCaching">بارگیری تصاویر</string>
+    <string name="menu_downloadMoreItems">بارگیری موارد بیش‌تر</string>
+
+    <string name="tv_showing_cached_version">در حال نمایش نگارش ذخیره‌شده</string>
 
     <!-- Action Bar Items -->
-    <string name="action_starred">ستاره دار</string>
-    <string name="action_read">بخوانید</string>
-    <string name="action_playPodacst">اجرای پادکست</string>
-    <string name="action_Share">اشتراک‌گذاری</string>
-    <string name="action_login">تنظیمات سرور</string>
+    <string name="action_starred">ستاره‌دار</string>
+    <string name="action_read">خواندن</string>
+    <string name="action_playPodacst">پخش پادکست</string>
+    <string name="action_openInBrowser">گشودن در مرورگر وب</string>
+    <string name="action_Share">هم‌رسانی</string>
+    <string name="action_login">تنظیمات کارساز</string>
     <string name="action_save">ذخیره</string>
     <string name="action_settings">تنظیمات</string>
-    <string name="action_sync_settings">هماهنگ سازی تنظیمات</string>
-    <string name="action_add_new_feed">اضافه کردن فید جدید</string>
-    <string name="action_textToSpeech">خواندن اطلاعات</string>
+    <string name="action_sync_settings">تنظییمات همگام‌سازی</string>
+    <string name="action_add_new_feed">افزودن خوراک جدید</string>
+    <string name="action_textToSpeech">بازخوانی</string>
+    <string name="action_download_articles_offline">بارگیری برون‌خط مقاله‌ها</string>
     <plurals name="notification_new_items_ticker">
-        <item quantity="one">شما %d آیتم خوانده نشده دارید</item>
-        <item quantity="other">شما %d آیتم خوانده نشده دارید</item>
+        <item quantity="one">%d مورد خوانده‌نشده دارید</item>
+        <item quantity="other">%d مورد خوانده‌نشده دارید</item>
     </plurals>
     <plurals name="notification_new_items_text">
-        <item quantity="one">%d آیتم خواند نشده وجود دارد</item>
-        <item quantity="other">%d آیتم خواند نشده وجود دارد</item>
+        <item quantity="one">%d مورد خواند نشده موجود است</item>
+        <item quantity="other">%d مورد خواند نشده موجود است</item>
     </plurals>
 
 
-    <string name="action_add_feed">اضافه کردن فید</string>
+    <!-- Add new feed -->
+    <string name="hint_feed_url">نشانی خوراک</string>
+    <string name="action_add_feed">افزودن خوراک</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">دانلود عکس</string>
-    <string name="action_img_sharelink">اشتراک گذاری لینک عکس</string>
-    <string name="action_img_open">باز کردن عکس در مرورگر</string>
-    <string name="action_img_copylink">کپی کردن لینک عکس</string>
-    <string name="action_link_share">اشتراک گذاری لینک</string>
-    <string name="action_link_open">بازکردن عکس در مرورگر</string>
-    <string name="action_link_copy">کپی کردن لینک</string>
-    <string name="toast_img_download_wait">در حال دانلود... لطفاً منتظر بمانید</string>
-    <string name="toast_img_notwriteable">خطا در ذخیره عکس</string>
-    <string name="toast_copied_to_clipboard">کپی به کلیپ بورد</string>
-    <string name="error_download_failed">بارگیری ناموفق بود</string>
-    <string name="intent_title_share">اشتراک گذاری با</string>
+    <string name="action_img_download">بارگیری تصویر</string>
+    <string name="action_img_sharelink">هم‌رسانی پیوند تصویر</string>
+    <string name="action_img_open">گشودن تصویر در مرورگر</string>
+    <string name="action_img_copylink">رونوشت از پیوند تصویر</string>
+    <string name="action_link_share">هم‌رسانی پیوند</string>
+    <string name="action_link_open">گشودن پیوند در مرورگر</string>
+    <string name="action_link_copy">رونوشت از پیوند</string>
+    <string name="toast_img_download_wait">در حال بارگیری… صبر لطفاً</string>
+    <string name="toast_img_saved">تصویر ذخیره شد</string>
+    <string name="toast_img_notwriteable">شکست در نوشتن تصویر</string>
+    <string name="toast_copied_to_clipboard">در حافظه رونویسی شد</string>
+    <string name="error_download_failed">بارگیری شکست خورد</string>
+    <string name="intent_title_share">هم‌رسانی با</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">حذف فید</string>
-    <string name="action_feed_rename">تغییر نام فید</string>
+    <string name="action_feed_remove">برداشتن خوراک</string>
+    <string name="action_feed_rename">تغییر نام خوراک</string>
     <string name="feed_remove_button">حذف</string>
     <string name="feed_rename_button">تغییرنام</string>
     <string name="confirm_feed_remove">آیا واقعاً می خواهید این فید را حذف کنید؟ این عمل قابل بازگشت نیست!</string>
