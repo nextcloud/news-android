@@ -23,6 +23,7 @@ package de.luhmer.owncloudnewsreader;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -496,9 +497,12 @@ public class NewsReaderDetailFragment extends Fragment {
 
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+        private int thirdScreenHeight = Resources.getSystem().getDisplayMetrics().heightPixels/-3;
+
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if(mMarkAsReadWhileScrollingEnabled && (e2.getY() - e1.getY()) < 0) { // (distance < 0) => scroll up
+            // check for scroll-up (distance < 0) larger than a third of screen height
+            if (mMarkAsReadWhileScrollingEnabled && (e2.getY() - e1.getY()) < thirdScreenHeight) {
                 handleMarkAsReadScrollEvent();
             }
             return super.onScroll(e1, e2, distanceX, distanceY);
