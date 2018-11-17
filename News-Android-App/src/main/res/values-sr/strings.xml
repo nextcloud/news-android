@@ -143,6 +143,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Означи као прочитано током клизања</string>
     <string name="pref_title_OpenInBrowserDirectly">Прескочи детаљни преглед и одмах отвори чланак у Веб читачу</string>
 
+    <string name="dialog_feature_not_available">Ова функционалност није доступна у овој верзији (отвореног кода). Ако желите да користите ову функционалност, преузмите апликација са GitHub репозиторијума или скините апликацију са Google PlayStore продавнице.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Прихвати непознати сертификат?</string>
     <string name="mtm_decision_always">Увек</string>
