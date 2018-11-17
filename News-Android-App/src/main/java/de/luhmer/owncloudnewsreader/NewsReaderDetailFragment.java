@@ -161,43 +161,6 @@ public class NewsReaderDetailFragment extends Fragment {
         super.onResume();
     }
 
-    /*
-    private void handleMarkAsReadScrollEvent() {
-        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-        int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
-        int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-        int visibleItemCount = lastVisibleItem - firstVisibleItem;
-        int totalItemCount = recyclerView.getAdapter().getItemCount();
-
-        NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
-
-        //Set the item at top to read
-        ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(firstVisibleItem);
-        if (vh != null && !vh.shouldStayUnread()) {
-            adapter.changeReadStateOfItem(vh, true);
-        }
-
-
-
-        //Check if Listview is scrolled to bottom
-        if (lastVisibleItem == (totalItemCount-1) &&
-                visibleItemCount != 0 && //Check if list is empty
-                recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
-            for (int i = firstVisibleItem; i <= lastVisibleItem; i++) {
-                RecyclerView.ViewHolder vhTemp = recyclerView.findViewHolderForLayoutPosition(i);
-                if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
-                    vh = (ViewHolder) vhTemp;
-                    if (!vh.shouldStayUnread()) {
-                        adapter.changeReadStateOfItem(vh, true);
-                    } else {
-                        Log.v(TAG, "shouldStayUnread");
-                    }
-                }
-            }
-        }
-    }
-    */
-
     public void updateMenuItemsState() {
         NewsReaderListActivity nla = (NewsReaderListActivity)getActivity();
         if(nla.getMenuItemDownloadMoreItems() != null) {
@@ -274,7 +237,6 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     protected DisposableObserver<List<RssItem>> SearchResultObserver = new DisposableObserver<List<RssItem>>() {
-
         @Override
         public void onNext(List<RssItem> rssItems) {
             loadRssItemsIntoView(rssItems);
@@ -293,7 +255,6 @@ public class NewsReaderDetailFragment extends Fragment {
     };
 
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, List<RssItem>> {
-
         private Context context;
 
         UpdateCurrentRssViewTask(Context context) {
@@ -478,13 +439,15 @@ public class NewsReaderDetailFragment extends Fragment {
         }
 
         //Check if Listview is scrolled to bottom
-        if (reachedBottom &&
-                visibleItemCount != 0 && //Check if list is empty
+        if (reachedBottom && visibleItemCount != 0 && //Check if list is empty
                 recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
+
             for (int i = firstVisibleItem; i <= lastVisibleItem; i++) {
                 RecyclerView.ViewHolder vhTemp = recyclerView.findViewHolderForLayoutPosition(i);
+
                 if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
                     ViewHolder vh = (ViewHolder) vhTemp;
+
                     if (!vh.shouldStayUnread()) {
                         adapter.changeReadStateOfItem(vh, true);
                     } else {
@@ -497,13 +460,14 @@ public class NewsReaderDetailFragment extends Fragment {
 
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
-        private int thirdScreenHeight = Resources.getSystem().getDisplayMetrics().heightPixels/-3;
+        // div by negative number to make comparison below more natural
+        private int minMarkReadDistance = Resources.getSystem().getDisplayMetrics().heightPixels/-4;
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             // check for scroll-up (distance < 0) larger than a third of screen height
-            if (mMarkAsReadWhileScrollingEnabled && (e2.getY() - e1.getY()) < thirdScreenHeight) {
-                handleMarkAsReadScrollEvent();
+            if (mMarkAsReadWhileScrollingEnabled && (e2.getY() - e1.getY()) < minMarkReadDistance) {
+                    handleMarkAsReadScrollEvent();
             }
             return super.onScroll(e1, e2, distanceX, distanceY);
         }
