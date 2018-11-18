@@ -23,7 +23,6 @@ package de.luhmer.owncloudnewsreader;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -460,13 +459,13 @@ public class NewsReaderDetailFragment extends Fragment {
 
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
-        private int minBottomDistance = 100;
+        private int minLeftEdgeDistance = 100;
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             if (mMarkAsReadWhileScrollingEnabled &&
-                    e1.getY() > recyclerView.getBottom()-minBottomDistance &&   // only if gesture started at screen bottom
-                    (e2.getY() - e1.getY()) < 0) {                              // and if swipe direction is upwards
+                    e1.getX() > minLeftEdgeDistance &&   // only if gesture starts a bit away from left window edge
+                    (e2.getY() - e1.getY()) < 0) {       // and if swipe direction is upwards
                     handleMarkAsReadScrollEvent();
                     return true;
             }
