@@ -460,16 +460,18 @@ public class NewsReaderDetailFragment extends Fragment {
 
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
-        // div by negative number to make comparison below more natural
-        private int minMarkReadDistance = Resources.getSystem().getDisplayMetrics().heightPixels/-4;
+        private int minBottomDistance = 100;
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            // check for scroll-up (distance < 0) larger than a third of screen height
-            if (mMarkAsReadWhileScrollingEnabled && (e2.getY() - e1.getY()) < minMarkReadDistance) {
+            if (mMarkAsReadWhileScrollingEnabled &&
+                    e1.getY() > recyclerView.getBottom()-minBottomDistance &&   // only if gesture started at screen bottom
+                    (e2.getY() - e1.getY()) < 0) {                              // and if swipe direction is upwards
                     handleMarkAsReadScrollEvent();
+                    return true;
             }
-            return super.onScroll(e1, e2, distanceX, distanceY);
+            return false;
+            //return super.onScroll(e1, e2, distanceX, distanceY);
         }
     }
 
