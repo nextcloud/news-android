@@ -135,19 +135,32 @@
     <string name="no_podcast_selected">Podcastia ei ole valittu</string>
     <string name="no_chapters_available">Ei kappaleita saatavilla</string>
     <string name="podcast_playback_speed_dialog_title">Toistonopeus</string>
+    <string name="notification_downloading_podcast_title">Ladataan podcast</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Näyttö</string>
+    <string name="pref_title_app_theme">Teema</string>
     <string name="pref_title_feed_list_layout">Syöteluettelon asettelu</string>
+    <string name="pref_title_font_size">Fontin koko</string>
     <string name="pref_display_browser">Selain</string>
 
 
 
 
+    <string name="pref_display_apptheme_auto">Vaalea/tumma (pohjautuu kellonaikaan)</string>
     <string name="pref_display_apptheme_light">Vaalea</string>
     <string name="pref_display_apptheme_dark">Tumma</string>
 
+    <string name="pref_oled_mode">Musta tausta</string>
     <string name="pref_display_browser_built_in">Sisäänrakennettu selain</string>
     <string name="pref_display_browser_external">Ulkoinen selain</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Pieni</string>
+    <string name="pref_display_font_size_d">Oletus</string>
+    <string name="pref_display_font_size_l">Suuri</string>
+    <string name="pref_display_font_size_xl">Erittäin suuri</string>
 
     <string name="content_desc_play">toistsa</string>
     <string name="content_desc_pause">keskeytä</string>
