@@ -74,74 +74,128 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">برداشتن خوراک</string>
     <string name="action_feed_rename">تغییر نام خوراک</string>
-    <string name="feed_remove_button">حذف</string>
+    <string name="action_feed_move">انتقال خوراک</string>
+    <string name="feed_remove_button">برداشتن</string>
     <string name="feed_rename_button">تغییرنام</string>
-    <string name="confirm_feed_remove">آیا واقعاً می خواهید این فید را حذف کنید؟ این عمل قابل بازگشت نیست!</string>
+    <string name="confirm_feed_remove">واقعاً می‌خواهید این خوراک را بردارید؟ این عمل قابل بازگشت نیست!</string>
+    <string name="feed_move_list_description">پوشه‌ای برای انتقال خوراک برگزینید</string>
+    <string name="move_feed_root_folder">پوشهٔ ریشه</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">نام کاربری</string>
     <string name="pref_title_password">گذرواژه</string>
-    <string name="pref_title_owncloudRootPath">آدرس ریشه Nextcloud</string>
+    <string name="pref_title_owncloudRootPath">نشانی ریشهٔ نکست‌کلود</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">ورود</string>
-    <string name="login_progress_signing_in">ورود به سیستم ...</string>
+    <string name="login_progress_signing_in">در حال ورود…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">این فیلد مورد نیاز است</string>
+    <string name="error_field_required">این زمینه لازم است</string>
+    <string name="error_invalid_url">نشانی نادرست</string>
+
+
     <!-- Import Accounts -->
-    <string name="import_account">وارد کردن حساب</string>
+    <string name="import_account">درون‌ریزی حساب</string>
 
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
-        <item quantity="one">%d آیتم قدیمی دانلود شدند</item>
-        <item quantity="other">%d آیتم قدیمی دانلود شدند</item>
+        <item quantity="one">%d مورد قدیمی بارگیری شد</item>
+        <item quantity="other">%d مورد قدیمی بارگیری شدند</item>
     </plurals>
-    <string name="toast_no_more_downloads_available">هیچ آیتم دیگری در دسترس نیست</string>
+    <string name="toast_no_more_downloads_available">هیچ مورد دیگری موجود نیست</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">تا حالا %d آیتم گرفته شده اند ...</item>
-        <item quantity="other">تا حالا %d آیتم گرفته شده اند ...</item>
+        <item quantity="one">تا کنون %d مورد گرفته شد…</item>
+        <item quantity="other">تا کنون %d مورد گرفته شد…</item>
     </plurals>
 
 
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">تنظیمات</string>
-    <string name="cache_is_cleared">نهانگاه پاک شد!</string>
+    <string name="cache_is_cleared">انباره پاک‌سازی شد!</string>
 
 
     <!-- General settings -->
     <string name="pref_header_general">عمومی</string>
-    <string name="pref_title_general_sort_order">ترتیب مرتب‌سازی</string>
+    <string name="pref_title_general_sort_order">ترتیب چینش</string>
 
-    <string name="dialog_clearing_cache">در حال پاک کردن نهانگاه</string>
-    <string name="dialog_clearing_cache_please_wait">در حال پاک کردن نهانگاه... لطفاً منتظر بمانید.</string>
-    <string name="reset_cache_unsaved_changes">تغییرات هماهنگ سازی نشده ای وجود دارد. آیا مایلید در هر صورت نهانگاه را ریست کنید؟</string>
-    <string name="warning">اخطار</string>
-    <string name="pref_title_AutoSyncOnStart">همگام سازی در هنگام راه اندازی</string>
-    <string name="pref_title_ShowOnlyUnread">فقط نمایش مقالات خوانده نشده</string>
-    <string name="pref_title_DisableHostnameVerification">غیر فعال کردن تاییدیه hostname</string>
-    <string name="pref_title_NavigateWithVolumeButtons">کنترل با دکمه های درجه صدا</string>
-    <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری در حال پیمایش به عنوان خوانده شده </string>
+    <string name="pref_general_sort_order_new_old">جدید -> قدیم</string>
+    <string name="pref_general_sort_order_old_new">قدیم -> جدید</string>
+
+    <string name="pref_title_general_search_in">جست‌وجو در</string>
+
+    <string name="pref_general_search_in_title">عنوان</string>
+    <string name="pref_general_search_in_body">متن</string>
+
+    <string name="dialog_clearing_cache">پاک‌سازی انباره</string>
+    <string name="dialog_clearing_cache_please_wait">در حال پاک‌سازی انباره… صبر لطفاً.</string>
+    <string name="reset_cache_unsaved_changes">تغییرات ناهمگامی موجودند. به هر روی، انباره بازنشانی شود؟</string>
+    <string name="warning">هشدار</string>
+    <string name="pref_title_AutoSyncOnStart">همگام‌سازی در شروع</string>
+    <string name="pref_title_ShowOnlyUnread">فقط نمایش مقالات خوانده‌نشده</string>
+    <string name="pref_title_DisableHostnameVerification">غیرفعّال کردن تأییدیهٔ نام دامنه</string>
+    <string name="pref_title_NavigateWithVolumeButtons">ناوبری با دکمه‌های حجم صدا</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری به عنوان خوانده شده در حال پیمایش</string>
+    <string name="pref_title_OpenInBrowserDirectly">پرش از نمای باجزییات و گشودن مقاله در مرورگر</string>
+
+    <string name="dialog_feature_not_available">این ویژگی در این نگارش (آزاد) کاره موجود نیست. اگر می‌خواهید از این ویژگی استفاده کنید، لطفاً کاره را از مخزن گیت‌هاب یا فروشگاه پلی گوگل بارگیری کنید.</string>
+
+
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">آیا مجوزهای ناشناخته را می پیذیریذ؟</string>
-    <string name="mtm_decision_always">همیشه</string>
-    <string name="mtm_decision_abort">قطع عملیات</string>
-    <string name="mtm_notification">تایید مجوز</string>
+    <string name="mtm_accept_cert">پذیرش گواهی‌نامهٔ ناشناس؟</string>
+    <string name="mtm_decision_always">همواره</string>
+    <string name="mtm_decision_abort">صرف نظر</string>
+    <string name="mtm_notification">تأیید گواهی‌نامه</string>
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">هیچ پادکستی انتخاب نشده</string>
-    <string name="no_chapters_available">هیچ قسمتی در دسترسی نیست</string>
-    <!-- Settings for Display -->
-    <string name="pref_header_display">نمایشی</string>
-    <string name="pref_title_feed_list_layout">طرح لسیت خوراک خوان</string>
-    <string name="pref_display_news_detail_actionbar_icons_title">نشانگرهای فعالیت (دیدن جزئیات)</string>
+    <string name="no_podcast_selected">هیچ پادکستی گزیده نشده</string>
+    <string name="no_chapters_available">هیچ فصلی موجود نیست</string>
+    <string name="podcast_playback_speed_dialog_title">سرعت پخش</string>
+    <string name="notification_downloading_podcast_title">بارگیری پادکست</string>
 
-    <string name="content_desc_play">اجرا</string>
-    <string name="content_desc_pause">وقفه</string>
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">نمایش</string>
+    <string name="pref_title_app_theme">زمینه</string>
+    <string name="pref_title_feed_list_layout">چینش فهرست خوراک</string>
+    <string name="pref_title_font_size">اندازهٔ قلم</string>
+    <string name="pref_display_browser">مرورگر</string>
+
+
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">نقشک‌های فعالیت (نمای باجزییات)</string>
+
+    <string name="pref_display_apptheme_auto">روشن / تیره (بر اساس زمان روز)</string>
+    <string name="pref_display_apptheme_light">روشن</string>
+    <string name="pref_display_apptheme_dark">تیره</string>
+
+    <string name="pref_oled_mode">پس‌زمینهٔ سیاه</string>
+    <string name="pref_oled_mode_summary">برای زمینهٔ تیره روی صفحه‌های OLED</string>
+
+    <string name="pref_display_browser_cct">زبانه‌های شخصی کروم توکار</string>
+    <string name="pref_display_browser_built_in">مرورگر توکار</string>
+    <string name="pref_display_browser_external">مرورگر خارجی</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">بندانگشتی‌ها</string>
+    <string name="pref_display_feed_list_layout_simple_text">متن ساده</string>
+    <string name="pref_display_feed_list_layout_full_text">متن کامل</string>
+    <string name="pref_display_feed_list_layout_web_layout">چینش وب</string>
+    <string name="pref_display_feed_list_layout_card_view">نمای کارتی</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">کوچک</string>
+    <string name="pref_display_font_size_d">پیش‌گزیده</string>
+    <string name="pref_display_font_size_l">بزرگ</string>
+    <string name="pref_display_font_size_xl">خیلی بزرگ</string>
+
+    <string name="content_desc_play">پخش</string>
+    <string name="content_desc_pause">مکث</string>
     <string name="content_desc_rewind">بازگشت به عقب</string>
     <string name="content_desc_forward">رفتن به جلو</string>
-    <string name="content_desc_expand">باز کردن</string>
-    <string name="content_desc_collapse">جمع کردن</string>
+    <string name="content_desc_expand">گسترش</string>
+    <string name="content_desc_collapse">فروکاهش</string>
     <string name="content_desc_mark_as_read">نشانه گذاری به عنوان خوانده شده</string>
     <string name="content_desc_mark_as_unread">نشانه گذاری به عنوان خوانده نشده</string>
     <string name="content_desc_tap_to_refresh">برای بارگذاری مجدد با انگشت روی صفحه ضربه بزنید</string>

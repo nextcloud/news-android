@@ -38,6 +38,7 @@
     <string name="action_sync_settings">同步设置</string>
     <string name="action_add_new_feed">增加新 Feed</string>
     <string name="action_textToSpeech">朗读</string>
+    <string name="action_download_articles_offline">离线下载文章</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">您还有 %d 条未读内容</item>
     </plurals>
@@ -132,6 +133,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
     <string name="pref_title_OpenInBrowserDirectly">跳过详情查看并在浏览器中打开文章</string>
 
+    <string name="dialog_feature_not_available">当前功能在此(开源)版本未开放。如果你想使用此功能，请从GitHub仓库中下载或从Google Play Store中下载。</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">接受未知认证？</string>
     <string name="mtm_decision_always">总是</string>
@@ -158,10 +162,13 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">动作图标 (详情页)</string>
 
+    <string name="pref_display_apptheme_auto">明亮 / 黑暗 (基于时间)</string>
     <string name="pref_display_apptheme_light">浅色</string>
     <string name="pref_display_apptheme_dark">深色</string>
 
     <string name="pref_oled_mode">黑色背景</string>
+    <string name="pref_oled_mode_summary">用于OLED屏幕的黑暗主题</string>
+
     <string name="pref_display_browser_cct">内置 Chrome 自定义分页</string>
     <string name="pref_display_browser_built_in">内置浏览器</string>
     <string name="pref_display_browser_external">外部浏览器</string>
