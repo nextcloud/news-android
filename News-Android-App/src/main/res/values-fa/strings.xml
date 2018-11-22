@@ -192,38 +192,60 @@
 
     <string name="content_desc_play">پخش</string>
     <string name="content_desc_pause">مکث</string>
+    <string name="content_desc_playback_speed">سرعت پخش</string>
     <string name="content_desc_rewind">بازگشت به عقب</string>
     <string name="content_desc_forward">رفتن به جلو</string>
     <string name="content_desc_expand">گسترش</string>
     <string name="content_desc_collapse">فروکاهش</string>
-    <string name="content_desc_mark_as_read">نشانه گذاری به عنوان خوانده شده</string>
-    <string name="content_desc_mark_as_unread">نشانه گذاری به عنوان خوانده نشده</string>
-    <string name="content_desc_tap_to_refresh">برای بارگذاری مجدد با انگشت روی صفحه ضربه بزنید</string>
-    <string name="content_desc_add_to_favorites">افزودن به لیست علاقه مندی ها</string>
-    <string name="content_desc_remove_from_favorites">حذف از لیست علاقه مندی ها</string>
+    <string name="content_desc_mark_as_read">علامت به عنوان خوانده‌شده</string>
+    <string name="content_desc_mark_as_unread">علامت به عنوان خوانده‌نشده</string>
+    <string name="content_desc_tap_to_refresh">ضربه برای تازه‌سازی</string>
+    <string name="content_desc_add_to_favorites">افزودن به محبوب‌ها</string>
+    <string name="content_desc_remove_from_favorites">حذف از محبوب‌ها</string>
     <string name="content_desc_show_password">نمایش گذرواژه</string>
     <string name="content_desc_delete">حذف</string>
-    <string name="content_desc_download">دانلود</string>
+    <string name="content_desc_download">بارگیری</string>
 
 
 
     <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">هشدارها</string>
-    <string name="pref_title_notification_new_articles_available">هرگاه مقالات جدید در دسترس بود هشدار بده</string>
+    <string name="pref_header_notifications">آگاهی‌ها</string>
+    <string name="pref_title_notification_new_articles_available">نمایش آگاهی هنگام موجود بودن مقاله‌های جدید</string>
 
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">خطا</string>
-    <string name="login_dialog_text_something_went_wrong">چند چیز اشتباه شدند :(</string>
-    <string name="login_dialog_text_zero_version_code">برنامک Web News نسخه \"0\" را بازگرداند. لطفاً به این گزارش باگ نگاهی بیاندازید: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">به نظر می‌رسد کارهٔ اخبار روی کارسازتان نصب یا فعّال نشده است. لطفاً برای برپایی کارهٔ اخبار روی کارسازتان، ابتدا روشی که این‌جا گفته شده را دنبال کنید: %1$s</string>
+    <string name="login_dialog_text_something_went_wrong">چیزی اشتباه شد ):</string>
+    <string name="login_dialog_text_zero_version_code">کارهٔ اخبار وب نگارش «۰»را بازگرداند. لطفاً به گزارش مشکل زیر نگاهی بیندازید: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">نگارش کاره با کارهٔ اخبار نکست‌کلودتان سازگار نیست. لطفاً کارهٔ اخبار و چارچوب کاره را ارتقا دهید.</string>
     <string name="login_dialog_title_security_warning">اخطار امنیتی</string>
+    <string name="login_dialog_text_security_warning">شما از HTTPS که قویاً تشویق می‌شود، استفاده نمی‌کنید. یک نفوذگر می‌تواند ترافیکتان را شنود کرده و به برخی داده‌های حسّاس (مانند گذرواژه) دسترسی پیدا کنید.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">داده ها و همگام سازی</string>
-    <string name="pref_title_clearCache">پاک کردن حافظه موقتی</string>
-    <string name="pref_title_CacheImagesOffline">تصاویر را کش کن</string>
-    <string name="pref_title_Max_Cache_Size">حداکثر اندازه حافظه پنهان</string>
+    <string name="pref_title_clearCache">پاک‌سازی انباره</string>
+    <string name="pref_title_CacheImagesOffline">انبارش برون‌خط تصاویر</string>
+    <string name="pref_title_Max_Cache_Size">بیشینهٔ اندازهٔ انباره</string>
 
 
 
+
+    <string name="pref_data_sync_image_cache_never">هرگز</string>
+    <string name="pref_data_sync_image_cache_wifi_only">فقط روی وای‌فای</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">روی وای‌فای و همراه</string>
+    <string name="pref_data_sync_image_cache_ask">پرسش هنگام وصل نبودن به وای‌فای</string>
+
+    <string name="array_sync_interval_min_5">۵ دقیقه</string>
+    <string name="array_sync_interval_min_15">یک ربع</string>
+    <string name="array_sync_interval_min_30">نیم ساعت</string>
+    <string name="array_sync_interval_min_45">سه ربع</string>
+    <string name="array_sync_interval_hour_1">۱ ساعت</string>
+    <string name="array_sync_interval_hour_2">۲ ساعت</string>
+    <string name="array_sync_interval_hour_3">۳ ساعت</string>
+    <string name="array_sync_interval_hour_6">۶ ساعت</string>
+    <string name="array_sync_interval_hour_12">۱۲ ساعت</string>
+    <string name="array_sync_interval_hour_24">۲۴ ساعت</string>
 
     </resources>
