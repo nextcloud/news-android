@@ -6,7 +6,7 @@
     <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
     <string name="empty_view_content">Inga objekt här</string>
     <string name="toast_GettingMoreItems">Nedladdning av fler objekt startade... Var god vänta.</string>
-    <string name="no_wifi_available">Ingen WIFI ansluten</string>
+    <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
     <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
     <string name="current_version">Du använder Version %s</string>
     <string name="widget_header">ownCloud nyheter</string>
@@ -186,5 +186,9 @@
 
 
 
+
+    <string name="pref_data_sync_image_cache_wifi_only">Endast över Wi-Fi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Över Wi-Fi &amp; mobildata</string>
+    <string name="pref_data_sync_image_cache_ask">Fråga när du inte är ansluten till Wi-Fi</string>
 
     </resources>
