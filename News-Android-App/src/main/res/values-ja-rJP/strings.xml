@@ -4,22 +4,22 @@
     <string name="auto_sync_string">自動同期</string>
     <string name="title_activity_sync_interval_selector">同期間隔を指定</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
-    <string name="empty_view_content">ここにアイテムなし</string>
+    <string name="empty_view_content">アイテムがありません</string>
     <string name="toast_GettingMoreItems">他のアイテムのダウンロードが開始されました...しばらくお待ちください。</string>
     <string name="no_wifi_available">WiFi接続がありません</string>
     <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか</string>
     <string name="current_version">使用中のバージョンは %s です</string>
-    <string name="widget_header">ownCloudニュース</string>
+    <string name="widget_header">Nextcloud ニュース</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="other">%d 個の新しいアイテムが利用可能です</item>
     </plurals>
     <string name="message_bar_reload">再読み込み</string>
     <string name="allUnreadFeeds">すべての未読アイテム</string>
-    <string name="starredFeeds">共有アイテム</string>
+    <string name="starredFeeds">スター付きアイテム</string>
     <string name="title_activity_new_feed">新しいフィードを追加</string>
 
     <string name="menu_update">同期</string>
-    <string name="menu_About_Changelog">ownCloudについて / 変更点</string>
+    <string name="menu_About_Changelog">Nextcloud について / 変更点</string>
     <string name="menu_markAllAsRead">すべて既読にする</string>
     <string name="menu_StartImageCaching">画像をダウンロード</string>
     <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
@@ -27,15 +27,15 @@
     <string name="tv_showing_cached_version">キャッシュされたバージョンを表示する</string>
 
     <!-- Action Bar Items -->
-    <string name="action_starred">共有</string>
-    <string name="action_read">読込</string>
+    <string name="action_starred">スター</string>
+    <string name="action_read">既読</string>
     <string name="action_playPodacst">Podcast を再生</string>
     <string name="action_openInBrowser">ブラウザで開く</string>
     <string name="action_Share">共有</string>
     <string name="action_login">サーバー設定</string>
     <string name="action_save">保存</string>
     <string name="action_settings">設定</string>
-    <string name="action_sync_settings">設定の同期</string>
+    <string name="action_sync_settings">同期設定</string>
     <string name="action_add_new_feed">新しいフィードを追加</string>
     <string name="action_textToSpeech">音声読み上げ</string>
     <string name="action_download_articles_offline">オフラインで記事をダウンロード</string>
@@ -81,8 +81,8 @@
     <!-- Strings related to login -->
     <string name="pref_title_username">ユーザー名</string>
     <string name="pref_title_password">パスワード</string>
-    <string name="pref_title_owncloudRootPath">ownCloud ルートアドレス</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud ルートアドレス</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">ログイン</string>
     <string name="login_progress_signing_in">ログイン中...</string>
@@ -181,7 +181,7 @@
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">小</string>
-    <string name="pref_display_font_size_d">デフォルト</string>
+    <string name="pref_display_font_size_d">中</string>
     <string name="pref_display_font_size_l">大</string>
     <string name="pref_display_font_size_xl">巨大</string>
 
@@ -213,7 +213,7 @@
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">あなたのニュースアプリがあなたのサーバーにインストールされていないか、起動されていないようです。 まず、あなたのサーバーにニュースアプリをインストールするには、こちらの指示に従ってください：%1$s</string>
     <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
     <string name="login_dialog_text_zero_version_code">Web News Appはバージョン \"0\"を返しました。 次のバグレポートをご覧ください：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">このアプリのバージョンはownCloudニュースアプリと互換性がありません。ニュースアプリとappframeworkをアップデートしてください。</string>
+    <string name="login_dialog_text_not_compatible">このアプリのバージョンは Nextcloud ニュースアプリと互換性がありません。ニュースアプリと appframework をアップデートしてください。</string>
     <string name="login_dialog_title_security_warning">セキュリティ警告</string>
     <string name="login_dialog_text_security_warning">HTTPSを使用していないので、強くお勧めします。 攻撃者はトラフィックを傍受し、機密データ（パスワードなど）にアクセスする可能性があります。</string>
 
