@@ -56,8 +56,7 @@ public class WidgetProvider extends AppWidgetProvider {
 	private static final String TAG = "WidgetProvider";
 
 
-    public static void UpdateWidget(Context context)
-    {
+    public static void UpdateWidget(Context context) {
         int ids[] = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
 
         for(int appWidgetId : ids) {
