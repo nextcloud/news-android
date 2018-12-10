@@ -223,24 +223,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 			drawerLayout.addDrawerListener(drawerToggle);
 
-			try {
-				// increase the size of the drag margin to prevent starting a star swipe when
-				// trying to open the drawer.
-				Field mDragger = drawerLayout.getClass().getDeclaredField(
-						"mLeftDragger");
-				mDragger.setAccessible(true);
-				ViewDragHelper draggerObj = (ViewDragHelper) mDragger
-						.get(drawerLayout);
-
-				Field mEdgeSize = draggerObj.getClass().getDeclaredField(
-						"mEdgeSize");
-				mEdgeSize.setAccessible(true);
-				int edge = mEdgeSize.getInt(draggerObj);
-
-				mEdgeSize.setInt(draggerObj, edge * 3);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+            adjustEdgeSizeOfDrawer();
 		}
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -257,6 +240,40 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		updateButtonLayout();
 	}
+
+    /**
+     * This method increases the "pull to open drawer" area by three.
+     * This method should be called only once!
+     */
+	private void adjustEdgeSizeOfDrawer() {
+        try {
+            // increase the size of the drag margin to prevent starting a star swipe when
+            // trying to open the drawer.
+            Field mDragger = drawerLayout.getClass().getDeclaredField("mLeftDragger");
+            mDragger.setAccessible(true);
+            ViewDragHelper draggerObj = (ViewDragHelper) mDragger.get(drawerLayout);
+            Field mEdgeSize = draggerObj.getClass().getDeclaredField("mEdgeSize");
+            mEdgeSize.setAccessible(true);
+            int edge = mEdgeSize.getInt(draggerObj);
+            mEdgeSize.setInt(draggerObj, edge * 3);
+        } catch (Exception e) {
+            Log.e(TAG, "Setting edge width of drawer failed..", e);
+        }
+	}
+
+    public int getEdgeSizeOfDrawer() {
+        try {
+            Field mDragger = drawerLayout.getClass().getDeclaredField("mLeftDragger");
+            mDragger.setAccessible(true);
+            ViewDragHelper draggerObj = (ViewDragHelper) mDragger.get(drawerLayout);
+            Field mEdgeSize = draggerObj.getClass().getDeclaredField("mEdgeSize");
+            mEdgeSize.setAccessible(true);
+            return mEdgeSize.getInt(draggerObj);
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to get edge size of drawer", e);
+        }
+        return 0;
+    }
 
 
     private void showTapLogoToSyncShowcaseView() {

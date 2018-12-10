@@ -459,10 +459,17 @@ public class NewsReaderDetailFragment extends Fragment {
 
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
-        private int minLeftEdgeDistance = 100;
+        private int minLeftEdgeDistance = -1;
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            if(minLeftEdgeDistance == -1) { // if not initialized
+                // TODO check if tablet..
+                // TODO if tablet, use 0 as minLeftEdgeDistance.. right?
+                minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
+                Log.d(TAG, "" + minLeftEdgeDistance);
+            }
+
             if (mMarkAsReadWhileScrollingEnabled &&
                     e1.getX() > minLeftEdgeDistance &&   // only if gesture starts a bit away from left window edge
                     (e2.getY() - e1.getY()) < 0) {       // and if swipe direction is upwards
