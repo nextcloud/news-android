@@ -39,7 +39,7 @@
     <string name="action_sync_settings">Sync Settings</string>
     <string name="action_add_new_feed">Voeg nieuwe feed toe</string>
     <string name="action_textToSpeech">Voorlezen</string>
-    <string name="action_download_articles_offline">Download artikels offline</string>
+    <string name="action_download_articles_offline">Download artikelen offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">U hebt %d nieuw ongelezen bericht</item>
         <item quantity="other">Je hebt %d nieuwe ongelezen berichten</item>

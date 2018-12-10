@@ -138,6 +138,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
     <string name="pref_title_OpenInBrowserDirectly">Dropp detaljert visning og åpne artikkel i nettleser</string>
 
+    <string name="dialog_feature_not_available">Funksjonalitet er ikke tilgjengelig i denne (åpen kildekode) versjon. Hvis du ønsker å bruke denne funksjonen kan den lastes ned via GitHub eller fra Google Play butikken.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
     <string name="mtm_decision_always">Alltid</string>
@@ -149,8 +152,12 @@
     <string name="no_podcast_selected">Ingen podcast valgt</string>
     <string name="no_chapters_available">Ingen kapitler tilgjengelig</string>
     <string name="podcast_playback_speed_dialog_title">Avspillingshastighet</string>
+    <string name="notification_downloading_podcast_title">Last ned podcast</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
+    <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
     <string name="pref_title_font_size">Font størrelse</string>
     <string name="pref_display_browser">Nettleser</string>
