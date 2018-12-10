@@ -56,8 +56,14 @@ public class WidgetProvider extends AppWidgetProvider {
 	private static final String TAG = "WidgetProvider";
 
 
-    public static void UpdateWidget(Context context)
-    {
+    public static void UpdateWidget(Context context) {
+        int ids[] = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
+
+        for(int appWidgetId : ids) {
+            AppWidgetManager.getInstance(context).notifyAppWidgetViewDataChanged(appWidgetId, R.id.list_view);
+        }
+
+        /*
         Intent intent = new Intent(context, WidgetProvider.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
@@ -67,6 +73,7 @@ public class WidgetProvider extends AppWidgetProvider {
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,ids);
         context.sendBroadcast(intent);
+        */
     }
 
     @Override
@@ -169,9 +176,6 @@ public class WidgetProvider extends AppWidgetProvider {
         for (int appWidgetId : appWidgetIds) {
         	updateAppWidget(context, appWidgetManager, appWidgetId);
         	//appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.list_view);
-        	
-        	if(Constants.debugModeWidget)
-        		Log.d(TAG, "UPDATE WIDGET - WIDGET_ID: " + appWidgetId);
         }
         
         //int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
