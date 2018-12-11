@@ -129,6 +129,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben olvasottként legyen megjelőlve</string>
     <string name="pref_title_OpenInBrowserDirectly">Részletes megjelenítés átugrása és megnyitás böngészőben</string>
 
+    <string name="dialog_feature_not_available">Ez a funkció az appnak ebben a (nyílt forrású) verziójában nem érhető el. Ha használni akarod ezt a funkciót, töltsd le az appot a GitHub tárolóból vagy a Google Play Store-ból.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Elfogadod az ismeretlen tanusítványokat?</string>
     <string name="mtm_decision_always">Mindig</string>
@@ -142,6 +145,7 @@
     <string name="podcast_playback_speed_dialog_title">Lejátszási sebesség</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Kijelző</string>
+    <string name="pref_title_app_theme">Téma</string>
     <string name="pref_title_feed_list_layout">A csatorna elrendezés</string>
     <string name="pref_display_browser">Böngésző</string>
 
