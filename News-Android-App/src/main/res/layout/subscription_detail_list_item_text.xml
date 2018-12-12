@@ -11,8 +11,7 @@
         android:layout_height="match_parent"
         android:layout_width="4dp"
         android:background="?attr/dividerLineColor"
-        android:layout_marginEnd="@dimen/listview_row_margin_left"
-        android:layout_marginRight="@dimen/listview_row_margin_left"/>
+        android:layout_marginEnd="@dimen/listview_row_margin_left"/>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -34,12 +33,9 @@
             android:id="@+id/imgViewFavIcon"
             tools:src="@drawable/default_feed_icon_light"
             android:layout_alignStart="@+id/summary"
-            android:layout_alignLeft="@+id/summary"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:contentDescription="@string/content_desc_none"/>
 
         <TextView
@@ -51,11 +47,10 @@
             android:singleLine="true"
             tools:text="Subscription"
             android:textSize="15sp"
+            android:textColor="@color/material_grey_500"
             android:textAlignment="viewStart"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imgViewFavIcon"
             android:layout_toEndOf="@+id/imgViewFavIcon"
-            android:layout_toLeftOf="@+id/tv_item_date"
             android:layout_toStartOf="@+id/tv_item_date"  />
 
         <TextView
@@ -65,13 +60,12 @@
             android:gravity="center_vertical"
             android:layout_gravity="end"
             tools:text="21.09.2013"
+            android:textColor="@color/material_grey_500"
             android:singleLine="true"
             android:textSize="15sp"
             android:layout_marginEnd="@dimen/listview_row_margin_right"
-            android:layout_marginRight="@dimen/listview_row_margin_left"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentEnd="true"/>
 
         <TextView
             android:id="@+id/summary"
@@ -83,6 +77,7 @@
             android:textSize="17sp"
             tools:text="Summary"
             android:textStyle="bold"
+            android:textColor="?attr/primaryTextColor"
             android:layout_below="@+id/imgViewFavIcon"
             android:layout_toStartOf="@+id/podcast_wrapper"
             android:maxLines="4"
