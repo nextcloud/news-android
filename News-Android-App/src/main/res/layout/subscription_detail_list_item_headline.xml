@@ -94,11 +94,13 @@
             android:layout_alignParentEnd="true"
             android:contentDescription="@string/content_desc_add_to_favorites"/>
 
+        <!-- note that by using a fixed size of 40, we're cutting off the progressbar around the
+             play/pause button -->
         <include
             layout="@layout/subscription_detail_list_item_podcast_wrapper"
             android:layout_height="40dp"
             android:layout_width="40dp"
-            android:layout_marginTop="-4dp"
+            android:layout_marginTop="1dp"
             android:id="@+id/podcast_wrapper"
             android:layout_toStartOf="@id/star_imageview"/>
 
