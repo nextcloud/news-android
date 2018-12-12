@@ -117,7 +117,11 @@
     <string name="pref_general_sort_order_new_old">Új->Régi</string>
     <string name="pref_general_sort_order_old_new">Régi->Új</string>
 
+    <string name="pref_title_general_search_in">Keresés ebben</string>
+
     <string name="pref_general_search_in_title">Cím</string>
+    <string name="pref_general_search_in_body">Test</string>
+
     <string name="dialog_clearing_cache">A gyorsítótár törlése folyamatban</string>
     <string name="dialog_clearing_cache_please_wait">Gyorsítótár ürítése... Kérjük, várj.</string>
     <string name="reset_cache_unsaved_changes">Vannak nem színkronizált változások. Bizots hogy alaphelyzetbe szeretnéd állítani a cache-t így is?</string>
@@ -143,10 +147,14 @@
     <string name="no_podcast_selected">Nincs Podcast kiválasztva</string>
     <string name="no_chapters_available">Nincsenek elérhető fejezetek</string>
     <string name="podcast_playback_speed_dialog_title">Lejátszási sebesség</string>
+    <string name="notification_downloading_podcast_title">Podkaszt letöltése</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Kijelző</string>
     <string name="pref_title_app_theme">Téma</string>
     <string name="pref_title_feed_list_layout">A csatorna elrendezés</string>
+    <string name="pref_title_font_size">Betű méret</string>
     <string name="pref_display_browser">Böngésző</string>
 
 
@@ -161,6 +169,9 @@
     <string name="pref_display_browser_built_in">Beépített böngésző</string>
     <string name="pref_display_browser_external">Külső böngésző</string>
 
+    <string name="pref_display_feed_list_layout_thumbnails">Előnézetek</string>
+    <string name="pref_display_feed_list_layout_simple_text">Egyszerű szöveg</string>
+    <string name="pref_display_feed_list_layout_full_text">Teljes szöveg</string>
     <string name="content_desc_play">lejátszás</string>
     <string name="content_desc_pause">szünet</string>
     <string name="content_desc_playback_speed">lejátszási sebesség</string>
