@@ -171,6 +171,9 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                 case 4:
                     layout = R.layout.subscription_detail_list_item_card_view;
                     break;
+                case 5:
+                    layout = R.layout.subscription_detail_list_item_headline;
+                    break;
                 default:
                     Log.e(TAG, "Unknown layout..");
             }
