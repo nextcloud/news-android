@@ -160,43 +160,6 @@ public class NewsReaderDetailFragment extends Fragment {
         super.onResume();
     }
 
-    /*
-    private void handleMarkAsReadScrollEvent() {
-        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-        int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
-        int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-        int visibleItemCount = lastVisibleItem - firstVisibleItem;
-        int totalItemCount = recyclerView.getAdapter().getItemCount();
-
-        NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
-
-        //Set the item at top to read
-        ViewHolder vh = (ViewHolder) recyclerView.findViewHolderForLayoutPosition(firstVisibleItem);
-        if (vh != null && !vh.shouldStayUnread()) {
-            adapter.changeReadStateOfItem(vh, true);
-        }
-
-
-
-        //Check if Listview is scrolled to bottom
-        if (lastVisibleItem == (totalItemCount-1) &&
-                visibleItemCount != 0 && //Check if list is empty
-                recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
-            for (int i = firstVisibleItem; i <= lastVisibleItem; i++) {
-                RecyclerView.ViewHolder vhTemp = recyclerView.findViewHolderForLayoutPosition(i);
-                if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
-                    vh = (ViewHolder) vhTemp;
-                    if (!vh.shouldStayUnread()) {
-                        adapter.changeReadStateOfItem(vh, true);
-                    } else {
-                        Log.v(TAG, "shouldStayUnread");
-                    }
-                }
-            }
-        }
-    }
-    */
-
     public void updateMenuItemsState() {
         NewsReaderListActivity nla = (NewsReaderListActivity)getActivity();
         if(nla.getMenuItemDownloadMoreItems() != null) {
@@ -273,7 +236,6 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     protected DisposableObserver<List<RssItem>> SearchResultObserver = new DisposableObserver<List<RssItem>>() {
-
         @Override
         public void onNext(List<RssItem> rssItems) {
             loadRssItemsIntoView(rssItems);
@@ -292,7 +254,6 @@ public class NewsReaderDetailFragment extends Fragment {
     };
 
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, List<RssItem>> {
-
         private Context context;
 
         UpdateCurrentRssViewTask(Context context) {
@@ -477,13 +438,15 @@ public class NewsReaderDetailFragment extends Fragment {
         }
 
         //Check if Listview is scrolled to bottom
-        if (reachedBottom &&
-                visibleItemCount != 0 && //Check if list is empty
+        if (reachedBottom && visibleItemCount != 0 && //Check if list is empty
                 recyclerView.getChildAt(visibleItemCount).getBottom() <= recyclerView.getHeight()) {
+
             for (int i = firstVisibleItem; i <= lastVisibleItem; i++) {
                 RecyclerView.ViewHolder vhTemp = recyclerView.findViewHolderForLayoutPosition(i);
+
                 if(vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
                     ViewHolder vh = (ViewHolder) vhTemp;
+
                     if (!vh.shouldStayUnread()) {
                         adapter.changeReadStateOfItem(vh, true);
                     } else {
@@ -496,12 +459,32 @@ public class NewsReaderDetailFragment extends Fragment {
 
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+        private int minLeftEdgeDistance = -1;
+
+        private void initEdgeDistance() {
+            if (getResources().getBoolean(R.bool.isTablet)) {
+                // if tablet mode enabled, the navigation drawer will always be visible.
+                // Therefore we don't need no offset here
+                minLeftEdgeDistance = 0;
+            } else {
+                // otherwise, have left-edge offset to avoid mark-read gesture when user is pulling to open drawer
+                minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
+            }
+        }
+
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if(mMarkAsReadWhileScrollingEnabled && (e2.getY() - e1.getY()) < 0) { // (distance < 0) => scroll up
-                handleMarkAsReadScrollEvent();
+            if(minLeftEdgeDistance == -1) { // if not initialized
+                initEdgeDistance();
             }
-            return super.onScroll(e1, e2, distanceX, distanceY);
+
+            if (mMarkAsReadWhileScrollingEnabled &&
+                e1.getX() > minLeftEdgeDistance &&   // only if gesture starts a bit away from left window edge
+                (e2.getY() - e1.getY()) < 0) {       // and if swipe direction is upwards
+                    handleMarkAsReadScrollEvent();
+                    return true;
+            }
+            return false;
         }
     }
 
