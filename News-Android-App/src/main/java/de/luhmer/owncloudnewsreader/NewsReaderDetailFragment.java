@@ -463,10 +463,14 @@ public class NewsReaderDetailFragment extends Fragment {
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if(minLeftEdgeDistance == -1) { // if not initialized
-                // TODO check if tablet..
-                // TODO if tablet, use 0 as minLeftEdgeDistance.. right?
-                minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
+            if (minLeftEdgeDistance == -1) { // if not initialized
+                // for large screens (left menu bar always visible), don't need min left distance
+                if (SettingsActivity.isLargeScreen(getActivity().getApplicationContext())) {
+                    minLeftEdgeDistance = 0;
+
+                } else {    // otherwise (pull-menu on smaller/regular screens), min distance from left edge needed for mark read gesture
+                    minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
+                }
                 Log.d(TAG, "" + minLeftEdgeDistance);
             }
 
@@ -477,7 +481,6 @@ public class NewsReaderDetailFragment extends Fragment {
                     return true;
             }
             return false;
-            //return super.onScroll(e1, e2, distanceX, distanceY);
         }
     }
 

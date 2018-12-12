@@ -173,7 +173,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	 */
 	@SuppressWarnings("deprecation")
 	private void setupSimplePreferencesScreen() {
-		if (!isSimplePreferences(this)) {
+		if (isLargeScreen(this)) {
 			return;
 		}
 
@@ -249,7 +249,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	/** {@inheritDoc} */
 	@Override
 	public boolean onIsMultiPane() {
-		return isXLargeTablet(this) && !isSimplePreferences(this);
+		return isLargeScreen(this);
 	}
 
 	/**
@@ -257,30 +257,21 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	 * example, 10" tablets are extra-large.
 	 */
 	@SuppressLint("InlinedApi")
-	private static boolean isXLargeTablet(Context context) {
+	public static boolean isLargeScreen(Context context) {
 		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
 	}
 
-	/**
-	 * Determines whether the simplified settings UI should be shown. This is
-	 * true if device doesn't have newer APIs like {@link PreferenceFragment}, or
-	 * the device doesn't have an extra-large screen. In these cases, a single-pane
-	 * "simplified" settings UI should be shown.
-	 */
-	private static boolean isSimplePreferences(Context context) {
-		return !isXLargeTablet(context);
-	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void onBuildHeaders(List<Header> target) {
 		super.onBuildHeaders(target);
-		if (!isSimplePreferences(this)) {
+		if (isLargeScreen(this)) {
 			loadHeadersFromResource(R.xml.pref_headers, target);
 		}
 
 		// below workaround is only necessary in tablet mode
-		if (isXLargeTablet(this)) {
+		if (isLargeScreen(this)) {
 
 			/* Fix settings page header ("breadcrumb") text color for dark mode
 			 * Thank you Stackoverflow: https://stackoverflow.com/a/27078485
