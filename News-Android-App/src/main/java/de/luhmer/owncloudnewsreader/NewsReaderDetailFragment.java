@@ -462,11 +462,12 @@ public class NewsReaderDetailFragment extends Fragment {
         private int minLeftEdgeDistance = -1;
 
         private void initEdgeDistance() {
-            if (SettingsActivity.isLargeScreen(getActivity().getApplicationContext())) {
+            if (getResources().getBoolean(R.bool.isTablet)) {
                 // if tablet mode enabled, the navigation drawer will always be visible.
                 // Therefore we don't need no offset here
                 minLeftEdgeDistance = 0;
             } else {
+                // otherwise, have left-edge offset to avoid mark-read gesture when user is pulling to open drawer
                 minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
             }
         }

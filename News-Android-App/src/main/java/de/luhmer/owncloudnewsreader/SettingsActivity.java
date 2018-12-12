@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -29,7 +28,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -173,7 +171,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	 */
 	@SuppressWarnings("deprecation")
 	private void setupSimplePreferencesScreen() {
-		if (isLargeScreen(this)) {
+		if (onIsMultiPane()) {
 			return;
 		}
 
@@ -249,16 +247,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	/** {@inheritDoc} */
 	@Override
 	public boolean onIsMultiPane() {
-		return isLargeScreen(this);
-	}
-
-	/**
-	 * Helper method to determine if the device has an extra-large screen. For
-	 * example, 10" tablets are extra-large.
-	 */
-	@SuppressLint("InlinedApi")
-	public static boolean isLargeScreen(Context context) {
-		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
+		return this.getResources().getBoolean(R.bool.isTablet);
 	}
 
 
@@ -266,12 +255,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	@Override
 	public void onBuildHeaders(List<Header> target) {
 		super.onBuildHeaders(target);
-		if (isLargeScreen(this)) {
+		if (onIsMultiPane()) {
 			loadHeadersFromResource(R.xml.pref_headers, target);
-		}
-
-		// below workaround is only necessary in tablet mode
-		if (isLargeScreen(this)) {
 
 			/* Fix settings page header ("breadcrumb") text color for dark mode
 			 * Thank you Stackoverflow: https://stackoverflow.com/a/27078485
