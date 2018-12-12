@@ -461,13 +461,22 @@ public class NewsReaderDetailFragment extends Fragment {
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
         private int minLeftEdgeDistance = -1;
 
+        private void initEdgeDistance() {
+            boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
+            if (tabletSize) {
+                // if tablet mode enabled, the navigation drawer will always be visible.
+                // Therefore we don't need no offset here
+                minLeftEdgeDistance = 0;
+            } else {
+                minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
+                //Log.v(TAG, "Using Edge Distance of: " + minLeftEdgeDistance);
+            }
+        }
+
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             if(minLeftEdgeDistance == -1) { // if not initialized
-                // TODO check if tablet..
-                // TODO if tablet, use 0 as minLeftEdgeDistance.. right?
-                minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
-                Log.d(TAG, "" + minLeftEdgeDistance);
+                initEdgeDistance();
             }
 
             if (mMarkAsReadWhileScrollingEnabled &&
