@@ -461,22 +461,25 @@ public class NewsReaderDetailFragment extends Fragment {
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
         private int minLeftEdgeDistance = -1;
 
+        private void initEdgeDistance() {
+            if (SettingsActivity.isLargeScreen(getActivity().getApplicationContext())) {
+                // if tablet mode enabled, the navigation drawer will always be visible.
+                // Therefore we don't need no offset here
+                minLeftEdgeDistance = 0;
+            } else {
+                minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
+            }
+        }
+
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (minLeftEdgeDistance == -1) { // if not initialized
-                // for large screens (left menu bar always visible), don't need min left distance
-                if (SettingsActivity.isLargeScreen(getActivity().getApplicationContext())) {
-                    minLeftEdgeDistance = 0;
-
-                } else {    // otherwise (pull-menu on smaller/regular screens), min distance from left edge needed for mark read gesture
-                    minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
-                }
-                Log.d(TAG, "" + minLeftEdgeDistance);
+            if(minLeftEdgeDistance == -1) { // if not initialized
+                initEdgeDistance();
             }
 
             if (mMarkAsReadWhileScrollingEnabled &&
-                    e1.getX() > minLeftEdgeDistance &&   // only if gesture starts a bit away from left window edge
-                    (e2.getY() - e1.getY()) < 0) {       // and if swipe direction is upwards
+                e1.getX() > minLeftEdgeDistance &&   // only if gesture starts a bit away from left window edge
+                (e2.getY() - e1.getY()) < 0) {       // and if swipe direction is upwards
                     handleMarkAsReadScrollEvent();
                     return true;
             }
