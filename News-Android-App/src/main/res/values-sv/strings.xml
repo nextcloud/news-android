@@ -112,6 +112,9 @@
     <string name="pref_header_general">Allmänt</string>
     <string name="pref_title_general_sort_order">Sorteringsordning</string>
 
+    <string name="pref_general_sort_order_new_old">Ny -> Gammal</string>
+    <string name="pref_general_sort_order_old_new">Gammal -> Ny</string>
+
     <string name="dialog_clearing_cache">Rensar cache</string>
     <string name="dialog_clearing_cache_please_wait">Rensar cache, var god vänta...</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
@@ -122,6 +125,9 @@
     <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
     <string name="pref_title_OpenInBrowserDirectly">Hoppa över detaljerad vy och öppna artikeln i webbläsare</string>
+
+    <string name="dialog_feature_not_available">Den här funktionen är inte tillgänglig i den här (öppen källkod) versionen av den här appen. Om du vill använda den här funktionen hämta appen från GitHub-förrådet eller hämta appen från Google Play Store.</string>
+
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
@@ -146,6 +152,10 @@
 
     <string name="pref_display_apptheme_light">Ljus</string>
     <string name="pref_display_apptheme_dark">Mörk</string>
+
+    <string name="pref_display_browser_cct">Inbyggd Chrome-anpassade flikar</string>
+    <string name="pref_display_browser_built_in">Inbyggd webbläsare</string>
+    <string name="pref_display_browser_external">Extern webbläsare</string>
 
     <string name="content_desc_play">spela</string>
     <string name="content_desc_pause">pausa</string>
@@ -187,8 +197,20 @@
 
 
 
+    <string name="pref_data_sync_image_cache_never">Aldrig</string>
     <string name="pref_data_sync_image_cache_wifi_only">Endast över Wi-Fi</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Över Wi-Fi &amp; mobildata</string>
     <string name="pref_data_sync_image_cache_ask">Fråga när du inte är ansluten till Wi-Fi</string>
+
+    <string name="array_sync_interval_min_5">5 minuter</string>
+    <string name="array_sync_interval_min_15">15 minuter</string>
+    <string name="array_sync_interval_min_30">30 minuter</string>
+    <string name="array_sync_interval_min_45">45 minuter</string>
+    <string name="array_sync_interval_hour_1">1 timme</string>
+    <string name="array_sync_interval_hour_2">2 timmar</string>
+    <string name="array_sync_interval_hour_3">3 timmar</string>
+    <string name="array_sync_interval_hour_6">6 timmar</string>
+    <string name="array_sync_interval_hour_12">12 timmar</string>
+    <string name="array_sync_interval_hour_24">24 timmar</string>
 
     </resources>
