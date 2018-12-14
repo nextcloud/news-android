@@ -64,9 +64,7 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function3;
 import io.reactivex.schedulers.Schedulers;
 
@@ -80,7 +78,6 @@ public class OwnCloudSyncService extends Service {
     protected static final String TAG = "OwnCloudSyncService";
 
     private boolean syncRunning;
-    private CompositeDisposable mDisposable;
 
     protected @Inject SharedPreferences mPrefs;
     protected @Inject ApiProvider mApi;
@@ -111,7 +108,6 @@ public class OwnCloudSyncService extends Service {
 
 	@Override
 	public void onCreate() {
-        mDisposable = new CompositeDisposable();
         ((NewsReaderApplication) getApplication()).getAppComponent().injectService(this);
 		super.onCreate();
 		Log.v(TAG, "onCreate() called");
@@ -119,7 +115,7 @@ public class OwnCloudSyncService extends Service {
 
     @Override
     public void onDestroy() {
-        mDisposable.dispose();
+        Log.v(TAG, "onDestroy() called");
         super.onDestroy();
     }
 
@@ -131,6 +127,8 @@ public class OwnCloudSyncService extends Service {
 
 	@Override
     public boolean onUnbind(Intent intent) {
+        Log.v(TAG, "onUnbind() called with: intent = [" + intent + "]");
+
         //Destroy service if no sync is running
         if(!syncRunning) {
             Log.v(TAG, "Stopping service because of inactivity");
@@ -159,7 +157,10 @@ public class OwnCloudSyncService extends Service {
 
 
         if(mApi.getAPI() == null) {
-            ThrowException(new IllegalStateException("API is not initialized"));
+            ThrowException(new IllegalStateException("API is NOT initialized"));
+            Log.e(TAG, "API is NOT initialized..");
+        } else {
+            Log.v(TAG, "API is initialized..");
         }
 
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(OwnCloudSyncService.this);
@@ -168,6 +169,7 @@ public class OwnCloudSyncService extends Service {
                 new Publisher<Boolean>() {
                    @Override
                    public void subscribe(Subscriber<? super Boolean> s) {
+                       Log.v(TAG, "(rssStateSync) subscribe() called with: s = [" + s + "] [" + Thread.currentThread().getName() + "]");
                        try {
                            ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
                            s.onNext(true);
@@ -193,43 +195,37 @@ public class OwnCloudSyncService extends Service {
         Observable<SyncResult> combined = Observable.zip(folderObservable, feedsObservable, rssStateSync, new Function3<List<Folder>, List<Feed>, Boolean, SyncResult>() {
             @Override
             public SyncResult apply(@NonNull List<Folder> folders, @NonNull List<Feed> feeds, @NonNull Boolean mRes) {
-                Log.v(TAG, "apply() called with: folders = [" + folders + "], feeds = [" + feeds + "], mRes = [" + mRes + "]");
+                Log.v(TAG, "apply() called with: folders = [" + folders + "], feeds = [" + feeds + "], mRes = [" + mRes + "] [" + Thread.currentThread().getName() + "]");
                 return new SyncResult(folders, feeds, mRes);
             }
         });
 
-        // Insert them into the database
-        Disposable disposable = combined.subscribe(new Consumer<SyncResult>() {
-            @Override
-            public void accept(@NonNull SyncResult syncResult) {
-                Log.v(TAG, "onNext() called with: syncResult = [" + syncResult + "]");
+        Log.v(TAG, "subscribing now.. [" + Thread.currentThread().getName() + "]");
 
-                InsertIntoDatabase.InsertFoldersIntoDatabase(syncResult.folders, dbConn);
-                InsertIntoDatabase.InsertFeedsIntoDatabase(syncResult.feeds, dbConn);
+        try {
+            SyncResult syncResult = combined.blockingFirst();
 
-                // Start the sync (Rss Items)
-                syncRssItems(dbConn);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable e) {
-                Log.v(TAG, "onError() called with: e = [" + e + "]");
-                ThrowException(e);
-            }
-        });
+            InsertIntoDatabase.InsertFoldersIntoDatabase(syncResult.folders, dbConn);
+            InsertIntoDatabase.InsertFeedsIntoDatabase(syncResult.feeds, dbConn);
 
-        mDisposable.add(disposable);
+            // Start the sync (Rss Items)
+            syncRssItems(dbConn);
+        } catch(Exception ex) {
+            //Log.e(TAG, "ThrowException: ", ex);
+            ThrowException(ex);
+        }
     }
 
-
     private void syncRssItems(final DatabaseConnectionOrm dbConn) {
+        Log.v(TAG, "syncRssItems() called with: dbConn = [" + dbConn + "] [" + Thread.currentThread().getName() + "]");
+
         Observable.fromPublisher(new RssItemObservable(dbConn, mApi.getAPI(), mPrefs))
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Observer<Integer>() {
                 @Override
                 public void onSubscribe(@NonNull Disposable d) {
-
+                    Log.d(TAG, "onSubscribe() called with: d = [" + d + "]");
                 }
 
                 @Override
@@ -257,6 +253,7 @@ public class OwnCloudSyncService extends Service {
 
 
     private void ThrowException(Throwable ex) {
+        Log.e(TAG, "ThrowException() called [" + Thread.currentThread().getName() + "]", ex);
         syncRunning = false;
         if(ex instanceof Exception) {
             EventBus.getDefault().post(SyncFailedEvent.create(OkHttpSSLClient.HandleExceptions((Exception) ex)));
@@ -267,7 +264,7 @@ public class OwnCloudSyncService extends Service {
 
 	private void startedSync() {
 		syncRunning = true;
-		Log.v(TAG, "Synchronization started");
+		Log.v(TAG, "Synchronization started [" + Thread.currentThread().getName() + "]");
 		EventBus.getDefault().post(new SyncStartedEvent());
 	}
 
