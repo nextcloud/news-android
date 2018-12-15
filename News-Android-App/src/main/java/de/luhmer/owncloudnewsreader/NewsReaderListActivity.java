@@ -823,8 +823,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				break;
 
 			case R.id.menu_About_Changelog:
-				DialogFragment dialog = new VersionInfoDialogFragment();
-				dialog.show(getSupportFragmentManager(), "VersionChangelogDialogFragment");
+				Toast.makeText(NewsReaderListActivity.this, "TODO: REMOVE!!!!", Toast.LENGTH_LONG).show();
+				//DialogFragment dialog = new VersionInfoDialogFragment();
+				//dialog.show(getSupportFragmentManager(), "VersionChangelogDialogFragment");
 				return true;
 
 			case R.id.menu_markAllAsRead:
