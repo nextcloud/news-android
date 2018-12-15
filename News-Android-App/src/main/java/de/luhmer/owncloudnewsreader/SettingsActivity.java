@@ -23,6 +23,7 @@ package de.luhmer.owncloudnewsreader;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -45,7 +46,6 @@ import android.preference.TwoStatePreference;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
@@ -139,7 +139,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		version = getVersionString();
+		version = VersionInfoDialogFragment.getVersionString(this);
         ThemeChooser.getInstance(this).chooseTheme(this);
         super.onCreate(savedInstanceState);
         ThemeChooser.getInstance(this).afterOnCreate(this);
@@ -215,13 +215,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         header.setTitle(R.string.pref_header_about);
         getPreferenceScreen().addPreference(header);
         addPreferencesFromResource(R.xml.pref_about);
-        Preference dialogPreference = (Preference)getPreferenceScreen().findPreference(CB_VERSION);
+        Preference dialogPreference = getPreferenceScreen().findPreference(CB_VERSION);
         dialogPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             public boolean onPreferenceClick(Preference preference) {
 				DialogFragment dialog = new VersionInfoDialogFragment();
-
-				//dialog.show(getSupportFragmentManager(), "VersionChangelogDialogFragment");
-                return true;
+				dialog.show(SettingsActivity.this.getFragmentManager(), "VersionChangelogDialogFragment");
+				return true;
             }
         });
 
@@ -389,21 +388,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 PreferenceManager.getDefaultSharedPreferences(
                         preference.getContext()).getBoolean(preference.getKey(), false));
     }
-
-    private String getVersionString() {
-		String version = "?";
-
-		try {
-			PackageInfo pInfo = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
-			version = pInfo.versionName;
-		} catch (PackageManager.NameNotFoundException e){
-			e.printStackTrace();
-		}
-
-		Formatter formatter = new Formatter();
-		String versionString = getString(R.string.current_version);
-		return formatter.format(versionString, version).toString();
-	}
 
 	@Nullable
 	@Override
