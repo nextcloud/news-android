@@ -1,15 +1,18 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingBottom="16dp">
 
     <de.luhmer.owncloudnewsreader.helper.AutoResizeTextView
         android:id="@+id/tv_androidAppVersion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="30dp"
-        android:gravity="center_horizontal|center_vertical" />
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"/>
+
+    <!-- android:paddingStart="?dialogPreferredPadding" -->
 
     <ProgressBar
         android:id="@+id/changeLogLoadingProgressBar"
