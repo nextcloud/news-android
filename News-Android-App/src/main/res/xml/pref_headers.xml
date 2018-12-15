@@ -18,6 +18,10 @@
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$DataSyncPreferenceFragment"
         android:title="@string/pref_header_data_sync" />
 
+    <header
+        android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$AboutPreferenceFragment"
+        android:title="@string/pref_header_about" />
+
 
     <!--
     <header
