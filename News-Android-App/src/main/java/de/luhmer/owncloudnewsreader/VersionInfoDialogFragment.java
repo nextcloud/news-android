@@ -25,6 +25,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -58,6 +59,13 @@ public class VersionInfoDialogFragment extends DialogFragment {
         // build dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setView(view)
+                .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dismiss();
+                    }
+                })
+                .setCancelable(true) // React to click outside of version info
                 .setTitle("Changelog"); // changelog content is in english only anyways..
 
         // set current version

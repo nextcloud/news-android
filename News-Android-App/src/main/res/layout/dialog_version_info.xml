@@ -1,8 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="16dp">
+    android:orientation="vertical">
 
     <de.luhmer.owncloudnewsreader.helper.AutoResizeTextView
         android:id="@+id/tv_androidAppVersion"
@@ -10,7 +9,8 @@
         android:layout_height="wrap_content"
         android:minHeight="30dp"
         android:gravity="center_vertical"
-        android:paddingStart="24dp"/>
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"/>
 
     <!-- android:paddingStart="?dialogPreferredPadding" -->
 
@@ -25,6 +25,8 @@
         android:id="@+id/changelog_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"/>
 
 </LinearLayout>
