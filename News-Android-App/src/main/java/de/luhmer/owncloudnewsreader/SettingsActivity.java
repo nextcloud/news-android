@@ -29,8 +29,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -62,7 +60,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
-import java.util.Formatter;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
