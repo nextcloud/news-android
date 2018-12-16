@@ -23,6 +23,7 @@ package de.luhmer.owncloudnewsreader;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -123,16 +124,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static final String SP_DISPLAY_BROWSER = "sp_display_browser";
     public static final String SP_SEARCH_IN = "sp_search_in";
 
+	public static final String CB_VERSION = "cb_version";
 
     //public static final String PREF_SIGN_IN_DIALOG = "sPref_signInDialog";
     //public static final String SP_MAX_ITEMS_SYNC = "sync_max_items";
 
     private static EditTextPreference clearCachePref;
     private static Activity _mActivity;
+    private static String version = "<loading>";
 
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
+		version = VersionInfoDialogFragment.getVersionString(this);
         ThemeChooser.getInstance(this).chooseTheme(this);
         super.onCreate(savedInstanceState);
         ThemeChooser.getInstance(this).afterOnCreate(this);
@@ -204,6 +208,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         getPreferenceScreen().addPreference(header);
 		addPreferencesFromResource(R.xml.pref_notification);
 
+        header = new PreferenceCategory(this);
+        header.setTitle(R.string.pref_header_about);
+        getPreferenceScreen().addPreference(header);
+        addPreferencesFromResource(R.xml.pref_about);
+        Preference dialogPreference = getPreferenceScreen().findPreference(CB_VERSION);
+        dialogPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            public boolean onPreferenceClick(Preference preference) {
+				DialogFragment dialog = new VersionInfoDialogFragment();
+				dialog.show(SettingsActivity.this.getFragmentManager(), "VersionChangelogDialogFragment");
+				return true;
+            }
+        });
+
         /*
         header = new PreferenceCategory(this);
         header.setTitle(R.string.pref_header_podcast);
@@ -215,6 +232,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		bindDisplayPreferences(null, this);
 		bindDataSyncPreferences(null, this);
         bindNotificationPreferences(null, this);
+		bindAboutPreferences(null, this);
         //bindPodcastPreferences(null, this);
 	}
 
@@ -477,6 +495,21 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	}
 
 
+	/**
+	 * This fragment shows about preferences only. It is used when the
+	 * activity is showing a two-pane settings UI.
+	 */
+	public static class AboutPreferenceFragment extends PreferenceFragment {
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			addPreferencesFromResource(R.xml.pref_about);
+
+			bindAboutPreferences(this, null);
+		}
+	}
+
+
 
 	@SuppressWarnings("deprecation")
 	private static void bindDisplayPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
@@ -586,6 +619,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING));
         }
     }
+
+
+	private static void bindAboutPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct) {
+		if(prefFrag != null) {
+			prefFrag.findPreference(CB_VERSION).setSummary(version);
+		} else {
+			prefAct.findPreference(CB_VERSION).setSummary(version);
+		}
+	}
+
 
     private static void bindPodcastPreferences(PreferenceFragment prefFrag)
     {

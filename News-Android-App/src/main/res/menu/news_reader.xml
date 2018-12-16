@@ -61,16 +61,9 @@
         android:title="@string/action_add_new_feed"/>
 
     <item
-        android:id="@+id/menu_About_Changelog"
-        app:showAsAction="never"
-        android:orderInCategory="102"
-        android:title="@string/menu_About_Changelog"/>
-
-
-    <item
         android:id="@+id/menu_CreateDatabaseDump"
         app:showAsAction="never"
-        android:orderInCategory="103"
+        android:orderInCategory="102"
         android:title="Create Database Dump"
         android:visible="false"
         tools:ignore="HardcodedText" />

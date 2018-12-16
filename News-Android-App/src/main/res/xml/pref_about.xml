@@ -1,0 +1,30 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <Preference
+        android:key="cb_license"
+        android:title="@string/pref_license"
+        android:summary="@string/pref_license_summary">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://www.gnu.org/licenses/license-list.html#AGPLv3.0" />
+    </Preference>
+
+    <Preference
+        android:key="cb_contribute"
+        android:title="@string/pref_contribute"
+        android:summary="@string/pref_contribute_summary">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/nextcloud/news-android" />
+    </Preference>
+
+    <Preference
+        android:key="cb_version"
+        android:title="@string/pref_version"
+        android:summary="@string/current_version">
+    </Preference>
+
+
+</PreferenceScreen>

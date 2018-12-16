@@ -822,11 +822,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 						.show();
 				break;
 
-			case R.id.menu_About_Changelog:
-				DialogFragment dialog = new VersionInfoDialogFragment();
-				dialog.show(getSupportFragmentManager(), "VersionChangelogDialogFragment");
-				return true;
-
 			case R.id.menu_markAllAsRead:
 				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 				if(ndf != null) {
