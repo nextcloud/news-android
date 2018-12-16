@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Автоматично синхронизиране</string>
+    <string name="title_activity_sync_interval_selector">Избор на интервал за синхронизиране</string>
+    <string name="title_activity_news_detail">Детайли на Новината</string>
+    <string name="empty_view_content">Тук няма елементи</string>
+    <string name="toast_GettingMoreItems">Започва свалянето на няколко елемента... Моля изчакайте.</string>
+    <string name="no_wifi_available">Няма WiFi връзка</string>
+    <string name="do_you_want_to_download_without_wifi">Желаете ли изображенията да бъдат свалени при отсъствието на WiFi връзка</string>
+    <string name="current_version">Ползвате версия %s</string>
+    <string name="widget_header">Nextcloud Новини</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">Наличен е %d нов елемент</item>
+        <item quantity="other">Налични са %d нови елемента</item>
+    </plurals>
+    <string name="message_bar_reload">Презареди</string>
+    <string name="allUnreadFeeds">Всички непрочетени</string>
+    <string name="starredFeeds">Със звезда</string>
+    <string name="title_activity_new_feed">Добави нова емисия</string>
+
+    <string name="menu_update">Опресни</string>
+    <string name="menu_About_Changelog">Относно / Списък на промените</string>
+    <string name="menu_markAllAsRead">Означи всички като прочетени</string>
+    <string name="menu_StartImageCaching">Свали изображенията</string>
+    <string name="menu_downloadMoreItems">Свали още елементи</string>
+
+    <string name="tv_showing_cached_version">Покажи кеширана версия</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Със звезда</string>
+    <string name="action_read">Прочети</string>
+    <string name="action_playPodacst">Пусни Podcast-а</string>
+    <string name="action_openInBrowser">Отвори в уеб браузър</string>
+    <string name="action_Share">Сподели</string>
+    <string name="action_login">Настройки на сървъра</string>
+    <string name="action_save">Запис</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_sync_settings">Настройки на синхронизацията</string>
+    <string name="action_add_new_feed">Добави нова емисия</string>
+    <string name="action_textToSpeech">Прочита</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Имате %d нови непрочетени елементи</item>
+        <item quantity="other">Имате %d нови непрочетени елементи</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">Налични са %d нови непрочетени елементи</item>
+        <item quantity="other">Налични са %d нови непрочетени елементи</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL на емисията</string>
+    <string name="action_add_feed">Добави емисия</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Свали изображението</string>
+    <string name="action_img_sharelink">Сподели връзката към изображението</string>
+    <string name="action_img_open">Отвори изображението в браузъра</string>
+    <string name="action_img_copylink">Копирай връзката към изображението</string>
+    <string name="action_link_share">Сподели връзката</string>
+    <string name="action_link_open">Отвори връзката в браузъра</string>
+    <string name="action_link_copy">Копирай връзката</string>
+    <string name="toast_img_download_wait">Сваляне... Моля изчакайте</string>
+    <string name="toast_img_saved">Изображението е записано</string>
+    <string name="toast_img_notwriteable">Записването на изображението се провали.</string>
+    <string name="toast_copied_to_clipboard">Копирана</string>
+    <string name="error_download_failed">Свалянето се провали.</string>
+    <string name="intent_title_share">Сподели чрез</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Премахване на емисията</string>
+    <string name="action_feed_rename">Преименуване на емисията</string>
+    <string name="action_feed_move">Преместване на емисията</string>
+    <string name="feed_remove_button">Премахни</string>
+    <string name="feed_rename_button">Преименувай</string>
+    <string name="confirm_feed_remove">Наистина ли желаете емисията да бъде премахната? Изтриването е необратима операция!</string>
+    <string name="feed_move_list_description">Изберете в коя папка да бъде преместена емисията</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Потребител</string>
+    <string name="pref_title_password">Парола</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud root адрес</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">Впиши се</string>
+    <string name="login_progress_signing_in">Вписване...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Полето е задължително</string>
+    <string name="error_invalid_url">Грешен URL адрес</string>
+
+
+    <!-- Import Accounts -->
+    <string name="import_account">Внеси профил</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Свалени %d стари елементи</item>
+        <item quantity="other">Свалени са %d стари елементи</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Няма повече елементи</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Настройки</string>
+    <string name="cache_is_cleared">Кеша е изчистен!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Общи</string>
+    <string name="pref_title_general_sort_order">Сортиране</string>
+
+    <string name="pref_general_sort_order_new_old">Нови -> Стари</string>
+    <string name="pref_general_sort_order_old_new">Стари -> Нови </string>
+
+    <string name="pref_title_general_search_in">Търсене в...</string>
+
+    <string name="pref_general_search_in_title">Заглавието</string>
+    <string name="pref_general_search_in_body">Съдържанието</string>
+
+    <string name="dialog_clearing_cache">Изчистване на кеш</string>
+    <string name="dialog_clearing_cache_please_wait">Изчистване на кеша… Моля изчакайте.</string>
+    <string name="reset_cache_unsaved_changes">Има несинхронизирани промени. Наистина ли желаете кеша да бъде изтрит?</string>
+    <string name="warning">Предупреждение</string>
+    <string name="pref_title_AutoSyncOnStart">Синхронизиране при стартиране</string>
+    <string name="pref_title_ShowOnlyUnread">Показвай само непрочетените статии</string>
+    <string name="pref_title_DisableHostnameVerification">Без проверката на името на сървъра</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Навигиране чрез бутоните за контрол на звука</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Означаване като \"Прочетена\" след скролиране</string>
+    <string name="pref_title_OpenInBrowserDirectly">Без подробен изглед, директно отваряне на статиите в браузъра</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Приемане на неизвестни сертификати?</string>
+    <string name="mtm_decision_always">Винаги</string>
+    <string name="mtm_decision_abort">Прекрати</string>
+    <string name="mtm_notification">Проверка на сертификата</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Няма избран podcast</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Екран</string>
+    <string name="pref_title_app_theme">Тема</string>
+    <string name="pref_title_feed_list_layout">Оформление на списъка с емисии</string>
+    <string name="pref_title_font_size">Размер на шрифта</string>
+    <string name="pref_display_browser">Браузър</string>
+
+
+
+
+    <string name="pref_display_apptheme_auto">Светъл / Тъмен (в зависимост от часа)</string>
+    <string name="pref_display_apptheme_light">Светъл</string>
+    <string name="pref_display_apptheme_dark">Тъмен</string>
+
+    <string name="pref_oled_mode">Черен фон</string>
+    <string name="pref_oled_mode_summary">За черни теми на OLED екрани</string>
+
+    <string name="pref_display_browser_built_in">Вградения браузър</string>
+    <string name="pref_display_browser_external">Външен браузър</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Миниатюри</string>
+    <string name="content_desc_expand">разгъване</string>
+    <string name="content_desc_collapse">сгъване</string>
+    <string name="content_desc_mark_as_read">означи като прочетена</string>
+    <string name="content_desc_mark_as_unread">означи като непрочетена</string>
+    <string name="content_desc_add_to_favorites">добави към любимите</string>
+    <string name="content_desc_remove_from_favorites">премахни от любимите</string>
+    <string name="content_desc_delete">изтриване</string>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Известия</string>
+    <string name="pref_title_notification_new_articles_available">Показвай известия за нови статии</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Грешка</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Изглежда, че приложението за новини не е инсталирано/включено на сървъра. Следвайте следните инструкции: %1$s, за да настроите приложението за новини на сървъра.</string>
+    <string name="login_dialog_text_something_went_wrong">Възникна проблем :(</string>
+    <string name="login_dialog_text_not_compatible">Версията на мобилното приложение не е съвместима с версията на Nextcloud приложението. Моля актуализирайте приложението и appframework.</string>
+    <string name="login_dialog_title_security_warning">Предупреждение за сигурноста</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Данни и Синхронизиране</string>
+    <string name="pref_title_clearCache">Изтриване на кеша</string>
+    <string name="pref_title_CacheImagesOffline">Кеширане на изображенията</string>
+    <string name="pref_title_Max_Cache_Size">Макс. размер на кеша</string>
+
+
+
+
+    <string name="pref_data_sync_image_cache_never">Никога</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Само през WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">През WiFi и мобилна мрежа</string>
+    <string name="pref_data_sync_image_cache_ask">Запитване когато няма WiFi връзка</string>
+
+    <string name="array_sync_interval_min_5">5 минути</string>
+    <string name="array_sync_interval_min_15">15 минути</string>
+    <string name="array_sync_interval_min_30">30 минути</string>
+    <string name="array_sync_interval_min_45">45 минути</string>
+    <string name="array_sync_interval_hour_1">1 час</string>
+    <string name="array_sync_interval_hour_2">2 часа</string>
+    <string name="array_sync_interval_hour_3">3 часа</string>
+    <string name="array_sync_interval_hour_6">6 часа</string>
+    <string name="array_sync_interval_hour_12">12 часа</string>
+    <string name="array_sync_interval_hour_24">24 часа</string>
+
+    </resources>

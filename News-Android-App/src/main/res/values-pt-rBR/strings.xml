@@ -180,6 +180,7 @@
 
     <string name="pref_display_feed_list_layout_thumbnails">Thumbnails</string>
     <string name="pref_display_feed_list_layout_simple_text">Texto simples</string>
+    <string name="pref_display_feed_list_layout_headlines">Manchetes</string>
     <string name="pref_display_feed_list_layout_full_text">Texto completo</string>
     <string name="pref_display_feed_list_layout_web_layout">Layout da web</string>
     <string name="pref_display_feed_list_layout_card_view">Visualização de cartão</string>
