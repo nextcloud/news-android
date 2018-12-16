@@ -21,7 +21,6 @@
     <string name="title_activity_new_feed">Add new feed</string>
 
     <string name="menu_update">Refresh</string>
-    <string name="menu_About_Changelog">About / Changelog</string>
     <string name="menu_markAllAsRead">Mark all as read</string>
     <string name="menu_StartImageCaching">Download images</string>
     <string name="menu_downloadMoreItems">Download more items</string>

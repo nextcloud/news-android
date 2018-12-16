@@ -58,7 +58,7 @@ public class VersionInfoDialogFragment extends DialogFragment {
         // build dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setView(view)
-                .setTitle(getString(R.string.menu_About_Changelog));
+                .setTitle("Changelog"); // changelog content is in english only anyways..
 
         // set current version
         versionTextView.setText(getVersionString(getActivity()));
