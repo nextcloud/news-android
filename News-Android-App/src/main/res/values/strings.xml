@@ -180,7 +180,7 @@
     <string name="pref_license">License</string>
     <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
     <string name="pref_contribute">Contribute!</string>
-    <string name="pref_contribute_summary">Get source code</string>
+    <string name="pref_contribute_summary">Get the source code</string>
     <string name="pref_version">Nextcloud News Android app</string>
 
 
