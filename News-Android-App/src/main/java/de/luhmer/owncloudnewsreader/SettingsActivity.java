@@ -130,6 +130,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     //public static final String SP_MAX_ITEMS_SYNC = "sync_max_items";
 
     private static EditTextPreference clearCachePref;
+	private static Preference changelogPreference = null;
     private static Activity _mActivity;
     private static String version = "<loading>";
 
@@ -151,8 +152,26 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		_mActivity = this;
 
 		setupSimplePreferencesScreen();
+		setupChangelogListener();
 	}
 
+
+	/**
+	 * This is a workaround to be able to set the about-menu version entry click-listener for showing the changelog dialog
+	 * Done here because this needs the SettingsActivity to be available (for dialog.show()), so can't be called from static
+	 * method 'bindAboutPreferences()', and setupSimplePreferencesScreen() only works for single-pane (non-tablet) devices...
+	 */
+	private void setupChangelogListener() {
+		if (changelogPreference != null) {
+			changelogPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+				public boolean onPreferenceClick(Preference preference) {
+					DialogFragment dialog = new VersionInfoDialogFragment();
+					dialog.show(SettingsActivity.this.getFragmentManager(), "VersionChangelogDialogFragment");
+					return true;
+				}
+			});
+		}
+	}
 
 	private void setupActionBar() {
         // get the root container of the preferences list
@@ -624,8 +643,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	private static void bindAboutPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct) {
 		if(prefFrag != null) {
 			prefFrag.findPreference(CB_VERSION).setSummary(version);
+			changelogPreference = prefFrag.findPreference(CB_VERSION);
 		} else {
 			prefAct.findPreference(CB_VERSION).setSummary(version);
+			changelogPreference = prefAct.findPreference(CB_VERSION);
 		}
 	}
 
