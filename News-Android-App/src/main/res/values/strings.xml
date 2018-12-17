@@ -179,10 +179,11 @@
     <string name="pref_header_about">About</string>
     <string name="pref_license">License</string>
     <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_report_issue">Report an issue</string>
+    <string name="pref_report_issue_summary">Requires a (free) GitHub account</string>
     <string name="pref_contribute">Contribute!</string>
     <string name="pref_contribute_summary">Get the source code</string>
     <string name="pref_version">Nextcloud News Android app</string>
-
 
 
     <!-- Settings for Display -->
