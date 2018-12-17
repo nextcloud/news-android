@@ -27,7 +27,7 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
     @SuppressWarnings("unused")
     private static final String TAG = "DownloadChangelogTask";
 
-    private static final String README_URL = "https://raw.github.com/owncloud/News-Android-App/master/CHANGELOG.md";
+    private static final String README_URL = "https://raw.githubusercontent.com/nextcloud/news-android/master/CHANGELOG.md";
     private static final String FILE_NAME = "changelog.xml";
 
     private Context mContext;
