@@ -3,14 +3,22 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+
 0.9.9.20 (Google Play)
 ---------------------
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/702">#702 Widget not updating</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/698">#698 Black font color on all layouts</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/696">#696 Background sync (automatic sync) broken</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/693">#693 Fix background color in Settings (Thank you @AnotherDaniel)</a>
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/683">#683 OLED bg is lost on orientation change in auto NightMode (Thank you @AnotherDaniel)</a>
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/681">#681 Make audio podcasts controllable by Bluetooth media controls</a>
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/678">#678 Settings section/page header text is black, also in dark theme</a>
-- UI Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/677">#677 New feed items look read</a>
-- UI Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/688">#688 Settings - Add missing section header of first/general settings category  (Thank you @AnotherDaniel)</a>
+- UI Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/704">#704 Move About/Changelog to Settings (Thank you @AnotherDaniel)</a>
 - UI Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/690">#690 Settings - Disable oled setting if Light theme is selected  (Thank you @AnotherDaniel)</a>
+- UI Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/688">#688 Settings - Add missing section header of first/general settings category  (Thank you @AnotherDaniel)</a>
+- UI Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/680">#680 Add option to only show headlines</a>
+- UI Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/677">#677 New feed items look read</a>
+
 
 
 0.9.9.19 (Google Play)
