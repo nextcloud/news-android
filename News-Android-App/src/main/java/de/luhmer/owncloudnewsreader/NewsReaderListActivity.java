@@ -712,7 +712,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.news_reader, menu);
 
@@ -736,9 +735,18 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				return true;
 			}
 		});
-		this.searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+
+		searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		searchView.setIconifiedByDefault(false);
 		searchView.setOnQueryTextListener(this);
+		searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    clearSearchViewFocus();
+                }
+            }
+        });
 
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if(ndf != null)

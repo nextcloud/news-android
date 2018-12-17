@@ -392,8 +392,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
                 NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
                 String link = newsDetailFragment.mWebView.getUrl();
 
-                if(link.equals("about:blank"))
-				    link = rssItem.getLink();
+                if("about:blank".equals(link)) {
+                    link = rssItem.getLink();
+                }
 
 				if(link.length() > 0)
 				{

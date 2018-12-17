@@ -360,6 +360,8 @@ public class NewsReaderDetailFragment extends Fragment {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new NewsReaderItemTouchHelperCallback());
         itemTouchHelper.attachToRecyclerView(recyclerView);
         //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity())); // Enable divider line
+
+        /*
         recyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -367,6 +369,7 @@ public class NewsReaderDetailFragment extends Fragment {
                 return false;
             }
         });
+        */
 
         swipeRefresh.setColorSchemeColors(accentColor);
         swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) getActivity());
