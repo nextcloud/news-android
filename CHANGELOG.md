@@ -4,7 +4,7 @@
 
 
 
-0.9.9.20 (Google Play)
+0.9.9.20
 ---------------------
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/702">#702 Widget not updating</a>
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/698">#698 Black font color on all layouts</a>
@@ -21,7 +21,7 @@
 
 
 
-0.9.9.19 (Google Play)
+0.9.9.19
 ---------------------
 - Feature - <a href="https://github.com/owncloud/News-Android-App/issues/661">#661 NightMode (Thank you @AnotherDaniel)</a>
 - Feature - <a href="https://github.com/owncloud/News-Android-App/issues/658">#658 Several UI refactorings</a>
