@@ -20,7 +20,6 @@
     <string name="title_activity_new_feed">Adicionar nova feed</string>
 
     <string name="menu_update">Atualizar</string>
-    <string name="menu_About_Changelog">Sobre / Registo de Alteraçãoes</string>
     <string name="menu_markAllAsRead">Marcar tudo como lido</string>
     <string name="menu_StartImageCaching">Transferir as imagens</string>
     <string name="menu_downloadMoreItems">Transferir mais itens</string>
@@ -160,8 +159,5 @@
     <string name="pref_title_clearCache">Limpar a cache</string>
     <string name="pref_title_CacheImagesOffline">Imagens offline da cache</string>
     <string name="pref_title_Max_Cache_Size">Tamanho Máximo da Cache</string>
-
-
-
 
     </resources>

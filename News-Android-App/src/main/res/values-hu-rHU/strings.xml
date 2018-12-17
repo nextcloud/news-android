@@ -20,7 +20,6 @@
     <string name="title_activity_new_feed">Új hírcsatorna hozzáadása</string>
 
     <string name="menu_update">Frissítés</string>
-    <string name="menu_About_Changelog">Névjegy / Változtatások</string>
     <string name="menu_markAllAsRead">Jelöljük meg az összeset olvasottként</string>
     <string name="menu_StartImageCaching">Képek letőltése</string>
     <string name="menu_downloadMoreItems">Több elem letőltése</string>
@@ -159,7 +158,6 @@
 
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Akció ikonok (Részletes nézet)</string>
 
     <string name="pref_display_apptheme_light">Világos</string>
@@ -171,6 +169,7 @@
 
     <string name="pref_display_feed_list_layout_thumbnails">Előnézetek</string>
     <string name="pref_display_feed_list_layout_simple_text">Egyszerű szöveg</string>
+    <string name="pref_display_feed_list_layout_headlines">Főcímek</string>
     <string name="pref_display_feed_list_layout_full_text">Teljes szöveg</string>
     <string name="content_desc_play">lejátszás</string>
     <string name="content_desc_pause">szünet</string>
@@ -209,9 +208,6 @@
     <string name="pref_title_clearCache">Átmeneti tár(cache) tisztitása</string>
     <string name="pref_title_CacheImagesOffline">Képek offline tárolása ideglenesen</string>
     <string name="pref_title_Max_Cache_Size">Maximum Cache Méret</string>
-
-
-
 
     <string name="pref_data_sync_image_cache_never">Soha</string>
     <string name="pref_data_sync_image_cache_wifi_only">Csak WiFi-n</string>

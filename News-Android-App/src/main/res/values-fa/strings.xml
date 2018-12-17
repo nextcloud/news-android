@@ -20,7 +20,6 @@
     <string name="title_activity_new_feed">افزودن خوراک جدید</string>
 
     <string name="menu_update">تازه‌سازی</string>
-    <string name="menu_About_Changelog">درباره / تغییرات</string>
     <string name="menu_markAllAsRead">علامت همه به عنوان خوانده‌شده</string>
     <string name="menu_StartImageCaching">بارگیری تصاویر</string>
     <string name="menu_downloadMoreItems">بارگیری موارد بیش‌تر</string>
@@ -164,7 +163,6 @@
 
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">نقشک‌های فعالیت (نمای باجزییات)</string>
 
     <string name="pref_display_apptheme_auto">روشن / تیره (بر اساس زمان روز)</string>
@@ -228,9 +226,6 @@
     <string name="pref_title_clearCache">پاک‌سازی انباره</string>
     <string name="pref_title_CacheImagesOffline">انبارش برون‌خط تصاویر</string>
     <string name="pref_title_Max_Cache_Size">بیشینهٔ اندازهٔ انباره</string>
-
-
-
 
     <string name="pref_data_sync_image_cache_never">هرگز</string>
     <string name="pref_data_sync_image_cache_wifi_only">فقط روی وای‌فای</string>

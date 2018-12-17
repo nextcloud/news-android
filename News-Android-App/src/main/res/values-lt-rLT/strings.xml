@@ -22,7 +22,6 @@
     <string name="title_activity_new_feed">Pridėti naują kanalą</string>
 
     <string name="menu_update">Įkelti iš naujo</string>
-    <string name="menu_About_Changelog">Apie / Keitinių žurnalas</string>
     <string name="menu_markAllAsRead">Žymėti visus skaitytais</string>
     <string name="menu_StartImageCaching">Atsisiųsti paveikslus</string>
     <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
@@ -163,7 +162,6 @@
 
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Veiksmų ikonos (Išsamus atvaizdavimas)</string>
 
     <string name="pref_display_apptheme_light">Šviesi</string>
@@ -213,9 +211,6 @@
     <string name="pref_title_clearCache">Išvalyti podėlį</string>
     <string name="pref_title_CacheImagesOffline">Saugoti paveikslėlius darbui neprisijungus</string>
     <string name="pref_title_Max_Cache_Size">Didžiausias podėlio dydis</string>
-
-
-
 
     <string name="pref_data_sync_image_cache_never">Niekada</string>
     <string name="pref_data_sync_image_cache_wifi_only">Tik naudojant WiFI</string>

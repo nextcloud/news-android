@@ -20,7 +20,6 @@
     <string name="title_activity_new_feed">Add new feed</string>
 
     <string name="menu_update">Refresh</string>
-    <string name="menu_About_Changelog">About / Changelog</string>
     <string name="menu_markAllAsRead">Mark all as read</string>
     <string name="menu_StartImageCaching">Download images</string>
     <string name="menu_downloadMoreItems">Download more items</string>
@@ -144,7 +143,6 @@
 
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
 
     <string name="pref_display_apptheme_light">Light</string>
@@ -191,9 +189,6 @@
     <string name="pref_title_clearCache">Clear cache</string>
     <string name="pref_title_CacheImagesOffline">Cache images offline</string>
     <string name="pref_title_Max_Cache_Size">Max Cache Size</string>
-
-
-
 
     <string name="pref_data_sync_image_cache_never">Never</string>
     <string name="pref_data_sync_image_cache_wifi_only">Over WiFi only</string>

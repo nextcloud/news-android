@@ -20,7 +20,6 @@
     <string name="title_activity_new_feed">Legg til ny kilde</string>
 
     <string name="menu_update">Oppdater</string>
-    <string name="menu_About_Changelog">Om/Endringslogg</string>
     <string name="menu_markAllAsRead">Marker alle som lest</string>
     <string name="menu_StartImageCaching">Last ned bilder</string>
     <string name="menu_downloadMoreItems">Last ned flere element</string>
@@ -164,7 +163,6 @@
 
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
 
     <string name="pref_display_apptheme_auto">Lys/mørk (ut fra tid på dagen)</string>
@@ -228,9 +226,6 @@
     <string name="pref_title_clearCache">Slett hurtiglager</string>
     <string name="pref_title_CacheImagesOffline">Bildehurtiglager er offline</string>
     <string name="pref_title_Max_Cache_Size">Maks hurtiglagerstørrelse</string>
-
-
-
 
     <string name="pref_data_sync_image_cache_never">Aldri</string>
     <string name="pref_data_sync_image_cache_wifi_only">Bare over Wi-Fi</string>

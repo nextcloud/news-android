@@ -20,7 +20,6 @@
     <string name="title_activity_new_feed">הוספת ערוץ הזנת תוכן חדש</string>
 
     <string name="menu_update">רענון</string>
-    <string name="menu_About_Changelog">אודות / לוג שינויים</string>
     <string name="menu_markAllAsRead">סימון הכול כנקרא</string>
     <string name="menu_StartImageCaching">הורדת תמונות</string>
     <string name="menu_downloadMoreItems">הורדת פריטים נוספים</string>
@@ -125,7 +124,6 @@
     <string name="pref_header_display">תצוגה</string>
     <string name="pref_title_feed_list_layout">פריסת רשימת הזנות</string>
     <string name="pref_display_browser">דפדפן</string>
-
 
 
 

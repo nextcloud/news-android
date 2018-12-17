@@ -20,7 +20,6 @@
     <string name="title_activity_new_feed">Lägg till flöde</string>
 
     <string name="menu_update">Uppdatera</string>
-    <string name="menu_About_Changelog">Om / Ändringslogg</string>
     <string name="menu_markAllAsRead">Markera alla som lästa</string>
     <string name="menu_StartImageCaching">Ladda ner bilder</string>
     <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
@@ -147,7 +146,6 @@
 
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
 
     <string name="pref_display_apptheme_light">Ljus</string>
@@ -193,9 +191,6 @@
     <string name="pref_title_clearCache">Rensa cache</string>
     <string name="pref_title_CacheImagesOffline">Cacha bilder offline</string>
     <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
-
-
-
 
     <string name="pref_data_sync_image_cache_never">Aldrig</string>
     <string name="pref_data_sync_image_cache_wifi_only">Endast över Wi-Fi</string>

@@ -20,7 +20,6 @@
     <string name="title_activity_new_feed">Einen neuen Feed hinzufügen</string>
 
     <string name="menu_update">Aktualisieren</string>
-    <string name="menu_About_Changelog">Über / Änderungen</string>
     <string name="menu_markAllAsRead">Alles als gelesen kennzeichnen</string>
     <string name="menu_StartImageCaching">Bilder herunterladen</string>
     <string name="menu_downloadMoreItems">Weitere Artikel herunterladen</string>
@@ -164,7 +163,6 @@
 
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Aktionssymbole (Detailansicht)</string>
 
     <string name="pref_display_apptheme_auto">Hell / Dunkel (je nach Tageszeit)</string>
@@ -229,9 +227,6 @@
     <string name="pref_title_clearCache">Zwischenspeicher leeren</string>
     <string name="pref_title_CacheImagesOffline">Bilder Offline zwischenspeichern</string>
     <string name="pref_title_Max_Cache_Size">Maximale Cachegröße</string>
-
-
-
 
     <string name="pref_data_sync_image_cache_never">Nie</string>
     <string name="pref_data_sync_image_cache_wifi_only">Nur über WLAN</string>

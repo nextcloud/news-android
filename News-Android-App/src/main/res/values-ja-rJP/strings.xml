@@ -19,7 +19,6 @@
     <string name="title_activity_new_feed">新しいフィードを追加</string>
 
     <string name="menu_update">同期</string>
-    <string name="menu_About_Changelog">Nextcloud について / 変更点</string>
     <string name="menu_markAllAsRead">すべて既読にする</string>
     <string name="menu_StartImageCaching">画像をダウンロード</string>
     <string name="menu_downloadMoreItems">さらにアイテムをダウンロード</string>
@@ -159,7 +158,6 @@
 
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">アクションアイコン（詳細表示）</string>
 
     <string name="pref_display_apptheme_auto">ライト / ダーク（時刻に基づく）</string>
@@ -223,9 +221,6 @@
     <string name="pref_title_clearCache">キャッシュをクリア</string>
     <string name="pref_title_CacheImagesOffline">オフラインのキャッシュ画像</string>
     <string name="pref_title_Max_Cache_Size">最大キャッシュサイズ</string>
-
-
-
 
     <string name="pref_data_sync_image_cache_never">しない</string>
     <string name="pref_data_sync_image_cache_wifi_only">WiFiのみ</string>

@@ -22,7 +22,6 @@
     <string name="title_activity_new_feed">Добавить новую ленту</string>
 
     <string name="menu_update">Обновить</string>
-    <string name="menu_About_Changelog">О программе / Изменения</string>
     <string name="menu_markAllAsRead">Пометить всё как прочитанное</string>
     <string name="menu_StartImageCaching">Скачать изображения</string>
     <string name="menu_downloadMoreItems">Скачать ещё</string>
@@ -174,7 +173,6 @@
 
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Значки действия (подробный просмотр)</string>
 
     <string name="pref_display_apptheme_auto">Светлый / тёмный (в зависимости от времени суток)</string>
@@ -238,9 +236,6 @@
     <string name="pref_title_clearCache">Очистить кэш</string>
     <string name="pref_title_CacheImagesOffline">Кэшировать изображения вне сети</string>
     <string name="pref_title_Max_Cache_Size">Максимальный размер кэша</string>
-
-
-
 
     <string name="pref_data_sync_image_cache_never">Никогда</string>
     <string name="pref_data_sync_image_cache_wifi_only">Только через WiFi </string>
