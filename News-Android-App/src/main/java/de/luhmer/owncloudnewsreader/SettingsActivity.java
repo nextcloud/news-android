@@ -506,16 +506,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	@SuppressWarnings("deprecation")
 	private static void bindDisplayPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
 	{
-		if(prefFrag != null)
-		{
+		if(prefFrag != null) {
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_APP_THEME));
             bindPreferenceBooleanToValue(prefFrag.findPreference(CB_OLED_MODE));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FEED_LIST_LAYOUT));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FONT_SIZE));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_DISPLAY_BROWSER));
-		}
-		else
-		{
+		} else {
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_APP_THEME));
             bindPreferenceBooleanToValue(prefAct.findPreference(CB_OLED_MODE));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_FEED_LIST_LAYOUT));
@@ -527,8 +524,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	@SuppressWarnings("deprecation")
 	private static void bindGeneralPreferences(PreferenceFragment prefFrag, final PreferenceActivity prefAct)
 	{
-		if(prefFrag != null)
-		{
+		if(prefFrag != null) {
 			/*
 			bindPreferenceSummaryToValue(prefFrag.findPreference(EDT_USERNAME_STRING));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(EDT_PASSWORD_STRING));
@@ -542,9 +538,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
 	        bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SORT_ORDER));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SEARCH_IN));
-		}
-		else
-		{
+		} else {
 			/*
 			bindPreferenceSummaryToValue(prefAct.findPreference(EDT_USERNAME_STRING));
 			bindPreferenceSummaryToValue(prefAct.findPreference(EDT_PASSWORD_STRING));
@@ -568,22 +562,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         Intent intentSyncSettings = new Intent(Settings.ACTION_SYNC_SETTINGS);
         intentSyncSettings.putExtra(Settings.EXTRA_AUTHORITIES, authorities);
 
-		if(prefFrag != null)
-		{
+		if(prefFrag != null) {
             prefFrag.findPreference(PREF_SYNC_SETTINGS).setIntent(intentSyncSettings);
 			//bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefFrag.findPreference(EDT_CLEAR_CACHE);
 			bindPreferenceSummaryToValue(prefFrag.findPreference(LV_CACHE_IMAGES_OFFLINE_STRING));
 			bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_CACHE_SIZE));
-		}
-		else
-		{
+		} else {
             prefAct.findPreference(PREF_SYNC_SETTINGS).setIntent(intentSyncSettings);
 			//bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_ITEMS_SYNC));
 			clearCachePref = (EditTextPreference) prefAct.findPreference(EDT_CLEAR_CACHE);
             bindPreferenceSummaryToValue(prefAct.findPreference(LV_CACHE_IMAGES_OFFLINE_STRING));
 			bindPreferenceSummaryToValue(prefAct.findPreference(SP_MAX_CACHE_SIZE));
-
 		}
 
 		clearCachePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -602,12 +592,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     private static void bindNotificationPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct)
     {
-        if(prefFrag != null)
-        {
+        if(prefFrag != null) {
             bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING));
-        }
-        else
-        {
+        } else {
             bindPreferenceBooleanToValue(prefAct.findPreference(CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING));
         }
     }
@@ -639,12 +626,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     private static void bindPodcastPreferences(PreferenceFragment prefFrag)
     {
-        if(prefFrag != null)
-        {
+        if(prefFrag != null) {
             //bindPreferenceBooleanToValue(prefFrag.findPreference(CB_ENABLE_PODCASTS_STRING));
-        }
-        else
-        {
+        } else {
             //bindPreferenceBooleanToValue(prefAct.findPreference(CB_ENABLE_PODCASTS_STRING));
         }
     }
