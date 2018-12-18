@@ -130,7 +130,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     //public static final String SP_MAX_ITEMS_SYNC = "sync_max_items";
 
     private static EditTextPreference clearCachePref;
-	private static Preference changelogPreference = null;
     private static Activity _mActivity;
     private static String version = "<loading>";
 
@@ -601,6 +600,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
 
 	private static void bindAboutPreferences(final PreferenceFragment prefFrag, final PreferenceActivity prefAct) {
+	    Preference changelogPreference;
         if(prefFrag != null) {
 			prefFrag.findPreference(CB_VERSION).setSummary(version);
 			changelogPreference = prefFrag.findPreference(CB_VERSION);
