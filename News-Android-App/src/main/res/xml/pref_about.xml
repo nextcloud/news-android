@@ -11,6 +11,16 @@
     </Preference>
 
     <Preference
+        android:key="cb_reportIssue"
+        android:title="@string/pref_report_issue"
+        android:summary="@string/pref_report_issue_summary">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/nextcloud/news-android/issues" />
+    </Preference>
+
+    <Preference
         android:key="cb_contribute"
         android:title="@string/pref_contribute"
         android:summary="@string/pref_contribute_summary">
