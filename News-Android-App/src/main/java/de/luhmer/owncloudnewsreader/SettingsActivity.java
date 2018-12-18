@@ -152,25 +152,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		_mActivity = this;
 
 		setupSimplePreferencesScreen();
-		setupChangelogListener();
-	}
-
-
-	/**
-	 * This is a workaround to be able to set the about-menu version entry click-listener for showing the changelog dialog
-	 * Done here because this needs the SettingsActivity to be available (for dialog.show()), so can't be called from static
-	 * method 'bindAboutPreferences()', and setupSimplePreferencesScreen() only works for single-pane (non-tablet) devices...
-	 */
-	private void setupChangelogListener() {
-		if (changelogPreference != null) {
-			changelogPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-				public boolean onPreferenceClick(Preference preference) {
-					DialogFragment dialog = new VersionInfoDialogFragment();
-					dialog.show(SettingsActivity.this.getFragmentManager(), "VersionChangelogDialogFragment");
-					return true;
-				}
-			});
-		}
 	}
 
 	private void setupActionBar() {
@@ -231,14 +212,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         header.setTitle(R.string.pref_header_about);
         getPreferenceScreen().addPreference(header);
         addPreferencesFromResource(R.xml.pref_about);
-        Preference dialogPreference = getPreferenceScreen().findPreference(CB_VERSION);
-        dialogPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            public boolean onPreferenceClick(Preference preference) {
-				DialogFragment dialog = new VersionInfoDialogFragment();
-				dialog.show(SettingsActivity.this.getFragmentManager(), "VersionChangelogDialogFragment");
-				return true;
-            }
-        });
 
         /*
         header = new PreferenceCategory(this);
@@ -640,14 +613,27 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
 
-	private static void bindAboutPreferences(PreferenceFragment prefFrag, PreferenceActivity prefAct) {
-		if(prefFrag != null) {
+	private static void bindAboutPreferences(final PreferenceFragment prefFrag, final PreferenceActivity prefAct) {
+        if(prefFrag != null) {
 			prefFrag.findPreference(CB_VERSION).setSummary(version);
 			changelogPreference = prefFrag.findPreference(CB_VERSION);
 		} else {
 			prefAct.findPreference(CB_VERSION).setSummary(version);
 			changelogPreference = prefAct.findPreference(CB_VERSION);
 		}
+
+        changelogPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            public boolean onPreferenceClick(Preference preference) {
+                DialogFragment dialog = new VersionInfoDialogFragment();
+
+                if(prefFrag != null) {
+                    dialog.show(prefFrag.getActivity().getFragmentManager(), "VersionChangelogDialogFragment"); // Tablets
+                } else {
+                    dialog.show(prefAct.getFragmentManager(), "VersionChangelogDialogFragment"); // Phones
+                }
+                return true;
+            }
+        });
 	}
 
 
