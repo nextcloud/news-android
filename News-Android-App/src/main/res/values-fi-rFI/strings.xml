@@ -21,6 +21,8 @@
     <string name="menu_StartImageCaching">Lataa kuvat</string>
     <string name="menu_downloadMoreItems">Lataa lisää kohteita</string>
 
+    <string name="tv_showing_cached_version">Näytetään välimuistissa oleva versio</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Varustettu tähdellä</string>
     <string name="action_read">Luku</string>
@@ -137,6 +139,10 @@
     <string name="notification_downloading_podcast_title">Ladataan podcast</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">Tietoja</string>
+    <string name="pref_license">Lisenssi</string>
+    <string name="pref_contribute">Osallistu!</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Näyttö</string>
     <string name="pref_title_app_theme">Teema</string>
@@ -153,6 +159,8 @@
     <string name="pref_oled_mode">Musta tausta</string>
     <string name="pref_display_browser_built_in">Sisäänrakennettu selain</string>
     <string name="pref_display_browser_external">Ulkoinen selain</string>
+
+    <string name="pref_display_feed_list_layout_card_view">Korttinäkymä</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Pieni</string>

@@ -159,9 +159,7 @@
     <string name="pref_license">Lisans</string>
     <string name="pref_license_summary">GNU Affero Genel Kamu Lisansı (AGPL) 3. Sürüm</string>
     <string name="pref_contribute">Katkıda Bulunun!</string>
-    <string name="pref_contribute_summary">Kaynak kodunu alın</string>
     <string name="pref_version">Nextcloud Haberleri Android uygulaması</string>
-
 
 
     <!-- Settings for Display -->

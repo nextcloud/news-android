@@ -132,7 +132,7 @@
     <string name="warning">Aviso</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>
     <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos não lidos</string>
-    <string name="pref_title_DisableHostnameVerification">Desabilitar Verificação de Hostname</string>
+    <string name="pref_title_DisableHostnameVerification">Desativar Verificação de Hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
     <string name="pref_title_OpenInBrowserDirectly">Salte a exibição detalhada e abra o artigo no navegador</string>
@@ -159,9 +159,7 @@
     <string name="pref_license">Licença</string>
     <string name="pref_license_summary">GNU Affero General Public License (AGPL) versão 3</string>
     <string name="pref_contribute">Contribua!</string>
-    <string name="pref_contribute_summary">Obter o código fonte</string>
     <string name="pref_version">Aplicativo Android de Notícias Nextcloud</string>
-
 
 
     <!-- Settings for Display -->
