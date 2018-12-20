@@ -68,7 +68,7 @@
     <string name="toast_img_download_wait">Atsiunčiama… prašome palaukti</string>
     <string name="toast_img_saved">Paveiksliukas iš.saugotas</string>
     <string name="toast_img_notwriteable">Nepavyko įrašyti paveikslo.</string>
-    <string name="toast_copied_to_clipboard">Nukopijuota į talpyklę</string>
+    <string name="toast_copied_to_clipboard">Nukopijuota į iškarpinę</string>
     <string name="error_download_failed">Atsiuntimas nepavyko</string>
     <string name="intent_title_share">Bendrinti per</string>
 

@@ -154,6 +154,17 @@
     <string name="notification_downloading_podcast_title">Scaricamento podcast</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">Informazioni</string>
+    <string name="pref_license">Licenza</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) versione 3</string>
+    <string name="pref_report_issue">Segnala un problema</string>
+    <string name="pref_report_issue_summary">Richiede un account GitHub (gratuito)</string>
+    <string name="pref_contribute">Contribuisci!</string>
+    <string name="pref_contribute_summary">Ottieni il codice sorgente</string>
+    <string name="pref_version">Applicazione Notizie di Nextcloud per Android</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Schermo</string>
     <string name="pref_title_app_theme">Tema</string>

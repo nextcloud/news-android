@@ -28,16 +28,17 @@
 
     <!-- Action Bar Items -->
     <string name="action_starred">Със звезда</string>
-    <string name="action_read">Прочети</string>
+    <string name="action_read">Прочерена</string>
     <string name="action_playPodacst">Пусни Podcast-а</string>
-    <string name="action_openInBrowser">Отвори в уеб браузър</string>
+    <string name="action_openInBrowser">Отвори в уеб браузъра</string>
     <string name="action_Share">Сподели</string>
     <string name="action_login">Настройки на сървъра</string>
     <string name="action_save">Запис</string>
     <string name="action_settings">Настройки</string>
     <string name="action_sync_settings">Настройки на синхронизацията</string>
     <string name="action_add_new_feed">Добави нова емисия</string>
-    <string name="action_textToSpeech">Прочита</string>
+    <string name="action_textToSpeech">Прочитане</string>
+    <string name="action_download_articles_offline">Свали статиите</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Имате %d нови непрочетени елементи</item>
         <item quantity="other">Имате %d нови непрочетени елементи</item>
@@ -50,7 +51,7 @@
 
     <!-- Add new feed -->
     <string name="hint_feed_url">URL на емисията</string>
-    <string name="action_add_feed">Добави емисия</string>
+    <string name="action_add_feed">Добави емисията</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
@@ -157,6 +158,12 @@
     <string name="pref_display_browser_external">Външен браузър</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Миниатюри</string>
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Малък</string>
+    <string name="pref_display_font_size_d">Стандартен</string>
+    <string name="pref_display_font_size_l">Голям</string>
+    <string name="pref_display_font_size_xl">Много голям</string>
+
     <string name="content_desc_expand">разгъване</string>
     <string name="content_desc_collapse">сгъване</string>
     <string name="content_desc_mark_as_read">означи като прочетена</string>
