@@ -154,6 +154,17 @@
     <string name="notification_downloading_podcast_title">Descargando podcast</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">Acerca de</string>
+    <string name="pref_license">Licencia</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) versión 3</string>
+    <string name="pref_report_issue">Informar de un error</string>
+    <string name="pref_report_issue_summary">Requiere una cuenta (gratuita) de GitHub</string>
+    <string name="pref_contribute">¡Contribuye!</string>
+    <string name="pref_contribute_summary">Consigue el código fuente</string>
+    <string name="pref_version">App Android para Noticias de Nextcloud</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_app_theme">Tema</string>
@@ -178,6 +189,7 @@
 
     <string name="pref_display_feed_list_layout_thumbnails">Miniaturas</string>
     <string name="pref_display_feed_list_layout_simple_text">Texto sencillo</string>
+    <string name="pref_display_feed_list_layout_headlines">Titulares</string>
     <string name="pref_display_feed_list_layout_full_text">Texto completo</string>
     <string name="pref_display_feed_list_layout_web_layout">Disposición web</string>
     <string name="pref_display_feed_list_layout_card_view">Vista de tarjetas</string>
