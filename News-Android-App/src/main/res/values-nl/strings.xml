@@ -154,6 +154,15 @@
     <string name="notification_downloading_podcast_title">Downloaden podcast</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">Over</string>
+    <string name="pref_license">Licentie</string>
+    <string name="pref_license_summary">GNU Affero General Public Licence, versie 3</string>
+    <string name="pref_contribute">Bijdragen!</string>
+    <string name="pref_contribute_summary">Download de broncode</string>
+    <string name="pref_version">Nextcloud Nieuws Android app</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Weergeven</string>
     <string name="pref_title_app_theme">Thema</string>
