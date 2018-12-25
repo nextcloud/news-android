@@ -164,6 +164,16 @@
     <string name="notification_downloading_podcast_title">Stahuje se podcast</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">O aplikaci</string>
+    <string name="pref_license">Licence</string>
+    <string name="pref_report_issue">Nahlásit problém</string>
+    <string name="pref_report_issue_summary">Vyžaduje účet na portálu GitHub (zdarma)</string>
+    <string name="pref_contribute">Přispět!</string>
+    <string name="pref_contribute_summary">Získat zdrojové kódy</string>
+    <string name="pref_version">Aplikace Nextcloud novinky pro Android</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazení</string>
     <string name="pref_title_app_theme">Motiv vzhledu</string>

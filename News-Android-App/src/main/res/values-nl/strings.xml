@@ -158,6 +158,8 @@
     <string name="pref_header_about">Over</string>
     <string name="pref_license">Licentie</string>
     <string name="pref_license_summary">GNU Affero General Public Licence, versie 3</string>
+    <string name="pref_report_issue">Meld een probleem</string>
+    <string name="pref_report_issue_summary">Vereist een (gratis) GitHub account</string>
     <string name="pref_contribute">Bijdragen!</string>
     <string name="pref_contribute_summary">Download de broncode</string>
     <string name="pref_version">Nextcloud Nieuws Android app</string>
