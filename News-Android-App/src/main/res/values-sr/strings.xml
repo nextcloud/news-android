@@ -159,6 +159,17 @@
     <string name="notification_downloading_podcast_title">Преузимам подкаст</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">О програму</string>
+    <string name="pref_license">Лиценца</string>
+    <string name="pref_license_summary">ГНУ Affero Општа Јавна Лиценца (ГОЈЛ), верзија 3</string>
+    <string name="pref_report_issue">Пријави проблем</string>
+    <string name="pref_report_issue_summary">Морате да имате (бесплатни) GitHub налог</string>
+    <string name="pref_contribute">Придружи се!</string>
+    <string name="pref_contribute_summary">Узми изворни кôд</string>
+    <string name="pref_version">Некстклауд Вести Андроид апликација</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Приказ</string>
     <string name="pref_title_app_theme">Тема</string>
