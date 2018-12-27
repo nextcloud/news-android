@@ -54,6 +54,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -271,7 +272,11 @@ public class LoginDialogFragment extends DialogFragment {
 			positiveButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					attemptLogin();
+				    if(mSwSingleSignOn.isChecked() && importedAccount == null) {
+                        Toast.makeText(getContext(), "Please select account first by disabling and re-enabling sso", Toast.LENGTH_LONG).show();
+                    } else {
+                        attemptLogin();
+                    }
 				}
 			});
 		}
@@ -441,6 +446,8 @@ public class LoginDialogFragment extends DialogFragment {
                             ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_zero_version_code), getActivity());
                             loginSuccessful = false;
                         }
+
+                        importedAccount = null;
                     }
 
                     @Override
