@@ -237,9 +237,9 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         if(newItemsCount > 0) {
             String fgActivityPackageName = getForegroundActivityPackageName();
 
-            boolean showNotifcationOnNewArticles = mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true);
+            boolean showNotificationOnNewArticles = mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true);
             // If another app is opened show a notification
-            if (!fgActivityPackageName.equals(getContext().getPackageName()) && showNotifcationOnNewArticles) {
+            if (!fgActivityPackageName.equals(getContext().getPackageName()) && showNotificationOnNewArticles) {
                 NextcloudNotificationManager.showUnreadRssItemsNotification(getContext(), newItemsCount);
             }
         }
