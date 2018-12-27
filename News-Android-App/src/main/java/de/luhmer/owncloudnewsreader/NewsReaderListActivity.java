@@ -133,9 +133,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private static MenuItem menuItemUpdater;
 	private static MenuItem menuItemDownloadMoreItems;
 
-	//private Date mLastSyncDate = new Date(0);
-	private boolean mSyncOnStartupPerformed = false;
-
 	protected @BindView(R.id.toolbar) Toolbar toolbar;
 
 	//private ServiceConnection mConnection = null;

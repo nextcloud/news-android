@@ -98,9 +98,9 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
 
     private class NextcloudSyncResult {
-        final List<Folder> folders;
-        final List<Feed>   feeds;
-        final boolean      stateSyncSuccessful;
+        private final List<Folder> folders;
+        private final List<Feed>   feeds;
+        private final boolean      stateSyncSuccessful;
 
         NextcloudSyncResult(List<Folder> folders, List<Feed> feeds, Boolean stateSyncSuccessful) {
             this.folders = folders;
@@ -113,7 +113,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
     // Start sync
     private void sync() {
         if(mApi.getAPI() == null) {
-            ThrowException(new IllegalStateException("API is NOT initialized"));
+            throwException(new IllegalStateException("API is NOT initialized"));
             Log.e(TAG, "API is NOT initialized..");
         } else {
             Log.v(TAG, "API is initialized..");
@@ -164,12 +164,13 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
             InsertIntoDatabase.InsertFoldersIntoDatabase(syncResult.folders, dbConn);
             InsertIntoDatabase.InsertFeedsIntoDatabase(syncResult.feeds, dbConn);
+            Log.v(TAG, "State sync successful: " + syncResult.stateSyncSuccessful);
 
             // Start the sync (Rss Items)
             syncRssItems(dbConn);
         } catch(Exception ex) {
-            //Log.e(TAG, "ThrowException: ", ex);
-            ThrowException(ex);
+            //Log.e(TAG, "throwException: ", ex);
+            throwException(ex);
         }
     }
 
@@ -205,7 +206,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         Log.v(TAG, "[syncRssItems] - onError() called with: throwable = [" + e + "]");
-                        ThrowException(e);
+                        throwException(e);
                     }
 
                     @Override
@@ -216,8 +217,8 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
 
-    private void ThrowException(Throwable ex) {
-        Log.e(TAG, "ThrowException() called [" + Thread.currentThread().getName() + "]", ex);
+    private void throwException(Throwable ex) {
+        Log.e(TAG, "throwException() called [" + Thread.currentThread().getName() + "]", ex);
         syncRunning = false;
         if(ex instanceof Exception) {
             EventBus.getDefault().post(SyncFailedEvent.create(OkHttpSSLClient.HandleExceptions((Exception) ex)));
@@ -234,13 +235,12 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         //int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
 
         if(newItemsCount > 0) {
-            String foregroundActivityPackageName = getForegroundActivityPackageName();
+            String fgActivityPackageName = getForegroundActivityPackageName();
 
+            boolean showNotifcationOnNewArticles = mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true);
             // If another app is opened show a notification
-            if (!foregroundActivityPackageName.equals(getContext().getPackageName())) {
-                if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true)) {
-                    NextcloudNotificationManager.showUnreadRssItemsNotification(getContext(), newItemsCount);
-                }
+            if (!fgActivityPackageName.equals(getContext().getPackageName()) && showNotifcationOnNewArticles) {
+                NextcloudNotificationManager.showUnreadRssItemsNotification(getContext(), newItemsCount);
             }
         }
     }
