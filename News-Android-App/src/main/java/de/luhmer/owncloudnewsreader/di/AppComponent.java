@@ -8,7 +8,7 @@ import de.luhmer.owncloudnewsreader.NewFeedActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderListDialogFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
 import de.luhmer.owncloudnewsreader.PodcastFragmentActivity;
-import de.luhmer.owncloudnewsreader.services.OwnCloudSyncService;
+import de.luhmer.owncloudnewsreader.authentication.OwnCloudSyncAdapter;
 import de.luhmer.owncloudnewsreader.services.SyncItemStateService;
 
 /**
@@ -26,8 +26,6 @@ public interface AppComponent {
     void injectFragment(NewsReaderListFragment fragment);
     void injectFragment(LoginDialogFragment fragment);
 
-    void injectService(OwnCloudSyncService service);
     void injectService(SyncItemStateService service);
-
-
+    void injectService(OwnCloudSyncAdapter ownCloudSyncAdapter);
 }
