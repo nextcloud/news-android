@@ -138,6 +138,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ingen podcast vald</string>
     <string name="no_chapters_available">Inga kapitel tillgängliga.</string>
+    <string name="podcast_playback_speed_dialog_title">Uppspelningshastighet</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Visa</string>
     <string name="pref_title_app_theme">Tema</string>
@@ -157,6 +158,7 @@
 
     <string name="content_desc_play">spela</string>
     <string name="content_desc_pause">pausa</string>
+    <string name="content_desc_playback_speed">uppspelningshastighet</string>
     <string name="content_desc_rewind">spola bakåt</string>
     <string name="content_desc_forward">spola framåt</string>
     <string name="content_desc_expand">utöka</string>

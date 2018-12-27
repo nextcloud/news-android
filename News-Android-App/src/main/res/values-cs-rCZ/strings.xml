@@ -167,6 +167,7 @@
     <!-- Settings for About -->
     <string name="pref_header_about">O aplikaci</string>
     <string name="pref_license">Licence</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) verze 3</string>
     <string name="pref_report_issue">Nahlásit problém</string>
     <string name="pref_report_issue_summary">Vyžaduje účet na portálu GitHub (zdarma)</string>
     <string name="pref_contribute">Přispět!</string>
