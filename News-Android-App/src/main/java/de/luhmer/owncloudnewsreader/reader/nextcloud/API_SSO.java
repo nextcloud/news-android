@@ -27,7 +27,7 @@ import retrofit2.Call;
 
 public class API_SSO implements API {
 
-    private static final String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
+    public static final String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
     private NextcloudAPI nextcloudAPI;
 
     public API_SSO(NextcloudAPI nextcloudAPI) {
