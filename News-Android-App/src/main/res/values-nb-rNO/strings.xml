@@ -154,6 +154,17 @@
     <string name="notification_downloading_podcast_title">Last ned podcast</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">Om</string>
+    <string name="pref_license">Lisens</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_report_issue">Rapporter et problem</string>
+    <string name="pref_report_issue_summary">Krever en (gratis) GitHub konto</string>
+    <string name="pref_contribute">Bidra!</string>
+    <string name="pref_contribute_summary">Hent kildekode</string>
+    <string name="pref_version">Nextcloud Nyheter Android app</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
     <string name="pref_title_app_theme">Tema</string>
@@ -178,6 +189,7 @@
 
     <string name="pref_display_feed_list_layout_thumbnails">Ikon</string>
     <string name="pref_display_feed_list_layout_simple_text">Enkel tekst</string>
+    <string name="pref_display_feed_list_layout_headlines">Overskrifter</string>
     <string name="pref_display_feed_list_layout_full_text">Full tekst</string>
     <string name="pref_display_feed_list_layout_web_layout">Vev utseende</string>
     <string name="pref_display_feed_list_layout_card_view">Kort utsnitt</string>
