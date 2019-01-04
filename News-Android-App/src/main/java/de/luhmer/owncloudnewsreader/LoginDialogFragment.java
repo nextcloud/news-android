@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -32,7 +31,6 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -158,9 +156,6 @@ public class LoginDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        ActivityCompat.requestPermissions(getActivity(),
-                new String[]{ Manifest.permission.GET_ACCOUNTS }, 0);
-
         //setRetainInstance(true);
 
         // Build the dialog and set up the button click handlers
