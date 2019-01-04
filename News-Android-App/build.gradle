@@ -101,8 +101,13 @@ dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // implementation 'com.google.android.gms:play-services:4.2.42'
-    compile project(':Android-SingleSignOn')
-    //implementation "com.github.nextcloud:Android-SingleSignOn:0.1.3"
+    //implementation project(':Android-SingleSignOn')
+    //implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
+    implementation "com.github.nextcloud:Android-SingleSignOn:0.1.3"
+    implementation 'com.github.David-Development:MaterialShowcaseView:258ff44c0c'
+
+
+
     implementation "com.android.support:support-v4:${SUPPORT_VERSION}"
     implementation "com.android.support:support-compat:${SUPPORT_VERSION}"
     implementation "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
@@ -147,7 +152,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.8.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
-    implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
     implementation 'com.nbsp:library:1.02' // MaterialFilePicker
 
     extraImplementation 'com.github.tommus:youtube-android-player-api:1.2.2'

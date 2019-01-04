@@ -1,4 +1,3 @@
 include ':News-Android-App'
-include ':Changeloglib:ChangeLogLibrary'
-include ':MaterialShowcaseView:library'
-
+//include ':MaterialShowcaseView:library'
+//include ':Android-SingleSignOn'
