@@ -26,11 +26,9 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -38,7 +36,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -136,12 +133,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private static MenuItem menuItemUpdater;
 	private static MenuItem menuItemDownloadMoreItems;
 
-	//private Date mLastSyncDate = new Date(0);
-	private boolean mSyncOnStartupPerformed = false;
-
 	protected @BindView(R.id.toolbar) Toolbar toolbar;
 
-	private ServiceConnection mConnection = null;
+	//private ServiceConnection mConnection = null;
 
 	@VisibleForTesting @Nullable @BindView(R.id.drawer_layout) public DrawerLayout drawerLayout;
 
@@ -237,6 +231,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		//AppRater.app_launched(this);
 		//AppRater.rateNow(this);
+
+        //Start auto sync if enabled
+        if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false)) {
+            startSync();
+        }
 
 		updateButtonLayout();
 	}
@@ -405,64 +404,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	public void switchToAllUnreadItemsFolder() {
 		startDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
-	}
-
-	@Override
-	protected void onStart() {
-        Intent serviceIntent = new Intent(this, OwnCloudSyncService.class);
-		mConnection = generateServiceConnection();
-		if (!isMyServiceRunning(OwnCloudSyncService.class, this)) {
-            try {
-                 startService(serviceIntent);
-            } catch (IllegalStateException ex) {
-                ex.printStackTrace();
-            }
-		}
-		bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
-		super.onStart();
-	}
-
-    @Override
-	protected void onStop() {
-		unbindService(mConnection);
-		mConnection = null;
-		super.onStop();
-	}
-
-	private OwnCloudSyncService ownCloudSyncService;
-	private ServiceConnection generateServiceConnection() {
-		return new ServiceConnection() {
-
-			@Override
-			public void onServiceConnected(ComponentName name, IBinder binder) {
-				ownCloudSyncService = ((OwnCloudSyncService.OwnCloudSyncServiceBinder)binder).getService();
-
-				try {
-					//Start auto sync if enabled
-					SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
-					if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false)) {
-						if (!mSyncOnStartupPerformed) {
-							startSync();
-							mSyncOnStartupPerformed = true;
-						}
-
-                        /*
-                        long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(new Date().getTime() - mLastSyncDate.getTime());
-                        if(diffInMinutes >= 60) {
-                            startSync();
-                            mLastSyncDate = new Date();
-                        }*/
-					}
-					updateButtonLayout();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			public void onServiceDisconnected(ComponentName name) {
-			}
-		};
 	}
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -679,17 +620,18 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
 			StartLoginFragment(this);
 		} else {
-			if (!ownCloudSyncService.isSyncRunning())
-			{
+			if (!OwnCloudSyncService.isSyncRunning()) {
 				new PostDelayHandler(this).stopRunningPostDelayHandler();//Stop pending sync handler
 
 				Bundle accBundle = new Bundle();
 				accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 				AccountManager mAccountManager = AccountManager.get(this);
 				Account[] accounts = mAccountManager.getAccounts();
-				for(Account acc : accounts)
-					if(acc.type.equals(AccountGeneral.ACCOUNT_TYPE))
-						ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
+				for(Account acc : accounts) {
+                    if (acc.type.equals(AccountGeneral.ACCOUNT_TYPE)) {
+                        ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
+                    }
+                }
 				//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
 			} else {
 				updateButtonLayout();
@@ -702,8 +644,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
 		NewsReaderDetailFragment newsReaderDetailFragment = getNewsReaderDetailFragment();
 
-		if(newsReaderListFragment != null && newsReaderDetailFragment != null && ownCloudSyncService != null) {
-			boolean isSyncRunning = ownCloudSyncService.isSyncRunning();
+		if(newsReaderListFragment != null && newsReaderDetailFragment != null) {
+			boolean isSyncRunning = OwnCloudSyncService.isSyncRunning();
 			newsReaderListFragment.setRefreshing(isSyncRunning);
 			newsReaderDetailFragment.swipeRefresh.setRefreshing(isSyncRunning);
 		}
@@ -994,7 +936,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
         if (ThemeChooser.getInstance(NewsReaderListActivity.this).themeRequiresRestartOfUI(NewsReaderListActivity.this) || !newListLayout.equals(oldListLayout)) {
             NewsReaderListActivity.this.recreate();
-        } else if (data.hasExtra(SettingsActivity.CACHE_CLEARED) && ownCloudSyncService != null) {
+        } else if (data.hasExtra(SettingsActivity.CACHE_CLEARED)) {
             resetUiAndStartSync();
         }
     }

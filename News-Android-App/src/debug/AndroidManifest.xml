@@ -102,9 +102,8 @@
                 android:resource="@xml/authenticator" />
         </service>
 
-        <service android:name=".services.OwnCloudSyncService" />
         <service
-            android:name=".services.OwnCloudSettingsSyncService"
+            android:name=".services.OwnCloudSyncService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
