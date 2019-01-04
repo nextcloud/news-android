@@ -965,6 +965,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void resetUiAndStartSync() {
+        getSlidingListFragment().loadOwncloudOrNextcloudBanner();
         getSlidingListFragment().reloadAdapter();
         updateCurrentRssView();
         startSync();
