@@ -265,6 +265,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 .setContentText("Tap this logo to sync with server")
                 .setDelay(300) // optional but starting animations immediately in onCreate can make them choppy
                 .singleUse("LOGO_SYNC") // provide a unique ID used to ensure it is only shown once
+                .setHideSkipButton(true)
                 .show();
     }
 
