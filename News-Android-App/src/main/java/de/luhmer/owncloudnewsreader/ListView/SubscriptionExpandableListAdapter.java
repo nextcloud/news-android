@@ -41,7 +41,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +53,7 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.AbstractItem;

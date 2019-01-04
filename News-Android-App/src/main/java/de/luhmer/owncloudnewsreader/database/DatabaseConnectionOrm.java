@@ -6,8 +6,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.util.SparseArray;
 
-import org.apache.commons.lang3.time.StopWatch;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +25,7 @@ import de.luhmer.owncloudnewsreader.database.model.FolderDao;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
+import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;

@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.apache.commons.lang3.time.StopWatch;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -27,6 +26,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.CurrentRssViewDataHolder;
 

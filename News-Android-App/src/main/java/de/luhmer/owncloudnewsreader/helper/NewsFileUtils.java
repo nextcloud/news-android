@@ -27,10 +27,9 @@ import android.util.Log;
 
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
-import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
@@ -90,7 +89,7 @@ public class NewsFileUtils {
     public static boolean clearPodcastCache(Context context) {
         try {
             File dir = new File(getPathPodcasts(context));
-            FileUtils.deleteDirectory(dir);
+            deleteDirectory(dir);
         } catch (IOException ex) {
             Log.e(TAG, "Error while deleting podcasts", ex);
         }
@@ -132,4 +131,116 @@ public class NewsFileUtils {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
     }
+
+
+
+
+
+
+
+    /*
+    Method below are copied from https://github.com/apache/commons-io/blob/master/src/main/java/org/apache/commons/io/FileUtils.java
+     */
+
+    /**
+     * Deletes a directory recursively.
+     *
+     * @param directory directory to delete
+     * @throws IOException              in case deletion is unsuccessful
+     * @throws IllegalArgumentException if {@code directory} does not exist or is not a directory
+     */
+    public static void deleteDirectory(final File directory) throws IOException {
+        if (!directory.exists()) {
+            return;
+        }
+
+        cleanDirectory(directory);
+
+        if (!directory.delete()) {
+            final String message =
+                    "Unable to delete directory " + directory + ".";
+            throw new IOException(message);
+        }
+    }
+
+
+    /**
+     * Lists files in a directory, asserting that the supplied directory satisfies exists and is a directory
+     * @param directory The directory to list
+     * @return The files in the directory, never null.
+     * @throws IOException if an I/O error occurs
+     */
+    private static File[] verifiedListFiles(final File directory) throws IOException {
+        if (!directory.exists()) {
+            final String message = directory + " does not exist";
+            throw new IllegalArgumentException(message);
+        }
+
+        if (!directory.isDirectory()) {
+            final String message = directory + " is not a directory";
+            throw new IllegalArgumentException(message);
+        }
+
+        final File[] files = directory.listFiles();
+        if (files == null) {  // null if security restricted
+            throw new IOException("Failed to list contents of " + directory);
+        }
+        return files;
+    }
+
+    /**
+     * Cleans a directory without deleting it.
+     *
+     * @param directory directory to clean
+     * @throws IOException              in case cleaning is unsuccessful
+     * @throws IllegalArgumentException if {@code directory} does not exist or is not a directory
+     */
+    public static void cleanDirectory(final File directory) throws IOException {
+        final File[] files = verifiedListFiles(directory);
+
+        IOException exception = null;
+        for (final File file : files) {
+            try {
+                forceDelete(file);
+            } catch (final IOException ioe) {
+                exception = ioe;
+            }
+        }
+
+        if (null != exception) {
+            throw exception;
+        }
+    }
+
+    /**
+     * Deletes a file. If file is a directory, delete it and all sub-directories.
+     * <p>
+     * The difference between File.delete() and this method are:
+     * <ul>
+     * <li>A directory to be deleted does not have to be empty.</li>
+     * <li>You get exceptions when a file or directory cannot be deleted.
+     * (java.io.File methods returns a boolean)</li>
+     * </ul>
+     *
+     * @param file file or directory to delete, must not be {@code null}
+     * @throws NullPointerException  if the directory is {@code null}
+     * @throws FileNotFoundException if the file was not found
+     * @throws IOException           in case deletion is unsuccessful
+     */
+    public static void forceDelete(final File file) throws IOException {
+        if (file.isDirectory()) {
+            deleteDirectory(file);
+        } else {
+            final boolean filePresent = file.exists();
+            if (!file.delete()) {
+                if (!filePresent) {
+                    throw new FileNotFoundException("File does not exist: " + file);
+                }
+                final String message =
+                        "Unable to delete file: " + file;
+                throw new IOException(message);
+            }
+        }
+    }
+
 }

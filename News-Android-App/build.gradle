@@ -125,7 +125,7 @@ dependencies {
     implementation 'de.greenrobot:greendao:2.0.0'
     implementation 'de.greenrobot:greendao-generator:2.0.0'
     //implementation 'org.freemarker:freemarker:2.3.23' //Required for DAO generation
-    implementation 'org.apache.commons:commons-lang3:3.4'
+    //implementation 'org.apache.commons:commons-lang3:3.4'
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.0.0'
     implementation 'org.jsoup:jsoup:1.8.3'
     implementation ('net.rdrei.android.dirchooser:library:3.0@aar') { transitive = true; }
