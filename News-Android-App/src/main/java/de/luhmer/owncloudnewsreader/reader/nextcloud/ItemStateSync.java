@@ -12,31 +12,38 @@ import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
 
 public class ItemStateSync {
 
-    public static void PerformItemStateSync(API api, DatabaseConnectionOrm dbConn) throws IOException {
+    public static boolean PerformItemStateSync(API api, DatabaseConnectionOrm dbConn) throws IOException {
+        boolean successful;
+
         //Mark as READ
         List<String> itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewReadRssItems());
         boolean result = PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_READ, dbConn, api);
         if(result)
             dbConn.change_readUnreadStateOfItem(itemIds, true);
+        successful = result;
 
         //Mark as UNREAD
         itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnreadRssItems());
         result = PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNREAD, dbConn, api);
         if(result)
             dbConn.change_readUnreadStateOfItem(itemIds, false);
+        successful &= result;
 
         //Mark as STARRED
         itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewStarredRssItems());
         result = PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_STARRED, dbConn, api);
         if(result)
             dbConn.changeStarrUnstarrStateOfItem(itemIds, true);
+        successful &= result;
 
         //Mark as UNSTARRED
         itemIds = dbConn.getRssItemsIdsFromList(dbConn.getAllNewUnstarredRssItems());
         result = PerformTagExecution(itemIds, FeedItemTags.MARK_ITEM_AS_UNSTARRED, dbConn, api);
         if(result)
             dbConn.changeStarrUnstarrStateOfItem(itemIds, false);
+        successful &= result;
 
+        return successful;
     }
 
     private static boolean PerformTagExecution(List<String> itemIds, FeedItemTags tag, DatabaseConnectionOrm dbConn, API api) throws IOException {

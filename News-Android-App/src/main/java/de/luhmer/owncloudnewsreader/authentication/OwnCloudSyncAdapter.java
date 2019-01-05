@@ -127,8 +127,8 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
                     public void subscribe(Subscriber<? super Boolean> s) {
                         Log.v(TAG, "(rssStateSync) subscribe() called with: s = [" + s + "] [" + Thread.currentThread().getName() + "]");
                         try {
-                            ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
-                            s.onNext(true);
+                            boolean success = ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
+                            s.onNext(success);
                             s.onComplete();
                         } catch(Exception ex) {
                             s.onError(ex);
