@@ -3,6 +3,12 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+0.9.9.22
+---------------------
+- Fix - app crash during startup
+- Fix - app crash during sync
+
+
 0.9.9.21
 ---------------------
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/713">#713 App hangs during sync </a>
