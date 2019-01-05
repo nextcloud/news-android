@@ -36,6 +36,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -236,9 +237,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false)) {
             startSync();
         }
+    }
 
-		updateButtonLayout();
-	}
+    @Override
+    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+
+        // Fragments are not ready when calling the method below in onCreate()
+        updateButtonLayout();
+    }
 
     /**
      * This method increases the "pull to open drawer" area by three.
