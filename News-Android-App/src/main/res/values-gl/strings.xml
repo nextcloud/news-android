@@ -137,7 +137,7 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido mentres se despraza</string>
     <string name="pref_title_OpenInBrowserDirectly">Omitir a vista detallada e abrir o artigo no navegador</string>
 
-    <string name="dialog_feature_not_available">Esta característica non está dispoñíbel nesta versión (de código aberto) da aplicación. Se quere usar esta característica, descargue a aplicación dende o repositorio de GitHub ou dende Google Play Store.</string>
+    <string name="dialog_feature_not_available">Esta característica non está dispoñíbel nesta versión (de código aberto) do aplicativo. Se quere usar esta característica, descargue o aplicativo dende o repositorio de GitHub ou dende Google Play Store.</string>
 
 
     <!-- MemorizingTrustManager -->
@@ -225,10 +225,10 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erro</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Semella que a súa aplicación de novas non está instalada ou activada no seu servidor. Siga as instrucións para configurar a aplicación de novas no seu servidor: %1$s</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Semella que o seu aplicativo de novas non está instalada ou activada no seu servidor. Siga as instrucións para configurar o aplicativo de novas no seu servidor: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Algo foi mal :(</string>
-    <string name="login_dialog_text_zero_version_code">A aplicación web de novas devolveu a versión «0». Bótelle un ollo ao seguinte informe de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Esta versión da aplicación non é compatíbel coa súa aplicación de novas para Nextcloud. Anove a aplicación de novas e o marco de traballo da aplicación.</string>
+    <string name="login_dialog_text_zero_version_code">O aplicativo web de novas devolveu a versión «0». Bótelle un ollo ao seguinte informe de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Esta versión do aplicativo non é compatíbel co seu aplicativo de novas para Nextcloud. Anove o aplicativo de novas e o marco de traballo do aplicativo.</string>
     <string name="login_dialog_title_security_warning">Aviso de seguridade</string>
     <string name="login_dialog_text_security_warning">Non está a empregar HTTPS, o que se recomenda encarecidamente. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal).</string>
 
