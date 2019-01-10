@@ -6,6 +6,7 @@
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ez dago elementurik hemen</string>
     <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
+    <string name="current_version">%s Bertsioa erabiltzen zaude</string>
     <string name="widget_header">ownCloud Berriak</string>
     <string name="message_bar_reload">Birkargatu</string>
     <string name="allUnreadFeeds">Irakurri gabeko elementu guztiak</string>
@@ -33,6 +34,8 @@
         <item quantity="one">Irakurri gabeko elementu %d duzu</item>
         <item quantity="other">Irakurri gabeko %d elementu dituzu</item>
     </plurals>
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Iturburu URLa</string>
     <string name="action_add_feed">Gehitu iturburua</string>
 
 
@@ -47,8 +50,17 @@
     <string name="toast_img_saved">Irudia gordeta</string>
     <string name="toast_copied_to_clipboard">Arbelera kopiatua</string>
     <string name="error_download_failed">Deskargak huts egin du</string>
+    <string name="intent_title_share">Partekatu honekin</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Ezabatu iturburua</string>
+    <string name="action_feed_rename">Izena aldatu iturburuari</string>
+    <string name="action_feed_move">Mugitu iturburua</string>
     <string name="feed_remove_button">Ezabatu</string>
     <string name="feed_rename_button">Berrizendatu</string>
+    <string name="confirm_feed_remove">Iturburu hau benetan ezabatu nahi duzu? Aldaketa ezin da desegin!</string>
+    <string name="feed_move_list_description">Aukeratu iturburua mugitu nahi duzun karpeta</string>
     <!-- Strings related to login -->
     <string name="pref_title_username">Erabiltzaile izena</string>
     <string name="pref_title_password">Pasahitza</string>
@@ -58,6 +70,9 @@
     <string name="login_progress_signing_in">Izena ematen...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Eremu hau beharrezkoa da</string>
+    <string name="error_invalid_url">Balio gabeko URLa</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Inportatu Kontua</string>
 
@@ -70,6 +85,8 @@
     <string name="pref_title_general_sort_order">Antolatzeko Ordena</string>
 
     <string name="pref_general_sort_order_new_old">Berria -> zaharra</string>
+    <string name="pref_general_sort_order_old_new">Zaharra -> Berria</string>
+
     <string name="pref_general_search_in_title">Izenburua</string>
     <string name="pref_general_search_in_body">Gorputza</string>
 
@@ -91,9 +108,15 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ez dago podcast hautatua</string>
     <string name="no_chapters_available">Ez dago kapitulurik eskuragarri</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Honi buruz</string>
+    <string name="pref_license">Lizentzia</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_contribute_summary">Eskuratu iturburu-kodea</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Bistaratzea</string>
     <string name="pref_title_feed_list_layout">Eremu zerrenda ingurunea</string>
+    <string name="pref_title_font_size">Letra-tipo tamaina</string>
     <string name="pref_display_browser">Nabigatzailea</string>
 
 
