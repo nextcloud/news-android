@@ -132,7 +132,7 @@
     <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
     <string name="pref_title_OpenInBrowserDirectly">跳过详情查看并在浏览器中打开文章</string>
 
-    <string name="dialog_feature_not_available">当前功能在此(开源)版本未开放。如果你想使用此功能，请从GitHub仓库中下载或从Google Play Store中下载。</string>
+    <string name="dialog_feature_not_available">当前功能在此（开源）版本未开放。如果你想使用此功能，请从GitHub仓库中下载或从Google Play Store中下载。</string>
 
 
     <!-- MemorizingTrustManager -->
@@ -149,6 +149,11 @@
     <string name="notification_downloading_podcast_title">正在下载播客</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">关于</string>
+    <string name="pref_license">许可证</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_contribute_summary">获取源代码</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">显示</string>
     <string name="pref_title_app_theme">主题</string>
@@ -158,9 +163,9 @@
 
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">动作图标 (详情页)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">动作图标（详情页）</string>
 
-    <string name="pref_display_apptheme_auto">明亮 / 黑暗 (基于时间)</string>
+    <string name="pref_display_apptheme_auto">明亮 / 黑暗（基于时间）</string>
     <string name="pref_display_apptheme_light">浅色</string>
     <string name="pref_display_apptheme_dark">深色</string>
 
