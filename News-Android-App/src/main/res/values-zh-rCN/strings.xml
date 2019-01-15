@@ -6,9 +6,9 @@
     <string name="title_activity_news_detail">新闻详细活动</string>
     <string name="empty_view_content">无内容</string>
     <string name="toast_GettingMoreItems">正在下载多个文件...请稍候。</string>
-    <string name="no_wifi_available">没有连接到WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">您要在非Wi-Fi环境下下载图片吗</string>
-    <string name="current_version">亲，您正在使用的版本号为：%s</string>
+    <string name="no_wifi_available">没有连接到 WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">您要在非 Wi-Fi 环境下下载图片吗</string>
+    <string name="current_version">您正在使用的版本号为：%s</string>
     <string name="widget_header">ownCloud 新闻</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="other">%d 条新内容</item>
@@ -123,7 +123,7 @@
 
     <string name="dialog_clearing_cache">清除缓存</string>
     <string name="dialog_clearing_cache_please_wait">清理缓存中，请稍候</string>
-    <string name="reset_cache_unsaved_changes">有一部分文件未同步，你确定仍然清空缓存吗？</string>
+    <string name="reset_cache_unsaved_changes">有一部分文件未同步，您确定仍然清空缓存吗？</string>
     <string name="warning">警告</string>
     <string name="pref_title_AutoSyncOnStart">启动后就同步</string>
     <string name="pref_title_ShowOnlyUnread">仅显示未读文章</string>
@@ -132,11 +132,11 @@
     <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
     <string name="pref_title_OpenInBrowserDirectly">跳过详情查看并在浏览器中打开文章</string>
 
-    <string name="dialog_feature_not_available">当前功能在此（开源）版本未开放。如果你想使用此功能，请从GitHub仓库中下载或从Google Play Store中下载。</string>
+    <string name="dialog_feature_not_available">当前功能在此（开源）版本未开放。如果您想使用此功能，请从 GitHub 仓库中下载或从 Google Play Store 中下载。</string>
 
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">接受未知认证？</string>
+    <string name="mtm_accept_cert">允许未知证书？</string>
     <string name="mtm_decision_always">总是</string>
     <string name="mtm_decision_abort">终止</string>
     <string name="mtm_notification">校验证书</string>
@@ -152,7 +152,6 @@
     <!-- Settings for About -->
     <string name="pref_header_about">关于</string>
     <string name="pref_license">许可证</string>
-    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
     <string name="pref_contribute_summary">获取源代码</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">显示</string>
@@ -170,7 +169,7 @@
     <string name="pref_display_apptheme_dark">深色</string>
 
     <string name="pref_oled_mode">黑色背景</string>
-    <string name="pref_oled_mode_summary">用于OLED屏幕的黑暗主题</string>
+    <string name="pref_oled_mode_summary">用于 OLED 屏幕的黑暗主题</string>
 
     <string name="pref_display_browser_cct">内置 Chrome 自定义分页</string>
     <string name="pref_display_browser_built_in">内置浏览器</string>

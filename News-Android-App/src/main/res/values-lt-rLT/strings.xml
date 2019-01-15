@@ -37,7 +37,6 @@
     <string name="action_settings">Nustatymai</string>
     <string name="action_sync_settings">Sinchronizavimo nustatymai</string>
     <string name="action_add_new_feed">Pridėti naują kanalą</string>
-    <string name="action_textToSpeech">Perskaityk</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Turite %d neskaitytą elementą</item>
         <item quantity="few">Turite %d neskaitytus elementus</item>
