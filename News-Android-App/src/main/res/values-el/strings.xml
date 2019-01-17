@@ -123,6 +123,7 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Εμφάνιση</string>
     <string name="pref_title_feed_list_layout">Προβολή λίστας ροών</string>
+    <string name="pref_title_font_size">Μέγεθος φόντου</string>
     <string name="pref_display_browser">Περιηγητής</string>
 
 
@@ -130,8 +131,12 @@
     <string name="pref_display_apptheme_light">Φωτεινό</string>
     <string name="pref_display_apptheme_dark">Σκούρο</string>
 
+    <string name="pref_oled_mode">Μαύρο φόντο</string>
     <string name="pref_display_browser_external">Εξωτερικός περιηγητής</string>
 
+    <string name="pref_display_feed_list_layout_simple_text">Απλό κείμενο</string>
+    <string name="pref_display_feed_list_layout_full_text">Πλήρες κείμενο</string>
+    <string name="pref_display_font_size_d">Προεπιλογή</string>
     <string name="content_desc_play">αναπαραγωγή</string>
     <string name="content_desc_pause">παύση</string>
     <string name="content_desc_forward">προώθηση</string>
