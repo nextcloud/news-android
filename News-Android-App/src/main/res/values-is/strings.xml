@@ -154,6 +154,17 @@
     <string name="notification_downloading_podcast_title">Sæki hlaðvarp</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">Um hugbúnaðinn</string>
+    <string name="pref_license">Notkunarleyfi</string>
+    <string name="pref_license_summary">GNU Affero General Public notkunarleyfið (AGPL) útgáfa 3</string>
+    <string name="pref_report_issue">Tilkynntu um vandamál</string>
+    <string name="pref_report_issue_summary">Krefst (ókeypis) GitHub aðgangs</string>
+    <string name="pref_contribute">Vertu virkur þáttakandi!</string>
+    <string name="pref_contribute_summary">Náðu í grunnkóðann</string>
+    <string name="pref_version">Nextcloud Android fréttaforrit</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Birting</string>
     <string name="pref_title_app_theme">Þema</string>
@@ -178,6 +189,7 @@
 
     <string name="pref_display_feed_list_layout_thumbnails">Smámyndir</string>
     <string name="pref_display_feed_list_layout_simple_text">Einfaldur texti</string>
+    <string name="pref_display_feed_list_layout_headlines">Fyrirsagnir</string>
     <string name="pref_display_feed_list_layout_full_text">Allur textinn</string>
     <string name="pref_display_feed_list_layout_web_layout">Vefframsetning</string>
     <string name="pref_display_feed_list_layout_card_view">Spjaldasýn</string>
