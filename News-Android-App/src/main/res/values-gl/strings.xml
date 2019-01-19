@@ -67,7 +67,7 @@
     <string name="toast_img_notwriteable">Produciuse un erro ao gravar a imaxe</string>
     <string name="toast_copied_to_clipboard">Copiado no portapapeis.</string>
     <string name="error_download_failed">Produciuse un fallo na descarga</string>
-    <string name="intent_title_share">Compartido vía</string>
+    <string name="intent_title_share">Compartido mediante</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
@@ -104,8 +104,8 @@
     </plurals>
     <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">%d elemento recollido ata agora…</item>
-        <item quantity="other">%d elementos recollidos ata agora…</item>
+        <item quantity="one">%d elemento atopado polo de agora…</item>
+        <item quantity="other">%delementos atopados polo de agora…</item>
     </plurals>
 
 
