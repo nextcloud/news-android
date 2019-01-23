@@ -24,6 +24,8 @@
     <string name="menu_StartImageCaching">Download images</string>
     <string name="menu_downloadMoreItems">Download more items</string>
 
+    <string name="tv_showing_cached_version">Showing cached version</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
     <string name="action_read">Read</string>
@@ -36,6 +38,7 @@
     <string name="action_sync_settings">Sync Settings</string>
     <string name="action_add_new_feed">Add new feed</string>
     <string name="action_textToSpeech">Read out</string>
+    <string name="action_download_articles_offline">Download articles offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">You have %d new unread item</item>
         <item quantity="other">You have %d new unread items</item>
@@ -70,9 +73,13 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Remove Feed</string>
     <string name="action_feed_rename">Rename Feed</string>
+    <string name="action_feed_move">Move Feed</string>
     <string name="feed_remove_button">Remove</string>
     <string name="feed_rename_button">Rename</string>
     <string name="confirm_feed_remove">Do you really want to remove this Feed? This cannot be undone!</string>
+    <string name="feed_move_list_description">Select folder to move feed in</string>
+    <string name="move_feed_root_folder">Root folder</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Username</string>
     <string name="pref_title_password">Password</string>
@@ -114,6 +121,11 @@
     <string name="pref_general_sort_order_new_old">New -> Old</string>
     <string name="pref_general_sort_order_old_new">Old -> New</string>
 
+    <string name="pref_title_general_search_in">Search In</string>
+
+    <string name="pref_general_search_in_title">Title</string>
+    <string name="pref_general_search_in_body">Body</string>
+
     <string name="dialog_clearing_cache">Clearing cache</string>
     <string name="dialog_clearing_cache_please_wait">Clearing cache… Please wait.</string>
     <string name="reset_cache_unsaved_changes">There are unsynchronised changes. Would you like to reset the cache anyway?</string>
@@ -124,6 +136,9 @@
     <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Mark as read whilst scrolling</string>
     <string name="pref_title_OpenInBrowserDirectly">Skip detailed view and open article in the browser</string>
+
+    <string name="dialog_feature_not_available">This feature is not available in this (open-source) version of this app. If you want to use this feature please download the app from the GitHub Repository or download the App from the Google Play Store.</string>
+
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accept Unknown Certificate?</string>
@@ -136,21 +151,54 @@
     <string name="no_podcast_selected">No podcast selected</string>
     <string name="no_chapters_available">No chapters available</string>
     <string name="podcast_playback_speed_dialog_title">Playback Speed</string>
+    <string name="notification_downloading_podcast_title">Downloading podcast</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">About</string>
+    <string name="pref_license">License</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_report_issue">Report an issue</string>
+    <string name="pref_report_issue_summary">Requires a (free) GitHub account</string>
+    <string name="pref_contribute">Contribute!</string>
+    <string name="pref_contribute_summary">Get the source code</string>
+    <string name="pref_version">Nextcloud News Android app</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Display</string>
+    <string name="pref_title_app_theme">Theme</string>
     <string name="pref_title_feed_list_layout">Feed list layout</string>
+    <string name="pref_title_font_size">Font size</string>
     <string name="pref_display_browser">Browser</string>
 
 
 
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
 
+    <string name="pref_display_apptheme_auto">Light / Dark (based on Daytime)</string>
     <string name="pref_display_apptheme_light">Light</string>
     <string name="pref_display_apptheme_dark">Dark</string>
+
+    <string name="pref_oled_mode">Black background</string>
+    <string name="pref_oled_mode_summary">For dark theme on OLED screens</string>
 
     <string name="pref_display_browser_cct">Built-in Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Built-in Browser</string>
     <string name="pref_display_browser_external">External Browser</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Thumbnails</string>
+    <string name="pref_display_feed_list_layout_simple_text">Simple text</string>
+    <string name="pref_display_feed_list_layout_headlines">Headlines</string>
+    <string name="pref_display_feed_list_layout_full_text">Full text</string>
+    <string name="pref_display_feed_list_layout_web_layout">Web layout</string>
+    <string name="pref_display_feed_list_layout_card_view">Card view</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Small</string>
+    <string name="pref_display_font_size_d">Default</string>
+    <string name="pref_display_font_size_l">Large</string>
+    <string name="pref_display_font_size_xl">Extra Large</string>
 
     <string name="content_desc_play">play</string>
     <string name="content_desc_pause">pause</string>
@@ -177,6 +225,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">It looks like your news app is not installed or activated on your server. Please follow the instructions given here to setup the news app on your server first: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Something went wrong :(</string>
     <string name="login_dialog_text_zero_version_code">The Web News App returned Version \"0\". Please take a look at the following bug report: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">This App version is not compatible with your Nextcloud News App. Please upgrade the news app and the appframework.</string>
