@@ -321,7 +321,7 @@ public class NewsReaderDetailFragment extends Fragment {
         try {
             NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
             if (nra == null) {
-                nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity());
+                nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity(), ((PodcastFragmentActivity) getActivity()).mPostDelayHandler);
 
                 recyclerView.setAdapter(nra);
             }

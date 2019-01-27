@@ -83,8 +83,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private ViewPager mViewPager;
 	private int currentPosition;
 
-	private PostDelayHandler pDelayHandler;
-
 	private MenuItem menuItem_PlayPodcast;
 	private MenuItem menuItem_Starred;
 	private MenuItem menuItem_Read;
@@ -104,8 +102,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
-
-		pDelayHandler = new PostDelayHandler(this);
 
 		dbConn = new DatabaseConnectionOrm(this);
 		Intent intent = getIntent();
@@ -258,7 +254,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		{
 			markItemAsReadUnread(rssItems.get(position), true);
 
-			pDelayHandler.DelayTimer();
+			mPostDelayHandler.delayTimer();
 
 			Log.v("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
 		}
@@ -375,7 +371,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             case R.id.action_read:
                 markItemAsReadUnread(rssItem, !menuItem_Read.isChecked());
                 UpdateActionBarIcons();
-                pDelayHandler.DelayTimer();
+                mPostDelayHandler.delayTimer();
                 break;
 
 			case R.id.action_starred:
@@ -385,7 +381,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 				UpdateActionBarIcons();
 
-				pDelayHandler.DelayTimer();
+                mPostDelayHandler.delayTimer();
 				break;
 
 			case R.id.action_openInBrowser:

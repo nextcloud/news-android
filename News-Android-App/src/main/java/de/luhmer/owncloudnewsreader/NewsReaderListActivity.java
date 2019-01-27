@@ -355,7 +355,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
 
 
-			NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this);
+			NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this, mPostDelayHandler);
 
 			adapter.setTotalItemCount(savedInstanceState.getInt(LIST_ADAPTER_TOTAL_COUNT));
 			adapter.setCachedPages(savedInstanceState.getInt(LIST_ADAPTER_PAGE_COUNT));
@@ -633,7 +633,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			StartLoginFragment(this);
 		} else {
 			if (!OwnCloudSyncService.isSyncRunning()) {
-				new PostDelayHandler(this).stopRunningPostDelayHandler();//Stop pending sync handler
+				mPostDelayHandler.stopRunningPostDelayHandler(); //Stop pending sync handler
 
 				Bundle accBundle = new Bundle();
 				accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);

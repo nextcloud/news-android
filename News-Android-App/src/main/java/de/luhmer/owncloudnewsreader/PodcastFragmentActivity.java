@@ -51,6 +51,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterYoutubeOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
@@ -77,6 +78,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     @Inject protected SharedPreferences mPrefs;
     @Inject protected ApiProvider mApi;
     @Inject protected MemorizingTrustManager mMTM;
+    @Inject protected PostDelayHandler mPostDelayHandler;
 
     private MediaBrowserCompat mMediaBrowser;
     private EventBus eventBus;
@@ -124,6 +126,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 e.printStackTrace();
             }
         }*/
+        //mPostDelayHandler.delayTimer();
+        mPostDelayHandler.stopRunningPostDelayHandler();
     }
 
     @Override
@@ -177,6 +181,13 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         super.onStop();
 
         mMediaBrowser.disconnect();
+    }
+
+
+    @Override
+    public void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        mPostDelayHandler.delayOnExitTimer();
     }
 
     @Override
