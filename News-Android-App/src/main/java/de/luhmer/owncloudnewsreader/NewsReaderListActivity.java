@@ -232,6 +232,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		//AppRater.app_launched(this);
 		//AppRater.rateNow(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         //Start auto sync if enabled
         if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false)) {
