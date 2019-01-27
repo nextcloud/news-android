@@ -390,7 +390,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 			case R.id.action_openInBrowser:
                 NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
-                String link = newsDetailFragment.mWebView.getUrl();
+                String link = "about:blank";
+
+                if(newsDetailFragment != null && newsDetailFragment.mWebView != null) {
+                    link = newsDetailFragment.mWebView.getUrl();
+                }
 
                 if("about:blank".equals(link)) {
                     link = rssItem.getLink();
