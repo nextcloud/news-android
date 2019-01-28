@@ -118,7 +118,7 @@
     <string name="pref_header_general">Algemeen</string>
     <string name="pref_title_general_sort_order">Sorteervolgorde</string>
 
-    <string name="pref_general_sort_order_new_old">Niwu-> Ou</string>
+    <string name="pref_general_sort_order_new_old">Nieuw -> Oud</string>
     <string name="pref_general_sort_order_old_new">Oud -> Nieuw</string>
 
     <string name="pref_title_general_search_in">Zoeken in</string>
