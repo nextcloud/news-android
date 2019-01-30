@@ -21,8 +21,8 @@
 
     <string name="menu_update">Uppdatera</string>
     <string name="menu_markAllAsRead">Markera alla som lästa</string>
-    <string name="menu_StartImageCaching">Ladda ner bilder</string>
-    <string name="menu_downloadMoreItems">Ladda ner fler objekt</string>
+    <string name="menu_StartImageCaching">Ladda ned bilder</string>
+    <string name="menu_downloadMoreItems">Ladda ned fler objekt</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Stjärnmärkt</string>
@@ -52,14 +52,14 @@
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">Ladda ner bild</string>
+    <string name="action_img_download">Ladda ned bild</string>
     <string name="action_img_sharelink">Dela bildlänk</string>
     <string name="action_img_open">Öppna bilden i webbläsaren</string>
     <string name="action_img_copylink">Kopiera bildlänk</string>
     <string name="action_link_share">Dela länk</string>
     <string name="action_link_open">Öppna länk i webbläsaren</string>
     <string name="action_link_copy">Kopiera länk</string>
-    <string name="toast_img_download_wait">Laddar ner... var god vänta</string>
+    <string name="toast_img_download_wait">Laddar ned... var god vänta</string>
     <string name="toast_img_saved">Bild sparad</string>
     <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
     <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
@@ -93,7 +93,7 @@
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Laddade ner %d gamla artiklar</item>
-        <item quantity="other">Laddade ner %d gamla artiklar</item>
+        <item quantity="other">Laddade ned %d gamla artiklar</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
     <plurals name="fetched_items_so_far">
@@ -170,7 +170,7 @@
     <string name="content_desc_remove_from_favorites">ta bort från favoriter</string>
     <string name="content_desc_show_password">visa lösenordet</string>
     <string name="content_desc_delete">radera</string>
-    <string name="content_desc_download">ladda ner</string>
+    <string name="content_desc_download">ladda ned</string>
 
 
 
