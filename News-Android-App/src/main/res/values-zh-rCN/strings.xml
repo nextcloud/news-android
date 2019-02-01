@@ -7,7 +7,7 @@
     <string name="empty_view_content">无内容</string>
     <string name="toast_GettingMoreItems">正在下载多个文件...请稍候。</string>
     <string name="no_wifi_available">没有连接到 WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">您要在非 Wi-Fi 环境下下载图片吗</string>
+    <string name="do_you_want_to_download_without_wifi">确定要通过非 Wi-Fi 连接下载图片？</string>
     <string name="current_version">您正在使用的版本号为：%s</string>
     <string name="widget_header">ownCloud 新闻</string>
     <plurals name="message_bar_new_articles_available">
@@ -152,6 +152,8 @@
     <!-- Settings for About -->
     <string name="pref_header_about">关于</string>
     <string name="pref_license">许可证</string>
+    <string name="pref_report_issue">报告问题</string>
+    <string name="pref_report_issue_summary">请求一个(免费) GitHub 帐户</string>
     <string name="pref_contribute_summary">获取源代码</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">显示</string>
