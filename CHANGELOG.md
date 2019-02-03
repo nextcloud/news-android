@@ -3,6 +3,13 @@
 - Single Sign on for all Nextcloud Android Apps!
 
 
+
+0.9.9.24
+---------------------
+- Fix - app crashes
+
+
+
 0.9.9.23
 ---------------------
 - Fix - app crashes
