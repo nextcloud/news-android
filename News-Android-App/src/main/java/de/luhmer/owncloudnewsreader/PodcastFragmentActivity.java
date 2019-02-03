@@ -1,10 +1,8 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -252,6 +250,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     }
 
 
+    /*
     public static boolean isMyServiceRunning(Class<?> serviceClass, Context context) {
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
@@ -261,6 +260,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         }
         return false;
     }
+    */
 
     private final MediaBrowserCompat.ConnectionCallback mConnectionCallbacks =
         new MediaBrowserCompat.ConnectionCallback() {
