@@ -34,6 +34,7 @@
     <string name="action_sync_settings">Ustawienia synchronizacji</string>
     <string name="action_add_new_feed">Dodaj nowy kanał</string>
     <string name="action_textToSpeech">Przeczytane</string>
+    <string name="action_download_articles_offline">Pobierz artykuły offline</string>
     <!-- Add new feed -->
     <string name="hint_feed_url">URL kanału</string>
     <string name="action_add_feed">Dodaj kanał</string>
@@ -97,6 +98,9 @@
     <string name="pref_header_general">Ogólne</string>
     <string name="pref_title_general_sort_order">Sortuj w kolejności</string>
 
+    <string name="pref_general_sort_order_new_old">Nowe -> Stare</string>
+    <string name="pref_general_sort_order_old_new">Stare -> Nowe</string>
+
     <string name="pref_title_general_search_in">Wyszukaj w</string>
 
     <string name="pref_general_search_in_title">Tutuł</string>
@@ -111,6 +115,8 @@
     <string name="pref_title_DisableHostnameVerification">Wyłącz weryfikację nazwy hosta</string>
     <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
+    <string name="pref_title_OpenInBrowserDirectly">Pomiń widok szczegółów i otwórz artykuł w przeglądarce</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Akceptować nieznane certyfikaty?</string>
     <string name="mtm_decision_always">Zawsze</string>
@@ -122,8 +128,20 @@
     <string name="no_podcast_selected">Brak wybranego podcastu</string>
     <string name="no_chapters_available">Brak dostępnych rozdziałów</string>
     <string name="podcast_playback_speed_dialog_title">Prędkość odtwarzania</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">O aplikacji</string>
+    <string name="pref_license">Licencja</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_report_issue">Zgłoś problem</string>
+    <string name="pref_report_issue_summary">Wymaga (bezpłatnego) konta GitHub</string>
+    <string name="pref_contribute">Wsparcie</string>
+    <string name="pref_contribute_summary">Pobierz kod źródłowy</string>
+    <string name="pref_version">Nextcloud News aplikacja dla Android</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Wygląd</string>
+    <string name="pref_title_app_theme">Wybierz motyw</string>
     <string name="pref_title_feed_list_layout">Układ listy kanałów</string>
     <string name="pref_title_font_size">Rozmiar czcionki</string>
     <string name="pref_display_browser">Przeglądarka</string>
@@ -132,16 +150,22 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcji (Widok szczegółowy)</string>
 
+    <string name="pref_display_apptheme_auto">Jasny / Ciemny (zależy od pory dnia)</string>
     <string name="pref_display_apptheme_light">Jasny</string>
     <string name="pref_display_apptheme_dark">Ciemny</string>
 
     <string name="pref_oled_mode">Czarne tło</string>
+    <string name="pref_oled_mode_summary">Motyw ciemny dla ekranów OLED</string>
+
+    <string name="pref_display_browser_cct">Wbudowany Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Wbudowana Przeglądarka</string>
     <string name="pref_display_browser_external">Zewnętrzna przeglądarka</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Miniatury</string>
     <string name="pref_display_feed_list_layout_simple_text">Prosty tekst</string>
+    <string name="pref_display_feed_list_layout_headlines">Nagłówki</string>
     <string name="pref_display_feed_list_layout_full_text">Rozbudowany tekst</string>
+    <string name="pref_display_feed_list_layout_web_layout">Układ strony</string>
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Mały</string>
     <string name="pref_display_font_size_d">Domyślny</string>
