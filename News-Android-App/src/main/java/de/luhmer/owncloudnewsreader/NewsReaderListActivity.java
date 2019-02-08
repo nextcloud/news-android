@@ -749,10 +749,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				StartLoginFragment(NewsReaderListActivity.this);
 				break;
 
-			case R.id.action_add_new_feed:
-				Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
-				startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
-				break;
+            case R.id.action_add_new_feed:
+                if(mApi.getAPI() != null) {
+                    Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
+                    startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
+                } else {
+                    StartLoginFragment(NewsReaderListActivity.this);
+                }
+                break;
 
 			case R.id.menu_StartImageCaching:
 				final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
