@@ -1,7 +1,6 @@
 package de.luhmer.owncloudnewsreader.authentication;
 
 import android.accounts.Account;
-import android.app.ActivityManager;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.Context;
@@ -31,6 +30,7 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
+import de.luhmer.owncloudnewsreader.helper.ForegroundListener;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 import de.luhmer.owncloudnewsreader.reader.InsertIntoDatabase;
@@ -235,11 +235,9 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         //int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
 
         if(newItemsCount > 0) {
-            String fgActivityPackageName = getForegroundActivityPackageName();
-
             boolean showNotificationOnNewArticles = mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true);
             // If another app is opened show a notification
-            if (!fgActivityPackageName.equals(getContext().getPackageName()) && showNotificationOnNewArticles) {
+            if (!ForegroundListener.isInForeground() && showNotificationOnNewArticles) {
                 NextcloudNotificationManager.showUnreadRssItemsNotification(getContext(), newItemsCount);
             }
         }
@@ -249,18 +247,5 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         Intent data = new Intent();
         data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.FAVICONS_ONLY);
         DownloadImagesService.enqueueWork(getContext(), data);
-    }
-
-    private String getForegroundActivityPackageName() {
-        String foregroundActivityPackageName = "";
-
-        ActivityManager mActivityManager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> rtiList = mActivityManager.getRunningTasks(1);
-        if(rtiList.size() > 0) {
-            foregroundActivityPackageName = rtiList.get(0).topActivity.getPackageName();
-        }
-
-        //Log.v(TAG, "foregroundActivityPackageName=" + foregroundActivityPackageName);
-        return foregroundActivityPackageName;
     }
 }
