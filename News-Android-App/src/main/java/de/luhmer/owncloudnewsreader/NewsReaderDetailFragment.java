@@ -119,6 +119,8 @@ public class NewsReaderDetailFragment extends Fragment {
     @BindView(R.id.list) RecyclerView recyclerView;
     @BindView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefresh;
 
+    private RecyclerView.OnItemTouchListener itemTouchListener;
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
@@ -387,24 +389,24 @@ public class NewsReaderDetailFragment extends Fragment {
             }
         });
 
+        itemTouchListener = new RecyclerView.OnItemTouchListener() {
+            GestureDetectorCompat detector = new GestureDetectorCompat(getActivity(), new RecyclerViewOnGestureListener());
+
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                detector.onTouchEvent(e);
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) { }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
+        };
+
         return rootView;
     }
-
-    private RecyclerView.OnItemTouchListener itemTouchListener = new RecyclerView.OnItemTouchListener() {
-        GestureDetectorCompat detector = new GestureDetectorCompat(getActivity(), new RecyclerViewOnGestureListener());
-
-        @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            detector.onTouchEvent(e);
-            return false;
-        }
-
-        @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) { }
-
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
-    };
 
     private void handleMarkAsReadScrollEvent() {
         LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
