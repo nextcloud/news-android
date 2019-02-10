@@ -26,6 +26,7 @@
     <string name="action_starred">Stjernemarkéret</string>
     <string name="action_read">Læst</string>
     <string name="action_playPodacst">Afspil podcast</string>
+    <string name="action_openInBrowser">Åbn i browser</string>
     <string name="action_Share">Del</string>
     <string name="action_login">Server-indstillinger</string>
     <string name="action_save">Gem</string>
