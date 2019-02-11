@@ -117,6 +117,9 @@
     <string name="pref_general_sort_order_new_old">Uusi -> Vanha</string>
     <string name="pref_general_sort_order_old_new">Vanha -> Uusi</string>
 
+    <string name="pref_general_search_in_title">Otsikko</string>
+    <string name="pref_general_search_in_body">Runko</string>
+
     <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
     <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
     <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
@@ -142,7 +145,10 @@
     <!-- Settings for About -->
     <string name="pref_header_about">Tietoja</string>
     <string name="pref_license">Lisenssi</string>
+    <string name="pref_report_issue">Ilmoita ongelmasta</string>
+    <string name="pref_report_issue_summary">Vaatii ilmaisen GitHub-tilin</string>
     <string name="pref_contribute">Osallistu!</string>
+    <string name="pref_contribute_summary">Hanki lähdekoodi</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Näyttö</string>
     <string name="pref_title_app_theme">Teema</string>
