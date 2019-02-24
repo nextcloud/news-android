@@ -3,13 +3,13 @@
 
     <string name="auto_sync_string">Ауто-освежавање</string>
     <string name="title_activity_sync_interval_selector">Период освежавања</string>
-    <string name="title_activity_news_detail">NewsDetailActivity</string>
+    <string name="title_activity_news_detail">Детаљне активности Вести</string>
     <string name="empty_view_content">Нема ставки</string>
     <string name="toast_GettingMoreItems">Започето скидање још ставки… Сачекајте.</string>
     <string name="no_wifi_available">Нема бежичне везе</string>
     <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе</string>
     <string name="current_version">Користите верзију %s</string>
-    <string name="widget_header">Некстклауд Новости</string>
+    <string name="widget_header">Некстклауд Вести</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">Доступна %d нова ставка</item>
         <item quantity="few">Доступне %d нове ставке</item>
@@ -79,15 +79,15 @@
     <string name="action_feed_move">Премести довод</string>
     <string name="feed_remove_button">Уклони</string>
     <string name="feed_rename_button">Преименуј</string>
-    <string name="confirm_feed_remove">Да ли стварно желите да уклоните овај довод? Ово је неповратна операција!</string>
-    <string name="feed_move_list_description">Одаберите у коју фасциклу да се довод премести</string>
+    <string name="confirm_feed_remove">Заиста желите да уклоните овај довод? Ово се не може опозвати!</string>
+    <string name="feed_move_list_description">Изаберите фасциклу да преместите довод</string>
     <string name="move_feed_root_folder">Корена фасцикла</string>
 
     <!-- Strings related to login -->
     <string name="pref_title_username">Корисничко име</string>
     <string name="pref_title_password">Лозинка</string>
     <string name="pref_title_owncloudRootPath">Корена адреса Некстклауда</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Пријави се</string>
     <string name="login_progress_signing_in">Пријављујем се...</string>
@@ -132,7 +132,7 @@
     <string name="pref_general_search_in_body">Тело</string>
 
     <string name="dialog_clearing_cache">Чистим кеш</string>
-    <string name="dialog_clearing_cache_please_wait">Чистим кеш… Сачекајте.</string>
+    <string name="dialog_clearing_cache_please_wait">Чистим кеш… сачекајте.</string>
     <string name="reset_cache_unsaved_changes">Постоје несинхронизоване измене. Да ипак обришем кеш?</string>
     <string name="warning">Упозорење</string>
     <string name="pref_title_AutoSyncOnStart">Освежи при покретању</string>
@@ -140,13 +140,13 @@
     <string name="pref_title_DisableHostnameVerification">Искључи проверу имена домаћина</string>
     <string name="pref_title_NavigateWithVolumeButtons">Навигација помоћу дугмади за јачину звука</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Означи као прочитано током клизања</string>
-    <string name="pref_title_OpenInBrowserDirectly">Прескочи детаљни преглед и одмах отвори чланак у Веб читачу</string>
+    <string name="pref_title_OpenInBrowserDirectly">Прескочи детаљни преглед и одмах отвори чланак у прегледачу</string>
 
-    <string name="dialog_feature_not_available">Ова функционалност није доступна у овој верзији (отвореног кода). Ако желите да користите ову функционалност, преузмите апликација са GitHub репозиторијума или скините апликацију са Google PlayStore продавнице.</string>
+    <string name="dialog_feature_not_available">Ова могућност није доступна у овој верзији (отвореног кода). Ако желите да је користите, преузмите апликацију са Гитхаб ризнице или скините апликацију са Гугл Плеј продавнице.</string>
 
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">Прихвати непознати сертификат?</string>
+    <string name="mtm_accept_cert">Прихватити непознати сертификат?</string>
     <string name="mtm_decision_always">Увек</string>
     <string name="mtm_decision_abort">Прекини</string>
     <string name="mtm_notification">Провера сертификата</string>
@@ -162,12 +162,12 @@
     <!-- Settings for About -->
     <string name="pref_header_about">О програму</string>
     <string name="pref_license">Лиценца</string>
-    <string name="pref_license_summary">ГНУ Affero Општа Јавна Лиценца (ГОЈЛ), верзија 3</string>
+    <string name="pref_license_summary">ГНУ Affero Општа Јавна Лиценца (АОЈЛ), верзија 3</string>
     <string name="pref_report_issue">Пријави проблем</string>
-    <string name="pref_report_issue_summary">Морате да имате (бесплатни) GitHub налог</string>
-    <string name="pref_contribute">Придружи се!</string>
+    <string name="pref_report_issue_summary">Потребан је (бесплатни) Гитхаб налог</string>
+    <string name="pref_contribute">Дајте допринос!</string>
     <string name="pref_contribute_summary">Узми изворни кôд</string>
-    <string name="pref_version">Некстклауд Вести Андроид апликација</string>
+    <string name="pref_version">Андроид апликација за Некстклауд Вести</string>
 
 
     <!-- Settings for Display -->
@@ -179,22 +179,22 @@
 
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">Акционе иконица (детаљни приказ)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">Иконе радњи (детаљни приказ)</string>
 
-    <string name="pref_display_apptheme_auto">Светло / тамно (у односу на део дана)</string>
+    <string name="pref_display_apptheme_auto">Светло / тамно (у односу на доба дана)</string>
     <string name="pref_display_apptheme_light">Светла</string>
     <string name="pref_display_apptheme_dark">Тамна</string>
 
     <string name="pref_oled_mode">Црна позадина</string>
-    <string name="pref_oled_mode_summary">За тамне теме на OLED екранима</string>
+    <string name="pref_oled_mode_summary">За тамне теме на ОЛЕД екранима</string>
 
-    <string name="pref_display_browser_cct">Уграђени Chrome-Custom-Tabs</string>
-    <string name="pref_display_browser_built_in">Уграђени Веб читач</string>
-    <string name="pref_display_browser_external">Спољни Веб читач</string>
+    <string name="pref_display_browser_cct">Уграђени Хром посебни језичци</string>
+    <string name="pref_display_browser_built_in">Уграђени прегледач</string>
+    <string name="pref_display_browser_external">Спољни прегледач</string>
 
-    <string name="pref_display_feed_list_layout_thumbnails">Мале сличице</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Сличице</string>
     <string name="pref_display_feed_list_layout_simple_text">Обичан текст</string>
-    <string name="pref_display_feed_list_layout_headlines">Насловнице</string>
+    <string name="pref_display_feed_list_layout_headlines">Наслови</string>
     <string name="pref_display_feed_list_layout_full_text">Цео текст</string>
     <string name="pref_display_feed_list_layout_web_layout">Веб распоред</string>
     <string name="pref_display_feed_list_layout_card_view">Картични приказ</string>
@@ -203,7 +203,7 @@
     <string name="pref_display_font_size_s">Мало</string>
     <string name="pref_display_font_size_d">Подразумевано</string>
     <string name="pref_display_font_size_l">Велико</string>
-    <string name="pref_display_font_size_xl">Екстра велико</string>
+    <string name="pref_display_font_size_xl">Јако велико</string>
 
     <string name="content_desc_play">пусти</string>
     <string name="content_desc_pause">паузирај</string>
@@ -230,12 +230,12 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Грешка</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Изгледа да апликација вести није инсталирана или активирана на серверу. Пратите упутства одавде да прво подесите апликацију вести на серверу: %1$s</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Изгледа да апликација Вести није инсталирана или активирана на серверу. Пратите упутства одавде да прво подесите апликацију Вести на серверу: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Нешто је пошло наопако :(</string>
-    <string name="login_dialog_text_zero_version_code">Апликација вести је вратила верзију \"0\". Погледајте следећи извештај о грешци: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Верзија ове апликације није усклађена са новинском апликацијом Некстклауда. Ажурирајте апликацију и њен радни оквир.</string>
+    <string name="login_dialog_text_zero_version_code">Апликација Вести је вратила верзију \"0\". Погледајте следећи извештај о грешци: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Верзија ове апликације није усклађена са апликацијом Некстклауд Вести. Ажурирајте апликацију и њен радни оквир.</string>
     <string name="login_dialog_title_security_warning">Сигурносно упозорење</string>
-    <string name="login_dialog_text_security_warning">Не користите препоручени безбедни HTTPS пренос. Нападач може пресрести ваш саобраћај и доћи у посед осетљивим податацима (нпр. ваше лозинке).</string>
+    <string name="login_dialog_text_security_warning">Не користите препоручени ХТТПС протокол. Нападач може пресрести ваш саобраћај и имати приступ осетљивим подацима (нпр. вашој лозинки).</string>
 
 
     <!-- Data & Sync -->
