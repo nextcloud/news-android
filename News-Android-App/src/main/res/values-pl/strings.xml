@@ -207,6 +207,7 @@
     <string name="pref_title_CacheImagesOffline">Zapisuj obrazy offline</string>
     <string name="pref_title_Max_Cache_Size">Maksymalny rozmiar pamięci podręcznej</string>
 
+    <string name="pref_data_sync_image_cache_never">Nigdy</string>
     <string name="pref_data_sync_image_cache_wifi_only">Tylko przez WiFi</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Przez WiFi &amp; Mobilne</string>
     <string name="pref_data_sync_image_cache_ask">Zapytaj gdy nie podłączony do WiFi</string>
