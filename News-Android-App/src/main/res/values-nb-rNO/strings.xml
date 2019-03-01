@@ -191,7 +191,7 @@
     <string name="pref_display_feed_list_layout_simple_text">Enkel tekst</string>
     <string name="pref_display_feed_list_layout_headlines">Overskrifter</string>
     <string name="pref_display_feed_list_layout_full_text">Full tekst</string>
-    <string name="pref_display_feed_list_layout_web_layout">Vev utseende</string>
+    <string name="pref_display_feed_list_layout_web_layout">Weboppsett</string>
     <string name="pref_display_feed_list_layout_card_view">Kort utsnitt</string>
 
     <!-- font size scaling definitions -->
@@ -227,8 +227,8 @@
     <string name="login_dialog_title_error">Feil</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Nyhets tillegg er ikke installert eller aktivert på din server. Følge instruksjonene angitt her for å sette opp din server: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Noe gikk galt :-(</string>
-    <string name="login_dialog_text_zero_version_code">Nettnyhetsprogrammet returnerte versjon \"0\". Ta en titt på følgende feilrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Program versjon er ikke kompatibel md Nexcloud nyhetstillegg. Vennligst oppgrader dette tillegget. </string>
+    <string name="login_dialog_text_zero_version_code">Nettnyhets-appen returnerte versjon \"0\". Ta en titt på følgende feilrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Denne app-versjonen er ikke kompatibel md Nextcloud nyhetsapp. Vennligst oppgrader denne appen. </string>
     <string name="login_dialog_title_security_warning">Sikkerhetsadvarsel</string>
     <string name="login_dialog_text_security_warning">HTTPS er sterkt anbefalt for din sikkerhet. Uten HTTPS kan andre se din trafikk og hente ut innholdet  som for eksempel passord.</string>
 
