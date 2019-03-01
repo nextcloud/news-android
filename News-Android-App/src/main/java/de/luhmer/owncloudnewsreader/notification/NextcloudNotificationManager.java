@@ -257,6 +257,7 @@ public class NextcloudNotificationManager {
                         .setContentTitle(title)
                         //.setDefaults(Notification.DEFAULT_ALL)
                         .setAutoCancel(true)
+                        .setNumber(newItemsCount)
                         .setContentText(contentText);
 
 
