@@ -153,10 +153,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
         ButterKnife.bind(this, view);
 
-        if(!Constants.isNextCloud(getContext())) {
-            // Set ownCloud view
-            headerView.setBackgroundResource(R.drawable.left_drawer_header_background);
-        }
+        loadOwncloudOrNextcloudBanner();
 
         lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), eListView);
         lvAdapter.setHandlerListener(expListTextClickedListener);
@@ -203,7 +200,14 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		mCallbacks = null;
 	}
 
-	ExpListTextClicked expListTextClickedListener = new ExpListTextClicked() {
+	protected void loadOwncloudOrNextcloudBanner() {
+        if(!Constants.isNextCloud(getContext())) {
+            // Set ownCloud view
+            headerView.setBackgroundResource(R.drawable.left_drawer_header_background);
+        }
+    }
+
+	private ExpListTextClicked expListTextClickedListener = new ExpListTextClicked() {
 
 		@Override
 		public void onTextClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
@@ -265,6 +269,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 .setContentText("Tap this logo to sync with server")
                 .setDelay(300) // optional but starting animations immediately in onCreate can make them choppy
                 .singleUse("LOGO_SYNC") // provide a unique ID used to ensure it is only shown once
+                .setHideSkipButton(true)
                 .show();
     }
 

@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">סנכרון אוטומטי</string>
+    <string name="title_activity_sync_interval_selector">בורר הפרשים בין סנכרונים</string>
     <string name="empty_view_content">אין כאן פריטים</string>
     <string name="toast_GettingMoreItems">החלה הורדה של פריטים נוספים… נא להמתין.</string>
     <string name="no_wifi_available">אין חיבור WiFi</string>
@@ -24,6 +25,8 @@
     <string name="menu_StartImageCaching">הורדת תמונות</string>
     <string name="menu_downloadMoreItems">הורדת פריטים נוספים</string>
 
+    <string name="tv_showing_cached_version">הגרסה השמורה מוצגת</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">מסומן בכוכב</string>
     <string name="action_read">נקרא</string>
@@ -36,6 +39,13 @@
     <string name="action_sync_settings">הגדרות סנכרון</string>
     <string name="action_add_new_feed">הוספת ערוץ תוכן חדש</string>
     <string name="action_textToSpeech">הקראה</string>
+    <string name="action_download_articles_offline">הורדת מאמרים לשימוש בלתי מקוון</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">יש לך פריט חדש %d שלא נקרא</item>
+        <item quantity="two">יש לך %dפריטים חדשים שלא נקראו </item>
+        <item quantity="many">יש לך %d פריטים חדשים שלא נקראו</item>
+        <item quantity="other">יש לך %d פריטים חדשים שלא נקראו</item>
+    </plurals>
     <!-- Add new feed -->
     <string name="hint_feed_url">נתיב ערוץ תוכן</string>
     <string name="action_add_feed">הוספת ערוץ תוכן</string>
@@ -84,9 +94,27 @@
     <string name="import_account">ייבוא חשבון</string>
 
 
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">התקבל פריט ישן %d</item>
+        <item quantity="two">התקבלו %d פריטים ישנים</item>
+        <item quantity="many">התקבלו %d פריטים ישנים</item>
+        <item quantity="other">התקבלו %d פריטים ישנים</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">אין פריטים נוספים זמינים</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">עד כה התקבל פריט %d…</item>
+        <item quantity="two">עד כה התקבלו %d פריטים…</item>
+        <item quantity="many">עד כה התקבלו %d פריטים…</item>
+        <item quantity="other">עד כה התקבלו %d פריטים…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">הגדרות</string>
+    <string name="cache_is_cleared">המטמון התרוקן!</string>
+
+
     <!-- General settings -->
     <string name="pref_header_general">כללי</string>
     <string name="pref_title_general_sort_order">סדר חיפוש</string>
@@ -100,6 +128,7 @@
     <string name="pref_general_search_in_body">גוף</string>
 
     <string name="dialog_clearing_cache">זכרון המטמון מתפנה</string>
+    <string name="dialog_clearing_cache_please_wait">המטמון מתרוקן… נא להמתין.</string>
     <string name="reset_cache_unsaved_changes">יש שינויים שלא סונכרנו. לאפס את המטמון בכל זאת?</string>
     <string name="warning">אזהרה</string>
     <string name="pref_title_AutoSyncOnStart">סנכרון בהתחלה</string>
@@ -108,6 +137,9 @@
     <string name="pref_title_NavigateWithVolumeButtons">ניווט עם כפתורי עצמת שמע</string>
     <string name="pref_title_MarkAsReadWhileScrolling">סימון כנקרא בזמן הגלילה</string>
     <string name="pref_title_OpenInBrowserDirectly">לדלג על התצוגה המפורטת ולפתוח את הכתבה בדפדפן</string>
+
+    <string name="dialog_feature_not_available">התכונה איזה זמינה בגרסת (קוד פתוח) זו של היישומון. אם תכונה זו חשובה לך נא להוריד את היישומון ממאגר ה־GitHub או מחנות היישומונים Play מבית Google.</string>
+
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">לקבל אישור בלתי ידוע?</string>
@@ -120,21 +152,54 @@
     <string name="no_podcast_selected">לא נבחרו פודקאסטים</string>
     <string name="no_chapters_available">אין פרקים זמינים</string>
     <string name="podcast_playback_speed_dialog_title">מהירות נגינה</string>
+    <string name="notification_downloading_podcast_title">הפודקאסט מתקבל</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">על אודות</string>
+    <string name="pref_license">רישיון</string>
+    <string name="pref_license_summary">גרסה 3 של הרישיון הציבורי הכללי של GNU Affero ‏(AGPL)</string>
+    <string name="pref_report_issue">דיווח על תקלה</string>
+    <string name="pref_report_issue_summary">נדרש חשבון ב־GitHub (ללא עלות)</string>
+    <string name="pref_contribute">להתנדב!</string>
+    <string name="pref_contribute_summary">הורדת קוד המקור</string>
+    <string name="pref_version">יישומון החדשות של Nextcloud ל־Android</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">תצוגה</string>
+    <string name="pref_title_app_theme">ערכת עיצוב</string>
     <string name="pref_title_feed_list_layout">פריסת רשימת הזנות</string>
+    <string name="pref_title_font_size">גודל גופן</string>
     <string name="pref_display_browser">דפדפן</string>
 
 
 
     <string name="pref_display_news_detail_actionbar_icons_title">סמלי פעולה (תצוגה מפורטת)</string>
 
+    <string name="pref_display_apptheme_auto">בהיר / כהה (מבוסס על Daytime)</string>
     <string name="pref_display_apptheme_light">בהירה</string>
     <string name="pref_display_apptheme_dark">כהה</string>
+
+    <string name="pref_oled_mode">רקע שחור</string>
+    <string name="pref_oled_mode_summary">לערכת עיצוב כהה במסכי OLED</string>
 
     <string name="pref_display_browser_cct">לשוניות Chrome מובנות מותאמות</string>
     <string name="pref_display_browser_built_in">דפדפן מובנה</string>
     <string name="pref_display_browser_external">דפדפן חיצוני</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">תמונות ממוזערות</string>
+    <string name="pref_display_feed_list_layout_simple_text">טקסט פשוט</string>
+    <string name="pref_display_feed_list_layout_headlines">כותרות</string>
+    <string name="pref_display_feed_list_layout_full_text">טקסט מלא</string>
+    <string name="pref_display_feed_list_layout_web_layout">פריסה לדפדפן</string>
+    <string name="pref_display_feed_list_layout_card_view">תצוגת כרטיסים</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">קטן</string>
+    <string name="pref_display_font_size_d">בררת מחדל</string>
+    <string name="pref_display_font_size_l">גדול</string>
+    <string name="pref_display_font_size_xl">גדול מאוד</string>
 
     <string name="content_desc_play">נגינה</string>
     <string name="content_desc_pause">השהיה</string>
@@ -156,6 +221,9 @@
 
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">דיווחים</string>
+    <string name="pref_title_notification_new_articles_available">הצגת התראות כשמפורסמות ידיעות חדשות</string>
+
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">שגיאה</string>
     <string name="login_dialog_text_something_went_wrong">משהו השתבש :(</string>

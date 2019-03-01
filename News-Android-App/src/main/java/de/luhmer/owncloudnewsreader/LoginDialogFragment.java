@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -32,7 +31,6 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -54,6 +52,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -157,9 +156,6 @@ public class LoginDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        ActivityCompat.requestPermissions(getActivity(),
-                new String[]{ Manifest.permission.GET_ACCOUNTS }, 0);
-
         //setRetainInstance(true);
 
         // Build the dialog and set up the button click handlers
@@ -271,7 +267,11 @@ public class LoginDialogFragment extends DialogFragment {
 			positiveButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					attemptLogin();
+				    if(mSwSingleSignOn.isChecked() && importedAccount == null) {
+                        Toast.makeText(getContext(), "Please select account first by disabling and re-enabling sso", Toast.LENGTH_LONG).show();
+                    } else {
+                        attemptLogin();
+                    }
 				}
 			});
 		}
@@ -441,6 +441,8 @@ public class LoginDialogFragment extends DialogFragment {
                             ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_zero_version_code), getActivity());
                             loginSuccessful = false;
                         }
+
+                        importedAccount = null;
                     }
 
                     @Override

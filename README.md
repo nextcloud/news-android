@@ -42,27 +42,9 @@ Requirements:
 Download and install:
 -----------------------
   1. Open cmd/terminal
-
   2. Navigate to your workspace
-
-  3. Then type in:
-
-    
-    git clone --recursive https://github.com/nextcloud/news-android.git
-    
-    for the dev branch:
-    
-    git clone --recursive https://github.com/nextcloud/news-android.git -b dev
-    
-
-  5. Import the Project and start coding!
-
-  6. If you should ever get a Gradle error `Configuration with name 'default' not found`
-    while building, execute following commands in the projects root directory:
-
-   
-    git submodule init
-    git submodule update
+  3. Then type in: `git clone https://github.com/nextcloud/news-android.git`
+  4. Import the Project in Android Studio and start coding!
    
 
 That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de

@@ -36,6 +36,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -231,20 +232,97 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		//AppRater.app_launched(this);
 		//AppRater.rateNow(this);
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        if (drawerToggle != null) {
+            drawerToggle.syncState();
+        }
+
+        // Fragments are not ready when calling the method below in onCreate()
+        updateButtonLayout();
 
         //Start auto sync if enabled
         if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false)) {
             startSync();
         }
 
-		updateButtonLayout();
+        boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
+        if (tabletSize) {
+            showTapLogoToSyncShowcaseView();
+        }
+    }
+
+    /* (non-Javadoc)
+	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
+	 */
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		safeInstanceState(outState);
+		super.onSaveInstanceState(outState);
 	}
+
+    /* (non-Javadoc)
+     * @see com.actionbarsherlock.app.SherlockFragmentActivity#onRestoreInstanceState(android.os.Bundle)
+     */
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        restoreInstanceState(savedInstanceState);
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (drawerToggle != null)
+            drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    private void safeInstanceState(Bundle outState) {
+        NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+        if (ndf != null) {
+            outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
+            outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
+            outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
+
+            NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) ndf.getRecyclerView().getAdapter();
+            if (adapter != null) {
+                outState.putInt(LIST_ADAPTER_TOTAL_COUNT, adapter.getTotalItemCount());
+                outState.putInt(LIST_ADAPTER_PAGE_COUNT, adapter.getCachedPages());
+            }
+        }
+    }
+
+    private void restoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState.containsKey(ID_FEED_STRING) &&
+                savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
+                savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
+
+
+            NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this, mPostDelayHandler);
+
+            adapter.setTotalItemCount(savedInstanceState.getInt(LIST_ADAPTER_TOTAL_COUNT));
+            adapter.setCachedPages(savedInstanceState.getInt(LIST_ADAPTER_PAGE_COUNT));
+
+            getNewsReaderDetailFragment()
+                    .getRecyclerView()
+                    .setAdapter(adapter);
+
+            startDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
+                    savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
+                    savedInstanceState.getLong(ID_FEED_STRING),
+                    false);
+        }
+    }
+
 
     /**
      * This method increases the "pull to open drawer" area by three.
      * This method should be called only once!
      */
-	private void adjustEdgeSizeOfDrawer() {
+    private void adjustEdgeSizeOfDrawer() {
         try {
             // increase the size of the drag margin to prevent starting a star swipe when
             // trying to open the drawer.
@@ -258,7 +336,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         } catch (Exception e) {
             Log.e(TAG, "Setting edge width of drawer failed..", e);
         }
-	}
+    }
 
     public int getEdgeSizeOfDrawer() {
         try {
@@ -276,26 +354,17 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 
     private void showTapLogoToSyncShowcaseView() {
-		getSlidingListFragment().showTapLogoToSyncShowcaseView();
-	}
+        getSlidingListFragment().showTapLogoToSyncShowcaseView();
+    }
 
-	private View.OnClickListener mSnackbarListener = new View.OnClickListener() {
-		@Override
-		public void onClick(View view) {
-			//Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
-			updateCurrentRssView();
-		}
-	};
+    private View.OnClickListener mSnackbarListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
+            updateCurrentRssView();
+        }
+    };
 
-
-	/* (non-Javadoc)
-	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
-	 */
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		safeInstanceState(outState);
-		super.onSaveInstanceState(outState);
-	}
 
 	/**
 	 * Check if the account is in the Android Account Manager. If not it will be added automatically
@@ -321,71 +390,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 	}
 
-
-	private void safeInstanceState(Bundle outState) {
-		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-		if (ndf != null) {
-			outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
-			outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
-			outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
-
-			NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) ndf.getRecyclerView().getAdapter();
-			if (adapter != null) {
-				outState.putInt(LIST_ADAPTER_TOTAL_COUNT, adapter.getTotalItemCount());
-				outState.putInt(LIST_ADAPTER_PAGE_COUNT, adapter.getCachedPages());
-			}
-		}
-	}
-
-	private void restoreInstanceState(Bundle savedInstanceState) {
-		if (savedInstanceState.containsKey(ID_FEED_STRING) &&
-				savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
-				savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
-
-
-			NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this);
-
-			adapter.setTotalItemCount(savedInstanceState.getInt(LIST_ADAPTER_TOTAL_COUNT));
-			adapter.setCachedPages(savedInstanceState.getInt(LIST_ADAPTER_PAGE_COUNT));
-
-			getNewsReaderDetailFragment()
-					.getRecyclerView()
-					.setAdapter(adapter);
-
-			startDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
-					savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
-					savedInstanceState.getLong(ID_FEED_STRING),
-					false);
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onRestoreInstanceState(android.os.Bundle)
-	 */
-	@Override
-	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-		restoreInstanceState(savedInstanceState);
-		super.onRestoreInstanceState(savedInstanceState);
-	}
-
-	@Override
-	public void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-		if (drawerToggle != null)
-			drawerToggle.syncState();
-
-		boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
-		if (tabletSize) {
-			showTapLogoToSyncShowcaseView();
-		}
-	}
-
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		if (drawerToggle != null)
-			drawerToggle.onConfigurationChanged(newConfig);
-	}
 
 	public void reloadCountNumbersOfSlidingPaneAdapter() {
 		NewsReaderListFragment nlf = getSlidingListFragment();
@@ -447,9 +451,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SWIPE_LEFT_RIGHT_AND_PTR");
 		sequence.setConfig(config);
 		sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
-                "Pull-to-Refresh to sync with server", "GOT IT");
+                "Pull-to-Refresh to sync with server", "GOT IT", true);
 		sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
-                "Swipe Left/Right to mark article as read", "GOT IT");
+                "Swipe Left/Right to mark article as read", "GOT IT", true);
 		sequence.start();
 
 		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
@@ -621,7 +625,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			StartLoginFragment(this);
 		} else {
 			if (!OwnCloudSyncService.isSyncRunning()) {
-				new PostDelayHandler(this).stopRunningPostDelayHandler();//Stop pending sync handler
+				mPostDelayHandler.stopRunningPostDelayHandler(); //Stop pending sync handler
 
 				Bundle accBundle = new Bundle();
 				accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
@@ -745,10 +749,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				StartLoginFragment(NewsReaderListActivity.this);
 				break;
 
-			case R.id.action_add_new_feed:
-				Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
-				startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
-				break;
+            case R.id.action_add_new_feed:
+                if(mApi.getAPI() != null) {
+                    Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
+                    startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
+                } else {
+                    StartLoginFragment(NewsReaderListActivity.this);
+                }
+                break;
 
 			case R.id.menu_StartImageCaching:
 				final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
@@ -965,6 +973,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void resetUiAndStartSync() {
+        getSlidingListFragment().loadOwncloudOrNextcloudBanner();
         getSlidingListFragment().reloadAdapter();
         updateCurrentRssView();
         startSync();

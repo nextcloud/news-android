@@ -21,10 +21,11 @@ public class Constants {
     protected static boolean isNextCloud(Context context) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         int[] version = extractVersionNumberFromString(mPrefs.getString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, ""));
-        if(version[0] >= 9) {
-            return true;
+        if(version[0] == 0) {
+            // not initialized yet..
+            return true; // let's assume that it is nextcloud..
         }
-        return false;
+        return version[0] >= 9;
     }
 
     private static int[] extractVersionNumberFromString(String appVersion) {

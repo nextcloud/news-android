@@ -7,7 +7,7 @@ version: '2'
 services:
   db:
     image: mariadb
-    restart: always
+    #restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=nextcloud
       - MYSQL_USER_PW=nextcloud
@@ -20,7 +20,7 @@ services:
       - db
     #volumes:
     #  - nextcloud:/var/www/html
-    restart: always
+    #restart: always
     ports:
       - "80:80"
       - "443:443"

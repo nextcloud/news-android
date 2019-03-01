@@ -13,6 +13,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -69,6 +70,12 @@ public class ApiModule {
         OkHttpClient client = new OkHttpClient();
         //client.setCache(cache);
         return client;
+    }
+
+    @Provides
+    @Singleton
+    PostDelayHandler providePostDelayHandler() {
+        return new PostDelayHandler(mApplication);
     }
 
 

@@ -118,7 +118,7 @@
     <string name="pref_header_general">Algemeen</string>
     <string name="pref_title_general_sort_order">Sorteervolgorde</string>
 
-    <string name="pref_general_sort_order_new_old">Niwu-> Ou</string>
+    <string name="pref_general_sort_order_new_old">Nieuw -> Oud</string>
     <string name="pref_general_sort_order_old_new">Oud -> Nieuw</string>
 
     <string name="pref_title_general_search_in">Zoeken in</string>
@@ -192,7 +192,7 @@
     <string name="pref_display_feed_list_layout_headlines">Kopteksten</string>
     <string name="pref_display_feed_list_layout_full_text">Volledige tekst</string>
     <string name="pref_display_feed_list_layout_web_layout">Weblayout</string>
-    <string name="pref_display_feed_list_layout_card_view">Kaart weergave</string>
+    <string name="pref_display_feed_list_layout_card_view">Kaartweergave</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Klein</string>

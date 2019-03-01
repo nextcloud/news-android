@@ -1,10 +1,8 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -51,6 +49,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterYoutubeOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.VideoDoubleClicked;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.SizeAnimator;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
@@ -77,6 +76,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     @Inject protected SharedPreferences mPrefs;
     @Inject protected ApiProvider mApi;
     @Inject protected MemorizingTrustManager mMTM;
+    @Inject protected PostDelayHandler mPostDelayHandler;
 
     private MediaBrowserCompat mMediaBrowser;
     private EventBus eventBus;
@@ -124,6 +124,8 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
                 e.printStackTrace();
             }
         }*/
+        //mPostDelayHandler.delayTimer();
+        mPostDelayHandler.stopRunningPostDelayHandler();
     }
 
     @Override
@@ -177,6 +179,13 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         super.onStop();
 
         mMediaBrowser.disconnect();
+    }
+
+
+    @Override
+    public void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        mPostDelayHandler.delayOnExitTimer();
     }
 
     @Override
@@ -241,6 +250,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     }
 
 
+    /*
     public static boolean isMyServiceRunning(Class<?> serviceClass, Context context) {
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
@@ -250,6 +260,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         }
         return false;
     }
+    */
 
     private final MediaBrowserCompat.ConnectionCallback mConnectionCallbacks =
         new MediaBrowserCompat.ConnectionCallback() {

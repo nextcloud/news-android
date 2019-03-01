@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Sinkronizazio Automatikoa</string>
+    <string name="title_activity_sync_interval_selector">Sinkronizazio Tartearen Hautatzailea</string>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
+    <string name="empty_view_content">Ez dago elementurik hemen</string>
+    <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
+    <string name="current_version">%s Bertsioa erabiltzen zaude</string>
+    <string name="widget_header">ownCloud Berriak</string>
+    <string name="message_bar_reload">Birkargatu</string>
+    <string name="allUnreadFeeds">Irakurri gabeko elementu guztiak</string>
+    <string name="starredFeeds">Izardun elementuak</string>
+    <string name="title_activity_new_feed">Gehitu iturburu  berria</string>
+
+    <string name="menu_update">Birkargatu</string>
+    <string name="menu_markAllAsRead">Markatu guztiak irakurria gisa</string>
+    <string name="menu_StartImageCaching">Deskargatu irudiak</string>
+    <string name="menu_downloadMoreItems">Deskargatu elementu gehiago</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Izarduna</string>
+    <string name="action_read">Irakurri</string>
+    <string name="action_playPodacst">Erreproduzitu podcasta</string>
+    <string name="action_openInBrowser">Ireki nabigatzailean</string>
+    <string name="action_Share">Partekatu</string>
+    <string name="action_login">Zerbitzariaren ezarpenak</string>
+    <string name="action_save">Gorde</string>
+    <string name="action_settings">Ezarpenak</string>
+    <string name="action_sync_settings">Sinkronizazio Ezarpenak</string>
+    <string name="action_add_new_feed">Gehitu iturburu  berria</string>
+    <string name="action_textToSpeech">Iraukurri ozenki</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Irakurri gabeko elementu %d duzu</item>
+        <item quantity="other">Irakurri gabeko %d elementu dituzu</item>
+    </plurals>
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Iturburu URLa</string>
+    <string name="action_add_feed">Gehitu iturburua</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Deskargatu irudia</string>
+    <string name="action_img_sharelink">Partekatu irudiaren esteka</string>
+    <string name="action_img_open">Ireki irudia nabigatzailean</string>
+    <string name="action_img_copylink">Partekatu irudiaren esteka</string>
+    <string name="action_link_share">Partekatu esteka</string>
+    <string name="action_link_open">Ireki esteka nabigatzailean</string>
+    <string name="action_link_copy">Kopiatu esteka</string>
+    <string name="toast_img_saved">Irudia gordeta</string>
+    <string name="toast_copied_to_clipboard">Arbelera kopiatua</string>
+    <string name="error_download_failed">Deskargak huts egin du</string>
+    <string name="intent_title_share">Partekatu honekin</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Ezabatu iturburua</string>
+    <string name="action_feed_rename">Izena aldatu iturburuari</string>
+    <string name="action_feed_move">Mugitu iturburua</string>
+    <string name="feed_remove_button">Ezabatu</string>
+    <string name="feed_rename_button">Berrizendatu</string>
+    <string name="confirm_feed_remove">Iturburu hau benetan ezabatu nahi duzu? Aldaketa ezin da desegin!</string>
+    <string name="feed_move_list_description">Aukeratu iturburua mugitu nahi duzun karpeta</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Erabiltzaile izena</string>
+    <string name="pref_title_password">Pasahitza</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Izena eman</string>
+    <string name="login_progress_signing_in">Izena ematen...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Eremu hau beharrezkoa da</string>
+    <string name="error_invalid_url">Balio gabeko URLa</string>
+
+
+    <!-- Import Accounts -->
+    <string name="import_account">Inportatu Kontua</string>
+
+
+    <string name="toast_no_more_downloads_available">Ez dago datu gehigarri eskuragarririk</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Ezarpenak</string>
+    <!-- General settings -->
+    <string name="pref_header_general">Orokorra</string>
+    <string name="pref_title_general_sort_order">Antolatzeko Ordena</string>
+
+    <string name="pref_general_sort_order_new_old">Berria -> zaharra</string>
+    <string name="pref_general_sort_order_old_new">Zaharra -> Berria</string>
+
+    <string name="pref_general_search_in_title">Izenburua</string>
+    <string name="pref_general_search_in_body">Gorputza</string>
+
+    <string name="dialog_clearing_cache">Cachea garbitzen</string>
+    <string name="reset_cache_unsaved_changes">Sinkronizatu gabeko datuak daude. Nahi duzu hala ere cachea berrabiaraztea?</string>
+    <string name="warning">Abisua</string>
+    <string name="pref_title_AutoSyncOnStart">Sinkronizatu abioan</string>
+    <string name="pref_title_ShowOnlyUnread">Erakutsi irakurri gabeko artikuluak bakarrik</string>
+    <string name="pref_title_DisableHostnameVerification">Ezgaitu Hostalari Izenaren Egiaztapena</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Mugitu bolumen botoiekin</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Markatu irakurrita gisa korritzean</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Onartu Ziurtagiri Ezezaguna</string>
+    <string name="mtm_decision_always">Beti</string>
+    <string name="mtm_decision_abort">Bertan-behera utzi</string>
+    <string name="mtm_notification">Ziurtagiriaren Egiaztapena</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Ez dago podcast hautatua</string>
+    <string name="no_chapters_available">Ez dago kapitulurik eskuragarri</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Honi buruz</string>
+    <string name="pref_license">Lizentzia</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_contribute_summary">Eskuratu iturburu-kodea</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Bistaratzea</string>
+    <string name="pref_title_feed_list_layout">Eremu zerrenda ingurunea</string>
+    <string name="pref_title_font_size">Letra-tipo tamaina</string>
+    <string name="pref_display_browser">Nabigatzailea</string>
+
+
+
+    <string name="pref_display_apptheme_light">Argia</string>
+    <string name="pref_display_apptheme_dark">Iluna</string>
+
+    <string name="pref_oled_mode">Atzealde beltza</string>
+    <string name="pref_display_feed_list_layout_simple_text">Testu sinplea</string>
+    <string name="pref_display_feed_list_layout_full_text">Testu osoa</string>
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Txikia</string>
+    <string name="pref_display_font_size_d">Lehenetsia</string>
+    <string name="pref_display_font_size_l">Handia</string>
+    <string name="content_desc_show_password">erakutsi pasahitza</string>
+    <string name="content_desc_delete">ezabatu</string>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Jakinarazpenak</string>
+    <string name="pref_title_notification_new_articles_available">Bistaratu jakinarazpenak artikulu berriak daudenean</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Errorea</string>
+    <string name="login_dialog_text_something_went_wrong">Zerbait oker joan da :(</string>
+    <string name="login_dialog_title_security_warning">Segurtasun abisua</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sink</string>
+    <string name="pref_title_clearCache">Garbitu cachea</string>
+    <string name="pref_title_CacheImagesOffline">Irudiak sare-kanporako cacheatu</string>
+    <string name="pref_title_Max_Cache_Size">Cache tamaina maximoa</string>
+
+    <string name="pref_data_sync_image_cache_never">Inoiz ez</string>
+    <string name="pref_data_sync_image_cache_ask">Galdetu WiFi-ra konektatu gabe badago</string>
+
+    <string name="array_sync_interval_min_5">5 minutu</string>
+    <string name="array_sync_interval_min_15">15 minutu</string>
+    <string name="array_sync_interval_min_30">30 minutu</string>
+    <string name="array_sync_interval_min_45">45 minutu</string>
+    <string name="array_sync_interval_hour_1">Ordu 1</string>
+    <string name="array_sync_interval_hour_2">2 ordu</string>
+    <string name="array_sync_interval_hour_3">3 ordu</string>
+    <string name="array_sync_interval_hour_6">6 ordu</string>
+    <string name="array_sync_interval_hour_12">12 ordu</string>
+    <string name="array_sync_interval_hour_24">24 ordu</string>
+
+    </resources>

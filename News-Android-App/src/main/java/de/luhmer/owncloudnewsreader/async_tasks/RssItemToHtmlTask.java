@@ -4,13 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -92,7 +91,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         //int feedColor = colors[0];
         if (feed != null) {
-            feedTitle = StringEscapeUtils.escapeHtml4(feed.getFeedTitle());
+            feedTitle = Html.escapeHtml(feed.getFeedTitle());
             favIconUrl = feed.getFaviconUrl();
             //if(feed.getAvgColour() != null) {
             //    feedColor = Integer.parseInt(feed.getAvgColour());
@@ -160,12 +159,12 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         if (showHeader) {
             builder.append("<div id=\"top_section\">");
             builder.append(String.format("<div id=\"header\" class=\"%s\">", body_id));
-            String title = StringEscapeUtils.escapeHtml4(rssItem.getTitle());
-            String linkToFeed = StringEscapeUtils.escapeHtml4(rssItem.getLink());
+            String title = Html.escapeHtml(rssItem.getTitle());
+            String linkToFeed = Html.escapeHtml(rssItem.getLink());
             builder.append(String.format("<a href=\"%s\">%s</a>", linkToFeed, title));
             builder.append("</div>");
 
-            String authorOfArticle = StringEscapeUtils.escapeHtml4(rssItem.getAuthor());
+            String authorOfArticle = Html.escapeHtml(rssItem.getAuthor());
             if (authorOfArticle != null)
                 if (!authorOfArticle.trim().equals(""))
                     feedTitle += " - " + authorOfArticle.trim();

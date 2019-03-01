@@ -101,7 +101,11 @@ dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // implementation 'com.google.android.gms:play-services:4.2.42'
-    implementation "com.github.nextcloud:Android-SingleSignOn:0.1.2"
+    //implementation project(':Android-SingleSignOn')
+    //implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
+    implementation 'com.github.nextcloud:Android-SingleSignOn:02e651a18b'
+    implementation 'com.github.David-Development:MaterialShowcaseView:bf6afa225d'
+
     implementation "com.android.support:support-v4:${SUPPORT_VERSION}"
     implementation "com.android.support:support-compat:${SUPPORT_VERSION}"
     implementation "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
@@ -125,7 +129,7 @@ dependencies {
     implementation 'de.greenrobot:greendao:2.0.0'
     implementation 'de.greenrobot:greendao-generator:2.0.0'
     //implementation 'org.freemarker:freemarker:2.3.23' //Required for DAO generation
-    implementation 'org.apache.commons:commons-lang3:3.4'
+    //implementation 'org.apache.commons:commons-lang3:3.4'
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.0.0'
     implementation 'org.jsoup:jsoup:1.8.3'
     implementation ('net.rdrei.android.dirchooser:library:3.0@aar') { transitive = true; }
@@ -146,7 +150,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.8.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
-    implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
     implementation 'com.nbsp:library:1.02' // MaterialFilePicker
 
     extraImplementation 'com.github.tommus:youtube-android-player-api:1.2.2'

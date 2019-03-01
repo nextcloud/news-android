@@ -84,7 +84,7 @@
     <string name="pref_title_owncloudRootPath">Nextcloud root адрес</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
-    <string name="action_sign_in_short">Впиши се</string>
+    <string name="action_sign_in_short">Вписване</string>
     <string name="login_progress_signing_in">Вписване...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Полето е задължително</string>

@@ -29,36 +29,55 @@ import android.util.Log;
 import de.luhmer.owncloudnewsreader.services.SyncItemStateService;
 
 public class PostDelayHandler {
+
     private static final String TAG = "PostDelayHandler";
     private static Handler handlerTimer;
-	private final int delayTime = 5 * 60000;//60 000 = 1min
-	private Context context;
-	private static boolean isDelayed = false;
-	
-	public PostDelayHandler(Context context) {
-		if(handlerTimer == null)
-			handlerTimer = new Handler();
-		this.context = context;
-	}
-	
-	public void stopRunningPostDelayHandler() {
-		handlerTimer.removeCallbacksAndMessages(null);
-	}
-	
-	public void DelayTimer() {
-		if(!isDelayed) {
-			isDelayed = true;
-			handlerTimer.postDelayed(new Runnable(){
-		        public void run() {
-		        	isDelayed = false;
-                    Log.v(TAG, "Time exceeded.. Sync state of changed items");
-		        	if((!SyncItemStateService.isMyServiceRunning(context)) && NetworkConnection.isNetworkAvailable(context))
-		        	{
+    private Context context;
+    private static boolean isDelayed = false;
+
+    public PostDelayHandler(Context context) {
+        this.context = context;
+        if(handlerTimer == null) {
+            handlerTimer = new Handler();
+        }
+    }
+
+    public void stopRunningPostDelayHandler() {
+        Log.v(TAG, "stopRunningPostDelayHandler() called");
+        handlerTimer.removeCallbacksAndMessages(null);
+        isDelayed = false;
+    }
+
+    public void delayTimer() {
+        // Time to wait until a sync is triggered (after last change in the app)
+        //60 000 = 1min
+        delay(5 * 60000);
+        //delay(10000); // 10 seconds
+    }
+
+    public void delayOnExitTimer() {
+        stopRunningPostDelayHandler();
+
+        // Time to wait until a sync is triggered when the user switches activities / exists the app
+        //delay(10000); // 10 seconds
+        delay(5000); // 5 seconds
+    }
+
+    private void delay(final int time) {
+        Log.v(TAG, "delay() called with: time = [" + time + "]");
+        if(!isDelayed) {
+            isDelayed = true;
+            handlerTimer.postDelayed(new Runnable(){
+                public void run() {
+                    isDelayed = false;
+                    Log.v(TAG, "Time exceeded.. Sync state of changed items. Delay was: " + time);
+                    if((!SyncItemStateService.isMyServiceRunning(context)) && NetworkConnection.isNetworkAvailable(context))
+                    {
                         Log.v(TAG, "Starting SyncItemStateService");
 
-		        		SyncItemStateService.enqueueWork(context, new Intent());
-		        	}
-		      }}, delayTime);
-		}
-	}
+                        SyncItemStateService.enqueueWork(context, new Intent());
+                    }
+                }}, time);
+        }
+    }
 }

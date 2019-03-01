@@ -51,8 +51,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import org.apache.commons.lang3.time.StopWatch;
-
 import java.util.List;
 
 import butterknife.BindView;
@@ -66,6 +64,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.Search;
+import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import io.reactivex.observers.DisposableObserver;
 
 /**
@@ -322,7 +321,7 @@ public class NewsReaderDetailFragment extends Fragment {
         try {
             NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
             if (nra == null) {
-                nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity());
+                nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity(), ((PodcastFragmentActivity) getActivity()).mPostDelayHandler);
 
                 recyclerView.setAdapter(nra);
             }

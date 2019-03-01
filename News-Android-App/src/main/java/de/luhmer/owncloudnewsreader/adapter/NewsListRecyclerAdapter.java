@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.apache.commons.lang3.time.StopWatch;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -27,6 +26,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.CurrentRssViewDataHolder;
 
@@ -70,11 +70,11 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     // before loading more.
     private int visibleThreshold = 5;
 
-    public NewsListRecyclerAdapter(FragmentActivity activity, RecyclerView recyclerView, IPlayPausePodcastClicked playPausePodcastClicked) {
+    public NewsListRecyclerAdapter(FragmentActivity activity, RecyclerView recyclerView, IPlayPausePodcastClicked playPausePodcastClicked, PostDelayHandler postDelayHandler) {
         this.activity = activity;
         this.playPausePodcastClicked = playPausePodcastClicked;
 
-        pDelayHandler = new PostDelayHandler(activity);
+        pDelayHandler = postDelayHandler;
 
         dbConn = new DatabaseConnectionOrm(activity);
         setHasStableIds(true);
@@ -246,7 +246,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             rssItem.setRead_temp(isChecked);
             dbConn.updateRssItem(rssItem);
 
-            pDelayHandler.DelayTimer();
+            pDelayHandler.delayTimer();
 
             viewHolder.setReadState(isChecked);
             //notifyItemChanged(viewHolder.getAdapterPosition());
@@ -269,7 +269,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             changeReadStateOfItem(viewHolder, true);
         } else {
             dbConn.updateRssItem(rssItem);
-            pDelayHandler.DelayTimer();
+            pDelayHandler.delayTimer();
         }
         viewHolder.setStarred(isStarred);
     }
