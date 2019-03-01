@@ -28,6 +28,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -35,6 +36,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
+import java.lang.reflect.Proxy;
 
 import javax.inject.Inject;
 
@@ -56,7 +58,6 @@ import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.API_SSO;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
@@ -110,21 +111,10 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
-        if (mApi.getAPI() instanceof API_SSO) {
+        if (mApi.getAPI() instanceof Proxy) { // Single Sign On
             VersionCheckHelper.verifyMinVersion(this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE);
         }
 
-        //Delete all pinned/stored SSL Certificates
-        /*
-        final ArrayList<String> aliases = Collections.list(mMTM.getCertificates());
-        for(int i = 0; i < aliases.size(); i++) {
-            try {
-                mMTM.deleteCertificate(aliases.get(i));
-            } catch (KeyStoreException e) {
-                e.printStackTrace();
-            }
-        }*/
-        //mPostDelayHandler.delayTimer();
         mPostDelayHandler.stopRunningPostDelayHandler();
     }
 
