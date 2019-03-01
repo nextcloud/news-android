@@ -959,17 +959,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
 	}
 
-    public static void StartLoginFragment(final FragmentActivity activity)
-    {
-	   	LoginDialogFragment dialog = LoginDialogFragment.getInstance();
-	   	dialog.setActivity(activity);
-	   	dialog.setListener(new LoginSuccessfulListener() {
+    public static void StartLoginFragment(final FragmentActivity activity) {
+        LoginDialogFragment dialog = LoginDialogFragment.newInstance();
+        dialog.setActivity(activity);
+        dialog.setListener(new LoginSuccessfulListener() {
             @Override
             public void loginSucceeded() {
                 ((NewsReaderListActivity) activity).resetUiAndStartSync();
-			}
-		});
-	    dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
+            }
+        });
+        dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
     }
 
     private void resetUiAndStartSync() {
