@@ -149,6 +149,9 @@
     <string name="notification_downloading_podcast_title">ポッドキャストのダウンロード</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">アプリについて</string>
+    <string name="pref_license">ライセンス</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">表示</string>
     <string name="pref_title_app_theme">テーマ</string>
