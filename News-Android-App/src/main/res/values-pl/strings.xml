@@ -10,6 +10,12 @@
     <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia Wi-Fi</string>
     <string name="current_version">Używasz wersji %s</string>
     <string name="widget_header">ownCloud News</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d nowa dostępna pozycja</item>
+        <item quantity="few">%d nowe dostępne pozycje</item>
+        <item quantity="many">%d nowych dostępnych pozycji</item>
+        <item quantity="other">%d nowe dostępne pozycje</item>
+    </plurals>
     <string name="message_bar_reload">Przeładuj</string>
     <string name="allUnreadFeeds">Wszystkie nieprzeczytane</string>
     <string name="starredFeeds">Oznaczone Gwiazdką</string>
@@ -35,6 +41,20 @@
     <string name="action_add_new_feed">Dodaj nowy kanał</string>
     <string name="action_textToSpeech">Przeczytane</string>
     <string name="action_download_articles_offline">Pobierz artykuły offline</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Masz %d nową nieprzeczytaną pozycję</item>
+        <item quantity="few">Masz %d nowe nieprzeczytane pozycje</item>
+        <item quantity="many">Masz %d nowych nieprzeczytanych pozycji</item>
+        <item quantity="other">Masz %d nowych nieprzeczytanych pozycji</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d nowa dostępna pozycja nieprzeczytana</item>
+        <item quantity="few">%d nowe dostępne pozycje nieprzeczytane</item>
+        <item quantity="many">%d nowych dostępnych pozycji nieprzeczytanych</item>
+        <item quantity="other">%d nowe dostępne pozycje nieprzeczytane</item>
+    </plurals>
+
+
     <!-- Add new feed -->
     <string name="hint_feed_url">URL kanału</string>
     <string name="action_add_feed">Dodaj kanał</string>
@@ -59,9 +79,11 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Usuń kanał</string>
     <string name="action_feed_rename">Zmień nazwę kanału</string>
+    <string name="action_feed_move">Przenieś dane</string>
     <string name="feed_remove_button">Usuń</string>
     <string name="feed_rename_button">Zmień nazwę</string>
     <string name="confirm_feed_remove">Czy na pewno chcesz usunąć ten kanał? Operacja jest nieodwracalna!</string>
+    <string name="feed_move_list_description">Wybierz katalog, aby przenieść dane</string>
     <string name="move_feed_root_folder">Główny folder</string>
 
     <!-- Strings related to login -->
@@ -89,6 +111,14 @@
         <item quantity="other">Pobrano %d starych elementów</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych elementów</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Pobrany do tej pory %d element...</item>
+        <item quantity="few">Pobrane do tej pory %d elementy...</item>
+        <item quantity="many">Pobrane do tej pory %d elementów...</item>
+        <item quantity="other">Pobrane do tej pory %d elementy...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Ustawienia</string>
     <string name="cache_is_cleared">Cache jest wyczyszczone!</string>
@@ -117,6 +147,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
     <string name="pref_title_OpenInBrowserDirectly">Pomiń widok szczegółów i otwórz artykuł w przeglądarce</string>
 
+    <string name="dialog_feature_not_available">Ta funkcja nie jest dostępna w tej wersji aplikacji (open-source). Jeśli chcesz skorzystać z tej funkcji, pobierz aplikację z repozytorium GitHub lub pobierz aplikację ze sklepu Google Play.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Akceptować nieznane certyfikaty?</string>
     <string name="mtm_decision_always">Zawsze</string>
@@ -128,6 +161,9 @@
     <string name="no_podcast_selected">Brak wybranego podcastu</string>
     <string name="no_chapters_available">Brak dostępnych rozdziałów</string>
     <string name="podcast_playback_speed_dialog_title">Prędkość odtwarzania</string>
+    <string name="notification_downloading_podcast_title">Pobieranie podcastu</string>
+
+
     <!-- Settings for About -->
     <string name="pref_header_about">O aplikacji</string>
     <string name="pref_license">Licencja</string>
@@ -166,6 +202,8 @@
     <string name="pref_display_feed_list_layout_headlines">Nagłówki</string>
     <string name="pref_display_feed_list_layout_full_text">Rozbudowany tekst</string>
     <string name="pref_display_feed_list_layout_web_layout">Układ strony</string>
+    <string name="pref_display_feed_list_layout_card_view">Widok karty</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Mały</string>
     <string name="pref_display_font_size_d">Domyślny</string>
@@ -200,7 +238,11 @@
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Wygląda na to, że aplikacja obsługująca aktualności nie jest zainstalowana lub aktywowana na twoim serwerze. Aby skonfigurować aplikację na swoim serwerze skorzystaj z tych porad: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Coś poszło nie tak :(</string>
     <string name="login_dialog_text_zero_version_code">Aplikacja Web News zwróciła wersję \"0\". Proszę sprawdź następujący raport o błędzie: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Ta wersja aplikacji nie jest zgodna z aplikacją Nextcloud News. Zaktualizuj aplikację i appframeworka do nowej wersji.</string>
     <string name="login_dialog_title_security_warning">Ostrzeżenie o zabezpieczeniach</string>
+    <string name="login_dialog_text_security_warning">Nie korzystasz z HTTPS, co jest bardzo zalecane. Osoba atakująca może przechwycić ruch i uzyskać dostęp do poufnych danych (np. Hasła).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synchronizacja</string>
     <string name="pref_title_clearCache">Czyść pamięć podręczną</string>
