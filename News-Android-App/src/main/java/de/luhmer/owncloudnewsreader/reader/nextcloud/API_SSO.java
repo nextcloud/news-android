@@ -122,7 +122,7 @@ public class API_SSO implements API {
                 .setUrl(mApiEndpoint + "feeds/" + feedId + "/rename")
                 .setRequestBody(body)
                 .build();
-        return ReactivexHelper.WrapInCompletable(nextcloudAPI, request);
+        return ReactivexHelper.wrapInCompletable(nextcloudAPI, request);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class API_SSO implements API {
                 .setUrl(mApiEndpoint + "feeds/" + feedId + "/move")
                 .setRequestBody(body)
                 .build();
-        return ReactivexHelper.WrapInCompletable(nextcloudAPI, request);
+        return ReactivexHelper.wrapInCompletable(nextcloudAPI, request);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class API_SSO implements API {
                 .setMethod("DELETE")
                 .setUrl(mApiEndpoint + "feeds/" + feedId)
                 .build();
-        return ReactivexHelper.WrapInCompletable(nextcloudAPI, request);
+        return ReactivexHelper.wrapInCompletable(nextcloudAPI, request);
     }
 
 
@@ -218,11 +218,11 @@ public class API_SSO implements API {
                 .build();
         try {
             nextcloudAPI.performRequest(Void.class, request);
-            return Retrofit2Helper.WrapVoidCall(true);
+            return Retrofit2Helper.wrapVoidCall(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Retrofit2Helper.WrapVoidCall(false);
+        return Retrofit2Helper.wrapVoidCall(false);
     }
 }
 
