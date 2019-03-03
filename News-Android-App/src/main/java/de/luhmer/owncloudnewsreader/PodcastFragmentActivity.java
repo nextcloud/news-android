@@ -28,7 +28,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
