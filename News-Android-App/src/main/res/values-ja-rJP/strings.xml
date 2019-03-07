@@ -74,7 +74,7 @@
     <string name="feed_remove_button">削除</string>
     <string name="feed_rename_button">名前の変更</string>
     <string name="confirm_feed_remove">本当にこのフィードを削除してよろしいですか？この操作は元に戻せません！</string>
-    <string name="feed_move_list_description">フィードを移動するフォルダを選択</string>
+    <string name="feed_move_list_description">フィードを移動するフォルダーを選択</string>
     <string name="move_feed_root_folder">ルートフォルダー</string>
 
     <!-- Strings related to login -->
