@@ -6,12 +6,15 @@ import de.luhmer.owncloudnewsreader.di.ApiModule;
 import de.luhmer.owncloudnewsreader.di.AppComponent;
 import de.luhmer.owncloudnewsreader.di.DaggerAppComponent;
 import de.luhmer.owncloudnewsreader.helper.AdBlocker;
+import de.luhmer.owncloudnewsreader.helper.ForegroundListener;
 
 public class NewsReaderApplication extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        registerActivityLifecycleCallbacks(new ForegroundListener());
 
         initDaggerAppComponent();
 
