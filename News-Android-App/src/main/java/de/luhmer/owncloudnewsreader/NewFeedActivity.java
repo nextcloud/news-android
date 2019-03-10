@@ -98,7 +98,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
 
         folders = dbConn.getListOfFolders();
-        folders.add(0, new Folder(0, "No folder"));
+        folders.add(0, new Folder(0, getString(R.string.move_feed_root_folder)));
 
         String[] folderNames = new String[folders.size()];
         for(int i = 0; i < folders.size(); i++) {
