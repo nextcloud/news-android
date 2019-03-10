@@ -139,22 +139,38 @@
     <string name="no_podcast_selected">Ingen podcast vald</string>
     <string name="no_chapters_available">Inga kapitel tillgängliga.</string>
     <string name="podcast_playback_speed_dialog_title">Uppspelningshastighet</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Om</string>
+    <string name="pref_report_issue">Rapportera ett problem</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Visa</string>
     <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
+    <string name="pref_title_font_size">Teckenstorlek</string>
     <string name="pref_display_browser">Webbläsare</string>
 
 
 
     <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
 
+    <string name="pref_display_apptheme_auto">Ljust / mörk (baserat på dagtid)</string>
     <string name="pref_display_apptheme_light">Ljus</string>
     <string name="pref_display_apptheme_dark">Mörk</string>
+
+    <string name="pref_oled_mode">Svart bakgrund</string>
+    <string name="pref_oled_mode_summary">För mörkt tema på OLED-skärmar</string>
 
     <string name="pref_display_browser_cct">Inbyggd Chrome-anpassade flikar</string>
     <string name="pref_display_browser_built_in">Inbyggd webbläsare</string>
     <string name="pref_display_browser_external">Extern webbläsare</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Miniatyrbilder</string>
+    <string name="pref_display_feed_list_layout_web_layout">Webblayout</string>
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Liten</string>
+    <string name="pref_display_font_size_d">Standard</string>
+    <string name="pref_display_font_size_l">Stor</string>
+    <string name="pref_display_font_size_xl">Extra stor</string>
 
     <string name="content_desc_play">spela</string>
     <string name="content_desc_pause">pausa</string>
