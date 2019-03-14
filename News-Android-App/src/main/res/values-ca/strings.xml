@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Sincronitza automàticament</string>
+    <string name="title_activity_sync_interval_selector">Selector d\'interval de sincronització</string>
+    <string name="title_activity_news_detail">DetallActivitatNotícies</string>
+    <string name="empty_view_content">Cap element</string>
+    <string name="toast_GettingMoreItems">Ha començat la descàrrega de més elements... Espereu si us plau.</string>
+    <string name="no_wifi_available">Sense connexió WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Voleu descarregar les imatges sense una connexió WiFi</string>
+    <string name="current_version">Esteu fent servir la versió %s</string>
+    <string name="widget_header">Notícies Nextcloud</string>
+    <string name="message_bar_reload">Carrega de nou</string>
+    <string name="allUnreadFeeds">Tots els elements no llegits</string>
+    <string name="starredFeeds">Elements amb estrelles</string>
+    <string name="title_activity_new_feed">Afegeix una font nova</string>
+
+    <string name="menu_update">Actualitza</string>
+    <string name="menu_markAllAsRead">Marca-ho tot com a llegit</string>
+    <string name="menu_StartImageCaching">Baixa imatges</string>
+    <string name="menu_downloadMoreItems">Baixa més elements</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Estrellat</string>
+    <string name="action_read">Llegeix</string>
+    <string name="action_playPodacst">Reprodueix el Podcast</string>
+    <string name="action_Share">Comparteix</string>
+    <string name="action_login">Paràmetres del servidor</string>
+    <string name="action_save">Desa</string>
+    <string name="action_settings">Paràmetres</string>
+    <string name="action_sync_settings">Opcions de sincronització</string>
+    <string name="action_add_new_feed">Afegeix una font nova</string>
+    <string name="action_textToSpeech">De lectura</string>
+    <string name="action_add_feed">Afegeix font</string>
+
+
+    <string name="action_img_open">Obre la imatge al navegador</string>
+    <string name="action_img_copylink">Copia l\'enllaç de la imatge</string>
+    <string name="action_link_open">Obre l\'enllaç al navegador</string>
+    <string name="action_link_copy">Copia l\'enllaç</string>
+    <string name="toast_img_saved">S\'ha desat la imatge</string>
+    <string name="toast_img_notwriteable">No s\'ha pogut escriure la imatge.</string>
+    <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
+    <string name="error_download_failed">Ha fallat la baixada</string>
+    <string name="feed_remove_button">Elimina</string>
+    <string name="feed_rename_button">Reanomena</string>
+    <!-- Strings related to login -->
+    <string name="pref_title_username">Nom d\'usuari</string>
+    <string name="pref_title_password">Contrasenya</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">Inicia la sessió</string>
+    <string name="login_progress_signing_in">S\'està iniciant la sessió...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Es requereix aquest camp</string>
+    <!-- Import Accounts -->
+    <string name="import_account">Importa compte</string>
+
+
+    <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Paràmetres</string>
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_general_sort_order">Ordena</string>
+
+    <string name="pref_general_search_in_title">Títol</string>
+    <string name="pref_general_search_in_body">Cos</string>
+
+    <string name="dialog_clearing_cache">S\'està esborrant la memòria cau</string>
+    <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu eliminar la memòria cau igualment?</string>
+    <string name="warning">Avís</string>
+    <string name="pref_title_AutoSyncOnStart">Sincronitza en inicialitzar</string>
+    <string name="pref_title_ShowOnlyUnread">Mostra només els articles sense llegir</string>
+    <string name="pref_title_DisableHostnameVerification">Desactiva la verificació del nom del servidor</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navega amb els botons del volum</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Accepta certificats de desconeguts?</string>
+    <string name="mtm_decision_always">Sempre</string>
+    <string name="mtm_decision_abort">Cancel·la</string>
+    <string name="mtm_notification">Verificació del certificat</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">No heu seleccionat cap podcast</string>
+    <string name="podcast_playback_speed_dialog_title">Velocitat de reproducció</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Quant a</string>
+    <string name="pref_license">Llicència</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) versió 3</string>
+    <string name="pref_report_issue">Informa d\'un problema</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Pantalla</string>
+    <string name="pref_title_feed_list_layout">Format de llista de fonts</string>
+    <string name="pref_display_browser">Navegador</string>
+
+
+
+    <string name="pref_display_browser_built_in">Navegador integrat</string>
+    <string name="pref_display_browser_external">Navegador extern</string>
+
+    <string name="content_desc_mark_as_read">marca com a llegit</string>
+    <string name="content_desc_mark_as_unread">marca com a no llegit</string>
+    <string name="content_desc_add_to_favorites">afegeix als preferits</string>
+    <string name="content_desc_delete">elimina</string>
+    <string name="content_desc_download">baixa</string>
+
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Notificacions</string>
+    <string name="pref_title_notification_new_articles_available">Mostra una notificació quan hi hagi nous articles disponibles</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Error</string>
+    <string name="login_dialog_text_something_went_wrong">Alguna cosa ha fallat :(</string>
+    <string name="login_dialog_title_security_warning">Avís de seguretat</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Sincronització &amp; de dades </string>
+    <string name="pref_title_clearCache">Esborra la memòria cau</string>
+    <string name="pref_title_CacheImagesOffline">Comprimeix imatges fora de línia</string>
+    <string name="pref_title_Max_Cache_Size">Memòria cau màxima</string>
+
+    <string name="pref_data_sync_image_cache_never">Mai</string>
+    <string name="pref_data_sync_image_cache_ask">Pregunta-m\'ho quan no estigui connectat a una xarxa Wi-Fi</string>
+
+    <string name="array_sync_interval_min_5">5 minuts</string>
+    <string name="array_sync_interval_min_15">15 minuts</string>
+    <string name="array_sync_interval_min_30">30 minuts</string>
+    <string name="array_sync_interval_min_45">45 minuts</string>
+    <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_2">2 hores</string>
+    <string name="array_sync_interval_hour_3">3 hores</string>
+    <string name="array_sync_interval_hour_6">6 hores</string>
+    <string name="array_sync_interval_hour_12">12 hores</string>
+    <string name="array_sync_interval_hour_24">24 hores</string>
+
+    </resources>
