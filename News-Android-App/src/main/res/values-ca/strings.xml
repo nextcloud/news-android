@@ -10,6 +10,10 @@
     <string name="do_you_want_to_download_without_wifi">Voleu descarregar les imatges sense una connexió WiFi</string>
     <string name="current_version">Esteu fent servir la versió %s</string>
     <string name="widget_header">Notícies Nextcloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d ítem de notícia disponible</item>
+        <item quantity="other">%d ítems de notícies disponibles</item>
+    </plurals>
     <string name="message_bar_reload">Carrega de nou</string>
     <string name="allUnreadFeeds">Tots els elements no llegits</string>
     <string name="starredFeeds">Elements amb estrelles</string>
@@ -20,10 +24,13 @@
     <string name="menu_StartImageCaching">Baixa imatges</string>
     <string name="menu_downloadMoreItems">Baixa més elements</string>
 
+    <string name="tv_showing_cached_version">Mostrant la versió en memòria</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Estrellat</string>
     <string name="action_read">Llegeix</string>
     <string name="action_playPodacst">Reprodueix el Podcast</string>
+    <string name="action_openInBrowser">Obre en un navegador web</string>
     <string name="action_Share">Comparteix</string>
     <string name="action_login">Paràmetres del servidor</string>
     <string name="action_save">Desa</string>
@@ -31,32 +38,70 @@
     <string name="action_sync_settings">Opcions de sincronització</string>
     <string name="action_add_new_feed">Afegeix una font nova</string>
     <string name="action_textToSpeech">De lectura</string>
+    <string name="action_download_articles_offline">Descarrega els articles fora de línia</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Teniu %d ítem de notícia sense llegir</item>
+        <item quantity="other">Teniu %d ítems de notícies sense llegir</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d ítem de notícia sense llegir disponible</item>
+        <item quantity="other">%d ítems de notícies sense llegir disponibles</item>
+    </plurals>
+
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL font</string>
     <string name="action_add_feed">Afegeix font</string>
 
 
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Descarrega la imatge</string>
+    <string name="action_img_sharelink">Comparteix l\'enllaç de la imatge</string>
     <string name="action_img_open">Obre la imatge al navegador</string>
     <string name="action_img_copylink">Copia l\'enllaç de la imatge</string>
+    <string name="action_link_share">Comparteix l\'enllaç</string>
     <string name="action_link_open">Obre l\'enllaç al navegador</string>
     <string name="action_link_copy">Copia l\'enllaç</string>
+    <string name="toast_img_download_wait">Descarregant... si us plau, espereu</string>
     <string name="toast_img_saved">S\'ha desat la imatge</string>
     <string name="toast_img_notwriteable">No s\'ha pogut escriure la imatge.</string>
     <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
     <string name="error_download_failed">Ha fallat la baixada</string>
+    <string name="intent_title_share">Comparteix via</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Elimina la font</string>
+    <string name="action_feed_rename">Reanomena la font</string>
+    <string name="action_feed_move">Mou la font</string>
     <string name="feed_remove_button">Elimina</string>
     <string name="feed_rename_button">Canvia el nom</string>
+    <string name="confirm_feed_remove">Segur que voleu eliminar aquesta font? Això no es podrà revertir!</string>
+    <string name="feed_move_list_description">Selecciona la carpeta per moure-hi la font</string>
+    <string name="move_feed_root_folder">Carpeta arrel</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Nom d\'usuari</string>
     <string name="pref_title_password">Contrasenya</string>
+    <string name="pref_title_owncloudRootPath">Adreça arrel del Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Inicia la sessió</string>
     <string name="login_progress_signing_in">S\'està iniciant la sessió...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Es requereix aquest camp</string>
+    <string name="error_invalid_url">URL incorrecta</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Importa compte</string>
 
 
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Descarregat %d ítem antic</item>
+        <item quantity="other">Descarregats %d ítems antics</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Paràmetres</string>
