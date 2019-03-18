@@ -296,10 +296,9 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.d(TAG, "onError() called with: e = [" + e + "]");
-                        e.printStackTrace();
+                        Log.e(TAG, "onError() called with:", e);
 
-                        if(e.getMessage().equals("Method Not Allowed")) { //Remove if old version is used
+                        if("Method Not Allowed".equals(e.getMessage())) { //Remove if old version is used
                             mPrefs.edit().remove("USER_INFO").apply();
                         }
 

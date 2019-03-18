@@ -61,9 +61,17 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNotGrantedException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
+import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.exceptions.SSOException;
+import com.nextcloud.android.sso.exceptions.TokenMismatchException;
+import com.nextcloud.android.sso.helper.SingleAccountHelper;
+import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -411,6 +419,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     @Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(SyncFailedEvent event) {
 	    Throwable exception = event.exception();
+
+	    // If SSOException is wrapped inside another exception, we extract that SSOException
+		if(exception.getCause() != null && exception.getCause() instanceof SSOException) {
+			exception = exception.getCause();
+		}
+
 		if(exception instanceof SSOException){
 			if(exception instanceof NextcloudHttpRequestFailedException && ((NextcloudHttpRequestFailedException) exception).getStatusCode() == 302) {
 				ShowAlertDialog(
@@ -418,6 +432,19 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 						getString(R.string.login_dialog_text_news_app_not_installed_on_server,
 								"https://github.com/nextcloud/news/blob/master/docs/install.md#installing-from-the-app-store"),
 						this);
+			} else if(exception instanceof TokenMismatchException) {
+				Toast.makeText(NewsReaderListActivity.this, "Token out of sync. Please reauthenticate", Toast.LENGTH_LONG).show();
+
+				try {
+					SingleAccountHelper.reauthenticateCurrentAccount(this);
+				} catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException | NextcloudFilesAppNotSupportedException e) {
+                    UiExceptionManager.showDialogForException(this, e);
+                } catch (NextcloudFilesAppAccountPermissionNotGrantedException e) {
+				    // Unable to reauthenticate account just like that..
+				    StartLoginFragment(this);
+                }
+                //StartLoginFragment(this);
+
 			} else {
 				UiExceptionManager.showDialogForException(this, (SSOException) exception);
 				//UiExceptionManager.showNotificationForException(this, (SSOException) exception);
@@ -459,7 +486,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		UpdateItemList();
 		updatePodcastView();
 
-		getSlidingListFragment().startAsyncTaskGetUserInfo();
+		if(mApi.getAPI() != null) {
+            getSlidingListFragment().startAsyncTaskGetUserInfo();
+        }
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
 		int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
