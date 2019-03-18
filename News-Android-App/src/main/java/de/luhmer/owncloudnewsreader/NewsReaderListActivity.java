@@ -949,6 +949,25 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 }
             }
         }
+
+        AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
+            @Override
+            public void accountAccessGranted(SingleSignOnAccount account) {
+                Log.d(TAG, "accountAccessGranted() called with: account = [" + account + "]");
+                mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+                    @Override
+                    public void onConnected() {
+                        Log.d(TAG, "onConnected() called");
+                    }
+
+                    @Override
+                    public void onError(Exception ex) {
+                        Log.e(TAG, "onError() called with:", ex);
+                    }
+                });
+
+            }
+        });
     }
 
     @Override
