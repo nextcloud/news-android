@@ -115,6 +115,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         if(mApi.getAPI() == null) {
             throwException(new IllegalStateException("API is NOT initialized"));
             Log.e(TAG, "API is NOT initialized..");
+            return;
         } else {
             Log.v(TAG, "API is initialized..");
         }
