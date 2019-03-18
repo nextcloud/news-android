@@ -120,8 +120,8 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    compileOnly 'com.google.auto.value:auto-value:1.5.2'
-    annotationProcessor 'com.google.auto.value:auto-value:1.5.2'
+    compileOnly 'com.google.auto.value:auto-value:1.1'
+    annotationProcessor 'com.google.auto.value:auto-value:1.1'
 
     implementation 'com.sothree.slidinguppanel:library:3.2.1'
 
