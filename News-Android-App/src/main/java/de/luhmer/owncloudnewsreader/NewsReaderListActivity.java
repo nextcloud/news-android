@@ -417,44 +417,44 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-	public void onEventMainThread(SyncFailedEvent event) {
-	    Throwable exception = event.exception();
+    public void onEventMainThread(SyncFailedEvent event) {
+        Throwable exception = event.exception();
 
-	    // If SSOException is wrapped inside another exception, we extract that SSOException
-		if(exception.getCause() != null && exception.getCause() instanceof SSOException) {
-			exception = exception.getCause();
-		}
+        // If SSOException is wrapped inside another exception, we extract that SSOException
+        if(exception.getCause() != null && exception.getCause() instanceof SSOException) {
+            exception = exception.getCause();
+        }
 
-		if(exception instanceof SSOException){
-			if(exception instanceof NextcloudHttpRequestFailedException && ((NextcloudHttpRequestFailedException) exception).getStatusCode() == 302) {
-				ShowAlertDialog(
-						getString(R.string.login_dialog_title_error),
-						getString(R.string.login_dialog_text_news_app_not_installed_on_server,
-								"https://github.com/nextcloud/news/blob/master/docs/install.md#installing-from-the-app-store"),
-						this);
-			} else if(exception instanceof TokenMismatchException) {
-				Toast.makeText(NewsReaderListActivity.this, "Token out of sync. Please reauthenticate", Toast.LENGTH_LONG).show();
+        if(exception instanceof SSOException){
+            if(exception instanceof NextcloudHttpRequestFailedException && ((NextcloudHttpRequestFailedException) exception).getStatusCode() == 302) {
+                ShowAlertDialog(
+                        getString(R.string.login_dialog_title_error),
+                        getString(R.string.login_dialog_text_news_app_not_installed_on_server,
+                                "https://github.com/nextcloud/news/blob/master/docs/install.md#installing-from-the-app-store"),
+                        this);
+            } else if(exception instanceof TokenMismatchException) {
+                Toast.makeText(NewsReaderListActivity.this, "Token out of sync. Please reauthenticate", Toast.LENGTH_LONG).show();
 
-				try {
-					SingleAccountHelper.reauthenticateCurrentAccount(this);
-				} catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException | NextcloudFilesAppNotSupportedException e) {
+                try {
+                    SingleAccountHelper.reauthenticateCurrentAccount(this);
+                } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException | NextcloudFilesAppNotSupportedException e) {
                     UiExceptionManager.showDialogForException(this, e);
                 } catch (NextcloudFilesAppAccountPermissionNotGrantedException e) {
-				    // Unable to reauthenticate account just like that..
-				    StartLoginFragment(this);
+                    // Unable to reauthenticate account just like that..
+                    StartLoginFragment(this);
                 }
                 //StartLoginFragment(this);
 
-			} else {
-				UiExceptionManager.showDialogForException(this, (SSOException) exception);
-				//UiExceptionManager.showNotificationForException(this, (SSOException) exception);
-			}
-		} else {
+            } else {
+                UiExceptionManager.showDialogForException(this, (SSOException) exception);
+                //UiExceptionManager.showNotificationForException(this, (SSOException) exception);
+            }
+        } else {
             Toast.makeText(NewsReaderListActivity.this, exception.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         }
         updateButtonLayout();
         syncFinishedHandler();
-	}
+    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(SyncStartedEvent event) {
