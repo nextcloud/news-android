@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Synkroniseringsinterval vælger</string>
     <string name="title_activity_news_detail">DetaljeretNyhedsAktivitet</string>
     <string name="empty_view_content">Her er ingen artikler</string>
+    <string name="toast_GettingMoreItems">Hentning af flere elementer påbegyndt... Vent venligst.</string>
     <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
+    <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden WiFi-forbindelse</string>
     <string name="current_version">Du bruger version %s</string>
     <string name="widget_header">ownCloud Nyheder</string>
     <plurals name="message_bar_new_articles_available">
@@ -22,6 +24,8 @@
     <string name="menu_StartImageCaching">Hent billeder</string>
     <string name="menu_downloadMoreItems">Hent flere artikler</string>
 
+    <string name="tv_showing_cached_version">Viser version fra midlertidigt lager</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Stjernemarkéret</string>
     <string name="action_read">Læst</string>
@@ -34,6 +38,7 @@
     <string name="action_sync_settings">Synkroniseringsindstillinger</string>
     <string name="action_add_new_feed">Tilføj nyt feed</string>
     <string name="action_textToSpeech">Læs højt</string>
+    <string name="action_download_articles_offline">Hent artikler offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Du har %d nyt, ulæst element</item>
         <item quantity="other">Du har %d nye, ulæste elementer</item>
@@ -44,15 +49,37 @@
     </plurals>
 
 
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Tilføj feed</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Download billede</string>
+    <string name="action_img_sharelink">Del Billedlink</string>
+    <string name="action_img_open">Åbn Billede i Browser</string>
+    <string name="action_img_copylink">Kopier Billedlink</string>
+    <string name="action_link_share">Del Link</string>
+    <string name="action_link_open">Åbn Link i Browser</string>
+    <string name="action_link_copy">Kopier link</string>
+    <string name="toast_img_download_wait">Henter... vent venligst</string>
+    <string name="toast_img_saved">Billede gemp</string>
+    <string name="toast_img_notwriteable">Fejl ved lagring af billede.</string>
     <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
     <string name="error_download_failed">Download fejlede</string>
+    <string name="intent_title_share">Del via</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Fjern feed</string>
+    <string name="action_feed_rename">Omdøb feed</string>
+    <string name="action_feed_move">Flyt feed</string>
     <string name="feed_remove_button">Fjern</string>
     <string name="feed_rename_button">Omdøb</string>
+    <string name="confirm_feed_remove">Ønsker du virkelig at slette denne strøm. Det kan ikke fortrydes?</string>
+    <string name="feed_move_list_description">Vælg mappe at flytte strøm til </string>
+    <string name="move_feed_root_folder">Rodmappe</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Brugernavn</string>
     <string name="pref_title_password">Kodeord</string>
@@ -63,6 +90,9 @@
     <string name="login_progress_signing_in">Logger ind...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette felt er påkrævet</string>
+    <string name="error_invalid_url">Ukorrekt URL</string>
+
+
     <!-- Import Accounts -->
     <string name="import_account">Importér brugerkonto</string>
 
@@ -73,6 +103,12 @@
         <item quantity="other">Hentede %d gamle elementer</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelig</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Hentet %d artikel indtil nu…</item>
+        <item quantity="other">Hentet %d artikler indtil nu…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Indstillinger</string>
     <string name="cache_is_cleared">Cachen er ryddet!</string>
@@ -85,6 +121,11 @@
     <string name="pref_general_sort_order_new_old">Ny -> Gammel</string>
     <string name="pref_general_sort_order_old_new">Gammel -> Ny</string>
 
+    <string name="pref_title_general_search_in">Søg i</string>
+
+    <string name="pref_general_search_in_title">Titel</string>
+    <string name="pref_general_search_in_body">Krop</string>
+
     <string name="dialog_clearing_cache">Nulstil mellemlager</string>
     <string name="dialog_clearing_cache_please_wait">Rydder mellemlageret... Vent venligst.</string>
     <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
@@ -94,6 +135,8 @@
     <string name="pref_title_DisableHostnameVerification">Deaktivér verifikation af værtsnavn</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigér med lydknapper</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markér som læst når der rulles</string>
+    <string name="pref_title_OpenInBrowserDirectly">Spring detaljeret visning over og åbn artikel i browseren</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptér ukendt certifikat? </string>
     <string name="mtm_decision_always">Altid</string>
@@ -103,20 +146,73 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Der er ikke valgt podcasts</string>
+    <string name="no_chapters_available">Ingen kapitler tilgængelige</string>
     <string name="podcast_playback_speed_dialog_title">Afspilningshastighed</string>
+    <string name="notification_downloading_podcast_title">Henter podcast</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">Om</string>
+    <string name="pref_license">Licens</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_report_issue">Rapporter et problem</string>
+    <string name="pref_report_issue_summary">Kræver en (gratis) GitHub konto</string>
+    <string name="pref_contribute">Medvirk!</string>
+    <string name="pref_contribute_summary">Hent kildeteksten</string>
+    <string name="pref_version">Nextcloud News Android app</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
+    <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Layout for feed-liste</string>
+    <string name="pref_title_font_size">Skriftstørrelse</string>
     <string name="pref_display_browser">Browser</string>
 
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljeret visning)</string>
+
+    <string name="pref_display_apptheme_auto">Lys / Mørk (afhængig af tid på dagen)</string>
     <string name="pref_display_apptheme_light">Lys</string>
     <string name="pref_display_apptheme_dark">Mørk</string>
 
+    <string name="pref_oled_mode">Sort baggrund</string>
+    <string name="pref_oled_mode_summary">Til mørkt tema for OLED skærme</string>
+
+    <string name="pref_display_browser_cct">Indbygget Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Indbygget browser</string>
+    <string name="pref_display_browser_external">Ekstern browser</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Miniaturer</string>
+    <string name="pref_display_feed_list_layout_simple_text">Simpel tekst</string>
+    <string name="pref_display_feed_list_layout_headlines">Overskrifter</string>
+    <string name="pref_display_feed_list_layout_full_text">Fuld text</string>
+    <string name="pref_display_feed_list_layout_web_layout">Web layout</string>
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Lille</string>
+    <string name="pref_display_font_size_d">Standard</string>
+    <string name="pref_display_font_size_l">Stor</string>
+    <string name="pref_display_font_size_xl">Ekstra stor</string>
+
+    <string name="content_desc_play">afspil</string>
+    <string name="content_desc_pause">pause</string>
     <string name="content_desc_playback_speed">afspilningshastighed</string>
+    <string name="content_desc_rewind">Spol tilbage</string>
+    <string name="content_desc_forward">Videresend</string>
+    <string name="content_desc_expand">Fold ud</string>
+    <string name="content_desc_collapse">sammenfold</string>
+    <string name="content_desc_mark_as_read">Marker som læst</string>
+    <string name="content_desc_mark_as_unread">Marker som ulæst</string>
+    <string name="content_desc_tap_to_refresh">tryk for at genindlæse</string>
+    <string name="content_desc_add_to_favorites">føj til favoritter</string>
+    <string name="content_desc_remove_from_favorites">fjern fra favoritter</string>
+    <string name="content_desc_show_password">Vis adgangskode</string>
     <string name="content_desc_delete">slet</string>
+    <string name="content_desc_download">hent</string>
+
+
+
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Notifikationer</string>
     <string name="pref_title_notification_new_articles_available">Vis notifikation når der er nye artikler tilgængelige</string>
@@ -124,8 +220,14 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fejl</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det ser ud til at news app-en ikke er installeret eller aktiveret på din server. Følg venligst instruktionerne her for at installere news app-en på din server først: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Noget gik galt :(</string>
+    <string name="login_dialog_text_zero_version_code">Web News App-en returnerede Version \"0\". Konsulter venligst bug rapport : https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Denne App version er ikke kompatibel med din Nextcloud News App. Opgrader venligst news app-en og dens framework</string>
     <string name="login_dialog_title_security_warning">Sikkerhedsadvarsel</string>
+    <string name="login_dialog_text_security_warning">Du benytter ikke HTTPS, hvilket er stærkt anbefalet. En hacker kunne opsnappe din forbindelse og få adgang til følsomme data (f.eks. din adgangskode).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
     <string name="pref_title_clearCache">Ryd mellemlageret</string>
@@ -133,6 +235,10 @@
     <string name="pref_title_Max_Cache_Size">Maksimumstørrelse på mellemlageret</string>
 
     <string name="pref_data_sync_image_cache_never">Aldrig</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Kun via wifi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Via wifi &amp; mobil</string>
+    <string name="pref_data_sync_image_cache_ask">Spørg når der ikke er wifi-forbindelse</string>
+
     <string name="array_sync_interval_min_5">5 minutter</string>
     <string name="array_sync_interval_min_15">15 minutter</string>
     <string name="array_sync_interval_min_30">30 minutter</string>
