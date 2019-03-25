@@ -182,7 +182,6 @@
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">小</string>
-    <string name="pref_display_font_size_d">中</string>
     <string name="pref_display_font_size_l">大</string>
     <string name="pref_display_font_size_xl">巨大</string>
 

@@ -137,6 +137,9 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markér som læst når der rulles</string>
     <string name="pref_title_OpenInBrowserDirectly">Spring detaljeret visning over og åbn artikel i browseren</string>
 
+    <string name="dialog_feature_not_available">Denne feature er ikke tilgængelig i denne version (open-source) a denne app. Hvis du ønsker at benytte denne feature, venligt hent app-en fra GitHub Depotet, eller hent app-en fra Google Play Store.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptér ukendt certifikat? </string>
     <string name="mtm_decision_always">Altid</string>
@@ -189,6 +192,8 @@
     <string name="pref_display_feed_list_layout_headlines">Overskrifter</string>
     <string name="pref_display_feed_list_layout_full_text">Fuld text</string>
     <string name="pref_display_feed_list_layout_web_layout">Web layout</string>
+    <string name="pref_display_feed_list_layout_card_view">Kortvisning</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Lille</string>
     <string name="pref_display_font_size_d">Standard</string>
