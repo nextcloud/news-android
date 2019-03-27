@@ -4,7 +4,7 @@
     <string name="auto_sync_string">Automatyczna synchronizacja</string>
     <string name="title_activity_sync_interval_selector">Wybór interwału synchronizacji</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
-    <string name="empty_view_content">Nic tu nie ma</string>
+    <string name="empty_view_content">Brak elementów</string>
     <string name="toast_GettingMoreItems">Rozpoczęto pobieranie kolejnych elementów… Proszę czekać.</string>
     <string name="no_wifi_available">Brak połączenia WIFI</string>
     <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia Wi-Fi</string>
@@ -110,7 +110,7 @@
         <item quantity="many">Pobrano %d starych elementów</item>
         <item quantity="other">Pobrano %d starych elementów</item>
     </plurals>
-    <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych elementów</string>
+    <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych pozycji</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">Pobrany do tej pory %d element...</item>
         <item quantity="few">Pobrane do tej pory %d elementy...</item>
