@@ -3,6 +3,7 @@ package de.luhmer.owncloudnewsreader.ssl;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Build;
+import androidx.annotation.RequiresApi;
 
 import com.google.gson.JsonParseException;
 
@@ -29,7 +30,6 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.internal.Util;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
@@ -38,6 +38,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class OkHttpSSLClient {
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static OkHttpClient GetSslClient(HttpUrl baseUrl, String username, String password, SharedPreferences sp, MemorizingTrustManager mtm) {
         // set location of the keystore
         MemorizingTrustManager.setKeyStoreFile("private", "sslkeys.bks");
@@ -48,7 +49,7 @@ public class OkHttpSSLClient {
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.MINUTES)
-                .addInterceptor(new AuthorizationInterceptor(baseUrl, Credentials.basic(username, password, Util.UTF_8)))
+                .addInterceptor(new AuthorizationInterceptor(baseUrl, Credentials.basic(username, password, java.nio.charset.StandardCharsets.UTF_8)))
                 .addInterceptor(interceptor);
 
         // register MemorizingTrustManager for HTTPS

@@ -2,9 +2,9 @@ package screengrab;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
-import android.support.v4.view.GravityCompat;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
+import androidx.core.view.GravityCompat;
 
 import org.junit.Before;
 import org.junit.ClassRule;

@@ -1,10 +1,10 @@
 package de.luhmer.owncloudnewsreader.tests;
 
 import android.os.Bundle;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.filters.LargeTest;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -16,11 +16,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
-import static android.support.test.InstrumentationRegistry.registerInstance;
+import static androidx.test.InstrumentationRegistry.registerInstance;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest

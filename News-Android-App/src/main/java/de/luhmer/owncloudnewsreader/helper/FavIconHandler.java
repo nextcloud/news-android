@@ -23,8 +23,8 @@ package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.graphics.Palette;
+import androidx.core.content.ContextCompat;
+import androidx.palette.graphics.Palette;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;

@@ -1,9 +1,9 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import androidx.recyclerview.widget.RecyclerView;
 import de.luhmer.owncloudnewsreader.R;
 
 public class ProgressViewHolder extends RecyclerView.ViewHolder {

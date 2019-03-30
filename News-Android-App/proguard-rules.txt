@@ -114,3 +114,71 @@
 -dontwarn de.greenrobot.daogenerator.DaoGenerator
 
 -keepclassmembers class * extends de.greenrobot.dao.AbstractDao { *; }
+
+
+###############
+# Guava (official)
+## Not yet defined: follow https://github.com/google/guava/issues/2117
+# Guava (unofficial)
+## https://github.com/google/guava/issues/2926#issuecomment-325455128
+## https://stackoverflow.com/questions/9120338/proguard-configuration-for-guava-with-obfuscation-and-optimization
+-dontwarn com.google.common.base.**
+-dontwarn com.google.errorprone.annotations.**
+-dontwarn com.google.j2objc.annotations.**
+-dontwarn java.lang.ClassValue
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn javax.annotation.**
+-dontwarn javax.inject.**
+-dontwarn sun.misc.Unsafe
+
+# Added for guava 23.5-android
+-dontwarn afu.org.checkerframework.**
+-dontwarn org.checkerframework.**
+
+
+
+
+#-ignorewarnings
+#-keep class * {
+#    public private *;
+#}
+
+
+###############
+# Required for Mockito
+-keep class retrofit2.NextcloudRetrofitApiBuilder { *; }
+-keep class net.bytebuddy.* { *; }
+-keep class module-info
+-keepattributes Module*
+-dontwarn org.mockito.**
+
+
+# Proguard rules that are applied to your test apk/code.
+-ignorewarnings
+
+-keepattributes *Annotation*
+
+-dontnote junit.framework.**
+-dontnote junit.runner.**
+
+-dontwarn android.test.**
+-dontwarn android.support.test.**
+-dontwarn org.junit.**
+-dontwarn org.hamcrest.**
+-dontwarn com.squareup.javawriter.JavaWriter
+
+
+### OkHttp
+# https://github.com/square/okhttp/blob/master/README.md
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+
+# JSR 305 annotations are for embedding nullability information.
+-dontwarn javax.annotation.**
+
+# OkHttp platform used only on JVM and when Conscrypt dependency is available.
+-dontwarn okhttp3.internal.platform.ConscryptPlatform

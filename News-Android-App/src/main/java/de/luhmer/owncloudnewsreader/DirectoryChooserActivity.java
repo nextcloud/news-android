@@ -1,7 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * Created by benson on 11/20/15.

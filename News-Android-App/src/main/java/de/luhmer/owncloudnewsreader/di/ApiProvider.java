@@ -2,7 +2,7 @@ package de.luhmer.owncloudnewsreader.di;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -14,6 +14,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import androidx.annotation.VisibleForTesting;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
@@ -124,5 +125,10 @@ public class ApiProvider {
 
     public API getAPI() {
         return mApi;
+    }
+
+    @VisibleForTesting
+    public void setAPI(API api) {
+        this.mApi = api;
     }
 }

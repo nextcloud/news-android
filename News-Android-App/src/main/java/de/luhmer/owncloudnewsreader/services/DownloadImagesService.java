@@ -24,9 +24,9 @@ package de.luhmer.owncloudnewsreader.services;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.JobIntentService;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.NonNull;
+import androidx.core.app.JobIntentService;
+import androidx.core.app.NotificationCompat;
 import android.util.Log;
 
 import com.nostra13.universalimageloader.core.ImageLoader;

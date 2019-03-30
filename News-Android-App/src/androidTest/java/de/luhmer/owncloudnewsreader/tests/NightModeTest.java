@@ -6,33 +6,37 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.filters.LargeTest;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 import static android.preference.PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES;
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.PreferenceMatchers.withKey;
-import static android.support.test.espresso.matcher.PreferenceMatchers.withSummary;
-import static android.support.test.espresso.matcher.PreferenceMatchers.withTitle;
-import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.PreferenceMatchers.withKey;
+import static androidx.test.espresso.matcher.PreferenceMatchers.withSummary;
+import static androidx.test.espresso.matcher.PreferenceMatchers.withTitle;
+import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_APP_THEME;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -41,6 +45,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -58,13 +63,44 @@ public class NightModeTest {
         return mActivityRule.getActivity();
     }
 
+    private boolean isDarkTheme() {
+        ThemeChooser themeChooser = ThemeChooser.getInstance(getActivity());
+
+        try {
+            Method method = ThemeChooser.class.getDeclaredMethod("isDarkTheme", Boolean.class);
+            method.setAccessible(true);
+            boolean isDarkTheme = (boolean) method.invoke(themeChooser, getActivity());
+            return isDarkTheme;
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            fail();
+        }
+        return false;
+    }
+
+    private boolean getPrivateField(String fieldName) {
+        ThemeChooser themeChooser = ThemeChooser.getInstance(getActivity());
+
+        try {
+            Field[] fields = ThemeChooser.class.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                if(fieldName.equals(field.getName())) {
+                    field.setAccessible(true);
+                    return (boolean) field.get(themeChooser);
+                }
+            }
+        } catch (IllegalAccessException e) {
+            fail();
+        }
+        return false;
+    }
+
     @Test
-    public void testBackgroundDaylightTheme() {
+    public void testBackgroundDaylightTheme() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         launchActivity();
 
-        // Type text and then press the button.
-        boolean isDarkTheme = ThemeChooser.getInstance(getActivity()).isDarkTheme(getActivity());
-        assertThat(isDarkTheme, equalTo(false));
+
+
+        assertThat(isDarkTheme(), equalTo(false));
         //onView(withId(R.id.sliding_layout)).check(ViewAssertions.matches(CustomMatchers.withBackgroundColor(android.R.color.white, getActivity())));
     }
 
@@ -78,14 +114,13 @@ public class NightModeTest {
         sleep();
         switchOled();
         navigateUp();
-        boolean isDarkTheme = ThemeChooser.getInstance(getActivity()).isDarkTheme(getActivity());
-        assertFalse(isDarkTheme);
+        assertFalse(isDarkTheme());
 
         sleep();
 
         //onView(withId(R.id.sliding_layout)).check(ViewAssertions.matches(CustomMatchers.withBackgroundColor(android.R.color.white, getActivity())));
-        assertThat(ThemeChooser.getInstance(getActivity()).OLEDActive, equalTo(false));
-        assertThat(ThemeChooser.getInstance(getActivity()).DarkThemeActive, equalTo(false));
+        assertThat(getPrivateField("OLEDActive"), equalTo(false));
+        assertThat(getPrivateField("DarkThemeActive"), equalTo(false));
     }
 
     @Test
@@ -98,11 +133,11 @@ public class NightModeTest {
         changeAppTheme(R.string.pref_display_apptheme_light);
         navigateUp();
 
-        boolean isDarkTheme = ThemeChooser.getInstance(getActivity()).isDarkTheme(getActivity());
+        boolean isDarkTheme = isDarkTheme();
         assertThat(ThemeChooser.getInstance(getActivity()).isOledMode(getActivity(), false), equalTo(false));
         assertThat(isDarkTheme, equalTo(false));
-        assertThat(ThemeChooser.getInstance(getActivity()).OLEDActive, equalTo(false));
-        assertThat(ThemeChooser.getInstance(getActivity()).DarkThemeActive, equalTo(false));
+        assertThat(getPrivateField("OLEDActive"), equalTo(false));
+        assertThat(getPrivateField("DarkThemeActive"), equalTo(false));
         sleep();
     }
 
@@ -116,11 +151,11 @@ public class NightModeTest {
         changeAppTheme(R.string.pref_display_apptheme_dark);
         navigateUp();
         sleep();
-        boolean isDarkTheme = ThemeChooser.getInstance(getActivity()).isDarkTheme(getActivity());
+        boolean isDarkTheme = isDarkTheme();
         assertThat(ThemeChooser.getInstance(getActivity()).isOledMode(getActivity(), false), equalTo(false));
         assertThat(isDarkTheme, equalTo(true));
-        assertThat(ThemeChooser.getInstance(getActivity()).OLEDActive, equalTo(false));
-        assertThat(ThemeChooser.getInstance(getActivity()).DarkThemeActive, equalTo(true));
+        assertThat(getPrivateField("OLEDActive"), equalTo(false));
+        assertThat(getPrivateField("DarkThemeActive"), equalTo(true));
         sleep();
     }
 
@@ -135,11 +170,11 @@ public class NightModeTest {
         switchOled();
         navigateUp();
         sleep();
-        boolean isDarkTheme = ThemeChooser.getInstance(getActivity()).isDarkTheme(getActivity());
+        boolean isDarkTheme = isDarkTheme();
         assertThat(ThemeChooser.getInstance(getActivity()).isOledMode(getActivity(), false), equalTo(true));
         assertThat(isDarkTheme, equalTo(true));
-        assertThat(ThemeChooser.getInstance(getActivity()).OLEDActive, equalTo(true));
-        assertThat(ThemeChooser.getInstance(getActivity()).DarkThemeActive, equalTo(true));
+        assertThat(getPrivateField("OLEDActive"), equalTo(true));
+        assertThat(getPrivateField("DarkThemeActive"), equalTo(true));
         sleep();
     }
 

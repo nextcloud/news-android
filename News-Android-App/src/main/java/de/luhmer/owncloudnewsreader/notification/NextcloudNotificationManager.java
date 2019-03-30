@@ -12,14 +12,16 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.FileProvider;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.FileProvider;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
-import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+
+import androidx.media.session.MediaButtonReceiver;
+import androidx.media.app.NotificationCompat.MediaStyle;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
@@ -199,7 +201,7 @@ public class NextcloudNotificationManager {
         boolean isPlaying = controller.getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING;
         builder.addAction(getPlayPauseAction(context, isPlaying));
 
-        builder.setStyle(new android.support.v4.media.app.NotificationCompat.MediaStyle()
+        builder.setStyle(new MediaStyle()
             //.setShowActionsInCompactView(0)  // show only play/pause in compact view
             .setMediaSession(mediaSession.getSessionToken())
             .setShowCancelButton(true)
