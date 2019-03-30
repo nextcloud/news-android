@@ -144,30 +144,6 @@
 #}
 
 
-###############
-# Required for Mockito
--keep class retrofit2.NextcloudRetrofitApiBuilder { *; }
--keep class net.bytebuddy.* { *; }
--keep class module-info
--keepattributes Module*
--dontwarn org.mockito.**
-
-
-# Proguard rules that are applied to your test apk/code.
--ignorewarnings
-
--keepattributes *Annotation*
-
--dontnote junit.framework.**
--dontnote junit.runner.**
-
--dontwarn android.test.**
--dontwarn android.support.test.**
--dontwarn org.junit.**
--dontwarn org.hamcrest.**
--dontwarn com.squareup.javawriter.JavaWriter
-
-
 ### OkHttp
 # https://github.com/square/okhttp/blob/master/README.md
 -dontwarn okhttp3.**
@@ -182,3 +158,6 @@
 
 # OkHttp platform used only on JVM and when Conscrypt dependency is available.
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
+
+-keep interface org.conscrypt.Conscrypt { *; }
+-keep class org.conscrypt.Conscrypt { *; }

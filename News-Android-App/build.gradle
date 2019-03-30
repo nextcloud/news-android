@@ -30,16 +30,17 @@ android {
         debug {
             shrinkResources true
             minifyEnabled true
-            useProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles 'proguard-test.pro'
             pseudoLocalesEnabled true
         }
         release {
             shrinkResources true
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles 'proguard-test.pro'
             //signingConfig signingConfigs.debug
         }
     }
