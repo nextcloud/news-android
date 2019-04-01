@@ -448,13 +448,12 @@ public class NewsReaderDetailFragment extends Fragment {
             SORT_DIRECTION sortDirection = getSortDirection(context);
             boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
             boolean onlyStarredItems = false;
-            if (idFolder != null)
-                if (idFolder == ALL_STARRED_ITEMS.getValue())
-                    onlyStarredItems = true;
+            if (idFolder != null && idFolder == ALL_STARRED_ITEMS.getValue())
+                onlyStarredItems = true;
 
             String sqlSelectStatement = null;
             if (idFeed != null) {
-                if (idFolder == ALL_UNREAD_ITEMS.getValue()) {
+                if (idFolder != null && idFolder == ALL_UNREAD_ITEMS.getValue()) {
                     onlyUnreadItems = true;
                 }
                 sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection);
