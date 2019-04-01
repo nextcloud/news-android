@@ -55,7 +55,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -66,6 +65,9 @@ import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.Search;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import io.reactivex.observers.DisposableObserver;
+
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -187,7 +189,7 @@ public class NewsReaderDetailFragment extends Fragment {
     public void updateMenuItemsState() {
         NewsReaderListActivity nla = (NewsReaderListActivity) getActivity();
         if (nla.getMenuItemDownloadMoreItems() != null) {
-            if (idFolder != null && idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue()) {
+            if (idFolder != null && idFolder == ALL_UNREAD_ITEMS.getValue()) {
                 nla.getMenuItemDownloadMoreItems().setEnabled(false);
             } else {
                 nla.getMenuItemDownloadMoreItems().setEnabled(true);
@@ -447,14 +449,17 @@ public class NewsReaderDetailFragment extends Fragment {
             boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
             boolean onlyStarredItems = false;
             if (idFolder != null)
-                if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
+                if (idFolder == ALL_STARRED_ITEMS.getValue())
                     onlyStarredItems = true;
 
             String sqlSelectStatement = null;
-            if (idFeed != null)
+            if (idFeed != null) {
+                if (idFolder == ALL_UNREAD_ITEMS.getValue()) {
+                    onlyUnreadItems = true;
+                }
                 sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection);
-            else if (idFolder != null) {
-                if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue())
+            } else if (idFolder != null) {
+                if (idFolder == ALL_STARRED_ITEMS.getValue())
                     onlyUnreadItems = false;
                 sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sortDirection);
             }
