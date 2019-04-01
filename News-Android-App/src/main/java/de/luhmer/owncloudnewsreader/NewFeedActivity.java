@@ -341,27 +341,37 @@ public class NewFeedActivity extends AppCompatActivity {
             feedMap.put("folderId", folder.getId());
             mApi.getAPI().createFeed(feedMap).enqueue(new Callback<List<Feed>>() {
                 @Override
-                public void onResponse(Call<List<Feed>> call, Response<List<Feed>> response) {
-                    showProgress(false);
+                public void onResponse(Call<List<Feed>> call, final Response<List<Feed>> response) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            showProgress(false);
 
-                    if (response.isSuccessful()) {
-                        Intent returnIntent = new Intent();
-                        returnIntent.putExtra("success", true);
-                        setResult(RESULT_OK,returnIntent);
+                            if (response.isSuccessful()) {
+                                Intent returnIntent = new Intent();
+                                returnIntent.putExtra("success", true);
+                                setResult(RESULT_OK, returnIntent);
 
-                        finish();
-                    } else {
-                        mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
-                        mFeedUrlView.requestFocus();
-                    }
+                                finish();
+                            } else {
+                                mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
+                                mFeedUrlView.requestFocus();
+                            }
+                        }
+                    });
                 }
 
                 @Override
-                public void onFailure(Call<List<Feed>> call, Throwable t) {
-                    showProgress(false);
+                public void onFailure(Call<List<Feed>> call, final Throwable t) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            showProgress(false);
 
-                    mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
-                    mFeedUrlView.requestFocus();
+                            mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
+                            mFeedUrlView.requestFocus();
+                        }
+                    });
                 }
             });
         }
