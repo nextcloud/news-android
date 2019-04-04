@@ -269,11 +269,12 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                     mTvOfflineVersion.setVisibility(View.GONE);
                     switch (selectedBrowser) {
                         case 0: // Custom Tabs
-                            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                            builder.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
-                            builder.setShowTitle(true);
-                            builder.setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-                            builder.setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right);
+                            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
+                                    .setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary))
+                                    .setShowTitle(true)
+                                    .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
+                                    .setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right)
+                                    .addDefaultShareMenuItem();
                             builder.build().launchUrl(getActivity(), Uri.parse(url));
                             return true;
                         case 1: // External Browser
