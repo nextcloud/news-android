@@ -66,17 +66,17 @@
     <string name="toast_img_saved">S\'ha desat la imatge</string>
     <string name="toast_img_notwriteable">No s\'ha pogut escriure la imatge.</string>
     <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
-    <string name="error_download_failed">Ha fallat la baixada</string>
+    <string name="error_download_failed">Ha fallat la descàrrega</string>
     <string name="intent_title_share">Comparteix via</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">Elimina la font</string>
+    <string name="action_feed_remove">Suprimeix la font</string>
     <string name="action_feed_rename">Reanomena la font</string>
     <string name="action_feed_move">Mou la font</string>
-    <string name="feed_remove_button">Elimina</string>
+    <string name="feed_remove_button">Suprimeix</string>
     <string name="feed_rename_button">Canvia el nom</string>
-    <string name="confirm_feed_remove">Segur que voleu eliminar aquesta font? Això no es podrà revertir!</string>
+    <string name="confirm_feed_remove">Segur que voleu eliminar aquesta font? Això no es podrà desfer!</string>
     <string name="feed_move_list_description">Selecciona la carpeta per moure-hi la font</string>
     <string name="move_feed_root_folder">Carpeta arrel</string>
 
@@ -126,9 +126,9 @@
     <string name="pref_general_search_in_title">Títol</string>
     <string name="pref_general_search_in_body">Cos</string>
 
-    <string name="dialog_clearing_cache">S\'està esborrant la memòria cau</string>
+    <string name="dialog_clearing_cache">S\'està suprimint la memòria cau</string>
     <string name="dialog_clearing_cache_please_wait">S\'està netejant la memòria cau... Espereu si us plau.</string>
-    <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu eliminar la memòria cau igualment?</string>
+    <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu suprimir la memòria cau igualment?</string>
     <string name="warning">Avís</string>
     <string name="pref_title_AutoSyncOnStart">Sincronitza durant l\'inici</string>
     <string name="pref_title_ShowOnlyUnread">Mostra només els articles sense llegir</string>

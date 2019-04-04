@@ -61,7 +61,7 @@
     <string name="action_img_sharelink">Bendrinti paveikslo nuorodą</string>
     <string name="action_img_open">Atverti paveikslą naršyklėje</string>
     <string name="action_img_copylink">Kopijuoti paveikslo nuorodą</string>
-    <string name="action_link_share">Bendrinimo nuoroda</string>
+    <string name="action_link_share">Dalinimosi nuoroda</string>
     <string name="action_link_open">Atverti nuorodą naršyklėje</string>
     <string name="action_link_copy">Kopijuoti nuorodą</string>
     <string name="toast_img_download_wait">Atsiunčiama… prašome palaukti</string>
