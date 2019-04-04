@@ -336,41 +336,39 @@ public class NewFeedActivity extends AppCompatActivity {
             // perform the user login attempt.
             showProgress(true);
 
-            final Map<String, Object> feedMap = new HashMap<>(2);
-            feedMap.put("url", urlToFeed);
-            feedMap.put("folderId", folder.getId());
-            mApi.getAPI().createFeed(feedMap).enqueue(new Callback<List<Feed>>() {
+            mApi.getAPI().createFeed(urlToFeed, (int) folder.getId()).enqueue(new Callback<List<Feed>>() {
                 @Override
                 public void onResponse(Call<List<Feed>> call, final Response<List<Feed>> response) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            showProgress(false);
+                    runOnUiThread(() -> {
+                        showProgress(false);
 
-                            if (response.isSuccessful()) {
-                                Intent returnIntent = new Intent();
-                                returnIntent.putExtra("success", true);
-                                setResult(RESULT_OK, returnIntent);
+                        if (response.isSuccessful()) {
+                            Intent returnIntent = new Intent();
+                            returnIntent.putExtra("success", true);
+                            setResult(RESULT_OK, returnIntent);
 
-                                finish();
-                            } else {
+                            finish();
+                        } else {
+                            try {
+                                String errorMessage = response.errorBody().string();
+                                mFeedUrlView.setError(errorMessage);
+                                Log.e(TAG, errorMessage);
+                            } catch (IOException e) {
+                                Log.e(TAG, "IOException", e);
                                 mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
-                                mFeedUrlView.requestFocus();
                             }
+                            mFeedUrlView.requestFocus();
                         }
                     });
                 }
 
                 @Override
                 public void onFailure(Call<List<Feed>> call, final Throwable t) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            showProgress(false);
+                    runOnUiThread(() -> {
+                        showProgress(false);
 
-                            mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
-                            mFeedUrlView.requestFocus();
-                        }
+                        mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
+                        mFeedUrlView.requestFocus();
                     });
                 }
             });
