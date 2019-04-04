@@ -35,3 +35,8 @@
 -dontwarn androidx.concurrent.futures.AbstractResolvableFuture
 -dontwarn org.conscrypt.Conscrypt
 #com.google.common.util.concurrent.ListenableFuture
+-keep interface okhttp3.internal.platform.ConscryptPlatform
+-keep class okhttp3.internal.platform.ConscryptPlatform
+
+-keep class org.conscrypt.Conscrypt { *; }
+-keep interface org.conscrypt.Conscrypt { *; }
