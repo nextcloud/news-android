@@ -152,9 +152,14 @@
     <!-- Settings for About -->
     <string name="pref_header_about">关于</string>
     <string name="pref_license">许可证</string>
+    <string name="pref_license_summary">GNU Affero 通用公共许可证 (AGPL) 版本3</string>
     <string name="pref_report_issue">报告问题</string>
     <string name="pref_report_issue_summary">请求一个(免费) GitHub 帐户</string>
+    <string name="pref_contribute">贡献！</string>
     <string name="pref_contribute_summary">获取源代码</string>
+    <string name="pref_version">Nextcloud News 安卓应用</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">显示</string>
     <string name="pref_title_app_theme">主题</string>
@@ -179,6 +184,7 @@
 
     <string name="pref_display_feed_list_layout_thumbnails">缩略图</string>
     <string name="pref_display_feed_list_layout_simple_text">简述文本</string>
+    <string name="pref_display_feed_list_layout_headlines">头条新闻</string>
     <string name="pref_display_feed_list_layout_full_text">完整文本</string>
     <string name="pref_display_feed_list_layout_web_layout">页面布局</string>
     <string name="pref_display_feed_list_layout_card_view">卡片视图</string>

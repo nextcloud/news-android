@@ -4,7 +4,7 @@
     <string name="auto_sync_string">Автоматично синхронизиране</string>
     <string name="title_activity_sync_interval_selector">Избор на интервал за синхронизиране</string>
     <string name="title_activity_news_detail">Детайли на Новината</string>
-    <string name="empty_view_content">Тук няма елементи</string>
+    <string name="empty_view_content">Няма елементи</string>
     <string name="toast_GettingMoreItems">Започва свалянето на няколко елемента... Моля изчакайте.</string>
     <string name="no_wifi_available">Няма WiFi връзка</string>
     <string name="do_you_want_to_download_without_wifi">Желаете ли изображенията да бъдат свалени при отсъствието на WiFi връзка</string>

@@ -61,7 +61,7 @@
     <string name="action_img_sharelink">Bendrinti paveikslo nuorodą</string>
     <string name="action_img_open">Atverti paveikslą naršyklėje</string>
     <string name="action_img_copylink">Kopijuoti paveikslo nuorodą</string>
-    <string name="action_link_share">Bendrinimo nuoroda</string>
+    <string name="action_link_share">Dalinimosi nuoroda</string>
     <string name="action_link_open">Atverti nuorodą naršyklėje</string>
     <string name="action_link_copy">Kopijuoti nuorodą</string>
     <string name="toast_img_download_wait">Atsiunčiama… prašome palaukti</string>
@@ -182,8 +182,8 @@
     <string name="content_desc_mark_as_read">žymėti kaip skaitytą</string>
     <string name="content_desc_mark_as_unread">žymėti kaip neskaitytą</string>
     <string name="content_desc_tap_to_refresh">bakstelėkite, norėdami įkelti iš naujo</string>
-    <string name="content_desc_add_to_favorites">pridėti į mėgstamus</string>
-    <string name="content_desc_remove_from_favorites">šalinti iš mėgstamų</string>
+    <string name="content_desc_add_to_favorites">pridėti prie svarbiausių</string>
+    <string name="content_desc_remove_from_favorites">šalinti iš svarbiausių</string>
     <string name="content_desc_show_password">rodyti slaptažodį</string>
     <string name="content_desc_delete">ištrinti</string>
     <string name="content_desc_download">atsisiųsti</string>

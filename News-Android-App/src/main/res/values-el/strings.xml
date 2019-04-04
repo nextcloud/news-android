@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Επιλογέας διαστήματος συγχρονισμού</string>
     <string name="title_activity_news_detail">Λεπτομέρειες Δραστηριότητας Ειδήσεων</string>
     <string name="empty_view_content">Κανένα στοιχείο</string>
+    <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε. </string>
     <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
+    <string name="do_you_want_to_download_without_wifi"> Θα θέλατε να κατέβουν οι εικόνες χωρίς σύνδεση WiFi </string>
     <string name="current_version">Χρησιμοποιείτε την έκδοση %s</string>
     <string name="widget_header">Νέα ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -21,6 +23,8 @@
     <string name="menu_markAllAsRead">Σημείωση όλων ως ανεγνωσμένων</string>
     <string name="menu_StartImageCaching">Λήψη εικόνων</string>
     <string name="menu_downloadMoreItems">Λήψη περισσότερων αντικειμένων</string>
+
+    <string name="tv_showing_cached_version">Προβολή προσωρινά αποθηκευμένης έκδοσης</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Με αστέρι</string>
@@ -58,6 +62,7 @@
     <string name="action_link_open">Άνοιγμα συνδέσμου στον περιηγητή</string>
     <string name="action_link_copy">Αντιγραφή συνδέσμου</string>
     <string name="toast_img_download_wait">Λήψη... Παρακαλούμε περιμένετε</string>
+    <string name="toast_img_saved">Η εικόνα αποθηκεύτηκε</string>
     <string name="toast_img_notwriteable">Αποτυχία Εγγραφής Εικόνας.</string>
     <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
     <string name="error_download_failed">Η λήψη απέτυχε</string>
@@ -67,9 +72,13 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Αφαίρεση Ροής</string>
     <string name="action_feed_rename">Μετονομασία Ροής</string>
+    <string name="action_feed_move">Μετακίνηση Ροής</string>
     <string name="feed_remove_button">Αφαίρεση</string>
     <string name="feed_rename_button">Μετονομασία</string>
     <string name="confirm_feed_remove">Θέλετε πραγματικά να αφαιρέσετε αυτή την Ροή; Αυτό δεν μπορεί να αναιρεθεί!</string>
+    <string name="feed_move_list_description">Επιλέξτε το φάκελο που θα μετακινηθεί η ροή</string>
+    <string name="move_feed_root_folder">Αρχικός φάκελος</string>
+
     <!-- Strings related to login -->
     <string name="pref_title_username">Όνομα χρήστη</string>
     <string name="pref_title_password">Συνθηματικό</string>
@@ -102,6 +111,14 @@
     <string name="pref_header_general">Γενικά</string>
     <string name="pref_title_general_sort_order">Σειρά ταξινόμησης</string>
 
+    <string name="pref_general_sort_order_new_old">Νέα -> Παλιά </string>
+    <string name="pref_general_sort_order_old_new">Παλιά -> Νέα</string>
+
+    <string name="pref_title_general_search_in">Αναζήτηση σε</string>
+
+    <string name="pref_general_search_in_title">Τίτλος</string>
+    <string name="pref_general_search_in_body">Σώμα</string>
+
     <string name="dialog_clearing_cache">Εκκαθάριση προσωρινής μνήμης</string>
     <string name="dialog_clearing_cache_please_wait">Εκκαθάριση προσωρινής μνήμης... Παρακαλώ περιμένετε.</string>
     <string name="reset_cache_unsaved_changes">Υπάρχουν αλλαγές που δεν έχουν συγχρονιστεί. Θα θέλατε να επαναφέρετε τα αποθηκευμένα στοιχεία ούτως ή άλλως;</string>
@@ -111,6 +128,8 @@
     <string name="pref_title_DisableHostnameVerification">Απενεργοποίηση επαλήθευσης Ονόματος Υπολογιστή</string>
     <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
+    <string name="pref_title_OpenInBrowserDirectly">Παράλειψη λεπτομερούς προβολής και άνοιγμα αρχείου στον περιηγητή</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Αποδοχή Άγνωστων Πιστοποιητικών;</string>
     <string name="mtm_decision_always">Πάντα</string>
@@ -120,8 +139,18 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Δεν επιλέχθηκε Podcast</string>
+    <string name="no_chapters_available">Δεν υπάρχουν διαθέσιμα κεφάλαια</string>
+    <string name="podcast_playback_speed_dialog_title">Ταχύτητα Αναπαραγωγής</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Περί</string>
+    <string name="pref_license">Άδεια χρήσης</string>
+    <string name="pref_report_issue">Αναφορά προβλήματος </string>
+    <string name="pref_report_issue_summary">Απαιτείται ένας (δωρεάν) λογαριασμός στο GitHub </string>
+    <string name="pref_contribute">Συνεισφέρετε!</string>
+    <string name="pref_contribute_summary">Λήψη πηγαίου κώδικα</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Εμφάνιση</string>
+    <string name="pref_title_app_theme">Θέμα</string>
     <string name="pref_title_feed_list_layout">Προβολή λίστας ροών</string>
     <string name="pref_title_font_size">Μέγεθος φόντου</string>
     <string name="pref_display_browser">Περιηγητής</string>
@@ -136,11 +165,19 @@
 
     <string name="pref_display_feed_list_layout_simple_text">Απλό κείμενο</string>
     <string name="pref_display_feed_list_layout_full_text">Πλήρες κείμενο</string>
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Μικρό</string>
     <string name="pref_display_font_size_d">Προεπιλογή</string>
+    <string name="pref_display_font_size_l">Μεγάλο</string>
+    <string name="pref_display_font_size_xl">Πολύ Μεγάλο</string>
+
     <string name="content_desc_play">αναπαραγωγή</string>
     <string name="content_desc_pause">παύση</string>
+    <string name="content_desc_playback_speed">ταχύτητα αναπαραγωγής</string>
+    <string name="content_desc_rewind">επαναφορά</string>
     <string name="content_desc_forward">προώθηση</string>
     <string name="content_desc_expand">επέκταση</string>
+    <string name="content_desc_collapse">σύμπτηξη</string>
     <string name="content_desc_mark_as_read">επισήμανση ως αναγνωσμένο</string>
     <string name="content_desc_mark_as_unread">επισήμανση ως μή-αναγνωσμένο</string>
     <string name="content_desc_tap_to_refresh">αγγίξτε για ανανέωση</string>

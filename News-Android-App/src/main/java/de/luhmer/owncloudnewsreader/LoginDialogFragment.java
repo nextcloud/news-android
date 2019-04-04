@@ -119,13 +119,6 @@ public class LoginDialogFragment extends DialogFragment {
     private boolean mPasswordVisible = false;
     private LoginSuccessfulListener listener;
 
-    private static LoginDialogFragment instance;
-    public static LoginDialogFragment getInstance() {
-        if(instance == null)
-            instance = new LoginDialogFragment();
-        return instance;
-    }
-
     public interface LoginSuccessfulListener {
         void loginSucceeded();
     }
@@ -147,11 +140,11 @@ public class LoginDialogFragment extends DialogFragment {
 		((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
 	}
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-
+    public static LoginDialogFragment newInstance() {
+        LoginDialogFragment loginDialogFragment = new LoginDialogFragment();
+        Bundle args = new Bundle();
+        loginDialogFragment.setArguments(args);
+        return loginDialogFragment;
     }
 
     @Override
@@ -385,7 +378,6 @@ public class LoginDialogFragment extends DialogFragment {
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
-
             Editor editor = mPrefs.edit();
             editor.putString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, mOc_root_path);
             editor.putString(SettingsActivity.EDT_PASSWORD_STRING, mPassword);
@@ -515,7 +507,7 @@ public class LoginDialogFragment extends DialogFragment {
                 mImageViewShowPwd.setVisibility(View.GONE);
                 mCbDisableHostnameVerificationView.setVisibility(View.GONE);
 
-                LoginDialogFragment.getInstance().importedAccount = account;
+                LoginDialogFragment.this.importedAccount = account;
 
                 attemptLogin();
             }

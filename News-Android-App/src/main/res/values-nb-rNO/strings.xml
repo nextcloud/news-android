@@ -3,11 +3,11 @@
 
     <string name="auto_sync_string">Autosynk</string>
     <string name="title_activity_sync_interval_selector">Velger for synkroniseringsintervall</string>
-    <string name="title_activity_news_detail">NyhetsDetaljAktivitet</string>
+    <string name="title_activity_news_detail">NyheterDetaljAktivitet</string>
     <string name="empty_view_content">Ingenting her</string>
-    <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet … Vennligst vent.</string>
+    <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet… Vennligst vent.</string>
     <string name="no_wifi_available">Ingen WiFI tilkoblet</string>
-    <string name="do_you_want_to_download_without_wifi">Vil du laste ned bilder uten en WiFi tilkobling</string>
+    <string name="do_you_want_to_download_without_wifi">Vil du laste ned bilder uten en WiFi-tilkobling</string>
     <string name="current_version">Du bruker versjon %s</string>
     <string name="widget_header">Nextcloud nyheter</string>
     <plurals name="message_bar_new_articles_available">
@@ -17,7 +17,7 @@
     <string name="message_bar_reload">Last på nytt</string>
     <string name="allUnreadFeeds">Alle uleste elementer</string>
     <string name="starredFeeds">Stjernemerkede elementer</string>
-    <string name="title_activity_new_feed">Legg til ny kilde</string>
+    <string name="title_activity_new_feed">Legg til ny strøm</string>
 
     <string name="menu_update">Oppdater</string>
     <string name="menu_markAllAsRead">Marker alle som lest</string>
@@ -29,14 +29,14 @@
     <!-- Action Bar Items -->
     <string name="action_starred">Merket</string>
     <string name="action_read">Les</string>
-    <string name="action_playPodacst">Spill podcast</string>
+    <string name="action_playPodacst">Spill podkast</string>
     <string name="action_openInBrowser">Åpne i nettleser</string>
     <string name="action_Share">Del</string>
     <string name="action_login">Serverinnstillinger</string>
     <string name="action_save">Lagre</string>
     <string name="action_settings">Innstillinger</string>
     <string name="action_sync_settings">Innstillinger for synkronisering</string>
-    <string name="action_add_new_feed">Legg til ny kilde</string>
+    <string name="action_add_new_feed">Legg til ny strøm</string>
     <string name="action_textToSpeech">Les opp</string>
     <string name="action_download_articles_offline">Last ned artikler offline</string>
     <plurals name="notification_new_items_ticker">
@@ -50,8 +50,8 @@
 
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">Nyhets URL</string>
-    <string name="action_add_feed">Legg til nyhetskilde</string>
+    <string name="hint_feed_url">Strøm-URL</string>
+    <string name="action_add_feed">Legg til strøm</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
@@ -71,12 +71,12 @@
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">Fjern nyhetskilde</string>
-    <string name="action_feed_rename">Omdøp nyhetskilde</string>
+    <string name="action_feed_remove">Fjern strøm</string>
+    <string name="action_feed_rename">Omdøp strøm</string>
     <string name="action_feed_move">Flytt strøm</string>
     <string name="feed_remove_button">Fjern</string>
     <string name="feed_rename_button">Gi nytt navn</string>
-    <string name="confirm_feed_remove">Vil du fjerne denne nyhetskilden? Dette kan ikke angres!</string>
+    <string name="confirm_feed_remove">Vil du fjerne denne strømmen? Dette kan ikke angres!</string>
     <string name="feed_move_list_description">Velg katalog å flytte strøm til</string>
     <string name="move_feed_root_folder">Root katalog</string>
 
@@ -148,10 +148,10 @@
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Ingen podcast valgt</string>
+    <string name="no_podcast_selected">Ingen podkast valgt</string>
     <string name="no_chapters_available">Ingen kapitler tilgjengelig</string>
     <string name="podcast_playback_speed_dialog_title">Avspillingshastighet</string>
-    <string name="notification_downloading_podcast_title">Last ned podcast</string>
+    <string name="notification_downloading_podcast_title">Last ned podkast</string>
 
 
     <!-- Settings for About -->
@@ -168,7 +168,7 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Vis</string>
     <string name="pref_title_app_theme">Tema</string>
-    <string name="pref_title_feed_list_layout">Oppsett for kildelisten</string>
+    <string name="pref_title_feed_list_layout">Oppsett for strømlista</string>
     <string name="pref_title_font_size">Font størrelse</string>
     <string name="pref_display_browser">Nettleser</string>
 

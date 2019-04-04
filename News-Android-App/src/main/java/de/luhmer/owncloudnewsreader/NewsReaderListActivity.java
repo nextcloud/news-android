@@ -36,7 +36,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -62,9 +61,17 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNotGrantedException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
+import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.exceptions.SSOException;
+import com.nextcloud.android.sso.exceptions.TokenMismatchException;
+import com.nextcloud.android.sso.helper.SingleAccountHelper;
+import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -88,7 +95,6 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
-import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -411,25 +417,44 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-	public void onEventMainThread(SyncFailedEvent event) {
-	    Throwable exception = event.exception();
-		if(exception instanceof SSOException){
-			if(exception instanceof NextcloudHttpRequestFailedException && ((NextcloudHttpRequestFailedException) exception).getStatusCode() == 302) {
-				ShowAlertDialog(
-						getString(R.string.login_dialog_title_error),
-						getString(R.string.login_dialog_text_news_app_not_installed_on_server,
-								"https://github.com/nextcloud/news/blob/master/docs/install.md#installing-from-the-app-store"),
-						this);
-			} else {
-				UiExceptionManager.showDialogForException(this, (SSOException) exception);
-				//UiExceptionManager.showNotificationForException(this, (SSOException) exception);
-			}
-		} else {
+    public void onEventMainThread(SyncFailedEvent event) {
+        Throwable exception = event.exception();
+
+        // If SSOException is wrapped inside another exception, we extract that SSOException
+        if(exception.getCause() != null && exception.getCause() instanceof SSOException) {
+            exception = exception.getCause();
+        }
+
+        if(exception instanceof SSOException){
+            if(exception instanceof NextcloudHttpRequestFailedException && ((NextcloudHttpRequestFailedException) exception).getStatusCode() == 302) {
+                ShowAlertDialog(
+                        getString(R.string.login_dialog_title_error),
+                        getString(R.string.login_dialog_text_news_app_not_installed_on_server,
+                                "https://github.com/nextcloud/news/blob/master/docs/install.md#installing-from-the-app-store"),
+                        this);
+            } else if(exception instanceof TokenMismatchException) {
+                Toast.makeText(NewsReaderListActivity.this, "Token out of sync. Please reauthenticate", Toast.LENGTH_LONG).show();
+
+                try {
+                    SingleAccountHelper.reauthenticateCurrentAccount(this);
+                } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException | NextcloudFilesAppNotSupportedException e) {
+                    UiExceptionManager.showDialogForException(this, e);
+                } catch (NextcloudFilesAppAccountPermissionNotGrantedException e) {
+                    // Unable to reauthenticate account just like that..
+                    StartLoginFragment(this);
+                }
+                //StartLoginFragment(this);
+
+            } else {
+                UiExceptionManager.showDialogForException(this, (SSOException) exception);
+                //UiExceptionManager.showNotificationForException(this, (SSOException) exception);
+            }
+        } else {
             Toast.makeText(NewsReaderListActivity.this, exception.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         }
         updateButtonLayout();
         syncFinishedHandler();
-	}
+    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(SyncStartedEvent event) {
@@ -461,7 +486,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		UpdateItemList();
 		updatePodcastView();
 
-		getSlidingListFragment().startAsyncTaskGetUserInfo();
+		if(mApi.getAPI() != null) {
+            getSlidingListFragment().startAsyncTaskGetUserInfo();
+        }
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
 		int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
@@ -922,6 +949,25 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 }
             }
         }
+
+        AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
+            @Override
+            public void accountAccessGranted(SingleSignOnAccount account) {
+                Log.d(TAG, "accountAccessGranted() called with: account = [" + account + "]");
+                mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+                    @Override
+                    public void onConnected() {
+                        Log.d(TAG, "onConnected() called");
+                    }
+
+                    @Override
+                    public void onError(Exception ex) {
+                        Log.e(TAG, "onError() called with:", ex);
+                    }
+                });
+
+            }
+        });
     }
 
     @Override
@@ -959,17 +1005,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
 	}
 
-    public static void StartLoginFragment(final FragmentActivity activity)
-    {
-	   	LoginDialogFragment dialog = LoginDialogFragment.getInstance();
-	   	dialog.setActivity(activity);
-	   	dialog.setListener(new LoginSuccessfulListener() {
+    public static void StartLoginFragment(final FragmentActivity activity) {
+        LoginDialogFragment dialog = LoginDialogFragment.newInstance();
+        dialog.setActivity(activity);
+        dialog.setListener(new LoginSuccessfulListener() {
             @Override
             public void loginSucceeded() {
                 ((NewsReaderListActivity) activity).resetUiAndStartSync();
-			}
-		});
-	    dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
+            }
+        });
+        dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
     }
 
     private void resetUiAndStartSync() {

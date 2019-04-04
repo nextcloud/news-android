@@ -167,7 +167,7 @@
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Anzeige</string>
-    <string name="pref_title_app_theme">Thema</string>
+    <string name="pref_title_app_theme">Design</string>
     <string name="pref_title_feed_list_layout">Feed-Listenlayout</string>
     <string name="pref_title_font_size">Schriftgröße</string>
     <string name="pref_display_browser">Browser</string>
@@ -181,7 +181,7 @@
     <string name="pref_display_apptheme_dark">Dunkel</string>
 
     <string name="pref_oled_mode">Schwarzer Hintergrund</string>
-    <string name="pref_oled_mode_summary">Für dunkles Thema auf OLED-Bildschirmen</string>
+    <string name="pref_oled_mode_summary">Für dunkles Design auf OLED-Bildschirmen</string>
 
     <string name="pref_display_browser_cct">Integrierte angepasste Chrome-Tabs</string>
     <string name="pref_display_browser_built_in">Integrierter Browser</string>
