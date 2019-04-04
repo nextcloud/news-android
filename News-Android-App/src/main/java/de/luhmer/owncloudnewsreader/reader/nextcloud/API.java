@@ -15,6 +15,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -53,8 +55,9 @@ public interface API {
     @POST("folders")
     Call<List<Folder>> createFolder(@Body Map<String, Object> folderMap);
 
+    @FormUrlEncoded
     @POST("feeds")
-    Call<List<Feed>> createFeed(@Body Map<String, Object> feedMap);
+    Call<List<Feed>> createFeed(@Field("url") String url, @Field("folderId") Integer parentFolderID);
 
 
     @PUT("feeds/{feedId}/rename")
