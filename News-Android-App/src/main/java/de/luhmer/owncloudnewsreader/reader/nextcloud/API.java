@@ -31,6 +31,7 @@ import retrofit2.http.Streaming;
 
 public interface API {
 
+    String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
 
     /** Since 6.0.5 **/
     @GET("user")

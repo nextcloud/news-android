@@ -19,11 +19,11 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.API_SSO;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
+import retrofit2.NextcloudRetrofitApiBuilder;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -94,7 +94,7 @@ public class ApiProvider {
         try {
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
-            mApi = new API_SSO(nextcloudAPI);
+            mApi = new NextcloudRetrofitApiBuilder(nextcloudAPI, API.mApiEndpoint).create(API.class);
         } catch (SSOException e) {
             callback.onError(e);
         }
