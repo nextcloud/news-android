@@ -36,9 +36,9 @@ public class ApiProvider {
 
     private static final String TAG = ApiProvider.class.getCanonicalName();
     private final MemorizingTrustManager mMemorizingTrustManager;
-    private final SharedPreferences mPrefs;
-    private API mApi;
-    private Context context;
+    protected final SharedPreferences mPrefs;
+    protected Context context;
+    protected API mApi;
 
 
     public ApiProvider(MemorizingTrustManager mtm, SharedPreferences sp, Context context) {
@@ -90,7 +90,7 @@ public class ApiProvider {
         mApi = retrofit.create(API.class);
     }
 
-    private void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
+    protected void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
         try {
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);

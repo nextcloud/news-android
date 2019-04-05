@@ -29,8 +29,6 @@
 -dontwarn org.mockito.**
 
 
-
-
 -keepnames class * implements java.io.Serializable
 
 -keepclassmembers class * implements java.io.Serializable {
@@ -161,3 +159,10 @@
 
 -keep interface org.conscrypt.Conscrypt { *; }
 -keep class org.conscrypt.Conscrypt { *; }
+
+
+
+# https://stackoverflow.com/a/39777485
+# Also, note that this rule should be added to the regular proguard file(the one of listed in proguardFiles) and not the test one(declared as testProguardFile)
+# java.lang.NoSuchMethodError: No virtual method getParameter
+-keepclasseswithmembers public class com.nextcloud.android.sso.aidl.NextcloudRequest { *; }
