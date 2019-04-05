@@ -5,31 +5,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.nextcloud.android.sso.AccountImporter;
-import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
-import org.mockito.Mockito;
-import org.mockito.stubbing.Answer;
-
 import java.io.IOException;
-import java.util.List;
 
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.database.model.Feed;
-import de.luhmer.owncloudnewsreader.helper.GsonConfig;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

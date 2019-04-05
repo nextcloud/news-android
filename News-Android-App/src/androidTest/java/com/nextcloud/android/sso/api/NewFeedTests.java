@@ -58,11 +58,9 @@ public class NewFeedTests {
         //reset(((TestApiProvider)mApi).networkRequestSpy);
     }
 
-
-
     @Test
     public void addNewFeed_New_sameActivity() {
-        String feed = "http://test.de/new";
+        String feed = TestApiProvider.NEW_FEED_SUCCESS;
 
         // Type text and then press the button.
         onView(withId(R.id.et_feed_url)).perform(typeText(feed), closeSoftKeyboard());
@@ -83,7 +81,7 @@ public class NewFeedTests {
 
     @Test
     public void addNewFeed_Existing_sameActivity() {
-        String feed = "http://test.de/existing";
+        String feed = TestApiProvider.NEW_FEED_EXISTING;
 
         // Type text and then press the button.
         onView(withId(R.id.et_feed_url)).perform(typeText(feed), closeSoftKeyboard());
@@ -104,7 +102,7 @@ public class NewFeedTests {
 
     @Test
     public void addNewFeed_Invalid_sameActivity() {
-        String feed = "http://test.de/fail";
+        String feed = TestApiProvider.NEW_FEED_FAIL;
 
         // Type text and then press the button.
         onView(withId(R.id.et_feed_url)).perform(typeText(feed), closeSoftKeyboard());
