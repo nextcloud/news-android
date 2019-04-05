@@ -41,7 +41,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             return;
 
         if (!(parent.getLayoutManager() instanceof LinearLayoutManager) ||
-                ((LinearLayoutManager)parent.getLayoutManager()).getOrientation() != LinearLayoutManager.VERTICAL) {
+                ((LinearLayoutManager)parent.getLayoutManager()).getOrientation() != RecyclerView.VERTICAL) {
             throw new IllegalStateException(
                     "DividerItemDecoration can only be used with a vertical LinearLayoutManager.");
         }
