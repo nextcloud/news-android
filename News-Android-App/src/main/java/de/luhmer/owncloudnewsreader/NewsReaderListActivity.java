@@ -918,15 +918,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
-	    super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
 
-		if(resultCode == RESULT_OK) {
-			UpdateListView();
-			getSlidingListFragment().ListViewNotifyDataSetChanged();
+        if(resultCode == RESULT_OK) {
+            UpdateListView();
+            getSlidingListFragment().ListViewNotifyDataSetChanged();
         }
 
-        if(requestCode == RESULT_SETTINGS)
-        {
+        if(requestCode == RESULT_SETTINGS) {
             //Update settings of image Loader
             mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
                 @Override
@@ -984,7 +983,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void ensureCorrectTheme(Intent data) {
-	    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+       SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String oldListLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
         String newListLayout = mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
 

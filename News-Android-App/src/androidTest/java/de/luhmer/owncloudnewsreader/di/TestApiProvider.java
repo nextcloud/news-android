@@ -59,6 +59,12 @@ public class TestApiProvider extends ApiProvider {
         }
 
         @Override
+        protected void connect() {
+            super.connect();
+            mCallback.onConnected();
+        }
+
+        @Override
         public InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
             if(Looper.myLooper() == Looper.getMainLooper()) {
                 throw new NetworkOnMainThreadException();
