@@ -179,6 +179,9 @@ dependencies {
     testImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
     testImplementation 'com.squareup.okhttp3:mockwebserver:3.14.0'
 
+
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.16"
+
     //androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/mockwebserver
     androidTestImplementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.14.0'
@@ -186,7 +189,7 @@ dependencies {
 
     androidTestImplementation 'tools.fastlane:screengrab:1.2.0'
     //androidTestImplementation 'org.mockito:mockito-core:2.25.1'
-    androidTestImplementation 'org.mockito:mockito-android:2.25.1'
+    androidTestImplementation 'org.mockito:mockito-android:2.18.3'
 
 
     //androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
@@ -222,6 +225,7 @@ dependencies {
 }
 
 /*
+// Workaround for https://github.com/mockito/mockito/issues/1511#issuecomment-458544398
 configurations.all {
     resolutionStrategy.eachDependency { details ->
         if (details.requested.group == 'net.bytebuddy') {

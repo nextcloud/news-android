@@ -40,3 +40,9 @@
 
 -keep class org.conscrypt.Conscrypt { *; }
 -keep interface org.conscrypt.Conscrypt { *; }
+
+
+#org.conscrypt
+-dontwarn org.conscrypt.**
+#-keep class org.conscrypt.** { *; }
+#-keep interface org.conscrypt.** { *; }

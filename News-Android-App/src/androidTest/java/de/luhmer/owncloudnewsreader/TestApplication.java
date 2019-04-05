@@ -1,23 +1,15 @@
 package de.luhmer.owncloudnewsreader;
 
-import android.app.Application;
-
-import javax.inject.Inject;
-
-import androidx.fragment.app.Fragment;
-import de.luhmer.owncloudnewsreader.di.ApiModule;
-import de.luhmer.owncloudnewsreader.di.AppComponent;
-import de.luhmer.owncloudnewsreader.di.DaggerAppComponent;
+import de.luhmer.owncloudnewsreader.di.DaggerTestComponent;
 import de.luhmer.owncloudnewsreader.di.TestApiModule;
-import de.luhmer.owncloudnewsreader.helper.AdBlocker;
-import de.luhmer.owncloudnewsreader.helper.ForegroundListener;
 
 public class TestApplication extends NewsReaderApplication {
 
+    @Override
     public void initDaggerAppComponent() {
         // Dagger%COMPONENT_NAME%
 
-        mAppComponent = DaggerAppComponent.builder()
+        mAppComponent = DaggerTestComponent.builder()
                 .apiModule(new TestApiModule(this))
                 .build();
 

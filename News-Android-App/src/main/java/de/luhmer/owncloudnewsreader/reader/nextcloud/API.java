@@ -58,7 +58,7 @@ public interface API {
 
     @FormUrlEncoded
     @POST("feeds")
-    Call<List<Feed>> createFeed(@Field("url") String url, @Field("folderId") Integer parentFolderID);
+    Call<List<Feed>> createFeed(@Field("url") String url, @Field("folderId") Long parentFolderID);
 
 
     @PUT("feeds/{feedId}/rename")

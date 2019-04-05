@@ -1,31 +1,35 @@
 package com.nextcloud.android.sso.api;
 
 
-import com.nextcloud.android.sso.aidl.NextcloudRequest;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import javax.inject.Inject;
 
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import de.luhmer.owncloudnewsreader.NewFeedActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.TestApplication;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
+import de.luhmer.owncloudnewsreader.di.TestComponent;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
-import retrofit2.NextcloudRetrofitApiBuilder;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.after;
+import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
 
@@ -37,60 +41,78 @@ public class NewFeedTests {
     @Rule
     public ActivityTestRule<NewFeedActivity> activityRule = new ActivityTestRule<>(NewFeedActivity.class);
 
-
-    private final String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
-    //private API mApi;
-
-
-    @Mock
-    private NextcloudAPI nextcloudApiMock;
-
-    @Mock
-    private API mApi;
-
-    //@Rule
-    //public MockitoRule mockitoRule = MockitoJUnit.rule();
+    @Inject ApiProvider mApi;
 
     @Before
     public void setUp() {
-        //MockitoAnnotation.initMocks(this);
-        //when(nextcloudApiMock.getGson()).thenReturn(new GsonBuilder().create());
-        //mApi = new NextcloudRetrofitApiBuilder(nextcloudApiMock, mApiEndpoint).create(API.class);
-        //mApi = new NextcloudRetrofitApiBuilder(nextcloudApiMock, mApiEndpoint).create(API.class);
+        TestComponent ac = (TestComponent) ((TestApplication)(activityRule.getActivity().getApplication())).getAppComponent();
+        ac.inject(this);
     }
 
 
     @Test
-    public void changeText_sameActivity() {
+    public void addNewFeed_New_sameActivity() {
+        String feed = "http://test.de/new";
+
         // Type text and then press the button.
-        onView(withId(R.id.et_feed_url)).perform(typeText("http://test.html"), closeSoftKeyboard());
+        onView(withId(R.id.et_feed_url)).perform(typeText(feed), closeSoftKeyboard());
         onView(withId(R.id.btn_addFeed)).perform(click());
 
-        // Check that the text was changed.
-        //onView(withId(R.id.et_feed_url))
-        //        .check(matches(withText(stringToBetyped)));
-
-
-
-        NextcloudRequest request = new NextcloudRequest.Builder()
-                .setMethod("GET")
-                .setUrl(mApiEndpoint + "feeds")
-                .build();
-
-        //Robolectric.flushForegroundThreadScheduler();
-        //Robolectric.flushBackgroundThreadScheduler();
-
-
-
         try {
-            verify(mApi, after(5000)).createFeed(any());
-            verify(nextcloudApiMock, after(5000)).performNetworkRequest(eq(request));
+            API api = mApi.getAPI();
+            verify(api, timeout(2000)).createFeed(feed, 0L);
 
+            //onView(withId(R.id.et_feed_url)).check(matches(hasErrorText(nullValue(String.class))));
 
-            //verify(mApi, timeout(5000)).createFeed(any(), eq(request));
+            // Check Activity existed
+            Thread.sleep(1000);
+            assertFalse(activityRule.getActivity().getWindow().getDecorView().isShown());
         } catch (Exception e) {
             fail(e.getMessage());
         }
     }
 
+    @Test
+    public void addNewFeed_Existing_sameActivity() {
+        String feed = "http://test.de/existing";
+
+        // Type text and then press the button.
+        onView(withId(R.id.et_feed_url)).perform(typeText(feed), closeSoftKeyboard());
+        onView(withId(R.id.btn_addFeed)).perform(click());
+
+        try {
+            API api = mApi.getAPI();
+            verify(api, timeout(2000)).createFeed(feed, 0L);
+
+            // Check Activity still open
+            Thread.sleep(1000);
+            assertTrue(activityRule.getActivity().getWindow().getDecorView().isShown());
+
+            onView(withId(R.id.et_feed_url)).check(matches(hasErrorText(is("Feed konnte nicht hinzugefügt werden:  Existiert bereits"))));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void addNewFeed_Invalid_sameActivity() {
+        String feed = "http://test.de/fail";
+
+        // Type text and then press the button.
+        onView(withId(R.id.et_feed_url)).perform(typeText(feed), closeSoftKeyboard());
+        onView(withId(R.id.btn_addFeed)).perform(click());
+
+        try {
+            API api = mApi.getAPI();
+            verify(api, timeout(2000)).createFeed(feed, 0L);
+
+            // Check Activity still open
+            Thread.sleep(1000);
+            assertTrue(activityRule.getActivity().getWindow().getDecorView().isShown());
+
+            onView(withId(R.id.et_feed_url)).check(matches(hasErrorText(is("FeedIo\\Adapter\\NotFoundException: Client error: `GET http://feeds2.feedburner.com/stadt-bremerhaven/dqXM222` resulted in a `404 Feed not found error: ..."))));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
 }
