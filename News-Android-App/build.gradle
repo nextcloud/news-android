@@ -185,7 +185,7 @@ dependencies {
 
     //androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/mockwebserver
-    androidTestImplementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.14.0'
+    //androidTestImplementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.14.0'
 
 
     androidTestImplementation 'tools.fastlane:screengrab:1.2.0'
