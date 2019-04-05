@@ -1,10 +1,13 @@
 package com.nextcloud.android.sso.api;
 
 
+import com.nextcloud.android.sso.aidl.NextcloudRequest;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.inject.Inject;
@@ -15,8 +18,8 @@ import de.luhmer.owncloudnewsreader.NewFeedActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.TestApplication;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
+import de.luhmer.owncloudnewsreader.di.TestApiProvider;
 import de.luhmer.owncloudnewsreader.di.TestComponent;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -29,6 +32,8 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
@@ -47,7 +52,12 @@ public class NewFeedTests {
     public void setUp() {
         TestComponent ac = (TestComponent) ((TestApplication)(activityRule.getActivity().getApplication())).getAppComponent();
         ac.inject(this);
+
+        // Reset Spy object
+        mApi.initApi(null);
+        //reset(((TestApiProvider)mApi).networkRequestSpy);
     }
+
 
 
     @Test
@@ -59,8 +69,7 @@ public class NewFeedTests {
         onView(withId(R.id.btn_addFeed)).perform(click());
 
         try {
-            //API api = mApi.getAPI();
-            //verify(api, timeout(2000)).createFeed(feed, 0L);
+            verifyRequest(feed);
 
             //onView(withId(R.id.et_feed_url)).check(matches(hasErrorText(nullValue(String.class))));
 
@@ -81,8 +90,7 @@ public class NewFeedTests {
         onView(withId(R.id.btn_addFeed)).perform(click());
 
         try {
-            //API api = mApi.getAPI();
-            //verify(api, timeout(2000)).createFeed(feed, 0L);
+            verifyRequest(feed);
 
             // Check Activity still open
             Thread.sleep(1000);
@@ -103,8 +111,7 @@ public class NewFeedTests {
         onView(withId(R.id.btn_addFeed)).perform(click());
 
         try {
-            //API api = mApi.getAPI();
-            //verify(api, timeout(2000)).createFeed(feed, 0L);
+            verifyRequest(feed);
 
             // Check Activity still open
             Thread.sleep(1000);
@@ -114,5 +121,15 @@ public class NewFeedTests {
         } catch (Exception e) {
             fail(e.getMessage());
         }
+    }
+
+    // Verify that the API was actually called
+    private void verifyRequest(String feed) throws Exception {
+        NetworkRequest nr = ((TestApiProvider)mApi).networkRequestSpy;
+        ArgumentCaptor<NextcloudRequest> argument = ArgumentCaptor.forClass(NextcloudRequest.class);
+        verify(nr, timeout(2000)).performNetworkRequest(argument.capture(), any());
+        assertEquals("/index.php/apps/news/api/v1-2/feeds", argument.getValue().getUrl());
+        assertEquals(feed, argument.getValue().getParameter().get("url"));
+        assertEquals("0", argument.getValue().getParameter().get("folderId"));
     }
 }

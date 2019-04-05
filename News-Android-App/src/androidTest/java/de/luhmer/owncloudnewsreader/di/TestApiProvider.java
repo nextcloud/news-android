@@ -10,23 +10,26 @@ import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.NetworkRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
-import com.nextcloud.android.sso.model.SingleSignOnAccount;
+
+import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.nio.charset.Charset;
-import java.util.function.BiConsumer;
 
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import retrofit2.NextcloudRetrofitApiBuilder;
 
+import static org.mockito.ArgumentMatchers.any;
+
 public class TestApiProvider extends ApiProvider {
 
 
     private static final String TAG = TestApiProvider.class.getCanonicalName();
+
+    public NewsTestNetworkRequest networkRequestSpy;
 
     TestApiProvider(MemorizingTrustManager mtm, SharedPreferences sp, Context context) {
         super(mtm, sp, context);
@@ -34,7 +37,17 @@ public class TestApiProvider extends ApiProvider {
 
     @Override
     protected void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
-        NextcloudAPI nextcloudAPI = new NextcloudAPI(GsonConfig.GetGson(), new NewsTestNetworkRequest(callback));
+        NewsTestNetworkRequest networkRequest = new NewsTestNetworkRequest(callback);
+        networkRequestSpy = Mockito.spy(networkRequest);
+
+        // By spying on the method "performNetworkRequest" we can later check if requests were build correctly
+        try {
+            Mockito.doCallRealMethod().when(networkRequestSpy).performNetworkRequest(any(), any());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        NextcloudAPI nextcloudAPI = new NextcloudAPI(GsonConfig.GetGson(), networkRequestSpy);
         mApi = new NextcloudRetrofitApiBuilder(nextcloudAPI, API.mApiEndpoint).create(API.class);
     }
 
@@ -46,7 +59,7 @@ public class TestApiProvider extends ApiProvider {
         }
 
         @Override
-        protected InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
+        public InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
             if(Looper.myLooper() == Looper.getMainLooper()) {
                 throw new NetworkOnMainThreadException();
             }
