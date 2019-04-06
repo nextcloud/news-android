@@ -31,8 +31,10 @@ import tools.fastlane.screengrab.locale.LocaleTestRule;
  */
 @RunWith(AndroidJUnit4.class)
 public class ScreenshotTest {
+
     @ClassRule
     public static final LocaleTestRule localTestRule = new LocaleTestRule();
+
     @Rule
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class);
 

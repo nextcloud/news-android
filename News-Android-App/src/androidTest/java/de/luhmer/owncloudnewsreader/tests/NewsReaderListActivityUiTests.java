@@ -27,6 +27,8 @@ import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
+import helper.OrientationChangeAction;
+import helper.RecyclerViewAssertions;
 
 import static androidx.test.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.InstrumentationRegistry.registerInstance;

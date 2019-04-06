@@ -1,4 +1,4 @@
-package de.luhmer.owncloudnewsreader.tests;
+package helper;
 
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewAssertion;

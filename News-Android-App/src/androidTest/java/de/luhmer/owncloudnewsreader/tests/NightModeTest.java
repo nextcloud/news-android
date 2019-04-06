@@ -20,12 +20,14 @@ import java.time.Instant;
 import java.time.ZoneOffset;
 
 import androidx.test.InstrumentationRegistry;
+import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import helper.CustomMatchers;
 
 import static android.preference.PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES;
 import static androidx.test.InstrumentationRegistry.getInstrumentation;
@@ -39,9 +41,11 @@ import static androidx.test.espresso.matcher.PreferenceMatchers.withSummary;
 import static androidx.test.espresso.matcher.PreferenceMatchers.withTitle;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_APP_THEME;
+import static helper.CustomMatchers.withBackgroundColor;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -88,12 +92,14 @@ public class NightModeTest {
         defaultValueSp.edit().putBoolean(KEY_HAS_SET_DEFAULT_VALUES, false).commit();
 
 
+        /*
         // Set Fixed time
         Instant.now(
                 Clock.fixed(
                         Instant.parse( "2019-04-05T18:00:00Z"), ZoneOffset.UTC
                 )
         );
+        */
     }
 
 
@@ -102,7 +108,7 @@ public class NightModeTest {
         launchActivity();
 
         assertFalse(isDarkTheme());
-        //onView(withId(R.id.sliding_layout)).check(ViewAssertions.matches(CustomMatchers.withBackgroundColor(android.R.color.white, getActivity())));
+        onView(withId(R.id.sliding_layout)).check(matches(withBackgroundColor(android.R.color.white, getActivity())));
     }
 
     @Test

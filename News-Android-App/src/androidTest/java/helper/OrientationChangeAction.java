@@ -23,7 +23,7 @@
  * 
  */
 
-package de.luhmer.owncloudnewsreader.tests;
+package helper;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
