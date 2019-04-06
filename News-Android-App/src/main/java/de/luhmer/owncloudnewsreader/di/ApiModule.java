@@ -3,7 +3,7 @@ package de.luhmer.owncloudnewsreader.di;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.VisibleForTesting;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;

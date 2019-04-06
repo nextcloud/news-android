@@ -7,10 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Xml;
@@ -25,6 +21,8 @@ import android.widget.Toast;
 
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.BufferedReader;
@@ -43,6 +41,10 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -255,11 +257,7 @@ public class NewFeedActivity extends AppCompatActivity {
                         }
                     }
 
-                    final Map<String, Object> feedMap = new HashMap<>(2);
-                    feedMap.put("url", feedUrl);
-                    feedMap.put("folderId", folderId);
-                    
-                    Feed feed = mApi.getAPI().createFeed(feedMap).execute().body().get(0);
+                    Feed feed = mApi.getAPI().createFeed(feedUrl, folderId).execute().body().get(0);
                     Log.v(TAG, "New Feed-ID: " + feed.getId());
                 }
             } catch (Exception e) {
@@ -336,36 +334,61 @@ public class NewFeedActivity extends AppCompatActivity {
             // perform the user login attempt.
             showProgress(true);
 
-            final Map<String, Object> feedMap = new HashMap<>(2);
-            feedMap.put("url", urlToFeed);
-            feedMap.put("folderId", folder.getId());
-            mApi.getAPI().createFeed(feedMap).enqueue(new Callback<List<Feed>>() {
+            mApi.getAPI().createFeed(urlToFeed, folder.getId()).enqueue(new Callback<List<Feed>>() {
                 @Override
-                public void onResponse(Call<List<Feed>> call, Response<List<Feed>> response) {
-                    showProgress(false);
+                public void onResponse(Call<List<Feed>> call, final Response<List<Feed>> response) {
+                    runOnUiThread(() -> {
+                        showProgress(false);
 
-                    if (response.isSuccessful()) {
-                        Intent returnIntent = new Intent();
-                        returnIntent.putExtra("success", true);
-                        setResult(RESULT_OK,returnIntent);
+                        if (response.isSuccessful()) {
+                            Intent returnIntent = new Intent();
+                            returnIntent.putExtra("success", true);
+                            setResult(RESULT_OK, returnIntent);
 
-                        finish();
-                    } else {
-                        mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
-                        mFeedUrlView.requestFocus();
-                    }
+                            finish();
+                        } else {
+                            try {
+                                String errorMessage = response.errorBody().string();
+                                try {
+                                    //Log.e(TAG, errorMessage);
+                                    JSONObject jObjError= new JSONObject(errorMessage);
+                                    errorMessage = jObjError.getString("message");
+                                    errorMessage = truncate(errorMessage, 150);
+                                } catch (JSONException e) {
+                                    Log.e(TAG, "Extracting error message failed: " + errorMessage, e);
+                                }
+                                mFeedUrlView.setError(errorMessage);
+                                Log.e(TAG, errorMessage);
+                            } catch (IOException e) {
+                                Log.e(TAG, "IOException", e);
+                                mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
+                            }
+                            mFeedUrlView.requestFocus();
+                        }
+                    });
                 }
 
                 @Override
-                public void onFailure(Call<List<Feed>> call, Throwable t) {
-                    showProgress(false);
+                public void onFailure(Call<List<Feed>> call, final Throwable t) {
+                    runOnUiThread(() -> {
+                        showProgress(false);
 
-                    mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
-                    mFeedUrlView.requestFocus();
+                        mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
+                        mFeedUrlView.requestFocus();
+                    });
                 }
             });
         }
     }
+
+    public static String truncate(String str, int len) {
+        if (str.length() > len) {
+            return str.substring(0, len) + "...";
+        } else {
+            return str;
+        }
+    }
+
     private boolean isUrlValid(String url) {
         try {
             new URL(url);

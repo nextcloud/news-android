@@ -29,8 +29,6 @@
 -dontwarn org.mockito.**
 
 
-
-
 -keepnames class * implements java.io.Serializable
 
 -keepclassmembers class * implements java.io.Serializable {
@@ -114,3 +112,57 @@
 -dontwarn de.greenrobot.daogenerator.DaoGenerator
 
 -keepclassmembers class * extends de.greenrobot.dao.AbstractDao { *; }
+
+
+###############
+# Guava (official)
+## Not yet defined: follow https://github.com/google/guava/issues/2117
+# Guava (unofficial)
+## https://github.com/google/guava/issues/2926#issuecomment-325455128
+## https://stackoverflow.com/questions/9120338/proguard-configuration-for-guava-with-obfuscation-and-optimization
+-dontwarn com.google.common.base.**
+-dontwarn com.google.errorprone.annotations.**
+-dontwarn com.google.j2objc.annotations.**
+-dontwarn java.lang.ClassValue
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn javax.annotation.**
+-dontwarn javax.inject.**
+-dontwarn sun.misc.Unsafe
+
+# Added for guava 23.5-android
+-dontwarn afu.org.checkerframework.**
+-dontwarn org.checkerframework.**
+
+
+
+
+#-ignorewarnings
+#-keep class * {
+#    public private *;
+#}
+
+
+### OkHttp
+# https://github.com/square/okhttp/blob/master/README.md
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+
+# JSR 305 annotations are for embedding nullability information.
+-dontwarn javax.annotation.**
+
+# OkHttp platform used only on JVM and when Conscrypt dependency is available.
+-dontwarn okhttp3.internal.platform.ConscryptPlatform
+
+-keep interface org.conscrypt.Conscrypt { *; }
+-keep class org.conscrypt.Conscrypt { *; }
+
+
+
+# https://stackoverflow.com/a/39777485
+# Also, note that this rule should be added to the regular proguard file(the one of listed in proguardFiles) and not the test one(declared as testProguardFile)
+# java.lang.NoSuchMethodError: No virtual method getParameter
+-keepclasseswithmembers public class com.nextcloud.android.sso.aidl.NextcloudRequest { *; }

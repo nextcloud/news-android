@@ -28,11 +28,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.customtabs.CustomTabsIntent;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -58,6 +55,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.adapter.ProgressBarWebChromeClient;
@@ -269,11 +269,12 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                     mTvOfflineVersion.setVisibility(View.GONE);
                     switch (selectedBrowser) {
                         case 0: // Custom Tabs
-                            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                            builder.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
-                            builder.setShowTitle(true);
-                            builder.setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left);
-                            builder.setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right);
+                            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
+                                    .setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary))
+                                    .setShowTitle(true)
+                                    .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
+                                    .setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right)
+                                    .addDefaultShareMenuItem();
                             builder.build().launchUrl(getActivity(), Uri.parse(url));
                             return true;
                         case 1: // External Browser

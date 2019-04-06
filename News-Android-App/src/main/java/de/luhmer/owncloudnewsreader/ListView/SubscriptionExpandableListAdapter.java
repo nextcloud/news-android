@@ -26,7 +26,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.ViewUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -45,6 +44,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.core.view.ViewCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
@@ -333,7 +333,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                     rotation = 180;
                     contentDescriptionId = R.string.content_desc_collapse;
 	        	} else {
-                    if (ViewUtils.isLayoutRtl(listView)) {
+                    if (ViewCompat.getLayoutDirection(listView) == ViewCompat.LAYOUT_DIRECTION_RTL) {
                         rotation = -90; // mirror for rtl layout
                     } else {
                         rotation = 90;

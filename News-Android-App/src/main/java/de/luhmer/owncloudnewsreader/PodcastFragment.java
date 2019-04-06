@@ -4,8 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -38,6 +37,7 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Locale;
 
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

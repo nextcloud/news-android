@@ -2,7 +2,7 @@ package de.luhmer.owncloudnewsreader.di;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -14,6 +14,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import androidx.annotation.VisibleForTesting;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
@@ -35,9 +36,9 @@ public class ApiProvider {
 
     private static final String TAG = ApiProvider.class.getCanonicalName();
     private final MemorizingTrustManager mMemorizingTrustManager;
-    private final SharedPreferences mPrefs;
-    private API mApi;
-    private Context context;
+    protected final SharedPreferences mPrefs;
+    protected Context context;
+    protected API mApi;
 
 
     public ApiProvider(MemorizingTrustManager mtm, SharedPreferences sp, Context context) {
@@ -89,7 +90,7 @@ public class ApiProvider {
         mApi = retrofit.create(API.class);
     }
 
-    private void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
+    protected void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
         try {
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
@@ -124,5 +125,10 @@ public class ApiProvider {
 
     public API getAPI() {
         return mApi;
+    }
+
+    @VisibleForTesting
+    public void setAPI(API api) {
+        this.mApi = api;
     }
 }

@@ -10,6 +10,8 @@ import de.luhmer.owncloudnewsreader.helper.ForegroundListener;
 
 public class NewsReaderApplication extends Application {
 
+    protected AppComponent mAppComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -33,13 +35,7 @@ public class NewsReaderApplication extends Application {
         //mAppComponent = DaggerAppComponent.create();
     }
 
-    private AppComponent mAppComponent;
-
     public AppComponent getAppComponent() {
         return mAppComponent;
-    }
-
-    public void setAppComponent(AppComponent appComponent) {
-        this.mAppComponent = appComponent;
     }
 }

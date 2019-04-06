@@ -1,4 +1,4 @@
-package de.luhmer.owncloudnewsreader.tests;
+package helper;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,8 +8,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import android.support.test.espresso.matcher.BoundedMatcher;
-import android.support.v4.content.ContextCompat;
+import androidx.test.espresso.matcher.BoundedMatcher;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,7 +38,7 @@ public class CustomMatchers {
                 Drawable drawable = view.getBackground();
                 Drawable otherDrawable = ContextCompat.getDrawable(view.getContext(), resourceColorId);
 
-                if (drawable instanceof ColorDrawable && otherDrawable instanceof ColorDrawable) {
+                if (drawable instanceof ColorDrawable) {
                     int colorId = ((ColorDrawable) drawable).getColor();
 
                     if(colorId == resourceColorId) {
@@ -47,7 +47,9 @@ public class CustomMatchers {
                         error = "FAILED Got: " + colorId;
                     }
                 } else {
-                    error = "Not color drawables!!";
+                    Log.e(TAG, drawable.toString());
+                    Log.e(TAG, otherDrawable.toString());
+                    error = "Not ColorDrawable's!!";
                 }
 
                 return false;
