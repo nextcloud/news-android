@@ -15,19 +15,14 @@ import org.junit.runner.RunWith;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.time.Clock;
-import java.time.Instant;
-import java.time.ZoneOffset;
 
 import androidx.test.InstrumentationRegistry;
-import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import helper.CustomMatchers;
 
 import static android.preference.PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES;
 import static androidx.test.InstrumentationRegistry.getInstrumentation;
