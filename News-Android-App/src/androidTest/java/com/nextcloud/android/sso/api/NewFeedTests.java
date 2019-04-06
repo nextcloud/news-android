@@ -46,7 +46,7 @@ public class NewFeedTests {
     @Rule
     public ActivityTestRule<NewFeedActivity> activityRule = new ActivityTestRule<>(NewFeedActivity.class);
 
-    @Inject ApiProvider mApi;
+    protected @Inject ApiProvider mApi;
 
     @Before
     public void setUp() {
@@ -59,7 +59,7 @@ public class NewFeedTests {
     }
 
     @Test
-    public void addNewFeed_New_sameActivity() {
+    public void addNewFeed() {
         String feed = TestApiProvider.NEW_FEED_SUCCESS;
 
         // Type text and then press the button.
@@ -80,7 +80,7 @@ public class NewFeedTests {
     }
 
     @Test
-    public void addNewFeed_Existing_sameActivity() {
+    public void addExistingFeed() {
         String feed = TestApiProvider.NEW_FEED_EXISTING;
 
         // Type text and then press the button.
@@ -101,7 +101,7 @@ public class NewFeedTests {
     }
 
     @Test
-    public void addNewFeed_Invalid_sameActivity() {
+    public void addInvalidFeed() {
         String feed = TestApiProvider.NEW_FEED_FAIL;
 
         // Type text and then press the button.

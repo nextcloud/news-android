@@ -76,13 +76,14 @@ public class TestApiProvider extends ApiProvider {
                 throw new NetworkOnMainThreadException();
             }
 
-            Log.e(TAG, "Requested URL: " + request.getUrl());
-            InputStream inputStream = null;
+            Log.w(TAG, "Requested URL: " + request.getUrl());
+            InputStream inputStream;
             switch (request.getUrl()) {
                 case "/index.php/apps/news/api/v1-2/feeds":
                     inputStream = handleCreateFeed(request);
                     break;
-
+                default:
+                    throw new UnsupportedOperationException("Not implemented yet!");
             }
             return inputStream;
         }
@@ -98,8 +99,9 @@ public class TestApiProvider extends ApiProvider {
                     throw new NextcloudHttpRequestFailedException(409, new Throwable(NEW_FEED_EXISTING_ERROR_MESSAGE));
                 case NEW_FEED_FAIL:
                     throw new NextcloudHttpRequestFailedException(422, new Throwable(NEW_FEED_FAIL_ERROR_MESSAGE));
+                default:
+                    throw new UnsupportedOperationException("Not implemented yet!");
             }
-            return null;
         }
 
         private InputStream stringToInputStream(String data) {

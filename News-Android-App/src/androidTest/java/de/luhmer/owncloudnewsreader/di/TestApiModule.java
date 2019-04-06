@@ -69,12 +69,8 @@ public class TestApiModule extends ApiModule {
     }
 
     @Override
-    ApiProvider provideAPI(MemorizingTrustManager mtm, SharedPreferences sp) {
+    protected ApiProvider provideAPI(MemorizingTrustManager mtm, SharedPreferences sp) {
         ApiProvider apiProvider = new TestApiProvider(mtm, sp, application);
         return apiProvider;
     }
-
-
-
-
 }
