@@ -2,7 +2,6 @@ package de.luhmer.owncloudnewsreader;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Bundle;
 
 import androidx.test.runner.AndroidJUnitRunner;
 
