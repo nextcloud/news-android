@@ -194,7 +194,6 @@
     <string name="pref_display_browser">Browser</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
 
     <string-array name="pref_display_news_detail_actionbar_icons" translatable="false">
@@ -209,8 +208,7 @@
         <item>podcast</item>
         <!-- <item>tts</item> -->
     </string-array>
-    <string-array name="pref_display_news_detail_actionbar_icons_default_values" translatable="false">
-    </string-array>
+    <string-array name="pref_display_news_detail_actionbar_icons_default_values" translatable="false"></string-array>
 
 
     <string name="pref_display_apptheme_auto">Light / Dark (based on Daytime)</string>
@@ -243,9 +241,6 @@
         <item>3</item>
         <item>4</item>
     </string-array>
-
-
-
 
 
     <string name="pref_display_browser_cct">Built-in Chrome-Custom-Tabs</string>
@@ -308,7 +303,6 @@
     </string-array>
 
 
-
     <!-- content description for images and icons -->
     <string name="content_desc_none" translatable="false">@null</string>
     <string name="content_desc_play">play</string>
@@ -326,7 +320,6 @@
     <string name="content_desc_show_password">show password</string>
     <string name="content_desc_delete">delete</string>
     <string name="content_desc_download">download</string>
-
 
 
     <!-- Settings for Notifications -->
@@ -367,8 +360,6 @@
         <item>2</item>
         <item>3</item>
     </string-array>
-
-
 
 
     <string-array name="pref_data_sync_max_cache_size" translatable="false">

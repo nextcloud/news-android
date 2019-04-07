@@ -1,71 +1,82 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--
-         NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it.
-    -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-    <!--
-    <ListPreference
-        android:defaultValue="180"
-        android:entries="@array/pref_sync_frequency_titles"
-        android:entryValues="@array/pref_sync_frequency_values"
-        android:key="sync_frequency"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_sync_frequency" />
-    -->
-    <!--
-         This preference simply launches an intent when selected. Use this UI sparingly, per
-         design guidelines.
-    -->
+    <PreferenceCategory
+        app:title="@string/pref_header_data_sync"
+        app:iconSpaceReserved="false">
 
-    <Preference
-        android:key="pref_sync_settings"
-        android:title="@string/action_sync_settings" >
-    </Preference>
+        <!--
+             NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+             dismiss it.
+        -->
+        <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+        <!--
+        <ListPreference
+            android:defaultValue="180"
+            android:entries="@array/pref_sync_frequency_titles"
+            android:entryValues="@array/pref_sync_frequency_values"
+            android:key="sync_frequency"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_sync_frequency" />
+        -->
+        <!--
+             This preference simply launches an intent when selected. Use this UI sparingly, per
+             design guidelines.
+        -->
 
-    
-    <!-- 
-    <ListPreference
-        android:defaultValue="100"
-        android:entries="@array/pref_data_sync_max_items"
-        android:entryValues="@array/pref_data_sync_max_items_values"
-        android:key="sync_max_items"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_data_sync_max_items" />
-    -->
-    
-    <EditTextPreference
-        android:key="edt_clearCache"                
-        android:maxLines="1"
-        android:singleLine="true"
-        android:title="@string/pref_title_clearCache" />
+        <Preference
+            android:key="pref_sync_settings"
+            android:title="@string/action_sync_settings"
+            app:iconSpaceReserved="false">
+        </Preference>
 
 
-    <ListPreference
-        android:defaultValue="0"
-        android:entries="@array/pref_data_sync_image_cache"
-        android:entryValues="@array/pref_data_sync_image_cache_values"
-        android:key="lv_cacheImagesOffline"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_CacheImagesOffline" />
+        <!--
+        <ListPreference
+            android:defaultValue="100"
+            android:entries="@array/pref_data_sync_max_items"
+            android:entryValues="@array/pref_data_sync_max_items_values"
+            android:key="sync_max_items"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_data_sync_max_items" />
+        -->
 
-    <!--
-    <SwitchPreference
-        android:key="cb_cacheImagesOffline"
-        android:title="@string/pref_title_CacheImagesOffline" />
-    -->
-    
-    <ListPreference
-        android:defaultValue="500"
-        android:entries="@array/pref_data_sync_max_cache_size"
-        android:entryValues="@array/pref_data_sync_max_cache_size_values"
-        android:key="sp_max_cache_size"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_Max_Cache_Size" />
-    
-</PreferenceScreen>
+        <EditTextPreference
+            android:key="edt_clearCache"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:title="@string/pref_title_clearCache"
+            app:iconSpaceReserved="false"/>
+
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_data_sync_image_cache"
+            android:entryValues="@array/pref_data_sync_image_cache_values"
+            android:key="lv_cacheImagesOffline"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_CacheImagesOffline"
+            app:iconSpaceReserved="false"/>
+
+        <!--
+        <SwitchPreference
+            android:key="cb_cacheImagesOffline"
+            android:title="@string/pref_title_CacheImagesOffline" />
+        -->
+
+        <ListPreference
+            android:defaultValue="500"
+            android:entries="@array/pref_data_sync_max_cache_size"
+            android:entryValues="@array/pref_data_sync_max_cache_size_values"
+            android:key="sp_max_cache_size"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_Max_Cache_Size"
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

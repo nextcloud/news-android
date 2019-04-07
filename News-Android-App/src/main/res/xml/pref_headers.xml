@@ -1,37 +1,50 @@
-<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- These settings headers are only used on tablets. -->
 
-    <header
+    <Preference
+        android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$EmptyPreferenceFragment"
+        android:title=""
+        app:iconSpaceReserved="false"/>
+
+    <Preference
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$GeneralPreferenceFragment"
-        android:title="@string/pref_header_general" />
+        android:title="@string/pref_header_general"
+        app:iconSpaceReserved="false"/>
 
-    <header
+    <Preference
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$DisplayPreferenceFragment"
-        android:title="@string/pref_header_display" />
+        android:title="@string/pref_header_display"
+        app:iconSpaceReserved="false"/>
 
-    <header
+    <Preference
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$NotificationPreferenceFragment"
-        android:title="@string/pref_header_notifications" />
+        android:title="@string/pref_header_notifications"
+        app:iconSpaceReserved="false"/>
 
-    <header
+    <Preference
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$DataSyncPreferenceFragment"
-        android:title="@string/pref_header_data_sync" />
+        android:title="@string/pref_header_data_sync"
+        app:iconSpaceReserved="false"/>
 
-    <header
+    <Preference
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$AboutPreferenceFragment"
-        android:title="@string/pref_header_about" />
+        android:title="@string/pref_header_about"
+        app:iconSpaceReserved="false"/>
 
 
     <!--
-    <header
+    <Preference
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$PodcastPreferenceFragment"
-        android:title="@string/pref_header_podcast" />
+        android:title="@string/pref_header_podcast"
+        app:iconSpaceReserved="false"/>
     -->
 
     <!--
-    <header
+    <Preference
         android:fragment="de.luhmer.owncloudnewsreader.SettingsActivity$DataSyncPreferenceFragment"
-        android:title="@string/pref_header_data_sync" />
+        android:title="@string/pref_header_data_sync"
+        app:iconSpaceReserved="false"/>
 -->
-</preference-headers>
+</androidx.preference.PreferenceScreen>

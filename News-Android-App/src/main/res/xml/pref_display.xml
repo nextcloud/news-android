@@ -1,62 +1,76 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--
-         NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it.
-    -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-    
-    <ListPreference
-        android:defaultValue="0"
-        android:entries="@array/pref_display_apptheme"
-        android:entryValues="@array/pref_display_apptheme_values"
-        android:key="sp_app_theme"
-        android:title="@string/pref_title_app_theme" />
+    <PreferenceCategory
+        app:title="@string/pref_header_display"
+        app:iconSpaceReserved="false">
 
-    <SwitchPreference
-        android:key="cb_oled_mode"
-        android:title="@string/pref_oled_mode"
-        android:summary="@string/pref_oled_mode_summary"
-        android:defaultValue="false" />
+        <!--
+             NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+             dismiss it.
+        -->
+        <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
 
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_display_apptheme"
+            android:entryValues="@array/pref_display_apptheme_values"
+            android:key="sp_app_theme"
+            android:title="@string/pref_title_app_theme"
+            app:iconSpaceReserved="false"/>
 
-    <ListPreference
-        android:defaultValue="0"
-        android:entries="@array/pref_display_feed_list_layout"
-        android:entryValues="@array/pref_display_feed_list_layout_values"
-        android:key="sp_feed_list_layout"
-        android:title="@string/pref_title_feed_list_layout" />
-
-
-    <ListPreference
-        android:defaultValue="1.0"
-        android:entries="@array/pref_display_font_size"
-        android:entryValues="@array/pref_display_font_size_values"
-        android:key="sp_font_size"
-        android:title="@string/pref_title_font_size" />
+        <SwitchPreference
+            android:key="cb_oled_mode"
+            android:title="@string/pref_oled_mode"
+            android:summary="@string/pref_oled_mode_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false"/>
 
 
-    <ListPreference
-        android:defaultValue="0"
-        android:entries="@array/pref_display_browser"
-        android:entryValues="@array/pref_display_browser_values"
-        android:key="sp_display_browser"
-        android:title="@string/pref_display_browser" />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_display_feed_list_layout"
+            android:entryValues="@array/pref_display_feed_list_layout_values"
+            android:key="sp_feed_list_layout"
+            android:title="@string/pref_title_feed_list_layout"
+            app:iconSpaceReserved="false"/>
 
-    <MultiSelectListPreference
-        android:entries="@array/pref_display_news_detail_actionbar_icons"
-        android:entryValues="@array/pref_display_news_detail_actionbar_icons_values"
-        android:key="sp_news_detail_actionbar_icons"
-        android:defaultValue="@array/pref_display_news_detail_actionbar_icons_default_values"
-        android:title="@string/pref_display_news_detail_actionbar_icons_title" />
-    
-    <!--
-         This preference simply launches an intent when selected. Use this UI sparingly, per
-         design guidelines.
-    -->
-    <!--
-    <Preference android:title="@string/pref_title_system_sync_settings" >
-        <intent android:action="android.settings.SYNC_SETTINGS" />
-    </Preference>
-    -->
-</PreferenceScreen>
+
+        <ListPreference
+            android:defaultValue="1.0"
+            android:entries="@array/pref_display_font_size"
+            android:entryValues="@array/pref_display_font_size_values"
+            android:key="sp_font_size"
+            android:title="@string/pref_title_font_size"
+            app:iconSpaceReserved="false"/>
+
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_display_browser"
+            android:entryValues="@array/pref_display_browser_values"
+            android:key="sp_display_browser"
+            android:title="@string/pref_display_browser"
+            app:iconSpaceReserved="false"/>
+
+        <MultiSelectListPreference
+            android:entries="@array/pref_display_news_detail_actionbar_icons"
+            android:entryValues="@array/pref_display_news_detail_actionbar_icons_values"
+            android:key="sp_news_detail_actionbar_icons"
+            android:defaultValue="@array/pref_display_news_detail_actionbar_icons_default_values"
+            android:title="@string/pref_display_news_detail_actionbar_icons_title"
+            app:iconSpaceReserved="false"/>
+
+        <!--
+             This preference simply launches an intent when selected. Use this UI sparingly, per
+             design guidelines.
+        -->
+        <!--
+        <Preference android:title="@string/pref_title_system_sync_settings" >
+            <intent android:action="android.settings.SYNC_SETTINGS" />
+        </Preference>
+        -->
+
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

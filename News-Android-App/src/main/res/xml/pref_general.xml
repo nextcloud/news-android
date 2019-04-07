@@ -1,107 +1,122 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="example_checkbox"
-        android:summary="@string/pref_description_social_recommendations"
-        android:title="@string/pref_title_social_recommendations" />
-	-->
-    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
-    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
-    
-    <!-- 
-    <de.luhmer.owncloudnewsreader.preference.SigninPreference
-        android:key="sPref_signInDialog"
-		android:title="Sign In" />
+    <PreferenceCategory
+        app:title="@string/pref_header_general"
+        app:iconSpaceReserved="false">
+
+        <!--
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="example_checkbox"
+            android:summary="@string/pref_description_social_recommendations"
+            android:title="@string/pref_title_social_recommendations" />
+        -->
+        <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+        <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+
+        <!--
+        <de.luhmer.owncloudnewsreader.preference.SigninPreference
+            android:key="sPref_signInDialog"
+            android:title="Sign In" />
+        -->
+
+        <!--
+        <EditTextPreference
+            android:key="edt_username"
+            android:capitalize="words"
+            android:defaultValue="@string/pref_default_username"
+            android:inputType="text"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_title_username" />
+
+        <EditTextPreference
+            android:key="edt_password"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_title_password"
+            android:inputType="textPassword" />
+
+
+        <EditTextPreference
+            android:key="edt_owncloudRootPath"
+            android:defaultValue="@string/pref_default_owncloudRootPath"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_title_owncloudRootPath"
+            android:inputType="textUri" />
+
+        -->
+
+        <!--
+        <SwitchPreference
+            android:key="cb_AllowAllSSLCertificates"
+            android:title="@string/pref_title_AllowAllSSLCertificates" />
+
+        -->
+
+        <SwitchPreference
+            android:key="cb_AutoSyncOnStart"
+            android:title="@string/pref_title_AutoSyncOnStart"
+            app:iconSpaceReserved="false"/>
+
+        <SwitchPreference
+            android:key="cb_ShowOnlyUnread"
+            android:title="@string/pref_title_ShowOnlyUnread"
+            app:iconSpaceReserved="false"/>
+
+        <SwitchPreference
+            android:key="cb_NavigateWithVolumeButtons"
+            android:title="@string/pref_title_NavigateWithVolumeButtons"
+            app:iconSpaceReserved="false"/>
+
+        <SwitchPreference
+            android:key="cb_MarkAsReadWhileScrolling"
+            android:title="@string/pref_title_MarkAsReadWhileScrolling"
+            app:iconSpaceReserved="false"/>
+
+        <SwitchPreference
+            android:key="cb_openInBrowserDirectly"
+            android:title="@string/pref_title_OpenInBrowserDirectly"
+            app:iconSpaceReserved="false"/>
+
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_general_sort_order"
+            android:entryValues="@array/pref_general_sort_order_values_not_translated"
+            android:key="sp_sort_order"
+            android:title="@string/pref_title_general_sort_order"
+            app:iconSpaceReserved="false"/>
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pref_general_search_in"
+            android:entryValues="@array/pref_general_search_in_values"
+            android:key="sp_search_in"
+            android:title="@string/pref_title_general_search_in"
+            app:iconSpaceReserved="false"/>
+
+        <!--
+             NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+             dismiss it.
+        -->
+        <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+        <!--
+        <ListPreference
+            android:defaultValue="-1"
+            android:entries="@array/pref_example_list_titles"
+            android:entryValues="@array/pref_example_list_values"
+            android:key="example_list"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_add_friends_to_messages" />
     -->
-    
-    <!-- 
-    <EditTextPreference
-        android:key="edt_username"
-        android:capitalize="words"
-        android:defaultValue="@string/pref_default_username"
-        android:inputType="text"        
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/pref_title_username" />
-    
-    <EditTextPreference
-        android:key="edt_password"                
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/pref_title_password"
-        android:inputType="textPassword" />
-    
-    
-    <EditTextPreference
-        android:key="edt_owncloudRootPath"
-        android:defaultValue="@string/pref_default_owncloudRootPath"               
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/pref_title_owncloudRootPath"
-        android:inputType="textUri" />
 
-    -->
-    
-    <!-- 
-    <SwitchPreference
-        android:key="cb_AllowAllSSLCertificates"
-        android:title="@string/pref_title_AllowAllSSLCertificates" />
+    </PreferenceCategory>
 
-    -->
-    
-    <SwitchPreference
-        android:key="cb_AutoSyncOnStart"
-        android:title="@string/pref_title_AutoSyncOnStart" />
-    
-    <SwitchPreference
-        android:key="cb_ShowOnlyUnread"
-        android:title="@string/pref_title_ShowOnlyUnread" />
-    
-    <SwitchPreference
-        android:key="cb_NavigateWithVolumeButtons"
-        android:title="@string/pref_title_NavigateWithVolumeButtons" />
-    
-    <SwitchPreference
-        android:key="cb_MarkAsReadWhileScrolling"
-        android:title="@string/pref_title_MarkAsReadWhileScrolling" />
-
-    <SwitchPreference
-        android:key="cb_openInBrowserDirectly"
-        android:title="@string/pref_title_OpenInBrowserDirectly" />
-
-
-    <ListPreference
-        android:defaultValue="1"
-        android:entries="@array/pref_general_sort_order"
-        android:entryValues="@array/pref_general_sort_order_values_not_translated"
-        android:key="sp_sort_order"
-        android:title="@string/pref_title_general_sort_order" />
-
-    <ListPreference
-        android:defaultValue="0"
-        android:entries="@array/pref_general_search_in"
-        android:entryValues="@array/pref_general_search_in_values"
-        android:key="sp_search_in"
-        android:title="@string/pref_title_general_search_in" />
-
-    <!--
-         NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it.
-    -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-    <!-- 
-    <ListPreference
-        android:defaultValue="-1"
-        android:entries="@array/pref_example_list_titles"
-        android:entryValues="@array/pref_example_list_values"
-        android:key="example_list"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_add_friends_to_messages" />
--->
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>
