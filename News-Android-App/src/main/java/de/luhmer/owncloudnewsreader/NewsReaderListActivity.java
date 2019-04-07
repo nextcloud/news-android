@@ -266,9 +266,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         if (tabletSize) {
             showTapLogoToSyncShowcaseView();
         }
-
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivityForResult(intent, RESULT_SETTINGS);
     }
 
     /* (non-Javadoc)
