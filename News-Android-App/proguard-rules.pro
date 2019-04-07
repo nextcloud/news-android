@@ -161,8 +161,13 @@
 -keep class org.conscrypt.Conscrypt { *; }
 
 
+# Required for unit tests
 
 # https://stackoverflow.com/a/39777485
 # Also, note that this rule should be added to the regular proguard file(the one of listed in proguardFiles) and not the test one(declared as testProguardFile)
 # java.lang.NoSuchMethodError: No virtual method getParameter
 -keepclasseswithmembers public class com.nextcloud.android.sso.aidl.NextcloudRequest { *; }
+-keepclasseswithmembers public class com.nextcloud.android.sso.AccountImporter { *; }
+
+# NewsReaderListActivityTests
+-keepclasseswithmembers public class androidx.recyclerview.widget.RecyclerView { *; }

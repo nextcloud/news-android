@@ -1,28 +1,30 @@
 package de.luhmer.owncloudnewsreader.di;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.nextcloud.android.sso.AccountImporter;
-import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import java.io.IOException;
 
-import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
+import javax.inject.Named;
 
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import dagger.Provides;
+import de.luhmer.owncloudnewsreader.MockSharedPreference;
+import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.model.UserInfo;
+import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 
 public class TestApiModule extends ApiModule {
 
     private Application application;
+
+    public static String DUMMY_ACCOUNT_AccountName = "test-account";
+    public static String DUMMY_ACCOUNT_username = "david";
+    public static String DUMMY_ACCOUNT_token = "abc";
+    public static String DUMMY_ACCOUNT_server_url = "http://nextcloud.com/";
 
     public TestApiModule(Application application) {
         super(application);
@@ -31,41 +33,50 @@ public class TestApiModule extends ApiModule {
 
     @Override
     public SharedPreferences providesSharedPreferences() {
-        SharedPreferences sharedPrefs = mock(SharedPreferences.class);
-        final Context context = mock(Context.class);
-        when(context.getSharedPreferences(anyString(), anyInt())).thenReturn(sharedPrefs);
+        // Create dummy account
+        String prefKey = "PREF_ACCOUNT_STRING" + DUMMY_ACCOUNT_AccountName;
+        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(DUMMY_ACCOUNT_AccountName, DUMMY_ACCOUNT_username, DUMMY_ACCOUNT_token, DUMMY_ACCOUNT_server_url);
+
+        UserInfo userInfo = new UserInfo.Builder()
+                .setUserId("1")
+                .setDisplayName(DUMMY_ACCOUNT_username)
+                .setAvatar(null)
+                .build();
+
+
+
+        SharedPreferences sharedPrefs = new MockSharedPreference();
 
         // Turn on Single-Sign-On
-        when(sharedPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false)).thenReturn(true);
+        sharedPrefs.edit().putBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, true).commit();
 
-        // Set cache size
-        when(sharedPrefs.getString(eq(SettingsActivity.SP_MAX_CACHE_SIZE), any())).thenReturn("500");
+        // Set mock preferences for AccountImporter
+        AccountImporter.setSharedPreferences(sharedPrefs);
 
 
-        // Add dummy account
-        String accountName = "test-account";
-        String username = "david";
-        String token = "abc";
-        String server_url = "http://nextcloud.com/";
-
-        String prefKey = "PREF_ACCOUNT_STRING" + accountName;
-        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(accountName, username, token, server_url);
-
+        // Return mock login data when requesting the account
         try {
-            AccountImporter.getSharedPreferences(application).edit().putString(prefKey, SingleSignOnAccount.toString(ssoAccount)).commit();
+            sharedPrefs.edit().putString(prefKey, SingleSignOnAccount.toString(ssoAccount)).commit();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new Error(e);
         }
 
-        //try {
-        //    when(sharedPrefs.getString(eq(prefKey), any())).thenReturn(SingleSignOnAccount.toString(ssoAccount));
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //}
-
-        SingleAccountHelper.setCurrentAccount(application, accountName);
+        // For userinfo in main activity
+        sharedPrefs.edit().putString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, DUMMY_ACCOUNT_server_url).commit();
+        sharedPrefs.edit().putString(SettingsActivity.EDT_USERNAME_STRING, DUMMY_ACCOUNT_username).commit();
+        sharedPrefs.edit().putString("PREF_CURRENT_ACCOUNT_STRING", DUMMY_ACCOUNT_AccountName).commit();
+        try {
+            sharedPrefs.edit().putString("USER_INFO", NewsReaderListFragment.toString(userInfo)).commit();
+        } catch (IOException e) {
+            throw new Error(e);
+        }
 
         return sharedPrefs;
+    }
+
+   @Override
+    public String providesSharedPreferencesFileName() {
+        return application.getPackageName() + "_preferences_test";
     }
 
     @Override

@@ -32,8 +32,7 @@ public class DatabaseHelperOrm {
 
     private volatile static DaoSession daoSession;
 
-    public static DaoSession getDaoSession(Context context)
-    {
+    public static DaoSession getDaoSession(Context context) {
         if(daoSession == null) {
             synchronized (DatabaseHelperOrm.class) {
                 if(daoSession == null) {

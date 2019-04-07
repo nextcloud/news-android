@@ -2,10 +2,8 @@ package de.luhmer.owncloudnewsreader.tests;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.Preference;
-import android.preference.PreferenceManager;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -16,16 +14,18 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import javax.inject.Inject;
+
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.TestApplication;
+import de.luhmer.owncloudnewsreader.di.TestComponent;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
-import static android.preference.PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES;
-import static androidx.test.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
@@ -36,19 +36,13 @@ import static androidx.test.espresso.matcher.PreferenceMatchers.withSummary;
 import static androidx.test.espresso.matcher.PreferenceMatchers.withTitle;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_APP_THEME;
-import static helper.CustomMatchers.withBackgroundColor;
 import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 @RunWith(AndroidJUnit4.class)
@@ -56,36 +50,24 @@ import static org.junit.Assert.fail;
 public class NightModeTest {
 
     /**
-     * NOTE: These tests only works during "daylight".. (this is because there is no way to check
+     * NOTE: These tests only work during "daylight".. (this is because there is no way to check
      * the current state of the android day/night mode)
      */
 
     @Rule
-    public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class, true, false);
+    public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class);
+    //public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class, true, false);
 
     private Activity getActivity() {
         return mActivityRule.getActivity();
     }
 
+    protected @Inject SharedPreferences mPrefs;
+
     @Before
     public void resetSharedPrefs() {
-        Context context = getInstrumentation().getTargetContext();
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-        // Reset SharedPrefs
-        // https://developer.android.com/guide/topics/ui/settings#Defaults
-        mPrefs.edit()
-                .remove(CB_OLED_MODE)
-                .remove(SP_APP_THEME)
-                .commit();
-
-        assertThat(mPrefs.contains(SP_APP_THEME), equalTo(false));
-        assertThat(mPrefs.contains(CB_OLED_MODE), equalTo(false));
-
-
-        SharedPreferences defaultValueSp = context.getSharedPreferences(KEY_HAS_SET_DEFAULT_VALUES, Context.MODE_PRIVATE);
-        defaultValueSp.edit().putBoolean(KEY_HAS_SET_DEFAULT_VALUES, false).commit();
-
+        TestComponent ac = (TestComponent) ((TestApplication)(getActivity().getApplication())).getAppComponent();
+        ac.inject(this);
 
         /*
         // Set Fixed time
@@ -99,17 +81,13 @@ public class NightModeTest {
 
 
     @Test
-    public void testBackgroundDaylightTheme() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        launchActivity();
-
+    public void testBackgroundDaylightTheme() {
         assertFalse(isDarkTheme());
-        onView(withId(R.id.sliding_layout)).check(matches(withBackgroundColor(android.R.color.white, getActivity())));
+        //onView(withId(R.id.sliding_layout)).check(matches(withBackgroundColor(android.R.color.white, getActivity())));
     }
 
     @Test
     public void testOledAutoMode() {
-        launchActivity();
-
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         openSettings();
         changeAppTheme(R.string.pref_display_apptheme_auto);
@@ -126,8 +104,6 @@ public class NightModeTest {
 
     @Test
     public void testLightTheme() {
-        launchActivity();
-
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         openSettings();
 
@@ -143,8 +119,6 @@ public class NightModeTest {
 
     @Test
     public void testDarkTheme() {
-        launchActivity();
-
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         openSettings();
 
@@ -152,16 +126,14 @@ public class NightModeTest {
         navigateUp();
         sleep();
         boolean isDarkTheme = isDarkTheme();
-        assertThat(ThemeChooser.getInstance(getActivity()).isOledMode(getActivity(), false), equalTo(false));
-        assertThat(isDarkTheme, equalTo(true));
+        assertFalse(ThemeChooser.getInstance(getActivity()).isOledMode(getActivity(), false));
+        assertTrue(isDarkTheme);
         assertEquals(ThemeChooser.THEME.DARK, getPrivateField("mSelectedTheme"));
         //sleep();
     }
 
     @Test
     public void testDarkOledTheme() {
-        launchActivity();
-
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         openSettings();
 
@@ -216,26 +188,6 @@ public class NightModeTest {
                 .onChildView(withText(title))
                 .check(matches(isCompletelyDisplayed()))
                 .perform(click());
-    }
-
-
-
-
-    private void launchActivity() {
-        mActivityRule.launchActivity(new Intent());
-
-        /*
-        NewsReaderApplication nra = (NewsReaderApplication) getActivity().getApplication();
-        AppComponent appComponent = DaggerAppComponent.builder()
-                .apiModule(new TestApiModule(nra))
-                .build();
-        nra.setAppComponent(appComponent);
-        */
-
-        sleep();
-
-        //assertFalse(ThemeChooser.getInstance(getActivity()).isDarkTheme(getActivity()));
-        //assertFalse(ThemeChooser.getInstance(getActivity()).isOledMode(getActivity(), true));
     }
 
     private boolean isDarkTheme() {
