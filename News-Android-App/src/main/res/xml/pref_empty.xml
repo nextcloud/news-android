@@ -1,3 +1,0 @@
-<androidx.preference.PreferenceScreen>
-    <!-- This layout definition is EMPTY ON PURPOSE, it's needed to initialise a settings screen to add a first-section header to -->
-</androidx.preference.PreferenceScreen>

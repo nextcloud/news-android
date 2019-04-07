@@ -51,9 +51,11 @@ public class ImageHandler {
 	    return links;
 	}
 
-	public static void clearCache()
-	{
-        ImageLoader.getInstance().clearDiskCache();
-        ImageLoader.getInstance().clearMemoryCache();
-	}
+    public static void clearCache()
+    {
+        if(ImageLoader.getInstance().isInited()) {
+            ImageLoader.getInstance().clearDiskCache();
+            ImageLoader.getInstance().clearMemoryCache();
+        }
+    }
 }

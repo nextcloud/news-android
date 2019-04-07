@@ -11,13 +11,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ResultReceiver;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.SurfaceView;
@@ -39,6 +35,10 @@ import java.lang.reflect.Proxy;
 
 import javax.inject.Inject;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
@@ -104,11 +104,11 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+
         ThemeChooser.getInstance(this).chooseTheme(this);
         super.onCreate(savedInstanceState);
         ThemeChooser.getInstance(this).afterOnCreate(this);
-        
-        ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
         if (mApi.getAPI() instanceof Proxy) { // Single Sign On
             VersionCheckHelper.verifyMinVersion(this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE);

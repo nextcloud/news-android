@@ -36,14 +36,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -74,6 +66,16 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.customview.widget.ViewDragHelper;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
@@ -81,6 +83,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -158,21 +161,25 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     private static final String LIST_ADAPTER_TOTAL_COUNT = "LIST_ADAPTER_TOTAL_COUNT";
     private static final String LIST_ADAPTER_PAGE_COUNT = "LIST_ADAPTER_PAGE_COUNT";
 
+    @Inject @Named("sharedPreferencesFileName") String sharedPreferencesFileName;
+
 
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+
         SharedPreferences defaultValueSp = getSharedPreferences(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, Context.MODE_PRIVATE);
         if(!defaultValueSp.getBoolean(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, false)) {
-            PreferenceManager.setDefaultValues(this, R.xml.pref_data_sync, true);
-            PreferenceManager.setDefaultValues(this, R.xml.pref_display, true);
-            PreferenceManager.setDefaultValues(this, R.xml.pref_general, true);
-            PreferenceManager.setDefaultValues(this, R.xml.pref_notification, true);
+            PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_data_sync, true);
+            PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_display, true);
+            PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_general, true);
+            PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_notification, true);
         }
 
         super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_newsreader);
+        setContentView(R.layout.activity_newsreader);
 
-		ButterKnife.bind(this);
+        ButterKnife.bind(this);
 
 		if (toolbar != null) {
 			setSupportActionBar(toolbar);
@@ -259,6 +266,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         if (tabletSize) {
             showTapLogoToSyncShowcaseView();
         }
+
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivityForResult(intent, RESULT_SETTINGS);
     }
 
     /* (non-Javadoc)

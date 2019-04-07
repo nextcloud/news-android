@@ -273,6 +273,8 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 .show();
     }
 
+    private static final String USER_INFO_STRING = "USER_INFO";
+
     public void startAsyncTaskGetUserInfo() {
         mApi.getAPI().user()
                 .subscribeOn(Schedulers.newThread())
@@ -288,7 +290,9 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                         Log.d(TAG, "onNext() called with: userInfo = [" + userInfo + "]");
 
                         try {
-                            mPrefs.edit().putString("USER_INFO", NewsReaderListFragment.toString(userInfo)).apply();
+                            String userInfoAsString = NewsReaderListFragment.toString(userInfo);
+                            //Log.v(TAG, userInfoAsString);
+                            mPrefs.edit().putString(USER_INFO_STRING, userInfoAsString).apply();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -299,7 +303,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                         Log.e(TAG, "onError() called with:", e);
 
                         if("Method Not Allowed".equals(e.getMessage())) { //Remove if old version is used
-                            mPrefs.edit().remove("USER_INFO").apply();
+                            mPrefs.edit().remove(USER_INFO_STRING).apply();
                         }
 
                         bindUserInfoToUI();
@@ -313,11 +317,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     }
 
 
-    protected void bindUserInfoToUI() {
-        bindUserInfoToUI(false);
-    }
-
-    public void bindUserInfoToUI(boolean testMode) {
+    public void bindUserInfoToUI() {
         if(getActivity() == null) { // e.g. Activity is closed
             return;
         }
@@ -334,11 +334,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         userTextView.setText(mUsername);
         urlTextView.setText(mOc_root_path);
 
-        if(testMode) { //Hide real url in test mode
-            urlTextView.setText("example.com/ownCloud");
-        }
-
-        String uInfo = mPrefs.getString("USER_INFO", null);
+        String uInfo = mPrefs.getString(USER_INFO_STRING, null);
         if(uInfo == null)
             return;
 

@@ -43,10 +43,8 @@
             android:title="@string/pref_title_data_sync_max_items" />
         -->
 
-        <EditTextPreference
+        <Preference
             android:key="edt_clearCache"
-            android:maxLines="1"
-            android:singleLine="true"
             android:title="@string/pref_title_clearCache"
             app:iconSpaceReserved="false"/>
 

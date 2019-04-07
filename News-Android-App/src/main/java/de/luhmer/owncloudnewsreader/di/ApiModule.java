@@ -1,14 +1,14 @@
 package de.luhmer.owncloudnewsreader.di;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import androidx.annotation.VisibleForTesting;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -34,10 +34,18 @@ public class ApiModule {
     // Dagger will only look for methods annotated with @Provides
     @Provides
     @Singleton
-    @VisibleForTesting
     // Application reference must come from AppModule.class
-    public SharedPreferences providesSharedPreferences() {
-        return PreferenceManager.getDefaultSharedPreferences(mApplication);
+    SharedPreferences providesSharedPreferences() {
+        //return PreferenceManager.getDefaultSharedPreferences(mApplication);
+        return mApplication.getSharedPreferences(providesSharedPreferencesFileName(), Context.MODE_PRIVATE);
+    }
+
+    // Dagger will only look for methods annotated with @Provides
+    @Provides
+    @Named("sharedPreferencesFileName")
+    public String providesSharedPreferencesFileName() {
+        //return PreferenceManager.getDefaultSharedPreferencesName(mApplication);
+        return mApplication.getPackageName() + "_preferences";
     }
 
     /*
