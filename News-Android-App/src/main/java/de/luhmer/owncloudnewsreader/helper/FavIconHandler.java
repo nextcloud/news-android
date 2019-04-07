@@ -23,8 +23,6 @@ package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import androidx.core.content.ContextCompat;
-import androidx.palette.graphics.Palette;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,6 +32,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import androidx.core.content.ContextCompat;
+import androidx.palette.graphics.Palette;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -46,7 +46,7 @@ public class FavIconHandler {
 
     public FavIconHandler(Context context) {
         this.context = context;
-        int placeHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon(context);
+        int placeHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon();
         displayImageOptions = new DisplayImageOptions.Builder()
                 .showImageOnLoading(placeHolder)
                 .showImageForEmptyUri(placeHolder)
@@ -73,9 +73,9 @@ public class FavIconHandler {
         imgView.setTranslationY(offset);
     }
 
-    private static int getResourceIdForRightDefaultFeedIcon(Context context)
+    private static int getResourceIdForRightDefaultFeedIcon()
 	{
-		if(ThemeChooser.getInstance(context).getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
+		if(ThemeChooser.getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
             return R.drawable.default_feed_icon_dark;
         } else {
             return R.drawable.default_feed_icon_light;

@@ -28,8 +28,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -55,6 +53,11 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
+
+import androidx.annotation.Nullable;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -80,6 +83,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     protected @BindView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
     protected @BindView(R.id.tv_offline_version) TextView mTvOfflineVersion;
 
+    protected @Inject SharedPreferences mPrefs;
+
     private int section_number;
     protected String html;
     boolean changedUrl = false;
@@ -91,6 +96,12 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
     public int getSectionNumber() {
         return section_number;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
     }
 
     @Override
@@ -178,7 +189,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         init_webView();
         RssItem rssItem = ndActivity.rssItems.get(section_number);
-        RssItemToHtmlTask task = new RssItemToHtmlTask(ndActivity, rssItem, this);
+        RssItemToHtmlTask task = new RssItemToHtmlTask(ndActivity, rssItem, this, mPrefs);
         AsyncTaskHelper.StartAsyncTask(task);
     }
 

@@ -40,7 +40,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,8 +109,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
     }
 
-    public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnectionOrm dbConn, ListView listView)
-    {
+    public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnectionOrm dbConn, ListView listView) {
         favIconHandler = new FavIconHandler(mContext);
 
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -362,7 +360,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
     private int getBtn_rating_star_off_normal_holo_light() {
         if(btn_rating_star_off_normal_holo_light == null) {
-            if(ThemeChooser.getInstance(mContext).getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
+            if(ThemeChooser.getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
                 btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_light;
             } else {
                 btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_dark;

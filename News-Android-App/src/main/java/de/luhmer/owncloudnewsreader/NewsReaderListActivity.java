@@ -267,8 +267,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             showTapLogoToSyncShowcaseView();
         }
 
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivityForResult(intent, RESULT_SETTINGS);
+        // For testing (start Settings immediately)
+        //Intent intent = new Intent(this, SettingsActivity.class);
+        //startActivityForResult(intent, RESULT_SETTINGS);
     }
 
     /* (non-Javadoc)
@@ -997,7 +998,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         String oldListLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
         String newListLayout = mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
 
-        if (ThemeChooser.getInstance(NewsReaderListActivity.this).themeRequiresRestartOfUI(NewsReaderListActivity.this) || !newListLayout.equals(oldListLayout)) {
+        if (ThemeChooser.themeRequiresRestartOfUI() || !newListLayout.equals(oldListLayout)) {
             NewsReaderListActivity.this.recreate();
         } else if (data.hasExtra(SettingsActivity.CACHE_CLEARED)) {
             resetUiAndStartSync();

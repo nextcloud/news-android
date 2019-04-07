@@ -179,7 +179,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             }
             View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
-            final ViewHolder holder = new ViewHolder(view);
+            final ViewHolder holder = new ViewHolder(view, mPrefs);
 
             holder.starImageView.setOnClickListener(new View.OnClickListener() {
                 @Override

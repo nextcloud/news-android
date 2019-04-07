@@ -8,9 +8,6 @@ import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import java.io.IOException;
 
-import javax.inject.Named;
-
-import dagger.Provides;
 import de.luhmer.owncloudnewsreader.MockSharedPreference;
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
 import de.luhmer.owncloudnewsreader.SettingsActivity;

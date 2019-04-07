@@ -25,41 +25,32 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatDelegate;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 
 public class ThemeChooser {
 
     private static final String TAG = ThemeChooser.class.getCanonicalName();
-    private static ThemeChooser mInstance;
+
+    public enum THEME { LIGHT, DARK, OLED }
+
 
     // Contains the selected theme defined in the settings (used for checking whether the app needs
     // to restart after changing the theme
-    private Integer mSelectedThemeFromPreferences;
-    private Boolean mOledMode;
+    private static Integer mSelectedThemeFromPreferences;
+    private static Boolean mOledMode;
+    private static SharedPreferences mPrefs;
 
     // Contains the current selected theme
-    public enum THEME { LIGHT, DARK, OLED }
-    private THEME mSelectedTheme = THEME.LIGHT;
+    private static THEME mSelectedTheme = THEME.LIGHT;
 
-    public static ThemeChooser getInstance(Context context) {
-        if(mInstance == null) {
-            mInstance = new ThemeChooser(context);
-        }
-        return mInstance;
-    }
+    private ThemeChooser() { }
 
-    private ThemeChooser(Context context) {
-        getSelectedThemeFromPreferences(context, false); // Init cache
-        isOledMode(context, false); // Init cache
-    }
-
-    public void chooseTheme(Activity act) {
-        switch(getInstance(act).getSelectedThemeFromPreferences(act, false)) {
+    public static void chooseTheme(Activity act) {
+        switch(getSelectedThemeFromPreferences(false)) {
             case 0: // Auto (Light / Dark)
                 Log.v(TAG, "Auto (Light / Dark)");
                 act.setTheme(R.style.AppTheme);
@@ -88,13 +79,13 @@ public class ThemeChooser {
         }
     }
 
-    public void afterOnCreate(Activity act) {
+    public static void afterOnCreate(Activity act) {
         //int uiNightMode = Configuration.UI_MODE_NIGHT_NO;
 
         if(isDarkTheme(act)) {
             mSelectedTheme = THEME.DARK; // this is required for auto mode at night
 
-            if (isOledMode(act, false) && isDarkTheme(act)) {
+            if (isOledMode(false) && isDarkTheme(act)) {
                 act.setTheme(R.style.AppThemeOLED);
                 Log.v(TAG, "activate OLED mode");
                 //uiNightMode = Configuration.UI_MODE_NIGHT_YES;
@@ -113,13 +104,13 @@ public class ThemeChooser {
     }
 
     // Check if the currently loaded theme is different from the one set in the settings, or if OLED mode changed
-    public boolean themeRequiresRestartOfUI(Context context) {
-        boolean themeChanged = !mSelectedThemeFromPreferences.equals(getSelectedThemeFromPreferences(context, true));
-        boolean oledChanged = !mOledMode.equals(isOledMode(context, true));
+    public static boolean themeRequiresRestartOfUI() {
+        boolean themeChanged = !mSelectedThemeFromPreferences.equals(getSelectedThemeFromPreferences(true));
+        boolean oledChanged = !mOledMode.equals(isOledMode(true));
         return themeChanged || oledChanged;
     }
 
-    private boolean isDarkTheme(Context context) {
+    private static boolean isDarkTheme(Context context) {
         switch(AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 Log.v(TAG, "MODE_NIGHT_YES (Dark Theme)");
@@ -142,23 +133,27 @@ public class ThemeChooser {
         }
     }
 
-    public boolean isOledMode(Context context, boolean forceReloadCache) {
+    public static boolean isOledMode(boolean forceReloadCache) {
         if(mOledMode == null || forceReloadCache) {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             mOledMode = mPrefs.getBoolean(SettingsActivity.CB_OLED_MODE, false);
         }
         return mOledMode;
     }
 
-    public THEME getSelectedTheme() {
+    public static THEME getSelectedTheme() {
         return mSelectedTheme;
     }
 
-    private int getSelectedThemeFromPreferences(Context context, boolean forceReloadCache) {
+    private static int getSelectedThemeFromPreferences(boolean forceReloadCache) {
         if(mSelectedThemeFromPreferences == null || forceReloadCache) {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             mSelectedThemeFromPreferences = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_APP_THEME, "0"));
         }
         return mSelectedThemeFromPreferences;
+    }
+
+    public static void init(SharedPreferences prefs) {
+        mPrefs = prefs;
+        getSelectedThemeFromPreferences(false); // Init cache
+        isOledMode(false); // Init cache
     }
 }

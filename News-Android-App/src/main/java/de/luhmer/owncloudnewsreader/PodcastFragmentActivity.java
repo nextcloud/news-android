@@ -106,9 +106,9 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
-        ThemeChooser.getInstance(this).chooseTheme(this);
+        ThemeChooser.chooseTheme(this);
         super.onCreate(savedInstanceState);
-        ThemeChooser.getInstance(this).afterOnCreate(this);
+        ThemeChooser.afterOnCreate(this);
 
         if (mApi.getAPI() instanceof Proxy) { // Single Sign On
             VersionCheckHelper.verifyMinVersion(this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE);

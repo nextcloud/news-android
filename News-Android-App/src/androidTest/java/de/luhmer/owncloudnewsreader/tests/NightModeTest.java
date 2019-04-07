@@ -3,7 +3,6 @@ package de.luhmer.owncloudnewsreader.tests;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.Preference;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -16,7 +15,9 @@ import java.lang.reflect.Method;
 
 import javax.inject.Inject;
 
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.InstrumentationRegistry;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -26,21 +27,15 @@ import de.luhmer.owncloudnewsreader.TestApplication;
 import de.luhmer.owncloudnewsreader.di.TestComponent;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.PreferenceMatchers.withKey;
-import static androidx.test.espresso.matcher.PreferenceMatchers.withSummary;
-import static androidx.test.espresso.matcher.PreferenceMatchers.withTitle;
-import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.core.AllOf.allOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -111,7 +106,7 @@ public class NightModeTest {
         navigateUp();
 
         boolean isDarkTheme = isDarkTheme();
-        assertFalse(ThemeChooser.getInstance(getActivity()).isOledMode(getActivity(), false));
+        assertFalse(ThemeChooser.isOledMode(false));
         assertFalse(isDarkTheme);
         assertEquals(ThemeChooser.THEME.LIGHT, getPrivateField("mSelectedTheme"));
         //sleep();
@@ -126,7 +121,7 @@ public class NightModeTest {
         navigateUp();
         sleep();
         boolean isDarkTheme = isDarkTheme();
-        assertFalse(ThemeChooser.getInstance(getActivity()).isOledMode(getActivity(), false));
+        assertFalse(ThemeChooser.isOledMode(false));
         assertTrue(isDarkTheme);
         assertEquals(ThemeChooser.THEME.DARK, getPrivateField("mSelectedTheme"));
         //sleep();
@@ -142,7 +137,7 @@ public class NightModeTest {
         navigateUp();
         sleep();
         boolean isDarkTheme = isDarkTheme();
-        assertTrue(ThemeChooser.getInstance(getActivity()).isOledMode(getActivity(), false));
+        assertTrue(ThemeChooser.isOledMode(false));
         assertTrue(isDarkTheme);
         assertEquals(ThemeChooser.THEME.OLED, getPrivateField("mSelectedTheme"));
         //sleep();
@@ -166,13 +161,10 @@ public class NightModeTest {
 
     private void changeAppTheme(int appThemeText) {
         String title = getActivity().getString(R.string.pref_title_app_theme);
-        onData(allOf(
-                is(instanceOf(Preference.class)),
-                withKey("sp_app_theme"),
-                withTitle(R.string.pref_title_app_theme)))
-                .onChildView(withText(title))
-                .check(matches(isCompletelyDisplayed()))
-                .perform(click());
+
+        onView(is(instanceOf(RecyclerView.class)))
+            .perform(RecyclerViewActions.scrollTo(hasDescendant(withText(title))))
+            .perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(title)), click()));
 
         onView(withText(getActivity().getString(appThemeText)))
                 .perform(click());
@@ -180,23 +172,17 @@ public class NightModeTest {
 
     private void switchOled() {
         String title = getActivity().getString(R.string.pref_oled_mode);
-        onData(allOf(
-                is(instanceOf(Preference.class)),
-                withKey("cb_oled_mode"),
-                withSummary(R.string.pref_oled_mode_summary),
-                withTitle(R.string.pref_oled_mode)))
-                .onChildView(withText(title))
-                .check(matches(isCompletelyDisplayed()))
-                .perform(click());
+
+        onView(is(instanceOf(RecyclerView.class)))
+                .perform(RecyclerViewActions.scrollTo(hasDescendant(withText(title))))
+                .perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(title)), click()));
     }
 
     private boolean isDarkTheme() {
-        ThemeChooser themeChooser = ThemeChooser.getInstance(getActivity());
-
         try {
             Method method = ThemeChooser.class.getDeclaredMethod("isDarkTheme", Context.class);
             method.setAccessible(true);
-            boolean isDarkTheme = (boolean) method.invoke(themeChooser, getActivity());
+            boolean isDarkTheme = (boolean) method.invoke(null, getActivity());
             return isDarkTheme;
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             fail(e.toString() + " - " + e.getMessage());
@@ -205,14 +191,12 @@ public class NightModeTest {
     }
 
     private Object getPrivateField(String fieldName) {
-        ThemeChooser themeChooser = ThemeChooser.getInstance(getActivity());
-
         try {
             Field[] fields = ThemeChooser.class.getDeclaredFields();
             for (Field field : fields) {
                 if(fieldName.equals(field.getName())) {
                     field.setAccessible(true);
-                    return field.get(themeChooser);
+                    return field.get(null);
                 }
             }
         } catch (IllegalAccessException e) {

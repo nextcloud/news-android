@@ -8,8 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import androidx.test.espresso.matcher.BoundedMatcher;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,6 +17,9 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 import org.hamcrest.TypeSafeMatcher;
+
+import androidx.core.content.ContextCompat;
+import androidx.test.espresso.matcher.BoundedMatcher;
 
 public class CustomMatchers {
     private static final String TAG = CustomMatchers.class.getCanonicalName();

@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,13 +29,15 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
     SharedPreferences mPrefs;
     PlaceholderFragment mFragment;
     String[] items_values;
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    protected @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ThemeChooser.getInstance(this).chooseTheme(this);
+        ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+
+        ThemeChooser.chooseTheme(this);
         super.onCreate(savedInstanceState);
-        ThemeChooser.getInstance(this).afterOnCreate(this);
+        ThemeChooser.afterOnCreate(this);
 
         setContentView(R.layout.activity_sync_interval_selector);
 

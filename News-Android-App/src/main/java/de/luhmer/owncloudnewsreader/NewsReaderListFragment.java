@@ -79,6 +79,15 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     protected @Inject ApiProvider mApi;
     protected @Inject SharedPreferences mPrefs;
 
+    private SubscriptionExpandableListAdapter lvAdapter;
+
+    @BindView(R.id.expandableListView) protected ExpandableListView eListView;
+    @BindView(R.id.urlTextView) protected TextView urlTextView;
+    @BindView(R.id.userTextView) protected TextView userTextView;
+    @BindView(R.id.header_view) protected ViewGroup headerView;
+    @BindView(R.id.header_logo) protected ImageView headerLogo;
+    @BindView(R.id.header_logo_progress) protected View headerLogoProgress;
+
     /**
      * The fragment's current callback object, which is notified of list item
      * clicks.
@@ -123,15 +132,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		void onChildItemLongClicked(long idFeed);
 		void onTopItemLongClicked(long idFeed, boolean isFolder);
 	}
-
-	private SubscriptionExpandableListAdapter lvAdapter;
-
-    @BindView(R.id.expandableListView) protected ExpandableListView eListView;
-	@BindView(R.id.urlTextView) protected TextView urlTextView;
-	@BindView(R.id.userTextView) protected TextView userTextView;
-	@BindView(R.id.header_view) protected ViewGroup headerView;
-	@BindView(R.id.header_logo) protected ImageView headerLogo;
-	@BindView(R.id.header_logo_progress) protected View headerLogoProgress;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
