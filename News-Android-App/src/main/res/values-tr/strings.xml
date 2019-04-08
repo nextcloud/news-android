@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Tarayıcı</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (Ayrıntı Görünümü)</string>
 
     <string name="pref_display_apptheme_auto">Açık / Koyu /Gün ışığına göre)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">parolayı görüntüle</string>
     <string name="content_desc_delete">sil</string>
     <string name="content_desc_download">indir</string>
-
 
 
     <!-- Settings for Notifications -->

@@ -116,6 +116,8 @@ repositories {
     maven { url  "https://dl.bintray.com/lukaville/maven" } //Needed for com.nbsp:library:1.02 in Material File Picker
 }
 
+final OKHTTP_VERSION = '3.12.2'
+
 dependencies {
     // core android studio module
     //compile project(':core')
@@ -132,6 +134,7 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "androidx.core:core:1.1.0-alpha05"
     implementation "androidx.appcompat:appcompat:1.1.0-alpha02"
+    implementation "androidx.preference:preference:1.0.0"
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
     implementation "com.google.android.material:material:1.1.0-alpha04"
@@ -174,8 +177,8 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
 
     implementation 'com.nbsp:library:1.02' // MaterialFilePicker
 
@@ -188,14 +191,13 @@ dependencies {
     }
     testImplementation 'com.google.dexmaker:dexmaker:1.2'
     testImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
-    testImplementation 'com.squareup.okhttp3:mockwebserver:3.14.0'
+    testImplementation "com.squareup.okhttp3:mockwebserver:${OKHTTP_VERSION}"
 
 
     androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.16"
 
-    //androidTestCompile 'com.squareup.okhttp:mockwebserver:2.5.0'
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/mockwebserver
-    //androidTestImplementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.14.0'
+    //androidTestImplementation "com.squareup.okhttp3:mockwebserver:${OKHTTP_VERSION}"
 
 
     androidTestImplementation 'tools.fastlane:screengrab:1.2.0'

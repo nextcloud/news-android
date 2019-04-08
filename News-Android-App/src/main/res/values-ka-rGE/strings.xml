@@ -129,7 +129,6 @@
     <string name="pref_display_browser">ბრაუზერი</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">მოქმედების პიქტოგრამები (დეტალების ხედი)</string>
 
     <string name="content_desc_play">დაკვრა</string>
@@ -146,7 +145,6 @@
     <string name="content_desc_show_password">პაროლის ჩვენება</string>
     <string name="content_desc_delete">წაშლა</string>
     <string name="content_desc_download">ჩამოტვირთვა</string>
-
 
 
     <!-- Settings for Notifications -->

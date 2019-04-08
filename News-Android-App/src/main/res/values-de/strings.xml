@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Browser</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Aktionssymbole (Detailansicht)</string>
 
     <string name="pref_display_apptheme_auto">Hell / Dunkel (je nach Tageszeit)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">Passwort anzeigen</string>
     <string name="content_desc_delete">löschen</string>
     <string name="content_desc_download">runterladen</string>
-
 
 
     <!-- Settings for Notifications -->

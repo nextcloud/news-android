@@ -139,7 +139,6 @@
     <string name="pref_display_browser">Shfletues</string>
 
 
-
     <string name="content_desc_play">luaje</string>
     <string name="content_desc_pause">pushoje</string>
     <string name="content_desc_rewind">mbrapsht</string>
@@ -154,7 +153,6 @@
     <string name="content_desc_show_password">shfaqe fjalëkalimin</string>
     <string name="content_desc_delete">fshi</string>
     <string name="content_desc_download">shkarkoje</string>
-
 
 
     <!-- Settings for Notifications -->

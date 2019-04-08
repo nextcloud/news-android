@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/android:api-28
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+    - checkout
+    - restore_cache:
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "News-Android-App/build.gradle" }}
+    - run:
+        name: chmod permissions
+        command: chmod +x ./gradlew
+
+    - run:
+        name: Download Dependencies
+        command: ./gradlew androidDependencies
+    - save_cache:
+        paths:
+        - ~/.gradle
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "News-Android-App/build.gradle" }}
+    - run:
+        name: Build
+        command: ./gradlew assemble
+    - store_artifacts:
+        path: News-Android-App/build/outputs/apk
+        destination: apks
+
+workflows:
+  version: 2
+  build:
+    jobs:
+    - build

@@ -150,7 +150,6 @@
     <string name="pref_display_browser">Webbläsare</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
 
     <string name="pref_display_apptheme_auto">Ljust / mörk (baserat på dagtid)</string>
@@ -187,7 +186,6 @@
     <string name="content_desc_show_password">visa lösenordet</string>
     <string name="content_desc_delete">radera</string>
     <string name="content_desc_download">ladda ned</string>
-
 
 
     <!-- Settings for Notifications -->

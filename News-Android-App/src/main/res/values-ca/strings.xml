@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Navegador</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Icones d\'acció (vista detallada)</string>
 
     <string name="pref_display_apptheme_auto">Clar / Fosc (depenent de l\'hora del dia)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">mostra la contrasenya</string>
     <string name="content_desc_delete">suprimeix</string>
     <string name="content_desc_download">baixa</string>
-
 
 
     <!-- Settings for Notifications -->

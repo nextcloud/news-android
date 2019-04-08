@@ -174,7 +174,6 @@
     <string name="pref_display_browser">דפדפן</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">סמלי פעולה (תצוגה מפורטת)</string>
 
     <string name="pref_display_apptheme_auto">בהיר / כהה (מבוסס על Daytime)</string>
@@ -216,7 +215,6 @@
     <string name="content_desc_show_password">הצגת ססמה</string>
     <string name="content_desc_delete">מחיקה</string>
     <string name="content_desc_download">הורדה</string>
-
 
 
     <!-- Settings for Notifications -->

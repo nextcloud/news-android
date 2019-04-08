@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Nettleser</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
 
     <string name="pref_display_apptheme_auto">Lys/mørk (ut fra tid på dagen)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">vis passord</string>
     <string name="content_desc_delete">slett</string>
     <string name="content_desc_download">last ned</string>
-
 
 
     <!-- Settings for Notifications -->

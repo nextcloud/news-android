@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Browser</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
 
     <string name="pref_display_apptheme_auto">Light / Dark (based on Daytime)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">show password</string>
     <string name="content_desc_delete">delete</string>
     <string name="content_desc_download">download</string>
-
 
 
     <!-- Settings for Notifications -->

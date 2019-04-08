@@ -160,7 +160,6 @@
     <string name="pref_display_browser">Naršyklė</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Veiksmų ikonos (Išsamus atvaizdavimas)</string>
 
     <string name="pref_display_apptheme_light">Šviesi</string>
@@ -187,7 +186,6 @@
     <string name="content_desc_show_password">rodyti slaptažodį</string>
     <string name="content_desc_delete">ištrinti</string>
     <string name="content_desc_download">atsisiųsti</string>
-
 
 
     <!-- Settings for Notifications -->

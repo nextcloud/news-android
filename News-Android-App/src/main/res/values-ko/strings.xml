@@ -124,7 +124,6 @@
     <string name="pref_display_browser">브라우저</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">동작 아이콘(자세히 보기)</string>
 
     <string name="content_desc_play">재생</string>
@@ -141,7 +140,6 @@
     <string name="content_desc_show_password">암호 표시</string>
     <string name="content_desc_delete">삭제</string>
     <string name="content_desc_download">다운로드</string>
-
 
 
     <!-- Settings for Notifications -->

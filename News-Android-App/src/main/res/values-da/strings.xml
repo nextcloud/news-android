@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Browser</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljeret visning)</string>
 
     <string name="pref_display_apptheme_auto">Lys / Mørk (afhængig af tid på dagen)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">Vis adgangskode</string>
     <string name="content_desc_delete">slet</string>
     <string name="content_desc_download">hent</string>
-
 
 
     <!-- Settings for Notifications -->

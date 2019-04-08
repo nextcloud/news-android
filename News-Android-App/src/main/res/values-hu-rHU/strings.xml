@@ -157,7 +157,6 @@
     <string name="pref_display_browser">Böngésző</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Akció ikonok (Részletes nézet)</string>
 
     <string name="pref_display_apptheme_light">Világos</string>
@@ -186,7 +185,6 @@
     <string name="content_desc_show_password">jelszó mutatása</string>
     <string name="content_desc_delete">törlés</string>
     <string name="content_desc_download">letöltés</string>
-
 
 
     <!-- Settings for Notifications -->

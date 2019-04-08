@@ -156,7 +156,6 @@
     <string name="pref_display_browser">Περιηγητής</string>
 
 
-
     <string name="pref_display_apptheme_light">Φωτεινό</string>
     <string name="pref_display_apptheme_dark">Σκούρο</string>
 
@@ -186,7 +185,6 @@
     <string name="content_desc_show_password">εμφάνιση συνθηματικού</string>
     <string name="content_desc_delete">διαγραφή</string>
     <string name="content_desc_download">λήψη</string>
-
 
 
     <!-- Settings for Notifications -->
