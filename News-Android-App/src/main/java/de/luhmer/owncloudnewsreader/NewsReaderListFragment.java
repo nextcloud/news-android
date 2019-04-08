@@ -155,7 +155,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
         loadOwncloudOrNextcloudBanner();
 
-        lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), eListView);
+        lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), eListView, mPrefs);
         lvAdapter.setHandlerListener(expListTextClickedListener);
 
 		eListView.setGroupIndicator(null);
@@ -201,7 +201,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	}
 
 	protected void loadOwncloudOrNextcloudBanner() {
-        if(!Constants.isNextCloud(getContext())) {
+        if(!Constants.isNextCloud(mPrefs)) {
             // Set ownCloud view
             headerView.setBackgroundResource(R.drawable.left_drawer_header_background);
         }

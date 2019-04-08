@@ -92,7 +92,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     protected @Inject SharedPreferences mPrefs;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);

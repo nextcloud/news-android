@@ -32,6 +32,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +51,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -104,6 +108,8 @@ public class NewsReaderDetailFragment extends Fragment {
     private int onResumeCount = 0;
     private RecyclerView.OnItemTouchListener itemTouchListener;
 
+    protected @Inject SharedPreferences mPrefs;
+
     protected DisposableObserver<List<RssItem>> SearchResultObserver = new DisposableObserver<List<RssItem>>() {
         @Override
         public void onNext(List<RssItem> rssItems) {
@@ -129,8 +135,8 @@ public class NewsReaderDetailFragment extends Fragment {
     public NewsReaderDetailFragment() {
     }
 
-    public static SORT_DIRECTION getSortDirection(Context context) {
-        return NewsDetailActivity.getSortDirectionFromSettings(context);
+    public static SORT_DIRECTION getSortDirection(SharedPreferences prefs) {
+        return NewsDetailActivity.getSortDirectionFromSettings(prefs);
     }
 
     /**
@@ -172,8 +178,6 @@ public class NewsReaderDetailFragment extends Fragment {
     @Override
     public void onResume() {
         Log.v(TAG, "onResume called!");
-
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         mMarkAsReadWhileScrollingEnabled = mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false);
 
@@ -256,14 +260,14 @@ public class NewsReaderDetailFragment extends Fragment {
         };
         mainHandler.post(myRunnable);
 
-        return Search.PerformSearch(getActivity(), idFolder, idFeed, searchString);
+        return Search.PerformSearch(getActivity(), idFolder, idFeed, searchString, mPrefs);
     }
 
     void loadRssItemsIntoView(List<RssItem> rssItems) {
         try {
             NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
             if (nra == null) {
-                nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity(), ((PodcastFragmentActivity) getActivity()).mPostDelayHandler);
+                nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity(), ((PodcastFragmentActivity) getActivity()).mPostDelayHandler, mPrefs);
 
                 recyclerView.setAdapter(nra);
             }
@@ -400,10 +404,13 @@ public class NewsReaderDetailFragment extends Fragment {
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(context, attrs, savedInstanceState);
+
+        ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+
         TypedArray a = context.obtainStyledAttributes(attrs, new int[]{R.attr.markasreadDrawable, R.attr.starredDrawable, R.attr.colorAccent});
         markAsReadDrawable = a.getDrawable(0);
         starredDrawable = a.getDrawable(1);
-        int color = Constants.isNextCloud(getContext()) ? R.color.nextcloudBlue : R.color.owncloudBlue;
+        int color = Constants.isNextCloud(mPrefs) ? R.color.nextcloudBlue : R.color.owncloudBlue;
         accentColor = a.getColor(2, ContextCompat.getColor(context, color));
         a.recycle();
     }
@@ -444,8 +451,7 @@ public class NewsReaderDetailFragment extends Fragment {
         @Override
         protected List<RssItem> doInBackground(Void... voids) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            SORT_DIRECTION sortDirection = getSortDirection(context);
+            SORT_DIRECTION sortDirection = getSortDirection(mPrefs);
             boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
             boolean onlyStarredItems = false;
             if (idFolder != null && idFolder == ALL_STARRED_ITEMS.getValue())

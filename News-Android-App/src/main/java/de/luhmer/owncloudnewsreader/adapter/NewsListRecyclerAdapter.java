@@ -69,10 +69,12 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private int visibleThreshold = 5;
+    private SharedPreferences mPrefs;
 
-    public NewsListRecyclerAdapter(FragmentActivity activity, RecyclerView recyclerView, IPlayPausePodcastClicked playPausePodcastClicked, PostDelayHandler postDelayHandler) {
+    public NewsListRecyclerAdapter(FragmentActivity activity, RecyclerView recyclerView, IPlayPausePodcastClicked playPausePodcastClicked, PostDelayHandler postDelayHandler, SharedPreferences prefs) {
         this.activity = activity;
         this.playPausePodcastClicked = playPausePodcastClicked;
+        this.mPrefs = prefs;
 
         pDelayHandler = postDelayHandler;
 
@@ -153,7 +155,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
             return new ProgressViewHolder(v);
         } else {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
             Integer layout = 0;
             switch (Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"))) {
                 case 0:

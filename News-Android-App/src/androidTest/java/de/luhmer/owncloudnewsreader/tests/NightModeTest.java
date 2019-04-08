@@ -85,12 +85,11 @@ public class NightModeTest {
     public void testOledAutoMode() {
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
         openSettings();
+
         changeAppTheme(R.string.pref_display_apptheme_auto);
-        sleep();
         switchOled();
         navigateUp();
         assertFalse(isDarkTheme());
-
         sleep();
 
         //onView(withId(R.id.sliding_layout)).check(ViewAssertions.matches(CustomMatchers.withBackgroundColor(android.R.color.white, getActivity())));
@@ -104,7 +103,7 @@ public class NightModeTest {
 
         changeAppTheme(R.string.pref_display_apptheme_light);
         navigateUp();
-
+        sleep();
         boolean isDarkTheme = isDarkTheme();
         assertFalse(ThemeChooser.isOledMode(false));
         assertFalse(isDarkTheme);

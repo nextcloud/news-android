@@ -229,8 +229,6 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private void updateNotification() {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
         int newItemsCount = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
         //int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);

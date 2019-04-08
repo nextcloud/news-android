@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import javax.inject.Inject;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -26,10 +29,10 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
-    SharedPreferences mPrefs;
-    PlaceholderFragment mFragment;
-    String[] items_values;
+    private PlaceholderFragment mFragment;
+    private String[] items_values;
     protected @BindView(R.id.toolbar) Toolbar toolbar;
+    protected @Inject SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,6 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         items_values = getResources().getStringArray(R.array.array_sync_interval_values);
 
         if (savedInstanceState == null) {
@@ -83,7 +85,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
             mPrefs.edit().putInt(SYNC_INTERVAL_IN_MINUTES_STRING, minutes).commit();
 
-            SetAccountSyncInterval(this);
+            SetAccountSyncInterval(this, mPrefs);
 
             finish();
         }
@@ -93,8 +95,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
     }
 
 
-    public static void SetAccountSyncInterval(Context context) {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+    public static void SetAccountSyncInterval(Context context, SharedPreferences mPrefs) {
         int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 0);
 
         if(minutes != 0) {
@@ -129,9 +130,16 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
     public static class PlaceholderFragment extends Fragment {
 
-        public ListView lvItems;
+        private ListView lvItems;
+        @Inject SharedPreferences mPrefs;
 
         public PlaceholderFragment() {
+        }
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
         }
 
         @Override
@@ -141,7 +149,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
             String[] items = getResources().getStringArray(R.array.array_sync_interval);
 
-            lvItems = (ListView) rootView.findViewById(R.id.lv_sync_interval_items);
+            lvItems = rootView.findViewById(R.id.lv_sync_interval_items);
             lvItems.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
 
@@ -151,7 +159,6 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
             lvItems.setAdapter(adapter);
 
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
             if(!mPrefs.contains(SYNC_INTERVAL_IN_MINUTES_STRING))
                 lvItems.setItemChecked(items.length - 1, true);//The last item is 24hours. This is the default value!
             else {

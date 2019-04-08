@@ -13,6 +13,8 @@ import org.junit.runner.RunWith;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import javax.inject.Inject;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.test.espresso.Espresso;
@@ -25,8 +27,11 @@ import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.TestApplication;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
+import de.luhmer.owncloudnewsreader.di.TestComponent;
 import helper.OrientationChangeAction;
 import helper.RecyclerViewAssertions;
 
@@ -52,6 +57,7 @@ public class NewsReaderListActivityUiTests {
     @Rule
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class);
 
+    protected @Inject SharedPreferences mPrefs;
 
     private NewsReaderListActivity getActivity() {
         return mActivityRule.getActivity();
@@ -61,6 +67,9 @@ public class NewsReaderListActivityUiTests {
     public void setUp() {
         registerInstance(getInstrumentation(), new Bundle());
         sleep(0.3f);
+
+        TestComponent ac = (TestComponent) ((TestApplication)(getActivity().getApplication())).getAppComponent();
+        ac.inject(this);
     }
 
     @Test
@@ -123,7 +132,6 @@ public class NewsReaderListActivityUiTests {
             onView(withId(R.id.list)).perform(RecyclerViewActions.scrollToPosition(scrollPosition));
         }
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 5).commit();
 
         try {

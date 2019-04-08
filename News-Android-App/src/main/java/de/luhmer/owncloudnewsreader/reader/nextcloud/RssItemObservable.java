@@ -63,7 +63,6 @@ public class RssItemObservable implements Publisher<Integer> {
         mDbConn.clearDatabaseOverSize();
 
         //String authKey = AuthenticationManager.getGoogleAuthKey(username, password);
-        //SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         //int maxItemsInDatabase = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_ITEMS_SYNC, "200"));
 
         long lastModified = mDbConn.getLastModified();

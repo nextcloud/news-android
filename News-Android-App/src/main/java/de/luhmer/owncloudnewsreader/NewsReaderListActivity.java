@@ -188,7 +188,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		initAccountManager();
 
 		//Init config --> if nothing is configured start the login dialog.
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
 			StartLoginFragment(NewsReaderListActivity.this);
 		}
@@ -317,8 +316,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
                 savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
 
-
-            NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this, mPostDelayHandler);
+            NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this, mPostDelayHandler, mPrefs);
 
             adapter.setTotalItemCount(savedInstanceState.getInt(LIST_ADAPTER_TOTAL_COUNT));
             adapter.setCachedPages(savedInstanceState.getInt(LIST_ADAPTER_PAGE_COUNT));
@@ -403,7 +401,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
 			mAccountManager.addAccountExplicitly(account, "", new Bundle());
 
-			SyncIntervalSelectorActivity.SetAccountSyncInterval(this);
+			SyncIntervalSelectorActivity.SetAccountSyncInterval(this, mPrefs);
 		}
 	}
 
@@ -501,7 +499,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             getSlidingListFragment().startAsyncTaskGetUserInfo();
         }
 
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
 		int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
 
 		if (newItemsCount > 0) {
@@ -657,8 +654,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     public void startSync()
     {
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
 			StartLoginFragment(this);
 		} else {
@@ -873,7 +868,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private void DownloadMoreItems()
 	{
-		String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_username", null);
+		String username = mPrefs.getString("edt_username", null);
 
 		if(username != null) {
 			final NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
@@ -994,7 +989,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void ensureCorrectTheme(Intent data) {
-       SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String oldListLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
         String newListLayout = mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
 
@@ -1043,7 +1037,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     @Override
 	public void onClick(ViewHolder vh, int position) {
 
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		if (mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
             String currentUrl = vh.getRssItem().getLink();
 

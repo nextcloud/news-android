@@ -1,16 +1,19 @@
 package de.luhmer.owncloudnewsreader.di;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
+import java.io.File;
 import java.io.IOException;
 
-import de.luhmer.owncloudnewsreader.MockSharedPreference;
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 
@@ -40,9 +43,11 @@ public class TestApiModule extends ApiModule {
                 .setAvatar(null)
                 .build();
 
+        //SharedPreferences sharedPrefs = new MockSharedPreference();
+        SharedPreferences sharedPrefs = application.getSharedPreferences(providesSharedPreferencesFileName(), Context.MODE_PRIVATE);
 
-
-        SharedPreferences sharedPrefs = new MockSharedPreference();
+        // Reset SharedPreferences to make tests reproducible
+        sharedPrefs.edit().clear().commit();
 
         // Turn on Single-Sign-On
         sharedPrefs.edit().putBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, true).commit();
@@ -67,6 +72,8 @@ public class TestApiModule extends ApiModule {
         } catch (IOException e) {
             throw new Error(e);
         }
+
+        ThemeChooser.init(sharedPrefs);
 
         return sharedPrefs;
     }

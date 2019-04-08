@@ -268,7 +268,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
 
                 File webArchiveFile = DownloadWebPageService.getWebPageArchiveFileForUrl(getActivity(), url);

@@ -86,6 +86,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private SparseArray<String> unreadCountFolders;
     private SparseArray<String> unreadCountFeeds;
 
+    private SharedPreferences mPrefs;
+
     public enum SPECIAL_FOLDERS  {
         ALL_UNREAD_ITEMS(-10), ALL_STARRED_ITEMS(-11), ALL_ITEMS(-12), ITEMS_WITHOUT_FOLDER(-22);
 
@@ -109,8 +111,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
     }
 
-    public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnectionOrm dbConn, ListView listView) {
-        favIconHandler = new FavIconHandler(mContext);
+    public SubscriptionExpandableListAdapter(Context mContext, DatabaseConnectionOrm dbConn, ListView listView, SharedPreferences prefs) {
+        this.favIconHandler = new FavIconHandler(mContext);
+        this.mPrefs = prefs;
 
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	this.mContext = mContext;
@@ -499,7 +502,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
     public Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> ReloadAdapter()
     {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         showOnlyUnread = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
 
         ArrayList<AbstractItem> mCategoriesArrayListAsync = new ArrayList<>();

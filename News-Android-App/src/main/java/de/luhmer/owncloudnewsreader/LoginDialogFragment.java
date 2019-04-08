@@ -165,7 +165,6 @@ public class LoginDialogFragment extends DialogFragment {
         mImageViewShowPwd.setOnClickListener(ImgViewShowPasswordListener);
 		mPasswordView.addTextChangedListener(PasswordTextChangedListener);
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
         mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
         mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
@@ -185,7 +184,6 @@ public class LoginDialogFragment extends DialogFragment {
  		mCbDisableHostnameVerificationView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 				mPrefs.edit()
 					.putBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, isChecked)
 					.commit();

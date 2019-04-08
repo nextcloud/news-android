@@ -107,6 +107,7 @@ public class ThemeChooser {
     public static boolean themeRequiresRestartOfUI() {
         boolean themeChanged = !mSelectedThemeFromPreferences.equals(getSelectedThemeFromPreferences(true));
         boolean oledChanged = !mOledMode.equals(isOledMode(true));
+        Log.v(TAG, "themeChanged: " + themeChanged + "; oledChanged: " + oledChanged);
         return themeChanged || oledChanged;
     }
 
@@ -153,7 +154,7 @@ public class ThemeChooser {
 
     public static void init(SharedPreferences prefs) {
         mPrefs = prefs;
-        getSelectedThemeFromPreferences(false); // Init cache
-        isOledMode(false); // Init cache
+        getSelectedThemeFromPreferences(true); // Init cache
+        isOledMode(true); // Init cache
     }
 }
