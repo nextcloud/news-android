@@ -183,7 +183,6 @@
     <string name="pref_display_browser">Przeglądarka</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcji (Widok szczegółowy)</string>
 
     <string name="pref_display_apptheme_auto">Jasny / Ciemny (zależy od pory dnia)</string>
@@ -225,7 +224,6 @@
     <string name="content_desc_show_password">pokaż hasło</string>
     <string name="content_desc_delete">skasuj</string>
     <string name="content_desc_download">pobierz</string>
-
 
 
     <!-- Settings for Notifications -->

@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Vafri</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Táknmyndir aðgerða (ítarleg sýn)</string>
 
     <string name="pref_display_apptheme_auto">Ljóst / Dökkt (byggt á dagsþema)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">sýna lykilorð</string>
     <string name="content_desc_delete">eyða</string>
     <string name="content_desc_download">sækja</string>
-
 
 
     <!-- Settings for Notifications -->

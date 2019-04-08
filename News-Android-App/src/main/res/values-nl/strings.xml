@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Browser</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
 
     <string name="pref_display_apptheme_auto">Licht / Donker (op basis van tijd van de dag)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">tonen wachtwoord</string>
     <string name="content_desc_delete">verwijderen</string>
     <string name="content_desc_download">downloaden</string>
-
 
 
     <!-- Settings for Notifications -->

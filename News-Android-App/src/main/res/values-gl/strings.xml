@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Navegador</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Iconas de acción (vista detallada)</string>
 
     <string name="pref_display_apptheme_auto">Claro / escuro (baseado na hora)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">amosar o contrasinal</string>
     <string name="content_desc_delete">eliminar</string>
     <string name="content_desc_download">descargar</string>
-
 
 
     <!-- Settings for Notifications -->

@@ -183,7 +183,6 @@
     <string name="pref_display_browser">Prohlížeč</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akce (podrobné zobrazení)</string>
 
     <string name="pref_display_apptheme_auto">Světlé/tmavé (podle denní doby)</string>
@@ -225,7 +224,6 @@
     <string name="content_desc_show_password">zobrazit heslo</string>
     <string name="content_desc_delete">smazat</string>
     <string name="content_desc_download">stažené</string>
-
 
 
     <!-- Settings for Notifications -->

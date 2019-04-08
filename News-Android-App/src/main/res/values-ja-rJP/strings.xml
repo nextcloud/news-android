@@ -160,7 +160,6 @@
     <string name="pref_display_browser">ブラウザ</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">アクションアイコン（詳細表示）</string>
 
     <string name="pref_display_apptheme_auto">ライト / ダーク（時刻に基づく）</string>
@@ -200,7 +199,6 @@
     <string name="content_desc_show_password">パスワードを表示</string>
     <string name="content_desc_delete">削除</string>
     <string name="content_desc_download">ダウンロード</string>
-
 
 
     <!-- Settings for Notifications -->

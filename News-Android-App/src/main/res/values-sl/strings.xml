@@ -160,7 +160,6 @@
     <string name="pref_display_browser">Brskalnik</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Ikone dejavnosti (podrobni pogled)</string>
 
     <string name="pref_display_apptheme_light">Svetla</string>
@@ -185,7 +184,6 @@
     <string name="content_desc_show_password">pokaži geslo</string>
     <string name="content_desc_delete">izbriši</string>
     <string name="content_desc_download">prejmi</string>
-
 
 
     <!-- Settings for Notifications -->

@@ -142,7 +142,6 @@
     <string name="pref_display_browser">Navegador</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Íconos de acción (Vista Detallada)</string>
 
     <string name="pref_display_apptheme_light">Claro</string>
@@ -167,7 +166,6 @@
     <string name="content_desc_show_password">mostrar contraseña</string>
     <string name="content_desc_delete">borrar</string>
     <string name="content_desc_download">descargar</string>
-
 
 
     <!-- Settings for Notifications -->

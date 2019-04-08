@@ -132,7 +132,6 @@
     <string name="content_desc_download">laadi alla</string>
 
 
-
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Teavitused</string>
     <string name="pref_title_notification_new_articles_available">Näita teavitusi kui on saadaval uusi arikleid</string>

@@ -173,7 +173,6 @@
     <string name="pref_display_browser">Browser</string>
 
 
-
     <string name="pref_display_news_detail_actionbar_icons_title">Azioni delle icone (vista dettagliata)</string>
 
     <string name="pref_display_apptheme_auto">Chiaro / Scuro (basato su ll\'orario)</string>
@@ -215,7 +214,6 @@
     <string name="content_desc_show_password">mostra la password</string>
     <string name="content_desc_delete">elimina</string>
     <string name="content_desc_download">scarica</string>
-
 
 
     <!-- Settings for Notifications -->

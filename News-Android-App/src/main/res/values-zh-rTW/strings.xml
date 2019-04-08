@@ -137,7 +137,6 @@
     <string name="content_desc_download">下載</string>
 
 
-
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">通知</string>
     <string name="pref_title_notification_new_articles_available">當有新條目時顯示通知</string>
