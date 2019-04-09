@@ -29,7 +29,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="32dp"
             android:padding="16dp"
-            android:text="Login using Nextcloud Files App"
+            android:text="@string/login_sso"
             android:textStyle="bold"
             android:textColor="@color/nextcloudBlue"
             android:textAllCaps="false"
@@ -43,7 +43,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:text="Manual login"
+            android:text="@string/login_manual"
             android:textColor="@color/material_grey_100" />
 
         <RelativeLayout
