@@ -188,7 +188,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		//Init config --> if nothing is configured start the login dialog.
 		if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-			StartLoginActivity();
+			startLoginActivity();
 		}
 
 
@@ -396,7 +396,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
 			mAccountManager.addAccountExplicitly(account, "", new Bundle());
 
-			SyncIntervalSelectorActivity.SetAccountSyncInterval(this, mPrefs);
+			SyncIntervalSelectorActivity.setAccountSyncInterval(this, mPrefs);
 		}
 	}
 
@@ -445,7 +445,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     UiExceptionManager.showDialogForException(this, e);
                 } catch (NextcloudFilesAppAccountPermissionNotGrantedException e) {
                     // Unable to reauthenticate account just like that..
-                    StartLoginActivity();
+                    startLoginActivity();
                 }
                 //StartLoginFragment(this);
 
@@ -650,7 +650,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     public void startSync()
     {
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-            StartLoginActivity();
+            startLoginActivity();
 		} else {
 			if (!OwnCloudSyncService.isSyncRunning()) {
 				mPostDelayHandler.stopRunningPostDelayHandler(); //Stop pending sync handler
@@ -774,7 +774,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				break;
 
 			case R.id.action_login:
-                StartLoginActivity();
+                startLoginActivity();
 				break;
 
             case R.id.action_add_new_feed:
@@ -782,7 +782,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
                     startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
                 } else {
-                    StartLoginActivity();
+                    startLoginActivity();
                 }
                 break;
 
@@ -1007,7 +1007,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
 	}
 
-    public void StartLoginActivity() {
+    public void startLoginActivity() {
         Intent loginIntent = new Intent(this, LoginDialogActivity.class);
         startActivityForResult(loginIntent, RESULT_LOGIN);
     }

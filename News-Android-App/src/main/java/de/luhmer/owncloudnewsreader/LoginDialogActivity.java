@@ -226,14 +226,14 @@ public class LoginDialogActivity extends AppCompatActivity {
         }
     };
 
-    private ProgressDialog BuildPendingDialogWhileLoggingIn() {
+    private ProgressDialog buildPendingDialogWhileLoggingIn() {
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setTitle(getString(R.string.login_progress_signing_in));
         return pDialog;
     }
 
     private void loginSingleSignOn() {
-        final ProgressDialog dialogLogin = BuildPendingDialogWhileLoggingIn();
+        final ProgressDialog dialogLogin = buildPendingDialogWhileLoggingIn();
         dialogLogin.show();
 
         Editor editor = mPrefs.edit();
@@ -328,7 +328,7 @@ public class LoginDialogActivity extends AppCompatActivity {
             editor.putBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
             editor.commit();
 
-            final ProgressDialog dialogLogin = BuildPendingDialogWhileLoggingIn();
+            final ProgressDialog dialogLogin = buildPendingDialogWhileLoggingIn();
             dialogLogin.show();
 
             mApi.initApi(new NextcloudAPI.ApiConnectedListener() {

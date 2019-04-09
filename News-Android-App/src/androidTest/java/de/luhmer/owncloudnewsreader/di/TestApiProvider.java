@@ -85,7 +85,7 @@ public class TestApiProvider extends ApiProvider {
                     inputStream = handleCreateFeed(request);
                     break;
                 case "/index.php/apps/news/api/v1-2/user":
-                    inputStream = handleUser(request);
+                    inputStream = handleUser();
                     break;
                 default:
                     throw new Error("Not implemented yet!");
@@ -109,7 +109,7 @@ public class TestApiProvider extends ApiProvider {
             }
         }
 
-        private InputStream handleUser(NextcloudRequest request) throws NextcloudHttpRequestFailedException {
+        private InputStream handleUser() {
             String user = "{\n" +
             "  \"userId\": \"" + DUMMY_ACCOUNT_AccountName + "\",\n" +
             "  \"displayName\": \"" + DUMMY_ACCOUNT_username + "\",\n" +

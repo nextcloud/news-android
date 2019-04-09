@@ -31,9 +31,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
-import android.preference.PreferenceManager;
 
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.appcompat.app.AppCompatActivity;

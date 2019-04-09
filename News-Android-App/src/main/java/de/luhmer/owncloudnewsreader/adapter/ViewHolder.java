@@ -111,7 +111,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private int textSizeItemDate;
     private int textSizeBody = -1;
 
-    SharedPreferences mPrefs;
+    private SharedPreferences mPrefs;
 
     public ViewHolder(View itemView, SharedPreferences prefs) {
         super(itemView);
