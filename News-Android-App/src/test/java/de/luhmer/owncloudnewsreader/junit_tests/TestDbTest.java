@@ -4,23 +4,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.annotation.Config;
+import org.robolectric.RobolectricTestRunner;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.BuildConfig;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
-import static org.junit.Assert.assertTrue;
-
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@RunWith(RobolectricTestRunner.class)
 public class TestDbTest {
 
     private NewsReaderListActivity activity;
@@ -31,19 +26,6 @@ public class TestDbTest {
     public void setUp() {
         activity = Robolectric.buildActivity(NewsReaderListActivity.class).create().get();
     }
-
-    @Test
-    public void test() {
-        assertTrue(true);
-    }
-
-    /*
-    @Test
-    public void checkActivityNotNull() throws Exception {
-        assertNotNull(activity);
-    }
-    */
-
 
     @Test
     public void testDatabaseOversize() {

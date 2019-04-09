@@ -26,9 +26,39 @@ jobs:
     - store_artifacts:
         path: News-Android-App/build/outputs/apk
         destination: apks
+    - persist_to_workspace:
+        root: News-Android-App
+        paths:
+        - build
+
+  test:
+    docker:
+    - image: circleci/android:api-28
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+    - checkout
+    - attach_workspace:
+        at: News-Android-App
+    - restore_cache:
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "News-Android-App/build.gradle" }}
+    - run:
+        name: chmod permissions
+        command: chmod +x ./gradlew
+    - run:
+        name: Run unit tests
+        command: ./gradlew test
+    - store_artifacts:
+        path: News-Android-App/build/reports
+        destination: reports
+    - store_test_results:
+        path: News-Android-App/build/test-results
 
 workflows:
   version: 2
-  build:
+  build-test:
     jobs:
     - build
+    - test:
+        requires:
+          - build
