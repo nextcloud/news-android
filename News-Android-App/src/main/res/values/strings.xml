@@ -40,6 +40,7 @@
     <string name="action_sync_settings">Sync Settings</string>
     <string name="action_add_new_feed">Add new feed</string>
     <string name="action_textToSpeech">Read out</string>
+    <string name="action_search">Search</string>
     <string name="action_download_articles_offline">Download articles offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">You have %d new unread item</item>
@@ -54,6 +55,8 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Add feed</string>
+    <string name="import_opml">Import OPML</string>
+    <string name="export_opml">Export OPML</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
@@ -95,10 +98,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_url">Incorrect URL</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Import Account</string>
 
 
     <!-- Toast Messages -->
