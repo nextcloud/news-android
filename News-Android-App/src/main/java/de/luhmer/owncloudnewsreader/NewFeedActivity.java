@@ -342,7 +342,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
                         if (response.isSuccessful()) {
                             Intent returnIntent = new Intent();
-                            returnIntent.putExtra("success", true);
+                            returnIntent.putExtra(ADD_NEW_SUCCESS, true);
                             setResult(RESULT_OK, returnIntent);
 
                             finish();
