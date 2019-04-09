@@ -76,7 +76,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Import OPML"
+                        android:text="@string/import_opml"
                         android:textStyle="bold" />
 
                     <Button
@@ -86,7 +86,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Export OPML"
+                        android:text="@string/export_opml"
                         android:textStyle="bold" />
                 </LinearLayout>
 
