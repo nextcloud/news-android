@@ -76,6 +76,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
                         android:text="Import OPML"
                         android:textStyle="bold" />
 
@@ -86,6 +87,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:layout_marginStart="8dp"
                         android:text="Export OPML"
                         android:textStyle="bold" />
                 </LinearLayout>

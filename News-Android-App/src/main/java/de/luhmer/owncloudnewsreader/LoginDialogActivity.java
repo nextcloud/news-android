@@ -37,7 +37,6 @@ import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -109,7 +108,6 @@ public class LoginDialogActivity extends AppCompatActivity {
     protected @BindView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
     protected @BindView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
     protected @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
-    protected @BindView(R.id.btnSingleSignOn) Button mBtnSingleSignOn;
     protected @BindView(R.id.tv_manual_login) TextView mTvManualLogin;
     protected @BindView(R.id.old_login_wrapper) RelativeLayout mOldLoginWrapper;
 

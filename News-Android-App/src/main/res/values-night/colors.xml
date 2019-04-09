@@ -6,7 +6,7 @@
 
     <color name="divider_row_color">#292929</color>
 
-    <color name="options_menu_item_text">@color/options_menu_item</color>
+    <color name="options_menu_item_text">@color/options_menu_item_night</color>
 
     <!-- Color of slide up panel in closed state -->
     <color name="slide_up_panel_header_background_color">#ff343434</color>
