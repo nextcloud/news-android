@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import de.luhmer.owncloudnewsreader.LoginDialogActivity;
+
 import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
 
 public class OwnCloudAccountAuthenticator extends AbstractAccountAuthenticator {
@@ -29,10 +31,10 @@ public class OwnCloudAccountAuthenticator extends AbstractAccountAuthenticator {
     public Bundle addAccount(AccountAuthenticatorResponse response, String accountType, String authTokenType, String[] requiredFeatures, Bundle options) throws NetworkErrorException {
         Log.d("udinic", TAG + "> addAccount");
 
-        final Intent intent = new Intent(mContext, AuthenticatorActivity.class);
-        intent.putExtra(AuthenticatorActivity.ARG_ACCOUNT_TYPE, accountType);
-        intent.putExtra(AuthenticatorActivity.ARG_AUTH_TYPE, authTokenType);
-        intent.putExtra(AuthenticatorActivity.ARG_IS_ADDING_NEW_ACCOUNT, true);
+        final Intent intent = new Intent(mContext, LoginDialogActivity.class);
+        //intent.putExtra(AuthenticatorActivity.ARG_ACCOUNT_TYPE, accountType);
+        //intent.putExtra(AuthenticatorActivity.ARG_AUTH_TYPE, authTokenType);
+        //intent.putExtra(AuthenticatorActivity.ARG_IS_ADDING_NEW_ACCOUNT, true);
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
 
         final Bundle bundle = new Bundle();
@@ -94,10 +96,10 @@ public class OwnCloudAccountAuthenticator extends AbstractAccountAuthenticator {
         // If we get here, then we couldn't access the user's password - so we
         // need to re-prompt them for their credentials. We do that by creating
         // an intent to display our AuthenticatorActivity.
-        final Intent intent = new Intent(mContext, AuthenticatorActivity.class);
+        final Intent intent = new Intent(mContext, LoginDialogActivity.class);
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
-        intent.putExtra(AuthenticatorActivity.ARG_ACCOUNT_TYPE, account.type);
-        intent.putExtra(AuthenticatorActivity.ARG_AUTH_TYPE, authTokenType);
+        //intent.putExtra(AuthenticatorActivity.ARG_ACCOUNT_TYPE, account.type);
+        //intent.putExtra(AuthenticatorActivity.ARG_AUTH_TYPE, authTokenType);
         final Bundle bundle = new Bundle();
         bundle.putParcelable(AccountManager.KEY_INTENT, intent);
         return bundle;

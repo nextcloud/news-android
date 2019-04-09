@@ -80,7 +80,6 @@ import androidx.customview.widget.ViewDragHelper;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
@@ -88,7 +87,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
-import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfulListener;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
@@ -117,7 +115,8 @@ import io.reactivex.subjects.PublishSubject;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
-import static de.luhmer.owncloudnewsreader.LoginDialogFragment.ShowAlertDialog;
+import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
+import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -189,7 +188,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		//Init config --> if nothing is configured start the login dialog.
 		if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-			StartLoginFragment(NewsReaderListActivity.this);
+			StartLoginActivity();
 		}
 
 
@@ -446,7 +445,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     UiExceptionManager.showDialogForException(this, e);
                 } catch (NextcloudFilesAppAccountPermissionNotGrantedException e) {
                     // Unable to reauthenticate account just like that..
-                    StartLoginFragment(this);
+                    StartLoginActivity();
                 }
                 //StartLoginFragment(this);
 
@@ -651,7 +650,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     public void startSync()
     {
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-			StartLoginFragment(this);
+            StartLoginActivity();
 		} else {
 			if (!OwnCloudSyncService.isSyncRunning()) {
 				mPostDelayHandler.stopRunningPostDelayHandler(); //Stop pending sync handler
@@ -775,7 +774,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				break;
 
 			case R.id.action_login:
-				StartLoginFragment(NewsReaderListActivity.this);
+                StartLoginActivity();
 				break;
 
             case R.id.action_add_new_feed:
@@ -783,7 +782,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
                     startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
                 } else {
-                    StartLoginFragment(NewsReaderListActivity.this);
+                    StartLoginActivity();
                 }
                 break;
 
@@ -949,7 +948,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     startSync();
                 }
             }
+        } else if(requestCode == RESULT_LOGIN) {
+            resetUiAndStartSync();
         }
+
 
         AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
             @Override
@@ -1005,16 +1007,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
 	}
 
-    public static void StartLoginFragment(final FragmentActivity activity) {
-        LoginDialogFragment dialog = LoginDialogFragment.newInstance();
-        dialog.setActivity(activity);
-        dialog.setListener(new LoginSuccessfulListener() {
-            @Override
-            public void loginSucceeded() {
-                ((NewsReaderListActivity) activity).resetUiAndStartSync();
-            }
-        });
-        dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
+    public void StartLoginActivity() {
+        Intent loginIntent = new Intent(this, LoginDialogActivity.class);
+        startActivityForResult(loginIntent, RESULT_LOGIN);
     }
 
     private void resetUiAndStartSync() {
