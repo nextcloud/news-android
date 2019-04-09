@@ -129,7 +129,7 @@
                 android:layout_alignEnd="@+id/password_container"
                 android:contentDescription="@string/content_desc_show_password"/>
 
-            <androidx.appcompat.widget.AppCompatCheckBox
+            <CheckBox
                 android:id="@+id/cb_AllowAllSSLCertificates"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
