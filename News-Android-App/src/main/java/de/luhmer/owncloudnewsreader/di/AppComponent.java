@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import de.luhmer.owncloudnewsreader.LoginDialogFragment;
 import de.luhmer.owncloudnewsreader.NewFeedActivity;
+import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
@@ -27,6 +28,7 @@ import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 public interface AppComponent {
 
     void injectActivity(NewsReaderListActivity activity);
+    void injectActivity(NewsDetailActivity activity);
     void injectActivity(PodcastFragmentActivity activity);
     void injectActivity(NewFeedActivity activity);
     void injectActivity(SettingsActivity activity);
