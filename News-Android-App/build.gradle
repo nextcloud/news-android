@@ -12,6 +12,8 @@ android {
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
     buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
+    testOptions.unitTests.includeAndroidResources = true
+
     defaultConfig {
         minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
@@ -198,7 +200,7 @@ dependencies {
     //androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
     //androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
 
-    //androidTestImplementation 'org.robolectric:robolectric:3.0-rc3'
+    testImplementation 'org.robolectric:robolectric:4.2.1'
 
     // Core library
     androidTestImplementation 'androidx.test:core:1.1.0'
