@@ -3,15 +3,6 @@ package de.luhmer.owncloudnewsreader.tests;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.contrib.RecyclerViewActions;
-import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -21,12 +12,24 @@ import org.junit.runner.RunWith;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import javax.inject.Inject;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.TestApplication;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
+import de.luhmer.owncloudnewsreader.di.TestComponent;
 import helper.OrientationChangeAction;
 import helper.RecyclerViewAssertions;
 
@@ -52,6 +55,7 @@ public class NewsReaderListActivityUiTests {
     @Rule
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class);
 
+    protected @Inject SharedPreferences mPrefs;
 
     private NewsReaderListActivity getActivity() {
         return mActivityRule.getActivity();
@@ -61,6 +65,9 @@ public class NewsReaderListActivityUiTests {
     public void setUp() {
         registerInstance(getInstrumentation(), new Bundle());
         sleep(0.3f);
+
+        TestComponent ac = (TestComponent) ((TestApplication)(getActivity().getApplication())).getAppComponent();
+        ac.inject(this);
     }
 
     @Test
@@ -73,7 +80,7 @@ public class NewsReaderListActivityUiTests {
         onView(isRoot()).perform(OrientationChangeAction.orientationLandscape(getActivity()));
         //onView(isRoot()).perform(OrientationChangeAction.orientationPortrait(getActivity()));
 
-        sleep(0.5f);
+        sleep(1.0f);
 
         LinearLayoutManager llm = (LinearLayoutManager) ndf.getRecyclerView().getLayoutManager();
         onView(withId(R.id.list)).check(new RecyclerViewAssertions(scrollPosition-(scrollPosition-llm.findFirstVisibleItemPosition())));
@@ -84,11 +91,9 @@ public class NewsReaderListActivityUiTests {
 
     @Test
     public void testPositionAfterActivityRestart_sameActivity() {
-        onView(withId(R.id.list)).perform(
-                RecyclerViewActions.scrollToPosition(scrollPosition));
+        onView(withId(R.id.list)).perform(RecyclerViewActions.scrollToPosition(scrollPosition));
 
-        onView(withId(R.id.list)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(scrollPosition, click()));
+        onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(scrollPosition, click()));
 
         sleep(2);
 
@@ -102,13 +107,8 @@ public class NewsReaderListActivityUiTests {
         assertNotNull(vh);
         LinearLayoutManager llm = (LinearLayoutManager) ndf.getRecyclerView().getLayoutManager();
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                na.changeReadStateOfItem(vh, false);
-            }
-        });
-        sleep(0.5f);
+        getActivity().runOnUiThread(() -> na.changeReadStateOfItem(vh, false));
+        sleep(1.0f);
 
         onView(withId(R.id.list)).check(new RecyclerViewAssertions(scrollPosition-(scrollPosition-llm.findFirstVisibleItemPosition())));
         onView(withId(R.id.tv_no_items_available)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
@@ -130,7 +130,6 @@ public class NewsReaderListActivityUiTests {
             onView(withId(R.id.list)).perform(RecyclerViewActions.scrollToPosition(scrollPosition));
         }
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 5).commit();
 
         try {
@@ -153,7 +152,7 @@ public class NewsReaderListActivityUiTests {
                 }
             });
             getInstrumentation().waitForIdleSync();
-            sleep(0.5f);
+            sleep(1.0f);
 
             if(!testFirstPosition) {
                 onView(withId(com.google.android.material.R.id.snackbar_text)).check(matches(isDisplayed()));

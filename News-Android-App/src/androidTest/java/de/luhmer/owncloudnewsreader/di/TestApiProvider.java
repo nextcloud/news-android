@@ -22,6 +22,8 @@ import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import retrofit2.NextcloudRetrofitApiBuilder;
 
+import static de.luhmer.owncloudnewsreader.di.TestApiModule.DUMMY_ACCOUNT_AccountName;
+import static de.luhmer.owncloudnewsreader.di.TestApiModule.DUMMY_ACCOUNT_username;
 import static org.mockito.ArgumentMatchers.any;
 
 public class TestApiProvider extends ApiProvider {
@@ -58,7 +60,7 @@ public class TestApiProvider extends ApiProvider {
     }
 
 
-    class NewsTestNetworkRequest extends NetworkRequest {
+    public class NewsTestNetworkRequest extends NetworkRequest {
 
         NewsTestNetworkRequest(NextcloudAPI.ApiConnectedListener callback) {
             super(null, null, callback);
@@ -82,8 +84,11 @@ public class TestApiProvider extends ApiProvider {
                 case "/index.php/apps/news/api/v1-2/feeds":
                     inputStream = handleCreateFeed(request);
                     break;
+                case "/index.php/apps/news/api/v1-2/user":
+                    inputStream = handleUser();
+                    break;
                 default:
-                    throw new UnsupportedOperationException("Not implemented yet!");
+                    throw new Error("Not implemented yet!");
             }
             return inputStream;
         }
@@ -100,8 +105,19 @@ public class TestApiProvider extends ApiProvider {
                 case NEW_FEED_FAIL:
                     throw new NextcloudHttpRequestFailedException(422, new Throwable(NEW_FEED_FAIL_ERROR_MESSAGE));
                 default:
-                    throw new UnsupportedOperationException("Not implemented yet!");
+                    throw new Error("Not implemented yet!");
             }
+        }
+
+        private InputStream handleUser() {
+            String user = "{\n" +
+            "  \"userId\": \"" + DUMMY_ACCOUNT_AccountName + "\",\n" +
+            "  \"displayName\": \"" + DUMMY_ACCOUNT_username + "\",\n" +
+            "  \"lastLoginTimestamp\": 1241231233, \n" +
+            "  \"avatar\": null" +
+            "}";
+
+            return stringToInputStream(user);
         }
 
         private InputStream stringToInputStream(String data) {

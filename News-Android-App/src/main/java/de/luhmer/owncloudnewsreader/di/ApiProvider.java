@@ -2,7 +2,6 @@ package de.luhmer.owncloudnewsreader.di;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -14,6 +13,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
@@ -103,7 +103,8 @@ public class ApiProvider {
 
 
     private void initImageLoader(SharedPreferences mPrefs, OkHttpClient okHttpClient, Context context) {
-        int diskCacheSize = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE,"500"))*1024*1024;
+        String cacheSize = mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE,"500");
+        int diskCacheSize = Integer.parseInt(cacheSize)*1024*1024;
         if(ImageLoader.getInstance().isInited()) {
             ImageLoader.getInstance().destroy();
         }

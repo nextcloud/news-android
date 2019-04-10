@@ -80,7 +80,6 @@ import androidx.customview.widget.ViewDragHelper;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
@@ -88,7 +87,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
-import de.luhmer.owncloudnewsreader.LoginDialogFragment.LoginSuccessfulListener;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
@@ -117,7 +115,8 @@ import io.reactivex.subjects.PublishSubject;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
-import static de.luhmer.owncloudnewsreader.LoginDialogFragment.ShowAlertDialog;
+import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
+import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -188,9 +187,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		initAccountManager();
 
 		//Init config --> if nothing is configured start the login dialog.
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-			StartLoginFragment(NewsReaderListActivity.this);
+			startLoginActivity();
 		}
 
 
@@ -313,8 +311,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
                 savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
 
-
-            NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this, mPostDelayHandler);
+            NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this, mPostDelayHandler, mPrefs);
 
             adapter.setTotalItemCount(savedInstanceState.getInt(LIST_ADAPTER_TOTAL_COUNT));
             adapter.setCachedPages(savedInstanceState.getInt(LIST_ADAPTER_PAGE_COUNT));
@@ -399,7 +396,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
 			mAccountManager.addAccountExplicitly(account, "", new Bundle());
 
-			SyncIntervalSelectorActivity.SetAccountSyncInterval(this);
+			SyncIntervalSelectorActivity.setAccountSyncInterval(this, mPrefs);
 		}
 	}
 
@@ -448,7 +445,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     UiExceptionManager.showDialogForException(this, e);
                 } catch (NextcloudFilesAppAccountPermissionNotGrantedException e) {
                     // Unable to reauthenticate account just like that..
-                    StartLoginFragment(this);
+                    startLoginActivity();
                 }
                 //StartLoginFragment(this);
 
@@ -497,7 +494,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             getSlidingListFragment().startAsyncTaskGetUserInfo();
         }
 
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(NewsReaderListActivity.this);
 		int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
 
 		if (newItemsCount > 0) {
@@ -653,10 +649,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     public void startSync()
     {
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
 		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-			StartLoginFragment(this);
+            startLoginActivity();
 		} else {
 			if (!OwnCloudSyncService.isSyncRunning()) {
 				mPostDelayHandler.stopRunningPostDelayHandler(); //Stop pending sync handler
@@ -780,7 +774,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				break;
 
 			case R.id.action_login:
-				StartLoginFragment(NewsReaderListActivity.this);
+                startLoginActivity();
 				break;
 
             case R.id.action_add_new_feed:
@@ -788,7 +782,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
                     startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
                 } else {
-                    StartLoginFragment(NewsReaderListActivity.this);
+                    startLoginActivity();
                 }
                 break;
 
@@ -869,7 +863,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private void DownloadMoreItems()
 	{
-		String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("edt_username", null);
+		String username = mPrefs.getString("edt_username", null);
 
 		if(username != null) {
 			final NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
@@ -954,7 +948,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     startSync();
                 }
             }
+        } else if(requestCode == RESULT_LOGIN) {
+            resetUiAndStartSync();
         }
+
 
         AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
             @Override
@@ -990,11 +987,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void ensureCorrectTheme(Intent data) {
-       SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String oldListLayout = data.getStringExtra(SettingsActivity.SP_FEED_LIST_LAYOUT);
         String newListLayout = mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT,"0");
 
-        if (ThemeChooser.getInstance(NewsReaderListActivity.this).themeRequiresRestartOfUI(NewsReaderListActivity.this) || !newListLayout.equals(oldListLayout)) {
+        if (ThemeChooser.themeRequiresRestartOfUI() || !newListLayout.equals(oldListLayout)) {
             NewsReaderListActivity.this.recreate();
         } else if (data.hasExtra(SettingsActivity.CACHE_CLEARED)) {
             resetUiAndStartSync();
@@ -1011,16 +1007,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		 return (NewsReaderDetailFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
 	}
 
-    public static void StartLoginFragment(final FragmentActivity activity) {
-        LoginDialogFragment dialog = LoginDialogFragment.newInstance();
-        dialog.setActivity(activity);
-        dialog.setListener(new LoginSuccessfulListener() {
-            @Override
-            public void loginSucceeded() {
-                ((NewsReaderListActivity) activity).resetUiAndStartSync();
-            }
-        });
-        dialog.show(activity.getSupportFragmentManager(), "NoticeDialogFragment");
+    public void startLoginActivity() {
+        Intent loginIntent = new Intent(this, LoginDialogActivity.class);
+        startActivityForResult(loginIntent, RESULT_LOGIN);
     }
 
     private void resetUiAndStartSync() {
@@ -1039,7 +1028,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     @Override
 	public void onClick(ViewHolder vh, int position) {
 
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		if (mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
             String currentUrl = vh.getRssItem().getLink();
 

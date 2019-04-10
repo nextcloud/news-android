@@ -90,16 +90,15 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static final String CB_VERSION = "cb_version";
 
-    @Inject SharedPreferences mPrefs;
-
+    protected @Inject SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
-        ThemeChooser.getInstance(this).chooseTheme(this);
+        ThemeChooser.chooseTheme(this);
         super.onCreate(savedInstanceState);
-        ThemeChooser.getInstance(this).afterOnCreate(this);
+        ThemeChooser.afterOnCreate(this);
 
         setContentView(R.layout.activity_settings);
 

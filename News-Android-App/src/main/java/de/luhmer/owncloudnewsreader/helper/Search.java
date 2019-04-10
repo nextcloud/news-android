@@ -18,11 +18,9 @@ public class Search {
     private static final String SEARCH_IN_TITLE = "0";
     private static final String SEARCH_IN_BODY = "1";
     
-    public static List<RssItem> PerformSearch(Context context, Long idFolder, Long idFeed, String searchString) {
-        DatabaseConnectionOrm.SORT_DIRECTION sortDirection = NewsDetailActivity.getSortDirectionFromSettings(context);
+    public static List<RssItem> PerformSearch(Context context, Long idFolder, Long idFeed, String searchString, SharedPreferences mPrefs) {
+        DatabaseConnectionOrm.SORT_DIRECTION sortDirection = NewsDetailActivity.getSortDirectionFromSettings(mPrefs);
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-
         String sqlSelectStatement = null;
         if (idFeed != null) {
             sqlSelectStatement = getFeedSQLStatement(idFeed, sortDirection, searchString, dbConn, mPrefs);

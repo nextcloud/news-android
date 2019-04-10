@@ -18,9 +18,8 @@ public class Constants {
     protected static final int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
 
 
-    protected static boolean isNextCloud(Context context) {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        int[] version = extractVersionNumberFromString(mPrefs.getString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, ""));
+    protected static boolean isNextCloud(SharedPreferences prefs) {
+        int[] version = extractVersionNumberFromString(prefs.getString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, ""));
         if(version[0] == 0) {
             // not initialized yet..
             return true; // let's assume that it is nextcloud..

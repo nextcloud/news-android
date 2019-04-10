@@ -47,6 +47,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -90,10 +92,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private DatabaseConnectionOrm dbConn;
 	public List<RssItem> rssItems;
 
+	protected @Inject SharedPreferences mPrefs;
+
 	//public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+        ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
 
@@ -185,10 +191,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         }
     };
 
-    public static SORT_DIRECTION getSortDirectionFromSettings(Context context) {
+    public static SORT_DIRECTION getSortDirectionFromSettings(SharedPreferences prefs) {
         SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String sortDirection = mPrefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
+        String sortDirection = prefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
         if (sortDirection.equals("1"))
             sDirection = SORT_DIRECTION.desc;
         return sDirection;
@@ -196,7 +201,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		if(mPrefs.getBoolean(SettingsActivity.CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING, false))
 		{
 	        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN))
@@ -334,8 +338,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		menuItem_Read = menu.findItem(R.id.action_read);
         menuItem_PlayPodcast = menu.findItem(R.id.action_playPodcast);
 
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		Set<String> selections = preferences.getStringSet("sp_news_detail_actionbar_icons", new HashSet<String>());
+		Set<String> selections = mPrefs.getStringSet("sp_news_detail_actionbar_icons", new HashSet<String>());
 		String[] selected = selections.toArray(new String[] {});
 		for(String selection : selected) {
             switch(selection) {

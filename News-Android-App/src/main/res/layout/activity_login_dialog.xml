@@ -1,0 +1,166 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_form"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/nextcloudBlue">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/abc_dialog_padding_material"
+        android:layout_marginTop="@dimen/abc_dialog_padding_material"
+        android:layout_marginRight="@dimen/abc_dialog_padding_material"
+        android:layout_marginBottom="@dimen/abc_dialog_padding_material"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_nextcloud_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nextcloud_logo" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSingleSignOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="32dp"
+            android:padding="16dp"
+            android:text="@string/login_sso"
+            android:textStyle="bold"
+            android:textColor="@color/nextcloudBlue"
+            android:textAllCaps="false"
+            app:backgroundTint="@android:color/white"
+            app:cornerRadius="24dp" />
+
+        <TextView
+            android:id="@+id/tv_manual_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="@string/login_manual"
+            android:textColor="@color/material_grey_100" />
+
+        <RelativeLayout
+            android:id="@+id/old_login_wrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:counterOverflowTextColor="@android:color/white"
+                android:theme="@style/TextInputLayoutAppearance"
+                style="@style/TextInputLayoutStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:hint="@string/pref_title_username"
+                    android:inputType="textEmailAddress"
+                    android:textAlignment="viewStart"
+                    style="@style/TextInputEditTextLogin"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/username_container"
+                android:layout_alignParentStart="true"
+                app:counterOverflowTextColor="@android:color/white"
+                android:theme="@style/TextInputLayoutAppearance"
+                style="@style/TextInputLayoutStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:hint="@string/pref_title_password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    style="@style/TextInputEditTextLogin"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/url_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/password_container"
+                android:layout_alignParentStart="true"
+                app:counterOverflowTextColor="@android:color/white"
+                android:theme="@style/TextInputLayoutAppearance"
+                style="@style/TextInputLayoutStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_owncloudRootPath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:hint="@string/pref_title_owncloudRootPath"
+                    android:inputType="textUri"
+                    android:maxLines="1"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    style="@style/TextInputEditTextLogin"
+                    android:theme="@style/TextInputEditTextLogin"
+                    android:title="@string/pref_default_owncloudRootPath" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/imgView_ShowPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/password_container"
+                android:layout_alignEnd="@+id/password_container"
+                android:layout_alignBottom="@+id/password_container"
+                android:layout_gravity="end"
+                android:contentDescription="@string/content_desc_show_password"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/ic_action_visibility" />
+
+            <CheckBox
+                android:id="@+id/cb_AllowAllSSLCertificates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/url_container"
+                android:text="@string/pref_title_DisableHostnameVerification"
+                android:textColor="@color/material_grey_100"
+                app:buttonTint="@color/material_grey_300" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cb_AllowAllSSLCertificates"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:text="@string/action_sign_in_short"
+                android:textColor="@android:color/black"
+                android:textAllCaps="false"
+                app:backgroundTint="@android:color/white"
+                app:cornerRadius="24dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

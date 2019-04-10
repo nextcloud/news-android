@@ -35,8 +35,11 @@ import android.widget.RemoteViews;
 
 import java.util.Arrays;
 
+import javax.inject.Inject;
+
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsDetailActivity;
+import de.luhmer.owncloudnewsreader.NewsReaderApplication;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -54,6 +57,8 @@ public class WidgetProvider extends AppWidgetProvider {
     
     public static final String EXTRA_ITEM = null;
 	private static final String TAG = "WidgetProvider";
+
+	protected @Inject SharedPreferences mPrefs;
 
 
     public static void UpdateWidget(Context context) {
@@ -78,6 +83,8 @@ public class WidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        inject(context);
+
     	final int appWidgetId[];
         if(intent.hasExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS))
             appWidgetId = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
@@ -142,7 +149,8 @@ public class WidgetProvider extends AppWidgetProvider {
 	    
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);		
+        inject(context);
+
 		SharedPreferences.Editor mPrefsEditor = mPrefs.edit();
 		
 		for(int appWidgetId : appWidgetIds)	{
@@ -161,7 +169,7 @@ public class WidgetProvider extends AppWidgetProvider {
 				Log.d(TAG, "DELETE WIDGET - WIDGET_ID: " + appWidgetId);
 		}*/
 		
-		mPrefsEditor.commit();		
+		mPrefsEditor.commit();
 		
 		
 		super.onDeleted(context, appWidgetIds);
@@ -169,6 +177,8 @@ public class WidgetProvider extends AppWidgetProvider {
 
 	@Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        inject(context);
+
     	if(Constants.debugModeWidget)
     		Log.d(TAG, "onUpdate");
     	    	
@@ -220,5 +230,9 @@ public class WidgetProvider extends AppWidgetProvider {
                 
         if(Constants.debugModeWidget)
         	Log.d(TAG, "updateAppWidget - WidgetID: " + appWidgetId);
+    }
+
+    private void inject(Context context) {
+        ((NewsReaderApplication) context.getApplicationContext()).getAppComponent().injectWidget(this);
     }
 }

@@ -47,32 +47,18 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     private int totalItemCount = 0;
     private int cachedPages = 1;
 
-    public int getTotalItemCount() {
-        return totalItemCount;
-    }
-
-    public int getCachedPages() {
-        return cachedPages;
-    }
-
-    public void setTotalItemCount(int totalItemCount) {
-        this.totalItemCount = totalItemCount;
-    }
-
-    public void setCachedPages(int cachedPages) {
-        this.cachedPages = cachedPages;
-    }
-
     private IPlayPausePodcastClicked playPausePodcastClicked;
 
     private boolean loading = false;
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private int visibleThreshold = 5;
+    private SharedPreferences mPrefs;
 
-    public NewsListRecyclerAdapter(FragmentActivity activity, RecyclerView recyclerView, IPlayPausePodcastClicked playPausePodcastClicked, PostDelayHandler postDelayHandler) {
+    public NewsListRecyclerAdapter(FragmentActivity activity, RecyclerView recyclerView, IPlayPausePodcastClicked playPausePodcastClicked, PostDelayHandler postDelayHandler, SharedPreferences prefs) {
         this.activity = activity;
         this.playPausePodcastClicked = playPausePodcastClicked;
+        this.mPrefs = prefs;
 
         pDelayHandler = postDelayHandler;
 
@@ -120,6 +106,22 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public int getTotalItemCount() {
+        return totalItemCount;
+    }
+
+    public int getCachedPages() {
+        return cachedPages;
+    }
+
+    public void setTotalItemCount(int totalItemCount) {
+        this.totalItemCount = totalItemCount;
+    }
+
+    public void setCachedPages(int cachedPages) {
+        this.cachedPages = cachedPages;
+    }
+
     @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
         if (podcast.isPlaying()) {
@@ -153,7 +155,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
             return new ProgressViewHolder(v);
         } else {
-            SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
             Integer layout = 0;
             switch (Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"))) {
                 case 0:
@@ -179,7 +180,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             }
             View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
-            final ViewHolder holder = new ViewHolder(view);
+            final ViewHolder holder = new ViewHolder(view, mPrefs);
 
             holder.starImageView.setOnClickListener(new View.OnClickListener() {
                 @Override

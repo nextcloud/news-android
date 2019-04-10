@@ -1,4 +1,4 @@
-package com.nextcloud.android.sso.api;
+package de.luhmer.owncloudnewsreader.tests;
 
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
@@ -123,7 +123,7 @@ public class NewFeedTests {
 
     // Verify that the API was actually called
     private void verifyRequest(String feed) throws Exception {
-        NetworkRequest nr = ((TestApiProvider)mApi).networkRequestSpy;
+        TestApiProvider.NewsTestNetworkRequest nr = ((TestApiProvider)mApi).networkRequestSpy;
         ArgumentCaptor<NextcloudRequest> argument = ArgumentCaptor.forClass(NextcloudRequest.class);
         verify(nr, timeout(2000)).performNetworkRequest(argument.capture(), any());
         assertEquals("/index.php/apps/news/api/v1-2/feeds", argument.getValue().getUrl());

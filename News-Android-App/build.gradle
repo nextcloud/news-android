@@ -20,7 +20,17 @@ android {
 
         //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner "de.luhmer.owncloudnewsreader.CustomTestRunner"
+
+        // The following argument makes the Android Test Orchestrator run its
+        // "pm clear" command after each test invocation. This command ensures
+        // that the app's state is completely cleared between tests.
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+
         vectorDrawables.useSupportLibrary = true
+    }
+
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
 
     compileOptions {
@@ -125,11 +135,11 @@ dependencies {
     // https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "androidx.core:core:1.1.0-alpha05"
-    implementation "androidx.appcompat:appcompat:1.1.0-alpha02"
-    implementation "androidx.preference:preference:1.0.0"
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha04"
+    implementation "androidx.preference:preference:1.1.0-alpha04"
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
-    implementation "com.google.android.material:material:1.1.0-alpha04"
+    implementation "com.google.android.material:material:1.1.0-alpha05"
     implementation "androidx.palette:palette:1.0.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0-alpha3"
     implementation "androidx.browser:browser:1.0.0"
@@ -221,6 +231,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.1'
     androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.1'
+
+    // https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator
+    androidTestUtil 'androidx.test:orchestrator:1.1.1'
 
     // The following Espresso dependency can be either "implementation"
     // or "androidTestImplementation", depending on whether you want the

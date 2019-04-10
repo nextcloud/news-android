@@ -53,6 +53,9 @@
             android:name=".SyncIntervalSelectorActivity"
             android:label="@string/title_activity_sync_interval_selector" />
         <activity
+            android:name=".LoginDialogActivity"
+            android:label="@string/action_sign_in_short" />
+        <activity
             android:name=".NewFeedActivity"
             android:label="@string/title_activity_new_feed"
             android:launchMode="singleTop"
@@ -148,12 +151,6 @@
                 android:resource="@xml/file_provider_paths" />
         </provider>
 
-        <!--
-        <activity
-            android:name=".authentication.AuthenticatorActivity"
-            android:label="@string/title_activity_settings"
-            android:launchMode="singleTask" >
-        -->
         <!-- android:theme="@style/Theme.Transparent" > -->
         <!-- </activity> -->
 

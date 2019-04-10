@@ -14,6 +14,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -37,7 +38,9 @@ public class ApiModule {
     // Application reference must come from AppModule.class
     SharedPreferences providesSharedPreferences() {
         //return PreferenceManager.getDefaultSharedPreferences(mApplication);
-        return mApplication.getSharedPreferences(providesSharedPreferencesFileName(), Context.MODE_PRIVATE);
+        SharedPreferences mPrefs = mApplication.getSharedPreferences(providesSharedPreferencesFileName(), Context.MODE_PRIVATE);
+        ThemeChooser.init(mPrefs);
+        return mPrefs;
     }
 
     // Dagger will only look for methods annotated with @Provides

@@ -5,11 +5,9 @@ import android.util.Base64;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -40,25 +38,22 @@ public class GsonConfig {
                 .registerTypeAdapter(folderList,   new NextcloudDeserializer<>(Types.FOLDERS.toString(), Folder.class))
                 .registerTypeAdapter(feedList,     new NextcloudDeserializer<>(Types.FEEDS.toString(), Feed.class))
                 .registerTypeAdapter(rssItemsList, new NextcloudDeserializer<>(Types.ITEMS.toString(), RssItem.class))
-                .registerTypeAdapter(UserInfo.class, new JsonDeserializer<UserInfo>() {
-                    @Override
-                    public UserInfo deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-                        try {
-                            JsonObject jObj = json.getAsJsonObject();
-                            JsonElement avatar = jObj.get("avatar");
-                            byte[] decodedString = {};
-                            if (!avatar.isJsonNull()) {
-                                decodedString = Base64.decode(avatar.getAsJsonObject().get("data").getAsString(), Base64.DEFAULT);
-                            }
-                            return new UserInfo.Builder()
-                                    .setDisplayName(jObj.get("displayName").getAsString())
-                                    .setUserId(jObj.get("userId").getAsString())
-                                    .setAvatar(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length))
-                                    .setLastLoginTimestamp(jObj.get("lastLoginTimestamp").getAsLong())
-                                    .build();
-                        } catch(IllegalStateException ex) {
-                            throw OkHttpSSLClient.HandleExceptions(ex);
+                .registerTypeAdapter(UserInfo.class, (JsonDeserializer<UserInfo>) (json, typeOfT, context) -> {
+                    try {
+                        JsonObject jObj = json.getAsJsonObject();
+                        JsonElement avatar = jObj.get("avatar");
+                        byte[] decodedString = {};
+                        if (!avatar.isJsonNull()) {
+                            decodedString = Base64.decode(avatar.getAsJsonObject().get("data").getAsString(), Base64.DEFAULT);
                         }
+                        return new UserInfo.Builder()
+                                .setDisplayName(jObj.get("displayName").getAsString())
+                                .setUserId(jObj.get("userId").getAsString())
+                                .setAvatar(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length))
+                                .setLastLoginTimestamp(jObj.get("lastLoginTimestamp").getAsLong())
+                                .build();
+                    } catch(IllegalStateException ex) {
+                        throw OkHttpSSLClient.HandleExceptions(ex);
                     }
                 })
                 .create();

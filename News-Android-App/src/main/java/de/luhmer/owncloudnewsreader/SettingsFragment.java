@@ -14,6 +14,7 @@ import android.provider.Settings;
 import android.widget.Toast;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.DialogPreference;
@@ -50,12 +51,16 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SORT_ORDER;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    @Inject SharedPreferences mPrefs;
+    protected @Inject SharedPreferences mPrefs;
+    protected @Inject @Named("sharedPreferencesFileName") String sharedPreferencesFileName;
     private static String version = "<loading>";
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+
+        // Define the settings file to use by this settings fragment
+        getPreferenceManager().setSharedPreferencesName(sharedPreferencesFileName);
 
         version = VersionInfoDialogFragment.getVersionString(getActivity());
 
