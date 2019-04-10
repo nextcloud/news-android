@@ -155,6 +155,17 @@ public class LoginDialogActivity extends AppCompatActivity {
 	}
 
     @Override
+    public void onBackPressed() {
+	    if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
+	        // exit application if no account is set uo
+            finishAffinity();
+        } else {
+            // go back to previous activity
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         mMemorizingTrustManager.bindDisplayActivity(this);
