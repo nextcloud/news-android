@@ -49,8 +49,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">נתיב ערוץ תוכן</string>
     <string name="action_add_feed">הוספת ערוץ תוכן</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">הורדת תמונה</string>
     <string name="action_img_sharelink">שיתוף קישור תמונה</string>
@@ -88,10 +86,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">השדה הזה נחוץ</string>
     <string name="error_invalid_url">כתובת שגויה</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">ייבוא חשבון</string>
 
 
     <!-- Toast Messages -->

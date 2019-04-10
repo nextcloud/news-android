@@ -51,8 +51,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL Ροής</string>
     <string name="action_add_feed">Προσθήκη ροής</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Λήψη εικόνας</string>
     <string name="action_img_sharelink">Μοιραστείτε Σύνδεσμο Εικόνας</string>
@@ -90,10 +88,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
     <string name="error_invalid_url">Εσφαλμένη URL</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Εισαγωγή λογαριασμού</string>
 
 
     <!-- Toast Messages -->

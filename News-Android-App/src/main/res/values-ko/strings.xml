@@ -43,8 +43,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">피드 URL</string>
     <string name="action_add_feed">피드 추가</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">사진 다운로드</string>
     <string name="action_img_sharelink">사진 링크 공유</string>
@@ -76,10 +74,6 @@
     <string name="login_progress_signing_in">로그인 중…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">이 항목은 필수 사항입니다</string>
-    <!-- Import Accounts -->
-    <string name="import_account">계정 가져오기</string>
-
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">오래된 항목 %d개 다운로드됨</item>

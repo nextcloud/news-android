@@ -37,8 +37,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Iturburu URLa</string>
     <string name="action_add_feed">Gehitu iturburua</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Deskargatu irudia</string>
     <string name="action_img_sharelink">Partekatu irudiaren esteka</string>
@@ -71,10 +69,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Eremu hau beharrezkoa da</string>
     <string name="error_invalid_url">Balio gabeko URLa</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Inportatu Kontua</string>
 
 
     <string name="toast_no_more_downloads_available">Ez dago datu gehigarri eskuragarririk</string>

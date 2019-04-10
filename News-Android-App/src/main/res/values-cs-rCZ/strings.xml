@@ -58,8 +58,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL kanálu</string>
     <string name="action_add_feed">Přidat kanál</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Stáhnout obrázek</string>
     <string name="action_img_sharelink">Sdílet odkaz na obrázek</string>
@@ -97,10 +95,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Tato položka je povinná</string>
     <string name="error_invalid_url">Nesprávná URL</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Importovat účet</string>
 
 
     <!-- Toast Messages -->

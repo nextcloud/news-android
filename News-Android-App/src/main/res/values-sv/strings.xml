@@ -49,8 +49,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">FlödesURL</string>
     <string name="action_add_feed">Lägg till flöde</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Ladda ned bild</string>
     <string name="action_img_sharelink">Dela bildlänk</string>
@@ -84,10 +82,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Detta fält obligatoriskt</string>
     <string name="error_invalid_url">Felaktig webbadress</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Importera Konto</string>
 
 
     <!-- Toast Messages -->

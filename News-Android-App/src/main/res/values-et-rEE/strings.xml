@@ -46,8 +46,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Uudisvoo URL</string>
     <string name="action_add_feed">Lisa uudivoog</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Laadi pilt alla</string>
     <string name="action_img_sharelink">Jaga pildi linki</string>
@@ -75,10 +73,6 @@
     <string name="login_progress_signing_in">Sisselogimine...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">See väli on kohustuslik</string>
-    <!-- Import Accounts -->
-    <string name="import_account">Impordi konto</string>
-
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Alla on laaditud %d vana kirje</item>

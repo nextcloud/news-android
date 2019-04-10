@@ -46,8 +46,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">ლენტის მისამართი</string>
     <string name="action_add_feed">ლენტის დამატება</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">სურათის ჩამოტვირთვა</string>
     <string name="action_img_sharelink">სურათის ბმულით გაზიარება</string>
@@ -79,10 +77,6 @@
     <string name="login_progress_signing_in">მიმდინარეობს ავტორიზაცია</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">ეს ველი აუცილებელია</string>
-    <!-- Import Accounts -->
-    <string name="import_account">ანგარიშის იმპორტი</string>
-
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">ჩამოტვირთულია %d ძველი ელემენტი</item>

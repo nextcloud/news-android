@@ -43,8 +43,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">新增訂閱</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">下載圖片</string>
     <string name="action_img_sharelink">分享圖片連結</string>
@@ -76,10 +74,6 @@
     <string name="login_progress_signing_in">登入中…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">此欄位為必填</string>
-    <!-- Import Accounts -->
-    <string name="import_account">匯入帳戶</string>
-
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">已下載 %d 個舊項目</item>

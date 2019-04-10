@@ -43,8 +43,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL Feed</string>
     <string name="action_add_feed">Tambah feed</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Unduh Gambar</string>
     <string name="action_img_sharelink">Bagikan Tautan Gambar</string>
@@ -76,10 +74,6 @@
     <string name="login_progress_signing_in">Sedang masuk...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Bidang wajib diisi</string>
-    <!-- Import Accounts -->
-    <string name="import_account">Impor Akun</string>
-
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">Mengunduh %d item lama</item>

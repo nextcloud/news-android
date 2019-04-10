@@ -55,8 +55,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Адреса довода</string>
     <string name="action_add_feed">Додај довод</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Преузми слику</string>
     <string name="action_img_sharelink">Подели везу ка слици</string>
@@ -94,10 +92,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ово поље је неопходно</string>
     <string name="error_invalid_url">Неисправна адреса</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Увези налог</string>
 
 
     <!-- Toast Messages -->

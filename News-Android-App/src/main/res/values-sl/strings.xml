@@ -54,8 +54,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Naslov URL vira</string>
     <string name="action_add_feed">Dodaj vir</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Prejmi sliko</string>
     <string name="action_img_sharelink">Objavi povezavo do slike</string>
@@ -93,10 +91,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Vpis v to polje je obvezen</string>
     <string name="error_invalid_url">Napačen naslov URL</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Uvozi račun</string>
 
 
     <!-- Toast Messages -->

@@ -52,8 +52,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Adresse du flux</string>
     <string name="action_add_feed">Ajouter un flux</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Télécharger l\'Image</string>
     <string name="action_img_sharelink">Partager le Lien vers l\'Image</string>
@@ -91,10 +89,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ce champs est requis</string>
     <string name="error_invalid_url">Adresse incorrecte</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Importer un compte</string>
 
 
     <!-- Toast Messages -->

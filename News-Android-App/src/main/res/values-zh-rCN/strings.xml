@@ -49,8 +49,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">源网址</string>
     <string name="action_add_feed">添加Feed</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">下载图片</string>
     <string name="action_img_sharelink">共享图片链接</string>
@@ -88,10 +86,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">这个字段是必填的</string>
     <string name="error_invalid_url">网络地址不正确</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">导入帐号</string>
 
 
     <!-- Toast Messages -->

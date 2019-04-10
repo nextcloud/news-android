@@ -52,8 +52,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL da fonte</string>
     <string name="action_add_feed">Engadir fonte</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Descargar imaxe</string>
     <string name="action_img_sharelink">Compartir a ligazón da imaxe</string>
@@ -91,10 +89,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo é obrigatorio</string>
     <string name="error_invalid_url">URL incorrecto</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Importar a conta</string>
 
 
     <!-- Toast Messages -->

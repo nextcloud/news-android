@@ -48,8 +48,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed</string>
     <string name="action_add_feed">Adicionar feed de notícias.</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Transferir Imagem</string>
     <string name="action_img_sharelink">Partilhar hiperligação de imagem</string>
@@ -81,10 +79,6 @@
     <string name="login_progress_signing_in">A iniciar a sessão ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo é obrigatório</string>
-    <!-- Import Accounts -->
-    <string name="import_account">Conta Importar</string>
-
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Transferidos %d item antigo</item>

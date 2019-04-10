@@ -52,8 +52,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Streymisslóð</string>
     <string name="action_add_feed">Bæta við fréttastraum</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Sækja mynd</string>
     <string name="action_img_sharelink">Deila tengli á mynd</string>
@@ -91,10 +89,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Krafist er að fyllt sé í þennan reit</string>
     <string name="error_invalid_url">Röng slóð</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Flytja inn aðgang</string>
 
 
     <!-- Toast Messages -->

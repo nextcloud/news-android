@@ -52,8 +52,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL para el canal</string>
     <string name="action_add_feed">Añadir canal</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Descargar imagen</string>
     <string name="action_img_sharelink">Compartir enlace de imagen</string>
@@ -91,10 +89,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo es necesario</string>
     <string name="error_invalid_url">URL incorrecta</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Importar cuenta de usuario</string>
 
 
     <!-- Toast Messages -->

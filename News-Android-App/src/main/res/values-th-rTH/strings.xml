@@ -43,8 +43,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">ฟีด URL</string>
     <string name="action_add_feed">เพิ่ม feed</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">ดาวน์โหลดรูปภาพ</string>
     <string name="action_img_sharelink">แชร์ลิงค์รูปภาพ</string>
@@ -76,10 +74,6 @@
     <string name="login_progress_signing_in">กำลังเข้าสู่ระบบ ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">ต้องใส่ข้อมูลลงในช่องนี้</string>
-    <!-- Import Accounts -->
-    <string name="import_account">นำเข้าบัญชี</string>
-
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">ดาวน์โหลด %d รายการเก่า</item>

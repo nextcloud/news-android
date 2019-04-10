@@ -52,8 +52,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL font</string>
     <string name="action_add_feed">Afegeix font</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Descarrega la imatge</string>
     <string name="action_img_sharelink">Comparteix l\'enllaç de la imatge</string>
@@ -91,10 +89,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Aquest camp és obligatori</string>
     <string name="error_invalid_url">URL incorrecta</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Importa compte</string>
 
 
     <!-- Toast Messages -->

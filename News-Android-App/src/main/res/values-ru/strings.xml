@@ -58,8 +58,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Ссылка ленты</string>
     <string name="action_add_feed">Добавить ленту</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Скачать изображение</string>
     <string name="action_img_sharelink">Поделиться ссылкой картинки</string>
@@ -97,10 +95,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Это поле обязательно для заполнения</string>
     <string name="error_invalid_url">Некорректный адрес</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Импортировать учётную запись</string>
 
 
     <!-- Toast Messages -->

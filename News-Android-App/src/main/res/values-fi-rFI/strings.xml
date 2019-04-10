@@ -48,8 +48,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Syötteen osoite</string>
     <string name="action_add_feed">Lisää syöte</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Lataa kuva</string>
     <string name="action_img_sharelink">Jaa kuvan linkki</string>
@@ -87,10 +85,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Tämä kenttä vaaditaan</string>
     <string name="error_invalid_url">Virheellinen URL</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Tuo tili</string>
 
 
     <!-- Toast Messages -->

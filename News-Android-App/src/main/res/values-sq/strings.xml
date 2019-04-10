@@ -49,8 +49,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL Prurjeje</string>
     <string name="action_add_feed">Shtoni prurje</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Shkarko Figurën</string>
     <string name="action_img_sharelink">Ndani Lidhje Figure</string>
@@ -83,10 +81,6 @@
     <string name="login_progress_signing_in">Po hyhet…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Kjo fushë është e domosdoshme</string>
-    <!-- Import Accounts -->
-    <string name="import_account">Importoni Llogari</string>
-
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">U shkarkua %d objekt i vjetër</item>

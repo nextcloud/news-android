@@ -52,8 +52,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Voeg feed toe</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Downloaden afbeelding</string>
     <string name="action_img_sharelink">Delen afbeeldingslink</string>
@@ -91,10 +89,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dit veld is verplicht</string>
     <string name="error_invalid_url">Onjuiste URL</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Importeer account</string>
 
 
     <!-- Toast Messages -->

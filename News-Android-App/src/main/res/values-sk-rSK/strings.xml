@@ -31,8 +31,6 @@
     <string name="action_add_new_feed">Pridať nový kanál</string>
     <string name="action_textToSpeech">Prečítať</string>
     <string name="action_add_feed">Pridať kanál</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Stiahnuť obrázok</string>
     <string name="action_img_sharelink">Sprístupniť odkaz na obrázok</string>
@@ -56,10 +54,6 @@
     <string name="login_progress_signing_in">Prihlasujem vás...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Toto pole je povinné</string>
-    <!-- Import Accounts -->
-    <string name="import_account">Importný účet</string>
-
-
     <string name="toast_no_more_downloads_available">Žiadne ďalšie položky k dispozícii</string>
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nastavenia</string>

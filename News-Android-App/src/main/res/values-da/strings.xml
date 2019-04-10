@@ -52,8 +52,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Tilføj feed</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Download billede</string>
     <string name="action_img_sharelink">Del Billedlink</string>
@@ -91,10 +89,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette felt er påkrævet</string>
     <string name="error_invalid_url">Ukorrekt URL</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Importér brugerkonto</string>
 
 
     <!-- Toast Messages -->

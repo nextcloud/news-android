@@ -54,8 +54,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Kanalo URL</string>
     <string name="action_add_feed">Pridėti kanalą</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Atsisiųsti paveikslą</string>
     <string name="action_img_sharelink">Bendrinti paveikslo nuorodą</string>
@@ -93,10 +91,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Šis laukas privalomas</string>
     <string name="error_invalid_url">Neteisingas URL</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Importuoti paskyrą</string>
 
 
     <!-- Toast Messages -->

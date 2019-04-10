@@ -49,8 +49,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Hírfolyam URL</string>
     <string name="action_add_feed">Hírcsatorna hozzáadása</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Kép létöltése</string>
     <string name="action_img_sharelink">Képhivatkozás megosztása</string>
@@ -86,10 +84,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ez a mező szükséges</string>
     <string name="error_invalid_url">Hibás URL</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Konto importálás</string>
 
 
     <!-- Toast Messages -->

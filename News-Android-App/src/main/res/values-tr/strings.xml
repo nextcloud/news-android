@@ -52,8 +52,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Akış Adresi</string>
     <string name="action_add_feed">Akış Ekle</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Görseli İndir</string>
     <string name="action_img_sharelink">Görsel Bağlantısını Paylaş</string>
@@ -91,10 +89,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Bu alan zorunludur</string>
     <string name="error_invalid_url">Adres yanlış</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">Hesabı İçe Aktar</string>
 
 
     <!-- Toast Messages -->

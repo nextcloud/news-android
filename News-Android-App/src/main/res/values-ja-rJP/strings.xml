@@ -49,8 +49,6 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">フィードURL</string>
     <string name="action_add_feed">フィードを追加</string>
-
-
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">画像をダウンロード</string>
     <string name="action_img_sharelink">画像リンクを共有</string>
@@ -88,10 +86,6 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">このフィールドは必須です</string>
     <string name="error_invalid_url">URLが正しくありません</string>
-
-
-    <!-- Import Accounts -->
-    <string name="import_account">アカウントをインポート</string>
 
 
     <!-- Toast Messages -->
