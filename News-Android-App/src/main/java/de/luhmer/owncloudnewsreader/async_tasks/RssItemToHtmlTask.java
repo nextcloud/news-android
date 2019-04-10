@@ -164,10 +164,8 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         builder.append("</div>");
 
         String authorOfArticle = Html.escapeHtml(rssItem.getAuthor());
-        if (authorOfArticle != null) {
-            if (!authorOfArticle.trim().equals("")) {
-                feedTitle += " - " + authorOfArticle.trim();
-            }
+        if (!"".equals(authorOfArticle)) { // If author is not empty, append him/her
+            feedTitle += " - " + authorOfArticle.trim();
         }
 
         builder.append("<div id=\"header_small_text\">");
