@@ -3,7 +3,6 @@ package de.luhmer.owncloudnewsreader.tests;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -30,7 +29,6 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.TestApplication;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
-import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.di.TestComponent;
 import helper.OrientationChangeAction;
 import helper.RecyclerViewAssertions;

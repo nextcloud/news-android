@@ -47,22 +47,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     private int totalItemCount = 0;
     private int cachedPages = 1;
 
-    public int getTotalItemCount() {
-        return totalItemCount;
-    }
-
-    public int getCachedPages() {
-        return cachedPages;
-    }
-
-    public void setTotalItemCount(int totalItemCount) {
-        this.totalItemCount = totalItemCount;
-    }
-
-    public void setCachedPages(int cachedPages) {
-        this.cachedPages = cachedPages;
-    }
-
     private IPlayPausePodcastClicked playPausePodcastClicked;
 
     private boolean loading = false;
@@ -120,6 +104,22 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                         }
                     });
         }
+    }
+
+    public int getTotalItemCount() {
+        return totalItemCount;
+    }
+
+    public int getCachedPages() {
+        return cachedPages;
+    }
+
+    public void setTotalItemCount(int totalItemCount) {
+        this.totalItemCount = totalItemCount;
+    }
+
+    public void setCachedPages(int cachedPages) {
+        this.cachedPages = cachedPages;
     }
 
     @Subscribe

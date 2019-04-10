@@ -6,7 +6,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -85,7 +84,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
             mPrefs.edit().putInt(SYNC_INTERVAL_IN_MINUTES_STRING, minutes).commit();
 
-            SetAccountSyncInterval(this, mPrefs);
+            setAccountSyncInterval(this, mPrefs);
 
             finish();
         }
@@ -95,7 +94,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
     }
 
 
-    public static void SetAccountSyncInterval(Context context, SharedPreferences mPrefs) {
+    public static void setAccountSyncInterval(Context context, SharedPreferences mPrefs) {
         int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 0);
 
         if(minutes != 0) {
@@ -131,7 +130,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
     public static class PlaceholderFragment extends Fragment {
 
         private ListView lvItems;
-        @Inject SharedPreferences mPrefs;
+        protected @Inject SharedPreferences mPrefs;
 
         public PlaceholderFragment() {
         }

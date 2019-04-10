@@ -3,7 +3,7 @@ package de.luhmer.owncloudnewsreader.di;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import de.luhmer.owncloudnewsreader.LoginDialogFragment;
+import de.luhmer.owncloudnewsreader.LoginDialogActivity;
 import de.luhmer.owncloudnewsreader.NewFeedActivity;
 import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsDetailFragment;
@@ -33,10 +33,10 @@ public interface AppComponent {
     void injectActivity(NewFeedActivity activity);
     void injectActivity(SettingsActivity activity);
     void injectActivity(SyncIntervalSelectorActivity activity);
+    void injectActivity(LoginDialogActivity activity);
 
     void injectFragment(NewsReaderListDialogFragment fragment);
     void injectFragment(NewsReaderListFragment fragment);
-    void injectFragment(LoginDialogFragment fragment);
     void injectFragment(SettingsFragment fragment);
     void injectFragment(NewsDetailFragment fragment);
     void injectFragment(NewsReaderDetailFragment fragment);

@@ -74,6 +74,7 @@ public class PodcastFragment extends Fragment {
     private int lastDrawableId;
 
     private OnFragmentInteractionListener mListener;
+    private PodcastSlidingUpPanelLayout sliding_layout;
 
     /**
      * Use this factory method to create a new instance of
@@ -295,11 +296,10 @@ public class PodcastFragment extends Fragment {
         showPlaybackSpeedPicker();
     }
 
-    PodcastSlidingUpPanelLayout sliding_layout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create ContextThemeWrapper from the original Activity Context with the custom theme
-        Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_AppCompat_Light_DarkActionBar);
+        Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_MaterialComponents_Light_DarkActionBar);
         // clone the inflater using the ContextThemeWrapper
         LayoutInflater localInflater = inflater.cloneInContext(context);
         // inflate using the cloned inflater, not the passed in default

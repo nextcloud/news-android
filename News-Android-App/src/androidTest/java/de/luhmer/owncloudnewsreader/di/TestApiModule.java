@@ -3,12 +3,10 @@ package de.luhmer.owncloudnewsreader.di;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Environment;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
-import java.io.File;
 import java.io.IOException;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;

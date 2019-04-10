@@ -44,6 +44,8 @@ import static org.junit.Assert.fail;
 @LargeTest
 public class NightModeTest {
 
+    protected @Inject SharedPreferences mPrefs;
+
     /**
      * NOTE: These tests only work during "daylight".. (this is because there is no way to check
      * the current state of the android day/night mode)
@@ -56,8 +58,6 @@ public class NightModeTest {
     private Activity getActivity() {
         return mActivityRule.getActivity();
     }
-
-    protected @Inject SharedPreferences mPrefs;
 
     @Before
     public void resetSharedPrefs() {
