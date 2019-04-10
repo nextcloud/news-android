@@ -134,7 +134,7 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "androidx.core:core:1.1.0-alpha05"
     implementation "androidx.appcompat:appcompat:1.1.0-alpha04"
-    implementation "androidx.preference:preference:1.0.0"
+    implementation "androidx.preference:preference:1.1.0-alpha04"
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
     implementation "com.google.android.material:material:1.1.0-alpha05"
