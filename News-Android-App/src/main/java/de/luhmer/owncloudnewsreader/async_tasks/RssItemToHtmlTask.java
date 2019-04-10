@@ -84,14 +84,12 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
      * @return given RSS item as full HTML page
      */
     public static String getHtmlPage(RssItem rssItem, boolean showHeader, SharedPreferences mPrefs, boolean isRightToLeft) {
-        String feedTitle = "Undefined";
         String favIconUrl = null;
 
         Feed feed = rssItem.getFeed();
 
         //int feedColor = colors[0];
         if (feed != null) {
-            feedTitle = Html.escapeHtml(feed.getFeedTitle());
             favIconUrl = feed.getFaviconUrl();
         }
 
@@ -119,7 +117,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         if (showHeader) {
             builder.append(
-                buildHeader(rssItem, body_id, feedTitle, favIconUrl)
+                buildHeader(rssItem, body_id, favIconUrl)
             );
         }
 
@@ -155,14 +153,14 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         }
     }
 
-    private static String buildHeader(RssItem rssItem, String body_id, String feedTitle, String favIconUrl) {
+    private static String buildHeader(RssItem rssItem, String body_id, String favIconUrl) {
         StringBuilder builder = new StringBuilder();
 
         builder.append("<div id=\"top_section\">");
         builder.append(String.format("<div id=\"header\" class=\"%s\">", body_id));
-        String title = Html.escapeHtml(rssItem.getTitle());
+        String feedTitle = Html.escapeHtml(rssItem.getTitle());
         String linkToFeed = Html.escapeHtml(rssItem.getLink());
-        builder.append(String.format("<a href=\"%s\">%s</a>", linkToFeed, title));
+        builder.append(String.format("<a href=\"%s\">%s</a>", linkToFeed, feedTitle));
         builder.append("</div>");
 
         String authorOfArticle = Html.escapeHtml(rssItem.getAuthor());
