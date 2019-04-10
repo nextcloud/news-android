@@ -50,14 +50,15 @@
             android:id="@+id/old_login_wrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/username_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:counterOverflowTextColor="@android:color/white"
-                android:theme="@style/TextInputLayoutAppearance">
+                android:theme="@style/TextInputLayoutAppearance"
+                style="@style/TextInputLayoutStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/username"
@@ -78,7 +79,8 @@
                 android:layout_below="@+id/username_container"
                 android:layout_alignParentStart="true"
                 app:counterOverflowTextColor="@android:color/white"
-                android:theme="@style/TextInputLayoutAppearance">
+                android:theme="@style/TextInputLayoutAppearance"
+                style="@style/TextInputLayoutStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
@@ -102,7 +104,7 @@
                 android:layout_alignParentStart="true"
                 app:counterOverflowTextColor="@android:color/white"
                 android:theme="@style/TextInputLayoutAppearance"
-                style="@style/TextInputEditTextLogin">
+                style="@style/TextInputLayoutStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_owncloudRootPath"

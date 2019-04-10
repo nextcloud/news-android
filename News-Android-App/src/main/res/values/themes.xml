@@ -59,6 +59,11 @@
         <item name="colorAccent">@android:color/white</item>
     </style>
 
+    <style name="TextInputLayoutStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+    </style>
+
     <style name="TextInputLayoutAppearance" parent="Base.Widget.MaterialComponents.TextInputLayout">
         <item name="android:textCursorDrawable">@null</item>
         <item name="android:background">@android:color/transparent</item>
