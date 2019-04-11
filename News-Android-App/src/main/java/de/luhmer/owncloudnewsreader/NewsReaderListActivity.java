@@ -697,20 +697,21 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		MenuItem searchItem = menu.findItem(R.id.menu_search);
 
-		//Set expand listener to close keyboard
-		searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-			@Override
-			public boolean onMenuItemActionExpand(MenuItem item) {
+        //Set expand listener to close keyboard
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
 				return true;
 			}
 
-			@Override
-			public boolean onMenuItemActionCollapse(MenuItem item) {
-			    onQueryTextChange(""); // Reset search
-				clearSearchViewFocus();
-				return true;
-			}
-		});
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                //onQueryTextChange(""); // Reset search
+                mSearchView.setQuery("", true);
+                clearSearchViewFocus();
+                return true;
+            }
+        });
 
 		mSearchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		mSearchView.setIconifiedByDefault(false);
