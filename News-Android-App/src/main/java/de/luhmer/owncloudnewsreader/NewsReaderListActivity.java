@@ -97,6 +97,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
@@ -148,7 +149,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@VisibleForTesting @Nullable @BindView(R.id.drawer_layout) public DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
-	private SearchView searchView;
+	private SearchView mSearchView;
+    private String mSearchString;
+    private static final String SEARCH_KEY = "SEARCH_KEY";
 
     private PublishSubject<String> searchPublishSubject;
     private static final int REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE = 1;
@@ -159,7 +162,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     private static final String LIST_ADAPTER_TOTAL_COUNT = "LIST_ADAPTER_TOTAL_COUNT";
     private static final String LIST_ADAPTER_PAGE_COUNT = "LIST_ADAPTER_PAGE_COUNT";
 
+
     @Inject @Named("sharedPreferencesFileName") String sharedPreferencesFileName;
+
 
 
     @Override
@@ -299,6 +304,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 outState.putInt(LIST_ADAPTER_PAGE_COUNT, adapter.getCachedPages());
             }
         }
+        if(mSearchView != null) {
+            mSearchString = mSearchView.getQuery().toString();
+            outState.putString(SEARCH_KEY, mSearchString);
+        }
     }
 
     private void restoreInstanceState(Bundle savedInstanceState) {
@@ -320,6 +329,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     savedInstanceState.getLong(ID_FEED_STRING),
                     false);
         }
+        mSearchString = savedInstanceState.getString(SEARCH_KEY, null);
     }
 
 
@@ -696,27 +706,38 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 			@Override
 			public boolean onMenuItemActionCollapse(MenuItem item) {
+			    onQueryTextChange(""); // Reset search
 				clearSearchViewFocus();
 				return true;
 			}
 		});
 
-		searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-		searchView.setIconifiedByDefault(false);
-		searchView.setOnQueryTextListener(this);
-		searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+		mSearchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+		mSearchView.setIconifiedByDefault(false);
+		mSearchView.setOnQueryTextListener(this);
+		mSearchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
             if(!hasFocus) {
                 clearSearchViewFocus();
             }
         });
 
-		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-		if(ndf != null)
-			ndf.updateMenuItemsState();
+        ThemeUtils.colorSearchViewCursorColor(mSearchView, Color.WHITE);
+
+        NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+        if(ndf != null) {
+            ndf.updateMenuItemsState();
+        }
 
         updateButtonLayout();
 
-		return true;
+        // focus the SearchView (if search view was active before orientation change)
+        if (mSearchString != null && !mSearchString.isEmpty()) {
+            searchItem.expandActionView();
+            mSearchView.setQuery(mSearchString, true);
+            mSearchView.clearFocus();
+        }
+
+        return true;
 	}
 
 	public MenuItem getMenuItemDownloadMoreItems() {
@@ -812,9 +833,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				return true;
 
 			case R.id.menu_search:
-				searchView.setIconified(false);
-				searchView.setFocusable(true);
-				searchView.requestFocusFromTouch();
+				mSearchView.setIconified(false);
+				mSearchView.setFocusable(true);
+				mSearchView.requestFocusFromTouch();
                 return true;
 
             case R.id.menu_download_web_archive:
@@ -1072,6 +1093,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     public void clearSearchViewFocus() {
-        searchView.clearFocus();
+        mSearchView.clearFocus();
     }
 }
