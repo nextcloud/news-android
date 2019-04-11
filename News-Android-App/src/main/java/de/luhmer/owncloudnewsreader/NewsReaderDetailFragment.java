@@ -21,6 +21,7 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -108,7 +109,28 @@ public class NewsReaderDetailFragment extends Fragment {
 
     protected @Inject SharedPreferences mPrefs;
 
-    protected DisposableObserver<List<RssItem>> SearchResultObserver = new DisposableObserver<List<RssItem>>() {
+    private PodcastFragmentActivity mActivity;
+
+    /**
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
+     */
+    public NewsReaderDetailFragment() {
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mActivity = (PodcastFragmentActivity) context;
+    }
+
+    @Override
+    public void onDetach() {
+        this.mActivity = null;
+        super.onDetach();
+    }
+
+    protected DisposableObserver<List<RssItem>> searchResultObserver = new DisposableObserver<List<RssItem>>() {
         @Override
         public void onNext(List<RssItem> rssItems) {
             loadRssItemsIntoView(rssItems);
@@ -117,7 +139,7 @@ public class NewsReaderDetailFragment extends Fragment {
         @Override
         public void onError(Throwable e) {
             pbLoading.setVisibility(View.GONE);
-            Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(mActivity, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -126,12 +148,6 @@ public class NewsReaderDetailFragment extends Fragment {
         }
     };
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public NewsReaderDetailFragment() {
-    }
 
     public static SORT_DIRECTION getSortDirection(SharedPreferences prefs) {
         return NewsDetailActivity.getSortDirectionFromSettings(prefs);
@@ -158,16 +174,16 @@ public class NewsReaderDetailFragment extends Fragment {
         return titel;
     }
 
-    public void setData(Long idFeed, Long idFolder, String titel, boolean updateListView) {
+    protected void setData(Long idFeed, Long idFolder, String title, boolean updateListView) {
         Log.v(TAG, "Creating new itstance");
 
         this.idFeed = idFeed;
         this.idFolder = idFolder;
-        this.titel = titel;
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(titel);
+        this.titel = title;
+        mActivity.getSupportActionBar().setTitle(title);
 
         if (updateListView) {
-            updateCurrentRssView(getActivity());
+            updateCurrentRssView();
         } else {
             refreshCurrentRssView();
         }
@@ -188,9 +204,9 @@ public class NewsReaderDetailFragment extends Fragment {
         super.onResume();
     }
 
-    public void updateMenuItemsState() {
-        NewsReaderListActivity nla = (NewsReaderListActivity) getActivity();
-        if (nla.getMenuItemDownloadMoreItems() != null) {
+    protected void updateMenuItemsState() {
+        NewsReaderListActivity nla = (NewsReaderListActivity) mActivity;
+        if(nla != null && nla.getMenuItemDownloadMoreItems() != null) {
             if (idFolder != null && idFolder == ALL_UNREAD_ITEMS.getValue()) {
                 nla.getMenuItemDownloadMoreItems().setEnabled(false);
             } else {
@@ -199,7 +215,7 @@ public class NewsReaderDetailFragment extends Fragment {
         }
     }
 
-    public void notifyDataSetChangedOnAdapter() {
+    protected void notifyDataSetChangedOnAdapter() {
         NewsListRecyclerAdapter nca = (NewsListRecyclerAdapter) recyclerView.getAdapter();
         if (nca != null) {
             nca.notifyDataSetChanged();
@@ -209,20 +225,17 @@ public class NewsReaderDetailFragment extends Fragment {
     /**
      * Refreshes the current RSS-View
      */
-    public void refreshCurrentRssView() {
+    protected void refreshCurrentRssView() {
         Log.v(TAG, "refreshCurrentRssView");
         NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
 
         if (nra != null) {
-            nra.refreshAdapterDataAsync(new NewsListRecyclerAdapter.IOnRefreshFinished() {
-                @Override
-                public void OnRefreshFinished() {
-                    pbLoading.setVisibility(View.GONE);
+            nra.refreshAdapterDataAsync(() -> {
+                pbLoading.setVisibility(View.GONE);
 
-                    if (layoutManagerSavedState != null) {
-                        recyclerView.getLayoutManager().onRestoreInstanceState(layoutManagerSavedState);
-                        layoutManagerSavedState = null;
-                    }
+                if (layoutManagerSavedState != null) {
+                    recyclerView.getLayoutManager().onRestoreInstanceState(layoutManagerSavedState);
+                    layoutManagerSavedState = null;
                 }
             });
         }
@@ -230,11 +243,10 @@ public class NewsReaderDetailFragment extends Fragment {
 
     /**
      * Updates the current RSS-View
-     * @param context
      */
-    public void updateCurrentRssView(Context context) {
+    public void updateCurrentRssView() {
         Log.v(TAG, "updateCurrentRssView");
-        AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask(context));
+        AsyncTaskHelper.StartAsyncTask(new UpdateCurrentRssViewTask());
     }
 
     public RecyclerView getRecyclerView() {
@@ -247,26 +259,22 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     protected List<RssItem> performSearch(String searchString) {
-        Handler mainHandler = new Handler(getActivity().getMainLooper());
+        Handler mainHandler = new Handler(mActivity.getMainLooper());
 
-        Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {
-                pbLoading.setVisibility(View.VISIBLE);
-                tvNoItemsAvailable.setVisibility(View.GONE);
-            }
+        Runnable myRunnable = () -> {
+            pbLoading.setVisibility(View.VISIBLE);
+            tvNoItemsAvailable.setVisibility(View.GONE);
         };
         mainHandler.post(myRunnable);
 
-        return Search.PerformSearch(getActivity(), idFolder, idFeed, searchString, mPrefs);
+        return Search.PerformSearch(mActivity, idFolder, idFeed, searchString, mPrefs);
     }
 
     void loadRssItemsIntoView(List<RssItem> rssItems) {
         try {
             NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
             if (nra == null) {
-                nra = new NewsListRecyclerAdapter(getActivity(), recyclerView, (PodcastFragmentActivity) getActivity(), ((PodcastFragmentActivity) getActivity()).mPostDelayHandler, mPrefs);
-
+                nra = new NewsListRecyclerAdapter(mActivity, recyclerView, mActivity, mActivity.mPostDelayHandler, mPrefs);
                 recyclerView.setAdapter(nra);
             }
             nra.updateAdapterData(rssItems);
@@ -293,25 +301,25 @@ public class NewsReaderDetailFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity, RecyclerView.VERTICAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new NewsReaderItemTouchHelperCallback());
         itemTouchHelper.attachToRecyclerView(recyclerView);
-        //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity())); // Enable divider line
+        //recyclerView.addItemDecoration(new DividerItemDecoration(mActivity)); // Enable divider line
 
         /*
         recyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                ((NewsReaderListActivity) getActivity()).clearSearchViewFocus();
+                ((NewsReaderListActivity) mActivity).clearSearchViewFocus();
                 return false;
             }
         });
         */
 
         swipeRefresh.setColorSchemeColors(accentColor);
-        swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) getActivity());
+        swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) mActivity);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -326,7 +334,7 @@ public class NewsReaderDetailFragment extends Fragment {
         });
 
         itemTouchListener = new RecyclerView.OnItemTouchListener() {
-            GestureDetectorCompat detector = new GestureDetectorCompat(getActivity(), new RecyclerViewOnGestureListener());
+            GestureDetectorCompat detector = new GestureDetectorCompat(mActivity, new RecyclerViewOnGestureListener());
 
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
@@ -433,11 +441,6 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     private class UpdateCurrentRssViewTask extends AsyncTask<Void, Void, List<RssItem>> {
-        private Context context;
-
-        UpdateCurrentRssViewTask(Context context) {
-            this.context = context;
-        }
 
         @Override
         protected void onPreExecute() {
@@ -448,7 +451,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         @Override
         protected List<RssItem> doInBackground(Void... voids) {
-            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
+            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(NewsReaderDetailFragment.this.getContext());
             SORT_DIRECTION sortDirection = getSortDirection(mPrefs);
             boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
             boolean onlyStarredItems = false;
@@ -508,7 +511,7 @@ public class NewsReaderDetailFragment extends Fragment {
                 minLeftEdgeDistance = 0;
             } else {
                 // otherwise, have left-edge offset to avoid mark-read gesture when user is pulling to open drawer
-                minLeftEdgeDistance = ((NewsReaderListActivity) getActivity()).getEdgeSizeOfDrawer();
+                minLeftEdgeDistance = ((NewsReaderListActivity) mActivity).getEdgeSizeOfDrawer();
             }
         }
 

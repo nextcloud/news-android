@@ -109,7 +109,6 @@ import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
@@ -237,17 +236,18 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			drawerToggle.syncState();
 		}
 
-		if (savedInstanceState == null) {//When the app starts (no orientation change)
-			startDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
-		}
-
 		//AppRater.app_launched(this);
 		//AppRater.rateNow(this);
+
+        if (savedInstanceState == null) { //When the app starts (no orientation change)
+            startDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+        }
     }
 
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
         if (drawerToggle != null) {
             drawerToggle.syncState();
         }
@@ -266,18 +266,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
     }
 
-    /* (non-Javadoc)
-	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
-	 */
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		safeInstanceState(outState);
-		super.onSaveInstanceState(outState);
-	}
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        safeInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
 
-    /* (non-Javadoc)
-     * @see com.actionbarsherlock.app.SherlockFragmentActivity#onRestoreInstanceState(android.os.Bundle)
-     */
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         restoreInstanceState(savedInstanceState);
@@ -287,8 +281,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (drawerToggle != null)
+        if (drawerToggle != null) {
             drawerToggle.onConfigurationChanged(newConfig);
+        }
     }
 
     private void safeInstanceState(Bundle outState) {
@@ -412,7 +407,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if (ndf != null) {
 			//ndf.reloadAdapterFromScratch();
-			ndf.updateCurrentRssView(NewsReaderListActivity.this);
+			ndf.updateCurrentRssView();
 		}
 	}
 
@@ -598,41 +593,37 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 
-	private NewsReaderDetailFragment startDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView)
-	{
-		if(menuItemDownloadMoreItems != null) {
-			menuItemDownloadMoreItems.setEnabled(true);
-		}
+    private NewsReaderDetailFragment startDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView) {
+        if(menuItemDownloadMoreItems != null) {
+            menuItemDownloadMoreItems.setEnabled(true);
+        }
 
-		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
-		Long feedId = null;
-		Long folderId;
-		String title = null;
+        Long feedId = null;
+        Long folderId;
+        String title = null;
 
-		if(!folder)
-		{
-			feedId = id;
-			folderId = optional_folder_id;
-			title = dbConn.getFeedById(id).getFeedTitle();
-		}
-		else
-		{
-			folderId = id;
-			int idFolder = (int) id;
-			if(idFolder >= 0)
-				title = dbConn.getFolderById(id).getLabel();
-			else if(idFolder == -10)
-				title = getString(R.string.allUnreadFeeds);
-			else if(idFolder == -11)
-				title = getString(R.string.starredFeeds);
+        if(!folder) {
+            feedId = id;
+            folderId = optional_folder_id;
+            title = dbConn.getFeedById(id).getFeedTitle();
+        } else {
+            folderId = id;
+            int idFolder = (int) id;
+            if(idFolder >= 0) {
+                title = dbConn.getFolderById(id).getLabel();
+            } else if(idFolder == -10) {
+                title = getString(R.string.allUnreadFeeds);
+            } else if(idFolder == -11) {
+                title = getString(R.string.starredFeeds);
+            }
+        }
 
-		}
-
-		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
-		fragment.setData(feedId, folderId, title, updateListView);
-		return fragment;
-	}
+        NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
+        fragment.setData(feedId, folderId, title, updateListView);
+        return fragment;
+    }
 
 
     public void UpdateItemList()
@@ -713,12 +704,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		searchView.setIconifiedByDefault(false);
 		searchView.setOnQueryTextListener(this);
-		searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus) {
-                    clearSearchViewFocus();
-                }
+		searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            if(!hasFocus) {
+                clearSearchViewFocus();
             }
         });
 
@@ -1072,17 +1060,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             searchPublishSubject
                     .debounce(400, TimeUnit.MILLISECONDS)
                     .distinctUntilChanged()
-                    .map(new Function<String, List<RssItem>>() {
-
-                        @Override
-                        public List<RssItem> apply(String s) throws Exception {
-                            return getNewsReaderDetailFragment().performSearch(s);
-                        }
-
-                    })
+                    .map(s -> getNewsReaderDetailFragment().performSearch(s))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(getNewsReaderDetailFragment().SearchResultObserver)
+                    .subscribeWith(getNewsReaderDetailFragment().searchResultObserver)
                     .isDisposed();
 
         }
