@@ -252,6 +252,8 @@ public class LoginDialogActivity extends AppCompatActivity {
         editor.putBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, true);
         editor.commit();
 
+        resetDatabase();
+
         SingleAccountHelper.setCurrentAccount(this, importedAccount.name);
 
         mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
@@ -337,6 +339,8 @@ public class LoginDialogActivity extends AppCompatActivity {
             editor.putBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
             editor.commit();
 
+            resetDatabase();
+
             final ProgressDialog dialogLogin = buildPendingDialogWhileLoggingIn();
             dialogLogin.show();
 
@@ -357,7 +361,13 @@ public class LoginDialogActivity extends AppCompatActivity {
 		}
 	}
 
-	private void finishLogin(final ProgressDialog dialogLogin) {
+	private void resetDatabase() {
+        //Reset Database
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(LoginDialogActivity.this);
+        dbConn.resetDatabase();
+    }
+
+    private void finishLogin(final ProgressDialog dialogLogin) {
         mApi.getAPI().version()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -409,10 +419,6 @@ public class LoginDialogActivity extends AppCompatActivity {
                         Log.v(TAG, "onComplete() called");
 
                         if(loginSuccessful) {
-                            //Reset Database
-                            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(LoginDialogActivity.this);
-                            dbConn.resetDatabase();
-
                             Intent returnIntent = new Intent();
                             setResult(RESULT_OK, returnIntent);
 
