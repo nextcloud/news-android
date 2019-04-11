@@ -117,13 +117,10 @@ public class DownloadWebPageService extends Service {
     private void runOnMainThreadAndWait(final Runnable runnable) throws InterruptedException {
         synchronized(runnable) {
             Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    runnable.run();
-                    synchronized (runnable) {
-                        runnable.notifyAll();
-                    }
+            handler.post(() -> {
+                runnable.run();
+                synchronized (runnable) {
+                    runnable.notifyAll();
                 }
             });
             runnable.wait(); // unlocks runnable while waiting
@@ -210,22 +207,19 @@ public class DownloadWebPageService extends Service {
                     //Log.v(TAG, "Loading page:");
                     initWebView();
                     loadUrlInWebViewAndWait();
-                } /* else {
+                } else {
                     Log.v(TAG, "Already cached article: " + url);
-                } */
+                }
             }
             updateNotificationProgress();
         }
 
         private void initWebView() {
             try {
-                runOnMainThreadAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        webView = new WebView(DownloadWebPageService.this);
-                        webView.setWebViewClient(new DownloadImageWebViewClient(lock));
-                        webView.setWebChromeClient(new DownloadImageWebViewChromeClient());
-                    }
+                runOnMainThreadAndWait(() -> {
+                    webView = new WebView(DownloadWebPageService.this);
+                    webView.setWebViewClient(new DownloadImageWebViewClient(lock));
+                    webView.setWebChromeClient(new DownloadImageWebViewChromeClient());
                 });
             } catch (InterruptedException e) {
                 Log.e(TAG, "Error while setting up WebView", e);
@@ -234,11 +228,9 @@ public class DownloadWebPageService extends Service {
 
         private void loadUrlInWebViewAndWait() {
             try {
-                runOnMainThreadAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        webView.loadUrl(url);
-                    }
+                runOnMainThreadAndWait(() -> {
+                    Log.d(TAG, "downloading website for url: " + url);
+                    webView.loadUrl(url);
                 });
                 lock.wait();
             } catch (InterruptedException e) {
@@ -287,28 +279,17 @@ public class DownloadWebPageService extends Service {
         }
 
         private void saveWebArchive(final WebView view, final String url) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    delayedRunOnMainThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Can't store directly on external dir.. (workaround -> store on internal storage first and move then))
-                            final File webArchive = getWebPageArchiveFileForUrl(DownloadWebPageService.this, url);
-                            final File webArchiveExternalStorage = getWebPageArchiveFileForUrl(DownloadWebPageService.this, url);
-                            view.saveWebArchive(webArchive.getAbsolutePath(), false, new ValueCallback<String>() {
-                                @Override
-                                public void onReceiveValue(String value) {
-                                    // Move file to external storage once done writing
-                                    webArchive.renameTo(webArchiveExternalStorage);
-                                    //boolean success = webArchive.renameTo(webArchiveExternalStorage);
-                                    //Log.v(TAG, "Move succeeded: " + success);
-                                }
-                            });
-                        }
-                    }, 2000);
-                }
-            }).start();
+            new Thread(() -> delayedRunOnMainThread(() -> {
+                // Can't store directly on external dir.. (workaround -> store on internal storage first and move then))
+                final File webArchive = getWebPageArchiveFileForUrl(DownloadWebPageService.this, url);
+                final File webArchiveExternalStorage = getWebPageArchiveFileForUrl(DownloadWebPageService.this, url);
+                view.saveWebArchive(webArchive.getAbsolutePath(), false, value -> {
+                    // Move file to external storage once done writing
+                    webArchive.renameTo(webArchiveExternalStorage);
+                    //boolean success = webArchive.renameTo(webArchiveExternalStorage);
+                    //Log.v(TAG, "Move succeeded: " + success);
+                });
+            }, 2000)).start();
         }
     }
 
@@ -324,7 +305,7 @@ public class DownloadWebPageService extends Service {
                 EventBus.getDefault().post(new StopWebArchiveDownloadEvent());
             } else {
                 mNotificationWebPages
-                        .setContentText((current) + "/" + totalCount + " - Downloading Images for offline usage")
+                        .setContentText((current) + "/" + totalCount + " - " + getString(R.string.notification_download_articles_offline))
                         .setProgress(totalCount, current, false);
 
                 mNotificationManager.notify(NOTIFICATION_ID, mNotificationWebPages.build());

@@ -76,7 +76,7 @@ public class NextcloudNotificationManager {
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
         NotificationCompat.Builder mNotificationDownloadImages = new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
-                .setContentText("Downloading images for offline usage")
+                .setContentText(context.getString(R.string.notification_download_images_offline))
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)
@@ -109,7 +109,7 @@ public class NextcloudNotificationManager {
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
         NotificationCompat.Builder mNotificationWebPages = new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
-                .setContentText("Downloading webpages for offline usage")
+                .setContentText(context.getString(R.string.notification_download_articles_offline))
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)

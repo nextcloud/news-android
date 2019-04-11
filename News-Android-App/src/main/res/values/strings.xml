@@ -52,6 +52,10 @@
     </plurals>
 
 
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Downloading articles for offline usage</string>
+    <string name="notification_download_images_offline">Downloading images for offline usage</string>
+
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Add feed</string>
