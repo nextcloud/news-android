@@ -55,9 +55,11 @@
                     android:layout_gravity="start"
                     android:textAlignment="viewStart"/>
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_addFeed"
-                    style="?android:textAppearanceSmall"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:textColor="@android:color/black"
+                    android:backgroundTint="#eeeeee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -69,9 +71,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <Button
-                        style="?android:textAppearanceSmall"
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/Widget.MaterialComponents.Button"
                         android:id="@+id/btn_import_opml"
+                        android:textColor="@android:color/black"
+                        android:backgroundTint="#eeeeee"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -80,8 +84,10 @@
                         android:text="@string/import_opml"
                         android:textStyle="bold" />
 
-                    <Button
-                        style="?android:textAppearanceSmall"
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:textColor="@android:color/black"
+                        android:backgroundTint="#eeeeee"
                         android:id="@+id/btn_export_opml"
                         android:layout_width="0dp"
                         android:layout_weight="1"
