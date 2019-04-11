@@ -1,7 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.animation.Animator;
-import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -37,6 +36,7 @@ import javax.inject.Inject;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import butterknife.BindView;

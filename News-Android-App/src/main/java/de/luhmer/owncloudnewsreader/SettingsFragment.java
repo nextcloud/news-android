@@ -1,7 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,9 +15,9 @@ import android.widget.Toast;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.DialogPreference;
-import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;

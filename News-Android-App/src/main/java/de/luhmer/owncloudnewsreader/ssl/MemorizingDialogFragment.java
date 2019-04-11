@@ -25,7 +25,6 @@ package de.luhmer.owncloudnewsreader.ssl;
  */
 
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
@@ -33,6 +32,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import de.luhmer.owncloudnewsreader.R;
 

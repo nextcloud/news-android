@@ -42,7 +42,23 @@
         <item name="starredDrawable">@drawable/swipe_setstarred</item>
 
         <item name="news_detail_background_color">@color/news_detail_background_color</item>
+
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
+
+
+
+    <!-- https://stackoverflow.com/a/54751236 -->
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarButtonStyle">@style/ButtonBarButtonStyle</item>
+    </style>
+    <style name="ButtonBarButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog.Flush">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+
+
+
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
         <item name="android:textColor">@color/options_menu_item_text</item>
