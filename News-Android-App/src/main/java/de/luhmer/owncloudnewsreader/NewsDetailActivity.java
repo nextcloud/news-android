@@ -250,9 +250,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	private void pageChanged(int position)
 	{
-		StopVideoOnCurrentPage();
+		stopVideoOnCurrentPage();
 		currentPosition = position;
-		ResumeVideoPlayersOnCurrentPage();
+		resumeVideoPlayersOnCurrentPage();
 		progressIndicator.setProgress(position + 1);
 
         getSupportActionBar().setTitle(rssItems.get(position).getTitle());
@@ -268,7 +268,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             Log.v("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
         }
         else {
-            UpdateActionBarIcons();
+            updateActionBarIcons();
         }
 	}
 
@@ -279,8 +279,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		return null;
     }
 
-	private void ResumeVideoPlayersOnCurrentPage()
-	{
+	private void resumeVideoPlayersOnCurrentPage() {
 		NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
 		if(fragment != null) { // could be null if not instantiated yet
             fragment.resumeCurrentPage();
@@ -288,15 +287,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	}
 
-	private void StopVideoOnCurrentPage()
-	{
+	private void stopVideoOnCurrentPage() {
         NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
 		if(fragment != null) { // could be null if not instantiated yet
             fragment.pauseCurrentPage();
         }
 	}
 
-	public void UpdateActionBarIcons() {
+	public void updateActionBarIcons() {
         RssItem rssItem = rssItems.get(currentPosition);
 
         boolean isStarred = rssItem.getStarred_temp();
@@ -359,7 +357,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             }
 		}
 
-        UpdateActionBarIcons();
+        updateActionBarIcons();
 
 		return true;
 	}
@@ -375,7 +373,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
             case R.id.action_read:
                 markItemAsReadOrUnread(rssItem, !menuItem_Read.isChecked());
-                UpdateActionBarIcons();
+                updateActionBarIcons();
                 mPostDelayHandler.delayTimer();
                 break;
 
@@ -384,7 +382,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
                 rssItem.setStarred_temp(!curState);
                 dbConn.updateRssItem(rssItem);
 
-				UpdateActionBarIcons();
+				updateActionBarIcons();
 
                 mPostDelayHandler.delayTimer();
 				break;
@@ -496,7 +494,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
         item.setRead_temp(read);
         dbConn.updateRssItem(item);
-        UpdateActionBarIcons();
+        updateActionBarIcons();
 	}
 
 	@Override
