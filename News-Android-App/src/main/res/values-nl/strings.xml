@@ -78,7 +78,6 @@
     <string name="feed_move_list_description">Kies de map om de feed naar te verplaatsen</string>
     <string name="move_feed_root_folder">Hoofdmap</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">Gebruikersnaam</string>
     <string name="pref_title_password">Wachtwoord</string>
     <string name="pref_title_owncloudRootPath">Nextcloud root-adres</string>

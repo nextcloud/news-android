@@ -76,7 +76,6 @@
     <string name="feed_rename_button">Преименувай</string>
     <string name="confirm_feed_remove">Наистина ли желаете емисията да бъде премахната? Изтриването е необратима операция!</string>
     <string name="feed_move_list_description">Изберете в коя папка да бъде преместена емисията</string>
-    <!-- Strings related to login -->
     <string name="pref_title_username">Потребител</string>
     <string name="pref_title_password">Парола</string>
     <string name="pref_title_owncloudRootPath">Nextcloud root адрес</string>

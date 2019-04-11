@@ -81,7 +81,6 @@
     <string name="feed_move_list_description">Изаберите фасциклу да преместите довод</string>
     <string name="move_feed_root_folder">Корена фасцикла</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">Корисничко име</string>
     <string name="pref_title_password">Лозинка</string>
     <string name="pref_title_owncloudRootPath">Корена адреса Некстклауда</string>

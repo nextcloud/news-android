@@ -78,7 +78,6 @@
     <string name="feed_move_list_description">Selecciona la carpeta per moure-hi la font</string>
     <string name="move_feed_root_folder">Carpeta arrel</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">Nom d\'usuari</string>
     <string name="pref_title_password">Contrasenya</string>
     <string name="pref_title_owncloudRootPath">Adreça arrel del Nextcloud</string>

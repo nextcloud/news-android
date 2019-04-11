@@ -38,6 +38,7 @@
     <string name="action_sync_settings">Configurações de Sincronização</string>
     <string name="action_add_new_feed">Adicionar novo feed</string>
     <string name="action_textToSpeech">Leia</string>
+    <string name="action_search">Pesquisar</string>
     <string name="action_download_articles_offline">Download de artigos offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Você tem %d novo item não lido</item>
@@ -52,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Alimentar URL</string>
     <string name="action_add_feed">Adicionar alimentador</string>
+    <string name="import_opml">Importar OPML</string>
+    <string name="export_opml">Exportar OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Baixar Imagem</string>
     <string name="action_img_sharelink">Link de Compartilhamento de Imagem</string>
@@ -78,7 +83,6 @@
     <string name="feed_move_list_description">Selecione a pasta para mover o feed</string>
     <string name="move_feed_root_folder">Pasta raiz</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">Nome de Usuário</string>
     <string name="pref_title_password">Senha</string>
     <string name="pref_title_owncloudRootPath">Endereço raiz do ownCloud</string>

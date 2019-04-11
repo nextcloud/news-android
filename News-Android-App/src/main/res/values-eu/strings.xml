@@ -59,7 +59,6 @@
     <string name="feed_rename_button">Berrizendatu</string>
     <string name="confirm_feed_remove">Iturburu hau benetan ezabatu nahi duzu? Aldaketa ezin da desegin!</string>
     <string name="feed_move_list_description">Aukeratu iturburua mugitu nahi duzun karpeta</string>
-    <!-- Strings related to login -->
     <string name="pref_title_username">Erabiltzaile izena</string>
     <string name="pref_title_password">Pasahitza</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>

@@ -63,7 +63,6 @@
 
     <string name="feed_remove_button">Eemalda</string>
     <string name="feed_rename_button">Nimeta ümber</string>
-    <!-- Strings related to login -->
     <string name="pref_title_username">Kasutajanimi</string>
     <string name="pref_title_password">Parool</string>
     <string name="pref_title_owncloudRootPath">ownCloud juur address</string>

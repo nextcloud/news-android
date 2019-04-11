@@ -38,6 +38,7 @@
     <string name="action_sync_settings">Axustes da sincronización</string>
     <string name="action_add_new_feed">Engadir unha nova fonte</string>
     <string name="action_textToSpeech">Ler</string>
+    <string name="action_search">Buscar</string>
     <string name="action_download_articles_offline">Descargar os artigos sen conexión</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Ten %d elemento novo sen ler</item>
@@ -52,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL da fonte</string>
     <string name="action_add_feed">Engadir fonte</string>
+    <string name="import_opml">Importar OPML</string>
+    <string name="export_opml">Exportar OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Descargar imaxe</string>
     <string name="action_img_sharelink">Compartir a ligazón da imaxe</string>
@@ -78,7 +83,6 @@
     <string name="feed_move_list_description">Seleccione o cartafol ao que mover a fonte</string>
     <string name="move_feed_root_folder">Cartafol raíz</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">Nome de usuario</string>
     <string name="pref_title_password">Contrasinal</string>
     <string name="pref_title_owncloudRootPath">Enderezo raíz do Nextcloud</string>

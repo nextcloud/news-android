@@ -80,7 +80,6 @@
     <string name="feed_move_list_description">Izbor mape za premikanje vira</string>
     <string name="move_feed_root_folder">Korenska mapa</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">Uporabniško ime</string>
     <string name="pref_title_password">Geslo</string>
     <string name="pref_title_owncloudRootPath">Korenski naslov oblaka Nextcloud</string>

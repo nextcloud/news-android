@@ -38,6 +38,7 @@
     <string name="action_sync_settings">Eşitleme Ayarları</string>
     <string name="action_add_new_feed">Yeni akış ekle</string>
     <string name="action_textToSpeech">Sesli oku</string>
+    <string name="action_search">Arama</string>
     <string name="action_download_articles_offline">Makaleleri çevrimdış olarak indir</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Yeni %d okunmamış ögeniz var</item>
@@ -52,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Akış Adresi</string>
     <string name="action_add_feed">Akış Ekle</string>
+    <string name="import_opml">İçe OPML Aktar</string>
+    <string name="export_opml">Dışa OPML Aktar</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Görseli İndir</string>
     <string name="action_img_sharelink">Görsel Bağlantısını Paylaş</string>
@@ -78,7 +83,6 @@
     <string name="feed_move_list_description">Akışın içine taşınacağı klasörü seçin</string>
     <string name="move_feed_root_folder">Kök klasör</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">Kullanıcı Adı</string>
     <string name="pref_title_password">Parola</string>
     <string name="pref_title_owncloudRootPath">Nextcloud kök adresi</string>

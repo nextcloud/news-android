@@ -78,7 +78,6 @@
     <string name="feed_move_list_description">پوشه‌ای برای انتقال خوراک برگزینید</string>
     <string name="move_feed_root_folder">پوشهٔ ریشه</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">نام کاربری</string>
     <string name="pref_title_password">گذرواژه</string>
     <string name="pref_title_owncloudRootPath">نشانی ریشهٔ نکست‌کلود</string>

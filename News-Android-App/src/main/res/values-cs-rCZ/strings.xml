@@ -40,6 +40,7 @@
     <string name="action_sync_settings">Nastavení synchronizace</string>
     <string name="action_add_new_feed">Přidat nový kanál</string>
     <string name="action_textToSpeech">Přečíst</string>
+    <string name="action_search">Hledat</string>
     <string name="action_download_articles_offline">Stáhnout články pro čtení bez připojení</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Máte %d novou nepřečtenou položku</item>
@@ -58,6 +59,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL kanálu</string>
     <string name="action_add_feed">Přidat kanál</string>
+    <string name="import_opml">Importovat OPML</string>
+    <string name="export_opml">Exportovat OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Stáhnout obrázek</string>
     <string name="action_img_sharelink">Sdílet odkaz na obrázek</string>
@@ -84,7 +89,6 @@
     <string name="feed_move_list_description">Vyberte složku do které zdroj přesunout</string>
     <string name="move_feed_root_folder">Kořenová složka</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">Uživatelské jméno</string>
     <string name="pref_title_password">Heslo</string>
     <string name="pref_title_owncloudRootPath">Nextcloud kořenová adresa</string>

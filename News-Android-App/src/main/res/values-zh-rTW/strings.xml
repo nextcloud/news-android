@@ -32,6 +32,7 @@
     <string name="action_sync_settings">同步設定</string>
     <string name="action_add_new_feed">加入新訂閱</string>
     <string name="action_textToSpeech">讀出</string>
+    <string name="action_search">搜尋</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">您有 %d 個新的未讀項目</item>
     </plurals>
@@ -64,7 +65,6 @@
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重新命名</string>
     <string name="confirm_feed_remove">您真的要移除這個 Feed 嗎？此動作無法復原</string>
-    <!-- Strings related to login -->
     <string name="pref_title_username">使用者名稱</string>
     <string name="pref_title_password">密碼</string>
     <string name="pref_title_owncloudRootPath">ownCloud 最上層位址</string>
@@ -112,9 +112,12 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">沒有選擇 podcast</string>
     <string name="no_chapters_available">沒有章節</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">關於</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">顯示</string>
     <string name="pref_title_feed_list_layout">Feed 清單版型</string>
+    <string name="pref_title_font_size">字型大小</string>
     <string name="content_desc_play">播放</string>
     <string name="content_desc_pause">暫停</string>
     <string name="content_desc_rewind">倒帶</string>

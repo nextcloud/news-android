@@ -69,7 +69,6 @@
     <string name="feed_remove_button">Remover</string>
     <string name="feed_rename_button">Renomear</string>
     <string name="confirm_feed_remove">Tem a certeza que pretende remover este <em>Feed</em>? A operação não pode ser revertida!</string>
-    <!-- Strings related to login -->
     <string name="pref_title_username">Nome de utilizador</string>
     <string name="pref_title_password">Palavra-passe:</string>
     <string name="pref_title_owncloudRootPath">Endereço raiz do ownCloud</string>

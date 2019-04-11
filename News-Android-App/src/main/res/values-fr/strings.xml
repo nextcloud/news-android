@@ -38,6 +38,7 @@
     <string name="action_sync_settings">Paramètres de synchronisation</string>
     <string name="action_add_new_feed">Ajouter un nouveau flux</string>
     <string name="action_textToSpeech">Lire à haute voix</string>
+    <string name="action_search">Rechercher</string>
     <string name="action_download_articles_offline">Télécharger les articles hors ligne</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Il y a %d nouvel article non lu</item>
@@ -52,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Adresse du flux</string>
     <string name="action_add_feed">Ajouter un flux</string>
+    <string name="import_opml">Import OPML</string>
+    <string name="export_opml">Export OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Télécharger l\'Image</string>
     <string name="action_img_sharelink">Partager le Lien vers l\'Image</string>
@@ -78,7 +83,6 @@
     <string name="feed_move_list_description">Sélectionner le dossier dans lequel déplacer le flux</string>
     <string name="move_feed_root_folder">Dossier racine</string>
 
-    <!-- Strings related to login -->
     <string name="pref_title_username">Nom d\'utilisateur</string>
     <string name="pref_title_password">Mot de passe</string>
     <string name="pref_title_owncloudRootPath">adresse racine d\'ownCloud</string>
