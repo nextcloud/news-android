@@ -24,6 +24,8 @@
     <string name="menu_StartImageCaching">Ladda ned bilder</string>
     <string name="menu_downloadMoreItems">Ladda ned fler objekt</string>
 
+    <string name="tv_showing_cached_version">Visar cachad version</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Stjärnmärkt</string>
     <string name="action_read">Läsa</string>
@@ -36,6 +38,8 @@
     <string name="action_sync_settings">Synk inställningar</string>
     <string name="action_add_new_feed">Lägg till flöde</string>
     <string name="action_textToSpeech">Läs upp</string>
+    <string name="action_search">Sök</string>
+    <string name="action_download_articles_offline">Ladda ner artiklar offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Du har %d oläst sak</item>
         <item quantity="other">Du har %d olästa saker</item>
@@ -49,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">FlödesURL</string>
     <string name="action_add_feed">Lägg till flöde</string>
+    <string name="import_opml">Importera OPML</string>
+    <string name="export_opml">Exportera OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Ladda ned bild</string>
     <string name="action_img_sharelink">Dela bildlänk</string>
@@ -68,9 +76,16 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Ta bort Feed</string>
     <string name="action_feed_rename">Döp om Feed</string>
+    <string name="action_feed_move">Flytta flöde</string>
     <string name="feed_remove_button">Radera</string>
     <string name="feed_rename_button">Byt namn</string>
     <string name="confirm_feed_remove">Vill du verkligen ta bort denna Feed? Det kan inte ångras!</string>
+    <string name="feed_move_list_description">Välj mapp för att flytta flöde till</string>
+    <string name="move_feed_root_folder">Topp-mapp</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Manuell inloggning</string>
+    <string name="login_sso">Logga in med Nextcloud filer-app</string>
     <string name="pref_title_username">Användarnamn</string>
     <string name="pref_title_password">Lösenord</string>
     <string name="pref_title_owncloudRootPath">ownCloud rotadress</string>
@@ -107,6 +122,9 @@
     <string name="pref_general_sort_order_new_old">Ny -> Gammal</string>
     <string name="pref_general_sort_order_old_new">Gammal -> Ny</string>
 
+    <string name="pref_title_general_search_in">Sök i</string>
+
+    <string name="pref_general_search_in_title">Rubrik</string>
     <string name="dialog_clearing_cache">Rensar cache</string>
     <string name="dialog_clearing_cache_please_wait">Rensar cache, var god vänta...</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
@@ -132,9 +150,20 @@
     <string name="no_podcast_selected">Ingen podcast vald</string>
     <string name="no_chapters_available">Inga kapitel tillgängliga.</string>
     <string name="podcast_playback_speed_dialog_title">Uppspelningshastighet</string>
+    <string name="notification_downloading_podcast_title">Hämtar podcast</string>
+
+
     <!-- Settings for About -->
     <string name="pref_header_about">Om</string>
+    <string name="pref_license">Licens</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
     <string name="pref_report_issue">Rapportera ett problem</string>
+    <string name="pref_report_issue_summary">Kräver ett (gratis) GitHub-konto</string>
+    <string name="pref_contribute">Bidra!</string>
+    <string name="pref_contribute_summary">Hämta källkoden</string>
+    <string name="pref_version">Nextcloud Nyheter Android-app</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Visa</string>
     <string name="pref_title_app_theme">Tema</string>
@@ -157,7 +186,12 @@
     <string name="pref_display_browser_external">Extern webbläsare</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Miniatyrbilder</string>
+    <string name="pref_display_feed_list_layout_simple_text">Enkel text</string>
+    <string name="pref_display_feed_list_layout_headlines">Rubriker</string>
+    <string name="pref_display_feed_list_layout_full_text">All text</string>
     <string name="pref_display_feed_list_layout_web_layout">Webblayout</string>
+    <string name="pref_display_feed_list_layout_card_view">Kortvy</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Liten</string>
     <string name="pref_display_font_size_d">Standard</string>
@@ -188,6 +222,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fel</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det verkar som din nyhetsapp inte är installerad eller aktiverad på din server. Följ instruktionerna här för att konfigurera nyhetsapplikationen på din server först: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Något gick fel :(</string>
     <string name="login_dialog_text_zero_version_code">Webbnyhetsappen returnerade Version \"0\". Ta en titt på följande felrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Den här app-versionen är inte kompatibel med din Nextcloud News-app. Vänligen uppgradera nyhetsappen och appframework.</string>

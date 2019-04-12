@@ -83,6 +83,9 @@
     <string name="feed_move_list_description">Selecione a pasta para mover o feed</string>
     <string name="move_feed_root_folder">Pasta raiz</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Login manual</string>
+    <string name="login_sso">Login usando o aplicativo FIles</string>
     <string name="pref_title_username">Nome de Usuário</string>
     <string name="pref_title_password">Senha</string>
     <string name="pref_title_owncloudRootPath">Endereço raiz do ownCloud</string>
@@ -129,7 +132,7 @@
     <string name="reset_cache_unsaved_changes">Há alterações não sincronizadas. Gostaria de redefinir o cache de qualquer maneira?</string>
     <string name="warning">Aviso</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>
-    <string name="pref_title_ShowOnlyUnread">Mostrar apenas artigos não lidos</string>
+    <string name="pref_title_ShowOnlyUnread">Exibir apenas artigos não lidos</string>
     <string name="pref_title_DisableHostnameVerification">Desativar Verificação de Hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
@@ -209,14 +212,14 @@
     <string name="content_desc_tap_to_refresh">toque para atualizar</string>
     <string name="content_desc_add_to_favorites">adicionar aos favoritos</string>
     <string name="content_desc_remove_from_favorites">remover dos favoritos</string>
-    <string name="content_desc_show_password">mostrar senha</string>
+    <string name="content_desc_show_password">exibir senha</string>
     <string name="content_desc_delete">excluir</string>
     <string name="content_desc_download">baixar</string>
 
 
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Notificações</string>
-    <string name="pref_title_notification_new_articles_available">Mostrar notificações quando novos artigos estiverem disponíveis</string>
+    <string name="pref_title_notification_new_articles_available">Exibir notificações quando novos artigos estiverem disponíveis</string>
 
 
     <!-- Login Dialog -->
