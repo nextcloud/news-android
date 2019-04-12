@@ -87,12 +87,20 @@ public class TestApiProvider extends ApiProvider {
                 case "/index.php/apps/news/api/v1-2/user":
                     inputStream = handleUser();
                     break;
+                case "/index.php/apps/news/api/v1-2/folders":
+                    inputStream = handleFolders();
+                    break;
+                //case "index.php/apps/news/api/v1-2/feeds":
                 default:
                     throw new Error("Not implemented yet!");
             }
             return inputStream;
         }
 
+        private InputStream handleFolders() {
+            String folders = "{\"folders\":[{\"id\":2,\"name\":\"Comic\"},{\"id\":3,\"name\":\"Android\"}]}";
+            return stringToInputStream(folders);
+        }
 
 
         // https://github.com/nextcloud/news/blob/master/docs/externalapi/Legacy.md#create-a-feed

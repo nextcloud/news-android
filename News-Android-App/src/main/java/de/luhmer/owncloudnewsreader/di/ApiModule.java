@@ -51,6 +51,14 @@ public class ApiModule {
         return mApplication.getPackageName() + "_preferences";
     }
 
+    // Dagger will only look for methods annotated with @Provides
+    @Provides
+    @Named("databaseFileName")
+    public String providesDatabaseFileName() {
+        //return PreferenceManager.getDefaultSharedPreferencesName(mApplication);
+        return "OwncloudNewsReaderOrm.db";
+    }
+
     /*
     @Provides
     @Singleton

@@ -3,7 +3,10 @@ package de.luhmer.owncloudnewsreader.tests;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.View;
 
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,10 +17,14 @@ import java.lang.reflect.Method;
 
 import javax.inject.Inject;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -33,18 +40,26 @@ import de.luhmer.owncloudnewsreader.di.TestComponent;
 import helper.OrientationChangeAction;
 import helper.RecyclerViewAssertions;
 
+import static androidx.core.util.Preconditions.checkNotNull;
 import static androidx.test.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.InstrumentationRegistry.registerInstance;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -123,6 +138,91 @@ public class NewsReaderListActivityUiTests {
     @Test
     public void testSyncFinishedSnackbar_sameActivity() {
         syncResultTest(false);
+    }
+
+
+    @Test
+    public void searchTest() {
+        String firstItem = "These are the best screen protectors for the Huawei P30 Pro";
+
+        sleep(500);
+
+        // Check first item
+        checkRecyclerViewFirstItemText(firstItem);
+
+        // Open search menu
+        onView(allOf(withId(R.id.menu_search), withContentDescription(getString(R.string.action_search)), isDisplayed())).perform(click());
+
+        // Type in "test" into searchbar
+        onView(allOf(withClassName(is("android.widget.SearchView$SearchAutoComplete")), isDisplayed())).perform(typeText("test"));
+        sleep(1000);
+        checkRecyclerViewFirstItemText("Testfahrt im Mercedes E 300 de mit 90-kW-Elektromotor und Vierzylinder-Diesel");
+
+        // Close search bar
+        onView(withContentDescription("Collapse")).perform(click());
+
+        sleep(500);
+
+        // Test if search reset was successful
+        checkRecyclerViewFirstItemText(firstItem);
+    }
+
+    @Test
+    public void syncTest() {
+        // Open navigation drawer
+        onView(allOf(withContentDescription(getString(R.string.news_list_drawer_text)), isDisplayed())).perform(click());
+
+        sleep(1000);
+
+        // Click on Got it
+        onView(allOf(withText("GOT IT"), isDisplayed())).perform(click());
+
+        sleep(1000);
+
+        // Trigger refresh
+        onView(allOf(withContentDescription(getString(R.string.content_desc_tap_to_refresh)), isDisplayed())).perform(click());
+
+        sleep(1000);
+    }
+
+
+
+    private void checkRecyclerViewFirstItemText(String text) {
+        onView(withId(R.id.list)).check(matches(atPosition(0, hasDescendant(withText(text)))));
+    }
+
+    private String getString(@IdRes int resId) {
+        return mActivityRule.getActivity().getString(resId);
+    }
+
+    private void sleep(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static Matcher<View> atPosition(final int position, @NonNull final Matcher<View> itemMatcher) {
+        checkNotNull(itemMatcher);
+        return new BoundedMatcher<View, RecyclerView>(RecyclerView.class) {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("has item at position " + position + ": ");
+                itemMatcher.describeTo(description);
+            }
+
+            @Override
+            protected boolean matchesSafely(final RecyclerView view) {
+                RecyclerView.ViewHolder viewHolder = view.findViewHolderForAdapterPosition(position);
+                if (viewHolder == null) {
+                    // has no item on such position
+                    return false;
+                }
+                return itemMatcher.matches(viewHolder.itemView);
+            }
+        };
     }
 
     private void syncResultTest(boolean testFirstPosition) {

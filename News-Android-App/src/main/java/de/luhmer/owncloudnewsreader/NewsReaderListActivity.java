@@ -209,7 +209,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				.commit();
 
 		if (drawerLayout != null) {
-			drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.empty_view_content, R.string.empty_view_content) {
+			drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.news_list_drawer_text, R.string.news_list_drawer_text) {
 				@Override
 				public void onDrawerClosed(View drawerView) {
 					super.onDrawerClosed(drawerView);

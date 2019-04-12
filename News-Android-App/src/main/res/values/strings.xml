@@ -42,6 +42,13 @@
     <string name="action_textToSpeech">Read out</string>
     <string name="action_search">Search</string>
     <string name="action_download_articles_offline">Download articles offline</string>
+    <string name="news_list_drawer_text" translatable="false">Feed-list</string>
+
+
+
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Downloading articles for offline usage</string>
+    <string name="notification_download_images_offline">Downloading images for offline usage</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">You have %d new unread item</item>
         <item quantity="other">You have %d new unread items</item>
@@ -50,11 +57,6 @@
         <item quantity="one">%d new unread item available</item>
         <item quantity="other">%d new unread items available</item>
     </plurals>
-
-
-    <!-- notifications -->
-    <string name="notification_download_articles_offline">Downloading articles for offline usage</string>
-    <string name="notification_download_images_offline">Downloading images for offline usage</string>
 
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>

@@ -13,9 +13,13 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.WhereCondition;
 import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.NewsReaderApplication;
 import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemViewDao;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -59,6 +63,8 @@ public class DatabaseConnectionOrm {
 
     private final static int PageSize = 100;
 
+    protected @Inject @Named("databaseFileName") String databasePath;
+
     public void resetDatabase() {
         daoSession.getRssItemDao().deleteAll();
         daoSession.getFeedDao().deleteAll();
@@ -67,7 +73,10 @@ public class DatabaseConnectionOrm {
     }
 
     public DatabaseConnectionOrm(Context context) {
-        daoSession = DatabaseHelperOrm.getDaoSession(context);
+        if(databasePath == null) {
+            ((NewsReaderApplication) context.getApplicationContext()).getAppComponent().injectDatabaseConnection(this);
+        }
+        daoSession = DatabaseHelperOrm.getDaoSession(context, databasePath);
     }
 
     /*
