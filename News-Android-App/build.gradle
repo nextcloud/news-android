@@ -150,9 +150,6 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
-    compileOnly 'com.google.auto.value:auto-value:1.1'
-    annotationProcessor 'com.google.auto.value:auto-value:1.1'
-
     implementation 'com.sothree.slidinguppanel:library:3.2.1'
 
     implementation 'org.greenrobot:eventbus:3.1.1'
@@ -164,7 +161,10 @@ dependencies {
     //implementation 'org.apache.commons:commons-lang3:3.4'
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
     implementation 'org.jsoup:jsoup:1.11.3'
-    implementation ('net.rdrei.android.dirchooser:library:3.0@aar') { transitive = true }
+    implementation ('net.rdrei.android.dirchooser:library:3.0@aar') {
+        exclude group: 'com.google.auto.value', module: 'auto-value'
+        transitive = true
+    }
 
 
     implementation 'com.google.dagger:dagger:2.16'
