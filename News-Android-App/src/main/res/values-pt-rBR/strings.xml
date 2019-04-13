@@ -9,7 +9,7 @@
     <string name="no_wifi_available">Nenhum WiFi conectado</string>
     <string name="do_you_want_to_download_without_wifi">Quer baixar as imagens sem uma conexão WiFi?</string>
     <string name="current_version">Você está usando a versão %s</string>
-    <string name="widget_header">Notícias ownCloud</string>
+    <string name="widget_header">Notícias Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d novo item disponível</item>
         <item quantity="other">%d novos itens disponíveis</item>
@@ -88,8 +88,8 @@
     <string name="login_sso">Login usando o aplicativo FIles</string>
     <string name="pref_title_username">Nome de Usuário</string>
     <string name="pref_title_password">Senha</string>
-    <string name="pref_title_owncloudRootPath">Endereço raiz do ownCloud</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Endereço raiz do Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Entrar</string>
     <string name="login_progress_signing_in">Fazendo login...</string>
@@ -162,7 +162,7 @@
     <string name="pref_report_issue">Relatar um problema</string>
     <string name="pref_report_issue_summary">Necessita uma conta GitHub (gratuita)</string>
     <string name="pref_contribute">Contribua!</string>
-    <string name="pref_contribute_summary">Obter o código fonte</string>
+    <string name="pref_contribute_summary">Obter o código-fonte</string>
     <string name="pref_version">Aplicativo Android de Notícias Nextcloud</string>
 
 
@@ -243,15 +243,15 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Por WiFi &amp; Celular</string>
     <string name="pref_data_sync_image_cache_ask">Perguntar quando não conectado por WiFi</string>
 
-    <string name="array_sync_interval_min_5">5 Minutos</string>
-    <string name="array_sync_interval_min_15">15 Minutos</string>
-    <string name="array_sync_interval_min_30">30 Minutos</string>
-    <string name="array_sync_interval_min_45">45 Minutos</string>
-    <string name="array_sync_interval_hour_1">1 Hora</string>
-    <string name="array_sync_interval_hour_2">2 Horas</string>
-    <string name="array_sync_interval_hour_3">3 Horas</string>
-    <string name="array_sync_interval_hour_6">6 Horas</string>
-    <string name="array_sync_interval_hour_12">12 Horas</string>
-    <string name="array_sync_interval_hour_24">24 Horas</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
+    <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_2">2 horas</string>
+    <string name="array_sync_interval_hour_3">3 horas</string>
+    <string name="array_sync_interval_hour_6">6 horas</string>
+    <string name="array_sync_interval_hour_12">12 horas</string>
+    <string name="array_sync_interval_hour_24">24 horas</string>
 
     </resources>
