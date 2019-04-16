@@ -54,7 +54,6 @@ import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
-import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -271,7 +270,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 */
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		safeInstanceState(outState);
+		saveInstanceState(outState);
 		super.onSaveInstanceState(outState);
 	}
 
@@ -291,10 +290,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             drawerToggle.onConfigurationChanged(newConfig);
     }
 
-    private void safeInstanceState(Bundle outState) {
+    private void saveInstanceState(Bundle outState) {
         NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
         if (ndf != null) {
-            outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
+            outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFolder());
             outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
             outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
 
@@ -320,9 +319,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     .getRecyclerView()
                     .setAdapter(adapter);
 
-            startDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
+            startDetailFragment(savedInstanceState.getLong(ID_FEED_STRING),
                     savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
-                    savedInstanceState.getLong(ID_FEED_STRING),
+                    savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
                     false);
         }
     }
@@ -953,24 +952,21 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
 
 
-        AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
-            @Override
-            public void accountAccessGranted(SingleSignOnAccount account) {
-                Log.d(TAG, "accountAccessGranted() called with: account = [" + account + "]");
-                mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
-                    @Override
-                    public void onConnected() {
-                        Log.d(TAG, "onConnected() called");
-                    }
+        AccountImporter.onActivityResult(requestCode, resultCode, data, this, account -> {
+			Log.d(TAG, "accountAccessGranted() called with: account = [" + account + "]");
+			mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+				@Override
+				public void onConnected() {
+					Log.d(TAG, "onConnected() called");
+				}
 
-                    @Override
-                    public void onError(Exception ex) {
-                        Log.e(TAG, "onError() called with:", ex);
-                    }
-                });
+				@Override
+				public void onError(Exception ex) {
+					Log.e(TAG, "onError() called with:", ex);
+				}
+			});
 
-            }
-        });
+		});
     }
 
     @Override
