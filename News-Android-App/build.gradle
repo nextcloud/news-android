@@ -121,6 +121,7 @@ repositories {
 final DAGGER_VERSION = '2.22.1'
 final OKHTTP_VERSION = '3.12.2'
 final MOCKITO_VERSION = '2.27.0'
+final RETROFIT_VERSION = '2.5.0'
 
 dependencies {
     // core android studio module
@@ -143,7 +144,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.android.material/material
     implementation "com.google.android.material:material:1.1.0-alpha05"
     implementation "androidx.palette:palette:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha3"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha04"
     implementation "androidx.browser:browser:1.0.0"
     implementation "androidx.cardview:cardview:1.0.0"
     //implementation 'de.mrmaffen:holocircularprogressbar:1.0.1'
@@ -176,10 +177,10 @@ dependencies {
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     implementation 'io.reactivex.rxjava2:rxjava:2.1.4'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
 
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
     implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
     implementation "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
 
