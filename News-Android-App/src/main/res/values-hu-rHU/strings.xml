@@ -187,6 +187,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Hiba</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Úgy tűnik hogy a hírek alkalmazás nincs telepítve vagy aktiválva a szervereden. Kérlek kövesd az utasítások annak érdekében, hogy telepítsd a hírek alkalmazást a szerveredre első lépés ként: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Valami balul sült el :(</string>
     <string name="login_dialog_text_zero_version_code">A Web News App verziónak 0-át adott vissza. Olvasd el ezt a hibajelentést: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Az alkalmazás nem kompatibilis a Nextcloud Hírek app-oddal. Kérlek frissítsd a csomagkezelődben.</string>
