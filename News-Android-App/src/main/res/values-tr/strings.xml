@@ -83,6 +83,9 @@
     <string name="feed_move_list_description">Akışın içine taşınacağı klasörü seçin</string>
     <string name="move_feed_root_folder">Kök klasör</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">El ile oturum açma</string>
+    <string name="login_sso">Nextcloud Files Uygulaması ile Oturum Aç</string>
     <string name="pref_title_username">Kullanıcı Adı</string>
     <string name="pref_title_password">Parola</string>
     <string name="pref_title_owncloudRootPath">Nextcloud kök adresi</string>
