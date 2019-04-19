@@ -21,10 +21,13 @@
     <string name="menu_StartImageCaching">下載圖片</string>
     <string name="menu_downloadMoreItems">下載更多項目</string>
 
+    <string name="tv_showing_cached_version">顯示快取的版本</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">星號</string>
     <string name="action_read">已讀</string>
     <string name="action_playPodacst">播放 Podcast</string>
+    <string name="action_openInBrowser">用瀏覽器開啟</string>
     <string name="action_Share">分享</string>
     <string name="action_login">伺服器設定</string>
     <string name="action_save">儲存</string>
@@ -53,6 +56,7 @@
     <string name="action_link_open">在瀏覽器中打開連結</string>
     <string name="action_link_copy">複製連結</string>
     <string name="toast_img_download_wait">下載中…請稍候</string>
+    <string name="toast_img_saved">圖片已儲存</string>
     <string name="toast_img_notwriteable">寫入圖片失敗</string>
     <string name="toast_copied_to_clipboard">複製至剪貼簿</string>
     <string name="error_download_failed">下載失敗</string>
@@ -65,6 +69,10 @@
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重新命名</string>
     <string name="confirm_feed_remove">您真的要移除這個 Feed 嗎？此動作無法復原</string>
+    <string name="move_feed_root_folder">根目錄</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">手動登入</string>
     <string name="pref_title_username">使用者名稱</string>
     <string name="pref_title_password">密碼</string>
     <string name="pref_title_owncloudRootPath">ownCloud 最上層位址</string>
@@ -74,6 +82,9 @@
     <string name="login_progress_signing_in">登入中…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">此欄位為必填</string>
+    <string name="error_invalid_url">錯誤的網路連結</string>
+
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">已下載 %d 個舊項目</item>
@@ -114,10 +125,20 @@
     <string name="no_chapters_available">沒有章節</string>
     <!-- Settings for About -->
     <string name="pref_header_about">關於</string>
+    <string name="pref_report_issue">回報問題</string>
+    <string name="pref_contribute">貢獻</string>
+    <string name="pref_contribute_summary">取得原始碼</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">顯示</string>
     <string name="pref_title_feed_list_layout">Feed 清單版型</string>
     <string name="pref_title_font_size">字型大小</string>
+    <string name="pref_display_browser">瀏覽器</string>
+
+
+    <string name="pref_oled_mode">黑色背景</string>
+    <string name="pref_display_browser_built_in">內建瀏覽器</string>
+    <string name="pref_display_browser_external">外部瀏覽器</string>
+
     <string name="content_desc_play">播放</string>
     <string name="content_desc_pause">暫停</string>
     <string name="content_desc_rewind">倒帶</string>
