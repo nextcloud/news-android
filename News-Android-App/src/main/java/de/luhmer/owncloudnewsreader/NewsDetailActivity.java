@@ -21,18 +21,12 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.core.content.ContextCompat;
-
-import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.util.SparseArray;
@@ -49,6 +43,9 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -320,7 +317,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             menuItem_Read.setIcon(R.drawable.ic_check_box_outline_blank_white);
             menuItem_Read.setChecked(false);
         }
-	}
+    }
 
 
     @Override
@@ -377,17 +374,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
                 mPostDelayHandler.delayTimer();
                 break;
 
-			case R.id.action_starred:
-				Boolean curState = rssItem.getStarred_temp();
-                rssItem.setStarred_temp(!curState);
-                dbConn.updateRssItem(rssItem);
+            case R.id.action_starred:
+                toggleRssItemStarredState();
+                break;
 
-				UpdateActionBarIcons();
-
-                mPostDelayHandler.delayTimer();
-				break;
-
-			case R.id.action_openInBrowser:
+            case R.id.action_openInBrowser:
                 NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
                 String link = "about:blank";
 
@@ -479,6 +470,17 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void toggleRssItemStarredState() {
+        RssItem rssItem = rssItems.get(currentPosition);
+		Boolean curState = rssItem.getStarred_temp();
+		rssItem.setStarred_temp(!curState);
+		dbConn.updateRssItem(rssItem);
+
+		UpdateActionBarIcons();
+
+		mPostDelayHandler.delayTimer();
 	}
 
 	private boolean isChromeDefaultBrowser() {
