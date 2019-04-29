@@ -269,6 +269,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         if (tabletSize) {
             showTapLogoToSyncShowcaseView();
         }
+
+
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(getString(R.string.permission_req_location_twilight_title))
+                    .setMessage(getString(R.string.permission_req_location_twilight_text))
+                    .setPositiveButton(android.R.string.ok, (dialog, id) -> {
+                        //ActivityCompat.requestPermissions(this, new String[]{ACCESS_COARSE_LOCATION}, 1349);
+                        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 139);
+                    })
+                    .create()
+                    .show();
+        }
+
     }
 
     @Override
