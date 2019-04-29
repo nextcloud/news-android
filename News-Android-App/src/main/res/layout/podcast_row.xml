@@ -122,7 +122,7 @@
             android:clickable="false"
             android:focusable="false"
             android:layout_gravity="center"
-            android:background="@drawable/ic_action_play_arrow"
+            android:background="@drawable/ic_action_play"
             android:contentDescription="@string/content_desc_play"/>
 
     </FrameLayout>
