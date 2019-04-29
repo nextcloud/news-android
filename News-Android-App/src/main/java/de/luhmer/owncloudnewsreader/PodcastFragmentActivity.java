@@ -210,6 +210,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         Log.d(TAG, "onPause");
         eventBus.unregister(this);
 
+        YoutubePlayerManager.safeYoutubeState(this);
 
         //TODO THIS IS NEVER REACHED!
         isVideoViewVisible = false;
