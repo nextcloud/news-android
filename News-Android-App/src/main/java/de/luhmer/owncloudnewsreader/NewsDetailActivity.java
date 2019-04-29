@@ -21,14 +21,13 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.content.ContextCompat;
 
@@ -144,8 +143,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
                     getSupportActionBar().setTitle(rssItem.getTitle());
                     break;
                 }
-                else
+                else {
                     item_id++;
+                }
             }
         }
 
@@ -162,7 +162,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
         try {
             mViewPager.setCurrentItem(item_id, true);
-            pageChanged(item_id);
+            if(savedInstanceState == null) {
+                // Only do that when activity is started for the first time. Not on orientation changes etc..
+                pageChanged(item_id);
+            }
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
@@ -247,23 +250,25 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	private void pageChanged(int position)
 	{
-		StopVideoOnCurrentPage();
+		stopVideoOnCurrentPage();
 		currentPosition = position;
-		ResumeVideoPlayersOnCurrentPage();
+		resumeVideoPlayersOnCurrentPage();
 		progressIndicator.setProgress(position + 1);
 
         getSupportActionBar().setTitle(rssItems.get(position).getTitle());
 
-		if(!rssItems.get(position).getRead_temp())
-		{
-			markItemAsReadUnread(rssItems.get(position), true);
+        RssItem rssItem = rssItems.get(position);
+        if(!rssItem.getRead_temp()) {
+            if (!NewsReaderListActivity.stayUnreadItems.contains(rssItem.getId())) {
+                markItemAsReadOrUnread(rssItems.get(position), true);
+            }
 
-			mPostDelayHandler.delayTimer();
+            mPostDelayHandler.delayTimer();
 
-			Log.v("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
-		}
-		else { //Only in else because the function markItemAsReas updates the ActionBar items as well
-            UpdateActionBarIcons();
+            Log.v("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
+        }
+        else {
+            updateActionBarIcons();
         }
 	}
 
@@ -274,32 +279,29 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		return null;
     }
 
-	private void ResumeVideoPlayersOnCurrentPage()
-	{
+	private void resumeVideoPlayersOnCurrentPage() {
 		NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
-		if(fragment != null)  // could be null if not instantiated yet
-			fragment.resumeCurrentPage();
+		if(fragment != null) { // could be null if not instantiated yet
+            fragment.resumeCurrentPage();
+        }
 
 	}
 
-	private void StopVideoOnCurrentPage()
-	{
+	private void stopVideoOnCurrentPage() {
         NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
-		if(fragment != null)  // could be null if not instantiated yet
-			fragment.pauseCurrentPage();
+		if(fragment != null) { // could be null if not instantiated yet
+            fragment.pauseCurrentPage();
+        }
 	}
 
-	public void UpdateActionBarIcons()
-	{
+	public void updateActionBarIcons() {
         RssItem rssItem = rssItems.get(currentPosition);
 
         boolean isStarred = rssItem.getStarred_temp();
         boolean isRead = rssItem.getRead_temp();
 
-
         PodcastItem podcastItem =  DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
         boolean podcastAvailable = !"".equals(podcastItem.link);
-
 
         if(menuItem_PlayPodcast != null)
             menuItem_PlayPodcast.setVisible(podcastAvailable);
@@ -309,8 +311,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             menuItem_Starred.setIcon(R.drawable.ic_action_star_dark);
         else if(menuItem_Starred != null)
             menuItem_Starred.setIcon(R.drawable.ic_action_star_border_dark);
-
-
 
         if(isRead && menuItem_Read != null) {
             menuItem_Read.setIcon(R.drawable.ic_check_box_white);
@@ -357,7 +357,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             }
 		}
 
-        UpdateActionBarIcons();
+        updateActionBarIcons();
 
 		return true;
 	}
@@ -372,8 +372,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 				return true;
 
             case R.id.action_read:
-                markItemAsReadUnread(rssItem, !menuItem_Read.isChecked());
-                UpdateActionBarIcons();
+                markItemAsReadOrUnread(rssItem, !menuItem_Read.isChecked());
+                updateActionBarIcons();
                 mPostDelayHandler.delayTimer();
                 break;
 
@@ -382,7 +382,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
                 rssItem.setStarred_temp(!curState);
                 dbConn.updateRssItem(rssItem);
 
-				UpdateActionBarIcons();
+				updateActionBarIcons();
 
                 mPostDelayHandler.delayTimer();
 				break;
@@ -489,10 +489,12 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		return (resolveInfo.loadLabel(getPackageManager()).toString().contains("Chrome"));
 	}
 
-	private void markItemAsReadUnread(RssItem item, boolean read) {
+	private void markItemAsReadOrUnread(RssItem item, boolean read) {
+        NewsReaderListActivity.stayUnreadItems.add(item.getId());
+
         item.setRead_temp(read);
-		dbConn.updateRssItem(item);
-		UpdateActionBarIcons();
+        dbConn.updateRssItem(item);
+        updateActionBarIcons();
 	}
 
 	@Override
@@ -510,20 +512,19 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	//public class SectionsPagerAdapter extends FragmentPagerAdapter {
 	public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
-		SparseArray<WeakReference<NewsDetailFragment>> items = new SparseArray<>();
+        SparseArray<WeakReference<NewsDetailFragment>> items = new SparseArray<>();
 
-		public SectionsPagerAdapter(FragmentManager fm) {
-			super(fm);
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
 
-			if(fm.getFragments() != null) {
-				for (Fragment fragment : fm.getFragments()) {
-					if (fragment instanceof NewsDetailFragment) {
-						int id = ((NewsDetailFragment) fragment).getSectionNumber();
-						items.put(id, new WeakReference<>((NewsDetailFragment) fragment));
-					}
-				}
-			}
-		}
+            for (Fragment fragment : fm.getFragments()) {
+                if (fragment instanceof NewsDetailFragment) {
+                    int id = ((NewsDetailFragment) fragment).getSectionNumber();
+                    Log.v(TAG, "Retaining NewsDetailFragment with ID: " + id);
+                    items.put(id, new WeakReference<>((NewsDetailFragment) fragment));
+                }
+            }
+        }
 
 		@Override
 		public Fragment getItem(int position) {
@@ -545,8 +546,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
 		@Override
-		public void destroyItem(ViewGroup container, int position, Object object)
-		{
+		public void destroyItem(ViewGroup container, int position, Object object) {
 			items.remove(position);
 
 			super.destroyItem(container, position, object);

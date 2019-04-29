@@ -43,8 +43,8 @@
         </activity>
         <activity
             android:name=".NewsDetailActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_news_detail" />
+        <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
         <activity
             android:name=".SettingsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

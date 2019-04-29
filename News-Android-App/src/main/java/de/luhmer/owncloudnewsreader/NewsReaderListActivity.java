@@ -61,6 +61,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Field;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -137,6 +138,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	public static final String FEED_ID = "FEED_ID";
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
+
+    public static HashSet<Long> stayUnreadItems = new HashSet<>();
 
 	private static MenuItem menuItemUpdater;
 	private static MenuItem menuItemDownloadMoreItems;

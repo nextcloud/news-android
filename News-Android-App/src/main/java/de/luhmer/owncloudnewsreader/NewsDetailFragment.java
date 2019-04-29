@@ -90,9 +90,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     boolean changedUrl = false;
 
 
-    public NewsDetailFragment() {
-        //setRetainInstance(true);
-    }
+    public NewsDetailFragment() { }
 
     public int getSectionNumber() {
         return section_number;
@@ -102,6 +100,10 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+
+        // Retain this fragment across configuration changes.
+        setRetainInstance(true);
+
     }
 
     @Override
@@ -170,10 +172,21 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         ButterKnife.bind(this, rootView);
 
-        startLoadRssItemToWebViewTask();
+        // Do not reload webview if retained
+        if(savedInstanceState == null) {
+            startLoadRssItemToWebViewTask();
+        } else {
+            mWebView.restoreState(savedInstanceState);
+            mProgressBarLoading.setVisibility(View.GONE);
+        }
 
 		return rootView;
 	}
+
+	@Override
+    public void onSaveInstanceState(Bundle outState) {
+        mWebView.saveState(outState);
+    }
 
     private void startLoadRssItemToWebViewTask() {
         Log.d(TAG, "startLoadRssItemToWebViewTask() called");
