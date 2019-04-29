@@ -47,6 +47,14 @@ Download and install:
   4. Import the Project in Android Studio and start coding!
    
 
+Testing with Android Auto:
+-----------------------
+1. Open Android Studio, click on "Tools" -> "SDK Manager"
+2. Select and install "Android Auto API Simulators"
+3. Open terminal, go to <android-sdk>/extras/google/simulators
+4. Install apk using adb (`../../../platform-tools/adb install media-browser-simulator.apk`)
+5. Install apk using adb (`../../../platform-tools/adb install messaging-simulator.apk`)
+
 That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
 
 
