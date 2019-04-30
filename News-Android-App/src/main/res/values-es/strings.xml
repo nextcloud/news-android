@@ -38,6 +38,7 @@
     <string name="action_sync_settings">Ajustes de sincronización</string>
     <string name="action_add_new_feed">Añadir nueva fuente</string>
     <string name="action_textToSpeech">Recopilar información</string>
+    <string name="action_search">Buscar</string>
     <string name="action_download_articles_offline">Descargar los artículos sin conexión</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Tienes %d elemento nuevo sin leer</item>
@@ -52,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL para el canal</string>
     <string name="action_add_feed">Añadir canal</string>
+    <string name="import_opml">Importar OPML</string>
+    <string name="export_opml">Exportar OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Descargar imagen</string>
     <string name="action_img_sharelink">Compartir enlace de imagen</string>
@@ -78,6 +83,9 @@
     <string name="feed_move_list_description">Selecciona la carpeta a la que mover la fuente</string>
     <string name="move_feed_root_folder">Carpeta raíz</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Inicio de sesión manual</string>
+    <string name="login_sso">Inicio de sesión usando la app de Archivos de Nextcloud</string>
     <string name="pref_title_username">Nombre de usuario</string>
     <string name="pref_title_password">Contraseña</string>
     <string name="pref_title_owncloudRootPath">Dirección de la raíz de Nextcloud</string>

@@ -4,16 +4,17 @@
     <string name="auto_sync_string">Samodejno usklajevanje</string>
     <string name="title_activity_sync_interval_selector">Izbirnik razmika med usklajevanji</string>
     <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
-    <string name="empty_view_content">Ni nobene novice.</string>
+    <string name="empty_view_content">Ni novic</string>
+    <string name="toast_GettingMoreItems">Začeto je prejemanje več prispevkov ...</string>
     <string name="no_wifi_available">Ni vzpostavljene povezave Wi-Fi</string>
     <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike, čeprav ni vzpostavljene povezave prek Wi-Fi?</string>
     <string name="current_version">V uporabi je različica %s</string>
     <string name="widget_header">Novice Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
-        <item quantity="one">%d nov predmet je na voljo</item>
-        <item quantity="two">%d nova predmeta sta na voljo</item>
-        <item quantity="few">%d novi predmeti so na voljo</item>
-        <item quantity="other">%d novih predmetov je na voljo</item>
+        <item quantity="one">Na voljo je %d nov prispevek.</item>
+        <item quantity="two">Na voljo sta %d nova prispevka.</item>
+        <item quantity="few">Na voljo so %d novi prispevki.</item>
+        <item quantity="other">Na voljo je %d novih prispevkov.</item>
     </plurals>
     <string name="message_bar_reload">Ponovno naloži</string>
     <string name="allUnreadFeeds">Vsi neprebrani predmeti</string>
@@ -24,6 +25,8 @@
     <string name="menu_markAllAsRead">Označi vse kot prebrano</string>
     <string name="menu_StartImageCaching">Prejmi slike</string>
     <string name="menu_downloadMoreItems">Prejmi več predmetov</string>
+
+    <string name="tv_showing_cached_version">Prikazana je predpomnjena različica</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Označeno</string>
@@ -37,23 +40,29 @@
     <string name="action_sync_settings">Nastavitve usklajevanja</string>
     <string name="action_add_new_feed">Dodaj nov vir</string>
     <string name="action_textToSpeech">Preberi</string>
+    <string name="action_search">Poišči</string>
+    <string name="action_download_articles_offline">Prejmi prispevke</string>
     <plurals name="notification_new_items_ticker">
-        <item quantity="one">V dohodni mapi je %d neprebrano sporočilo</item>
-        <item quantity="two">V dohodni mapi sta %d neprebrani sporoči</item>
-        <item quantity="few">V dohodni mapi so %d neprebrana sporočila</item>
-        <item quantity="other">V dohodni mapi je %d neprebranih sporočil</item>
+        <item quantity="one">Na voljo je %d neprebran prispevek.</item>
+        <item quantity="two">Na voljo sta %d neprebrana prispevka.</item>
+        <item quantity="few">Na voljo so %d neprebrani prispevki.</item>
+        <item quantity="other">Na voljo je %d neprebranih prispevkov.</item>
     </plurals>
     <plurals name="notification_new_items_text">
-        <item quantity="one">%d novo sporočilo je na voljo</item>
-        <item quantity="two">%d novi sporočili sta na voljo</item>
-        <item quantity="few">%d nova sporočila so na voljo</item>
-        <item quantity="other">%d novih sporočil je na voljo</item>
+        <item quantity="one">Na voljo je %d neprebran prispevek.</item>
+        <item quantity="two">Na voljo sta %d neprebrana prispevka.</item>
+        <item quantity="few">Na voljo so %d neprebrani prispevki.</item>
+        <item quantity="other">Na voljo je %d neprebranih prispevkov.</item>
     </plurals>
 
 
     <!-- Add new feed -->
     <string name="hint_feed_url">Naslov URL vira</string>
     <string name="action_add_feed">Dodaj vir</string>
+    <string name="import_opml">Uvozi OPML</string>
+    <string name="export_opml">Izvozi OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Prejmi sliko</string>
     <string name="action_img_sharelink">Objavi povezavo do slike</string>
@@ -80,6 +89,9 @@
     <string name="feed_move_list_description">Izbor mape za premikanje vira</string>
     <string name="move_feed_root_folder">Korenska mapa</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Ročna prijava</string>
+    <string name="login_sso">Prijava s programom Nextcloud Datoteke</string>
     <string name="pref_title_username">Uporabniško ime</string>
     <string name="pref_title_password">Geslo</string>
     <string name="pref_title_owncloudRootPath">Korenski naslov oblaka Nextcloud</string>
@@ -99,7 +111,7 @@
         <item quantity="few">Prejeti so %d stari predmeti</item>
         <item quantity="other">Prejetih je %d starih predmetov</item>
     </plurals>
-    <string name="toast_no_more_downloads_available">Ni nadaljnjih predmetov</string>
+    <string name="toast_no_more_downloads_available">Ni drugih prispevkov</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">Do sedaj je prejet %d predmet ...</item>
         <item quantity="two">Do sedaj sta prejeta %d predmeta ...</item>
@@ -120,21 +132,24 @@
     <string name="pref_general_sort_order_new_old">Od novejših do starejših</string>
     <string name="pref_general_sort_order_old_new">Od starejših do novejših</string>
 
-    <string name="pref_title_general_search_in">Poišči v</string>
+    <string name="pref_title_general_search_in">Išči po</string>
 
-    <string name="pref_general_search_in_title">Naslov</string>
-    <string name="pref_general_search_in_body">Vsebina</string>
+    <string name="pref_general_search_in_title">naslovu</string>
+    <string name="pref_general_search_in_body">besedilu</string>
 
     <string name="dialog_clearing_cache">Poteka čiščenje predpomnilnika</string>
     <string name="dialog_clearing_cache_please_wait">Poteka čiščenje predpomnilnika ...</string>
     <string name="reset_cache_unsaved_changes">Obstajajo neusklajene spremembe. Ali želite vseeno počistiti predpomnilnik?</string>
     <string name="warning">Opozorilo</string>
-    <string name="pref_title_AutoSyncOnStart">Uskladi ob zagonu</string>
+    <string name="pref_title_AutoSyncOnStart">Uskladi prispevke ob zagonu</string>
     <string name="pref_title_ShowOnlyUnread">Pokaži le neprebrane prispevke</string>
     <string name="pref_title_DisableHostnameVerification">Onemogoči overjanje imena gostitelja</string>
     <string name="pref_title_NavigateWithVolumeButtons">Omogoči pomikanje po zaslonu z gumbm za glasnost</string>
-    <string name="pref_title_MarkAsReadWhileScrolling">Med pomikanjem predmete označi kot prebrane</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Med pomikanjem označi prispevke kot prebrane</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskoči podrobni pogled in odpri vir v brskalniku</string>
+
+    <string name="dialog_feature_not_available">Možnost v tej (odprtokodni) različici ni na voljo. Če želite to možnost uporabiti, prejmite program neposredno iz skladišča GitHub, ali pa ga namestite prek Googlove trgovine Play.</string>
+
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
@@ -144,23 +159,56 @@
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Ni izbranega podcasta</string>
+    <string name="no_podcast_selected">Ni izbranega podkasta</string>
     <string name="no_chapters_available">V prispevku ni poglavij</string>
     <string name="podcast_playback_speed_dialog_title">Hitrost predvajanja</string>
+    <string name="notification_downloading_podcast_title">Potekanje prejemanje podkasta ...</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">O programu</string>
+    <string name="pref_license">Dovoljenje</string>
+    <string name="pref_license_summary">Splošno Javno dovoljenje Affero (GNU AGPL), različice 3</string>
+    <string name="pref_report_issue">Pošlji poročilo o hrošču</string>
+    <string name="pref_report_issue_summary">Zahteva (brezplačen) račun GitHub</string>
+    <string name="pref_contribute">Sodelujte!</string>
+    <string name="pref_contribute_summary">Pridobi izvorno kodo</string>
+    <string name="pref_version">Program Nextcloud Novice</string>
+
+
     <!-- Settings for Display -->
-    <string name="pref_header_display">Prikaz</string>
+    <string name="pref_header_display">Videz</string>
+    <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Postavitev seznama virov</string>
+    <string name="pref_title_font_size">Velikost pisave</string>
     <string name="pref_display_browser">Brskalnik</string>
 
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikone dejavnosti (podrobni pogled)</string>
 
+    <string name="pref_display_apptheme_auto">Svetla / Temna (glede na čas dneva)</string>
     <string name="pref_display_apptheme_light">Svetla</string>
     <string name="pref_display_apptheme_dark">Temna</string>
+
+    <string name="pref_oled_mode">Črno ozadje</string>
+    <string name="pref_oled_mode_summary">Za temno temo na zaslonih OLED</string>
 
     <string name="pref_display_browser_cct">Vgrajen Chrome z zavihki</string>
     <string name="pref_display_browser_built_in">Vgrajen brskalnik</string>
     <string name="pref_display_browser_external">Zunanji brskalnik</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Sličice</string>
+    <string name="pref_display_feed_list_layout_simple_text">Enostavno besedilo</string>
+    <string name="pref_display_feed_list_layout_headlines">Naslovi</string>
+    <string name="pref_display_feed_list_layout_full_text">Polno besedilo</string>
+    <string name="pref_display_feed_list_layout_web_layout">Spletna razporeditev</string>
+    <string name="pref_display_feed_list_layout_card_view">Kartični pogled</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Majhna</string>
+    <string name="pref_display_font_size_d">Privzeta</string>
+    <string name="pref_display_font_size_l">Velika</string>
+    <string name="pref_display_font_size_xl">Zelo velika</string>
 
     <string name="content_desc_play">predvajaj</string>
     <string name="content_desc_pause">premor</string>
@@ -181,11 +229,12 @@
 
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Obvestila</string>
-    <string name="pref_title_notification_new_articles_available">Pokaži obvestilo, ko so na voljo novi prispevki</string>
+    <string name="pref_title_notification_new_articles_available">Ob prispetju novega prispevka pokaži obvestilo</string>
 
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Napaka</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Kaže, da novičarski program na strežniku ni nameščen oziroma ni zagnan. Oglejte si navodila, kako ga namestiti na strežnik: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Prišlo je do napake :(</string>
     <string name="login_dialog_text_not_compatible">Program ni skladen s programom Novice Nextcloud. Posodobiti je treba program in vire.</string>
     <string name="login_dialog_title_security_warning">Varnostno opozorilo</string>
