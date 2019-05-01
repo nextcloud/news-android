@@ -100,7 +100,7 @@
     <string name="action_sign_in_short">Prijava</string>
     <string name="login_progress_signing_in">Poteka prijavljanje ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">Vpis v to polje je obvezen</string>
+    <string name="error_field_required">To polje mora biti izpolnjeno</string>
     <string name="error_invalid_url">Napačen naslov URL</string>
 
 
@@ -236,8 +236,12 @@
     <string name="login_dialog_title_error">Napaka</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Kaže, da novičarski program na strežniku ni nameščen oziroma ni zagnan. Oglejte si navodila, kako ga namestiti na strežnik: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Prišlo je do napake :(</string>
+    <string name="login_dialog_text_zero_version_code">Program za usklajevanje spletnih novic kaže različico » 0 ». Oglejte si poročilo o hrošču na: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Program ni skladen s programom Novice Nextcloud. Posodobiti je treba program in vire.</string>
     <string name="login_dialog_title_security_warning">Varnostno opozorilo</string>
+    <string name="login_dialog_text_security_warning">Trenutna povezava ni varna povezava HTTPS. Spletni goljufi lahko prestrežejo prenos podatkov in si pridobijo dostop do občutljivih podatkov (na primer gesel).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Podatki in usklajevanje</string>
     <string name="pref_title_clearCache">Počisti predpomnilnik</string>
