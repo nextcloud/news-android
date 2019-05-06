@@ -187,6 +187,8 @@ public class NextcloudNotificationManager {
                 */
                 //.setUsesChronometer(true)
                 .setContentTitle(description.getTitle())
+                .setContentText(description.getSubtitle())
+                .setSubText(description.getDescription())
                 .setSmallIcon(R.drawable.ic_notification)
                 //.setContentText(description.getSubtitle())
                 //.setContentText(mediaMetadata.getText(MediaMetadataCompat.METADATA_KEY_ARTIST))
@@ -195,15 +197,18 @@ public class NextcloudNotificationManager {
                 .setLargeIcon(bitmapIcon)
                 .setContentIntent(controller.getSessionActivity())
                 .setDeleteIntent(MediaButtonReceiver.buildMediaButtonPendingIntent(context, PlaybackStateCompat.ACTION_STOP))
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setOnlyAlertOnce(true);
 
         boolean isPlaying = controller.getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING;
         builder.addAction(getPlayPauseAction(context, isPlaying));
 
+        // Make the transport controls visible on the lockscreen
+        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+
         builder.setStyle(new MediaStyle()
             //.setShowActionsInCompactView(0)  // show only play/pause in compact view
             .setMediaSession(mediaSession.getSessionToken())
+            .setShowActionsInCompactView(0)
             .setShowCancelButton(true)
             .setCancelButtonIntent(
                     MediaButtonReceiver.buildMediaButtonPendingIntent(

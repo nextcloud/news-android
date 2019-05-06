@@ -184,7 +184,7 @@ dependencies {
 
     implementation 'com.nbsp:library:1.02' // MaterialFilePicker
 
-    extraImplementation 'com.github.tommus:youtube-android-player-api:1.2.2'
+    //extraImplementation 'com.github.tommus:youtube-android-player-api:1.2.2'
 
 
     testImplementation 'junit:junit:4.12'

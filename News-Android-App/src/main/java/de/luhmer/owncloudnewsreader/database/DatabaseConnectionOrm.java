@@ -56,7 +56,8 @@ public class DatabaseConnectionOrm {
     };
 
     private final String TAG = getClass().getCanonicalName();
-    private static final String[] VIDEO_FORMATS = { "youtube", "video/mp4" };
+    //private static final String[] VIDEO_FORMATS = { "youtube", "video/mp4" };
+    private static final String[] VIDEO_FORMATS = { "video/mp4" };
     public enum SORT_DIRECTION { asc, desc }
 
     private DaoSession daoSession;
@@ -472,14 +473,15 @@ public class DatabaseConnectionOrm {
 
     public static PodcastItem ParsePodcastItemFromRssItem(Context context, RssItem rssItem) {
         PodcastItem podcastItem = new PodcastItem();
+        Feed feed = rssItem.getFeed();
+        podcastItem.author = feed.getFeedTitle();// rssItem.getAuthor();
         podcastItem.itemId = rssItem.getId();
         podcastItem.title = rssItem.getTitle();
         podcastItem.link = rssItem.getEnclosureLink();
         podcastItem.mimeType = rssItem.getEnclosureMime();
-        podcastItem.favIcon = rssItem.getFeed().getFaviconUrl();
+        podcastItem.favIcon = feed.getFaviconUrl();
 
-        boolean isVideo = Arrays.asList(DatabaseConnectionOrm.VIDEO_FORMATS).contains(podcastItem.mimeType);
-        podcastItem.isVideoPodcast = isVideo;
+        podcastItem.isVideoPodcast = Arrays.asList(DatabaseConnectionOrm.VIDEO_FORMATS).contains(podcastItem.mimeType);
 
         File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));
         podcastItem.offlineCached = file.exists();

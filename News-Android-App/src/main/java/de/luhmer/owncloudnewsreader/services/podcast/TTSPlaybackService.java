@@ -3,6 +3,7 @@ package de.luhmer.owncloudnewsreader.services.podcast;
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -22,10 +23,9 @@ public class TTSPlaybackService extends PlaybackService implements TextToSpeech.
 
         try {
             ttsController = new TextToSpeech(context, this);
-            setStatus(Status.PREPARING);
+            setStatus(PlaybackStateCompat.STATE_CONNECTING);
 
-            if(ttsController == null) {
-
+            if(ttsController != null) {
                 ttsController.setOnUtteranceProgressListener(new UtteranceProgressListener() {
                     @Override
                     public void onDone(String utteranceId) {
@@ -35,9 +35,9 @@ public class TTSPlaybackService extends PlaybackService implements TextToSpeech.
                     @Override public void onStart(String utteranceId) {}
                     @Override public void onError(String utteranceId) {}
                 });
-            }
-            else
+            } else {
                 onInit(TextToSpeech.SUCCESS);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class TTSPlaybackService extends PlaybackService implements TextToSpeech.
     public void pause() {
         if (ttsController.isSpeaking()) {
             ttsController.stop();
-            setStatus(Status.PAUSED);
+            setStatus(PlaybackStateCompat.STATE_PAUSED);
         }
     }
 
@@ -84,9 +84,9 @@ public class TTSPlaybackService extends PlaybackService implements TextToSpeech.
             HashMap<String,String> ttsParams = new HashMap<>();
             ttsParams.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,"dummyId");
             ttsController.speak(((TTSItem)getMediaItem()).text, TextToSpeech.QUEUE_FLUSH, ttsParams);
-            setStatus(Status.PLAYING);
+            setStatus(PlaybackStateCompat.STATE_PLAYING);
         } else {
-            Log.e("TTS", "Initilization Failed!");
+            Log.e("TTS", "Initialization Failed!");
             ttsController = null;
         }
     }
