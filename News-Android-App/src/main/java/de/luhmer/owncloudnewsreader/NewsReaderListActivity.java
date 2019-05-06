@@ -74,6 +74,7 @@ import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.customview.widget.ViewDragHelper;
@@ -98,6 +99,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
+import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
@@ -115,6 +117,8 @@ import io.reactivex.subjects.PublishSubject;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
 
@@ -213,7 +217,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				@Override
 				public void onDrawerClosed(View drawerView) {
 					super.onDrawerClosed(drawerView);
-					togglePodcastVideoViewAnimation();
 
 					syncState();
 					EventBus.getDefault().post(new FeedPanelSlideEvent(false));
@@ -222,7 +225,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				@Override
 				public void onDrawerOpened(View drawerView) {
 					super.onDrawerOpened(drawerView);
-					togglePodcastVideoViewAnimation();
 					reloadCountNumbersOfSlidingPaneAdapter();
 
 					syncState();
@@ -245,7 +247,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		//AppRater.rateNow(this);
 
         if (savedInstanceState == null) { //When the app starts (no orientation change)
-            startDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+            updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
         }
     }
 
@@ -338,7 +340,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     .getRecyclerView()
                     .setAdapter(adapter);
 
-            startDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
+            updateDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
                     savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
                     savedInstanceState.getLong(ID_FEED_STRING),
                     false);
@@ -436,7 +438,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 	public void switchToAllUnreadItemsFolder() {
-		startDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+		updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
 	}
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -567,7 +569,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 
-		startDetailFragment(idFeed, isFolder, optional_folder_id, true);
+		updateDetailFragment(idFeed, isFolder, optional_folder_id, true);
 	}
 
 	@Override
@@ -575,7 +577,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 
-		startDetailFragment(idFeed, false, optional_folder_id, true);
+		updateDetailFragment(idFeed, false, optional_folder_id, true);
 	}
 
 	@Override
@@ -617,7 +619,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 
-    private NewsReaderDetailFragment startDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView) {
+    private NewsReaderDetailFragment updateDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView) {
         if(menuItemDownloadMoreItems != null) {
             menuItemDownloadMoreItems.setEnabled(true);
         }

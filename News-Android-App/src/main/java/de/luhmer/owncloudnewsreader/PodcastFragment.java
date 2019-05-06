@@ -1,13 +1,25 @@
 package de.luhmer.owncloudnewsreader;
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.net.Uri;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+
+import android.os.Handler;
+import android.os.RemoteException;
+import android.os.ResultReceiver;
+import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.MediaMetadataCompat;
+import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.InputFilter;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +34,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -43,12 +54,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
+import de.luhmer.owncloudnewsreader.events.podcast.CollapsePodcastView;
+import de.luhmer.owncloudnewsreader.events.podcast.ExpandPodcastView;
 import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
-import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
-import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
@@ -56,12 +67,12 @@ import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 
+import static android.media.MediaMetadata.METADATA_KEY_MEDIA_ID;
+import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.CURRENT_PODCAST_MEDIA_TYPE;
+import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.PLAYBACK_SPEED_FLOAT;
+
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link PodcastFragment.OnFragmentInteractionListener} interface
- * to StartYoutubePlayer interaction events.
  * Use the {@link PodcastFragment#newInstance} factory method to
  * create an instance of this fragment.
  *
@@ -69,12 +80,43 @@ import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 public class PodcastFragment extends Fragment {
 
     private static final String TAG = PodcastFragment.class.getCanonicalName();
+    //private static UpdatePodcastStatusEvent podcast; // Retain over different instances
 
-    private UpdatePodcastStatusEvent podcast;
-    private int lastDrawableId;
-
-    private OnFragmentInteractionListener mListener;
     private PodcastSlidingUpPanelLayout sliding_layout;
+    private EventBus eventBus;
+    private MediaBrowserCompat mMediaBrowser;
+    private Activity mActivity;
+
+    private long currentPositionInMillis = 0;
+    private long maxPositionInMillis = 100000;
+
+    protected @BindView(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
+    protected @BindView(R.id.btn_playPausePodcastSlider) ImageButton btnPlayPausePodcastSlider;
+    protected @BindView(R.id.btn_nextPodcastSlider) ImageButton btnNextPodcastSlider;
+    protected @BindView(R.id.btn_previousPodcastSlider) ImageButton btnPreviousPodcastSlider;
+    protected @BindView(R.id.btn_podcastSpeed) ImageButton btnPlaybackSpeed;
+
+    protected @BindView(R.id.img_feed_favicon) ImageView imgFavIcon;
+
+    protected @BindView(R.id.tv_title) TextView tvTitle;
+    protected @BindView(R.id.tv_titleSlider) TextView tvTitleSlider;
+
+    protected @BindView(R.id.tv_from) TextView tvFrom;
+    protected @BindView(R.id.tv_to) TextView tvTo;
+    protected @BindView(R.id.tv_fromSlider) TextView tvFromSlider;
+    protected @BindView(R.id.tv_ToSlider) TextView tvToSlider;
+
+    protected @BindView(R.id.sb_progress) SeekBar sb_progress;
+    protected @BindView(R.id.pb_progress) ProgressBar pb_progress;
+    protected @BindView(R.id.pb_progress2) ProgressBar pb_progress2;
+
+    protected @BindView(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
+    protected @BindView(R.id.rlPodcast) RelativeLayout rlPodcast;
+    protected @BindView(R.id.ll_podcast_header) LinearLayout rlPodcastHeader;
+    protected @BindView(R.id.fl_playPausePodcastWrapper) FrameLayout playPausePodcastWrapper;
+    protected @BindView(R.id.podcastTitleGrid) ListView /*CardGridView*/ podcastTitleGrid;
+
+    protected @BindView(R.id.viewSwitcherProgress) ViewSwitcher /*CardGridView*/ viewSwitcherProgress;
 
     /**
      * Use this factory method to create a new instance of
@@ -85,42 +127,78 @@ public class PodcastFragment extends Fragment {
     public static PodcastFragment newInstance() {
         return new PodcastFragment();
     }
-    public PodcastFragment() {
-        // Required empty public constructor
-    }
-
-    //Your created method
-    public boolean onBackPressed() //returns if the event was handled
-    {
-        return false;
-    }
-
-
-    EventBus eventBus;
+    // Required empty public constructor
+    public PodcastFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setRetainInstance(true);
-
+        //setRetainInstance(true);
         eventBus = EventBus.getDefault();
     }
-
-
 
     @Override
     public void onResume() {
         eventBus.register(this);
-
         super.onResume();
+        //mActivity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     @Override
     public void onPause() {
-        eventBus.unregister(this);
-
         super.onPause();
+        eventBus.unregister(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        mMediaBrowser = new MediaBrowserCompat(mActivity,
+                new ComponentName(mActivity, PodcastPlaybackService.class),
+                mConnectionCallbacks,
+                null); // optional Bundle
+        mMediaBrowser.connect();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // (see "stay in sync with the MediaSession")
+        if (MediaControllerCompat.getMediaController(mActivity) != null) {
+            MediaControllerCompat.getMediaController(mActivity).unregisterCallback(mediaControllerCallback);
+            MediaControllerCompat.getMediaController(mActivity).unregisterCallback(controllerCallback);
+        }
+        mMediaBrowser.disconnect();
+
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = getActivity();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mActivity = null;
+    }
+
+    protected void tryOpeningPictureinPictureMode() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            //moveTaskToBack(false /* nonRoot */);
+
+            if(!PiPVideoPlaybackActivity.activityIsRunning) {
+                Intent intent = new Intent(getActivity(), PiPVideoPlaybackActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        }
     }
 
     @Subscribe
@@ -152,28 +230,12 @@ public class PodcastFragment extends Fragment {
         }
     }
 
-    long lastPodcastRssItemId = -1;
+
+
+    /* // TODO!!
     @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
         this.podcast = podcast;
-
-        hasTitleInCache = true;
-
-        int drawableId = podcast.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play_arrow;
-        int contentDescriptionId = podcast.isPlaying() ? R.string.content_desc_pause : R.string.content_desc_play;
-
-        if(lastDrawableId != drawableId) {
-            lastDrawableId = drawableId;
-            btnPlayPausePodcast.setImageResource(drawableId);
-            btnPlayPausePodcast.setContentDescription(getString(contentDescriptionId));
-            btnPlayPausePodcastSlider.setImageResource(drawableId);
-        }
-
-        if(lastPodcastRssItemId != podcast.getRssItemId() && imgFavIcon != null) {
-            if(loadPodcastFavIcon()) {
-                lastPodcastRssItemId = podcast.getRssItemId();
-            }
-        }
 
         int hours = (int)(podcast.getCurrent() / (1000*60*60));
         int minutes = (int)(podcast.getCurrent() % (1000*60*60)) / (1000*60);
@@ -188,9 +250,6 @@ public class PodcastFragment extends Fragment {
         minutes += hours * 60;
         tvTo.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
         tvToSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-
-        tvTitle.setText(podcast.getTitle());
-        tvTitleSlider.setText(podcast.getTitle());
 
         if(podcast.getStatus() == PlaybackService.Status.PREPARING) {
             sb_progress.setVisibility(View.INVISIBLE);
@@ -210,86 +269,25 @@ public class PodcastFragment extends Fragment {
             pb_progress.setProgress((int) progress);
         }
     }
-
-    private boolean loadPodcastFavIcon() {
-        return ((PodcastFragmentActivity) getActivity()).getCurrentPlayingPodcast(
-            new PodcastFragmentActivity.OnCurrentPlayingPodcastCallback() {
-                @Override
-                public void currentPlayingPodcastReceived(MediaItem mediaItem) {
-                    Log.d(TAG, "currentPlayingPodcastReceived() called with: mediaItem = [" + mediaItem + "]");
-                    if(mediaItem != null) {
-                        String favIconUrl = mediaItem.favIcon;
-                        Log.d(TAG, "currentPlayingPodcastReceived: " + favIconUrl);
-                        DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().
-                                showImageOnLoading(R.drawable.default_feed_icon_light).
-                                showImageForEmptyUri(R.drawable.default_feed_icon_light).
-                                showImageOnFail(R.drawable.default_feed_icon_light).
-                                build();
-                        ImageLoader.getInstance().displayImage(favIconUrl, imgFavIcon, displayImageOptions);
-                    }
-                }
-            });
-    }
+    */
 
 
-
-    @BindView(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
-    @BindView(R.id.btn_playPausePodcastSlider) ImageButton btnPlayPausePodcastSlider;
-    @BindView(R.id.btn_nextPodcastSlider) ImageButton btnNextPodcastSlider;
-    @BindView(R.id.btn_previousPodcastSlider) ImageButton btnPreviousPodcastSlider;
-    @BindView(R.id.btn_podcastSpeed) ImageButton btnPlaybackSpeed;
-
-    @BindView(R.id.img_feed_favicon) ImageView imgFavIcon;
-
-    @BindView(R.id.tv_title) TextView tvTitle;
-    @BindView(R.id.tv_titleSlider) TextView tvTitleSlider;
-
-
-    @BindView(R.id.tv_from) TextView tvFrom;
-    @BindView(R.id.tv_to) TextView tvTo;
-    @BindView(R.id.tv_fromSlider) TextView tvFromSlider;
-    @BindView(R.id.tv_ToSlider) TextView tvToSlider;
-
-    @BindView(R.id.sb_progress) SeekBar sb_progress;
-    @BindView(R.id.pb_progress) ProgressBar pb_progress;
-    @BindView(R.id.pb_progress2) ProgressBar pb_progress2;
-
-
-    @BindView(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
-    @BindView(R.id.rlPodcast) RelativeLayout rlPodcast;
-    @BindView(R.id.ll_podcast_header) LinearLayout rlPodcastHeader;
-    @BindView(R.id.fl_playPausePodcastWrapper) FrameLayout playPausePodcastWrapper;
-    @BindView(R.id.podcastTitleGrid) ListView /*CardGridView*/ podcastTitleGrid;
-
-    @BindView(R.id.viewSwitcherProgress) ViewSwitcher /*CardGridView*/ viewSwitcherProgress;
-
-
-    boolean hasTitleInCache = false;
     @OnClick(R.id.fl_playPausePodcastWrapper) void playPause() {
-        if(!hasTitleInCache) {
-            Toast.makeText(getActivity(), "Please select a title first", Toast.LENGTH_SHORT).show();
-        } else {
-            eventBus.post(new TogglePlayerStateEvent());
-        }
+        eventBus.post(new TogglePlayerStateEvent());
     }
 
     @OnClick(R.id.btn_playPausePodcastSlider) void playPauseSlider() {
         playPause();
     }
 
-    @OnClick(R.id.btn_nextPodcastSlider) void nextChapter() {
-        eventBus.post(new WindPodcast() {{
-            long position = podcast.getCurrent() + 30000;
-            toPositionInPercent = ((double) position / (double) podcast.getMax()) * 100d;
-        }});
+    @OnClick(R.id.btn_nextPodcastSlider) void windForward() {
+        eventBus.post(new WindPodcast(30000));
+
         //Toast.makeText(getActivity(), "This feature is not supported yet :(", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick(R.id.btn_previousPodcastSlider) void previousChapter() {
-        eventBus.post(new WindPodcast() {{
-            long position = podcast.getCurrent() - 10000;
-            toPositionInPercent = ((double) position / (double) podcast.getMax()) * 100d;
-        }});
+    @OnClick(R.id.btn_previousPodcastSlider) void windBack() {
+        eventBus.post(new WindPodcast(-10000));
     }
 
     @OnClick(R.id.btn_podcastSpeed) void openSpeedMenu() {
@@ -299,16 +297,15 @@ public class PodcastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create ContextThemeWrapper from the original Activity Context with the custom theme
-        Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_MaterialComponents_Light_DarkActionBar);
+        //Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_MaterialComponents_Light_DarkActionBar);
         // clone the inflater using the ContextThemeWrapper
-        LayoutInflater localInflater = inflater.cloneInContext(context);
+        //LayoutInflater localInflater = inflater.cloneInContext(context);
         // inflate using the cloned inflater, not the passed in default
-        View view = localInflater.inflate(R.layout.fragment_podcast, container, false);
-
+        //View view = localInflater.inflate(R.layout.fragment_podcast, container, false);
+        View view = inflater.inflate(R.layout.fragment_podcast, container, false);
 
         //View view = inflater.inflate(R.layout.fragment_podcast, container, false);
         ButterKnife.bind(this, view);
-
 
         if(getActivity() instanceof PodcastFragmentActivity) {
             sliding_layout = ((PodcastFragmentActivity) getActivity()).getSlidingLayout();
@@ -321,8 +318,6 @@ public class PodcastFragment extends Fragment {
 
             sliding_layout.setPanelSlideListener(onPanelSlideListener);
         }
-
-
 
         PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), new PodcastFeedItem[0]);
 
@@ -339,49 +334,16 @@ public class PodcastFragment extends Fragment {
     }
 
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
 
     private SlidingUpPanelLayout.PanelSlideListener onPanelSlideListener = new SlidingUpPanelLayout.PanelSlideListener() {
         @Override
-        public void onPanelSlide(View view, float v) {
-
-        }
+        public void onPanelSlide(View view, float v) { }
 
         @Override
         public void onPanelCollapsed(View view) {
             if(sliding_layout != null)
                 sliding_layout.setDragView(rlPodcastHeader);
             viewSwitcherProgress.setDisplayedChild(0);
-
-            if(getActivity() instanceof PodcastFragmentActivity)
-                ((PodcastFragmentActivity)getActivity()).togglePodcastVideoViewAnimation();
         }
 
         @Override
@@ -389,47 +351,45 @@ public class PodcastFragment extends Fragment {
             if(sliding_layout != null)
                 sliding_layout.setDragView(viewSwitcherProgress);
             viewSwitcherProgress.setDisplayedChild(1);
-
-            if(getActivity() instanceof PodcastFragmentActivity)
-                ((PodcastFragmentActivity)getActivity()).togglePodcastVideoViewAnimation();
         }
 
-        @Override
-        public void onPanelAnchored(View view) {
+        @Override public void onPanelAnchored(View view) { }
 
-        }
-
-        @Override
-        public void onPanelHidden(View view) {
-
-        }
+        @Override public void onPanelHidden(View view) { }
     };
 
 
     boolean blockSeekbarUpdate = false;
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+        int before;
+
         @Override
-        public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-            //Log.v(TAG, "onProgressChanged");
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            /*
+            if(fromUser) {
+                Log.v(TAG, "onProgressChanged: " + progress + "%");
+                before = progress;
+            }
+            */
         }
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
-            blockSeekbarUpdate = true;
             Log.v(TAG, "onStartTrackingTouch");
+            before = seekBar.getProgress();
+            blockSeekbarUpdate = true;
         }
 
         @Override
         public void onStopTrackingTouch(final SeekBar seekBar) {
-            if(hasTitleInCache) {
-                eventBus.post(new WindPodcast() {{
-                    toPositionInPercent = seekBar.getProgress();
-                }});
-                blockSeekbarUpdate = false;
-            }
             Log.v(TAG, "onStopTrackingTouch");
+            int diffInSeconds = seekBar.getProgress() - before;
+            eventBus.post(new WindPodcast(diffInSeconds));
+            blockSeekbarUpdate = false;
         }
     };
+    // TODO SEEK DOES NOT WORK PROPERLY!!!!
 
 
     private void showPlaybackSpeedPicker() {
@@ -437,20 +397,12 @@ public class PodcastFragment extends Fragment {
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(PodcastPlaybackService.PLAYBACK_SPEEDS.length-1);
-        numberPicker.setFormatter(new NumberPicker.Formatter() {
-            @Override
-            public String format(int i) {
-                return String.valueOf(PodcastPlaybackService.PLAYBACK_SPEEDS[i]);
-            }
-        });
+        numberPicker.setFormatter(i -> String.valueOf(PodcastPlaybackService.PLAYBACK_SPEEDS[i]));
 
         if(getActivity() instanceof PodcastFragmentActivity) {
-            ((PodcastFragmentActivity) getActivity()).getCurrentPlaybackSpeed(new PodcastFragmentActivity.OnPlaybackSpeedCallback() {
-                @Override
-                public void currentPlaybackReceived(float playbackSpeed) {
-                    int position = Arrays.binarySearch(PodcastPlaybackService.PLAYBACK_SPEEDS, playbackSpeed);
-                    numberPicker.setValue(position);
-                }
+            getCurrentPlaybackSpeed(playbackSpeed -> {
+                int position = Arrays.binarySearch(PodcastPlaybackService.PLAYBACK_SPEEDS, playbackSpeed);
+                numberPicker.setValue(position);
             });
 
         } else {
@@ -467,19 +419,12 @@ public class PodcastFragment extends Fragment {
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        float speed = PodcastPlaybackService.PLAYBACK_SPEEDS[numberPicker.getValue()];
-                        //Toast.makeText(getActivity(), String.valueOf(speed]), Toast.LENGTH_SHORT).show();
-                        eventBus.post(new SpeedPodcast(speed));
-                        dialog.cancel();
-                    }
+                .setPositiveButton(getString(android.R.string.ok), (dialog, id) -> {
+                    float speed = PodcastPlaybackService.PLAYBACK_SPEEDS[numberPicker.getValue()];
+                    eventBus.post(new SpeedPodcast(speed));
+                    dialog.cancel();
                 })
-                .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                })
+                .setNegativeButton(getString(android.R.string.cancel), (dialog, id) -> dialog.cancel())
                 .setView(numberPicker);
 
         // create alert dialog
@@ -501,4 +446,247 @@ public class PodcastFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
+
+
+
+    private MediaControllerCompat.Callback controllerCallback =
+        new MediaControllerCompat.Callback() {
+            @Override
+            public void onMetadataChanged(MediaMetadataCompat metadata) {
+                Log.v(TAG, "onMetadataChanged() called with: metadata = [" + metadata + "]");
+
+                displayMetadata(metadata);
+            }
+
+            @Override
+            public void onPlaybackStateChanged(PlaybackStateCompat stateCompat) {
+                Log.v(TAG, "onPlaybackStateChanged() called with: state = [" + stateCompat + "]");
+                displayPlaybackState(stateCompat);
+
+                // TODO: UPDATE PROGRESS HERE (NOT VIA THE EVENTBUS!!)
+            }
+        };
+
+
+    private void displayMetadata(MediaMetadataCompat metadata) {
+        String title = metadata.getString(MediaMetadataCompat.METADATA_KEY_TITLE);
+        String author = metadata.getString(MediaMetadataCompat.METADATA_KEY_ARTIST);
+        if(author != null) {
+            title += " - " + author;
+        }
+        tvTitle.setText(title);
+        tvTitleSlider.setText(title);
+
+        String favIconUrl = metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI);
+        if(favIconUrl != null) {
+            Log.d(TAG, "currentPlayingPodcastReceived: " + favIconUrl);
+            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().
+                    showImageOnLoading(R.drawable.default_feed_icon_light).
+                    showImageForEmptyUri(R.drawable.default_feed_icon_light).
+                    showImageOnFail(R.drawable.default_feed_icon_light).
+                    build();
+            ImageLoader.getInstance().displayImage(favIconUrl, imgFavIcon, displayImageOptions);
+        }
+
+        PlaybackService.VideoType mediaType = PlaybackService.VideoType.valueOf(metadata.getString(CURRENT_PODCAST_MEDIA_TYPE));
+
+        if("-1".equals(metadata.getString(METADATA_KEY_MEDIA_ID))) {
+            // Collapse if no podcast is loaded
+            eventBus.post(new CollapsePodcastView());
+        } else {
+            // Expand if podcast is loaded
+            eventBus.post(new ExpandPodcastView());
+
+            if (mediaType == PlaybackService.VideoType.Video) {
+                Log.v(TAG, "init regular video");
+                tryOpeningPictureinPictureMode();
+            } else if (mediaType == PlaybackService.VideoType.YouTube) {
+                //if ("extra".equals(BuildConfig.FLAVOR)) {
+                Log.v(TAG, "show youtube videos not supported");
+                new AlertDialog.Builder(getActivity())
+                        .setTitle(getString(R.string.warning))
+                        .setMessage(R.string.dialog_feature_not_available)
+                        .setCancelable(true)
+                        .setPositiveButton(getString(android.R.string.ok), null)
+                        .show();
+            }
+        }
+
+        maxPositionInMillis = metadata.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+    }
+
+    private void displayPlaybackState(PlaybackStateCompat stateCompat) {
+        boolean showPlayingButton = false;
+
+        int state = stateCompat.getState();
+        if(PlaybackStateCompat.STATE_PLAYING == state ||
+                PlaybackStateCompat.STATE_BUFFERING == state ||
+                PlaybackStateCompat.STATE_CONNECTING == state ||
+                PlaybackStateCompat.STATE_PAUSED == state) {
+            //Log.v(TAG, "State is: " + state);
+
+            if (PlaybackStateCompat.STATE_PAUSED != state) {
+                showPlayingButton = true;
+            }
+        }
+
+        int drawableId = showPlayingButton ? R.drawable.ic_action_pause : R.drawable.ic_action_play;
+        int contentDescriptionId = showPlayingButton ? R.string.content_desc_pause : R.string.content_desc_play;
+
+        // If attached to context..
+        if(mActivity != null) {
+            btnPlayPausePodcast.setImageResource(drawableId);
+            btnPlayPausePodcast.setContentDescription(getString(contentDescriptionId));
+            btnPlayPausePodcastSlider.setImageResource(drawableId);
+        }
+
+        currentPositionInMillis = stateCompat.getPosition();
+
+        updateProgressBar(state);
+    }
+
+    private void updateProgressBar(@PlaybackStateCompat.State int state) {
+        int hours = (int)(currentPositionInMillis / (1000*60*60));
+        int minutes = (int)(currentPositionInMillis % (1000*60*60)) / (1000*60);
+        int seconds = (int) ((currentPositionInMillis % (1000*60*60)) % (1000*60) / 1000);
+        minutes += hours * 60;
+        tvFrom.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        tvFromSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+
+        hours = (int)(maxPositionInMillis / (1000*60*60));
+        minutes = (int)(maxPositionInMillis % (1000*60*60)) / (1000*60);
+        seconds = (int) ((maxPositionInMillis % (1000*60*60)) % (1000*60) / 1000);
+        minutes += hours * 60;
+        tvTo.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        tvToSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+
+        if(state == PlaybackStateCompat.STATE_CONNECTING) {
+            sb_progress.setVisibility(View.INVISIBLE);
+            pb_progress2.setVisibility(View.VISIBLE);
+
+            pb_progress.setIndeterminate(true);
+        } else {
+            double progress = ((double) currentPositionInMillis / (double) maxPositionInMillis) * 100d;
+
+            if(!blockSeekbarUpdate) {
+                sb_progress.setVisibility(View.VISIBLE);
+                pb_progress2.setVisibility(View.INVISIBLE);
+                sb_progress.setProgress((int) progress);
+            }
+
+            pb_progress.setIndeterminate(false);
+            pb_progress.setProgress((int) progress);
+        }
+    }
+
+    // https://developer.android.com/guide/topics/media-apps/audio-app/building-a-mediabrowser-client#customize-mediabrowser-connectioncallback
+    private final MediaBrowserCompat.ConnectionCallback mConnectionCallbacks =
+            new MediaBrowserCompat.ConnectionCallback() {
+                @Override
+                public void onConnected() {
+                    Log.d(TAG, "onConnected() called");
+
+                    // Get the token for the MediaSession
+                    MediaSessionCompat.Token token = mMediaBrowser.getSessionToken();
+
+                    try {
+                        // Create a MediaControllerCompat
+                        MediaControllerCompat mediaController = new MediaControllerCompat(mActivity, token);
+
+                        // Save the controller
+                        MediaControllerCompat.setMediaController(mActivity, mediaController);
+
+                        // Register a Callback to stay in sync
+                        mediaController.registerCallback(controllerCallback);
+
+                        // Display the initial state
+                        MediaMetadataCompat metadata = mediaController.getMetadata();
+                        PlaybackStateCompat pbState = mediaController.getPlaybackState();
+                        displayMetadata(metadata);
+                        displayPlaybackState(pbState);
+
+                        // Finish building the UI
+                        //buildTransportControls();
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "Connecting to podcast service failed!", e);
+                    }
+                }
+
+                @Override
+                public void onConnectionSuspended() {
+                    Log.d(TAG, "onConnectionSuspended() called");
+                    // The Service has crashed. Disable transport controls until it automatically reconnects
+                }
+
+                @Override
+                public void onConnectionFailed() {
+                    Log.e(TAG, "onConnectionFailed() called");
+                    // The Service has refused our connection
+                }
+            };
+
+
+
+    public void getCurrentPlaybackSpeed(final OnPlaybackSpeedCallback callback) {
+        MediaControllerCompat.getMediaController(mActivity)
+                .sendCommand(PLAYBACK_SPEED_FLOAT,
+                        null,
+                        new ResultReceiver(new Handler()) {
+                            @Override
+                            protected void onReceiveResult(int resultCode, Bundle resultData) {
+                                callback.currentPlaybackReceived(resultData.getFloat(PLAYBACK_SPEED_FLOAT));
+                            }
+                        });
+    }
+
+
+    /*
+    public boolean getCurrentPlayingPodcast(final OnCurrentPlayingPodcastCallback callback) {
+        if(mMediaBrowser != null && mMediaBrowser.isConnected()) {
+            MediaControllerCompat.getMediaController(mActivity)
+                    .sendCommand(CURRENT_PODCAST_ITEM_MEDIA_ITEM,
+                            null,
+                            new ResultReceiver(new Handler()) {
+                                @Override
+                                protected void onReceiveResult(int resultCode, Bundle resultData) {
+                                    callback.currentPlayingPodcastReceived((MediaItem) resultData.getSerializable(CURRENT_PODCAST_ITEM_MEDIA_ITEM));
+                                }
+                            });
+            return true;
+        } else {
+            return false;
+        }
+    }
+    */
+
+    private MediaControllerCompat.Callback mediaControllerCallback = new MediaControllerCompat.Callback() {
+        @Override
+        public void onSessionReady() {
+            Log.d(TAG, "onSessionReady() called");
+            super.onSessionReady();
+        }
+
+        @Override
+        public void onSessionDestroyed() {
+            Log.d(TAG, "onSessionDestroyed() called");
+            super.onSessionDestroyed();
+        }
+
+        @Override
+        public void onSessionEvent(String event, Bundle extras) {
+            Log.d(TAG, "onSessionEvent() called with: event = [" + event + "], extras = [" + extras + "]");
+            super.onSessionEvent(event, extras);
+        }
+    };
+
+
+    public interface OnPlaybackSpeedCallback {
+        void currentPlaybackReceived(float playbackSpeed);
+    }
+
+    /*
+    public interface OnCurrentPlayingPodcastCallback {
+        void currentPlayingPodcastReceived(MediaItem mediaItem);
+    }*/
 }
