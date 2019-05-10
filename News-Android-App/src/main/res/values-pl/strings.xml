@@ -22,7 +22,7 @@
     <string name="title_activity_new_feed">Dodaj nowy kanał</string>
 
     <string name="menu_update">Odśwież</string>
-    <string name="menu_markAllAsRead">Oznacz wszysto jako przeczytane</string>
+    <string name="menu_markAllAsRead">Oznacz wszystkie jako przeczytane</string>
     <string name="menu_StartImageCaching">Pobierz obrazki</string>
     <string name="menu_downloadMoreItems">Pobierz więcej elementów</string>
 
