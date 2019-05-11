@@ -525,6 +525,13 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         }
 
         @Override
+        public void onPlayFromSearch(String query, Bundle extras) {
+            Log.d(TAG, "onPlayFromSearch() called with: query = [" + query + "], extras = [" + extras + "]");
+            // TODO Implement this
+            super.onPlayFromSearch(query, extras);
+        }
+
+        @Override
         public void onCommand(String command, Bundle extras, ResultReceiver cb) {
             if (command.equals(PLAYBACK_SPEED_FLOAT)) {
                 Bundle b = new Bundle();
