@@ -128,8 +128,7 @@ dependencies {
     // implementation 'com.google.android.gms:play-services:4.2.42'
     //implementation project(':Android-SingleSignOn')
     //implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
-    //implementation 'com.github.nextcloud:Android-SingleSignOn:e781a33e01'
-    implementation 'com.github.nextcloud:Android-SingleSignOn:unit-testing-SNAPSHOT'
+    implementation 'com.github.nextcloud:Android-SingleSignOn:fix-account-not-found-SNAPSHOT'
     implementation 'com.github.David-Development:MaterialShowcaseView:bf6afa225d'
 
     // https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
