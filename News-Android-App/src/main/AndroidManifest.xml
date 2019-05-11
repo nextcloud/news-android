@@ -21,7 +21,7 @@
     <!-- Required for TwilightManager -->
     <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    
+
     <application
         android:name=".NewsReaderApplication"
         android:allowBackup="true"
@@ -50,7 +50,6 @@
 
         <activity
             android:name=".NewsDetailActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_news_detail" />
 
         <activity android:name=".PiPVideoPlaybackActivity"

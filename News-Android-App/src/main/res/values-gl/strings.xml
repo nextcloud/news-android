@@ -83,6 +83,9 @@
     <string name="feed_move_list_description">Seleccione o cartafol ao que mover a fonte</string>
     <string name="move_feed_root_folder">Cartafol raíz</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Acceso manual</string>
+    <string name="login_sso">Acceso empregando o aplicativo Files do Nextcloud</string>
     <string name="pref_title_username">Nome de usuario</string>
     <string name="pref_title_password">Contrasinal</string>
     <string name="pref_title_owncloudRootPath">Enderezo raíz do Nextcloud</string>

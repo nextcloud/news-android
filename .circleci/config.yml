@@ -48,6 +48,9 @@ jobs:
     - run:
         name: Run unit tests
         command: ./gradlew test
+    - run:
+        name: Run Lint Tests
+        command: ./gradlew lint test
     - store_artifacts:
         path: News-Android-App/build/reports
         destination: reports

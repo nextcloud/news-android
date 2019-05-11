@@ -38,6 +38,7 @@
     <string name="action_sync_settings">Valkostir samstillingar</string>
     <string name="action_add_new_feed">Bæta við nýjum fréttastraum</string>
     <string name="action_textToSpeech">Lesa upphátt</string>
+    <string name="action_search">Leita</string>
     <string name="action_download_articles_offline">Sækja ónettengdar greinar</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Þú átt %d nýtt ólesið atriði</item>
@@ -52,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Streymisslóð</string>
     <string name="action_add_feed">Bæta við fréttastraum</string>
+    <string name="import_opml">Flytja inn OPML</string>
+    <string name="export_opml">Flytja út OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Sækja mynd</string>
     <string name="action_img_sharelink">Deila tengli á mynd</string>
@@ -78,6 +83,9 @@
     <string name="feed_move_list_description">Veldu möppu sem á að færa streymið í</string>
     <string name="move_feed_root_folder">Rótarmappa</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Handvirk innskráning</string>
+    <string name="login_sso">Skrá inn með Nextcloud-skráaforritinu</string>
     <string name="pref_title_username">Notendanafn</string>
     <string name="pref_title_password">Lykilorð</string>
     <string name="pref_title_owncloudRootPath">Rótarvistfang Nextcloud</string>

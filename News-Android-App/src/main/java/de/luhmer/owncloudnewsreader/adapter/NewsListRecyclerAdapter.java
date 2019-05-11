@@ -15,9 +15,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
+import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -41,7 +41,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     private DatabaseConnectionOrm dbConn;
     private PostDelayHandler pDelayHandler;
     private FragmentActivity activity;
-    private HashSet<Long> stayUnreadItems = new HashSet<>();
 
     private int totalItemCount = 0;
     private int cachedPages = 1;
@@ -224,7 +223,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             final ViewHolder holder = (ViewHolder) viewHolder;
             RssItem item = lazyList.get(position);
             holder.setRssItem(item);
-            holder.setStayUnread(stayUnreadItems.contains(item.getId()));
+            holder.setStayUnread(NewsReaderListActivity.stayUnreadItems.contains(item.getId()));
 
             //Podcast stuff
             if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(item.getEnclosureMime())) {
@@ -262,7 +261,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             viewHolder.setReadState(isChecked);
             //notifyItemChanged(viewHolder.getAdapterPosition());
 
-            stayUnreadItems.add(rssItem.getId());
+            NewsReaderListActivity.stayUnreadItems.add(rssItem.getId());
         }
     }
 
@@ -319,13 +318,13 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
 
     public void updateAdapterData(List<RssItem> rssItems) {
-        stayUnreadItems.clear();
+        NewsReaderListActivity.stayUnreadItems.clear();
 
         cachedPages = 1;
 
-        if (this.lazyList != null) {
+        //if (this.lazyList != null) {
             //this.lazyList.close();
-        }
+        //}
         //new ReloadAdapterAsyncTask().execute();
 
         totalItemCount = ((Long) dbConn.getCurrentRssItemViewCount()).intValue();

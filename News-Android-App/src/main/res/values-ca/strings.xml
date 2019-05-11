@@ -38,6 +38,7 @@
     <string name="action_sync_settings">Opcions de sincronització</string>
     <string name="action_add_new_feed">Afegeix una font nova</string>
     <string name="action_textToSpeech">De lectura</string>
+    <string name="action_search">Cerca</string>
     <string name="action_download_articles_offline">Descarrega els articles fora de línia</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Teniu %d ítem de notícia sense llegir</item>
@@ -52,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL font</string>
     <string name="action_add_feed">Afegeix font</string>
+    <string name="import_opml">Importa OPML</string>
+    <string name="export_opml">Exporta OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Descarrega la imatge</string>
     <string name="action_img_sharelink">Comparteix l\'enllaç de la imatge</string>
@@ -78,6 +83,9 @@
     <string name="feed_move_list_description">Selecciona la carpeta per moure-hi la font</string>
     <string name="move_feed_root_folder">Carpeta arrel</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Inici de sessió manual</string>
+    <string name="login_sso">Inici de sessió fent servir l\'Aplicació de Fitxers de Nextcloud</string>
     <string name="pref_title_username">Nom d\'usuari</string>
     <string name="pref_title_password">Contrasenya</string>
     <string name="pref_title_owncloudRootPath">Adreça arrel del Nextcloud</string>

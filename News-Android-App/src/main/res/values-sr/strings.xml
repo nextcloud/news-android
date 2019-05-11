@@ -39,6 +39,7 @@
     <string name="action_sync_settings">Поставке освежавања</string>
     <string name="action_add_new_feed">Додај довод</string>
     <string name="action_textToSpeech">Ишчитај</string>
+    <string name="action_search">Претрага</string>
     <string name="action_download_articles_offline">Скини чланке за приступ и без интернета</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Имате %d непрочитану ставку</item>
@@ -55,6 +56,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Адреса довода</string>
     <string name="action_add_feed">Додај довод</string>
+    <string name="import_opml">Увези OPML</string>
+    <string name="export_opml">Извези OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Преузми слику</string>
     <string name="action_img_sharelink">Подели везу ка слици</string>
@@ -81,6 +86,9 @@
     <string name="feed_move_list_description">Изаберите фасциклу да преместите довод</string>
     <string name="move_feed_root_folder">Корена фасцикла</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Ручна пријава</string>
+    <string name="login_sso">Пријава коришћењем Некстклауд апликације Фајлова</string>
     <string name="pref_title_username">Корисничко име</string>
     <string name="pref_title_password">Лозинка</string>
     <string name="pref_title_owncloudRootPath">Корена адреса Некстклауда</string>

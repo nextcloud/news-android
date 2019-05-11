@@ -72,7 +72,6 @@ import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
-import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -80,6 +79,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Field;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -142,6 +142,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITEL = "TITEL";
 
+    public static HashSet<Long> stayUnreadItems = new HashSet<>();
+
 	private static MenuItem menuItemUpdater;
 	private static MenuItem menuItemDownloadMoreItems;
 
@@ -165,9 +167,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     private static final String LIST_ADAPTER_TOTAL_COUNT = "LIST_ADAPTER_TOTAL_COUNT";
     private static final String LIST_ADAPTER_PAGE_COUNT = "LIST_ADAPTER_PAGE_COUNT";
 
-
     @Inject @Named("sharedPreferencesFileName") String sharedPreferencesFileName;
-
 
 
     @Override
@@ -286,11 +286,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        safeInstanceState(outState);
-        super.onSaveInstanceState(outState);
-    }
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		saveInstanceState(outState);
+		super.onSaveInstanceState(outState);
+	}
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
@@ -306,10 +306,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
     }
 
-    private void safeInstanceState(Bundle outState) {
+    private void saveInstanceState(Bundle outState) {
         NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
         if (ndf != null) {
-            outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFeed() == null ? ndf.getIdFolder() : ndf.getIdFeed());
+            outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFolder());
             outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
             outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
 
@@ -339,9 +339,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     .getRecyclerView()
                     .setAdapter(adapter);
 
-            updateDetailFragment(savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
+            updateDetailFragment(savedInstanceState.getLong(ID_FEED_STRING),
                     savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
-                    savedInstanceState.getLong(ID_FEED_STRING),
+                    savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
                     false);
         }
         mSearchString = savedInstanceState.getString(SEARCH_KEY, null);
@@ -978,24 +978,21 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
 
 
-        AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
-            @Override
-            public void accountAccessGranted(SingleSignOnAccount account) {
-                Log.d(TAG, "accountAccessGranted() called with: account = [" + account + "]");
-                mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
-                    @Override
-                    public void onConnected() {
-                        Log.d(TAG, "onConnected() called");
-                    }
+        AccountImporter.onActivityResult(requestCode, resultCode, data, this, account -> {
+			Log.d(TAG, "accountAccessGranted() called with: account = [" + account + "]");
+			mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+				@Override
+				public void onConnected() {
+					Log.d(TAG, "onConnected() called");
+				}
 
-                    @Override
-                    public void onError(Exception ex) {
-                        Log.e(TAG, "onError() called with:", ex);
-                    }
-                });
+				@Override
+				public void onError(Exception ex) {
+					Log.e(TAG, "onError() called with:", ex);
+				}
+			});
 
-            }
-        });
+		});
     }
 
     @Override

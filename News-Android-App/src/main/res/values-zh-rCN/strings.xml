@@ -37,6 +37,7 @@
     <string name="action_sync_settings">同步设置</string>
     <string name="action_add_new_feed">增加新 Feed</string>
     <string name="action_textToSpeech">朗读</string>
+    <string name="action_search">搜索</string>
     <string name="action_download_articles_offline">离线下载文章</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">您还有 %d 条未读内容</item>
@@ -49,6 +50,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">源网址</string>
     <string name="action_add_feed">添加Feed</string>
+    <string name="import_opml">导入OPML</string>
+    <string name="export_opml">导出OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">下载图片</string>
     <string name="action_img_sharelink">共享图片链接</string>
@@ -75,6 +80,9 @@
     <string name="feed_move_list_description">选择 Feed 移动到哪个文件夹</string>
     <string name="move_feed_root_folder">根目录</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">手动登录</string>
+    <string name="login_sso">使用Nextcloud文件应用登录</string>
     <string name="pref_title_username">用户名</string>
     <string name="pref_title_password">密码</string>
     <string name="pref_title_owncloudRootPath">ownCloud 根目录地址</string>

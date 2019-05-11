@@ -44,6 +44,13 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -56,12 +63,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import androidx.annotation.Nullable;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.adapter.ProgressBarWebChromeClient;
@@ -91,9 +92,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     private GestureDetector mGestureDetector;
 
 
-    public NewsDetailFragment() {
-        //setRetainInstance(true);
-    }
+    public NewsDetailFragment() { }
 
     public int getSectionNumber() {
         return section_number;
@@ -103,6 +102,10 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+
+        // Retain this fragment across configuration changes.
+        setRetainInstance(true);
+
     }
 
     @Override
@@ -171,12 +174,23 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         ButterKnife.bind(this, rootView);
 
-        startLoadRssItemToWebViewTask();
+        // Do not reload webview if retained
+        if(savedInstanceState == null) {
+            startLoadRssItemToWebViewTask();
+        } else {
+            mWebView.restoreState(savedInstanceState);
+            mProgressBarLoading.setVisibility(View.GONE);
+        }
 
         setUpGestureDetector();
 
 		return rootView;
 	}
+
+	@Override
+    public void onSaveInstanceState(Bundle outState) {
+        mWebView.saveState(outState);
+    }
 
 	private void setUpGestureDetector() {
         mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener());

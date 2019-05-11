@@ -22,7 +22,7 @@
     <string name="title_activity_new_feed">Dodaj nowy kanał</string>
 
     <string name="menu_update">Odśwież</string>
-    <string name="menu_markAllAsRead">Oznacz wszysto jako przeczytane</string>
+    <string name="menu_markAllAsRead">Oznacz wszystkie jako przeczytane</string>
     <string name="menu_StartImageCaching">Pobierz obrazki</string>
     <string name="menu_downloadMoreItems">Pobierz więcej elementów</string>
 
@@ -40,6 +40,7 @@
     <string name="action_sync_settings">Ustawienia synchronizacji</string>
     <string name="action_add_new_feed">Dodaj nowy kanał</string>
     <string name="action_textToSpeech">Przeczytane</string>
+    <string name="action_search">Wyszukaj</string>
     <string name="action_download_articles_offline">Pobierz artykuły offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Masz %d nową nieprzeczytaną pozycję</item>
@@ -58,6 +59,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL kanału</string>
     <string name="action_add_feed">Dodaj kanał</string>
+    <string name="import_opml">Importuj OPML</string>
+    <string name="export_opml">Eksportuj OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Pobierz obraz</string>
     <string name="action_img_sharelink">Udostępnij link obrazu</string>
@@ -84,6 +89,9 @@
     <string name="feed_move_list_description">Wybierz katalog, aby przenieść dane</string>
     <string name="move_feed_root_folder">Główny folder</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Ręczne logowanie</string>
+    <string name="login_sso">Zaloguj się używając aplikacji Nextcloud Files</string>
     <string name="pref_title_username">Nazwa użytkownika</string>
     <string name="pref_title_password">Hasło</string>
     <string name="pref_title_owncloudRootPath">Adres główny Nextcloud</string>
@@ -165,7 +173,7 @@
     <string name="pref_report_issue_summary">Wymaga (bezpłatnego) konta GitHub</string>
     <string name="pref_contribute">Wsparcie</string>
     <string name="pref_contribute_summary">Pobierz kod źródłowy</string>
-    <string name="pref_version">Nextcloud News aplikacja dla Android</string>
+    <string name="pref_version">Aplikacja Nextcloud News Android</string>
 
 
     <!-- Settings for Display -->

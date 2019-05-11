@@ -37,6 +37,7 @@
     <string name="action_sync_settings">同期設定</string>
     <string name="action_add_new_feed">新しいフィードを追加</string>
     <string name="action_textToSpeech">音声読み上げ</string>
+    <string name="action_search">検索</string>
     <string name="action_download_articles_offline">オフラインで記事をダウンロード</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">%d 個の新しい未読アイテムがあります</item>
@@ -49,6 +50,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">フィードURL</string>
     <string name="action_add_feed">フィードを追加</string>
+    <string name="import_opml">OPML をインポート</string>
+    <string name="export_opml">OPML をエクスポート</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">画像をダウンロード</string>
     <string name="action_img_sharelink">画像リンクを共有</string>
@@ -75,6 +80,9 @@
     <string name="feed_move_list_description">フィードを移動するフォルダーを選択</string>
     <string name="move_feed_root_folder">ルートフォルダー</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">手動ログイン</string>
+    <string name="login_sso">Nextcloud ファイル アプリを使用してログイン</string>
     <string name="pref_title_username">ユーザー名</string>
     <string name="pref_title_password">パスワード</string>
     <string name="pref_title_owncloudRootPath">Nextcloud ルートアドレス</string>
@@ -99,7 +107,7 @@
 
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">設定</string>
-    <string name="cache_is_cleared">キャッシュがクリアされます！</string>
+    <string name="cache_is_cleared">キャッシュがクリアされました！</string>
 
 
     <!-- General settings -->
@@ -109,10 +117,10 @@
     <string name="pref_general_sort_order_new_old">新 -> 旧</string>
     <string name="pref_general_sort_order_old_new">旧 -> 新</string>
 
-    <string name="pref_title_general_search_in">で検索</string>
+    <string name="pref_title_general_search_in">検索対象</string>
 
     <string name="pref_general_search_in_title">タイトル</string>
-    <string name="pref_general_search_in_body">ボディー</string>
+    <string name="pref_general_search_in_body">本文</string>
 
     <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
     <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています…しばらくお待ちください。</string>
@@ -145,6 +153,14 @@
     <!-- Settings for About -->
     <string name="pref_header_about">アプリについて</string>
     <string name="pref_license">ライセンス</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_report_issue">問題を報告する</string>
+    <string name="pref_report_issue_summary">(無料の) GitHub アカウントが必要です</string>
+    <string name="pref_contribute">貢献する！</string>
+    <string name="pref_contribute_summary">ソースコードを入手</string>
+    <string name="pref_version">Nextcloud ニュース Android アプリ</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">表示</string>
     <string name="pref_title_app_theme">テーマ</string>
@@ -168,12 +184,14 @@
 
     <string name="pref_display_feed_list_layout_thumbnails">サムネイル</string>
     <string name="pref_display_feed_list_layout_simple_text">単純なテキスト</string>
+    <string name="pref_display_feed_list_layout_headlines">見出し</string>
     <string name="pref_display_feed_list_layout_full_text">全文</string>
     <string name="pref_display_feed_list_layout_web_layout">ウェブレイアウト</string>
     <string name="pref_display_feed_list_layout_card_view">カード表示</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">小</string>
+    <string name="pref_display_font_size_d">デフォルト</string>
     <string name="pref_display_font_size_l">大</string>
     <string name="pref_display_font_size_xl">巨大</string>
 

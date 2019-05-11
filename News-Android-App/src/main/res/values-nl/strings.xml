@@ -38,6 +38,7 @@
     <string name="action_sync_settings">Sync Settings</string>
     <string name="action_add_new_feed">Voeg nieuwe feed toe</string>
     <string name="action_textToSpeech">Voorlezen</string>
+    <string name="action_search">Zoeken</string>
     <string name="action_download_articles_offline">Download artikelen offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">U hebt %d nieuw ongelezen bericht</item>
@@ -52,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Voeg feed toe</string>
+    <string name="import_opml">Import OPML</string>
+    <string name="export_opml">Export OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Downloaden afbeelding</string>
     <string name="action_img_sharelink">Delen afbeeldingslink</string>
@@ -78,6 +83,9 @@
     <string name="feed_move_list_description">Kies de map om de feed naar te verplaatsen</string>
     <string name="move_feed_root_folder">Hoofdmap</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Handmatige inlog</string>
+    <string name="login_sso">Login via Nextcloud Bestanden App</string>
     <string name="pref_title_username">Gebruikersnaam</string>
     <string name="pref_title_password">Wachtwoord</string>
     <string name="pref_title_owncloudRootPath">Nextcloud root-adres</string>
