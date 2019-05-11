@@ -21,7 +21,6 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -32,13 +31,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GestureDetectorCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -49,13 +41,19 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
@@ -65,6 +63,7 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTIO
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
+import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.Search;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import io.reactivex.observers.DisposableObserver;
@@ -108,6 +107,7 @@ public class NewsReaderDetailFragment extends Fragment {
     private RecyclerView.OnItemTouchListener itemTouchListener;
 
     protected @Inject SharedPreferences mPrefs;
+    protected @Inject PostDelayHandler mPostDelayHandler;
 
     private PodcastFragmentActivity mActivity;
 
@@ -274,7 +274,7 @@ public class NewsReaderDetailFragment extends Fragment {
         try {
             NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
             if (nra == null) {
-                nra = new NewsListRecyclerAdapter(mActivity, recyclerView, mActivity, mActivity.mPostDelayHandler, mPrefs);
+                nra = new NewsListRecyclerAdapter(mActivity, recyclerView, mActivity, mPostDelayHandler, mPrefs);
                 recyclerView.setAdapter(nra);
             }
             nra.updateAdapterData(rssItems);
