@@ -1,15 +1,20 @@
 package de.luhmer.owncloudnewsreader;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -19,13 +24,10 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
 import java.lang.reflect.Proxy;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,6 +71,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        //Log.v(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
         ThemeChooser.chooseTheme(this);

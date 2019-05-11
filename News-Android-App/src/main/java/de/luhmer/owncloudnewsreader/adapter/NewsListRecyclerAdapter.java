@@ -2,11 +2,14 @@ package de.luhmer.owncloudnewsreader.adapter;
 
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -15,15 +18,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
-import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
@@ -122,6 +121,9 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
         this.cachedPages = cachedPages;
     }
 
+    /*
+    // TODO right now this is not working anymore.. We need to use the MediaSession here..
+    // Not sure if this is the cleanest solution though..
     @Subscribe
     public void onEvent(UpdatePodcastStatusEvent podcast) {
         if (podcast.isPlaying()) {
@@ -138,6 +140,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             Log.v(TAG, "Updating Listview - Podcast paused");
         }
     }
+    */
 
     @Subscribe
     public void onEvent(PodcastCompletedEvent podcastCompletedEvent) {
@@ -182,25 +185,32 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
             final ViewHolder holder = new ViewHolder(view, mPrefs);
 
-            holder.starImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    toggleStarredStateOfItem(holder);
-                }
-            });
+            holder.starImageView.setOnClickListener(view1 -> toggleStarredStateOfItem(holder));
 
             holder.setClickListener((RecyclerItemClickListener) activity);
 
-            holder.flPlayPausePodcastWrapper.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (holder.isPlaying()) {
-                        playPausePodcastClicked.pausePodcast();
-                    } else {
-                        playPausePodcastClicked.openPodcast(holder.getRssItem());
-                    }
+            holder.flPlayPausePodcastWrapper.setOnClickListener(v -> {
+                if (holder.isPlaying()) {
+                    playPausePodcastClicked.pausePodcast();
+                } else {
+                    playPausePodcastClicked.openPodcast(holder.getRssItem());
                 }
             });
+
+            /*
+            // TODO implement option to delete cached podcasts (https://github.com/nextcloud/news-android/issues/742)
+            holder.flPlayPausePodcastWrapper.setOnLongClickListener(v -> {
+                // TODO check if cached..
+                new AlertDialog.Builder(activity)
+                        .setTitle("")
+                        .setMessage("")
+                        .setPositiveButton("", (dialog, which) -> {})
+                        .setNegativeButton("", (dialog, which) -> {})
+                        .create()
+                        .show();
+                return false;
+            });
+            */
 
             return holder;
         }
