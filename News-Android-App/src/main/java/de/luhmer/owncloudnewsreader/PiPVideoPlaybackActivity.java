@@ -52,7 +52,7 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //moveTaskToBack(false);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 PictureInPictureParams.Builder pictureInPictureParamsBuilder = new PictureInPictureParams.Builder();
                 //Rational aspectRatio = new Rational(vv.getWidth(), vv.getHeight());
                 //pictureInPictureParamsBuilder.setAspectRatio(aspectRatio).build();
