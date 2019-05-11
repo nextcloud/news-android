@@ -46,7 +46,6 @@ import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
-import de.luhmer.owncloudnewsreader.view.ZoomableRelativeLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
@@ -63,8 +62,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     private EventBus eventBus;
     private PodcastFragment mPodcastFragment;
 
-    @BindView(R.id.videoPodcastSurfaceWrapper)
-    protected ZoomableRelativeLayout rlVideoPodcastSurfaceWrapper;
     @BindView(R.id.sliding_layout)
     protected PodcastSlidingUpPanelLayout sliding_layout;
 
@@ -87,35 +84,14 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
+        //Log.v(TAG, "onPostCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         super.onPostCreate(savedInstanceState);
 
         eventBus = EventBus.getDefault();
 
         ButterKnife.bind(this);
 
-        //youtubeplayerfragment = (YouTubePlayerFragment)getFragmentManager().findFragmentById(R.id.youtubeplayerfragment);
-
-
-        ViewTreeObserver vto = rlVideoPodcastSurfaceWrapper.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                rlVideoPodcastSurfaceWrapper.readVideoPosition();
-
-                rlVideoPodcastSurfaceWrapper.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-            }
-        });
-
-        rlVideoPodcastSurfaceWrapper.setVisibility(View.INVISIBLE);
-
         updatePodcastView();
-
-        /*
-        if (isMyServiceRunning(PodcastPlaybackService.class, this)) {
-            Intent intent = new Intent(this, PodcastPlaybackService.class);
-            bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-        }
-        */
     }
 
     @Override
@@ -164,7 +140,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     @Override
     protected void onPause() {
-        Log.d(TAG, "onPause");
         eventBus.unregister(this);
 
         /*
@@ -323,14 +298,18 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         } else if(!podcastItem.offlineCached) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
                     .setNegativeButton("Abort", null)
-                    .setNeutralButton("Download", (dialogInterface, i) -> {
-                        PodcastDownloadService.startPodcastDownload(PodcastFragmentActivity.this, podcastItem);
-                        Toast.makeText(PodcastFragmentActivity.this, "Starting download of podcast. Please wait..", Toast.LENGTH_SHORT).show();
-                    })
-                    .setTitle("Podcast")
-                    .setMessage("Choose if you want to download or stream the selected podcast");
+                    .setTitle("Podcast");
 
-            alertDialog.setPositiveButton("Stream", (dialogInterface, i) -> openMediaItem(podcastItem));
+            if("youtube".equals(podcastItem.mimeType)) {
+                alertDialog.setPositiveButton("Open Youtube", (dialogInterface, i) -> openYoutube(podcastItem));
+            } else {
+                alertDialog.setNeutralButton("Download", (dialogInterface, i) -> {
+                    PodcastDownloadService.startPodcastDownload(PodcastFragmentActivity.this, podcastItem);
+                    Toast.makeText(PodcastFragmentActivity.this, "Starting download of podcast. Please wait..", Toast.LENGTH_SHORT).show();
+                });
+                alertDialog.setPositiveButton("Stream", (dialogInterface, i) -> openMediaItem(podcastItem));
+                alertDialog.setMessage("Choose if you want to download or stream the selected podcast");
+            }
 
             alertDialog.show();
         }
@@ -340,5 +319,33 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     @Override
     public void pausePodcast() {
         MediaControllerCompat.getMediaController(PodcastFragmentActivity.this).getTransportControls().pause();
+    }
+
+
+    private void openYoutube(PodcastItem podcastItem) {
+        Log.e(TAG, podcastItem.link);
+        String youtubeVideoID = getVideoIdFromYoutubeUrl(podcastItem.link);
+        if(youtubeVideoID == null) {
+            Toast.makeText(this, "Failed to extract youtube video id for url: " + podcastItem.link + ". Please report this issue.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + youtubeVideoID));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + podcastItem.link));
+        try {
+            startActivity(appIntent);
+        } catch (ActivityNotFoundException ex) {
+            startActivity(webIntent);
+        }
+    }
+
+    public String getVideoIdFromYoutubeUrl(String url){
+        String videoId = null;
+        String regex = "http(?:s)?:\\/\\/(?:m.)?(?:www\\.)?youtu(?:\\.be\\/|be\\.com\\/(?:watch\\?(?:feature=youtu.be\\&)?v=|v\\/|embed\\/|user\\/(?:[\\w#]+\\/)+))([^&#?\\n]+)";
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(url);
+        if(matcher.find()){
+            videoId = matcher.group(1);
+        }
+        return videoId;
     }
 }
