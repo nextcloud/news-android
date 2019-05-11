@@ -228,67 +228,30 @@ public class PodcastFragment extends Fragment {
         }
     }
 
-
-
-    /* // TODO!!
-    @Subscribe
-    public void onEvent(UpdatePodcastStatusEvent podcast) {
-        this.podcast = podcast;
-
-        int hours = (int)(podcast.getCurrent() / (1000*60*60));
-        int minutes = (int)(podcast.getCurrent() % (1000*60*60)) / (1000*60);
-        int seconds = (int) ((podcast.getCurrent() % (1000*60*60)) % (1000*60) / 1000);
-        minutes += hours * 60;
-        tvFrom.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-        tvFromSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-
-        hours = (int)( podcast.getMax() / (1000*60*60));
-        minutes = (int)(podcast.getMax() % (1000*60*60)) / (1000*60);
-        seconds = (int) ((podcast.getMax() % (1000*60*60)) % (1000*60) / 1000);
-        minutes += hours * 60;
-        tvTo.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-        tvToSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-
-        if(podcast.getStatus() == PlaybackService.Status.PREPARING) {
-            sb_progress.setVisibility(View.INVISIBLE);
-            pb_progress2.setVisibility(View.VISIBLE);
-
-            pb_progress.setIndeterminate(true);
-        } else {
-            double progress = ((double) podcast.getCurrent() / (double) podcast.getMax()) * 100d;
-
-            if(!blockSeekbarUpdate) {
-                sb_progress.setVisibility(View.VISIBLE);
-                pb_progress2.setVisibility(View.INVISIBLE);
-                sb_progress.setProgress((int) progress);
-            }
-
-            pb_progress.setIndeterminate(false);
-            pb_progress.setProgress((int) progress);
-        }
-    }
-    */
-
-
-    @OnClick(R.id.fl_playPausePodcastWrapper) void playPause() {
+    @OnClick(R.id.fl_playPausePodcastWrapper)
+    protected void playPause() {
         eventBus.post(new TogglePlayerStateEvent());
     }
 
-    @OnClick(R.id.btn_playPausePodcastSlider) void playPauseSlider() {
+    @OnClick(R.id.btn_playPausePodcastSlider)
+    protected void playPauseSlider() {
         playPause();
     }
 
-    @OnClick(R.id.btn_nextPodcastSlider) void windForward() {
+    @OnClick(R.id.btn_nextPodcastSlider)
+    protected void windForward() {
         eventBus.post(new WindPodcast(30000));
 
         //Toast.makeText(getActivity(), "This feature is not supported yet :(", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick(R.id.btn_previousPodcastSlider) void windBack() {
+    @OnClick(R.id.btn_previousPodcastSlider)
+    protected void windBack() {
         eventBus.post(new WindPodcast(-10000));
     }
 
-    @OnClick(R.id.btn_podcastSpeed) void openSpeedMenu() {
+    @OnClick(R.id.btn_podcastSpeed)
+    protected void openSpeedMenu() {
         showPlaybackSpeedPicker();
     }
 
@@ -445,15 +408,11 @@ public class PodcastFragment extends Fragment {
         }
     }
 
-
-
-
     private MediaControllerCompat.Callback controllerCallback =
         new MediaControllerCompat.Callback() {
             @Override
             public void onMetadataChanged(MediaMetadataCompat metadata) {
                 Log.v(TAG, "onMetadataChanged() called with: metadata = [" + metadata + "]");
-
                 displayMetadata(metadata);
             }
 
@@ -461,8 +420,6 @@ public class PodcastFragment extends Fragment {
             public void onPlaybackStateChanged(PlaybackStateCompat stateCompat) {
                 Log.v(TAG, "onPlaybackStateChanged() called with: state = [" + stateCompat + "]");
                 displayPlaybackState(stateCompat);
-
-                // TODO: UPDATE PROGRESS HERE (NOT VIA THE EVENTBUS!!)
             }
         };
 
