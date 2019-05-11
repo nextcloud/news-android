@@ -37,3 +37,5 @@ build/*
 *.ipr
 *~
 *.swp
+News-Android-App/out.map
+News-Android-App/extra/release/output.json
