@@ -45,9 +45,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
@@ -60,8 +64,6 @@ import java.net.URL;
 
 import javax.inject.Inject;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -190,6 +192,8 @@ public class LoginDialogActivity extends AppCompatActivity {
             AccountImporter.pickNewAccount(LoginDialogActivity.this);
         } catch (NextcloudFilesAppNotInstalledException e) {
             UiExceptionManager.showDialogForException(LoginDialogActivity.this, e);
+        } catch (AndroidGetAccountsPermissionNotGranted e) {
+            AccountImporter.requestAndroidAccountPermissionsAndPickAccount(this);
         }
     }
 
@@ -449,12 +453,16 @@ public class LoginDialogActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogActivity.this, new AccountImporter.IAccountAccessGranted() {
-            @Override
-            public void accountAccessGranted(SingleSignOnAccount account) {
-                LoginDialogActivity.this.importedAccount = account;
-                loginSingleSignOn();
-            }
+        AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogActivity.this, account -> {
+            LoginDialogActivity.this.importedAccount = account;
+            loginSingleSignOn();
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        AccountImporter.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 }
