@@ -3,26 +3,17 @@ package de.luhmer.owncloudnewsreader.view;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.os.Build;
-import androidx.core.app.NotificationCompat;
-
-import android.support.v4.media.MediaDescriptionCompat;
-import android.support.v4.media.MediaMetadataCompat;
-import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 
-import org.greenrobot.eventbus.EventBus;
+import androidx.core.app.NotificationCompat;
+
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Locale;
 
-import de.luhmer.owncloudnewsreader.events.podcast.UpdatePodcastStatusEvent;
-import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
-import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
-import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 
 public class PodcastNotification {
 

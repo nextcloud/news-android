@@ -57,6 +57,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibilit
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
@@ -132,12 +133,12 @@ public class NewsReaderListActivityUiTests {
 
     @Test
     public void testSyncFinishedRefreshRecycler_sameActivity() {
-        syncResultTest(true);
+        assertTrue(syncResultTest(true));
     }
 
     @Test
     public void testSyncFinishedSnackbar_sameActivity() {
-        syncResultTest(false);
+        assertTrue(syncResultTest(false));
     }
 
 
@@ -183,6 +184,7 @@ public class NewsReaderListActivityUiTests {
         onView(allOf(withContentDescription(getString(R.string.content_desc_tap_to_refresh)), isDisplayed())).perform(click());
 
         sleep(1000);
+        assertTrue(true);
     }
 
 
@@ -225,7 +227,7 @@ public class NewsReaderListActivityUiTests {
         };
     }
 
-    private void syncResultTest(boolean testFirstPosition) {
+    private boolean syncResultTest(boolean testFirstPosition) {
         if(!testFirstPosition) {
             onView(withId(R.id.list)).perform(RecyclerViewActions.scrollToPosition(scrollPosition));
         }
@@ -263,6 +265,7 @@ public class NewsReaderListActivityUiTests {
             e.printStackTrace();
             fail(e.getMessage());
         }
+        return true;
     }
 
     private void sleep(float seconds) {

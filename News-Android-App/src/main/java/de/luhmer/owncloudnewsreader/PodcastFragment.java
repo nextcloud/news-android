@@ -127,8 +127,6 @@ public class PodcastFragment extends Fragment {
     public static PodcastFragment newInstance() {
         return new PodcastFragment();
     }
-    // Required empty public constructor
-    public PodcastFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

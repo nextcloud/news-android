@@ -1,7 +1,5 @@
 package de.luhmer.owncloudnewsreader;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.PictureInPictureParams;
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
@@ -18,10 +16,11 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.view.Display;
 import android.view.SurfaceView;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -261,6 +260,8 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
                 YoutubePlayerManager.StartYoutubePlayer(this, YOUTUBE_CONTENT_VIEW_ID, mEventBus, () -> Log.d(TAG, "onInit Success()"));
                 break;
             */
+            default:
+                break;
         }
     }
 

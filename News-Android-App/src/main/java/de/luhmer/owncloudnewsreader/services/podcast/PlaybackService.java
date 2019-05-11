@@ -10,16 +10,16 @@ import de.luhmer.owncloudnewsreader.model.MediaItem;
 
 public abstract class PlaybackService {
 
-    public interface PodcastStatusListener {
-        void podcastStatusUpdated();
-        void podcastCompleted();
-    }
-
     public enum VideoType { None, Video, VideoType, YouTube }
 
     private @PlaybackStateCompat.State int mStatus = PlaybackStateCompat.STATE_NONE;
     private PodcastStatusListener podcastStatusListener;
     private MediaItem mediaItem;
+
+    public interface PodcastStatusListener {
+        void podcastStatusUpdated();
+        void podcastCompleted();
+    }
 
     public PlaybackService(PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
         this.podcastStatusListener = podcastStatusListener;

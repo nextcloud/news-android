@@ -76,51 +76,6 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     private float currentPlaybackSpeed = 1;
 
 
-    /**
-     * Android Auto
-     */
-    /** Bundle extra indicating that a song is explicit. */
-    String EXTRA_IS_EXPLICIT = "android.media.IS_EXPLICIT";
-
-    /**
-     * Bundle extra indicating that a media item is available offline.
-     * Same as MediaDescriptionCompat.EXTRA_DOWNLOAD_STATUS.
-     */
-    String EXTRA_IS_DOWNLOADED = "android.media.extra.DOWNLOAD_STATUS";
-
-    /**
-     * Bundle extra value indicating that an item should show the corresponding
-     * metadata.
-     */
-    long EXTRA_METADATA_ENABLED_VALUE = 1;
-
-    /**
-     * Bundle extra indicating the played state of long-form content (such as podcast
-     * episodes or audiobooks).
-     */
-    String EXTRA_PLAY_COMPLETION_STATE = "android.media.extra.PLAYBACK_STATUS";
-
-    /**
-     * Value for EXTRA_PLAY_COMPLETION_STATE that indicates the media item has
-     * not been played at all.
-     */
-    int STATUS_NOT_PLAYED = 0;
-
-    /**
-     * Value for EXTRA_PLAY_COMPLETION_STATE that indicates the media item has
-     * been partially played (i.e. the current position is somewhere in the middle).
-     */
-    int STATUS_PARTIALLY_PLAYED = 1;
-
-    /**
-     * Value for EXTRA_PLAY_COMPLETION_STATE that indicates the media item has
-     * been completed.
-     */
-    int STATUS_FULLY_PLAYED = 2;
-
-
-
-
     public static final int delay = 500; //In milliseconds
     private final ScheduledExecutorService mExecutorService =
             Executors.newSingleThreadScheduledExecutor();
