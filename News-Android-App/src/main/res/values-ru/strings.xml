@@ -40,6 +40,7 @@
     <string name="action_sync_settings">Настройки синхронизации</string>
     <string name="action_add_new_feed">Добавить новую ленту</string>
     <string name="action_textToSpeech">Зачитать вслух</string>
+    <string name="action_search">Искать</string>
     <string name="action_download_articles_offline">Сохранить статьи для автономного доступа</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">У Вас есть %d новый элемент</item>
@@ -58,6 +59,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Ссылка ленты</string>
     <string name="action_add_feed">Добавить ленту</string>
+    <string name="import_opml">Импорт OPML</string>
+    <string name="export_opml">Экспорт OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Скачать изображение</string>
     <string name="action_img_sharelink">Поделиться ссылкой картинки</string>
@@ -84,6 +89,9 @@
     <string name="feed_move_list_description">Выберите папку для перемещения Новостной ленты</string>
     <string name="move_feed_root_folder">Корневой каталог</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Стандартный вход</string>
+    <string name="login_sso">Войти, используя приложение Nextcloud Files</string>
     <string name="pref_title_username">Имя пользователя</string>
     <string name="pref_title_password">Пароль</string>
     <string name="pref_title_owncloudRootPath">root адрес ownCloud</string>
@@ -154,9 +162,14 @@
     <string name="no_podcast_selected">Нет выбранных подкастов</string>
     <string name="no_chapters_available">Нет доступных глав</string>
     <string name="podcast_playback_speed_dialog_title">Скорость воспроизведения</string>
-    <string name="notification_downloading_podcast_title">Сохранение подкастов</string>
+    <string name="notification_downloading_podcast_title">Загрузка подкастов</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">О нас</string>
+    <string name="pref_license">Лицензия</string>
+    <string name="pref_report_issue">Сообщить о проблеме</string>
+    <string name="pref_contribute_summary">Получить исходный код</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Экран</string>
     <string name="pref_title_app_theme">Стиль оформления</string>
