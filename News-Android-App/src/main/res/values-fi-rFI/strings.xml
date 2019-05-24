@@ -35,6 +35,7 @@
     <string name="action_sync_settings">Synkronointiasetukset</string>
     <string name="action_add_new_feed">Lisää uusi syöte</string>
     <string name="action_textToSpeech">Lue ääneen</string>
+    <string name="action_search">Etsi</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">%d uusi lukematon kohde</item>
         <item quantity="other">%d uutta lukematonta kohdetta</item>
@@ -48,6 +49,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Syötteen osoite</string>
     <string name="action_add_feed">Lisää syöte</string>
+    <string name="import_opml">Tuo OPML</string>
+    <string name="export_opml">Vie OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Lataa kuva</string>
     <string name="action_img_sharelink">Jaa kuvan linkki</string>
@@ -74,6 +79,8 @@
     <string name="feed_move_list_description">Valitse kansio, johon syöte siirretään</string>
     <string name="move_feed_root_folder">Juurikansio</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Manuaalinen kirjautuminen</string>
     <string name="pref_title_username">Käyttäjätunnus</string>
     <string name="pref_title_password">Salasana</string>
     <string name="pref_title_owncloudRootPath">ownCloudin juuriosoite</string>
@@ -109,6 +116,8 @@
 
     <string name="pref_general_sort_order_new_old">Uusi -> Vanha</string>
     <string name="pref_general_sort_order_old_new">Vanha -> Uusi</string>
+
+    <string name="pref_title_general_search_in">Etsi kohteesta</string>
 
     <string name="pref_general_search_in_title">Otsikko</string>
     <string name="pref_general_search_in_body">Runko</string>
@@ -158,6 +167,9 @@
     <string name="pref_display_browser_built_in">Sisäänrakennettu selain</string>
     <string name="pref_display_browser_external">Ulkoinen selain</string>
 
+    <string name="pref_display_feed_list_layout_headlines">Otsikot</string>
+    <string name="pref_display_feed_list_layout_full_text">Koko teksti</string>
+    <string name="pref_display_feed_list_layout_web_layout">Web-asettelu</string>
     <string name="pref_display_feed_list_layout_card_view">Korttinäkymä</string>
 
     <!-- font size scaling definitions -->

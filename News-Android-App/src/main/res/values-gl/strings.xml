@@ -227,7 +227,7 @@
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Semella que o seu aplicativo de novas non está instalada ou activada no seu servidor. Siga as instrucións para configurar o aplicativo de novas no seu servidor: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Algo foi mal :(</string>
     <string name="login_dialog_text_zero_version_code">O aplicativo web de novas devolveu a versión «0». Bótelle un ollo ao seguinte informe de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Esta versión do aplicativo non é compatíbel co seu aplicativo de novas para Nextcloud. Anove o aplicativo de novas e o marco de traballo do aplicativo.</string>
+    <string name="login_dialog_text_not_compatible">Esta versión do aplicativo non é compatíbel co seu aplicativo de novas para Nextcloud. Anove o aplicativo de novas e o contorno de traballo do aplicativo.</string>
     <string name="login_dialog_title_security_warning">Aviso de seguridade</string>
     <string name="login_dialog_text_security_warning">Non está a empregar HTTPS, o que se recomenda encarecidamente. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal).</string>
 
