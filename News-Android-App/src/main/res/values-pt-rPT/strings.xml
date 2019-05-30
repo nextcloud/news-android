@@ -7,7 +7,7 @@
     <string name="empty_view_content">Sem itens aqui</string>
     <string name="toast_GettingMoreItems">Foi iniciada a transferência de mais itens... Por favor, aguarde.</string>
     <string name="no_wifi_available">Sem ligação wi-fi</string>
-    <string name="do_you_want_to_download_without_wifi">Deseja transferir as imagens sem uma ligação Wi-Fi?</string>
+    <string name="do_you_want_to_download_without_wifi">Deseja transferir as imagens sem uma ligação Wi-Fi</string>
     <string name="current_version">Está a usar a Versão %s</string>
     <string name="widget_header">Notícias da ownCloud</string>
     <plurals name="message_bar_new_articles_available">
