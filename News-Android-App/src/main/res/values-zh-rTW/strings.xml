@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">同步時間間隔選擇</string>
     <string name="title_activity_news_detail">新聞內容活動</string>
     <string name="empty_view_content">無任何項目</string>
+    <string name="toast_GettingMoreItems">正在開始下載更多項目...請稍後</string>
     <string name="no_wifi_available">WiFi 未連線</string>
+    <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖片</string>
     <string name="current_version">您在使用版本 %s</string>
     <string name="widget_header">ownCloud 新聞</string>
     <plurals name="message_bar_new_articles_available">
@@ -73,6 +75,7 @@
 
     <!-- Strings related to login -->
     <string name="login_manual">手動登入</string>
+    <string name="login_sso">使用 Nextcloud Files 應用程式登入</string>
     <string name="pref_title_username">使用者名稱</string>
     <string name="pref_title_password">密碼</string>
     <string name="pref_title_owncloudRootPath">ownCloud 最上層位址</string>
@@ -104,6 +107,9 @@
     <string name="pref_header_general">一般</string>
     <string name="pref_title_general_sort_order">排序依據</string>
 
+    <string name="pref_general_sort_order_new_old">新 -> 舊</string>
+    <string name="pref_general_sort_order_old_new">舊 -> 新</string>
+
     <string name="dialog_clearing_cache">正在清除快取</string>
     <string name="dialog_clearing_cache_please_wait">正在清除快取…請稍候</string>
     <string name="reset_cache_unsaved_changes">有未同步的更動，您仍然要重設快取嗎？</string>
@@ -123,17 +129,25 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">沒有選擇 podcast</string>
     <string name="no_chapters_available">沒有章節</string>
+    <string name="notification_downloading_podcast_title">正在下載音訊資料</string>
+
+
     <!-- Settings for About -->
     <string name="pref_header_about">關於</string>
+    <string name="pref_license">授權</string>
     <string name="pref_report_issue">回報問題</string>
     <string name="pref_contribute">貢獻</string>
     <string name="pref_contribute_summary">取得原始碼</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">顯示</string>
+    <string name="pref_title_app_theme">佈景主題</string>
     <string name="pref_title_feed_list_layout">Feed 清單版型</string>
     <string name="pref_title_font_size">字型大小</string>
     <string name="pref_display_browser">瀏覽器</string>
 
+
+    <string name="pref_display_apptheme_light">亮色</string>
+    <string name="pref_display_apptheme_dark">暗色</string>
 
     <string name="pref_oled_mode">黑色背景</string>
     <string name="pref_display_browser_built_in">內建瀏覽器</string>
@@ -163,13 +177,21 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">錯誤</string>
     <string name="login_dialog_text_something_went_wrong">發生錯誤了 :(</string>
+    <string name="login_dialog_text_not_compatible">此 App 版本不相容您的 Nextcloud News 應用程式，請更新 Nextcloud News應用程式和 appframework</string>
     <string name="login_dialog_title_security_warning">安全性警告</string>
+    <string name="login_dialog_text_security_warning">您不是使用 HTTPS，攻擊者可能攔截您的通訊，進而取得敏感資料（例如您的密碼）</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">資料 &amp; 同步</string>
     <string name="pref_title_clearCache">清除快取</string>
     <string name="pref_title_CacheImagesOffline">暫存離線圖片</string>
     <string name="pref_title_Max_Cache_Size">最大快取容量</string>
 
+    <string name="pref_data_sync_image_cache_never">絕不</string>
+    <string name="array_sync_interval_min_5">5 分鐘</string>
+    <string name="array_sync_interval_min_15">15 分鐘</string>
+    <string name="array_sync_interval_min_30">30 分鐘</string>
     <string name="array_sync_interval_hour_1">1 小時</string>
     <string name="array_sync_interval_hour_2">2 小時</string>
     <string name="array_sync_interval_hour_3">3 小時</string>
