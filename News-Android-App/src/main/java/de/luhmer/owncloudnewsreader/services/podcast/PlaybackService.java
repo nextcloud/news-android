@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader.services.podcast;
 
+import android.support.v4.media.session.PlaybackStateCompat;
+
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 
 /**
@@ -8,17 +10,16 @@ import de.luhmer.owncloudnewsreader.model.MediaItem;
 
 public abstract class PlaybackService {
 
+    public enum VideoType { None, Video, VideoType, YouTube }
+
+    private @PlaybackStateCompat.State int mStatus = PlaybackStateCompat.STATE_NONE;
+    private PodcastStatusListener podcastStatusListener;
+    private MediaItem mediaItem;
+
     public interface PodcastStatusListener {
         void podcastStatusUpdated();
         void podcastCompleted();
     }
-
-    public enum Status { NOT_INITIALIZED, FAILED, PREPARING, PLAYING, PAUSED, STOPPED };
-    public enum VideoType { None, Video, VideoType, YouTube }
-
-    private Status mStatus = Status.NOT_INITIALIZED;
-    private PodcastStatusListener podcastStatusListener;
-    private MediaItem mediaItem;
 
     public PlaybackService(PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
         this.podcastStatusListener = podcastStatusListener;
@@ -31,8 +32,8 @@ public abstract class PlaybackService {
     public abstract void playbackSpeedChanged(float currentPlaybackSpeed);
 
 
-    public void seekTo(double percent) { }
-    public int getCurrentDuration() { return 0; }
+    public void seekTo(int position) { }
+    public int getCurrentPosition() { return 0; }
     public int getTotalDuration() { return 0; }
     public VideoType getVideoType() { return VideoType.None; }
 
@@ -40,11 +41,11 @@ public abstract class PlaybackService {
         return mediaItem;
     }
 
-    public Status getStatus() {
+    public @PlaybackStateCompat.State int getStatus() {
         return mStatus;
     }
 
-    protected void setStatus(Status status) {
+    protected void setStatus(@PlaybackStateCompat.State int status) {
         this.mStatus = status;
         podcastStatusListener.podcastStatusUpdated();
     }
@@ -54,9 +55,8 @@ public abstract class PlaybackService {
     }
 
     public boolean isMediaLoaded() {
-        return getStatus() != Status.NOT_INITIALIZED
-                && getStatus() != Status.PREPARING
-                && getStatus() != Status.FAILED;
+        return     getStatus() != PlaybackStateCompat.STATE_NONE
+                && getStatus() != PlaybackStateCompat.STATE_CONNECTING
+                && getStatus() != PlaybackStateCompat.STATE_ERROR;
     }
-
 }

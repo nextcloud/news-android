@@ -21,15 +21,16 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -43,6 +44,13 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -55,12 +63,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import androidx.annotation.Nullable;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.adapter.ProgressBarWebChromeClient;
@@ -87,7 +89,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
     private int section_number;
     protected String html;
-    boolean changedUrl = false;
+    private GestureDetector mGestureDetector;
 
 
     public NewsDetailFragment() { }
@@ -180,12 +182,46 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             mProgressBarLoading.setVisibility(View.GONE);
         }
 
+        setUpGestureDetector();
+
 		return rootView;
 	}
 
 	@Override
     public void onSaveInstanceState(Bundle outState) {
         mWebView.saveState(outState);
+    }
+
+	private void setUpGestureDetector() {
+        mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener());
+
+        mGestureDetector.setOnDoubleTapListener(new GestureDetector.OnDoubleTapListener()
+        {
+            @Override
+            public boolean onSingleTapConfirmed(MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                Log.v(TAG, "onDoubleTap() called with: e = [" + e + "]");
+                NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+                if(ndActivity != null) {
+                    ((NewsDetailActivity) getActivity()).toggleRssItemStarredState();
+
+                    // Star has 5 corners. So we can rotate it by 2/5
+                    View view = getActivity().findViewById(R.id.action_starred);
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(view, "rotation", view.getRotation() + (2*(360f/5f)));
+                    animator.start();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onDoubleTapEvent(MotionEvent e) {
+                return false;
+            }
+        });
     }
 
     private void startLoadRssItemToWebViewTask() {
@@ -319,16 +355,16 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         });
 
-        mWebView.setOnTouchListener(new View.OnTouchListener() {
+        mWebView.setOnTouchListener((v, event) -> {
+            mGestureDetector.onTouchEvent(event);
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (v.getId() == R.id.webview && event.getAction() == MotionEvent.ACTION_DOWN) {
-                    changedUrl = true;
-                }
-
-                return false;
+            /*
+            if (v.getId() == R.id.webview && event.getAction() == MotionEvent.ACTION_DOWN) {
+                changedUrl = true;
             }
+            */
+
+            return false;
         });
 	}
 

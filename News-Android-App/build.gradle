@@ -40,8 +40,8 @@ android {
 
     buildTypes {
         debug {
-            shrinkResources true
-            minifyEnabled true
+            shrinkResources false
+            minifyEnabled false
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles 'proguard-test.pro'
@@ -131,26 +131,27 @@ dependencies {
     // implementation 'com.google.android.gms:play-services:4.2.42'
     //implementation project(':Android-SingleSignOn')
     //implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
-    //implementation 'com.github.nextcloud:Android-SingleSignOn:e781a33e01'
-    implementation 'com.github.nextcloud:Android-SingleSignOn:unit-testing-SNAPSHOT'
+    implementation 'com.github.nextcloud:Android-SingleSignOn:fix-account-not-found-SNAPSHOT'
     implementation 'com.github.David-Development:MaterialShowcaseView:bf6afa225d'
 
     // https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation "androidx.core:core:1.1.0-alpha05"
-    implementation "androidx.appcompat:appcompat:1.1.0-alpha04"
-    implementation "androidx.preference:preference:1.1.0-alpha04"
+    implementation "androidx.core:core:1.2.0-alpha01"
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha05"
+    implementation "androidx.preference:preference:1.1.0-alpha05"
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
-    implementation "com.google.android.material:material:1.1.0-alpha05"
+    implementation "com.google.android.material:material:1.1.0-alpha06"
+    //implementation "com.google.android.material:material:1.0.0"
     implementation "androidx.palette:palette:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha04"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha05"
     implementation "androidx.browser:browser:1.0.0"
     implementation "androidx.cardview:cardview:1.0.0"
     //implementation 'de.mrmaffen:holocircularprogressbar:1.0.1'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.jakewharton:butterknife:10.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
     implementation 'com.sothree.slidinguppanel:library:3.2.1'
@@ -169,7 +170,6 @@ dependencies {
         transitive = true
     }
 
-
     implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
@@ -186,7 +186,7 @@ dependencies {
 
     implementation 'com.nbsp:library:1.02' // MaterialFilePicker
 
-    extraImplementation 'com.github.tommus:youtube-android-player-api:1.2.2'
+    //extraImplementation 'com.github.tommus:youtube-android-player-api:1.2.2'
 
 
     testImplementation 'junit:junit:4.12'

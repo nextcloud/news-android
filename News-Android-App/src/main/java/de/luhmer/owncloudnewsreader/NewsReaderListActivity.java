@@ -40,8 +40,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.customview.widget.ViewDragHelper;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
@@ -68,22 +84,6 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.customview.widget.ViewDragHelper;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.preference.PreferenceManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
@@ -97,6 +97,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
@@ -109,12 +110,12 @@ import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
 
@@ -151,7 +152,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@VisibleForTesting @Nullable @BindView(R.id.drawer_layout) public DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
-	private SearchView searchView;
+	private SearchView mSearchView;
+    private String mSearchString;
+    private static final String SEARCH_KEY = "SEARCH_KEY";
 
     private PublishSubject<String> searchPublishSubject;
     private static final int REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE = 1;
@@ -207,11 +210,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				.commit();
 
 		if (drawerLayout != null) {
-			drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.empty_view_content, R.string.empty_view_content) {
+			drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.news_list_drawer_text, R.string.news_list_drawer_text) {
 				@Override
 				public void onDrawerClosed(View drawerView) {
 					super.onDrawerClosed(drawerView);
-					togglePodcastVideoViewAnimation();
 
 					syncState();
 					EventBus.getDefault().post(new FeedPanelSlideEvent(false));
@@ -220,7 +222,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				@Override
 				public void onDrawerOpened(View drawerView) {
 					super.onDrawerOpened(drawerView);
-					togglePodcastVideoViewAnimation();
 					reloadCountNumbersOfSlidingPaneAdapter();
 
 					syncState();
@@ -239,17 +240,18 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			drawerToggle.syncState();
 		}
 
-		if (savedInstanceState == null) {//When the app starts (no orientation change)
-			startDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
-		}
-
 		//AppRater.app_launched(this);
 		//AppRater.rateNow(this);
+
+        if (savedInstanceState == null) { //When the app starts (no orientation change)
+            updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+        }
     }
 
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
         if (drawerToggle != null) {
             drawerToggle.syncState();
         }
@@ -266,20 +268,27 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         if (tabletSize) {
             showTapLogoToSyncShowcaseView();
         }
+
+
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(getString(R.string.permission_req_location_twilight_title))
+                    .setMessage(getString(R.string.permission_req_location_twilight_text))
+                    .setPositiveButton(android.R.string.ok, (dialog, id) -> {
+                        //ActivityCompat.requestPermissions(this, new String[]{ACCESS_COARSE_LOCATION}, 1349);
+                        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 139);
+                    })
+                    .create()
+                    .show();
+        }
     }
 
-    /* (non-Javadoc)
-	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onSaveInstanceState(android.os.Bundle)
-	 */
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		saveInstanceState(outState);
 		super.onSaveInstanceState(outState);
 	}
 
-    /* (non-Javadoc)
-     * @see com.actionbarsherlock.app.SherlockFragmentActivity#onRestoreInstanceState(android.os.Bundle)
-     */
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         restoreInstanceState(savedInstanceState);
@@ -289,8 +298,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (drawerToggle != null)
+        if (drawerToggle != null) {
             drawerToggle.onConfigurationChanged(newConfig);
+        }
     }
 
     private void saveInstanceState(Bundle outState) {
@@ -305,6 +315,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 outState.putInt(LIST_ADAPTER_TOTAL_COUNT, adapter.getTotalItemCount());
                 outState.putInt(LIST_ADAPTER_PAGE_COUNT, adapter.getCachedPages());
             }
+        }
+        if(mSearchView != null) {
+            mSearchString = mSearchView.getQuery().toString();
+            outState.putString(SEARCH_KEY, mSearchString);
         }
     }
 
@@ -322,11 +336,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     .getRecyclerView()
                     .setAdapter(adapter);
 
-            startDetailFragment(savedInstanceState.getLong(ID_FEED_STRING),
+            updateDetailFragment(savedInstanceState.getLong(ID_FEED_STRING),
                     savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
                     savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
                     false);
         }
+        mSearchString = savedInstanceState.getString(SEARCH_KEY, null);
     }
 
 
@@ -414,12 +429,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if (ndf != null) {
 			//ndf.reloadAdapterFromScratch();
-			ndf.updateCurrentRssView(NewsReaderListActivity.this);
+			ndf.updateCurrentRssView();
 		}
 	}
 
 	public void switchToAllUnreadItemsFolder() {
-		startDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+		updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
 	}
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -507,23 +522,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			if (firstVisiblePosition == 0 || firstVisiblePosition == -1) {
 				updateCurrentRssView();
 			} else {
-				Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
-						getResources().getQuantityString(R.plurals.message_bar_new_articles_available, newItemsCount, newItemsCount),
-						Snackbar.LENGTH_LONG);
-				snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
-				snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.accent_material_dark));
-				// Setting android:TextColor to #000 in the light theme results in black on black
-				// text on the Snackbar, set the text back to white,
-				// TODO: find a cleaner way to do this
-				TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
-				textView.setTextColor(Color.WHITE);
-				snackbar.show();
+				showSnackbar(newItemsCount);
 			}
 			return true;
 		}
 		return false;
 	}
-
 
 	@Override
 	protected void onResume() {
@@ -541,6 +545,19 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		startSync();
 	}
 
+	private void showSnackbar(int newItemsCount) {
+		Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
+				getResources().getQuantityString(R.plurals.message_bar_new_articles_available, newItemsCount, newItemsCount),
+				Snackbar.LENGTH_LONG);
+		snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
+		//snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.accent_material_dark));
+		// Setting android:TextColor to #000 in the light theme results in black on black
+		// text on the Snackbar, set the text back to white,
+		//TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+		//textView.setTextColor(Color.WHITE);
+		snackbar.show();
+	}
+
 	/**
 	 * Callback method from {@link NewsReaderListFragment.Callbacks} indicating
 	 * that the item with the given ID was selected.
@@ -550,7 +567,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 
-		startDetailFragment(idFeed, isFolder, optional_folder_id, true);
+		updateDetailFragment(idFeed, isFolder, optional_folder_id, true);
 	}
 
 	@Override
@@ -558,7 +575,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (drawerLayout != null)
 			drawerLayout.closeDrawer(GravityCompat.START);
 
-		startDetailFragment(idFeed, false, optional_folder_id, true);
+		updateDetailFragment(idFeed, false, optional_folder_id, true);
 	}
 
 	@Override
@@ -600,41 +617,37 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 
-	private NewsReaderDetailFragment startDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView)
-	{
-		if(menuItemDownloadMoreItems != null) {
-			menuItemDownloadMoreItems.setEnabled(true);
-		}
+    private NewsReaderDetailFragment updateDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView) {
+        if(menuItemDownloadMoreItems != null) {
+            menuItemDownloadMoreItems.setEnabled(true);
+        }
 
-		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
-		Long feedId = null;
-		Long folderId;
-		String title = null;
+        Long feedId = null;
+        Long folderId;
+        String title = null;
 
-		if(!folder)
-		{
-			feedId = id;
-			folderId = optional_folder_id;
-			title = dbConn.getFeedById(id).getFeedTitle();
-		}
-		else
-		{
-			folderId = id;
-			int idFolder = (int) id;
-			if(idFolder >= 0)
-				title = dbConn.getFolderById(id).getLabel();
-			else if(idFolder == -10)
-				title = getString(R.string.allUnreadFeeds);
-			else if(idFolder == -11)
-				title = getString(R.string.starredFeeds);
+        if(!folder) {
+            feedId = id;
+            folderId = optional_folder_id;
+            title = dbConn.getFeedById(id).getFeedTitle();
+        } else {
+            folderId = id;
+            int idFolder = (int) id;
+            if(idFolder >= 0) {
+                title = dbConn.getFolderById(id).getLabel();
+            } else if(idFolder == -10) {
+                title = getString(R.string.allUnreadFeeds);
+            } else if(idFolder == -11) {
+                title = getString(R.string.starredFeeds);
+            }
+        }
 
-		}
-
-		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
-		fragment.setData(feedId, folderId, title, updateListView);
-		return fragment;
-	}
+        NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
+        fragment.setData(feedId, folderId, title, updateListView);
+        return fragment;
+    }
 
 
     public void UpdateItemList()
@@ -698,39 +711,48 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		MenuItem searchItem = menu.findItem(R.id.menu_search);
 
-		//Set expand listener to close keyboard
-		searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-			@Override
-			public boolean onMenuItemActionExpand(MenuItem item) {
-				return true;
-			}
-
-			@Override
-			public boolean onMenuItemActionCollapse(MenuItem item) {
-				clearSearchViewFocus();
-				return true;
-			}
-		});
-
-		searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-		searchView.setIconifiedByDefault(false);
-		searchView.setOnQueryTextListener(this);
-		searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+        //Set expand listener to close keyboard
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus) {
-                    clearSearchViewFocus();
-                }
+            public boolean onMenuItemActionExpand(MenuItem item) {
+				return true;
+			}
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                //onQueryTextChange(""); // Reset search
+                mSearchView.setQuery("", true);
+                clearSearchViewFocus();
+                return true;
             }
         });
 
-		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-		if(ndf != null)
-			ndf.updateMenuItemsState();
+		mSearchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+		mSearchView.setIconifiedByDefault(false);
+		mSearchView.setOnQueryTextListener(this);
+		mSearchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            if(!hasFocus) {
+                clearSearchViewFocus();
+            }
+        });
+
+        ThemeUtils.colorSearchViewCursorColor(mSearchView, Color.WHITE);
+
+        NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+        if(ndf != null) {
+            ndf.updateMenuItemsState();
+        }
 
         updateButtonLayout();
 
-		return true;
+        // focus the SearchView (if search view was active before orientation change)
+        if (mSearchString != null && !mSearchString.isEmpty()) {
+            searchItem.expandActionView();
+            mSearchView.setQuery(mSearchString, true);
+            mSearchView.clearFocus();
+        }
+
+        return true;
 	}
 
 	public MenuItem getMenuItemDownloadMoreItems() {
@@ -826,9 +848,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				return true;
 
 			case R.id.menu_search:
-				searchView.setIconified(false);
-				searchView.setFocusable(true);
-				searchView.requestFocusFromTouch();
+				mSearchView.setIconified(false);
+				mSearchView.setFocusable(true);
+				mSearchView.requestFocusFromTouch();
                 return true;
 
             case R.id.menu_download_web_archive:
@@ -1071,17 +1093,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             searchPublishSubject
                     .debounce(400, TimeUnit.MILLISECONDS)
                     .distinctUntilChanged()
-                    .map(new Function<String, List<RssItem>>() {
-
-                        @Override
-                        public List<RssItem> apply(String s) throws Exception {
-                            return getNewsReaderDetailFragment().performSearch(s);
-                        }
-
-                    })
+                    .map(s -> getNewsReaderDetailFragment().performSearch(s))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(getNewsReaderDetailFragment().SearchResultObserver)
+                    .subscribeWith(getNewsReaderDetailFragment().searchResultObserver)
                     .isDisposed();
 
         }
@@ -1090,6 +1105,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     public void clearSearchViewFocus() {
-        searchView.clearFocus();
+        mSearchView.clearFocus();
     }
 }

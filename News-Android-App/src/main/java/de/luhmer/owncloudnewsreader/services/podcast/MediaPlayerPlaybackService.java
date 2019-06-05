@@ -3,6 +3,7 @@ package de.luhmer.owncloudnewsreader.services.podcast;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -21,46 +22,41 @@ import de.luhmer.owncloudnewsreader.model.PodcastItem;
 public class MediaPlayerPlaybackService extends PlaybackService {
     private static final String TAG = MediaPlayerPlaybackService.class.getCanonicalName();
     private MediaPlayer mMediaPlayer;
-    private View parentResizableView;
+    //private View parentView;
 
     public MediaPlayerPlaybackService(final Context context, PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
         super(podcastStatusListener, mediaItem);
 
         mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-            @Override
-            public boolean onError(MediaPlayer mediaPlayer, int i, int i2) {
-                setStatus(Status.FAILED);
-                Toast.makeText(context, "Failed to open podcast", Toast.LENGTH_LONG).show();
-                return false;
-            }
+
+        //mMediaPlayer.setOnVideoSizeChangedListener((mp, width, height) -> configureVideo(width, height));
+
+        mMediaPlayer.setOnErrorListener((mediaPlayer, i, i2) -> {
+            setStatus(PlaybackStateCompat.STATE_ERROR);
+            Toast.makeText(context, "Failed to open podcast", Toast.LENGTH_LONG).show();
+            return false;
         });
 
-        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                setStatus(Status.PAUSED);
-                play();
-            }
+        mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
+            podcastStatusListener.podcastStatusUpdated();
+            setStatus(PlaybackStateCompat.STATE_PAUSED);
+            play();
         });
 
-        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                pause();//Send the over signal
-                podcastCompleted();
-            }
+        mMediaPlayer.setOnCompletionListener(mediaPlayer -> {
+            pause();//Send the over signal
+            podcastCompleted();
         });
 
 
         try {
-            setStatus(Status.PREPARING);
+            setStatus(PlaybackStateCompat.STATE_CONNECTING);
 
             mMediaPlayer.setDataSource(((PodcastItem) mediaItem).link);
             mMediaPlayer.prepareAsync();
         } catch (IOException e) {
             e.printStackTrace();
-            setStatus(Status.FAILED);
+            setStatus(PlaybackStateCompat.STATE_ERROR);
         }
     }
 
@@ -78,14 +74,14 @@ public class MediaPlayerPlaybackService extends PlaybackService {
             if (progress >= 1) {
                 mMediaPlayer.seekTo(0);
             }
-            setStatus(Status.PLAYING);
+            setStatus(PlaybackStateCompat.STATE_PLAYING);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            Log.e(TAG, "Error while playing", ex);
         }
 
         mMediaPlayer.start();
 
-        populateVideo();
+        //populateVideo();
     }
 
     @Override
@@ -93,7 +89,7 @@ public class MediaPlayerPlaybackService extends PlaybackService {
         if (mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
         }
-        setStatus(Status.PAUSED);
+        setStatus(PlaybackStateCompat.STATE_PAUSED);
     }
 
     @Override
@@ -103,16 +99,15 @@ public class MediaPlayerPlaybackService extends PlaybackService {
         }
     }
 
-
     @Override
-    public void seekTo(double percent) {
-        double totalDuration = mMediaPlayer.getDuration();
-        int position = (int) ((totalDuration / 100d) * percent);
+    public void seekTo(int position) {
+        //double totalDuration = mMediaPlayer.getDuration();
+        //int position = (int) ((totalDuration / 100d) * percent);
         mMediaPlayer.seekTo(position);
     }
 
     @Override
-    public int getCurrentDuration() {
+    public int getCurrentPosition() {
         if (mMediaPlayer != null && isMediaLoaded()) {
             return mMediaPlayer.getCurrentPosition();
         }
@@ -133,6 +128,7 @@ public class MediaPlayerPlaybackService extends PlaybackService {
     }
 
 
+    /*
     private void populateVideo() {
         double videoHeightRel = (double) mSurfaceWidth / (double) mMediaPlayer.getVideoWidth();
         int videoHeight = (int) (mMediaPlayer.getVideoHeight() * videoHeightRel);
@@ -140,9 +136,13 @@ public class MediaPlayerPlaybackService extends PlaybackService {
         if (mSurfaceWidth != 0 && videoHeight != 0 && mSurfaceHolder != null) {
             //mSurfaceHolder.setFixedSize(mSurfaceWidth, videoHeight);
 
-            parentResizableView.getLayoutParams().height = videoHeight;
-            parentResizableView.setLayoutParams(parentResizableView.getLayoutParams());
+            parentView.getLayoutParams().height = videoHeight;
+            parentView.setLayoutParams(parentView.getLayoutParams());
         }
+    }*/
+
+    public long getVideoWidth() {
+        return mMediaPlayer.getVideoWidth();
     }
 
     public void setVideoView(SurfaceView surfaceView, View parentResizableView) {
@@ -153,37 +153,32 @@ public class MediaPlayerPlaybackService extends PlaybackService {
             mMediaPlayer.setScreenOnWhilePlaying(false);
         } else {
             if (surfaceView.getHolder() != mSurfaceHolder) {
-                this.parentResizableView = parentResizableView;
+                //this.parentView = parentResizableView;
 
                 surfaceView.getHolder().addCallback(mSHCallback);
                 //videoOutput.surfaceView.getHolder().setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS); //holder.setType(SurfaceHolder.SURFACE_TYPE_GPU);
 
-                populateVideo();
-
-                //Log.v(TAG, "Enable Screen output!");
             }
         }
     }
 
 
-    private int mSurfaceWidth;
-    private int mSurfaceHeight;
+    //private int mSurfaceWidth;
+    //private int mSurfaceHeight;
     private SurfaceHolder mSurfaceHolder;
-    SurfaceHolder.Callback mSHCallback = new SurfaceHolder.Callback()
-    {
-        public void surfaceChanged(SurfaceHolder holder, int format, int surfaceWidth, int surfaceHeight)
-        {
-            mSurfaceWidth = surfaceWidth;
-            mSurfaceHeight = surfaceHeight;
+    private SurfaceHolder.Callback mSHCallback = new SurfaceHolder.Callback() {
+        public void surfaceChanged(SurfaceHolder holder, int format, int surfaceWidth, int surfaceHeight) {
+            Log.v(TAG, "surfaceChanged() called with: holder = [" + holder + "], format = [" + format + "], surfaceWidth = [" + surfaceWidth + "], surfaceHeight = [" + surfaceHeight + "]");
+            //mSurfaceWidth = surfaceWidth;
+            //mSurfaceHeight = surfaceHeight;
+            //populateVideo();
         }
 
-        public void surfaceCreated(SurfaceHolder holder)
-        {
+        public void surfaceCreated(SurfaceHolder holder) {
+            Log.v(TAG, "surfaceCreated() called with: holder = [" + holder + "]");
             mSurfaceHolder = holder;
-            mMediaPlayer.setDisplay(mSurfaceHolder); //TODO required
-            mMediaPlayer.setScreenOnWhilePlaying(true); //TODO required
-
-            Log.d(TAG, "surfaceCreated");
+            mMediaPlayer.setDisplay(mSurfaceHolder);
+            mMediaPlayer.setScreenOnWhilePlaying(true);
         }
 
         public void surfaceDestroyed(SurfaceHolder holder)

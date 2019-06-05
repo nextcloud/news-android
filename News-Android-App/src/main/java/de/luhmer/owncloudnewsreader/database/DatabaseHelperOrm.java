@@ -28,11 +28,9 @@ import de.luhmer.owncloudnewsreader.database.model.DaoMaster;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;
 
 public class DatabaseHelperOrm {
-    public static final String DATABASE_NAME_ORM = "OwncloudNewsReaderOrm.db";
-
     private volatile static DaoSession daoSession;
 
-    public static DaoSession getDaoSession(Context context) {
+    public static DaoSession getDaoSession(Context context, String DATABASE_NAME_ORM) {
         if(daoSession == null) {
             synchronized (DatabaseHelperOrm.class) {
                 if(daoSession == null) {

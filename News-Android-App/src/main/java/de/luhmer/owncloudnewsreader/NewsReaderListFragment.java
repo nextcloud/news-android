@@ -49,6 +49,7 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 
+import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,6 +57,8 @@ import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
+import de.luhmer.owncloudnewsreader.model.AbstractItem;
+import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
 import io.reactivex.Observer;
@@ -221,17 +224,27 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 	};
 
+	// Code below is only used for unit tests
+    @VisibleForTesting
 	public OnChildClickListener onChildClickListener = new OnChildClickListener() {
 
 		@Override
 		public boolean onChildClick(ExpandableListView parent, View v,
 				int groupPosition, int childPosition, long id) {
 
-			long idItem = lvAdapter.getChildId(groupPosition, childPosition);
+            long idItem;
+            if(childPosition != -1) {
+                idItem = lvAdapter.getChildId(groupPosition, childPosition);
+            } else {
+                idItem = groupPosition;
+            }
 			Long optional_id_folder = null;
-			FolderSubscribtionItem groupItem = (FolderSubscribtionItem) lvAdapter.getGroup(groupPosition);
+            AbstractItem groupItem = (AbstractItem) lvAdapter.getGroup(groupPosition);
 			if(groupItem != null)
 				optional_id_folder = groupItem.id_database;
+			if(groupItem instanceof ConcreteFeedItem) {
+                idItem = ((ConcreteFeedItem)groupItem).feedId;
+            }
 
 			mCallbacks.onChildItemClicked(idItem, optional_id_folder);
 

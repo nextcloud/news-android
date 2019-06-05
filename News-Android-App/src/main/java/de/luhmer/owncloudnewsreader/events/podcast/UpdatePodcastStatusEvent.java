@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader.events.podcast;
 
+import android.support.v4.media.session.PlaybackStateCompat;
+
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 
 public class UpdatePodcastStatusEvent {
@@ -8,10 +10,10 @@ public class UpdatePodcastStatusEvent {
     private long max;
     private String author;
     private String title;
-    private PlaybackService.Status status;
+    private @PlaybackStateCompat.State int status;
     private PlaybackService.VideoType videoType;
     private long rssItemId;
-    private float speed = -1;
+    private float speed;
 
     public long getRssItemId() {
         return rssItemId;
@@ -25,12 +27,12 @@ public class UpdatePodcastStatusEvent {
         return title;
     }
 
-    public PlaybackService.Status getStatus() {
+    public @PlaybackStateCompat.State int getStatus() {
         return status;
     }
 
     public boolean isPlaying() {
-        return status == PlaybackService.Status.PLAYING;
+        return status == PlaybackStateCompat.STATE_PLAYING;
     }
 
     public long getCurrent() {
@@ -47,7 +49,7 @@ public class UpdatePodcastStatusEvent {
 
     public boolean isVideoFile() { return !(videoType == PlaybackService.VideoType.None); }
 
-    public UpdatePodcastStatusEvent(long current, long max, PlaybackService.Status status, String author, String title, PlaybackService.VideoType videoType, long rssItemId, float speed) {
+    public UpdatePodcastStatusEvent(long current, long max, @PlaybackStateCompat.State int status, String author, String title, PlaybackService.VideoType videoType, long rssItemId, float speed) {
         this.current = current;
         this.max = max;
         this.status = status;

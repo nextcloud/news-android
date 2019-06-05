@@ -1,11 +1,12 @@
 package de.luhmer.owncloudnewsreader.tests;
 
-import org.junit.Rule;
-import org.junit.runner.RunWith;
-
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
+
+import org.junit.Rule;
+import org.junit.runner.RunWith;
+
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 
 @RunWith(AndroidJUnit4.class)

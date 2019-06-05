@@ -28,6 +28,9 @@
     <string name="img_view_thumbnail" translatable="false">Thumbnail</string>
     <string name="tv_showing_cached_version">Showing cached version</string>
 
+    <string name="permission_req_location_twilight_title">Automated Light/Dark Theme</string>
+    <string name="permission_req_location_twilight_text">In order to automatically switch between the light and dark theme, it is required to provide the devices location in order to determine the time for sunrise and sunset.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
     <string name="action_read">Read</string>
@@ -42,6 +45,13 @@
     <string name="action_textToSpeech">Read out</string>
     <string name="action_search">Search</string>
     <string name="action_download_articles_offline">Download articles offline</string>
+    <string name="news_list_drawer_text" translatable="false">Feed-list</string>
+
+
+
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Downloading articles for offline usage</string>
+    <string name="notification_download_images_offline">Downloading images for offline usage</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">You have %d new unread item</item>
         <item quantity="other">You have %d new unread items</item>
@@ -50,7 +60,6 @@
         <item quantity="one">%d new unread item available</item>
         <item quantity="other">%d new unread items available</item>
     </plurals>
-
 
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>

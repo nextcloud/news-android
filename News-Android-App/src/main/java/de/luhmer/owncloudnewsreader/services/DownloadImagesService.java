@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Random;
 
 import de.greenrobot.dao.query.LazyList;
+import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.async_tasks.DownloadImageHandler;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -170,7 +171,7 @@ public class DownloadImagesService extends JobIntentService {
             //RemoveOldImages();
         } else {
             mNotificationDownloadImages
-                    .setContentText((count + 1) + "/" + maxCount + " - Downloading Images for offline usage")
+                    .setContentText((count + 1) + "/" + maxCount + " - " + getString(R.string.notification_download_images_offline))
                     .setProgress(maxCount, count + 1, false);
 
             mNotificationManager.notify(NOTIFICATION_ID, mNotificationDownloadImages.build());

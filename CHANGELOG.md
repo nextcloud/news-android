@@ -1,13 +1,13 @@
-1.0 (in development)
----------------------
-- Single Sign on for all Nextcloud Android Apps!
-
-
 0.9.9.26
 ---------------------
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/726">#726 Add new feed fails</a>
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/744">#744 Fix issues when adding feeds (Thanks @Unpublished)</a>
 - Feature - <a href="https://github.com/owncloud/News-Android-App/issues/747">#747 Add option to share article when using chrome-custom-tabs</a>
+- Fix - Reset database when account is stored
+- Fix - Workaround for app-crashes due to widget problems
+- Feature - Support for Android Auto (Podcast playback)
+- Feature - Use picture-in-picture mode for video podcasts
+- Fix - Fix restarts of app due to a bug in android compat library (when using dark mode)
 
 
 0.9.9.25

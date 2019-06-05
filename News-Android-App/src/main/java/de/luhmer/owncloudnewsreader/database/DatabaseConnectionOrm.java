@@ -13,9 +13,13 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.WhereCondition;
 import de.luhmer.owncloudnewsreader.Constants;
+import de.luhmer.owncloudnewsreader.NewsReaderApplication;
 import de.luhmer.owncloudnewsreader.database.model.CurrentRssItemViewDao;
 import de.luhmer.owncloudnewsreader.database.model.DaoSession;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -52,12 +56,15 @@ public class DatabaseConnectionOrm {
     };
 
     private final String TAG = getClass().getCanonicalName();
-    private static final String[] VIDEO_FORMATS = { "youtube", "video/mp4" };
+    //private static final String[] VIDEO_FORMATS = { "youtube", "video/mp4" };
+    private static final String[] VIDEO_FORMATS = { "video/mp4" };
     public enum SORT_DIRECTION { asc, desc }
 
     private DaoSession daoSession;
 
     private final static int PageSize = 100;
+
+    protected @Inject @Named("databaseFileName") String databasePath;
 
     public void resetDatabase() {
         daoSession.getRssItemDao().deleteAll();
@@ -67,7 +74,10 @@ public class DatabaseConnectionOrm {
     }
 
     public DatabaseConnectionOrm(Context context) {
-        daoSession = DatabaseHelperOrm.getDaoSession(context);
+        if(databasePath == null) {
+            ((NewsReaderApplication) context.getApplicationContext()).getAppComponent().injectDatabaseConnection(this);
+        }
+        daoSession = DatabaseHelperOrm.getDaoSession(context, databasePath);
     }
 
     /*
@@ -463,14 +473,15 @@ public class DatabaseConnectionOrm {
 
     public static PodcastItem ParsePodcastItemFromRssItem(Context context, RssItem rssItem) {
         PodcastItem podcastItem = new PodcastItem();
+        Feed feed = rssItem.getFeed();
+        podcastItem.author = feed.getFeedTitle();// rssItem.getAuthor();
         podcastItem.itemId = rssItem.getId();
         podcastItem.title = rssItem.getTitle();
         podcastItem.link = rssItem.getEnclosureLink();
         podcastItem.mimeType = rssItem.getEnclosureMime();
-        podcastItem.favIcon = rssItem.getFeed().getFaviconUrl();
+        podcastItem.favIcon = feed.getFaviconUrl();
 
-        boolean isVideo = Arrays.asList(DatabaseConnectionOrm.VIDEO_FORMATS).contains(podcastItem.mimeType);
-        podcastItem.isVideoPodcast = isVideo;
+        podcastItem.isVideoPodcast = Arrays.asList(DatabaseConnectionOrm.VIDEO_FORMATS).contains(podcastItem.mimeType);
 
         File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));
         podcastItem.offlineCached = file.exists();

@@ -27,11 +27,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.core.content.ContextCompat;
-
-import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.util.SparseArray;
@@ -41,6 +36,16 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import java.util.List;
@@ -48,12 +53,6 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -320,7 +319,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             menuItem_Read.setIcon(R.drawable.ic_check_box_outline_blank_white);
             menuItem_Read.setChecked(false);
         }
-	}
+    }
 
 
     @Override
@@ -377,17 +376,12 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
                 mPostDelayHandler.delayTimer();
                 break;
 
-			case R.id.action_starred:
-				Boolean curState = rssItem.getStarred_temp();
-                rssItem.setStarred_temp(!curState);
-                dbConn.updateRssItem(rssItem);
 
-				updateActionBarIcons();
+            case R.id.action_starred:
+                toggleRssItemStarredState();
+                break;
 
-                mPostDelayHandler.delayTimer();
-				break;
-
-			case R.id.action_openInBrowser:
+            case R.id.action_openInBrowser:
                 NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
                 String link = "about:blank";
 
@@ -479,6 +473,17 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void toggleRssItemStarredState() {
+        RssItem rssItem = rssItems.get(currentPosition);
+		Boolean curState = rssItem.getStarred_temp();
+		rssItem.setStarred_temp(!curState);
+		dbConn.updateRssItem(rssItem);
+
+		updateActionBarIcons();
+
+		mPostDelayHandler.delayTimer();
 	}
 
 	private boolean isChromeDefaultBrowser() {

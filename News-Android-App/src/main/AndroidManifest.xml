@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="de.luhmer.owncloudnewsreader"
     android:installLocation="internalOnly"
-    android:versionCode="141"
-    android:versionName="0.9.9.25">
+    android:versionCode="142"
+    android:versionName="0.9.9.26">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,12 +14,14 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <!-- <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" /> -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <!--     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" /> -->
+    <!-- Required for TwilightManager -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".NewsReaderApplication"
         android:allowBackup="true"
@@ -30,21 +32,42 @@
         android:theme="@style/SplashTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:label, android:theme, android:name">
+
+        <meta-data android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc"/>
+        <meta-data android:name="com.google.android.gms.car.notification.SmallIcon"
+            android:resource="@drawable/ic_notification" />
+
         <activity
             android:name=".NewsReaderListActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:launchMode="singleTop">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+
+            <!-- Use this intent filter to get voice searches -->
+            <intent-filter>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
+
         <activity
             android:name=".NewsDetailActivity"
             android:label="@string/title_activity_news_detail" />
-        <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
+
+        <activity android:name=".PiPVideoPlaybackActivity"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="de.luhmer.owncloudnewsreader.pip"
+            android:autoRemoveFromRecents="true"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            tools:targetApi="n"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation" />
+
         <activity
             android:name=".SettingsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

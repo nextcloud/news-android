@@ -1,14 +1,17 @@
 package screengrab;
 
+import androidx.core.view.GravityCompat;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
+
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-import androidx.core.view.GravityCompat;
-import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
@@ -17,12 +20,17 @@ import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import tools.fastlane.screengrab.Screengrab;
+import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy;
 import tools.fastlane.screengrab.locale.LocaleTestRule;
+
+import static de.luhmer.owncloudnewsreader.helper.Utils.clearFocus;
+import static de.luhmer.owncloudnewsreader.helper.Utils.initMaterialShowCaseView;
 
 /**
  * Created by David on 06.03.2016.
  */
-@RunWith(AndroidJUnit4.class)
+@RunWith(JUnit4.class)
+@LargeTest
 public class ScreenshotTest {
 
     @ClassRule
@@ -31,19 +39,28 @@ public class ScreenshotTest {
     @Rule
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class);
 
+    @Rule
+    public GrantPermissionRule mRuntimePermissionRule = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-    private NewsReaderListActivity activity;
+
+    private NewsReaderListActivity mActivity;
     private NewsReaderListFragment nrlf;
     private NewsReaderDetailFragment nrdf;
     private int itemPos = 0;
 
-    private int podcastGroupPosition = 3;
+    //private int podcastGroupPosition = 3;
 
     @Before
     public void setUp() {
-        activity = mActivityRule.getActivity();
-        nrlf = mActivityRule.getActivity().getSlidingListFragment();
-        nrdf = mActivityRule.getActivity().getNewsReaderDetailFragment();
+        Screengrab.setDefaultScreenshotStrategy(new UiAutomatorScreenshotStrategy());
+
+        mActivity = mActivityRule.getActivity();
+        nrlf = mActivity.getSlidingListFragment();
+        nrdf = mActivity.getNewsReaderDetailFragment();
+
+        clearFocus();
+
+        initMaterialShowCaseView(mActivity);
     }
 
 
@@ -52,9 +69,9 @@ public class ScreenshotTest {
     public void testTakeScreenshots() {
         Screengrab.screenshot("startup");
 
-        activity.runOnUiThread(() -> {
+        mActivity.runOnUiThread(() -> {
             openDrawer();
-            nrlf.getListView().expandGroup(podcastGroupPosition);
+            //nrlf.getListView().expandGroup(podcastGroupPosition);
         });
 
         try {
@@ -66,7 +83,7 @@ public class ScreenshotTest {
         Screengrab.screenshot("slider_open");
 
 
-        activity.runOnUiThread(() -> {
+        mActivity.runOnUiThread(() -> {
             closeDrawer();
 
             try {
@@ -75,7 +92,7 @@ public class ScreenshotTest {
                 e.printStackTrace();
             }
 
-            activity.onClick(null, itemPos); //Select item
+            mActivity.onClick(null, itemPos); //Select item
 
         });
 
@@ -87,7 +104,7 @@ public class ScreenshotTest {
 
         Screengrab.screenshot("detail_activity");
 
-        activity.runOnUiThread(() -> {
+        mActivity.runOnUiThread(() -> {
             NewsListRecyclerAdapter na = (NewsListRecyclerAdapter) nrdf.getRecyclerView().getAdapter();
             ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(itemPos));
             na.changeReadStateOfItem(vh, false);
@@ -98,11 +115,12 @@ public class ScreenshotTest {
 
 
     @Test
-    public void testPodcast() {
-        activity.runOnUiThread(() -> {
+    public void testAudioPodcast() {
+        mActivity.runOnUiThread(() -> {
             openDrawer();
-            nrlf.getListView().expandGroup(podcastGroupPosition);
-            openFeed(podcastGroupPosition, 0);
+            //nrlf.getListView().expandGroup(podcastGroupPosition);
+            //openFeed(podcastGroupPosition, 0);
+            openFeed(2, 1); // Open Android Podcast
         });
 
         try {
@@ -111,17 +129,17 @@ public class ScreenshotTest {
             e.printStackTrace();
         }
 
-        Screengrab.screenshot("podcast_list");
+        //Screengrab.screenshot("podcast_list");
 
-        activity.runOnUiThread(() -> {
+        mActivity.runOnUiThread(() -> {
             ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(0));
-            PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(activity, vh.getRssItem());
-            activity.openMediaItem(podcastItem);
+            PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(mActivity, vh.getRssItem());
+            mActivity.openMediaItem(podcastItem);
         });
 
 
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -129,7 +147,7 @@ public class ScreenshotTest {
         Screengrab.screenshot("podcast_running");
 
 
-        activity.runOnUiThread(() -> activity.pausePodcast());
+        mActivity.runOnUiThread(() -> mActivity.pausePodcast());
 
 
         try {
@@ -143,12 +161,13 @@ public class ScreenshotTest {
 
     @Test
     public void testVideoPodcast() {
-        activity.runOnUiThread(() -> {
+        mActivity.runOnUiThread(() -> {
             //Set url to mock
             nrlf.bindUserInfoToUI();
 
             openDrawer();
-            openFeed(0, 13); //Click on ARD Podcast
+            //openFeed(0, 13); //Click on ARD Podcast
+            openFeed(7, -1);
         });
 
         try {
@@ -157,23 +176,23 @@ public class ScreenshotTest {
             e.printStackTrace();
         }
 
-        activity.runOnUiThread(() -> {
+        mActivity.runOnUiThread(() -> {
             ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(1));
-            PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(activity, vh.getRssItem());
-            activity.openMediaItem(podcastItem);
+            PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(mActivity, vh.getRssItem());
+            mActivity.openMediaItem(podcastItem);
         });
 
 
         try {
-            Thread.sleep(5000);
+            Thread.sleep(15000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+
         Screengrab.screenshot("video_podcast_running");
 
-
-        activity.runOnUiThread(() -> activity.pausePodcast());
+        mActivity.runOnUiThread(() -> mActivity.pausePodcast());
 
 
         try {
@@ -188,14 +207,14 @@ public class ScreenshotTest {
     }
 
     private void openDrawer() {
-        if(activity.drawerLayout != null) {
-            activity.drawerLayout.openDrawer(GravityCompat.START, true);
+        if(mActivity.drawerLayout != null) {
+            mActivity.drawerLayout.openDrawer(GravityCompat.START, true);
         }
     }
 
     private void closeDrawer() {
-        if(activity.drawerLayout != null) {
-            activity.drawerLayout.closeDrawer(GravityCompat.START, true);
+        if(mActivity.drawerLayout != null) {
+            mActivity.drawerLayout.closeDrawer(GravityCompat.START, true);
         }
     }
 }

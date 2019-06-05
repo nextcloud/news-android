@@ -46,6 +46,10 @@
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
+    <style name="ToolbarOptionMenuBackgroundTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:background">@color/rss_item_list_background</item>
+        <item name="android:itemBackground">@color/rss_item_list_background</item>
+    </style>
 
 
     <!-- https://stackoverflow.com/a/54751236 -->
@@ -61,6 +65,7 @@
 
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColor">@color/options_menu_item_text</item>
     </style>
 

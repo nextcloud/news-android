@@ -226,7 +226,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     public void setPlaying(boolean playing) {
         this.playing = playing;
         
-        int imageId = playing ? R.drawable.ic_action_pause : R.drawable.ic_action_play_arrow;
+        int imageId = playing ? R.drawable.ic_action_pause : R.drawable.ic_action_play;
         int contentDescriptionId = playing ? R.string.content_desc_pause : R.string.content_desc_play;
 
         String contentDescription = btnPlayPausePodcast.getContext().getString(contentDescriptionId);

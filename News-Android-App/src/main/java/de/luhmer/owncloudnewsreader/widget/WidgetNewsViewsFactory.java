@@ -39,16 +39,16 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
-public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFactory {
-	private static final String TAG = WidgetTodoViewsFactory.class.getCanonicalName();
+public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFactory {
+	private static final String TAG = WidgetNewsViewsFactory.class.getCanonicalName();
 
     private DatabaseConnectionOrm dbConn;
     private List<RssItem> rssItems;
-	private Context context = null;
+	private Context context;
 
 	private int appWidgetId;
 
-	public WidgetTodoViewsFactory(Context context, Intent intent) {
+	public WidgetNewsViewsFactory(Context context, Intent intent) {
 		this.context = context;
 		appWidgetId = intent.getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
@@ -79,14 +79,14 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
     // combination with the app widget item XML file to construct a RemoteViews object.
     @SuppressLint("SimpleDateFormat")
 	public RemoteViews getViewAt(int position) {
-        if(Constants.debugModeWidget)
+        if(Constants.debugModeWidget) {
             Log.d(TAG, "getViewAt: " + position);
+        }
 
-        RssItem rssItem = rssItems.get(position);
-
-    	RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
+        RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
 
         try {
+            RssItem rssItem = rssItems.get(position);
             String header = rssItem.getFeed().getFeedTitle();
             String colorString = rssItem.getFeed().getAvgColour();
 
@@ -140,7 +140,7 @@ public class WidgetTodoViewsFactory implements RemoteViewsService.RemoteViewsFac
             iCheck.putExtra(WidgetProvider.ACTION_CHECKED_CLICK, true);
             rv.setOnClickFillInIntent(R.id.cb_lv_item_read, iCheck);
         } catch(Exception ex) {
-            Log.e(TAG, "Error: " + ex.getLocalizedMessage());
+            Log.e(TAG, "Error while getting view for widget at position: " + position, ex);
         }
 
         // Return the RemoteViews object.

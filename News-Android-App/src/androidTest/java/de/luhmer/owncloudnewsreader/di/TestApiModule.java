@@ -3,11 +3,18 @@ package de.luhmer.owncloudnewsreader.di;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
+import androidx.test.InstrumentationRegistry;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
@@ -17,6 +24,7 @@ import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 
 public class TestApiModule extends ApiModule {
 
+    private static final String TAG = TestApiModule.class.getCanonicalName();
     private Application application;
 
     public static String DUMMY_ACCOUNT_AccountName = "test-account";
@@ -82,8 +90,42 @@ public class TestApiModule extends ApiModule {
     }
 
     @Override
+    public String providesDatabaseFileName() {
+        String filename = "OwncloudNewsReaderOrmTest.db";
+
+        try {
+
+            String dst = "/data/data/" + application.getApplicationContext().getPackageName() + "/databases/" + filename;
+            File dstFile = new File(dst);
+            dstFile.getParentFile().mkdirs();
+
+            // https://stackoverflow.com/a/35690692
+            copy(InstrumentationRegistry.getContext().getAssets().open("OwncloudNewsReaderOrm.db"), dstFile);
+        } catch (IOException e) {
+            Log.e(TAG, "Failed copying Test Database", e);
+        }
+        //return PreferenceManager.getDefaultSharedPreferencesName(mApplication);
+        return filename;
+    }
+
+    @Override
     protected ApiProvider provideAPI(MemorizingTrustManager mtm, SharedPreferences sp) {
         ApiProvider apiProvider = new TestApiProvider(mtm, sp, application);
         return apiProvider;
+    }
+
+
+
+    public static void copy(InputStream in, File dst) throws IOException {
+        try (OutputStream out = new FileOutputStream(dst)) {
+            // Transfer bytes from in to out
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+        }
+        in.close();
+
     }
 }

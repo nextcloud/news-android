@@ -76,7 +76,7 @@ public class NextcloudNotificationManager {
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
         NotificationCompat.Builder mNotificationDownloadImages = new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
-                .setContentText("Downloading images for offline usage")
+                .setContentText(context.getString(R.string.notification_download_images_offline))
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)
@@ -109,7 +109,7 @@ public class NextcloudNotificationManager {
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
         NotificationCompat.Builder mNotificationWebPages = new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
-                .setContentText("Downloading webpages for offline usage")
+                .setContentText(context.getString(R.string.notification_download_articles_offline))
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)
@@ -187,6 +187,8 @@ public class NextcloudNotificationManager {
                 */
                 //.setUsesChronometer(true)
                 .setContentTitle(description.getTitle())
+                .setContentText(description.getSubtitle())
+                .setSubText(description.getDescription())
                 .setSmallIcon(R.drawable.ic_notification)
                 //.setContentText(description.getSubtitle())
                 //.setContentText(mediaMetadata.getText(MediaMetadataCompat.METADATA_KEY_ARTIST))
@@ -195,15 +197,18 @@ public class NextcloudNotificationManager {
                 .setLargeIcon(bitmapIcon)
                 .setContentIntent(controller.getSessionActivity())
                 .setDeleteIntent(MediaButtonReceiver.buildMediaButtonPendingIntent(context, PlaybackStateCompat.ACTION_STOP))
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setOnlyAlertOnce(true);
 
         boolean isPlaying = controller.getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING;
         builder.addAction(getPlayPauseAction(context, isPlaying));
 
+        // Make the transport controls visible on the lockscreen
+        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+
         builder.setStyle(new MediaStyle()
             //.setShowActionsInCompactView(0)  // show only play/pause in compact view
             .setMediaSession(mediaSession.getSessionToken())
+            .setShowActionsInCompactView(0)
             .setShowCancelButton(true)
             .setCancelButtonIntent(
                     MediaButtonReceiver.buildMediaButtonPendingIntent(
@@ -214,7 +219,7 @@ public class NextcloudNotificationManager {
     }
 
     private static NotificationCompat.Action getPlayPauseAction(Context context, boolean isPlaying) {
-        int drawableId = isPlaying ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play;
+        int drawableId = isPlaying ? R.drawable.ic_action_pause : R.drawable.ic_action_play;
         String actionText = isPlaying ? "Pause" : "Play"; // TODO extract as string resource
 
         PendingIntent pendingIntent = MediaButtonReceiver.buildMediaButtonPendingIntent(context,

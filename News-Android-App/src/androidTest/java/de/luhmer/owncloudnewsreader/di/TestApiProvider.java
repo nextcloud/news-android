@@ -82,17 +82,36 @@ public class TestApiProvider extends ApiProvider {
             InputStream inputStream;
             switch (request.getUrl()) {
                 case "/index.php/apps/news/api/v1-2/feeds":
-                    inputStream = handleCreateFeed(request);
+                    if("POST".equals(request.getMethod())) {
+                        inputStream = handleCreateFeed(request);
+                    } else {
+                        inputStream = stringToInputStream("{\"feeds\": []}");
+                    }
                     break;
                 case "/index.php/apps/news/api/v1-2/user":
                     inputStream = handleUser();
                     break;
+                case "/index.php/apps/news/api/v1-2/folders":
+                    inputStream = handleFolders();
+                    break;
+                case "/index.php/apps/news/api/v1-2/items":
+                    inputStream = stringToInputStream("{\"items\": []}");
+                    break;
+                //case "index.php/apps/news/api/v1-2/feeds":
+                case "/index.php/apps/news/api/v1-2/items/unread/multiple":
+                    inputStream = stringToInputStream("");
+                    break;
                 default:
+                    Log.e(TAG, request.getUrl());
                     throw new Error("Not implemented yet!");
             }
             return inputStream;
         }
 
+        private InputStream handleFolders() {
+            String folders = "{\"folders\":[{\"id\":2,\"name\":\"Comic\"},{\"id\":3,\"name\":\"Android\"}]}";
+            return stringToInputStream(folders);
+        }
 
 
         // https://github.com/nextcloud/news/blob/master/docs/externalapi/Legacy.md#create-a-feed
