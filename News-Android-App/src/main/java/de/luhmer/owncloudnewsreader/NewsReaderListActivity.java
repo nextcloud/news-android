@@ -283,7 +283,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                     .create()
                     .show();
         }
-
     }
 
 	@Override
@@ -525,23 +524,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			if (firstVisiblePosition == 0 || firstVisiblePosition == -1) {
 				updateCurrentRssView();
 			} else {
-				Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
-						getResources().getQuantityString(R.plurals.message_bar_new_articles_available, newItemsCount, newItemsCount),
-						Snackbar.LENGTH_LONG);
-				snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
-				snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.accent_material_dark));
-				// Setting android:TextColor to #000 in the light theme results in black on black
-				// text on the Snackbar, set the text back to white,
-				// TODO: find a cleaner way to do this
-				TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
-				textView.setTextColor(Color.WHITE);
-				snackbar.show();
+				showSnackbar(newItemsCount);
 			}
 			return true;
 		}
 		return false;
 	}
-
 
 	@Override
 	protected void onResume() {
@@ -557,6 +545,19 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onRefresh() {
 		startSync();
+	}
+
+	private void showSnackbar(int newItemsCount) {
+		Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
+				getResources().getQuantityString(R.plurals.message_bar_new_articles_available, newItemsCount, newItemsCount),
+				Snackbar.LENGTH_LONG);
+		snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
+		//snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.accent_material_dark));
+		// Setting android:TextColor to #000 in the light theme results in black on black
+		// text on the Snackbar, set the text back to white,
+		//TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+		//textView.setTextColor(Color.WHITE);
+		snackbar.show();
 	}
 
 	/**
