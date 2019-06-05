@@ -213,8 +213,9 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     }
 
     private void updateMetadata(MediaItem mediaItem) {
-        if(mediaItem == null) {
-            mediaItem = new PodcastItem(-1, "", "", "", "", false, null, false);
+        MediaItem mi = mediaItem;
+        if(mi == null) {
+            mi = new PodcastItem(-1, "", "", "", "", false, null, false);
         }
 
         int totalDuration = 0;
@@ -223,11 +224,11 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         }
 
         mSession.setMetadata(new MediaMetadataCompat.Builder()
-                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, mediaItem.author)
-                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, mediaItem.title)
+                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, mi.author)
+                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, mi.title)
                 //.putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_SUBTITLE, mediaItem.author) // Android Auto
-                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, mediaItem.favIcon)
-                .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, String.valueOf(mediaItem.itemId))
+                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, mi.favIcon)
+                .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, String.valueOf(mi.itemId))
                 .putString(CURRENT_PODCAST_MEDIA_TYPE, getCurrentlyPlayedMediaType().toString())
                 .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, totalDuration)
                 //.putLong(EXTRA_IS_EXPLICIT, EXTRA_METADATA_ENABLED_VALUE) // Android Auto

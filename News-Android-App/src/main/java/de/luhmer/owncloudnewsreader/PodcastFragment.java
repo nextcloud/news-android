@@ -456,15 +456,6 @@ public class PodcastFragment extends Fragment {
             if (mediaType == PlaybackService.VideoType.Video) {
                 Log.v(TAG, "init regular video");
                 tryOpeningPictureinPictureMode();
-            } else if (mediaType == PlaybackService.VideoType.YouTube) {
-                //if ("extra".equals(BuildConfig.FLAVOR)) {
-                Log.v(TAG, "show youtube videos not supported");
-                new AlertDialog.Builder(getActivity())
-                        .setTitle(getString(R.string.warning))
-                        .setMessage(R.string.dialog_feature_not_available)
-                        .setCancelable(true)
-                        .setPositiveButton(getString(android.R.string.ok), null)
-                        .show();
             }
         }
 

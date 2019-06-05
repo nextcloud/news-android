@@ -11,9 +11,14 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -28,7 +33,11 @@ import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
 import androidx.test.runner.AndroidJUnit4;
+
+import com.nextcloud.android.sso.aidl.NextcloudRequest;
+
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
@@ -36,6 +45,8 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.TestApplication;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
+import de.luhmer.owncloudnewsreader.di.TestApiProvider;
 import de.luhmer.owncloudnewsreader.di.TestComponent;
 import helper.OrientationChangeAction;
 import helper.RecyclerViewAssertions;
@@ -56,11 +67,19 @@ import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static de.luhmer.owncloudnewsreader.helper.Utils.clearFocus;
+import static de.luhmer.owncloudnewsreader.helper.Utils.initMaterialShowCaseView;
+import static de.luhmer.owncloudnewsreader.helper.Utils.sleep;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -71,7 +90,11 @@ public class NewsReaderListActivityUiTests {
     @Rule
     public ActivityTestRule<NewsReaderListActivity> mActivityRule = new ActivityTestRule<>(NewsReaderListActivity.class);
 
+    @Rule
+    public GrantPermissionRule mRuntimePermissionRule = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION);
+
     protected @Inject SharedPreferences mPrefs;
+    protected @Inject ApiProvider mApi;
 
     private NewsReaderListActivity getActivity() {
         return mActivityRule.getActivity();
@@ -84,6 +107,10 @@ public class NewsReaderListActivityUiTests {
 
         TestComponent ac = (TestComponent) ((TestApplication)(getActivity().getApplication())).getAppComponent();
         ac.inject(this);
+
+        clearFocus();
+
+        initMaterialShowCaseView(getActivity());
     }
 
     @Test
@@ -96,13 +123,21 @@ public class NewsReaderListActivityUiTests {
         onView(isRoot()).perform(OrientationChangeAction.orientationLandscape(getActivity()));
         //onView(isRoot()).perform(OrientationChangeAction.orientationPortrait(getActivity()));
 
-        sleep(1.0f);
+        sleep(2000);
 
         LinearLayoutManager llm = (LinearLayoutManager) ndf.getRecyclerView().getLayoutManager();
-        onView(withId(R.id.list)).check(new RecyclerViewAssertions(scrollPosition-(scrollPosition-llm.findFirstVisibleItemPosition())));
+        int expectedPosition = scrollPosition-(scrollPosition-llm.findFirstVisibleItemPosition());
+
+        // As there is a little offset when rotating.. we need to add one here..
+        onView(withId(R.id.list)).check(new RecyclerViewAssertions(expectedPosition+1));
         onView(withId(R.id.tv_no_items_available)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
 
-        //onView(isRoot()).perform(OrientationChangeAction.orientationLandscape(getActivity()));
+        sleep(2000);
+
+        onView(isRoot()).perform(OrientationChangeAction.orientationPortrait(getActivity()));
+
+        onView(withId(R.id.list)).check(new RecyclerViewAssertions(expectedPosition));
+        onView(withId(R.id.tv_no_items_available)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
     }
 
     @Test
@@ -111,7 +146,7 @@ public class NewsReaderListActivityUiTests {
 
         onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(scrollPosition, click()));
 
-        sleep(2);
+        sleep(2000);
 
         Espresso.pressBack();
 
@@ -126,7 +161,8 @@ public class NewsReaderListActivityUiTests {
         getActivity().runOnUiThread(() -> na.changeReadStateOfItem(vh, false));
         sleep(1.0f);
 
-        onView(withId(R.id.list)).check(new RecyclerViewAssertions(scrollPosition-(scrollPosition-llm.findFirstVisibleItemPosition())));
+        int expectedPosition = scrollPosition-(scrollPosition-llm.findFirstVisibleItemPosition());
+        onView(withId(R.id.list)).check(new RecyclerViewAssertions(expectedPosition));
         onView(withId(R.id.tv_no_items_available)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
     }
 
@@ -144,9 +180,8 @@ public class NewsReaderListActivityUiTests {
 
     @Test
     public void searchTest() {
-        String firstItem = "These are the best screen protectors for the Huawei P30 Pro";
-
-        sleep(500);
+        String firstItem = "Immer wieder sonntags KW 19";
+        // String firstItem = "These are the best screen protectors for the Huawei P30 Pro";
 
         // Check first item
         checkRecyclerViewFirstItemText(firstItem);
@@ -157,12 +192,13 @@ public class NewsReaderListActivityUiTests {
         // Type in "test" into searchbar
         onView(allOf(withClassName(is("android.widget.SearchView$SearchAutoComplete")), isDisplayed())).perform(typeText("test"));
         sleep(1000);
-        checkRecyclerViewFirstItemText("Testfahrt im Mercedes E 300 de mit 90-kW-Elektromotor und Vierzylinder-Diesel");
+        checkRecyclerViewFirstItemText("VR ohne Kabel: Die Oculus Quest im Test, definitiv der richtige Ansatz");
+        // checkRecyclerViewFirstItemText("Testfahrt im Mercedes E 300 de mit 90-kW-Elektromotor und Vierzylinder-Diesel");
 
         // Close search bar
         onView(withContentDescription("Collapse")).perform(click());
 
-        sleep(500);
+        sleep(1000);
 
         // Test if search reset was successful
         checkRecyclerViewFirstItemText(firstItem);
@@ -173,18 +209,39 @@ public class NewsReaderListActivityUiTests {
         // Open navigation drawer
         onView(allOf(withContentDescription(getString(R.string.news_list_drawer_text)), isDisplayed())).perform(click());
 
-        sleep(1000);
+        sleep(1500);
 
+        /*
         // Click on Got it
         onView(allOf(withText("GOT IT"), isDisplayed())).perform(click());
 
         sleep(1000);
+        */
 
         // Trigger refresh
         onView(allOf(withContentDescription(getString(R.string.content_desc_tap_to_refresh)), isDisplayed())).perform(click());
 
         sleep(1000);
-        assertTrue(true);
+        try {
+            verifySyncRequested();
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    // Verify that the API was actually called
+    private void verifySyncRequested() throws Exception {
+        TestApiProvider.NewsTestNetworkRequest nr = ((TestApiProvider)mApi).networkRequestSpy;
+        ArgumentCaptor<NextcloudRequest> argument = ArgumentCaptor.forClass(NextcloudRequest.class);
+        verify(nr, times(6)).performNetworkRequest(argument.capture(), any());
+
+        List<String> requestedUrls = argument.getAllValues().stream().map(nextcloudRequest -> nextcloudRequest.getUrl()).collect(Collectors.toList());
+
+        assertTrue(requestedUrls.contains("/index.php/apps/news/api/v1-2/folders"));
+        assertTrue(requestedUrls.contains("/index.php/apps/news/api/v1-2/feeds"));
+        assertTrue(requestedUrls.contains("/index.php/apps/news/api/v1-2/items/unread/multiple"));
+        assertTrue(requestedUrls.contains("/index.php/apps/news/api/v1-2/items")); // TODO Double check why /items is called twice... ?
+        assertTrue(requestedUrls.contains("/index.php/apps/news/api/v1-2/user"));
     }
 
 
@@ -195,14 +252,6 @@ public class NewsReaderListActivityUiTests {
 
     private String getString(@IdRes int resId) {
         return mActivityRule.getActivity().getString(resId);
-    }
-
-    private void sleep(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -267,15 +316,6 @@ public class NewsReaderListActivityUiTests {
         }
         return true;
     }
-
-    private void sleep(float seconds) {
-        try {
-            Thread.sleep((long) seconds * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     private Fragment waitForFragment(int id, int timeout) {
         long endTime = SystemClock.uptimeMillis() + timeout;
