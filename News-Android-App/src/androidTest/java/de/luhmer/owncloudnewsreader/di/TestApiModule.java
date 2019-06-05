@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import androidx.test.InstrumentationRegistry;
+
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
@@ -14,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import androidx.test.InstrumentationRegistry;
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;

@@ -29,14 +29,14 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.view.View;
 
-import org.hamcrest.Matcher;
-
-import java.util.Collection;
-
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
+
+import org.hamcrest.Matcher;
+
+import java.util.Collection;
 
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 

@@ -1,6 +1,9 @@
 package de.luhmer.owncloudnewsreader.tests;
 
 
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 
 import org.junit.Before;
@@ -12,8 +15,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.inject.Inject;
 
-import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
 import de.luhmer.owncloudnewsreader.NewFeedActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.TestApplication;

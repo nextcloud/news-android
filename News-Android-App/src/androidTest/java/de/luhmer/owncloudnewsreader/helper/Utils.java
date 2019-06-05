@@ -3,21 +3,11 @@ package de.luhmer.owncloudnewsreader.helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.nextcloud.android.sso.aidl.NextcloudRequest;
-
-import org.mockito.ArgumentCaptor;
-
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.di.TestApiProvider;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.timeout;
-import static org.mockito.Mockito.verify;
 
 public class Utils {
 
