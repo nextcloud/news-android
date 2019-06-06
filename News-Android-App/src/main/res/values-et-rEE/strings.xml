@@ -42,7 +42,6 @@
         <item quantity="other">Saadaval on %d uut lugemata kirjet</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">Uudisvoo URL</string>
     <string name="action_add_feed">Lisa uudivoog</string>

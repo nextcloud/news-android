@@ -39,7 +39,6 @@
         <item quantity="other">มี %d รายการใหม่ที่ยังไม่ได้อ่าน</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">ฟีด URL</string>
     <string name="action_add_feed">เพิ่ม feed</string>

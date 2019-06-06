@@ -49,7 +49,6 @@
         <item quantity="other">%d elementos nuevos sin leer</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL para el canal</string>
     <string name="action_add_feed">Añadir canal</string>

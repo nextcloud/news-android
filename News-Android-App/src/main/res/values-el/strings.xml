@@ -47,7 +47,6 @@
         <item quantity="other">%d νέα αδιάβαστα αντικείμενα διαθέσιμα</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL Ροής</string>
     <string name="action_add_feed">Προσθήκη ροής</string>

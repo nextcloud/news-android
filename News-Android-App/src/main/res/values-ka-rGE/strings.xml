@@ -42,7 +42,6 @@
         <item quantity="other">ხელმისაწვდომია %d ახალი წაუკითხავი ელემენტი</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">ლენტის მისამართი</string>
     <string name="action_add_feed">ლენტის დამატება</string>

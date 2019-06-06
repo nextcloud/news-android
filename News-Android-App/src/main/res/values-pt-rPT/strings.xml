@@ -49,7 +49,6 @@
         <item quantity="other">Tem disponível %d novos itens por ler</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed</string>
     <string name="action_add_feed">Adicionar feed de notícias.</string>

@@ -49,7 +49,6 @@
         <item quantity="other">%d elements de notícies sense llegir disponibles</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL font</string>
     <string name="action_add_feed">Afegeix font</string>

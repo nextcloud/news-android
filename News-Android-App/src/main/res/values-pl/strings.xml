@@ -55,7 +55,6 @@
         <item quantity="other">%d nowe dostępne pozycje nieprzeczytane</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL kanału</string>
     <string name="action_add_feed">Dodaj kanał</string>
