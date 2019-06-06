@@ -49,7 +49,6 @@
         <item quantity="other">Dispón de %d elementos novos sen ler</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL da fonte</string>
     <string name="action_add_feed">Engadir fonte</string>

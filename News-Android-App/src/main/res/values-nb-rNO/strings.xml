@@ -48,7 +48,6 @@
         <item quantity="other">%d nye uleste elementer tilgjengelig</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">Strøm-URL</string>
     <string name="action_add_feed">Legg til strøm</string>

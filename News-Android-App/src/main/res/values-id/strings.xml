@@ -39,7 +39,6 @@
         <item quantity="other">Terdapat %d item baru yang belum dibaca </item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL Feed</string>
     <string name="action_add_feed">Tambah feed</string>

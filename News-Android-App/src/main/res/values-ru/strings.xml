@@ -55,7 +55,6 @@
         <item quantity="other">доступно %d непрочинатнных элементов</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">Ссылка ленты</string>
     <string name="action_add_feed">Добавить ленту</string>

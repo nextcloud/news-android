@@ -50,7 +50,6 @@
         <item quantity="other">%d neperskaityti įrašai</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">Kanalo URL</string>
     <string name="action_add_feed">Pridėti kanalą</string>

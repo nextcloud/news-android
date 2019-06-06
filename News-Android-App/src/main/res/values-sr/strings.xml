@@ -52,7 +52,6 @@
         <item quantity="other">Доступно је %d непрочитаних ставки</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">Адреса довода</string>
     <string name="action_add_feed">Додај довод</string>

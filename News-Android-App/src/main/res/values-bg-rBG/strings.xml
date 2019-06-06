@@ -48,7 +48,6 @@
         <item quantity="other">Налични са %d нови непрочетени елементи</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL на емисията</string>
     <string name="action_add_feed">Добави емисията</string>

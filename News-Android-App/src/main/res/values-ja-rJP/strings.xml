@@ -46,7 +46,6 @@
         <item quantity="other">%d 個の新しい未読アイテムが利用できます</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">フィードURL</string>
     <string name="action_add_feed">フィードを追加</string>

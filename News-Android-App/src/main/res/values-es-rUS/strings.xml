@@ -42,7 +42,6 @@
         <item quantity="other">%d elementos nuevos no leídos disponibles</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL de la Fuente</string>
     <string name="action_add_feed">Agregar fuente</string>

@@ -45,7 +45,6 @@
         <item quantity="other">Ka të gatshëm %d zëra të palexuar</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL Prurjeje</string>
     <string name="action_add_feed">Shtoni prurje</string>

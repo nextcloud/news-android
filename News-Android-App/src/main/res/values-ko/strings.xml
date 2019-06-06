@@ -39,7 +39,6 @@
         <item quantity="other">새 항목이 %d개 있습니다</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">피드 URL</string>
     <string name="action_add_feed">피드 추가</string>

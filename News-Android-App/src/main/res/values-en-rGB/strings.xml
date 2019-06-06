@@ -48,7 +48,6 @@
         <item quantity="other">%d new unread items available</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Add feed</string>

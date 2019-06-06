@@ -55,7 +55,6 @@
         <item quantity="other">%d nových nepřečtených položek k dispozici</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">URL kanálu</string>
     <string name="action_add_feed">Přidat kanál</string>

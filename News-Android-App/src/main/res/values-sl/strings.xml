@@ -55,7 +55,6 @@
         <item quantity="other">Na voljo je %d neprebranih prispevkov.</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">Naslov URL vira</string>
     <string name="action_add_feed">Dodaj vir</string>

@@ -48,7 +48,6 @@
         <item quantity="other">%d مورد خواند نشده موجود است</item>
     </plurals>
 
-
     <!-- Add new feed -->
     <string name="hint_feed_url">نشانی خوراک</string>
     <string name="action_add_feed">افزودن خوراک</string>
