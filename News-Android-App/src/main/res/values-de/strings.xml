@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Zwischengespeicherte Version wird angezeigt</string>
 
+    <string name="permission_req_location_twilight_title">Automatisch helles/dunkles Thema</string>
+    <string name="permission_req_location_twilight_text">Um automatisch zwischen dem dunklen und dem helen Thema umschalten zu können, ist es erforderlich den Gerätestandort abzufragen um die Sonnenaufgangs- und -untergangszeiten zu bestimmen.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Favorisiert</string>
     <string name="action_read">Gelesen</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">Vorlesen</string>
     <string name="action_search">Suchen</string>
     <string name="action_download_articles_offline">Artikel zum offline-Lesen herunterladen.</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Artikel zum offline-Lesen herunterladen.</string>
+    <string name="notification_download_images_offline">Lade Bilder zum offline-Lesen herunter</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Sie haben %d neuen ungelesenen Eintrag</item>
         <item quantity="other">Sie haben %d neue ungelesene Einträge</item>

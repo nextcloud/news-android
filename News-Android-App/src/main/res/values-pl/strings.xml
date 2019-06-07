@@ -28,6 +28,9 @@
 
     <string name="tv_showing_cached_version">Pokazuję wersję z pamięci cache</string>
 
+    <string name="permission_req_location_twilight_title">Automatyczny Motyw Jasny/Ciemny</string>
+    <string name="permission_req_location_twilight_text">Aby automatycznie przełączać się między jasnym i ciemnym motywem, konieczne jest podanie lokalizacji urządzeń w celu określenia czasu wschodu i zachodu słońca.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Oznaczone</string>
     <string name="action_read">Odczyt</string>
@@ -42,6 +45,9 @@
     <string name="action_textToSpeech">Przeczytane</string>
     <string name="action_search">Wyszukaj</string>
     <string name="action_download_articles_offline">Pobierz artykuły offline</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Pobieranie artykułów do użytku offline</string>
+    <string name="notification_download_images_offline">Pobieranie obrazów do użytku offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Masz %d nową nieprzeczytaną pozycję</item>
         <item quantity="few">Masz %d nowe nieprzeczytane pozycje</item>

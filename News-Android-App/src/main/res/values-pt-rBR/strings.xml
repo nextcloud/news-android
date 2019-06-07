@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Mostrando a versão em cache</string>
 
+    <string name="permission_req_location_twilight_title">Tema Claro/Escuro Automático</string>
+    <string name="permission_req_location_twilight_text">Para alternar automaticamente entre o tema claro e escuro, é necessário fornecer a localização dos dispositivos para determinar a hora do nascer e do pôr do sol.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Vistos</string>
     <string name="action_read">Ler</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">Leia</string>
     <string name="action_search">Pesquisar</string>
     <string name="action_download_articles_offline">Download de artigos offline</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Download de artigos para uso offline</string>
+    <string name="notification_download_images_offline">Download de imagens para uso offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Você tem %d novo item não lido</item>
         <item quantity="other">Você tem %d novos itens não lidos</item>

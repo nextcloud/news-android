@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Amosando a versión na caché</string>
 
+    <string name="permission_req_location_twilight_title">Tema claro/escuro automatizado</string>
+    <string name="permission_req_location_twilight_text">Para cambiar automaticamente entre o tema claro e escuro, é necesario fornecer a localización dos dispositivos para determinar a hora do amencer e do solpor.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Destacado</string>
     <string name="action_read">Ler</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">Ler</string>
     <string name="action_search">Buscar</string>
     <string name="action_download_articles_offline">Descargar os artigos sen conexión</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Descargando articulos para o seu uso sen conexión</string>
+    <string name="notification_download_images_offline">Descargando imaxes para o seu uso sen conexión</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Ten %d elemento novo sen ler</item>
         <item quantity="other">Ten %d elementos novos sen ler</item>

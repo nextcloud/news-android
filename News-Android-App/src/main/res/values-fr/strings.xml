@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Affichage de la version en cache</string>
 
+    <string name="permission_req_location_twilight_title">Thème Clair / Sombre automatique</string>
+    <string name="permission_req_location_twilight_text">Afin de basculer automatiquement entre les thèmes Clair et Sombre, vous devez autoriser l\'accès à la position de l\'appareil ce qui permettra de calculer les horaires de lever et de coucher du soleil.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Favori</string>
     <string name="action_read">Lu</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">Lire à haute voix</string>
     <string name="action_search">Rechercher</string>
     <string name="action_download_articles_offline">Télécharger les articles hors ligne</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Réception des articles pour usage hors-ligne</string>
+    <string name="notification_download_images_offline">Réception des images pour usage hors-ligne</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Il y a %d nouvel article non lu</item>
         <item quantity="other">Il y a %d nouveaux articles non lus</item>

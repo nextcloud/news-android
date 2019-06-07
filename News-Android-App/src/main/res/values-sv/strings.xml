@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Visar cachad version</string>
 
+    <string name="permission_req_location_twilight_title">Automatiskt ljust/mörkt tema</string>
+    <string name="permission_req_location_twilight_text">För att automatiskt växla mellan ljust och mörkt tema krävs det att enheternas placering anges för att kunna bestämma tiden för soluppgång och solnedgång.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Stjärnmärkt</string>
     <string name="action_read">Läsa</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">Läs upp</string>
     <string name="action_search">Sök</string>
     <string name="action_download_articles_offline">Ladda ner artiklar offline</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Ladda ner artiklar som kan användas offline</string>
+    <string name="notification_download_images_offline">Ladda ner bilder som kan användas offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Du har %d oläst sak</item>
         <item quantity="other">Du har %d olästa saker</item>
