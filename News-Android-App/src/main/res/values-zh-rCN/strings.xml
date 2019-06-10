@@ -25,6 +25,9 @@
 
     <string name="tv_showing_cached_version">显示缓存的版本</string>
 
+    <string name="permission_req_location_twilight_title">自动化的亮色/暗色主题</string>
+    <string name="permission_req_location_twilight_text">为能在亮色和暗色主题之间自动切换，您需要提供设备位置以确定日出和日落时间。</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">已加星标</string>
     <string name="action_read">阅读</string>
@@ -39,6 +42,9 @@
     <string name="action_textToSpeech">朗读</string>
     <string name="action_search">搜索</string>
     <string name="action_download_articles_offline">离线下载文章</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">下载文章供离线使用</string>
+    <string name="notification_download_images_offline">下载图片供离线使用</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">您还有 %d 条未读内容</item>
     </plurals>
