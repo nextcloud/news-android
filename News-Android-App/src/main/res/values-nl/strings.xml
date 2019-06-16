@@ -24,7 +24,10 @@
     <string name="menu_StartImageCaching">Downloaden afbeeldingen</string>
     <string name="menu_downloadMoreItems">Download meer berichten</string>
 
-    <string name="tv_showing_cached_version">Tonen van cached versie</string>
+    <string name="tv_showing_cached_version">Tonen van gecachte versie</string>
+
+    <string name="permission_req_location_twilight_title">Automatisch licht/donker thema</string>
+    <string name="permission_req_location_twilight_text">De locatie van het apparaat is nodig voor het automatisch wisselen tussen het lichte en donkere thema, aan de hand van zonsopkomst en zonsondergang.</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Gemarkeerd</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">Voorlezen</string>
     <string name="action_search">Zoeken</string>
     <string name="action_download_articles_offline">Download artikelen offline</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Artikelen downloaden voor offline gebruik</string>
+    <string name="notification_download_images_offline">Afbeeldingen downloaden voor offline gebruik</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">U hebt %d nieuw ongelezen bericht</item>
         <item quantity="other">Je hebt %d nieuwe ongelezen berichten</item>
