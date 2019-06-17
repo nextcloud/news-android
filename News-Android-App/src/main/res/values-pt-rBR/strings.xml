@@ -66,10 +66,10 @@
     <string name="action_img_download">Baixar Imagem</string>
     <string name="action_img_sharelink">Link de Compartilhamento de Imagem</string>
     <string name="action_img_open">Abrir a Imagem no Navegador</string>
-    <string name="action_img_copylink">Copiar o Link da Imagem</string>
+    <string name="action_img_copylink">Copiar link da imagem</string>
     <string name="action_link_share">Link de Compartilhamento</string>
     <string name="action_link_open">Abrir o Link no Navegador</string>
-    <string name="action_link_copy">Copiar o Link</string>
+    <string name="action_link_copy">Copiar link</string>
     <string name="toast_img_download_wait">Baixando... por favor aguarde</string>
     <string name="toast_img_saved">Imagem gravada</string>
     <string name="toast_img_notwriteable">Falhou ao salvar Imagem</string>

@@ -79,6 +79,8 @@
     <string name="feed_move_list_description">Pasirinkite aplanką į kurį norite perkelti kanalą</string>
     <string name="move_feed_root_folder">Šakninis aplankas</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Rankinis prisijungimas</string>
     <string name="pref_title_username">Prisijungimo vardas</string>
     <string name="pref_title_password">Slaptažodis</string>
     <string name="pref_title_owncloudRootPath">Nextcloud root adresas</string>
@@ -144,6 +146,15 @@
     <string name="no_podcast_selected">Nepasirinkta jokia tinklalaidė</string>
     <string name="no_chapters_available">Skyriai neprieinami</string>
     <string name="podcast_playback_speed_dialog_title">Atkūrimo greitis</string>
+    <string name="notification_downloading_podcast_title">Atsisiunčiama tinklalaidė</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">Apie</string>
+    <string name="pref_license">Licencija</string>
+    <string name="pref_report_issue">Pranešti apie klaidą</string>
+    <string name="pref_report_issue_summary">Reikalinga (nemokama) GitHub paskyra</string>
+    <string name="pref_contribute">Talkinti!</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Ekranas</string>
     <string name="pref_title_app_theme">Apipavidalinimas</string>

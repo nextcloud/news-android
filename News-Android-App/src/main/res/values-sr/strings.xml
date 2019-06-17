@@ -27,6 +27,9 @@
 
     <string name="tv_showing_cached_version">Приказујем кеширану верзију</string>
 
+    <string name="permission_req_location_twilight_title">Аутоматска тамна/светла тема</string>
+    <string name="permission_req_location_twilight_text">Да бисмо аутоматски мењали између тамне и светле теме, потребно је да дозволите приступ локацији уређаја да одредимо време изласка и заласка сунца.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Озвездано</string>
     <string name="action_read">Читај</string>
@@ -41,6 +44,9 @@
     <string name="action_textToSpeech">Ишчитај</string>
     <string name="action_search">Претрага</string>
     <string name="action_download_articles_offline">Скини чланке за приступ и без интернета</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Скидам чланке за приступ и без интернета</string>
+    <string name="notification_download_images_offline">Скидам слике за приступ и без интернета</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Имате %d непрочитану ставку</item>
         <item quantity="few">Имате %d непрочитане ставке</item>
