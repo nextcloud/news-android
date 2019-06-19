@@ -25,6 +25,9 @@
 
     <string name="tv_showing_cached_version">キャッシュされたバージョンを表示する</string>
 
+    <string name="permission_req_location_twilight_title">ライト/ダークテーマを自動切替</string>
+    <string name="permission_req_location_twilight_text">ライトテーマとダークテーマを自動的に切り替えるには、日の出と日の入りの時間を取得するためにデバイスの位置情報を提供する必要があります。</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">スター</string>
     <string name="action_read">既読</string>
@@ -39,6 +42,9 @@
     <string name="action_textToSpeech">音声読み上げ</string>
     <string name="action_search">検索</string>
     <string name="action_download_articles_offline">オフラインで記事をダウンロード</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">オフライン利用のために記事をダウンロード中</string>
+    <string name="notification_download_images_offline">オフライン利用のために画像をダウンロード中</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">%d 個の新しい未読アイテムがあります</item>
     </plurals>
@@ -175,7 +181,7 @@
     <string name="pref_display_apptheme_dark">ダーク</string>
 
     <string name="pref_oled_mode">黒い背景</string>
-    <string name="pref_oled_mode_summary">OLEDスクリーンの暗いテーマ</string>
+    <string name="pref_oled_mode_summary">OLED画面でのダークテーマ用</string>
 
     <string name="pref_display_browser_cct">内蔵のChromeカスタムタブ</string>
     <string name="pref_display_browser_built_in">組み込みブラウザ</string>
