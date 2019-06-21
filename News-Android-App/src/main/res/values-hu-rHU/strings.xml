@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Gyorsítótárazott verzió megjelenítése</string>
 
+    <string name="permission_req_location_twilight_title">Automatikus világos/sötét téma</string>
+    <string name="permission_req_location_twilight_text">A világos és sötét témák közti váltáshoz szükséges, hogy megadja az eszköz tartózkodási helyét, hogy meg lehessen határozni a napkelte és napnyugta időpontját.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Csillagozott</string>
     <string name="action_read">Olvasás</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">Kiolvasás</string>
     <string name="action_search">Keresés</string>
     <string name="action_download_articles_offline">Cikkek letöltése offline használatra</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Cikkek letöltése offline használatra</string>
+    <string name="notification_download_images_offline">Képek letöltése offline használatra</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">%d új olvasatlan eleme van </item>
         <item quantity="other">%d új olvasatlan eleme van</item>
