@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">S\'està mostrant la versió en memòria cau</string>
 
+    <string name="permission_req_location_twilight_title">Tema Clar/Fosc automatitzat </string>
+    <string name="permission_req_location_twilight_text">Per a poder canviar automàticament entre el tema Clar i el Fosc és necessari que proporcioneu la localització geogràfica del vostre dispositiu, i així poder determinar l\'hora de la sortida i de la posta de sol.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Estrellat</string>
     <string name="action_read">Llegeix</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">De lectura</string>
     <string name="action_search">Cerca</string>
     <string name="action_download_articles_offline">Descarrega els articles fora de línia</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Baixant els articles per a ús fora de línia</string>
+    <string name="notification_download_images_offline">Baixant les imatges per a ús fora de línia</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Teniu %d ítem de notícia sense llegir</item>
         <item quantity="other">Teniu %d elements de notícies sense llegir</item>
