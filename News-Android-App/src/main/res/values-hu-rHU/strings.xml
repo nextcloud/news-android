@@ -44,8 +44,8 @@
     <string name="action_search">Keresés</string>
     <string name="action_download_articles_offline">Cikkek letöltése offline használatra</string>
     <!-- notifications -->
-    <string name="notification_download_articles_offline">Cikkek letöltése offline használatra</string>
-    <string name="notification_download_images_offline">Képek letöltése offline használatra</string>
+    <string name="notification_download_articles_offline">Cikkek letöltése kapcsolat nélküli használatra</string>
+    <string name="notification_download_images_offline">Képek letöltése kapcsolat nélküli használatra</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">%d új olvasatlan eleme van </item>
         <item quantity="other">%d új olvasatlan eleme van</item>
