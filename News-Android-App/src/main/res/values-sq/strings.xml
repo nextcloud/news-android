@@ -36,6 +36,7 @@
     <string name="action_sync_settings">Rregullime Njëkohësimi</string>
     <string name="action_add_new_feed">Shtoni prurje të re</string>
     <string name="action_textToSpeech">Lexoje</string>
+    <string name="action_search">Kërko</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Keni %d zë të palexuar</item>
         <item quantity="other">Keni %d zëra të palexuar</item>
@@ -48,6 +49,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL Prurjeje</string>
     <string name="action_add_feed">Shtoni prurje</string>
+    <string name="import_opml">Importo OPML</string>
+    <string name="export_opml">Eksporto OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Shkarko Figurën</string>
     <string name="action_img_sharelink">Ndani Lidhje Figure</string>
@@ -131,6 +136,7 @@
     <string name="pref_display_browser">Shfletues</string>
 
 
+    <string name="pref_display_font_size_d">E paracaktuar</string>
     <string name="content_desc_play">luaje</string>
     <string name="content_desc_pause">pushoje</string>
     <string name="content_desc_rewind">mbrapsht</string>
