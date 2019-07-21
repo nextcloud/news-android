@@ -74,7 +74,7 @@
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Ezabatu iturburua</string>
-    <string name="action_feed_rename">Izena aldatu iturburuari</string>
+    <string name="action_feed_rename">Aldatu izena jarioari</string>
     <string name="action_feed_move">Mugitu iturburua</string>
     <string name="feed_remove_button">Ezabatu</string>
     <string name="feed_rename_button">Berrizendatu</string>
@@ -153,7 +153,7 @@
     <string name="pref_header_about">Honi buruz</string>
     <string name="pref_license">Lizentzia</string>
     <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
-    <string name="pref_report_issue">Akats baten berri eman</string>
+    <string name="pref_report_issue">Eman akats baten berri </string>
     <string name="pref_report_issue_summary">Github kontua (doakoa) behar du</string>
     <string name="pref_contribute">Lagundu!</string>
     <string name="pref_contribute_summary">Eskuratu iturburu-kodea</string>
