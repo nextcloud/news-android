@@ -22,6 +22,8 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 
+import static com.nextcloud.android.sso.Constants.ACCOUNT_TYPE_PROD;
+
 public class TestApiModule extends ApiModule {
 
     private static final String TAG = TestApiModule.class.getCanonicalName();
@@ -41,7 +43,11 @@ public class TestApiModule extends ApiModule {
     public SharedPreferences providesSharedPreferences() {
         // Create dummy account
         String prefKey = "PREF_ACCOUNT_STRING" + DUMMY_ACCOUNT_AccountName;
-        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(DUMMY_ACCOUNT_AccountName, DUMMY_ACCOUNT_username, DUMMY_ACCOUNT_token, DUMMY_ACCOUNT_server_url);
+        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(
+                DUMMY_ACCOUNT_AccountName, DUMMY_ACCOUNT_username,
+                DUMMY_ACCOUNT_token, DUMMY_ACCOUNT_server_url,
+                ACCOUNT_TYPE_PROD
+        );
 
         UserInfo userInfo = new UserInfo.Builder()
                 .setUserId("1")
