@@ -42,6 +42,9 @@
     <string name="action_textToSpeech">Přečíst</string>
     <string name="action_search">Hledat</string>
     <string name="action_download_articles_offline">Stáhnout články pro čtení bez připojení</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Stahování článků pro čtení bez připojení</string>
+    <string name="notification_download_images_offline">Stahování obrázků pro použití bez připojení</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Máte %d novou nepřečtenou položku</item>
         <item quantity="few">Máte %d nové nepřečtené položky</item>
