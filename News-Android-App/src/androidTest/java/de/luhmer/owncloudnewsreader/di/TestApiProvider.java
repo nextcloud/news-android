@@ -22,6 +22,7 @@ import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import retrofit2.NextcloudRetrofitApiBuilder;
 
+import static com.nextcloud.android.sso.Constants.ACCOUNT_TYPE_PROD;
 import static de.luhmer.owncloudnewsreader.di.TestApiModule.DUMMY_ACCOUNT_AccountName;
 import static de.luhmer.owncloudnewsreader.di.TestApiModule.DUMMY_ACCOUNT_username;
 import static org.mockito.ArgumentMatchers.any;
@@ -67,8 +68,8 @@ public class TestApiProvider extends ApiProvider {
         }
 
         @Override
-        protected void connect() {
-            super.connect();
+        protected void connect(String type) {
+            super.connect(ACCOUNT_TYPE_PROD);
             mCallback.onConnected();
         }
 

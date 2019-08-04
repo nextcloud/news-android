@@ -252,7 +252,7 @@ public class LoginDialogActivity extends AppCompatActivity {
         Editor editor = mPrefs.edit();
         editor.putString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, importedAccount.url);
         editor.putString(SettingsActivity.EDT_PASSWORD_STRING, importedAccount.token);
-        editor.putString(SettingsActivity.EDT_USERNAME_STRING, importedAccount.username);
+        editor.putString(SettingsActivity.EDT_USERNAME_STRING, importedAccount.name);
         editor.putBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, true);
         editor.commit();
 
