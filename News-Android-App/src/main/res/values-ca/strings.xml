@@ -3,7 +3,7 @@
 
     <string name="auto_sync_string">Sincronitza automàticament</string>
     <string name="title_activity_sync_interval_selector">Selector d\'interval de sincronització</string>
-    <string name="title_activity_news_detail">DetallActivitatNotícies</string>
+    <string name="title_activity_news_detail">NotíciesDetailActivitat</string>
     <string name="empty_view_content">Cap element</string>
     <string name="toast_GettingMoreItems">Ha començat la descàrrega de més elements... Espereu si us plau.</string>
     <string name="no_wifi_available">Sense connexió Wi-Fi</string>
@@ -12,34 +12,34 @@
     <string name="widget_header">Notícies Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d ítem de notícia disponible</item>
-        <item quantity="other">%d elements de notícies disponibles</item>
+        <item quantity="other">%d nous elements disponibles</item>
     </plurals>
-    <string name="message_bar_reload">Carrega de nou</string>
+    <string name="message_bar_reload">Recarrega</string>
     <string name="allUnreadFeeds">Tots els elements no llegits</string>
     <string name="starredFeeds">Elements amb estrelles</string>
-    <string name="title_activity_new_feed">Afegeix una font nova</string>
+    <string name="title_activity_new_feed">Afegeix un nou canal</string>
 
     <string name="menu_update">Actualitza</string>
     <string name="menu_markAllAsRead">Marca-ho tot com a llegit</string>
-    <string name="menu_StartImageCaching">Baixa imatges</string>
-    <string name="menu_downloadMoreItems">Baixa més elements</string>
+    <string name="menu_StartImageCaching">Descarrega imatges</string>
+    <string name="menu_downloadMoreItems">Descarrega més elements</string>
 
     <string name="tv_showing_cached_version">S\'està mostrant la versió en memòria cau</string>
 
     <string name="permission_req_location_twilight_title">Tema Clar/Fosc automatitzat </string>
-    <string name="permission_req_location_twilight_text">Per a poder canviar automàticament entre el tema Clar i el Fosc és necessari que proporcioneu la localització geogràfica del vostre dispositiu, i així poder determinar l\'hora de la sortida i de la posta de sol.</string>
+    <string name="permission_req_location_twilight_text">Per a poder canviar automàticament entre el tema clar i el fosc és necessari que proporcioneu la localització geogràfica del vostre dispositiu, i així poder determinar l\'hora de la sortida i posta del sol.</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Estrellat</string>
     <string name="action_read">Llegeix</string>
     <string name="action_playPodacst">Reprodueix el Podcast</string>
-    <string name="action_openInBrowser">Obre en un navegador web</string>
+    <string name="action_openInBrowser">Obre-ho en un navegador web</string>
     <string name="action_Share">Comparteix</string>
     <string name="action_login">Paràmetres del servidor</string>
     <string name="action_save">Desa</string>
     <string name="action_settings">Paràmetres</string>
     <string name="action_sync_settings">Opcions de sincronització</string>
-    <string name="action_add_new_feed">Afegeix una font nova</string>
+    <string name="action_add_new_feed">Afegeix un nou canal</string>
     <string name="action_textToSpeech">De lectura</string>
     <string name="action_search">Cerca</string>
     <string name="action_download_articles_offline">Descarrega els articles fora de línia</string>
@@ -48,16 +48,16 @@
     <string name="notification_download_images_offline">S\'estan baixant les imatges per a ús fora de línia</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Teniu %d ítem de notícia sense llegir</item>
-        <item quantity="other">Teniu %d elements de notícies sense llegir</item>
+        <item quantity="other">Teniu %d elements sense llegir</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d ítem de notícia sense llegir disponible</item>
-        <item quantity="other">%d elements de notícies sense llegir disponibles</item>
+        <item quantity="other">%d elements sense llegir disponibles</item>
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">URL font</string>
-    <string name="action_add_feed">Afegeix font</string>
+    <string name="hint_feed_url">URL del canal</string>
+    <string name="action_add_feed">Afegeix canal</string>
     <string name="import_opml">Importa OPML</string>
     <string name="export_opml">Exporta OPML</string>
 
@@ -70,7 +70,7 @@
     <string name="action_link_share">Comparteix l\'enllaç</string>
     <string name="action_link_open">Obre l\'enllaç al navegador</string>
     <string name="action_link_copy">Copia l\'enllaç</string>
-    <string name="toast_img_download_wait">S\'està descarregant... si us plau, espereu</string>
+    <string name="toast_img_download_wait">S\'està descarregant... espereu si us plau</string>
     <string name="toast_img_saved">S\'ha desat la imatge</string>
     <string name="toast_img_notwriteable">No s\'ha pogut escriure la imatge.</string>
     <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
@@ -79,13 +79,13 @@
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">Suprimeix la font</string>
-    <string name="action_feed_rename">Reanomena la font</string>
-    <string name="action_feed_move">Mou la font</string>
+    <string name="action_feed_remove">Suprimeix el canal</string>
+    <string name="action_feed_rename">Reanomena el canal</string>
+    <string name="action_feed_move">Mou el canal</string>
     <string name="feed_remove_button">Suprimeix</string>
-    <string name="feed_rename_button">Canvia el nom</string>
-    <string name="confirm_feed_remove">Segur que voleu eliminar aquesta font? Això no es podrà desfer!</string>
-    <string name="feed_move_list_description">Selecciona la carpeta per moure-hi la font</string>
+    <string name="feed_rename_button">Reanomena</string>
+    <string name="confirm_feed_remove">Segur que voleu suprimir aquest Canal? Això no es podrà desfer!</string>
+    <string name="feed_move_list_description">Selecciona la carpeta per moure-hi el canal</string>
     <string name="move_feed_root_folder">Carpeta arrel</string>
 
     <!-- Strings related to login -->
@@ -122,7 +122,7 @@
 
     <!-- General settings -->
     <string name="pref_header_general">General</string>
-    <string name="pref_title_general_sort_order">Ordena</string>
+    <string name="pref_title_general_sort_order">Ordre</string>
 
     <string name="pref_general_sort_order_new_old">Nou -> Antic</string>
     <string name="pref_general_sort_order_old_new">Antic -> Nou</string>
@@ -132,7 +132,7 @@
     <string name="pref_general_search_in_title">Títol</string>
     <string name="pref_general_search_in_body">Cos</string>
 
-    <string name="dialog_clearing_cache">S\'està suprimint la memòria cau</string>
+    <string name="dialog_clearing_cache">S\'està netejant la memòria cau</string>
     <string name="dialog_clearing_cache_please_wait">S\'està netejant la memòria cau... Espereu si us plau.</string>
     <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu suprimir la memòria cau igualment?</string>
     <string name="warning">Avís</string>
@@ -143,7 +143,7 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
     <string name="pref_title_OpenInBrowserDirectly">Omet la vista detallada i obre l\'article dins del navegador</string>
 
-    <string name="dialog_feature_not_available">Aquesta funcionalitat no és disponible en aquesta versió d\'App (de codi font obert). Si voleu fer servir aquesta funcionalitat, si us plau descarregueu-vos l\'App del repositori GitHub o del Google Play Store</string>
+    <string name="dialog_feature_not_available">Aquesta funcionalitat no és disponible en aquesta versió de l\'aplicació (de codi font obert). Si voleu fer servir aquesta funcionalitat, si us plau descarregueu-vos l\'Aplicació del repositori GitHub o del Google Play Store</string>
 
 
     <!-- MemorizingTrustManager -->
@@ -168,13 +168,13 @@
     <string name="pref_report_issue_summary">Es requereix un compte (gratuït) de GitHub</string>
     <string name="pref_contribute">Contribuïu!</string>
     <string name="pref_contribute_summary">Obteniu el codi font</string>
-    <string name="pref_version">App Android de notícies de Nextcloud</string>
+    <string name="pref_version">Aplicació Android de notícies de Nextcloud</string>
 
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Pantalla</string>
     <string name="pref_title_app_theme">Tema</string>
-    <string name="pref_title_feed_list_layout">Format de llista de fonts</string>
+    <string name="pref_title_feed_list_layout">Format de llista de canals</string>
     <string name="pref_title_font_size">Mida de la lletra</string>
     <string name="pref_display_browser">Navegador</string>
 
@@ -206,7 +206,7 @@
     <string name="pref_display_font_size_xl">Molt gran</string>
 
     <string name="content_desc_play">reprodueix</string>
-    <string name="content_desc_pause">atura</string>
+    <string name="content_desc_pause">pausa</string>
     <string name="content_desc_playback_speed">velocitat de reproducció</string>
     <string name="content_desc_rewind">rebobina</string>
     <string name="content_desc_forward">endavant</string>
@@ -219,7 +219,7 @@
     <string name="content_desc_remove_from_favorites">suprimeix dels favorits</string>
     <string name="content_desc_show_password">mostra la contrasenya</string>
     <string name="content_desc_delete">suprimeix</string>
-    <string name="content_desc_download">baixa</string>
+    <string name="content_desc_download">descarrega</string>
 
 
     <!-- Settings for Notifications -->
