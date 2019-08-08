@@ -23,6 +23,7 @@
 
     <string name="tv_showing_cached_version">Näytetään välimuistissa oleva versio</string>
 
+    <string name="permission_req_location_twilight_title">Automaattinan vaalea tai tumma teema</string>
     <!-- Action Bar Items -->
     <string name="action_starred">Varustettu tähdellä</string>
     <string name="action_read">Luku</string>
@@ -177,7 +178,7 @@
     <string name="pref_display_font_size_l">Suuri</string>
     <string name="pref_display_font_size_xl">Erittäin suuri</string>
 
-    <string name="content_desc_play">toistsa</string>
+    <string name="content_desc_play">toista</string>
     <string name="content_desc_pause">keskeytä</string>
     <string name="content_desc_playback_speed">toistonopeus</string>
     <string name="content_desc_expand">laajenna</string>
@@ -212,15 +213,15 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Wifi- ja mobiilidatayhteydellä</string>
     <string name="pref_data_sync_image_cache_ask">Kysy kun ei yhteyttä wifiin</string>
 
-    <string name="array_sync_interval_min_5">5 Minuuttia</string>
-    <string name="array_sync_interval_min_15">15 Minuuttia</string>
-    <string name="array_sync_interval_min_30">30 Minuuttia</string>
-    <string name="array_sync_interval_min_45">45 Minuuttia</string>
-    <string name="array_sync_interval_hour_1">1 Tunti</string>
-    <string name="array_sync_interval_hour_2">2 Tuntia</string>
+    <string name="array_sync_interval_min_5">5 minuuttia</string>
+    <string name="array_sync_interval_min_15">15 minuuttia</string>
+    <string name="array_sync_interval_min_30">30 minuuttia</string>
+    <string name="array_sync_interval_min_45">45 minuuttia</string>
+    <string name="array_sync_interval_hour_1">1 tunti</string>
+    <string name="array_sync_interval_hour_2">2 tuntia</string>
     <string name="array_sync_interval_hour_3">3 tuntia</string>
-    <string name="array_sync_interval_hour_6">6 Tuntia</string>
-    <string name="array_sync_interval_hour_12">12 Tuntia</string>
-    <string name="array_sync_interval_hour_24">24 Tuntia</string>
+    <string name="array_sync_interval_hour_6">6 tuntia</string>
+    <string name="array_sync_interval_hour_12">12 tuntia</string>
+    <string name="array_sync_interval_hour_24">24 tuntia</string>
 
     </resources>
