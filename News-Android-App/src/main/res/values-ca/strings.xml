@@ -100,7 +100,7 @@
     <string name="login_progress_signing_in">S\'està iniciant la sessió...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Aquest camp és obligatori</string>
-    <string name="error_invalid_url">URL incorrecta</string>
+    <string name="error_invalid_url">L\'URL és incorrecte</string>
 
 
     <!-- Toast Messages -->
