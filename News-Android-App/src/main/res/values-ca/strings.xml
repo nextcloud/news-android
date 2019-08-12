@@ -16,7 +16,7 @@
     </plurals>
     <string name="message_bar_reload">Recarrega</string>
     <string name="allUnreadFeeds">Tots els elements no llegits</string>
-    <string name="starredFeeds">Elements amb estrelles</string>
+    <string name="starredFeeds">Elements destacats</string>
     <string name="title_activity_new_feed">Afegeix un nou canal</string>
 
     <string name="menu_update">Actualitza</string>
@@ -30,7 +30,7 @@
     <string name="permission_req_location_twilight_text">Per a poder canviar automàticament entre el tema clar i el fosc és necessari que proporcioneu la localització geogràfica del vostre dispositiu, i així poder determinar l\'hora de la sortida i posta del sol.</string>
 
     <!-- Action Bar Items -->
-    <string name="action_starred">Estrellat</string>
+    <string name="action_starred">Destacat</string>
     <string name="action_read">Llegeix</string>
     <string name="action_playPodacst">Reprodueix el Podcast</string>
     <string name="action_openInBrowser">Obre-ho en un navegador web</string>
