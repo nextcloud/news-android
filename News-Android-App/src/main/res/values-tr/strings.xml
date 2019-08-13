@@ -175,7 +175,7 @@
     <string name="pref_header_display">Görüntüle</string>
     <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>
-    <string name="pref_title_font_size">Metin boyutu</string>
+    <string name="pref_title_font_size">Yazı boyutu</string>
     <string name="pref_display_browser">Tarayıcı</string>
 
 
