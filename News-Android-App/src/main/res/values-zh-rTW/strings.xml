@@ -25,6 +25,9 @@
 
     <string name="tv_showing_cached_version">顯示快取的版本</string>
 
+    <string name="permission_req_location_twilight_title">自動切換明/暗主題</string>
+    <string name="permission_req_location_twilight_text">為了自動切換亮色與暗色主題，請提供裝置位置，以便取得日出日落時間</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">星號</string>
     <string name="action_read">已讀</string>
@@ -38,6 +41,10 @@
     <string name="action_add_new_feed">加入新訂閱</string>
     <string name="action_textToSpeech">讀出</string>
     <string name="action_search">搜尋</string>
+    <string name="action_download_articles_offline">下載離線文章</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">下載文章供離線使用</string>
+    <string name="notification_download_images_offline">下載影像供離線使用</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">您有 %d 個新的未讀項目</item>
     </plurals>
@@ -48,6 +55,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">新增訂閱</string>
+    <string name="import_opml">匯入OPML格式</string>
+    <string name="export_opml">匯出OPML格式</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">下載圖片</string>
     <string name="action_img_sharelink">分享圖片連結</string>
@@ -108,6 +119,11 @@
 
     <string name="pref_general_sort_order_new_old">新 -> 舊</string>
     <string name="pref_general_sort_order_old_new">舊 -> 新</string>
+
+    <string name="pref_title_general_search_in">搜尋</string>
+
+    <string name="pref_general_search_in_title">標題</string>
+    <string name="pref_general_search_in_body">內文</string>
 
     <string name="dialog_clearing_cache">正在清除快取</string>
     <string name="dialog_clearing_cache_please_wait">正在清除快取…請稍候</string>
