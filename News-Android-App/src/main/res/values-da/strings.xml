@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Viser version fra midlertidigt lager</string>
 
+    <string name="permission_req_location_twilight_title">Automatisk lys/mørk tema</string>
+    <string name="permission_req_location_twilight_text">For automatisk at kunne skifte mellem det lyse og mørke tema er det nødvendigt at kende lokationen for din device for således at kunne fastslå tidspunkt for solnedgang og solopgang.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Stjernemarkéret</string>
     <string name="action_read">Læst</string>
@@ -38,7 +41,11 @@
     <string name="action_sync_settings">Synkroniseringsindstillinger</string>
     <string name="action_add_new_feed">Tilføj nyt feed</string>
     <string name="action_textToSpeech">Læs højt</string>
+    <string name="action_search">Søg</string>
     <string name="action_download_articles_offline">Hent artikler offline</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Henter artikler til offline brug</string>
+    <string name="notification_download_images_offline">Henter billeder til offline brug</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Du har %d nyt, ulæst element</item>
         <item quantity="other">Du har %d nye, ulæste elementer</item>
@@ -51,6 +58,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Tilføj feed</string>
+    <string name="import_opml">Importer OPML</string>
+    <string name="export_opml">Eksporter OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Download billede</string>
     <string name="action_img_sharelink">Del Billedlink</string>
@@ -77,6 +88,9 @@
     <string name="feed_move_list_description">Vælg mappe at flytte strøm til </string>
     <string name="move_feed_root_folder">Rodmappe</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Manuel login</string>
+    <string name="login_sso">Login ved hjælp af Nextcloud Files app\'en</string>
     <string name="pref_title_username">Brugernavn</string>
     <string name="pref_title_password">Kodeord</string>
     <string name="pref_title_owncloudRootPath">rodadressen for ownCloud</string>
