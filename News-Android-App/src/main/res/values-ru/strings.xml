@@ -28,6 +28,9 @@
 
     <string name="tv_showing_cached_version">Показана версия из кэша</string>
 
+    <string name="permission_req_location_twilight_title">Автоматическое переключение Светлой / Темной темы оформления</string>
+    <string name="permission_req_location_twilight_text">Для того, чтобы автоматически переключаться между светлой и темной темой, необходимо предоставить месторасположение устройства для определения времени восхода и захода солнца.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Избранное</string>
     <string name="action_read">Читать</string>
@@ -42,6 +45,9 @@
     <string name="action_textToSpeech">Зачитать вслух</string>
     <string name="action_search">Искать</string>
     <string name="action_download_articles_offline">Сохранить статьи для автономного доступа</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Сохранить статьи для автономного использования</string>
+    <string name="notification_download_images_offline">Сохранить картинки для автономного использования</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">У Вас есть %d новый элемент</item>
         <item quantity="few">У Вас есть %d новых элемента</item>
@@ -167,8 +173,14 @@
     <!-- Settings for About -->
     <string name="pref_header_about">О нас</string>
     <string name="pref_license">Лицензия</string>
+    <string name="pref_license_summary">Открытое лицензионное соглашение GNU Affero (AGPL), версия 3</string>
     <string name="pref_report_issue">Сообщить о проблеме</string>
+    <string name="pref_report_issue_summary">Требуется (бесплатный) аккаунт GitHub</string>
+    <string name="pref_contribute">Внесите свой вклад!</string>
     <string name="pref_contribute_summary">Получить исходный код</string>
+    <string name="pref_version">Приложение Nextcloud Новости для Android</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Экран</string>
     <string name="pref_title_app_theme">Стиль оформления</string>
@@ -192,6 +204,7 @@
 
     <string name="pref_display_feed_list_layout_thumbnails">Миниатюры</string>
     <string name="pref_display_feed_list_layout_simple_text">Простой текст</string>
+    <string name="pref_display_feed_list_layout_headlines">Заголовки</string>
     <string name="pref_display_feed_list_layout_full_text">Полный текст</string>
     <string name="pref_display_feed_list_layout_web_layout">Веб-макет</string>
     <string name="pref_display_feed_list_layout_card_view">Просмотр карточек</string>

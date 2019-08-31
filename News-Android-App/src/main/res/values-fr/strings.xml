@@ -36,7 +36,7 @@
     <string name="action_openInBrowser">Afficher dans le navigateur internet</string>
     <string name="action_Share">Partager</string>
     <string name="action_login">Paramètres du serveur</string>
-    <string name="action_save">Sauvegarder</string>
+    <string name="action_save">Enregistrer</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_sync_settings">Paramètres de synchronisation</string>
     <string name="action_add_new_feed">Ajouter un nouveau flux</string>
