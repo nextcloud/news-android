@@ -28,9 +28,12 @@
 
     <string name="tv_showing_cached_version">Prikazana je predpomnjena različica</string>
 
+    <string name="permission_req_location_twilight_title">Samodejna Svetla/Temna tema</string>
+    <string name="permission_req_location_twilight_text">Za samodejno preklapljanje med svetlo in temno temo je zahtevan podatek o trenutnem mestu naprave za določevanje časa sončnega vzhoda in zahoda.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Označeno</string>
-    <string name="action_read">Branje</string>
+    <string name="action_read">Preberi</string>
     <string name="action_playPodacst">Predvajaj podcast</string>
     <string name="action_openInBrowser">Odpri v brskalniku</string>
     <string name="action_Share">Objavi za druge</string>
@@ -42,6 +45,9 @@
     <string name="action_textToSpeech">Preberi</string>
     <string name="action_search">Poišči</string>
     <string name="action_download_articles_offline">Prejmi prispevke</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Poteka prejemanje prispevkov za porabo brez povezave</string>
+    <string name="notification_download_images_offline">Poteka prejemanje slik za porabo brez povezave</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Na voljo je %d neprebran prispevek.</item>
         <item quantity="two">Na voljo sta %d neprebrana prispevka.</item>
