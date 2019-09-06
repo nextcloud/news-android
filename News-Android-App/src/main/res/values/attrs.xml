@@ -6,7 +6,7 @@
     <attr name="starredColor" format="color" />
     <attr name="unstarredColor" format="color" />
     <attr name="starredDrawable" format="reference" />
-
+    <attr name="openinbrowserDrawable" format="reference" />
     <attr name="markasreadDrawable" format="reference" />
 
     <attr name="tintColor" format="color" />

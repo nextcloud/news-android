@@ -6,7 +6,7 @@
             <item android:state_above_anchor="true"><color android:color="@color/markasreadColor" /></item>
         </selector>
     </item>
-    <item android:left="5dp">
-        <bitmap android:src="@drawable/ic_check_box_white" android:gravity="center_vertical|left" />
+    <item android:left="5dp" android:right="5dp">
+        <bitmap android:src="@drawable/ic_check_box_white" android:gravity="center_vertical" />
     </item>
 </layer-list>

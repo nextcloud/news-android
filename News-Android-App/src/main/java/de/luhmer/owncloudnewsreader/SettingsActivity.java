@@ -27,10 +27,11 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
-import javax.inject.Inject;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import javax.inject.Inject;
+
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 /**
@@ -87,6 +88,10 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String SP_SORT_ORDER = "sp_sort_order";
     public static final String SP_DISPLAY_BROWSER = "sp_display_browser";
     public static final String SP_SEARCH_IN = "sp_search_in";
+    public static final String SP_SWIPE_RIGHT_ACTION = "sp_swipe_right_action";
+    public static final String SP_SWIPE_LEFT_ACTION = "sp_swipe_left_action";
+    public static final String SP_SWIPE_RIGHT_ACTION_DEFAULT = "1";
+    public static final String SP_SWIPE_LEFT_ACTION_DEFAULT = "2";
 
     public static final String CB_VERSION = "cb_version";
 
