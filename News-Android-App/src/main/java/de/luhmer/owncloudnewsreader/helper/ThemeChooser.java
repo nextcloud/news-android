@@ -54,7 +54,7 @@ public class ThemeChooser {
             case 0: // Auto (Light / Dark)
                 Log.v(TAG, "Auto (Light / Dark)");
                 act.setTheme(R.style.AppTheme);
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_TIME);
                 mSelectedTheme = THEME.LIGHT;
                 break;
             case 1: // Light Theme
@@ -73,7 +73,7 @@ public class ThemeChooser {
                 // This should never happen - just in case.. use the light theme..
                 Log.v(TAG, "Default");
                 act.setTheme(R.style.AppTheme);
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_TIME);
                 mSelectedTheme = THEME.LIGHT;
                 break;
         }
