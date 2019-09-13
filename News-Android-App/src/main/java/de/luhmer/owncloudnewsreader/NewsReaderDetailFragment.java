@@ -43,6 +43,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
@@ -100,6 +101,8 @@ public class NewsReaderDetailFragment extends Fragment {
     private Long idFeed;
     private Drawable leftSwipeDrawable;
     private Drawable rightSwipeDrawable;
+    private String prevLeftAction = "";
+    private String prevRightAction = "";
     private int accentColor;
     private Parcelable layoutManagerSavedState;
 
@@ -421,27 +424,34 @@ public class NewsReaderDetailFragment extends Fragment {
 
         ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, new int[]{R.attr.colorAccent});
+        TypedArray styledAttributes = context.obtainStyledAttributes(attrs, new int[]{R.attr.colorAccent});
         updateSwipeDrawables(true);
         int color = Constants.isNextCloud(mPrefs) ? R.color.nextcloudBlue : R.color.owncloudBlue;
-        accentColor = a.getColor(2, ContextCompat.getColor(context, color));
-        a.recycle();
+        accentColor = styledAttributes.getColor(2, ContextCompat.getColor(context, color));
+        styledAttributes.recycle();
     }
 
-    private String prevLeftAction = "";
-    private String prevRightAction = "";
-    private void updateSwipeDrawables(boolean always) {
+    /**
+     *
+     * @param forceUpdate force swipe drawables to be reloaded
+     */
+    private void updateSwipeDrawables(boolean forceUpdate) {
         String leftAction  = mPrefs.getString(SP_SWIPE_LEFT_ACTION, SP_SWIPE_LEFT_ACTION_DEFAULT);
         String rightAction = mPrefs.getString(SP_SWIPE_RIGHT_ACTION, SP_SWIPE_RIGHT_ACTION_DEFAULT);
-        if (!always && leftAction.equals(prevLeftAction) && rightAction.equals(prevRightAction))
+
+        if (!forceUpdate && leftAction.equals(prevLeftAction) && rightAction.equals(prevRightAction)) {
             return;
+        }
+
         prevLeftAction  = leftAction;
         prevRightAction = rightAction;
         int leftId  = getLayoutId(leftAction);
         int rightId = getLayoutId(rightAction);
-        TypedArray a = getContext().obtainStyledAttributes(new int[]{leftId, rightId});
-        leftSwipeDrawable = a.getDrawable(0);
-        rightSwipeDrawable = a.getDrawable(1);
+
+        TypedArray styledAttributes = getContext().obtainStyledAttributes(new int[]{leftId, rightId});
+        leftSwipeDrawable = styledAttributes.getDrawable(0);
+        rightSwipeDrawable = styledAttributes.getDrawable(1);
+        styledAttributes.recycle();
     }
 
     private int getLayoutId(String action) {
