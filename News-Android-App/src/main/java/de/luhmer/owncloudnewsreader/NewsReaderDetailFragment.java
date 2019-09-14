@@ -22,11 +22,13 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -70,6 +72,10 @@ import io.reactivex.observers.DisposableObserver;
 
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION_DEFAULT;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION_DEFAULT;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -92,8 +98,10 @@ public class NewsReaderDetailFragment extends Fragment {
     SwipeRefreshLayout swipeRefresh;
 
     private Long idFeed;
-    private Drawable markAsReadDrawable;
-    private Drawable starredDrawable;
+    private Drawable leftSwipeDrawable;
+    private Drawable rightSwipeDrawable;
+    private String prevLeftAction = "";
+    private String prevRightAction = "";
     private int accentColor;
     private Parcelable layoutManagerSavedState;
 
@@ -200,6 +208,8 @@ public class NewsReaderDetailFragment extends Fragment {
             refreshCurrentRssView();
         }
         onResumeCount++;
+
+        updateSwipeDrawables(false);
 
         super.onResume();
     }
@@ -413,12 +423,45 @@ public class NewsReaderDetailFragment extends Fragment {
 
         ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, new int[]{R.attr.markasreadDrawable, R.attr.starredDrawable, R.attr.colorAccent});
-        markAsReadDrawable = a.getDrawable(0);
-        starredDrawable = a.getDrawable(1);
+        TypedArray styledAttributes = context.obtainStyledAttributes(attrs, new int[]{R.attr.colorAccent});
+        updateSwipeDrawables(true);
         int color = Constants.isNextCloud(mPrefs) ? R.color.nextcloudBlue : R.color.owncloudBlue;
-        accentColor = a.getColor(2, ContextCompat.getColor(context, color));
-        a.recycle();
+        accentColor = styledAttributes.getColor(2, ContextCompat.getColor(context, color));
+        styledAttributes.recycle();
+    }
+
+    /**
+     *
+     * @param forceUpdate force swipe drawables to be reloaded
+     */
+    private void updateSwipeDrawables(boolean forceUpdate) {
+        String leftAction  = mPrefs.getString(SP_SWIPE_LEFT_ACTION, SP_SWIPE_LEFT_ACTION_DEFAULT);
+        String rightAction = mPrefs.getString(SP_SWIPE_RIGHT_ACTION, SP_SWIPE_RIGHT_ACTION_DEFAULT);
+
+        if (!forceUpdate && leftAction.equals(prevLeftAction) && rightAction.equals(prevRightAction)) {
+            return;
+        }
+
+        prevLeftAction  = leftAction;
+        prevRightAction = rightAction;
+        int leftId  = getLayoutId(leftAction);
+        int rightId = getLayoutId(rightAction);
+
+        TypedArray styledAttributes = getContext().obtainStyledAttributes(new int[]{leftId, rightId});
+        leftSwipeDrawable = styledAttributes.getDrawable(0);
+        rightSwipeDrawable = styledAttributes.getDrawable(1);
+        styledAttributes.recycle();
+    }
+
+    private int getLayoutId(String action) {
+        switch (action) {
+            case "0": return R.attr.openinbrowserDrawable;
+            case "1": return R.attr.starredDrawable;
+            case "2": return R.attr.markasreadDrawable;
+            default:
+                Log.e(TAG, "Invalid option saved to prefs. This should not happen");
+                return Integer.MAX_VALUE;
+        }
     }
 
     @Override
@@ -551,11 +594,27 @@ public class NewsReaderDetailFragment extends Fragment {
         public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int direction) {
             final NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
 
-            if (direction == ItemTouchHelper.LEFT) {
-                adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
-            } else if (direction == ItemTouchHelper.RIGHT) {
-                adapter.toggleStarredStateOfItem((ViewHolder) viewHolder);
-                //adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
+            String swipeAction;
+            if (direction == ItemTouchHelper.LEFT)
+                swipeAction = mPrefs.getString(SP_SWIPE_LEFT_ACTION, SP_SWIPE_LEFT_ACTION_DEFAULT);
+            else
+                swipeAction = mPrefs.getString(SP_SWIPE_RIGHT_ACTION, SP_SWIPE_RIGHT_ACTION_DEFAULT);
+            switch (swipeAction) {
+                case "0": // Open link in browser and mark as read
+                    String currentUrl = ((ViewHolder) viewHolder).getRssItem().getLink();
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
+                    startActivity(browserIntent);
+                    adapter.changeReadStateOfItem((ViewHolder) viewHolder, true);
+                    break;
+                case "1": // Star
+                    adapter.toggleStarredStateOfItem((ViewHolder) viewHolder);
+                    break;
+                case "2": // Read
+                    adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
+                    break;
+                default:
+                    Log.e(TAG, "Swipe preferences has an invalid value");
+                    break;
             }
             // Hack to reset view, see https://code.google.com/p/android/issues/detail?id=175798
             recyclerView.removeView(viewHolder.itemView);
@@ -572,10 +631,10 @@ public class NewsReaderDetailFragment extends Fragment {
                 float fractionMoved = Math.abs(dX / viewHolder.itemView.getMeasuredWidth());
                 Drawable drawable;
                 if (dX < 0) {
-                    drawable = markAsReadDrawable;
+                    drawable = leftSwipeDrawable;
                     viewRect.left = (int) dX + viewRect.right;
                 } else {
-                    drawable = starredDrawable;
+                    drawable = rightSwipeDrawable;
                     viewRect.right = (int) dX - viewRect.left;
                 }
 

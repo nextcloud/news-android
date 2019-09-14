@@ -3,10 +3,10 @@
     <item>
         <selector>
             <item android:state_above_anchor="false"><color android:color="@color/swipeBackground" /></item>
-            <item android:state_above_anchor="true"><color android:color="@color/starredColor" /></item>
+            <item android:state_above_anchor="true"><color android:color="@color/colorPrimary" /></item>
         </selector>
     </item>
-    <item android:right="5dp" android:left="5dp">
-        <bitmap android:src="@drawable/ic_action_star_dark" android:gravity="center_vertical" />
+    <item android:left="5dp" android:right="5dp" >
+        <bitmap android:src="@drawable/ic_action_open_in_browser" android:gravity="center_vertical" />
     </item>
 </layer-list>

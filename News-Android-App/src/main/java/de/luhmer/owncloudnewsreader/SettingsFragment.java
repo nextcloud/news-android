@@ -12,9 +12,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.DialogPreference;
@@ -22,6 +19,10 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.TwoStatePreference;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
@@ -47,6 +48,8 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_FONT_SIZE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_MAX_CACHE_SIZE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SEARCH_IN;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SORT_ORDER;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -240,6 +243,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SORT_ORDER));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SEARCH_IN));
+        bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SWIPE_RIGHT_ACTION));
+        bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SWIPE_LEFT_ACTION));
     }
 
     private void bindDataSyncPreferences(final PreferenceFragmentCompat prefFrag)

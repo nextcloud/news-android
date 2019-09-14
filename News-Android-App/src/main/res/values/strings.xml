@@ -133,6 +133,20 @@
     <string name="pref_general_sort_order_new_old">New -> Old</string>
     <string name="pref_general_sort_order_old_new">Old -> New</string>
 
+    <string-array name="pref_general_swipe_action">
+        <item>@string/action_openInBrowser</item>
+        <item>@string/action_starred</item>
+        <item>@string/action_read</item>
+    </string-array>
+    <string-array name="pref_general_swipe_action_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    
+    <string name="pref_rename_action_swipe_right">Action when swiping right</string>
+    <string name="pref_rename_action_swipe_left">Action when swiping left</string>
+
     <string-array name="pref_general_sort_order" translatable="false">
         <item>@string/pref_general_sort_order_new_old</item>
         <item>@string/pref_general_sort_order_old_new</item>
