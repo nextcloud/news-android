@@ -594,15 +594,12 @@ public class NewsReaderDetailFragment extends Fragment {
         public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int direction) {
             final NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) recyclerView.getAdapter();
 
-            String prefName, defValue;
-            if (direction == ItemTouchHelper.LEFT) {
-                prefName = SP_SWIPE_LEFT_ACTION;
-                defValue = SP_SWIPE_LEFT_ACTION_DEFAULT;
-            } else {
-                prefName = SettingsActivity.SP_SWIPE_RIGHT_ACTION;
-                defValue = SP_SWIPE_RIGHT_ACTION_DEFAULT;
-            }
-            switch (mPrefs.getString(prefName, defValue)) {
+            String swipeAction;
+            if (direction == ItemTouchHelper.LEFT)
+                swipeAction = mPrefs.getString(SP_SWIPE_LEFT_ACTION, SP_SWIPE_LEFT_ACTION_DEFAULT);
+            else
+                swipeAction = mPrefs.getString(SP_SWIPE_RIGHT_ACTION, SP_SWIPE_RIGHT_ACTION_DEFAULT);
+            switch (swipeAction) {
                 case "0": // Open link in browser and mark as read
                     String currentUrl = ((ViewHolder) viewHolder).getRssItem().getLink();
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
@@ -615,6 +612,8 @@ public class NewsReaderDetailFragment extends Fragment {
                 case "2": // Read
                     adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
                     break;
+                default:
+                    Log.e(TAG, "Swipe preferences has an invalid value");
             }
             // Hack to reset view, see https://code.google.com/p/android/issues/detail?id=175798
             recyclerView.removeView(viewHolder.itemView);
