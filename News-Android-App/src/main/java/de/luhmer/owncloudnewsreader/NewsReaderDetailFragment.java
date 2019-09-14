@@ -614,6 +614,7 @@ public class NewsReaderDetailFragment extends Fragment {
                     break;
                 default:
                     Log.e(TAG, "Swipe preferences has an invalid value");
+                    break;
             }
             // Hack to reset view, see https://code.google.com/p/android/issues/detail?id=175798
             recyclerView.removeView(viewHolder.itemView);
