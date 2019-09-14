@@ -88,7 +88,7 @@
             android:entries="@array/pref_general_swipe_action"
             android:entryValues="@array/pref_general_swipe_action_values"
             android:key="sp_swipe_right_action"
-            android:title="Action when swiping right"
+            android:title="@string/pref_rename_action_swipe_right"
             app:iconSpaceReserved="false"/>
 
         <ListPreference
@@ -96,7 +96,7 @@
             android:entries="@array/pref_general_swipe_action"
             android:entryValues="@array/pref_general_swipe_action_values"
             android:key="sp_swipe_left_action"
-            android:title="Action when swiping left"
+            android:title="@string/pref_rename_action_swipe_left"
             app:iconSpaceReserved="false"/>
 
         <ListPreference
