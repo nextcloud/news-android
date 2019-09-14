@@ -42,5 +42,12 @@
         android:background="@color/material_red_600"
         android:visibility="gone" />
 
+    <Button
+        android:id="@+id/btn_disable_incognito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disable Incognito"
+        android:layout_alignParentBottom="true" />
+
 
 </RelativeLayout>
