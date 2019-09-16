@@ -133,7 +133,7 @@
     <string name="pref_general_sort_order_new_old">New -> Old</string>
     <string name="pref_general_sort_order_old_new">Old -> New</string>
 
-    <string-array name="pref_general_swipe_action">
+    <string-array name="pref_general_swipe_action" translatable="false">
         <item>@string/action_openInBrowser</item>
         <item>@string/action_starred</item>
         <item>@string/action_read</item>
