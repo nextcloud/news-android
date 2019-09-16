@@ -127,6 +127,14 @@
     <string name="pref_general_sort_order_new_old">Neu -> Alt</string>
     <string name="pref_general_sort_order_old_new">Alt -> Neu</string>
 
+    <string-array name="pref_general_swipe_action">
+        <item>@string/action_openInBrowser</item>
+        <item>@string/action_starred</item>
+        <item>@string/action_read</item>
+    </string-array>
+    <string name="pref_rename_action_swipe_right">Aktion beim Wischen nach rechts</string>
+    <string name="pref_rename_action_swipe_left">Aktion beim Wischen nach links</string>
+
     <string name="pref_title_general_search_in">Suche in</string>
 
     <string name="pref_general_search_in_title">Titel</string>

@@ -92,7 +92,7 @@
     <string name="feed_rename_button">Zmień nazwę</string>
     <string name="confirm_feed_remove">Czy na pewno chcesz usunąć ten kanał? Operacja jest nieodwracalna!</string>
     <string name="feed_move_list_description">Wybierz katalog, aby przenieść dane</string>
-    <string name="move_feed_root_folder">Główny folder</string>
+    <string name="move_feed_root_folder">Główny katalog</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Ręczne logowanie</string>
@@ -136,6 +136,14 @@
 
     <string name="pref_general_sort_order_new_old">Nowe -> Stare</string>
     <string name="pref_general_sort_order_old_new">Stare -> Nowe</string>
+
+    <string-array name="pref_general_swipe_action">
+        <item>Otwórz w przeglądarce internetowej</item>
+        <item>Oznacz</item>
+        <item>Czytaj</item>
+    </string-array>
+    <string name="pref_rename_action_swipe_right">Działanie po przesunięciu w prawo</string>
+    <string name="pref_rename_action_swipe_left">Działanie po przesunięciu w lewo</string>
 
     <string name="pref_title_general_search_in">Wyszukaj w</string>
 
