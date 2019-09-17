@@ -127,11 +127,6 @@
     <string name="pref_general_sort_order_new_old">Yeniden -> Eskiye</string>
     <string name="pref_general_sort_order_old_new">Eskiden -> Yeniye</string>
 
-    <string-array name="pref_general_swipe_action">
-        <item>@string/action_openInBrowser</item>
-        <item>@string/action_starred</item>
-        <item>@string/action_read</item>
-    </string-array>
     <string name="pref_rename_action_swipe_right">Sağa kaydırma işlemi</string>
     <string name="pref_rename_action_swipe_left">Sola kaydırma işlemi</string>
 
