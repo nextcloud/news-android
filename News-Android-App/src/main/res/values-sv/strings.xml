@@ -9,7 +9,7 @@
     <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
     <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
     <string name="current_version">Du använder Version %s</string>
-    <string name="widget_header">ownCloud nyheter</string>
+    <string name="widget_header">Nextcloud nyheter</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d ny artikel tillgänglig</item>
         <item quantity="other">%d nya artiklar tillgängliga</item>
