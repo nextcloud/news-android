@@ -534,6 +534,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<RssItem> rssItem) {
+            previousFirstVisibleItem = -1;
             loadRssItemsIntoView(rssItem);
 
             if (rssItem.size() < 10) { // Less than 10 items in the list (usually 3-5 items fit on one screen)
