@@ -281,6 +281,7 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     void loadRssItemsIntoView(List<RssItem> rssItems) {
+        previousFirstVisibleItem = -1;
         try {
             NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
             if (nra == null) {
@@ -534,7 +535,6 @@ public class NewsReaderDetailFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<RssItem> rssItem) {
-            previousFirstVisibleItem = -1;
             loadRssItemsIntoView(rssItem);
 
             if (rssItem.size() < 10) { // Less than 10 items in the list (usually 3-5 items fit on one screen)
