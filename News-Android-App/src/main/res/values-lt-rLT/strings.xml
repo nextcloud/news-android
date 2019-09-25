@@ -53,6 +53,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Kanalo URL</string>
     <string name="action_add_feed">Pridėti kanalą</string>
+    <string name="import_opml">Importuoti OPML</string>
+    <string name="export_opml">Eksportuoti OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Atsisiųsti paveikslą</string>
     <string name="action_img_sharelink">Bendrinti paveikslo nuorodą</string>
