@@ -90,7 +90,7 @@
 
     <!-- Strings related to login -->
     <string name="login_manual">Acceso manual</string>
-    <string name="login_sso">Acceso empregando aplicación Ficheiros do Nextcloud</string>
+    <string name="login_sso">Acceso empregando a aplicación Ficheiros do Nextcloud</string>
     <string name="pref_title_username">Nome de usuario</string>
     <string name="pref_title_password">Contrasinal</string>
     <string name="pref_title_owncloudRootPath">Enderezo raíz do Nextcloud</string>
