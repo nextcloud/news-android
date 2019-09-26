@@ -281,6 +281,7 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     void loadRssItemsIntoView(List<RssItem> rssItems) {
+        previousFirstVisibleItem = -1;
         try {
             NewsListRecyclerAdapter nra = ((NewsListRecyclerAdapter) recyclerView.getAdapter());
             if (nra == null) {
@@ -537,6 +538,9 @@ public class NewsReaderDetailFragment extends Fragment {
             loadRssItemsIntoView(rssItem);
 
             if (rssItem.size() < 10) { // Less than 10 items in the list (usually 3-5 items fit on one screen)
+                // There is no API to check, if this listener has already been added. We don't want to
+                // add it multiple times, so we take the safe route here by removing it before adding it.
+                recyclerView.removeOnItemTouchListener(itemTouchListener);
                 recyclerView.addOnItemTouchListener(itemTouchListener);
             } else {
                 recyclerView.removeOnItemTouchListener(itemTouchListener);
