@@ -24,6 +24,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
+import static de.luhmer.owncloudnewsreader.NewsDetailActivity.INCOGNITO_MODE_ENABLED;
 import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.THEME;
 
 
@@ -84,6 +85,8 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
      * @return given RSS item as full HTML page
      */
     public static String getHtmlPage(RssItem rssItem, boolean showHeader, SharedPreferences mPrefs, boolean isRightToLeft) {
+        boolean incognitoMode = mPrefs.getBoolean(INCOGNITO_MODE_ENABLED, false);
+
         String favIconUrl = null;
 
         Feed feed = rssItem.getFeed();
@@ -122,7 +125,14 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         }
 
         String description = rssItem.getBody();
-        description = getDescriptionWithCachedImages(description).trim();
+        if(!incognitoMode) {
+            // If incognito mode is disabled, try getting images from cache
+            description = getDescriptionWithCachedImages(description).trim();
+        } else {
+            // When incognito is on, we need to provide some error handling
+            //description = description.replaceAll("<img", "<img onerror=\"this.style='width: 40px !important; height: 40px !important'\" ");
+            description = description.replaceAll("<img", "<img width=\"40px\" height=\"40px\" ");
+        }
         description = replacePatternInText(PATTERN_PRELOAD_VIDEOS_REMOVE, description, "$1 $3"); // remove whatever preload is there
         description = replacePatternInText(PATTERN_PRELOAD_VIDEOS_INSERT, description, "$1 preload=\"metadata\" $3"); // add preload attribute
         description = replacePatternInText(PATTERN_AUTOPLAY_VIDEOS_1, description, "$1 $3");

@@ -1,8 +1,8 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- SlidingUpPanelLayout doesn't work with layout_behavior, use marginTop -->
     <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
@@ -47,6 +47,21 @@
             android:layout_height="match_parent" />
 
     </de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="16dp">
+
+        <ImageButton
+            android:id="@+id/btn_disable_incognito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/incognito"/>
+
+    </LinearLayout>
+
 
     <include
         android:id="@+id/toolbar_layout"

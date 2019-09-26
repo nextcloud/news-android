@@ -42,6 +42,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -85,8 +86,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     protected @BindView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
     protected @BindView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
     protected @BindView(R.id.tv_offline_version) TextView mTvOfflineVersion;
-    protected @BindView(R.id.btn_disable_incognito) Button mBtnDisableIncognito;
-
 
     protected @Inject SharedPreferences mPrefs;
 
@@ -183,18 +182,23 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         } else {
             mWebView.restoreState(savedInstanceState);
             mProgressBarLoading.setVisibility(View.GONE);
+            // Make sure to sync the incognitio on retained views
+            syncIncognitoState();
         }
+
+
 
         setUpGestureDetector();
 
-        mBtnDisableIncognito.setOnClickListener(v -> {
-            mWebView.getSettings().setBlockNetworkLoads(false);
-            mWebView.getSettings().setBlockNetworkImage(false);
-            mWebView.reload();
-        });
-
 		return rootView;
 	}
+
+	void syncIncognitoState() {
+        NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+        boolean isIncognito = ndActivity.isIncognitoEnabled();
+        mWebView.getSettings().setBlockNetworkLoads(isIncognito);
+        mWebView.getSettings().setBlockNetworkImage(isIncognito);
+    }
 
 	@Override
     public void onSaveInstanceState(Bundle outState) {
@@ -233,7 +237,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         });
     }
 
-    private void startLoadRssItemToWebViewTask() {
+    void startLoadRssItemToWebViewTask() {
         Log.d(TAG, "startLoadRssItemToWebViewTask() called");
         mWebView.setVisibility(View.GONE);
         mProgressBarLoading.setVisibility(View.VISIBLE);
@@ -304,11 +308,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         webSettings.setAppCacheEnabled(true);
         webSettings.setMediaPlaybackRequiresUserGesture(true);
 
-        //if(true) {
-        //webSettings.setLoadsImagesAutomatically(false);
-        webSettings.setBlockNetworkImage(true);
-        webSettings.setBlockNetworkLoads(true);
-        //}
+        syncIncognitoState();
 
         registerForContextMenu(mWebView);
 
@@ -411,7 +411,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                     String imgaltval;
                     String imgsrcval;
 
-                    imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
+                    imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
                     Elements imgtag = htmlDoc.getElementsByAttributeValueContaining("src", imageUrl);
 
                     try {

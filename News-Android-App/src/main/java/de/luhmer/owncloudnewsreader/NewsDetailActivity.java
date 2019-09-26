@@ -26,7 +26,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.text.Html;
 import android.util.Log;
 import android.util.SparseArray;
@@ -34,8 +36,11 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.content.ContextCompat;
@@ -58,6 +63,7 @@ import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
@@ -65,6 +71,7 @@ import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	private static final String TAG = NewsDetailActivity.class.getCanonicalName();
+	public static final String INCOGNITO_MODE_ENABLED = "INCOGNITO_MODE_ENABLED";
 	/**
 	 * The {@link PagerAdapter} that will provide
 	 * fragments for each of the sections. We use a
@@ -76,6 +83,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private SectionsPagerAdapter mSectionsPagerAdapter;
     protected @BindView(R.id.toolbar) Toolbar toolbar;
 	protected @BindView(R.id.progressIndicator) ProgressBar progressIndicator;
+	protected @BindView(R.id.btn_disable_incognito) ImageButton mBtnDisableIncognito;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -101,7 +109,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
 
-        ButterKnife.bind(this);
+		/*
+		// For Debugging the WebView using Chrome Remote Debugging
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			WebView.setWebContentsDebuggingEnabled(true);
+		}
+		*/
+
+		ButterKnife.bind(this);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -170,7 +185,21 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
         mViewPager.addOnPageChangeListener(onPageChangeListener);
-    }
+
+		mBtnDisableIncognito.setOnClickListener(v -> {
+			// toggle incognito mode
+			setIncognitoEnabled(!isIncognitoEnabled());
+
+			for(int i = currentPosition-1; i <= currentPosition+1; i++) {
+				Log.d(TAG, "change incognito for idx: " + i);
+				WeakReference<NewsDetailFragment> ndf = mSectionsPagerAdapter.items.get(i);
+				if(ndf != null) {
+					ndf.get().syncIncognitoState();
+					ndf.get().startLoadRssItemToWebViewTask();
+				}
+			}
+		});
+	}
 
 	@Override
 	protected void onDestroy() {
@@ -337,7 +366,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		menuItem_Read = menu.findItem(R.id.action_read);
         menuItem_PlayPodcast = menu.findItem(R.id.action_playPodcast);
 
-		Set<String> selections = mPrefs.getStringSet("sp_news_detail_actionbar_icons", new HashSet<String>());
+		Set<String> selections = mPrefs.getStringSet("sp_news_detail_actionbar_icons", new HashSet<>());
 		String[] selected = selections.toArray(new String[] {});
 		for(String selection : selected) {
             switch(selection) {
@@ -357,6 +386,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
         updateActionBarIcons();
+
+		initIncognitoMode();
 
 		return true;
 	}
@@ -508,6 +539,21 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		intent.putExtra("POS", mViewPager.getCurrentItem());
 		setResult(RESULT_OK, intent);
 		super.finish();
+	}
+
+	public boolean isIncognitoEnabled() {
+    	return mPrefs.getBoolean(INCOGNITO_MODE_ENABLED, false);
+	}
+
+	public void setIncognitoEnabled(boolean enabled) {
+    	mPrefs.edit().putBoolean(INCOGNITO_MODE_ENABLED, enabled).commit();
+		initIncognitoMode();
+	}
+
+	public void initIncognitoMode() {
+		int color = getResources().getColor(isIncognitoEnabled() ? R.color.material_grey_900 : R.color.colorPrimary);
+		ThemeUtils.colorizeToolbar(toolbar, color);
+		ThemeUtils.changeStatusBarColor(this, color);
 	}
 
 	/**
