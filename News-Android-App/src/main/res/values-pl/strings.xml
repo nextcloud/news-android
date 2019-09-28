@@ -75,7 +75,7 @@
     <string name="action_img_copylink">Skopiuj link obrazu</string>
     <string name="action_link_share">Udostępnij link</string>
     <string name="action_link_open">Otwórz link w przeglądarce</string>
-    <string name="action_link_copy">Skopiuj link</string>
+    <string name="action_link_copy">Kopiuj link</string>
     <string name="toast_img_download_wait">Pobieranie… proszę czekać</string>
     <string name="toast_img_saved">Zapisano obraz</string>
     <string name="toast_img_notwriteable">Błąd zapisu obrazu.</string>
