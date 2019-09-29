@@ -25,8 +25,8 @@
 
     <string name="tv_showing_cached_version">显示缓存的版本</string>
 
-    <string name="permission_req_location_twilight_title">自动化的亮色/暗色主题</string>
-    <string name="permission_req_location_twilight_text">为能在亮色和暗色主题之间自动切换，您需要提供设备位置以确定日出和日落时间。</string>
+    <string name="permission_req_location_twilight_title">自动化的浅色/深色主题</string>
+    <string name="permission_req_location_twilight_text">为能在浅色和深色主题之间自动切换，您需要提供设备位置以确定日出和日落时间。</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">已加星标</string>
@@ -179,12 +179,12 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">动作图标（详情页）</string>
 
-    <string name="pref_display_apptheme_auto">明亮 / 黑暗（基于时间）</string>
+    <string name="pref_display_apptheme_auto">浅色 / 深色（基于时间）</string>
     <string name="pref_display_apptheme_light">浅色</string>
     <string name="pref_display_apptheme_dark">深色</string>
 
     <string name="pref_oled_mode">黑色背景</string>
-    <string name="pref_oled_mode_summary">用于 OLED 屏幕的黑暗主题</string>
+    <string name="pref_oled_mode_summary">用于 OLED 屏幕的深色主题</string>
 
     <string name="pref_display_browser_cct">内置 Chrome 自定义分页</string>
     <string name="pref_display_browser_built_in">内置浏览器</string>
