@@ -10,7 +10,7 @@
         android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:gravity="bottom"
         sothree:umanoPanelHeight="68dp"
         sothree:umanoShadowHeight="4dp"
@@ -48,25 +48,6 @@
 
     </de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="16dp">
-
-        <ImageButton
-            android:id="@+id/btn_disable_incognito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/incognito"/>
-
-    </LinearLayout>
-
-
-    <include
-        android:id="@+id/toolbar_layout"
-        layout="@layout/toolbar_layout" />
-
     <de.luhmer.owncloudnewsreader.view.AnimatingProgressBar
         android:id="@+id/progressIndicator"
         android:layout_width="match_parent"
@@ -75,5 +56,19 @@
         android:layout_marginBottom="-7dp"
         android:layoutDirection="ltr"
         style="?android:attr/progressBarStyleHorizontal" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <!--
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_layout" />
+    -->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

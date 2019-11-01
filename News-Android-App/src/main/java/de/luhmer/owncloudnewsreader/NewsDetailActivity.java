@@ -21,10 +21,12 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,7 +37,10 @@ import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -50,6 +55,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.bottomappbar.BottomAppBar;
 
 import java.lang.ref.WeakReference;
 import java.util.HashSet;
@@ -81,9 +88,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * {@link FragmentStatePagerAdapter}.
 	 */
 	private SectionsPagerAdapter mSectionsPagerAdapter;
-    protected @BindView(R.id.toolbar) Toolbar toolbar;
+    //protected @BindView(R.id.toolbar) Toolbar toolbar;
+	protected @BindView(R.id.bottomAppBar) BottomAppBar bottomAppBar;
 	protected @BindView(R.id.progressIndicator) ProgressBar progressIndicator;
-	protected @BindView(R.id.btn_disable_incognito) ImageButton mBtnDisableIncognito;
+	//protected @BindView(R.id.btn_disable_incognito) ImageButton mBtnDisableIncognito;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -107,6 +115,34 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
 		super.onCreate(savedInstanceState);
+
+		/*
+		//make full transparent statusBar
+		if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+			setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
+		}
+		if (Build.VERSION.SDK_INT >= 19) {
+			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+		}
+		if (Build.VERSION.SDK_INT >= 21) {
+			setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
+		}
+
+
+		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+		*/
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+		}
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			getWindow().setStatusBarColor(Color.WHITE);
+		}
+
+
 		setContentView(R.layout.activity_news_detail);
 
 		/*
@@ -118,9 +154,16 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		ButterKnife.bind(this);
 
+		/*
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-        }
+        }*/
+		if (bottomAppBar != null) {
+			setSupportActionBar(bottomAppBar);
+		}
+
+
+		//getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 		dbConn = new DatabaseConnectionOrm(this);
 		Intent intent = getIntent();
@@ -186,19 +229,36 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
         mViewPager.addOnPageChangeListener(onPageChangeListener);
 
+        /*
 		mBtnDisableIncognito.setOnClickListener(v -> {
-			// toggle incognito mode
-			setIncognitoEnabled(!isIncognitoEnabled());
-
-			for(int i = currentPosition-1; i <= currentPosition+1; i++) {
-				Log.d(TAG, "change incognito for idx: " + i);
-				WeakReference<NewsDetailFragment> ndf = mSectionsPagerAdapter.items.get(i);
-				if(ndf != null) {
-					ndf.get().syncIncognitoState();
-					ndf.get().startLoadRssItemToWebViewTask();
-				}
-			}
+			toggleIncognitoMode();
 		});
+		*/
+	}
+
+	private void toggleIncognitoMode() {
+		// toggle incognito mode
+		setIncognitoEnabled(!isIncognitoEnabled());
+
+		for(int i = currentPosition-1; i <= currentPosition+1; i++) {
+			Log.d(TAG, "change incognito for idx: " + i);
+			WeakReference<NewsDetailFragment> ndf = mSectionsPagerAdapter.items.get(i);
+			if(ndf != null) {
+				ndf.get().syncIncognitoState();
+				ndf.get().startLoadRssItemToWebViewTask();
+			}
+		}
+	}
+
+	public static void setWindowFlag(Activity activity, final int bits, boolean on) {
+		Window win = activity.getWindow();
+		WindowManager.LayoutParams winParams = win.getAttributes();
+		if (on) {
+			winParams.flags |= bits;
+		} else {
+			winParams.flags &= ~bits;
+		}
+		win.setAttributes(winParams);
 	}
 
 	@Override
@@ -500,6 +560,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
                 startActivity(Intent.createChooser(share, "Share Item"));
                 break;
 
+			case R.id.action_incognito_mode:
+				toggleIncognitoMode();
+				break;
+
 
 		}
 
@@ -552,8 +616,12 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	public void initIncognitoMode() {
 		int color = getResources().getColor(isIncognitoEnabled() ? R.color.material_grey_900 : R.color.colorPrimary);
-		ThemeUtils.colorizeToolbar(toolbar, color);
-		ThemeUtils.changeStatusBarColor(this, color);
+		//ThemeUtils.colorizeToolbar(toolbar, color);
+		ThemeUtils.colorizeToolbar(bottomAppBar, color);
+		//ThemeUtils.changeStatusBarColor(this, color);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			getWindow().setNavigationBarColor(getResources().getColor(R.color.material_grey_900));
+		}
 	}
 
 	/**
