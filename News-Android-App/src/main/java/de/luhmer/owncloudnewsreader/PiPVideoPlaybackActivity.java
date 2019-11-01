@@ -1,7 +1,9 @@
 package de.luhmer.owncloudnewsreader;
 
+import android.app.AppOpsManager;
 import android.app.PictureInPictureParams;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -49,7 +51,7 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_pip_video_playback);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && getPackageManager().hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
             //moveTaskToBack(false);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 PictureInPictureParams.Builder pictureInPictureParamsBuilder = new PictureInPictureParams.Builder();
@@ -59,9 +61,6 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
             } else {
                 enterPictureInPictureMode();
             }
-
-
-            enterPictureInPictureMode();
         } else {
             Toast.makeText(this, "This device does not support video playback.", Toast.LENGTH_LONG).show();
             finish();
