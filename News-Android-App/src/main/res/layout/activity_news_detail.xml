@@ -61,7 +61,9 @@
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:theme="@style/ToolbarTheme"
+        app:popupTheme="@style/ToolbarOptionMenuBackgroundTheme">
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 

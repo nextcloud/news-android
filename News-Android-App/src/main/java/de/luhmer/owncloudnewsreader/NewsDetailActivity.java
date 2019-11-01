@@ -45,6 +45,7 @@ import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.browser.customtabs.CustomTabsIntent;
@@ -70,15 +71,19 @@ import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
+import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.THEME;
+
 
 public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	private static final String TAG = NewsDetailActivity.class.getCanonicalName();
 	public static final String INCOGNITO_MODE_ENABLED = "INCOGNITO_MODE_ENABLED";
+
 	/**
 	 * The {@link PagerAdapter} that will provide
 	 * fragments for each of the sections. We use a
@@ -621,6 +626,41 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		//ThemeUtils.changeStatusBarColor(this, color);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			getWindow().setNavigationBarColor(getResources().getColor(R.color.material_grey_900));
+
+			switch (ThemeChooser.getSelectedTheme()) {
+				case LIGHT:
+					Log.d(TAG, "initIncognitoMode: LIGHT");
+					setLightStatusBar(getWindow().getDecorView());
+					getWindow().setStatusBarColor(Color.WHITE);
+					break;
+				case DARK:
+					clearLightStatusBar(getWindow().getDecorView());
+					Log.d(TAG, "initIncognitoMode: DARK");
+					getWindow().setStatusBarColor(getResources().getColor(R.color.material_grey_900));
+					break;
+				case OLED:
+					clearLightStatusBar(getWindow().getDecorView());
+					Log.d(TAG, "initIncognitoMode: OLED");
+					getWindow().setStatusBarColor(Color.BLACK);
+					break;
+			}
+		}
+
+	}
+
+	private void setLightStatusBar(@NonNull View view) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			int flags = view.getSystemUiVisibility(); // get current flag
+			flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;   // add LIGHT_STATUS_BAR to flag
+			view.setSystemUiVisibility(flags);
+		}
+	}
+
+	public static void clearLightStatusBar(@NonNull View view) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			int flags = view.getSystemUiVisibility();
+			flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+			view.setSystemUiVisibility(flags);
 		}
 	}
 
