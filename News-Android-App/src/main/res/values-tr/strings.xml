@@ -67,7 +67,7 @@
     <string name="action_img_sharelink">Görsel Bağlantısını Paylaş</string>
     <string name="action_img_open">Görseli Tarayıcıda Aç</string>
     <string name="action_img_copylink">Görsel Bağlantısını Kopyala</string>
-    <string name="action_link_share">Bağlantıyı Paylaş</string>
+    <string name="action_link_share">Paylaşım Bağlantısı</string>
     <string name="action_link_open">Bağlantıyı Tarayıcıda Aç</string>
     <string name="action_link_copy">Bağlantıyı Kopyala</string>
     <string name="toast_img_download_wait">İndiriliyor... Lütfen bekleyin</string>
