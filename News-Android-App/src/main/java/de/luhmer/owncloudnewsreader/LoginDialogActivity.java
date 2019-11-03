@@ -36,6 +36,7 @@ import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -321,9 +322,13 @@ public class LoginDialogActivity extends AppCompatActivity {
         } else {
             try {
                 URL url = new URL(mOc_root_path);
-                if (!url.getProtocol().equals("https"))
+                if(!Patterns.WEB_URL.matcher(mOc_root_path).matches()) {
+                    throw new MalformedURLException();
+                }
+                if (!url.getProtocol().equals("https")) {
                     ShowAlertDialog(getString(R.string.login_dialog_title_security_warning),
                             getString(R.string.login_dialog_text_security_warning), this);
+                }
             } catch (MalformedURLException e) {
                 mOc_root_path_View.setError(getString(R.string.error_invalid_url));
                 focusView = mOc_root_path_View;
