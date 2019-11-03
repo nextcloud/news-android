@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="auto_sync_string">Automatisk synkning</string>
+    <string name="auto_sync_string">Automatisk synkronisering</string>
     <string name="title_activity_sync_interval_selector">Synkronisera intervallväljaren</string>
     <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
     <string name="empty_view_content">Inga objekt här</string>
-    <string name="toast_GettingMoreItems">Nedladdning av fler objekt startade... Var god vänta.</string>
+    <string name="toast_GettingMoreItems">Nedladdning av fler objekt startade... Vänligen vänta.</string>
     <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
     <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
     <string name="current_version">Du använder Version %s</string>
@@ -21,8 +21,8 @@
 
     <string name="menu_update">Uppdatera</string>
     <string name="menu_markAllAsRead">Markera alla som lästa</string>
-    <string name="menu_StartImageCaching">Ladda ned bilder</string>
-    <string name="menu_downloadMoreItems">Ladda ned fler objekt</string>
+    <string name="menu_StartImageCaching">Hämta bilder</string>
+    <string name="menu_downloadMoreItems">Hämta fler objekt</string>
 
     <string name="tv_showing_cached_version">Visar cachad version</string>
 
@@ -38,7 +38,7 @@
     <string name="action_login">Serverinställningar</string>
     <string name="action_save">Spara</string>
     <string name="action_settings">Inställningar</string>
-    <string name="action_sync_settings">Synk inställningar</string>
+    <string name="action_sync_settings">Synkroniseringsinställningar</string>
     <string name="action_add_new_feed">Lägg till flöde</string>
     <string name="action_textToSpeech">Läs upp</string>
     <string name="action_search">Sök</string>
@@ -56,21 +56,21 @@
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">FlödesURL</string>
+    <string name="hint_feed_url">Flödeswebbadress</string>
     <string name="action_add_feed">Lägg till flöde</string>
     <string name="import_opml">Importera OPML</string>
     <string name="export_opml">Exportera OPML</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">Ladda ned bild</string>
+    <string name="action_img_download">Hämta bild</string>
     <string name="action_img_sharelink">Dela bildlänk</string>
     <string name="action_img_open">Öppna bilden i webbläsaren</string>
     <string name="action_img_copylink">Kopiera bildlänk</string>
     <string name="action_link_share">Dela länk</string>
     <string name="action_link_open">Öppna länk i webbläsaren</string>
     <string name="action_link_copy">Kopiera länk</string>
-    <string name="toast_img_download_wait">Laddar ned... var god vänta</string>
+    <string name="toast_img_download_wait">Hämtar... vänligen vänta</string>
     <string name="toast_img_saved">Bild sparad</string>
     <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
     <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
@@ -106,7 +106,7 @@
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Laddade ner %d gamla artiklar</item>
-        <item quantity="other">Laddade ned %d gamla artiklar</item>
+        <item quantity="other">Hämtade %d gamla artiklar</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
     <plurals name="fetched_items_so_far">
@@ -134,7 +134,7 @@
 
     <string name="pref_general_search_in_title">Rubrik</string>
     <string name="dialog_clearing_cache">Rensar cache</string>
-    <string name="dialog_clearing_cache_please_wait">Rensar cache, var god vänta...</string>
+    <string name="dialog_clearing_cache_please_wait">Rensar cache, vänligen vänta...</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
     <string name="warning">Varning</string>
     <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
@@ -144,7 +144,7 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
     <string name="pref_title_OpenInBrowserDirectly">Hoppa över detaljerad vy och öppna artikeln i webbläsare</string>
 
-    <string name="dialog_feature_not_available">Den här funktionen är inte tillgänglig i den här (öppen källkod) versionen av den här appen. Om du vill använda den här funktionen hämta appen från GitHub-förrådet eller hämta appen från Google Play Store.</string>
+    <string name="dialog_feature_not_available">Den här funktionen är inte tillgänglig i den här (öppen källkod) versionen av den här appen. Om du vill använda den här funktionen, vänligen hämta appen från GitHub-förrådet eller hämta appen från Google Play-butiken.</string>
 
 
     <!-- MemorizingTrustManager -->
@@ -220,11 +220,11 @@
     <string name="content_desc_remove_from_favorites">ta bort från favoriter</string>
     <string name="content_desc_show_password">visa lösenordet</string>
     <string name="content_desc_delete">radera</string>
-    <string name="content_desc_download">ladda ned</string>
+    <string name="content_desc_download">hämta</string>
 
 
     <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notifieringar</string>
+    <string name="pref_header_notifications">Aviseringar</string>
     <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
 
 
@@ -233,13 +233,13 @@
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det verkar som din nyhetsapp inte är installerad eller aktiverad på din server. Följ instruktionerna här för att konfigurera nyhetsapplikationen på din server först: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Något gick fel :(</string>
     <string name="login_dialog_text_zero_version_code">Webbnyhetsappen returnerade Version \"0\". Ta en titt på följande felrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Den här app-versionen är inte kompatibel med din Nextcloud News-app. Vänligen uppgradera nyhetsappen och appframework.</string>
+    <string name="login_dialog_text_not_compatible">Den här appversionen är inte kompatibel med din Nextcloud nyheter-app. Vänligen uppgradera nyhetsappen och appframework.</string>
     <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
     <string name="login_dialog_text_security_warning">Du använder inte HTTPS, vilket uppmuntras starkt. En angripare kan fånga upp din trafik och få tillgång till viss känslig data (t.ex. ditt lösenord).</string>
 
 
     <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; synk</string>
+    <string name="pref_header_data_sync">Data &amp; synkronisering</string>
     <string name="pref_title_clearCache">Rensa cache</string>
     <string name="pref_title_CacheImagesOffline">Cacha bilder offline</string>
     <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
