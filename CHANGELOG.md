@@ -1,3 +1,14 @@
+0.9.9.28 / 0.9.9.29 / 0.9.9.30
+---------------------
+- Retry rejected review by google due to new android auto support
+- Added podcast browser for Android Auto App
+
+0.9.9.27
+---------------------
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/795">#795 Adjust app icon to match new regulations</a>
+- Fix - Fix validation of urls during manual account setup
+
+
 0.9.9.26
 ---------------------
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/726">#726 Add new feed fails</a>
