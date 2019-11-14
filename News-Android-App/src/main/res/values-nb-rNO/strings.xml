@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Viser versjon i hurtiglager</string>
 
+    <string name="permission_req_location_twilight_title">Automatisk lys/mørkt tema</string>
+    <string name="permission_req_location_twilight_text">For å kunne automatisk skifte mellom lys og mørkt tema, er det nødvendig å angi enhetens plassering for å avgjøre tidspunkt for sol opp- og nedgang.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Merket</string>
     <string name="action_read">Les</string>
@@ -38,7 +41,11 @@
     <string name="action_sync_settings">Innstillinger for synkronisering</string>
     <string name="action_add_new_feed">Legg til ny strøm</string>
     <string name="action_textToSpeech">Les opp</string>
+    <string name="action_search">Søk</string>
     <string name="action_download_articles_offline">Last ned artikler offline</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Last ned artikler for offline lesning</string>
+    <string name="notification_download_images_offline">Last ned bilder for offline visning</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Du har %d nytt ulest element</item>
         <item quantity="other">Du har %d nye uleste elementer</item>
@@ -51,6 +58,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Strøm-URL</string>
     <string name="action_add_feed">Legg til strøm</string>
+    <string name="import_opml">Importer OPML</string>
+    <string name="export_opml">Eksporter OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Last ned bilde</string>
     <string name="action_img_sharelink">Del bildelenke</string>
@@ -77,6 +88,9 @@
     <string name="feed_move_list_description">Velg katalog å flytte strøm til</string>
     <string name="move_feed_root_folder">Root katalog</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Manuell innlogging</string>
+    <string name="login_sso">Logg inn via Nextcloud filer app</string>
     <string name="pref_title_username">Brukernavn</string>
     <string name="pref_title_password">Passord</string>
     <string name="pref_title_owncloudRootPath">Nextcloud rot adresse</string>
