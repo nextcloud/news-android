@@ -9,19 +9,19 @@
     <string name="no_wifi_available">Wi-Fi není připojeno</string>
     <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez Wi-Fi připojení</string>
     <string name="current_version">Používáte verzi %s</string>
-    <string name="widget_header">ownCloud Novinky</string>
+    <string name="widget_header">Nextcloud Novinky</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nová položka k dispozici</item>
         <item quantity="few">%d nové položky k dispozici</item>
         <item quantity="many">%d nových položek k dispozici</item>
-        <item quantity="other">%d nových položek k dispozici</item>
+        <item quantity="other">%d nové položky k dispozici</item>
     </plurals>
     <string name="message_bar_reload">Načíst znovu</string>
     <string name="allUnreadFeeds">Všechny nepřečtené položky</string>
     <string name="starredFeeds">Položky s hvězdičkou</string>
     <string name="title_activity_new_feed">Přidat nový kanál</string>
 
-    <string name="menu_update">Obnovit</string>
+    <string name="menu_update">Načíst znovu</string>
     <string name="menu_markAllAsRead">Označit vše jako přečtené</string>
     <string name="menu_StartImageCaching">Stáhnout obrázky</string>
     <string name="menu_downloadMoreItems">Stáhnout další položky</string>
@@ -81,7 +81,7 @@
     <string name="toast_img_notwriteable">Obrázek se nepodařilo zapsat.</string>
     <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
     <string name="error_download_failed">Stažení se nezdařilo</string>
-    <string name="intent_title_share">Sdílet pomocí</string>
+    <string name="intent_title_share">Sdílet prostřednictvím</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
@@ -100,12 +100,12 @@
     <string name="pref_title_username">Uživatelské jméno</string>
     <string name="pref_title_password">Heslo</string>
     <string name="pref_title_owncloudRootPath">Nextcloud kořenová adresa</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Přihlásit</string>
     <string name="login_progress_signing_in">Přihlašování…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">Tato položka je povinná</string>
+    <string name="error_field_required">Tuto kolonku je třeba vyplnit</string>
     <string name="error_invalid_url">Nesprávná URL</string>
 
 
@@ -131,7 +131,7 @@
 
 
     <!-- General settings -->
-    <string name="pref_header_general">Hlavní</string>
+    <string name="pref_header_general">Obecné</string>
     <string name="pref_title_general_sort_order">Řazení</string>
 
     <string name="pref_general_sort_order_new_old">Nové -> staré</string>
@@ -221,7 +221,7 @@
     <string name="content_desc_play">přehrát</string>
     <string name="content_desc_pause">pozastavit</string>
     <string name="content_desc_playback_speed">rychlost přehrávání</string>
-    <string name="content_desc_rewind">přetočit</string>
+    <string name="content_desc_rewind">přeskočit na začátek/konec</string>
     <string name="content_desc_forward">vpřed</string>
     <string name="content_desc_expand">rozbalit</string>
     <string name="content_desc_collapse">sbalit</string>
