@@ -9,6 +9,7 @@ import android.util.Log;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.NetworkRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.api.Response;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 
 import org.mockito.Mockito;
@@ -16,6 +17,7 @@ import org.mockito.Mockito;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
@@ -107,6 +109,13 @@ public class TestApiProvider extends ApiProvider {
                     throw new Error("Not implemented yet!");
             }
             return inputStream;
+        }
+
+        @Override
+        protected Response performNetworkRequestV2(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
+            return new Response(
+                    performNetworkRequest(request, requestBodyInputStream), new ArrayList<>(0)
+            );
         }
 
         private InputStream handleFolders() {

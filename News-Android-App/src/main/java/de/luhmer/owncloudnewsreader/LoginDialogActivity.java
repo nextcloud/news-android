@@ -46,12 +46,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.textfield.TextInputLayout;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
@@ -65,6 +63,8 @@ import java.net.URL;
 
 import javax.inject.Inject;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -458,10 +458,13 @@ public class LoginDialogActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogActivity.this, account -> {
-            LoginDialogActivity.this.importedAccount = account;
-            loginSingleSignOn();
-        });
+        try {
+            AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogActivity.this, account -> {
+                LoginDialogActivity.this.importedAccount = account;
+                loginSingleSignOn();
+            });
+        } catch (AccountImportCancelledException ignored) {
+        }
     }
 
     @Override

@@ -42,26 +42,10 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.view.GravityCompat;
-import androidx.customview.widget.ViewDragHelper;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.preference.PreferenceManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNotGrantedException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
@@ -84,6 +68,22 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.customview.widget.ViewDragHelper;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
@@ -970,21 +970,24 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
 
 
-        AccountImporter.onActivityResult(requestCode, resultCode, data, this, account -> {
-			Log.d(TAG, "accountAccessGranted() called with: account = [" + account + "]");
-			mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
-				@Override
-				public void onConnected() {
-					Log.d(TAG, "onConnected() called");
-				}
+        try {
+            AccountImporter.onActivityResult(requestCode, resultCode, data, this, account -> {
+                Log.d(TAG, "accountAccessGranted() called with: account = [" + account + "]");
+                mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+                    @Override
+                    public void onConnected() {
+                        Log.d(TAG, "onConnected() called");
+                    }
 
-				@Override
-				public void onError(Exception ex) {
-					Log.e(TAG, "onError() called with:", ex);
-				}
-			});
+                    @Override
+                    public void onError(Exception ex) {
+                        Log.e(TAG, "onError() called with:", ex);
+                    }
+                });
 
-		});
+            });
+        } catch (AccountImportCancelledException ignored) {
+        }
     }
 
     @Override
