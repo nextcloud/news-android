@@ -78,6 +78,26 @@ div#content > p {
     margin-top: 0px;
 }
 
+
+pre {
+    background-color: #f7f7f7;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+body.darkTheme pre {
+    background-color: #313131;
+}
+
+body.darkThemeOLED pre {
+    background-color: #000;
+}
+
+pre span {
+    /* fix for https://github.com/nextcloud/news-android/issues/798 */
+    display: initial;
+}
+
 pre, code, blockquote, p, em, b {
     white-space:	-moz-pre-wrap	!important;
     white-space:	-pre-wrap		!important;
