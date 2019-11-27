@@ -22,7 +22,6 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -33,12 +32,13 @@ import android.view.WindowManager;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import java.lang.reflect.Field;
-
 import androidx.annotation.ColorInt;
 import androidx.appcompat.widget.ActionMenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+
+import java.lang.reflect.Field;
+
 import de.luhmer.owncloudnewsreader.R;
 
 public class ThemeUtils {

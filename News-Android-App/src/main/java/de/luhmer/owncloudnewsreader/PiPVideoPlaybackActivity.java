@@ -1,9 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
-import android.app.AppOpsManager;
 import android.app.PictureInPictureParams;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Point;

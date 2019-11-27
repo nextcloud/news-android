@@ -191,7 +191,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 		return rootView;
 	}
 
-	void syncIncognitoState() {
+	protected void syncIncognitoState() {
         NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
         boolean isIncognito = ndActivity.isIncognitoEnabled();
         mWebView.getSettings().setBlockNetworkLoads(isIncognito);
@@ -235,7 +235,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         });
     }
 
-    void startLoadRssItemToWebViewTask() {
+    protected void startLoadRssItemToWebViewTask() {
         Log.d(TAG, "startLoadRssItemToWebViewTask() called");
         mWebView.setVisibility(View.GONE);
         mProgressBarLoading.setVisibility(View.VISIBLE);
