@@ -53,16 +53,13 @@ body#darkTheme a:visited {
 }
 */
 
-body, blockquote, img, iframe, video, div, table, tbody, tr, td, pre, code, blockquote, p, em, b {
+body, blockquote, img, iframe, video, div, table, tbody, tr, td, pre, code, blockquote, p, em, b, span {
     width:      auto !important;
     height:     auto !important;
     max-width:  100% !important;
 }
 
 span {
-    width:      auto !important;
-    height:     auto !important;
-    max-width:  100% !important;
     display:    block;
 }
 
@@ -102,7 +99,7 @@ a {
 
 #content table {
     width:100% !important;
-    table-layout:fixed;
+    /* table-layout: fixed; */
 }
 
 #header {

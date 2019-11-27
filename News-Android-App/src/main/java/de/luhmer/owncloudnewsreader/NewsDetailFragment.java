@@ -180,12 +180,23 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         } else {
             mWebView.restoreState(savedInstanceState);
             mProgressBarLoading.setVisibility(View.GONE);
+            // Make sure to sync the incognitio on retained views
+            syncIncognitoState();
         }
+
+
 
         setUpGestureDetector();
 
 		return rootView;
 	}
+
+	protected void syncIncognitoState() {
+        NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+        boolean isIncognito = ndActivity.isIncognitoEnabled();
+        mWebView.getSettings().setBlockNetworkLoads(isIncognito);
+        mWebView.getSettings().setBlockNetworkImage(isIncognito);
+    }
 
 	@Override
     public void onSaveInstanceState(Bundle outState) {
@@ -224,7 +235,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         });
     }
 
-    private void startLoadRssItemToWebViewTask() {
+    protected void startLoadRssItemToWebViewTask() {
         Log.d(TAG, "startLoadRssItemToWebViewTask() called");
         mWebView.setVisibility(View.GONE);
         mProgressBarLoading.setVisibility(View.VISIBLE);
@@ -285,15 +296,17 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         WebSettings webSettings = mWebView.getSettings();
         //webSettings.setPluginState(WebSettings.PluginState.ON);
-	    webSettings.setJavaScriptEnabled(true);
-	    webSettings.setAllowContentAccess(true);
-	    webSettings.setAllowFileAccess(true);
-	    webSettings.setDomStorageEnabled(true);
-	    webSettings.setJavaScriptCanOpenWindowsAutomatically(false);
-	    webSettings.setSupportMultipleWindows(false);
-	    webSettings.setSupportZoom(false);
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAllowContentAccess(true);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(false);
+        webSettings.setSupportMultipleWindows(false);
+        webSettings.setSupportZoom(false);
         webSettings.setAppCacheEnabled(true);
         webSettings.setMediaPlaybackRequiresUserGesture(true);
+
+        syncIncognitoState();
 
         registerForContextMenu(mWebView);
 
@@ -305,6 +318,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+                //Log.d(TAG, "shouldInterceptRequest: " + url);
+
                 boolean isAd;
                 if (!loadedUrls.containsKey(url)) {
                     isAd = AdBlocker.isAd(url);
@@ -394,7 +409,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                     String imgaltval;
                     String imgsrcval;
 
-                    imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.length());
+                    imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
                     Elements imgtag = htmlDoc.getElementsByAttributeValueContaining("src", imageUrl);
 
                     try {

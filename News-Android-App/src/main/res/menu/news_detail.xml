@@ -53,4 +53,10 @@
         android:icon="@drawable/ic_action_share"
         android:title="@string/action_Share" />
 
+    <item
+        android:id="@+id/action_incognito_mode"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/incognito"
+        android:title="Incognito Mode"/>
+
 </menu>

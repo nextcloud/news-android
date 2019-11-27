@@ -1,8 +1,8 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- SlidingUpPanelLayout doesn't work with layout_behavior, use marginTop -->
     <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
@@ -16,6 +16,11 @@
         sothree:umanoShadowHeight="4dp"
         sothree:umanoParallaxOffset="100dp"
         sothree:umanoDragView="@+id/name">
+
+        <!--
+        for bottom toolbar, replace marginTop above with marginBottom
+        android:layout_marginBottom="?attr/actionBarSize"
+        -->
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
@@ -48,10 +53,6 @@
 
     </de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout>
 
-    <include
-        android:id="@+id/toolbar_layout"
-        layout="@layout/toolbar_layout" />
-
     <de.luhmer.owncloudnewsreader.view.AnimatingProgressBar
         android:id="@+id/progressIndicator"
         android:layout_width="match_parent"
@@ -60,5 +61,21 @@
         android:layout_marginBottom="-7dp"
         android:layoutDirection="ltr"
         style="?android:attr/progressBarStyleHorizontal" />
+
+    <!--
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:theme="@style/ToolbarTheme"
+        app:popupTheme="@style/ToolbarOptionMenuBackgroundTheme">
+    </com.google.android.material.bottomappbar.BottomAppBar>
+    -->
+
+
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_layout" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
