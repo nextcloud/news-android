@@ -10,12 +10,17 @@
         android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_marginTop="?attr/actionBarSize"
         android:gravity="bottom"
         sothree:umanoPanelHeight="68dp"
         sothree:umanoShadowHeight="4dp"
         sothree:umanoParallaxOffset="100dp"
         sothree:umanoDragView="@+id/name">
+
+        <!--
+        for bottom toolbar, replace marginTop above with marginBottom
+        android:layout_marginBottom="?attr/actionBarSize"
+        -->
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
@@ -57,6 +62,7 @@
         android:layoutDirection="ltr"
         style="?android:attr/progressBarStyleHorizontal" />
 
+    <!--
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
@@ -64,13 +70,12 @@
         android:layout_gravity="bottom"
         android:theme="@style/ToolbarTheme"
         app:popupTheme="@style/ToolbarOptionMenuBackgroundTheme">
-
     </com.google.android.material.bottomappbar.BottomAppBar>
+    -->
 
-    <!--
+
     <include
         android:id="@+id/toolbar_layout"
         layout="@layout/toolbar_layout" />
-    -->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
