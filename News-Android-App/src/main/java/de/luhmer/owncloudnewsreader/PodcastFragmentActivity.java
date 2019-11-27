@@ -78,7 +78,9 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         super.onCreate(savedInstanceState);
         ThemeChooser.afterOnCreate(this);
 
-        if (mApi.getAPI() instanceof Proxy) { // Single Sign On
+        //if (mApi.getAPI() instanceof Proxy) { // doesn't work.. retrofit is also a "proxy"
+        boolean useSSO = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
+        if(useSSO) {
             VersionCheckHelper.verifyMinVersion(this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE);
         }
 
