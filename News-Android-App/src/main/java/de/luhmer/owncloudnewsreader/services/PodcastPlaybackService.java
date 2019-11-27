@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.support.v4.media.MediaBrowserCompat;
 import androidx.media.MediaBrowserServiceCompat;
+
+import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import androidx.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -34,6 +37,8 @@ import java.util.concurrent.TimeUnit;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.events.podcast.NewPodcastPlaybackListener;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
@@ -41,6 +46,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
+import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.services.podcast.MediaPlayerPlaybackService;
@@ -49,8 +55,35 @@ import de.luhmer.owncloudnewsreader.services.podcast.TTSPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastNotification;
 
 import static android.view.KeyEvent.KEYCODE_MEDIA_STOP;
+import static de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.ParsePodcastItemFromRssItem;
 
 public class PodcastPlaybackService extends MediaBrowserServiceCompat {
+
+    /** Declares that ContentStyle is supported */
+    public static final String CONTENT_STYLE_SUPPORTED = "android.media.browse.CONTENT_STYLE_SUPPORTED";
+
+    /**
+     * Bundle extra indicating the presentation hint for playable media items.
+     */
+    public static final String CONTENT_STYLE_PLAYABLE_HINT =
+            "android.media.browse.CONTENT_STYLE_PLAYABLE_HINT";
+
+    /**
+     * Bundle extra indicating the presentation hint for browsable media items.
+     */
+    public static final String CONTENT_STYLE_BROWSABLE_HINT =
+            "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT";
+
+    /**
+     * Specifies the corresponding items should be presented as lists.
+     */
+    public static final int CONTENT_STYLE_LIST_ITEM_HINT_VALUE = 1;
+
+    /**
+     * Specifies that the corresponding items should be presented as grids.
+     */
+    public static final int CONTENT_STYLE_GRID_ITEM_HINT_VALUE = 2;
+
 
     public static final String MEDIA_ITEM = "MediaItem";
 
@@ -96,15 +129,68 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     @Nullable
     @Override
     public BrowserRoot onGetRoot(@NonNull String s, int i, @Nullable Bundle bundle) {
+        Bundle extras = new Bundle();
+        extras.putBoolean(CONTENT_STYLE_SUPPORTED, true);
+        extras.putInt(CONTENT_STYLE_BROWSABLE_HINT, CONTENT_STYLE_GRID_ITEM_HINT_VALUE);
+        extras.putInt(CONTENT_STYLE_PLAYABLE_HINT, CONTENT_STYLE_LIST_ITEM_HINT_VALUE);
+
         return new MediaBrowserServiceCompat.BrowserRoot(
                 getString(R.string.app_name),// Name visible in Android Auto
-                null);
+                extras);
     }
 
     @Override
     public void onLoadChildren(@NonNull String s, @NonNull Result<List<MediaBrowserCompat.MediaItem>> result) {
         Log.d(TAG, "onLoadChildren() called with: s = [" + s + "], result = [" + result + "]");
-        result.sendResult(new ArrayList<>());
+
+        List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
+
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
+
+        if(!s.startsWith("FEED_")) {
+            for (PodcastFeedItem feed : dbConn.getListOfFeedsWithAudioPodcasts()) {
+                MediaDescriptionCompat.Builder desc =
+                        new MediaDescriptionCompat.Builder()
+                                .setMediaId("FEED_" + feed.mFeed.getId())
+                                .setTitle(feed.mFeed.getFeedTitle())
+                                .setSubtitle(feed.mPodcastCount + " podcasts");
+
+                if (feed.mFeed.getFaviconUrl() != null) {
+                    desc.setIconUri(Uri.parse(feed.mFeed.getFaviconUrl()));
+                }
+
+                mediaItems.add(new MediaBrowserCompat.MediaItem(desc.build(), MediaBrowserCompat.MediaItem.FLAG_BROWSABLE));
+            }
+        } else {
+            Long feedId = Long.parseLong(s.substring(5));
+            for (PodcastItem item: dbConn.getListOfAudioPodcastsForFeed(this, feedId)) {
+                MediaDescriptionCompat.Builder desc =
+                        new MediaDescriptionCompat.Builder()
+                                .setMediaId("PODCAST_" + item.itemId)
+                                .setTitle(item.title);
+
+                if (item.author != null) {
+                    desc.setSubtitle(item.author);
+                }
+                if (item.favIcon != null) {
+                    desc.setIconUri(Uri.parse(item.favIcon));
+                }
+
+                /*
+                //Song duration
+                Long duration = 100L;
+                Bundle songDuration = new Bundle();
+                songDuration.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration);
+                desc.setExtras(songDuration);
+                */
+
+
+                mediaItems.add(new MediaBrowserCompat.MediaItem(desc.build(), MediaBrowserCompat.MediaItem.FLAG_PLAYABLE));
+            }
+        }
+
+
+        result.sendResult(mediaItems);
     }
 
     @Override
@@ -173,6 +259,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], flags = [" + flags + "], startId = [" + startId + "]");
         MediaButtonReceiver.handleIntent(mSession, intent);
 
         if (intent != null) {
@@ -514,6 +601,25 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
     private final class MediaSessionCallback extends MediaSessionCompat.Callback {
         @Override
+        public void onPlayFromMediaId(String mediaId, Bundle extras) {
+            Log.d(TAG, "onPlayFromMediaId() called with: mediaId = [" + mediaId + "], extras = [" + extras + "]");
+
+            if(mediaId.startsWith("PODCAST_")) {
+                int podcastId = Integer.parseInt(mediaId.substring(8));
+                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(PodcastPlaybackService.this);
+
+                RssItem rssItem = dbConn.getRssItemById(podcastId);
+                PodcastItem podcastItem = ParsePodcastItemFromRssItem(PodcastPlaybackService.this, rssItem);
+
+                Intent intent = new Intent(PodcastPlaybackService.this, PodcastPlaybackService.class);
+                intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, podcastItem);
+                startService(intent);
+            }
+
+            super.onPlayFromMediaId(mediaId, extras);
+        }
+
+        @Override
         public void onPlay() {
             Log.d(TAG, "onPlay() called");
             play();
@@ -534,6 +640,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
         @Override
         public void onCommand(String command, Bundle extras, ResultReceiver cb) {
+            Log.d(TAG, "onCommand() called with: command = [" + command + "], extras = [" + extras + "], cb = [" + cb + "]");
             if (command.equals(PLAYBACK_SPEED_FLOAT)) {
                 Bundle b = new Bundle();
                 b.putFloat(PLAYBACK_SPEED_FLOAT, currentPlaybackSpeed);
@@ -570,7 +677,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
         @Override
         public boolean onMediaButtonEvent(Intent mediaButtonEvent) {
-            Log.d(TAG, mediaButtonEvent.getAction());
+            Log.d(TAG, "onMediaButtonEvent() called with: mediaButtonEvent = [" + mediaButtonEvent + "]");
 
             if(mediaButtonEvent.hasExtra("android.intent.extra.KEY_EVENT")) {
                 KeyEvent keyEvent = mediaButtonEvent.getParcelableExtra("android.intent.extra.KEY_EVENT");
