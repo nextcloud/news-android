@@ -99,7 +99,7 @@ a {
 
 #content table {
     width:100% !important;
-    table-layout:fixed;
+    /* table-layout: fixed; */
 }
 
 #header {
