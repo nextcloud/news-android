@@ -1,7 +1,10 @@
 0.9.9.28 / 0.9.9.29 / 0.9.9.30
 ---------------------
 - Retry rejected review by google due to new android auto support
-- Added podcast browser for Android Auto App
+- Fix - <a href="https://github.com/nextcloud/news-android/issues/795">#795 Adjust app icon to match new regulations</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/pull/799">#799 - Added podcast browser for Android Auto App</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/issues/798">#798 better display of code blocks</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/pull/791">#791 Implement incognito mode</a>
 
 0.9.9.27
 ---------------------
