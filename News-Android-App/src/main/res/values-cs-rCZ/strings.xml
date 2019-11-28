@@ -58,7 +58,7 @@
         <item quantity="one">%d nová nepřečtená položka k dispozici</item>
         <item quantity="few">%d nové nepřečtené položky k dispozici</item>
         <item quantity="many">%d nových nepřečtených položek k dispozici</item>
-        <item quantity="other">%d nových nepřečtených položek k dispozici</item>
+        <item quantity="other">%d nové nepřečtené položky k dispozici</item>
     </plurals>
 
     <!-- Add new feed -->
@@ -127,7 +127,7 @@
 
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nastavení</string>
-    <string name="cache_is_cleared">Odkládací paměť vyčištěna!</string>
+    <string name="cache_is_cleared">Mezipaměť vyčištěna!</string>
 
 
     <!-- General settings -->
@@ -181,7 +181,7 @@
     <string name="pref_report_issue_summary">Vyžaduje účet na portálu GitHub (zdarma)</string>
     <string name="pref_contribute">Přispět!</string>
     <string name="pref_contribute_summary">Získat zdrojové kódy</string>
-    <string name="pref_version">Aplikace Nextcloud novinky pro Android</string>
+    <string name="pref_version">Aplikace Nextcloud Novinky pro Android</string>
 
 
     <!-- Settings for Display -->
@@ -237,7 +237,7 @@
 
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Upozornění</string>
-    <string name="pref_title_notification_new_articles_available">Zobraz upozornění pokud jsou dostupné nové články</string>
+    <string name="pref_title_notification_new_articles_available">Zobrazit upozornění pokud jsou dostupné nové články</string>
 
 
     <!-- Login Dialog -->
