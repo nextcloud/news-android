@@ -110,8 +110,8 @@
     </plurals>
     <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">%d elemento atopado polo de agora…</item>
-        <item quantity="other">%delementos atopados polo de agora…</item>
+        <item quantity="one">%d elemento recuperado polo de agora…</item>
+        <item quantity="other">%delementos recuperados polo de agora…</item>
     </plurals>
 
 

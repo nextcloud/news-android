@@ -132,6 +132,9 @@
     <string name="pref_general_sort_order_new_old">Novo -> staro</string>
     <string name="pref_general_sort_order_old_new">Staro -> novo</string>
 
+    <string name="pref_rename_action_swipe_right">Radnja pri pomicanju udesno</string>
+    <string name="pref_rename_action_swipe_left">Radnja pri pomicanju ulijevo</string>
+
     <string name="pref_title_general_search_in">Traži u</string>
 
     <string name="pref_general_search_in_title">Naslov</string>
