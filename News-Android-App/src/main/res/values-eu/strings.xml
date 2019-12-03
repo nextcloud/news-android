@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Cache bertsioa erakusten</string>
 
+    <string name="permission_req_location_twilight_title">Itxura argi/ilun automatikoa</string>
+    <string name="permission_req_location_twilight_text">Itxura argia eta ilunaren artean automatikoki aldarazteko, beharrezkoa da gailuaren kokapena jakinaraztea, egunsentiaren eta eguzki-sarreraren orduak zehaztu ahal izateko.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Izarduna</string>
     <string name="action_read">Irakurri</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">Iraukurri ozenki</string>
     <string name="action_search">Bilatu</string>
     <string name="action_download_articles_offline">Deskargatu artikuluak lineaz kanpo</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Lineaz kanpo erabiltzeko artikuluak deskargatzen</string>
+    <string name="notification_download_images_offline">Lineaz kanpo erabiltzeko irudiak deskargatzen</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Irakurri gabeko elementu %d duzu</item>
         <item quantity="other">Irakurri gabeko %d elementu dituzu</item>
@@ -121,6 +127,9 @@
     <string name="pref_general_sort_order_new_old">Berria -> zaharra</string>
     <string name="pref_general_sort_order_old_new">Zaharra -> Berria</string>
 
+    <string name="pref_rename_action_swipe_right">Ekintza eskuinera lerratzean</string>
+    <string name="pref_rename_action_swipe_left">Ekintza ezkerrera lerratzean</string>
+
     <string name="pref_title_general_search_in">Bilatu hemen</string>
 
     <string name="pref_general_search_in_title">Izenburua</string>
@@ -135,6 +144,11 @@
     <string name="pref_title_DisableHostnameVerification">Ezgaitu Hostalari Izenaren Egiaztapena</string>
     <string name="pref_title_NavigateWithVolumeButtons">Mugitu bolumen botoiekin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markatu irakurrita gisa korritzean</string>
+    <string name="pref_title_OpenInBrowserDirectly">Ikuspegi xehatua ez ikusi eta artikulua nabigatzailean ireki</string>
+
+    <string name="dialog_feature_not_available">Ezaugarri hau ez dago erabilgarri aplikazio honen (kode irekiko) bertsio honetan. Ezaugarri hau erabili nahi baduzu, mesedes deskarga esasu aplikazioa GitHub biltegitik edo deskargatu aplikazioa Google Play Store-tik.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Onartu Ziurtagiri Ezezaguna</string>
     <string name="mtm_decision_always">Beti</string>
@@ -157,6 +171,9 @@
     <string name="pref_report_issue_summary">Github kontua (doakoa) behar du</string>
     <string name="pref_contribute">Lagundu!</string>
     <string name="pref_contribute_summary">Eskuratu iturburu-kodea</string>
+    <string name="pref_version">Nextcloud Albisteak Android aplikazioa</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Bistaratzea</string>
     <string name="pref_title_app_theme">Gaia</string>
@@ -165,11 +182,16 @@
     <string name="pref_display_browser">Nabigatzailea</string>
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Ekintza ikonoak (Iksupegi xehetua)</string>
+
     <string name="pref_display_apptheme_auto">Argia / Iluna (egunaren arabera)</string>
     <string name="pref_display_apptheme_light">Argia</string>
     <string name="pref_display_apptheme_dark">Iluna</string>
 
     <string name="pref_oled_mode">Atzealde beltza</string>
+    <string name="pref_oled_mode_summary">Gai ilunarentzat OLED pantailetan</string>
+
+    <string name="pref_display_browser_cct">Chromeren erlaitz integratuak</string>
     <string name="pref_display_browser_built_in">Nabigatzaile integratua</string>
     <string name="pref_display_browser_external">Kanpo Nabigatzailea</string>
 
@@ -210,7 +232,9 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errorea</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Dirudienez albisteen aplikazioa ez dago instalatua edo aktibatua zure zerbitzarian. Mesedez jarraitu honako argibideak zure zerbitzarian albisteen aplikazioa behar bezala ezartzeko lehenengo: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Zerbait oker joan da :(</string>
+    <string name="login_dialog_text_zero_version_code">Web Albisteen Aplikazioak \"0\" Bertsioa erantzun du. Mesedez eman begiratu bat honako errore txostenari: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Aplikazioaren bertsio hau ez da zure Nextcloud Berri Aplikazioarekin bateragarria. Mesedez, bertsio berritu berri aplikazioa eta markoa.</string>
     <string name="login_dialog_title_security_warning">Segurtasun abisua</string>
     <string name="login_dialog_text_security_warning">Ez zaude HTTPS erabiltzen, oso gomendagarria dena. Erasotzaile batek zure trafikoa atzeman dezake eta datu sentikorrak eskuratu (adibidez, pasahitza).</string>
