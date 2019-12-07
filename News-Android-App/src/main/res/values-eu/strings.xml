@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="auto_sync_string">Sinkronizazio Automatikoa</string>
-    <string name="title_activity_sync_interval_selector">Sinkronizazio Tartearen Hautatzailea</string>
+    <string name="auto_sync_string">Sinkronizazio automatikoa</string>
+    <string name="title_activity_sync_interval_selector">Sinkronizazio tartearen hautatzailea</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ez dago elementurik hemen</string>
     <string name="toast_GettingMoreItems">Elementu gehiagoren deskarga hasita... Itxaron mesedez.</string>
     <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
-    <string name="do_you_want_to_download_without_wifi">Irudiak deskargatu nahi dituzu Wi-Fi konexioa gabe</string>
-    <string name="current_version">%s Bertsioa erabiltzen zaude</string>
+    <string name="do_you_want_to_download_without_wifi">Irudiak Wi-Fi konexiorik gabe deskargatu nahi dituzu</string>
+    <string name="current_version">%s bertsioa erabiltzen ari zara</string>
     <string name="widget_header">Nextcloud Berriak</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">elementu berri %d eskuragarri</item>
@@ -17,17 +17,17 @@
     <string name="message_bar_reload">Birkargatu</string>
     <string name="allUnreadFeeds">Irakurri gabeko elementu guztiak</string>
     <string name="starredFeeds">Izardun elementuak</string>
-    <string name="title_activity_new_feed">Gehitu iturburu  berria</string>
+    <string name="title_activity_new_feed">Gehitu jario berria</string>
 
-    <string name="menu_update">Birkargatu</string>
-    <string name="menu_markAllAsRead">Markatu guztiak irakurria gisa</string>
+    <string name="menu_update">Freskatu</string>
+    <string name="menu_markAllAsRead">Markatu guztiak irakurrita</string>
     <string name="menu_StartImageCaching">Deskargatu irudiak</string>
     <string name="menu_downloadMoreItems">Deskargatu elementu gehiago</string>
 
     <string name="tv_showing_cached_version">Cache bertsioa erakusten</string>
 
     <string name="permission_req_location_twilight_title">Itxura argi/ilun automatikoa</string>
-    <string name="permission_req_location_twilight_text">Itxura argia eta ilunaren artean automatikoki aldarazteko, beharrezkoa da gailuaren kokapena jakinaraztea, egunsentiaren eta eguzki-sarreraren orduak zehaztu ahal izateko.</string>
+    <string name="permission_req_location_twilight_text">Itxura argia eta ilunaren artean automatikoki aldatzeko, beharrezkoa da gailuaren kokapena jakinaraztea, egunsentiaren eta eguzki-sarreraren orduak zehaztu ahal izateko.</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Izarduna</string>
@@ -38,9 +38,9 @@
     <string name="action_login">Zerbitzariaren ezarpenak</string>
     <string name="action_save">Gorde</string>
     <string name="action_settings">Ezarpenak</string>
-    <string name="action_sync_settings">Sinkronizazio Ezarpenak</string>
-    <string name="action_add_new_feed">Gehitu iturburu  berria</string>
-    <string name="action_textToSpeech">Iraukurri ozenki</string>
+    <string name="action_sync_settings">Sinkronizazio ezarpenak</string>
+    <string name="action_add_new_feed">Gehitu jario berria</string>
+    <string name="action_textToSpeech">Irakurri ozenki</string>
     <string name="action_search">Bilatu</string>
     <string name="action_download_articles_offline">Deskargatu artikuluak lineaz kanpo</string>
     <!-- notifications -->
@@ -56,8 +56,8 @@
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">Iturburu URLa</string>
-    <string name="action_add_feed">Gehitu iturburua</string>
+    <string name="hint_feed_url">Jarioaren URLa</string>
+    <string name="action_add_feed">Gehitu jarioa</string>
     <string name="import_opml">Inportatu OPML</string>
     <string name="export_opml">Esportatu OPML</string>
 
@@ -79,19 +79,19 @@
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">Ezabatu iturburua</string>
+    <string name="action_feed_remove">Ezabatu jarioa</string>
     <string name="action_feed_rename">Aldatu izena jarioari</string>
-    <string name="action_feed_move">Mugitu iturburua</string>
+    <string name="action_feed_move">Lekuz aldatu jarioa</string>
     <string name="feed_remove_button">Ezabatu</string>
     <string name="feed_rename_button">Berrizendatu</string>
-    <string name="confirm_feed_remove">Iturburu hau benetan ezabatu nahi duzu? Aldaketa ezin da desegin!</string>
-    <string name="feed_move_list_description">Aukeratu iturburua mugitu nahi duzun karpeta</string>
+    <string name="confirm_feed_remove">Ziur zaude jario hau ezabatu nahi duzu? Aldaketa ezin da desegin!</string>
+    <string name="feed_move_list_description">Hautatu jarioa ze karpetatara eraman nahi duzun</string>
     <string name="move_feed_root_folder">Erro karpeta</string>
 
     <!-- Strings related to login -->
-    <string name="login_manual">Saio haste manuala</string>
-    <string name="login_sso">Saioa hasi Nextcloud Fitxategiak aplikazioa erabiliz</string>
-    <string name="pref_title_username">Erabiltzaile izena</string>
+    <string name="login_manual">Eskuzko saio hasiera</string>
+    <string name="login_sso">Hasi saioa Nextcloud Fitxategiak aplikazioa erabiliz</string>
+    <string name="pref_title_username">Erabiltzaile-izena</string>
     <string name="pref_title_password">Pasahitza</string>
     <string name="pref_title_owncloudRootPath">Nextcloud erro helbidea</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
@@ -100,18 +100,18 @@
     <string name="login_progress_signing_in">Izena ematen...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Eremu hau beharrezkoa da</string>
-    <string name="error_invalid_url">Balio gabeko URLa</string>
+    <string name="error_invalid_url">URL baliogabea</string>
 
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
-        <item quantity="one">Elementu zahar %d deskargatuta</item>
-        <item quantity="other">%d elementu zahar deskargatuta</item>
+        <item quantity="one">Elementu zahar %d deskargatu da</item>
+        <item quantity="other">%d elementu zahar deskargatu dira</item>
     </plurals>
-    <string name="toast_no_more_downloads_available">Ez dago datu gehigarri eskuragarririk</string>
+    <string name="toast_no_more_downloads_available">Ez dago elementu gehiago eskuragarri</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">elementu %d eskuratuta orain arte...</item>
-        <item quantity="other">%d elementu eskuratuta orain arte...</item>
+        <item quantity="one">Elementu %d eskuratu da orain arte...</item>
+        <item quantity="other">%d elementu eskuratu dira orain arte...</item>
     </plurals>
 
 
@@ -122,13 +122,13 @@
 
     <!-- General settings -->
     <string name="pref_header_general">Orokorra</string>
-    <string name="pref_title_general_sort_order">Antolatzeko Ordena</string>
+    <string name="pref_title_general_sort_order">Ordenatzeko irizpidea</string>
 
     <string name="pref_general_sort_order_new_old">Berria -> zaharra</string>
-    <string name="pref_general_sort_order_old_new">Zaharra -> Berria</string>
+    <string name="pref_general_sort_order_old_new">Zaharra -> berria</string>
 
-    <string name="pref_rename_action_swipe_right">Ekintza eskuinera lerratzean</string>
-    <string name="pref_rename_action_swipe_left">Ekintza ezkerrera lerratzean</string>
+    <string name="pref_rename_action_swipe_right">Ekintza hatza eskuinera pasatzean</string>
+    <string name="pref_rename_action_swipe_left">Ekintza hatza ezkerrera pasatzean</string>
 
     <string name="pref_title_general_search_in">Bilatu hemen</string>
 
@@ -137,30 +137,30 @@
 
     <string name="dialog_clearing_cache">Cachea garbitzen</string>
     <string name="dialog_clearing_cache_please_wait">Cachea garbitzen... Itxaron mesedez.</string>
-    <string name="reset_cache_unsaved_changes">Sinkronizatu gabeko datuak daude. Nahi duzu hala ere cachea berrabiaraztea?</string>
+    <string name="reset_cache_unsaved_changes">Sinkronizatu gabeko datuak daude. Hala ere cachea berrezarri nahi duzu?</string>
     <string name="warning">Abisua</string>
     <string name="pref_title_AutoSyncOnStart">Sinkronizatu abioan</string>
     <string name="pref_title_ShowOnlyUnread">Erakutsi irakurri gabeko artikuluak bakarrik</string>
-    <string name="pref_title_DisableHostnameVerification">Ezgaitu Hostalari Izenaren Egiaztapena</string>
-    <string name="pref_title_NavigateWithVolumeButtons">Mugitu bolumen botoiekin</string>
+    <string name="pref_title_DisableHostnameVerification">Desgaitu ostalari izenaren egiaztapena</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Nabigatu bolumenaren botoiekin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markatu irakurrita gisa korritzean</string>
-    <string name="pref_title_OpenInBrowserDirectly">Ikuspegi xehatua ez ikusi eta artikulua nabigatzailean ireki</string>
+    <string name="pref_title_OpenInBrowserDirectly">Saltatu ikuspegi xehatua eta ireki artikulua nabigatzailean</string>
 
-    <string name="dialog_feature_not_available">Ezaugarri hau ez dago erabilgarri aplikazio honen (kode irekiko) bertsio honetan. Ezaugarri hau erabili nahi baduzu, mesedes deskarga esasu aplikazioa GitHub biltegitik edo deskargatu aplikazioa Google Play Store-tik.</string>
+    <string name="dialog_feature_not_available">Ezaugarri hau ez dago erabilgarri aplikazio honen (kode irekiko) bertsio honetan. Ezaugarri hau erabili nahi baduzu, deskarga ezazu aplikazioa GitHub biltegitik edo Google Play Store-tik.</string>
 
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">Onartu Ziurtagiri Ezezaguna</string>
+    <string name="mtm_accept_cert">Ziurtagiri ezezaguna onartu?</string>
     <string name="mtm_decision_always">Beti</string>
-    <string name="mtm_decision_abort">Bertan-behera utzi</string>
-    <string name="mtm_notification">Ziurtagiriaren Egiaztapena</string>
+    <string name="mtm_decision_abort">Utzi bertan behera</string>
+    <string name="mtm_notification">Ziurtagiriaren egiaztapena</string>
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Ez dago podcast hautatua</string>
+    <string name="no_podcast_selected">Ez da podcastik hautatu</string>
     <string name="no_chapters_available">Ez dago kapitulurik eskuragarri</string>
-    <string name="podcast_playback_speed_dialog_title">Erreprodukzio Abiadura</string>
-    <string name="notification_downloading_podcast_title">Deskargatzen podcast</string>
+    <string name="podcast_playback_speed_dialog_title">Erreprodukzio abiadura</string>
+    <string name="notification_downloading_podcast_title">Podcasta deskargatzen</string>
 
 
     <!-- Settings for About -->
@@ -177,36 +177,36 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Bistaratzea</string>
     <string name="pref_title_app_theme">Gaia</string>
-    <string name="pref_title_feed_list_layout">Eremu zerrenda ingurunea</string>
-    <string name="pref_title_font_size">Letra-tipo tamaina</string>
+    <string name="pref_title_feed_list_layout">Jario-zerrendaren diseinua</string>
+    <string name="pref_title_font_size">Letra-tamaina</string>
     <string name="pref_display_browser">Nabigatzailea</string>
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">Ekintza ikonoak (Iksupegi xehetua)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">Ekintza ikonoak (Ikuspegi xehatua)</string>
 
-    <string name="pref_display_apptheme_auto">Argia / Iluna (egunaren arabera)</string>
+    <string name="pref_display_apptheme_auto">Argia / Iluna (orduaren arabera)</string>
     <string name="pref_display_apptheme_light">Argia</string>
     <string name="pref_display_apptheme_dark">Iluna</string>
 
-    <string name="pref_oled_mode">Atzealde beltza</string>
+    <string name="pref_oled_mode">Atzeko plano beltza</string>
     <string name="pref_oled_mode_summary">Gai ilunarentzat OLED pantailetan</string>
 
-    <string name="pref_display_browser_cct">Chromeren erlaitz integratuak</string>
+    <string name="pref_display_browser_cct">Chromeren fitxa integratuak</string>
     <string name="pref_display_browser_built_in">Nabigatzaile integratua</string>
-    <string name="pref_display_browser_external">Kanpo Nabigatzailea</string>
+    <string name="pref_display_browser_external">Kanpoko nabigatzailea</string>
 
-    <string name="pref_display_feed_list_layout_thumbnails">Aurrebistak</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Koadro txikiak</string>
     <string name="pref_display_feed_list_layout_simple_text">Testu sinplea</string>
-    <string name="pref_display_feed_list_layout_headlines">Titulua</string>
+    <string name="pref_display_feed_list_layout_headlines">Izenburuak</string>
     <string name="pref_display_feed_list_layout_full_text">Testu osoa</string>
     <string name="pref_display_feed_list_layout_web_layout">Web ikuspegia</string>
-    <string name="pref_display_feed_list_layout_card_view">Karta ikuspegia</string>
+    <string name="pref_display_feed_list_layout_card_view">Txartel ikuspegia</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Txikia</string>
     <string name="pref_display_font_size_d">Lehenetsia</string>
     <string name="pref_display_font_size_l">Handia</string>
-    <string name="pref_display_font_size_xl">Extra Handia</string>
+    <string name="pref_display_font_size_xl">Oso handia</string>
 
     <string name="content_desc_play">erreproduzitu</string>
     <string name="content_desc_pause">pausatu</string>
@@ -218,8 +218,8 @@
     <string name="content_desc_mark_as_read">markatu irakurri gisa</string>
     <string name="content_desc_mark_as_unread">markatu ez irakurri gisa</string>
     <string name="content_desc_tap_to_refresh">sakatu eguneratzeko</string>
-    <string name="content_desc_add_to_favorites">gehitu gogokoa</string>
-    <string name="content_desc_remove_from_favorites">ezabatu gogokoa</string>
+    <string name="content_desc_add_to_favorites">gehitu gogokoetan</string>
+    <string name="content_desc_remove_from_favorites">kendu gogokoetatik</string>
     <string name="content_desc_show_password">erakutsi pasahitza</string>
     <string name="content_desc_delete">ezabatu</string>
     <string name="content_desc_download">deskargatu</string>
@@ -227,24 +227,24 @@
 
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Jakinarazpenak</string>
-    <string name="pref_title_notification_new_articles_available">Bistaratu jakinarazpenak artikulu berriak daudenean</string>
+    <string name="pref_title_notification_new_articles_available">Erakutsi jakinarazpena artikulu berriak eskuragarri daudenean</string>
 
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errorea</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Dirudienez albisteen aplikazioa ez dago instalatua edo aktibatua zure zerbitzarian. Mesedez jarraitu honako argibideak zure zerbitzarian albisteen aplikazioa behar bezala ezartzeko lehenengo: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Zerbait oker joan da :(</string>
-    <string name="login_dialog_text_zero_version_code">Web Albisteen Aplikazioak \"0\" Bertsioa erantzun du. Mesedez eman begiratu bat honako errore txostenari: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Aplikazioaren bertsio hau ez da zure Nextcloud Berri Aplikazioarekin bateragarria. Mesedez, bertsio berritu berri aplikazioa eta markoa.</string>
+    <string name="login_dialog_text_zero_version_code">Albisteen web aplikazioak \"0\" bertsioa itzuli du. Mesedez eman begiratu bat honako errore txostenari: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Aplikazioaren bertsio hau ez da zure Nextcloud Berriak aplikazioarekin bateragarria. Mesedez, bertsio-berritu berrien aplikazioa eta app framework-a.</string>
     <string name="login_dialog_title_security_warning">Segurtasun abisua</string>
-    <string name="login_dialog_text_security_warning">Ez zaude HTTPS erabiltzen, oso gomendagarria dena. Erasotzaile batek zure trafikoa atzeman dezake eta datu sentikorrak eskuratu (adibidez, pasahitza).</string>
+    <string name="login_dialog_text_security_warning">Ez zara HTTPS erabiltzen ari, oso gomendagarria den arren. Erasotzaile batek zure trafikoa atzeman dezake eta datu sentikorrak eskuratu (adibidez, pasahitza).</string>
 
 
     <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sink</string>
+    <string name="pref_header_data_sync">Datuak &amp; sink</string>
     <string name="pref_title_clearCache">Garbitu cachea</string>
-    <string name="pref_title_CacheImagesOffline">Irudiak sare-kanporako cacheatu</string>
-    <string name="pref_title_Max_Cache_Size">Cache tamaina maximoa</string>
+    <string name="pref_title_CacheImagesOffline">Cacheratu irudiak lineaz kanpo</string>
+    <string name="pref_title_Max_Cache_Size">Gehienezko cache tamaina</string>
 
     <string name="pref_data_sync_image_cache_never">Inoiz ez</string>
     <string name="pref_data_sync_image_cache_wifi_only">WiFi bidez bakarrik</string>
