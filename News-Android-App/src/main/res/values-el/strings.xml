@@ -109,6 +109,12 @@
         <item quantity="other">Λήφθηκαν %d παλαιά αντικείμενα</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Δεν υπάρχουν επιπλέον στοιχεία διαθέσιμα</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Αντικείμενο με σφάλμα μέχρι στιγμής %d</item>
+        <item quantity="other">Αντικείμενα με σφάλμα μέχρι στιγμής %d</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Ρυθμίσεις</string>
     <string name="cache_is_cleared">Η προσωρινή μνήμη εκκαθαρίστηκε!</string>
