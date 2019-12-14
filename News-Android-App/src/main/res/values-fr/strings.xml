@@ -220,7 +220,7 @@
     <string name="content_desc_tap_to_refresh">Tapoter pour rafraîchir</string>
     <string name="content_desc_add_to_favorites">ajouter aux favoris</string>
     <string name="content_desc_remove_from_favorites">retirer des favoris</string>
-    <string name="content_desc_show_password">montrer le mot de passe</string>
+    <string name="content_desc_show_password">afficher le mot de passe</string>
     <string name="content_desc_delete">suppression</string>
     <string name="content_desc_download">télécharger</string>
 
