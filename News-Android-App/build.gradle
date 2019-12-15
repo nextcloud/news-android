@@ -186,6 +186,10 @@ dependencies {
 
     implementation 'com.nbsp:library:1.02' // MaterialFilePicker
 
+    // Image processing library
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
     //extraImplementation 'com.github.tommus:youtube-android-player-api:1.2.2'
 
 

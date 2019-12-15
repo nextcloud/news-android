@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -38,6 +39,8 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import java.io.ByteArrayInputStream;
@@ -342,10 +345,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         }
         String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
         String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-        mOc_root_path = mOc_root_path.replace("http://", "").replace("https://", ""); //Remove http:// or https://
+        String mOc_root_path_without_protocol = mOc_root_path.replace("http://", "").replace("https://", ""); //Remove http:// or https://
 
         userTextView.setText(mUsername);
-        urlTextView.setText(mOc_root_path);
+        urlTextView.setText(mOc_root_path_without_protocol);
 
         String uInfo = mPrefs.getString(USER_INFO_STRING, null);
         if(uInfo == null)
@@ -355,6 +358,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
             UserInfo userInfo = (UserInfo) fromString(uInfo);
             if (userInfo.displayName != null)
                 userTextView.setText(userInfo.displayName);
+                Glide
+                        .with(this)
+                        .load(mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.userId) + "/64")
+                        .error(R.mipmap.ic_launcher)
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(this.headerLogo);
 
             if (userInfo.avatar != null) {
                 Resources r = getResources();
