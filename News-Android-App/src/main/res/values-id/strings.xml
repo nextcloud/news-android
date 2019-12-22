@@ -32,6 +32,7 @@
     <string name="action_sync_settings">Setelan Sync</string>
     <string name="action_add_new_feed">Tambah feed baru</string>
     <string name="action_textToSpeech">Bacalah</string>
+    <string name="action_search">Cari</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">Anda memiliki %d item baru yang belum dibaca</item>
     </plurals>
@@ -91,6 +92,10 @@
     <string name="pref_header_general">Umum</string>
     <string name="pref_title_general_sort_order">Urutan</string>
 
+    <string name="pref_general_sort_order_new_old">Baru -&gt; Lawas</string>
+    <string name="pref_general_sort_order_old_new">Lawas -&gt; Baru</string>
+
+    <string name="pref_general_search_in_title">Judul</string>
     <string name="dialog_clearing_cache">Membersihkan cache</string>
     <string name="dialog_clearing_cache_please_wait">Membersihkan cache... Mohon tunggu.</string>
     <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
@@ -110,9 +115,16 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Tidak ada siniar yang dipilih</string>
     <string name="no_chapters_available">Tidak ada bab tersedia</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Tentang.</string>
+    <string name="pref_license">Lisensi</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Tampilkan</string>
     <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
+    <string name="pref_display_apptheme_light">Terang</string>
+    <string name="pref_display_apptheme_dark">Gelap</string>
+
+    <string name="pref_display_font_size_d">Bawaan</string>
     <string name="content_desc_play">putar</string>
     <string name="content_desc_pause">jeda</string>
     <string name="content_desc_rewind">mundur</string>
@@ -143,5 +155,21 @@
     <string name="pref_title_clearCache">Bersihkan cache</string>
     <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
     <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
+
+    <string name="pref_data_sync_image_cache_never">Tidak pernah</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Hanya melalui WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Melalui WiFi &amp; Mobile</string>
+    <string name="pref_data_sync_image_cache_ask">Tanya ketika tidak tersambung ke WiFi</string>
+
+    <string name="array_sync_interval_min_5">5 Menit</string>
+    <string name="array_sync_interval_min_15">15 Menit</string>
+    <string name="array_sync_interval_min_30">30 Menit</string>
+    <string name="array_sync_interval_min_45">45 Menit</string>
+    <string name="array_sync_interval_hour_1">1 Jam</string>
+    <string name="array_sync_interval_hour_2">2 Jam</string>
+    <string name="array_sync_interval_hour_3">3 Jam</string>
+    <string name="array_sync_interval_hour_6">6 Jam</string>
+    <string name="array_sync_interval_hour_12">12 Jam</string>
+    <string name="array_sync_interval_hour_24">24 Jam</string>
 
     </resources>

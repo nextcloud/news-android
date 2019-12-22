@@ -37,6 +37,7 @@
     <string name="action_settings">Nustatymai</string>
     <string name="action_sync_settings">Sinchronizavimo nustatymai</string>
     <string name="action_add_new_feed">Pridėti naują kanalą</string>
+    <string name="action_search">Ieškoti</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Turite %d neskaitytą elementą</item>
         <item quantity="few">Turite %d neskaitytus elementus</item>
@@ -178,6 +179,10 @@
     <string name="pref_display_browser_external">Išorinė naršyklė</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Miniatiūros</string>
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Mažas</string>
+    <string name="pref_display_font_size_d">Numatytoji</string>
+    <string name="pref_display_font_size_l">Didelis</string>
     <string name="content_desc_play">groti</string>
     <string name="content_desc_pause">pristabdyti</string>
     <string name="content_desc_playback_speed">atkūrimo greitis</string>

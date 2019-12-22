@@ -38,6 +38,7 @@
     <string name="action_sync_settings">Настройки на синхронизацията</string>
     <string name="action_add_new_feed">Добави нова емисия</string>
     <string name="action_textToSpeech">Прочитане</string>
+    <string name="action_search">Търси</string>
     <string name="action_download_articles_offline">Свали статиите</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Имате %d нови непрочетени елементи</item>
@@ -130,6 +131,9 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Няма избран podcast</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Относно</string>
+    <string name="pref_license">Лиценз</string>
     <string name="pref_report_issue">Докладвайте за проблем</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Екран</string>

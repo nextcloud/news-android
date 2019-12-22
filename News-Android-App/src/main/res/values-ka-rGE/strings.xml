@@ -33,6 +33,7 @@
     <string name="action_sync_settings">სინქ. პარამეტრები</string>
     <string name="action_add_new_feed">სიახლეების ლენტის დამატება</string>
     <string name="action_textToSpeech">წაკითხვა</string>
+    <string name="action_search">ძიება</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">გაქვთ %d ახალი წაუკითხავი ელემენტი</item>
         <item quantity="other">გაქვთ %d ახალი წაუკითხავი ელემენტი</item>
@@ -96,6 +97,10 @@
     <string name="pref_header_general">ზოგადი</string>
     <string name="pref_title_general_sort_order">განლაგების თანმიმდევრობა</string>
 
+    <string name="pref_general_sort_order_new_old">ახალი -> ძველი</string>
+    <string name="pref_general_sort_order_old_new">ძველი -> ახალი</string>
+
+    <string name="pref_general_search_in_title">სათაური</string>
     <string name="dialog_clearing_cache">კეშის გასუფთავება</string>
     <string name="dialog_clearing_cache_please_wait">კეში სუფთავდება... გთხოვთ მოითმინოთ.</string>
     <string name="reset_cache_unsaved_changes">აღმოჩენილია არასინქრონიზირებული ცვილებები. მაინც გსურთ კეშის საწყის მდგომარეობაში დაბრუნება?</string>
@@ -115,14 +120,24 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">პოდკასტი არაა არჩეული</string>
     <string name="no_chapters_available">არც ერთი თავი არაა ხელმისაწვდომი</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">შესახებ</string>
+    <string name="pref_license">ლიცენზია</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">დისპლეი</string>
+    <string name="pref_title_app_theme">ვიზუალური თემა</string>
     <string name="pref_title_feed_list_layout">ლენტის სიის მაკეტი</string>
     <string name="pref_display_browser">ბრაუზერი</string>
 
 
     <string name="pref_display_news_detail_actionbar_icons_title">მოქმედების პიქტოგრამები (დეტალების ხედი)</string>
 
+    <string name="pref_display_apptheme_light">ღია</string>
+    <string name="pref_display_apptheme_dark">მუქი</string>
+
+    <string name="pref_display_browser_cct">ჩაშენებული ქრომის-პერსონალიზირებული-ტაბულები</string>
+    <string name="pref_display_browser_built_in">ჩაშენებული ბრაუზერი</string>
+    <string name="pref_display_font_size_d">საწყისი</string>
     <string name="content_desc_play">დაკვრა</string>
     <string name="content_desc_pause">პაუზა</string>
     <string name="content_desc_rewind">გადახვევა</string>
@@ -154,5 +169,21 @@
     <string name="pref_title_clearCache">კეშის გასუფთავება</string>
     <string name="pref_title_CacheImagesOffline">სურათების ოფლაინ კეშირება</string>
     <string name="pref_title_Max_Cache_Size">მაქს. კეშის ზომა</string>
+
+    <string name="pref_data_sync_image_cache_never">არასდროს</string>
+    <string name="pref_data_sync_image_cache_wifi_only">მხოლოდ WiFi-ზე</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Wi-Fi-ზე და მობილურზე</string>
+    <string name="pref_data_sync_image_cache_ask">შეკითხვა როდესაც არაა კავშირი WiFi-სთან</string>
+
+    <string name="array_sync_interval_min_5">5 წუთი</string>
+    <string name="array_sync_interval_min_15">15 წუთი</string>
+    <string name="array_sync_interval_min_30">30 წუთი</string>
+    <string name="array_sync_interval_min_45">45 წუთი</string>
+    <string name="array_sync_interval_hour_1">1 საათი</string>
+    <string name="array_sync_interval_hour_2">2 საათი</string>
+    <string name="array_sync_interval_hour_3">3 საათი</string>
+    <string name="array_sync_interval_hour_6">6 საათი</string>
+    <string name="array_sync_interval_hour_12">12 საათი</string>
+    <string name="array_sync_interval_hour_24">24 საათი</string>
 
     </resources>

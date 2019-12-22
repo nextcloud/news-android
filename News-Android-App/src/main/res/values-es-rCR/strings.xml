@@ -36,6 +36,7 @@
     <string name="action_sync_settings">Configuración de Sincronización</string>
     <string name="action_add_new_feed">Agregar una nueva fuente</string>
     <string name="action_textToSpeech">Lectura</string>
+    <string name="action_search">Buscar</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Tienes %d elemento nuevo sin leer</item>
         <item quantity="other">Tienes %d elmentos nuevos sin leer</item>
@@ -106,6 +107,7 @@
     <string name="pref_general_sort_order_new_old">Reciente -> Antiguo</string>
     <string name="pref_general_sort_order_old_new">Antiguo -> Reciente</string>
 
+    <string name="pref_general_search_in_title">Título</string>
     <string name="dialog_clearing_cache">Limpiando el caché</string>
     <string name="dialog_clearing_cache_please_wait">Limpiando el caché... Por favor aguarda.</string>
     <string name="reset_cache_unsaved_changes">Hay cambios que no han sido sincronizados. ¿Quieres limpiar el caché de cualquier modo?</string>
@@ -128,8 +130,12 @@
     <string name="no_podcast_selected">No se ha seleccionado algún podcast</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
     <string name="podcast_playback_speed_dialog_title">Velocidad de Reproducción</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Acerca de</string>
+    <string name="pref_license">Licencia</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
+    <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Distribución de lista de fuente</string>
     <string name="pref_display_browser">Navegador</string>
 
@@ -143,6 +149,7 @@
     <string name="pref_display_browser_built_in">Navegador Integrado</string>
     <string name="pref_display_browser_external">Navegador Externo</string>
 
+    <string name="pref_display_font_size_d">Predeterminado</string>
     <string name="content_desc_play">reproducir</string>
     <string name="content_desc_pause">pausar</string>
     <string name="content_desc_playback_speed">velocidad de reproducción</string>

@@ -38,6 +38,7 @@
     <string name="action_sync_settings">تنظییمات همگام‌سازی</string>
     <string name="action_add_new_feed">افزودن خوراک جدید</string>
     <string name="action_textToSpeech">بازخوانی</string>
+    <string name="action_search">جستجو</string>
     <string name="action_download_articles_offline">بارگیری برون‌خط مقاله‌ها</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">%d مورد خوانده‌نشده دارید</item>
@@ -146,6 +147,8 @@
     <string name="notification_downloading_podcast_title">بارگیری پادکست</string>
 
 
+    <!-- Settings for About -->
+    <string name="pref_header_about">درباره</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">نمایش</string>
     <string name="pref_title_app_theme">زمینه</string>

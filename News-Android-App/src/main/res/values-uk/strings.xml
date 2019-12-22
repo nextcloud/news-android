@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Автоматична синхронізація</string>
+    <string name="title_activity_sync_interval_selector">Перемикач Інтервалу Синхронізації</string>
+    <string name="title_activity_news_detail">Останні Новини</string>
+    <string name="empty_view_content">Нічого нема</string>
+    <string name="toast_GettingMoreItems">Завантаження більшої кількості елементів... Будь ласка, зачекайте.</string>
+    <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
+    <string name="do_you_want_to_download_without_wifi">Чи хочете ви завантажити зображення без з\'єднання Wi-Fi</string>
+    <string name="current_version">Ви використовуєте версію %s</string>
+    <string name="widget_header">Новини ownCloud </string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">Доступний %d новий елемент</item>
+        <item quantity="few">Доступно %d нових елементів</item>
+        <item quantity="many">Доступно %d нових елементів</item>
+        <item quantity="other">Доступно %d нових елементів</item>
+    </plurals>
+    <string name="message_bar_reload">Перезавантажити</string>
+    <string name="allUnreadFeeds">Всі непрочитані</string>
+    <string name="starredFeeds">Помічені</string>
+    <string name="title_activity_new_feed">Додати нову стрічку</string>
+
+    <string name="menu_update">Оновити</string>
+    <string name="menu_markAllAsRead">Позначити все як прочитане</string>
+    <string name="menu_StartImageCaching">Завантажити зображення</string>
+    <string name="menu_downloadMoreItems">Завантажити більше елементів</string>
+
+    <string name="tv_showing_cached_version">Відображається кешована версія</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Помічені зірочкою</string>
+    <string name="action_read">Читати</string>
+    <string name="action_playPodacst">Відтворити Подкаст</string>
+    <string name="action_openInBrowser">Відкрити у веб-браузері</string>
+    <string name="action_Share">Поділитися</string>
+    <string name="action_login">Налаштування Серверу</string>
+    <string name="action_save">Зберегти</string>
+    <string name="action_settings">Налаштування</string>
+    <string name="action_sync_settings">Налаштування синхронізації</string>
+    <string name="action_add_new_feed">Додати нову стрічку</string>
+    <string name="action_textToSpeech">Читати</string>
+    <string name="action_search">Пошук</string>
+    <string name="action_add_feed">Додати стрічку</string>
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Завантажити зображення</string>
+    <string name="toast_copied_to_clipboard">Скопійовано в буфер обміну</string>
+    <string name="error_download_failed">Завантаження не вдалося</string>
+    <string name="feed_remove_button">Видалити</string>
+    <string name="feed_rename_button">Перейменувати</string>
+    <string name="pref_title_username">Ім\'я користувача</string>
+    <string name="pref_title_password">Пароль</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Ввійти...</string>
+    <string name="login_progress_signing_in">Вхід...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Обов\'язкове поле</string>
+    <string name="toast_no_more_downloads_available">Більше немає об\'єктів</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Налаштування</string>
+    <!-- General settings -->
+    <string name="pref_header_general">Загалом</string>
+    <string name="pref_title_general_sort_order">Порядок сортування</string>
+
+    <string name="pref_general_sort_order_new_old">Новіші -&gt; Старші</string>
+    <string name="pref_general_sort_order_old_new">Старші -&gt; Нові</string>
+
+    <string name="pref_general_search_in_title">Назва</string>
+    <string name="dialog_clearing_cache">Очистити кеш</string>
+    <string name="reset_cache_unsaved_changes">Є несинхронізовані зміни. Ви дійсно бажаєте очистити кеш?</string>
+    <string name="warning">Попередження</string>
+    <string name="pref_title_AutoSyncOnStart">Синхронізація при включені</string>
+    <string name="pref_title_ShowOnlyUnread">Показати непрочитані статті</string>
+    <string name="pref_title_DisableHostnameVerification">Вимкнути перевірку доменного ім\'я</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Керування кнопками гучності</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Помічати прочитаними при прокрутці</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Підтвердити невідомий сертифікат?</string>
+    <string name="mtm_decision_always">Завжди</string>
+    <string name="mtm_decision_abort">Відміна</string>
+    <string name="mtm_notification">Перевірка сертифікату</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Жодного Подкасту не обрано</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Про програму</string>
+    <string name="pref_license">Ліцензія</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Показати</string>
+    <string name="pref_title_feed_list_layout">Поле списку стрічок</string>
+    <string name="pref_display_apptheme_light">Світла</string>
+    <string name="pref_display_apptheme_dark">Темна</string>
+
+    <string name="pref_display_font_size_d">За замовчуванням</string>
+    <string name="content_desc_add_to_favorites">додати до улюбленого</string>
+    <string name="content_desc_delete">видалити</string>
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Сповіщення</string>
+    <string name="pref_title_notification_new_articles_available">Показати сповіщення коли доступна нова стаття</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Помилка</string>
+    <string name="login_dialog_text_something_went_wrong">Щось пішло не так :(</string>
+    <string name="login_dialog_title_security_warning">Попередження про небезпеку</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Дані та синхронізація</string>
+    <string name="pref_title_clearCache">Очистити кеш</string>
+    <string name="pref_title_CacheImagesOffline">Зберігати зображення оффлайн</string>
+    <string name="pref_title_Max_Cache_Size">Максимальний розмір кеша</string>
+
+    <string name="pref_data_sync_image_cache_never">Ніколи</string>
+    <string name="array_sync_interval_min_5">5 Хвилин</string>
+    <string name="array_sync_interval_min_15">15 Хвилин</string>
+    <string name="array_sync_interval_min_30">30 Хвилин</string>
+    <string name="array_sync_interval_min_45">45 Хвилин</string>
+    <string name="array_sync_interval_hour_1">1 Година</string>
+    <string name="array_sync_interval_hour_2">2 Години</string>
+    <string name="array_sync_interval_hour_3">3 Години</string>
+    <string name="array_sync_interval_hour_6">6 Годин</string>
+    <string name="array_sync_interval_hour_12">12 Годин</string>
+    <string name="array_sync_interval_hour_24">24 Години</string>
+
+    </resources>

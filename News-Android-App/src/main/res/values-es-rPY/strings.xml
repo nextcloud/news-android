@@ -33,6 +33,7 @@
     <string name="action_sync_settings">Configuración de Sincronización</string>
     <string name="action_add_new_feed">Agregar una nueva fuente</string>
     <string name="action_textToSpeech">Lectura</string>
+    <string name="action_search">Buscar</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Tienes %d elemento nuevo sin leer</item>
         <item quantity="other">Tienes %d elmentos nuevos sin leer</item>
@@ -96,6 +97,10 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Cirterio para ordenar</string>
 
+    <string name="pref_general_sort_order_new_old">Nuevo -> Anterior</string>
+    <string name="pref_general_sort_order_old_new">Anterior -> Nuevo</string>
+
+    <string name="pref_general_search_in_title">Título</string>
     <string name="dialog_clearing_cache">Limpiando el caché</string>
     <string name="dialog_clearing_cache_please_wait">Limpiando el caché... Por favor aguarda.</string>
     <string name="reset_cache_unsaved_changes">Hay cambios que no han sido sincronizados. ¿Quieres limpiar el caché de cualquier modo?</string>
@@ -115,11 +120,19 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">No se ha seleccionado algún podcast</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Acerca</string>
+    <string name="pref_license">Licencia</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
+    <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Lista de fuentes</string>
     <string name="pref_display_news_detail_actionbar_icons_title">Íconos de acción (Vista Detallada)</string>
 
+    <string name="pref_display_apptheme_light">Claro</string>
+    <string name="pref_display_apptheme_dark">Oscuro</string>
+
+    <string name="pref_display_font_size_d">Predeterminado</string>
     <string name="content_desc_play">reproducir</string>
     <string name="content_desc_pause">pausar</string>
     <string name="content_desc_rewind">rebobinar</string>
@@ -151,5 +164,21 @@
     <string name="pref_title_clearCache">Limpiar el caché</string>
     <string name="pref_title_CacheImagesOffline">Cachear imágenes offline</string>
     <string name="pref_title_Max_Cache_Size">Tamaño máximo del caché</string>
+
+    <string name="pref_data_sync_image_cache_never">Nunca</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Solo mediante WiFI</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Mediante WiFi &amp; datos móviles</string>
+    <string name="pref_data_sync_image_cache_ask">Preguntar cuando no se esté conectado a una WiFi</string>
+
+    <string name="array_sync_interval_min_5">5 Minutos</string>
+    <string name="array_sync_interval_min_15">15 Minutos</string>
+    <string name="array_sync_interval_min_30">30 Minutos</string>
+    <string name="array_sync_interval_min_45">45 Minutos</string>
+    <string name="array_sync_interval_hour_1">1 Hora</string>
+    <string name="array_sync_interval_hour_2">2 Horas</string>
+    <string name="array_sync_interval_hour_3">3 Horas</string>
+    <string name="array_sync_interval_hour_6">6 Horas</string>
+    <string name="array_sync_interval_hour_12">12 Horas</string>
+    <string name="array_sync_interval_hour_24">24 Horas</string>
 
     </resources>

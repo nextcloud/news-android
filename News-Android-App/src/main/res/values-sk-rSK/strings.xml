@@ -30,6 +30,7 @@
     <string name="action_sync_settings">Nastavenia synchronizácie</string>
     <string name="action_add_new_feed">Pridať nový kanál</string>
     <string name="action_textToSpeech">Prečítať</string>
+    <string name="action_search">Hľadať</string>
     <string name="action_add_feed">Pridať kanál</string>
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Stiahnuť obrázok</string>
@@ -45,6 +46,8 @@
     <string name="error_download_failed">Stiahnutie zlyhalo</string>
     <string name="feed_remove_button">Odobrať</string>
     <string name="feed_rename_button">Premenovať</string>
+    <string name="move_feed_root_folder">Koreňový priečinok</string>
+
     <string name="pref_title_username">Meno používateľa</string>
     <string name="pref_title_password">Heslo</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
@@ -60,6 +63,10 @@
     <string name="pref_header_general">Všeobecné</string>
     <string name="pref_title_general_sort_order">Zoradenie</string>
 
+    <string name="pref_general_sort_order_new_old">Nové -&gt; Staré</string>
+    <string name="pref_general_sort_order_old_new">Staré -&gt; Nové</string>
+
+    <string name="pref_general_search_in_title">Názov</string>
     <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
     <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
     <string name="warning">Varovanie</string>
@@ -77,14 +84,26 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Nebol vybraný žiaden podcast</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">O aplikácii</string>
+    <string name="pref_license">Licencia</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazenie</string>
+    <string name="pref_title_app_theme">Motív vzhľadu</string>
     <string name="pref_title_feed_list_layout">Rozvrhnutie zoznamu kanálov</string>
+    <string name="pref_title_font_size">Veľkosť písma</string>
     <string name="pref_display_browser">Prehliadač</string>
 
 
+    <string name="pref_display_apptheme_light">Svetlý</string>
+    <string name="pref_display_apptheme_dark">Tmavý</string>
+
     <string name="pref_display_browser_external">Externý prehliadač</string>
 
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Malá</string>
+    <string name="pref_display_font_size_d">Predvolené</string>
+    <string name="pref_display_font_size_l">Veľká</string>
     <string name="content_desc_mark_as_read">označiť ako prečítané</string>
     <string name="content_desc_mark_as_unread">označiť ako neprečítané</string>
     <string name="content_desc_delete">vymazať</string>
@@ -105,6 +124,9 @@
 
     <string name="pref_data_sync_image_cache_never">Nikdy</string>
     <string name="pref_data_sync_image_cache_wifi_only">Iba cez WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Iba cez WiFi &amp; Mobil</string>
+    <string name="pref_data_sync_image_cache_ask">Spýtať sa keď nieste pripojený k WiFi</string>
+
     <string name="array_sync_interval_min_5">5 minút</string>
     <string name="array_sync_interval_min_15">15 minút</string>
     <string name="array_sync_interval_min_30">30 minút</string>
