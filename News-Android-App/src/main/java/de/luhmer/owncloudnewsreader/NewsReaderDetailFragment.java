@@ -27,6 +27,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -48,6 +49,7 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
+import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -690,7 +692,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         public FastMarkReadMotionListener(View fabMarkAllAsRead) {
             this.fabMarkAllAsRead = fabMarkAllAsRead;
-            this.circle = (ImageView) fabMarkAllAsRead.findViewById(R.id.target_done_all);
+            this.circle = (ImageView)fabMarkAllAsRead.findViewById(R.id.target_done_all);
         }
 
         @Override
@@ -726,7 +728,7 @@ public class NewsReaderDetailFragment extends Fragment {
             // Start animation of target
             circle.setImageResource(R.drawable.fa_all_read_target);
             circle.setVisibility(View.VISIBLE);
-            ((AnimatedVectorDrawableCompat)circle.getDrawable()).start();
+            ((Animatable)circle.getDrawable()).start();
         }
 
         /**
@@ -765,13 +767,13 @@ public class NewsReaderDetailFragment extends Fragment {
                 if (!markAsRead) {
                     this.markAsRead = true;
                     circle.setImageResource(R.drawable.fa_all_read_target_success);
-                    ((AnimatedVectorDrawableCompat)circle.getDrawable()).start();
+                    ((Animatable)circle.getDrawable()).start();
                 }
             } else {
                 if (this.markAsRead) {
                     this.markAsRead = false;
                     circle.setImageResource(R.drawable.fa_all_read_target);
-                    ((AnimatedVectorDrawableCompat)circle.getDrawable()).start();
+                    ((Animatable)circle.getDrawable()).start();
 
                 }
             }
@@ -786,7 +788,7 @@ public class NewsReaderDetailFragment extends Fragment {
          * @param success if all articles should be marked as read
          */
         private void stopUserInteractionProcess(View v, boolean success) {
-            ((AnimatedVectorDrawableCompat)circle.getDrawable()).stop();
+            ((Animatable)circle.getDrawable()).stop();
 
             if (this.markAsRead) {
                 Animation anim_success = AnimationUtils.loadAnimation(NewsReaderDetailFragment.this.getContext(),
