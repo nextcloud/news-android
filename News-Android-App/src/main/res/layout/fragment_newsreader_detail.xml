@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,6 +36,41 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:indeterminate="true" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_done_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:visibility="visible"
+            android:translationX="-16dp"
+            android:translationY="-16dp"
+            app:tint="@android:color/white"
+            app:fabSize="normal"
+            app:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_done_all"
+            />
+
+        <ImageView
+            android:id="@+id/target_done_all"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:translationX="18dp"
+            android:translationY="-64dp"
+            android:layout_above="@id/fab_done_all"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/fa_all_read_target"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
 
 
     <!-- android:textIsSelectable="true" -->
