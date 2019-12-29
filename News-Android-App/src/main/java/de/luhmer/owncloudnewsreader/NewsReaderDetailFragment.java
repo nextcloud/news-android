@@ -49,14 +49,12 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
-import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -685,14 +683,18 @@ public class NewsReaderDetailFragment extends Fragment {
      * A movement up is required to prevent accidentally marking articles as read.
      */
     private class FastMarkReadMotionListener implements View.OnTouchListener {
-        private boolean markAsRead = false;
         private View fabMarkAllAsRead;
-        private float originX, originY, dx, dy;
-        ImageView circle;
+        private ImageView targetView;
+
+        private boolean markAsRead = false;
+        private float originX,
+                      originY;
+        private float dx,
+                      dy;
 
         public FastMarkReadMotionListener(View fabMarkAllAsRead) {
             this.fabMarkAllAsRead = fabMarkAllAsRead;
-            this.circle = (ImageView)fabMarkAllAsRead.findViewById(R.id.target_done_all);
+            this.targetView = (ImageView)fabMarkAllAsRead.findViewById(R.id.target_done_all);
         }
 
         @Override
@@ -705,7 +707,11 @@ public class NewsReaderDetailFragment extends Fragment {
                     this.moveFAB(v, event);
                     break;
                 case MotionEvent.ACTION_UP:
-                    this.stopUserInteractionProcess(v, this.markAsRead);
+                    this.stopUserInteractionProcess(v);
+                    break;
+                default:
+                    // Do nothing
+                    break;
             }
             return true;
         }
@@ -720,15 +726,16 @@ public class NewsReaderDetailFragment extends Fragment {
 
         private void startUserInteractionProcess(View v, MotionEvent event) {
             // Save start location of movement and button
-            originX = v.getX();
-            originY = v.getY();
-            dx = v.getX() - event.getRawX();
-            dy = v.getY() - event.getRawY();
+            this.originX = v.getX();
+            this.originY = v.getY();
+            this.dx = v.getX() - event.getRawX();
+            this.dy = v.getY() - event.getRawY();
+            this.markAsRead = false;
 
             // Start animation of target
-            circle.setImageResource(R.drawable.fa_all_read_target);
-            circle.setVisibility(View.VISIBLE);
-            ((Animatable)circle.getDrawable()).start();
+            this.targetView.setImageResource(R.drawable.fa_all_read_target);
+            this.targetView.setVisibility(View.VISIBLE);
+            ((Animatable)this.targetView.getDrawable()).start();
         }
 
         /**
@@ -741,8 +748,8 @@ public class NewsReaderDetailFragment extends Fragment {
          * @param event motion event for v
          */
         private void moveFAB(View v, MotionEvent event) {
-            v.setX(event.getRawX() + dx);
-            v.setY(event.getRawY() + dy);
+            v.setX(event.getRawX() + this.dx);
+            v.setY(event.getRawY() + this.dy);
             this.checkLocation(event);
         }
 
@@ -754,26 +761,25 @@ public class NewsReaderDetailFragment extends Fragment {
          * @param evt MotionEvent of all read FAB
          */
         private void checkLocation(MotionEvent evt) {
-            View targetView = fabMarkAllAsRead.findViewById(R.id.target_done_all);
             // Location on screen for target is required as motion event returns location on screen
             int[] location = new int[2];
-            targetView.getLocationOnScreen(location);
+            this.targetView.getLocationOnScreen(location);
 
             Rect r = new Rect(location[0], location[1],
                     (location[0] + targetView.getWidth()),
                     (location[1] + targetView.getHeight()));
 
             if (r.contains((int)evt.getRawX(), (int)evt.getRawY())) {
-                if (!markAsRead) {
+                if (!this.markAsRead) {
                     this.markAsRead = true;
-                    circle.setImageResource(R.drawable.fa_all_read_target_success);
-                    ((Animatable)circle.getDrawable()).start();
+                    this.targetView.setImageResource(R.drawable.fa_all_read_target_success);
+                    ((Animatable) this.targetView.getDrawable()).start();
                 }
             } else {
                 if (this.markAsRead) {
                     this.markAsRead = false;
-                    circle.setImageResource(R.drawable.fa_all_read_target);
-                    ((Animatable)circle.getDrawable()).start();
+                    this.targetView.setImageResource(R.drawable.fa_all_read_target);
+                    ((Animatable) this.targetView.getDrawable()).start();
 
                 }
             }
@@ -785,11 +791,9 @@ public class NewsReaderDetailFragment extends Fragment {
          *  - A success animation is shown of all articles will be marked as read
          *  - Target view is hidden again
          *
-         * @param success if all articles should be marked as read
+         * @param v view of fab
          */
-        private void stopUserInteractionProcess(View v, boolean success) {
-            ((Animatable)circle.getDrawable()).stop();
-
+        private void stopUserInteractionProcess(View v) {
             if (this.markAsRead) {
                 Animation anim_success = AnimationUtils.loadAnimation(NewsReaderDetailFragment.this.getContext(),
                         R.anim.all_read_success);
@@ -801,17 +805,21 @@ public class NewsReaderDetailFragment extends Fragment {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        circle.setVisibility(View.INVISIBLE);
+                        ((Animatable)targetView.getDrawable()).stop();
+                        targetView.setVisibility(View.INVISIBLE);
                     }
 
                     @Override
-                    public void onAnimationRepeat(Animation animation) {}
+                    public void onAnimationRepeat(Animation animation) {
+                        //Nothing to do here for now
+                    }
                 });
-                circle.startAnimation(anim_success);
+                this.targetView.startAnimation(anim_success);
                 this.markAllAsReadForCurrentView();
             } else {
-                circle.setVisibility(View.INVISIBLE);
-                v.animate().x(originX).y(originY).setDuration(100).setStartDelay(0).start();
+                this.targetView.setVisibility(View.INVISIBLE);
+                v.animate().x(this.originX).y(this.originY).setDuration(100).setStartDelay(0).start();
+                ((Animatable)this.targetView.getDrawable()).stop();
             }
         }
 
