@@ -1,3 +1,8 @@
+0.9.9.31 (dev)
+---------------------
+Feature - <a href="https://github.com/nextcloud/news-android/issues/787">#787 - Display profile avatar in the sidenav</a>
+
+
 0.9.9.28 / 0.9.9.29 / 0.9.9.30
 ---------------------
 - Retry rejected review by google due to new android auto support
