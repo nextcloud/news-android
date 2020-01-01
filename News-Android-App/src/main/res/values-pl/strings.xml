@@ -102,7 +102,7 @@
     <string name="pref_title_owncloudRootPath">Adres główny Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
-    <string name="action_sign_in_short">Zaloguj</string>
+    <string name="action_sign_in_short">Zaloguj się</string>
     <string name="login_progress_signing_in">Loguję…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ten element jest wymagany</string>
