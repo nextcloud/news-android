@@ -39,8 +39,12 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+import androidx.annotation.VisibleForTesting;
+import androidx.fragment.app.Fragment;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import java.io.ByteArrayInputStream;
@@ -52,8 +56,6 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 
-import androidx.annotation.VisibleForTesting;
-import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
@@ -62,7 +64,6 @@ import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.AbstractItem;
 import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
-import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -358,13 +359,17 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
             UserInfo userInfo = (UserInfo) fromString(uInfo);
             if (userInfo.displayName != null)
                 userTextView.setText(userInfo.displayName);
-                Glide
-                        .with(this)
-                        .load(mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.userId) + "/64")
-                        .error(R.mipmap.ic_launcher)
-                        .apply(RequestOptions.circleCropTransform())
-                        .into(this.headerLogo);
-
+            final int placeHolder = R.mipmap.ic_launcher;
+            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
+                    .displayer(new CircleBitmapDisplayer())
+                    .showImageOnLoading(placeHolder)
+                    .showImageForEmptyUri(placeHolder)
+                    .showImageOnFail(placeHolder)
+                    .cacheOnDisk(true)
+                    .cacheInMemory(true)
+                    .build();
+            String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.userId) + "/64";
+            ImageLoader.getInstance().displayImage(avatarUrl, this.headerLogo, displayImageOptions);
             if (userInfo.avatar != null) {
                 Resources r = getResources();
                 float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, r.getDisplayMetrics());
