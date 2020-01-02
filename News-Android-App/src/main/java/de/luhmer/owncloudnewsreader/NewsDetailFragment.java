@@ -332,35 +332,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
-
-                File webArchiveFile = DownloadWebPageService.getWebPageArchiveFileForUrl(getActivity(), url);
-                if(webArchiveFile.exists()) { // Test if WebArchive exists for url
-                    mTvOfflineVersion.setVisibility(View.VISIBLE);
-                    mWebView.loadUrl("file://" + webArchiveFile.getAbsolutePath());
-                    return true;
-                } else {
-                    mTvOfflineVersion.setVisibility(View.GONE);
-                    switch (selectedBrowser) {
-                        case 0: // Custom Tabs
-                            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
-                                    .setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary))
-                                    .setShowTitle(true)
-                                    .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
-                                    .setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right)
-                                    .addDefaultShareMenuItem();
-                            builder.build().launchUrl(getActivity(), Uri.parse(url));
-                            return true;
-                        case 1: // External Browser
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                            startActivity(browserIntent);
-                            return true;
-                        case 2: // Built in
-                            return super.shouldOverrideUrlLoading(view, url);
-                        default:
-                            throw new IllegalStateException("Unknown selection!");
-                    }
-                }
+                NewsDetailFragment.this.loadURL(url);
+                return true;
             }
 
             @Override
@@ -382,6 +355,45 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             return false;
         });
 	}
+
+    /**
+     * Loads the given url in the selected view based on user settings (Custom Chrome Tabs, webview or external)
+     *
+     * @param url address to load
+     */
+
+	public void loadURL(String url) {
+        int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
+
+        File webArchiveFile = DownloadWebPageService.getWebPageArchiveFileForUrl(getActivity(), url);
+        if(webArchiveFile.exists()) { // Test if WebArchive exists for url
+            mTvOfflineVersion.setVisibility(View.VISIBLE);
+            mWebView.loadUrl("file://" + webArchiveFile.getAbsolutePath());
+        } else {
+            mTvOfflineVersion.setVisibility(View.GONE);
+            switch (selectedBrowser) {
+                case 0: // Custom Tabs
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
+                            .setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary))
+                            .setShowTitle(true)
+                            .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
+                            .setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right)
+                            .addDefaultShareMenuItem();
+                    builder.build().launchUrl(getActivity(), Uri.parse(url));
+                    break;
+                case 1: // External Browser
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(browserIntent);
+                    break;
+                case 2: // Built in
+                    mWebView.loadUrl(url);
+                    break;
+                default:
+                    throw new IllegalStateException("Unknown selection!");
+            }
+        }
+    }
+
 
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
         if (!(view instanceof WebView))
