@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -20,6 +23,9 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.TwoStatePreference;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -32,6 +38,7 @@ import static android.app.Activity.RESULT_OK;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_REPORT_ISSUE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOWONLYUNREAD_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING;
@@ -278,12 +285,49 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private void bindAboutPreferences(final PreferenceFragmentCompat prefFrag) {
         prefFrag.findPreference(CB_VERSION).setSummary(version);
         Preference changelogPreference = prefFrag.findPreference(CB_VERSION);
-
         changelogPreference.setOnPreferenceClickListener(preference -> {
             DialogFragment dialog = new VersionInfoDialogFragment();
             dialog.show(prefFrag.getActivity().getFragmentManager(), "VersionChangelogDialogFragment");
             return true;
         });
+
+        findPreference(CB_REPORT_ISSUE).setOnPreferenceClickListener(preference -> {
+            String title = "";
+            String body = "";
+            String debugInfo = "";
+
+            try {
+                PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+                debugInfo += "\nApp Version: " + pInfo.versionName;
+                debugInfo += "\nApp Version Code: " + pInfo.versionCode;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            debugInfo += "\n\n---";
+
+            debugInfo += "SSO enabled: " + mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
+
+
+            debugInfo += "\n\n---";
+            debugInfo += "\nOS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
+            debugInfo += "\nOS API Level: " + android.os.Build.VERSION.SDK_INT;
+            debugInfo += "\nDevice: " + android.os.Build.DEVICE;
+            debugInfo += "\nModel (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
+            debugInfo += "\n";
+
+
+            try {
+                //title = URLEncoder.encode("Bug:","UTF-8");
+                body = URLEncoder.encode("Description goes here...\n\n---\n" + debugInfo,"UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
+            startActivity(browserIntent);
+            return true;
+        });
+
     }
 
 

@@ -22,9 +22,11 @@
             android:summary="@string/pref_report_issue_summary"
             app:iconSpaceReserved="false">
 
+            <!--
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/nextcloud/news-android/issues" />
+            -->
         </Preference>
 
         <Preference
