@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,11 +36,13 @@ import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -224,12 +227,79 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
         mViewPager.addOnPageChangeListener(onPageChangeListener);
+		this.initFastActionBar();
 
         /*
 		mBtnDisableIncognito.setOnClickListener(v -> {
 			toggleIncognitoMode();
 		});
 		*/
+	}
+
+	/**
+	 * Init fast action bar based on user settings.
+	 * Only show if user selected setting CB_SHOW_FAST_ACTIONS. Otherwise hide.
+	 *
+	 * author: emasty https://github.com/emasty
+	 */
+	private void initFastActionBar() {
+		View bar = this.findViewById(R.id.fa_detail_bar);
+		boolean showFastActions = mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, false);
+
+		if (showFastActions) {
+			// Set click listener for buttons on action bar
+			bar.findViewById(R.id.fa_open_in_browser).setOnClickListener(v -> this.openInBrowser(currentPosition));
+			bar.findViewById(R.id.fa_share).setOnClickListener(v -> this.share(currentPosition));
+			bar.findViewById(R.id.fa_toggle).setOnClickListener(v -> this.toggleFastActionBar());
+
+			RssItem rssItem = rssItems.get(currentPosition);
+			boolean isStarred = rssItem.getStarred_temp();
+			boolean isRead = rssItem.getRead_temp();
+
+			AppCompatImageButton star_button = bar.findViewById(R.id.fa_star);
+			star_button.setOnClickListener(v -> NewsDetailActivity.this.toggleRssItemStarredState());
+			if (isStarred) {
+				star_button.setImageResource(R.drawable.ic_action_star_dark);
+			} else {
+				star_button.setImageResource(R.drawable.ic_action_star_border_dark);
+			}
+
+			AppCompatImageButton read_button = bar.findViewById(R.id.fa_mark_as_read);
+			read_button.setOnClickListener(v -> NewsDetailActivity.this.markRead(currentPosition));
+			if (isRead) {
+				read_button.setImageResource(R.drawable.ic_check_box_white);
+			} else {
+				read_button.setImageResource(R.drawable.ic_check_box_outline_blank_white);
+			}
+
+			// Remove double entries on menu bar
+			bar.setVisibility(View.VISIBLE);
+		} else {
+			bar.setVisibility(View.INVISIBLE);
+		}
+	}
+
+	/**
+	 * Expands or shrinks the fast action bar to show/hide secondary functions
+	 */
+	private void toggleFastActionBar() {
+		View collapseView = findViewById(R.id.fa_collapse_layout);
+		AppCompatImageButton toggleButton = findViewById(R.id.fa_toggle);
+		int currentState = collapseView.getVisibility();
+		switch (currentState) {
+			case View.GONE:
+				toggleButton.setImageResource(R.drawable.ic_fa_expand);
+				collapseView.setVisibility(View.VISIBLE);
+				((Animatable)toggleButton.getDrawable()).start();
+				break;
+			case View.VISIBLE:
+				toggleButton.setImageResource(R.drawable.ic_fa_shrink);
+				collapseView.setVisibility(View.GONE);
+				((Animatable)toggleButton.getDrawable()).start();
+				break;
+			default:
+				break;
+		}
 	}
 
 	private void toggleIncognitoMode() {
@@ -391,18 +461,23 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             menuItem_PlayPodcast.setVisible(podcastAvailable);
 
 
-        if(isStarred && menuItem_Starred != null)
-            menuItem_Starred.setIcon(R.drawable.ic_action_star_dark);
-        else if(menuItem_Starred != null)
-            menuItem_Starred.setIcon(R.drawable.ic_action_star_border_dark);
+        if(isStarred && menuItem_Starred != null) {
+			menuItem_Starred.setIcon(R.drawable.ic_action_star_dark);
+			((AppCompatImageButton) findViewById(R.id.fa_star)).setImageResource(R.drawable.ic_action_star_dark);
+		} else if(menuItem_Starred != null) {
+			menuItem_Starred.setIcon(R.drawable.ic_action_star_border_dark);
+			((AppCompatImageButton) findViewById(R.id.fa_star)).setImageResource(R.drawable.ic_action_star_border_dark);
+		}
 
         if(isRead && menuItem_Read != null) {
             menuItem_Read.setIcon(R.drawable.ic_check_box_white);
             menuItem_Read.setChecked(true);
+			((AppCompatImageButton) findViewById(R.id.fa_mark_as_read)).setImageResource(R.drawable.ic_check_box_white);
         }
         else if(menuItem_Read != null) {
             menuItem_Read.setIcon(R.drawable.ic_check_box_outline_blank_white);
             menuItem_Read.setChecked(false);
+			((AppCompatImageButton) findViewById(R.id.fa_mark_as_read)).setImageResource(R.drawable.ic_check_box_outline_blank_white);
         }
     }
 

@@ -182,9 +182,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             mProgressBarLoading.setVisibility(View.GONE);
             // Make sure to sync the incognitio on retained views
             syncIncognitoState();
+            this.addBottomPaddingForFastActions(mWebView);
         }
-
-
 
         setUpGestureDetector();
 
@@ -339,8 +338,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+                addBottomPaddingForFastActions(view);
             }
-
         });
 
         mWebView.setOnTouchListener((v, event) -> {
@@ -355,6 +354,30 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             return false;
         });
 	}
+
+    /**
+     * Add free space to bottom of web-site if Fast-Actions are switched on.
+     * Otherwise the fast action bar might hide the article content.
+     * Method to modify the body margins with JavaScript seems to be dirty, but no other
+     * solution seems to be available.
+     *
+     * This method does (for unknown reasons) not work if WebView gets restored. The Javascript is
+     * called but not executed.
+     *
+     * This is (only) a problem, if user swipes back in viewpager to already loaded articles.
+     * Solution might be to switch to a different design.
+     *  - Bottom App Bar -- overall cleanest solution but interferes with current implementation
+     *    of Podcast Player
+     *  - Auto-hiding ActionBar. Hard to implement as scroll behaviour of WebView has to be used
+     *    for hiding/showing ActionBar.
+     *
+     * @param view WebView with article
+     */
+	private void addBottomPaddingForFastActions(WebView view) {
+        if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS,false)) {
+            view.loadUrl("javascript:document.body.style.marginBottom=\"100px\"; void 0");
+        }
+    }
 
     /**
      * Loads the given url in the selected view based on user settings (Custom Chrome Tabs, webview or external)
