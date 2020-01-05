@@ -41,8 +41,6 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -460,113 +458,113 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 				return true;
 
             case R.id.action_read:
-                markItemAsReadOrUnread(rssItem, !menuItem_Read.isChecked());
-                updateActionBarIcons();
-                mPostDelayHandler.delayTimer();
+				this.markRead(currentPosition);
                 break;
-
 
             case R.id.action_starred:
                 toggleRssItemStarredState();
                 break;
 
             case R.id.action_openInBrowser:
-                NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
-                String link = "about:blank";
-
-                if(newsDetailFragment != null && newsDetailFragment.mWebView != null) {
-                    link = newsDetailFragment.mWebView.getUrl();
-                }
-
-                if("about:blank".equals(link)) {
-                    link = rssItem.getLink();
-                }
-
-				if(link.length() > 0)
-				{
-					//if(isChromeDefaultBrowser() && mCustomTabsSupported) {
-					if(isChromeDefaultBrowser()) {
-						//CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
-						CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-						builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-						builder.setShowTitle(true);
-						builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-						builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-						builder.build().launchUrl(this, Uri.parse(link));
-					} else {
-						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-						startActivity(browserIntent);
-					}
-				}
+				this.openInBrowser(currentPosition);
 				break;
-
-
-			/*
-			case R.id.action_sendSourceCode:
-				String description = "";
-				if(cursor != null)
-				{
-					cursor.moveToFirst();
-					description = cursor.getString(cursor.getColumnIndex(DatabaseConnection.RSS_ITEM_BODY));
-					cursor.close();
-				}
-
-
-				Intent i = new Intent(Intent.ACTION_SEND);
-				i.setType("message/rfc822");
-				i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"david-dev@live.de"});
-				i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_sourceCode));
-				//i.putExtra(Intent.EXTRA_TEXT   , rssFiles.get(currentPosition).getDescription());
-				i.putExtra(Intent.EXTRA_TEXT   , description);
-				try {
-				    startActivity(Intent.createChooser(i, getString(R.string.email_sendMail)));
-				} catch (android.content.ActivityNotFoundException ex) {
-				    Toast.makeText(NewsDetailActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-				}
-				break;
-			 */
 
             case R.id.action_playPodcast:
                 openPodcast(rssItem);
                 break;
 
             case R.id.action_tts:
-                TTSItem ttsItem = new TTSItem(rssItem.getId(), rssItem.getAuthor(), rssItem.getTitle(), rssItem.getTitle() + "\n\n " + Html.fromHtml(rssItem.getBody()).toString(), rssItem.getFeed().getFaviconUrl());
-				openMediaItem(ttsItem);
+            	this.startTTS(currentPosition);
                 break;
 
             case R.id.action_ShareItem:
-
-            	String title = rssItem.getTitle();
-            	String content = rssItem.getLink();
-
-                NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
-				if(fragment != null) { // could be null if not instantiated yet
-					if(!fragment.mWebView.getUrl().equals("about:blank") && !fragment.mWebView.getUrl().trim().equals("")) {
-						content = fragment.mWebView.getUrl();
-						title = fragment.mWebView.getTitle();
-					}
-				}
-
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("text/plain");
-                //share.putExtra(Intent.EXTRA_SUBJECT, rssFiles.get(currentPosition).getTitle());
-                //share.putExtra(Intent.EXTRA_TEXT, rssFiles.get(currentPosition).getLink());
-                share.putExtra(Intent.EXTRA_SUBJECT, title);
-                share.putExtra(Intent.EXTRA_TEXT, content);
-
-                startActivity(Intent.createChooser(share, "Share Item"));
+				this.share(currentPosition);
                 break;
 
 			case R.id.action_incognito_mode:
 				toggleIncognitoMode();
 				break;
-
-
 		}
 
 		return super.onOptionsItemSelected(item);
 	}
+
+	/**
+	 * Opens current article in selected browser
+	 *
+	 * @param currentPosition currently viewed article
+	 */
+	private void openInBrowser(int currentPosition) {
+		RssItem rssItem = rssItems.get(currentPosition);
+		NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
+		String link = "about:blank";
+
+		if(newsDetailFragment != null && newsDetailFragment.mWebView != null) {
+			link = newsDetailFragment.mWebView.getUrl();
+		}
+
+		if("about:blank".equals(link)) {
+			link = rssItem.getLink();
+		}
+
+		if(link.length() > 0)
+		{
+			newsDetailFragment.loadURL(link);
+		}
+	}
+
+	/**
+	 * Initiates share event for current item
+	 *
+	 * @param currentPosition currently viewed article
+	 */
+	private void share(int currentPosition) {
+		RssItem rssItem = rssItems.get(currentPosition);
+		String title = rssItem.getTitle();
+		String content = rssItem.getLink();
+
+		NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
+		if(fragment != null) { // could be null if not instantiated yet
+			if(!fragment.mWebView.getUrl().equals("about:blank") && !fragment.mWebView.getUrl().trim().equals("")) {
+				content = fragment.mWebView.getUrl();
+				title = fragment.mWebView.getTitle();
+			}
+		}
+
+		Intent share = new Intent(Intent.ACTION_SEND);
+		share.setType("text/plain");
+		//share.putExtra(Intent.EXTRA_SUBJECT, rssFiles.get(currentPosition).getTitle());
+		//share.putExtra(Intent.EXTRA_TEXT, rssFiles.get(currentPosition).getLink());
+		share.putExtra(Intent.EXTRA_SUBJECT, title);
+		share.putExtra(Intent.EXTRA_TEXT, content);
+
+		startActivity(Intent.createChooser(share, "Share Item"));
+
+	}
+
+	/**
+	 * Starts TTS for current position
+	 *
+	 * @param currentPosition currently viewed article
+	 */
+	private void startTTS(int currentPosition) {
+		RssItem rssItem = rssItems.get(currentPosition);
+		TTSItem ttsItem = new TTSItem(rssItem.getId(), rssItem.getAuthor(), rssItem.getTitle(), rssItem.getTitle() + "\n\n " + Html.fromHtml(rssItem.getBody()).toString(), rssItem.getFeed().getFaviconUrl());
+		openMediaItem(ttsItem);
+	}
+
+	/**
+	 * Toggles marked as read for current element
+	 *
+	 * @param currentPosition currently viewed article
+	 */
+	private void markRead(int currentPosition) {
+		RssItem rssItem = rssItems.get(currentPosition);
+		markItemAsReadOrUnread(rssItem, !menuItem_Read.isChecked());
+		updateActionBarIcons();
+		mPostDelayHandler.delayTimer();
+	}
+
 
 	public void toggleRssItemStarredState() {
         RssItem rssItem = rssItems.get(currentPosition);
