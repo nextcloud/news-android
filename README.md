@@ -69,6 +69,7 @@ Contributors
 * [Nils Griebner](https://github.com/NilsGriebner)
 * [AnotherDaniel](https://github.com/AnotherDaniel)
 * [Unpublished](https://github.com/Unpublished)
+* [emasty](https://github.com/emasty)
 
 Changelog
 ==================================
