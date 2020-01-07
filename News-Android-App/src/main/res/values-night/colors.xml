@@ -32,6 +32,7 @@
     <color name="unstarredColor">#ffcccccc</color>
     <color name="markasreadColor">@android:color/holo_green_light</color>
     <color name="swipeBackground">#aaa</color>
+    <color name="menuSeparator">#555</color>
 
     <color name="tintColor">@android:color/white</color>
 

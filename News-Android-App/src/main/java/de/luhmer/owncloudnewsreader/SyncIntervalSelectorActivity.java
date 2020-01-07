@@ -75,9 +75,8 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
         // automatically StartYoutubePlayer clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        } else if(id == R.id.action_save) {
+
+        if(id == R.id.action_save) {
             int checkedPosition = mFragment.lvItems.getCheckedItemPosition();
 
             Integer minutes = Integer.parseInt(items_values[checkedPosition]);

@@ -24,6 +24,13 @@
              This preference simply launches an intent when selected. Use this UI sparingly, per
              design guidelines.
         -->
+        <Preference
+            android:key="pref_server_settings"
+            android:title="@string/action_login"
+            app:iconSpaceReserved="false">
+        </Preference>
+
+
 
         <Preference
             android:key="pref_sync_settings"

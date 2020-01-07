@@ -766,8 +766,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 	}
 
-	private static final int RESULT_SETTINGS = 15642;
-    private static final int RESULT_ADD_NEW_FEED = 15643;
+	public static final int RESULT_SETTINGS = 15642;
+    public static final int RESULT_ADD_NEW_FEED = 15643;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -781,27 +781,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					return true;
 				break;
 
-			case R.id.action_settings:
-				Intent intent = new Intent(this, SettingsActivity.class);
-				startActivityForResult(intent, RESULT_SETTINGS);
-				return true;
-
 			case R.id.menu_update:
 				startSync();
 				break;
-
-			case R.id.action_login:
-                startLoginActivity();
-				break;
-
-            case R.id.action_add_new_feed:
-                if(mApi.getAPI() != null) {
-                    Intent newFeedIntent = new Intent(this, NewFeedActivity.class);
-                    startActivityForResult(newFeedIntent, RESULT_ADD_NEW_FEED);
-                } else {
-                    startLoginActivity();
-                }
-                break;
 
 			case R.id.menu_StartImageCaching:
 				final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
@@ -944,20 +926,25 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
 
         if(requestCode == RESULT_SETTINGS) {
-            //Update settings of image Loader
-            mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
-                @Override
-                public void onConnected() {
-                    ensureCorrectTheme(data);
-                }
+        	// Extra is set if user entered/modified server settings
+        	if (data.getBooleanExtra(SettingsActivity.PREF_SERVER_SETTINGS,false)) {
+				resetUiAndStartSync();
+			} else {
 
-                @Override
-                public void onError(Exception ex) {
-                    ensureCorrectTheme(data);
-                    ex.printStackTrace();
-                }
-            });
+				//Update settings of image Loader
+				mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
+					@Override
+					public void onConnected() {
+						ensureCorrectTheme(data);
+					}
 
+					@Override
+					public void onError(Exception ex) {
+						ensureCorrectTheme(data);
+						ex.printStackTrace();
+					}
+				});
+			}
         } else if(requestCode == RESULT_ADD_NEW_FEED) {
             if(data != null) {
                 boolean val = data.getBooleanExtra(NewFeedActivity.ADD_NEW_SUCCESS, false);
