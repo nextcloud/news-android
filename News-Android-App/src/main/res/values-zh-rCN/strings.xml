@@ -163,7 +163,7 @@
     <string name="pref_license">许可证</string>
     <string name="pref_license_summary">GNU Affero 通用公共许可证 (AGPL) 版本3</string>
     <string name="pref_report_issue">报告问题</string>
-    <string name="pref_report_issue_summary">请求一个(免费) GitHub 帐户</string>
+    <string name="pref_report_issue_summary">请求一个(免费) GitHub 账号</string>
     <string name="pref_contribute">贡献！</string>
     <string name="pref_contribute_summary">获取源代码</string>
     <string name="pref_version">Nextcloud News 安卓应用</string>
