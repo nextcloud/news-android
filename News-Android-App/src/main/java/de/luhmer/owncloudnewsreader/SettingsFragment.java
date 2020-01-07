@@ -25,6 +25,9 @@ import androidx.preference.TwoStatePreference;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -45,7 +48,9 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SKIP_DETAILVIEW_A
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SYNCONSTARTUP_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_VERSION;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_CLEAR_CACHE;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_PASSWORD_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_USERNAME_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.LV_CACHE_IMAGES_OFFLINE_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_SYNC_SETTINGS;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_APP_THEME;
@@ -292,39 +297,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         });
 
         findPreference(CB_REPORT_ISSUE).setOnPreferenceClickListener(preference -> {
-            String title = "";
-            String body = "";
-            String debugInfo = "";
-
-            try {
-                PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-                debugInfo += "\nApp Version: " + pInfo.versionName;
-                debugInfo += "\nApp Version Code: " + pInfo.versionCode;
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-
-            debugInfo += "\n\n---";
-
-            debugInfo += "SSO enabled: " + mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
-
-
-            debugInfo += "\n\n---";
-            debugInfo += "\nOS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
-            debugInfo += "\nOS API Level: " + android.os.Build.VERSION.SDK_INT;
-            debugInfo += "\nDevice: " + android.os.Build.DEVICE;
-            debugInfo += "\nModel (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
-            debugInfo += "\n";
-
-
-            try {
-                //title = URLEncoder.encode("Bug:","UTF-8");
-                body = URLEncoder.encode("Description goes here...\n\n---\n" + debugInfo,"UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
-            startActivity(browserIntent);
+            openBugReport();
             return true;
         });
 
@@ -364,6 +337,50 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     .create()
                     .show();
         }
+    }
+
+    private void openBugReport() {
+        String title = "";
+        String body = "";
+        String debugInfo = "Please describe your bug here...\n\n---\n";
+
+        try {
+            PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            debugInfo += "\nApp Version: " + pInfo.versionName;
+            debugInfo += "\nApp Version Code: " + pInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        debugInfo += "\n\n---\n";
+
+        debugInfo += "\nSSO enabled: " + mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
+
+
+        debugInfo += "\n\n---\n";
+        debugInfo += "\nOS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
+        debugInfo += "\nOS API Level: " + android.os.Build.VERSION.SDK_INT;
+        debugInfo += "\nDevice: " + android.os.Build.DEVICE;
+        debugInfo += "\nModel (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
+
+        debugInfo += "\n\n---\n\n";
+
+        List<String> excludedSettings = Arrays.asList(EDT_USERNAME_STRING, EDT_PASSWORD_STRING, EDT_OWNCLOUDROOTPATH_STRING, Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING);
+        Map<String, ?> allEntries = mPrefs.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            String key =entry.getKey();
+            if(!excludedSettings.contains(key)) {
+                debugInfo += entry + "\n";
+            }
+        }
+
+        try {
+            body = URLEncoder.encode(debugInfo,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
+        startActivity(browserIntent);
     }
 
     public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Void> {
