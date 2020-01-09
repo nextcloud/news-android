@@ -25,6 +25,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -50,33 +51,36 @@ public class ThemeChooser {
     private ThemeChooser() { }
 
     public static void chooseTheme(Activity act) {
+        int defaultNightMode;
         switch(getSelectedThemeFromPreferences(false)) {
             case 0: // Auto (Light / Dark)
                 Log.v(TAG, "Auto (Light / Dark)");
-                act.setTheme(R.style.AppTheme);
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_TIME);
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                    defaultNightMode = AppCompatDelegate.MODE_NIGHT_AUTO_TIME;
+                } else { // Android 10+ (Q) supports a system-wide dark mode
+                    defaultNightMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+                }
                 mSelectedTheme = THEME.LIGHT;
                 break;
             case 1: // Light Theme
                 Log.v(TAG, "Light");
-                act.setTheme(R.style.AppTheme);
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                defaultNightMode = AppCompatDelegate.MODE_NIGHT_NO;
                 mSelectedTheme = THEME.LIGHT;
                 break;
             case 2: // Dark Theme
                 Log.v(TAG, "Dark");
-                act.setTheme(R.style.AppTheme);
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                defaultNightMode = AppCompatDelegate.MODE_NIGHT_YES;
                 mSelectedTheme = THEME.DARK;
                 break;
             default:
                 // This should never happen - just in case.. use the light theme..
                 Log.v(TAG, "Default");
-                act.setTheme(R.style.AppTheme);
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_TIME);
+                defaultNightMode = AppCompatDelegate.MODE_NIGHT_AUTO_TIME;
                 mSelectedTheme = THEME.LIGHT;
                 break;
         }
+        act.setTheme(R.style.AppTheme);
+        AppCompatDelegate.setDefaultNightMode(defaultNightMode);
     }
 
     public static void afterOnCreate(Activity act) {
