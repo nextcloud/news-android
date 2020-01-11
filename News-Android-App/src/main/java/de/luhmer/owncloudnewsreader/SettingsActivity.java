@@ -98,6 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String SP_SWIPE_LEFT_ACTION_DEFAULT = "2";
 
     public static final String CB_VERSION = "cb_version";
+    public static final String CB_REPORT_ISSUE = "cb_reportIssue";
 
     protected @Inject SharedPreferences mPrefs;
 
