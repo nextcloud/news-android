@@ -26,6 +26,9 @@
 
     <string name="tv_showing_cached_version">در حال نمایش نگارش ذخیره‌شده</string>
 
+    <string name="permission_req_location_twilight_title">تم تاریک/روشن خودکار</string>
+    <string name="permission_req_location_twilight_text">به منظور جابجایی خودکار بین تم نور و تاریک ، لازم است مکان دستگاه ها را تعیین کنید تا زمان طلوع و غروب خورشید مشخص شود.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">ستاره‌دار</string>
     <string name="action_read">خواندن</string>
@@ -40,6 +43,9 @@
     <string name="action_textToSpeech">بازخوانی</string>
     <string name="action_search">جستجو</string>
     <string name="action_download_articles_offline">بارگیری برون‌خط مقاله‌ها</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">بارگیری مقالات برای استفاده آفلاین</string>
+    <string name="notification_download_images_offline">بارگیری تصاویر برای استفاده آفلاین</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">%d مورد خوانده‌نشده دارید</item>
         <item quantity="other">%d مورد خوانده‌نشده دارید</item>
@@ -52,6 +58,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">نشانی خوراک</string>
     <string name="action_add_feed">افزودن خوراک</string>
+    <string name="import_opml">وارد کردن OPML</string>
+    <string name="export_opml">OPML را بیرون ببرید</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">بارگیری تصویر</string>
     <string name="action_img_sharelink">هم‌رسانی پیوند تصویر</string>
@@ -78,6 +88,9 @@
     <string name="feed_move_list_description">پوشه‌ای برای انتقال خوراک برگزینید</string>
     <string name="move_feed_root_folder">پوشهٔ ریشه</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">ورود به سیستم دستی</string>
+    <string name="login_sso">ورود به سیستم با استفاده از برنامه فایل های نکست کلود</string>
     <string name="pref_title_username">نام کاربری</string>
     <string name="pref_title_password">گذرواژه</string>
     <string name="pref_title_owncloudRootPath">نشانی ریشهٔ نکست‌کلود</string>
@@ -114,6 +127,9 @@
     <string name="pref_general_sort_order_new_old">جدید -> قدیم</string>
     <string name="pref_general_sort_order_old_new">قدیم -> جدید</string>
 
+    <string name="pref_rename_action_swipe_right">هنگام حرکت به سمت راست ، اقدام کنید</string>
+    <string name="pref_rename_action_swipe_left">هنگام حرکت به سمت چپ ، اقدام کنید</string>
+
     <string name="pref_title_general_search_in">جست‌وجو در</string>
 
     <string name="pref_general_search_in_title">عنوان</string>
@@ -149,6 +165,15 @@
 
     <!-- Settings for About -->
     <string name="pref_header_about">درباره</string>
+    <string name="pref_license">License</string>
+    <string name="pref_license_summary">مجوز عمومی GNU Affero (AGPL) نسخه 3</string>
+    <string name="pref_report_issue">گزارش یک مسئله</string>
+    <string name="pref_report_issue_summary">به یک حساب GitHub (رایگان) نیاز دارد</string>
+    <string name="pref_contribute">مشارکت!</string>
+    <string name="pref_contribute_summary">کد منبع را دریافت کنید</string>
+    <string name="pref_version">برنامه آندروید Nextcloud News</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">نمایش</string>
     <string name="pref_title_app_theme">زمینه</string>
@@ -172,6 +197,7 @@
 
     <string name="pref_display_feed_list_layout_thumbnails">بندانگشتی‌ها</string>
     <string name="pref_display_feed_list_layout_simple_text">متن ساده</string>
+    <string name="pref_display_feed_list_layout_headlines">عناوین</string>
     <string name="pref_display_feed_list_layout_full_text">متن کامل</string>
     <string name="pref_display_feed_list_layout_web_layout">چینش وب</string>
     <string name="pref_display_feed_list_layout_card_view">نمای کارتی</string>
