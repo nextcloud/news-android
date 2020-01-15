@@ -105,6 +105,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
     private PlaybackService mPlaybackService;
     private MediaSessionCompat mSession;
+    private MediaSessionCallback mSessionCallback;
 
     public static final float PLAYBACK_SPEEDS[] = { 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f };
     private float currentPlaybackSpeed = 1;
@@ -637,7 +638,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             Log.d(TAG, "onPlayFromSearch() called with: query = [" + query + "], extras = [" + extras + "]");
 
             // In case the user just says "Play music"
-            if(TextUtils.isEmpty("")) {
+            if(TextUtils.isEmpty(query)) {
                 List<PodcastItem> audioPodcasts = getAllPodcastItems();
 
                 // If there are any audio podcasts
@@ -645,15 +646,26 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                     PodcastItem podcastItem = audioPodcasts.get(0);
                     startPlayingPodcastItem(podcastItem);
                 }
-            }
-            /*
-            else {
+            } else {
                 // User is actually searching for something..
-                // TODO SEARCH by using the query string!!!!!!!!!
+                List<PodcastItem> audioPodcasts = getAllPodcastItems();
+                if(audioPodcasts.size() > 0) {
+                    boolean foundMatching = false;
+                    for(PodcastItem pi : audioPodcasts) {
+                        if(pi.title.contains(query)) {
+                            startPlayingPodcastItem(pi);
+                            foundMatching = true;
+                            break;
+                        }
+                    }
+
+                    // in case we didn't find a matching podcast.. palay a random one
+                    if(!foundMatching) {
+                        PodcastItem podcastItem = audioPodcasts.get(0);
+                        startPlayingPodcastItem(podcastItem);
+                    }
+                }
             }
-             */
-
-
             super.onPlayFromSearch(query, extras);
         }
 
@@ -778,7 +790,8 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                 .setState(PlaybackStateCompat.STATE_NONE, 0, 0)
                 .setActions(buildPlaybackActions(PlaybackStateCompat.STATE_PAUSED, false)).build());
 
-        mSession.setCallback(new MediaSessionCallback());
+        mSessionCallback = new MediaSessionCallback();
+        mSession.setCallback(mSessionCallback);
 
         //Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
         //mediaButtonIntent.setClass(mContext, MediaButtonReceiver.class);
