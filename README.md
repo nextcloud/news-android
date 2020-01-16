@@ -55,6 +55,19 @@ Testing with Android Auto:
 4. Install apk using adb (`../../../platform-tools/adb install media-browser-simulator.apk`)
 5. Install apk using adb (`../../../platform-tools/adb install messaging-simulator.apk`)
 
+Advanced Testing Android Auto (e.g. Voice Features) [Link](https://developer.android.com/training/cars/testing)
+-----------------------
+
+1. Install Android 9 in an Emulator (Android 10 didn't work with the Android Auto App)
+2. Install Android Auto from PlayStore
+3. Follow instructions on training website (see link above)
+4. `~/Library/Android/sdk/platform-tools/adb forward tcp:5277 tcp:5277
+5. `cd ~/Library/Android/sdk/extras/google/auto`
+6. `./desktop-head-unit`
+7. From inside the terminal type: `mic play ./voice/pause.wav`
+
+
+
 That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
 
 
