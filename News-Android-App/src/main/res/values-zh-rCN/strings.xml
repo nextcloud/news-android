@@ -16,7 +16,7 @@
     <string name="message_bar_reload">刷新</string>
     <string name="allUnreadFeeds">所有未读内容</string>
     <string name="starredFeeds">标星内容</string>
-    <string name="title_activity_new_feed">增加新 Feed</string>
+    <string name="title_activity_new_feed">添加新订阅源</string>
 
     <string name="menu_update">刷新</string>
     <string name="menu_markAllAsRead">标记所有为已读</string>
@@ -38,7 +38,7 @@
     <string name="action_save">保存</string>
     <string name="action_settings">设置</string>
     <string name="action_sync_settings">同步设置</string>
-    <string name="action_add_new_feed">增加新 Feed</string>
+    <string name="action_add_new_feed">添加新订阅源</string>
     <string name="action_textToSpeech">朗读</string>
     <string name="action_search">搜索</string>
     <string name="action_download_articles_offline">离线下载文章</string>
@@ -53,8 +53,8 @@
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">源网址</string>
-    <string name="action_add_feed">添加Feed</string>
+    <string name="hint_feed_url">订阅源地址</string>
+    <string name="action_add_feed">添加订阅源</string>
     <string name="import_opml">导入OPML</string>
     <string name="export_opml">导出OPML</string>
 
@@ -76,13 +76,13 @@
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">删除订阅</string>
-    <string name="action_feed_rename">重命名订阅</string>
-    <string name="action_feed_move">移动 Feed</string>
+    <string name="action_feed_remove">移除订阅源</string>
+    <string name="action_feed_rename">重命名订阅源</string>
+    <string name="action_feed_move">移动订阅源</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重命名</string>
-    <string name="confirm_feed_remove">您真的要删除此订阅吗？本操作不可恢复！</string>
-    <string name="feed_move_list_description">选择 Feed 移动到哪个文件夹</string>
+    <string name="confirm_feed_remove">您真的要删除此订阅源吗？本操作不可恢复！</string>
+    <string name="feed_move_list_description">选择文件夹以移动订阅源</string>
     <string name="move_feed_root_folder">根目录</string>
 
     <!-- Strings related to login -->
@@ -172,7 +172,7 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">显示</string>
     <string name="pref_title_app_theme">主题</string>
-    <string name="pref_title_feed_list_layout">源清单布局</string>
+    <string name="pref_title_feed_list_layout">订阅源清单布局</string>
     <string name="pref_title_font_size">字号</string>
     <string name="pref_display_browser">浏览器</string>
 
