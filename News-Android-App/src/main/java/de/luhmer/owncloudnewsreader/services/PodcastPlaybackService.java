@@ -105,7 +105,6 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
     private PlaybackService mPlaybackService;
     private MediaSessionCompat mSession;
-    private MediaSessionCallback mSessionCallback;
 
     public static final float PLAYBACK_SPEEDS[] = { 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f };
     private float currentPlaybackSpeed = 1;
@@ -790,8 +789,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                 .setState(PlaybackStateCompat.STATE_NONE, 0, 0)
                 .setActions(buildPlaybackActions(PlaybackStateCompat.STATE_PAUSED, false)).build());
 
-        mSessionCallback = new MediaSessionCallback();
-        mSession.setCallback(mSessionCallback);
+        mSession.setCallback(new MediaSessionCallback());
 
         //Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
         //mediaButtonIntent.setClass(mContext, MediaButtonReceiver.class);
