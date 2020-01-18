@@ -67,7 +67,7 @@
     <string name="action_link_share">共享图片链接</string>
     <string name="action_link_open">在浏览器中打开链接</string>
     <string name="action_link_copy">复制链接</string>
-    <string name="toast_img_download_wait">下载中... 请稍候</string>
+    <string name="toast_img_download_wait">正在下载…请稍候</string>
     <string name="toast_img_saved">图片已保存</string>
     <string name="toast_img_notwriteable">未能写入图片。</string>
     <string name="toast_copied_to_clipboard">复制到剪贴板</string>
@@ -94,7 +94,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">登录</string>
-    <string name="login_progress_signing_in">登录中...</string>
+    <string name="login_progress_signing_in">正在登录...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">这个字段是必填的</string>
     <string name="error_invalid_url">网络地址不正确</string>
@@ -131,7 +131,7 @@
     <string name="pref_general_search_in_body">主体</string>
 
     <string name="dialog_clearing_cache">清除缓存</string>
-    <string name="dialog_clearing_cache_please_wait">清理缓存中，请稍候</string>
+    <string name="dialog_clearing_cache_please_wait">正在清理缓存…请稍候。</string>
     <string name="reset_cache_unsaved_changes">有一部分文件未同步，您确定仍然清空缓存吗？</string>
     <string name="warning">警告</string>
     <string name="pref_title_AutoSyncOnStart">启动后就同步</string>

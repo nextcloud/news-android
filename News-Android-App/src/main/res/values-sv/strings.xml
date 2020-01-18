@@ -133,6 +133,8 @@
     <string name="pref_title_general_search_in">Sök i</string>
 
     <string name="pref_general_search_in_title">Rubrik</string>
+    <string name="pref_general_search_in_body">Textyta</string>
+
     <string name="dialog_clearing_cache">Rensar cache</string>
     <string name="dialog_clearing_cache_please_wait">Rensar cache, vänligen vänta...</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
