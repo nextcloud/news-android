@@ -387,8 +387,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         PodcastItem podcastItem =  DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
         boolean podcastAvailable = !"".equals(podcastItem.link);
 
-        if(menuItem_PlayPodcast != null)
-            menuItem_PlayPodcast.setVisible(podcastAvailable);
+        if(menuItem_PlayPodcast != null) {
+			menuItem_PlayPodcast.setVisible(podcastAvailable);
+		}
 
 
         if(isStarred && menuItem_Starred != null)
@@ -549,7 +550,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 */
 	private void startTTS(int currentPosition) {
 		RssItem rssItem = rssItems.get(currentPosition);
-		TTSItem ttsItem = new TTSItem(rssItem.getId(), rssItem.getAuthor(), rssItem.getTitle(), rssItem.getTitle() + "\n\n " + Html.fromHtml(rssItem.getBody()).toString(), rssItem.getFeed().getFaviconUrl());
+		String text = rssItem.getTitle() + "\n\n " + Html.fromHtml(rssItem.getBody()).toString();
+		// Log.d(TAG, text);
+		TTSItem ttsItem = new TTSItem(rssItem.getId(), rssItem.getAuthor(), rssItem.getTitle(), text, rssItem.getFeed().getFaviconUrl());
 		openMediaItem(ttsItem);
 	}
 
