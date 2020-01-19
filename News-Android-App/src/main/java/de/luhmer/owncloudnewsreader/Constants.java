@@ -17,6 +17,7 @@ public class Constants {
 
     protected static final int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
 
+    public static final String USER_INFO_STRING = "USER_INFO";
 
     protected static boolean isNextCloud(SharedPreferences prefs) {
         int[] version = extractVersionNumberFromString(prefs.getString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, ""));
