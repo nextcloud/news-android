@@ -1,12 +1,15 @@
 package de.luhmer.owncloudnewsreader;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Xml;
@@ -19,6 +22,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
 import org.json.JSONException;
@@ -35,6 +39,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +51,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -53,7 +62,6 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
-import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.OpmlXmlParser;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.helper.URLConnectionReader;
@@ -67,6 +75,9 @@ public class NewFeedActivity extends AppCompatActivity {
 
     private static final String TAG = NewFeedActivity.class.getCanonicalName();
     public final static String ADD_NEW_SUCCESS = "success";
+    private static final int PERMISSIONS_REQUEST_READ_CODE = 0;
+    private static final int PERMISSIONS_REQUEST_WRITE_CODE = 1;
+    private final static int REQUEST_CODE_OPML_IMPORT = 2;
 
     // UI references.
     protected @BindView(R.id.et_feed_url) EditText mFeedUrlView;
@@ -147,18 +158,57 @@ public class NewFeedActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_import_opml)
     public void importOpml() {
-        Intent intentFilePicker = new Intent(this, FilePickerActivity.class);
-        startActivityForResult(intentFilePicker, 1);
+        String permission = Manifest.permission.READ_EXTERNAL_STORAGE;
+
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                Toast.makeText(this, "Allow external storage reading", Toast.LENGTH_SHORT).show();
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{permission}, PERMISSIONS_REQUEST_READ_CODE);
+            }
+        } else {
+            openFilePicker();
+        }
+
     }
+
+    private void openFilePicker() {
+        new MaterialFilePicker()
+                .withActivity(this)
+                .withRequestCode(REQUEST_CODE_OPML_IMPORT)
+                //.withFilter(Pattern.compile(".*\\.opml$")) // Filtering files and directories by file name using regexp
+                .withFilterDirectories(true) // Set directories filterable (false by default)
+                .withHiddenFiles(true) // Show hidden files and folders
+                .start();
+    }
+
+
 
     @OnClick(R.id.btn_export_opml)
     public void exportOpml() {
+        String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                Toast.makeText(this, "Allow external storage writing", Toast.LENGTH_SHORT).show();
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{permission}, PERMISSIONS_REQUEST_WRITE_CODE);
+            }
+        } else {
+            exportOpmlFile();
+        }
+    }
+
+    private void exportOpmlFile() {
         String xml = OpmlXmlParser.GenerateOPML(this);
 
-        String path = NewsFileUtils.getCacheDirPath(this) + "/../subscriptions.opml";
+        //String path = NewsFileUtils.getCacheDirPath(this) + "/subscriptions.opml";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String filename = "subscriptions-" + format.format(new Date()) + ".opml";
+        File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), filename);
 
         try {
-            FileOutputStream fos = new FileOutputStream(new File(path));
+            FileOutputStream fos = new FileOutputStream(path);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
             outputStreamWriter.write(xml);
             outputStreamWriter.close();
@@ -180,7 +230,7 @@ public class NewFeedActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_CODE_OPML_IMPORT && resultCode == RESULT_OK) {
             String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
 
             AsyncTaskHelper.StartAsyncTask(new ImportOpmlSubscriptionsTask(filePath, NewFeedActivity.this));
@@ -216,7 +266,7 @@ public class NewFeedActivity extends AppCompatActivity {
             String opmlContent;
             try {
                 if(mUrlToFile.startsWith("http")) {//http[s]
-                    opmlContent = URLConnectionReader.getText(mUrlToFile.toString());
+                    opmlContent = URLConnectionReader.getText(mUrlToFile);
                 } else {
                     opmlContent = getStringFromFile(mUrlToFile);
                 }
@@ -232,12 +282,9 @@ public class NewFeedActivity extends AppCompatActivity {
 
                 final HashMap<String, Long> existingFolders = new HashMap<>();
 
-                mApi.getAPI().folders().blockingSubscribe(new Consumer<List<Folder>>() {
-                    @Override
-                    public void accept(@io.reactivex.annotations.NonNull List<Folder> folders) throws Exception {
-                        for(Folder folder : folders) {
-                            existingFolders.put(folder.getLabel(), folder.getId());
-                        }
+                mApi.getAPI().folders().blockingSubscribe(folders -> {
+                    for(Folder folder : folders) {
+                        existingFolders.put(folder.getLabel(), folder.getId());
                     }
                 });
 
