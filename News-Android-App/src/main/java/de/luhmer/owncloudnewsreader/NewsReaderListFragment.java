@@ -75,6 +75,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
+import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 
 /**
@@ -338,8 +339,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 .setHideSkipButton(true)
                 .show();
     }
-
-    private static final String USER_INFO_STRING = "USER_INFO";
 
     public void startAsyncTaskGetUserInfo() {
         mApi.getAPI().user()

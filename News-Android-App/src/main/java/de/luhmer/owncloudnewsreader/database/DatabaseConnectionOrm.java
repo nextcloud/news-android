@@ -481,6 +481,12 @@ public class DatabaseConnectionOrm {
         podcastItem.mimeType = rssItem.getEnclosureMime();
         podcastItem.favIcon = feed.getFaviconUrl();
 
+        if("image/jpeg".equals(podcastItem.mimeType)) {
+            // We don't want to accidentally think that enclosed images are podcasts
+            podcastItem.link = "";
+            podcastItem.mimeType = "";
+        }
+
         podcastItem.isVideoPodcast = Arrays.asList(DatabaseConnectionOrm.VIDEO_FORMATS).contains(podcastItem.mimeType);
 
         File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));

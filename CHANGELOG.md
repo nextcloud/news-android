@@ -1,3 +1,10 @@
+0.9.9.32
+---------------------
+- Fix bug that items containing "image/jpeg" as enclosure, are interpreted as podcasts
+- Fix app crash when changing server settings
+- Improve opml import / export
+
+
 0.9.9.31
 ---------------------
 - Feature - <a href="https://github.com/nextcloud/news-android/issues/787">#787 - Display profile avatar in the sidenav</a>

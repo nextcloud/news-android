@@ -38,6 +38,7 @@ import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 
 import static android.app.Activity.RESULT_OK;
+import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING;
@@ -276,7 +277,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
         clearCachePref.setOnPreferenceClickListener(preference -> {
-            mPrefs.edit().remove("USER_INFO").apply();
+            mPrefs.edit().remove(USER_INFO_STRING).apply();
             checkForUnsycedChangesInDatabaseAndResetDatabase(prefFrag.getActivity());
             return true;
         });
@@ -374,7 +375,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         debugInfo += "\n\n---\n\n";
 
-        List<String> excludedSettings = Arrays.asList(EDT_USERNAME_STRING, EDT_PASSWORD_STRING, EDT_OWNCLOUDROOTPATH_STRING, Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING);
+        List<String> excludedSettings = Arrays.asList(EDT_USERNAME_STRING, EDT_PASSWORD_STRING, EDT_OWNCLOUDROOTPATH_STRING, Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, USER_INFO_STRING);
         Map<String, ?> allEntries = mPrefs.getAll();
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             String key =entry.getKey();

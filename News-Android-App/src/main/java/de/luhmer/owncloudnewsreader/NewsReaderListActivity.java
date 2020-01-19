@@ -927,10 +927,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
         if(requestCode == RESULT_SETTINGS) {
         	// Extra is set if user entered/modified server settings
-        	if (data.getBooleanExtra(SettingsActivity.PREF_SERVER_SETTINGS,false)) {
+        	if (data == null || data.getBooleanExtra(SettingsActivity.PREF_SERVER_SETTINGS,false)) {
 				resetUiAndStartSync();
 			} else {
-
 				//Update settings of image Loader
 				mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
 					@Override
