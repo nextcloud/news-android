@@ -9,7 +9,7 @@
     <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
     <string name="do_you_want_to_download_without_wifi"> Θα θέλατε τη λήψη εικόνων χωρίς σύνδεση Wi-Fi </string>
     <string name="current_version">Χρησιμοποιείτε την έκδοση %s</string>
-    <string name="widget_header">Νέα ownCloud</string>
+    <string name="widget_header">Νέα Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d νέο αντικείμενο διαθέσιμο</item>
         <item quantity="other">%d νέα αντικείμενα διαθέσιμα</item>
