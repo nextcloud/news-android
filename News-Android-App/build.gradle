@@ -129,7 +129,7 @@ dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // implementation 'com.google.android.gms:play-services:4.2.42'
-    //implementation project(':Android-SingleSignOn')
+    // implementation project(':Android-SingleSignOn')
     //implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
     implementation 'com.github.nextcloud:Android-SingleSignOn:0.5.0-rc1'
     implementation 'com.github.David-Development:MaterialShowcaseView:bf6afa225d'
@@ -137,14 +137,15 @@ dependencies {
     // https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "androidx.core:core:1.2.0-rc01"
-    implementation "androidx.appcompat:appcompat:1.1.0-alpha05"
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.preference:preference:1.1.0"
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
-    implementation "com.google.android.material:material:1.1.0-alpha06"
+    implementation "com.google.android.material:material:1.2.0-alpha03"
     //implementation "com.google.android.material:material:1.0.0"
     implementation "androidx.palette:palette:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha05"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.browser:browser:1.2.0"
     implementation "androidx.cardview:cardview:1.0.0"
     //implementation 'de.mrmaffen:holocircularprogressbar:1.0.1'
@@ -176,7 +177,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.16'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
     implementation "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
 
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
@@ -189,7 +190,7 @@ dependencies {
     //extraImplementation 'com.github.tommus:youtube-android-player-api:1.2.2'
 
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     testImplementation("org.mockito:mockito-core:$MOCKITO_VERSION") {
         exclude group: 'org.hamcrest'
     }
@@ -212,30 +213,30 @@ dependencies {
     //androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
     //androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
 
-    testImplementation 'org.robolectric:robolectric:4.2.1'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
 
     // Core library
-    androidTestImplementation 'androidx.test:core:1.1.0'
+    androidTestImplementation 'androidx.test:core:1.2.0'
 
     // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
 
     // Assertions
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.ext:truth:1.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.ext:truth:1.2.0'
     androidTestImplementation 'com.google.truth:truth:0.42'
 
     // Espresso dependencies
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.1'
-    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0'
+    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.2.0'
 
     // https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator
-    androidTestUtil 'androidx.test:orchestrator:1.1.1'
+    androidTestUtil 'androidx.test:orchestrator:1.2.0'
 
     // The following Espresso dependency can be either "implementation"
     // or "androidTestImplementation", depending on whether you want the
