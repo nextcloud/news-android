@@ -137,6 +137,9 @@
     <string name="pref_general_sort_order_new_old">Новые -&gt; Старые</string>
     <string name="pref_general_sort_order_old_new">Старые -&gt; Новые</string>
 
+    <string name="pref_rename_action_swipe_right">Действие при смахивании вправо</string>
+    <string name="pref_rename_action_swipe_left">Действие при смахивании влево</string>
+
     <string name="pref_title_general_search_in">Искать в</string>
 
     <string name="pref_general_search_in_title">Заголовок</string>
