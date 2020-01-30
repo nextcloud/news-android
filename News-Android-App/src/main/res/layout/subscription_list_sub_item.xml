@@ -28,7 +28,6 @@
         android:textSize="14sp"
         android:textColor="?attr/primaryTextColor"
         tools:text="Summary"
-        android:textStyle="bold"
         android:focusable="false" />
 
     <TextView
