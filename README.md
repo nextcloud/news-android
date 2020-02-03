@@ -6,6 +6,8 @@ Nextcloud News Reader – Android App
 
 The Nextcloud News Reader Android App is under [AGPLv3](https://www.gnu.org/licenses/license-list.html#AGPLv3.0) License terms.
 
+[![Latest Release](https://img.shields.io/github/v/tag/nextcloud/news-android?label=latest+release&sort=semver)](https://github.com/nextcloud/news-android/releases)
+[![F-Droid Release](https://img.shields.io/f-droid/v/de.luhmer.owncloudnewsreader)](https://f-droid.org/de/packages/de.luhmer.owncloudnewsreader/)
 <p>
 <a href='https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
     <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="100"/>
