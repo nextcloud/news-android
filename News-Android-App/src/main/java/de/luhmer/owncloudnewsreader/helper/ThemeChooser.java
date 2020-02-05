@@ -107,6 +107,15 @@ public class ThemeChooser {
         */
     }
 
+    /**
+     * Returns true if automatic theme selection based on Twilight Manager is enabled.
+     * Otherwise it'll return false
+     */
+    public static boolean isAutoThemeSelectionEnabled() {
+        int selectedTheme = getSelectedThemeFromPreferences(false);
+        return selectedTheme == 0; // 0 => Auto (Light / Dark)
+    }
+
     // Check if the currently loaded theme is different from the one set in the settings, or if OLED mode changed
     public static boolean themeRequiresRestartOfUI() {
         boolean themeChanged = !mSelectedThemeFromPreferences.equals(getSelectedThemeFromPreferences(true));
