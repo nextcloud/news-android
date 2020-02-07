@@ -114,7 +114,7 @@
         <item quantity="one">Stažena %d stará položka</item>
         <item quantity="few">Staženo %d staré položky</item>
         <item quantity="many">Staženo %d starých položek</item>
-        <item quantity="other">Staženo %d starých položek</item>
+        <item quantity="other">Staženy %d staré položky</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Žádné další položky k dispozici</string>
     <plurals name="fetched_items_so_far">
@@ -203,7 +203,7 @@
 
     <string name="pref_display_browser_cct">Vestavěné Chrome vlastní karty</string>
     <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
-    <string name="pref_display_browser_external">Vnější prohlížeč</string>
+    <string name="pref_display_browser_external">Externí prohlížeč</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Náhledy</string>
     <string name="pref_display_feed_list_layout_simple_text">Jednoduchý text</string>
@@ -266,8 +266,8 @@
     <string name="array_sync_interval_min_30">30 minut</string>
     <string name="array_sync_interval_min_45">45 minut</string>
     <string name="array_sync_interval_hour_1">1 hodina</string>
-    <string name="array_sync_interval_hour_2">Dvě hodiny</string>
-    <string name="array_sync_interval_hour_3">Tři hodiny</string>
+    <string name="array_sync_interval_hour_2">2 hodiny</string>
+    <string name="array_sync_interval_hour_3">3 hodiny</string>
     <string name="array_sync_interval_hour_6">6 hodin</string>
     <string name="array_sync_interval_hour_12">12 hodin</string>
     <string name="array_sync_interval_hour_24">24 hodin</string>
