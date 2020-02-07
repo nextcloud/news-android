@@ -271,8 +271,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
 
 
-        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-        	ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, REQUEST_CODE_PERMISSION_LOCATION);
+        // In case automatic theme selection based on time is selected, check if location permission
+		// for twilight manager is given.. otherwise request it
+        if(ThemeChooser.isAutoThemeSelectionEnabled() && ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        	ActivityCompat.requestPermissions(
+				this,
+				new String[]{ ACCESS_FINE_LOCATION },
+				REQUEST_CODE_PERMISSION_LOCATION
+			);
         }
     }
 
@@ -993,7 +999,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					builder.setTitle(getString(R.string.permission_req_location_twilight_title))
 							.setMessage(getString(R.string.permission_req_location_twilight_text))
 							.setPositiveButton(android.R.string.ok, (dialog, id) -> {
-								//ActivityCompat.requestPermissions(this, new String[]{ACCESS_COARSE_LOCATION}, 1349);
 								ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, REQUEST_CODE_PERMISSION_LOCATION);
 							})
 							.setNegativeButton(android.R.string.cancel, (dialog, id) -> {})
