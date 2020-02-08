@@ -132,7 +132,7 @@
 
     <!-- General settings -->
     <string name="pref_header_general">Obecné</string>
-    <string name="pref_title_general_sort_order">Řazení</string>
+    <string name="pref_title_general_sort_order">Pořadí řazení</string>
 
     <string name="pref_general_sort_order_new_old">Nové -> staré</string>
     <string name="pref_general_sort_order_old_new">Staré -> nové</string>
@@ -142,8 +142,8 @@
 
     <string name="pref_title_general_search_in">Hledat v</string>
 
-    <string name="pref_general_search_in_title">Nadpis</string>
-    <string name="pref_general_search_in_body">Tělo</string>
+    <string name="pref_general_search_in_title">Nadpisu</string>
+    <string name="pref_general_search_in_body">Těle textu</string>
 
     <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
     <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti… Chvíli strpení.</string>
@@ -179,7 +179,7 @@
     <string name="pref_license_summary">GNU Affero General Public License (AGPL) verze 3</string>
     <string name="pref_report_issue">Nahlásit problém</string>
     <string name="pref_report_issue_summary">Vyžaduje účet na portálu GitHub (zdarma)</string>
-    <string name="pref_contribute">Přispět!</string>
+    <string name="pref_contribute">Zapojení se</string>
     <string name="pref_contribute_summary">Získat zdrojové kódy</string>
     <string name="pref_version">Aplikace Nextcloud Novinky pro Android</string>
 
@@ -194,9 +194,9 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akce (podrobné zobrazení)</string>
 
-    <string name="pref_display_apptheme_auto">Světlé/tmavé (podle denní doby)</string>
-    <string name="pref_display_apptheme_light">Světlé</string>
-    <string name="pref_display_apptheme_dark">Tmavé</string>
+    <string name="pref_display_apptheme_auto">Světlý/tmavý (podle denní doby)</string>
+    <string name="pref_display_apptheme_light">Světlý</string>
+    <string name="pref_display_apptheme_dark">Tmavý</string>
 
     <string name="pref_oled_mode">Černé pozadí</string>
     <string name="pref_oled_mode_summary">Pro tmavý motiv vzhledu na OLED obrazovkách</string>
@@ -236,8 +236,8 @@
 
 
     <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Upozornění</string>
-    <string name="pref_title_notification_new_articles_available">Zobrazit upozornění pokud jsou k dispozici nové články</string>
+    <string name="pref_header_notifications">Upozorňování</string>
+    <string name="pref_title_notification_new_articles_available">Zobrazovat upozornění na nové články</string>
 
 
     <!-- Login Dialog -->
@@ -245,7 +245,7 @@
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Vypadá to, že aplikace Novinky není na serveru nainstalovaná nebo zapnutá. Následujte zde dané pokny k nastavení aplikace Novinky na server: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Něco se pokazilo :(</string>
     <string name="login_dialog_text_zero_version_code">Aplikace Novinky na webu vrátila verzi „0“. Nahlédněte do následujícího hlášení chyby: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Tato verze aplikace není kompatibilní s vámi používanou aplikací Nextcloud novinky. Aktualizujte novinkovou aplikaci a aplikační rámec.</string>
+    <string name="login_dialog_text_not_compatible">Tato verze mobilní aplikace není kompatibilní s aplikací Nextcloud Novinky na straně vámi využívaného serveru. Aktualizujte tam ji i její aplikační rámec (framework).</string>
     <string name="login_dialog_title_security_warning">Varování ohledně zabezpečení</string>
     <string name="login_dialog_text_security_warning">Nepoužíváte HTTPS, což je silně nedoporučeno. Útočník může zachytit váš provoz a získat přístup k nějakým citlivým datům (např. vašemu heslu).</string>
 
@@ -253,13 +253,13 @@
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data a synchronizace</string>
     <string name="pref_title_clearCache">Vyprázdnit mezipaměť</string>
-    <string name="pref_title_CacheImagesOffline">Ukládat obrázky do offline mezipaměti</string>
-    <string name="pref_title_Max_Cache_Size">Maximální velikost mezipaměti</string>
+    <string name="pref_title_CacheImagesOffline">Předem si stahovat obrázky do mezipaměti</string>
+    <string name="pref_title_Max_Cache_Size">Nejvyšší umožněná velikost mezipaměti</string>
 
     <string name="pref_data_sync_image_cache_never">Nikdy</string>
     <string name="pref_data_sync_image_cache_wifi_only">Pouze přes WiFi</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Přes WiFi a mobilní data</string>
-    <string name="pref_data_sync_image_cache_ask">Dotázat se pokud bez WiFi</string>
+    <string name="pref_data_sync_image_cache_ask">Dotázat se, když WiFi není</string>
 
     <string name="array_sync_interval_min_5">5 minut</string>
     <string name="array_sync_interval_min_15">15 minut</string>
