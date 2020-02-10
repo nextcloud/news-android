@@ -246,7 +246,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         });
 
         // Create NavigationView to show as footer of ListView
-        View footerView =  inflater.inflate(R.layout.fragmet_newsreader_list_footer, null, false);
+        View footerView =  inflater.inflate(R.layout.fragment_newsreader_list_footer, null, false);
         ExpandableListView list = parent.findViewById(R.id.expandableListView);
 
         NavigationView footerNavigation = footerView.findViewById(R.id.listfooterMenu);
