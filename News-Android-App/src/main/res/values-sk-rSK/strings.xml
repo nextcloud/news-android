@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Voľba intervalu synchronizácie</string>
     <string name="title_activity_news_detail">Podrobná aktivita noviniek</string>
     <string name="empty_view_content">Žiadne položky</string>
+    <string name="toast_GettingMoreItems">Sťahovanie ďalších položiek začalo ... Čakajte prosím.</string>
     <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Chcete obrázky stiahnuť bez pripojenia Wi-Fi</string>
     <string name="current_version">Používate verziu %s</string>
     <string name="widget_header">ownCloud Novinky</string>
     <string name="message_bar_reload">Znovu načítať</string>
@@ -17,6 +19,11 @@
     <string name="menu_markAllAsRead">Všetko označiť ako prečítané</string>
     <string name="menu_StartImageCaching">Stiahnuť obrázky</string>
     <string name="menu_downloadMoreItems">Stiahnuť viac položiek</string>
+
+    <string name="tv_showing_cached_version">Zobrazuje sa verzia vo vyrovnávacej pamäti</string>
+
+    <string name="permission_req_location_twilight_title">Automatický svetlý/tmavý motív vzhľadu</string>
+    <string name="permission_req_location_twilight_text">Na automatické prepínanie medzi svetlým a tmavým motívom vzhľadu, je potrebné poskytnúť polohu zariadena, aby bolo možné určiť čas východu a západu slnka.</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">S hviezdičkou</string>
@@ -31,7 +38,17 @@
     <string name="action_add_new_feed">Pridať nový kanál</string>
     <string name="action_textToSpeech">Prečítať</string>
     <string name="action_search">Hľadať</string>
+    <string name="action_download_articles_offline">Stiahnuť články na čítanie bez pripojenia</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Sťahovanie článkov na čítanie bez pripojenia</string>
+    <string name="notification_download_images_offline">Sťahovanie obrázkov pre použitie bez pripojenia</string>
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL informačného kanála</string>
     <string name="action_add_feed">Pridať kanál</string>
+    <string name="import_opml">Importovať OPML</string>
+    <string name="export_opml">Exportovať OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Stiahnuť obrázok</string>
     <string name="action_img_sharelink">Sprístupniť odkaz na obrázok</string>
@@ -42,23 +59,43 @@
     <string name="action_link_copy">Kopírovať odkaz</string>
     <string name="toast_img_download_wait">Sťahujem… počkajte prosím</string>
     <string name="toast_img_saved">Obrázok uložený</string>
+    <string name="toast_img_notwriteable">Obrázok sa nepodarilo zapísať.</string>
     <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
     <string name="error_download_failed">Stiahnutie zlyhalo</string>
+    <string name="intent_title_share">Zdieľať prostredníctvom</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Odstrániť kanál</string>
+    <string name="action_feed_rename">Premenovať kanál</string>
+    <string name="action_feed_move">Presunúť kanál</string>
     <string name="feed_remove_button">Odobrať</string>
     <string name="feed_rename_button">Premenovať</string>
+    <string name="confirm_feed_remove">Naozaj chcete odstrániť tento informačný kanál? Nie je to možné vrátiť späť!</string>
+    <string name="feed_move_list_description">Vyberte priečinok, do ktorého chcete presunúť informačný kanál</string>
     <string name="move_feed_root_folder">Koreňový priečinok</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Ručné prihlásenie</string>
+    <string name="login_sso">Prihlásenie pomocou aplikácie Nextcloud Files</string>
     <string name="pref_title_username">Meno používateľa</string>
     <string name="pref_title_password">Heslo</string>
+    <string name="pref_title_owncloudRootPath">Koreňová adresa Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Prihlásenie</string>
     <string name="login_progress_signing_in">Prihlasujem vás...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Toto pole je povinné</string>
+    <string name="error_invalid_url">Nesprávna URL</string>
+
+
     <string name="toast_no_more_downloads_available">Žiadne ďalšie položky k dispozícii</string>
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nastavenia</string>
+    <string name="cache_is_cleared">Vyrovnávacia pamäť je vymazaná!</string>
+
+
     <!-- General settings -->
     <string name="pref_header_general">Všeobecné</string>
     <string name="pref_title_general_sort_order">Zoradenie</string>
