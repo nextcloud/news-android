@@ -42,7 +42,6 @@ android {
         debug {
             shrinkResources false
             minifyEnabled false
-            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles 'proguard-test.pro'
             pseudoLocalesEnabled true
@@ -50,7 +49,6 @@ android {
         release {
             shrinkResources true
             minifyEnabled true
-            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles 'proguard-test.pro'
             //signingConfig signingConfigs.debug
@@ -119,19 +117,19 @@ repositories {
 }
 
 final DAGGER_VERSION = '2.22.1'
-final OKHTTP_VERSION = '3.12.2'
+final OKHTTP_VERSION = '3.12.8'
 final MOCKITO_VERSION = '2.27.0'
 final RETROFIT_VERSION = '2.5.0'
 
 dependencies {
     // core android studio module
-    //compile project(':core')
+    // compile project(':core')
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     // The Google Repository (separate from the corresponding library) can be found in the Extras category.
     // implementation 'com.google.android.gms:play-services:4.2.42'
     // implementation project(':Android-SingleSignOn')
-    //implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
-    implementation 'com.github.nextcloud:Android-SingleSignOn:0.5.0-rc1'
+    // implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
+    implementation 'com.github.nextcloud:Android-SingleSignOn:0.5.0-rc3'
     implementation 'com.github.David-Development:MaterialShowcaseView:bf6afa225d'
 
     // https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
