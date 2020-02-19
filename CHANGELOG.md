@@ -1,3 +1,19 @@
+0.9.9.35
+---------------------
+- Fix Single-Sign On related Issues
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/769">#769 - Nextcloud API not responding</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/830">#830 - Only ask for Location permission if auto theme enabled</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/786">#786 - Error loading xml resource in Android 4.4</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/pull/833">#833 - fix tables are too wide</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/821">#821 - "Add feed"-icon is misaligned</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/pull/827">#821 - Text in drawer not bold, except of "add new feed" and "settings" (thanks @tobiasKaminsky)</a>
+
+
+0.9.9.34 / 0.9.9.33
+---------------------
+- Fix F-Droid build issues
+
+
 0.9.9.32
 ---------------------
 - Fix bug that items containing "image/jpeg" as enclosure, are interpreted as podcasts
