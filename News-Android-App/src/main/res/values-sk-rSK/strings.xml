@@ -5,9 +5,17 @@
     <string name="title_activity_sync_interval_selector">Voľba intervalu synchronizácie</string>
     <string name="title_activity_news_detail">Podrobná aktivita noviniek</string>
     <string name="empty_view_content">Žiadne položky</string>
+    <string name="toast_GettingMoreItems">Sťahovanie ďalších položiek začalo ... Čakajte prosím.</string>
     <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Chcete obrázky stiahnuť bez pripojenia Wi-Fi</string>
     <string name="current_version">Používate verziu %s</string>
     <string name="widget_header">ownCloud Novinky</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">Dostupná %d nová položka</item>
+        <item quantity="few">Dostupné %d nové položky</item>
+        <item quantity="many">Dostupné %d nové položky</item>
+        <item quantity="other">Dostupných %d nových položiek</item>
+    </plurals>
     <string name="message_bar_reload">Znovu načítať</string>
     <string name="allUnreadFeeds">Všetky neprečítané položky</string>
     <string name="starredFeeds">Položky s hviezdičkou</string>
@@ -17,6 +25,11 @@
     <string name="menu_markAllAsRead">Všetko označiť ako prečítané</string>
     <string name="menu_StartImageCaching">Stiahnuť obrázky</string>
     <string name="menu_downloadMoreItems">Stiahnuť viac položiek</string>
+
+    <string name="tv_showing_cached_version">Zobrazuje sa verzia vo vyrovnávacej pamäti</string>
+
+    <string name="permission_req_location_twilight_title">Automatický svetlý/tmavý motív vzhľadu</string>
+    <string name="permission_req_location_twilight_text">Na automatické prepínanie medzi svetlým a tmavým motívom vzhľadu, je potrebné poskytnúť polohu zariadena, aby bolo možné určiť čas východu a západu slnka.</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">S hviezdičkou</string>
@@ -31,7 +44,30 @@
     <string name="action_add_new_feed">Pridať nový kanál</string>
     <string name="action_textToSpeech">Prečítať</string>
     <string name="action_search">Hľadať</string>
+    <string name="action_download_articles_offline">Stiahnuť články na čítanie bez pripojenia</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Sťahovanie článkov na čítanie bez pripojenia</string>
+    <string name="notification_download_images_offline">Sťahovanie obrázkov pre použitie bez pripojenia</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Máte %d novú neprečítanú položku</item>
+        <item quantity="few">Máte %d nové neprečítané položky</item>
+        <item quantity="many">Máte %d nové neprečítané položky</item>
+        <item quantity="other">Máte %d nových neprečítaných položiek</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">Dostupná %d neprečítaná položka</item>
+        <item quantity="few">Dostupné %d neprečítané položky</item>
+        <item quantity="many">Dostupné %d neprečítané položky</item>
+        <item quantity="other">Dostupných %d neprečítaných položiek</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL informačného kanála</string>
     <string name="action_add_feed">Pridať kanál</string>
+    <string name="import_opml">Importovať OPML</string>
+    <string name="export_opml">Exportovať OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Stiahnuť obrázok</string>
     <string name="action_img_sharelink">Sprístupniť odkaz na obrázok</string>
@@ -42,23 +78,58 @@
     <string name="action_link_copy">Kopírovať odkaz</string>
     <string name="toast_img_download_wait">Sťahujem… počkajte prosím</string>
     <string name="toast_img_saved">Obrázok uložený</string>
+    <string name="toast_img_notwriteable">Obrázok sa nepodarilo zapísať.</string>
     <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
     <string name="error_download_failed">Stiahnutie zlyhalo</string>
+    <string name="intent_title_share">Zdieľať prostredníctvom</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Odstrániť kanál</string>
+    <string name="action_feed_rename">Premenovať kanál</string>
+    <string name="action_feed_move">Presunúť kanál</string>
     <string name="feed_remove_button">Odobrať</string>
     <string name="feed_rename_button">Premenovať</string>
+    <string name="confirm_feed_remove">Naozaj chcete odstrániť tento informačný kanál? Nie je to možné vrátiť späť!</string>
+    <string name="feed_move_list_description">Vyberte priečinok, do ktorého chcete presunúť informačný kanál</string>
     <string name="move_feed_root_folder">Koreňový priečinok</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Ručné prihlásenie</string>
+    <string name="login_sso">Prihlásenie pomocou aplikácie Nextcloud Files</string>
     <string name="pref_title_username">Meno používateľa</string>
     <string name="pref_title_password">Heslo</string>
+    <string name="pref_title_owncloudRootPath">Koreňová adresa Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Prihlásenie</string>
     <string name="login_progress_signing_in">Prihlasujem vás...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Toto pole je povinné</string>
+    <string name="error_invalid_url">Nesprávna URL</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Stiahnutá %d jedna stará</item>
+        <item quantity="few">Stiahnuté %d staré položky</item>
+        <item quantity="many">Stiahnuté %d staré položky</item>
+        <item quantity="other">Stiahnutých %d starých položiek</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">Žiadne ďalšie položky k dispozícii</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Stiahnutá %d položka...</item>
+        <item quantity="few">Stiahnuté %d položky...</item>
+        <item quantity="many">Stiahnuté %d položky...</item>
+        <item quantity="other">Stiahnutých %d položiek…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nastavenia</string>
+    <string name="cache_is_cleared">Vyrovnávacia pamäť je vymazaná!</string>
+
+
     <!-- General settings -->
     <string name="pref_header_general">Všeobecné</string>
     <string name="pref_title_general_sort_order">Zoradenie</string>
@@ -66,8 +137,16 @@
     <string name="pref_general_sort_order_new_old">Nové -&gt; Staré</string>
     <string name="pref_general_sort_order_old_new">Staré -&gt; Nové</string>
 
+    <string name="pref_rename_action_swipe_right">Akcia pri potiahnutí prstom doprava</string>
+    <string name="pref_rename_action_swipe_left">Akcia pri potiahnutí prstom doľava</string>
+
+    <string name="pref_title_general_search_in">Hľadať v</string>
+
     <string name="pref_general_search_in_title">Názov</string>
+    <string name="pref_general_search_in_body">Telo</string>
+
     <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
+    <string name="dialog_clearing_cache_please_wait">Maže sa vyrovnávacia pamäť ... Čakajte prosím.</string>
     <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
     <string name="warning">Varovanie</string>
     <string name="pref_title_AutoSyncOnStart">Synchronizovať pri spustení</string>
@@ -75,6 +154,11 @@
     <string name="pref_title_DisableHostnameVerification">Vypnúť overovanie názvu hostiteľa</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigácia pomocou tlačidiel hlasitosti</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Označiť ako prečítané pri rolovaní stránky</string>
+    <string name="pref_title_OpenInBrowserDirectly">Preskočte podrobné zobrazenie a otvorte článok v prehliadači</string>
+
+    <string name="dialog_feature_not_available">Táto funkcia nie je k dispozícii v tejto (otvorenej) verzii tejto aplikácie. Ak chcete túto funkciu používať, stiahnite si aplikáciu z úložiska GitHub alebo si ju stiahnite z Obchodu Google Play.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Prijať neznámy certifikát?</string>
     <string name="mtm_decision_always">Vždy</string>
@@ -84,9 +168,22 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Nebol vybraný žiaden podcast</string>
+    <string name="no_chapters_available">Žiadne dostupné kapitoly</string>
+    <string name="podcast_playback_speed_dialog_title">Rýchlosť prehrávania</string>
+    <string name="notification_downloading_podcast_title">Sťahovanie podcastu</string>
+
+
     <!-- Settings for About -->
     <string name="pref_header_about">O aplikácii</string>
     <string name="pref_license">Licencia</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) verzia 3</string>
+    <string name="pref_report_issue">Nahlásiť problém</string>
+    <string name="pref_report_issue_summary">Vyžaduje (bezplatný) účet GitHub</string>
+    <string name="pref_contribute">Prispievať!</string>
+    <string name="pref_contribute_summary">Získajte zdrojový kód</string>
+    <string name="pref_version">Aplikácia Nextcloud novinky pre Android</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Zobrazenie</string>
     <string name="pref_title_app_theme">Motív vzhľadu</string>
@@ -95,18 +192,49 @@
     <string name="pref_display_browser">Prehliadač</string>
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcií (podrobné zobrazenie)</string>
+
+    <string name="pref_display_apptheme_auto">Svetlý/tmavý (podľa dennej doby)</string>
     <string name="pref_display_apptheme_light">Svetlý</string>
     <string name="pref_display_apptheme_dark">Tmavý</string>
 
+    <string name="pref_oled_mode">Čierne pozadie</string>
+    <string name="pref_oled_mode_summary">Pre tmavé motívy vzhľadu na obrazovkách OLED</string>
+
+    <string name="pref_display_browser_cct">Vstavané karty prehliadača Chrome</string>
+    <string name="pref_display_browser_built_in">Vstavaný prehliadač</string>
     <string name="pref_display_browser_external">Externý prehliadač</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Náhľady</string>
+    <string name="pref_display_feed_list_layout_simple_text">Jednoduchý text</string>
+    <string name="pref_display_feed_list_layout_headlines">Nadpisy</string>
+    <string name="pref_display_feed_list_layout_full_text">Celý text</string>
+    <string name="pref_display_feed_list_layout_web_layout">Webové rozloženie</string>
+    <string name="pref_display_feed_list_layout_card_view">Zobrazenie s kartami</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Malá</string>
     <string name="pref_display_font_size_d">Predvolené</string>
     <string name="pref_display_font_size_l">Veľká</string>
+    <string name="pref_display_font_size_xl">Veľmi veľké</string>
+
+    <string name="content_desc_play">prehrať</string>
+    <string name="content_desc_pause">pozastaviť</string>
+    <string name="content_desc_playback_speed">rýchlosť prehrávania</string>
+    <string name="content_desc_rewind">preskočiť na začiatok/koniec</string>
+    <string name="content_desc_forward">vpred</string>
+    <string name="content_desc_expand">rozbaliť</string>
+    <string name="content_desc_collapse">zbaliť</string>
     <string name="content_desc_mark_as_read">označiť ako prečítané</string>
     <string name="content_desc_mark_as_unread">označiť ako neprečítané</string>
+    <string name="content_desc_tap_to_refresh">ťuknite pre znovunačítanie</string>
+    <string name="content_desc_add_to_favorites">pridať k obľúbeným</string>
+    <string name="content_desc_remove_from_favorites">odstrániť z obľúbených</string>
+    <string name="content_desc_show_password">zobraziť heslo</string>
     <string name="content_desc_delete">vymazať</string>
+    <string name="content_desc_download">stiahnuť</string>
+
+
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Oznámenia</string>
     <string name="pref_title_notification_new_articles_available">Zobraziť oznámenie, keď sú k dispozícii nové články</string>
@@ -114,8 +242,14 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Chyba</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Zdá sa, že vaša aplikácia Novinky nie je nainštalovaná alebo aktivovaná na vašom serveri. Postupujte podľa pokynov, pre nastavenie aplikácie Novinky na servri:: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Tak toto je nepríjemné :(</string>
+    <string name="login_dialog_text_zero_version_code">Aplikácia Novinky vrátila verziu „0“. Prezrite si nasledujúcu správu o chybe: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Táto verzia aplikácie nie je kompatibilná s vašou aplikáciou Nextcloud Novinky na strane sevra. Aktualizujte ju a jej aplikačné prostredie (framework). </string>
     <string name="login_dialog_title_security_warning">Bezpečnostné varovanie</string>
+    <string name="login_dialog_text_security_warning">Nepoužívate protokol HTTPS, čo sa dôrazne odporúča. Útočník by mohol zachytiť vašu komunikáciu a získať prístup k niektorým citlivým údajom (napr. k heslu).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Dáta &amp; synchronizácia</string>
     <string name="pref_title_clearCache">Vyčistiť medzipamäť</string>
