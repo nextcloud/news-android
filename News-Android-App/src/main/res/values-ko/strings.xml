@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">동기화 주기 선택기</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">항목 없음</string>
+    <string name="toast_GettingMoreItems">더 많은 아이템들을 다운로드 하고 있습니다... 잠시 기다려 주십시오.</string>
     <string name="no_wifi_available">Wi-Fi에 연결되지 않았음</string>
+    <string name="do_you_want_to_download_without_wifi">Wi-Fi연결없이 이미지를 다운로드 하시겠습니까</string>
     <string name="current_version">현재 버전 %s을(를) 사용 중입니다.</string>
     <string name="widget_header">Nextcloud 뉴스</string>
     <plurals name="message_bar_new_articles_available">
@@ -21,10 +23,16 @@
     <string name="menu_StartImageCaching">사진 다운로드</string>
     <string name="menu_downloadMoreItems">더 많은 항목 다운로드</string>
 
+    <string name="tv_showing_cached_version">캐시된 버전 표시중</string>
+
+    <string name="permission_req_location_twilight_title">자동화된 밝은/어두운 테마</string>
+    <string name="permission_req_location_twilight_text">자동으로 밝은 테마와 어두운 테마를 바꾸시려면 일출과 일몰 측정을 위해 기기의 위치가 활성화 되어있어야 합니다</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">별표</string>
     <string name="action_read">읽기</string>
     <string name="action_playPodacst">팟캐스트 재생</string>
+    <string name="action_openInBrowser">웹 브라우저에서 열기</string>
     <string name="action_Share">공유</string>
     <string name="action_login">서버 설정</string>
     <string name="action_save">저장</string>
@@ -33,6 +41,10 @@
     <string name="action_add_new_feed">새 피드 추가</string>
     <string name="action_textToSpeech">음성으로 읽기</string>
     <string name="action_search">검색</string>
+    <string name="action_download_articles_offline">오프라인으로 기사 다운로드</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">오프라인 사용을 위해 기사 다운로드중</string>
+    <string name="notification_download_images_offline">오프라인 사용을 위해 이미지 다운로드중</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">읽지 않은 항목이 %d개 있습니다</item>
     </plurals>
@@ -43,6 +55,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">피드 URL</string>
     <string name="action_add_feed">피드 추가</string>
+    <string name="import_opml">OPML 가져오기</string>
+    <string name="export_opml">OPML 내보내기</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">사진 다운로드</string>
     <string name="action_img_sharelink">사진 링크 공유</string>
@@ -52,6 +68,7 @@
     <string name="action_link_open">브라우저에서 링크 열기</string>
     <string name="action_link_copy">링크 복사</string>
     <string name="toast_img_download_wait">다운로드 중입니다… 잠시 기다려 주십시오.</string>
+    <string name="toast_img_saved">이미지 저장됨</string>
     <string name="toast_img_notwriteable">사진을 기록할 수 없습니다.</string>
     <string name="toast_copied_to_clipboard">클립보드로 복사됨</string>
     <string name="error_download_failed">다운로드 실패</string>
@@ -61,9 +78,16 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">피드 삭제</string>
     <string name="action_feed_rename">비드 이름 바꾸기</string>
+    <string name="action_feed_move">피드 이동</string>
     <string name="feed_remove_button">삭제</string>
     <string name="feed_rename_button">이름 바꾸기</string>
     <string name="confirm_feed_remove">이 피드를 삭제하시겠습니까? 취소할 수 없습니다!</string>
+    <string name="feed_move_list_description">피드가 이동할 폴더 선택</string>
+    <string name="move_feed_root_folder">루트 폴더</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">수동 로그인</string>
+    <string name="login_sso">Nextcloud Files App으로 로그인</string>
     <string name="pref_title_username">사용자 이름</string>
     <string name="pref_title_password">암호</string>
     <string name="pref_title_owncloudRootPath">Nextcloud 루트 주소</string>
@@ -73,6 +97,9 @@
     <string name="login_progress_signing_in">로그인 중…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">이 항목은 필수 사항입니다</string>
+    <string name="error_invalid_url">잘못된 URL</string>
+
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">오래된 항목 %d개 다운로드됨</item>
@@ -95,6 +122,11 @@
     <string name="pref_general_sort_order_new_old">새 항목 -&gt; 오래된 항목</string>
     <string name="pref_general_sort_order_old_new">오래된 항목 -&gt; 새 항목</string>
 
+    <string name="pref_rename_action_swipe_right">오른쪽으로 밀었을 때의 동작</string>
+    <string name="pref_rename_action_swipe_left">왼쪽으로 밀었을 때의 동작</string>
+
+    <string name="pref_title_general_search_in">검색</string>
+
     <string name="pref_general_search_in_title">직위</string>
     <string name="dialog_clearing_cache">캐시 비우는 중</string>
     <string name="dialog_clearing_cache_please_wait">캐시를 비우고 있습니다… 잠시 기다려 주십시오.</string>
@@ -105,6 +137,8 @@
     <string name="pref_title_DisableHostnameVerification">호스트 이름 확인 사용 안함</string>
     <string name="pref_title_NavigateWithVolumeButtons">음량 단추로 탐색</string>
     <string name="pref_title_MarkAsReadWhileScrolling">스크롤 중 읽은 것으로 표시</string>
+    <string name="pref_title_OpenInBrowserDirectly">상세보기를 건너뛰고 기사를 브라우저에서 열기</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">알 수 없는 인증서를 허용하시겠습니까?</string>
     <string name="mtm_decision_always">항상</string>
@@ -115,13 +149,26 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">팟캐스트가 선택되지 않았음</string>
     <string name="no_chapters_available">사용 가능한 챕터가 없음</string>
+    <string name="podcast_playback_speed_dialog_title">재생 속도</string>
+    <string name="notification_downloading_podcast_title">팟캐스트 다운로드 중</string>
+
+
     <!-- Settings for About -->
     <string name="pref_header_about">정보</string>
     <string name="pref_license">라이선스</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_report_issue">문제점 보고</string>
+    <string name="pref_report_issue_summary">GitHub 계정 필수 (무료)</string>
+    <string name="pref_contribute">기여하기!</string>
+    <string name="pref_contribute_summary">소스 코드 얻기</string>
+    <string name="pref_version">Nextcloud News 안드로이드앱</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">표시</string>
     <string name="pref_title_app_theme">테마</string>
     <string name="pref_title_feed_list_layout">피드 목록 레이아웃</string>
+    <string name="pref_title_font_size">글꼴 크기</string>
     <string name="pref_display_browser">브라우저</string>
 
 
@@ -130,11 +177,28 @@
     <string name="pref_display_apptheme_light">밝게</string>
     <string name="pref_display_apptheme_dark">어둡게</string>
 
+    <string name="pref_oled_mode">검은색 배경</string>
+    <string name="pref_oled_mode_summary">OLED를 위한 어두운 테마</string>
+
     <string name="pref_display_browser_cct">내장 Chrome 사용자 정의 탭</string>
     <string name="pref_display_browser_built_in">내장 브라우저</string>
+    <string name="pref_display_browser_external">외부 브라우저</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">썸네일</string>
+    <string name="pref_display_feed_list_layout_headlines">헤드라인</string>
+    <string name="pref_display_feed_list_layout_full_text">전문</string>
+    <string name="pref_display_feed_list_layout_web_layout">웹 레이아웃</string>
+    <string name="pref_display_feed_list_layout_card_view">카드 보기</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">작게</string>
     <string name="pref_display_font_size_d">기본값</string>
+    <string name="pref_display_font_size_l">크게</string>
+    <string name="pref_display_font_size_xl">더 크게</string>
+
     <string name="content_desc_play">재생</string>
     <string name="content_desc_pause">일시정지</string>
+    <string name="content_desc_playback_speed">재생 속도</string>
     <string name="content_desc_rewind">되감기</string>
     <string name="content_desc_forward">앞으로</string>
     <string name="content_desc_expand">확장</string>
@@ -159,6 +223,9 @@
     <string name="login_dialog_text_something_went_wrong">무언가 잘못되었습니다 :(</string>
     <string name="login_dialog_text_zero_version_code">웹 뉴스 앱에서 버전 "0"을 반환했습니다. 다음 버그 보고를 참조하십시오: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_title_security_warning">보안 경고</string>
+    <string name="login_dialog_text_security_warning">HTTPS를 사용하고 있지 않습니다. 공격자가 트래픽을 가로채어 민감한 정보를 악용할 수 있습니다. (예: 비밀번호)</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">데이터 및 동기화</string>
     <string name="pref_title_clearCache">캐시 비우기</string>
