@@ -119,7 +119,7 @@ repositories {
 final DAGGER_VERSION = '2.22.1'
 final OKHTTP_VERSION = '3.12.8'
 final MOCKITO_VERSION = '2.27.0'
-final RETROFIT_VERSION = '2.5.0'
+final RETROFIT_VERSION = '2.6.4'
 
 dependencies {
     // core android studio module
@@ -129,7 +129,7 @@ dependencies {
     // implementation 'com.google.android.gms:play-services:4.2.42'
     // implementation project(':Android-SingleSignOn')
     // implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
-    implementation 'com.github.nextcloud:Android-SingleSignOn:0.5.0-rc3'
+    implementation 'com.github.nextcloud:Android-SingleSignOn:0.5.0-rc4'
     implementation 'com.github.David-Development:MaterialShowcaseView:bf6afa225d'
 
     // https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4

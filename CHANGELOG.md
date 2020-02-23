@@ -1,3 +1,8 @@
+0.9.9.36
+---------------------
+- Reduce min-api level to 17
+
+
 0.9.9.35
 ---------------------
 - Fix Single-Sign On related Issues
