@@ -78,9 +78,11 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">移除 Feed</string>
     <string name="action_feed_rename">重新命名 Feed</string>
+    <string name="action_feed_move">移動摘要</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重新命名</string>
     <string name="confirm_feed_remove">您真的要移除這個 Feed 嗎？此動作無法復原</string>
+    <string name="feed_move_list_description">選擇要移動摘要至的資料夾</string>
     <string name="move_feed_root_folder">根目錄</string>
 
     <!-- Strings related to login -->
@@ -120,6 +122,9 @@
     <string name="pref_general_sort_order_new_old">新 -> 舊</string>
     <string name="pref_general_sort_order_old_new">舊 -> 新</string>
 
+    <string name="pref_rename_action_swipe_right">往右滑的動作</string>
+    <string name="pref_rename_action_swipe_left">往左滑的動作</string>
+
     <string name="pref_title_general_search_in">搜尋</string>
 
     <string name="pref_general_search_in_title">標題</string>
@@ -134,6 +139,8 @@
     <string name="pref_title_DisableHostnameVerification">停用主機名稱檢驗</string>
     <string name="pref_title_NavigateWithVolumeButtons">用音量鍵瀏覽</string>
     <string name="pref_title_MarkAsReadWhileScrolling">當滾動時標為已讀</string>
+    <string name="pref_title_OpenInBrowserDirectly">略過詳細檢視，並在瀏覽器開啟文章</string>
+
     <string name="dialog_feature_not_available">本功能無法在此應用版本 (開源版本) 中使用。若您希望使用此功能，請從 GitHub Repository 或 Google Play 商店中下載應用程式。</string>
 
 
@@ -159,6 +166,9 @@
     <string name="pref_report_issue_summary">需要一個 (免費的) GitHub 帳戶</string>
     <string name="pref_contribute">貢獻</string>
     <string name="pref_contribute_summary">取得原始碼</string>
+    <string name="pref_version">Nextcloud News Android 應用程式</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">顯示</string>
     <string name="pref_title_app_theme">佈景主題</string>
@@ -167,6 +177,8 @@
     <string name="pref_display_browser">瀏覽器</string>
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">動作圖示 (詳細檢視)</string>
+
     <string name="pref_display_apptheme_auto">明亮 / 暗黑 (根據日照時間)</string>
     <string name="pref_display_apptheme_light">亮色</string>
     <string name="pref_display_apptheme_dark">暗色</string>
@@ -174,13 +186,17 @@
     <string name="pref_oled_mode">黑色背景</string>
     <string name="pref_oled_mode_summary">供 OLED 螢幕使用的暗黑主題</string>
 
+    <string name="pref_display_browser_cct">內建 Chrome 自訂分頁</string>
     <string name="pref_display_browser_built_in">內建瀏覽器</string>
     <string name="pref_display_browser_external">外部瀏覽器</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">縮圖</string>
+    <string name="pref_display_feed_list_layout_simple_text">簡單文字</string>
     <string name="pref_display_feed_list_layout_headlines">標題</string>
     <string name="pref_display_feed_list_layout_full_text">全文</string>
     <string name="pref_display_feed_list_layout_web_layout">Web 版面配置</string>
+    <string name="pref_display_feed_list_layout_card_view">卡片檢視</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">小</string>
     <string name="pref_display_font_size_d">預設</string>
@@ -211,7 +227,9 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">錯誤</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">似乎您未在伺服器安裝或啟用您的 News App。請遵循此處提示，先在您的伺服器安裝 News App：%1$s</string>
     <string name="login_dialog_text_something_went_wrong">發生錯誤了 :(</string>
+    <string name="login_dialog_text_zero_version_code">網頁 News App 回傳版本為「0」。請看看下述臭蟲回報：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">此 App 版本不相容您的 Nextcloud News 應用程式，請更新 Nextcloud News應用程式和 appframework</string>
     <string name="login_dialog_title_security_warning">安全性警告</string>
     <string name="login_dialog_text_security_warning">您不是使用 HTTPS，攻擊者可能攔截您的通訊，進而取得敏感資料（例如您的密碼）</string>
@@ -225,7 +243,7 @@
 
     <string name="pref_data_sync_image_cache_never">絕不</string>
     <string name="pref_data_sync_image_cache_wifi_only">只透過 WiFi</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">透過 WiFi 和行動網路</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">透過 Wi-Fi 和行動網路</string>
     <string name="pref_data_sync_image_cache_ask">當未連接到 WiFi 時詢問</string>
 
     <string name="array_sync_interval_min_5">5 分鐘</string>
