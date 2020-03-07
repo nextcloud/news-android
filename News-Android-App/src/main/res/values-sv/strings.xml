@@ -135,8 +135,8 @@
     <string name="pref_general_search_in_title">Rubrik</string>
     <string name="pref_general_search_in_body">Textyta</string>
 
-    <string name="dialog_clearing_cache">Rensar cache</string>
-    <string name="dialog_clearing_cache_please_wait">Rensar cache, vänligen vänta...</string>
+    <string name="dialog_clearing_cache">Rensar cachen</string>
+    <string name="dialog_clearing_cache_please_wait">Rensar cachen, vänligen vänta ...</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
     <string name="warning">Varning</string>
     <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
@@ -242,7 +242,7 @@
 
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synkronisering</string>
-    <string name="pref_title_clearCache">Rensa cache</string>
+    <string name="pref_title_clearCache">Rensa cachen</string>
     <string name="pref_title_CacheImagesOffline">Cacha bilder offline</string>
     <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
 
