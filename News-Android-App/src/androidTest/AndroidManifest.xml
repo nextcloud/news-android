@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="your.package.name">
 
-    <uses-sdk tools:overrideLibrary="android.support.test.uiautomator.v18"/>
+    <uses-sdk tools:overrideLibrary="android_libs.ub_uiautomator"/>
 
     <application>
         <!-- You don't need to include android:required="false" if your app's minSdkVersion is 28 or higher. -->
