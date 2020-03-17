@@ -183,7 +183,7 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     protected void setData(Long idFeed, Long idFolder, String title, boolean updateListView) {
-        Log.v(TAG, "Creating new itstance");
+        Log.v(TAG, "Creating new instance");
 
         this.idFeed = idFeed;
         this.idFolder = idFolder;

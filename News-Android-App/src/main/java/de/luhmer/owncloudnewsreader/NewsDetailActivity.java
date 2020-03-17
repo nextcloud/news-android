@@ -339,7 +339,12 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		resumeVideoPlayersOnCurrentPage();
 		progressIndicator.setProgress(position + 1);
 
-        getSupportActionBar().setTitle(rssItems.get(position).getTitle());
+        if(rssItems.get(position).getFeed() != null) {
+        	// Try getting the feed title and use it for the action bar title
+			getSupportActionBar().setTitle(rssItems.get(position).getFeed().getFeedTitle());
+		} else {
+			getSupportActionBar().setTitle(rssItems.get(position).getTitle());
+		}
 
         RssItem rssItem = rssItems.get(position);
         if(!rssItem.getRead_temp()) {
