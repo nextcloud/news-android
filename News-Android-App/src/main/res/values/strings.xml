@@ -3,7 +3,7 @@
 
     <string name="auto_sync_string">Auto sync</string>
     <string name="app_name" translatable="false">News</string>
-    <string name="title_activity_sync_interval_selector">Sync Interval Selector</string>
+    <string name="title_activity_sync_interval_selector">Sync Interval</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">No items here</string>
     <string name="toast_GettingMoreItems">Download of more items started… Please wait.</string>
@@ -406,6 +406,7 @@
     </string-array>
 
 
+    <string name="array_sync_interval_min_0">Never</string>
     <string name="array_sync_interval_min_5">5 Minutes</string>
     <string name="array_sync_interval_min_15">15 Minutes</string>
     <string name="array_sync_interval_min_30">30 Minutes</string>
@@ -418,6 +419,7 @@
     <string name="array_sync_interval_hour_24">24 Hours</string>
 
     <string-array name="array_sync_interval" translatable="false">
+        <item>@string/array_sync_interval_min_0</item>
         <item>@string/array_sync_interval_min_5</item>
         <item>@string/array_sync_interval_min_15</item>
         <item>@string/array_sync_interval_min_30</item>
@@ -430,6 +432,7 @@
         <item>@string/array_sync_interval_hour_24</item>
     </string-array>
     <string-array name="array_sync_interval_values" translatable="false">
+        <item>0</item>
         <item>5</item>
         <item>15</item>
         <item>30</item>

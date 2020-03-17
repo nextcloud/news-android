@@ -264,12 +264,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private void bindDataSyncPreferences(final PreferenceFragmentCompat prefFrag)
     {
-        String[] authorities = { "de.luhmer.owncloudnewsreader" };
-        Intent intentSyncSettings = new Intent(Settings.ACTION_SYNC_SETTINGS);
-        intentSyncSettings.putExtra(Settings.EXTRA_AUTHORITIES, authorities);
+        // String[] authorities = { "de.luhmer.owncloudnewsreader" };
+        // Intent intentSyncSettings = new Intent(Settings.ACTION_SYNC_SETTINGS);
+        // intentSyncSettings.putExtra(Settings.EXTRA_AUTHORITIES, authorities);
 
-
+        // String[] authorities = { "de.luhmer.owncloudnewsreader" };
+        // Intent intentSyncSettings = new Intent(Settings.ACTION_SYNC_SETTINGS);
+        // intentSyncSettings.putExtra(Settings.EXTRA_AUTHORITIES, authorities);
+        Intent intentSyncSettings = new Intent(getActivity(), SyncIntervalSelectorActivity.class);
         prefFrag.findPreference(PREF_SYNC_SETTINGS).setIntent(intentSyncSettings);
+
         //bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_ITEMS_SYNC));
         Preference clearCachePref = prefFrag.findPreference(EDT_CLEAR_CACHE);
         bindPreferenceSummaryToValue(prefFrag.findPreference(LV_CACHE_IMAGES_OFFLINE_STRING));

@@ -96,13 +96,11 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
     public static void setAccountSyncInterval(Context context, SharedPreferences mPrefs) {
         int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 0);
 
-        if(minutes != 0) {
-            long SYNC_INTERVAL = minutes * SECONDS_PER_MINUTE;
-
-            AccountManager mAccountManager = AccountManager.get(context);
-            Account[] accounts = mAccountManager.getAccountsByType(AccountGeneral.ACCOUNT_TYPE);
-            for (Account account : accounts) {
-
+        AccountManager mAccountManager = AccountManager.get(context);
+        Account[] accounts = mAccountManager.getAccountsByType(AccountGeneral.ACCOUNT_TYPE);
+        for (Account account : accounts) {
+            if (minutes != 0) {
+                long SYNC_INTERVAL = minutes * SECONDS_PER_MINUTE;
                 ContentResolver.setSyncAutomatically(account, AccountGeneral.ACCOUNT_TYPE, true);
 
                 Bundle bundle = new Bundle();
@@ -111,6 +109,9 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
                         AccountGeneral.ACCOUNT_TYPE,
                         bundle,
                         SYNC_INTERVAL);
+
+            } else {
+                ContentResolver.setSyncAutomatically(account, AccountGeneral.ACCOUNT_TYPE, false);
             }
         }
     }
