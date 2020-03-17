@@ -9,7 +9,7 @@
     <string name="no_wifi_available">WiFi non connesso</string>
     <string name="do_you_want_to_download_without_wifi">Vuoi scaricare le immagini senza una connessione WiFi</string>
     <string name="current_version">Stai usando la versione %s</string>
-    <string name="widget_header">Notizie di ownCloud</string>
+    <string name="widget_header">Notizie di NextCloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nuovi elemento disponibile</item>
         <item quantity="other">%d nuovi elementi disponibili</item>
@@ -93,8 +93,8 @@
     <string name="login_sso">Accedi utilizzando l\'applicazione File di Nextcloud</string>
     <string name="pref_title_username">Nome utente</string>
     <string name="pref_title_password">Password</string>
-    <string name="pref_title_owncloudRootPath">Indirizzo radice di ownCloud</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Indirizzo radice di Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Accedi</string>
     <string name="login_progress_signing_in">Accesso in corso...</string>
@@ -150,7 +150,7 @@
 
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">Accettare un certificato sconosciuto?</string>
+    <string name="mtm_accept_cert">Vuoi accettare un certificato sconosciuto?</string>
     <string name="mtm_decision_always">Sempre</string>
     <string name="mtm_decision_abort">Interrompi</string>
     <string name="mtm_notification">Verifica certificato</string>
@@ -184,15 +184,15 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Azioni delle icone (vista dettagliata)</string>
 
-    <string name="pref_display_apptheme_auto">Chiaro / Scuro (basato su ll\'orario)</string>
+    <string name="pref_display_apptheme_auto">Chiaro / Scuro (basato sull\'orario)</string>
     <string name="pref_display_apptheme_light">Chiaro</string>
     <string name="pref_display_apptheme_dark">Scuro</string>
 
     <string name="pref_oled_mode">Sfondo scuro</string>
-    <string name="pref_oled_mode_summary">Per tema scuro su per schermi OLED</string>
+    <string name="pref_oled_mode_summary">Per tema scuro su schermi OLED</string>
 
     <string name="pref_display_browser_cct">Schede personalizzate di Chrome integrate</string>
-    <string name="pref_display_browser_built_in">Broswer integrato</string>
+    <string name="pref_display_browser_built_in">Browser integrato</string>
     <string name="pref_display_browser_external">Browser esterno</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Miniature</string>
@@ -232,13 +232,13 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errore</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Sembra che la t\'applicazione delle notizie non sia installata o attivata sul tuo server. Segui le istruzioni fornite qui per configurare l\'applicazione sul tuo server: %1$s</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Sembra che l\'applicazione delle notizie non sia installata o attivata sul tuo server. Segui le istruzioni fornite qui per configurare l\'applicazione sul tuo server: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Qualcosa non ha funzionato :(</string>
     <string name="login_dialog_text_zero_version_code">L\'applicazione Web News ha restituito Version \"0\". Dai uno sguardo alla seguente segnalazione di bug:
 https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">La versione di questa applicazione non è compatibile con l\'applicazione News di Nextcloud. Aggiorna l\'applicazione e il framework.</string>
     <string name="login_dialog_title_security_warning">Avviso di sicurezza</string>
-    <string name="login_dialog_text_security_warning">Non stai usando HTTPS, che è fortemente consigliato. Un attaccante potrebbe intercettare il tuo traffico e ottenere accesso a dati sensibili (ad esempio la tua password).</string>
+    <string name="login_dialog_text_security_warning">Non stai usando HTTPS, che è fortemente consigliato. Un malintenzionato potrebbe intercettare il tuo traffico e ottenere accesso a dati sensibili (ad esempio la tua password).</string>
 
 
     <!-- Data & Sync -->

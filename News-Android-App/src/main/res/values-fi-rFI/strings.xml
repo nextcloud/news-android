@@ -3,10 +3,13 @@
 
     <string name="auto_sync_string">Automaattinen synkronointi</string>
     <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ei kohteita</string>
+    <string name="toast_GettingMoreItems">Lisäkohteiden lataus alkoi... Odota.</string>
     <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
     <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman wifi-yhteyttä</string>
     <string name="current_version">Käytössäsi on versio %s</string>
+    <string name="widget_header">Nextcloud uutiset</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d uusi kohde saatavilla</item>
         <item quantity="other">%d uutta kohdetta saatavilla</item>
@@ -24,6 +27,8 @@
     <string name="tv_showing_cached_version">Näytetään välimuistissa oleva versio</string>
 
     <string name="permission_req_location_twilight_title">Automaattinan vaalea tai tumma teema</string>
+    <string name="permission_req_location_twilight_text">Automaattinen teeman vaihto valoisasta tummaan vaatii laitteen sijainnin, jotta auringon nousu- ja laskuajan voidaan määrittää.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Varustettu tähdellä</string>
     <string name="action_read">Luku</string>
@@ -37,6 +42,10 @@
     <string name="action_add_new_feed">Lisää uusi syöte</string>
     <string name="action_textToSpeech">Lue ääneen</string>
     <string name="action_search">Etsi</string>
+    <string name="action_download_articles_offline">Lataa artikkelit ilman nettiyhteyttä</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Lataa artikkelit kaytettäväksi ilman nettiyhteyttä</string>
+    <string name="notification_download_images_offline">Lataa kuvat kaytettäväksi ilman nettiyhteyttä</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">%d uusi lukematon kohde</item>
         <item quantity="other">%d uutta lukematonta kohdetta</item>
@@ -81,6 +90,7 @@
 
     <!-- Strings related to login -->
     <string name="login_manual">Manuaalinen kirjautuminen</string>
+    <string name="login_sso">Kirjaudu sisään käyttäen Nextcloud tiedostosovellusta</string>
     <string name="pref_title_username">Käyttäjätunnus</string>
     <string name="pref_title_password">Salasana</string>
     <string name="pref_title_owncloudRootPath">ownCloudin juuriosoite</string>
@@ -117,6 +127,9 @@
     <string name="pref_general_sort_order_new_old">Uusi -> Vanha</string>
     <string name="pref_general_sort_order_old_new">Vanha -> Uusi</string>
 
+    <string name="pref_rename_action_swipe_right">Toiminto oikealle pyyhkäistäessä</string>
+    <string name="pref_rename_action_swipe_left">Toiminto vasemmalle pyyhkäistäessä</string>
+
     <string name="pref_title_general_search_in">Etsi kohteesta</string>
 
     <string name="pref_general_search_in_title">Otsikko</string>
@@ -128,8 +141,14 @@
     <string name="warning">Varoitus</string>
     <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
     <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>
+    <string name="pref_title_DisableHostnameVerification">Poista koneen nimen (hostname) varmistus</string>
     <string name="pref_title_NavigateWithVolumeButtons">Liiku äänipainikkeilla</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
+    <string name="pref_title_OpenInBrowserDirectly">Ohita yksityiskohtainen näkymä ja avaa artikkeli selaimessa</string>
+
+    <string name="dialog_feature_not_available">Tämä ominaisuus ei ole käytettävissä sovelluksen tässä (avoimen lähdekoodin) versiossa. Jos haluat käyttää ominaisuutta, lataa sovellus GitHub säilöstä tai google ohjelmakaupasta.</string>
+
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
     <string name="mtm_decision_always">Aina</string>
@@ -147,10 +166,14 @@
     <!-- Settings for About -->
     <string name="pref_header_about">Tietoja</string>
     <string name="pref_license">Lisenssi</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) versio 3</string>
     <string name="pref_report_issue">Ilmoita ongelmasta</string>
     <string name="pref_report_issue_summary">Vaatii ilmaisen GitHub-tilin</string>
     <string name="pref_contribute">Osallistu!</string>
     <string name="pref_contribute_summary">Hanki lähdekoodi</string>
+    <string name="pref_version">Nextcloud uutiset Android sovellus</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Näyttö</string>
     <string name="pref_title_app_theme">Teema</string>
@@ -159,14 +182,21 @@
     <string name="pref_display_browser">Selain</string>
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Toiminto kuvakkeet (yksityiskohtainen näkymä)</string>
+
     <string name="pref_display_apptheme_auto">Vaalea/tumma (pohjautuu kellonaikaan)</string>
     <string name="pref_display_apptheme_light">Vaalea</string>
     <string name="pref_display_apptheme_dark">Tumma</string>
 
     <string name="pref_oled_mode">Musta tausta</string>
+    <string name="pref_oled_mode_summary">Tumma teema OLED näytöille</string>
+
+    <string name="pref_display_browser_cct">Sisäänrakennetut Chrome muokatut välilehdet</string>
     <string name="pref_display_browser_built_in">Sisäänrakennettu selain</string>
     <string name="pref_display_browser_external">Ulkoinen selain</string>
 
+    <string name="pref_display_feed_list_layout_thumbnails">Esikatselukuvat</string>
+    <string name="pref_display_feed_list_layout_simple_text">Yksinkertainen teksti</string>
     <string name="pref_display_feed_list_layout_headlines">Otsikot</string>
     <string name="pref_display_feed_list_layout_full_text">Koko teksti</string>
     <string name="pref_display_feed_list_layout_web_layout">Web-asettelu</string>
@@ -181,6 +211,8 @@
     <string name="content_desc_play">toista</string>
     <string name="content_desc_pause">keskeytä</string>
     <string name="content_desc_playback_speed">toistonopeus</string>
+    <string name="content_desc_rewind">takaisinkelaus</string>
+    <string name="content_desc_forward">eteenpäin</string>
     <string name="content_desc_expand">laajenna</string>
     <string name="content_desc_collapse">supista</string>
     <string name="content_desc_mark_as_read">merkitse luetuksi</string>
@@ -200,7 +232,10 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Virhe</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Näyttäisi, että uutis sovellusat ei ole asennettu tai aktivoitu palvelimellesi. Seuraa tässä annettuja ohjeita asentaaksesi uutis sovelluksen palvelimellesi: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Jokin meni pieleen :(</string>
+    <string name="login_dialog_text_zero_version_code">Nettiuutissovellus palautti versio \"0\":n. Katso seuraavaa virheraporttia: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Tämä sovellus versio ei ole yhteensopiva käyttämäsi Nextcloud uutis sovelluksen kanssa. Päivitä uutissovellus ja sovelluskehikko.</string>
     <string name="login_dialog_title_security_warning">Turvallisuusvaroitus</string>
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synkronointi</string>
