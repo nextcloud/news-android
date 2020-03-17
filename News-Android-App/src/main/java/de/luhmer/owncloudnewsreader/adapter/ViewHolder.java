@@ -321,7 +321,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
                     imgViewThumbnail.setVisibility(View.VISIBLE);
                     //imgViewThumbnail.setColorFilter(Color.parseColor("#d8d8d8"));
-                    imgViewThumbnail.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.feed_icon));
+                    Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null) ;
+                    imgViewThumbnail.setImageDrawable(feedIcon);
                 } else {
                     imgViewThumbnail.setVisibility(GONE);
                 }
