@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Αυτόματος συγχρονισμός</string>
-    <string name="title_activity_sync_interval_selector">Επιλογέας διαστήματος συγχρονισμού</string>
     <string name="title_activity_news_detail">Λεπτομέρειες Δραστηριότητας Ειδήσεων</string>
     <string name="empty_view_content">Κανένα στοιχείο</string>
     <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε. </string>

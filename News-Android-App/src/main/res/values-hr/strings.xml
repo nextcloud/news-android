@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Automatska sinkronizacija</string>
-    <string name="title_activity_sync_interval_selector">Odabirač intervala sinkronizacije</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ovdje nema stavki</string>
     <string name="toast_GettingMoreItems">Počelo je preuzimanje više stavki... Pričekajte.</string>

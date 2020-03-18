@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Автоматична синхронізація</string>
-    <string name="title_activity_sync_interval_selector">Перемикач Інтервалу Синхронізації</string>
     <string name="title_activity_news_detail">Останні Новини</string>
     <string name="empty_view_content">Нічого нема</string>
     <string name="toast_GettingMoreItems">Завантаження більшої кількості елементів... Будь ласка, зачекайте.</string>

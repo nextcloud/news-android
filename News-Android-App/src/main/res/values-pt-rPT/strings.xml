@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Sincronização Automática</string>
-    <string name="title_activity_sync_interval_selector">Selector de intervalo de sincronização</string>
     <string name="title_activity_news_detail">NotíciasDetalheAtividade</string>
     <string name="empty_view_content">Sem itens aqui</string>
     <string name="toast_GettingMoreItems">Foi iniciada a transferência de mais itens... Por favor, aguarde.</string>

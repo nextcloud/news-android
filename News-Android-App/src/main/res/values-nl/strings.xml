@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Auto sync</string>
-    <string name="title_activity_sync_interval_selector">Sync interval selector</string>
     <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
     <string name="empty_view_content">Geen items hier</string>
     <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>

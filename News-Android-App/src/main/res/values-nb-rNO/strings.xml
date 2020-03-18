@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Autosynk</string>
-    <string name="title_activity_sync_interval_selector">Velger for synkroniseringsintervall</string>
     <string name="title_activity_news_detail">NyheterDetaljAktivitet</string>
     <string name="empty_view_content">Ingenting her</string>
     <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet… Vennligst vent.</string>
@@ -248,6 +247,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Over WiFi &amp; mobildata</string>
     <string name="pref_data_sync_image_cache_ask">Spør når ikke tilkoblet Wi-Fi</string>
 
+    <string name="array_sync_interval_min_0">Aldri</string>
     <string name="array_sync_interval_min_5">5 minutter</string>
     <string name="array_sync_interval_min_15">15 minutter</string>
     <string name="array_sync_interval_min_30">30 minutter</string>

@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Autosynchronizácia</string>
-    <string name="title_activity_sync_interval_selector">Voľba intervalu synchronizácie</string>
     <string name="title_activity_news_detail">Podrobná aktivita noviniek</string>
     <string name="empty_view_content">Žiadne položky</string>
     <string name="toast_GettingMoreItems">Sťahovanie ďalších položiek začalo ... Čakajte prosím.</string>
@@ -261,6 +260,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Iba cez WiFi &amp; Mobil</string>
     <string name="pref_data_sync_image_cache_ask">Spýtať sa keď nieste pripojený k WiFi</string>
 
+    <string name="array_sync_interval_min_0">Nikdy</string>
     <string name="array_sync_interval_min_5">5 minút</string>
     <string name="array_sync_interval_min_15">15 minút</string>
     <string name="array_sync_interval_min_30">30 minút</string>

@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Otomatik eşitleme</string>
-    <string name="title_activity_sync_interval_selector">Eşitleme Aralığı Seçici</string>
     <string name="title_activity_news_detail">HaberAyrıntıİşlem</string>
     <string name="empty_view_content">Burada herhangi bir öge yok</string>
     <string name="toast_GettingMoreItems">Lütfen bekleyin, diğer ögelerin indirilmesine başlandı …</string>
@@ -251,6 +250,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi ve Mobil Veri Üzerinden</string>
     <string name="pref_data_sync_image_cache_ask">WiFi bağlı değilken sorulsun</string>
 
+    <string name="array_sync_interval_min_0">Asla</string>
     <string name="array_sync_interval_min_5">5 Dakika</string>
     <string name="array_sync_interval_min_15">15 Dakika</string>
     <string name="array_sync_interval_min_30">30 Dakika</string>

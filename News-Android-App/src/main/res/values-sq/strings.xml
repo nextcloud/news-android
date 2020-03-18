@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Vetënjëkohëso</string>
-    <string name="title_activity_sync_interval_selector">Përzgjedhës Intervali Njëkohësimesh</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">S’ka gjë këtu</string>
     <string name="toast_GettingMoreItems">Shkarkimi i më shumë gjërave filloi... Ju lutem prisni.</string>

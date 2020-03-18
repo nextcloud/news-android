@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">自動同步</string>
-    <string name="title_activity_sync_interval_selector">同步時間間隔選擇</string>
     <string name="title_activity_news_detail">新聞內容活動</string>
     <string name="empty_view_content">無任何項目</string>
     <string name="toast_GettingMoreItems">正在開始下載更多項目...請稍後</string>
@@ -246,6 +245,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">透過 Wi-Fi 和行動網路</string>
     <string name="pref_data_sync_image_cache_ask">當未連接到 WiFi 時詢問</string>
 
+    <string name="array_sync_interval_min_0">絕不</string>
     <string name="array_sync_interval_min_5">5 分鐘</string>
     <string name="array_sync_interval_min_15">15 分鐘</string>
     <string name="array_sync_interval_min_30">30 分鐘</string>

@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Auto sünk</string>
-    <string name="title_activity_sync_interval_selector">Sync sageduse valik</string>
     <string name="title_activity_news_detail">UudisteÜksikasjadeTegevused</string>
     <string name="empty_view_content">Siin pole üksusi</string>
     <string name="no_wifi_available">WiFi pole ühendatud</string>

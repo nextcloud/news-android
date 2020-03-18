@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Autosincronizar</string>
-    <string name="title_activity_sync_interval_selector">Sincronizar Selector de Intervalo</string>
     <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
     <string name="empty_view_content">No hay artículos aquí</string>
     <string name="toast_GettingMoreItems">Se ha iniciado la descarga de varios elementos... por favor, espere.</string>
@@ -251,6 +250,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Sobre WiFi &amp; Móvil.</string>
     <string name="pref_data_sync_image_cache_ask">Preguntar cuando no esté conectado a una WiFi</string>
 
+    <string name="array_sync_interval_min_0">Nunca</string>
     <string name="array_sync_interval_min_5">5 minutos</string>
     <string name="array_sync_interval_min_15">15 minutos</string>
     <string name="array_sync_interval_min_30">30 minutos</string>

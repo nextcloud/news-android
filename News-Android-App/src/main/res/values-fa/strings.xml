@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">همگام‌سازی خودکار</string>
-    <string name="title_activity_sync_interval_selector">گزینشگر وقفهٔ همگام سازی</string>
     <string name="title_activity_news_detail">فعالیت جزییات اخبار</string>
     <string name="empty_view_content">موردی وجود ندارد</string>
     <string name="toast_GettingMoreItems">بارگیری موارد بیش‌تر آغاز شد… صبر لطفاً </string>
@@ -251,6 +250,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">روی وای‌فای و همراه</string>
     <string name="pref_data_sync_image_cache_ask">پرسش هنگام وصل نبودن به وای‌فای</string>
 
+    <string name="array_sync_interval_min_0">هرگز</string>
     <string name="array_sync_interval_min_5">۵ دقیقه</string>
     <string name="array_sync_interval_min_15">یک ربع</string>
     <string name="array_sync_interval_min_30">نیم ساعت</string>

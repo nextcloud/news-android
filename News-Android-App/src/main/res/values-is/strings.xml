@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Sjálfvirk samstilling</string>
-    <string name="title_activity_sync_interval_selector">Val á bili milli samstillinga</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Engin atriði hér</string>
     <string name="toast_GettingMoreItems">Byrjaði að sækja fleiri atriði... Bíddu aðeins.</string>

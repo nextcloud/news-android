@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Sync otomatis</string>
-    <string name="title_activity_sync_interval_selector">Pemilih Jeda Sync</string>
     <string name="title_activity_news_detail">AktivitasRinciBerita</string>
     <string name="empty_view_content">Tak ada item disini</string>
     <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>

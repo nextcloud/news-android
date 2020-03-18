@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Automaattinen synkronointi</string>
-    <string name="title_activity_sync_interval_selector">Synkronointivälin valitsin</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ei kohteita</string>
     <string name="toast_GettingMoreItems">Lisäkohteiden lataus alkoi... Odota.</string>

@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Automatická synchronizace</string>
-    <string name="title_activity_sync_interval_selector">Volba intervalu synchronizace</string>
     <string name="title_activity_news_detail">Podrobná aktivita zpráv</string>
     <string name="empty_view_content">Žádné položky</string>
     <string name="toast_GettingMoreItems">Zahájeno stahování vícero položek… Čekejte.</string>
@@ -261,6 +260,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Přes WiFi a mobilní data</string>
     <string name="pref_data_sync_image_cache_ask">Dotázat se, když WiFi není</string>
 
+    <string name="array_sync_interval_min_0">Nikdy</string>
     <string name="array_sync_interval_min_5">5 minut</string>
     <string name="array_sync_interval_min_15">15 minut</string>
     <string name="array_sync_interval_min_30">30 minut</string>

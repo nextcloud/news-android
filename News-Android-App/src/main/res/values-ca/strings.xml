@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Sincronitza automàticament</string>
-    <string name="title_activity_sync_interval_selector">Selector d\'interval de sincronització</string>
     <string name="title_activity_news_detail">NotíciesDetailActivitat</string>
     <string name="empty_view_content">Cap element</string>
     <string name="toast_GettingMoreItems">Ha començat la descàrrega de més elements... Espereu si us plau.</string>
@@ -251,6 +250,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Sobre mòbil WiFi &amp;</string>
     <string name="pref_data_sync_image_cache_ask">Pregunta-m\'ho quan no estigui connectat a una xarxa Wi-Fi</string>
 
+    <string name="array_sync_interval_min_0">Mai</string>
     <string name="array_sync_interval_min_5">5 minuts</string>
     <string name="array_sync_interval_min_15">15 minuts</string>
     <string name="array_sync_interval_min_30">30 minuts</string>

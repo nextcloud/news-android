@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">סנכרון אוטומטי</string>
-    <string name="title_activity_sync_interval_selector">בורר הפרשים בין סנכרונים</string>
     <string name="empty_view_content">אין כאן פריטים</string>
     <string name="toast_GettingMoreItems">החלה הורדה של פריטים נוספים… נא להמתין.</string>
     <string name="no_wifi_available">אין חיבור WiFi</string>
@@ -235,6 +234,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">דרך רשת אלחוטית וסלולרית</string>
     <string name="pref_data_sync_image_cache_ask">לשאול כאשר אין חיבור אלחוטי</string>
 
+    <string name="array_sync_interval_min_0">מעולם לא</string>
     <string name="array_sync_interval_min_5">5 דקות</string>
     <string name="array_sync_interval_min_15">15 דקות</string>
     <string name="array_sync_interval_min_30">30 דקות</string>

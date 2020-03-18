@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Automatisk synkronisering</string>
-    <string name="title_activity_sync_interval_selector">Synkronisera intervallväljaren</string>
     <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
     <string name="empty_view_content">Inga objekt här</string>
     <string name="toast_GettingMoreItems">Nedladdning av fler objekt startade... Vänligen vänta.</string>
