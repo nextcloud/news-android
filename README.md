@@ -1,8 +1,8 @@
 Nextcloud News Reader – Android App
 ==================================
 
+[![Android CI](https://github.com/nextcloud/news-android/workflows/Android%20CI/badge.svg)](https://github.com/nextcloud/news-android/actions)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bb65782750445c99e80dab29f6701a6)](https://www.codacy.com/app/Nextcloud/news-android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nextcloud/news-android&amp;utm_campaign=Badge_Grade)
-[![CircleCI](https://circleci.com/gh/nextcloud/news-android/tree/master.svg?style=svg)](https://circleci.com/gh/nextcloud/news-android/tree/master)
 
 The Nextcloud News Reader Android App is under [AGPLv3](https://www.gnu.org/licenses/license-list.html#AGPLv3.0) License terms.
 
