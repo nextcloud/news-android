@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Sincronizzazione automatica</string>
+    <string name="title_activity_sync_interval_selector">Intervallo di sincronizzazione</string>
     <string name="title_activity_news_detail">AttivitàDettagliNotizie</string>
     <string name="empty_view_content">Nessun elemento</string>
     <string name="toast_GettingMoreItems">Iniziato lo scaricamento di altri elementi... Attendi.</string>
@@ -251,6 +252,7 @@ https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Su WiFi e mobile</string>
     <string name="pref_data_sync_image_cache_ask">Chiedi se non connesso al WiFi</string>
 
+    <string name="array_sync_interval_min_0">Mai</string>
     <string name="array_sync_interval_min_5">5 minuti</string>
     <string name="array_sync_interval_min_15">15 minuti</string>
     <string name="array_sync_interval_min_30">30 minuti</string>

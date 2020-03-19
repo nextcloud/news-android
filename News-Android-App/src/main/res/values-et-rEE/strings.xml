@@ -155,6 +155,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi &amp; andmeside</string>
     <string name="pref_data_sync_image_cache_ask">Küsi, kui pole WiFisse ühendatud</string>
 
+    <string name="array_sync_interval_min_0">Mitte kunagi</string>
     <string name="array_sync_interval_min_5">5 minutit</string>
     <string name="array_sync_interval_min_15">15 minutit</string>
     <string name="array_sync_interval_min_30">30 minutit</string>

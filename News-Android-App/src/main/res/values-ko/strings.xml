@@ -236,6 +236,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Wi-Fi 및 모바일 데이터</string>
     <string name="pref_data_sync_image_cache_ask">Wi-Fi에 연결되지 않았을 때 묻기</string>
 
+    <string name="array_sync_interval_min_0">하지 않음</string>
     <string name="array_sync_interval_min_5">5분</string>
     <string name="array_sync_interval_min_15">15분</string>
     <string name="array_sync_interval_min_30">30분</string>

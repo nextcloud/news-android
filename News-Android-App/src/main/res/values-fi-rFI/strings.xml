@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Automaattinen synkronointi</string>
+    <string name="title_activity_sync_interval_selector">Synkronointiväli</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ei kohteita</string>
     <string name="toast_GettingMoreItems">Lisäkohteiden lataus alkoi... Odota.</string>
@@ -236,6 +237,9 @@
     <string name="login_dialog_text_zero_version_code">Nettiuutissovellus palautti versio \"0\":n. Katso seuraavaa virheraporttia: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Tämä sovellus versio ei ole yhteensopiva käyttämäsi Nextcloud uutis sovelluksen kanssa. Päivitä uutissovellus ja sovelluskehikko.</string>
     <string name="login_dialog_title_security_warning">Turvallisuusvaroitus</string>
+    <string name="login_dialog_text_security_warning">Et käytä HTTPS protokollaa, jota vahvasti suositellaan. Hyökkääjä voi siepata viestit ja saada pääsyn joihinkin arkaluontoisiin tietoihin, kuten salasana tms..</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synkronointi</string>
     <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
@@ -247,6 +251,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Wifi- ja mobiilidatayhteydellä</string>
     <string name="pref_data_sync_image_cache_ask">Kysy kun ei yhteyttä wifiin</string>
 
+    <string name="array_sync_interval_min_0">Ei koskaan</string>
     <string name="array_sync_interval_min_5">5 minuuttia</string>
     <string name="array_sync_interval_min_15">15 minuuttia</string>
     <string name="array_sync_interval_min_30">30 minuuttia</string>

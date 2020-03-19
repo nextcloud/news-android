@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Automatisk synkronisering</string>
+    <string name="title_activity_sync_interval_selector">Synkintervall </string>
     <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
     <string name="empty_view_content">Inga objekt här</string>
     <string name="toast_GettingMoreItems">Nedladdning av fler objekt startade... Vänligen vänta.</string>
@@ -250,6 +251,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Över Wi-Fi &amp; mobildata</string>
     <string name="pref_data_sync_image_cache_ask">Fråga när du inte är ansluten till Wi-Fi</string>
 
+    <string name="array_sync_interval_min_0">Aldrig</string>
     <string name="array_sync_interval_min_5">5 minuter</string>
     <string name="array_sync_interval_min_15">15 minuter</string>
     <string name="array_sync_interval_min_30">30 minuter</string>

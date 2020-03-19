@@ -241,6 +241,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Yfir WiFi-net &amp; farsímasamband</string>
     <string name="pref_data_sync_image_cache_ask">Spyrja þegar ekki er WiFi-tenging</string>
 
+    <string name="array_sync_interval_min_0">Aldrei</string>
     <string name="array_sync_interval_min_5">5 mínútur</string>
     <string name="array_sync_interval_min_15">15 mínútur</string>
     <string name="array_sync_interval_min_30">30 mínútur</string>

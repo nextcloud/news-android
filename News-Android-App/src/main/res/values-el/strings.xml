@@ -250,6 +250,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Μέσω WiFi &amp; Κινητής</string>
     <string name="pref_data_sync_image_cache_ask">Ερώτηση αν δεν υπάρχει σύνδεση WiFi</string>
 
+    <string name="array_sync_interval_min_0">Ποτέ</string>
     <string name="array_sync_interval_min_5">5 Λεπτά</string>
     <string name="array_sync_interval_min_15">15 Λεπτά</string>
     <string name="array_sync_interval_min_30">30 Λεπτά</string>

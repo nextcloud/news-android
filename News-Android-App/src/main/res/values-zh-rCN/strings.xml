@@ -245,6 +245,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">仅在 WiFi 和移动网络</string>
     <string name="pref_data_sync_image_cache_ask">未连接到 WiFi 时询问</string>
 
+    <string name="array_sync_interval_min_0">永不</string>
     <string name="array_sync_interval_min_5">5 分钟</string>
     <string name="array_sync_interval_min_15">15 分钟</string>
     <string name="array_sync_interval_min_30">30 分钟</string>

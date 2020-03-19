@@ -260,6 +260,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Через WiFi &amp; и мобильный интернет</string>
     <string name="pref_data_sync_image_cache_ask">Спросить, если не подключён к WiFi</string>
 
+    <string name="array_sync_interval_min_0">Никогда</string>
     <string name="array_sync_interval_min_5">5 Минут</string>
     <string name="array_sync_interval_min_15">15 Минут</string>
     <string name="array_sync_interval_min_30">30 Минут</string>

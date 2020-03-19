@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Automatická synchronizace</string>
+    <string name="title_activity_sync_interval_selector">Interval synchronizace</string>
     <string name="title_activity_news_detail">Podrobná aktivita zpráv</string>
     <string name="empty_view_content">Žádné položky</string>
     <string name="toast_GettingMoreItems">Zahájeno stahování vícero položek… Čekejte.</string>
