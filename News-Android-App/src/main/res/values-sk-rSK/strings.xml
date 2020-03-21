@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Autosynchronizácia</string>
+    <string name="title_activity_sync_interval_selector">Interval synchronizácie</string>
     <string name="title_activity_news_detail">Podrobná aktivita noviniek</string>
     <string name="empty_view_content">Žiadne položky</string>
     <string name="toast_GettingMoreItems">Sťahovanie ďalších položiek začalo ... Čakajte prosím.</string>

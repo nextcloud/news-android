@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Auto sinchronizavimas</string>
+    <string name="title_activity_sync_interval_selector">Sinchronizavimo intervalas</string>
     <string name="title_activity_news_detail">NaujienosInformacijaVeikla</string>
     <string name="empty_view_content">Nėra elementų</string>
     <string name="toast_GettingMoreItems">Elementai pradėti siųsti... Prašome palaukti.</string>
@@ -24,6 +25,8 @@
     <string name="menu_markAllAsRead">Žymėti visus skaitytais</string>
     <string name="menu_StartImageCaching">Atsisiųsti paveikslus</string>
     <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
+
+    <string name="tv_showing_cached_version">Rodyti versiją iš podėlio</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Pažymėti</string>
