@@ -68,6 +68,11 @@ android {
         extra {
             dimension "default"
         }
+        // Used for continous integration, e.g. to test built .apk-files from pull requests
+        dev {
+            dimension "default"
+            applicationIdSuffix ".dev"
+        }
     }
 
     lintOptions {
