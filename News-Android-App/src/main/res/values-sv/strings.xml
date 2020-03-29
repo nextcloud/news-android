@@ -5,7 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synkintervall </string>
     <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
     <string name="empty_view_content">Inga objekt här</string>
-    <string name="toast_GettingMoreItems">Nedladdning av fler objekt startade... Vänligen vänta.</string>
+    <string name="toast_GettingMoreItems">Hämtning av fler objekt startade... Vänligen vänta.</string>
     <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
     <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
     <string name="current_version">Du använder Version %s</string>
@@ -14,7 +14,7 @@
         <item quantity="one">%d ny artikel tillgänglig</item>
         <item quantity="other">%d nya artiklar tillgängliga</item>
     </plurals>
-    <string name="message_bar_reload">Ladda om</string>
+    <string name="message_bar_reload">Uppdatera</string>
     <string name="allUnreadFeeds">Alla olästa objekt</string>
     <string name="starredFeeds">Stjärnmärkta objekt</string>
     <string name="title_activity_new_feed">Lägg till flöde</string>
@@ -42,10 +42,10 @@
     <string name="action_add_new_feed">Lägg till flöde</string>
     <string name="action_textToSpeech">Läs upp</string>
     <string name="action_search">Sök</string>
-    <string name="action_download_articles_offline">Ladda ner artiklar offline</string>
+    <string name="action_download_articles_offline">Hämta artiklar offline</string>
     <!-- notifications -->
-    <string name="notification_download_articles_offline">Ladda ner artiklar som kan användas offline</string>
-    <string name="notification_download_images_offline">Ladda ner bilder som kan användas offline</string>
+    <string name="notification_download_articles_offline">Hämtar artiklar som kan användas offline</string>
+    <string name="notification_download_images_offline">Hämtar bilder som kan användas offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Du har %d oläst sak</item>
         <item quantity="other">Du har %d olästa saker</item>
@@ -74,7 +74,7 @@
     <string name="toast_img_saved">Bild sparad</string>
     <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
     <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
-    <string name="error_download_failed">Misslyckad nedladdning</string>
+    <string name="error_download_failed">Hämtning misslyckades</string>
     <string name="intent_title_share">Dela via</string>
 
 
