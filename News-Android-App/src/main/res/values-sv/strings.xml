@@ -237,7 +237,7 @@
     <string name="login_dialog_text_zero_version_code">Webbnyhetsappen returnerade Version \"0\". Ta en titt på följande felrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Den här appversionen är inte kompatibel med din Nextcloud nyheter-app. Vänligen uppgradera nyhetsappen och appframework.</string>
     <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
-    <string name="login_dialog_text_security_warning">Du använder inte HTTPS, vilket uppmuntras starkt. En angripare kan fånga upp din trafik och få tillgång till viss känslig data (t.ex. ditt lösenord).</string>
+    <string name="login_dialog_text_security_warning">Du använder inte HTTPS, vilket uppmuntras starkt. En angripare kan fånga upp din trafik och få tillgång till vissa känsliga data (t.ex. ditt lösenord).</string>
 
 
     <!-- Data & Sync -->
