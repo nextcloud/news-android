@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">自動同步</string>
+    <string name="title_activity_sync_interval_selector">同步時間間隔</string>
     <string name="title_activity_news_detail">新聞內容活動</string>
     <string name="empty_view_content">無任何項目</string>
     <string name="toast_GettingMoreItems">正在開始下載更多項目...請稍後</string>
