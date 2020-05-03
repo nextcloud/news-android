@@ -265,7 +265,7 @@ public class NewsReaderDetailFragment extends Fragment {
      */
     protected void initFastDoneAll(View rootView) {
         FloatingActionButton fab_done_all = rootView.findViewById(R.id.fab_done_all);
-        if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, false)) {
+        if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, true)) {
             fab_done_all.setVisibility(View.VISIBLE);
             fab_done_all.setOnTouchListener(new FastMarkReadMotionListener(rootView));
         } else {

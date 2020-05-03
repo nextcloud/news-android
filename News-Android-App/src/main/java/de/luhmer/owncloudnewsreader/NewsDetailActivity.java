@@ -88,8 +88,13 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	protected @BindView(R.id.progressIndicator) ProgressBar progressIndicator;
 	//protected @BindView(R.id.btn_disable_incognito) ImageButton mBtnDisableIncognito;
 	protected @BindView(R.id.fa_detail_bar) View fastActionDetailBar;
+	protected @BindView(R.id.fa_collapse_layout) View fastActionCollapseLayout;
 	protected @BindView(R.id.fa_star) AppCompatImageButton fastActionStar;
 	protected @BindView(R.id.fa_mark_as_read) AppCompatImageButton fastActionRead;
+	protected @BindView(R.id.fa_toggle) AppCompatImageButton fastActionToggle;
+	protected @BindView(R.id.fa_open_in_browser) AppCompatImageButton fastActionOpenInBrowser;
+	protected @BindView(R.id.fa_share) AppCompatImageButton fastActionShare;
+
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -239,20 +244,27 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		*/
 	}
 
-	/**
+    @Override
+    protected void onResume() {
+	    super.onResume();
+
+        updateActionBarIcons();
+    }
+
+    /**
 	 * Init fast action bar based on user settings.
 	 * Only show if user selected setting CB_SHOW_FAST_ACTIONS. Otherwise hide.
 	 *
 	 * author: emasty https://github.com/emasty
 	 */
 	private void initFastActionBar() {
-		boolean showFastActions = mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, false);
+		boolean showFastActions = mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, true);
 
 		if (showFastActions) {
 			// Set click listener for buttons on action bar
-			fastActionDetailBar.findViewById(R.id.fa_open_in_browser).setOnClickListener(v -> this.openInBrowser(currentPosition));
-			fastActionDetailBar.findViewById(R.id.fa_share).setOnClickListener(v -> this.share(currentPosition));
-			fastActionDetailBar.findViewById(R.id.fa_toggle).setOnClickListener(v -> this.toggleFastActionBar());
+			fastActionOpenInBrowser.setOnClickListener(v -> this.openInBrowser(currentPosition));
+			fastActionShare.setOnClickListener(v -> this.share(currentPosition));
+			fastActionToggle.setOnClickListener(v -> this.toggleFastActionBar());
 
 			RssItem rssItem = rssItems.get(currentPosition);
 			boolean isStarred = rssItem.getStarred_temp();
@@ -276,23 +288,21 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * Expands or shrinks the fast action bar to show/hide secondary functions
 	 */
 	private void toggleFastActionBar() {
-		View collapseView = findViewById(R.id.fa_collapse_layout);
-		AppCompatImageButton toggleButton = findViewById(R.id.fa_toggle);
-		int currentState = collapseView.getVisibility();
+		int currentState = fastActionCollapseLayout.getVisibility();
 		switch (currentState) {
 			case View.GONE:
-				toggleButton.setImageResource(R.drawable.ic_fa_expand);
-				collapseView.setVisibility(View.VISIBLE);
-				((Animatable)toggleButton.getDrawable()).start();
+				fastActionToggle.setImageResource(R.drawable.ic_fa_expand);
+				fastActionCollapseLayout.setVisibility(View.VISIBLE);
 				break;
 			case View.VISIBLE:
-				toggleButton.setImageResource(R.drawable.ic_fa_shrink);
-				collapseView.setVisibility(View.GONE);
-				((Animatable)toggleButton.getDrawable()).start();
+				fastActionToggle.setImageResource(R.drawable.ic_fa_shrink);
+				fastActionCollapseLayout.setVisibility(View.GONE);
 				break;
 			default:
 				break;
 		}
+		//((Animatable)fastActionToggle.getDrawable()).start();
+		fastActionToggle.setScaleX(-1);
 	}
 
 	private void toggleIncognitoMode() {
@@ -418,8 +428,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             mPostDelayHandler.delayTimer();
 
             Log.v("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
-        }
-        else {
+        } else {
             updateActionBarIcons();
         }
 	}
@@ -459,25 +468,27 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			menuItem_PlayPodcast.setVisible(podcastAvailable);
 		}
 
-
-        if(isStarred && menuItem_Starred != null) {
-			menuItem_Starred.setIcon(R.drawable.ic_action_star_dark);
-			((AppCompatImageButton) findViewById(R.id.fa_star)).setImageResource(R.drawable.ic_action_star_dark);
-		} else if(menuItem_Starred != null) {
-			menuItem_Starred.setIcon(R.drawable.ic_action_star_border_dark);
-			((AppCompatImageButton) findViewById(R.id.fa_star)).setImageResource(R.drawable.ic_action_star_border_dark);
+		if(menuItem_Starred != null) {
+			if (isStarred) {
+				menuItem_Starred.setIcon(R.drawable.ic_action_star_dark);
+				fastActionStar.setImageResource(R.drawable.ic_action_star_dark);
+			} else  {
+				menuItem_Starred.setIcon(R.drawable.ic_action_star_border_dark);
+				fastActionStar.setImageResource(R.drawable.ic_action_star_border_dark);
+			}
 		}
 
-        if(isRead && menuItem_Read != null) {
-            menuItem_Read.setIcon(R.drawable.ic_check_box_white);
-            menuItem_Read.setChecked(true);
-			((AppCompatImageButton) findViewById(R.id.fa_mark_as_read)).setImageResource(R.drawable.ic_check_box_white);
-        }
-        else if(menuItem_Read != null) {
-            menuItem_Read.setIcon(R.drawable.ic_check_box_outline_blank_white);
-            menuItem_Read.setChecked(false);
-			((AppCompatImageButton) findViewById(R.id.fa_mark_as_read)).setImageResource(R.drawable.ic_check_box_outline_blank_white);
-        }
+        if(menuItem_Read != null) {
+			if (isRead) {
+				menuItem_Read.setIcon(R.drawable.ic_check_box_white);
+				menuItem_Read.setChecked(true);
+				fastActionRead.setImageResource(R.drawable.ic_check_box_white);
+			} else {
+				menuItem_Read.setIcon(R.drawable.ic_check_box_outline_blank_white);
+				menuItem_Read.setChecked(false);
+				fastActionRead.setImageResource(R.drawable.ic_check_box_outline_blank_white);
+			}
+		}
     }
 
 

@@ -11,8 +11,8 @@
         android:id="@+id/fa_toggle"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:src="@drawable/ic_fa_expand" />
+        android:background="@color/transparent"
+        app:srcCompat="@drawable/ic_fa_expand" />
 
     <LinearLayout
         android:id="@+id/fa_collapse_layout"
@@ -47,7 +47,7 @@
         android:id="@+id/fa_open_in_browser"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_toRightOf="@id/fa_collapse_layout"
+        android:layout_toEndOf="@id/fa_collapse_layout"
         android:background="@drawable/fa_button"
         android:src="@drawable/ic_action_open_in_browser"
         android:translationZ="50dp" />

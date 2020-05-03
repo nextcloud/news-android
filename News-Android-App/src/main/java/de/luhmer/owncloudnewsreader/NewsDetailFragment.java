@@ -374,7 +374,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
      * @param view WebView with article
      */
 	private void addBottomPaddingForFastActions(WebView view) {
-        if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS,false)) {
+        if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS,true)) {
             view.loadUrl("javascript:document.body.style.marginBottom=\"100px\"; void 0");
         }
     }
