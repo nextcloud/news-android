@@ -87,6 +87,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	// protected @BindView(R.id.bottomAppBar) BottomAppBar bottomAppBar;
 	protected @BindView(R.id.progressIndicator) ProgressBar progressIndicator;
 	//protected @BindView(R.id.btn_disable_incognito) ImageButton mBtnDisableIncognito;
+	protected @BindView(R.id.fa_detail_bar) View fastActionDetailBar;
+	protected @BindView(R.id.fa_star) AppCompatImageButton fastActionStar;
+	protected @BindView(R.id.fa_mark_as_read) AppCompatImageButton fastActionRead;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -243,39 +246,29 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * author: emasty https://github.com/emasty
 	 */
 	private void initFastActionBar() {
-		View bar = this.findViewById(R.id.fa_detail_bar);
 		boolean showFastActions = mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, false);
 
 		if (showFastActions) {
 			// Set click listener for buttons on action bar
-			bar.findViewById(R.id.fa_open_in_browser).setOnClickListener(v -> this.openInBrowser(currentPosition));
-			bar.findViewById(R.id.fa_share).setOnClickListener(v -> this.share(currentPosition));
-			bar.findViewById(R.id.fa_toggle).setOnClickListener(v -> this.toggleFastActionBar());
+			fastActionDetailBar.findViewById(R.id.fa_open_in_browser).setOnClickListener(v -> this.openInBrowser(currentPosition));
+			fastActionDetailBar.findViewById(R.id.fa_share).setOnClickListener(v -> this.share(currentPosition));
+			fastActionDetailBar.findViewById(R.id.fa_toggle).setOnClickListener(v -> this.toggleFastActionBar());
 
 			RssItem rssItem = rssItems.get(currentPosition);
 			boolean isStarred = rssItem.getStarred_temp();
 			boolean isRead = rssItem.getRead_temp();
 
-			AppCompatImageButton star_button = bar.findViewById(R.id.fa_star);
-			star_button.setOnClickListener(v -> NewsDetailActivity.this.toggleRssItemStarredState());
-			if (isStarred) {
-				star_button.setImageResource(R.drawable.ic_action_star_dark);
-			} else {
-				star_button.setImageResource(R.drawable.ic_action_star_border_dark);
-			}
 
-			AppCompatImageButton read_button = bar.findViewById(R.id.fa_mark_as_read);
-			read_button.setOnClickListener(v -> NewsDetailActivity.this.markRead(currentPosition));
-			if (isRead) {
-				read_button.setImageResource(R.drawable.ic_check_box_white);
-			} else {
-				read_button.setImageResource(R.drawable.ic_check_box_outline_blank_white);
-			}
+			fastActionStar.setOnClickListener(v -> NewsDetailActivity.this.toggleRssItemStarredState());
+			fastActionStar.setImageResource(isStarred ? R.drawable.ic_action_star_dark : R.drawable.ic_action_star_border_dark);
 
-			// Remove double entries on menu bar
-			bar.setVisibility(View.VISIBLE);
+
+			fastActionRead.setOnClickListener(v -> NewsDetailActivity.this.markRead(currentPosition));
+			fastActionRead.setImageResource(isRead ? R.drawable.ic_check_box_white : R.drawable.ic_check_box_outline_blank_white);
+
+			fastActionDetailBar.setVisibility(View.VISIBLE);
 		} else {
-			bar.setVisibility(View.INVISIBLE);
+			fastActionDetailBar.setVisibility(View.INVISIBLE);
 		}
 	}
 
@@ -351,7 +344,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
     public static SORT_DIRECTION getSortDirectionFromSettings(SharedPreferences prefs) {
         SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
         String sortDirection = prefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
-        if (sortDirection.equals("1"))
+        if ("1".equals(sortDirection))
             sDirection = SORT_DIRECTION.desc;
         return sDirection;
     }
