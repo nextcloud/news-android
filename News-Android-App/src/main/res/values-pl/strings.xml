@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Automatyczna synchronizacja</string>
-    <string name="title_activity_sync_interval_selector">Wybór interwału synchronizacji</string>
+    <string name="title_activity_sync_interval_selector">Interwał synchronizacji</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Brak elementów</string>
     <string name="toast_GettingMoreItems">Rozpoczęto pobieranie kolejnych elementów… Proszę czekać.</string>
@@ -147,7 +147,7 @@
 
     <string name="dialog_clearing_cache">Czyszczenie pamięci podręcznej</string>
     <string name="dialog_clearing_cache_please_wait">Czyszczenie cache… Proszę czekać.</string>
-    <string name="reset_cache_unsaved_changes">Są niezsynchronizowane zmiany. Czy chcesz zresetować pamięć podręczną?</string>
+    <string name="reset_cache_unsaved_changes">Istnieją niezsynchronizowane zmiany. Czy mimo to chcesz zresetować pamięć podręczną?</string>
     <string name="warning">Ostrzeżenie</string>
     <string name="pref_title_AutoSyncOnStart">Synchronizuj na starcie</string>
     <string name="pref_title_ShowOnlyUnread">Pokaż tylko nieprzeczytane artykuły</string>
@@ -194,7 +194,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcji (Widok szczegółowy)</string>
 
-    <string name="pref_display_apptheme_auto">Jasny / Ciemny (zależy od pory dnia)</string>
+    <string name="pref_display_apptheme_auto">Jasny/Ciemny (zależy od pory dnia)</string>
     <string name="pref_display_apptheme_light">Jasny</string>
     <string name="pref_display_apptheme_dark">Ciemny</string>
 
@@ -261,6 +261,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Przez WiFi &amp; Mobilne</string>
     <string name="pref_data_sync_image_cache_ask">Zapytaj gdy nie podłączony do WiFi</string>
 
+    <string name="array_sync_interval_min_0">Nigdy</string>
     <string name="array_sync_interval_min_5">5 minut</string>
     <string name="array_sync_interval_min_15">15 minut</string>
     <string name="array_sync_interval_min_30">30 minut</string>

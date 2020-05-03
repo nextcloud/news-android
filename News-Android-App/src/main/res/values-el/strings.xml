@@ -2,14 +2,14 @@
 <resources>
 
     <string name="auto_sync_string">Αυτόματος συγχρονισμός</string>
-    <string name="title_activity_sync_interval_selector">Επιλογέας διαστήματος συγχρονισμού</string>
+    <string name="title_activity_sync_interval_selector">Περίοδος συγχρονισμού</string>
     <string name="title_activity_news_detail">Λεπτομέρειες Δραστηριότητας Ειδήσεων</string>
     <string name="empty_view_content">Κανένα στοιχείο</string>
     <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε. </string>
     <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
     <string name="do_you_want_to_download_without_wifi"> Θα θέλατε τη λήψη εικόνων χωρίς σύνδεση Wi-Fi </string>
     <string name="current_version">Χρησιμοποιείτε την έκδοση %s</string>
-    <string name="widget_header">Νέα ownCloud</string>
+    <string name="widget_header">Νέα Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d νέο αντικείμενο διαθέσιμο</item>
         <item quantity="other">%d νέα αντικείμενα διαθέσιμα</item>
@@ -251,9 +251,10 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Μέσω WiFi &amp; Κινητής</string>
     <string name="pref_data_sync_image_cache_ask">Ερώτηση αν δεν υπάρχει σύνδεση WiFi</string>
 
-    <string name="array_sync_interval_min_5">5 Λεπτά</string>
-    <string name="array_sync_interval_min_15">15 Λεπτά</string>
-    <string name="array_sync_interval_min_30">30 Λεπτά</string>
+    <string name="array_sync_interval_min_0">Ποτέ</string>
+    <string name="array_sync_interval_min_5">5 λεπτά</string>
+    <string name="array_sync_interval_min_15">15 λεπτά</string>
+    <string name="array_sync_interval_min_30">30 λεπτά</string>
     <string name="array_sync_interval_min_45">45 λεπτά</string>
     <string name="array_sync_interval_hour_1">1 ώρα</string>
     <string name="array_sync_interval_hour_2">2 ώρες</string>

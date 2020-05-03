@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Samodejno usklajevanje</string>
-    <string name="title_activity_sync_interval_selector">Izbirnik razmika med usklajevanji</string>
+    <string name="title_activity_sync_interval_selector">Časovni razmik usklajevanj</string>
     <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
     <string name="empty_view_content">Ni novic</string>
     <string name="toast_GettingMoreItems">Začeto je prejemanje več prispevkov ...</string>
@@ -261,6 +261,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Prek Wi-Fi in prek mobilnega dostopa</string>
     <string name="pref_data_sync_image_cache_ask">Vprašaj, kadar povezava ni vzpostavljena prek Wi-Fi</string>
 
+    <string name="array_sync_interval_min_0">Nikoli</string>
     <string name="array_sync_interval_min_5">5 minut</string>
     <string name="array_sync_interval_min_15">15 minut</string>
     <string name="array_sync_interval_min_30">30 minut</string>

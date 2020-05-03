@@ -39,6 +39,7 @@ public class ApiProvider {
     protected final SharedPreferences mPrefs;
     protected Context context;
     protected API mApi;
+    private NextcloudAPI mNextcloudSsoApi;
 
 
     public ApiProvider(MemorizingTrustManager mtm, SharedPreferences sp, Context context) {
@@ -55,6 +56,12 @@ public class ApiProvider {
     }
 
     public void initApi(@NonNull NextcloudAPI.ApiConnectedListener apiConnectedListener) {
+        if(mNextcloudSsoApi != null) {
+            // Destroy previous Service Connection if we need to reconnect (e.g. login again)
+            mNextcloudSsoApi.stop();
+            mNextcloudSsoApi = null;
+        }
+
         boolean useSSO = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
         if(useSSO) {
             OkHttpClient client = new OkHttpClient.Builder().build();
@@ -93,8 +100,8 @@ public class ApiProvider {
     protected void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
         try {
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-            NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
-            mApi = new NextcloudRetrofitApiBuilder(nextcloudAPI, API.mApiEndpoint).create(API.class);
+            mNextcloudSsoApi = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
+            mApi = new NextcloudRetrofitApiBuilder(mNextcloudSsoApi, API.mApiEndpoint).create(API.class);
         } catch (SSOException e) {
             callback.onError(e);
         }

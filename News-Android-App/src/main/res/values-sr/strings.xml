@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Ауто-освежавање</string>
-    <string name="title_activity_sync_interval_selector">Период освежавања</string>
+    <string name="title_activity_sync_interval_selector">Интервал синхронизације</string>
     <string name="title_activity_news_detail">Детаљне активности Вести</string>
     <string name="empty_view_content">Нема ставки</string>
     <string name="toast_GettingMoreItems">Започето скидање још ставки… Сачекајте.</string>
@@ -45,8 +45,8 @@
     <string name="action_search">Претрага</string>
     <string name="action_download_articles_offline">Скини чланке за приступ и без интернета</string>
     <!-- notifications -->
-    <string name="notification_download_articles_offline">Скидам чланке за приступ и без интернета</string>
-    <string name="notification_download_images_offline">Скидам слике за приступ и без интернета</string>
+    <string name="notification_download_articles_offline">Скидам чланке за коришћење ван везе</string>
+    <string name="notification_download_images_offline">Скидам слике за коришћење ван везе</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Имате %d непрочитану ставку</item>
         <item quantity="few">Имате %d непрочитане ставке</item>
@@ -61,8 +61,8 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Адреса довода</string>
     <string name="action_add_feed">Додај довод</string>
-    <string name="import_opml">Увези OPML</string>
-    <string name="export_opml">Извези OPML</string>
+    <string name="import_opml">Увези ОПМЛ</string>
+    <string name="export_opml">Извези ОПМЛ</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
@@ -93,7 +93,7 @@
 
     <!-- Strings related to login -->
     <string name="login_manual">Ручна пријава</string>
-    <string name="login_sso">Пријава коришћењем Некстклауд апликације Фајлова</string>
+    <string name="login_sso">Пријава преко Некстклауд апликације</string>
     <string name="pref_title_username">Корисничко име</string>
     <string name="pref_title_password">Лозинка</string>
     <string name="pref_title_owncloudRootPath">Корена адреса Некстклауда</string>
@@ -132,8 +132,8 @@
     <string name="pref_general_sort_order_new_old">Новији -> Старији</string>
     <string name="pref_general_sort_order_old_new">Старији -> Новији</string>
 
-    <string name="pref_rename_action_swipe_right">Радња на превлачење десно</string>
-    <string name="pref_rename_action_swipe_left">Радња на превлачење лево</string>
+    <string name="pref_rename_action_swipe_right">Радња при превлачењу у десно</string>
+    <string name="pref_rename_action_swipe_left">Радња при превлачењу у лево</string>
 
     <string name="pref_title_general_search_in">Претражи у</string>
 
@@ -256,6 +256,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Преко бежичне &amp; мобилне мреже</string>
     <string name="pref_data_sync_image_cache_ask">Питај када нема бежичне везе</string>
 
+    <string name="array_sync_interval_min_0">Никад</string>
     <string name="array_sync_interval_min_5">5 минута</string>
     <string name="array_sync_interval_min_15">15 минута</string>
     <string name="array_sync_interval_min_30">30 минута</string>

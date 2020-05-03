@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">自动同步</string>
-    <string name="title_activity_sync_interval_selector">同步间隔选择器</string>
+    <string name="title_activity_sync_interval_selector">同步间隔</string>
     <string name="title_activity_news_detail">新闻详细活动</string>
     <string name="empty_view_content">无内容</string>
     <string name="toast_GettingMoreItems">正在下载多个文件...请稍候。</string>
@@ -16,7 +16,7 @@
     <string name="message_bar_reload">刷新</string>
     <string name="allUnreadFeeds">所有未读内容</string>
     <string name="starredFeeds">标星内容</string>
-    <string name="title_activity_new_feed">增加新 Feed</string>
+    <string name="title_activity_new_feed">添加新订阅源</string>
 
     <string name="menu_update">刷新</string>
     <string name="menu_markAllAsRead">标记所有为已读</string>
@@ -38,7 +38,7 @@
     <string name="action_save">保存</string>
     <string name="action_settings">设置</string>
     <string name="action_sync_settings">同步设置</string>
-    <string name="action_add_new_feed">增加新 Feed</string>
+    <string name="action_add_new_feed">添加新订阅源</string>
     <string name="action_textToSpeech">朗读</string>
     <string name="action_search">搜索</string>
     <string name="action_download_articles_offline">离线下载文章</string>
@@ -53,8 +53,8 @@
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">源网址</string>
-    <string name="action_add_feed">添加Feed</string>
+    <string name="hint_feed_url">订阅源地址</string>
+    <string name="action_add_feed">添加订阅源</string>
     <string name="import_opml">导入OPML</string>
     <string name="export_opml">导出OPML</string>
 
@@ -67,7 +67,7 @@
     <string name="action_link_share">共享图片链接</string>
     <string name="action_link_open">在浏览器中打开链接</string>
     <string name="action_link_copy">复制链接</string>
-    <string name="toast_img_download_wait">下载中... 请稍候</string>
+    <string name="toast_img_download_wait">正在下载…请稍候</string>
     <string name="toast_img_saved">图片已保存</string>
     <string name="toast_img_notwriteable">未能写入图片。</string>
     <string name="toast_copied_to_clipboard">复制到剪贴板</string>
@@ -76,13 +76,13 @@
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">删除订阅</string>
-    <string name="action_feed_rename">重命名订阅</string>
-    <string name="action_feed_move">移动 Feed</string>
+    <string name="action_feed_remove">移除订阅源</string>
+    <string name="action_feed_rename">重命名订阅源</string>
+    <string name="action_feed_move">移动订阅源</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重命名</string>
-    <string name="confirm_feed_remove">您真的要删除此订阅吗？本操作不可恢复！</string>
-    <string name="feed_move_list_description">选择 Feed 移动到哪个文件夹</string>
+    <string name="confirm_feed_remove">您真的要删除此订阅源吗？本操作不可恢复！</string>
+    <string name="feed_move_list_description">选择文件夹以移动订阅源</string>
     <string name="move_feed_root_folder">根目录</string>
 
     <!-- Strings related to login -->
@@ -94,7 +94,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">登录</string>
-    <string name="login_progress_signing_in">登录中...</string>
+    <string name="login_progress_signing_in">正在登录...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">这个字段是必填的</string>
     <string name="error_invalid_url">网络地址不正确</string>
@@ -131,7 +131,7 @@
     <string name="pref_general_search_in_body">主体</string>
 
     <string name="dialog_clearing_cache">清除缓存</string>
-    <string name="dialog_clearing_cache_please_wait">清理缓存中，请稍候</string>
+    <string name="dialog_clearing_cache_please_wait">正在清理缓存…请稍候。</string>
     <string name="reset_cache_unsaved_changes">有一部分文件未同步，您确定仍然清空缓存吗？</string>
     <string name="warning">警告</string>
     <string name="pref_title_AutoSyncOnStart">启动后就同步</string>
@@ -163,7 +163,7 @@
     <string name="pref_license">许可证</string>
     <string name="pref_license_summary">GNU Affero 通用公共许可证 (AGPL) 版本3</string>
     <string name="pref_report_issue">报告问题</string>
-    <string name="pref_report_issue_summary">请求一个(免费) GitHub 帐户</string>
+    <string name="pref_report_issue_summary">请求一个(免费) GitHub 账号</string>
     <string name="pref_contribute">贡献！</string>
     <string name="pref_contribute_summary">获取源代码</string>
     <string name="pref_version">Nextcloud News 安卓应用</string>
@@ -172,7 +172,7 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">显示</string>
     <string name="pref_title_app_theme">主题</string>
-    <string name="pref_title_feed_list_layout">源清单布局</string>
+    <string name="pref_title_feed_list_layout">订阅源清单布局</string>
     <string name="pref_title_font_size">字号</string>
     <string name="pref_display_browser">浏览器</string>
 
@@ -236,7 +236,7 @@
 
 
     <!-- Data & Sync -->
-    <string name="pref_header_data_sync">数据 &amp; 同步</string>
+    <string name="pref_header_data_sync">数据与同步</string>
     <string name="pref_title_clearCache">清除缓存</string>
     <string name="pref_title_CacheImagesOffline">离线缓存图片</string>
     <string name="pref_title_Max_Cache_Size">最大缓存大小</string>
@@ -246,6 +246,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">仅在 WiFi 和移动网络</string>
     <string name="pref_data_sync_image_cache_ask">未连接到 WiFi 时询问</string>
 
+    <string name="array_sync_interval_min_0">永不</string>
     <string name="array_sync_interval_min_5">5 分钟</string>
     <string name="array_sync_interval_min_15">15 分钟</string>
     <string name="array_sync_interval_min_30">30 分钟</string>

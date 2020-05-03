@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Auto sync</string>
-    <string name="title_activity_sync_interval_selector">Sync interval selector</string>
+    <string name="title_activity_sync_interval_selector">Sync Interval</string>
     <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
     <string name="empty_view_content">Geen items hier</string>
     <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>
@@ -251,6 +251,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Met WiFi &amp; Mobiel</string>
     <string name="pref_data_sync_image_cache_ask">Vraag indien niet verbonden met WiFi</string>
 
+    <string name="array_sync_interval_min_0">Nooit</string>
     <string name="array_sync_interval_min_5">5 minuten</string>
     <string name="array_sync_interval_min_15">15 minuten</string>
     <string name="array_sync_interval_min_30">30 minuten</string>

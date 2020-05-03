@@ -26,6 +26,8 @@
     <string name="menu_StartImageCaching">Atsisiųsti paveikslus</string>
     <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
 
+    <string name="tv_showing_cached_version">Rodyti versiją iš podėlio</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Pažymėti</string>
     <string name="action_read">Skaityti</string>
@@ -226,6 +228,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Naudojant Wifi &amp; ir mobiliuosius duomenis</string>
     <string name="pref_data_sync_image_cache_ask"> Klausti kai neprisijungta prie WiFi </string>
 
+    <string name="array_sync_interval_min_0">Niekada</string>
     <string name="array_sync_interval_min_5">5 minutės</string>
     <string name="array_sync_interval_min_15">15 minučių</string>
     <string name="array_sync_interval_min_30">30 minučių</string>

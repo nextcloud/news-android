@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">自動同期</string>
-    <string name="title_activity_sync_interval_selector">同期間隔を指定</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">アイテムがありません</string>
     <string name="toast_GettingMoreItems">他のアイテムのダウンロードが開始されました...しばらくお待ちください。</string>
@@ -246,6 +245,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi &amp; モバイル</string>
     <string name="pref_data_sync_image_cache_ask">WiFi接続がない場合は尋ねる</string>
 
+    <string name="array_sync_interval_min_0">なし</string>
     <string name="array_sync_interval_min_5">5 分</string>
     <string name="array_sync_interval_min_15">15 分</string>
     <string name="array_sync_interval_min_30">30 分</string>

@@ -22,8 +22,10 @@
 package de.luhmer.owncloudnewsreader;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -38,6 +40,14 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.VisibleForTesting;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.navigation.NavigationView;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import java.io.ByteArrayInputStream;
@@ -49,8 +59,6 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 
-import androidx.annotation.VisibleForTesting;
-import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
@@ -59,7 +67,6 @@ import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.AbstractItem;
 import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
-import de.luhmer.owncloudnewsreader.model.FolderSubscribtionItem;
 import de.luhmer.owncloudnewsreader.model.UserInfo;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -67,6 +74,9 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+
+import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
+import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
@@ -180,6 +190,8 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         lvAdapter.notifyDataSetChanged();
         reloadAdapter();
 
+        bindNavigationMenu(view, inflater);
+
 		return view;
 	}
 
@@ -208,6 +220,52 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
             // Set ownCloud view
             headerView.setBackgroundResource(R.drawable.left_drawer_header_background);
         }
+    }
+
+    /**
+     * Cares about settings items in news list drawer.
+     *  - Binds settings, shown at bottom of drawer
+     *  - Inflates NavigationView which is set as footerview of ListView
+     *    Currently used to show item "add newsfeed" at bottom of list.
+     *
+     * @param parent content view of drawer
+     * @param inflater inflater provided to fragment
+     */
+    private void bindNavigationMenu(View parent, LayoutInflater inflater) {
+        // Bind settings menu at bottom of drawer
+        NavigationView navigationView = parent.findViewById(R.id.navigationMenu);
+        navigationView.setNavigationItemSelectedListener(item -> {
+            switch(item.getItemId()) {
+                case R.id.drawer_settings:
+                    Intent intent = new Intent(getContext(), SettingsActivity.class);
+                    getActivity().startActivityForResult(intent, NewsReaderListActivity.RESULT_SETTINGS);
+                    return true;
+                default:
+                    return false;
+            }
+        });
+
+        // Create NavigationView to show as footer of ListView
+        View footerView =  inflater.inflate(R.layout.fragment_newsreader_list_footer, null, false);
+        ExpandableListView list = parent.findViewById(R.id.expandableListView);
+
+        NavigationView footerNavigation = footerView.findViewById(R.id.listfooterMenu);
+        footerNavigation.setNavigationItemSelectedListener(item -> {
+            switch(item.getItemId()) {
+                case R.id.action_add_new_feed:
+                    if(mApi.getAPI() != null) {
+                        Intent newFeedIntent = new Intent(getContext(), NewFeedActivity.class);
+                        getActivity().startActivityForResult(newFeedIntent, NewsReaderListActivity.RESULT_ADD_NEW_FEED);
+                    } else {
+                        Intent loginIntent = new Intent(getContext(), LoginDialogActivity.class);
+                        getActivity().startActivityForResult(loginIntent, RESULT_LOGIN);
+                    }
+                    return true;
+                default:
+                    return false;
+            }
+        });
+        list.addFooterView(footerView);
     }
 
 	private ExpListTextClicked expListTextClickedListener = new ExpListTextClicked() {
@@ -266,10 +324,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	};
 
 
-
-
-
-
     public ExpandableListView getListView() {
         return eListView;
     }
@@ -285,8 +339,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 .setHideSkipButton(true)
                 .show();
     }
-
-    private static final String USER_INFO_STRING = "USER_INFO";
 
     public void startAsyncTaskGetUserInfo() {
         mApi.getAPI().user()
@@ -342,10 +394,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         }
         String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
         String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-        mOc_root_path = mOc_root_path.replace("http://", "").replace("https://", ""); //Remove http:// or https://
+        String mOc_root_path_without_protocol = mOc_root_path.replace("http://", "").replace("https://", ""); //Remove http:// or https://
 
         userTextView.setText(mUsername);
-        urlTextView.setText(mOc_root_path);
+        urlTextView.setText(mOc_root_path_without_protocol);
 
         String uInfo = mPrefs.getString(USER_INFO_STRING, null);
         if(uInfo == null)
@@ -355,7 +407,17 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
             UserInfo userInfo = (UserInfo) fromString(uInfo);
             if (userInfo.displayName != null)
                 userTextView.setText(userInfo.displayName);
-
+            final int placeHolder = R.mipmap.ic_launcher;
+            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
+                    .displayer(new CircleBitmapDisplayer())
+                    .showImageOnLoading(placeHolder)
+                    .showImageForEmptyUri(placeHolder)
+                    .showImageOnFail(placeHolder)
+                    .cacheOnDisk(true)
+                    .cacheInMemory(true)
+                    .build();
+            String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.userId) + "/64";
+            ImageLoader.getInstance().displayImage(avatarUrl, this.headerLogo, displayImageOptions);
             if (userInfo.avatar != null) {
                 Resources r = getResources();
                 float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, r.getDisplayMetrics());

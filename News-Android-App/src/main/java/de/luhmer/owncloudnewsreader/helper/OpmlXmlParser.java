@@ -1,6 +1,7 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -20,6 +21,8 @@ import de.luhmer.owncloudnewsreader.database.model.Folder;
  * Created by David on 14.01.2016.
  */
 public class OpmlXmlParser {
+
+    private static final String TAG = OpmlXmlParser.class.getCanonicalName();
 
     //Create XML
     public static String GenerateOPML(Context context) {
@@ -65,6 +68,9 @@ public class OpmlXmlParser {
             serializer.endTag("", "body");
             serializer.endTag("", "opml");
             serializer.endDocument();
+
+            Log.d(TAG, writer.toString());
+
             return writer.toString();
         } catch (Exception e) {
             throw new RuntimeException(e);
