@@ -213,8 +213,8 @@
     <string name="content_desc_mark_as_read">标记为已读</string>
     <string name="content_desc_mark_as_unread">标记为未读</string>
     <string name="content_desc_tap_to_refresh">点击刷新</string>
-    <string name="content_desc_add_to_favorites">添加收藏</string>
-    <string name="content_desc_remove_from_favorites">取消收藏</string>
+    <string name="content_desc_add_to_favorites">添加到收藏夹</string>
+    <string name="content_desc_remove_from_favorites">从收藏夹移除</string>
     <string name="content_desc_show_password">显示密码</string>
     <string name="content_desc_delete">删除</string>
     <string name="content_desc_download">下载</string>
