@@ -118,8 +118,10 @@ a {
 }
 
 #content table {
-    width:100% !important;
-    /* table-layout: fixed; */
+    width: 100% !important;
+
+    /* https://www.w3schools.com/cssref/pr_tab_table-layout.asp */
+    table-layout: fixed !important;
 }
 
 #header {

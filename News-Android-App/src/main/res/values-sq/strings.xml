@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Vetënjëkohëso</string>
-    <string name="title_activity_sync_interval_selector">Përzgjedhës Intervali Njëkohësimesh</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">S’ka gjë këtu</string>
     <string name="toast_GettingMoreItems">Shkarkimi i më shumë gjërave filloi... Ju lutem prisni.</string>
@@ -180,6 +179,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Përmes WiFi-ji &amp; Lidhjeje Celulari</string>
     <string name="pref_data_sync_image_cache_ask">Pyet, kur s\’është i lidhur me WiFi</string>
 
+    <string name="array_sync_interval_min_0">Kurrë</string>
     <string name="array_sync_interval_min_5">5 Minuta</string>
     <string name="array_sync_interval_min_15">15 Minuta</string>
     <string name="array_sync_interval_min_30">30 Minuta</string>

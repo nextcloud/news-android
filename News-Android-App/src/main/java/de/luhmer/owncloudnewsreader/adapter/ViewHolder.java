@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.preference.PreferenceManager;
+import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -19,6 +19,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -27,9 +32,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
@@ -145,11 +147,12 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
 
+        Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null) ;
         displayImageOptionsThumbnail = new DisplayImageOptions.Builder()
                 .displayer(new SquareRoundedBitmapDisplayer(30))
-                .showImageOnLoading(R.drawable.feed_icon)
-                .showImageForEmptyUri(R.drawable.feed_icon)
-                .showImageOnFail(R.drawable.feed_icon)
+                .showImageOnLoading(feedIcon)
+                .showImageForEmptyUri(feedIcon)
+                .showImageOnFail(feedIcon)
                 .cacheOnDisk(true)
                 .cacheInMemory(true)
                 .build();
@@ -318,7 +321,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
                 if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
                     imgViewThumbnail.setVisibility(View.VISIBLE);
                     //imgViewThumbnail.setColorFilter(Color.parseColor("#d8d8d8"));
-                    imgViewThumbnail.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.feed_icon));
+                    Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null) ;
+                    imgViewThumbnail.setImageDrawable(feedIcon);
                 } else {
                     imgViewThumbnail.setVisibility(GONE);
                 }

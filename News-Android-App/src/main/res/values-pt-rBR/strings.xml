@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Auto sincronização</string>
-    <string name="title_activity_sync_interval_selector">Seletor de Intervalo de Sincronização</string>
+    <string name="title_activity_sync_interval_selector">Intervalo de Sincronização</string>
     <string name="title_activity_news_detail">Detalhes da notícia</string>
     <string name="empty_view_content">Este local está vazio</string>
     <string name="toast_GettingMoreItems">Download de mais itens iniciou... Aguarde.</string>
@@ -56,8 +56,8 @@
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">Alimentar URL</string>
-    <string name="action_add_feed">Adicionar alimentador</string>
+    <string name="hint_feed_url">URL do feed</string>
+    <string name="action_add_feed">Adicionar feed</string>
     <string name="import_opml">Importar OPML</string>
     <string name="export_opml">Exportar OPML</string>
 
@@ -124,8 +124,8 @@
     <string name="pref_header_general">Geral</string>
     <string name="pref_title_general_sort_order">Ordem de Classificação</string>
 
-    <string name="pref_general_sort_order_new_old">Novo -> Velho</string>
-    <string name="pref_general_sort_order_old_new">Velho -> Novo</string>
+    <string name="pref_general_sort_order_new_old">Novo -> Antigo</string>
+    <string name="pref_general_sort_order_old_new">Antigo -> Novo</string>
 
     <string name="pref_rename_action_swipe_right">Ação ao deslizar para a direita</string>
     <string name="pref_rename_action_swipe_left">Ação ao deslizar para a esquerda</string>
@@ -144,7 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Desativar Verificação de Hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
-    <string name="pref_title_OpenInBrowserDirectly">Salte a exibição detalhada e abra o artigo no navegador</string>
+    <string name="pref_title_OpenInBrowserDirectly">Saltar exibição detalhada e abrir o artigo no navegador</string>
 
     <string name="dialog_feature_not_available">Este recurso não está disponível nesta versão deste aplicativo (de código aberto). Se você quiser usá-lo, baixe o aplicativo do repositório do GitHub ou faça o download na Google Play Store.</string>
 
@@ -182,7 +182,7 @@
     <string name="pref_display_browser">Navegador</string>
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Visualização detalhada)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Exibição detalhada)</string>
 
     <string name="pref_display_apptheme_auto">Claro / Escuro (baseado na hora do dia)</string>
     <string name="pref_display_apptheme_light">Claro</string>
@@ -195,7 +195,7 @@
     <string name="pref_display_browser_built_in">Navegador Incorporado</string>
     <string name="pref_display_browser_external">Navegador Externo</string>
 
-    <string name="pref_display_feed_list_layout_thumbnails">Thumbnails</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Miniaturas</string>
     <string name="pref_display_feed_list_layout_simple_text">Texto simples</string>
     <string name="pref_display_feed_list_layout_headlines">Manchetes</string>
     <string name="pref_display_feed_list_layout_full_text">Texto completo</string>
@@ -251,6 +251,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Por WiFi &amp; Celular</string>
     <string name="pref_data_sync_image_cache_ask">Perguntar quando não conectado por WiFi</string>
 
+    <string name="array_sync_interval_min_0">Nunca</string>
     <string name="array_sync_interval_min_5">5 minutos</string>
     <string name="array_sync_interval_min_15">15 minutos</string>
     <string name="array_sync_interval_min_30">30 minutos</string>

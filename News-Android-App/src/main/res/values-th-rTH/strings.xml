@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">ประสานข้อมูลอัตโนมัติ</string>
-    <string name="title_activity_sync_interval_selector">เลือกช่วงเวลาการประสานข้อมูล</string>
     <string name="title_activity_news_detail">รายละเอียดกิจกรรม</string>
     <string name="empty_view_content">ไม่มีรายการที่นี่</string>
     <string name="no_wifi_available">ไม่มีการเชื่อมต่อ Wifi</string>
@@ -160,6 +159,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">เฉพาะ WiFi &amp; เคลือข่ายมือถือ</string>
     <string name="pref_data_sync_image_cache_ask">ถามเมื่อไม่ได้เชื่อมต่อกับ WiFi</string>
 
+    <string name="array_sync_interval_min_0">ไม่เคย</string>
     <string name="array_sync_interval_min_5">5 นาที</string>
     <string name="array_sync_interval_min_15">15 นาที</string>
     <string name="array_sync_interval_min_30">30 นาที</string>

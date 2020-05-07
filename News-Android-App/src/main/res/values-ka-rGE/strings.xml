@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">ავტო სინქ.</string>
-    <string name="title_activity_sync_interval_selector">სინქ. ინტერვალის შერჩევა</string>
     <string name="title_activity_news_detail">სიახლეებიდეტალებიაქტივობები</string>
     <string name="empty_view_content">აქ ელემენტები არაა</string>
     <string name="no_wifi_available">WiFi არაა დაკავშირებული</string>
@@ -175,6 +174,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Wi-Fi-ზე და მობილურზე</string>
     <string name="pref_data_sync_image_cache_ask">შეკითხვა როდესაც არაა კავშირი WiFi-სთან</string>
 
+    <string name="array_sync_interval_min_0">არასდროს</string>
     <string name="array_sync_interval_min_5">5 წუთი</string>
     <string name="array_sync_interval_min_15">15 წუთი</string>
     <string name="array_sync_interval_min_30">30 წუთი</string>

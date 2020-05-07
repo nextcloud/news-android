@@ -10,20 +10,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.support.v4.media.MediaBrowserCompat;
-import androidx.media.MediaBrowserServiceCompat;
-
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
-import androidx.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.media.MediaBrowserServiceCompat;
+import androidx.media.session.MediaButtonReceiver;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -478,11 +479,13 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         }
         else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
             // Pause playback
+            mSession.getController().getTransportControls().pause();
         } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
             // Lower the volume, keep playing
         } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
             // Your app has been granted audio focus again
             // Raise volume to normal, restart playback if necessary
+            mSession.getController().getTransportControls().play();
         }
     };
 
@@ -611,9 +614,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                 RssItem rssItem = dbConn.getRssItemById(podcastId);
                 PodcastItem podcastItem = ParsePodcastItemFromRssItem(PodcastPlaybackService.this, rssItem);
 
-                Intent intent = new Intent(PodcastPlaybackService.this, PodcastPlaybackService.class);
-                intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, podcastItem);
-                startService(intent);
+                startPlayingPodcastItem(podcastItem);
             }
 
             super.onPlayFromMediaId(mediaId, extras);
@@ -634,7 +635,36 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         @Override
         public void onPlayFromSearch(String query, Bundle extras) {
             Log.d(TAG, "onPlayFromSearch() called with: query = [" + query + "], extras = [" + extras + "]");
-            // TODO Implement this
+
+            // In case the user just says "Play music"
+            if(TextUtils.isEmpty(query)) {
+                List<PodcastItem> audioPodcasts = getAllPodcastItems();
+
+                // If there are any audio podcasts
+                if(audioPodcasts.size() > 0) {
+                    PodcastItem podcastItem = audioPodcasts.get(0);
+                    startPlayingPodcastItem(podcastItem);
+                }
+            } else {
+                // User is actually searching for something..
+                List<PodcastItem> audioPodcasts = getAllPodcastItems();
+                if(audioPodcasts.size() > 0) {
+                    boolean foundMatching = false;
+                    for(PodcastItem pi : audioPodcasts) {
+                        if(pi.title.contains(query)) {
+                            startPlayingPodcastItem(pi);
+                            foundMatching = true;
+                            break;
+                        }
+                    }
+
+                    // in case we didn't find a matching podcast.. palay a random one
+                    if(!foundMatching) {
+                        PodcastItem podcastItem = audioPodcasts.get(0);
+                        startPlayingPodcastItem(podcastItem);
+                    }
+                }
+            }
             super.onPlayFromSearch(query, extras);
         }
 
@@ -666,12 +696,40 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         @Override
         public void onSkipToNext() {
             Log.d(TAG, "onSkipToNext() called");
+
+            MediaItem currentlyPlayingPodcast = getCurrentlyPlayingPodcast();
+            List<PodcastItem> podcastItems = getAllPodcastItems();
+
+            for(int i = 0; i < podcastItems.size(); i++) {
+                PodcastItem podcastItem = podcastItems.get(i);
+                if(podcastItem.itemId == currentlyPlayingPodcast.itemId) {
+                    if(i+1 < podcastItems.size()) {
+                        startPlayingPodcastItem(podcastItems.get(i+1));
+                    }
+                    break;
+                }
+            }
+
             super.onSkipToNext();
         }
 
         @Override
         public void onSkipToPrevious() {
             Log.d(TAG, "onSkipToPrevious() called");
+
+            MediaItem currentlyPlayingPodcast = getCurrentlyPlayingPodcast();
+            List<PodcastItem> podcastItems = getAllPodcastItems();
+
+            for(int i = 0; i < podcastItems.size(); i++) {
+                PodcastItem podcastItem = podcastItems.get(i);
+                if(podcastItem.itemId == currentlyPlayingPodcast.itemId) {
+                    if(i > 0) {
+                        startPlayingPodcastItem(podcastItems.get(i-1));
+                    }
+                    break;
+                }
+            }
+
             super.onSkipToPrevious();
         }
 
@@ -698,6 +756,25 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             }
             return super.onMediaButtonEvent(mediaButtonEvent);
         }
+    }
+
+    private void startPlayingPodcastItem(PodcastItem podcastItem) {
+        Intent intent = new Intent(PodcastPlaybackService.this, PodcastPlaybackService.class);
+        intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, podcastItem);
+        startService(intent);
+    }
+
+    private List<PodcastItem> getAllPodcastItems() {
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(PodcastPlaybackService.this);
+        List<PodcastItem> audioPodcasts= new ArrayList<>();
+        for(PodcastFeedItem podcastFeed : dbConn.getListOfFeedsWithAudioPodcasts()) {
+            long id = podcastFeed.mFeed.getId();
+            for(PodcastItem podcastItem : dbConn.getListOfAudioPodcastsForFeed(PodcastPlaybackService.this, id)) {
+
+                audioPodcasts.add(podcastItem);
+            }
+        }
+        return audioPodcasts;
     }
 
     private void initMediaSessions() {

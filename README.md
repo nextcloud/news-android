@@ -1,11 +1,13 @@
 Nextcloud News Reader – Android App
 ==================================
 
+[![Android CI](https://github.com/nextcloud/news-android/workflows/Android%20CI/badge.svg)](https://github.com/nextcloud/news-android/actions)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bb65782750445c99e80dab29f6701a6)](https://www.codacy.com/app/Nextcloud/news-android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nextcloud/news-android&amp;utm_campaign=Badge_Grade)
-[![CircleCI](https://circleci.com/gh/nextcloud/news-android/tree/master.svg?style=svg)](https://circleci.com/gh/nextcloud/news-android/tree/master)
 
 The Nextcloud News Reader Android App is under [AGPLv3](https://www.gnu.org/licenses/license-list.html#AGPLv3.0) License terms.
 
+[![Latest Release](https://img.shields.io/github/v/tag/nextcloud/news-android?label=latest+release&sort=semver)](https://github.com/nextcloud/news-android/releases)
+[![F-Droid Release](https://img.shields.io/f-droid/v/de.luhmer.owncloudnewsreader)](https://f-droid.org/de/packages/de.luhmer.owncloudnewsreader/)
 <p>
 <a href='https://play.google.com/store/apps/details?id=de.luhmer.owncloudnewsreader&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
     <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="100"/>
@@ -51,9 +53,22 @@ Testing with Android Auto:
 -----------------------
 1. Open Android Studio, click on "Tools" -> "SDK Manager"
 2. Select and install "Android Auto API Simulators"
-3. Open terminal, go to <android-sdk>/extras/google/simulators
+3. Open terminal, go to <android-sdk>/extras/google/simulators (e.g. `cd ~/Library/Android/sdk/extras/google/simulators`)
 4. Install apk using adb (`../../../platform-tools/adb install media-browser-simulator.apk`)
 5. Install apk using adb (`../../../platform-tools/adb install messaging-simulator.apk`)
+
+Advanced Testing Android Auto (e.g. Voice Features) [Link](https://developer.android.com/training/cars/testing)
+-----------------------
+
+1. Install Android 9 in an Emulator (Android 10 didn't work with the Android Auto App)
+2. Install Android Auto from PlayStore
+3. Follow instructions on training website (see link above)
+4. `~/Library/Android/sdk/platform-tools/adb forward tcp:5277 tcp:5277
+5. `cd ~/Library/Android/sdk/extras/google/auto`
+6. `./desktop-head-unit`
+7. From inside the terminal type: `mic play ./voice/pause.wav`
+
+
 
 That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
 
@@ -69,6 +84,7 @@ Contributors
 * [Nils Griebner](https://github.com/NilsGriebner)
 * [AnotherDaniel](https://github.com/AnotherDaniel)
 * [Unpublished](https://github.com/Unpublished)
+* [emasty](https://github.com/emasty)
 
 Changelog
 ==================================

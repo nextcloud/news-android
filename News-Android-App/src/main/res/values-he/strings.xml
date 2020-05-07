@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">סנכרון אוטומטי</string>
-    <string name="title_activity_sync_interval_selector">בורר הפרשים בין סנכרונים</string>
+    <string name="title_activity_sync_interval_selector">הפרש בין סנכרונים</string>
     <string name="empty_view_content">אין כאן פריטים</string>
     <string name="toast_GettingMoreItems">החלה הורדה של פריטים נוספים… נא להמתין.</string>
     <string name="no_wifi_available">אין חיבור WiFi</string>
@@ -27,6 +27,9 @@
 
     <string name="tv_showing_cached_version">הגרסה השמורה מוצגת</string>
 
+    <string name="permission_req_location_twilight_title">ערכת עיצוב בהירה/כהה</string>
+    <string name="permission_req_location_twilight_text">כדי להחליף אוטומטית בין ערכות העיצוב הכהה לבין הבהירה ולהיפך, יש לספק את מיקום המכשיר כדי לאתר את זמני הזריחה והשקיעה.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">מסומן בכוכב</string>
     <string name="action_read">נקרא</string>
@@ -40,13 +43,23 @@
     <string name="action_add_new_feed">הוספת ערוץ תוכן חדש</string>
     <string name="action_textToSpeech">הקראה</string>
     <string name="action_search">חיפוש</string>
-    <string name="action_download_articles_offline">הורדת מאמרים לשימוש בלתי מקוון</string>
+    <string name="action_download_articles_offline">הורדת כתבות לשימוש בלתי מקוון</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">מתקבלות כתבות לשימוש בלתי מקוון</string>
+    <string name="notification_download_images_offline">מתקבלות תמונות לשימוש בלתי מקוון</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">יש לך פריט חדש %d שלא נקרא</item>
         <item quantity="two">יש לך %dפריטים חדשים שלא נקראו </item>
         <item quantity="many">יש לך %d פריטים חדשים שלא נקראו</item>
         <item quantity="other">יש לך %d פריטים חדשים שלא נקראו</item>
     </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">יש פריט (%d) חדש שלא נקרא</item>
+        <item quantity="two">יש %d פריטים חדשים שלא נקראו</item>
+        <item quantity="many">יש %d פריטים חדשים שלא נקראו</item>
+        <item quantity="other">יש %d פריטים חדשים שלא נקראו</item>
+    </plurals>
+
     <!-- Add new feed -->
     <string name="hint_feed_url">נתיב ערוץ תוכן</string>
     <string name="action_add_feed">הוספת ערוץ תוכן</string>
@@ -122,6 +135,9 @@
 
     <string name="pref_general_sort_order_new_old">חדש -> ישן</string>
     <string name="pref_general_sort_order_old_new">ישן -> חדש</string>
+
+    <string name="pref_rename_action_swipe_right">פעולה להחלקה ימינה</string>
+    <string name="pref_rename_action_swipe_left">פעולה להחלקה שמאלה</string>
 
     <string name="pref_title_general_search_in">חיפוש תחת</string>
 
@@ -220,21 +236,31 @@
 
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">דיווחים</string>
-    <string name="pref_title_notification_new_articles_available">הצגת התראות כשמפורסמות ידיעות חדשות</string>
+    <string name="pref_title_notification_new_articles_available">להציג התראות כשמתפרסמות כתבות חדשות</string>
 
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">שגיאה</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">נראה כי יישומון החדשות שלך לא מותקן או מופעל בשרת שלך. נא לעקוב אחר ההנחיות שמסופקות כאן כדי להתקין את יישומון החדשות על השרת שלך: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">משהו השתבש :(</string>
+    <string name="login_dialog_text_zero_version_code">יישומון החדשות המקוון החזיר שמספר הגרסה שלו היא „0”. נא לעיין בדיווח התקלה הבא: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">גרסת יישומון זו אינה תואמת ליישומון החדשות שלך ב־Nextcloud. נא לשדרג את יישומון החדשות ואת סביבת עבודת היישומונים.</string>
     <string name="login_dialog_title_security_warning">אזהרת אבטחה</string>
+    <string name="login_dialog_text_security_warning">אינך עושה שימוש ב־HTTPS, שהיא שיטת העבודה המומלצת. לתוקף יש אפשרות ליירט את התעבורה שלך ולקבל גישה לנתונים רגישים (למשל: הססמה שלך).</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">נתונים וסנכרון</string>
     <string name="pref_title_clearCache">פינוי מטמון</string>
+    <string name="pref_title_CacheImagesOffline">לשמור את התמונות במטמון</string>
+    <string name="pref_title_Max_Cache_Size">גודל המטמון המרבי</string>
+
     <string name="pref_data_sync_image_cache_never">לעולם לא</string>
     <string name="pref_data_sync_image_cache_wifi_only">דרך רשת אלחוטית בלבד</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">דרך רשת אלחוטית וסלולרית</string>
     <string name="pref_data_sync_image_cache_ask">לשאול כאשר אין חיבור אלחוטי</string>
 
+    <string name="array_sync_interval_min_0">מעולם לא</string>
     <string name="array_sync_interval_min_5">5 דקות</string>
     <string name="array_sync_interval_min_15">15 דקות</string>
     <string name="array_sync_interval_min_30">30 דקות</string>

@@ -48,7 +48,7 @@ public class OkHttpSSLClient {
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.MINUTES)
-                .addInterceptor(new AuthorizationInterceptor(baseUrl, Credentials.basic(username, password, Util.UTF_8)))
+                .addInterceptor(new AuthorizationInterceptor(baseUrl, Credentials.basic(username, password)))
                 .addInterceptor(interceptor);
 
         // register MemorizingTrustManager for HTTPS

@@ -1,3 +1,43 @@
+0.9.9.36
+---------------------
+- Reduce min-api level to 17
+
+
+0.9.9.35
+---------------------
+- Fix Single-Sign On related Issues
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/769">#769 - Nextcloud API not responding</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/830">#830 - Only ask for Location permission if auto theme enabled</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/786">#786 - Error loading xml resource in Android 4.4</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/pull/833">#833 - fix tables are too wide</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/821">#821 - "Add feed"-icon is misaligned</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/pull/827">#821 - Text in drawer not bold, except of "add new feed" and "settings" (thanks @tobiasKaminsky)</a>
+
+
+0.9.9.34 / 0.9.9.33
+---------------------
+- Fix F-Droid build issues
+
+
+0.9.9.32
+---------------------
+- Fix bug that items containing "image/jpeg" as enclosure, are interpreted as podcasts
+- Fix app crash when changing server settings
+- Improve opml import / export
+
+
+0.9.9.31
+---------------------
+- Feature - <a href="https://github.com/nextcloud/news-android/issues/787">#787 - Display profile avatar in the sidenav</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/issues/788">#788 - Move settings menu to sidenav as last entry (thanks @emasty)</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/issues/789">#789 - Add a new feed should be in sidenav (thanks @emasty)</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/issues/804">#804 - Support Android 10 System DayNight Modes (thanks @wbrawner)</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/pull/811">#811 - Android Auto Support (including Voice Control)</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/pull/810">#810 - Automatically add debug information when reporting github issue through the app</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/pull/807">#807 - Fixed open article in browser call (thanks @emasty)</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/pull/806">#806 - Update app icon background layer (thanks @stefan-niedermann)</a>
+
+
 0.9.9.28 / 0.9.9.29 / 0.9.9.30
 ---------------------
 - Retry rejected review by google due to new android auto support
@@ -15,7 +55,7 @@
 0.9.9.26
 ---------------------
 - Fix - <a href="https://github.com/owncloud/News-Android-App/issues/726">#726 Add new feed fails</a>
-- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/744">#744 Fix issues when adding feeds (Thanks @Unpublished)</a>
+- Fix - <a href="https://github.com/owncloud/News-Android-App/issues/744">#744 Fix issues when adding feeds (thanks @Unpublished)</a>
 - Feature - <a href="https://github.com/owncloud/News-Android-App/issues/747">#747 Add option to share article when using chrome-custom-tabs</a>
 - Fix - Reset database when account is stored
 - Fix - Workaround for app-crashes due to widget problems

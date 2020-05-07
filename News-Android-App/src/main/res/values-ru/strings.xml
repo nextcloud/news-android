@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Автоматическая синхронизация</string>
-    <string name="title_activity_sync_interval_selector">Переключатель интервала синхронизации</string>
+    <string name="title_activity_sync_interval_selector">Интервал синхронизации</string>
     <string name="title_activity_news_detail">Последние новости</string>
     <string name="empty_view_content">Здесь нет элементов</string>
     <string name="toast_GettingMoreItems">Началось скачивание элементов… Пожалуйста подождите.</string>
@@ -137,6 +137,9 @@
     <string name="pref_general_sort_order_new_old">Новые -&gt; Старые</string>
     <string name="pref_general_sort_order_old_new">Старые -&gt; Новые</string>
 
+    <string name="pref_rename_action_swipe_right">Действие при смахивании вправо</string>
+    <string name="pref_rename_action_swipe_left">Действие при смахивании влево</string>
+
     <string name="pref_title_general_search_in">Искать в</string>
 
     <string name="pref_general_search_in_title">Заголовок</string>
@@ -258,6 +261,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Через WiFi &amp; и мобильный интернет</string>
     <string name="pref_data_sync_image_cache_ask">Спросить, если не подключён к WiFi</string>
 
+    <string name="array_sync_interval_min_0">Никогда</string>
     <string name="array_sync_interval_min_5">5 Минут</string>
     <string name="array_sync_interval_min_15">15 Минут</string>
     <string name="array_sync_interval_min_30">30 Минут</string>

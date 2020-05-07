@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Автоматична синхронізація</string>
-    <string name="title_activity_sync_interval_selector">Перемикач Інтервалу Синхронізації</string>
     <string name="title_activity_news_detail">Останні Новини</string>
     <string name="empty_view_content">Нічого нема</string>
     <string name="toast_GettingMoreItems">Завантаження більшої кількості елементів... Будь ласка, зачекайте.</string>
@@ -89,6 +88,7 @@
     <string name="pref_license">Ліцензія</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Показати</string>
+    <string name="pref_title_app_theme">Тема</string>
     <string name="pref_title_feed_list_layout">Поле списку стрічок</string>
     <string name="pref_display_apptheme_light">Світла</string>
     <string name="pref_display_apptheme_dark">Темна</string>
@@ -112,6 +112,7 @@
     <string name="pref_title_Max_Cache_Size">Максимальний розмір кеша</string>
 
     <string name="pref_data_sync_image_cache_never">Ніколи</string>
+    <string name="array_sync_interval_min_0">Ніколи</string>
     <string name="array_sync_interval_min_5">5 Хвилин</string>
     <string name="array_sync_interval_min_15">15 Хвилин</string>
     <string name="array_sync_interval_min_30">30 Хвилин</string>

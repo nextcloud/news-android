@@ -27,12 +27,15 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import javax.inject.Inject;
 
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+
+import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 
 /**
 * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -76,6 +79,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     //public static final String CB_ENABLE_PODCASTS_STRING = "cb_enablePodcasts";
 
+    public static final String PREF_SERVER_SETTINGS = "pref_server_settings";
     public static final String PREF_SYNC_SETTINGS = "pref_sync_settings";
 
     public static final String SP_APP_THEME = "sp_app_theme";
@@ -95,6 +99,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String SP_SWIPE_LEFT_ACTION_DEFAULT = "2";
 
     public static final String CB_VERSION = "cb_version";
+    public static final String CB_REPORT_ISSUE = "cb_reportIssue";
 
     protected @Inject SharedPreferences mPrefs;
 
@@ -152,6 +157,28 @@ public class SettingsActivity extends AppCompatActivity {
         setResult(RESULT_OK,intent);
     }
 
+    /**
+     * Used to notify Activity, that server settings were touched by user.
+     *
+     * If server settings were touched, a result is provided by intent with corresponding request code.
+     * No notify the calling activity that server settings were touched, a new extra is put to
+     * response intent: PREF_SERVER_SETTINGS is set to true.
+     *
+     * Result has to be handled by receiving activity.
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RESULT_LOGIN) {
+            Intent intent = getIntent().putExtra(PREF_SERVER_SETTINGS, true);
+            setResult(RESULT_OK, intent);
+        }
+    }
 
     //@Override
     public boolean onIsMultiPane() {

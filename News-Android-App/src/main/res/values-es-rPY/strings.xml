@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Sincronización automática</string>
-    <string name="title_activity_sync_interval_selector">Control del intervalo de sincronización</string>
     <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
     <string name="empty_view_content">Aquí no hay elementos</string>
     <string name="no_wifi_available">No estás conectado a una WiFi</string>
@@ -170,6 +169,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Mediante WiFi &amp; datos móviles</string>
     <string name="pref_data_sync_image_cache_ask">Preguntar cuando no se esté conectado a una WiFi</string>
 
+    <string name="array_sync_interval_min_0">Nunca</string>
     <string name="array_sync_interval_min_5">5 Minutos</string>
     <string name="array_sync_interval_min_15">15 Minutos</string>
     <string name="array_sync_interval_min_30">30 Minutos</string>

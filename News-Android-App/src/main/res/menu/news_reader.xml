@@ -29,35 +29,22 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/menu_markAllAsRead"
-        app:showAsAction="never"
-        android:orderInCategory="96"
-        android:title="@string/menu_markAllAsRead"/>
-
-    <item
         android:id="@+id/menu_downloadMoreItems"
         app:showAsAction="never"
-        android:orderInCategory="97"
+        android:orderInCategory="96"
         android:title="@string/menu_downloadMoreItems"/>
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="98"
+        android:id="@+id/menu_markAllAsRead"
         app:showAsAction="never"
-        android:title="@string/action_settings"/>
-
-
-
-    <item
-        android:id="@+id/action_login"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_login"/>
+        android:orderInCategory="97"
+        android:title="@string/menu_markAllAsRead"/>
 
     <item
         android:id="@+id/action_add_new_feed"
         android:orderInCategory="101"
         app:showAsAction="never"
+        android:visible="false"
         android:title="@string/action_add_new_feed"/>
 
     <item

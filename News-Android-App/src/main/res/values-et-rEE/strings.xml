@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Auto sünk</string>
-    <string name="title_activity_sync_interval_selector">Sync sageduse valik</string>
     <string name="title_activity_news_detail">UudisteÜksikasjadeTegevused</string>
     <string name="empty_view_content">Siin pole üksusi</string>
     <string name="no_wifi_available">WiFi pole ühendatud</string>
@@ -156,6 +155,7 @@
     <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi &amp; andmeside</string>
     <string name="pref_data_sync_image_cache_ask">Küsi, kui pole WiFisse ühendatud</string>
 
+    <string name="array_sync_interval_min_0">Mitte kunagi</string>
     <string name="array_sync_interval_min_5">5 minutit</string>
     <string name="array_sync_interval_min_15">15 minutit</string>
     <string name="array_sync_interval_min_30">30 minutit</string>
