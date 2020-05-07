@@ -27,6 +27,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -40,6 +41,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -51,6 +55,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -202,6 +208,7 @@ public class NewsReaderDetailFragment extends Fragment {
         Log.v(TAG, "onResume called!");
 
         mMarkAsReadWhileScrollingEnabled = mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false);
+        this.initFastDoneAll(this.getView());
 
         //When the fragment is instantiated by the xml file, onResume will be called twice
         if (onResumeCount >= 2) {
@@ -248,6 +255,21 @@ public class NewsReaderDetailFragment extends Fragment {
                     layoutManagerSavedState = null;
                 }
             });
+        }
+    }
+
+    /**
+     * Init fast action for mark all as read shown as floating action bar button (fab)
+     *
+     * @param rootView root view of fragment
+     */
+    protected void initFastDoneAll(View rootView) {
+        FloatingActionButton fab_done_all = rootView.findViewById(R.id.fab_done_all);
+        if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, true)) {
+            fab_done_all.setVisibility(View.VISIBLE);
+            fab_done_all.setOnTouchListener(new FastMarkReadMotionListener(rootView));
+        } else {
+            fab_done_all.setVisibility(View.GONE);
         }
     }
 
@@ -654,5 +676,160 @@ public class NewsReaderDetailFragment extends Fragment {
         }
     }
 
+    /**
+     * MotionListener for Floating Action Bar Button to mark all articles in current
+     * news feed as marked without using the menu.
+     *
+     * A movement up is required to prevent accidentally marking articles as read.
+     */
+    private class FastMarkReadMotionListener implements View.OnTouchListener {
+        private View fabMarkAllAsRead;
+        private ImageView targetView;
 
+        private boolean markAsRead = false;
+        private float originX,
+                      originY;
+        private float dx,
+                      dy;
+
+        public FastMarkReadMotionListener(View fabMarkAllAsRead) {
+            this.fabMarkAllAsRead = fabMarkAllAsRead;
+            this.targetView = (ImageView)fabMarkAllAsRead.findViewById(R.id.target_done_all);
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    this.startUserInteractionProcess(v, event);
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    this.moveFAB(v, event);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    this.stopUserInteractionProcess(v);
+                    break;
+                default:
+                    // Do nothing
+                    break;
+            }
+            return true;
+        }
+
+        /**
+         * Start Animation for user to drag all read button to target.
+         * Once the button is moved to the target, a success animation is loaded and shown.
+         *
+         * @param v FAB moved by the user
+         * @param event motion event for v
+         */
+
+        private void startUserInteractionProcess(View v, MotionEvent event) {
+            // Save start location of movement and button
+            this.originX = v.getX();
+            this.originY = v.getY();
+            this.dx = v.getX() - event.getRawX();
+            this.dy = v.getY() - event.getRawY();
+            this.markAsRead = false;
+
+            // Start animation of target
+            this.targetView.setImageResource(R.drawable.fa_all_read_target);
+            this.targetView.setVisibility(View.VISIBLE);
+            ((Animatable)this.targetView.getDrawable()).start();
+        }
+
+        /**
+         * Handle move event of FAB to mark all articles as read
+         * Two things are done here:
+         *  - button location is changed
+         *  - it is checked iv button is moved into target area
+         *
+         * @param v FAB moved by the user
+         * @param event motion event for v
+         */
+        private void moveFAB(View v, MotionEvent event) {
+            v.setX(event.getRawX() + this.dx);
+            v.setY(event.getRawY() + this.dy);
+            this.checkLocation(event);
+        }
+
+        /**
+         * Checks if FAB to mark all as read was moved within the shown target area.
+         * For location calculation, the actual location of the target view is read
+         * and calculated if current move position is within the view area of the target view.
+         *
+         * @param evt MotionEvent of all read FAB
+         */
+        private void checkLocation(MotionEvent evt) {
+            // Location on screen for target is required as motion event returns location on screen
+            int[] location = new int[2];
+            this.targetView.getLocationOnScreen(location);
+
+            Rect r = new Rect(location[0], location[1],
+                    (location[0] + targetView.getWidth()),
+                    (location[1] + targetView.getHeight()));
+
+            if (r.contains((int)evt.getRawX(), (int)evt.getRawY())) {
+                if (!this.markAsRead) {
+                    this.markAsRead = true;
+                    this.targetView.setImageResource(R.drawable.fa_all_read_target_success);
+                    ((Animatable) this.targetView.getDrawable()).start();
+                }
+            } else {
+                if (this.markAsRead) {
+                    this.markAsRead = false;
+                    this.targetView.setImageResource(R.drawable.fa_all_read_target);
+                    ((Animatable) this.targetView.getDrawable()).start();
+
+                }
+            }
+        }
+
+        /**
+         * Stops the user interaction
+         *  - FAB is animated back to original position
+         *  - A success animation is shown of all articles will be marked as read
+         *  - Target view is hidden again
+         *
+         * @param v view of fab
+         */
+        private void stopUserInteractionProcess(View v) {
+            if (this.markAsRead) {
+                Animation anim_success = AnimationUtils.loadAnimation(NewsReaderDetailFragment.this.getContext(),
+                        R.anim.all_read_success);
+                anim_success.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        v.animate().x(originX).y(originY).setDuration(100).setStartDelay(0).start();
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        ((Animatable)targetView.getDrawable()).stop();
+                        targetView.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        //Nothing to do here for now
+                    }
+                });
+                this.targetView.startAnimation(anim_success);
+                this.markAllAsReadForCurrentView();
+            } else {
+                this.targetView.setVisibility(View.INVISIBLE);
+                v.animate().x(this.originX).y(this.originY).setDuration(100).setStartDelay(0).start();
+                ((Animatable)this.targetView.getDrawable()).stop();
+            }
+        }
+
+        /**
+         * Mark all articles in current view as read.
+         */
+        private void markAllAsReadForCurrentView() {
+            DatabaseConnectionOrm dbConn2 = new DatabaseConnectionOrm(this.fabMarkAllAsRead.getContext());
+            dbConn2.markAllItemsAsReadForCurrentView();
+            NewsReaderDetailFragment.this.refreshCurrentRssView();
+        }
+    }
 }

@@ -180,6 +180,7 @@
     <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Mark as read while scrolling</string>
+    <string name="pref_title_ShowFastActions">Activate fast access functions</string>
     <string name="pref_title_OpenInBrowserDirectly">Skip detailed view and open article in the browser</string>
 
     <string name="dialog_feature_not_available">This feature is not available in this (open-source) version of this app. If you want to use this feature please download the app from the GitHub Repository or download the App from the Google Play Store.</string>

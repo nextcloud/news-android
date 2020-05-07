@@ -79,6 +79,11 @@
             app:iconSpaceReserved="false"/>
 
         <SwitchPreference
+            android:key="cb_ShowFastActions"
+            android:title="@string/pref_title_ShowFastActions"
+            app:iconSpaceReserved="false"/>
+
+        <SwitchPreference
             android:key="cb_openInBrowserDirectly"
             android:title="@string/pref_title_OpenInBrowserDirectly"
             app:iconSpaceReserved="false"/>
