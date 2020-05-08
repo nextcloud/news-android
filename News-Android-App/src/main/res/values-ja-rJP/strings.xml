@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">自動同期</string>
+    <string name="title_activity_sync_interval_selector">同期間隔</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">アイテムがありません</string>
     <string name="toast_GettingMoreItems">他のアイテムのダウンロードが開始されました...しばらくお待ちください。</string>
