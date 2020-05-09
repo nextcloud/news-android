@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Αυτόματος συγχρονισμός</string>
-    <string name="title_activity_sync_interval_selector">Περίοδος συγχρονισμού</string>
+    <string name="title_activity_sync_interval_selector">Διάστημα συγχρονισμού</string>
     <string name="title_activity_news_detail">Λεπτομέρειες Δραστηριότητας Ειδήσεων</string>
     <string name="empty_view_content">Κανένα στοιχείο</string>
     <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε. </string>
@@ -24,7 +24,7 @@
     <string name="menu_StartImageCaching">Λήψη εικόνων</string>
     <string name="menu_downloadMoreItems">Λήψη περισσότερων αντικειμένων</string>
 
-    <string name="tv_showing_cached_version">Προβολή προσωρινά αποθηκευμένης έκδοσης</string>
+    <string name="tv_showing_cached_version">Προβολή προσωρινής αποθηκευμένης έκδοσης</string>
 
     <string name="permission_req_location_twilight_title">Αυτόματο Φωτεινό/Σκούρο Θέμα</string>
     <string name="permission_req_location_twilight_text">Για χρήση της αυτόματης επιλογής φωτεινού και σκούρου θέματος, απαιτείται ο ορισμός της τοποθεσίας συσκευής για τον καθορισμό της ώρας ανατολής και δύσης.</string>
@@ -75,7 +75,7 @@
     <string name="toast_img_notwriteable">Αποτυχία Εγγραφής Εικόνας.</string>
     <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
     <string name="error_download_failed">Η λήψη απέτυχε</string>
-    <string name="intent_title_share">Μοιραστείτε με</string>
+    <string name="intent_title_share">Κοινοποίηση μέσω</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
@@ -144,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Απενεργοποίηση επαλήθευσης Ονόματος Υπολογιστή</string>
     <string name="pref_title_NavigateWithVolumeButtons">Περιήγηση με πλήκτρα έντασης φωνής</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
+    <string name="pref_title_ShowFastActions">Ενεργοποιήστε τις λειτουργίες γρήγορης πρόσβασης</string>
     <string name="pref_title_OpenInBrowserDirectly">Παράλειψη λεπτομερούς προβολής και άνοιγμα αρχείου στον περιηγητή</string>
 
     <string name="dialog_feature_not_available">Αυτή η επιλογή δεν είναι διαθέσιμη σε αυτή την (ανοιχτού-λογισμικού) εφαρμογή. Εάν επιθυμείτε αυτή την επιλογή παρακαλώ κάνετε λήψη από το GitHub Repository ή από το Google Play Store.</string>

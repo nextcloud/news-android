@@ -144,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Desgaitu ostalari izenaren egiaztapena</string>
     <string name="pref_title_NavigateWithVolumeButtons">Nabigatu bolumenaren botoiekin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markatu irakurrita gisa korritzean</string>
+    <string name="pref_title_ShowFastActions">Gaitu sarbide azkarreko funtzioak</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltatu ikuspegi xehatua eta ireki artikulua nabigatzailean</string>
 
     <string name="dialog_feature_not_available">Ezaugarri hau ez dago erabilgarri aplikazio honen (kode irekiko) bertsio honetan. Ezaugarri hau erabili nahi baduzu, deskarga ezazu aplikazioa GitHub biltegitik edo Google Play Store-tik.</string>

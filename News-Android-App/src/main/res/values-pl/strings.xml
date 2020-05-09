@@ -154,6 +154,7 @@
     <string name="pref_title_DisableHostnameVerification">Wyłącz weryfikację nazwy hosta</string>
     <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
+    <string name="pref_title_ShowFastActions">Aktywuj funkcje szybkiego dostępu</string>
     <string name="pref_title_OpenInBrowserDirectly">Pomiń widok szczegółów i otwórz artykuł w przeglądarce</string>
 
     <string name="dialog_feature_not_available">Ta funkcja nie jest dostępna w tej wersji aplikacji (open-source). Jeśli chcesz skorzystać z tej funkcji, pobierz aplikację z repozytorium GitHub lub pobierz aplikację ze sklepu Google Play.</string>
