@@ -154,6 +154,7 @@
     <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
     <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
+    <string name="pref_title_ShowFastActions">Включить функции быстрого доступа</string>
     <string name="pref_title_OpenInBrowserDirectly">Пропустить детальный обзор и открыть статью в браузере</string>
 
     <string name="dialog_feature_not_available">Эта возможность недоступна в установленной (open-source) версии приложения. Для использования этой возможности загрузите приложение из репозитория GitHub или установите его из Google Play Маркет.</string>
