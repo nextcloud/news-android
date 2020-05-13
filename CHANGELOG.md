@@ -1,3 +1,8 @@
+0.9.9.37
+---------------------
+- New feature: Fast actions (Huge thanks to @emasty)
+
+
 0.9.9.36
 ---------------------
 - Reduce min-api level to 17
