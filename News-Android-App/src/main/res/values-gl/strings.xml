@@ -144,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Desactivar a verificación do nome da máquina/servidor</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar cos botóns de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido mentres se despraza</string>
+    <string name="pref_title_ShowFastActions">Activar as funcións de acceso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Omitir a vista detallada e abrir o artigo no navegador</string>
 
     <string name="dialog_feature_not_available">Esta característica non está dispoñíbel nesta versión (de código aberto) da aplicación. Se quere usar esta característica, descargue a aplicación dende o repositorio de GitHub ou dende Google Play Store.</string>

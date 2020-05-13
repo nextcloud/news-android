@@ -127,8 +127,8 @@
     <string name="pref_general_sort_order_new_old">Új -> régi</string>
     <string name="pref_general_sort_order_old_new">Régi -> új</string>
 
-    <string name="pref_rename_action_swipe_right">Művelet balra sepréskor</string>
-    <string name="pref_rename_action_swipe_left">Művelet jobbra sepréskor</string>
+    <string name="pref_rename_action_swipe_right">Művelet jobbra sepréskor</string>
+    <string name="pref_rename_action_swipe_left">Művelet balra sepréskor</string>
 
     <string name="pref_title_general_search_in">Keresés ebben</string>
 
@@ -144,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">A gépnévellenőrzés kikapcsolása</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigáljon a hangerőszabályzó gombokkal</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben megjelölés olvasottként</string>
+    <string name="pref_title_ShowFastActions">Gyors elérési funkciók aktiválása</string>
     <string name="pref_title_OpenInBrowserDirectly">Részletes nézet megjelenítésének átugrása és megnyitás böngészőben</string>
 
     <string name="dialog_feature_not_available">Ez a funkció az alkalmazás ezen (nyílt forráskódú) verziójában nem érhető el. Ha használni akarja ezt a funkciót, akkor töltse le az alkalmazást a GitHub tárolóból vagy a Google Play Áruházból.</string>

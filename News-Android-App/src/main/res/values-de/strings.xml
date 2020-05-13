@@ -144,7 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Hostnamen-Nachweis deaktivieren</string>
     <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärketasten navigieren</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Beim Bildlauf als gelesen markieren</string>
-    <string name="pref_title_ShowFastActions">Schnellzugriffe aktivieren</string>
+    <string name="pref_title_ShowFastActions">Schnellzugriffsfunktionen aktivieren</string>
     <string name="pref_title_OpenInBrowserDirectly">Detailansicht überspringen und Artikel in Browser öffnen</string>
 
     <string name="dialog_feature_not_available">Diese Funktion ist in dieser (Open-Source-)Version dieser App nicht verfügbar. Wenn Sie diese Funktion nutzen möchten, laden Sie bitte die App aus dem GitHub-Repository oder aus dem Google Play Store herunter.</string>

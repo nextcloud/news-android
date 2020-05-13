@@ -154,6 +154,7 @@
     <string name="pref_title_DisableHostnameVerification">Vypnúť overovanie názvu hostiteľa</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigácia pomocou tlačidiel hlasitosti</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Označiť ako prečítané pri rolovaní stránky</string>
+    <string name="pref_title_ShowFastActions">Aktivovať funkcie pre rýchly prístup</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskočte podrobné zobrazenie a otvorte článok v prehliadači</string>
 
     <string name="dialog_feature_not_available">Táto funkcia nie je k dispozícii v tejto (otvorenej) verzii tejto aplikácie. Ak chcete túto funkciu používať, stiahnite si aplikáciu z úložiska GitHub alebo si ju stiahnite z Obchodu Google Play.</string>

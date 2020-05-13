@@ -154,6 +154,7 @@
     <string name="pref_title_DisableHostnameVerification">Onemogoči overjanje imena gostitelja</string>
     <string name="pref_title_NavigateWithVolumeButtons">Omogoči pomikanje po zaslonu z gumbm za glasnost</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Med pomikanjem označi prispevke kot prebrane</string>
+    <string name="pref_title_ShowFastActions">Omogoči možnosti hitrega dostopa</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskoči podrobni pogled in odpri vir v brskalniku</string>
 
     <string name="dialog_feature_not_available">Možnost v tej (odprtokodni) različici ni na voljo. Če želite to možnost uporabiti, prejmite program neposredno iz skladišča GitHub, ali pa ga namestite prek Googlove trgovine Play.</string>
