@@ -153,6 +153,7 @@
     <string name="pref_title_DisableHostnameVerification">נטרול אימות מארח</string>
     <string name="pref_title_NavigateWithVolumeButtons">ניווט עם כפתורי עצמת שמע</string>
     <string name="pref_title_MarkAsReadWhileScrolling">סימון כנקרא בזמן הגלילה</string>
+    <string name="pref_title_ShowFastActions">הפעלת תכונות גישה מהירה</string>
     <string name="pref_title_OpenInBrowserDirectly">לדלג על התצוגה המפורטת ולפתוח את הכתבה בדפדפן</string>
 
     <string name="dialog_feature_not_available">התכונה איזה זמינה בגרסת (קוד פתוח) זו של היישומון. אם תכונה זו חשובה לך נא להוריד את היישומון ממאגר ה־GitHub או מחנות היישומונים Play מבית Google.</string>
