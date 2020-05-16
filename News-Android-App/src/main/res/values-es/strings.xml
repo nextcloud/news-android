@@ -26,7 +26,7 @@
 
     <string name="tv_showing_cached_version">Mostrando versión en caché</string>
 
-    <string name="permission_req_location_twilight_title">Tema automático Luminoso/Oscuro</string>
+    <string name="permission_req_location_twilight_title">Tema automático Claro/Oscuro</string>
     <string name="permission_req_location_twilight_text">Para cambiar automáticamente entre el tema luminoso y el oscuro, se necesita proporcionar la localización del dispositivo para ajustar el horario de atardecer y amanecer.</string>
 
     <!-- Action Bar Items -->
