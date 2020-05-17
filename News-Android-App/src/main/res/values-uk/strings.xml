@@ -2,13 +2,14 @@
 <resources>
 
     <string name="auto_sync_string">Автоматична синхронізація</string>
+    <string name="title_activity_sync_interval_selector">Інтервал синхронізації</string>
     <string name="title_activity_news_detail">Останні Новини</string>
     <string name="empty_view_content">Нічого нема</string>
-    <string name="toast_GettingMoreItems">Завантаження більшої кількості елементів... Будь ласка, зачекайте.</string>
+    <string name="toast_GettingMoreItems">Звантаження більшої кількості елементів... Будь ласка, зачекайте.</string>
     <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
     <string name="do_you_want_to_download_without_wifi">Чи хочете ви завантажити зображення без з\'єднання Wi-Fi</string>
     <string name="current_version">Ви використовуєте версію %s</string>
-    <string name="widget_header">Новини ownCloud </string>
+    <string name="widget_header">Новини Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">Доступний %d новий елемент</item>
         <item quantity="few">Доступно %d нових елементів</item>
@@ -17,7 +18,7 @@
     </plurals>
     <string name="message_bar_reload">Перезавантажити</string>
     <string name="allUnreadFeeds">Всі непрочитані</string>
-    <string name="starredFeeds">Помічені</string>
+    <string name="starredFeeds">Улюблене</string>
     <string name="title_activity_new_feed">Додати нову стрічку</string>
 
     <string name="menu_update">Оновити</string>
@@ -27,37 +28,59 @@
 
     <string name="tv_showing_cached_version">Відображається кешована версія</string>
 
+    <string name="permission_req_location_twilight_title">Автоматичне перемикання теми світла/темна</string>
     <!-- Action Bar Items -->
-    <string name="action_starred">Помічені зірочкою</string>
+    <string name="action_starred">Улюблене</string>
     <string name="action_read">Читати</string>
-    <string name="action_playPodacst">Відтворити Подкаст</string>
-    <string name="action_openInBrowser">Відкрити у веб-браузері</string>
+    <string name="action_playPodacst">Відтворити подкаст</string>
+    <string name="action_openInBrowser">Відкрити у браузері</string>
     <string name="action_Share">Поділитися</string>
-    <string name="action_login">Налаштування Серверу</string>
+    <string name="action_login">Налаштування сервера</string>
     <string name="action_save">Зберегти</string>
     <string name="action_settings">Налаштування</string>
     <string name="action_sync_settings">Налаштування синхронізації</string>
     <string name="action_add_new_feed">Додати нову стрічку</string>
     <string name="action_textToSpeech">Читати</string>
     <string name="action_search">Пошук</string>
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Посилання стрічки</string>
     <string name="action_add_feed">Додати стрічку</string>
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Завантажити зображення</string>
+    <string name="action_link_share">Поділитися посиланням</string>
+    <string name="action_link_open">Відкрити посилання у переглядачі</string>
+    <string name="action_link_copy">Копіювати посилання</string>
+    <string name="toast_img_download_wait">Звантаження.... зачекайте</string>
+    <string name="toast_img_saved">Зображення збережено</string>
+    <string name="toast_img_notwriteable">Помилка із записом зображення.</string>
     <string name="toast_copied_to_clipboard">Скопійовано в буфер обміну</string>
     <string name="error_download_failed">Завантаження не вдалося</string>
-    <string name="feed_remove_button">Видалити</string>
+    <string name="intent_title_share">Поділитися через</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Вилучити стрічку</string>
+    <string name="action_feed_rename">Перейменувати стрічку</string>
+    <string name="action_feed_move">Перемістити стрічку</string>
+    <string name="feed_remove_button">Вилучити</string>
     <string name="feed_rename_button">Перейменувати</string>
     <string name="pref_title_username">Ім\'я користувача</string>
     <string name="pref_title_password">Пароль</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
-    <string name="action_sign_in_short">Ввійти...</string>
+    <string name="action_sign_in_short">Увійти...</string>
     <string name="login_progress_signing_in">Вхід...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Обов\'язкове поле</string>
+    <string name="error_invalid_url">Неправильний URL</string>
+
+
     <string name="toast_no_more_downloads_available">Більше немає об\'єктів</string>
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Налаштування</string>
+    <string name="cache_is_cleared">Кеш очищено!</string>
+
+
     <!-- General settings -->
     <string name="pref_header_general">Загалом</string>
     <string name="pref_title_general_sort_order">Порядок сортування</string>
@@ -66,7 +89,10 @@
     <string name="pref_general_sort_order_old_new">Старші -&gt; Нові</string>
 
     <string name="pref_general_search_in_title">Назва</string>
+    <string name="pref_general_search_in_body">Тіло</string>
+
     <string name="dialog_clearing_cache">Очистити кеш</string>
+    <string name="dialog_clearing_cache_please_wait">Очистка кешу... Зачекайте.</string>
     <string name="reset_cache_unsaved_changes">Є несинхронізовані зміни. Ви дійсно бажаєте очистити кеш?</string>
     <string name="warning">Попередження</string>
     <string name="pref_title_AutoSyncOnStart">Синхронізація при включені</string>
@@ -77,12 +103,12 @@
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Підтвердити невідомий сертифікат?</string>
     <string name="mtm_decision_always">Завжди</string>
-    <string name="mtm_decision_abort">Відміна</string>
+    <string name="mtm_decision_abort">Скасувати</string>
     <string name="mtm_notification">Перевірка сертифікату</string>
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Жодного Подкасту не обрано</string>
+    <string name="no_podcast_selected">Жодного подкасту не вибрано</string>
     <!-- Settings for About -->
     <string name="pref_header_about">Про програму</string>
     <string name="pref_license">Ліцензія</string>
@@ -90,12 +116,20 @@
     <string name="pref_header_display">Показати</string>
     <string name="pref_title_app_theme">Тема</string>
     <string name="pref_title_feed_list_layout">Поле списку стрічок</string>
+    <string name="pref_title_font_size">Розмір шрифту</string>
+    <string name="pref_display_browser">Переглядач</string>
+
+
+    <string name="pref_display_apptheme_auto">Світла/темна (залежно від часу доби)</string>
     <string name="pref_display_apptheme_light">Світла</string>
     <string name="pref_display_apptheme_dark">Темна</string>
 
     <string name="pref_display_font_size_d">За замовчуванням</string>
     <string name="content_desc_add_to_favorites">додати до улюбленого</string>
-    <string name="content_desc_delete">видалити</string>
+    <string name="content_desc_delete">вилучити</string>
+    <string name="content_desc_download">звантажити</string>
+
+
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Сповіщення</string>
     <string name="pref_title_notification_new_articles_available">Показати сповіщення коли доступна нова стаття</string>
@@ -112,16 +146,18 @@
     <string name="pref_title_Max_Cache_Size">Максимальний розмір кеша</string>
 
     <string name="pref_data_sync_image_cache_never">Ніколи</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Лише через WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Через WiFi та у мобільних мережах</string>
     <string name="array_sync_interval_min_0">Ніколи</string>
-    <string name="array_sync_interval_min_5">5 Хвилин</string>
-    <string name="array_sync_interval_min_15">15 Хвилин</string>
-    <string name="array_sync_interval_min_30">30 Хвилин</string>
-    <string name="array_sync_interval_min_45">45 Хвилин</string>
-    <string name="array_sync_interval_hour_1">1 Година</string>
-    <string name="array_sync_interval_hour_2">2 Години</string>
-    <string name="array_sync_interval_hour_3">3 Години</string>
-    <string name="array_sync_interval_hour_6">6 Годин</string>
-    <string name="array_sync_interval_hour_12">12 Годин</string>
-    <string name="array_sync_interval_hour_24">24 Години</string>
+    <string name="array_sync_interval_min_5">5 хвилин</string>
+    <string name="array_sync_interval_min_15">15 хвилин</string>
+    <string name="array_sync_interval_min_30">30 хвилин</string>
+    <string name="array_sync_interval_min_45">45 хвилин</string>
+    <string name="array_sync_interval_hour_1">1 година</string>
+    <string name="array_sync_interval_hour_2">2 години</string>
+    <string name="array_sync_interval_hour_3">3 години</string>
+    <string name="array_sync_interval_hour_6">6 годин</string>
+    <string name="array_sync_interval_hour_12">12 годин</string>
+    <string name="array_sync_interval_hour_24">24 години</string>
 
     </resources>
