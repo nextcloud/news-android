@@ -149,6 +149,7 @@
     <string name="pref_title_DisableHostnameVerification">Onemogući provjeru naziva računala</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigiraj tipkama za glasnoću</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Označi kao pročitano tijekom pomicanja</string>
+    <string name="pref_title_ShowFastActions">Aktiviraj funkcije brzog pristupa</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskoči detaljan prikaz i otvori članak u pregledniku</string>
 
     <string name="dialog_feature_not_available">Ova značajka nije dostupna u ovoj inačici aplikacije (otvorenog koda). Ako se želite koristiti ovom značajkom, preuzmite aplikaciju iz repozitorija GitHub ili preuzmite aplikaciju iz trgovine Google Play.</string>
