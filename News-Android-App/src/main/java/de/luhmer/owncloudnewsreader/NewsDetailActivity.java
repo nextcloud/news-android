@@ -412,7 +412,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		resumeVideoPlayersOnCurrentPage();
 		progressIndicator.setProgress(position + 1);
 
-        if(rssItems.get(position).getFeed() != null) {
+		if(rssItems.get(position).getFeed() != null) {
         	// Try getting the feed title and use it for the action bar title
 			getSupportActionBar().setTitle(rssItems.get(position).getFeed().getFeedTitle());
 		} else {
@@ -428,9 +428,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             mPostDelayHandler.delayTimer();
 
             Log.v("PAGE CHANGED", "PAGE: " + position + " - IDFEED: " + rssItems.get(position).getId());
-        } else {
-            updateActionBarIcons();
         }
+		updateActionBarIcons();
 	}
 
 
