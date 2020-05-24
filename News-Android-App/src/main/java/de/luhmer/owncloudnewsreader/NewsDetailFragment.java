@@ -89,7 +89,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
     private int section_number;
     protected String html;
-    private GestureDetector mGestureDetector;
+    // private GestureDetector mGestureDetector;
 
 
     public NewsDetailFragment() { }
@@ -185,7 +185,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             this.addBottomPaddingForFastActions(mWebView);
         }
 
-        setUpGestureDetector();
+        // setUpGestureDetector();
 
 		return rootView;
 	}
@@ -202,6 +202,10 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         mWebView.saveState(outState);
     }
 
+    /**
+     * Double tap to star listener (double tap the webview to mark the current item as read)
+     */
+    /*
 	private void setUpGestureDetector() {
         mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener());
 
@@ -233,6 +237,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             }
         });
     }
+    */
+
 
     protected void startLoadRssItemToWebViewTask() {
         Log.d(TAG, "startLoadRssItemToWebViewTask() called");
@@ -342,17 +348,12 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             }
         });
 
+        /*
         mWebView.setOnTouchListener((v, event) -> {
             mGestureDetector.onTouchEvent(event);
-
-            /*
-            if (v.getId() == R.id.webview && event.getAction() == MotionEvent.ACTION_DOWN) {
-                changedUrl = true;
-            }
-            */
-
             return false;
         });
+        */
 	}
 
     /**
