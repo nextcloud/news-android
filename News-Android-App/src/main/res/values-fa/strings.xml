@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">همگام‌سازی خودکار</string>
+    <string name="title_activity_sync_interval_selector">فواصل همگام‌سازی</string>
     <string name="title_activity_news_detail">فعالیت جزییات اخبار</string>
     <string name="empty_view_content">موردی وجود ندارد</string>
     <string name="toast_GettingMoreItems">بارگیری موارد بیش‌تر آغاز شد… صبر لطفاً </string>
@@ -143,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">غیرفعّال کردن تأییدیهٔ نام دامنه</string>
     <string name="pref_title_NavigateWithVolumeButtons">ناوبری با دکمه‌های حجم صدا</string>
     <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری به عنوان خوانده شده در حال پیمایش</string>
+    <string name="pref_title_ShowFastActions">فعال کردن عمل‌کردهای دسترسی سریع</string>
     <string name="pref_title_OpenInBrowserDirectly">پرش از نمای باجزییات و گشودن مقاله در مرورگر</string>
 
     <string name="dialog_feature_not_available">این ویژگی در این نگارش (آزاد) کاره موجود نیست. اگر می‌خواهید از این ویژگی استفاده کنید، لطفاً کاره را از مخزن گیت‌هاب یا فروشگاه پلی گوگل بارگیری کنید.</string>
