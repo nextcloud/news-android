@@ -124,7 +124,10 @@
     <string name="pref_display_apptheme_light">Світла</string>
     <string name="pref_display_apptheme_dark">Темна</string>
 
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Малий</string>
     <string name="pref_display_font_size_d">За замовчуванням</string>
+    <string name="pref_display_font_size_l">Великий</string>
     <string name="content_desc_add_to_favorites">додати до улюбленого</string>
     <string name="content_desc_delete">вилучити</string>
     <string name="content_desc_download">звантажити</string>
