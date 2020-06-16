@@ -139,6 +139,7 @@
     <string name="pref_title_DisableHostnameVerification">停用主機名稱檢驗</string>
     <string name="pref_title_NavigateWithVolumeButtons">用音量鍵瀏覽</string>
     <string name="pref_title_MarkAsReadWhileScrolling">當滾動時標為已讀</string>
+    <string name="pref_title_ShowFastActions">啟用快速存取功能</string>
     <string name="pref_title_OpenInBrowserDirectly">略過詳細檢視，並在瀏覽器開啟文章</string>
 
     <string name="dialog_feature_not_available">本功能無法在此應用版本 (開源版本) 中使用。若您希望使用此功能，請從 GitHub Repository 或 Google Play 商店中下載應用程式。</string>
