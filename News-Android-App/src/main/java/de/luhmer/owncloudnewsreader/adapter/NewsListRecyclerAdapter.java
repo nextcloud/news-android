@@ -163,8 +163,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                     layout = R.layout.subscription_detail_list_item_thumbnail;
                     break;
                 case 1:
-                    layout = R.layout.subscription_detail_list_item_text;
-                    break;
                 case 3:
                     layout = R.layout.subscription_detail_list_item_text;
                     break;

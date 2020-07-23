@@ -125,6 +125,11 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         }
 
         String description = rssItem.getBody();
+        if(description.isEmpty() && rssItem.getMediaDescription() != null) {
+            // in case the rss body is empty, fallback to the media description (e.g. youtube / ted talks)
+            description = rssItem.getMediaDescription();
+        }
+
         if(!incognitoMode) {
             // If incognito mode is disabled, try getting images from cache
             description = getDescriptionWithCachedImages(description).trim();
