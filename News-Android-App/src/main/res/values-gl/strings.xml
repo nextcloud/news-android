@@ -6,8 +6,8 @@
     <string name="title_activity_news_detail">Detalle da actividade das novas</string>
     <string name="empty_view_content">Non hai elementos aquí</string>
     <string name="toast_GettingMoreItems">Iniciada a descarga de máis elementos... Agarde.</string>
-    <string name="no_wifi_available">Non está conectado á WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión WiFi?</string>
+    <string name="no_wifi_available">Non está conectado á wifi</string>
+    <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión wifi?</string>
     <string name="current_version">Está empregando a versión%s</string>
     <string name="widget_header">Novas do Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -138,7 +138,7 @@
     <string name="dialog_clearing_cache">Limpando a caché</string>
     <string name="dialog_clearing_cache_please_wait">Limpando a caché… Agarde.</string>
     <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>
-    <string name="warning">Aviso</string>
+    <string name="warning">Advertencia</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
     <string name="pref_title_ShowOnlyUnread">Amosar só os artigos non lidos</string>
     <string name="pref_title_DisableHostnameVerification">Desactivar a verificación do nome da máquina/servidor</string>
@@ -237,7 +237,7 @@
     <string name="login_dialog_text_something_went_wrong">Algo foi mal :(</string>
     <string name="login_dialog_text_zero_version_code">A aplicación web de novas devolveu a versión «0». Bótelle un ollo ao seguinte informe de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Esta versión da aplicación non é compatíbel coa súa aplicación de novas para Nextcloud. Anove a aplicación de novas e o contorno de traballo da aplicación.</string>
-    <string name="login_dialog_title_security_warning">Aviso de seguridade</string>
+    <string name="login_dialog_title_security_warning">Advertencia de seguridade</string>
     <string name="login_dialog_text_security_warning">Non está a empregar HTTPS, o que se recomenda encarecidamente. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal).</string>
 
 
@@ -248,9 +248,9 @@
     <string name="pref_title_Max_Cache_Size">Tamaño máximo da caché</string>
 
     <string name="pref_data_sync_image_cache_never">Nunca</string>
-    <string name="pref_data_sync_image_cache_wifi_only">Só mediante WiFi</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">Sobre WiFi e  móbil</string>
-    <string name="pref_data_sync_image_cache_ask">Preguntar cando non estea conectado a unha WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Só mediante wifi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Sobre wifi e  móbil</string>
+    <string name="pref_data_sync_image_cache_ask">Preguntar cando non estea conectado a unha wifi</string>
 
     <string name="array_sync_interval_min_0">Nunca</string>
     <string name="array_sync_interval_min_5">5 minutos</string>

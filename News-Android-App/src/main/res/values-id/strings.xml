@@ -63,6 +63,8 @@
     <string name="feed_remove_button">Hapus</string>
     <string name="feed_rename_button">Ubah nama</string>
     <string name="confirm_feed_remove">Apakah Anda yakin ingin menghapus Feed ini? Tindakan ini tidak dapat dibatalkan!</string>
+    <string name="move_feed_root_folder">Folder akar</string>
+
     <string name="pref_title_username">Nama pengguna</string>
     <string name="pref_title_password">Kata sandi</string>
     <string name="pref_title_owncloudRootPath">Alamat root ownCloud</string>

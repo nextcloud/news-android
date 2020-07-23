@@ -19,6 +19,7 @@
             <shape
                 android:innerRadiusRatio="2.3"
                 android:shape="ring"
+                android:useLevel="true"
                 android:angle="0"
                 android:type="sweep"
                 android:thicknessRatio="15.0">

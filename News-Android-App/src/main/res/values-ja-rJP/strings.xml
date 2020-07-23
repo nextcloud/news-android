@@ -139,6 +139,7 @@
     <string name="pref_title_DisableHostnameVerification">ホスト名の検証を無効化</string>
     <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
     <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
+    <string name="pref_title_ShowFastActions">高速アクセス機能を有効化</string>
     <string name="pref_title_OpenInBrowserDirectly">詳細な表示をスキップし、ブラウザで記事を開く</string>
 
     <string name="dialog_feature_not_available">この機能は、このアプリのこの（オープンソース）バージョンでは利用できません。 この機能を使用するには、GitHubリポジトリからアプリをダウンロードするか、Google Playストアからアプリをダウンロードしてください。</string>

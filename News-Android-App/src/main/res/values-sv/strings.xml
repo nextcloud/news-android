@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="auto_sync_string">Automatisk synkronisering</string>
+    <string name="auto_sync_string">Autosynk</string>
     <string name="title_activity_sync_interval_selector">Synkintervall </string>
     <string name="title_activity_news_detail">NyheterDetaljerAktivitet</string>
     <string name="empty_view_content">Inga objekt här</string>
@@ -144,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
+    <string name="pref_title_ShowFastActions">Aktivera snabbåtkomstsfunktioner</string>
     <string name="pref_title_OpenInBrowserDirectly">Hoppa över detaljerad vy och öppna artikeln i webbläsare</string>
 
     <string name="dialog_feature_not_available">Den här funktionen är inte tillgänglig i den här (öppen källkod) versionen av den här appen. Om du vill använda den här funktionen, vänligen hämta appen från GitHub-förrådet eller hämta appen från Google Play-butiken.</string>

@@ -144,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Desactiva la verificació del nom del servidor</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navega amb els botons del volum</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
+    <string name="pref_title_ShowFastActions">Activa les funcions d\'accés ràpid</string>
     <string name="pref_title_OpenInBrowserDirectly">Omet la vista detallada i obre l\'article dins del navegador</string>
 
     <string name="dialog_feature_not_available">Aquesta funcionalitat no és disponible en aquesta versió de l\'aplicació (de codi font obert). Si voleu fer servir aquesta funcionalitat, si us plau descarregueu-vos l\'Aplicació del repositori GitHub o del Google Play Store</string>
