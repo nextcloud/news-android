@@ -126,7 +126,7 @@ final BUTTERKNIFE_VERSION = '10.2.1'
 final ESPRESSO_VERSION = '3.2.0'
 final OKHTTP_VERSION = '3.12.10'
 final MOCKITO_VERSION = '3.3.3'
-final RETROFIT_VERSION = '2.9.0'
+final RETROFIT_VERSION = '2.6.4'
 
 dependencies {
     // core android studio module
