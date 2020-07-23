@@ -440,7 +440,7 @@ public class LoginDialogActivity extends AppCompatActivity {
 	public static void ShowAlertDialog(String title, String text, Activity activity)
 	{
 		// Linkify the message
-		final SpannableString s = new SpannableString(text);
+		final SpannableString s = new SpannableString(text != null ? text : activity.getString(R.string.select_account_unknown_error_toast));
 		Linkify.addLinks(s, Linkify.ALL);
 
 		AlertDialog aDialog = new AlertDialog.Builder(activity)

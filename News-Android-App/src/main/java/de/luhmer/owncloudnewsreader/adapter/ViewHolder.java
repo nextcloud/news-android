@@ -29,6 +29,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -280,19 +281,21 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         }
 
         if(textViewBody != null) {
-            String body = rssItem.getBody();
+            String body = rssItem.getMediaDescription();
+            if(body == null || body.isEmpty()) {
+                body = rssItem.getBody();
+            }
+
+            boolean limitLength = true;
             // Strip html from String
             if(selectedListLayout == 0) {
                 textViewBody.setMaxLines(scaleTextLines(mPrefs));
-                body = getBodyText(body, false);
-
+                limitLength = false;
             } else if(selectedListLayout == 3) {
                 textViewBody.setMaxLines(200);
-                body = getBodyText(body, false);
-
-            } else {
-                body = getBodyText(body, true);
+                limitLength = false;
             }
+            body = getBodyText(body, limitLength);
             textViewBody.setText(Html.fromHtml(body));
             scaleTextSize(textViewBody, textSizeBody, false, mPrefs);
         }
@@ -311,7 +314,13 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         if(imgViewThumbnail != null) {
             imgViewThumbnail.setColorFilter(null);
             String body = rssItem.getBody();
-            List<String> images = ImageHandler.getImageLinksFromText(body);
+            List<String> images;
+            if(rssItem.getMediaThumbnail() != null && !rssItem.getMediaThumbnail().isEmpty()) {
+                images = new ArrayList();
+                images.add(rssItem.getMediaThumbnail());
+            } else {
+                images = ImageHandler.getImageLinksFromText(body);
+            }
 
             if(images.size() > 0) {
                 imgViewThumbnail.setVisibility(View.VISIBLE);
