@@ -1,3 +1,10 @@
+0.9.9.38
+---------------------
+- Feature - <a href="https://github.com/nextcloud/news-android/issues/868">#868 - Add thumbnail support (media) articles</a>
+- Feature Removal: Double-Tap-To-Star in detail view
+- Fix app crashes 
+
+
 0.9.9.37
 ---------------------
 - New feature: Fast actions (Huge thanks to @emasty)
