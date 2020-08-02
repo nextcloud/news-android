@@ -44,6 +44,9 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         public final static Property PubDate = new Property(14, java.util.Date.class, "pubDate", false, "PUB_DATE");
         public final static Property EnclosureLink = new Property(15, String.class, "enclosureLink", false, "ENCLOSURE_LINK");
         public final static Property EnclosureMime = new Property(16, String.class, "enclosureMime", false, "ENCLOSURE_MIME");
+        public final static Property MediaThumbnail = new Property(17, String.class, "mediaThumbnail", false, "MEDIA_THUMBNAIL");
+        public final static Property MediaDescription = new Property(18, String.class, "mediaDescription", false, "MEDIA_DESCRIPTION");
+        public final static Property Rtl = new Property(19, Boolean.class, "rtl", false, "RTL");
     };
 
     private DaoSession daoSession;
@@ -79,7 +82,10 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
                 "\"LAST_MODIFIED\" INTEGER," + // 13: lastModified
                 "\"PUB_DATE\" INTEGER," + // 14: pubDate
                 "\"ENCLOSURE_LINK\" TEXT," + // 15: enclosureLink
-                "\"ENCLOSURE_MIME\" TEXT);"); // 16: enclosureMime
+                "\"ENCLOSURE_MIME\" TEXT," + // 16: enclosureMime
+                "\"MEDIA_THUMBNAIL\" TEXT," + // 17: mediaThumbnail
+                "\"MEDIA_DESCRIPTION\" TEXT," + // 18: mediaDescription
+                "\"RTL\" INTEGER);"); // 19: rtl
         // Add Indexes
         db.execSQL("CREATE INDEX " + constraint + "IDX_RSS_ITEM_FEED_ID ON RSS_ITEM" +
                 " (\"FEED_ID\");");
@@ -156,6 +162,21 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         if (enclosureMime != null) {
             stmt.bindString(17, enclosureMime);
         }
+ 
+        String mediaThumbnail = entity.getMediaThumbnail();
+        if (mediaThumbnail != null) {
+            stmt.bindString(18, mediaThumbnail);
+        }
+ 
+        String mediaDescription = entity.getMediaDescription();
+        if (mediaDescription != null) {
+            stmt.bindString(19, mediaDescription);
+        }
+ 
+        Boolean rtl = entity.getRtl();
+        if (rtl != null) {
+            stmt.bindLong(20, rtl ? 1L: 0L);
+        }
     }
 
     @Override
@@ -190,7 +211,10 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
             cursor.isNull(offset + 13) ? null : new java.util.Date(cursor.getLong(offset + 13)), // lastModified
             cursor.isNull(offset + 14) ? null : new java.util.Date(cursor.getLong(offset + 14)), // pubDate
             cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // enclosureLink
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16) // enclosureMime
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // enclosureMime
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // mediaThumbnail
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // mediaDescription
+            cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19) != 0 // rtl
         );
         return entity;
     }
@@ -215,6 +239,9 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         entity.setPubDate(cursor.isNull(offset + 14) ? null : new java.util.Date(cursor.getLong(offset + 14)));
         entity.setEnclosureLink(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
         entity.setEnclosureMime(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setMediaThumbnail(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setMediaDescription(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
+        entity.setRtl(cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19) != 0);
      }
     
     /** @inheritdoc */

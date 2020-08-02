@@ -26,7 +26,7 @@ public class DatabaseOrmGenerator {
     public static void main(String[] args) throws Exception {
         List<SchemaVersion> versions = new ArrayList<>();
 
-        versions.add(new Version6(true));
+        versions.add(new Version7(true));
 
         validateSchemas(versions);
 

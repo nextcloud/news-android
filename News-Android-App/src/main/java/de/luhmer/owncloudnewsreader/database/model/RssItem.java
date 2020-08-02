@@ -33,6 +33,9 @@ public class RssItem implements HasId<Long> {
     private java.util.Date pubDate;
     private String enclosureLink;
     private String enclosureMime;
+    private String mediaThumbnail;
+    private String mediaDescription;
+    private Boolean rtl;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -54,7 +57,7 @@ public class RssItem implements HasId<Long> {
         this.id = id;
     }
 
-    public RssItem(long id, long feedId, String link, String title, String body, Boolean read, Boolean starred, String author, String guid, String guidHash, String fingerprint, Boolean read_temp, Boolean starred_temp, java.util.Date lastModified, java.util.Date pubDate, String enclosureLink, String enclosureMime) {
+    public RssItem(long id, long feedId, String link, String title, String body, Boolean read, Boolean starred, String author, String guid, String guidHash, String fingerprint, Boolean read_temp, Boolean starred_temp, java.util.Date lastModified, java.util.Date pubDate, String enclosureLink, String enclosureMime, String mediaThumbnail, String mediaDescription, Boolean rtl) {
         this.id = id;
         this.feedId = feedId;
         this.link = link;
@@ -72,6 +75,9 @@ public class RssItem implements HasId<Long> {
         this.pubDate = pubDate;
         this.enclosureLink = enclosureLink;
         this.enclosureMime = enclosureMime;
+        this.mediaThumbnail = mediaThumbnail;
+        this.mediaDescription = mediaDescription;
+        this.rtl = rtl;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -222,6 +228,30 @@ public class RssItem implements HasId<Long> {
 
     public void setEnclosureMime(String enclosureMime) {
         this.enclosureMime = enclosureMime;
+    }
+
+    public String getMediaThumbnail() {
+        return mediaThumbnail;
+    }
+
+    public void setMediaThumbnail(String mediaThumbnail) {
+        this.mediaThumbnail = mediaThumbnail;
+    }
+
+    public String getMediaDescription() {
+        return mediaDescription;
+    }
+
+    public void setMediaDescription(String mediaDescription) {
+        this.mediaDescription = mediaDescription;
+    }
+
+    public Boolean getRtl() {
+        return rtl;
+    }
+
+    public void setRtl(Boolean rtl) {
+        this.rtl = rtl;
     }
 
     /** To-one relationship, resolved on first access. */

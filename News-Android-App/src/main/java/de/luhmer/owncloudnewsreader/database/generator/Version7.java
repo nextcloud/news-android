@@ -4,14 +4,14 @@ import de.greenrobot.daogenerator.Entity;
 import de.greenrobot.daogenerator.Property;
 import de.greenrobot.daogenerator.Schema;
 
-public class Version6 extends SchemaVersion {
+public class Version7 extends SchemaVersion {
 
     /**
      * Constructor
      *
      * @param current
      */
-    public Version6(boolean current) {
+    public Version7(boolean current) {
         super(current);
 
         Schema schema = getSchema();
@@ -23,7 +23,7 @@ public class Version6 extends SchemaVersion {
      */
     @Override
     public int getVersionNumber() {
-        return 6;
+        return 7;
     }
 
     @SuppressWarnings("unused") // id properties (folderId, etc.) need to be in database
@@ -68,6 +68,11 @@ public class Version6 extends SchemaVersion {
 
         rssItem.addStringProperty("enclosureLink");
         rssItem.addStringProperty("enclosureMime");
+
+        rssItem.addStringProperty("mediaThumbnail");
+        rssItem.addStringProperty("mediaDescription");
+
+        rssItem.addBooleanProperty("rtl");
 
 
         feed.addToOne(folder, folderIdProperty);

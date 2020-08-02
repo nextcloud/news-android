@@ -51,6 +51,11 @@ class InsertRssItemIntoDatabase {
         String enclosureLink = getStringOrEmpty("enclosureLink", e);
         String enclosureMime = getStringOrEmpty("enclosureMime", e);
 
+        String mediaThumbnail = getStringOrEmpty("mediaThumbnail", e);
+        String mediaDescription = getStringOrEmpty("mediaDescription", e);
+
+        Boolean rtl = getBooleanOrDefault("rtl", false, e);
+
         if(enclosureLink.trim().equals("") && url.matches("^https?://(www.)?youtube.com/.*")) {
             enclosureLink = url;
             enclosureMime = "youtube";
@@ -69,6 +74,7 @@ class InsertRssItemIntoDatabase {
         rssItem.setStarred(e.get("starred").getAsBoolean());
         rssItem.setStarred_temp(rssItem.getStarred());
         rssItem.setPubDate(pubDate);
+        rssItem.setRtl(rtl);
 
         //Possible XSS fields
         rssItem.setTitle(e.get("title").getAsString());
@@ -76,6 +82,8 @@ class InsertRssItemIntoDatabase {
         rssItem.setLink(url);
         rssItem.setEnclosureLink(enclosureLink);
         rssItem.setEnclosureMime(enclosureMime);
+        rssItem.setMediaDescription(mediaDescription);
+        rssItem.setMediaThumbnail(mediaThumbnail);
 
         if(rssItem.getFingerprint() == null) {
             rssItem.setFingerprint(UUID.randomUUID().toString());
@@ -96,4 +104,11 @@ class InsertRssItemIntoDatabase {
         }
     }
 
+    private static Boolean getBooleanOrDefault(String key, Boolean defaultValue, JsonObject jObj) {
+        if(jObj.has(key) && !jObj.get(key).isJsonNull()) {
+            return jObj.get(key).getAsBoolean();
+        } else {
+            return defaultValue;
+        }
+    }
 }

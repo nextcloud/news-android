@@ -1,5 +1,7 @@
-<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt" >
+<animated-vector xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    tools:targetApi="lollipop">
   <aapt:attr name="android:drawable">
     <vector xmlns:android="http://schemas.android.com/apk/res/android"
         android:width="128dp"
@@ -31,7 +33,7 @@
     </vector>
   </aapt:attr>
 
-  <target android:name="scaleGroup"> *
+  <target android:name="scaleGroup">
     <aapt:attr name="android:animation">
       <set>
         <objectAnimator
