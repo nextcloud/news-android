@@ -92,7 +92,7 @@ public class ThemeUtils {
             mSelectHandleRight.setAccessible(true);
             mSelectHandleRight.set(editor, drawable);
         } catch (Exception e) {
-            Log.e(TAG, "Couldn't apply color to search view cursor", e);
+            Log.w(TAG, "Couldn't apply color to search view cursor", e);
         }
     }
 
