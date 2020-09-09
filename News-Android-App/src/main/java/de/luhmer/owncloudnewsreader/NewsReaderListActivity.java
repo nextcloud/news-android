@@ -74,7 +74,9 @@ import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.customview.widget.ViewDragHelper;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -1054,8 +1056,21 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
             String currentUrl = vh.getRssItem().getLink();
 
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
-            startActivity(browserIntent);
+            //Choose Browser based on user settings
+			//modified copy from NewsDetailFragment.java:loadUrl(String url)
+			int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
+			if (selectedBrowser == 0) { // Custom Tabs
+				CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
+						.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+						.setShowTitle(true)
+						.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left)
+						.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right)
+						.addDefaultShareMenuItem();
+				builder.build().launchUrl(this, Uri.parse(currentUrl));
+			} else { //External browser
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
+				startActivity(browserIntent);
+			}
 
             ((NewsListRecyclerAdapter) getNewsReaderDetailFragment().getRecyclerView().getAdapter()).changeReadStateOfItem(vh, true);
 		} else {
