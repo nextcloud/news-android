@@ -1,3 +1,14 @@
+0.9.9.40
+---------------------
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/344">#344 Starred items are not synced correctly</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/pull/881">!881 When enabled, also use custom tabs when skipping detailed view</a>
+
+
+0.9.9.39
+---------------------
+- Google refused update
+
+
 0.9.9.38
 ---------------------
 - Feature - <a href="https://github.com/nextcloud/news-android/issues/868">#868 - Add thumbnail support (media) articles</a>
