@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -76,12 +77,12 @@ public class RssItemObservable implements Publisher<Integer> {
         {
             long offset = 0;
 
-            Log.v(TAG, "First sync!!");
+            Log.v(TAG, "First sync - download all available unread articles!!");
             int maxItemsInDatabase = Constants.maxItemsCount;
 
             do {
                 Log.v(TAG, "offset=" + offset + ",  requestCount=" + requestCount + "");
-                List<RssItem> buffer = (mApi.items(maxSyncSize, offset, Integer.valueOf(FeedItemTags.ALL.toString()), 0, false, true).execute().body());
+                List<RssItem> buffer = (mApi.items(maxSyncSize, offset, Integer.parseInt(FeedItemTags.ALL.toString()), 0, false, true).execute().body());
 
                 requestCount = 0;
                 if(buffer != null) {
@@ -96,27 +97,26 @@ public class RssItemObservable implements Publisher<Integer> {
                 subscriber.onNext(totalCount);
             } while(requestCount == maxSyncSize);
 
-            Log.v(TAG, "offset=" + offset + ",  requestCount=" + requestCount + ", maxSyncSize=" + maxSyncSize);
+            Log.v(TAG, "[all] offset=" + offset + ",  requestCount=" + requestCount + ", maxSyncSize=" + maxSyncSize);
 
-            Log.v(TAG, "Sync all items done - Starting starred now");
+            Log.v(TAG, "Sync all items done - Synchronizing all starred articles now");
 
             mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, totalCount).apply();
 
+            offset = 0;
             do {
-                offset = mDbConn.getLowestItemId(true);
-                List<RssItem> buffer = mApi.items(maxSyncSize, offset, Integer.valueOf(FeedItemTags.ALL_STARRED.toString()), 0, false, true).execute().body();
-
+                List<RssItem> buffer = mApi.items(maxSyncSize, offset, Integer.parseInt(FeedItemTags.ALL_STARRED.toString()), 0, false, true).execute().body();
                 requestCount = 0;
                 if(buffer != null) {
                     requestCount = buffer.size();
+                    offset = getMaxIdFromItems(buffer); // get maximum id of returned items
                     performDatabaseBatchInsert(mDbConn, buffer);
                 }
-                //if(requestCount > 0)
-                //	offset = dbConn.getLowestItemId(true);
+                Log.v(TAG, "[starred] offset=" + offset + ",  requestCount=" + requestCount + ", maxSyncSize=" + maxSyncSize);
                 totalCount += requestCount;
 
                 subscriber.onNext(totalCount);
-            } while(requestCount == maxSyncSize && totalCount < maxItemsInDatabase);
+            } while(requestCount == maxSyncSize);
         }
         else
         {
@@ -124,16 +124,11 @@ public class RssItemObservable implements Publisher<Integer> {
             //First reset the count of last updated items
             mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0).apply();
 
-            long highestItemIdBeforeSync = mDbConn.getHighestItemId();
+            //long highestItemIdBeforeSync = mDbConn.getHighestItemId();
 
             //Get all updated items
-            mApi.updatedItems(lastModified+1, Integer.valueOf(FeedItemTags.ALL.toString()), highestItemIdBeforeSync)
-                    .flatMap(new Function<ResponseBody, ObservableSource<RssItem>>() {
-                        @Override
-                        public ObservableSource<RssItem> apply(@NonNull ResponseBody responseBody) throws Exception {
-                            return events(responseBody.source());
-                        }
-                    })
+            mApi.updatedItems(lastModified, Integer.parseInt(FeedItemTags.ALL.toString()), 0)
+                    .flatMap((Function<ResponseBody, ObservableSource<RssItem>>) responseBody -> events(responseBody.source()))
                     .subscribe(new Observer<RssItem>() {
                         int totalUpdatedUnreadItemCount = 0;
                         final int bufferSize = 150;
@@ -146,7 +141,9 @@ public class RssItemObservable implements Publisher<Integer> {
 
                         @Override
                         public void onNext(@NonNull RssItem rssItem) {
-                            if(!rssItem.getRead()) { //If updates item is unread
+                            long rssLastModified = rssItem.getLastModified().getTime();
+                            // If updated item is unread and last modification was different from last sync time
+                            if(!rssItem.getRead() && rssLastModified != lastModified) {
                                 totalUpdatedUnreadItemCount++;
                             }
 
@@ -173,6 +170,16 @@ public class RssItemObservable implements Publisher<Integer> {
         }
     }
 
+    private static long getMaxIdFromItems(List<RssItem> buffer) {
+        long max = 0;
+        for(RssItem item : buffer) {
+            if(item.getId() > max) {
+                max = item.getId();
+            }
+        }
+        return max;
+    }
+
     public static boolean performDatabaseBatchInsert(DatabaseConnectionOrm dbConn, List<RssItem> buffer) {
         Log.v(TAG, "performDatabaseBatchInsert() called with: dbConn = [" + dbConn + "], buffer = [" + buffer + "]");
         dbConn.insertNewItems(buffer);
@@ -181,47 +188,44 @@ public class RssItemObservable implements Publisher<Integer> {
     }
 
     public static Observable<RssItem> events(final BufferedSource source) {
-        return Observable.create(new ObservableOnSubscribe<RssItem>() {
-            @Override
-            public void subscribe(@NonNull ObservableEmitter<RssItem> e) throws Exception {
+        return Observable.create(e -> {
+            try {
+                InputStreamReader isr = new InputStreamReader(source.inputStream());
+                BufferedReader br = new BufferedReader(isr);
+                JsonReader reader = new JsonReader(br);
+
                 try {
-                    InputStreamReader isr = new InputStreamReader(source.inputStream());
-                    BufferedReader br = new BufferedReader(isr);
-                    JsonReader reader = new JsonReader(br);
+                    reader.beginObject();
 
-                    try {
-                        reader.beginObject();
-
-                        String currentName;
-                        while(reader.hasNext() && (currentName = reader.nextName()) != null) {
-                            if(currentName.equals("items")) {
-                                break;
-                            } else {
-                                reader.skipValue();
-                            }
+                    String currentName;
+                    while(reader.hasNext() && (currentName = reader.nextName()) != null) {
+                        if(currentName.equals("items")) {
+                            break;
+                        } else {
+                            reader.skipValue();
                         }
-
-                        reader.beginArray();
-                        while (reader.hasNext()) {
-                            JsonObject jsonObj = getJsonObjectFromReader(reader);
-                            RssItem item = InsertRssItemIntoDatabase.parseItem(jsonObj);
-                            e.onNext(item);
-                        }
-                        reader.endArray();
-                    } finally {
-                        reader.close();
-                        br.close();
-                        isr.close();
                     }
-                } catch (IOException err) {
-                    err.printStackTrace();
-                    e.onError(err);
-                } catch(NullPointerException npe) {
-                    npe.printStackTrace();
-                    e.onError(npe);
+
+                    reader.beginArray();
+                    while (reader.hasNext()) {
+                        JsonObject jsonObj = getJsonObjectFromReader(reader);
+                        RssItem item = InsertRssItemIntoDatabase.parseItem(Objects.requireNonNull(jsonObj));
+                        e.onNext(item);
+                    }
+                    reader.endArray();
+                } finally {
+                    reader.close();
+                    br.close();
+                    isr.close();
                 }
-                e.onComplete();
+            } catch (IOException err) {
+                err.printStackTrace();
+                e.onError(err);
+            } catch(NullPointerException npe) {
+                npe.printStackTrace();
+                e.onError(npe);
             }
+            e.onComplete();
         });
     }
 
