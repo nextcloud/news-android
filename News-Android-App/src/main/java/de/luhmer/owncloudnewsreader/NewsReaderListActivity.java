@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -78,6 +79,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -863,40 +865,50 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
     }
 
-	private void DownloadMoreItems()
-	{
-		String username = mPrefs.getString("edt_username", null);
+	private void DownloadMoreItems() {
+		final NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 
-		if(username != null) {
-			final NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+		// Folder is selected.. download more items for all feeds in this folder
+		if(ndf.getIdFeed() == null) {
+			Long idFolder = ndf.getIdFolder();
 
-			// Folder is selected.. download more items for all feeds in this folder
-			if(ndf.getIdFeed() == null) {
-				Long idFolder = ndf.getIdFolder();
+			List<Integer> specialFolders = Arrays.asList(
+					SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(),
+					SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue(),
+					SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS.getValue()
+			);
+			// if a special folder is selected, we can start the sync
+			if (specialFolders.contains(idFolder.intValue())) {
+				startSync();
+			} else {
+				// Otherwise load more items for that particular folder and all its feeds
 				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
-				for(Feed feed : dbConn.getFolderById(idFolder).getFeedList()) {
+				for (Feed feed : dbConn.getFolderById(idFolder).getFeedList()) {
 					downloadMoreItemsForFeed(feed.getId());
 				}
-			} else {
-				// Single feed is selected.. download more items
-				downloadMoreItemsForFeed(ndf.getIdFeed());
 			}
-
-			Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
+		} else {
+			// Single feed is selected.. download more items
+			downloadMoreItemsForFeed(ndf.getIdFeed());
 		}
+
+		Toast.makeText(this, getString(R.string.toast_GettingMoreItems), Toast.LENGTH_SHORT).show();
 	}
 
+	@SuppressLint("CheckResult")
 	private void downloadMoreItemsForFeed(final Long feedId) {
 		Completable.fromAction(new Action() {
 			@Override
 			public void run() throws Exception {
 				DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(NewsReaderListActivity.this);
 				RssItem rssItem = dbConn.getLowestRssItemIdByFeed(feedId);
-				long offset = rssItem.getId();
-				long id = rssItem.getFeedId();
+				long offset = Long.MAX_VALUE;
+				if(rssItem != null) {
+					offset = rssItem.getId();
+				}
 				int type = 0; // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
 
-				List<RssItem> buffer = mApi.getAPI().items(100, offset, type, id, true, false).execute().body();
+				List<RssItem> buffer = mApi.getAPI().items(100, offset, type, feedId, true, false).execute().body();
 				RssItemObservable.performDatabaseBatchInsert(dbConn, buffer);
 			}
 		})
@@ -915,8 +927,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 						Throwable e = OkHttpSSLClient.HandleExceptions(throwable);
 						Toast.makeText(NewsReaderListActivity.this, getString(R.string.login_dialog_text_something_went_wrong) + " - " + e.getMessage(), Toast.LENGTH_SHORT).show();
 					}
-				})
-				.dispose();
+				});
 	}
 
     @Override
