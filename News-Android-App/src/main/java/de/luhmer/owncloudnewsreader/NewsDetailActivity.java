@@ -21,12 +21,10 @@
 
 package de.luhmer.owncloudnewsreader;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,8 +36,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -111,6 +107,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	protected @Inject SharedPreferences mPrefs;
 
+	private boolean mShowFastActions;
 	//public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
 
 	@Override
@@ -168,34 +165,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			setSupportActionBar(bottomAppBar);
 		}
 		*/
-
-
 		//getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 		dbConn = new DatabaseConnectionOrm(this);
 		Intent intent = getIntent();
 
-		//long subsciption_id = -1;
-		//long folder_id = -1;
 		int item_id = 0;
-
-
-		//if(intent.hasExtra(NewsReaderDetailActivity.SUBSCRIPTION_ID))
-		//	subsciption_id = intent.getExtras().getLong(NewsReaderDetailActivity.SUBSCRIPTION_ID);
-		//if(intent.hasExtra(NewsReaderDetailActivity.FOLDER_ID))
-		//	folder_id = intent.getExtras().getLong(NewsReaderDetailActivity.FOLDER_ID);
-		if(intent.hasExtra(NewsReaderListActivity.ITEM_ID))
+		if(intent.hasExtra(NewsReaderListActivity.ITEM_ID)) {
 			item_id = intent.getExtras().getInt(NewsReaderListActivity.ITEM_ID);
-		if(intent.hasExtra(NewsReaderListActivity.TITEL))
-			getSupportActionBar().setTitle(intent.getExtras().getString(NewsReaderListActivity.TITEL));
-			//getActionBar().setTitle(intent.getExtras().getString(NewsReaderDetailActivity.TITEL));
+		}
+		if(intent.hasExtra(NewsReaderListActivity.TITLE)) {
+			getSupportActionBar().setTitle(intent.getExtras().getString(NewsReaderListActivity.TITLE));
+		}
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-		//if(intent.hasExtra(DATABASE_IDS_OF_ITEMS))
-		//	databaseItemIds = intent.getIntegerArrayListExtra(DATABASE_IDS_OF_ITEMS);
-
 
         rssItems = dbConn.getCurrentRssItemView(-1);
 
@@ -235,13 +218,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
         mViewPager.addOnPageChangeListener(onPageChangeListener);
-		this.initFastActionBar();
+        // mBtnDisableIncognito.setOnClickListener(v -> {
+		// 	toggleIncognitoMode();
+		// });
 
-        /*
-		mBtnDisableIncognito.setOnClickListener(v -> {
-			toggleIncognitoMode();
-		});
-		*/
+		this.initFastActionBar();
 	}
 
     @Override
@@ -258,27 +239,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * author: emasty https://github.com/emasty
 	 */
 	private void initFastActionBar() {
-		boolean showFastActions = mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, true);
+		mShowFastActions = mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, true);
 
-		if (showFastActions) {
+		if (mShowFastActions) {
 			// Set click listener for buttons on action bar
 			fastActionOpenInBrowser.setOnClickListener(v -> this.openInBrowser(currentPosition));
-			fastActionShare.setOnClickListener(v -> this.share(currentPosition));
-			fastActionToggle.setOnClickListener(v -> this.toggleFastActionBar());
-
-			RssItem rssItem = rssItems.get(currentPosition);
-			boolean isStarred = rssItem.getStarred_temp();
-			boolean isRead = rssItem.getRead_temp();
-
-
+			fastActionToggle.setOnClickListener(v -> this.toggleFastActionBar()); // toggle expand / collapse
 			fastActionStar.setOnClickListener(v -> NewsDetailActivity.this.toggleRssItemStarredState());
-			fastActionStar.setImageResource(isStarred ? R.drawable.ic_action_star_dark : R.drawable.ic_action_star_border_dark);
-
-
 			fastActionRead.setOnClickListener(v -> NewsDetailActivity.this.markRead(currentPosition));
-			fastActionRead.setImageResource(isRead ? R.drawable.ic_check_box_white : R.drawable.ic_check_box_outline_blank_white);
+			fastActionShare.setOnClickListener(v -> this.share(currentPosition));
 
 			fastActionDetailBar.setVisibility(View.VISIBLE);
+
+			// initially the bar should be opened in the expanded state
+			this.toggleFastActionBar();
 		} else {
 			fastActionDetailBar.setVisibility(View.INVISIBLE);
 		}
@@ -319,17 +293,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 	}
 
-	public static void setWindowFlag(Activity activity, final int bits, boolean on) {
-		Window win = activity.getWindow();
-		WindowManager.LayoutParams winParams = win.getAttributes();
-		if (on) {
-			winParams.flags |= bits;
-		} else {
-			winParams.flags &= ~bits;
-		}
-		win.setAttributes(winParams);
-	}
-
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -342,13 +305,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             pageChanged(pos);
         }
 
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
+        @Override public void onPageScrolled(int arg0, float arg1, int arg2) { }
 
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-        }
+        @Override public void onPageScrollStateChanged(int arg0) { }
     };
 
     public static SORT_DIRECTION getSortDirectionFromSettings(SharedPreferences prefs) {
@@ -502,22 +461,32 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.news_detail, menu);
 
+		MenuItem menuItem_OpenInBrowser = menu.findItem(R.id.action_openInBrowser);
+		MenuItem menuItem_ShareItem = menu.findItem(R.id.action_ShareItem);
+
 		menuItem_Starred = menu.findItem(R.id.action_starred);
 		menuItem_Read = menu.findItem(R.id.action_read);
         menuItem_PlayPodcast = menu.findItem(R.id.action_playPodcast);
+
+        if(mShowFastActions) {
+        	menuItem_Starred.setVisible(false);
+			menuItem_Read.setVisible(false);
+			menuItem_OpenInBrowser.setVisible(false);
+			menuItem_ShareItem.setVisible(false);
+		}
 
 		Set<String> selections = mPrefs.getStringSet("sp_news_detail_actionbar_icons", new HashSet<>());
 		String[] selected = selections.toArray(new String[] {});
 		for(String selection : selected) {
             switch(selection) {
                 case "open_in_browser":
-                    menu.findItem(R.id.action_openInBrowser).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					menuItem_OpenInBrowser.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
                     break;
                 case "share":
-                    menu.findItem(R.id.action_ShareItem).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					menuItem_ShareItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
                     break;
                 case "podcast":
-                    menu.findItem(R.id.action_playPodcast).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					menuItem_PlayPodcast.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
                     break;
                 //case "tts":
                 //    menu.findItem(R.id.action_tts).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);

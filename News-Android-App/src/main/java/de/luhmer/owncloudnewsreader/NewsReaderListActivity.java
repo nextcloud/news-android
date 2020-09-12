@@ -42,6 +42,23 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.customview.widget.ViewDragHelper;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -68,22 +85,6 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.view.GravityCompat;
-import androidx.customview.widget.ViewDragHelper;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.preference.PreferenceManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
@@ -135,14 +136,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private static final String TAG = NewsReaderListActivity.class.getCanonicalName();
 
-	public static final String FOLDER_ID = "FOLDER_ID";
-	public static final String FEED_ID = "FEED_ID";
 	public static final String ITEM_ID = "ITEM_ID";
-	public static final String TITEL = "TITEL";
+	public static final String TITLE = "TITLE";
 
     public static HashSet<Long> stayUnreadItems = new HashSet<>();
 
-	private static MenuItem menuItemUpdater;
 	private static MenuItem menuItemDownloadMoreItems;
 
 	protected @BindView(R.id.toolbar) Toolbar toolbar;
@@ -703,7 +701,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.news_reader, menu);
 
-		menuItemUpdater = menu.findItem(R.id.menu_update);
 		menuItemDownloadMoreItems = menu.findItem(R.id.menu_downloadMoreItems);
 
 		menuItemDownloadMoreItems.setEnabled(false);
@@ -1062,7 +1059,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			Intent intentNewsDetailAct = new Intent(this, NewsDetailActivity.class);
 
 			intentNewsDetailAct.putExtra(NewsReaderListActivity.ITEM_ID, position);
-			intentNewsDetailAct.putExtra(NewsReaderListActivity.TITEL, getNewsReaderDetailFragment().getTitel());
+			intentNewsDetailAct.putExtra(NewsReaderListActivity.TITLE, getNewsReaderDetailFragment().getTitel());
 			startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
 		}
 	}
