@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Autosynk</string>
+    <string name="title_activity_sync_interval_selector">Synkroniseringsintervall</string>
     <string name="title_activity_news_detail">NyheterDetaljAktivitet</string>
     <string name="empty_view_content">Ingenting her</string>
     <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet… Vennligst vent.</string>
@@ -126,6 +127,9 @@
     <string name="pref_general_sort_order_new_old">Ny -> Gammel</string>
     <string name="pref_general_sort_order_old_new">Gammel -> Ny</string>
 
+    <string name="pref_rename_action_swipe_right">Handling ved sveiping til høyre</string>
+    <string name="pref_rename_action_swipe_left">Handling ved sveiping til venstre</string>
+
     <string name="pref_title_general_search_in">Søk i</string>
 
     <string name="pref_general_search_in_title">Tittel</string>
@@ -140,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Deaktiver kontroll av vertsnavn</string>
     <string name="pref_title_NavigateWithVolumeButtons">Naviger med volumknappene</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
+    <string name="pref_title_ShowFastActions">Aktiver funksjoner for rask tilgang</string>
     <string name="pref_title_OpenInBrowserDirectly">Dropp detaljert visning og åpne artikkel i nettleser</string>
 
     <string name="dialog_feature_not_available">Funksjonalitet er ikke tilgjengelig i denne (åpen kildekode) versjon. Hvis du ønsker å bruke denne funksjonen kan den lastes ned via GitHub eller fra Google Play butikken.</string>
