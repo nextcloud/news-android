@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Sjálfvirk samstilling</string>
+    <string name="title_activity_sync_interval_selector">Bil milli samstillinga</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Engin atriði hér</string>
     <string name="toast_GettingMoreItems">Byrjaði að sækja fleiri atriði... Bíddu aðeins.</string>
@@ -25,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Sýna útgáfu í skyndiminni</string>
 
+    <string name="permission_req_location_twilight_title">Sjálfvirkt dökkt/ljóst þema</string>
+    <string name="permission_req_location_twilight_text">Til að geta skipt sjálfvirkt á milli ljósa og dökka þemans, er nauðsynlegt að gefa upp staðsetningu tækis, svo hægt sé að ákvarða tíma sólargangsins.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Stjörnumerkt</string>
     <string name="action_read">Lesa</string>
@@ -39,6 +43,9 @@
     <string name="action_textToSpeech">Lesa upphátt</string>
     <string name="action_search">Leita</string>
     <string name="action_download_articles_offline">Sækja ónettengdar greinar</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Sæki greinar til að lesa án nettengingar</string>
+    <string name="notification_download_images_offline">Sæki myndir til að nota án nettengingar</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Þú átt %d nýtt ólesið atriði</item>
         <item quantity="other">Þú átt %d ný ólesin atriði</item>
@@ -63,7 +70,7 @@
     <string name="action_link_share">Deila tengli</string>
     <string name="action_link_open">Opna tengil í vafra</string>
     <string name="action_link_copy">Afrita tengil</string>
-    <string name="toast_img_download_wait">Sæki... Bíddu aðeins.</string>
+    <string name="toast_img_download_wait">Sæki... bíddu aðeins.</string>
     <string name="toast_img_saved">Mynd vistuð</string>
     <string name="toast_img_notwriteable">Tókst ekki að skrifa mynd.</string>
     <string name="toast_copied_to_clipboard">Afritað á klippispjald</string>
@@ -120,6 +127,9 @@
     <string name="pref_general_sort_order_new_old">Nýrra -> Eldra</string>
     <string name="pref_general_sort_order_old_new">Eldra -> Nýrra</string>
 
+    <string name="pref_rename_action_swipe_right">Aðgerð þegar strokið er til hægri</string>
+    <string name="pref_rename_action_swipe_left">Aðgerð þegar strokið er til vinstri</string>
+
     <string name="pref_title_general_search_in">Leita í</string>
 
     <string name="pref_general_search_in_title">Titill</string>
@@ -134,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Gera sannvottun hýsilvélar óvirka</string>
     <string name="pref_title_NavigateWithVolumeButtons">Flakka með hnöppum fyrir hljóðstyrk</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Merkja sem lesið við skrun</string>
+    <string name="pref_title_ShowFastActions">Virkja aðgerðir fyrir skyndiaðgang</string>
     <string name="pref_title_OpenInBrowserDirectly">Sleppa ítarlegri sýn og opna greinina í vafranum</string>
 
     <string name="dialog_feature_not_available">Þessi eiginleiki er ekki tiltækur í þessari (frjálsu-opnu/open-source) útgáfu forritsins. Ef þú ætlar að nota þennan eiginleika ættirðu að sækja forritið í GitHub hugbúnaðarsafnið eða ná í forritið úr Google Play Store safninu.</string>
