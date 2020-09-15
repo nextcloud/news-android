@@ -14,12 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import javax.inject.Inject;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
@@ -94,7 +95,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
 
     public static void setAccountSyncInterval(Context context, SharedPreferences mPrefs) {
-        int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 0);
+        int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 1440);
 
         AccountManager mAccountManager = AccountManager.get(context);
         Account[] accounts = mAccountManager.getAccountsByType(AccountGeneral.ACCOUNT_TYPE);
@@ -158,11 +159,11 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
             lvItems.setAdapter(adapter);
 
-            if(!mPrefs.contains(SYNC_INTERVAL_IN_MINUTES_STRING))
-                lvItems.setItemChecked(items.length - 1, true);//The last item is 24hours. This is the default value!
-            else {
+            if(!mPrefs.contains(SYNC_INTERVAL_IN_MINUTES_STRING)) {
+                lvItems.setItemChecked(items.length - 1, true); // The last item is 24hours. This is the default value!
+            } else {
                 int position = 0;
-                int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 0);
+                int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 1440);
                 for(String item : ((SyncIntervalSelectorActivity)getActivity()).items_values) {
                     if(Integer.parseInt(item) == minutes)
                         break;

@@ -12,25 +12,30 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
-import androidx.core.app.NotificationCompat;
-import androidx.core.content.FileProvider;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.text.TextUtils;
 
-import androidx.media.session.MediaButtonReceiver;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.FileProvider;
 import androidx.media.app.NotificationCompat.MediaStyle;
+import androidx.media.session.MediaButtonReceiver;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.luhmer.owncloudnewsreader.BuildConfig;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.database.model.RssItem;
 
 public class NextcloudNotificationManager {
 
@@ -252,16 +257,25 @@ public class NextcloudNotificationManager {
         Resources res = context.getResources();
         String tickerMessage = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
         String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
-        String title = context.getString(R.string.app_name);
 
         String channelId = context.getString(R.string.app_name);
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
 
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
+        List<RssItem> items = dbConn.getAllUnreadRssItemsForNotification();
+
+        List<String> previewLines = new ArrayList<>();
+        for(RssItem item : items) {
+            // • = \u2022,   ● = \u25CF,   ○ = \u25CB,   ▪ = \u25AA,   ■ = \u25A0,   □ = \u25A1,   ► = \u25BA
+            previewLines.add("\u25CF " + item.getTitle().trim());
+        }
+        String previewText = TextUtils.join("\n", previewLines);
+
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context, channelId)
                         .setSmallIcon(R.drawable.ic_notification)
-                        .setTicker(tickerMessage)
-                        .setContentTitle(title)
+                        .setContentTitle(tickerMessage)
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(previewText))
                         //.setDefaults(Notification.DEFAULT_ALL)
                         .setAutoCancel(true)
                         .setNumber(newItemsCount)
