@@ -45,6 +45,7 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_NAVIGATE_WITH_VOL
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_REPORT_ISSUE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOWONLYUNREAD_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOW_FAST_ACTIONS;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SYNCONSTARTUP_STRING;
@@ -255,6 +256,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOWONLYUNREAD_STRING));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
+        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOW_FAST_ACTIONS));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SORT_ORDER));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SEARCH_IN));

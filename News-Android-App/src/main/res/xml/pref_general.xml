@@ -79,6 +79,7 @@
             app:iconSpaceReserved="false"/>
 
         <SwitchPreference
+            android:defaultValue="true"
             android:key="cb_ShowFastActions"
             android:title="@string/pref_title_ShowFastActions"
             app:iconSpaceReserved="false"/>
