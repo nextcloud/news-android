@@ -21,6 +21,8 @@
 
 package de.luhmer.owncloudnewsreader.reader.nextcloud;
 
+import android.util.Log;
+
 import com.google.gson.JsonObject;
 
 import java.util.Date;
@@ -67,7 +69,6 @@ class InsertRssItemIntoDatabase {
         rssItem.setGuid(guid);
         rssItem.setGuidHash(e.get("guidHash").getAsString());
         rssItem.setFingerprint(getStringOrDefault("fingerprint", null, e));
-        rssItem.setBody(content);
         rssItem.setLastModified(new Date(e.get("lastModified").getAsLong()));
         rssItem.setRead(!e.get("unread").getAsBoolean());
         rssItem.setRead_temp(rssItem.getRead());
@@ -88,6 +89,25 @@ class InsertRssItemIntoDatabase {
         if(rssItem.getFingerprint() == null) {
             rssItem.setFingerprint(UUID.randomUUID().toString());
         }
+
+        // Calculate the size of the rss items - useful if users run into a SQLiteBlobTooBigException
+        // https://github.com/nextcloud/news-android/issues/887
+        int contentLength = content.length();
+        double sizeInMb = contentLength/1024d/1024d;
+        if(sizeInMb > 0.4) {
+            Log.w("InsertRssItem", "Massive rss item detected - " + content.length() + " chars  / " + content.length()/1024d/1024d + "mb - url:" + rssItem.getLink());
+
+            // Trim string down to 500k characters
+            int maxLengthAllowed = 500000;
+            if(content.length() > maxLengthAllowed) {
+                Log.w("InsertRssItem", "Limiting rss item size to 500k characters - url:" + rssItem.getLink());
+                content = content.substring(0, maxLengthAllowed);
+            }
+        } else if(sizeInMb > 0.1) {
+            Log.w("InsertRssItem", "Large rss item detected - " + content.length() + " chars  / " + content.length()/1024d/1024d + "mb - url:" + rssItem.getLink());
+        }
+
+        rssItem.setBody(content);
 
         return rssItem;
 	}
