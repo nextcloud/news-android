@@ -267,7 +267,7 @@ public class NextcloudNotificationManager {
         List<String> previewLines = new ArrayList<>();
         for(RssItem item : items) {
             // • = \u2022,   ● = \u25CF,   ○ = \u25CB,   ▪ = \u25AA,   ■ = \u25A0,   □ = \u25A1,   ► = \u25BA
-            previewLines.add("\u25CF " + item.getTitle().trim());
+            previewLines.add("\u2022 " + item.getTitle().trim());
         }
         String previewText = TextUtils.join("\n", previewLines);
 
