@@ -25,8 +25,9 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
 import android.content.Intent;
-import androidx.core.app.JobIntentService;
 import android.util.Log;
+
+import androidx.core.app.JobIntentService;
 
 import java.io.IOException;
 
@@ -62,6 +63,11 @@ public class SyncItemStateService extends JobIntentService {
 
 	@Override
 	protected void onHandleWork(Intent intent) {
+		if(mApi.getAPI() == null) {
+			Log.w(TAG, "API is not initialized");
+			return;
+		}
+
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
         try {
@@ -70,7 +76,6 @@ public class SyncItemStateService extends JobIntentService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 	public static boolean isMyServiceRunning(Context context) {
