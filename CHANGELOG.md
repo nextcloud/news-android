@@ -1,3 +1,11 @@
+0.9.9.41
+---------------------
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/887">#887 Fix crashes due to huge rss items</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/878">#878 Floating menu setting had no effect / Show either the floating or the kebab menu</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/issues/754">#754 Add more meaningful notifications</a>
+- Feature - <a href="https://github.com/nextcloud/news-android/pull/885">!885 Enable auto sync by default (every 24h)</a>
+
+
 0.9.9.40
 ---------------------
 - Bug fix - <a href="https://github.com/nextcloud/news-android/issues/344">#344 Starred items are not synced correctly</a>
