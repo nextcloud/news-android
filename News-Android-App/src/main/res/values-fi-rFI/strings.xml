@@ -144,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Poista koneen nimen (hostname) varmistus</string>
     <string name="pref_title_NavigateWithVolumeButtons">Liiku äänipainikkeilla</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
+    <string name="pref_title_ShowFastActions">Aktivoi pikatoiminnot</string>
     <string name="pref_title_OpenInBrowserDirectly">Ohita yksityiskohtainen näkymä ja avaa artikkeli selaimessa</string>
 
     <string name="dialog_feature_not_available">Tämä ominaisuus ei ole käytettävissä sovelluksen tässä (avoimen lähdekoodin) versiossa. Jos haluat käyttää ominaisuutta, lataa sovellus GitHub säilöstä tai google ohjelmakaupasta.</string>
