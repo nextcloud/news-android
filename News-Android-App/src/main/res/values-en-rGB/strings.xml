@@ -2,6 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">Auto sync</string>
+    <string name="title_activity_sync_interval_selector">Sync Interval</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">No items here</string>
     <string name="toast_GettingMoreItems">Download of more items started… Please wait.</string>
@@ -25,6 +26,9 @@
 
     <string name="tv_showing_cached_version">Showing cached version</string>
 
+    <string name="permission_req_location_twilight_title">Automated Light/Dark Theme</string>
+    <string name="permission_req_location_twilight_text">In order to automatically switch between the light and dark theme, it is required to provide the devices location in order to determine the time for sunrise and sunset.</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
     <string name="action_read">Read</string>
@@ -39,6 +43,9 @@
     <string name="action_textToSpeech">Read out</string>
     <string name="action_search">Search</string>
     <string name="action_download_articles_offline">Download articles offline</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Downloading articles for offline usage</string>
+    <string name="notification_download_images_offline">Downloading images for offline usage</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">You have %d new unread item</item>
         <item quantity="other">You have %d new unread items</item>
@@ -51,6 +58,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Add feed</string>
+    <string name="import_opml">Import OPML</string>
+    <string name="export_opml">Export OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Download Image</string>
     <string name="action_img_sharelink">Share Image Link</string>
@@ -77,6 +88,9 @@
     <string name="feed_move_list_description">Select folder to move feed in</string>
     <string name="move_feed_root_folder">Root folder</string>
 
+    <!-- Strings related to login -->
+    <string name="login_manual">Manual login</string>
+    <string name="login_sso">Login using Nextcloud Files App</string>
     <string name="pref_title_username">Username</string>
     <string name="pref_title_password">Password</string>
     <string name="pref_title_owncloudRootPath">Nextcloud root address</string>
@@ -113,6 +127,9 @@
     <string name="pref_general_sort_order_new_old">New -> Old</string>
     <string name="pref_general_sort_order_old_new">Old -> New</string>
 
+    <string name="pref_rename_action_swipe_right">Action when swiping right</string>
+    <string name="pref_rename_action_swipe_left">Action when swiping left</string>
+
     <string name="pref_title_general_search_in">Search In</string>
 
     <string name="pref_general_search_in_title">Title</string>
@@ -127,6 +144,7 @@
     <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Mark as read whilst scrolling</string>
+    <string name="pref_title_ShowFastActions">Activate fast access functions</string>
     <string name="pref_title_OpenInBrowserDirectly">Skip detailed view and open article in the browser</string>
 
     <string name="dialog_feature_not_available">This feature is not available in this (open-source) version of this app. If you want to use this feature please download the app from the GitHub Repository or download the App from the Google Play Store.</string>
