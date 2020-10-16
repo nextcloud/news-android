@@ -203,7 +203,7 @@
     <string name="pref_oled_mode_summary">Motyw ciemny dla ekranów OLED</string>
 
     <string name="pref_display_browser_cct">Wbudowany Chrome-Custom-Tabs</string>
-    <string name="pref_display_browser_built_in">Wbudowana Przeglądarka</string>
+    <string name="pref_display_browser_built_in">Wbudowana przeglądarka</string>
     <string name="pref_display_browser_external">Zewnętrzna przeglądarka</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Miniatury</string>
