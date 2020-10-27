@@ -118,10 +118,10 @@
     </plurals>
     <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych pozycji</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">Pobrany do tej pory %d element...</item>
-        <item quantity="few">Pobrane do tej pory %d elementy...</item>
-        <item quantity="many">Pobrane do tej pory %d elementów...</item>
-        <item quantity="other">Pobrane do tej pory %d elementy...</item>
+        <item quantity="one">Pobrany do tej pory %d element…</item>
+        <item quantity="few">Pobrane do tej pory %d elementy…</item>
+        <item quantity="many">Pobrane do tej pory %d elementów…</item>
+        <item quantity="other">Pobrane do tej pory %d elementy…</item>
     </plurals>
 
 
