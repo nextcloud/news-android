@@ -29,6 +29,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatDelegate;
+
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 
@@ -129,6 +130,7 @@ public class ThemeChooser {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 Log.v(TAG, "MODE_NIGHT_YES (Dark Theme)");
                 return true;
+            case AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM:
             case AppCompatDelegate.MODE_NIGHT_AUTO:
                 //Log.v(TAG, "MODE_NIGHT_AUTO");
                 int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
