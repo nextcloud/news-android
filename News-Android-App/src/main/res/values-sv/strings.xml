@@ -82,7 +82,7 @@
     <string name="action_feed_remove">Ta bort Feed</string>
     <string name="action_feed_rename">Döp om Feed</string>
     <string name="action_feed_move">Flytta flöde</string>
-    <string name="feed_remove_button">Radera</string>
+    <string name="feed_remove_button">Ta bort</string>
     <string name="feed_rename_button">Byt namn</string>
     <string name="confirm_feed_remove">Vill du verkligen ta bort denna Feed? Det kan inte ångras!</string>
     <string name="feed_move_list_description">Välj mapp för att flytta flöde till</string>
