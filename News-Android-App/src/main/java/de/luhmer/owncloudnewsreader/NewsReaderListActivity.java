@@ -521,7 +521,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (newItemsCount > 0) {
 			int firstVisiblePosition = getNewsReaderDetailFragment().getFirstVisibleScrollPosition();
 
-			//Only show the update snackbar if scrollposition is not top.
+			// Only show the update snackbar if scrollposition is not top.
 			// 0 if scrolled all the way up
 			// 1 if no items are visible right now (e.g. first sync)
 			if (firstVisiblePosition == 0 || firstVisiblePosition == -1) {
@@ -530,6 +530,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				showSnackbar(newItemsCount);
 			}
 			return true;
+		} else {
+			// update rss view even if no new items are available
+			// If the user just finished reading some articles (e.g. all unread items) - he most
+			// likely wants  the read articles to be removed when the sync is finished
+			updateCurrentRssView();
 		}
 		return false;
 	}
