@@ -31,7 +31,7 @@
 
     <!-- Action Bar Items -->
     <string name="action_starred">Destacado</string>
-    <string name="action_read">Leer</string>
+    <string name="action_read">Leído</string>
     <string name="action_playPodacst">Reproducir podcast</string>
     <string name="action_openInBrowser">Abrir en el navegador</string>
     <string name="action_Share">Compartir</string>
