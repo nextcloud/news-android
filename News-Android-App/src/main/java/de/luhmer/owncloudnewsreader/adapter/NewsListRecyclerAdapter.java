@@ -250,7 +250,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
     public void changeReadStateOfItem(ViewHolder viewHolder, boolean isChecked) {
         RssItem rssItem = viewHolder.getRssItem();
-        if (rssItem.getRead_temp() != isChecked) { //Only perform database operations if really needed
+        if (rssItem.getRead_temp() != isChecked) { // Only perform database operations if really needed
             rssItem.setRead_temp(isChecked);
             dbConn.updateRssItem(rssItem);
 
@@ -273,12 +273,14 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
         RssItem rssItem = viewHolder.getRssItem();
         boolean isStarred = !rssItem.getStarred_temp();
         rssItem.setStarred_temp(isStarred);
+
         if (isStarred) {
             changeReadStateOfItem(viewHolder, true);
-        } else {
-            dbConn.updateRssItem(rssItem);
-            pDelayHandler.delayTimer();
         }
+
+        dbConn.updateRssItem(rssItem);
+        pDelayHandler.delayTimer();
+
         viewHolder.setStarred(isStarred);
     }
 
