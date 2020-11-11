@@ -14,7 +14,6 @@ import java.util.List;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.model.OcsUser;
 
 /**
  * Created by david on 24.05.17.
@@ -38,7 +37,6 @@ public class NextcloudNewsDeserializer<T> implements JsonDeserializer<List<T>> {
         JsonArray jArr = json.getAsJsonObject().getAsJsonArray(mKey);
 
         List<T> items = new ArrayList<>();
-        //Gson gson = getGson();
         for(int i = 0; i < jArr.size(); i++) {
             if(mType == Folder.class) {
                 items.add((T) parseFolder(jArr.get(i).getAsJsonObject()));
@@ -46,51 +44,18 @@ public class NextcloudNewsDeserializer<T> implements JsonDeserializer<List<T>> {
                 items.add((T) parseFeed(jArr.get(i).getAsJsonObject()));
             } else if(mType == RssItem.class) {
                 items.add((T) InsertRssItemIntoDatabase.parseItem(jArr.get(i).getAsJsonObject()));
-            } else if(mType == OcsUser.class) {
-                items.add((T) this.parseOcsUser(jArr.get(i).getAsJsonObject()));
             }
-
-            //items.add(gson.fromJson(jArr.get(i), mType));
         }
 
         return items;
     }
 
-    /*
-    private Gson getGson() {
-        return new GsonBuilder()
-                // Register an adapter to manage the date types as long values
-                .registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
-                    public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-                        return new Date(json.getAsJsonPrimitive().getAsLong());
-                    }
-                })
-                .create();
-    }
-    */
 
-    private static OcsUser parseOcsUser(JsonObject obj) {
-        OcsUser ocsUser = new OcsUser();
-        JsonElement data = obj.get("ocs").getAsJsonObject().get("data");
-        if (!data.isJsonNull()) {
-            JsonObject user = data.getAsJsonObject();
-            if (user.has("id")) {
-                ocsUser.setId(user.get("id").getAsString());
-            }
-            if (user.has("displayname")) {
-                ocsUser.setDisplayName(user.get("displayname").getAsString());
-            }
-        }
-        return ocsUser;
-    }
-
-    private Folder parseFolder(JsonObject e)
-    {
+    private Folder parseFolder(JsonObject e) {
         return new Folder(e.get("id").getAsLong(), getNullAsEmptyString(e.get("name")));
     }
 
-    private Feed parseFeed(JsonObject e)
-    {
+    private Feed parseFeed(JsonObject e) {
         String faviconLink = getNullAsEmptyString(e.get("faviconLink"));
         if(faviconLink != null)
             if(faviconLink.equals("null") || faviconLink.trim().equals(""))
