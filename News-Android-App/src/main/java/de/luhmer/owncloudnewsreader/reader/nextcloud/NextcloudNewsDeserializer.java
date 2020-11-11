@@ -14,23 +14,24 @@ import java.util.List;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.model.OcsUser;
 
 /**
  * Created by david on 24.05.17.
  */
 
-public class NextcloudDeserializer<T> implements JsonDeserializer<List<T>> {
+public class NextcloudNewsDeserializer<T> implements JsonDeserializer<List<T>> {
 
     private final String mKey;
     private final Class<T> mType;
 
 
-    public NextcloudDeserializer(String key, Class<T> type) {
+    public NextcloudNewsDeserializer(String key, Class<T> type) {
         this.mKey = key;
         this.mType = type;
     }
 
-    public static final String TAG = NextcloudDeserializer.class.getCanonicalName();
+    public static final String TAG = NextcloudNewsDeserializer.class.getCanonicalName();
 
     @Override
     public List<T> deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException {
@@ -45,6 +46,8 @@ public class NextcloudDeserializer<T> implements JsonDeserializer<List<T>> {
                 items.add((T) parseFeed(jArr.get(i).getAsJsonObject()));
             } else if(mType == RssItem.class) {
                 items.add((T) InsertRssItemIntoDatabase.parseItem(jArr.get(i).getAsJsonObject()));
+            } else if(mType == OcsUser.class) {
+                items.add((T) this.parseOcsUser(jArr.get(i).getAsJsonObject()));
             }
 
             //items.add(gson.fromJson(jArr.get(i), mType));
@@ -66,6 +69,20 @@ public class NextcloudDeserializer<T> implements JsonDeserializer<List<T>> {
     }
     */
 
+    private static OcsUser parseOcsUser(JsonObject obj) {
+        OcsUser ocsUser = new OcsUser();
+        JsonElement data = obj.get("ocs").getAsJsonObject().get("data");
+        if (!data.isJsonNull()) {
+            JsonObject user = data.getAsJsonObject();
+            if (user.has("id")) {
+                ocsUser.setId(user.get("id").getAsString());
+            }
+            if (user.has("displayname")) {
+                ocsUser.setDisplayName(user.get("displayname").getAsString());
+            }
+        }
+        return ocsUser;
+    }
 
     private Folder parseFolder(JsonObject e)
     {
@@ -81,7 +98,14 @@ public class NextcloudDeserializer<T> implements JsonDeserializer<List<T>> {
 
         Feed feed = new Feed();
         feed.setId(e.get("id").getAsLong());
-        feed.setFolderId(e.get("folderId").getAsLong());
+
+        JsonElement folderId = e.get("folderId");
+        if(folderId.isJsonNull()) {
+            feed.setFolderId(0L);
+        } else {
+            feed.setFolderId(folderId.getAsLong());
+        }
+
         feed.setFaviconUrl(faviconLink);
 
         //Possible XSS fields

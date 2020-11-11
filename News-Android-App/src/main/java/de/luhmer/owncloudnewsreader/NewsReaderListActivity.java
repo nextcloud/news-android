@@ -512,7 +512,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		UpdateItemList();
 		updatePodcastView();
 
-		if(mApi.getAPI() != null) {
+		if(mApi.getNewsAPI() != null) {
             getSlidingListFragment().startAsyncTaskGetUserInfo();
         }
 
@@ -914,7 +914,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				}
 				int type = 0; // the type of the query (Feed: 0, Folder: 1, Starred: 2, All: 3)
 
-				List<RssItem> buffer = mApi.getAPI().items(100, offset, type, feedId, true, false).execute().body();
+				List<RssItem> buffer = mApi.getNewsAPI().items(100, offset, type, feedId, true, false).execute().body();
 				RssItemObservable.performDatabaseBatchInsert(dbConn, buffer);
 			}
 		})

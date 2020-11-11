@@ -20,6 +20,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.DialogFragment;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,7 +29,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import androidx.fragment.app.DialogFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -232,7 +233,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
 
                 Map<String, String> paramMap = new LinkedHashMap<>();
                 paramMap.put("feedTitle", mFeedName.getText().toString());
-                mApi.getAPI().renameFeed(feedId, paramMap)
+                mApi.getNewsAPI().renameFeed(feedId, paramMap)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Action() {
@@ -275,7 +276,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
                 getDialog().setCanceledOnTouchOutside(false);
 
 
-                mApi.getAPI().deleteFeed(feedId)
+                mApi.getNewsAPI().deleteFeed(feedId)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Action() {
@@ -337,7 +338,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
 
                 Map<String, Long> paramMap = new LinkedHashMap<>();
                 paramMap.put("folderId", folder.getId());
-                mApi.getAPI().moveFeed(mFeedId, paramMap)
+                mApi.getNewsAPI().moveFeed(mFeedId, paramMap)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Action() {

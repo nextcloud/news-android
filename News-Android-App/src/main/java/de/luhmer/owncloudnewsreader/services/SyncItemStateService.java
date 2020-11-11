@@ -63,7 +63,7 @@ public class SyncItemStateService extends JobIntentService {
 
 	@Override
 	protected void onHandleWork(Intent intent) {
-		if(mApi.getAPI() == null) {
+		if(mApi.getNewsAPI() == null) {
 			Log.w(TAG, "API is not initialized");
 			return;
 		}
@@ -71,7 +71,7 @@ public class SyncItemStateService extends JobIntentService {
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
         try {
-            boolean success = ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
+            boolean success = ItemStateSync.PerformItemStateSync(mApi.getNewsAPI(), dbConn);
             Log.v(TAG, "SyncItemStateService finished. Success: " + success);
         } catch (IOException e) {
             e.printStackTrace();

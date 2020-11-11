@@ -8,7 +8,6 @@ import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.model.NextcloudNewsVersion;
 import de.luhmer.owncloudnewsreader.model.NextcloudStatus;
-import de.luhmer.owncloudnewsreader.model.UserInfo;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
@@ -29,21 +28,15 @@ import retrofit2.http.Streaming;
  */
 
 
-public interface API {
+public interface NewsAPI {
 
     String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
-
-    /** Since 6.0.5 **/
-    @GET("user")
-    Observable<UserInfo> user();
-
 
     @GET("status")
     Observable<NextcloudStatus> status();
 
     @GET("version")
     Observable<NextcloudNewsVersion> version();
-
 
     /** FOLDERS **/
     @GET("folders")
@@ -104,7 +97,5 @@ public interface API {
 
     @PUT("items/unstar/multiple")
     Call<Void> markItemsUnstarred(@Body ItemMap itemMap);
-
-
 
 }

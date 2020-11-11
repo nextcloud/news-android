@@ -46,6 +46,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -63,8 +66,6 @@ import java.net.URL;
 
 import javax.inject.Inject;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -377,7 +378,7 @@ public class LoginDialogActivity extends AppCompatActivity {
     }
 
     private void finishLogin(final ProgressDialog dialogLogin) {
-        mApi.getAPI().version()
+        mApi.getNewsAPI().version()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<NextcloudNewsVersion>() {

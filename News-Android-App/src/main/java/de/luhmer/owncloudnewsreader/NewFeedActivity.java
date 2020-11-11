@@ -22,6 +22,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
@@ -47,13 +54,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -66,7 +66,6 @@ import de.luhmer.owncloudnewsreader.helper.OpmlXmlParser;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.helper.URLConnectionReader;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
-import io.reactivex.functions.Consumer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -282,7 +281,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
                 final HashMap<String, Long> existingFolders = new HashMap<>();
 
-                mApi.getAPI().folders().blockingSubscribe(folders -> {
+                mApi.getNewsAPI().folders().blockingSubscribe(folders -> {
                     for(Folder folder : folders) {
                         existingFolders.put(folder.getLabel(), folder.getId());
                     }
@@ -298,13 +297,13 @@ public class NewFeedActivity extends AppCompatActivity {
                             //mApi.getAPI().createFolder(foldername) // HttpJsonRequest.getInstance().performCreateFolderRequest(api.getFolderUrl(), folderName);
                             final Map<String, Object> folderMap = new HashMap<>(2);
                             folderMap.put("name", folderName);
-                            Folder folder = mApi.getAPI().createFolder(folderMap).execute().body().get(0);
+                            Folder folder = mApi.getNewsAPI().createFolder(folderMap).execute().body().get(0);
                             //TODO test this!!!
                             existingFolders.put(folder.getLabel(), folder.getId()); //Add folder to list of existing folder in order to prevent that the method tries to create it multiple times
                         }
                     }
 
-                    Feed feed = mApi.getAPI().createFeed(feedUrl, folderId).execute().body().get(0);
+                    Feed feed = mApi.getNewsAPI().createFeed(feedUrl, folderId).execute().body().get(0);
                     Log.v(TAG, "New Feed-ID: " + feed.getId());
                 }
             } catch (Exception e) {
@@ -381,7 +380,7 @@ public class NewFeedActivity extends AppCompatActivity {
             // perform the user login attempt.
             showProgress(true);
 
-            mApi.getAPI().createFeed(urlToFeed, folder.getId()).enqueue(new Callback<List<Feed>>() {
+            mApi.getNewsAPI().createFeed(urlToFeed, folder.getId()).enqueue(new Callback<List<Feed>>() {
                 @Override
                 public void onResponse(Call<List<Feed>> call, final Response<List<Feed>> response) {
                     runOnUiThread(() -> {

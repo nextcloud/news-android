@@ -20,7 +20,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.NewsAPI;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import retrofit2.NextcloudRetrofitApiBuilder;
 
@@ -59,7 +59,7 @@ public class TestApiProvider extends ApiProvider {
         }
 
         NextcloudAPI nextcloudAPI = new NextcloudAPI(GsonConfig.GetGson(), networkRequestSpy);
-        mApi = new NextcloudRetrofitApiBuilder(nextcloudAPI, API.mApiEndpoint).create(API.class);
+        mNewsApi = new NextcloudRetrofitApiBuilder(nextcloudAPI, NewsAPI.mApiEndpoint).create(NewsAPI.class);
     }
 
 

@@ -10,7 +10,6 @@ import android.content.SyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -112,7 +111,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
     // Start sync
     private void sync() {
-        if(mApi.getAPI() == null) {
+        if(mApi.getNewsAPI() == null) {
             throwException(new IllegalStateException("API is NOT initialized"));
             Log.e(TAG, "API is NOT initialized..");
             return;
@@ -128,7 +127,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
                     public void subscribe(Subscriber<? super Boolean> s) {
                         Log.v(TAG, "(rssStateSync) subscribe() called with: s = [" + s + "] [" + Thread.currentThread().getName() + "]");
                         try {
-                            boolean success = ItemStateSync.PerformItemStateSync(mApi.getAPI(), dbConn);
+                            boolean success = ItemStateSync.PerformItemStateSync(mApi.getNewsAPI(), dbConn);
                             s.onNext(success);
                             s.onComplete();
                         } catch(Exception ex) {
@@ -139,12 +138,12 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
         // First sync Feeds and Folders and rss item states (in parallel)
         Observable<List<Folder>> folderObservable = mApi
-                .getAPI()
+                .getNewsAPI()
                 .folders()
                 .subscribeOn(Schedulers.newThread());
 
         Observable<List<Feed>> feedsObservable = mApi
-                .getAPI()
+                .getNewsAPI()
                 .feeds()
                 .subscribeOn(Schedulers.newThread());
 
@@ -180,7 +179,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
         // .observeOn(AndroidSchedulers.mainThread())
 
-        Observable.fromPublisher(new RssItemObservable(dbConn, mApi.getAPI(), mPrefs))
+        Observable.fromPublisher(new RssItemObservable(dbConn, mApi.getNewsAPI(), mPrefs))
                 .subscribeOn(Schedulers.newThread())
                 .blockingSubscribe(new Observer<Integer>() {
                     @Override

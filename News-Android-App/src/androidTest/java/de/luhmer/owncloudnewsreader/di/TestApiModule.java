@@ -19,7 +19,7 @@ import java.io.OutputStream;
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.model.UserInfo;
+import de.luhmer.owncloudnewsreader.model.OcsUser;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 
 import static com.nextcloud.android.sso.Constants.ACCOUNT_TYPE_PROD;
@@ -49,11 +49,7 @@ public class TestApiModule extends ApiModule {
                 ACCOUNT_TYPE_PROD
         );
 
-        UserInfo userInfo = new UserInfo.Builder()
-                .setUserId("1")
-                .setDisplayName(DUMMY_ACCOUNT_username)
-                .setAvatar(null)
-                .build();
+        OcsUser userInfo = new OcsUser("1", DUMMY_ACCOUNT_username);
 
         //SharedPreferences sharedPrefs = new MockSharedPreference();
         SharedPreferences sharedPrefs = application.getSharedPreferences(providesSharedPreferencesFileName(), Context.MODE_PRIVATE);

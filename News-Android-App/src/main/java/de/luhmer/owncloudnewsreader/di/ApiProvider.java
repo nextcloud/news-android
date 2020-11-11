@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
+
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
@@ -13,12 +16,11 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.VisibleForTesting;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
-import de.luhmer.owncloudnewsreader.reader.nextcloud.API;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.NewsAPI;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.OcsAPI;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import okhttp3.HttpUrl;
@@ -38,8 +40,11 @@ public class ApiProvider {
     private final MemorizingTrustManager mMemorizingTrustManager;
     protected final SharedPreferences mPrefs;
     protected Context context;
-    protected API mApi;
     private NextcloudAPI mNextcloudSsoApi;
+
+    protected NewsAPI mNewsApi;
+    private OcsAPI mServerApi;
+
 
 
     public ApiProvider(MemorizingTrustManager mtm, SharedPreferences sp, Context context) {
@@ -94,14 +99,15 @@ public class ApiProvider {
                 .client(client)
                 .build();
 
-        mApi = retrofit.create(API.class);
+        mNewsApi = retrofit.create(NewsAPI.class);
     }
 
     protected void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
         try {
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             mNextcloudSsoApi = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
-            mApi = new NextcloudRetrofitApiBuilder(mNextcloudSsoApi, API.mApiEndpoint).create(API.class);
+            mNewsApi = new NextcloudRetrofitApiBuilder(mNextcloudSsoApi, NewsAPI.mApiEndpoint).create(NewsAPI.class);
+            mServerApi = new NextcloudRetrofitApiBuilder(mNextcloudSsoApi, OcsAPI.mApiEndpoint).create(OcsAPI.class);
         } catch (SSOException e) {
             callback.onError(e);
         }
@@ -131,12 +137,16 @@ public class ApiProvider {
         ImageLoader.getInstance().init(config);
     }
 
-    public API getAPI() {
-        return mApi;
+    public NewsAPI getNewsAPI() {
+        return mNewsApi;
+    }
+
+    public OcsAPI getServerAPI() {
+        return mServerApi;
     }
 
     @VisibleForTesting
-    public void setAPI(API api) {
-        this.mApi = api;
+    public void setAPI(NewsAPI newsApi) {
+        this.mNewsApi = newsApi;
     }
 }

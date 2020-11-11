@@ -24,12 +24,10 @@ package de.luhmer.owncloudnewsreader;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
@@ -44,11 +42,9 @@ import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
-
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -67,7 +63,7 @@ import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.AbstractItem;
 import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
-import de.luhmer.owncloudnewsreader.model.UserInfo;
+import de.luhmer.owncloudnewsreader.model.OcsUser;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -253,7 +249,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         footerNavigation.setNavigationItemSelectedListener(item -> {
             switch(item.getItemId()) {
                 case R.id.action_add_new_feed:
-                    if(mApi.getAPI() != null) {
+                    if(mApi.getNewsAPI() != null) {
                         Intent newFeedIntent = new Intent(getContext(), NewFeedActivity.class);
                         getActivity().startActivityForResult(newFeedIntent, NewsReaderListActivity.RESULT_ADD_NEW_FEED);
                     } else {
@@ -341,21 +337,21 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     }
 
     public void startAsyncTaskGetUserInfo() {
-        mApi.getAPI().user()
+        mApi.getServerAPI().user()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<UserInfo>() {
+                .subscribe(new Observer<OcsUser>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(@NonNull UserInfo userInfo) {
+                    public void onNext(@NonNull OcsUser userInfo) {
                         Log.d(TAG, "onNext() called with: userInfo = [" + userInfo + "]");
 
                         try {
-                            String userInfoAsString = NewsReaderListFragment.toString(userInfo);
+                            String userInfoAsString = NewsReaderListFragment.toString((Serializable) userInfo);
                             //Log.v(TAG, userInfoAsString);
                             mPrefs.edit().putString(USER_INFO_STRING, userInfoAsString).apply();
                         } catch (IOException e) {
@@ -400,13 +396,14 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         urlTextView.setText(mOc_root_path_without_protocol);
 
         String uInfo = mPrefs.getString(USER_INFO_STRING, null);
-        if(uInfo == null)
+        if(uInfo == null) {
             return;
+        }
 
         try {
-            UserInfo userInfo = (UserInfo) fromString(uInfo);
-            if (userInfo.displayName != null)
-                userTextView.setText(userInfo.displayName);
+            OcsUser userInfo = (OcsUser) fromString(uInfo);
+            if (userInfo.getDisplayName() != null)
+                userTextView.setText(userInfo.getDisplayName());
             final int placeHolder = R.mipmap.ic_launcher;
             DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
                     .displayer(new CircleBitmapDisplayer())
@@ -416,14 +413,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                     .cacheOnDisk(true)
                     .cacheInMemory(true)
                     .build();
-            String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.userId) + "/64";
-            ImageLoader.getInstance().displayImage(avatarUrl, this.headerLogo, displayImageOptions);
-            if (userInfo.avatar != null) {
-                Resources r = getResources();
-                float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, r.getDisplayMetrics());
-                RoundedBitmapDisplayer.RoundedDrawable roundedAvatar =
-                        new RoundedBitmapDisplayer.RoundedDrawable(userInfo.avatar, (int) px, 0);
-                headerLogo.setImageDrawable(roundedAvatar);
+
+            if(userInfo.getId() != null) {
+                String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
+                ImageLoader.getInstance().displayImage(avatarUrl, this.headerLogo, displayImageOptions);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

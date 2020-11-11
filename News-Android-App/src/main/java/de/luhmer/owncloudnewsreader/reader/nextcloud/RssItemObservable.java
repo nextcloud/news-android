@@ -36,14 +36,14 @@ import okio.BufferedSource;
 public class RssItemObservable implements Publisher<Integer> {
 
     private DatabaseConnectionOrm mDbConn;
-    private API mApi;
+    private NewsAPI mNewsApi;
     private SharedPreferences mPrefs;
     private static final String TAG = RssItemObservable.class.getCanonicalName();
     private static int maxSizePerSync = 300;
 
-    public RssItemObservable(DatabaseConnectionOrm dbConn, API api, SharedPreferences prefs) {
+    public RssItemObservable(DatabaseConnectionOrm dbConn, NewsAPI newsApi, SharedPreferences prefs) {
         this.mDbConn = dbConn;
-        this.mApi = api;
+        this.mNewsApi = newsApi;
         this.mPrefs = prefs;
     }
 
@@ -80,7 +80,7 @@ public class RssItemObservable implements Publisher<Integer> {
 
             do {
                 Log.v(TAG, "offset=" + offset + ",  requestCount=" + requestCount + "");
-                List<RssItem> buffer = (mApi.items(maxSyncSize, offset, Integer.parseInt(FeedItemTags.ALL.toString()), 0, false, true).execute().body());
+                List<RssItem> buffer = (mNewsApi.items(maxSyncSize, offset, Integer.parseInt(FeedItemTags.ALL.toString()), 0, false, true).execute().body());
 
                 requestCount = 0;
                 if(buffer != null) {
@@ -103,7 +103,7 @@ public class RssItemObservable implements Publisher<Integer> {
 
             offset = 0;
             do {
-                List<RssItem> buffer = mApi.items(maxSyncSize, offset, Integer.parseInt(FeedItemTags.ALL_STARRED.toString()), 0, false, true).execute().body();
+                List<RssItem> buffer = mNewsApi.items(maxSyncSize, offset, Integer.parseInt(FeedItemTags.ALL_STARRED.toString()), 0, false, true).execute().body();
                 requestCount = 0;
                 if(buffer != null) {
                     requestCount = buffer.size();
@@ -125,7 +125,7 @@ public class RssItemObservable implements Publisher<Integer> {
             //long highestItemIdBeforeSync = mDbConn.getHighestItemId();
 
             //Get all updated items
-            mApi.updatedItems(lastModified, Integer.parseInt(FeedItemTags.ALL.toString()), 0)
+            mNewsApi.updatedItems(lastModified, Integer.parseInt(FeedItemTags.ALL.toString()), 0)
                     .flatMap((Function<ResponseBody, ObservableSource<RssItem>>) responseBody -> events(responseBody.source()))
                     .subscribe(new Observer<RssItem>() {
                         int totalUpdatedUnreadItemCount = 0;
