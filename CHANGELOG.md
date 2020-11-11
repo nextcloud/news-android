@@ -1,3 +1,12 @@
+0.9.9.50
+---------------------
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/880">#880 Starred items were not synchronized in certain situations</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/889">#889 Fast Access Functions activated on startup but settings deactivated</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/892">#892 Refresh unread items view after update</a>
+- Bug fix - <a href="https://github.com/nextcloud/news-android/issues/403">#403 Problem with syncing "old" favorites</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/issues/896">#896 Change User-Info API</a>
+
+
 0.9.9.41
 ---------------------
 - Bug fix - <a href="https://github.com/nextcloud/news-android/issues/887">#887 Fix crashes due to huge rss items</a>
@@ -31,7 +40,7 @@
 
 0.9.9.36
 ---------------------
-- Reduce min-api level to 17
+- Reduce min-newsApi level to 17
 
 
 0.9.9.35
@@ -243,7 +252,7 @@
 0.9.9.8 (Google Play)
 ---------------------
 - Fix several app crashes
-- Use flavors (for proprietary api calls)
+- Use flavors (for proprietary newsApi calls)
 
 
 0.9.9.7 (Google Play)
@@ -364,7 +373,7 @@
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/146">#146 add context menu on pressing long on an item</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/239">#239 Add support for OPML files import/export</a>
 - Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/343">#343 Mark as read only when scrolling past article</a>
-- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/374">#374 unread badge - teslaunread-api</a>
+- Improvement - <a href="https://github.com/owncloud/News-Android-App/issues/374">#374 unread badge - teslaunread-newsApi</a>
 - Security improvement (Prevent XSS)
 
 
