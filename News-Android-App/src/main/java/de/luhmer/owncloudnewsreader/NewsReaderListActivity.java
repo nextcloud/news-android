@@ -194,8 +194,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		initAccountManager();
 
-		//Init config --> if nothing is configured start the login dialog.
-		if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
+		// Init config --> if nothing is configured start the login dialog.
+		if (!isUserLoggedIn()) {
 			startLoginActivity();
 		}
 
@@ -275,7 +275,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
         // In case automatic theme selection based on time is selected, check if location permission
 		// for twilight manager is given.. otherwise request it
-        if(ThemeChooser.isAutoThemeSelectionEnabled() && ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+		if(isUserLoggedIn() && ThemeChooser.isAutoThemeSelectionEnabled() && ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         	ActivityCompat.requestPermissions(
 				this,
 				new String[]{ ACCESS_FINE_LOCATION },
@@ -283,6 +283,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			);
         }
     }
+
+    private boolean isUserLoggedIn() {
+		return (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) != null);
+	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
