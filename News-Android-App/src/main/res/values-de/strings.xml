@@ -42,10 +42,10 @@
     <string name="action_add_new_feed">Einen neuen Feed hinzufügen</string>
     <string name="action_textToSpeech">Vorlesen</string>
     <string name="action_search">Suchen</string>
-    <string name="action_download_articles_offline">Artikel zum offline-Lesen herunterladen.</string>
+    <string name="action_download_articles_offline">Artikel zum Offline-Lesen herunterladen</string>
     <!-- notifications -->
-    <string name="notification_download_articles_offline">Artikel zum offline-Lesen herunterladen.</string>
-    <string name="notification_download_images_offline">Lade Bilder zum offline-Lesen herunter</string>
+    <string name="notification_download_articles_offline">Lade Artikel zum Offline-Lesen herunter</string>
+    <string name="notification_download_images_offline">Lade Bilder zum Offline-Lesen herunter</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Sie haben %d neuen ungelesenen Eintrag</item>
         <item quantity="other">Sie haben %d neue ungelesene Einträge</item>
@@ -167,7 +167,7 @@
     <!-- Settings for About -->
     <string name="pref_header_about">Über</string>
     <string name="pref_license">Lizenz</string>
-    <string name="pref_license_summary">GNU Affero General Public Lizenz,(AGPL) version 3</string>
+    <string name="pref_license_summary">GNU Affero General Public Lizenz (AGPL) Version 3</string>
     <string name="pref_report_issue">Fehler melden</string>
     <string name="pref_report_issue_summary">Erfordert ein (kostenloses) GitHub-Konto</string>
     <string name="pref_contribute">Mitmachen!</string>
