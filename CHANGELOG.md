@@ -1,3 +1,8 @@
+0.9.9.51
+---------------------
+- Version bump for another Google review
+
+
 0.9.9.50
 ---------------------
 - Bug fix - <a href="https://github.com/nextcloud/news-android/issues/880">#880 Starred items were not synchronized in certain situations</a>
