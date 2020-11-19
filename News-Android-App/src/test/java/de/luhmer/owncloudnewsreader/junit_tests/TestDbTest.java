@@ -1,3 +1,4 @@
+/*
 package de.luhmer.owncloudnewsreader.junit_tests;
 
 import org.junit.Before;
@@ -75,3 +76,4 @@ public class TestDbTest {
         return sb.toString();
     }
 }
+*/
