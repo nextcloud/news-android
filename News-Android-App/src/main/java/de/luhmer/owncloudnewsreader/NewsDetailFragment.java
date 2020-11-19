@@ -102,13 +102,14 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         // Retain this fragment across configuration changes.
         setRetainInstance(true);
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
         resumeCurrentPage();
+
+        registerForContextMenu(mWebView);
     }
 
     @Override
@@ -310,8 +311,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         syncIncognitoState();
 
-        registerForContextMenu(mWebView);
-
         mWebView.setWebChromeClient(new ProgressBarWebChromeClient(mProgressbarWebView));
 
         mWebView.setWebViewClient(new WebViewClient() {
@@ -417,12 +416,16 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
 
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
-        if (!(view instanceof WebView))
+	    if (!(view instanceof WebView)) {
+            Log.w(TAG, "onCreateContextMenu - no webview reference found");
             return;
+        }
 
         WebView.HitTestResult result = ((WebView) view).getHitTestResult();
-        if (result == null)
+        if (result == null) {
+            Log.d(TAG, "onCreateContextMenu - no webview hit result");
             return;
+        }
 
         int type = result.getType();
         Document htmlDoc = Jsoup.parse(html);
