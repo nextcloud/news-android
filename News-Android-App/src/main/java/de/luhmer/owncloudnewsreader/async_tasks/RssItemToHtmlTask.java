@@ -173,21 +173,24 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         builder.append("<div id=\"top_section\">");
         builder.append(String.format("<div id=\"header\" class=\"%s\">", body_id));
-        String feedTitle = Html.escapeHtml(rssItem.getTitle());
+        String itemTitle = Html.escapeHtml(rssItem.getTitle());
         String linkToFeed = Html.escapeHtml(rssItem.getLink());
-        builder.append(String.format("<a href=\"%s\">%s</a>", linkToFeed, feedTitle));
+        builder.append(String.format("<a href=\"%s\">%s</a>", linkToFeed, itemTitle));
         builder.append("</div>");
 
-        String authorOfArticle = Html.escapeHtml(rssItem.getAuthor());
-        if (!"".equals(authorOfArticle)) { // If author is not empty, append him/her
-            feedTitle += " - " + authorOfArticle.trim();
+        String authorLine = Html.escapeHtml(rssItem.getAuthor());
+        if ("".equals(authorLine)) { // If author is empty, use name of feed instead
+            Feed feed = rssItem.getFeed();
+            if (feed != null) {
+                authorLine = feed.getFeedTitle();
+            }
         }
 
         builder.append("<div id=\"header_small_text\">");
 
         builder.append("<div id=\"subscription\">");
         builder.append(String.format("<img id=\"imgFavicon\" src=\"%s\" />", favIconUrl));
-        builder.append(feedTitle.trim());
+        builder.append(authorLine.trim());
         builder.append("</div>");
 
         Date date = rssItem.getPubDate();
