@@ -130,8 +130,8 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Sort Order</string>
 
-    <string name="pref_general_sort_order_new_old">New -> Old</string>
-    <string name="pref_general_sort_order_old_new">Old -> New</string>
+    <string name="pref_general_sort_order_new_old">New → Old</string>
+    <string name="pref_general_sort_order_old_new">Old → New</string>
 
     <string-array name="pref_general_swipe_action" translatable="false">
         <item>@string/action_openInBrowser</item>
