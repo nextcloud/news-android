@@ -124,9 +124,6 @@
     <string name="pref_header_general">Genel</string>
     <string name="pref_title_general_sort_order">Sıralama</string>
 
-    <string name="pref_general_sort_order_new_old">Yeniden -> Eskiye</string>
-    <string name="pref_general_sort_order_old_new">Eskiden -> Yeniye</string>
-
     <string name="pref_rename_action_swipe_right">Sağa kaydırma işlemi</string>
     <string name="pref_rename_action_swipe_left">Sola kaydırma işlemi</string>
 

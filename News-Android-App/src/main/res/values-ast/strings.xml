@@ -70,9 +70,6 @@
     <string name="pref_header_general">Xeneral</string>
     <string name="pref_title_general_sort_order">Ordenar</string>
 
-    <string name="pref_general_sort_order_new_old">Nuevu -&gt; Vieyu</string>
-    <string name="pref_general_sort_order_old_new">Vieyu -&gt; Nuevu</string>
-
     <string name="pref_general_search_in_title">Títulu</string>
     <string name="dialog_clearing_cache">Llimpiando caché</string>
     <string name="dialog_clearing_cache_please_wait">Llimpiando cache... Por favor espera</string>

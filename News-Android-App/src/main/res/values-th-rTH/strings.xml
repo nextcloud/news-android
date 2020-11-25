@@ -91,9 +91,6 @@
     <string name="pref_header_general">ทั่วไป</string>
     <string name="pref_title_general_sort_order">เรียงลำดับรายการ</string>
 
-    <string name="pref_general_sort_order_new_old">ใหม่ -&gt; เก่า</string>
-    <string name="pref_general_sort_order_old_new">เก่า -&gt; ใหม่</string>
-
     <string name="pref_general_search_in_title">ชื่อเรื่อง</string>
     <string name="dialog_clearing_cache">กำลังล้างแคช</string>
     <string name="dialog_clearing_cache_please_wait">กำลังล้างแคช ... โปรดรอสักครู่</string>

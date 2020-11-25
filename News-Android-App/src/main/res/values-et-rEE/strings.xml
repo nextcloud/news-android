@@ -86,9 +86,6 @@
     <string name="pref_header_general">Üldine</string>
     <string name="pref_title_general_sort_order">Sorteerimise järjekord</string>
 
-    <string name="pref_general_sort_order_new_old">Uus -&gt; Vana</string>
-    <string name="pref_general_sort_order_old_new">Vana -&gt; Uus</string>
-
     <string name="pref_general_search_in_title">Pealkiri</string>
     <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
     <string name="dialog_clearing_cache_please_wait">Vahemälu tühjendamine... palun oota</string>

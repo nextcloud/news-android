@@ -134,9 +134,6 @@
     <string name="pref_header_general">Obecné</string>
     <string name="pref_title_general_sort_order">Pořadí řazení</string>
 
-    <string name="pref_general_sort_order_new_old">Nové -> staré</string>
-    <string name="pref_general_sort_order_old_new">Staré -> nové</string>
-
     <string name="pref_rename_action_swipe_right">Akce při přejetí prstem doprava</string>
     <string name="pref_rename_action_swipe_left">Akce při přejetí prstem doleva</string>
 

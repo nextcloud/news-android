@@ -96,9 +96,6 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Cirterio para ordenar</string>
 
-    <string name="pref_general_sort_order_new_old">Nuevo -> Anterior</string>
-    <string name="pref_general_sort_order_old_new">Anterior -> Nuevo</string>
-
     <string name="pref_general_search_in_title">Título</string>
     <string name="dialog_clearing_cache">Limpiando el caché</string>
     <string name="dialog_clearing_cache_please_wait">Limpiando el caché... Por favor aguarda.</string>

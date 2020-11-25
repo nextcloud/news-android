@@ -93,9 +93,6 @@
     <string name="pref_header_general">Umum</string>
     <string name="pref_title_general_sort_order">Urutan</string>
 
-    <string name="pref_general_sort_order_new_old">Baru -&gt; Lawas</string>
-    <string name="pref_general_sort_order_old_new">Lawas -&gt; Baru</string>
-
     <string name="pref_general_search_in_title">Judul</string>
     <string name="dialog_clearing_cache">Membersihkan cache</string>
     <string name="dialog_clearing_cache_please_wait">Membersihkan cache... Mohon tunggu.</string>

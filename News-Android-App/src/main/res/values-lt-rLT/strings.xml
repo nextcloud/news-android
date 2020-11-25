@@ -125,9 +125,6 @@
     <string name="pref_header_general">Bendras</string>
     <string name="pref_title_general_sort_order">Rikiavimo tvarka</string>
 
-    <string name="pref_general_sort_order_new_old">Nauji -> Seni</string>
-    <string name="pref_general_sort_order_old_new">Seni -> Nauji</string>
-
     <string name="pref_rename_action_swipe_right">Veiksmas perbraukiant dešinėn</string>
     <string name="pref_rename_action_swipe_left">Veiksmas perbraukiant kairėn</string>
 

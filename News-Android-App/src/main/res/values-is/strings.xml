@@ -124,9 +124,6 @@
     <string name="pref_header_general">Almennt</string>
     <string name="pref_title_general_sort_order">Röðun</string>
 
-    <string name="pref_general_sort_order_new_old">Nýrra -> Eldra</string>
-    <string name="pref_general_sort_order_old_new">Eldra -> Nýrra</string>
-
     <string name="pref_rename_action_swipe_right">Aðgerð þegar strokið er til hægri</string>
     <string name="pref_rename_action_swipe_left">Aðgerð þegar strokið er til vinstri</string>
 

@@ -124,9 +124,6 @@
     <string name="pref_header_general">عمومی</string>
     <string name="pref_title_general_sort_order">ترتیب چینش</string>
 
-    <string name="pref_general_sort_order_new_old">جدید -> قدیم</string>
-    <string name="pref_general_sort_order_old_new">قدیم -> جدید</string>
-
     <string name="pref_rename_action_swipe_right">هنگام حرکت به سمت راست ، اقدام کنید</string>
     <string name="pref_rename_action_swipe_left">هنگام حرکت به سمت چپ ، اقدام کنید</string>
 

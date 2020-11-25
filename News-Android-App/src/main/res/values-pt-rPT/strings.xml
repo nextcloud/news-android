@@ -117,9 +117,6 @@
     <string name="pref_header_general">Geral</string>
     <string name="pref_title_general_sort_order">Ordem da ordenação</string>
 
-    <string name="pref_general_sort_order_new_old">Novo -> Antigo</string>
-    <string name="pref_general_sort_order_old_new">Antigo -> Novo</string>
-
     <string name="pref_title_general_search_in">Pesquisar em</string>
 
     <string name="pref_general_search_in_title">Título</string>

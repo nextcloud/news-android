@@ -118,9 +118,6 @@
     <string name="pref_header_general">일반</string>
     <string name="pref_title_general_sort_order">정렬 순서</string>
 
-    <string name="pref_general_sort_order_new_old">새 항목 -&gt; 오래된 항목</string>
-    <string name="pref_general_sort_order_old_new">오래된 항목 -&gt; 새 항목</string>
-
     <string name="pref_rename_action_swipe_right">오른쪽으로 밀었을 때의 동작</string>
     <string name="pref_rename_action_swipe_left">왼쪽으로 밀었을 때의 동작</string>
 

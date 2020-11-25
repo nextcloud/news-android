@@ -104,9 +104,6 @@
     <string name="pref_header_general">Të përgjithshme</string>
     <string name="pref_title_general_sort_order">Radhë Renditjeje</string>
 
-    <string name="pref_general_sort_order_new_old">Të rinj -> Të vjetër</string>
-    <string name="pref_general_sort_order_old_new">Të vjetër -> Të rinj</string>
-
     <string name="pref_title_general_search_in">Kërkoni</string>
 
     <string name="pref_general_search_in_title">Titulli</string>

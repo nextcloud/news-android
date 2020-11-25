@@ -124,9 +124,6 @@
     <string name="pref_header_general">Xeral</string>
     <string name="pref_title_general_sort_order">Criterio de ordenación</string>
 
-    <string name="pref_general_sort_order_new_old">Novo -> Antigo</string>
-    <string name="pref_general_sort_order_old_new">Antigo -> Novo</string>
-
     <string name="pref_rename_action_swipe_right">Acción ao esvarar cara á dereita</string>
     <string name="pref_rename_action_swipe_left">Acción ao esvarar cara á esquerda</string>
 
