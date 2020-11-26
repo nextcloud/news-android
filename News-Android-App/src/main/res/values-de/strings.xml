@@ -124,6 +124,9 @@
     <string name="pref_header_general">Allgemein</string>
     <string name="pref_title_general_sort_order">Sortierung</string>
 
+    <string name="pref_general_sort_order_new_old">Neu → Alt</string>
+    <string name="pref_general_sort_order_old_new">Alt → Neu</string>
+
     <string name="pref_rename_action_swipe_right">Aktion beim Wischen nach rechts</string>
     <string name="pref_rename_action_swipe_left">Aktion beim Wischen nach links</string>
 

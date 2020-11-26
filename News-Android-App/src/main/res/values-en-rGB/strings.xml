@@ -124,6 +124,9 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Sort Order</string>
 
+    <string name="pref_general_sort_order_new_old">New → Old</string>
+    <string name="pref_general_sort_order_old_new">Old → New</string>
+
     <string name="pref_rename_action_swipe_right">Action when swiping right</string>
     <string name="pref_rename_action_swipe_left">Action when swiping left</string>
 

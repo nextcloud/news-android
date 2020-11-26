@@ -134,6 +134,9 @@
     <string name="pref_header_general">Ogólne</string>
     <string name="pref_title_general_sort_order">Sortuj w kolejności</string>
 
+    <string name="pref_general_sort_order_new_old">Nowe → Stare</string>
+    <string name="pref_general_sort_order_old_new">Stare → Nowe</string>
+
     <string name="pref_rename_action_swipe_right">Działanie po przesunięciu w prawo</string>
     <string name="pref_rename_action_swipe_left">Działanie po przesunięciu w lewo</string>
 

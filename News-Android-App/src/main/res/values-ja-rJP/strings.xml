@@ -119,6 +119,9 @@
     <string name="pref_header_general">一般</string>
     <string name="pref_title_general_sort_order">ソート順</string>
 
+    <string name="pref_general_sort_order_new_old">新しい → 古い</string>
+    <string name="pref_general_sort_order_old_new">古い → 新しい</string>
+
     <string name="pref_rename_action_swipe_right">右にスワイプしたときのアクション</string>
     <string name="pref_rename_action_swipe_left">左にスワイプしたときのアクション</string>
 

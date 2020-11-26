@@ -119,6 +119,9 @@
     <string name="pref_header_general">常规</string>
     <string name="pref_title_general_sort_order">排序</string>
 
+    <string name="pref_general_sort_order_new_old">新 → 旧</string>
+    <string name="pref_general_sort_order_old_new">旧 → 新</string>
+
     <string name="pref_rename_action_swipe_right">向右滑动时的操作</string>
     <string name="pref_rename_action_swipe_left">向左滑动时的操作</string>
 

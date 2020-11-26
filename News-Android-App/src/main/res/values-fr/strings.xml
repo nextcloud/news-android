@@ -124,6 +124,9 @@
     <string name="pref_header_general">Généraux</string>
     <string name="pref_title_general_sort_order">Ordre de tri</string>
 
+    <string name="pref_general_sort_order_new_old">Récent -> Ancien</string>
+    <string name="pref_general_sort_order_old_new">Ancien -> Récent</string>
+
     <string name="pref_rename_action_swipe_right">Action lors d\'un glisser vers la droite</string>
     <string name="pref_rename_action_swipe_left">Action lors d\'un glisser vers la gauche</string>
 
