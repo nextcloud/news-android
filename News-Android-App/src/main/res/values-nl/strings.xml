@@ -124,6 +124,9 @@
     <string name="pref_header_general">Algemeen</string>
     <string name="pref_title_general_sort_order">Sorteervolgorde</string>
 
+    <string name="pref_general_sort_order_new_old">Nieuw → Oud</string>
+    <string name="pref_general_sort_order_old_new">Oud → Nieuw</string>
+
     <string name="pref_rename_action_swipe_right">Actie bij rechts vegen</string>
     <string name="pref_rename_action_swipe_left">Actie bij links vegen</string>
 
