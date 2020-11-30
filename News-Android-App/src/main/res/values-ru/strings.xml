@@ -134,6 +134,9 @@
     <string name="pref_header_general">Основные</string>
     <string name="pref_title_general_sort_order">Порядок сортировки</string>
 
+    <string name="pref_general_sort_order_new_old">Новые → Старые</string>
+    <string name="pref_general_sort_order_old_new">Старые → Новые</string>
+
     <string name="pref_rename_action_swipe_right">Действие при смахивании вправо</string>
     <string name="pref_rename_action_swipe_left">Действие при смахивании влево</string>
 
