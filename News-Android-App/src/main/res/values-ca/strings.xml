@@ -124,6 +124,9 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Ordre</string>
 
+    <string name="pref_general_sort_order_new_old">Nou → Antic</string>
+    <string name="pref_general_sort_order_old_new">Antic → Nou</string>
+
     <string name="pref_rename_action_swipe_right">Acció amb un desplaçament cap a la dreta</string>
     <string name="pref_rename_action_swipe_left">Acció amb un desplaçament cap a l\'esquerra</string>
 
