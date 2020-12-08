@@ -134,6 +134,9 @@
     <string name="pref_header_general">Splošno</string>
     <string name="pref_title_general_sort_order">Način razvrščanja</string>
 
+    <string name="pref_general_sort_order_new_old">Novo → Staro</string>
+    <string name="pref_general_sort_order_old_new">Staro → Novo</string>
+
     <string name="pref_rename_action_swipe_right">Dejanje potega v desno</string>
     <string name="pref_rename_action_swipe_left">Dejanje potega v levo</string>
 
