@@ -1,3 +1,8 @@
+0.9.9.52
+---------------------
+- Version bump for another Google review
+
+
 0.9.9.51
 ---------------------
 - Version bump for another Google review

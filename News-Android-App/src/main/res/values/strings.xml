@@ -208,6 +208,8 @@
     <string name="pref_report_issue_summary">Requires a (free) GitHub account</string>
     <string name="pref_contribute">Contribute!</string>
     <string name="pref_contribute_summary">Get the source code</string>
+    <string name="pref_privacy">Privacy</string>
+    <string name="pref_privacy_summary">Nextcloud News Android Privacy Policy</string>
     <string name="pref_version">Nextcloud News Android app</string>
 
 
