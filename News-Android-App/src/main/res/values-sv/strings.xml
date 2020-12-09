@@ -124,9 +124,6 @@
     <string name="pref_header_general">Allmänt</string>
     <string name="pref_title_general_sort_order">Sorteringsordning</string>
 
-    <string name="pref_general_sort_order_new_old">Ny -> Gammal</string>
-    <string name="pref_general_sort_order_old_new">Gammal -> Ny</string>
-
     <string name="pref_rename_action_swipe_right">Åtgärd när du sveper åt höger</string>
     <string name="pref_rename_action_swipe_left">Åtgärd när du sveper åt vänster</string>
 

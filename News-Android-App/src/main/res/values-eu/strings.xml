@@ -124,9 +124,6 @@
     <string name="pref_header_general">Orokorra</string>
     <string name="pref_title_general_sort_order">Ordenatzeko irizpidea</string>
 
-    <string name="pref_general_sort_order_new_old">Berria -> zaharra</string>
-    <string name="pref_general_sort_order_old_new">Zaharra -> berria</string>
-
     <string name="pref_rename_action_swipe_right">Ekintza hatza eskuinera pasatzean</string>
     <string name="pref_rename_action_swipe_left">Ekintza hatza ezkerrera pasatzean</string>
 

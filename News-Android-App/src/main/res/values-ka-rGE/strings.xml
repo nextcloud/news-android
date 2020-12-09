@@ -96,9 +96,6 @@
     <string name="pref_header_general">ზოგადი</string>
     <string name="pref_title_general_sort_order">განლაგების თანმიმდევრობა</string>
 
-    <string name="pref_general_sort_order_new_old">ახალი -> ძველი</string>
-    <string name="pref_general_sort_order_old_new">ძველი -> ახალი</string>
-
     <string name="pref_general_search_in_title">სათაური</string>
     <string name="dialog_clearing_cache">კეშის გასუფთავება</string>
     <string name="dialog_clearing_cache_please_wait">კეში სუფთავდება... გთხოვთ მოითმინოთ.</string>

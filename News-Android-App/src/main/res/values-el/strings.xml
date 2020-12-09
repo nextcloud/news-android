@@ -124,9 +124,6 @@
     <string name="pref_header_general">Γενικά</string>
     <string name="pref_title_general_sort_order">Σειρά ταξινόμησης</string>
 
-    <string name="pref_general_sort_order_new_old">Νέα -> Παλιά </string>
-    <string name="pref_general_sort_order_old_new">Παλιά -> Νέα</string>
-
     <string name="pref_rename_action_swipe_right">Ενέργεια με κύληση δεξιά</string>
     <string name="pref_rename_action_swipe_left">Ενέργεια με κύληση αριστερά</string>
 

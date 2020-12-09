@@ -124,9 +124,6 @@
     <string name="pref_header_general">Általános</string>
     <string name="pref_title_general_sort_order">Rendezés iránya</string>
 
-    <string name="pref_general_sort_order_new_old">Új -> régi</string>
-    <string name="pref_general_sort_order_old_new">Régi -> új</string>
-
     <string name="pref_rename_action_swipe_right">Művelet jobbra sepréskor</string>
     <string name="pref_rename_action_swipe_left">Művelet balra sepréskor</string>
 

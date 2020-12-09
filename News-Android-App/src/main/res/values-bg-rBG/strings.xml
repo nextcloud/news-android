@@ -102,9 +102,6 @@
     <string name="pref_header_general">Общи</string>
     <string name="pref_title_general_sort_order">Сортиране</string>
 
-    <string name="pref_general_sort_order_new_old">Нови -> Стари</string>
-    <string name="pref_general_sort_order_old_new">Стари -> Нови </string>
-
     <string name="pref_title_general_search_in">Търсене в...</string>
 
     <string name="pref_general_search_in_title">Заглавието</string>

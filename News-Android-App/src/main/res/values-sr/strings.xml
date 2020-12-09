@@ -129,9 +129,6 @@
     <string name="pref_header_general">Опште</string>
     <string name="pref_title_general_sort_order">Сортирање</string>
 
-    <string name="pref_general_sort_order_new_old">Новији -> Старији</string>
-    <string name="pref_general_sort_order_old_new">Старији -> Новији</string>
-
     <string name="pref_rename_action_swipe_right">Радња при превлачењу у десно</string>
     <string name="pref_rename_action_swipe_left">Радња при превлачењу у лево</string>
 
