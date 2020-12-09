@@ -7,9 +7,9 @@ It is important to mention that all contents of the App may also be transmitted 
 
 Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.
 
-This App does not use these “cookies” explicitly. However, some websites that provide RSS feeds might use “cookies” to collect information and improve their services.
-The websites that the users subscribes to have their own consent dialogs so that users of this app can either accept or refuse these cookies on a per-page basis.
-If users do not want any websites to track them, they can enable the so called "Incognito Mode" inside the app which will block all tracking methods from third parties (no javascript / no cookies / no tracking-images).
+This App does not use these “cookies” explicitly. However, some websites that provide RSS feeds might use “cookies” to collect information to improve their services.
+The feeds that the user subscribes to have their own consent dialogs so that users of this app can either accept or refuse these cookies on a per-feed basis.
+If users do not want any feeds to track them, they can enable the so called "Incognito Mode" inside the app which will block all tracking methods from feeds (no cookies / no tracking-images).
 
 ----------
 
