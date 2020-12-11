@@ -172,6 +172,8 @@
     <string name="pref_report_issue_summary">Require unha conta (gratuíta) de GitHub</string>
     <string name="pref_contribute">Colabora!</string>
     <string name="pref_contribute_summary">Obteña o código fonte</string>
+    <string name="pref_privacy">Privacidade</string>
+    <string name="pref_privacy_summary">Diretiva de privacidade de Novas do Nextcloud para Android</string>
     <string name="pref_version">Apli Android para novas do Nextcloud</string>
 
 

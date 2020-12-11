@@ -167,6 +167,8 @@
     <string name="pref_report_issue_summary">请求一个(免费) GitHub 账号</string>
     <string name="pref_contribute">贡献！</string>
     <string name="pref_contribute_summary">获取源代码</string>
+    <string name="pref_privacy">隐私</string>
+    <string name="pref_privacy_summary">Nextcloud News 安卓版隐私政策</string>
     <string name="pref_version">Nextcloud News 安卓应用</string>
 
 

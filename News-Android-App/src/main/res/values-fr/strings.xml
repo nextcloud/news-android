@@ -172,6 +172,7 @@
     <string name="pref_report_issue_summary">Requiert un compte GitHub (gratuit)</string>
     <string name="pref_contribute">Contribuez !</string>
     <string name="pref_contribute_summary">Obtenir le code source</string>
+    <string name="pref_privacy">Vie privée</string>
     <string name="pref_version">Application Android NextCloud News</string>
 
 
