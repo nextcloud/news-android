@@ -119,6 +119,9 @@
     <string name="pref_header_general">一般</string>
     <string name="pref_title_general_sort_order">排序依據</string>
 
+    <string name="pref_general_sort_order_new_old">新 → 舊</string>
+    <string name="pref_general_sort_order_old_new">舊 → 新</string>
+
     <string name="pref_rename_action_swipe_right">往右滑的動作</string>
     <string name="pref_rename_action_swipe_left">往左滑的動作</string>
 
@@ -164,6 +167,8 @@
     <string name="pref_report_issue_summary">需要一個 (免費的) GitHub 帳戶</string>
     <string name="pref_contribute">貢獻</string>
     <string name="pref_contribute_summary">取得原始碼</string>
+    <string name="pref_privacy">隱私</string>
+    <string name="pref_privacy_summary">Nextcloud 新聞 Android 隱私政策</string>
     <string name="pref_version">Nextcloud News Android 應用程式</string>
 
 

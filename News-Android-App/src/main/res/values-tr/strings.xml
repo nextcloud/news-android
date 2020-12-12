@@ -172,6 +172,8 @@
     <string name="pref_report_issue_summary">Bir GitHub hesabınız olmalıdır (ücretsiz)</string>
     <string name="pref_contribute">Katkıda Bulunun!</string>
     <string name="pref_contribute_summary">Kaynak kodunu alın</string>
+    <string name="pref_privacy">Gizlilik</string>
+    <string name="pref_privacy_summary">Nextcloud Haberleri Android Kişisel Verilerin Gizliliği İlkesi</string>
     <string name="pref_version">Nextcloud Haberleri Android uygulaması</string>
 
 
