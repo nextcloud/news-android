@@ -32,7 +32,7 @@
     <string name="action_sync_settings">Paramètres de sincronizacion</string>
     <string name="action_add_new_feed">Apondre un flux novèl</string>
     <string name="action_textToSpeech">Legir a votz nauta</string>
-    <string name="action_search">Search</string>
+    <string name="action_search">Recercar</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">I a %d novèl article pas legit</item>
         <item quantity="other">I a %d novèls articles pas legits</item>
