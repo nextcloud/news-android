@@ -167,6 +167,8 @@
     <string name="pref_report_issue_summary">GitHub 계정 필수 (무료)</string>
     <string name="pref_contribute">기여하기!</string>
     <string name="pref_contribute_summary">소스 코드 얻기</string>
+    <string name="pref_privacy">개인 정보</string>
+    <string name="pref_privacy_summary">Nextcloud News 안드로이드 개인정보 보호정책</string>
     <string name="pref_version">Nextcloud News 안드로이드앱</string>
 
 

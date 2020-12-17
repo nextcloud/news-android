@@ -28,7 +28,7 @@
 
     <string name="tv_showing_cached_version">Pokazuję wersję z pamięci cache</string>
 
-    <string name="permission_req_location_twilight_title">Automatyczny Motyw Jasny/Ciemny</string>
+    <string name="permission_req_location_twilight_title">Automatyczny motyw Jasny/Ciemny</string>
     <string name="permission_req_location_twilight_text">Aby automatycznie przełączać się między jasnym i ciemnym motywem, konieczne jest podanie lokalizacji urządzeń w celu określenia czasu wschodu i zachodu słońca.</string>
 
     <!-- Action Bar Items -->
