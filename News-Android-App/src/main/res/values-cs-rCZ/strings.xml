@@ -146,7 +146,7 @@
     <string name="pref_general_search_in_body">Těle textu</string>
 
     <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
-    <string name="dialog_clearing_cache_please_wait">Mazání odkládací paměti… Chvíli strpení.</string>
+    <string name="dialog_clearing_cache_please_wait">Mazání mezipaměti… Chvíli strpení.</string>
     <string name="reset_cache_unsaved_changes">Existují nesesynchronizované změny. Přejete si přesto vyprázdnit mezipaměť?</string>
     <string name="warning">Varování</string>
     <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>
@@ -182,6 +182,7 @@
     <string name="pref_report_issue_summary">Vyžaduje účet na portálu GitHub (zdarma)</string>
     <string name="pref_contribute">Zapojení se</string>
     <string name="pref_contribute_summary">Získat zdrojové kódy</string>
+    <string name="pref_privacy">Soukromí</string>
     <string name="pref_version">Aplikace Nextcloud Novinky pro Android</string>
 
 
