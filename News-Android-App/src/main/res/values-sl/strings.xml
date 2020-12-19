@@ -183,6 +183,7 @@
     <string name="pref_contribute">Sodelujte!</string>
     <string name="pref_contribute_summary">Pridobi izvorno kodo</string>
     <string name="pref_privacy">Zasebnost</string>
+    <string name="pref_privacy_summary">Pravila zasebnosti programa Android Nextcloud News</string>
     <string name="pref_version">Program Nextcloud Novice</string>
 
 
