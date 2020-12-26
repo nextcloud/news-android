@@ -129,6 +129,9 @@
     <string name="pref_header_general">Опште</string>
     <string name="pref_title_general_sort_order">Сортирање</string>
 
+    <string name="pref_general_sort_order_new_old">Ново → Старо</string>
+    <string name="pref_general_sort_order_old_new">Старо → Ново</string>
+
     <string name="pref_rename_action_swipe_right">Радња при превлачењу у десно</string>
     <string name="pref_rename_action_swipe_left">Радња при превлачењу у лево</string>
 
@@ -174,6 +177,8 @@
     <string name="pref_report_issue_summary">Потребан је (бесплатни) Гитхаб налог</string>
     <string name="pref_contribute">Дајте допринос!</string>
     <string name="pref_contribute_summary">Узми изворни кôд</string>
+    <string name="pref_privacy">Приватност</string>
+    <string name="pref_privacy_summary">Политика приватности за Некстклауд Новости</string>
     <string name="pref_version">Андроид апликација за Некстклауд Вести</string>
 
 
