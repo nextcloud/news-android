@@ -26,6 +26,8 @@ android {
         testInstrumentationRunnerArguments clearPackageData: 'true'
 
         vectorDrawables.useSupportLibrary = true
+
+        multiDexEnabled true
     }
 
     testOptions {
@@ -35,6 +37,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     buildTypes {
@@ -188,6 +191,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
 
     implementation 'com.nbsp:library:1.8' // MaterialFilePicker
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 
     //extraImplementation 'com.github.tommus:youtube-android-player-api:1.2.2'
 
