@@ -90,12 +90,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     private SubscriptionExpandableListAdapter lvAdapter;
 
     protected FragmentNewsreaderListBinding binding;
-//    @BindView(R.id.expandableListView) protected ExpandableListView eListView;
-//    @BindView(R.id.urlTextView) protected TextView urlTextView;
-//    @BindView(R.id.userTextView) protected TextView userTextView;
-//    @BindView(R.id.header_view) protected ViewGroup headerView;
-//    @BindView(R.id.header_logo) protected ImageView headerLogo;
-//    @BindView(R.id.header_logo_progress) protected View headerLogoProgress;
 
     /**
      * The fragment's current callback object, which is notified of list item
