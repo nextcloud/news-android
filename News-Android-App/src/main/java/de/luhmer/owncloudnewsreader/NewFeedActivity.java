@@ -17,15 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -54,12 +50,10 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
+import de.luhmer.owncloudnewsreader.databinding.ActivityNewFeedBinding;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.OpmlXmlParser;
@@ -79,12 +73,7 @@ public class NewFeedActivity extends AppCompatActivity {
     private final static int REQUEST_CODE_OPML_IMPORT = 2;
 
     // UI references.
-    protected @BindView(R.id.et_feed_url) EditText mFeedUrlView;
-    protected @BindView(R.id.sp_folder) Spinner mFolderView;
-    protected @BindView(R.id.new_feed_progress) View mProgressView;
-    protected @BindView(R.id.new_feed_form) View mLoginFormView;
-    protected @BindView(R.id.btn_addFeed) Button mAddFeedButton;
-    protected @BindView(R.id.toolbar) Toolbar toolbar;
+    protected ActivityNewFeedBinding binding;
 
     private List<Folder> folders;
     protected @Inject ApiProvider mApi;
@@ -96,13 +85,16 @@ public class NewFeedActivity extends AppCompatActivity {
         ThemeChooser.chooseTheme(this);
         super.onCreate(savedInstanceState);
         ThemeChooser.afterOnCreate(this);
-        setContentView(R.layout.activity_new_feed);
 
-        ButterKnife.bind(this);
+        binding = ActivityNewFeedBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
+        binding.btnAddFeed.setOnClickListener((v) -> btnAddFeedClick());
+        binding.btnImportOpml.setOnClickListener((v) -> importOpml());
+        binding.btnExportOpml.setOnClickListener((v) -> exportOpml());
 
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
+        if (binding.toolbarLayout.toolbar != null) {
+            setSupportActionBar(binding.toolbarLayout.toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -118,7 +110,7 @@ public class NewFeedActivity extends AppCompatActivity {
         }
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
-        mFolderView.setAdapter(spinnerArrayAdapter);
+        binding.spFolder.setAdapter(spinnerArrayAdapter);
 
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -140,22 +132,20 @@ public class NewFeedActivity extends AppCompatActivity {
 
             //Uri uri = intent.getData();
             Log.v("tag" , "Content intent detected: " + action + " : " + url);
-            mFeedUrlView.setText(url);
+            binding.etFeedUrl.setText(url);
         }
     }
 
-    @OnClick(R.id.btn_addFeed)
     public void btnAddFeedClick() {
         //Hide keyboard
         InputMethodManager imm = (InputMethodManager)getSystemService(
                 Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mFeedUrlView.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(binding.etFeedUrl.getWindowToken(), 0);
 
 
         attemptAddNewFeed();
     }
 
-    @OnClick(R.id.btn_import_opml)
     public void importOpml() {
         String permission = Manifest.permission.READ_EXTERNAL_STORAGE;
 
@@ -181,9 +171,6 @@ public class NewFeedActivity extends AppCompatActivity {
                 .start();
     }
 
-
-
-    @OnClick(R.id.btn_export_opml)
     public void exportOpml() {
         String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
@@ -348,13 +335,13 @@ public class NewFeedActivity extends AppCompatActivity {
      * errors are presented and no actual login attempt is made.
      */
     public void attemptAddNewFeed() {
-        Folder folder = folders.get(mFolderView.getSelectedItemPosition());
+        Folder folder = folders.get(binding.spFolder.getSelectedItemPosition());
 
         // Reset errors.
-        mFeedUrlView.setError(null);
+        binding.etFeedUrl.setError(null);
 
         // Store values at the time of the login attempt.
-        String urlToFeed = mFeedUrlView.getText().toString();
+        String urlToFeed = binding.etFeedUrl.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -362,12 +349,12 @@ public class NewFeedActivity extends AppCompatActivity {
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(urlToFeed)) {
-            mFeedUrlView.setError(getString(R.string.error_field_required));
-            focusView = mFeedUrlView;
+            binding.etFeedUrl.setError(getString(R.string.error_field_required));
+            focusView = binding.etFeedUrl;
             cancel = true;
         } else if (!isUrlValid(urlToFeed)) {
-            mFeedUrlView.setError(getString(R.string.error_invalid_url));
-            focusView = mFeedUrlView;
+            binding.etFeedUrl.setError(getString(R.string.error_invalid_url));
+            focusView = binding.etFeedUrl;
             cancel = true;
         }
 
@@ -403,13 +390,13 @@ public class NewFeedActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     Log.e(TAG, "Extracting error message failed: " + errorMessage, e);
                                 }
-                                mFeedUrlView.setError(errorMessage);
+                                binding.etFeedUrl.setError(errorMessage);
                                 Log.e(TAG, errorMessage);
                             } catch (IOException e) {
                                 Log.e(TAG, "IOException", e);
-                                mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
+                                binding.etFeedUrl.setError(getString(R.string.login_dialog_text_something_went_wrong));
                             }
-                            mFeedUrlView.requestFocus();
+                            binding.etFeedUrl.requestFocus();
                         }
                     });
                 }
@@ -419,8 +406,8 @@ public class NewFeedActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         showProgress(false);
 
-                        mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
-                        mFeedUrlView.requestFocus();
+                        binding.etFeedUrl.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
+                        binding.etFeedUrl.requestFocus();
                     });
                 }
             });
@@ -451,21 +438,21 @@ public class NewFeedActivity extends AppCompatActivity {
     public void showProgress(final boolean show) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+            binding.newFeedForm.setVisibility(show ? View.GONE : View.VISIBLE);
+            binding.newFeedForm.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                    binding.newFeedForm.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
             });
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
+            binding.newFeedProgress.setVisibility(show ? View.VISIBLE : View.GONE);
+            binding.newFeedProgress.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                    binding.newFeedProgress.setVisibility(show ? View.VISIBLE : View.GONE);
                 }
             });
     }

@@ -36,10 +36,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -54,14 +51,14 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.databinding.ActivityNewsDetailBinding;
 import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
+import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 
@@ -79,18 +76,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * {@link FragmentStatePagerAdapter}.
 	 */
 	private SectionsPagerAdapter mSectionsPagerAdapter;
-    protected @BindView(R.id.toolbar) Toolbar toolbar;
-	// protected @BindView(R.id.bottomAppBar) BottomAppBar bottomAppBar;
-	protected @BindView(R.id.progressIndicator) ProgressBar progressIndicator;
-	//protected @BindView(R.id.btn_disable_incognito) ImageButton mBtnDisableIncognito;
-	protected @BindView(R.id.fa_detail_bar) View fastActionDetailBar;
-	protected @BindView(R.id.fa_collapse_layout) View fastActionCollapseLayout;
-	protected @BindView(R.id.fa_star) AppCompatImageButton fastActionStar;
-	protected @BindView(R.id.fa_mark_as_read) AppCompatImageButton fastActionRead;
-	protected @BindView(R.id.fa_toggle) AppCompatImageButton fastActionToggle;
-	protected @BindView(R.id.fa_open_in_browser) AppCompatImageButton fastActionOpenInBrowser;
-	protected @BindView(R.id.fa_share) AppCompatImageButton fastActionShare;
-
+	protected ActivityNewsDetailBinding binding;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -115,6 +101,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
 		super.onCreate(savedInstanceState);
+
+		binding = ActivityNewsDetailBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
 
 		/*
 		//make full transparent statusBar
@@ -144,10 +133,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 		*/
 
-
-
-		setContentView(R.layout.activity_news_detail);
-
 		/*
 		// For Debugging the WebView using Chrome Remote Debugging
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -155,10 +140,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 		*/
 
-		ButterKnife.bind(this);
-
-		if (toolbar != null) {
-            setSupportActionBar(toolbar);
+		if (binding.toolbarLayout.toolbar != null) {
+            setSupportActionBar(binding.toolbarLayout.toolbar);
         }
 		/*
 		if (bottomAppBar != null) {
@@ -200,7 +183,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-		progressIndicator.setMax(mSectionsPagerAdapter.getCount());
+		binding.progressIndicator.setMax(mSectionsPagerAdapter.getCount());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = findViewById(R.id.pager);
@@ -232,7 +215,12 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         updateActionBarIcons();
     }
 
-    /**
+	@Override
+	protected PodcastSlidingUpPanelLayout getPodcastSlidingUpPanelLayout() {
+		return binding.slidingLayout;
+	}
+
+	/**
 	 * Init fast action bar based on user settings.
 	 * Only show if user selected setting CB_SHOW_FAST_ACTIONS. Otherwise hide.
 	 *
@@ -243,18 +231,18 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		if (mShowFastActions) {
 			// Set click listener for buttons on action bar
-			fastActionOpenInBrowser.setOnClickListener(v -> this.openInBrowser(currentPosition));
-			fastActionToggle.setOnClickListener(v -> this.toggleFastActionBar()); // toggle expand / collapse
-			fastActionStar.setOnClickListener(v -> NewsDetailActivity.this.toggleRssItemStarredState());
-			fastActionRead.setOnClickListener(v -> NewsDetailActivity.this.markRead(currentPosition));
-			fastActionShare.setOnClickListener(v -> this.share(currentPosition));
+			binding.faDetailBar.faOpenInBrowser.setOnClickListener(v -> this.openInBrowser(currentPosition));
+			binding.faDetailBar.faToggle.setOnClickListener(v -> this.toggleFastActionBar()); // toggle expand / collapse
+			binding.faDetailBar.faStar.setOnClickListener(v -> NewsDetailActivity.this.toggleRssItemStarredState());
+			binding.faDetailBar.faMarkAsRead.setOnClickListener(v -> NewsDetailActivity.this.markRead(currentPosition));
+			binding.faDetailBar.faShare.setOnClickListener(v -> this.share(currentPosition));
 
-			fastActionDetailBar.setVisibility(View.VISIBLE);
+			binding.faDetailBar.getRoot().setVisibility(View.VISIBLE);
 
 			// initially the bar should be opened in the expanded state
 			this.toggleFastActionBar();
 		} else {
-			fastActionDetailBar.setVisibility(View.INVISIBLE);
+			binding.faDetailBar.getRoot().setVisibility(View.INVISIBLE);
 		}
 	}
 
@@ -262,21 +250,21 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * Expands or shrinks the fast action bar to show/hide secondary functions
 	 */
 	private void toggleFastActionBar() {
-		int currentState = fastActionCollapseLayout.getVisibility();
+		int currentState = binding.faDetailBar.faCollapseLayout.getVisibility();
 		switch (currentState) {
 			case View.GONE:
-				fastActionToggle.setImageResource(R.drawable.ic_fa_expand);
-				fastActionCollapseLayout.setVisibility(View.VISIBLE);
+				binding.faDetailBar.faToggle.setImageResource(R.drawable.ic_fa_expand);
+				binding.faDetailBar.faCollapseLayout.setVisibility(View.VISIBLE);
 				break;
 			case View.VISIBLE:
-				fastActionToggle.setImageResource(R.drawable.ic_fa_shrink);
-				fastActionCollapseLayout.setVisibility(View.GONE);
+				binding.faDetailBar.faToggle.setImageResource(R.drawable.ic_fa_shrink);
+				binding.faDetailBar.faCollapseLayout.setVisibility(View.GONE);
 				break;
 			default:
 				break;
 		}
 		//((Animatable)fastActionToggle.getDrawable()).start();
-		fastActionToggle.setScaleX(-1);
+		binding.faDetailBar.faToggle.setScaleX(-1);
 	}
 
 	private void toggleIncognitoMode() {
@@ -369,7 +357,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		stopVideoOnCurrentPage();
 		currentPosition = position;
 		resumeVideoPlayersOnCurrentPage();
-		progressIndicator.setProgress(position + 1);
+		binding.progressIndicator.setProgress(position + 1);
 
 		if(rssItems.get(position).getFeed() != null) {
         	// Try getting the feed title and use it for the action bar title
@@ -429,10 +417,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		if(menuItem_Starred != null) {
 			if (isStarred) {
 				menuItem_Starred.setIcon(R.drawable.ic_action_star_dark);
-				fastActionStar.setImageResource(R.drawable.ic_action_star_dark);
+				binding.faDetailBar.faStar.setImageResource(R.drawable.ic_action_star_dark);
 			} else  {
 				menuItem_Starred.setIcon(R.drawable.ic_action_star_border_dark);
-				fastActionStar.setImageResource(R.drawable.ic_action_star_border_dark);
+				binding.faDetailBar.faStar.setImageResource(R.drawable.ic_action_star_border_dark);
 			}
 		}
 
@@ -440,11 +428,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			if (isRead) {
 				menuItem_Read.setIcon(R.drawable.ic_check_box_white);
 				menuItem_Read.setChecked(true);
-				fastActionRead.setImageResource(R.drawable.ic_check_box_white);
+				binding.faDetailBar.faMarkAsRead.setImageResource(R.drawable.ic_check_box_white);
 			} else {
 				menuItem_Read.setIcon(R.drawable.ic_check_box_outline_blank_white);
 				menuItem_Read.setChecked(false);
-				fastActionRead.setImageResource(R.drawable.ic_check_box_outline_blank_white);
+				binding.faDetailBar.faMarkAsRead.setImageResource(R.drawable.ic_check_box_outline_blank_white);
 			}
 		}
     }
@@ -552,8 +540,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
 		String link = "about:blank";
 
-		if(newsDetailFragment != null && newsDetailFragment.mWebView != null) {
-			link = newsDetailFragment.mWebView.getUrl();
+		if(newsDetailFragment != null && newsDetailFragment.binding.webview != null) {
+			link = newsDetailFragment.binding.webview.getUrl();
 		}
 
 		if("about:blank".equals(link)) {
@@ -578,9 +566,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
 		if(fragment != null) { // could be null if not instantiated yet
-			if(!fragment.mWebView.getUrl().equals("about:blank") && !fragment.mWebView.getUrl().trim().equals("")) {
-				content = fragment.mWebView.getUrl();
-				title = fragment.mWebView.getTitle();
+			if(!fragment.binding.webview.getUrl().equals("about:blank") && !fragment.binding.webview.getUrl().trim().equals("")) {
+				content = fragment.binding.webview.getUrl();
+				title = fragment.binding.webview.getTitle();
 			}
 		}
 
@@ -667,7 +655,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	public void initIncognitoMode() {
 		int color = getResources().getColor(isIncognitoEnabled() ? R.color.material_grey_900 : R.color.colorPrimary);
-		ThemeUtils.colorizeToolbar(toolbar, color);
+		ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
 		//ThemeUtils.colorizeToolbar(bottomAppBar, color);
 		//ThemeUtils.changeStatusBarColor(this, color);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

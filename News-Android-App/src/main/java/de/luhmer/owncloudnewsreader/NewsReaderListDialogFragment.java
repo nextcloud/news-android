@@ -12,12 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
@@ -29,11 +23,10 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
+import de.luhmer.owncloudnewsreader.databinding.FragmentDialogFeedoptionsBinding;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -55,26 +48,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
     private LinkedHashMap<String, MenuAction> mMenuItems;
     private NewsReaderListActivity parentActivity;
 
-    protected @BindView(R.id.lv_menu_list) ListView mListView;
-    protected @BindView(R.id.folder_list) ListView mFolderList;
-
-    protected @BindView(R.id.tv_menu_title) TextView tvTitle;
-    protected @BindView(R.id.tv_menu_text)  TextView tvText;
-
-    protected @BindView(R.id.ic_menu_feedicon) ImageView imgTitle;
-
-    protected @BindView(R.id.remove_feed_dialog) RelativeLayout mRemoveFeedDialogView;
-    protected @BindView(R.id.rename_feed_dialog) RelativeLayout mRenameFeedDialogView;
-    protected @BindView(R.id.move_feed_dialog) RelativeLayout mMoveFeedDialogView;
-
-    protected @BindView(R.id.progressView)       RelativeLayout mProgressView;
-
-    protected @BindView(R.id.button_remove_confirm) Button mButtonRemoveConfirm;
-    protected @BindView(R.id.button_remove_cancel) Button mButtonRemoveCancel;
-    protected @BindView(R.id.button_rename_confirm) Button mButtonRenameConfirm;
-    protected @BindView(R.id.button_rename_cancel) Button mButtonRenameCancel;
-
-    protected @BindView(R.id.renamefeed_feedname) EditText mFeedName;
+    protected FragmentDialogFeedoptionsBinding binding;
 
 
     static NewsReaderListDialogFragment newInstance(long feedId, String dialogTitle, String iconurl, String feedurl) {
@@ -131,17 +105,15 @@ public class NewsReaderListDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_dialog_feedoptions, container, false);
-
-        ButterKnife.bind(this, v);
+        binding = FragmentDialogFeedoptionsBinding.inflate(inflater, container, false);
 
         FavIconHandler favIconHandler = new FavIconHandler(getContext());
-        favIconHandler.loadFavIconForFeed(mDialogIconUrl, imgTitle);
+        favIconHandler.loadFavIconForFeed(mDialogIconUrl, binding.icMenuFeedicon);
 
-        tvTitle.setText(mDialogTitle);
-        tvText.setText(mDialogText);
+        binding.tvMenuTitle.setText(mDialogTitle);
+        binding.tvMenuText.setText(mDialogText);
 
-        tvText.setOnClickListener(new View.OnClickListener() {
+        binding.tvMenuText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mDialogText != null) {
@@ -159,9 +131,9 @@ public class NewsReaderListDialogFragment extends DialogFragment {
                 R.layout.fragment_dialog_listviewitem,
                 menuItemsList);
 
-        mListView.setAdapter(arrayAdapter);
+        binding.lvMenuList.setAdapter(arrayAdapter);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.lvMenuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = arrayAdapter.getItem(i);
@@ -169,7 +141,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
                 mAction.execute();
             }
         });
-        return v;
+        return binding.getRoot();
     }
 
 
@@ -182,24 +154,24 @@ public class NewsReaderListDialogFragment extends DialogFragment {
     public void showProgress(final boolean show) {
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        mRenameFeedDialogView.setVisibility(show ? View.GONE : View.VISIBLE);
-        mRemoveFeedDialogView.setVisibility(show ? View.GONE : View.VISIBLE);
+        binding.renameFeedDialog.setVisibility(show ? View.GONE : View.VISIBLE);
+        binding.removeFeedDialog.setVisibility(show ? View.GONE : View.VISIBLE);
 
-        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        mProgressView.animate().setDuration(shortAnimTime).alpha(
+        binding.progressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        binding.progressView.animate().setDuration(shortAnimTime).alpha(
                 show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
         });
     }
 
 
     private void showRenameFeedView(final long feedId, final String feedName) {
-        mFeedName.setText(feedName);
-        mButtonRenameConfirm.setEnabled(false);
+        binding.renamefeedFeedname.setText(feedName);
+        binding.buttonRenameConfirm.setEnabled(false);
 
-        mListView.setVisibility(View.GONE);
-        mRenameFeedDialogView.setVisibility(View.VISIBLE);
+        binding.lvMenuList.setVisibility(View.GONE);
+        binding.renameFeedDialog.setVisibility(View.VISIBLE);
 
-        mFeedName.addTextChangedListener(new TextWatcher() {
+        binding.renamefeedFeedname.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {}
 
@@ -211,20 +183,20 @@ public class NewsReaderListDialogFragment extends DialogFragment {
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
                 if (s.toString().equals(feedName) || s.length() == 0) {
-                    mButtonRenameConfirm.setEnabled(false);
+                    binding.buttonRenameConfirm.setEnabled(false);
                 } else {
-                    mButtonRenameConfirm.setEnabled(true);
+                    binding.buttonRenameConfirm.setEnabled(true);
                 }
             }
         });
 
-        mButtonRenameCancel.setOnClickListener(new View.OnClickListener() {
+        binding.buttonRenameCancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dismiss();
             }
         });
 
-        mButtonRenameConfirm.setOnClickListener(new View.OnClickListener() {
+        binding.buttonRenameConfirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 showProgress(true);
                 setCancelable(false);
@@ -232,7 +204,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
 
 
                 Map<String, String> paramMap = new LinkedHashMap<>();
-                paramMap.put("feedTitle", mFeedName.getText().toString());
+                paramMap.put("feedTitle", binding.renamefeedFeedname.getText().toString());
                 mApi.getNewsAPI().renameFeed(feedId, paramMap)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -240,7 +212,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
                             @Override
                             public void run() throws Exception {
                                 DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
-                                dbConn.renameFeedById(mFeedId, mFeedName.getText().toString());
+                                dbConn.renameFeedById(mFeedId, binding.renamefeedFeedname.getText().toString());
 
                                 parentActivity.getSlidingListFragment().reloadAdapter();
                                 parentActivity.startSync();
@@ -260,16 +232,16 @@ public class NewsReaderListDialogFragment extends DialogFragment {
 
 
     private void showRemoveFeedView(final long feedId) {
-        mListView.setVisibility(View.GONE);
-        mRemoveFeedDialogView.setVisibility(View.VISIBLE);
+        binding.lvMenuList.setVisibility(View.GONE);
+        binding.removeFeedDialog.setVisibility(View.VISIBLE);
 
-        mButtonRemoveCancel.setOnClickListener(new View.OnClickListener() {
+        binding.buttonRemoveCancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dismiss();
             }
         });
 
-        mButtonRemoveConfirm.setOnClickListener(new View.OnClickListener() {
+        binding.buttonRemoveConfirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 showProgress(true);
                 setCancelable(false);
@@ -311,10 +283,10 @@ public class NewsReaderListDialogFragment extends DialogFragment {
      * @param mFeedId Feed to move
      */
     private void showMoveFeedView(final long mFeedId) {
-        mListView.setVisibility(View.GONE);
-        mMoveFeedDialogView.setVisibility(View.VISIBLE);
+        binding.lvMenuList.setVisibility(View.GONE);
+        binding.moveFeedDialog.setVisibility(View.VISIBLE);
 
-        tvText.setText(getString(R.string.feed_move_list_description));
+        binding.tvMenuText.setText(getString(R.string.feed_move_list_description));
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
         final List<Folder> folders = dbConn.getListOfFolders();
@@ -326,8 +298,8 @@ public class NewsReaderListDialogFragment extends DialogFragment {
         }
 
         ArrayAdapter<String> folderAdapter = new ArrayAdapter<> (getActivity(), R.layout.dialog_list_folder, android.R.id.text1, folderNames);
-        mFolderList.setAdapter(folderAdapter);
-        mFolderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.folderList.setAdapter(folderAdapter);
+        binding.folderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final Folder folder = folders.get(position);

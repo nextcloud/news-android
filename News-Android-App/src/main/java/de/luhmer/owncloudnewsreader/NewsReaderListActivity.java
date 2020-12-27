@@ -44,17 +44,14 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.customview.widget.ViewDragHelper;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -89,8 +86,6 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
 import de.luhmer.owncloudnewsreader.adapter.RecyclerItemClickListener;
@@ -99,6 +94,7 @@ import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.databinding.ActivityNewsreaderBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -111,6 +107,7 @@ import de.luhmer.owncloudnewsreader.services.events.SyncFailedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
+import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
@@ -147,11 +144,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private static MenuItem menuItemDownloadMoreItems;
 
-	protected @BindView(R.id.toolbar) Toolbar toolbar;
+	protected ActivityNewsreaderBinding binding;
 
 	//private ServiceConnection mConnection = null;
-
-	@VisibleForTesting @Nullable @BindView(R.id.drawer_layout) public DrawerLayout drawerLayout;
 
 	private ActionBarDrawerToggle drawerToggle;
 	private SearchView mSearchView;
@@ -183,13 +178,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_notification, true);
         }
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newsreader);
+		super.onCreate(savedInstanceState);
 
-        ButterKnife.bind(this);
+		binding = ActivityNewsreaderBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
 
-		if (toolbar != null) {
-			setSupportActionBar(toolbar);
+		if (binding.toolbarLayout.toolbar != null) {
+			setSupportActionBar(binding.toolbarLayout.toolbar);
 		}
 
 		initAccountManager();
@@ -212,8 +207,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				.replace(R.id.left_drawer, newsReaderListFragment)
 				.commit();
 
-		if (drawerLayout != null) {
-			drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.news_list_drawer_text, R.string.news_list_drawer_text) {
+		if (binding.drawerLayout != null) {
+			drawerToggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbarLayout.toolbar, R.string.news_list_drawer_text, R.string.news_list_drawer_text) {
 				@Override
 				public void onDrawerClosed(View drawerView) {
 					super.onDrawerClosed(drawerView);
@@ -233,11 +228,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				}
 			};
 
-			drawerLayout.addDrawerListener(drawerToggle);
+			binding.drawerLayout.addDrawerListener(drawerToggle);
 
             adjustEdgeSizeOfDrawer();
 		}
-		setSupportActionBar(toolbar);
+		setSupportActionBar(binding.toolbarLayout.toolbar);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		if (drawerToggle != null) {
 			drawerToggle.syncState();
@@ -332,7 +327,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
                 savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
 
-            NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().recyclerView, this, mPostDelayHandler, mPrefs);
+            NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().binding.list, this, mPostDelayHandler, mPrefs);
 
             adapter.setTotalItemCount(savedInstanceState.getInt(LIST_ADAPTER_TOTAL_COUNT));
             adapter.setCachedPages(savedInstanceState.getInt(LIST_ADAPTER_PAGE_COUNT));
@@ -358,9 +353,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         try {
             // increase the size of the drag margin to prevent starting a star swipe when
             // trying to open the drawer.
-            Field mDragger = drawerLayout.getClass().getDeclaredField("mLeftDragger");
+            Field mDragger = binding.drawerLayout.getClass().getDeclaredField("mLeftDragger");
             mDragger.setAccessible(true);
-            ViewDragHelper draggerObj = (ViewDragHelper) mDragger.get(drawerLayout);
+            ViewDragHelper draggerObj = (ViewDragHelper) mDragger.get(binding.drawerLayout);
             Field mEdgeSize = draggerObj.getClass().getDeclaredField("mEdgeSize");
             mEdgeSize.setAccessible(true);
             int edge = mEdgeSize.getInt(draggerObj);
@@ -372,9 +367,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     public int getEdgeSizeOfDrawer() {
         try {
-            Field mDragger = drawerLayout.getClass().getDeclaredField("mLeftDragger");
+            Field mDragger = binding.drawerLayout.getClass().getDeclaredField("mLeftDragger");
             mDragger.setAccessible(true);
-            ViewDragHelper draggerObj = (ViewDragHelper) mDragger.get(drawerLayout);
+            ViewDragHelper draggerObj = (ViewDragHelper) mDragger.get(binding.drawerLayout);
             Field mEdgeSize = draggerObj.getClass().getDeclaredField("mEdgeSize");
             mEdgeSize.setAccessible(true);
             return mEdgeSize.getInt(draggerObj);
@@ -501,9 +496,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		config.setDelay(300); // half second between each showcase view
 		MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SWIPE_LEFT_RIGHT_AND_PTR");
 		sequence.setConfig(config);
-		sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
+		sequence.addSequenceItem(getNewsReaderDetailFragment().binding.pbLoading,
                 "Pull-to-Refresh to sync with server", "GOT IT", true);
-		sequence.addSequenceItem(getNewsReaderDetailFragment().pbLoading,
+		sequence.addSequenceItem(getNewsReaderDetailFragment().binding.pbLoading,
                 "Swipe Left/Right to mark article as read", "GOT IT", true);
 		sequence.start();
 
@@ -551,6 +546,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 	@Override
+	protected PodcastSlidingUpPanelLayout getPodcastSlidingUpPanelLayout() {
+		return binding.slidingLayout;
+	}
+
+	@Override
 	public void onRefresh() {
 		startSync();
 	}
@@ -574,16 +574,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 */
 	@Override
 	public void onTopItemClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
-		if (drawerLayout != null)
-			drawerLayout.closeDrawer(GravityCompat.START);
+		if (binding.drawerLayout != null)
+			binding.drawerLayout.closeDrawer(GravityCompat.START);
 
 		updateDetailFragment(idFeed, isFolder, optional_folder_id, true);
 	}
 
 	@Override
 	public void onChildItemClicked(long idFeed, Long optional_folder_id) {
-		if (drawerLayout != null)
-			drawerLayout.closeDrawer(GravityCompat.START);
+		if (binding.drawerLayout != null)
+			binding.drawerLayout.closeDrawer(GravityCompat.START);
 
 		updateDetailFragment(idFeed, false, optional_folder_id, true);
 	}
@@ -704,7 +704,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if(newsReaderListFragment != null && newsReaderDetailFragment != null) {
 			boolean isSyncRunning = OwnCloudSyncService.isSyncRunning();
 			newsReaderListFragment.setRefreshing(isSyncRunning);
-			newsReaderDetailFragment.swipeRefresh.setRefreshing(isSyncRunning);
+			newsReaderDetailFragment.binding.swipeRefresh.setRefreshing(isSyncRunning);
 		}
     }
 
@@ -771,11 +771,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onBackPressed() {
         if(!handlePodcastBackPressed()) {
-			if (drawerLayout != null) {
-				if (drawerLayout.isDrawerOpen(GravityCompat.START))
+			if (binding.drawerLayout != null) {
+				if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
 					super.onBackPressed();
 				else
-					drawerLayout.openDrawer(GravityCompat.START);
+					binding.drawerLayout.openDrawer(GravityCompat.START);
 			} else {
 				super.onBackPressed();
 			}

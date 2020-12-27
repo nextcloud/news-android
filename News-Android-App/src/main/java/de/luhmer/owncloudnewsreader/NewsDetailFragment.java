@@ -38,8 +38,6 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.browser.customtabs.CustomTabsIntent;
@@ -60,11 +58,10 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.adapter.ProgressBarWebChromeClient;
 import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.databinding.FragmentNewsDetailBinding;
 import de.luhmer.owncloudnewsreader.helper.AdBlocker;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
@@ -77,10 +74,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
 	public final String TAG = getClass().getCanonicalName();
 
-    protected @BindView(R.id.webview) WebView mWebView;
-    protected @BindView(R.id.progressBarLoading) ProgressBar mProgressBarLoading;
-    protected @BindView(R.id.progressbar_webview) ProgressBar mProgressbarWebView;
-    protected @BindView(R.id.tv_offline_version) TextView mTvOfflineVersion;
+	protected FragmentNewsDetailBinding binding;
 
     protected @Inject SharedPreferences mPrefs;
 
@@ -109,7 +103,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         super.onResume();
         resumeCurrentPage();
 
-        registerForContextMenu(mWebView);
+        registerForContextMenu(binding.webview);
     }
 
     @Override
@@ -121,23 +115,23 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mWebView != null) {
-            mWebView.destroy();
+        if(binding.webview != null) {
+            binding.webview.destroy();
         }
     }
 
     public void pauseCurrentPage() {
-        if(mWebView != null) {
-            mWebView.onPause();
-            mWebView.pauseTimers();
+        if(binding.webview != null) {
+            binding.webview.onPause();
+            binding.webview.pauseTimers();
         }
     }
 
 
     public void resumeCurrentPage() {
-        if(mWebView != null) {
-            mWebView.onResume();
-            mWebView.resumeTimers();
+        if(binding.webview != null) {
+            binding.webview.onResume();
+            binding.webview.resumeTimers();
         }
     }
 
@@ -157,47 +151,45 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
      */
     public void navigateBack() {
         if (isLastPageRssItem()) {
-            mWebView.clearHistory();
+            binding.webview.clearHistory();
             startLoadRssItemToWebViewTask();
         } else if (!isCurrentPageRssItem()){
-            mWebView.goBack();
+            binding.webview.goBack();
         }
     }
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_news_detail, container, false);
+        binding = FragmentNewsDetailBinding.inflate(inflater, container, false);
 
 		section_number = (Integer) getArguments().get(ARG_SECTION_NUMBER);
-
-        ButterKnife.bind(this, rootView);
 
         // Do not reload webview if retained
         if(savedInstanceState == null) {
             startLoadRssItemToWebViewTask();
         } else {
-            mWebView.restoreState(savedInstanceState);
-            mProgressBarLoading.setVisibility(View.GONE);
+            binding.webview.restoreState(savedInstanceState);
+            binding.progressBarLoading.setVisibility(View.GONE);
             // Make sure to sync the incognitio on retained views
             syncIncognitoState();
-            this.addBottomPaddingForFastActions(mWebView);
+            this.addBottomPaddingForFastActions(binding.webview);
         }
 
         // setUpGestureDetector();
 
-		return rootView;
+		return binding.getRoot();
 	}
 
 	protected void syncIncognitoState() {
         NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
         boolean isIncognito = ndActivity.isIncognitoEnabled();
-        mWebView.getSettings().setBlockNetworkLoads(isIncognito);
-        mWebView.getSettings().setBlockNetworkImage(isIncognito);
+        binding.webview.getSettings().setBlockNetworkLoads(isIncognito);
+        binding.webview.getSettings().setBlockNetworkImage(isIncognito);
     }
 
 	@Override
     public void onSaveInstanceState(Bundle outState) {
-        mWebView.saveState(outState);
+        binding.webview.saveState(outState);
     }
 
     /**
@@ -240,14 +232,14 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
     protected void startLoadRssItemToWebViewTask() {
         Log.d(TAG, "startLoadRssItemToWebViewTask() called");
-        mWebView.setVisibility(View.GONE);
-        mProgressBarLoading.setVisibility(View.VISIBLE);
+        binding.webview.setVisibility(View.GONE);
+        binding.progressBarLoading.setVisibility(View.VISIBLE);
 
         NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
         assert ndActivity != null;
 
         int backgroundColor = ContextCompat.getColor(ndActivity, R.color.news_detail_background_color);
-        mWebView.setBackgroundColor(backgroundColor);
+        binding.webview.setBackgroundColor(backgroundColor);
         ndActivity.setBackgroundColorOfViewPager(backgroundColor);
 
         init_webView();
@@ -258,13 +250,13 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
     @Override
     public void onRssItemParsed(String htmlPage) {
-        mWebView.setVisibility(View.VISIBLE);
-        mProgressBarLoading.setVisibility(View.GONE);
+        binding.webview.setVisibility(View.VISIBLE);
+        binding.progressBarLoading.setVisibility(View.GONE);
 
-        setSoftwareRenderModeForWebView(htmlPage, mWebView);
+        setSoftwareRenderModeForWebView(htmlPage, binding.webview);
 
         html = htmlPage;
-        mWebView.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", RSS_ITEM_PAGE_URL);
+        binding.webview.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", RSS_ITEM_PAGE_URL);
     }
 
     /**
@@ -295,9 +287,9 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 	private void init_webView() {
         int backgroundColor = ColorHelper.getColorFromAttribute(getContext(),
                 R.attr.news_detail_background_color);
-        mWebView.setBackgroundColor(backgroundColor);
+        binding.webview.setBackgroundColor(backgroundColor);
 
-        WebSettings webSettings = mWebView.getSettings();
+        WebSettings webSettings = binding.webview.getSettings();
         //webSettings.setPluginState(WebSettings.PluginState.ON);
         webSettings.setJavaScriptEnabled(true);
         webSettings.setAllowContentAccess(true);
@@ -311,9 +303,9 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         syncIncognitoState();
 
-        mWebView.setWebChromeClient(new ProgressBarWebChromeClient(mProgressbarWebView));
+        binding.webview.setWebChromeClient(new ProgressBarWebChromeClient(binding.progressbarWebview));
 
-        mWebView.setWebViewClient(new WebViewClient() {
+        binding.webview.setWebViewClient(new WebViewClient() {
 
             private Map<String, Boolean> loadedUrls = new HashMap<>();
 
@@ -345,7 +337,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         });
 
         /*
-        mWebView.setOnTouchListener((v, event) -> {
+        binding.webview.setOnTouchListener((v, event) -> {
             mGestureDetector.onTouchEvent(event);
             return false;
         });
@@ -387,10 +379,10 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         File webArchiveFile = DownloadWebPageService.getWebPageArchiveFileForUrl(getActivity(), url);
         if(webArchiveFile.exists()) { // Test if WebArchive exists for url
-            mTvOfflineVersion.setVisibility(View.VISIBLE);
-            mWebView.loadUrl("file://" + webArchiveFile.getAbsolutePath());
+            binding.tvOfflineVersion.setVisibility(View.VISIBLE);
+            binding.webview.loadUrl("file://" + webArchiveFile.getAbsolutePath());
         } else {
-            mTvOfflineVersion.setVisibility(View.GONE);
+            binding.tvOfflineVersion.setVisibility(View.GONE);
             switch (selectedBrowser) {
                 case 0: // Custom Tabs
                     CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
@@ -406,7 +398,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                     startActivity(browserIntent);
                     break;
                 case 2: // Built in
-                    mWebView.loadUrl(url);
+                    binding.webview.loadUrl(url);
                     break;
                 default:
                     throw new IllegalStateException("Unknown selection!");
@@ -504,7 +496,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
      * the original rss item page
      */
     private boolean isLastPageRssItem() {
-        WebBackForwardList list = mWebView.copyBackForwardList();
+        WebBackForwardList list = binding.webview.copyBackForwardList();
         WebHistoryItem lastItem = list.getItemAtIndex(list.getCurrentIndex() - 1);
         return lastItem != null && lastItem.getUrl().equals(RSS_ITEM_PAGE_URL);
     }
@@ -514,8 +506,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
      * the original rss item page
      */
     private boolean isCurrentPageRssItem() {
-        if(mWebView.copyBackForwardList().getCurrentItem() != null) {
-            String currentPageUrl = mWebView.copyBackForwardList().getCurrentItem().getOriginalUrl();
+        if(binding.webview.copyBackForwardList().getCurrentItem() != null) {
+            String currentPageUrl = binding.webview.copyBackForwardList().getCurrentItem().getOriginalUrl();
             return currentPageUrl.equals("data:text/html;charset=utf-8;base64,");
         }
         return true;

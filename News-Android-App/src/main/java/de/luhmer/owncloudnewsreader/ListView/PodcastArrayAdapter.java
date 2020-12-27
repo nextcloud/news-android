@@ -5,16 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.databinding.PodcastRowBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
@@ -38,15 +36,16 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         if (view != null) {
             holder = (ViewHolder) view.getTag();
         } else {
-            view = inflater.inflate(R.layout.podcast_row, parent, false);
-            holder = new ViewHolder(view);
+            PodcastRowBinding binding = PodcastRowBinding.inflate(inflater, parent, false);
+            view = binding.getRoot();
+            holder = new ViewHolder(binding);
             view.setTag(holder);
         }
 
         final PodcastItem podcastItem = getItem(position);
 
-        holder.tvTitle.setText(podcastItem.title);
-        holder.tvBody.setText(podcastItem.mimeType);
+        holder.binding.tvTitle.setText(podcastItem.title);
+        holder.binding.tvBody.setText(podcastItem.mimeType);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,10 +55,10 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         });
 
 
-        holder.flDownloadPodcast.setOnClickListener(new View.OnClickListener() {
+        holder.binding.flDownloadPodcastWrapper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.flDownloadPodcast.setVisibility(View.GONE);
+                holder.binding.flDownloadPodcastWrapper.setVisibility(View.GONE);
 
                 Toast.makeText(getContext(), "Starting download.. Please wait", Toast.LENGTH_SHORT).show();
 
@@ -67,14 +66,14 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
             }
         });
 
-        holder.flPlayPodcast.setOnClickListener(new View.OnClickListener() {
+        holder.binding.flPlayPodcastWrapper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 playPodcast(position);
             }
         });
 
-        holder.flDeletePodcast.setOnClickListener(new View.OnClickListener() {
+        holder.binding.flDeletePodcastWrapper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(NewsFileUtils.deletePodcastFile(getContext(), podcastItem.link)) {
@@ -86,25 +85,25 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         });
 
 
-        holder.pbDownloadPodcast.setProgress(podcastItem.downloadProgress);
+        holder.binding.pbDownloadPodcast.setProgress(podcastItem.downloadProgress);
         if(podcastItem.downloadProgress >= 0) {
-            holder.tvDownloadPodcastProgress.setVisibility(View.VISIBLE);
-            holder.pbDownloadPodcast.setVisibility(View.VISIBLE);
-            holder.tvDownloadPodcastProgress.setText(podcastItem.downloadProgress + "%");
+            holder.binding.tvDownloadPodcastProgress.setVisibility(View.VISIBLE);
+            holder.binding.pbDownloadPodcast.setVisibility(View.VISIBLE);
+            holder.binding.tvDownloadPodcastProgress.setText(podcastItem.downloadProgress + "%");
         }
         else {
-            holder.tvDownloadPodcastProgress.setVisibility(View.GONE);
-            holder.pbDownloadPodcast.setVisibility(View.GONE);
+            holder.binding.tvDownloadPodcastProgress.setVisibility(View.GONE);
+            holder.binding.pbDownloadPodcast.setVisibility(View.GONE);
         }
 
 
         if(podcastItem.downloadProgress.equals(PodcastItem.DOWNLOAD_NOT_STARTED)) {
-            holder.flDownloadPodcast.setVisibility(View.VISIBLE);
+            holder.binding.flDownloadPodcastWrapper.setVisibility(View.VISIBLE);
         } else {
-            holder.flDownloadPodcast.setVisibility(View.GONE);
+            holder.binding.flDownloadPodcastWrapper.setVisibility(View.GONE);
         }
 
-        holder.flDeletePodcast.setVisibility((podcastItem.downloadProgress.equals(PodcastItem.DOWNLOAD_COMPLETED)) ? View.VISIBLE : View.GONE );
+        holder.binding.flDeletePodcastWrapper.setVisibility((podcastItem.downloadProgress.equals(PodcastItem.DOWNLOAD_COMPLETED)) ? View.VISIBLE : View.GONE );
 
         /*
         File podcastFile = new File(PodcastDownloadService.getUrlToPodcastFile(getContext(), podcastItem.link, true));
@@ -132,18 +131,10 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
 
 
     static class ViewHolder {
-        @BindView(R.id.tv_title) TextView tvTitle;
-        @BindView(R.id.tv_body) TextView tvBody;
-        @BindView(R.id.fl_downloadPodcastWrapper) FrameLayout flDownloadPodcast;
-        @BindView(R.id.fl_PlayPodcastWrapper) FrameLayout flPlayPodcast;
-        @BindView(R.id.fl_deletePodcastWrapper) FrameLayout flDeletePodcast;
-        @BindView(R.id.pbDownloadPodcast) ProgressBar pbDownloadPodcast;
-        @BindView(R.id.tvDownloadPodcastProgress) TextView tvDownloadPodcastProgress;
+        @NonNull final PodcastRowBinding binding;
 
-
-
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
+        public ViewHolder(@NonNull PodcastRowBinding binding) {
+            this.binding = binding;
         }
     }
 }
