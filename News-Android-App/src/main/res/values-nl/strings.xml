@@ -173,6 +173,7 @@
     <string name="pref_contribute">Bijdragen!</string>
     <string name="pref_contribute_summary">Download de broncode</string>
     <string name="pref_privacy">Privacy</string>
+    <string name="pref_privacy_summary">Nextcloud News Android Privacy Policy</string>
     <string name="pref_version">Nextcloud Nieuws Android app</string>
 
 
