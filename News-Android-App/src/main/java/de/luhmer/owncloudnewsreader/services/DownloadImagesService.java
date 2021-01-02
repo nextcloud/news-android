@@ -24,10 +24,11 @@ package de.luhmer.owncloudnewsreader.services;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationCompat;
-import android.util.Log;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -116,7 +117,7 @@ public class DownloadImagesService extends JobIntentService {
             FavIconHandler favIconHandler = new FavIconHandler(this);
             for(Feed feed : feedList) {
                 try {
-                    favIconHandler.preCacheFavIcon(feed);
+                    favIconHandler.preCacheFavIcon(feed, this);
                 } catch(IllegalStateException ex) {
                     Log.e(TAG, ex.getMessage());
                 }
