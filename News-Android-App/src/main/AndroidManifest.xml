@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="de.luhmer.owncloudnewsreader"
     android:installLocation="internalOnly"
-    android:versionCode="160"
-    android:versionName="0.9.9.52">
+    android:versionCode="162"
+    android:versionName="0.9.9.54">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,7 +13,9 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" android:maxSdkVersion="22" />
+    <uses-permission
+        android:name="android.permission.AUTHENTICATE_ACCOUNTS"
+        android:maxSdkVersion="22" />
     <!-- <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" /> -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
