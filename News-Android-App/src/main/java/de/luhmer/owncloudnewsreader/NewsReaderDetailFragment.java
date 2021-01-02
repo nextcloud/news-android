@@ -62,7 +62,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
-import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
+import de.luhmer.owncloudnewsreader.adapter.RssItemViewHolder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -403,7 +403,7 @@ public class NewsReaderDetailFragment extends Fragment {
         for (int i = firstVisibleItem; i < firstVisibleItem + numberItemsAhead; i++) {
             //Log.v(TAG, "Mark item as read: " + i);
 
-            ViewHolder vh = (ViewHolder) binding.list.findViewHolderForLayoutPosition(i);
+            RssItemViewHolder vh = (RssItemViewHolder) binding.list.findViewHolderForLayoutPosition(i);
             if (vh != null && !vh.shouldStayUnread()) {
                 adapter.changeReadStateOfItem(vh, true);
             }
@@ -416,8 +416,8 @@ public class NewsReaderDetailFragment extends Fragment {
             for (int i = firstVisibleItem; i <= lastVisibleItem; i++) {
                 RecyclerView.ViewHolder vhTemp = binding.list.findViewHolderForLayoutPosition(i);
 
-                if (vhTemp instanceof ViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
-                    ViewHolder vh = (ViewHolder) vhTemp;
+                if (vhTemp instanceof RssItemViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
+                    RssItemViewHolder vh = (RssItemViewHolder) vhTemp;
 
                     if (!vh.shouldStayUnread()) {
                         adapter.changeReadStateOfItem(vh, true);
@@ -616,16 +616,16 @@ public class NewsReaderDetailFragment extends Fragment {
                 swipeAction = mPrefs.getString(SP_SWIPE_RIGHT_ACTION, SP_SWIPE_RIGHT_ACTION_DEFAULT);
             switch (swipeAction) {
                 case "0": // Open link in browser and mark as read
-                    String currentUrl = ((ViewHolder) viewHolder).getRssItem().getLink();
+                    String currentUrl = ((RssItemViewHolder) viewHolder).getRssItem().getLink();
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
                     startActivity(browserIntent);
-                    adapter.changeReadStateOfItem((ViewHolder) viewHolder, true);
+                    adapter.changeReadStateOfItem((RssItemViewHolder) viewHolder, true);
                     break;
                 case "1": // Star
-                    adapter.toggleStarredStateOfItem((ViewHolder) viewHolder);
+                    adapter.toggleStarredStateOfItem((RssItemViewHolder) viewHolder);
                     break;
                 case "2": // Read
-                    adapter.toggleReadStateOfItem((ViewHolder) viewHolder);
+                    adapter.toggleReadStateOfItem((RssItemViewHolder) viewHolder);
                     break;
                 default:
                     Log.e(TAG, "Swipe preferences has an invalid value");

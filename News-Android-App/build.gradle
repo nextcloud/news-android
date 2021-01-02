@@ -157,9 +157,7 @@ dependencies {
     //implementation 'de.mrmaffen:holocircularprogressbar:1.0.1'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation "com.jakewharton:butterknife:$BUTTERKNIFE_VERSION"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTERKNIFE_VERSION"
 
     implementation 'com.sothree.slidinguppanel:library:3.2.1'
 
