@@ -22,37 +22,47 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+import de.luhmer.owncloudnewsreader.SettingsActivity;
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+
 public class DatabaseUtils {
 
-    public static final String DATABASE_NAME = "OwncloudNewsReader.db";
+	public static final String DATABASE_NAME = "OwncloudNewsReader.db";
 
-	public static boolean CopyDatabaseToSdCard(Context context)
-	{
+	public static boolean CopyDatabaseToSdCard(Context context) {
 		String path = context.getDatabasePath(DATABASE_NAME).getPath();
 
-	    File db = new File(path);
-	    File backupDb = GetPath(context);
-	    if (db.exists()) {
-	    	try
-	    	{
-	    		File parentFolder = backupDb.getParentFile();
-	    		parentFolder.mkdirs();
+		File db = new File(path);
+		File backupDb = GetPath(context);
+		if (db.exists()) {
+			try {
+				File parentFolder = backupDb.getParentFile();
+				parentFolder.mkdirs();
 
-		        NewsFileUtils.copyFile(new FileInputStream(db), new FileOutputStream(backupDb));
-		        return true;
-	    	} catch(Exception ex) {
-	    		ex.printStackTrace();
-	    	}
-	    }
-	    return false;
+				NewsFileUtils.copyFile(new FileInputStream(db), new FileOutputStream(backupDb));
+				return true;
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		return false;
 	}
 
-    public static File GetPath(Context context) {
-        return new File(NewsFileUtils.getCacheDirPath(context) + "/dbBackup/" + DATABASE_NAME);
-    }
+	public static File GetPath(Context context) {
+		return new File(NewsFileUtils.getCacheDirPath(context) + "/dbBackup/" + DATABASE_NAME);
+	}
+
+	public static DatabaseConnectionOrm.SORT_DIRECTION getSortDirectionFromSettings(SharedPreferences prefs) {
+		DatabaseConnectionOrm.SORT_DIRECTION sDirection = DatabaseConnectionOrm.SORT_DIRECTION.asc;
+		String sortDirection = prefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
+		if ("1".equals(sortDirection))
+			sDirection = DatabaseConnectionOrm.SORT_DIRECTION.desc;
+		return sDirection;
+	}
 }

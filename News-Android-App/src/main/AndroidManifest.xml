@@ -181,14 +181,20 @@
         <service
             android:name=".services.DownloadWebPageService"
             android:permission="android.permission.BIND_JOB_SERVICE"
-            android:process=":downloadWebPageProcess"/>
+            android:process=":downloadWebPageProcess" />
+
         <receiver
-            android:name=".helper.NotificationActionReceiver"
+            android:name=".helper.NotificationActionReceiverDownloadWebPage"
             android:process=":downloadWebPageProcess">
             <intent-filter>
-                <action android:name="YES_ACTION"/>
-                <action android:name="STOP_ACTION"/>
+                <action android:name="YES_ACTION" />
+                <action android:name="STOP_ACTION" />
+            </intent-filter>
+        </receiver>
 
+        <receiver android:name=".helper.NotificationActionReceiver">
+            <intent-filter>
+                <action android:name="NOTIFICATION_MARK_ALL_AS_READ" />
             </intent-filter>
         </receiver>
 

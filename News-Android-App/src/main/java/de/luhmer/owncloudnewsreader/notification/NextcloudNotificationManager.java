@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,6 +37,11 @@ import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
+import de.luhmer.owncloudnewsreader.helper.NotificationActionReceiver;
+
+import static android.app.Notification.EXTRA_NOTIFICATION_ID;
+import static de.luhmer.owncloudnewsreader.Constants.NOTIFICATION_ACTION_MARK_ALL_AS_READ_STRING;
 
 public class NextcloudNotificationManager {
 
@@ -251,9 +257,7 @@ public class NextcloudNotificationManager {
     }
 
 
-
-
-    public static void showUnreadRssItemsNotification(Context context, int newItemsCount) {
+    public static void showUnreadRssItemsNotification(Context context, int newItemsCount, SharedPreferences mPrefs) {
         Resources res = context.getResources();
         String tickerMessage = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
         String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
@@ -262,14 +266,20 @@ public class NextcloudNotificationManager {
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-        List<RssItem> items = dbConn.getAllUnreadRssItemsForNotification();
+        DatabaseConnectionOrm.SORT_DIRECTION sortDirection = DatabaseUtils.getSortDirectionFromSettings(mPrefs);
+        List<RssItem> items = dbConn.getAllUnreadRssItemsForNotification(sortDirection);
 
         List<String> previewLines = new ArrayList<>();
-        for(RssItem item : items) {
+        for (RssItem item : items) {
             // • = \u2022,   ● = \u25CF,   ○ = \u25CB,   ▪ = \u25AA,   ■ = \u25A0,   □ = \u25A1,   ► = \u25BA
             previewLines.add("\u2022 " + item.getTitle().trim());
         }
         String previewText = TextUtils.join("\n", previewLines);
+
+        Intent markAllAsReadIntent = new Intent(context, NotificationActionReceiver.class);
+        markAllAsReadIntent.setAction(NOTIFICATION_ACTION_MARK_ALL_AS_READ_STRING);
+        markAllAsReadIntent.putExtra(EXTRA_NOTIFICATION_ID, UNREAD_RSS_ITEMS_NOTIFICATION_ID);
+        PendingIntent markAllAsReadPendingIntent = PendingIntent.getBroadcast(context, 0, markAllAsReadIntent, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context, channelId)
@@ -277,6 +287,7 @@ public class NextcloudNotificationManager {
                         .setContentTitle(tickerMessage)
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(previewText))
                         //.setDefaults(Notification.DEFAULT_ALL)
+                        .addAction(R.drawable.ic_check_box_white, context.getString(R.string.menu_markAllAsRead), markAllAsReadPendingIntent)
                         .setAutoCancel(true)
                         .setNumber(newItemsCount)
                         .setContentText(contentText);

@@ -484,13 +484,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     @Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(SyncStartedEvent event) {
-        updateButtonLayout();
+		Log.d(TAG, "onEventMainThread - SyncStartedEvent");
+		updateButtonLayout();
 	}
 
     @Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(SyncFinishedEvent event) {
-        updateButtonLayout();
-        syncFinishedHandler();
+		Log.d(TAG, "onEventMainThread - SyncFinishedEvent");
+		updateButtonLayout();
+		syncFinishedHandler();
 	}
 
 	/**

@@ -23,7 +23,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
-import java.lang.reflect.Proxy;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -162,7 +161,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         if (NextcloudNotificationManager.isUnreadRssCountNotificationVisible(this)) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
             int count = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
-            NextcloudNotificationManager.showUnreadRssItemsNotification(this, count);
+            NextcloudNotificationManager.showUnreadRssItemsNotification(this, count, mPrefs);
 
             if (count == 0) {
                 NextcloudNotificationManager.removeRssItemsNotification(this);
