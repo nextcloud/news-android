@@ -124,6 +124,9 @@
     <string name="pref_header_general">Orokorra</string>
     <string name="pref_title_general_sort_order">Ordenatzeko irizpidea</string>
 
+    <string name="pref_general_sort_order_new_old">Berria → Zaharra</string>
+    <string name="pref_general_sort_order_old_new">Zaharra → Berria</string>
+
     <string name="pref_rename_action_swipe_right">Ekintza hatza eskuinera pasatzean</string>
     <string name="pref_rename_action_swipe_left">Ekintza hatza ezkerrera pasatzean</string>
 
@@ -169,6 +172,8 @@
     <string name="pref_report_issue_summary">Github kontua (doakoa) behar du</string>
     <string name="pref_contribute">Lagundu!</string>
     <string name="pref_contribute_summary">Eskuratu iturburu-kodea</string>
+    <string name="pref_privacy">Pribatutasuna</string>
+    <string name="pref_privacy_summary">Nextcloud Albisteak Android Pribatutasun Gidalerroa</string>
     <string name="pref_version">Nextcloud Albisteak Android aplikazioa</string>
 
 
