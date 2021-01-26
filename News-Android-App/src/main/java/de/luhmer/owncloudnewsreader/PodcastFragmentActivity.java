@@ -152,7 +152,7 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
         if (NextcloudNotificationManager.isUnreadRssCountNotificationVisible(this)) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
             int count = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
-            NextcloudNotificationManager.showUnreadRssItemsNotification(this, count);
+            NextcloudNotificationManager.showUnreadRssItemsNotification(this, count, mPrefs);
 
             if (count == 0) {
                 NextcloudNotificationManager.removeRssItemsNotification(this);

@@ -51,7 +51,6 @@ import javax.inject.Inject;
 
 import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.ActivityNewsDetailBinding;
 import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
@@ -94,23 +93,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	SharedPreferences mPrefs;
 
 	private boolean mShowFastActions;
-	//public static final String DATABASE_IDS_OF_ITEMS = "DATABASE_IDS_OF_ITEMS";
-	private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-
-		@Override
-		public void onPageSelected(int pos) {
-			pageChanged(pos);
-		}
-
-		@Override
-		public void onPageScrolled(int arg0, float arg1, int arg2) {
-		}
-
-		@Override
-		public void onPageScrollStateChanged(int arg0) {
-		}
-	};
-
+	
 	public static SORT_DIRECTION getSortDirectionFromSettings(SharedPreferences prefs) {
 		SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
 		String sortDirection = prefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
@@ -308,6 +291,19 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		super.onDestroy();
 		rssItems.close();
 	}
+
+    private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+
+        @Override
+        public void onPageSelected(int pos) {
+            pageChanged(pos);
+        }
+
+        @Override public void onPageScrolled(int arg0, float arg1, int arg2) { }
+
+        @Override public void onPageScrollStateChanged(int arg0) { }
+    };
+
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

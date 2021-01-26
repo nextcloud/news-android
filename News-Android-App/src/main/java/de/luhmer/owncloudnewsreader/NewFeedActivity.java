@@ -43,6 +43,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -223,7 +224,7 @@ public class NewFeedActivity extends AppCompatActivity {
         }
     }
 
-    public class ImportOpmlSubscriptionsTask extends AsyncTask<Void, Void, Boolean> {
+    public class ImportOpmlSubscriptionsTask extends AsyncTask<Void, List<String>, Boolean> {
 
         private final String mUrlToFile;
         private HashMap<String, String> extractedUrls;
@@ -241,7 +242,7 @@ public class NewFeedActivity extends AppCompatActivity {
             pd.setTitle("Parsing OMPL...");
             pd.setMessage("Please wait.");
             pd.setCancelable(false);
-            pd.setIndeterminate(true);
+            pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pd.show();
 
             super.onPreExecute();
@@ -264,34 +265,49 @@ public class NewFeedActivity extends AppCompatActivity {
                 parser.nextTag();
                 extractedUrls = OpmlXmlParser.ReadFeed(parser);
 
-                publishProgress();
+                List<String> result = new ArrayList<>();
+                publishProgress(result);
 
                 final HashMap<String, Long> existingFolders = new HashMap<>();
 
                 mApi.getNewsAPI().folders().blockingSubscribe(folders -> {
-                    for(Folder folder : folders) {
+                    for (Folder folder : folders) {
                         existingFolders.put(folder.getLabel(), folder.getId());
                     }
                 });
 
-                for(String feedUrl : extractedUrls.keySet()) {
+                for (String feedUrl : extractedUrls.keySet()) {
                     long folderId = 0; //id of the parent folder, 0 for root
                     String folderName = extractedUrls.get(feedUrl);
                     if(folderName != null) { //Get Folder ID (create folder if not exists)
-                        if(existingFolders.containsKey(folderName)) { //Check if folder exists
-                            folderId = existingFolders.get(folderName);
-                        } else { //If not, create a new one on the server
-                            //mApi.getAPI().createFolder(foldername) // HttpJsonRequest.getInstance().performCreateFolderRequest(api.getFolderUrl(), folderName);
-                            final Map<String, Object> folderMap = new HashMap<>(2);
+                        if (!existingFolders.containsKey(folderName)) {
+                            // If folder does not exist, create a new one on the server
+                            final Map<String, Object> folderMap = new HashMap<>(1);
                             folderMap.put("name", folderName);
                             Folder folder = mApi.getNewsAPI().createFolder(folderMap).execute().body().get(0);
-                            //TODO test this!!!
-                            existingFolders.put(folder.getLabel(), folder.getId()); //Add folder to list of existing folder in order to prevent that the method tries to create it multiple times
+                            folderId = folder.getId();
+                            // Add folder to list of existing folder in order to prevent that the method tries to create it multiple times
+                            existingFolders.put(folder.getLabel(), folderId);
                         }
+
+                        folderId = existingFolders.get(folderName);
                     }
 
-                    Feed feed = mApi.getNewsAPI().createFeed(feedUrl, folderId).execute().body().get(0);
-                    Log.v(TAG, "New Feed-ID: " + feed.getId());
+                    Response<List<Feed>> response = mApi.getNewsAPI().createFeed(feedUrl, folderId).execute();
+                    if (response.isSuccessful()) {
+                        Feed feed = response.body().get(0);
+                        result.add("✓ " + feed.getLink());
+                        Log.e(TAG, "Successfully imported feed: " + feedUrl + " - Feed-ID: " + feed.getId());
+                    } else if (response.code() == 409) {
+                        // already exists
+                        result.add("✓ " + " - " + feedUrl);
+                    } else {
+                        result.add("✗ " + response.code() + " - " + feedUrl);
+                        Log.e(TAG, "Failed to import feed: " + feedUrl + " - Status-Code: " + response.code());
+                        Log.e(TAG, response.errorBody().string());
+                    }
+
+                    publishProgress(result);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -301,11 +317,16 @@ public class NewFeedActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {
-            String text = "Extracted the following feeds:\n";
-            for (String url : extractedUrls.keySet()) {
-                text += "\n" + url;
+        protected void onProgressUpdate(List<String>... values) {
+            String text = "This might take a few minutes.. please wait:\n";
+
+            List<String> log = values[0];
+            for (String line : log) {
+                text += "\n" + line;
             }
+
+            pd.setMax(extractedUrls.size());
+            pd.setProgress(log.size());
             pd.setMessage(text);
 
             super.onProgressUpdate(values);
@@ -320,7 +341,7 @@ public class NewFeedActivity extends AppCompatActivity {
             if(!result) {
                 Toast.makeText(mContext, "Failed to parse OPML file", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(mContext, "Successfully imported OPML!", Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, "Imported done!", Toast.LENGTH_LONG).show();
             }
 
             super.onPostExecute(result);
