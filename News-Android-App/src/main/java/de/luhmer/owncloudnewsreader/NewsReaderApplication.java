@@ -1,6 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
-import android.app.Application;
+import androidx.multidex.MultiDexApplication;
 
 import de.luhmer.owncloudnewsreader.di.ApiModule;
 import de.luhmer.owncloudnewsreader.di.AppComponent;
@@ -8,7 +8,7 @@ import de.luhmer.owncloudnewsreader.di.DaggerAppComponent;
 import de.luhmer.owncloudnewsreader.helper.AdBlocker;
 import de.luhmer.owncloudnewsreader.helper.ForegroundListener;
 
-public class NewsReaderApplication extends Application {
+public class NewsReaderApplication extends MultiDexApplication {
 
     protected AppComponent mAppComponent;
 
