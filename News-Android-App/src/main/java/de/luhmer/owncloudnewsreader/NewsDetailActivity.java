@@ -38,6 +38,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import java.lang.ref.WeakReference;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.inject.Inject;
+
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -46,16 +52,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import java.lang.ref.WeakReference;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -103,7 +102,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private MenuItem menuItem_Read;
 
 	private DatabaseConnectionOrm dbConn;
-	public List<RssItem> rssItems;
+	public LazyList<RssItem> rssItems;
 
 	protected @Inject SharedPreferences mPrefs;
 
@@ -180,7 +179,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        rssItems = dbConn.getCurrentRssItemView(-1);
+        rssItems = dbConn.getAllRssItems();
 
         //If the Activity gets started from the Widget, read the item id and get the selected index in the cursor.
         if(intent.hasExtra(WidgetProvider.RSS_ITEM_ID)) {
@@ -296,6 +295,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		rssItems.close();
 	}
 
     private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
