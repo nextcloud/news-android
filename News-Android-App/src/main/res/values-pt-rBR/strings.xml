@@ -124,6 +124,9 @@
     <string name="pref_header_general">Geral</string>
     <string name="pref_title_general_sort_order">Ordem de Classificação</string>
 
+    <string name="pref_general_sort_order_new_old">Novo → Antigo</string>
+    <string name="pref_general_sort_order_old_new">Antigo → Novo</string>
+
     <string name="pref_rename_action_swipe_right">Ação ao deslizar para a direita</string>
     <string name="pref_rename_action_swipe_left">Ação ao deslizar para a esquerda</string>
 
@@ -169,6 +172,8 @@
     <string name="pref_report_issue_summary">Necessita uma conta GitHub (gratuita)</string>
     <string name="pref_contribute">Contribua!</string>
     <string name="pref_contribute_summary">Obter o código-fonte</string>
+    <string name="pref_privacy">Privacidade</string>
+    <string name="pref_privacy_summary">Notícias Nextcloud Política de privacidade do Android</string>
     <string name="pref_version">Aplicativo Android de Notícias Nextcloud</string>
 
 

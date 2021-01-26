@@ -448,22 +448,22 @@ public class DatabaseConnectionOrm {
     }
 
     public List<RssItem> getCurrentRssItemView(int page) {
-        if(page != -1) {
-            String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
-                    + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
-                    + RssItemDao.Properties.Id.columnName
-                    + " AND C._id > " + page * PageSize + " AND c._id <= " + ((page+1) * PageSize)
-                    + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
+        String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
+                + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
+                + RssItemDao.Properties.Id.columnName
+                + " AND C._id > " + page * PageSize + " AND c._id <= " + ((page+1) * PageSize)
+                + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
 
-            return daoSession.getRssItemDao().queryRaw(where_clause);
-        } else {
-            String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
-                    + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
-                    + RssItemDao.Properties.Id.columnName
-                    + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
+        return daoSession.getRssItemDao().queryRaw(where_clause);
+    }
 
-            return daoSession.getRssItemDao().queryRawCreate(where_clause).listLazy();
-        }
+    public LazyList<RssItem> getAllRssItems() {
+        String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
+                + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
+                + RssItemDao.Properties.Id.columnName
+                + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
+
+        return daoSession.getRssItemDao().queryRawCreate(where_clause).listLazy();
     }
 
     /*
